@@ -58,6 +58,39 @@
   transition: top .38s ease;
 }
 .traversal-world__actors { isolation: isolate; }
+.traversal-route-risk { position: absolute; inset: 0; pointer-events: none; z-index: 23; }
+.traversal-route-risk__hazard {
+  position: absolute; display: block; width: calc(var(--vehicle-height) * .42);
+  height: calc(var(--vehicle-height) * .23); transform: translate(-50%, -95%);
+  background: repeating-linear-gradient(135deg, #ecbd59 0 7px, #2a241b 7px 14px);
+  border: 2px solid #fff0b7; border-radius: 5px; box-shadow: 0 5px 9px #100b08a8;
+}
+.traversal-route-risk__hazard--fallen-branch { border-radius: 50% 12% 35% 15%; }
+.traversal-route-risk__bar { position: absolute; inset: 0; display: grid; place-items: center;
+  color: #fff9e8; font: 800 clamp(9px, 1vw, 15px) Inter, sans-serif; text-shadow: 0 1px 3px #000; }
+.traversal-route-risk__warning { position: absolute; left: 50%; bottom: calc(100% + 7px);
+  width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%;
+  transform: translateX(calc(-50% - var(--telegraph-shift, 0px)));
+  background: #f4c75c; border: 2px solid #20190e; color: #241705; font: 900 18px Inter, sans-serif;
+  box-shadow: 0 2px 8px #000a; }
+.traversal-route-risk__impact { position: absolute; left: 25%; width: 1px; height: 1px; opacity: 0; }
+.traversal-route-risk__impact.is-active { animation: traversal-risk-burst .52s ease-out both; }
+.traversal-route-risk__impact i { position: absolute; width: calc(var(--vehicle-height) * .6);
+  height: calc(var(--vehicle-height) * .23); border-radius: 50%;
+  background: radial-gradient(ellipse, #ead0a6d9, #bd935e99 48%, transparent 75%); filter: blur(2px); }
+.traversal-route-risk__impact i:nth-child(1) { translate: calc(var(--vehicle-height) * -.85) -22px; }
+.traversal-route-risk__impact i:nth-child(2) { translate: calc(var(--vehicle-height) * .45) -28px; }
+.traversal-route-risk__impact i:nth-child(3) { translate: calc(var(--vehicle-height) * .85) -5px; }
+@keyframes traversal-risk-burst { 0% { opacity: 0; scale: .35; } 15% { opacity: 1; scale: 1; }
+  100% { opacity: 0; scale: 1.8; } }
+.traversal-vehicle--risk-impact { animation: traversal-risk-jolt .52s ease-out both; }
+@keyframes traversal-risk-jolt {
+  0%, 100% { transform: translate(-50%, -100%) rotate(0); }
+  22% { transform: translate(calc(-50% - 8px), calc(-100% + 8px)) rotate(-1.5deg); }
+  52% { transform: translate(calc(-50% + 4px), calc(-100% - 3px)) rotate(.7deg); }
+}
+.traversal-t0[data-view='checkpoint'] .traversal-route-risk,
+.traversal-t0[data-phase='ARRIVING'] .traversal-route-risk { visibility: hidden; }
 .traversal-world__entities { position: absolute; inset: 0; pointer-events: none; }
 .traversal-world__markers, .traversal-world__occlusion { pointer-events: none; }
 .traversal-world__occlusion .traversal-near-plant { position: absolute; transform: translate(-50%, -100%); }

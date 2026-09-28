@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { advanceRouteRun, completeRouteSegment, createRouteRun, resetRouteSpeed, setRouteLane } from './TraversalRouteRun';
+import { advanceRouteRun, baseRouteSpeedAt, completeRouteSegment, createRouteRun,
+  resetRouteSpeed, routeSpeedRecovery01, setRouteLane } from './TraversalRouteRun';
 import { resolveT0RouteSegment, T0_ROUTE_DRIVING_MS, T0_ROUTE_SEGMENTS } from './TraversalT0CheckpointRoute';
 
 const segment = T0_ROUTE_SEGMENTS[0]!;
@@ -43,6 +44,26 @@ describe('TraversalRouteRun', () => {
     expect(lower.progress01).toBe(upper.progress01);
     expect(lower.speed).toBe(upper.speed);
     expect(lower.lane).toBe(1);
+  });
+
+  it('recovers toward the absolute crescendo within a bounded window, even after a second hit', () => {
+    const recoverySegment = resolveT0RouteSegment(5);
+    const late = advanceRouteRun(createRouteRun(recoverySegment, 5), recoverySegment, 15000);
+    const reset = resetRouteSpeed(late, recoverySegment);
+    expect(reset.speed).toBe(recoverySegment.vMin);
+    expect(reset.progress01).toBe(.75);
+    expect(routeSpeedRecovery01(reset, recoverySegment)).toBe(0);
+    const afterOneSecond = advanceRouteRun(reset, recoverySegment, 1000);
+    expect(afterOneSecond.speed).toBeGreaterThan(recoverySegment.vMin);
+    expect(afterOneSecond.speed).toBeLessThan(baseRouteSpeedAt(recoverySegment, 16000));
+    const resetAgain = resetRouteSpeed(afterOneSecond, recoverySegment);
+    expect(resetAgain.speed).toBe(recoverySegment.vMin);
+    expect(resetAgain.progress01).toBe(afterOneSecond.progress01);
+    const recovered = advanceRouteRun(resetAgain, recoverySegment, 2400);
+    expect(routeSpeedRecovery01(recovered, recoverySegment)).toBe(1);
+    expect(recovered.speed).toBeCloseTo(baseRouteSpeedAt(recoverySegment, recovered.elapsedMs));
+    const complete = completeRouteSegment(recovered, recoverySegment);
+    expect(resetRouteSpeed(complete, recoverySegment)).toBe(complete);
   });
 
   it('rejects invalid duration, speed, delta, and a mismatched segment', () => {

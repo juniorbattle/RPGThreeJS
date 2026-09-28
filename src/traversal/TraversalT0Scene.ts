@@ -23,9 +23,13 @@ import { TraversalRunController } from './TraversalRunController';
 import { TRAVERSAL_RHYTHM, transitionEase } from './TraversalTransition';
 import { traversalContactProgress } from './TraversalT0Route';
 import type { TraversalLane, TraversalRunSession } from './TraversalRunRuntime';
-import { advanceRouteRun, createRouteRun, setRouteLane, type TraversalRouteRunState } from './TraversalRouteRun';
+import { advanceRouteRun, createRouteRun, forecastRouteDistance, resetRouteSpeed,
+  routeSpeedRecovery01, setRouteLane, type TraversalRouteRunState } from './TraversalRouteRun';
 import { resolveT0RouteSegment, T0_ROUTE_SEGMENTS, type T0RouteSegment } from './TraversalT0CheckpointRoute';
 import { TraversalRouteRenderer } from './TraversalRouteRenderer';
+import { createRouteRisk, resolveRouteRisk, type TraversalRouteRiskState } from './TraversalRouteRisk';
+import { t0RouteHazards } from './TraversalT0Risk';
+import { TraversalRouteRiskRenderer } from './TraversalRouteRiskRenderer';
 
 const LANE_TOP_PERCENT: Record<TraversalLane, number> = { 0: 65, 1: 81 };
 const MANDATORY_TOP_PERCENT = 73;
@@ -83,6 +87,9 @@ export class TraversalT0Scene {
   private readonly markerElements = new Map<string, HTMLElement>();
   private readonly worldRenderer = new TraversalWorldRenderer();
   private readonly routeRenderer = new TraversalRouteRenderer();
+  private readonly riskEnabled = import.meta.env.DEV
+    && new URLSearchParams(window.location.search).get('traversalRisk') === '1';
+  private readonly riskRenderer = this.riskEnabled ? new TraversalRouteRiskRenderer() : null;
   private readonly foregroundRenderer = new TraversalForegroundRenderer();
   private readonly stageBeats: readonly TraversalRouteBeat[];
   private frameId: number | null = null;
@@ -109,6 +116,9 @@ export class TraversalT0Scene {
   private routeIndex = 0;
   private routeSegment: T0RouteSegment = resolveT0RouteSegment(0);
   private routeRun: TraversalRouteRunState = createRouteRun(this.routeSegment, 0);
+  private routeRisk: TraversalRouteRiskState = createRouteRisk(this.routeSegment.id);
+  private lastRiskSpeedBefore: number | null = null;
+  private lastRiskSpeedAfter: number | null = null;
   private viewMode: 'ROUTE' | 'CHECKPOINT' = 'ROUTE';
   private checkpointBeat: TraversalRouteBeat | null = null;
   private checkpointElapsed = 0;
@@ -164,6 +174,7 @@ export class TraversalT0Scene {
     this.element.dataset.routeSegment = 'route-1';
     this.element.dataset.routeWorld = 'shared';
     this.element.dataset.laneCount = '2';
+    if (this.riskEnabled) this.element.dataset.riskEnabled = 'dev';
     this.element.setAttribute('aria-label', `Traversée de ${this.route.originLabel} vers ${this.route.destinationLabel}`);
     this.build();
     this.worldRenderer.setDirections(state.run.graph.nodes.filter(node =>
@@ -302,6 +313,7 @@ export class TraversalT0Scene {
     this.element.querySelector('.traversal-world__road')!.append(this.worldRenderer.element);
     this.element.querySelector('.traversal-world__road')!.append(this.worldRenderer.routeElement);
     this.element.querySelector('.traversal-world__road')!.append(this.routeRenderer.element);
+    if (this.riskRenderer) this.element.querySelector('.traversal-world__actors')!.append(this.riskRenderer.element);
     this.element.querySelector('.traversal-world')!.append(this.foregroundRenderer.element);
     for (const [selector, plane] of [
       ['.traversal-world__road', 'road-world'], ['.traversal-world__actors', 'road-actors'],
@@ -311,6 +323,8 @@ export class TraversalT0Scene {
     this.element.style.setProperty('--traversal-foreground-image', `url("${TRAVERSAL_T0_ASSETS.foregroundLayer}")`);
     const vehicle = this.element.querySelector<HTMLElement>('.traversal-vehicle')!;
     buildTraversalCaravan(vehicle);
+    this.riskRenderer?.bindVehicle(vehicle);
+    this.riskRenderer?.reset(t0RouteHazards(this.routeSegment.id));
     const entities = this.element.querySelector<HTMLElement>('.traversal-world__entities')!;
     for (const beat of this.route.beats) this.buildEntity(entities, beat);
   }
@@ -397,6 +411,7 @@ export class TraversalT0Scene {
 
   private startTransition(kind: string, midpoint?: () => void | Promise<void>, reveal = false): void {
     if (kind === 'focus') this.focusStartSpeed = this.speed;
+    if (kind === 'focus') this.riskRenderer?.clearImpact();
     this.transition = { kind, midpoint, elapsed: 0, reveal, waitingForReady: false, blackHoldRemaining: 0 };
     if (kind === 'entry') this.element.style.setProperty('--vehicle-entry-x', '-600px');
     this.element.dataset.transition = kind;
@@ -516,6 +531,21 @@ export class TraversalT0Scene {
     const restart = transitionEase(this.routeRun.elapsedMs / (TRAVERSAL_RHYTHM.restart * 1000));
     this.routeRenderer.advance(this.routeRun.elapsedMs - previous.elapsedMs,
       (previous.speed + this.routeRun.speed) / 2 * restart);
+    if (this.riskEnabled) {
+      const activeRiskDriving = !this.routeRun.complete && !this.departure
+        && !document.body.classList.contains('scene-transition--locked');
+      const resolved = resolveRouteRisk(this.routeRisk, t0RouteHazards(this.routeSegment.id),
+        previous.progress01, this.routeRun.progress01, this.routeRun.lane, activeRiskDriving);
+      this.routeRisk = resolved.state;
+      for (const outcome of resolved.outcomes) {
+        if (outcome.result !== 'COLLISION') continue;
+        this.lastRiskSpeedBefore = this.routeRun.speed;
+        this.routeRun = resetRouteSpeed(this.routeRun, this.routeSegment);
+        this.lastRiskSpeedAfter = this.routeRun.speed;
+        this.riskRenderer?.impact(outcome.hazard, this.routeRun.elapsedMs);
+        this.riskRenderer?.reforecastUnseen(this.routeRenderer.distance, this.element.clientWidth || ROAD_SPACE.referenceWidth);
+      }
+    }
     this.speed = this.routeRun.speed * restart;
     this.element.dataset.motion = this.routeRun.progress01 > .8 ? 'rushing' : 'cruising';
     this.element.style.setProperty('--route-rush-opacity', String(Math.max(0, (this.routeRun.progress01 - .55) * 1.2)));
@@ -527,6 +557,7 @@ export class TraversalT0Scene {
     if (!this.routeRun.complete) return;
     if (this.routeSegment.checkpointKind === 'ARRIVAL') {
       if (!this.arrivalRequested) {
+        this.riskRenderer?.clearImpact();
         this.arrivalRequested = true;
         this.arrivalVisualSpeed = this.speed;
         this.arrivalElapsed = 0;
@@ -634,6 +665,10 @@ export class TraversalT0Scene {
     this.routeIndex = index;
     this.routeSegment = resolveT0RouteSegment(index, this.options.getState().run.traversalBranches?.T0);
     this.routeRun = createRouteRun(this.routeSegment, index, this.session.currentLane);
+    this.routeRisk = createRouteRisk(this.routeSegment.id);
+    this.lastRiskSpeedBefore = null;
+    this.lastRiskSpeedAfter = null;
+    this.riskRenderer?.reset(t0RouteHazards(this.routeSegment.id));
     this.viewMode = 'ROUTE';
     this.element.dataset.view = 'route';
     this.element.dataset.routeSegment = this.routeSegment.id;
@@ -696,7 +731,8 @@ export class TraversalT0Scene {
 
   private moveToLane(lane: TraversalLane): void {
     if (this.transition || this.departure || this.approachElapsed !== null
-      || document.body.classList.contains('scene-transition--locked') || this.viewMode !== 'ROUTE') return;
+      || document.body.classList.contains('scene-transition--locked') || this.viewMode !== 'ROUTE'
+      || this.session.phase !== 'RUNNING' || this.routeRun.complete) return;
     const current = this.controller.session.currentLane;
     if (lane === current) return;
     this.controller.moveLane(lane < current ? -1 : 1);
@@ -799,6 +835,28 @@ export class TraversalT0Scene {
     const height = this.element.clientHeight || 823;
     if (this.viewMode === 'ROUTE') {
       this.worldRenderer.updateRoute(t0RouteWorldCamera(this.routeRenderer.distance), width);
+    }
+    if (this.riskRenderer) {
+      const hazards = t0RouteHazards(this.routeSegment.id);
+      const active = this.viewMode === 'ROUTE' && this.session.phase === 'RUNNING'
+        && !this.transition && !this.departure && this.approachElapsed === null
+        && !this.routeRun.complete && !document.body.classList.contains('scene-transition--locked');
+      this.riskRenderer.update(hazards, this.routeRisk, this.routeRun.progress01,
+        this.routeRun.elapsedMs, this.routeSegment.durationMs, this.routeRenderer.distance,
+        width, active, progress => forecastRouteDistance(this.routeRun, this.routeSegment, progress));
+      this.element.dataset.riskSegment = this.routeRisk.segmentId;
+      this.element.dataset.riskProgress = String(this.routeRun.progress01);
+      this.element.dataset.riskLane = String(this.routeRun.lane);
+      this.element.dataset.riskActiveHazards = JSON.stringify([...this.riskRenderer.element
+        .querySelectorAll<HTMLElement>('[data-risk-hazard]:not([hidden])')].map(mark => mark.dataset.riskHazard));
+      this.element.dataset.riskHazards = JSON.stringify(hazards.map(hazard => ({
+        id: hazard.id, lane: hazard.lane, progress01: hazard.progress01 })));
+      this.element.dataset.riskResolvedHazards = JSON.stringify(this.routeRisk.resolvedHazardIds);
+      this.element.dataset.riskCollisionCount = String(this.routeRisk.collisionCount);
+      this.element.dataset.riskLastCollisionId = this.routeRisk.lastCollisionId ?? '';
+      this.element.dataset.riskSpeedBefore = String(this.lastRiskSpeedBefore ?? '');
+      this.element.dataset.riskSpeedAfter = String(this.lastRiskSpeedAfter ?? '');
+      this.element.dataset.riskRecoveryProgress = String(routeSpeedRecovery01(this.routeRun, this.routeSegment));
     }
     const vehicle = this.element.querySelector<HTMLElement>('.traversal-vehicle')!;
     const exitDistance = session.phase === 'ARRIVING' ? this.arrivalExitDistance : 0;
