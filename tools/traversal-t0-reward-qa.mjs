@@ -9,6 +9,8 @@ const port = 5219;
 const viewport = { width: 1440, height: 810 };
 const mobile = [{ width: 620, height: 780 }, { width: 390, height: 844 }];
 const refugeQa = process.argv.includes('--reward-refuge-qa');
+const artQa = process.argv.includes('--reward-art-qa');
+const pouchPath = '/assets/generated/lion-phase/traversal/t0/reward/coin-pouch.png';
 const pickups = {
   'route-1': [[.65, 1]], 'route-2': [[.22, 0]], 'route-3': [[.18, 1], [.50, 0]],
   'route-4': [[.18, 0], [.50, 1]], 'route-5a': [[.18, 1], [.48, 0]],
@@ -23,8 +25,9 @@ const plans = {
   'route-5b': [[.08, 0]],
   'route-6': [[.14, 1], [.39, 0], [.60, 1]],
 };
-const report = { task: 'TRAVERSAL-T0-ROUTE-REWARD-1', baseline: '300d126d2d608a4f4d3b6f30b4825cd6f9dc9fc6',
-  runs: [], captures: [], errors: [] };
+const report = { task: artQa ? 'TRAVERSAL-T0-ROUTE-REWARD-ART-1' : 'TRAVERSAL-T0-ROUTE-REWARD-1',
+  baseline: artQa ? 'f96290f0d848a83f4fa8cb3f15987123e332b84a' : '300d126d2d608a4f4d3b6f30b4825cd6f9dc9fc6',
+  runs: [], captures: [], errors: [], assetResponses: [] };
 await mkdir(output, { recursive: true });
 const server = await createServer({ server: { host: '127.0.0.1', port, strictPort: true, watch: null, hmr: false } });
 await server.listen();
@@ -35,6 +38,9 @@ async function makePage(mode) {
   const page = await context.newPage();
   page.on('pageerror', error => report.errors.push(`${mode}: ${error.message}`));
   page.on('console', message => { if (message.type() === 'error') report.errors.push(`${mode}: ${message.text()}`); });
+  if (artQa) page.on('response', response => {
+    if (response.url().endsWith(pouchPath)) report.assetResponses.push({ mode, status: response.status() });
+  });
   await page.route('**/src/main.ts', async route => {
     const response = await route.fetch();
     const source = await response.text();
@@ -81,9 +87,13 @@ async function snapshot(page) {
       resolved: JSON.parse(root?.dataset.rewardResolved ?? '[]'),
       collected: JSON.parse(root?.dataset.rewardCollected ?? '[]'),
       feedback: root?.querySelector('.traversal-route-reward__feedback')?.classList.contains('is-active') ?? false,
+      pulse: root?.querySelector('.traversal-route-reward__pulse')?.classList.contains('is-active') ?? false,
       marks: marks.map(mark => { const rect = mark.getBoundingClientRect(); return {
         id: mark.dataset.rewardPickup, lane: Number(mark.dataset.rewardLane), hidden: mark.hidden,
-        x: rect.x + rect.width / 2, y: rect.bottom, width: rect.width, height: rect.height } }),
+        x: rect.x + rect.width / 2, y: rect.bottom, width: rect.width, height: rect.height,
+        imageSrc: mark.querySelector('img')?.getAttribute('src') ?? null,
+        imageLoaded: Boolean(mark.querySelector('img')?.naturalWidth),
+        imageWidth: mark.querySelector('img')?.naturalWidth ?? 0 } }),
       vehicleX: vehicle ? vehicle.x + vehicle.width / 2 : null,
       hud: document.querySelector('.campaign-status-hud')?.textContent ?? '',
       gold: app.state.gold, temporary: app.state.run.temporaryLoot.gold,
@@ -107,7 +117,8 @@ async function snapshot(page) {
 
 async function capture(page, name, run, widths = []) {
   if (refugeQa && name !== 'reward-refuge-secured') return;
-  for (const size of [viewport, ...widths]) {
+  const sizes = artQa && name === 'reward-r1-collected' ? [mobile[1], viewport] : [viewport, ...widths];
+  for (const size of sizes) {
     await page.setViewportSize(size);
     await page.waitForTimeout(80);
     const file = `${name}${size.width === viewport.width ? '' : `-${size.width}`}.png`;
@@ -116,6 +127,10 @@ async function capture(page, name, run, widths = []) {
     report.captures.push({ file, run: run.id, viewport: `${size.width}x${size.height}`, state });
     if (state.overflow || state.laneButtons.some(button => button.x < 0 || button.right > size.width
       || button.y < 0 || button.bottom > size.height)) report.errors.push(`${file}: overflow or lane control clipping`);
+    if (artQa && state.marks.some(mark => !mark.hidden && (mark.imageSrc !== pouchPath
+      || !mark.imageLoaded || mark.imageWidth !== 512 || mark.width < 40 || mark.width > 80
+      || mark.height > 80 || Math.abs(mark.y - size.height * (mark.lane === 0 ? .65 : .81)) > 20)))
+      report.errors.push(`${file}: pouch image, size, or lane grounding failed`);
   }
   await page.setViewportSize(viewport);
 }
@@ -306,6 +321,13 @@ for (const run of report.runs) {
 if (!refugeQa && (report.runs.find(run => run.id === 'combined-a')?.segments['route-3']?.collisions !== 0
   || report.runs.find(run => run.id === 'combined-b')?.segments['route-5b']?.collisions !== 1))
   report.errors.push('Combined Risk dodge or collision proof failed');
+if (artQa && (report.assetResponses.some(response => response.status !== 200)
+  || report.assetResponses.some(response => response.mode === 'off')
+  || new Set(report.assetResponses.map(response => response.mode)).size < 2))
+  report.errors.push('Approved pouch requests failed or appeared with Reward off');
+if (artQa && !report.captures.some(capture => capture.file === 'reward-r1-collected-390.png'
+  && capture.state.feedback && capture.state.pulse && capture.state.hud.includes('+5 route')))
+  report.errors.push('Mobile collection feedback or HUD proof missing');
 if (report.captures.length > 12) report.errors.push('Evidence exceeds 12 screenshots');
 await writeFile(`${output}/browser-qa.json`, `${JSON.stringify(report, null, 2)}\n`);
 await writeFile(`${output}/index.html`, `<!doctype html><meta charset="utf-8"><title>T0 Route Reward QA</title><style>body{margin:0;background:#101514;color:#f6e2b5;font:14px sans-serif;padding:24px}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}figure{margin:0}img{width:100%}</style><h1>T0 Route Reward QA</h1><p><a href="browser-qa.json">Machine readable results</a></p><main>${report.captures.map(capture => `<figure><img src="${capture.file}"><figcaption>${capture.file} · ${capture.viewport}</figcaption></figure>`).join('')}</main>`);

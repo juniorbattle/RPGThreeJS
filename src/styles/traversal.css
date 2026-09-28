@@ -101,16 +101,18 @@
 .traversal-t0[data-phase='ARRIVING'] .traversal-route-risk { visibility: hidden; }
 .traversal-route-reward { position: absolute; inset: 0; pointer-events: none; z-index: 24; }
 .traversal-route-reward__pickup {
-  position: absolute; width: clamp(24px, 3.5vw, 40px); aspect-ratio: 1;
-  transform: translate(-50%, -88%); display: grid; place-items: center;
-  border: 2px solid #ffe0a0; border-radius: 50%;
-  color: #fff2bd; background: radial-gradient(circle at 35% 30%, #e3af4e, #845119 72%);
-  box-shadow: 0 0 0 3px #25150999, 0 4px 12px #0d0907b8, inset 0 1px 3px #fff3b1;
+  position: absolute; display: block; width: clamp(48px, 5vw, 72px);
+  transform: translate(-50%, -95%);
 }
 .traversal-route-reward__pickup[hidden] { display: none; }
-.traversal-route-reward__pickup i { font: normal 700 clamp(15px, 2vw, 22px) Georgia, serif; }
-.traversal-route-reward__pickup small { position: absolute; top: 100%; font: 600 8px Inter, sans-serif;
-  color: #ffe2a7; text-shadow: 0 1px 2px #110d08; }
+.traversal-route-reward__pickup img { display: block; width: 100%; height: auto; max-width: none; }
+.traversal-route-reward__pulse { position: absolute; left: 25%;
+  width: clamp(48px, 5vw, 72px); aspect-ratio: 1; border-radius: 50%; opacity: 0;
+  background: radial-gradient(circle, #ffd57080, #e5a74442 40%, transparent 70%);
+  transform: translate(-50%, -50%); }
+.traversal-route-reward__pulse.is-active { animation: traversal-reward-pulse .45s ease-out both; }
+@keyframes traversal-reward-pulse { 0% { opacity: 0; scale: .45; }
+  25% { opacity: .8; scale: .8; } 100% { opacity: 0; scale: 1.2; } }
 .traversal-route-reward__feedback { position: absolute; left: 25%; opacity: 0;
   transform: translate(-50%, calc(-1 * var(--vehicle-height) - 8px));
   padding: 3px 9px; border: 1px solid #d3a353; border-radius: 20px;

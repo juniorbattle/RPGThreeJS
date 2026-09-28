@@ -3,8 +3,9 @@ import type { TraversalRoutePickup, TraversalRouteRewardState } from './Traversa
 
 const APPROACH_MS = 2400;
 const COLLECTION_MS = 450;
+export const ROUTE_REWARD_POUCH = '/assets/generated/lion-phase/traversal/t0/reward/coin-pouch.png';
 
-/** DEV placeholder and local collection feedback. Uses the route's visual road distance. */
+/** Route Reward art and local collection feedback. Uses the route's visual road distance. */
 export class TraversalRouteRewardRenderer {
   readonly element = document.createElement('div');
   private readonly marks = new Map<string, HTMLElement>();
@@ -14,7 +15,7 @@ export class TraversalRouteRewardRenderer {
   constructor() {
     this.element.className = 'traversal-route-reward';
     this.element.setAttribute('aria-hidden', 'true');
-    this.element.innerHTML = '<span class="traversal-route-reward__feedback">+5 route</span>';
+    this.element.innerHTML = '<span class="traversal-route-reward__pulse"></span><span class="traversal-route-reward__feedback">+5 route</span>';
   }
 
   reset(pickups: readonly TraversalRoutePickup[]): void {
@@ -22,6 +23,7 @@ export class TraversalRouteRewardRenderer {
     this.marks.clear();
     this.contactDistances.clear();
     this.feedbackUntilMs = -1;
+    this.element.querySelector('.traversal-route-reward__pulse')?.classList.remove('is-active');
     this.element.querySelector('.traversal-route-reward__feedback')?.classList.remove('is-active');
     for (const pickup of pickups) {
       const mark = document.createElement('span');
@@ -29,7 +31,7 @@ export class TraversalRouteRewardRenderer {
       mark.dataset.rewardPickup = pickup.id;
       mark.dataset.rewardLane = String(pickup.lane);
       mark.dataset.rewardProgress = String(pickup.progress01);
-      mark.innerHTML = '<i aria-hidden="true">✦</i><small>DEV</small>';
+      mark.innerHTML = `<img src="${ROUTE_REWARD_POUCH}" alt="" draggable="false">`;
       mark.hidden = true;
       this.element.append(mark);
       this.marks.set(pickup.id, mark);
@@ -39,6 +41,11 @@ export class TraversalRouteRewardRenderer {
   collect(pickup: TraversalRoutePickup, elapsedMs: number): void {
     this.marks.get(pickup.id)?.setAttribute('hidden', '');
     this.feedbackUntilMs = elapsedMs + COLLECTION_MS;
+    const pulse = this.element.querySelector<HTMLElement>('.traversal-route-reward__pulse')!;
+    pulse.style.top = `${pickup.lane === 0 ? 65 : 81}%`;
+    pulse.classList.remove('is-active');
+    void pulse.offsetWidth;
+    pulse.classList.add('is-active');
     const feedback = this.element.querySelector<HTMLElement>('.traversal-route-reward__feedback')!;
     feedback.style.top = `${pickup.lane === 0 ? 65 : 81}%`;
     feedback.textContent = `+${pickup.gold} route`;
@@ -61,6 +68,7 @@ export class TraversalRouteRewardRenderer {
     forecastDistance: (contactProgress01: number) => number): void {
     this.element.hidden = !activeDriving;
     if (elapsedMs >= this.feedbackUntilMs) {
+      this.element.querySelector('.traversal-route-reward__pulse')?.classList.remove('is-active');
       this.element.querySelector('.traversal-route-reward__feedback')?.classList.remove('is-active');
     }
     if (!activeDriving) {
