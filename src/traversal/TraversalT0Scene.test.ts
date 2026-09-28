@@ -39,6 +39,8 @@ describe('TraversalT0Scene Lot A', () => {
     expect(scene.element.dataset).toMatchObject({ traversalLeg: 'T0', view: 'route', routeWorld: 'shared',
       routeSegment: 'route-1', laneCount: '2', singleRoad: 'false' });
     expect(scene.element.querySelectorAll('.traversal-route-loop')).toHaveLength(1);
+    expect(scene.element.querySelector('.traversal-route-risk')).toBeNull();
+    expect(scene.element.querySelector('[data-risk-hazard]')).toBeNull();
     const genericSections = [...scene.element.querySelectorAll<HTMLElement>('.traversal-world__route-sections [data-world-section]')];
     expect(genericSections).toHaveLength(16);
     expect(genericSections.every(section => section.dataset.sectionKind === 'FOREST'
