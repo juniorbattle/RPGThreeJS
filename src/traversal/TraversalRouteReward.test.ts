@@ -1,4 +1,5 @@
 // @vitest-environment happy-dom
+import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -7,13 +8,38 @@ import { createInitialState } from '../game/store';
 import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
 import { advanceRouteRun, createRouteRun, forecastRouteDistance, resetRouteSpeed } from './TraversalRouteRun';
 import { createRouteReward, resolveRouteReward } from './TraversalRouteReward';
-import { TraversalRouteRewardRenderer } from './TraversalRouteRewardRenderer';
+import { ROUTE_REWARD_POUCH, TraversalRouteRewardRenderer } from './TraversalRouteRewardRenderer';
 import { createRouteRisk, resolveRouteRisk } from './TraversalRouteRisk';
 import { resolveT0RouteSegment } from './TraversalT0CheckpointRoute';
 import { T0_ROUTE_HAZARDS, t0RouteHazards } from './TraversalT0Risk';
 import { T0_ROUTE_PICKUPS, t0RoutePickups } from './TraversalT0Reward';
 
 describe('T0 Route Reward', () => {
+  it('uses the single approved RGBA pouch asset registered in the T0 manifest', () => {
+    const manifest = JSON.parse(readFileSync(resolve(process.cwd(),
+      'public/assets/generated/lion-phase/traversal/t0/asset-manifest.json'), 'utf8')) as {
+        assets: { path: string; role: string; width: number; height: number; sha256: string }[];
+      };
+    const bytes = readFileSync(resolve(process.cwd(), 'public', ROUTE_REWARD_POUCH.slice(1)));
+    const entry = manifest.assets.find(asset => asset.path === ROUTE_REWARD_POUCH);
+    expect(entry).toMatchObject({ role: 'reward', width: 512, height: 459,
+      sha256: createHash('sha256').update(bytes).digest('hex') });
+    expect(manifest.assets.filter(asset => asset.role === 'reward')).toHaveLength(1);
+    expect(bytes.subarray(0, 8).toString('hex')).toBe('89504e470d0a1a0a');
+    expect(bytes.readUInt32BE(16)).toBe(512);
+    expect(bytes.readUInt32BE(20)).toBe(459);
+    expect(bytes[25]).toBe(6); // PNG RGBA
+    const renderer = new TraversalRouteRewardRenderer();
+    for (const segment of ['route-1', 'route-2', 'route-3', 'route-4', 'route-5a', 'route-5b', 'route-6']) {
+      const pickups = t0RoutePickups(segment);
+      renderer.reset(pickups);
+      const images = [...renderer.element.querySelectorAll<HTMLImageElement>('[data-reward-pickup] img')];
+      expect(images).toHaveLength(pickups.length);
+      expect(images.every(image => image.getAttribute('src') === ROUTE_REWARD_POUCH)).toBe(true);
+    }
+    expect(renderer.element.textContent).not.toContain('DEV');
+  });
+
   it('authors stable lane pickups with equal branch value and safe hazard spacing', () => {
     const counts = { 'route-1': 1, 'route-2': 1, 'route-3': 2, 'route-4': 2,
       'route-5a': 2, 'route-5b': 2, 'route-6': 1 };

@@ -45,6 +45,14 @@
       "sha256": "f8d519acac367f5c9faf9f17c6f64c504babb569a109af4913e032445ad41713"
     },
     {
+      "id": "reward-coin-pouch",
+      "path": "/assets/generated/lion-phase/traversal/t0/reward/coin-pouch.png",
+      "role": "reward",
+      "width": 512,
+      "height": 459,
+      "sha256": "a1bd020956384015043eb58c43461441337e7d57b5b7605c07fc38d6bbd92113"
+    },
+    {
       "id": "risk-boulder-a",
       "path": "/assets/generated/lion-phase/traversal/t0/risk/boulder-a.png",
       "role": "risk",
