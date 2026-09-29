@@ -68,10 +68,25 @@ describe('T0 Route Pursuit authoring and policy', () => {
       .toBeGreaterThan(t0RoutePursuitWindow('route-6')!.endProgress01);
   });
 
-  it('is DEV opt-in only', () => {
-    expect(resolveTraversalPursuitEnabled({ dev: true, search: '?traversalPursuit=1' })).toBe(true);
-    expect(resolveTraversalPursuitEnabled({ dev: true, search: '' })).toBe(false);
-    expect(resolveTraversalPursuitEnabled({ dev: false, search: '?traversalPursuit=1' })).toBe(false);
+  it('is production default with only a DEV Pursuit-off override, independent of Risk and Reward', () => {
+    for (const [dev, search, enabled] of [
+      [false, '', true], [false, '?traversalPursuit=0', true],
+      [false, '?traversalPursuit=1', true], [true, '', true],
+      [true, '?traversalPursuit=1', true], [true, '?traversalPursuit=0', false],
+    ] as const) {
+      expect(resolveTraversalPursuitEnabled({ dev, search })).toBe(enabled);
+    }
+    for (const dev of [false, true]) {
+      for (const pursuit of ['', 'traversalPursuit=0', 'traversalPursuit=1']) {
+        for (const risk of ['', 'traversalRisk=0', 'traversalRisk=1']) {
+          for (const reward of ['', 'traversalReward=0', 'traversalReward=1']) {
+            const search = `?${[pursuit, risk, reward, 'qa=1', 'unrelated=0'].filter(Boolean).join('&')}`;
+            expect(resolveTraversalPursuitEnabled({ dev, search }))
+              .toBe(!(dev && pursuit === 'traversalPursuit=0'));
+          }
+        }
+      }
+    }
   });
 });
 

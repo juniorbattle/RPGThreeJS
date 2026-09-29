@@ -5,7 +5,7 @@ import { pursuerLaneAt } from './TraversalRoutePursuit';
 const FEEDBACK_MS = 650;
 export const TRAVERSAL_PURSUER_IMAGE = '/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png';
 
-/** DEV-gated pursuer art in screen space, behind the caravan. No world distance or campaign ownership. */
+/** T0 pursuer art in screen space, behind the caravan. No world distance or campaign ownership. */
 export class TraversalRoutePursuitRenderer {
   readonly element = document.createElement('div');
   private readonly proxy = document.createElement('span');

@@ -41,16 +41,20 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
-it('mounts no pursuit by default and only a DEV flagged aria-hidden proxy', () => {
-  const off = makeScene('?qa=1');
+it('mounts one aria-hidden Pursuit renderer by default and honors only DEV Pursuit-off', () => {
+  const off = makeScene('?qa=1&traversalPursuit=0');
   expect(off.scene.element.querySelector('.traversal-route-pursuit')).toBeNull();
   expect(off.scene.element.dataset.pursuitEnabled).toBeUndefined();
   off.scene.dispose();
-  const on = makeScene('?qa=1&traversalPursuit=1');
-  expect(on.scene.element.querySelector('.traversal-route-pursuit')?.getAttribute('aria-hidden')).toBe('true');
-  expect(on.scene.element.dataset.pursuitEnabled).toBe('dev');
-  expect(on.scene.element.querySelectorAll('.traversal-vehicle')).toHaveLength(1);
-  on.scene.dispose();
+  for (const search of ['?qa=1', '?qa=1&traversalPursuit=1']) {
+    const on = makeScene(search);
+    expect(on.scene.element.querySelectorAll('.traversal-route-pursuit')).toHaveLength(1);
+    expect(on.scene.element.querySelector('.traversal-route-pursuit')?.getAttribute('aria-hidden')).toBe('true');
+    expect(on.scene.element.dataset.pursuitEnabled).toBe('dev');
+    expect(on.scene.element.querySelectorAll('.traversal-route-pursuit button, .traversal-route-pursuit a, .traversal-route-pursuit [tabindex]')).toHaveLength(0);
+    expect(on.scene.element.querySelectorAll('.traversal-vehicle')).toHaveLength(1);
+    on.scene.dispose();
+  }
 });
 
 it('passes one Risk collision impulse to Pursuit and resets fresh state on next segment', async () => {
