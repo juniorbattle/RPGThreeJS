@@ -4,6 +4,10 @@ if (process.argv.includes('--reward-qa')) {
   await import('./traversal-t0-reward-qa.mjs');
   process.exit(0);
 }
+if (process.argv.includes('--pursuit-qa')) {
+  await import('./traversal-t0-pursuit-qa.mjs');
+  process.exit(0);
+}
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 import { createServer, preview } from 'vite';

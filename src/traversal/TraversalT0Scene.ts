@@ -35,6 +35,11 @@ import { createRouteReward, resolveRouteReward, type TraversalRouteRewardState }
 import { t0RoutePickups } from './TraversalT0Reward';
 import { TraversalRouteRewardRenderer } from './TraversalRouteRewardRenderer';
 import { resolveTraversalRewardEnabled } from './TraversalRewardPresentationPolicy';
+import { createRoutePursuit, pursuerLaneAt, resolveRoutePursuit,
+  type TraversalRoutePursuitState, type TraversalRoutePursuitOutcome } from './TraversalRoutePursuit';
+import { t0RoutePursuitWindow } from './TraversalT0Pursuit';
+import { TraversalRoutePursuitRenderer } from './TraversalRoutePursuitRenderer';
+import { resolveTraversalPursuitEnabled } from './TraversalPursuitPresentationPolicy';
 
 const LANE_TOP_PERCENT: Record<TraversalLane, number> = { 0: 65, 1: 81 };
 const MANDATORY_TOP_PERCENT = 73;
@@ -103,6 +108,11 @@ export class TraversalT0Scene {
     dev: import.meta.env.DEV, search: window.location.search,
   });
   private readonly rewardRenderer = this.rewardEnabled ? new TraversalRouteRewardRenderer() : null;
+  private readonly pursuitEnabled = resolveTraversalPursuitEnabled({
+    dev: import.meta.env.DEV, search: window.location.search,
+  });
+  private readonly pursuitRenderer = this.pursuitEnabled ? new TraversalRoutePursuitRenderer() : null;
+  private readonly pursuitQaEvents: TraversalRoutePursuitOutcome[] = [];
   private readonly foregroundRenderer = new TraversalForegroundRenderer();
   private readonly stageBeats: readonly TraversalRouteBeat[];
   private frameId: number | null = null;
@@ -131,8 +141,13 @@ export class TraversalT0Scene {
   private routeRun: TraversalRouteRunState = createRouteRun(this.routeSegment, 0);
   private routeRisk: TraversalRouteRiskState = createRouteRisk(this.routeSegment.id);
   private routeReward: TraversalRouteRewardState = createRouteReward(this.routeSegment.id);
+  private routePursuit: TraversalRoutePursuitState = createRoutePursuit(this.routeSegment.id);
   private lastRiskSpeedBefore: number | null = null;
   private lastRiskSpeedAfter: number | null = null;
+  private lastPursuitSpeedBefore: number | null = null;
+  private lastPursuitSpeedAfter: number | null = null;
+  private lastPursuitCatchElapsed: number | null = null;
+  private lastPursuitCatchProgress: number | null = null;
   private viewMode: 'ROUTE' | 'CHECKPOINT' = 'ROUTE';
   private checkpointBeat: TraversalRouteBeat | null = null;
   private checkpointElapsed = 0;
@@ -190,6 +205,7 @@ export class TraversalT0Scene {
     this.element.dataset.laneCount = '2';
     if (this.riskQa) this.element.dataset.riskEnabled = this.riskEnabled ? 'dev' : 'off';
     if (this.rewardEnabled && this.riskQa) this.element.dataset.rewardEnabled = 'dev';
+    if (this.pursuitEnabled && this.riskQa) this.element.dataset.pursuitEnabled = 'dev';
     this.element.setAttribute('aria-label', `Traversée de ${this.route.originLabel} vers ${this.route.destinationLabel}`);
     this.build();
     this.worldRenderer.setDirections(state.run.graph.nodes.filter(node =>
@@ -330,6 +346,7 @@ export class TraversalT0Scene {
     this.element.querySelector('.traversal-world__road')!.append(this.routeRenderer.element);
     if (this.riskRenderer) this.element.querySelector('.traversal-world__actors')!.append(this.riskRenderer.element);
     if (this.rewardRenderer) this.element.querySelector('.traversal-world__actors')!.append(this.rewardRenderer.element);
+    if (this.pursuitRenderer) this.element.querySelector('.traversal-world__actors')!.append(this.pursuitRenderer.element);
     this.element.querySelector('.traversal-world')!.append(this.foregroundRenderer.element);
     for (const [selector, plane] of [
       ['.traversal-world__road', 'road-world'], ['.traversal-world__actors', 'road-actors'],
@@ -342,6 +359,7 @@ export class TraversalT0Scene {
     this.riskRenderer?.bindVehicle(vehicle);
     this.riskRenderer?.reset(t0RouteHazards(this.routeSegment.id));
     this.rewardRenderer?.reset(t0RoutePickups(this.routeSegment.id));
+    this.pursuitRenderer?.reset();
     const entities = this.element.querySelector<HTMLElement>('.traversal-world__entities')!;
     for (const beat of this.route.beats) this.buildEntity(entities, beat);
   }
@@ -561,18 +579,46 @@ export class TraversalT0Scene {
         }
       }
     }
+    let collisionsThisStep = 0;
     if (this.riskEnabled) {
       const resolved = resolveRouteRisk(this.routeRisk, t0RouteHazards(this.routeSegment.id),
         previous.progress01, this.routeRun.progress01, this.routeRun.lane, activeDriving);
       this.routeRisk = resolved.state;
       for (const outcome of resolved.outcomes) {
         if (outcome.result !== 'COLLISION') continue;
+        collisionsThisStep++;
         this.lastRiskSpeedBefore = this.routeRun.speed;
         this.routeRun = resetRouteSpeed(this.routeRun, this.routeSegment);
         this.lastRiskSpeedAfter = this.routeRun.speed;
         this.riskRenderer?.impact(outcome.hazard, this.routeRun.elapsedMs);
         this.riskRenderer?.reforecastUnseen(this.routeRenderer.distance, this.element.clientWidth || ROAD_SPACE.referenceWidth);
         this.rewardRenderer?.reforecastUnseen(this.routeRenderer.distance, this.element.clientWidth || ROAD_SPACE.referenceWidth);
+      }
+    }
+    if (this.pursuitEnabled) {
+      const window = t0RoutePursuitWindow(this.routeSegment.id);
+      const resolved = resolveRoutePursuit(this.routePursuit, window,
+        previous.progress01, this.routeRun.progress01, this.routeRun.lane,
+        this.routeRun.elapsedMs - previous.elapsedMs, collisionsThisStep, activeDriving);
+      this.routePursuit = resolved.state;
+      for (const outcome of resolved.outcomes) {
+        if (this.riskQa) this.pursuitQaEvents.push(outcome);
+        if (outcome.result === 'CAUGHT') {
+          const lane = window ? pursuerLaneAt(window, this.routeRun.progress01) : this.routeRun.lane;
+          this.lastPursuitSpeedBefore = collisionsThisStep ? this.lastRiskSpeedBefore : this.routeRun.speed;
+          if (!collisionsThisStep) {
+            this.routeRun = resetRouteSpeed(this.routeRun, this.routeSegment);
+            this.riskRenderer?.reforecastUnseen(this.routeRenderer.distance, this.element.clientWidth || ROAD_SPACE.referenceWidth);
+            this.rewardRenderer?.reforecastUnseen(this.routeRenderer.distance, this.element.clientWidth || ROAD_SPACE.referenceWidth);
+          }
+          this.lastPursuitSpeedAfter = this.routeRun.speed;
+          this.lastPursuitCatchElapsed = this.routeRun.elapsedMs;
+          this.lastPursuitCatchProgress = this.routeRun.progress01;
+          this.pursuitRenderer?.caught(lane, this.routeRun.elapsedMs);
+        } else if (outcome.result === 'ESCAPED' && window) {
+          this.pursuitRenderer?.escaped(pursuerLaneAt(window, window.endProgress01),
+            outcome.pressure01, this.routeRun.elapsedMs);
+        }
       }
     }
     this.speed = this.routeRun.speed * restart;
@@ -696,10 +742,23 @@ export class TraversalT0Scene {
     this.routeRun = createRouteRun(this.routeSegment, index, this.session.currentLane);
     this.routeRisk = createRouteRisk(this.routeSegment.id);
     this.routeReward = createRouteReward(this.routeSegment.id);
+    this.routePursuit = createRoutePursuit(this.routeSegment.id);
     this.lastRiskSpeedBefore = null;
     this.lastRiskSpeedAfter = null;
+    this.lastPursuitSpeedBefore = null;
+    this.lastPursuitSpeedAfter = null;
+    this.lastPursuitCatchElapsed = null;
+    this.lastPursuitCatchProgress = null;
     this.riskRenderer?.reset(t0RouteHazards(this.routeSegment.id));
     this.rewardRenderer?.reset(t0RoutePickups(this.routeSegment.id));
+    this.pursuitRenderer?.reset();
+    if (this.pursuitEnabled && this.riskQa) {
+      this.element.dataset.pursuitWindow = '';
+      this.element.dataset.pursuitPressure = '0';
+      this.element.dataset.pursuitLane = '';
+      this.element.dataset.pursuitCaughtCount = '0';
+      this.element.dataset.pursuitResolved = '[]';
+    }
     this.viewMode = 'ROUTE';
     this.element.dataset.view = 'route';
     this.element.dataset.routeSegment = this.routeSegment.id;
@@ -903,6 +962,28 @@ export class TraversalT0Scene {
         this.element.dataset.rewardResolved = JSON.stringify(this.routeReward.resolvedPickupIds);
         this.element.dataset.rewardCollected = JSON.stringify(this.routeReward.collectedPickupIds);
         this.element.dataset.rewardGold = String(this.routeReward.collectedGold);
+      }
+    }
+    if (this.pursuitRenderer) {
+      const active = this.viewMode === 'ROUTE' && session.phase === 'RUNNING'
+        && !this.transition && !this.departure && this.approachElapsed === null
+        && !this.routeRun.complete && !document.body.classList.contains('scene-transition--locked');
+      const vehicleHeight = Math.min(height * .24, width * (width <= 1000 ? .16 : .14));
+      const window = t0RoutePursuitWindow(this.routeSegment.id);
+      this.pursuitRenderer.update(window, this.routePursuit, this.routeRun.progress01,
+        this.routeRun.elapsedMs, width, vehicleHeight, active);
+      if (this.riskQa) {
+        this.element.dataset.pursuitWindow = this.routePursuit.activeWindowId ?? '';
+        this.element.dataset.pursuitPressure = String(this.routePursuit.pressure01);
+        this.element.dataset.pursuitLane = this.routePursuit.activeWindowId && window
+          ? String(pursuerLaneAt(window, this.routeRun.progress01)) : '';
+        this.element.dataset.pursuitCaughtCount = String(this.routePursuit.caughtCount);
+        this.element.dataset.pursuitResolved = JSON.stringify(this.routePursuit.resolvedWindowIds);
+        this.element.dataset.pursuitEvents = JSON.stringify(this.pursuitQaEvents);
+        this.element.dataset.pursuitSpeedBefore = String(this.lastPursuitSpeedBefore ?? '');
+        this.element.dataset.pursuitSpeedAfter = String(this.lastPursuitSpeedAfter ?? '');
+        this.element.dataset.pursuitCatchElapsed = String(this.lastPursuitCatchElapsed ?? '');
+        this.element.dataset.pursuitCatchProgress = String(this.lastPursuitCatchProgress ?? '');
       }
     }
     const vehicle = this.element.querySelector<HTMLElement>('.traversal-vehicle')!;
