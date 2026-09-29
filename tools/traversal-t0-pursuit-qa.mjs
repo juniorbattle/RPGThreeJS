@@ -135,6 +135,7 @@ async function snapshot(page) {
       riskSpeedAfter: Number(root?.dataset.riskSpeedAfter ?? 0),
       rewardGold: Number(root?.dataset.rewardGold ?? 0),
       rewardCollected: JSON.parse(root?.dataset.rewardCollected ?? '[]'),
+      rewardFeedback: root?.querySelector('.traversal-route-reward__feedback.is-active:not([hidden])')?.textContent?.trim() ?? null,
       visibleRisk, visibleReward,
       temporaryLoot: app?.state?.run?.temporaryLoot?.gold ?? null,
       campaignSignature: app?.state ? JSON.stringify({ gold: app.state.gold,
@@ -181,6 +182,11 @@ async function capture(page, name, run, viewports = [desktop]) {
     if (artQa && name === 'route-3-caught' && (!state.catchFeedback
       || Math.abs(state.proxyRight - state.vehicleLeft) > 10))
       report.errors.push(`${file}: Pursuit art did not reach the caravan at CAUGHT`);
+    if (artQa && name === 'route-5b-reward-pouch'
+      && !state.visibleReward.some(pickup => pickup.id === 't0:r5b:reward-2'))
+      report.errors.push(`${file}: Route 5B pouch was not visible before collection`);
+    if (artQa && name === 'route-5b-later-reward' && !state.rewardFeedback?.includes('+5'))
+      report.errors.push(`${file}: Route 5B collection feedback was not visible`);
     // The alpha cutout has 14 transparent source pixels above its visible edge.
     const visibleTop = state.proxyTop + (state.proxyBottom - state.proxyTop) * 14 / 336;
     if (state.proxyVisible && [...state.laneButtons, ...state.hudBoxes].some(box =>
@@ -268,10 +274,14 @@ async function drive(mode) {
       if (s.segment === 'route-5b' && s.riskCollisions >= 1 && s.proxyVisible
         && mode === 'path-b' && !captureNames.has('route-5b-risk-pursuit'))
         await capture(page, 'route-5b-risk-pursuit', run, [sizes[1]]);
+      if (artQa && s.segment === 'route-5b' && s.progress >= .8 && s.progress < .81
+        && s.visibleReward.some(pickup => pickup.id === 't0:r5b:reward-2')
+        && mode === 'path-b' && !captureNames.has('route-5b-reward-pouch'))
+        await capture(page, 'route-5b-reward-pouch', run, [sizes[2]]);
       if (run.rewardAfterCollision && mode === 'path-b' && !captureNames.has('route-5b-later-reward'))
         await capture(page, 'route-5b-later-reward', run, [sizes[2]]);
       if (s.segment === 'route-6' && s.pursuitWindow && s.progress > .25 && s.progress < .36
-        && mode === 'path-a' && !captureNames.has('route-6-pursuit'))
+        && mode === 'path-a' && !artQa && !captureNames.has('route-6-pursuit'))
         await capture(page, 'route-6-pursuit', run);
     }
     if (s.pursuitEvents.length > run.events.length) {
@@ -362,6 +372,8 @@ for (const run of report.scenarios) {
     report.errors.push('Route 5B Risk collision and later Reward coexistence failed');
 }
 if (report.captures.length > 10) report.errors.push('Evidence exceeds ten screenshots');
+if (artQa && !jsonOnly && scenarios.includes('path-b') && !captureNames.has('route-5b-reward-pouch'))
+  report.errors.push('Route 5B pre-collection pouch evidence missing');
 if (productionOff && report.pursuerRequests.length) report.errors.push('Production requested Pursuit art');
 await writeFile(`${output}/browser-qa.json`, `${JSON.stringify(report, null, 2)}\n`);
 await writeFile(`${output}/index.html`, `<!doctype html><meta charset="utf-8"><title>T0 Pursuit QA</title><style>body{margin:0;background:#101514;color:#f2dbb9;font:14px sans-serif;padding:24px}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}figure{margin:0}img{width:100%}</style><h1>T0 Pursuit QA</h1><p><a href="browser-qa.json">Machine readable results</a></p><main>${report.captures.map(capture => `<figure><img src="${capture.file}"><figcaption>${capture.file} · ${capture.viewport}</figcaption></figure>`).join('')}</main>`);

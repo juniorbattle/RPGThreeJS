@@ -150,8 +150,8 @@
   color: #f1bbb1; font: 800 clamp(9px, 1vw, 12px) Inter, sans-serif; letter-spacing: .08em;
   animation: traversal-pursuit-feedback .65s ease-out both; }
 .traversal-route-pursuit__feedback.is-escaped { border-color: #a69273; color: #e3d0ad; }
-@keyframes traversal-pursuit-contact { 0% { filter: brightness(2) drop-shadow(0 0 8px #d76559); }
-  100% { filter: brightness(.65); opacity: 0; } }
+@keyframes traversal-pursuit-contact { 0% { filter: brightness(2) drop-shadow(0 0 8px #d76559); translate: 0 0; }
+  18% { translate: 5px 0; } 100% { filter: brightness(.65); translate: 5px 0; opacity: 0; } }
 @keyframes traversal-pursuit-burst { 0% { scale: .3; opacity: 0; }
   25% { scale: 1.4; opacity: 1; } 100% { scale: 2; opacity: 0; } }
 @keyframes traversal-pursuit-retreat { to { translate: -80px 0; opacity: 0; } }

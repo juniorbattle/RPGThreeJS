@@ -51,7 +51,7 @@
           "spriteToVehicleHeight": null,
           "pursuitZ": 0,
           "vehicleZ": 22,
-          "vehicleLeft": -314.921875,
+          "vehicleLeft": -328.671875,
           "vehicleCount": 1,
           "hudBoxes": [
             {
@@ -74,6 +74,7 @@
           "riskSpeedAfter": 0,
           "rewardGold": 0,
           "rewardCollected": [],
+          "rewardFeedback": null,
           "visibleRisk": [],
           "visibleReward": [],
           "temporaryLoot": 0,
@@ -154,7 +155,7 @@
         "spriteToVehicleHeight": null,
         "pursuitZ": 0,
         "vehicleZ": 22,
-        "vehicleLeft": -314.921875,
+        "vehicleLeft": -328.671875,
         "vehicleCount": 1,
         "hudBoxes": [
           {
@@ -177,6 +178,7 @@
         "riskSpeedAfter": 0,
         "rewardGold": 0,
         "rewardCollected": [],
+        "rewardFeedback": null,
         "visibleRisk": [],
         "visibleReward": [],
         "temporaryLoot": 0,
