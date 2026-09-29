@@ -1,0 +1,2498 @@
+{
+  "task": "TRAVERSAL-T0-ROUTE-REWARD-PRODUCTION-1",
+  "baseline": "f4bb94226f1f67120a44692e66cc7e46c38c5548",
+  "environment": "Vite DEV",
+  "runs": [
+    {
+      "id": "off-a",
+      "mode": "off",
+      "branch": "lion-first-trial-event",
+      "events": [],
+      "segments": {
+        "route-1": {
+          "firstGold": 0,
+          "lastGold": 0,
+          "resolved": [],
+          "collected": [],
+          "collisions": 1,
+          "seen": [],
+          "markCount": 0,
+          "speedAfterCollisionMax": 1.982136601130285
+        }
+      },
+      "laneMoves": [],
+      "checkpointLeaks": [],
+      "complete": true,
+      "arrivalTemporary": null,
+      "agencyTemporary": null,
+      "riskContacts": [
+        {
+          "segment": "route-1",
+          "progress": 0.3833166666666667,
+          "temporary": 0,
+          "gold": 150,
+          "speed": 1.000234712796538,
+          "temporaryDelta": 0,
+          "goldDelta": 0,
+          "acceptedDelta": 0
+        }
+      ],
+      "visualJumps": [],
+      "rendererMax": 0,
+      "riskRendererMax": 1,
+      "telemetryKeys": [],
+      "rewardFocusableMax": 0,
+      "ariaFailures": [],
+      "rendererFailures": [],
+      "feedbackSeen": false,
+      "pouchVisible": false,
+      "keyboardMoves": [],
+      "initialGold": 150,
+      "final": {
+        "segment": "route-1",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.7013583333333333,
+        "lane": 0,
+        "speed": 1.982136601130285,
+        "transition": null,
+        "departure": null,
+        "risk": "dev",
+        "riskCollisionCount": 1,
+        "riskRecovery": 1,
+        "reward": null,
+        "rewardRendererCount": 0,
+        "riskRendererCount": 1,
+        "riskImpact": false,
+        "rewardAriaHidden": null,
+        "rewardFocusableCount": 0,
+        "productionTelemetry": [],
+        "resolved": [],
+        "collected": [],
+        "feedback": false,
+        "pulse": false,
+        "marks": [],
+        "vehicleX": 360,
+        "hud": "Or150Réputation30 · Méfiant",
+        "gold": 150,
+        "temporary": 0,
+        "acceptedCount": 0,
+        "visited": [
+          "lion-camp",
+          "lion-audience"
+        ],
+        "sceneCount": 1,
+        "destinationAgency": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "fork": false,
+        "optionalDecision": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ]
+      }
+    },
+    {
+      "id": "miss-a",
+      "mode": "miss",
+      "branch": "lion-first-trial-event",
+      "events": [],
+      "segments": {
+        "route-1": {
+          "firstGold": 0,
+          "lastGold": 0,
+          "resolved": [
+            "t0:r1:reward-1"
+          ],
+          "collected": [],
+          "collisions": 1,
+          "seen": [
+            "t0:r1:reward-1"
+          ],
+          "markCount": 1,
+          "speedAfterCollisionMax": 2.060467790127407
+        }
+      },
+      "laneMoves": [],
+      "checkpointLeaks": [],
+      "complete": true,
+      "arrivalTemporary": null,
+      "agencyTemporary": null,
+      "riskContacts": [
+        {
+          "segment": "route-1",
+          "progress": 0.3833166666666666,
+          "temporary": 0,
+          "gold": 150,
+          "speed": 1.000234712796538,
+          "temporaryDelta": 0,
+          "goldDelta": 0,
+          "acceptedDelta": 0
+        }
+      ],
+      "visualJumps": [],
+      "rendererMax": 1,
+      "riskRendererMax": 1,
+      "telemetryKeys": [
+        "rewardEnabled",
+        "rewardResolved",
+        "rewardCollected",
+        "rewardGold"
+      ],
+      "rewardFocusableMax": 0,
+      "ariaFailures": [],
+      "rendererFailures": [],
+      "feedbackSeen": false,
+      "pouchVisible": true,
+      "keyboardMoves": [],
+      "initialGold": 150,
+      "final": {
+        "segment": "route-1",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.7541333333333332,
+        "lane": 0,
+        "speed": 2.060467790127407,
+        "transition": null,
+        "departure": null,
+        "risk": "dev",
+        "riskCollisionCount": 1,
+        "riskRecovery": 1,
+        "reward": "dev",
+        "rewardRendererCount": 1,
+        "riskRendererCount": 1,
+        "riskImpact": false,
+        "rewardAriaHidden": "true",
+        "rewardFocusableCount": 0,
+        "productionTelemetry": [
+          "rewardEnabled",
+          "rewardResolved",
+          "rewardCollected",
+          "rewardGold"
+        ],
+        "resolved": [
+          "t0:r1:reward-1"
+        ],
+        "collected": [],
+        "feedback": false,
+        "pulse": false,
+        "marks": [
+          {
+            "id": "t0:r1:reward-1",
+            "lane": 1,
+            "hidden": true,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "imageSrc": "/assets/generated/lion-phase/traversal/t0/reward/coin-pouch.png",
+            "imageLoaded": true,
+            "imageWidth": 512
+          }
+        ],
+        "vehicleX": 360,
+        "hud": "Or150Réputation30 · Méfiant",
+        "gold": 150,
+        "temporary": 0,
+        "acceptedCount": 0,
+        "visited": [
+          "lion-camp",
+          "lion-audience"
+        ],
+        "sceneCount": 1,
+        "destinationAgency": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "fork": false,
+        "optionalDecision": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ]
+      }
+    },
+    {
+      "id": "isolated-a",
+      "mode": "isolated",
+      "branch": "lion-first-trial-event",
+      "events": [
+        {
+          "id": "t0:r1:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 0,
+            "visited": [
+              "lion-camp",
+              "lion-audience"
+            ],
+            "resolved": []
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 5,
+            "visited": [
+              "lion-camp",
+              "lion-audience"
+            ],
+            "resolved": []
+          },
+          "hud": "Or150+5 routeRéputation30 · Méfiant",
+          "segment": "route-1",
+          "progress": 0.6499833333333334
+        },
+        {
+          "id": "t0:r2:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 85,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush"
+            ],
+            "resolved": [
+              "lion-opening-ambush"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 90,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush"
+            ],
+            "resolved": [
+              "lion-opening-ambush"
+            ]
+          },
+          "hud": "Or150+90 routeRéputation31 · Méfiant",
+          "segment": "route-2",
+          "progress": 0.21999333333333318
+        },
+        {
+          "id": "t0:r3:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 40,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 45,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "hud": "Or150+45 routeRéputation34 · Méfiant",
+          "segment": "route-3",
+          "progress": 0.17999333333333342
+        },
+        {
+          "id": "t0:r3:reward-2",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 45,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 50,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "hud": "Or150+50 routeRéputation34 · Méfiant",
+          "segment": "route-3",
+          "progress": 0.4999800000000003
+        },
+        {
+          "id": "t0:r4:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 10,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 15,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ]
+          },
+          "hud": "Or150+15 routeRéputation42 · Neutre",
+          "segment": "route-4",
+          "progress": 0.17915000000000025
+        },
+        {
+          "id": "t0:r4:reward-2",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 15,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 20,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ]
+          },
+          "hud": "Or150+20 routeRéputation42 · Neutre",
+          "segment": "route-4",
+          "progress": 0.4999749999999998
+        },
+        {
+          "id": "t0:r5a:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 20,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 25,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ]
+          },
+          "hud": "Or150+25 routeRéputation42 · Neutre",
+          "segment": "route-5a",
+          "progress": 0.17999333333333392
+        },
+        {
+          "id": "t0:r5a:reward-2",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 25,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 30,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ]
+          },
+          "hud": "Or150+30 routeRéputation42 · Neutre",
+          "segment": "route-5a",
+          "progress": 0.4799799999999998
+        },
+        {
+          "id": "t0:r6:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 0,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees",
+              "lion-first-trial-event"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees",
+              "lion-first-trial-event"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 5,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees",
+              "lion-first-trial-event"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees",
+              "lion-first-trial-event"
+            ]
+          },
+          "hud": "Or150+5 routeRéputation50 · Neutre",
+          "segment": "route-6",
+          "progress": 0.8799650000000001
+        }
+      ],
+      "segments": {
+        "route-1": {
+          "firstGold": 0,
+          "lastGold": 85,
+          "resolved": [
+            "t0:r1:reward-1"
+          ],
+          "collected": [
+            "t0:r1:reward-1"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r1:reward-1"
+          ],
+          "markCount": 1
+        },
+        "route-2": {
+          "firstGold": 85,
+          "lastGold": 40,
+          "resolved": [
+            "t0:r2:reward-1"
+          ],
+          "collected": [
+            "t0:r2:reward-1"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r2:reward-1"
+          ],
+          "markCount": 1
+        },
+        "route-3": {
+          "firstGold": 40,
+          "lastGold": 10,
+          "resolved": [
+            "t0:r3:reward-1",
+            "t0:r3:reward-2"
+          ],
+          "collected": [
+            "t0:r3:reward-1",
+            "t0:r3:reward-2"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r3:reward-1",
+            "t0:r3:reward-2"
+          ],
+          "markCount": 2
+        },
+        "route-4": {
+          "firstGold": 10,
+          "lastGold": 20,
+          "resolved": [
+            "t0:r4:reward-1",
+            "t0:r4:reward-2"
+          ],
+          "collected": [
+            "t0:r4:reward-1",
+            "t0:r4:reward-2"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r4:reward-1",
+            "t0:r4:reward-2"
+          ],
+          "markCount": 2
+        },
+        "route-5a": {
+          "firstGold": 20,
+          "lastGold": 0,
+          "resolved": [
+            "t0:r5a:reward-1",
+            "t0:r5a:reward-2"
+          ],
+          "collected": [
+            "t0:r5a:reward-1",
+            "t0:r5a:reward-2"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r5a:reward-1",
+            "t0:r5a:reward-2"
+          ],
+          "markCount": 2
+        },
+        "route-6": {
+          "firstGold": 0,
+          "lastGold": 5,
+          "resolved": [
+            "t0:r6:reward-1"
+          ],
+          "collected": [
+            "t0:r6:reward-1"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r6:reward-1"
+          ],
+          "markCount": 1
+        }
+      },
+      "laneMoves": [
+        {
+          "segment": "route-1",
+          "progress": 0.12499166666666667,
+          "lane": 1,
+          "input": "button"
+        },
+        {
+          "segment": "route-2",
+          "progress": 0.08111333333333338,
+          "lane": 0,
+          "input": "button"
+        },
+        {
+          "segment": "route-3",
+          "progress": 0.08,
+          "lane": 1,
+          "input": "button"
+        },
+        {
+          "segment": "route-3",
+          "progress": 0.3833200000000002,
+          "lane": 0,
+          "input": "button"
+        },
+        {
+          "segment": "route-4",
+          "progress": 0.38609166666666717,
+          "lane": 1,
+          "input": "button"
+        },
+        {
+          "segment": "route-5a",
+          "progress": 0.37443333333333334,
+          "lane": 0,
+          "input": "button"
+        },
+        {
+          "segment": "route-6",
+          "progress": 0.14166500000000015,
+          "lane": 1,
+          "input": "button"
+        },
+        {
+          "segment": "route-6",
+          "progress": 0.39248499999999986,
+          "lane": 0,
+          "input": "button"
+        },
+        {
+          "segment": "route-6",
+          "progress": 0.6008099999999998,
+          "lane": 1,
+          "input": "button"
+        }
+      ],
+      "checkpointLeaks": [],
+      "complete": true,
+      "arrivalTemporary": 5,
+      "agencyTemporary": 5,
+      "riskContacts": [],
+      "visualJumps": [],
+      "rendererMax": 1,
+      "riskRendererMax": 0,
+      "telemetryKeys": [
+        "rewardEnabled",
+        "rewardResolved",
+        "rewardCollected",
+        "rewardGold"
+      ],
+      "rewardFocusableMax": 0,
+      "ariaFailures": [],
+      "rendererFailures": [],
+      "feedbackSeen": true,
+      "pouchVisible": true,
+      "keyboardMoves": [],
+      "initialGold": 150,
+      "final": {
+        "segment": null,
+        "phase": null,
+        "view": null,
+        "progress": 0,
+        "lane": 0,
+        "speed": 0,
+        "transition": null,
+        "departure": null,
+        "risk": null,
+        "riskCollisionCount": 0,
+        "riskRecovery": 1,
+        "reward": null,
+        "rewardRendererCount": 0,
+        "riskRendererCount": 0,
+        "riskImpact": false,
+        "rewardAriaHidden": null,
+        "rewardFocusableCount": 0,
+        "productionTelemetry": [],
+        "resolved": [],
+        "collected": [],
+        "feedback": false,
+        "pulse": false,
+        "marks": [],
+        "vehicleX": null,
+        "hud": "Or150+5 routeRéputation50 · Neutre",
+        "gold": 150,
+        "temporary": 5,
+        "acceptedCount": 9,
+        "visited": [
+          "lion-camp",
+          "lion-audience",
+          "lion-opening-ambush",
+          "lion-nomad-crossroads",
+          "lion-refugees",
+          "lion-first-trial-event"
+        ],
+        "sceneCount": 0,
+        "destinationAgency": true,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "fork": false,
+        "optionalDecision": false,
+        "overflow": 0,
+        "laneButtons": []
+      }
+    },
+    {
+      "id": "isolated-b",
+      "mode": "isolated",
+      "branch": "lion-first-trial-combat",
+      "events": [
+        {
+          "id": "t0:r1:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 0,
+            "visited": [
+              "lion-camp",
+              "lion-audience"
+            ],
+            "resolved": []
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 5,
+            "visited": [
+              "lion-camp",
+              "lion-audience"
+            ],
+            "resolved": []
+          },
+          "hud": "Or150+5 routeRéputation30 · Méfiant",
+          "segment": "route-1",
+          "progress": 0.649975
+        },
+        {
+          "id": "t0:r2:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 85,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush"
+            ],
+            "resolved": [
+              "lion-opening-ambush"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 90,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush"
+            ],
+            "resolved": [
+              "lion-opening-ambush"
+            ]
+          },
+          "hud": "Or150+90 routeRéputation31 · Méfiant",
+          "segment": "route-2",
+          "progress": 0.2199866666666666
+        },
+        {
+          "id": "t0:r3:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 40,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 45,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "hud": "Or150+45 routeRéputation34 · Méfiant",
+          "segment": "route-3",
+          "progress": 0.17999333333333342
+        },
+        {
+          "id": "t0:r3:reward-2",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 45,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 50,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "hud": "Or150+50 routeRéputation34 · Méfiant",
+          "segment": "route-3",
+          "progress": 0.4999799999999998
+        },
+        {
+          "id": "t0:r4:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 50,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 55,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "hud": "Or150+55 routeRéputation32 · Méfiant",
+          "segment": "route-4",
+          "progress": 0.17915833333333345
+        },
+        {
+          "id": "t0:r4:reward-2",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 55,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 60,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "hud": "Or150+60 routeRéputation32 · Méfiant",
+          "segment": "route-4",
+          "progress": 0.49998333333333295
+        },
+        {
+          "id": "t0:r5b:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 60,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 65,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "hud": "Or150+65 routeRéputation32 · Méfiant",
+          "segment": "route-5b",
+          "progress": 0.14999333333333295
+        },
+        {
+          "id": "t0:r5b:reward-2",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 65,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 70,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "hud": "Or150+70 routeRéputation32 · Méfiant",
+          "segment": "route-5b",
+          "progress": 0.8199666666666666
+        },
+        {
+          "id": "t0:r6:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 155,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-first-trial-combat"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-first-trial-combat"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 160,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-first-trial-combat"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-first-trial-combat"
+            ]
+          },
+          "hud": "Or150+160 routeRéputation33 · Méfiant",
+          "segment": "route-6",
+          "progress": 0.8799649999999994
+        }
+      ],
+      "segments": {
+        "route-1": {
+          "firstGold": 0,
+          "lastGold": 85,
+          "resolved": [
+            "t0:r1:reward-1"
+          ],
+          "collected": [
+            "t0:r1:reward-1"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r1:reward-1"
+          ],
+          "markCount": 1
+        },
+        "route-2": {
+          "firstGold": 85,
+          "lastGold": 40,
+          "resolved": [
+            "t0:r2:reward-1"
+          ],
+          "collected": [
+            "t0:r2:reward-1"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r2:reward-1"
+          ],
+          "markCount": 1
+        },
+        "route-3": {
+          "firstGold": 40,
+          "lastGold": 50,
+          "resolved": [
+            "t0:r3:reward-1",
+            "t0:r3:reward-2"
+          ],
+          "collected": [
+            "t0:r3:reward-1",
+            "t0:r3:reward-2"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r3:reward-1",
+            "t0:r3:reward-2"
+          ],
+          "markCount": 2
+        },
+        "route-4": {
+          "firstGold": 50,
+          "lastGold": 60,
+          "resolved": [
+            "t0:r4:reward-1",
+            "t0:r4:reward-2"
+          ],
+          "collected": [
+            "t0:r4:reward-1",
+            "t0:r4:reward-2"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r4:reward-1",
+            "t0:r4:reward-2"
+          ],
+          "markCount": 2
+        },
+        "route-5b": {
+          "firstGold": 60,
+          "lastGold": 155,
+          "resolved": [
+            "t0:r5b:reward-1",
+            "t0:r5b:reward-2"
+          ],
+          "collected": [
+            "t0:r5b:reward-1",
+            "t0:r5b:reward-2"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r5b:reward-1",
+            "t0:r5b:reward-2"
+          ],
+          "markCount": 2
+        },
+        "route-6": {
+          "firstGold": 155,
+          "lastGold": 160,
+          "resolved": [
+            "t0:r6:reward-1"
+          ],
+          "collected": [
+            "t0:r6:reward-1"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r6:reward-1"
+          ],
+          "markCount": 1
+        }
+      },
+      "laneMoves": [
+        {
+          "segment": "route-1",
+          "progress": 0.12360833333333333,
+          "lane": 1,
+          "input": "button"
+        },
+        {
+          "segment": "route-2",
+          "progress": 0.08110666666666681,
+          "lane": 0,
+          "input": "button"
+        },
+        {
+          "segment": "route-3",
+          "progress": 0.08110666666666656,
+          "lane": 1,
+          "input": "button"
+        },
+        {
+          "segment": "route-3",
+          "progress": 0.38443333333333335,
+          "lane": 0,
+          "input": "button"
+        },
+        {
+          "segment": "route-4",
+          "progress": 0.3833166666666663,
+          "lane": 1,
+          "input": "button"
+        },
+        {
+          "segment": "route-5b",
+          "progress": 0.08333333333333333,
+          "lane": 0,
+          "input": "button"
+        },
+        {
+          "segment": "route-6",
+          "progress": 0.14165999999999984,
+          "lane": 1,
+          "input": "button"
+        },
+        {
+          "segment": "route-6",
+          "progress": 0.3933149999999994,
+          "lane": 0,
+          "input": "button"
+        },
+        {
+          "segment": "route-6",
+          "progress": 0.602475,
+          "lane": 1,
+          "input": "button"
+        }
+      ],
+      "checkpointLeaks": [],
+      "complete": true,
+      "arrivalTemporary": 160,
+      "agencyTemporary": 160,
+      "riskContacts": [],
+      "visualJumps": [],
+      "rendererMax": 1,
+      "riskRendererMax": 0,
+      "telemetryKeys": [
+        "rewardEnabled",
+        "rewardResolved",
+        "rewardCollected",
+        "rewardGold"
+      ],
+      "rewardFocusableMax": 0,
+      "ariaFailures": [],
+      "rendererFailures": [],
+      "feedbackSeen": true,
+      "pouchVisible": true,
+      "keyboardMoves": [],
+      "initialGold": 150,
+      "final": {
+        "segment": null,
+        "phase": null,
+        "view": null,
+        "progress": 0,
+        "lane": 0,
+        "speed": 0,
+        "transition": null,
+        "departure": null,
+        "risk": null,
+        "riskCollisionCount": 0,
+        "riskRecovery": 1,
+        "reward": null,
+        "rewardRendererCount": 0,
+        "riskRendererCount": 0,
+        "riskImpact": false,
+        "rewardAriaHidden": null,
+        "rewardFocusableCount": 0,
+        "productionTelemetry": [],
+        "resolved": [],
+        "collected": [],
+        "feedback": false,
+        "pulse": false,
+        "marks": [],
+        "vehicleX": null,
+        "hud": "Or150+160 routeRéputation33 · Méfiant",
+        "gold": 150,
+        "temporary": 160,
+        "acceptedCount": 9,
+        "visited": [
+          "lion-camp",
+          "lion-audience",
+          "lion-opening-ambush",
+          "lion-nomad-crossroads",
+          "lion-first-trial-combat"
+        ],
+        "sceneCount": 0,
+        "destinationAgency": true,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "fork": false,
+        "optionalDecision": false,
+        "overflow": 0,
+        "laneButtons": []
+      }
+    },
+    {
+      "id": "combined-a",
+      "mode": "combined",
+      "branch": "lion-first-trial-event",
+      "events": [
+        {
+          "id": "t0:r1:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 0,
+            "visited": [
+              "lion-camp",
+              "lion-audience"
+            ],
+            "resolved": []
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 5,
+            "visited": [
+              "lion-camp",
+              "lion-audience"
+            ],
+            "resolved": []
+          },
+          "hud": "Or150+5 routeRéputation30 · Méfiant",
+          "segment": "route-1",
+          "progress": 0.6499666666666667
+        },
+        {
+          "id": "t0:r2:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 85,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush"
+            ],
+            "resolved": [
+              "lion-opening-ambush"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 90,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush"
+            ],
+            "resolved": [
+              "lion-opening-ambush"
+            ]
+          },
+          "hud": "Or150+90 routeRéputation31 · Méfiant",
+          "segment": "route-2",
+          "progress": 0.21999333333333343
+        },
+        {
+          "id": "t0:r3:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 40,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 45,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "hud": "Or150+45 routeRéputation34 · Méfiant",
+          "segment": "route-3",
+          "progress": 0.17999333333333295
+        },
+        {
+          "id": "t0:r3:reward-2",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 45,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 50,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "hud": "Or150+50 routeRéputation34 · Méfiant",
+          "segment": "route-3",
+          "progress": 0.4999799999999998
+        },
+        {
+          "id": "t0:r4:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 10,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 15,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ]
+          },
+          "hud": "Or150+15 routeRéputation42 · Neutre",
+          "segment": "route-4",
+          "progress": 0.17916666666666667
+        },
+        {
+          "id": "t0:r4:reward-2",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 15,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 20,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ]
+          },
+          "hud": "Or150+20 routeRéputation42 · Neutre",
+          "segment": "route-4",
+          "progress": 0.49998333333333356
+        },
+        {
+          "id": "t0:r5a:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 20,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 25,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ]
+          },
+          "hud": "Or150+25 routeRéputation42 · Neutre",
+          "segment": "route-5a",
+          "progress": 0.17999333333333295
+        },
+        {
+          "id": "t0:r5a:reward-2",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 25,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 30,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees"
+            ]
+          },
+          "hud": "Or150+30 routeRéputation42 · Neutre",
+          "segment": "route-5a",
+          "progress": 0.47997333333333275
+        },
+        {
+          "id": "t0:r6:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 0,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees",
+              "lion-first-trial-event"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees",
+              "lion-first-trial-event"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 5,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees",
+              "lion-first-trial-event"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-refugees",
+              "lion-first-trial-event"
+            ]
+          },
+          "hud": "Or150+5 routeRéputation50 · Neutre",
+          "segment": "route-6",
+          "progress": 0.8799699999999997
+        }
+      ],
+      "segments": {
+        "route-1": {
+          "firstGold": 0,
+          "lastGold": 85,
+          "resolved": [
+            "t0:r1:reward-1"
+          ],
+          "collected": [
+            "t0:r1:reward-1"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r1:reward-1"
+          ],
+          "markCount": 1
+        },
+        "route-2": {
+          "firstGold": 85,
+          "lastGold": 40,
+          "resolved": [
+            "t0:r2:reward-1"
+          ],
+          "collected": [
+            "t0:r2:reward-1"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r2:reward-1"
+          ],
+          "markCount": 1
+        },
+        "route-3": {
+          "firstGold": 40,
+          "lastGold": 10,
+          "resolved": [
+            "t0:r3:reward-1",
+            "t0:r3:reward-2"
+          ],
+          "collected": [
+            "t0:r3:reward-1",
+            "t0:r3:reward-2"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r3:reward-1",
+            "t0:r3:reward-2"
+          ],
+          "markCount": 2
+        },
+        "route-4": {
+          "firstGold": 10,
+          "lastGold": 20,
+          "resolved": [
+            "t0:r4:reward-1",
+            "t0:r4:reward-2"
+          ],
+          "collected": [
+            "t0:r4:reward-1",
+            "t0:r4:reward-2"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r4:reward-1",
+            "t0:r4:reward-2"
+          ],
+          "markCount": 2
+        },
+        "route-5a": {
+          "firstGold": 20,
+          "lastGold": 0,
+          "resolved": [
+            "t0:r5a:reward-1",
+            "t0:r5a:reward-2"
+          ],
+          "collected": [
+            "t0:r5a:reward-1",
+            "t0:r5a:reward-2"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r5a:reward-1",
+            "t0:r5a:reward-2"
+          ],
+          "markCount": 2
+        },
+        "route-6": {
+          "firstGold": 0,
+          "lastGold": 5,
+          "resolved": [
+            "t0:r6:reward-1"
+          ],
+          "collected": [
+            "t0:r6:reward-1"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r6:reward-1"
+          ],
+          "markCount": 1
+        }
+      },
+      "laneMoves": [
+        {
+          "segment": "route-1",
+          "progress": 0.12499166666666667,
+          "lane": 1,
+          "input": "button"
+        },
+        {
+          "segment": "route-2",
+          "progress": 0.08554666666666672,
+          "lane": 0,
+          "input": "button"
+        },
+        {
+          "segment": "route-3",
+          "progress": 0.08555333333333304,
+          "lane": 1,
+          "input": "button"
+        },
+        {
+          "segment": "route-3",
+          "progress": 0.3833199999999997,
+          "lane": 0,
+          "input": "button"
+        },
+        {
+          "segment": "route-4",
+          "progress": 0.38610833333333355,
+          "lane": 1,
+          "input": "button"
+        },
+        {
+          "segment": "route-5a",
+          "progress": 0.37109333333333294,
+          "lane": 0,
+          "input": "button"
+        },
+        {
+          "segment": "route-6",
+          "progress": 0.14165999999999984,
+          "lane": 1,
+          "input": "button"
+        },
+        {
+          "segment": "route-6",
+          "progress": 0.39248499999999986,
+          "lane": 0,
+          "input": "button"
+        },
+        {
+          "segment": "route-6",
+          "progress": 0.6016399999999994,
+          "lane": 1,
+          "input": "button"
+        }
+      ],
+      "checkpointLeaks": [],
+      "complete": true,
+      "arrivalTemporary": 5,
+      "agencyTemporary": 5,
+      "riskContacts": [],
+      "visualJumps": [],
+      "rendererMax": 1,
+      "riskRendererMax": 1,
+      "telemetryKeys": [
+        "rewardEnabled",
+        "rewardResolved",
+        "rewardCollected",
+        "rewardGold"
+      ],
+      "rewardFocusableMax": 0,
+      "ariaFailures": [],
+      "rendererFailures": [],
+      "feedbackSeen": true,
+      "pouchVisible": true,
+      "keyboardMoves": [],
+      "initialGold": 150,
+      "final": {
+        "segment": null,
+        "phase": null,
+        "view": null,
+        "progress": 0,
+        "lane": 0,
+        "speed": 0,
+        "transition": null,
+        "departure": null,
+        "risk": null,
+        "riskCollisionCount": 0,
+        "riskRecovery": 1,
+        "reward": null,
+        "rewardRendererCount": 0,
+        "riskRendererCount": 0,
+        "riskImpact": false,
+        "rewardAriaHidden": null,
+        "rewardFocusableCount": 0,
+        "productionTelemetry": [],
+        "resolved": [],
+        "collected": [],
+        "feedback": false,
+        "pulse": false,
+        "marks": [],
+        "vehicleX": null,
+        "hud": "Or150+5 routeRéputation50 · Neutre",
+        "gold": 150,
+        "temporary": 5,
+        "acceptedCount": 9,
+        "visited": [
+          "lion-camp",
+          "lion-audience",
+          "lion-opening-ambush",
+          "lion-nomad-crossroads",
+          "lion-refugees",
+          "lion-first-trial-event"
+        ],
+        "sceneCount": 0,
+        "destinationAgency": true,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "fork": false,
+        "optionalDecision": false,
+        "overflow": 0,
+        "laneButtons": []
+      }
+    },
+    {
+      "id": "combined-b",
+      "mode": "combined",
+      "branch": "lion-first-trial-combat",
+      "events": [
+        {
+          "id": "t0:r1:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 0,
+            "visited": [
+              "lion-camp",
+              "lion-audience"
+            ],
+            "resolved": []
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 5,
+            "visited": [
+              "lion-camp",
+              "lion-audience"
+            ],
+            "resolved": []
+          },
+          "hud": "Or150+5 routeRéputation30 · Méfiant",
+          "segment": "route-1",
+          "progress": 0.6499749999999999
+        },
+        {
+          "id": "t0:r2:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 85,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush"
+            ],
+            "resolved": [
+              "lion-opening-ambush"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 90,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush"
+            ],
+            "resolved": [
+              "lion-opening-ambush"
+            ]
+          },
+          "hud": "Or150+90 routeRéputation31 · Méfiant",
+          "segment": "route-2",
+          "progress": 0.21999333333333318
+        },
+        {
+          "id": "t0:r3:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 40,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 45,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "hud": "Or150+45 routeRéputation34 · Méfiant",
+          "segment": "route-3",
+          "progress": 0.17998666666666638
+        },
+        {
+          "id": "t0:r3:reward-2",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 45,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 50,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "hud": "Or150+50 routeRéputation34 · Méfiant",
+          "segment": "route-3",
+          "progress": 0.4999733333333332
+        },
+        {
+          "id": "t0:r4:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 50,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 55,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "hud": "Or150+55 routeRéputation32 · Méfiant",
+          "segment": "route-4",
+          "progress": 0.17915833333333406
+        },
+        {
+          "id": "t0:r4:reward-2",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 55,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 60,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "hud": "Or150+60 routeRéputation32 · Méfiant",
+          "segment": "route-4",
+          "progress": 0.4999749999999998
+        },
+        {
+          "id": "t0:r5b:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 60,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 65,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "hud": "Or150+65 routeRéputation32 · Méfiant",
+          "segment": "route-5b",
+          "progress": 0.1488933333333339
+        },
+        {
+          "id": "t0:r5b:reward-2",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 65,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 70,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads"
+            ]
+          },
+          "hud": "Or150+70 routeRéputation32 · Méfiant",
+          "segment": "route-5b",
+          "progress": 0.8199733333333338
+        },
+        {
+          "id": "t0:r6:reward-1",
+          "amount": 5,
+          "accepted": true,
+          "before": {
+            "gold": 150,
+            "temporary": 155,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-first-trial-combat"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-first-trial-combat"
+            ]
+          },
+          "after": {
+            "gold": 150,
+            "temporary": 160,
+            "visited": [
+              "lion-camp",
+              "lion-audience",
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-first-trial-combat"
+            ],
+            "resolved": [
+              "lion-opening-ambush",
+              "lion-nomad-crossroads",
+              "lion-first-trial-combat"
+            ]
+          },
+          "hud": "Or150+160 routeRéputation33 · Méfiant",
+          "segment": "route-6",
+          "progress": 0.8799650000000001
+        }
+      ],
+      "segments": {
+        "route-1": {
+          "firstGold": 0,
+          "lastGold": 85,
+          "resolved": [
+            "t0:r1:reward-1"
+          ],
+          "collected": [
+            "t0:r1:reward-1"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r1:reward-1"
+          ],
+          "markCount": 1
+        },
+        "route-2": {
+          "firstGold": 85,
+          "lastGold": 40,
+          "resolved": [
+            "t0:r2:reward-1"
+          ],
+          "collected": [
+            "t0:r2:reward-1"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r2:reward-1"
+          ],
+          "markCount": 1
+        },
+        "route-3": {
+          "firstGold": 40,
+          "lastGold": 50,
+          "resolved": [
+            "t0:r3:reward-1",
+            "t0:r3:reward-2"
+          ],
+          "collected": [
+            "t0:r3:reward-1",
+            "t0:r3:reward-2"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r3:reward-1",
+            "t0:r3:reward-2"
+          ],
+          "markCount": 2
+        },
+        "route-4": {
+          "firstGold": 50,
+          "lastGold": 60,
+          "resolved": [
+            "t0:r4:reward-1",
+            "t0:r4:reward-2"
+          ],
+          "collected": [
+            "t0:r4:reward-1",
+            "t0:r4:reward-2"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r4:reward-1",
+            "t0:r4:reward-2"
+          ],
+          "markCount": 2
+        },
+        "route-5b": {
+          "firstGold": 60,
+          "lastGold": 155,
+          "resolved": [
+            "t0:r5b:reward-1",
+            "t0:r5b:reward-2"
+          ],
+          "collected": [
+            "t0:r5b:reward-1",
+            "t0:r5b:reward-2"
+          ],
+          "collisions": 1,
+          "seen": [
+            "t0:r5b:reward-1",
+            "t0:r5b:reward-2"
+          ],
+          "markCount": 2,
+          "speedAfterCollisionMax": 2.5
+        },
+        "route-6": {
+          "firstGold": 155,
+          "lastGold": 160,
+          "resolved": [
+            "t0:r6:reward-1"
+          ],
+          "collected": [
+            "t0:r6:reward-1"
+          ],
+          "collisions": 0,
+          "seen": [
+            "t0:r6:reward-1"
+          ],
+          "markCount": 1
+        }
+      },
+      "laneMoves": [
+        {
+          "segment": "route-1",
+          "progress": 0.12499166666666667,
+          "lane": 1,
+          "input": "button"
+        },
+        {
+          "segment": "route-2",
+          "progress": 0.08110666666666656,
+          "lane": 0,
+          "input": "button"
+        },
+        {
+          "segment": "route-3",
+          "progress": 0.08554666666666648,
+          "lane": 1,
+          "input": "button"
+        },
+        {
+          "segment": "route-3",
+          "progress": 0.3833133333333331,
+          "lane": 0,
+          "input": "button"
+        },
+        {
+          "segment": "route-4",
+          "progress": 0.38053333333333406,
+          "lane": 1,
+          "input": "button"
+        },
+        {
+          "segment": "route-5b",
+          "progress": 0.08333333333333333,
+          "lane": 0,
+          "input": "button"
+        },
+        {
+          "segment": "route-6",
+          "progress": 0.1408300000000003,
+          "lane": 1,
+          "input": "button"
+        },
+        {
+          "segment": "route-6",
+          "progress": 0.39081500000000013,
+          "lane": 0,
+          "input": "button"
+        },
+        {
+          "segment": "route-6",
+          "progress": 0.602475,
+          "lane": 1,
+          "input": "button"
+        }
+      ],
+      "checkpointLeaks": [],
+      "complete": true,
+      "arrivalTemporary": 160,
+      "agencyTemporary": 160,
+      "riskContacts": [
+        {
+          "segment": "route-5b",
+          "progress": 0.532206666666667,
+          "temporary": 65,
+          "gold": 150,
+          "speed": 1.0501135661703456,
+          "temporaryDelta": 0,
+          "goldDelta": 0,
+          "acceptedDelta": 0
+        }
+      ],
+      "visualJumps": [],
+      "rendererMax": 1,
+      "riskRendererMax": 1,
+      "telemetryKeys": [
+        "rewardEnabled",
+        "rewardResolved",
+        "rewardCollected",
+        "rewardGold"
+      ],
+      "rewardFocusableMax": 0,
+      "ariaFailures": [],
+      "rendererFailures": [],
+      "feedbackSeen": true,
+      "pouchVisible": true,
+      "keyboardMoves": [],
+      "initialGold": 150,
+      "final": {
+        "segment": null,
+        "phase": null,
+        "view": null,
+        "progress": 0,
+        "lane": 0,
+        "speed": 0,
+        "transition": null,
+        "departure": null,
+        "risk": null,
+        "riskCollisionCount": 0,
+        "riskRecovery": 1,
+        "reward": null,
+        "rewardRendererCount": 0,
+        "riskRendererCount": 0,
+        "riskImpact": false,
+        "rewardAriaHidden": null,
+        "rewardFocusableCount": 0,
+        "productionTelemetry": [],
+        "resolved": [],
+        "collected": [],
+        "feedback": false,
+        "pulse": false,
+        "marks": [],
+        "vehicleX": null,
+        "hud": "Or150+160 routeRéputation33 · Méfiant",
+        "gold": 150,
+        "temporary": 160,
+        "acceptedCount": 9,
+        "visited": [
+          "lion-camp",
+          "lion-audience",
+          "lion-opening-ambush",
+          "lion-nomad-crossroads",
+          "lion-first-trial-combat"
+        ],
+        "sceneCount": 0,
+        "destinationAgency": true,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "fork": false,
+        "optionalDecision": false,
+        "overflow": 0,
+        "laneButtons": []
+      }
+    }
+  ],
+  "captures": [],
+  "errors": [],
+  "assetResponses": [
+    {
+      "mode": "miss",
+      "status": 200
+    },
+    {
+      "mode": "isolated",
+      "status": 200
+    },
+    {
+      "mode": "isolated",
+      "status": 200
+    },
+    {
+      "mode": "combined",
+      "status": 200
+    },
+    {
+      "mode": "combined",
+      "status": 200
+    }
+  ]
+}
