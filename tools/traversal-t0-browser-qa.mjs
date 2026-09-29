@@ -1,5 +1,6 @@
 /** Canonical T0 regression: both real paths, shared world, checkpoints and motion. */
 if (process.argv.includes('--reward-qa')) {
+  // The specialized Reward driver accepts --production and the DEV isolation modes.
   await import('./traversal-t0-reward-qa.mjs');
   process.exit(0);
 }
