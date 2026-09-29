@@ -1,4 +1,4 @@
-/** Canonical T0 regression: both real paths, shared world, checkpoints and motion. */
+/** Canonical T0 regression: both real paths, shared world, and production Route mechanics. */
 if (process.argv.includes('--reward-qa')) {
   // The specialized Reward driver accepts --production and the DEV isolation modes.
   await import('./traversal-t0-reward-qa.mjs');
@@ -15,25 +15,33 @@ import { createServer, preview } from 'vite';
 const artQa = process.argv.includes('--risk-art-evidence');
 const artOffQa = process.argv.includes('--risk-art-off-evidence');
 const productionQa = process.argv.includes('--production');
+const productionDisableUrl = process.argv.includes('--production-disable-url');
 const riskOffQa = process.argv.includes('--risk-off') || process.argv.includes('--risk-off-evidence') || artOffQa;
 if (productionQa && riskOffQa) throw new Error('Risk-off is a DEV-only QA mode.');
+if (productionDisableUrl && !productionQa) throw new Error('Production disable URL check requires --production.');
 const riskQa = !riskOffQa;
 const compactQa = !artQa && !artOffQa && !process.argv.includes('--legacy-gallery');
 const jsonOnly = process.argv.includes('--json-only');
 const output = process.argv.find(arg => arg.startsWith('--output='))?.slice('--output='.length)
   ?? (artQa ? 'docs/reports/traversal-t0-route-risk-art-1-browser'
   : artOffQa ? 'docs/reports/traversal-t0-route-risk-art-1-browser/off'
-  : `docs/reports/traversal-t0-route-risk-production-1-browser/${productionQa
-    ? process.argv.includes('--production-risk-off-url') ? 'production-risk-off-url' : 'production'
+  : `docs/reports/${productionQa ? 'traversal-t0-production-loop-final-1-browser'
+    : 'traversal-t0-route-risk-production-1-browser'}/${productionQa
+    ? productionDisableUrl ? 'production-disable-url'
+      : process.argv.includes('--production-risk-off-url') ? 'production-risk-off-url' : 'production'
     : riskOffQa ? 'dev-off' : 'dev'}`);
 const port = productionQa ? 5218 : 5217;
-const base = `http://127.0.0.1:${port}/?qa=1&traversal=t0${riskOffQa || process.argv.includes('--production-risk-off-url') ? '&traversalRisk=0' : ''}`;
+const base = `http://127.0.0.1:${port}/?qa=1&traversal=t0${riskOffQa || process.argv.includes('--production-risk-off-url')
+  || productionDisableUrl ? '&traversalRisk=0' : ''}${productionDisableUrl
+  ? '&traversalReward=0&traversalPursuit=0' : ''}`;
 const desktop = { width: 1440, height: 810 };
 const mobile = [{ width: 620, height: 780 }, { width: 390, height: 844 }];
 const referenceForest = '/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png';
 const evidence = new Set(compactQa ? riskOffQa ? ['01-route-1-early'] : [
   'risk-r1-before', 'risk-r1-impact', 'risk-r1-dodge-before',
-  'risk-r5b-roadblock', 'risk-r6-telegraph', 'risk-r6-visible', '10-destination-agency',
+  'risk-r5b-roadblock', 'risk-r5b-second-impact', 'risk-r6-telegraph',
+  'risk-r6-visible', '10-destination-agency', 'integrated-route-3-reward',
+  'integrated-route-5b', 'integrated-route-5b-reward', 'integrated-route-6-pouch',
 ] : artQa ? [
   'risk-r1-before', 'risk-r1-impact', 'risk-r1-recovered',
   'risk-r1-dodge-before', 'risk-r1-dodge-after', 'risk-r3-boulder',
@@ -55,9 +63,11 @@ const server = productionQa
   : await createServer({ server: { host: '127.0.0.1', port, strictPort: true, watch: null, hmr: false } });
 if (!productionQa) await server.listen();
 const browser = await chromium.launch({ headless: true });
-const gallery = { task: 'TRAVERSAL-T0-ROUTE-RISK-PRODUCTION-1', url: base,
+const gallery = { task: productionQa ? 'TRAVERSAL-T0-PRODUCTION-LOOP-FINAL-1'
+  : 'TRAVERSAL-T0-ROUTE-RISK-PRODUCTION-1', url: base,
   method: `${productionQa ? 'built Vite preview with Playwright combat-result fixture' : 'Vite DEV'}; shared GameApp T0 QA entry; real scene mounting, requestAnimationFrame and lane controls`,
-  captures: [], blackFrames: [], runs: [], errors: [], riskAssetResponses: {} };
+  captures: [], blackFrames: [], runs: [], errors: [], riskAssetResponses: {},
+  routeAssetResponses: {} };
 
 async function makePage(context) {
   const page = await context.newPage();
@@ -69,6 +79,12 @@ async function makePage(context) {
     if (response.url().includes('/traversal/t0/risk/')) {
       const name = response.url().split('/').at(-1);
       const entry = gallery.riskAssetResponses[name] ??= { statuses: [], requests: 0 };
+      entry.statuses.push(response.status());
+      entry.requests++;
+    }
+    if (/\/traversal\/t0\/(reward|pursuit)\//.test(response.url())) {
+      const name = response.url().split('/').at(-1);
+      const entry = gallery.routeAssetResponses[name] ??= { statuses: [], requests: 0 };
       entry.statuses.push(response.status());
       entry.requests++;
     }
@@ -115,9 +131,14 @@ async function makePage(context) {
     const app = window.__routeQaApp;
     window.__routeQaArrivalCount = 0;
     window.__routeQaFrameIssues = [];
+    window.__routeQaUnsampledSwaps = [];
     window.__routeQaCoastSamples = [];
     let lastView = null;
+    let lastFrameAt = null;
     const inspectFrame = () => {
+      const now = performance.now();
+      const frameGap = lastFrameAt === null ? 0 : now - lastFrameAt;
+      lastFrameAt = now;
       const root = document.querySelector('.traversal-t0');
       if (document.querySelector('.travel-view')) window.__routeQaFrameIssues.push('TravelView flash');
       if (root) {
@@ -129,8 +150,11 @@ async function makePage(context) {
         const global = document.querySelector('.scene-transition--traversal');
         const globalOpacity = global ? Number(getComputedStyle(global).opacity) : 0;
         if (routeVisible === checkpointVisible) window.__routeQaFrameIssues.push('simultaneous or missing world surfaces');
-        if (lastView && lastView !== root.dataset.view && cover < .999 && globalOpacity < .999)
-          window.__routeQaFrameIssues.push(`uncovered ${lastView} -> ${root.dataset.view} swap`);
+        if (lastView && lastView !== root.dataset.view && cover < .999 && globalOpacity < .999) {
+          const detail = `${lastView} -> ${root.dataset.view} at ${root.dataset.routeSegment}; gap ${Math.round(frameGap)}ms; cover ${cover}/${globalOpacity}`;
+          if (frameGap <= 100) window.__routeQaFrameIssues.push(`uncovered ${detail}`);
+          else window.__routeQaUnsampledSwaps.push(detail);
+        }
         if (root.querySelectorAll('.traversal-vehicle').length !== 1)
           window.__routeQaFrameIssues.push('caravan count changed');
         if (root.dataset.phase === 'ARRIVING' && root.dataset.routeSegment === 'route-6') {
@@ -186,7 +210,10 @@ async function snapshot(page) {
     const checkpointLayer = root?.querySelector('.traversal-world__sections');
     const genericSections = [...(routeLayer?.querySelectorAll('[data-world-section]:not([hidden])') ?? [])];
     const legacyRouteSceneryVisible = Boolean(root?.querySelector('.traversal-route-loop > :not(.traversal-route-loop__speed-lines)'));
-    return { atMs: performance.now(), node: app?.state?.run?.currentNodeId ?? null,
+    const scene = app?.activeTraversal;
+    const pursuitProxy = root?.querySelector('.traversal-route-pursuit__proxy');
+    return { atMs: performance.now(), width: innerWidth, height: innerHeight,
+      node: app?.state?.run?.currentNodeId ?? null,
       campaignSignature: app?.state ? JSON.stringify({ gold: app.state.gold,
         reputation: app.state.reputation, reputationHistory: app.state.reputationHistory,
         health: app.state.clan.members.map(member => [member.id, member.currentHealth]),
@@ -238,6 +265,52 @@ async function snapshot(page) {
       arrivalCallbacks: window.__routeQaArrivalCount ?? 0,
       overflowPx: Math.max(0, document.documentElement.scrollWidth - innerWidth),
       controls,
+      mechanics: root ? {
+        enabled: [scene?.riskEnabled, scene?.rewardEnabled, scene?.pursuitEnabled],
+        routeMinSpeed: scene?.routeSegment?.vMin ?? null,
+        coreSignature: JSON.stringify({ gold: app.state.gold, reputation: app.state.reputation,
+          reputationHistory: app.state.reputationHistory,
+          health: app.state.clan.members.map(member => [member.id, member.currentHealth]),
+          inventory: app.state.inventory, flags: app.state.flags,
+          resolvedNodeIds: app.state.resolvedNodeIds,
+          visitedNodeIds: app.state.run.visitedNodeIds,
+          bypassedRouteNodeIds: app.state.run.bypassedRouteNodeIds }),
+        temporaryLoot: app.state.run.temporaryLoot?.gold ?? 0,
+        domNodes: root.querySelectorAll('*').length,
+        rendererCounts: ['risk', 'reward', 'pursuit'].map(kind =>
+          root.querySelectorAll(`.traversal-route-${kind}`).length),
+        rewardMarks: root.querySelectorAll('[data-reward-pickup]').length,
+        rewardResolved: [...(scene?.routeReward?.resolvedPickupIds ?? [])],
+        rewardCollected: [...(scene?.routeReward?.collectedPickupIds ?? [])],
+        rewardGold: scene?.routeReward?.collectedGold ?? 0,
+        rewardFeedback: root.querySelector('.traversal-route-reward__feedback.is-active:not([hidden])')?.textContent?.trim() ?? null,
+        rewardVisible: [...root.querySelectorAll('[data-reward-pickup]:not([hidden])')].map(mark => {
+          const rect = mark.getBoundingClientRect();
+          return { id: mark.dataset.rewardPickup, lane: Number(mark.dataset.rewardLane),
+            x: rect.x + rect.width / 2, groundY: rect.bottom,
+            onScreen: rect.right > 0 && rect.left < innerWidth,
+            imageLoaded: Boolean(mark.querySelector('img')?.naturalWidth) };
+        }),
+        riskCollisions: scene?.routeRisk?.collisionCount ?? 0,
+        riskSpeedBefore: scene?.lastRiskSpeedBefore ?? null,
+        riskSpeedAfter: scene?.lastRiskSpeedAfter ?? null,
+        pursuitWindow: scene?.routePursuit?.activeWindowId ?? null,
+        pursuitPressure: scene?.routePursuit?.pressure01 ?? 0,
+        pursuitResolved: [...(scene?.routePursuit?.resolvedWindowIds ?? [])],
+        pursuitCaught: [...(scene?.routePursuit?.caughtWindowIds ?? [])],
+        pursuitEscaped: [...(scene?.routePursuit?.escapedWindowIds ?? [])],
+        pursuitOutcomeArrayLength: scene?.pursuitQaEvents?.length ?? 0,
+        pursuitSpeedBefore: scene?.lastPursuitSpeedBefore ?? null,
+        pursuitSpeedAfter: scene?.lastPursuitSpeedAfter ?? null,
+        pursuitVisible: Boolean(pursuitProxy && !pursuitProxy.hidden),
+        pursuitLane: pursuitProxy?.dataset.pursuitLane == null ? null : Number(pursuitProxy.dataset.pursuitLane),
+        pursuitGroundY: pursuitProxy && !pursuitProxy.hidden
+          ? pursuitProxy.getBoundingClientRect().bottom : null,
+        pursuitActive: Boolean(pursuitProxy?.dataset.pursuitActive),
+        pursuitFeedback: root.querySelector('.traversal-route-pursuit__feedback:not([hidden])')?.textContent?.trim() ?? null,
+        productionTelemetry: Object.keys(root.dataset).filter(key =>
+          /^(risk|reward|pursuit)/.test(key)),
+      } : null,
       risk: root ? {
         enabled: Boolean(root.querySelector('.traversal-route-risk [data-risk-hazard]')),
         diagnosticTelemetry: Object.keys(root.dataset).filter(key => key.startsWith('risk')),
@@ -294,6 +367,7 @@ async function blackPixelRatio(page, png) {
 }
 
 async function capture(page, name, run, viewports = []) {
+  if (name === 'integrated-route-3-reward') await page.waitForTimeout(90);
   if (name.includes('combat')) {
     await page.waitForTimeout(2200);
     const frame = page.frames().find(candidate => candidate.url().includes('legacy-combat'));
@@ -391,7 +465,8 @@ async function driveRun(branch, helpRefugees) {
     riskCheckpointHazards: [], riskMarkupBySegment: {}, riskRendererMax: 0,
     riskFocusableMax: 0, riskAriaFailures: [], inputLockFailures: [],
     inputLockSamples: 0, productionTelemetryKeys: [], riskCampaignBefore: null,
-    riskCampaignAfter: null };
+    riskCampaignAfter: null, mechanicsSegments: {}, mechanicsEvents: [],
+    mechanicsCheckpointLeaks: [], mechanicsContinuity: [], mechanicsProductionTelemetry: [] };
   gallery.runs.push(run);
   const seen = new Set();
   let previous = null;
@@ -404,6 +479,83 @@ async function driveRun(branch, helpRefugees) {
     await page.waitForTimeout(previous?.transition || previous?.globalCoverOpacity > 0
       || previous?.routeProgress > .93 ? 18 : 80);
     const s = await snapshot(page);
+    const m = s.mechanics;
+    const prior = previous?.segment === s.segment && previous?.width === s.width
+      ? previous.mechanics : null;
+    if (m && s.segment) {
+      const segment = run.mechanicsSegments[s.segment] ??= {
+        enabled: m.enabled, rendererCounts: m.rendererCounts, domNodesMin: m.domNodes,
+        domNodesMax: m.domNodes, maxRewardMarks: 0, rewardCollected: [],
+        rewardResolved: [], riskCollisions: 0, pursuitStarted: 0, pursuitCaught: 0,
+        pursuitEscaped: 0, pursuitResolved: [], threeSystemSamples: 0,
+        maxPursuitOutcomeArrayLength: 0 };
+      segment.domNodesMin = Math.min(segment.domNodesMin, m.domNodes);
+      segment.domNodesMax = Math.max(segment.domNodesMax, m.domNodes);
+      segment.maxRewardMarks = Math.max(segment.maxRewardMarks, m.rewardMarks);
+      segment.rewardCollected = m.rewardCollected;
+      segment.rewardResolved = m.rewardResolved;
+      segment.riskCollisions = Math.max(segment.riskCollisions, m.riskCollisions);
+      segment.pursuitResolved = m.pursuitResolved;
+      segment.maxPursuitOutcomeArrayLength = Math.max(segment.maxPursuitOutcomeArrayLength,
+        m.pursuitOutcomeArrayLength);
+      if (s.view === 'route' && m.pursuitActive && s.risk.all.length && m.rewardMarks)
+        segment.threeSystemSamples++;
+      if (productionQa) run.mechanicsProductionTelemetry.push(...m.productionTelemetry);
+      if (s.view === 'checkpoint' && (s.risk.active.length || m.rewardVisible.length
+        || m.pursuitVisible || m.pursuitActive))
+        run.mechanicsCheckpointLeaks.push({ segment: s.segment, atMs: s.atMs });
+      if (prior && previous.view === 'checkpoint' && s.view === 'checkpoint'
+        && (prior.riskCollisions !== m.riskCollisions
+          || prior.rewardResolved.length !== m.rewardResolved.length
+          || prior.pursuitResolved.length !== m.pursuitResolved.length))
+        run.mechanicsCheckpointLeaks.push({ segment: s.segment, atMs: s.atMs, resolving: true });
+      if (prior && previous.view === 'route' && s.view === 'route') {
+        if (m.pursuitWindow && !prior.pursuitWindow) {
+          segment.pursuitStarted++;
+          run.mechanicsEvents.push({ kind: 'STARTED', segment: s.segment,
+            progress: s.routeProgress, pressure: m.pursuitPressure });
+        }
+        for (const id of m.pursuitResolved.filter(id => !prior.pursuitResolved.includes(id))) {
+          const kind = m.pursuitCaught.includes(id) ? 'CAUGHT' : 'ESCAPED';
+          segment[kind === 'CAUGHT' ? 'pursuitCaught' : 'pursuitEscaped']++;
+          run.mechanicsEvents.push({ kind, segment: s.segment, id,
+            progress: s.routeProgress, speedBefore: m.pursuitSpeedBefore,
+            speedAfter: m.pursuitSpeedAfter, routeMinSpeed: m.routeMinSpeed,
+            coreUnchanged: prior.coreSignature === m.coreSignature,
+            lootUnchanged: prior.temporaryLoot === m.temporaryLoot });
+        }
+        if (m.riskCollisions > prior.riskCollisions) {
+          run.mechanicsEvents.push({ kind: 'RISK_COLLISION', segment: s.segment,
+            progress: s.routeProgress, countDelta: m.riskCollisions - prior.riskCollisions,
+            pursuitActive: Boolean(prior.pursuitWindow && m.pursuitWindow),
+            pressureBefore: prior.pursuitPressure, pressureAfter: m.pursuitPressure,
+            speedBefore: m.riskSpeedBefore, speedAfter: m.riskSpeedAfter,
+            routeMinSpeed: m.routeMinSpeed,
+            coreUnchanged: prior.coreSignature === m.coreSignature,
+            lootUnchanged: prior.temporaryLoot === m.temporaryLoot });
+        }
+        for (const id of m.rewardCollected.filter(id => !prior.rewardCollected.includes(id))) {
+          run.mechanicsEvents.push({ kind: 'REWARD_COLLECTED', segment: s.segment, id,
+            progress: s.routeProgress, lootDelta: m.temporaryLoot - prior.temporaryLoot,
+            feedback: m.rewardFeedback, pursuitActive: Boolean(prior.pursuitWindow && m.pursuitWindow),
+            pressureBefore: prior.pursuitPressure, pressureAfter: m.pursuitPressure,
+            riskCollisionDelta: m.riskCollisions - prior.riskCollisions,
+            coreUnchanged: prior.coreSignature === m.coreSignature });
+        }
+        if (m.riskCollisions > prior.riskCollisions || m.pursuitCaught.length > prior.pursuitCaught.length) {
+          const before = [...previous.risk.hazards, ...prior.rewardVisible];
+          const after = [...s.risk.hazards, ...m.rewardVisible];
+          for (const object of before) {
+            const current = after.find(item => item.id === object.id);
+            if (current) run.mechanicsContinuity.push({ segment: s.segment, id: object.id,
+              cause: m.riskCollisions > prior.riskCollisions ? 'Risk' : 'CAUGHT',
+              beforeX: object.x, afterX: current.x, deltaPx: current.x - object.x,
+              visualDistanceDelta: s.visualWorldDistance - previous.visualWorldDistance,
+              elapsedMs: s.atMs - previous.atMs });
+          }
+        }
+      }
+    }
     if (s.risk && s.segment) {
       run.riskMarkupBySegment[s.segment] = Math.max(run.riskMarkupBySegment[s.segment] ?? 0,
         s.risk.all.length);
@@ -511,7 +663,7 @@ async function driveRun(branch, helpRefugees) {
       if (!evidence.has(name)) return;
       const compactViewports = name === 'risk-r1-before' ? mobile
         : name === 'risk-r1-dodge-before' ? [mobile[1]] : [];
-      await capture(page, name, run, compactQa ? compactViewports
+      await capture(page, name, run, compactQa ? name.startsWith('integrated-') ? mobile : compactViewports
         : artQa && name === 'risk-r1-dodge-before' ? [] : viewports);
       console.log(run.id, name);
     };
@@ -620,6 +772,31 @@ async function driveRun(branch, helpRefugees) {
       if (s.phase === 'ARRIVING') await take('09-arrival', mobile);
       if (!s.sceneCount && s.destinationAgency && s.arrivalCallbacks > 0) await take('10-destination-agency');
     } else {
+      if (s.segment === 'route-3' && s.view === 'route' && s.routeProgress < .12
+        && !seen.has('integrated-r3-lane-1')) {
+        await page.locator('[data-traversal-lane="1"]').click();
+        seen.add('integrated-r3-lane-1');
+        run.laneMoves.push({ lane: 1, progress: s.routeProgress, atMs: s.atMs });
+      }
+      if (s.segment === 'route-3' && s.view === 'route' && s.routeProgress > .46
+        && !seen.has('integrated-r3-lane-0')) {
+        await page.locator('[data-traversal-lane="0"]').click();
+        seen.add('integrated-r3-lane-0');
+        run.laneMoves.push({ lane: 0, progress: s.routeProgress, atMs: s.atMs });
+      }
+      if (s.segment === 'route-3' && s.view === 'route' && m?.rewardFeedback === '+5 route'
+        && m.pursuitActive && m.rewardCollected.includes('t0:r3:reward-2'))
+        await take('integrated-route-3-reward', mobile);
+      if (s.segment === 'route-5b' && s.view === 'route' && m?.pursuitActive
+        && s.risk.hazards.some(item => item.x >= 0 && item.x <= s.width))
+        await take('integrated-route-5b', mobile);
+      if (s.segment === 'route-5b' && s.view === 'route' && m?.pursuitActive
+        && m.rewardVisible.some(item => item.onScreen))
+        await take('integrated-route-5b-reward', mobile);
+      if (s.segment === 'route-6' && s.view === 'route' && s.routeProgress > .84
+        && s.routeProgress < .88 && m?.pursuitResolved.length && m.rewardVisible.some(item =>
+          item.id === 't0:r6:reward-1'))
+        await take('integrated-route-6-pouch', mobile);
       if (riskQa && s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .20
         && !seen.has('risk-r1-dodge')) {
         await page.keyboard.press('ArrowDown'); seen.add('risk-r1-dodge');
@@ -703,6 +880,7 @@ async function driveRun(branch, helpRefugees) {
   run.bypassedNodeIds = previous?.bypassedNodeIds ?? [];
   run.selectedBranch = previous?.selectedBranch ?? null;
   run.frameIssues = await page.evaluate(() => [...new Set(window.__routeQaFrameIssues ?? [])]);
+  run.unsampledSwaps = await page.evaluate(() => [...new Set(window.__routeQaUnsampledSwaps ?? [])]);
   run.coastSamples = await page.evaluate(() => window.__routeQaCoastSamples ?? []);
   run.elapsedWallMs = Date.now() - startWall;
   for (const route of Object.values(run.routes)) {
@@ -734,7 +912,7 @@ try {
     transitions: run.transitions, globalTransitions: run.globalTransitions,
     checkpointEvents: run.checkpointEvents,
     laneMoves: run.laneMoves, routeStates: run.routeStates, checkpointStates: run.checkpointStates,
-    frameIssues: run.frameIssues,
+    frameIssues: run.frameIssues, unsampledSwaps: run.unsampledSwaps,
     maxSceneCount: run.maxSceneCount, checkpointEntries: run.maxEntries,
     checkpointExits: run.maxExits, arrivalCallbacks: run.arrivalCallbacks,
     progressionErrors: run.progressionErrors, complete: run.complete,
@@ -744,12 +922,22 @@ try {
     riskSegments: run.riskSegments, riskEvents: run.riskEvents,
     riskVisibility: run.riskVisibility, riskCheckpointImpactLeaks: run.riskCheckpointImpactLeaks,
     riskCheckpointHazards: run.riskCheckpointHazards,
+    mechanicsSegments: run.mechanicsSegments, mechanicsEvents: run.mechanicsEvents,
+    mechanicsCheckpointLeaks: run.mechanicsCheckpointLeaks,
+    mechanicsContinuity: run.mechanicsContinuity,
   })) }, null, 2)}\n`);
   const expected = compactQa ? riskOffQa ? ['01-route-1-early'] : [
     'risk-r1-before', 'risk-r1-before-620', 'risk-r1-before-390',
     'risk-r1-impact', 'risk-r1-dodge-before-390',
-    'risk-r5b-roadblock', 'risk-r6-telegraph-620', 'risk-r6-telegraph-390', 'risk-r6-visible',
+    'risk-r5b-roadblock', 'risk-r5b-second-impact', 'risk-r6-telegraph-620',
+    'risk-r6-telegraph-390', 'risk-r6-visible',
     '10-destination-agency',
+    ...(productionQa ? ['integrated-route-3-reward', 'integrated-route-3-reward-620',
+      'integrated-route-3-reward-390', 'integrated-route-5b', 'integrated-route-5b-620',
+      'integrated-route-5b-390', 'integrated-route-5b-reward',
+      'integrated-route-5b-reward-620', 'integrated-route-5b-reward-390',
+      'integrated-route-6-pouch',
+      'integrated-route-6-pouch-620', 'integrated-route-6-pouch-390'] : []),
   ] : artQa ? [
     'risk-r1-before', 'risk-r1-before-620', 'risk-r1-before-390',
     'risk-r1-impact', 'risk-r1-recovered', 'risk-r1-dodge-before',
@@ -903,10 +1091,86 @@ try {
      }
      return failures;
    })() : [];
+   const integratedFailures = productionQa ? (() => {
+     const failures = [];
+     for (const run of gallery.runs) {
+       const ids = ['route-1', 'route-2', 'route-3', 'route-4',
+         run.id === 'branch-a' ? 'route-5a' : 'route-5b', 'route-6'];
+       if (Object.keys(run.mechanicsSegments).length !== 6)
+         failures.push(`${run.id}: expected six Route mechanic lifecycles`);
+       for (const id of ids) {
+         const segment = run.mechanicsSegments[id];
+         if (!segment || segment.enabled.some(value => value !== true)
+           || segment.rendererCounts.some(count => count !== 1)
+           || segment.maxRewardMarks !== (['route-3', 'route-4', 'route-5a', 'route-5b'].includes(id) ? 2 : 1)
+           || segment.maxPursuitOutcomeArrayLength)
+           failures.push(`${run.id}/${id}: production mechanics, renderer, or event array`);
+       }
+       if (run.mechanicsCheckpointLeaks.length)
+         failures.push(`${run.id}: Route mechanic visible or resolving at checkpoint`);
+       if (run.mechanicsProductionTelemetry.length)
+         failures.push(`${run.id}: production Route telemetry exposed`);
+       if (run.mechanicsContinuity.some(item => item.elapsedMs < 160
+         && item.beforeX >= 0 && item.beforeX <= desktop.width
+         && item.afterX >= 0 && item.afterX <= desktop.width
+         && Math.abs(item.deltaPx + item.visualDistanceDelta) > 40))
+         failures.push(`${run.id}: Route object jumped after speed reset`);
+       const rewardEvents = run.mechanicsEvents.filter(event => event.kind === 'REWARD_COLLECTED');
+       if (!rewardEvents.length || rewardEvents.some(event => event.lootDelta !== 5
+         || event.feedback !== '+5 route' || !event.coreUnchanged)
+         || new Set(rewardEvents.map(event => event.id)).size !== rewardEvents.length)
+         failures.push(`${run.id}: Reward was not collected exactly once through temporary loot`);
+       if (rewardEvents.some(event => event.pursuitActive && (event.riskCollisionDelta !== 0
+         || Math.abs(event.pressureAfter - event.pressureBefore) > .06)))
+         failures.push(`${run.id}: Reward collection changed Pursuit pressure`);
+       const started = run.mechanicsEvents.filter(event => event.kind === 'STARTED');
+       const resolved = run.mechanicsEvents.filter(event =>
+         event.kind === 'CAUGHT' || event.kind === 'ESCAPED');
+       if (started.length !== 3 || resolved.length !== 3
+         || new Set(resolved.map(event => event.id)).size !== 3)
+         failures.push(`${run.id}: expected three distinct Pursuit windows`);
+       if (resolved.some(event => !event.coreUnchanged || !event.lootUnchanged
+         || event.kind === 'CAUGHT' && event.speedAfter !== event.routeMinSpeed))
+         failures.push(`${run.id}: Pursuit changed campaign or caught without local speed reset`);
+       const route6 = run.mechanicsEvents.filter(event => event.segment === 'route-6');
+       const pursuitEnd = route6.findIndex(event => event.kind === 'ESCAPED' || event.kind === 'CAUGHT');
+       const finalPouch = route6.findIndex(event => event.kind === 'REWARD_COLLECTED'
+         && event.id === 't0:r6:reward-1');
+       if (pursuitEnd < 0 || finalPouch <= pursuitEnd)
+         failures.push(`${run.id}: Route 6 Pursuit did not resolve before final pouch`);
+     }
+     const b = gallery.runs.find(run => run.id === 'branch-b');
+     const collision = b?.mechanicsEvents.find(event => event.kind === 'RISK_COLLISION'
+       && event.segment === 'route-5b' && event.pursuitActive);
+     if (!collision || collision.countDelta !== 1 || !collision.coreUnchanged
+       || !collision.lootUnchanged || collision.speedAfter !== collision.routeMinSpeed
+       || collision.pressureAfter - collision.pressureBefore < .18
+       || collision.pressureAfter - collision.pressureBefore > .30)
+       failures.push('B Route 5B: Risk collision did not deliver one pressure impulse and speed reset');
+     if (!b?.mechanicsEvents.some(event => event.kind === 'REWARD_COLLECTED'
+       && event.pursuitActive && event.segment === 'route-3')
+       || !b.mechanicsSegments['route-5b']?.threeSystemSamples)
+       failures.push('B: Reward during Pursuit or three-system Route 5B visibility missing');
+     for (const name of ['coin-pouch.png', 'shadow-pursuer.png']) {
+       const asset = gallery.routeAssetResponses[name];
+       if (!asset || asset.statuses.some(status => status !== 200) || asset.requests > 4)
+         failures.push(`${name}: missing, failed, or repeated production asset request`);
+     }
+     for (const capture of gallery.captures.filter(capture => capture.file.startsWith('integrated-'))) {
+       const mechanics = capture.state.mechanics;
+       if (mechanics?.rewardVisible.some(item => ![0, 1].includes(item.lane)
+         || !item.imageLoaded || Math.abs(item.groundY - capture.state.height
+           * (item.lane === 0 ? .65 : .81)) > 24)
+         || mechanics?.pursuitVisible && ![0, 1].includes(mechanics.pursuitLane))
+         failures.push(`${capture.file}: Reward or Pursuit lane/readability contract`);
+     }
+     return failures;
+   })() : [];
    const qa = { expected, screenshotsPersisted: !jsonOnly,
      missing: expected.filter(name => !files.has(`${name}.png`)),
     responsive: gallery.captures.filter(capture => capture.viewport !== '1440x810'),
      errors: gallery.errors, runsComplete: gallery.runs.every(run => run.complete), riskFailures,
+     integratedFailures, routeAssetResponses: gallery.routeAssetResponses,
     blackFrames: gallery.blackFrames,
     imperfectBlackFrames: gallery.blackFrames.filter(frame => frame.blackPixelRatio < .999),
     routeWorldFailures, canonicalFailures, checkpointFailures, coastFailures,
@@ -930,12 +1194,13 @@ try {
     simultaneousWorlds: qa.simultaneousWorlds, duplicateCaravans: qa.duplicateCaravans,
     frameIssues: qa.frameIssues, oldRouteArt: qa.oldRouteArt,
      routeWorldFailures, canonicalFailures, checkpointFailures, coastFailures, riskFailures,
+    integratedFailures,
     errors: gallery.errors }, null, 2));
 }
 if (!qaResult || qaResult.missing.length || qaResult.imperfectBlackFrames.length
   || qaResult.routeWorldFailures.length || qaResult.canonicalFailures.length
    || qaResult.checkpointFailures.length || qaResult.coastFailures.length || qaResult.riskFailures.length
-  || qaResult.simultaneousWorlds.length || qaResult.frameIssues.length
+  || qaResult.integratedFailures.length || qaResult.simultaneousWorlds.length || qaResult.frameIssues.length
   || qaResult.oldRouteArt.length || qaResult.duplicateCaravans.length
   || qaResult.overflow.length || qaResult.unreachableControls.length || qaResult.riskOffMarkup.length
   || qaResult.errors.length || !qaResult.runsComplete)

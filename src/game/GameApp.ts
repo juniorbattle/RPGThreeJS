@@ -835,6 +835,18 @@ export class GameApp {
     if (!this.state.resolvedNodeIds.includes(nodeId)) return false;
     void sceneTransition.run({ variant: 'traversal', holdMs: TRAVERSAL_RHYTHM.hold * 1000, task: async () => {
       if (this.activeTraversal !== traversal) return;
+      // The transition timer can finish before its opacity reaches 1 on a busy frame.
+      // Keep the checkpoint surface until the Route swap is actually covered.
+      await new Promise<void>(resolve => {
+        const waitForCover = () => {
+          const cover = document.querySelector<HTMLElement>('.scene-transition--traversal');
+          if (import.meta.env.DEV || document.hidden || !cover
+            || Number(getComputedStyle(cover).opacity) >= .999) resolve();
+          else requestAnimationFrame(waitForCover);
+        };
+        waitForCover();
+      });
+      if (this.activeTraversal !== traversal) return;
       this.activeNarrativeStage?.prepareGlobalHandoff();
       this.disposeNarrativeStage();
       this.disposeJourney();

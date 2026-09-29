@@ -1,5 +1,6 @@
 /** T0 Pursuit proof through the real GameApp traversal and lane controls. */
 import { mkdir, writeFile } from 'node:fs/promises';
+import { execFileSync } from 'node:child_process';
 import { chromium } from 'playwright';
 import { createServer, preview } from 'vite';
 
@@ -26,8 +27,8 @@ const base = `http://127.0.0.1:${port}/?qa=1&traversal=t0`;
 const desktop = { width: 1440, height: 810 };
 const sizes = [desktop, { width: 620, height: 780 }, { width: 390, height: 844 }];
 const report = { task: artQa ? 'TRAVERSAL-T0-PURSUIT-ART-1' : 'TRAVERSAL-T0-PURSUIT-PRODUCTION-1',
-  baseline: 'e11e6875b51c009690038b15538238540396d28f',
-  branch: 'traversal-t0-pursuit-production-1',
+  baseline: execFileSync('git', ['rev-parse', 'main'], { encoding: 'utf8' }).trim(),
+  branch: execFileSync('git', ['branch', '--show-current'], { encoding: 'utf8' }).trim(),
   environment: productionQa ? 'Vite production preview' : 'Vite DEV',
   pursuerRequests: [], pursuerResponses: [], scenarios: [], captures: [], errors: [] };
 const captureNames = new Set();
