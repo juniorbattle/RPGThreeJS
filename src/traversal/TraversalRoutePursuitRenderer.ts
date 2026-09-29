@@ -3,8 +3,9 @@ import type { TraversalRoutePursuitState, TraversalRoutePursuitWindow } from './
 import { pursuerLaneAt } from './TraversalRoutePursuit';
 
 const FEEDBACK_MS = 650;
+export const TRAVERSAL_PURSUER_IMAGE = '/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png';
 
-/** DEV proxy in screen space, behind the caravan. No world distance or campaign ownership. */
+/** DEV-gated pursuer art in screen space, behind the caravan. No world distance or campaign ownership. */
 export class TraversalRoutePursuitRenderer {
   readonly element = document.createElement('div');
   private readonly proxy = document.createElement('span');
@@ -18,7 +19,12 @@ export class TraversalRoutePursuitRenderer {
     this.element.className = 'traversal-route-pursuit';
     this.element.setAttribute('aria-hidden', 'true');
     this.proxy.className = 'traversal-route-pursuit__proxy';
-    this.proxy.innerHTML = '<i class="traversal-route-pursuit__head"></i><i class="traversal-route-pursuit__body"></i><i class="traversal-route-pursuit__wheel"></i><small>DEV · REAR PURSUER</small>';
+    const image = document.createElement('img');
+    image.className = 'traversal-route-pursuit__image';
+    image.src = TRAVERSAL_PURSUER_IMAGE;
+    image.alt = '';
+    image.draggable = false;
+    this.proxy.append(image);
     this.proxy.hidden = true;
     this.feedback.className = 'traversal-route-pursuit__feedback';
     this.feedback.hidden = true;
@@ -74,14 +80,14 @@ export class TraversalRoutePursuitRenderer {
     }
     const lane = active ? pursuerLaneAt(window!, progress01) : this.feedbackLane;
     const pressure = active ? state.pressure01 : this.feedbackPressure;
-    // The caravan is centered at 25vw. Its left edge meets the proxy at pressure 1.
-    const contactX = viewportWidth * .25 - vehicleHeight * 1.22;
+    // The caravan is centered at 25vw. Its left edge meets the wider art at pressure 1.
+    const contactX = viewportWidth * .25 - vehicleHeight * 1.32;
     const offscreenX = -vehicleHeight * .1;
     const rawX = offscreenX + (contactX - offscreenX) * Math.sqrt(pressure);
     // Narrow screens leave little rear road because the caravan remains at 25vw.
-    // Bring the small proxy into view smoothly without moving the caravan.
-    const mobileFloor = offscreenX + (13 - offscreenX) * Math.min(1, pressure / .2);
-    const x = viewportWidth <= 700 ? Math.max(rawX, mobileFloor) : rawX;
+    // Keep the silhouette legible there while retaining pressure-driven approach.
+    const mobileX = 23 + 27 * Math.sqrt(pressure);
+    const x = viewportWidth <= 700 ? Math.max(rawX, mobileX) : rawX;
     this.proxy.style.left = `${x}px`;
     this.proxy.style.top = `${lane === 0 ? 65 : 81}%`;
     this.proxy.dataset.pursuitLane = String(lane);
