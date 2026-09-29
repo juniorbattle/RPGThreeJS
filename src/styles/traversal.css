@@ -126,22 +126,19 @@
 .traversal-t0[data-phase='ARRIVING'] .traversal-route-reward { visibility: hidden; }
 .traversal-route-pursuit { position: absolute; inset: 0; pointer-events: none; z-index: 21; }
 .traversal-route-pursuit__proxy {
-  position: absolute; width: calc(var(--vehicle-height) * .67); height: max(34px, calc(var(--vehicle-height) * .38));
-  transform: translate(-50%, -100%); transition: top .32s ease;
-  filter: drop-shadow(0 4px 3px #10080ac0);
+  position: absolute; width: var(--vehicle-height); height: calc(var(--vehicle-height) * .48);
+  transform: translate(-50%, -95%); transition: top .32s ease;
+  filter: drop-shadow(0 3px 3px #10080ac0) drop-shadow(0 0 3px #903d3870);
 }
-.traversal-route-pursuit__body { position: absolute; left: 11%; bottom: 17%; width: 74%; height: 40%;
-  border: 2px solid #d48579; border-radius: 58% 32% 28% 25%; background: #36171e;
-  box-shadow: inset -8px -5px #1d1118, 0 0 12px #a436365c; }
-.traversal-route-pursuit__head { position: absolute; left: 50%; bottom: 50%; width: 23%; height: 25%;
-  border-radius: 45% 45% 24% 24%; background: #b3544e; box-shadow: 0 -5px #27161a; }
-.traversal-route-pursuit__wheel { position: absolute; left: 20%; bottom: 4%; width: 22%; aspect-ratio: 1;
-  border: 3px solid #a75850; border-radius: 50%; background: #170f13;
-  box-shadow: calc(var(--vehicle-height) * .28) 0 0 -1px #170f13,
-    calc(var(--vehicle-height) * .28) 0 0 2px #a75850; }
-.traversal-route-pursuit__proxy small { position: absolute; left: 50%; bottom: 102%;
-  transform: translateX(-50%); white-space: nowrap; color: #f2b2a3; text-shadow: 0 1px 3px #100407;
-  font: 700 clamp(7px, .65vw, 9px) Inter, sans-serif; letter-spacing: .05em; }
+.traversal-route-pursuit__image { display: block; width: 100%; height: 100%; max-width: none;
+  pointer-events: none; filter: brightness(1.2) saturate(1.12);
+  animation: traversal-pursuit-run .38s ease-in-out infinite alternate; }
+@keyframes traversal-pursuit-run { to { translate: 0 -2px; } }
+@media (max-width: 700px) {
+  .traversal-route-pursuit__proxy { width: calc(var(--vehicle-height) * 1.12);
+    height: calc(var(--vehicle-height) * .52); }
+  .traversal-route-pursuit__image { filter: brightness(1.45) saturate(1.18); }
+}
 .traversal-route-pursuit__proxy.is-caught { animation: traversal-pursuit-contact .65s ease-out both; }
 .traversal-route-pursuit__proxy.is-caught::after { content: ''; position: absolute;
   left: 86%; top: 40%; width: 52%; height: 27%; border-radius: 50%;
@@ -153,8 +150,8 @@
   color: #f1bbb1; font: 800 clamp(9px, 1vw, 12px) Inter, sans-serif; letter-spacing: .08em;
   animation: traversal-pursuit-feedback .65s ease-out both; }
 .traversal-route-pursuit__feedback.is-escaped { border-color: #a69273; color: #e3d0ad; }
-@keyframes traversal-pursuit-contact { 0% { filter: brightness(2) drop-shadow(0 0 8px #d76559); }
-  100% { filter: brightness(.65); opacity: 0; } }
+@keyframes traversal-pursuit-contact { 0% { filter: brightness(2) drop-shadow(0 0 8px #d76559); translate: 0 0; }
+  18% { translate: 5px 0; } 100% { filter: brightness(.65); translate: 5px 0; opacity: 0; } }
 @keyframes traversal-pursuit-burst { 0% { scale: .3; opacity: 0; }
   25% { scale: 1.4; opacity: 1; } 100% { scale: 2; opacity: 0; } }
 @keyframes traversal-pursuit-retreat { to { translate: -80px 0; opacity: 0; } }

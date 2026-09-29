@@ -45,6 +45,14 @@
       "sha256": "f8d519acac367f5c9faf9f17c6f64c504babb569a109af4913e032445ad41713"
     },
     {
+      "id": "pursuit-shadow-pursuer",
+      "path": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+      "role": "pursuit",
+      "width": 640,
+      "height": 336,
+      "sha256": "55dfad9b50076ab3cd3b30f5245d6701ef2eea03bb6707959618276b155b9fc1"
+    },
+    {
       "id": "reward-coin-pouch",
       "path": "/assets/generated/lion-phase/traversal/t0/reward/coin-pouch.png",
       "role": "reward",

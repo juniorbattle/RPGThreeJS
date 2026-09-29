@@ -4,7 +4,7 @@ if (process.argv.includes('--reward-qa')) {
   await import('./traversal-t0-reward-qa.mjs');
   process.exit(0);
 }
-if (process.argv.includes('--pursuit-qa')) {
+if (process.argv.includes('--pursuit-qa') || process.argv.includes('--pursuit-art-qa')) {
   await import('./traversal-t0-pursuit-qa.mjs');
   process.exit(0);
 }
