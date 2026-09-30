@@ -1,6 +1,6 @@
 # Traversal T0 — final convergence pass
 
-> Historical pre-Lot-A record. The status and runtime claims below describe that earlier pass, not the current approved T0. Its `tools/traversal/qa` captures were removed during [TRAVERSAL-T0-CLEANUP-1](reports/traversal-t0-cleanup-1.md); Git history preserves them. Use the linked cleanup report and its retained Lot A evidence for the current implementation.
+> **SUPERSEDED HISTORICAL RECORD.** The status and runtime claims below describe a pre-Lot-A pass, not current T0. Its `tools/traversal/qa` captures were removed during [TRAVERSAL-T0-CLEANUP-1](reports/traversal-t0-cleanup-1.md); Git history preserves them. Current authority is the [T0 production contract](traversal/T0_PRODUCTION_CONTRACT.md) and production source at `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. Risk, Reward, and Pursuit are now production-on; local road combat and `LOCAL_INTERACTION` were removed.
 
 Engineering validation and Chromium journeys passed. **Awaiting operator visual review.** Production remains disabled; changes are uncommitted and unpushed.
 

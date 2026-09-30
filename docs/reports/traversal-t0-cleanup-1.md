@@ -1,5 +1,7 @@
 # TRAVERSAL-T0-CLEANUP-1
 
+> **HISTORICAL CLEANUP RECORD.** The removals and byte-preserving promotions below remain the record of this task. Its runtime and QA status predates production Risk, Reward, and Pursuit. Current authority is the [T0 production contract](../traversal/T0_PRODUCTION_CONTRACT.md), [architecture](../traversal/ARCHITECTURE.md), and source at `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`.
+
 Baseline: `main` at `e1be7d0261d699aee27079e256291826b7b78f1e`
 
 Branch: `traversal-t0-cleanup-1`
