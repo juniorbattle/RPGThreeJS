@@ -1,0 +1,17 @@
+# Report authority index
+
+Baseline for this index: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. Reports remain historical even when their outcome was merged. Current contracts: [project status](../project/CURRENT_STATUS.md), [T0](../traversal/T0_PRODUCTION_CONTRACT.md), [remaining legs](../traversal/LEGS_ROADMAP.md), and [demo content](../content/DEMO_CONTENT_MAP.md).
+
+| Report | Historical role | Current authority |
+| --- | --- | --- |
+| [T0 production loop final](traversal-t0-production-loop-final-1.md) | Latest integrated production validation; selected golden browser evidence | [T0 contract](../traversal/T0_PRODUCTION_CONTRACT.md) plus source |
+| [Risk production](traversal-t0-route-risk-production-1.md), [Reward production](traversal-t0-route-reward-production-1.md), [Pursuit production](traversal-t0-pursuit-production-1.md) | Component activation records, superseded as current integration status | T0 contract and integrated report |
+| [Risk art](traversal-t0-route-risk-art-1.md), [Reward art](traversal-t0-route-reward-art-1.md), [Pursuit art](traversal-t0-pursuit-art-1.md) | Approved art and unique visual comparisons; activation wording may be stale | Current asset manifest/readmes and T0 contract |
+| [Initial Risk](traversal-t0-route-risk-1.md), [Reward](traversal-t0-route-reward-1.md), [Pursuit](traversal-t0-pursuit-1.md) | Earlier DEV-only stages, superseded | T0 contract |
+| [Route checkpoints and shared world](traversal-t0-route-checkpoints-1-shared-world-full-generalization.md), [motion handoff](traversal-t0-motion-handoff-polish-1.md) | Historical unique world/motion proof | Current source and T0 contract |
+| [T0 cleanup](traversal-t0-cleanup-1.md) | Removal and asset-promotion record; precedes production Risk/Reward/Pursuit | [Architecture](../traversal/ARCHITECTURE.md) and T0 contract |
+| [Remaining legs audit](traversal-remaining-legs-audit-1.md) | Earlier evidence and proposed future design; contains removed road-combat architecture | [Current-source leg audit](../traversal/LEGS_ROADMAP.md) |
+| [Final convergence](../TRAVERSAL_T0_FINAL_CONVERGENCE.md) | Pre-Lot-A historical report with obsolete production-disabled and road-combat claims | T0 contract |
+| [Full demo route integration](demo-1h-r6-full-route-integration.md) | Prior campaign reachability/save proof | [Current status](../project/CURRENT_STATUS.md) and current source |
+
+Other reports under this directory are historical task records. This audit inventories them, but does not certify their current claims or classify unrelated evidence as removable. Consult the owning source and canonical docs before using an older report to set scope.

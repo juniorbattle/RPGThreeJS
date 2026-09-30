@@ -1,5 +1,7 @@
 # TRAVERSAL-REMAINING-LEGS-AUDIT-1
 
+> **SUPERSEDED HISTORICAL AUDIT.** This report predates production Risk, Reward, and Pursuit and the removal of `TraversalRoadEncounter` / `LOCAL_INTERACTION`. Its baseline-specific observations and future design proposals remain as a task record. Use the [current-source T1–T4 audit](../traversal/LEGS_ROADMAP.md), [architecture](../traversal/ARCHITECTURE.md), and [T0 production contract](../traversal/T0_PRODUCTION_CONTRACT.md) for current decisions at `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`.
+
 Audit / gallery / architecture-plan pass. **No production behaviour changed.** T0 remains the only
 gate-enabled Traversal leg; T1/T2/T3/T4 relations exist structurally but are not production-enabled.
 This document is the operator-review package: current-state evidence, generic-vs-T0 matrix, target
