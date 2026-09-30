@@ -1,5 +1,7 @@
 # TRAVERSAL-T0-PURSUIT-1
 
+> **Historical evidence retired in PROJECT-CONTINUITY-CLEANUP-1.** This task's browser folder was removed from the active tree after integrated production coverage. Git history preserves its original files and measurements. For current behavior use the [T0 production contract](../traversal/T0_PRODUCTION_CONTRACT.md) and [final integrated report](traversal-t0-production-loop-final-1.md). Evidence paths below are historical references, not live links.
+
 Baseline: `main` at `ff4c48ee1a1c6ced6b918361187218653add342b`
 
 Branch: `traversal-t0-pursuit-1`
@@ -47,7 +49,7 @@ Only DEV + `?qa=1` + enabled Pursuit exposes root datasets for pressure, lane, w
 
 ## Browser evidence
 
-The [machine-readable QA](./traversal-t0-pursuit-1-browser/browser-qa.json) and [ten-image gallery](./traversal-t0-pursuit-1-browser/index.html) are produced by `node tools/traversal-t0-browser-qa.mjs --pursuit-qa`. The driver uses Vite DEV, real GameApp T0 mounting, real requestAnimationFrame route motion, lane controls, and canonical checkpoint/branch/arrival navigation. It records the campaign signature, pressure trend, catch speed, Risk contacts, Reward collection, lifecycle visibility, layout, and page errors.
+The **machine-readable QA** (retired evidence: `docs/reports/traversal-t0-pursuit-1-browser/browser-qa.json`) and **ten-image gallery** (retired evidence: `docs/reports/traversal-t0-pursuit-1-browser/index.html`) are produced by `node tools/traversal-t0-browser-qa.mjs --pursuit-qa`. The driver uses Vite DEV, real GameApp T0 mounting, real requestAnimationFrame route motion, lane controls, and canonical checkpoint/branch/arrival navigation. It records the campaign signature, pressure trend, catch speed, Risk contacts, Reward collection, lifecycle visibility, layout, and page errors.
 
 | Mode | Result |
 |---|---|

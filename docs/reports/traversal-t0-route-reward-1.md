@@ -1,5 +1,7 @@
 # TRAVERSAL-T0-ROUTE-REWARD-1
 
+> **Historical evidence retired in PROJECT-CONTINUITY-CLEANUP-1.** This task's browser folder was removed from the active tree after integrated production coverage. Git history preserves its original files and measurements. For current behavior use the [T0 production contract](../traversal/T0_PRODUCTION_CONTRACT.md) and [final integrated report](traversal-t0-production-loop-final-1.md). Evidence paths below are historical references, not live links.
+
 Baseline: `main` at `300d126d2d608a4f4d3b6f30b4825cd6f9dc9fc6`
 
 Branch: `traversal-t0-route-reward-1`
@@ -45,11 +47,11 @@ Either complete path contains nine pickups and offers 45 gold. This is gross col
 
 ## Browser and responsive evidence
 
-The canonical QA entry accepts `--reward-qa` and runs Reward OFF / Risk ON, Reward ON / Risk OFF, and Reward ON / Risk ON. It drives both Route 5 branches in each Reward-on mode, a separate Route 1 miss, real lane controls, checkpoints, combat/dialogue, arrival, and Journey destination agency. [Machine-readable results](./traversal-t0-route-reward-1-browser/browser-qa.json) and the [small screenshot gallery](./traversal-t0-route-reward-1-browser/index.html) record per-pickup callbacks, gold/HUD before and after, segment outcomes, collision counts, spatial continuity, and responsive captures at 1440×810, 620×780, and 390×844.
+The canonical QA entry accepts `--reward-qa` and runs Reward OFF / Risk ON, Reward ON / Risk OFF, and Reward ON / Risk ON. It drives both Route 5 branches in each Reward-on mode, a separate Route 1 miss, real lane controls, checkpoints, combat/dialogue, arrival, and Journey destination agency. **Machine-readable results** (retired evidence: `docs/reports/traversal-t0-route-reward-1-browser/browser-qa.json`) and the **small screenshot gallery** (retired evidence: `docs/reports/traversal-t0-route-reward-1-browser/index.html`) record per-pickup callbacks, gold/HUD before and after, segment outcomes, collision counts, spatial continuity, and responsive captures at 1440×810, 620×780, and 390×844.
 
 The three Route 1 approach captures show the lane-1 pickup grounded ahead of the caravan at all requested widths. Browser geometry checks found no horizontal overflow or clipped lane controls; visual inspection found no pickup overlap with the shared HUD or lane buttons. The contact screenshot shows a readable `+5 route` pulse above the caravan and the HUD's matching `+5 route` line. The miss screenshot shows neither pulse nor route-gold increase. The placeholder carries a DEV label and has a distinct circular silhouette from Risk obstacles.
 
-The built production-default [canonical QA](./traversal-t0-route-reward-1-browser/production-off/browser-qa.json) completed both branches with Risk on and Reward off. Its first pass reported one uncovered checkpoint-to-route frame on branch B while all other checks passed; an unchanged rerun passed with zero frame issues. The final JSON-only pass has no missing captures, page errors, asset failures, world failures, coast failures, or Risk failures.
+The built production-default **canonical QA** (retired evidence: `docs/reports/traversal-t0-route-reward-1-browser/production-off/browser-qa.json`) completed both branches with Risk on and Reward off. Its first pass reported one uncovered checkpoint-to-route frame on branch B while all other checks passed; an unchanged rerun passed with zero frame issues. The final JSON-only pass has no missing captures, page errors, asset failures, world failures, coast failures, or Risk failures.
 
 The pure resolver tests prove `COLLECTED` and `MISSED` are crossing-only and exactly once; authoring tests prove unique IDs, lane, value, branch parity, bounds, and hazard spacing. The GameApp authority test proves +5 temporary loot, unchanged secured gold and node state, and immediate HUD refresh.
 
@@ -64,7 +66,7 @@ The pure resolver tests prove `COLLECTED` and `MISSED` are crossing-only and exa
 
 Each callback increased `temporaryLoot.gold` by exactly 5, refreshed the HUD's `+N route` display, and left `state.gold`, visited nodes, and resolved nodes unchanged at the moment of collection. The existing campaign's checkpoint effects alter the shared temporary-loot balance between pickups. Both branches keep their positive remaining temporary balance across physical arrival and Journey destination agency. The Route 5B collision precedes its later pickup without changing its authored crossing or causing a visible road-space jump. Reward OFF mounts no pickup renderer and grants no gold; the separate Route 1 opposite-lane run resolves a miss and grants none.
 
-A follow-up [refuge browser run](./traversal-t0-route-reward-1-browser/refuge/browser-qa.json) took Path A from Journey agency into the existing `lion-first-refuge` resolution. Before entry, secured gold was 150 and temporary gold was 5. Once the existing refuge flow set `refugeSecured:lion-first-refuge`, secured gold was 155 and temporary gold was 0. The [visible refuge capture](./traversal-t0-route-reward-1-browser/refuge/reward-refuge-secured.png) shows 155 in the shared HUD. No Traversal arrival step secured loot.
+A follow-up **refuge browser run** (retired evidence: `docs/reports/traversal-t0-route-reward-1-browser/refuge/browser-qa.json`) took Path A from Journey agency into the existing `lion-first-refuge` resolution. Before entry, secured gold was 150 and temporary gold was 5. Once the existing refuge flow set `refugeSecured:lion-first-refuge`, secured gold was 155 and temporary gold was 0. The **visible refuge capture** (retired evidence: `docs/reports/traversal-t0-route-reward-1-browser/refuge/reward-refuge-secured.png`) shows 155 in the shared HUD. No Traversal arrival step secured loot.
 
 ## Validation
 

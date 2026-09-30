@@ -23,4 +23,6 @@ Use an explicit `CURRENT FACT`, `APPROVED DECISION`, `PROPOSED FUTURE DESIGN`, o
 
 ## Retention policy
 
-For new work, prefer one small machine-readable result, about 5–10 selected screenshots, and a final report. Keep additional video or comparisons only when they prove a unique contract. Intermediate, rejected, and rerun evidence should normally leave the active tree **after operator approval**, dependency/link repair, and a uniqueness review; Git history recovers retired tracked files. Never automatically delete `UNKNOWN_REVIEW` material. This audit performs no deletion.
+For new work, prefer one small machine-readable result, about 5–10 selected screenshots, and a final report. Keep additional video or comparisons only when they prove a unique contract. Intermediate, rejected, and rerun evidence should normally leave the active tree **after operator approval**, dependency/link repair, and a uniqueness review; Git history recovers retired tracked files. Never automatically delete `UNKNOWN_REVIEW` material.
+
+Current Traversal QA drivers write by default under ignored `docs/reports/evidence/traversal-t0/`. Tracked evidence is an explicit, reviewed promotion using `--output=<explicit-path>` or a selected copy, never the ordinary rerun destination. A later run must not overwrite a historical task package. [Cleanup record](project-continuity-cleanup-1.md).

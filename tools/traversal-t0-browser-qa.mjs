@@ -23,13 +23,13 @@ const riskQa = !riskOffQa;
 const compactQa = !artQa && !artOffQa && !process.argv.includes('--legacy-gallery');
 const jsonOnly = process.argv.includes('--json-only');
 const output = process.argv.find(arg => arg.startsWith('--output='))?.slice('--output='.length)
-  ?? (artQa ? 'docs/reports/traversal-t0-route-risk-art-1-browser'
-  : artOffQa ? 'docs/reports/traversal-t0-route-risk-art-1-browser/off'
-  : `docs/reports/${productionQa ? 'traversal-t0-production-loop-final-1-browser'
-    : 'traversal-t0-route-risk-production-1-browser'}/${productionQa
+  ?? (artQa ? 'docs/reports/evidence/traversal-t0/integrated/risk-art'
+  : artOffQa ? 'docs/reports/evidence/traversal-t0/integrated/risk-art-off'
+  : `docs/reports/evidence/traversal-t0/integrated/${productionQa
     ? productionDisableUrl ? 'production-disable-url'
       : process.argv.includes('--production-risk-off-url') ? 'production-risk-off-url' : 'production'
     : riskOffQa ? 'dev-off' : 'dev'}`);
+if (process.argv.includes('--print-output')) { console.log(output); process.exit(0); }
 const port = productionQa ? 5218 : 5217;
 const base = `http://127.0.0.1:${port}/?qa=1&traversal=t0${riskOffQa || process.argv.includes('--production-risk-off-url')
   || productionDisableUrl ? '&traversalRisk=0' : ''}${productionDisableUrl

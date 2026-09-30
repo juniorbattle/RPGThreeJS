@@ -1,5 +1,7 @@
 # PROJECT-CONTINUITY-AUDIT-1
 
+> **Historical plan executed in part.** The six `REMOVE_AFTER_LINK_REPAIR` evidence directories below were retired in [PROJECT-CONTINUITY-CLEANUP-1](../reports/project-continuity-cleanup-1.md). Counts and projected reduction below describe the pre-cleanup baseline. The linked generator is a frozen one-shot audit tool, not a current-tree auditor.
+
 TASK: `PROJECT-CONTINUITY-AUDIT-1`
 DOMAIN: repository continuity / documentation / cleanup planning
 BASELINE: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`

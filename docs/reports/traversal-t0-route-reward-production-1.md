@@ -1,5 +1,7 @@
 # TRAVERSAL-T0-ROUTE-REWARD-PRODUCTION-1
 
+> **Historical evidence retired in PROJECT-CONTINUITY-CLEANUP-1.** This task's browser folder was removed from the active tree after integrated production coverage. Git history preserves its original files and measurements. For current behavior use the [T0 production contract](../traversal/T0_PRODUCTION_CONTRACT.md) and [final integrated report](traversal-t0-production-loop-final-1.md). Evidence paths below are historical references, not live links.
+
 Baseline: `main` at `f4bb94226f1f67120a44692e66cc7e46c38c5548`
 
 Branch: `traversal-t0-route-reward-production-1`
@@ -23,7 +25,7 @@ Branch: `traversal-t0-route-reward-production-1`
 
 ## Built production browser proof
 
-The [production QA JSON](./traversal-t0-route-reward-production-1-browser/production/browser-qa.json) and [nine-image gallery](./traversal-t0-route-reward-production-1-browser/production/index.html) come from `node tools/traversal-t0-browser-qa.mjs --reward-qa --production` against Vite preview of the built `dist` bundle. Playwright exposes `GameApp` only in its local response to drive the built scene; the built feature policy is unchanged. Root Reward diagnostics were absent in every production sample.
+The **production QA JSON** (retired evidence: `docs/reports/traversal-t0-route-reward-production-1-browser/production/browser-qa.json`) and **nine-image gallery** (retired evidence: `docs/reports/traversal-t0-route-reward-production-1-browser/production/index.html`) come from `node tools/traversal-t0-browser-qa.mjs --reward-qa --production` against Vite preview of the built `dist` bundle. Playwright exposes `GameApp` only in its local response to drive the built scene; the built feature policy is unchanged. Root Reward diagnostics were absent in every production sample.
 
 | Run | Result |
 |---|---|
@@ -40,15 +42,15 @@ The built `dist` contains only the approved `coin-pouch.png` in the Reward art d
 
 At 1440×810, 620×780, and 390×844, captured pouch approach, collection, miss, Route 3 Risk coexistence, Route 5B after collision, Route 6, and Journey agency had zero horizontal overflow or clipped lane controls. The 390 px collection capture shows the `+5 route` pulse and refreshed HUD. Visual review found the pouch grounded in the selected lane, with HUD and controls readable. The Reward renderer is `aria-hidden=true`, its images have empty alt text, and it provides no focusable controls.
 
-The separate [canonical built-flow summary](./traversal-t0-route-reward-production-1-browser/canonical/browser-qa.json) completed both production T0 paths with zero route-world, checkpoint, Route 6 coast, Risk, frame, duplicate-caravan, or general QA failures. It also found no inaccessible lane controls or overflow. This JSON-only pass supplies the unchanged route-timing, transition-lock, and arrival regression proof without adding screenshots.
+The separate **canonical built-flow summary** (retired evidence: `docs/reports/traversal-t0-route-reward-production-1-browser/canonical/browser-qa.json`) completed both production T0 paths with zero route-world, checkpoint, Route 6 coast, Risk, frame, duplicate-caravan, or general QA failures. It also found no inaccessible lane controls or overflow. This JSON-only pass supplies the unchanged route-timing, transition-lock, and arrival regression proof without adding screenshots.
 
 ## Refuge boundary
 
-The separate [built refuge QA](./traversal-t0-route-reward-production-1-browser/refuge/browser-qa.json) drove Path A through arrival and Journey destination agency into `lion-first-refuge`. Before entry, secured gold was 150 and temporary gold was 5. The existing `secureRunLoot()` boundary produced secured gold 155 and temporary gold 0. The [refuge capture](./traversal-t0-route-reward-production-1-browser/refuge/index.html) records the reached hub. No Reward-specific refuge code was added.
+The separate **built refuge QA** (retired evidence: `docs/reports/traversal-t0-route-reward-production-1-browser/refuge/browser-qa.json`) drove Path A through arrival and Journey destination agency into `lion-first-refuge`. Before entry, secured gold was 150 and temporary gold was 5. The existing `secureRunLoot()` boundary produced secured gold 155 and temporary gold 0. The **refuge capture** (retired evidence: `docs/reports/traversal-t0-route-reward-production-1-browser/refuge/index.html`) records the reached hub. No Reward-specific refuge code was added.
 
 ## DEV QA and validation
 
-The [DEV QA JSON](./traversal-t0-route-reward-production-1-browser/dev/browser-qa.json) covers Reward off/Risk on via `?traversalReward=0`, Reward on/Risk off via `?traversalRisk=0`, and both on by default. Both branches of the enabled modes completed with nine accepted callbacks and 45 gross gold each. The Reward-off run had no Reward renderer, pouch, or callback. The isolated Risk-off runs had Reward marks and callbacks with no Risk renderer. The combined Route 5B run collided once and collected the later pouch. All runs had zero QA errors.
+The **DEV QA JSON** (retired evidence: `docs/reports/traversal-t0-route-reward-production-1-browser/dev/browser-qa.json`) covers Reward off/Risk on via `?traversalReward=0`, Reward on/Risk off via `?traversalRisk=0`, and both on by default. Both branches of the enabled modes completed with nine accepted callbacks and 45 gross gold each. The Reward-off run had no Reward renderer, pouch, or callback. The isolated Risk-off runs had Reward marks and callbacks with no Risk renderer. The combined Route 5B run collided once and collected the later pouch. All runs had zero QA errors.
 
 | Validation | Result |
 |---|---|

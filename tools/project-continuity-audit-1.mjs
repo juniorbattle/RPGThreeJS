@@ -1,5 +1,7 @@
-// Read-only baseline inventory for PROJECT-CONTINUITY-AUDIT-1.
-// Usage: node tools/project-continuity-audit-1.mjs > docs/audits/project-continuity-audit-1.json
+// FROZEN ONE-SHOT AUDIT TOOL for PROJECT-CONTINUITY-AUDIT-1.
+// Pinned to main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0.
+// It is not a generic current-tree auditor. Do not regenerate the historical JSON in place.
+// Historical invocation: node tools/project-continuity-audit-1.mjs > docs/audits/project-continuity-audit-1.json
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { posix as path } from 'node:path';

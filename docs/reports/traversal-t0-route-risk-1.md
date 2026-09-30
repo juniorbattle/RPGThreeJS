@@ -1,5 +1,7 @@
 # TRAVERSAL-T0-ROUTE-RISK-1
 
+> **Historical evidence retired in PROJECT-CONTINUITY-CLEANUP-1.** This task's browser folder was removed from the active tree after integrated production coverage. Git history preserves its original files and measurements. For current behavior use the [T0 production contract](../traversal/T0_PRODUCTION_CONTRACT.md) and [final integrated report](traversal-t0-production-loop-final-1.md). Evidence paths below are historical references, not live links.
+
 Baseline: `main` at `bacb7bcbc09996a30bc4b82fb74902e18418c13a`.
 Branch: `traversal-t0-route-risk-1`.
 
@@ -30,8 +32,8 @@ The current obstacles are deliberately labeled CSS `DEV` placeholders. The clean
 - `tsc --noEmit`: passed.
 - Production Vite build: passed (existing large-chunk advisory only).
 - `git diff --check`: passed.
-- Canonical browser QA, risk OFF: [browser QA](traversal-t0-route-risk-1-browser/risk-off-browser-qa.json), [canonical gallery](traversal-t0-cleanup-1-browser/index.html). Both branches retain the shared forest, authored checkpoints, Passer, fork departure, opaque handoffs, Route 6 coast, and destination agency. No TravelView, early first-refuge commitment, duplicate caravan, missing image, overflow, or browser error.
-- DEV risk ON: [browser QA](traversal-t0-route-risk-1-browser/browser-qa.json), [motion data](traversal-t0-route-risk-1-browser/motion-flow.json), [indexed screenshot gallery](traversal-t0-route-risk-1-browser/index.html). Scenarios cover Route 1 collision/drop/recovery, Route 1 dodge, high-speed Route 6 warning/dodge, alternating Route 5B hazards, second collision during recovery, and clean checkpoint/arrival transitions.
+- Canonical browser QA, risk OFF: **browser QA** (retired evidence: `docs/reports/traversal-t0-route-risk-1-browser/risk-off-browser-qa.json`), [canonical gallery](traversal-t0-cleanup-1-browser/index.html). Both branches retain the shared forest, authored checkpoints, Passer, fork departure, opaque handoffs, Route 6 coast, and destination agency. No TravelView, early first-refuge commitment, duplicate caravan, missing image, overflow, or browser error.
+- DEV risk ON: **browser QA** (retired evidence: `docs/reports/traversal-t0-route-risk-1-browser/browser-qa.json`), **motion data** (retired evidence: `docs/reports/traversal-t0-route-risk-1-browser/motion-flow.json`), **indexed screenshot gallery** (retired evidence: `docs/reports/traversal-t0-route-risk-1-browser/index.html`). Scenarios cover Route 1 collision/drop/recovery, Route 1 dodge, high-speed Route 6 warning/dodge, alternating Route 5B hazards, second collision during recovery, and clean checkpoint/arrival transitions.
 - Live Route 1 contact dropped speed from **1.405 to 1.000**. The Route 6 high-speed warning first appeared about **2.78 s** before contact in the successful-dodge run. Recorded contact gaps were **0.1–54.3 px** at 1440 px width; no checkpoint retained an active hazard or impact.
 - The full QA run generated **57 risk captures**, including **28 responsive captures**, with machine-readable geometry coverage at **1440×810, 620×780, and 390×844**. To keep the working tree lean after the T0 cleanup, only **14 focused risk screenshots** are retained in this report directory; the complete run remains represented by `browser-qa.json` and `motion-flow.json`, while unchanged Lot A states remain in the canonical cleanup gallery. The QA checks warning visibility, lane ground alignment, contact proximity to caravan, reachable lane controls, absence of overflow and duplicate caravan, image loads, and page/console errors. Visual inspection found the marks on the road below the HUD and clear of the lane buttons.
 
