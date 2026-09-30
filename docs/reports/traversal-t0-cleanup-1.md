@@ -61,7 +61,7 @@ The accepted [shared-world full-flow report](traversal-t0-route-checkpoints-1-sh
 
 ## Current runtime and regression contract
 
-`TraversalWorldRenderer` owns all painted route and checkpoint scenery. `TraversalRouteRenderer` retains only distance and rush presentation. Every active Route 1–6 uses `world-v1/forest-road.png`; authored checkpoints appear only after the black cover. Stage order, Aider/Passer, fork authority, both selected consequences, Route 6 coast, and Journey destination agency are unchanged. The canonical regression workflow is one command: `node tools/traversal-t0-browser-qa.mjs`. The specialized inventory script is `tools/traversal-t0-cleanup-inventory.py`.
+`TraversalWorldRenderer` owns all painted route and checkpoint scenery. `TraversalRouteRenderer` retains only distance and rush presentation. Every active Route 1–6 uses `world-v1/forest-road.png`; authored checkpoints appear only after the black cover. Stage order, Aider/Passer, fork authority, both selected consequences, Route 6 coast, and Journey destination agency are unchanged. The canonical regression workflow is one command: `node tools/traversal-t0-browser-qa.mjs`. The specialized inventory script at this task's baseline was `tools/traversal-t0-cleanup-inventory.py`; it was retired in [PROJECT-CONTINUITY-CLEANUP-1](project-continuity-cleanup-1.md) and remains recoverable from Git history.
 
 `TraversalT0Assets.test.ts` now fails if any runtime registry asset is missing, if a T0 PNG is absent from the manifest, if a manifest entry points to a missing or byte-changed image, if a current sprite lacks bounds, or if current Traversal source/manifest names forbidden legacy route scenery.
 

@@ -4,8 +4,6 @@ import { createHash } from 'node:crypto';
 import { chromium } from 'playwright';
 import { createServer, preview } from 'vite';
 
-const output = process.argv.find(arg => arg.startsWith('--output='))?.slice('--output='.length)
-  ?? `docs/reports/traversal-t0-route-reward-production-1-browser/${process.argv.includes('--production') ? 'production' : 'dev'}`;
 const productionQa = process.argv.includes('--production');
 const jsonOnly = process.argv.includes('--json-only');
 const port = productionQa ? 5220 : 5219;
@@ -13,6 +11,10 @@ const viewport = { width: 1440, height: 810 };
 const mobile = [{ width: 620, height: 780 }, { width: 390, height: 844 }];
 const refugeQa = process.argv.includes('--reward-refuge-qa');
 const artQa = process.argv.includes('--reward-art-qa');
+const output = process.argv.find(arg => arg.startsWith('--output='))?.slice('--output='.length)
+  ?? `docs/reports/evidence/traversal-t0/reward/${artQa ? 'art' : refugeQa ? 'refuge'
+    : productionQa ? 'production' : 'dev'}`;
+if (process.argv.includes('--print-output')) { console.log(output); process.exit(0); }
 const pouchPath = '/assets/generated/lion-phase/traversal/t0/reward/coin-pouch.png';
 const pickups = {
   'route-1': [[.65, 1]], 'route-2': [[.22, 0]], 'route-3': [[.18, 1], [.50, 0]],

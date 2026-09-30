@@ -1,0 +1,238 @@
+{
+  "task": "PROJECT-CONTINUITY-CLEANUP-1",
+  "baseline": "81c5d6dd15be7121af2d02ae3fae4485e28e9dbd",
+  "branch": "project-continuity-cleanup-1",
+  "measurement": "Tracked Git blob bytes, including this result and the cleanup report; ignored local QA output excluded.",
+  "beforeTree": {
+    "files": 2356,
+    "bytes": 1534469131,
+    "docsReportsFiles": 1258,
+    "docsReportsBytes": 835790721,
+    "traversalReportsFiles": 476,
+    "traversalReportsBytes": 594512066
+  },
+  "afterTree": {
+    "files": 2244,
+    "bytes": 1422952754,
+    "docsReportsFiles": 1150,
+    "docsReportsBytes": 724310095,
+    "traversalReportsFiles": 367,
+    "traversalReportsBytes": 483022584
+  },
+  "netReduction": {
+    "files": 112,
+    "bytes": 111516377,
+    "percentOfBaselineBytes": 7.27
+  },
+  "grossRetirement": {
+    "mandatoryEvidence": { "files": 109, "bytes": 111494167 },
+    "goldenCuration": { "files": 0, "bytes": 0 },
+    "manualReviewTools": { "files": 5, "bytes": 50410 }
+  },
+  "reviewedGroups": [
+    {
+      "path": "docs/reports/traversal-t0-route-risk-1-browser/",
+      "action": "REMOVE_AFTER_LINK_REPAIR",
+      "filesBefore": 18, "filesAfter": 0, "bytesBefore": 24286570, "bytesAfter": 0,
+      "reason": "Earlier focused Risk evidence; later integrated production coverage and Git history preserve the result.",
+      "replacementAuthority": "docs/traversal/T0_PRODUCTION_CONTRACT.md; docs/reports/traversal-t0-production-loop-final-1.md",
+      "uniqueProofStatus": "Earlier screenshots are not exact duplicates; earlier-stage measurements remain in the historical report and Git.",
+      "linksRepaired": ["docs/reports/traversal-t0-route-risk-1.md"]
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-risk-production-1-browser/",
+      "action": "REMOVE_AFTER_LINK_REPAIR",
+      "filesBefore": 26, "filesAfter": 0, "bytesBefore": 16470452, "bytesAfter": 0,
+      "reason": "Earlier Risk activation evidence; production behavior has later integrated coverage.",
+      "replacementAuthority": "docs/traversal/T0_PRODUCTION_CONTRACT.md; docs/reports/traversal-t0-production-loop-final-1.md",
+      "uniqueProofStatus": "Historical activation findings remain in report and Git history.",
+      "linksRepaired": ["docs/reports/traversal-t0-route-risk-production-1.md"]
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-reward-1-browser/",
+      "action": "REMOVE_AFTER_LINK_REPAIR",
+      "filesBefore": 15, "filesAfter": 0, "bytesBefore": 19010576, "bytesAfter": 0,
+      "reason": "Earlier focused Reward evidence; later integrated production coverage and Git history preserve the result.",
+      "replacementAuthority": "docs/traversal/T0_PRODUCTION_CONTRACT.md; docs/reports/traversal-t0-production-loop-final-1.md",
+      "uniqueProofStatus": "Historical Reward findings remain in report and Git history.",
+      "linksRepaired": ["docs/reports/traversal-t0-route-reward-1.md"]
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-reward-production-1-browser/",
+      "action": "REMOVE_AFTER_LINK_REPAIR",
+      "filesBefore": 16, "filesAfter": 0, "bytesBefore": 17474122, "bytesAfter": 0,
+      "reason": "Earlier Reward activation evidence; production behavior has later integrated coverage.",
+      "replacementAuthority": "docs/traversal/T0_PRODUCTION_CONTRACT.md; docs/reports/traversal-t0-production-loop-final-1.md",
+      "uniqueProofStatus": "Historical activation findings remain in report and Git history.",
+      "linksRepaired": ["docs/reports/traversal-t0-route-reward-production-1.md"]
+    },
+    {
+      "path": "docs/reports/traversal-t0-pursuit-1-browser/",
+      "action": "REMOVE_AFTER_LINK_REPAIR",
+      "filesBefore": 12, "filesAfter": 0, "bytesBefore": 16897604, "bytesAfter": 0,
+      "reason": "Earlier focused Pursuit evidence; later integrated production coverage and Git history preserve the result.",
+      "replacementAuthority": "docs/traversal/T0_PRODUCTION_CONTRACT.md; docs/reports/traversal-t0-production-loop-final-1.md",
+      "uniqueProofStatus": "Historical Pursuit findings remain in report and Git history.",
+      "linksRepaired": ["docs/reports/traversal-t0-pursuit-1.md"]
+    },
+    {
+      "path": "docs/reports/traversal-t0-pursuit-production-1-browser/",
+      "action": "REMOVE_AFTER_LINK_REPAIR",
+      "filesBefore": 22, "filesAfter": 0, "bytesBefore": 17354843, "bytesAfter": 0,
+      "reason": "Earlier Pursuit activation evidence; production behavior has later integrated coverage.",
+      "replacementAuthority": "docs/traversal/T0_PRODUCTION_CONTRACT.md; docs/reports/traversal-t0-production-loop-final-1.md",
+      "uniqueProofStatus": "Historical activation findings remain in report and Git history.",
+      "linksRepaired": ["docs/reports/traversal-t0-pursuit-production-1.md"]
+    },
+    {
+      "path": "docs/reports/traversal-t0-production-loop-final-1-browser/",
+      "action": "KEEP_CURRENT",
+      "filesBefore": 42, "filesAfter": 42, "bytesBefore": 47319394, "bytesAfter": 47319394,
+      "reason": "Current golden integrated T0 proof; all 30 distinct PNGs are directly linked by gallery HTML.",
+      "replacementAuthority": "Current evidence for docs/reports/traversal-t0-production-loop-final-1.md",
+      "uniqueProofStatus": "No artifact met duplicate, unreferenced, equivalent, and no-loss deletion criteria.",
+      "linksRepaired": []
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/",
+      "action": "MANUAL_REVIEW_REQUIRED",
+      "filesBefore": 103, "filesAfter": 103, "bytesBefore": 171236238, "bytesAfter": 171236238,
+      "reason": "97 indexed states plus contact sheets show future-leg, branch, and campaign variants; safe compact curation is unresolved.",
+      "replacementAuthority": "Historical visual reference only; current leg decisions live in docs/traversal/LEGS_ROADMAP.md",
+      "uniqueProofStatus": "100 PNGs, 93 distinct hashes, all linked; unique visual equivalence has not been established.",
+      "linksRepaired": []
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/",
+      "action": "MANUAL_REVIEW_REQUIRED",
+      "filesBefore": 44, "filesAfter": 44, "bytesBefore": 53314692, "bytesAfter": 53314692,
+      "reason": "Pre-Risk world, black-transition, checkpoint, and responsive proof overlaps later work but equivalence is unproven.",
+      "replacementAuthority": "Historical cleanup record; current contract in docs/traversal/T0_PRODUCTION_CONTRACT.md",
+      "uniqueProofStatus": "40 PNGs, 38 distinct hashes, all gallery-linked; no confident no-loss reduction.",
+      "linksRepaired": []
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/",
+      "action": "KEEP_HISTORICAL",
+      "filesBefore": 73, "filesAfter": 73, "bytesBefore": 115614073, "bytesAfter": 115614073,
+      "reason": "Distinct branch/checkpoint comparisons and motion acceptance proof.",
+      "replacementAuthority": "Historical evidence only",
+      "uniqueProofStatus": "Contains WebM motion and checkpoint comparisons not replaced by final T0 screenshots.",
+      "linksRepaired": []
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/",
+      "action": "KEEP_HISTORICAL",
+      "filesBefore": 23, "filesAfter": 23, "bytesBefore": 19356321, "bytesAfter": 19356321,
+      "reason": "Distinct motion and handoff acceptance evidence.",
+      "replacementAuthority": "Historical evidence only",
+      "uniqueProofStatus": "Contains WebM motion clips absent from current static gallery.",
+      "linksRepaired": []
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-risk-art-1-browser/",
+      "action": "KEEP_HISTORICAL",
+      "filesBefore": 36, "filesAfter": 36, "bytesBefore": 41883074, "bytesAfter": 41883074,
+      "reason": "Risk art selection and variant history.",
+      "replacementAuthority": "Historical evidence only",
+      "uniqueProofStatus": "Art variants are not replaced by integrated functional QA.",
+      "linksRepaired": []
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-reward-art-1-browser/",
+      "action": "KEEP_HISTORICAL",
+      "filesBefore": 14, "filesAfter": 14, "bytesBefore": 17781012, "bytesAfter": 17781012,
+      "reason": "Reward art selection and variant history.",
+      "replacementAuthority": "Historical evidence only",
+      "uniqueProofStatus": "Art variants are not replaced by integrated functional QA.",
+      "linksRepaired": []
+    },
+    {
+      "path": "docs/reports/traversal-t0-pursuit-art-1-browser/",
+      "action": "KEEP_HISTORICAL",
+      "filesBefore": 12, "filesAfter": 12, "bytesBefore": 15423632, "bytesAfter": 15423632,
+      "reason": "Pursuit art selection and variant history.",
+      "replacementAuthority": "Historical evidence only",
+      "uniqueProofStatus": "Art variants are not replaced by integrated functional QA.",
+      "linksRepaired": []
+    },
+    {
+      "path": "tools/traversal-remaining-legs-audit-1-gallery.mjs",
+      "action": "RETIRE_ONE_SHOT_TOOL",
+      "filesBefore": 1, "filesAfter": 0, "bytesBefore": 27441, "bytesAfter": 0,
+      "reason": "Historical gallery generator has no current runtime or QA import; output remains in historical report and Git.",
+      "replacementAuthority": "Retained gallery and Git history",
+      "uniqueProofStatus": "No current workflow dependency found.",
+      "linksRepaired": ["docs/reports/traversal-remaining-legs-audit-1.md"]
+    },
+    {
+      "path": "tools/traversal-remaining-legs-audit-1-gallery-page.mjs",
+      "action": "RETIRE_ONE_SHOT_TOOL",
+      "filesBefore": 1, "filesAfter": 0, "bytesBefore": 2785, "bytesAfter": 0,
+      "reason": "Historical gallery page generator has no current runtime or QA import; output remains in historical report and Git.",
+      "replacementAuthority": "Retained gallery and Git history",
+      "uniqueProofStatus": "No current workflow dependency found.",
+      "linksRepaired": ["docs/reports/traversal-remaining-legs-audit-1.md"]
+    },
+    {
+      "path": "tools/traversal-remaining-legs-audit-1-contact-sheet.mjs",
+      "action": "RETIRE_ONE_SHOT_TOOL",
+      "filesBefore": 1, "filesAfter": 0, "bytesBefore": 2847, "bytesAfter": 0,
+      "reason": "Historical contact-sheet generator has no current runtime or QA import; output remains in historical report and Git.",
+      "replacementAuthority": "Retained gallery and Git history",
+      "uniqueProofStatus": "No current workflow dependency found.",
+      "linksRepaired": ["docs/reports/traversal-remaining-legs-audit-1.md"]
+    },
+    {
+      "path": "tools/traversal-remaining-legs-audit-1-inventory.mjs",
+      "action": "RETIRE_ONE_SHOT_TOOL",
+      "filesBefore": 1, "filesAfter": 0, "bytesBefore": 5144, "bytesAfter": 0,
+      "reason": "Historical inventory runner has no current runtime or QA import; output remains in historical report and Git.",
+      "replacementAuthority": "Retained inventory and Git history",
+      "uniqueProofStatus": "No current workflow dependency found.",
+      "linksRepaired": ["docs/reports/traversal-remaining-legs-audit-1.md"]
+    },
+    {
+      "path": "tools/traversal-t0-cleanup-inventory.py",
+      "action": "RETIRE_ONE_SHOT_TOOL",
+      "filesBefore": 1, "filesAfter": 0, "bytesBefore": 12193, "bytesAfter": 0,
+      "reason": "Historical one-shot cleanup inventory has no current workflow dependency.",
+      "replacementAuthority": "Retained inventory and Git history",
+      "uniqueProofStatus": "No current workflow dependency found.",
+      "linksRepaired": ["docs/reports/traversal-t0-cleanup-1.md"]
+    },
+    {
+      "path": "tools/project-continuity-audit-1.mjs",
+      "action": "KEEP_FROZEN_ONE_SHOT_TOOL",
+      "filesBefore": 1, "filesAfter": 1, "bytesBefore": 13852, "bytesAfter": 14021,
+      "reason": "The audit runner remains useful for reproducing its original baseline inventory, with an explicit frozen-tool label.",
+      "replacementAuthority": "Current inventory is this cleanup result; this runner remains pinned to the original audit baseline.",
+      "uniqueProofStatus": "Historical audit procedure retained; not presented as a generic current-tree auditor.",
+      "linksRepaired": []
+    }
+  ],
+  "qaOutput": {
+    "defaultRoot": "docs/reports/evidence/traversal-t0/",
+    "ignoredByGit": true,
+    "explicitOutputPreserved": true,
+    "builtProductionRun": "docs/reports/evidence/traversal-t0/integrated/production/browser-qa.json",
+    "builtProductionComplete": true,
+    "captures": 23,
+    "errors": 0,
+    "historicalEvidenceRegenerated": false
+  },
+  "linkAudit": {
+    "removedTraversalMarkdownLinks": 0,
+    "currentCanonicalBrokenLinks": 0,
+    "unrelatedInheritedBrokenLinks": 46
+  },
+  "validation": {
+    "nodeCheckDrivers": "PASS",
+    "typescriptNoEmit": "PASS",
+    "productionBuild": "PASS",
+    "builtProductionT0Qa": "PASS",
+    "gitDiffCheck": "PASS",
+    "srcDiffFiles": 0,
+    "productionAssetDiffFiles": 0
+  }
+}

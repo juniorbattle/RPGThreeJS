@@ -1,5 +1,7 @@
 # TRAVERSAL-REMAINING-LEGS-AUDIT-1 — browser gallery index
 
+> **Historical visual reference only.** These captures show the campaign at the task's earlier baseline. T0 architecture shown here includes removed road-interaction behavior. Current production authority is the [T0 contract](../../traversal/T0_PRODUCTION_CONTRACT.md) and [leg roadmap](../../traversal/LEGS_ROADMAP.md). The gallery is retained for distinct T1/T3/T4 and branch-state reference during [PROJECT-CONTINUITY-CLEANUP-1](../project-continuity-cleanup-1.md).
+
 Observation-only gallery of **current production** (Traversal gate = T0 only).
 Open `index.html` for a thumbnail gallery (97 indexed captures). `gallery-index.json` holds
 the source run and live state snapshot for each capture; all four browser runs completed with

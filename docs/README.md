@@ -15,5 +15,6 @@ Current baseline: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0` (PROJECT-CON
 - [Content map](content/README.md) and [demo content map](content/DEMO_CONTENT_MAP.md).
 - [Historical reports](reports/README.md) and [report index](reports/INDEX.md).
 - [Repository inventory and proposed cleanup](audits/project-continuity-audit-1.md). No deletion is authorized by the plan alone.
+- [First physical cleanup record](reports/project-continuity-cleanup-1.md). Retired task evidence remains recoverable from Git history; current QA reruns use ignored local output.
 
 The labels **CURRENT FACT**, **APPROVED DECISION**, **PROPOSED FUTURE DESIGN**, and **UNDECIDED** distinguish observed code, an explicit accepted contract, a plan, and an open decision. A proposal is not a rollout instruction.

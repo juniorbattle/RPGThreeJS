@@ -11,10 +11,11 @@ const productionOnUrl = process.argv.includes('--production-pursuit-on-url');
 if ((productionOffUrl || productionOnUrl) && !productionQa)
   throw new Error('Production URL checks require --production.');
 const output = process.argv.find(arg => arg.startsWith('--output='))?.slice('--output='.length)
-  ?? (artQa ? 'docs/reports/traversal-t0-pursuit-art-1-browser'
-    : `docs/reports/traversal-t0-pursuit-production-1-browser/${productionQa
+  ?? (artQa ? 'docs/reports/evidence/traversal-t0/pursuit/art'
+    : `docs/reports/evidence/traversal-t0/pursuit/${productionQa
       ? productionOffUrl ? 'production-off-url' : productionOnUrl ? 'production-on-url' : 'production'
       : 'dev'}`);
+if (process.argv.includes('--print-output')) { console.log(output); process.exit(0); }
 const jsonOnly = process.argv.includes('--json-only');
 const requested = process.argv.find(arg => arg.startsWith('--scenario='))?.slice('--scenario='.length);
 const scenarios = requested ? [requested] : productionOffUrl ? ['pursuit-off-url']

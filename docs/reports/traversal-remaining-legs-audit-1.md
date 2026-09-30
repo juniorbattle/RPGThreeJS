@@ -1,6 +1,6 @@
 # TRAVERSAL-REMAINING-LEGS-AUDIT-1
 
-> **SUPERSEDED HISTORICAL AUDIT.** This report predates production Risk, Reward, and Pursuit and the removal of `TraversalRoadEncounter` / `LOCAL_INTERACTION`. Its baseline-specific observations and future design proposals remain as a task record. Use the [current-source T1–T4 audit](../traversal/LEGS_ROADMAP.md), [architecture](../traversal/ARCHITECTURE.md), and [T0 production contract](../traversal/T0_PRODUCTION_CONTRACT.md) for current decisions at `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`.
+> **SUPERSEDED HISTORICAL AUDIT.** This report predates production Risk, Reward, and Pursuit and the removal of `TraversalRoadEncounter` / `LOCAL_INTERACTION`. Its baseline-specific observations and future design proposals remain as a task record. Use the [current-source T1–T4 audit](../traversal/LEGS_ROADMAP.md), [architecture](../traversal/ARCHITECTURE.md), and [T0 production contract](../traversal/T0_PRODUCTION_CONTRACT.md) for current decisions at `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. The four one-shot gallery/inventory tools cited by this task were retired in [PROJECT-CONTINUITY-CLEANUP-1](project-continuity-cleanup-1.md); Git history preserves them and the generated gallery remains below.
 
 Audit / gallery / architecture-plan pass. **No production behaviour changed.** T0 remains the only
 gate-enabled Traversal leg; T1/T2/T3/T4 relations exist structurally but are not production-enabled.
@@ -306,8 +306,8 @@ Production pack `public/assets/generated/lion-phase/environments/demo-environmen
 
 The machine-readable report contains **43 per-segment production asset entries** with full
 repository paths, dimensions, role, clean-environment status, baked-cast status, and usability.
-`node tools/traversal-remaining-legs-audit-1-inventory.mjs` regenerates that inventory from the
-approved manifest and MP4 headers. The table below summarizes the per-leg decisions; every
+At this task's baseline, `node tools/traversal-remaining-legs-audit-1-inventory.mjs` regenerated that inventory from the
+approved manifest and MP4 headers. The one-shot tool is now retired; Git history preserves it. The table below summarizes the per-leg decisions; every
 listed PNG is environment-only with no baked actors, while the cinematic clips are fixed
 editorial shots whose cast varies. None is a lateral Traversal section.
 

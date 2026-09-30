@@ -1,5 +1,7 @@
 # TRAVERSAL-T0-ROUTE-RISK-PRODUCTION-1
 
+> **Historical evidence retired in PROJECT-CONTINUITY-CLEANUP-1.** This task's browser folder was removed from the active tree after integrated production coverage. Git history preserves its original files and measurements. For current behavior use the [T0 production contract](../traversal/T0_PRODUCTION_CONTRACT.md) and [final integrated report](traversal-t0-production-loop-final-1.md). Evidence paths below are historical references, not live links.
+
 ## Baseline and activation
 
 - Baseline: `main @ f38a5660811a4c7af0f26fe2a573db109cd8699c`.
@@ -18,7 +20,7 @@ Path A collided once with Route 1's `t0:r1:branch-1`: observed speed fell from 1
 
 All six risk PNGs were present in `dist`, matched the approved manifest SHA-256 values, and returned HTTP 200 in the production browser run. There were no asset 404s, failed requests, broken images in inspected captures, page errors, duplicate caravans, overlapping world surfaces, or overflow. The per-segment hazard DOM counts were exactly 1/1/2/2/2 or 3/3 across Routes 1–6; only one risk renderer was mounted, and root risk telemetry stayed absent. The renderer was `aria-hidden`, had no focusable obstacle controls, and lane buttons stayed locked during 917/902 sampled transition or checkpoint frames.
 
-The ten retained production screenshots cover 1440×810, 620×780, and 390×844. They show Route 1 obstacle and impact, the 390 px lane dodge, Route 5B roadblock, Route 6 warnings at both responsive widths, the visible Route 6 obstacle, and Journey destination agency. Visual inspection confirmed readable lanes and warning markers, reachable buttons, and aligned contact. The [production gallery](traversal-t0-route-risk-production-1-browser/production/index.html) and [machine-readable QA](traversal-t0-route-risk-production-1-browser/production/browser-qa.json) hold the evidence; the [motion data](traversal-t0-route-risk-production-1-browser/production/motion-flow.json) contains both full paths.
+The ten retained production screenshots cover 1440×810, 620×780, and 390×844. They show Route 1 obstacle and impact, the 390 px lane dodge, Route 5B roadblock, Route 6 warnings at both responsive widths, the visible Route 6 obstacle, and Journey destination agency. Visual inspection confirmed readable lanes and warning markers, reachable buttons, and aligned contact. The **production gallery** (retired evidence: `docs/reports/traversal-t0-route-risk-production-1-browser/production/index.html`) and **machine-readable QA** (retired evidence: `docs/reports/traversal-t0-route-risk-production-1-browser/production/browser-qa.json`) hold the evidence; the **motion data** (retired evidence: `docs/reports/traversal-t0-route-risk-production-1-browser/production/motion-flow.json`) contains both full paths.
 
 ## Mode matrix
 
@@ -29,7 +31,7 @@ The ten retained production screenshots cover 1440×810, 620×780, and 390×844.
 | Built production default | Risk ON | Passed both complete paths and all risk, asset, responsive, checkpoint, and coast assertions |
 | Built production `?traversalRisk=0` | Risk ON | Passed both complete paths; Route 1 marks remained present, Path A still collided, all six risk assets loaded, and no production telemetry appeared |
 
-The [DEV-default QA](traversal-t0-route-risk-production-1-browser/dev/browser-qa.json), [DEV risk-off QA](traversal-t0-route-risk-production-1-browser/dev-off/browser-qa.json), and [production URL guard QA](traversal-t0-route-risk-production-1-browser/production-risk-off-url/browser-qa.json) retain full machine-readable comparisons. The DEV risk-off run produced no risk image requests or risk renderer on either path. DEV-default and production URL guard had zero risk failures and zero browser errors.
+The **DEV-default QA** (retired evidence: `docs/reports/traversal-t0-route-risk-production-1-browser/dev/browser-qa.json`), **DEV risk-off QA** (retired evidence: `docs/reports/traversal-t0-route-risk-production-1-browser/dev-off/browser-qa.json`), and **production URL guard QA** (retired evidence: `docs/reports/traversal-t0-route-risk-production-1-browser/production-risk-off-url/browser-qa.json`) retain full machine-readable comparisons. The DEV risk-off run produced no risk image requests or risk renderer on either path. DEV-default and production URL guard had zero risk failures and zero browser errors.
 
 ## Validation and scope
 
