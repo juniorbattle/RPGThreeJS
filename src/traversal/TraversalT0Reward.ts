@@ -1,6 +1,6 @@
 import type { TraversalRoutePickup } from './TraversalRouteReward';
 
-/** DEV-only T0 authoring. Each branch offers the same nine-pickup path value. */
+/** Production T0 pickups. Each branch offers the same nine-pickup path value. */
 const AUTHORED_PICKUPS: TraversalRoutePickup[] = [
   { id: 't0:r1:reward-1', segmentId: 'route-1', progress01: .65, lane: 1, gold: 5 },
   { id: 't0:r2:reward-1', segmentId: 'route-2', progress01: .22, lane: 0, gold: 5 },
