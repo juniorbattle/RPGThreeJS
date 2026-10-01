@@ -5,7 +5,7 @@ import { createInitialState } from '../game/store';
 import { getAvailableRunNodes } from '../game/runSystem';
 import { TraversalRunController } from './TraversalRunController';
 
-function leg(id: 'T0' | 'T1' | 'T2' | 'T3' | 'T4') {
+function leg(id: 'T0' | 'T1' | 'T3') {
   return LION_TRAVERSAL_LEGS.find((candidate) => candidate.id === id)!;
 }
 
@@ -83,7 +83,7 @@ describe('TraversalRunController', () => {
   it('releases traversal only after explicit destination completion', () => {
     const state = createInitialState();
     const controller = new TraversalRunController({
-      leg: leg('T2'),
+      leg: { ...leg('T0'), stages: [] },
       getAvailableNodes: () => getAvailableRunNodes(state),
       onNodeHandoff: () => undefined,
     });

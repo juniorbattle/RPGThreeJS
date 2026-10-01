@@ -16,7 +16,7 @@ import {
   updateTraversalProgress,
 } from './TraversalRunRuntime';
 
-function leg(id: 'T0' | 'T1' | 'T2' | 'T3' | 'T4') {
+function leg(id: 'T0' | 'T1' | 'T3') {
   return LION_TRAVERSAL_LEGS.find((candidate) => candidate.id === id)!;
 }
 
@@ -117,11 +117,11 @@ describe('TraversalRunRuntime', () => {
     expect(() => chooseTraversalFork(session, 'lion-first-trial-combat')).toThrow(/not currently available/);
   });
 
-  it('supports pure travel legs with no interruptions', () => {
-    const t2 = leg('T2');
-    let session = createTraversalRunSession(t2);
+  it('supports a stage-free runtime fixture without defining another playable leg', () => {
+    const stageFree = { ...leg('T0'), stages: [] };
+    let session = createTraversalRunSession(stageFree);
     session = updateTraversalProgress(session, 0.93);
-    session = beginTraversalArrival(session, t2, 1);
+    session = beginTraversalArrival(session, stageFree, 1);
     expect(session.worldMountState).toBe('MOUNTED');
     session = completeTraversalRun(session);
     expect(session.phase).toBe('COMPLETE');
@@ -129,13 +129,13 @@ describe('TraversalRunRuntime', () => {
   });
 
   it('never releases the Traversal world before destination ownership', () => {
-    const t4 = leg('T4');
-    let session = createTraversalRunSession(t4);
+    const stageFree = { ...leg('T0'), stages: [] };
+    let session = createTraversalRunSession(stageFree);
     for (const progress of [0.1, 0.45, 0.8, 1]) {
       session = updateTraversalProgress(session, progress);
       expect(session.worldMountState).toBe('MOUNTED');
     }
-    session = beginTraversalArrival(session, t4);
+    session = beginTraversalArrival(session, stageFree);
     expect(session.worldMountState).toBe('MOUNTED');
     expect(completeTraversalRun(session).worldMountState).toBe('RELEASED');
   });

@@ -4,6 +4,8 @@ import {
 } from './LionCampaignStructure';
 
 export type LionTraversalLegId = 'T0' | 'T1' | 'T2' | 'T3' | 'T4';
+export type LionPlayableTraversalLegId = Exclude<LionTraversalLegId, 'T2' | 'T4'>;
+export type LionRetiredTraversalLegId = Extract<LionTraversalLegId, 'T2' | 'T4'>;
 
 export type LionTraversalStageMode = 'MANDATORY_INTERRUPT' | 'OPTIONAL_INTERRUPT' | 'IN_TRAVERSAL_FORK';
 
@@ -35,10 +37,17 @@ export interface LionTraversalStage {
 }
 
 export interface LionTraversalLeg {
-  readonly id: LionTraversalLegId;
+  readonly id: LionPlayableTraversalLegId;
   readonly originNodeId: string;
   readonly destinationNodeId: string;
   readonly stages: readonly LionTraversalStage[];
+}
+
+export interface LionNarrativeHandoff {
+  readonly id: LionRetiredTraversalLegId;
+  readonly originNodeId: string;
+  readonly destinationNodeId: string;
+  readonly mode: 'DIRECT_NARRATIVE_HANDOFF';
 }
 
 export interface LionMajorCampaignTransition {
@@ -103,12 +112,6 @@ const LION_TRAVERSAL_LEG_DEFINITIONS: readonly LionTraversalLeg[] = [
     ],
   },
   {
-    id: 'T2',
-    originNodeId: 'lion-village-choice',
-    destinationNodeId: 'lion-second-refuge',
-    stages: [],
-  },
-  {
     id: 'T3',
     originNodeId: 'lion-second-refuge',
     destinationNodeId: 'lion-shadow-signs',
@@ -128,12 +131,6 @@ const LION_TRAVERSAL_LEG_DEFINITIONS: readonly LionTraversalLeg[] = [
       },
     ],
   },
-  {
-    id: 'T4',
-    originNodeId: 'lion-shadow-signs',
-    destinationNodeId: 'lion-final-refuge',
-    stages: [],
-  },
 ];
 
 export const LION_TRAVERSAL_LEGS: readonly LionTraversalLeg[] = Object.freeze(
@@ -148,6 +145,12 @@ export const LION_TRAVERSAL_LEGS: readonly LionTraversalLeg[] = Object.freeze(
     }))),
   })),
 );
+
+/** Durable historical IDs remain as direct Journey continuations, never playable road sessions. */
+export const LION_NARRATIVE_HANDOFFS: readonly LionNarrativeHandoff[] = Object.freeze([
+  Object.freeze({ id: 'T2', originNodeId: 'lion-village-choice', destinationNodeId: 'lion-second-refuge', mode: 'DIRECT_NARRATIVE_HANDOFF' }),
+  Object.freeze({ id: 'T4', originNodeId: 'lion-shadow-signs', destinationNodeId: 'lion-final-refuge', mode: 'DIRECT_NARRATIVE_HANDOFF' }),
+]);
 
 export const LION_MAJOR_CAMPAIGN_TRANSITIONS: readonly LionMajorCampaignTransition[] = Object.freeze([
   Object.freeze({
@@ -173,6 +176,7 @@ export interface LionTravelRelationIssue {
     | 'DUPLICATE_TRAVERSAL_NODE'
     | 'BROKEN_STAGE_LINK'
     | 'BROKEN_DESTINATION_LINK'
+    | 'NARRATIVE_HANDOFF_NOT_DIRECT'
     | 'MAJOR_TRANSITION_NOT_DIRECT';
   readonly relationId: string;
   readonly detail: string;
@@ -266,6 +270,21 @@ export function auditLionTravelRelations(): LionTravelRelationIssue[] {
         }
       }
     });
+  }
+
+  for (const handoff of LION_NARRATIVE_HANDOFFS) {
+    const origin = campaignNode(handoff.originNodeId, handoff.id, issues);
+    const destination = campaignNode(handoff.destinationNodeId, handoff.id, issues);
+    if (origin && origin.spatialRole !== 'LOCATION_ANCHOR') {
+      issues.push({ code: 'ORIGIN_NOT_ANCHOR', relationId: handoff.id, detail: `${origin.id} is not a LOCATION_ANCHOR.` });
+    }
+    if (destination && destination.spatialRole !== 'LOCATION_ANCHOR') {
+      issues.push({ code: 'DESTINATION_NOT_ANCHOR', relationId: handoff.id, detail: `${destination.id} is not a LOCATION_ANCHOR.` });
+    }
+    if (origin && destination && !origin.expectedNextNodeIds.includes(destination.id)) {
+      issues.push({ code: 'NARRATIVE_HANDOFF_NOT_DIRECT', relationId: handoff.id,
+        detail: `${origin.id} does not directly link to ${destination.id}.` });
+    }
   }
 
   for (const transition of LION_MAJOR_CAMPAIGN_TRANSITIONS) {

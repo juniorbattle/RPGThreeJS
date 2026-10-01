@@ -208,13 +208,33 @@ async function runNodeScenario(context, scenario) {
     const truth = await loadSavedTruth(page);
     const assertion = scenario.assertTruth(truth);
     if (!assertion) throw new Error(`${scenario.id}: saved truth assertion failed.`);
+    const capture = `${scenario.id}.png`;
+    await page.screenshot({ path: resolve(OUTPUT_DIR, capture), fullPage: false });
+    let continuation = null;
+    if (scenario.expectedNextNodeId) {
+      if (settled !== 'journey') throw new Error(`${scenario.id}: direct handoff did not reach Journey.`);
+      const available = await page.evaluate(async () => {
+        const { SaveRepository } = await import('/src/game/store.ts');
+        const { getAvailableRunNodes } = await import('/src/game/runSystem.ts');
+        const state = new SaveRepository().loadAuto();
+        return state ? getAvailableRunNodes(state).map((node) => node.id) : [];
+      });
+      if (available.length !== 1 || available[0] !== scenario.expectedNextNodeId) {
+        throw new Error(`${scenario.id}: expected only ${scenario.expectedNextNodeId}, got ${JSON.stringify(available)}.`);
+      }
+      await page.locator('[data-journey-continue]:visible').click();
+      await page.locator(scenario.expectedArrivalSelector).waitFor({ state: 'visible', timeout: 40_000 });
+      const traversalMounts = await page.locator('.traversal-t0').count();
+      if (traversalMounts) throw new Error(`${scenario.id}: direct handoff mounted Traversal.`);
+      const arrivalCapture = `${scenario.id}-arrival.png`;
+      await page.screenshot({ path: resolve(OUTPUT_DIR, arrivalCapture), fullPage: false });
+      continuation = { available, arrivalSurface: scenario.expectedArrivalSelector, traversalMounts, arrivalCapture };
+    }
     const expectedAbortedMediaRequests = diagnostics.requestFailures.filter((failure) => /\.mp4 net::ERR_ABORTED$/.test(failure));
     const requestFailures = diagnostics.requestFailures.filter((failure) => !/\.mp4 net::ERR_ABORTED$/.test(failure));
     if (diagnostics.consoleErrors.length || diagnostics.pageErrors.length || requestFailures.length) {
       throw new Error(`${scenario.id}: browser diagnostics were not clean: ${JSON.stringify(diagnostics)}`);
     }
-    const capture = `${scenario.id}.png`;
-    await page.screenshot({ path: resolve(OUTPUT_DIR, capture), fullPage: false });
     return {
       id: scenario.id,
       nodeId: scenario.nodeId,
@@ -225,6 +245,7 @@ async function runNodeScenario(context, scenario) {
       initialPresentation,
       truth: scenario.pickTruth(truth),
       capture,
+      continuation,
       diagnostics: { ...diagnostics, requestFailures },
       expectedAbortedMediaRequests: expectedAbortedMediaRequests.length,
       pass: true,
@@ -305,6 +326,7 @@ const nodeScenarios = [
   {
     id: 'bois-clair-saved', nodeId: 'lion-village-choice', dialogueId: 'village_choice', choiceIndex: 0,
     expectedMode: 'CINEMATIC_HOLD',
+    expectedNextNodeId: 'lion-second-refuge', expectedArrivalSelector: '.exploration-stop[data-refuge-node="lion-second-refuge"]',
     flags: { lionMissionAccepted: true, lionMandateHonour: true, helpedRefugees: true, prioritizedVillage: true }, reputation: 60, seed: 6101,
     assertTruth: (truth) => truth?.flags.missionSuccess === true && truth.flags.missionGreed !== true,
     pickTruth: (truth) => ({ missionSuccess: truth.flags.missionSuccess, missionGreed: Boolean(truth.flags.missionGreed) }),
@@ -330,6 +352,7 @@ const nodeScenarios = [
   },
   {
     id: 'shadow-evidence', nodeId: 'lion-shadow-signs', dialogueId: 'shadow_signs', choiceIndex: 0,
+    expectedNextNodeId: 'lion-final-refuge', expectedArrivalSelector: '.dialogue[data-dialogue-sequence="final_refuge"]',
     flags: { missionSuccess: true, protectedWitnesses: true }, reputation: 60, seed: 6101,
     assertTruth: (truth) => truth?.flags.shadowEvidence === true && truth.flags.shadowFragments !== true,
     pickTruth: (truth) => ({ shadowEvidence: truth.flags.shadowEvidence, shadowFragments: Boolean(truth.flags.shadowFragments) }),

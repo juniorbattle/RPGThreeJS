@@ -1,13 +1,18 @@
 import { describe, expect, it } from 'vitest';
 import {
   LION_MAJOR_CAMPAIGN_TRANSITIONS,
+  LION_NARRATIVE_HANDOFFS,
   LION_TRAVERSAL_LEGS,
   auditLionTravelRelations,
 } from './LionCampaignTravelRelations';
 
 describe('LionCampaignTravelRelations', () => {
-  it('defines exactly T0-T4 as playable traversal legs', () => {
-    expect(LION_TRAVERSAL_LEGS.map((leg) => leg.id)).toEqual(['T0', 'T1', 'T2', 'T3', 'T4']);
+  it('keeps T0/T1/T3 playable and T2/T4 as direct narrative handoffs', () => {
+    expect(LION_TRAVERSAL_LEGS.map((leg) => leg.id)).toEqual(['T0', 'T1', 'T3']);
+    expect(LION_NARRATIVE_HANDOFFS).toEqual([
+      { id: 'T2', originNodeId: 'lion-village-choice', destinationNodeId: 'lion-second-refuge', mode: 'DIRECT_NARRATIVE_HANDOFF' },
+      { id: 'T4', originNodeId: 'lion-shadow-signs', destinationNodeId: 'lion-final-refuge', mode: 'DIRECT_NARRATIVE_HANDOFF' },
+    ]);
   });
 
   it('keeps camp/audience and final-refuge/judgement outside playable traversal', () => {

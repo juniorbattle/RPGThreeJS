@@ -18,9 +18,13 @@ describe('TraversalFeaturePolicy', () => {
   it('prepares rollout for T0 only', () => {
     expect([...TRAVERSAL_PRODUCTION_GATE.rolloutLegIds]).toEqual(['T0']);
     expect(isTraversalProductionEnabledForLeg('T0')).toBe(true);
-    for (const id of ['T1', 'T2', 'T3', 'T4'] as const) {
+    for (const id of ['T1', 'T3'] as const) {
       expect(isTraversalProductionEnabledForLeg(id)).toBe(false);
       expect(evaluateTraversalProductionGate(id).reason).toBe('LEG_NOT_IN_ROLLOUT');
+    }
+    for (const id of ['T2', 'T4'] as const) {
+      expect(isTraversalProductionEnabledForLeg(id)).toBe(false);
+      expect(evaluateTraversalProductionGate(id).reason).toBe('RETIRED_PLAYABLE_LEG');
     }
   });
 

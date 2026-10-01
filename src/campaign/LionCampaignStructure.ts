@@ -70,7 +70,7 @@ function node(
  * This registry owns node identity, campaign/spatial role, legal content,
  * cast identities, environment context, topology expectation and entry/exit
  * contracts. It deliberately does NOT own asset paths, dialogue bodies,
- * combat composition, branch selection, or future Traversal T0-T4 relations.
+ * combat composition, branch selection, or playable Traversal T0/T1/T3 relations.
  */
 export const LION_CAMPAIGN_STRUCTURE: readonly LionCampaignNodeDefinition[] = Object.freeze([
   node({
@@ -244,7 +244,7 @@ export const LION_CAMPAIGN_STRUCTURE: readonly LionCampaignNodeDefinition[] = Ob
       optional: ['cedric'],
     },
     entryPolicy: 'LOCATION_ARRIVAL',
-    exitPolicy: 'START_TRAVERSAL',
+    exitPolicy: 'LOCATION_CONTINUATION',
     expectedNextNodeIds: ['lion-second-refuge'],
   }),
   node({
@@ -326,7 +326,7 @@ export const LION_CAMPAIGN_STRUCTURE: readonly LionCampaignNodeDefinition[] = Ob
       optional: ['cedric', 'lancer'],
     },
     entryPolicy: 'LOCATION_ARRIVAL',
-    exitPolicy: 'START_TRAVERSAL',
+    exitPolicy: 'LOCATION_CONTINUATION',
     expectedNextNodeIds: ['lion-final-refuge'],
   }),
   node({

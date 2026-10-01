@@ -33,6 +33,12 @@ describe('LionCampaignStructure', () => {
     expect(interrupts).toHaveLength(13);
   });
 
+  it('keeps retired road departures as location continuations', () => {
+    expect(LION_CAMPAIGN_NODES_BY_ID.get('lion-village-choice')?.exitPolicy).toBe('LOCATION_CONTINUATION');
+    expect(LION_CAMPAIGN_NODES_BY_ID.get('lion-shadow-signs')?.exitPolicy).toBe('LOCATION_CONTINUATION');
+    expect(LION_CAMPAIGN_NODES_BY_ID.get('lion-second-refuge')?.exitPolicy).toBe('START_TRAVERSAL');
+  });
+
   it('has no unexplained cross-authority debt after correction pass 1', () => {
     expect(auditLionCampaignStructure(0)).toEqual([]);
   });

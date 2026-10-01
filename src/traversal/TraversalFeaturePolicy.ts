@@ -1,4 +1,4 @@
-import type { LionTraversalLegId } from '../campaign/LionCampaignTravelRelations';
+import { LION_TRAVERSAL_LEGS, type LionPlayableTraversalLegId, type LionTraversalLegId } from '../campaign/LionCampaignTravelRelations';
 
 /**
  * Production safety gate for the playable Traversal runtime.
@@ -14,7 +14,7 @@ import type { LionTraversalLegId } from '../campaign/LionCampaignTravelRelations
 export const TRAVERSAL_PRODUCTION_GATE = Object.freeze({
   enabled: true,
   designAssetsReady: true,
-  rolloutLegIds: Object.freeze(['T0'] as const satisfies readonly LionTraversalLegId[]),
+  rolloutLegIds: Object.freeze(['T0'] as const satisfies readonly LionPlayableTraversalLegId[]),
 });
 
 export interface TraversalGateDecision {
@@ -22,6 +22,7 @@ export interface TraversalGateDecision {
   readonly reason:
     | 'FEATURE_DISABLED'
     | 'DESIGN_ASSETS_NOT_READY'
+    | 'RETIRED_PLAYABLE_LEG'
     | 'LEG_NOT_IN_ROLLOUT'
     | 'ALLOWED';
 }
@@ -29,6 +30,9 @@ export interface TraversalGateDecision {
 export function evaluateTraversalProductionGate(
   legId: LionTraversalLegId,
 ): TraversalGateDecision {
+  if (!LION_TRAVERSAL_LEGS.some((leg) => leg.id === legId)) {
+    return { allowed: false, reason: 'RETIRED_PLAYABLE_LEG' };
+  }
   if (!TRAVERSAL_PRODUCTION_GATE.enabled) {
     return { allowed: false, reason: 'FEATURE_DISABLED' };
   }

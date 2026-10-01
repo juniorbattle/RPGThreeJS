@@ -2,20 +2,20 @@
 
 Baseline: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. Status describes current implementation and release work, not a new browser acceptance result. **DEMO_REQUIRED** rows are validation or demonstrated gaps, not authorization for new mechanics.
 
-2026-10-01: [locked contracts](../contracts/README.md) supersede the older undecided scope labels for playable T1/T3, T2/T4 retirement, and the eight-video limit. Rows below retain the observed baseline where implementation still drifts.
+2026-10-01: [locked contracts](../contracts/README.md) supersede older undecided scope labels for playable T1/T3, T2/T4 retirement, and the eight-video limit. Current rows include completed `dev` alignment while retaining the cited historical baseline above.
 
 | Area | Status | Current source fact | Gap or demo check |
 | --- | --- | --- | --- |
 | Campaign | PRODUCTION | `runSystem` and `LionCampaignStructure` define the Lion route, branch nodes, final judgement, and save flow. | Re-run both representative full routes and resume boundaries in the release build. |
 | Traversal T0 | PRODUCTION | Only T0 is gate-enabled, with Route Motion, Risk, Reward, Pursuit, checkpoints, and arrival. | Re-run integrated production QA; preserve no-road-combat contract. |
 | Traversal T1/T3 | APPROVED_NOT_IMPLEMENTED | Relations exist; `GameApp` selects T0 only. Journey carries later campaign segments. | Generalize T0 and produce approved T1/T3 scenes without changing campaign authority. |
-| Traversal T2/T4 | RETIRED_PLAYABLE_PLAN | Relation IDs remain; neither has a playable scene. | Preserve durable IDs while removing obsolete playable planning/runtime assumptions. |
+| Traversal T2/T4 | RETIRED_PLAYABLE | Historical IDs remain in direct narrative handoff relations; neither belongs to the playable leg list. | Recheck direct-handoff browser continuity and existing saves during demo QA. |
 | Refuges/hubs | PRODUCTION | First and second refuge are `refuge` nodes registered in `RefugePresentation`. | Validate management return, rest, shop, save, and narrow-screen flow in a fresh demo run. |
 | Final refuge hub | DEFERRED_UNDECIDED | Final refuge is a `story` node with `final_refuge` dialogue, not an interactive registered hub. | Decide whether conversion is desired and when. |
 | Journey | PRODUCTION | `GameApp` defaults to Journey with TravelView recovery; it owns non-T0 presentation boundaries. | Check route agency and scene return at all major transitions. |
 | Dialogues | PRODUCTION | `GameApp` resolves dialogue through game-layer content and `NarrativeStage`/`DialogueView`. | Audit current cast, text, choices, and responsive staging across both routes; older dialogue reports do not establish current sign-off. |
 | Combat | PRODUCTION | Canonical nodes use `CombatBridge` and the existing combat runtime. | Verify representative regular/branch/finale encounters and return behavior. ROAD COMBAT = NONE. |
-| Cinematics | CONTRACT_DRIFT | `CinematicRegistry` loads a manifest containing extra video slots. | Align runtime, registry, doctrine, and assets to the eight approved videos; check fallbacks and transitions in the current build. |
+| Cinematics | EIGHT_VIDEO_ALIGNMENT_COMPLETE | Production registry/manifest/build expose exactly eight approved videos; retired masters are archived. | Eight-video artistic remaster is separate; preserve [current browser proof](../autonomy/CINEMATIC_CONVERSION_MATRIX.md). |
 | VFX | PRODUCTION_NEEDS_POLISH | Combat VFX presets/sprite sheets and render layers are in source. | Check visibility, ordering, asset load, and motion/reduced-graphics behavior in current combat scenarios. |
 | UI | PRODUCTION_NEEDS_POLISH | Campaign HUD, Journey, refuge, dialogue, combat, and Traversal surfaces are implemented. | Current end-to-end desktop/intermediate/mobile capture and accessibility review remain DEMO_REQUIRED validation. |
 | Content gaps | DEFERRED_UNDECIDED | No new encounter, dialogue branch, or art shortage is proven by this documentation audit. | Record concrete missing content from the fresh demo pass; do not turn historical suggestions into required scope. |
