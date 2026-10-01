@@ -1,0 +1,82 @@
+{
+  "packId": "traversal-t1-checkpoints-v1",
+  "status": "CANDIDATE_NOT_ROLLED_OUT",
+  "generatedAt": "2026-10-01",
+  "visualModel": "baked_raster",
+  "runtimeObjectModel": "interactive_entities",
+  "collisionModel": "scene-local-two-lane",
+  "engineTarget": "project-native",
+  "artStyle": "modern-pixel-art-HD-2D",
+  "routeBase": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+  "references": [
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+      "sha256": "1b64195bc4cb92d5e8cd56c42a68fc85b250fe7cd64b1af7a4b4603ea8f13ccf"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/valmir-road-travel.png",
+      "sha256": "5737747948c67c7f50c8db4cb5456ab73ddfddc71d527119209e160c2336a136"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/old-shrine-tableau.png",
+      "sha256": "4b4c06899d2eb0a7fdfe5a49de969f2638ba73d2aa78045d9ab199b2059ba21e"
+    }
+  ],
+  "assets": [
+    {
+      "id": "valmir-road",
+      "path": "/assets/generated/lion-phase/traversal/t1/world-v1/valmir-road.png",
+      "role": "checkpoint-painting",
+      "environmentFamily": "VALMIR_ROAD",
+      "campaignNodeIds": [
+        "lion-reserve-trail",
+        "lion-valmir-road"
+      ],
+      "width": 1536,
+      "height": 1024,
+      "sha256": "9e9d4d9c858fa3951e36a5de6f190363ccf4e33e34895ea895781c9a5e154043",
+      "prompt": "tools/traversal/t1-production/valmir-road-checkpoint.prompt.txt",
+      "source": "built-in image_gen",
+      "camera": "SIDE_ON_HORIZONTAL",
+      "laneGroundingPercent": [
+        65,
+        81
+      ],
+      "acceptance": "PASS_DEV_CANDIDATE_QA"
+    },
+    {
+      "id": "old-shrine",
+      "path": "/assets/generated/lion-phase/traversal/t1/world-v1/old-shrine.png",
+      "role": "checkpoint-painting",
+      "environmentFamily": "VALMIR_ROAD",
+      "campaignNodeIds": [
+        "lion-second-trial-event"
+      ],
+      "width": 1536,
+      "height": 1024,
+      "sha256": "a20dec0e1e0b9ca28862bb2d8b1aef91a99b17bcc19d0c3c0681e87ee848fd2d",
+      "prompt": "tools/traversal/t1-production/old-shrine-checkpoint.prompt.txt",
+      "source": "built-in image_gen",
+      "camera": "SIDE_ON_HORIZONTAL",
+      "laneGroundingPercent": [
+        65,
+        81
+      ],
+      "acceptance": "PASS_DEV_CANDIDATE_QA"
+    }
+  ],
+  "qa": {
+    "scope": "Unregistered DEV candidate only; production rollout remains disabled",
+    "report": "tmp/traversal/t1-candidate-qa-final/results.json",
+    "viewports": [
+      "1440x810",
+      "620x780",
+      "390x844"
+    ],
+    "runs": 3,
+    "captures": 38,
+    "failures": 0,
+    "errors": 0,
+    "frameIssues": 0
+  }
+}
