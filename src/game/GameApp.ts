@@ -57,7 +57,7 @@ import { JourneyCampaignBoundary, type JourneyBoundaryRequest } from '../journey
 import { resolveCampaignPresentation } from '../journey/JourneyPresentationPolicy';
 import { evaluateRouteCommit } from '../journey/RouteCommitGuard';
 import { isTraversalProductionEnabledForLeg } from '../traversal/TraversalFeaturePolicy';
-import { TraversalT0Scene } from '../traversal/TraversalT0Scene';
+import { createTraversalPresentation, hasAuthoredTraversalPresentation, type TraversalPresentationScene } from '../traversal/TraversalPresentation';
 import { TraversalPreviewSaves } from '../traversal/TraversalPreviewSaves';
 import { LION_TRAVERSAL_LEGS, type LionTraversalLeg, type LionTraversalLegId } from '../campaign/LionCampaignTravelRelations';
 import type { JourneySecondaryActionPresentation } from '../cinematics/JourneyTypes';
@@ -148,7 +148,7 @@ export class GameApp {
     dev: import.meta.env.DEV,
   });
   private journeyBoundary: JourneyCampaignBoundary | null = null;
-  private activeTraversal: TraversalT0Scene | null = null;
+  private activeTraversal: TraversalPresentationScene | null = null;
   private traversalEntryInFlight = false;
   private traversalArrivalInFlight = false;
   private lastNarrativeCinematicBeat: ResolvedPresentationBeat | undefined;
@@ -277,11 +277,11 @@ export class GameApp {
     this.state.visitedNodeIds = [...new Set([...this.state.visitedNodeIds, leg.originNodeId])];
     // Show the real Travel surface before the isolated preview's covered departure.
     this.showTravel();
-    await this.enterTraversalT0(leg, false);
+    await this.enterTraversal(leg, false);
   }
 
   /** Shared mount only; QA alone manufactures a state and uses its isolated save repository. */
-  private async enterTraversalT0(leg: LionTraversalLeg, saveOrigin = true): Promise<void> {
+  private async enterTraversal(leg: LionTraversalLeg, saveOrigin = true): Promise<void> {
     if (this.activeTraversal || this.traversalEntryInFlight) return;
     this.traversalEntryInFlight = true;
     this.activeNarrativeStage?.prepareGlobalHandoff();
@@ -331,7 +331,7 @@ export class GameApp {
         document.body.dataset.campaignSurface = 'traversal';
         this.canvas.hidden = true;
         this.chrome.replaceChildren();
-        const traversal = new TraversalT0Scene({
+        const traversal = createTraversalPresentation({
           root: this.root,
           leg,
           getState: () => this.state,
@@ -340,7 +340,7 @@ export class GameApp {
           onRouteRewardPickup: reward => this.acceptTraversalRouteReward(reward),
           onOptionalIgnore: nodeId => this.ignoreTraversalOptionalNode(nodeId),
           onNodeHandoff: async (node) => { await this.commitRunNodeChoice(node.id); },
-          onArrival: async (destinationNodeId) => { await this.completeTraversalT0(destinationNodeId); },
+          onArrival: async (destinationNodeId) => { await this.completeTraversalArrival(destinationNodeId); },
           onMenu: () => this.renderTitle(),
         });
         this.activeTraversal = traversal;
@@ -380,7 +380,7 @@ export class GameApp {
     return true;
   }
 
-  private async completeTraversalT0(destinationNodeId: string): Promise<void> {
+  private async completeTraversalArrival(destinationNodeId: string): Promise<void> {
     const traversal = this.activeTraversal;
     if (!traversal || traversal.session.phase !== 'ARRIVING'
       || traversal.route.destinationNodeId !== destinationNodeId || this.traversalArrivalInFlight) return;
@@ -813,14 +813,13 @@ export class GameApp {
     // An existing owner may only leave through final arrival, never through another entry.
     if (this.activeTraversal && this.activeTraversal.session.phase !== 'ARRIVING') return;
     const leg = !this.activeTraversal && this.state.run.status === 'active'
-      ? LION_TRAVERSAL_LEGS.find(candidate => candidate.id === 'T0'
-        && candidate.originNodeId === this.state.run.currentNodeId
+      ? LION_TRAVERSAL_LEGS.find(candidate => candidate.originNodeId === this.state.run.currentNodeId
         && this.state.resolvedNodeIds.includes(candidate.originNodeId)
         && this.usesTraversalPresentation(candidate.id)
         && getAvailableRunNodes(this.state).some(node => candidate.stages[0]?.nodeIds.includes(node.id)))
       : undefined;
     if (leg) {
-      await this.enterTraversalT0(leg);
+      await this.enterTraversal(leg);
       return;
     }
     if (this.usesJourneyPresentation()) {
@@ -872,7 +871,7 @@ export class GameApp {
    * to query params, DEV mode or automatic asset detection.
    */
   private usesTraversalPresentation(legId: LionTraversalLegId): boolean {
-    return isTraversalProductionEnabledForLeg(legId);
+    return isTraversalProductionEnabledForLeg(legId) && hasAuthoredTraversalPresentation(legId);
   }
 
   private async enterTravel(): Promise<void> {

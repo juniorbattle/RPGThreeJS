@@ -1,0 +1,38 @@
+import type { LionPlayableTraversalLegId, LionTraversalLegId } from '../campaign/LionCampaignTravelRelations';
+import type { TraversalRunSession } from './TraversalRunRuntime';
+import type { TraversalRouteBeat } from './TraversalT0Route';
+import { TraversalT0Scene, type TraversalT0SceneOptions } from './TraversalT0Scene';
+
+/** The campaign boundary uses this surface without owning any road-specific presentation. */
+export interface TraversalPresentationScene {
+  readonly route: {
+    readonly destinationNodeId: string;
+    readonly beats: readonly TraversalRouteBeat[];
+  };
+  readonly session: TraversalRunSession;
+  readonly activeNodeId: string | null;
+  open(): void;
+  canResumeNode(nodeId: string): boolean;
+  beginNodeResolution(nodeId: string): void;
+  resumeNode(nodeId: string): void;
+  completeArrival(): void;
+  dispose(): void;
+}
+
+type TraversalPresentationFactory = (options: TraversalT0SceneOptions) => TraversalPresentationScene;
+
+// Register a leg only after its complete scene, authored world, transitions and QA exist.
+// A campaign relation or rollout flag alone cannot cause a T0 world to present another leg.
+const PRESENTATIONS: Partial<Record<LionPlayableTraversalLegId, TraversalPresentationFactory>> = {
+  T0: (options) => new TraversalT0Scene(options),
+};
+
+export function hasAuthoredTraversalPresentation(legId: LionTraversalLegId): boolean {
+  return Object.hasOwn(PRESENTATIONS, legId);
+}
+
+export function createTraversalPresentation(options: TraversalT0SceneOptions): TraversalPresentationScene {
+  const factory = PRESENTATIONS[options.leg.id];
+  if (!factory) throw new Error(`Traversal presentation is not authored for ${options.leg.id}.`);
+  return factory(options);
+}

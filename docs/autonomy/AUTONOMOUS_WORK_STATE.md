@@ -1,76 +1,60 @@
 # Autonomous work state
 
-Updated: 2026-10-01 12:55 UTC. The durable work branch is `dev`; Git is authoritative for the exact pushed HEAD. Status: **IN_PROGRESS**.
+Updated 2026-10-01 14:19 UTC. Git on `dev` is authoritative for exact pushed HEAD.
 
 | Field | Value |
 | --- | --- |
 | `status` | `IN_PROGRESS` |
-| `runStartedAt` | `2026-10-01T12:06:34.7146047Z` |
-| `runEndedAt` | `2026-10-01T12:55:00Z` (checkpoint closeout) |
-| `activeTask` | `CINEMATIC-EIGHT-SLOT-ALIGNMENT` (queue item 3) |
-| `activePhase` | Eight-slot production source and distribution aligned; campaign browser QA remains |
-| `activeSubtask` | Refresh saved-node refuge/witness browser fixtures and test reduced-motion continuity |
+| `runStartedAt` | `2026-10-01T13:33:56.5191691Z` |
+| `runEndedAt` | `2026-10-01T14:19:00Z` (checkpoint closeout) |
+| `activeTask` | `TRAVERSAL-GENERALIZATION` (queue item 5) |
+| `activePhase` | Shared presentation entry, T0-only registration; per-leg route/world extraction pending |
+| `activeSubtask` | Extract reusable route beat schema and per-leg authored configuration without changing T0 |
 | `workingBranch` | `dev` |
-| `lastKnownGoodCommit` | `dev` HEAD after this checkpoint commit; verify with Git |
-| `lastPushedCommit` | `origin/dev` after the final push; verify with Git |
+| `lastKnownGoodCommit` | `dev` HEAD after checkpoint commit; verify with Git |
+| `lastPushedCommit` | `origin/dev` after push; verify with Git |
 | `creditStatus` | `AVAILABLE` |
-| `contractComplianceStatus` | `IN_PROGRESS`: no LOCKED rule changed; relevant presentation/media, authoring/QA, campaign/state, traversal, combat, save and repository boundaries checked below |
+| `contractComplianceStatus` | Checkpoint PASS for affected contracts; item 5 IN_PROGRESS; no LOCKED rule changed |
 
 ## Completed this run
 
-- Recovered the stale local execution lock after checking its age, missing PID, and absence of Git/build processes; fetched `origin`, confirmed `dev == origin/dev` at `da1678945c6d42fc76ccb0f3c8b13a7a81a01176` and `origin/main` already merged.
-- Initialized `AUTONOMOUS_WORK_STATE.json` without resetting this task or the queue.
-- Preserved all 147 presentation beat IDs. Converted six route-choice holds without preceding approved video to `TRAVEL_STILL`; current registry counts are 8 video, 5 hold, 31 still, 77 tableau, 24 combat and 2 gameplay.
-- Moved 23 retired MP4s (221,023,313 bytes) from `public/assets/cinematics/` into `tools/cinematics/archive/retired-video-masters/`. Every archived SHA-256 and Git blob matches its original at `da16789`; the production build now ships exactly eight MP4s.
-- Updated historical media tests to resolve and byte-verify archived masters while retaining their dated source manifests. Updated the old CIN-6D.6 browser driver for current Valmir still, static audience-road boundary, and T0 handoff.
-- Browser proof: eight-slot registry and missing-media fallback passed at 1366×768 and 390×844. At 1920×1080 the opening passed dialogue, audience choice, combat, postcombat tableau and T0 mount with zero black flashes; Valmir passed precombat tableau and both route choices with no retired video request. Ignored results/captures: `tmp/cinematics/eight-slot-qa/`.
+- Resumed clean `dev` at `c280006`, fetched origin, verified `origin/main` already merged, and acquired the exclusive local lock.
+- Completed item 3, `CINEMATIC-EIGHT-SLOT-ALIGNMENT`: refreshed refuge/witness and reduced-motion browser QA, removed dormant media references, capped first-refuge tableau at four actors, and recorded the final matrix in `CINEMATIC_CONVERSION_MATRIX.md`. Pushed `e898e61ff8ec57283388f7ba721027d3d0764df4`.
+- Completed item 4, playable T2/T4 retirement: kept durable IDs and direct Journey handoffs; removed playable relations; verified both saved-node continuations. Contract matrix in `T2_T4_RETIREMENT.md`. Pushed `0e2c6d9d3a61670bc03d6bcb97930d55d10ac369`.
+- Started item 5: `TraversalPresentation.ts` provides a campaign-facing scene contract and fail-closed factory. `GameApp` selects a relation only when both production rollout and an authored scene exist. Only T0 is registered; T1/T3 remain disabled. Added registry tests and `TRAVERSAL_GENERALIZATION.md`.
 
 ## Files changed
 
-- Production source/runtime: `tools/cinematics/specs/production_presentation_modes.json`, `tools/cinematics/generate_cin6d6_runtime_registry.ts`, `src/cinematics/FinalPresentationRegistry.generated.ts`, `public/assets/cinematics/manifest.json`, related policy/registry/Journey files.
-- Media archive: 23 MP4 renames into `tools/cinematics/archive/retired-video-masters/`, its `inventory.json` and `README.md`, plus `tools/cinematics/historical_video_path.mjs`.
-- Tests/docs/QA: focused Cinematics/Journey/game tests, six historical audit suites, `tools/cinematics/run_cin6d6_browser_qa.mjs`, `tools/cinematics/run_eight_slot_browser_qa.mjs`, `docs/autonomy/CINEMATIC_CONVERSION_MATRIX.md`, and this state pair.
+- Item 3: `src/game/GameApp.ts`, `src/cinematics/NarrativeTableau.ts` and test, two CIN-6D.6 browser drivers, `docs/autonomy/CINEMATIC_CONVERSION_MATRIX.md`.
+- Item 4: `src/campaign/LionCampaignTravelRelations.ts`, `LionCampaignStructure.ts`, `src/traversal/TraversalFeaturePolicy.ts`, focused tests, `docs/autonomy/T2_T4_RETIREMENT.md`, current traversal/content/status docs.
+- Item 5: `src/traversal/TraversalPresentation.ts` and test, `src/game/GameApp.ts`, `docs/traversal/AUTHORING_GUIDE.md`, `docs/autonomy/TRAVERSAL_GENERALIZATION.md`.
+- This state pair. No LOCKED contract or historical evidence changed.
 
-## Validation
+## Tests run and passed
 
-| Check | Result |
-| --- | --- |
-| Cinematics/Journey/game focused Vitest | 37 files, 375 tests passed |
-| Historical CIN-5/CIN-6 media Vitest | 6 files, 111 tests passed |
-| TypeScript | `tsc --noEmit` passed |
-| Contracts | 8 locked contracts and 8 video slots validated |
-| Vite build | Passed; `dist/assets/cinematics/` has exactly 8 MP4s |
-| Browser: isolated eight-slot registry/fallback | Passed at 1366×768 and 390×844 |
-| Browser: opening and Valmir | Passed opening through T0 and Valmir two-choice still at 1920×1080; no actionable console/page errors or black flashes |
-| Browser: old saved-node refuge flows | Incomplete: first-refuge fixture no longer reaches the assumed `.exploration-stop` surface after T0 production routing |
+- Item 3: 56/56 focused Vitest, TypeScript, contract validator, Vite build; desktop A/D/H/E, mobile reduced-motion Valmir and saved witness passed in Chromium. Build shipped exactly eight MP4s.
+- Item 4: 51/51 focused campaign/Traversal/RunSystem tests, TypeScript, contract validator, Vite build; T2/T4 saved-node browser arrivals passed without Traversal mounts.
+- Item 5: 14/14 focused registry/gate/T0 scene/flow tests, TypeScript, Vite build; Chromium opening → choice → combat → T0 mount passed with no actionable page/console errors or flashes. Ignored evidence: `tmp/traversal/presentation-seam-opening/results.json`.
 
-## Contract compliance at this checkpoint
+## Remaining work
 
-| Contract area | Status | Evidence / limit |
-| --- | --- | --- |
-| GAME_CONSTITUTION, ART_DIRECTION, CHARACTERS, ENVIRONMENTS | PASS | No canonical art or character bytes changed; retired videos archived byte-identically. |
-| NARRATIVE / CAMPAIGN, NARRATIVE_PRESENTATION | PASS | Beat/dialogue/choice IDs retained; opening and Valmir handoffs verified. |
-| TRAVERSAL, COMBAT, SAVE | PASS | T0 and combat truth owners unchanged; browser reached T0 after combat; no save schema change. |
-| QA_EVIDENCE | BLOCKED | Current saved-node refuge/witness and reduced-motion campaign browser flows remain to verify. |
-| REPOSITORY_GOVERNANCE | PASS after push | Only `dev`; no LOCKED contract edited and no historical report overwritten. |
+`testsRemaining`: T0 regression after route-schema extraction; T1/T3 authored scene, art, transition and browser QA before rollout.
 
-## Remaining work and next action
+`blockers`: none for generalization. T1/T3 art belongs to queue items 6/7 and requires appropriate tools.
 
-`testsRemaining`: update the CIN-6D.6 saved-node first/second refuge and witness browser fixtures to current T0/refuge surfaces; run desktop and 390×844 reduced-motion routes through choices/combat; inspect any newly exposed visual defects. Then audit remaining executable legacy trigger references, record a final full item-3 compliance matrix, and only then mark cinematic alignment complete.
+`remainingWork`: move reusable beat/route types out of `TraversalT0Route.ts`; parameterize route, world, checkpoint, Risk/Reward/Pursuit and branch presentation by leg while retaining T0 values and timing. `TraversalT0Scene` still rejects non-T0 legs and `GameApp` reward acceptance still has a T0 guard. Keep RunSystem as durable truth owner. Item 5 is not complete.
 
-`blockers`: none for the implementation. The old full runner's first-refuge fixture is an obsolete QA assumption, not evidence of a runtime regression. Final eight-video remaster remains a later queue item dependent on suitable media tools and acceptance QA.
+`nextAction`: extract `TraversalRouteBeat` and companion types from `src/traversal/TraversalT0Route.ts` into a neutral route model, retain exports for T0 consumers, rerun T0 route/scene/flow Vitest and TypeScript. Then define authored per-leg route/checkpoint inputs without changing T0 gate or registering T1/T3.
 
-`nextAction`: begin with `tools/cinematics/run_cin6d6_browser_qa.mjs` `runRefuge()`: its `installNodeSave('lion-first-refuge')` path expects `.exploration-stop`, but current production enters T0/refuge continuity. Replace that saved-node setup with the current authoritative continuation, then rerun D/H plus a 390×844 reduced-motion Valmir/opening flow; keep all outputs under ignored `tmp/cinematics/eight-slot-qa/`.
+## Ordered task queue
 
-## Ordered queue
-
-1. ~~`PRODUCTION-CONTRACTS-LOCK-1` and autonomous protocol~~ — complete.
-2. ~~Contract drift audit and safe canonical-document correction~~ — complete.
-3. **`CINEMATIC-EIGHT-SLOT-ALIGNMENT`** — active; final browser continuity pending.
-4. Retire playable T2/T4 runtime without renumbering or save breakage.
-5. Generalize Traversal from T0 without T0 regression.
-6. Produce T1 with approved event/checkpoint art and QA.
+1. ~~`PRODUCTION-CONTRACTS-LOCK-1`~~ — complete.
+2. ~~Contract drift audit~~ — complete.
+3. ~~`CINEMATIC-EIGHT-SLOT-ALIGNMENT`~~ — complete.
+4. ~~Retire playable T2/T4~~ — complete.
+5. **`TRAVERSAL-GENERALIZATION`** — active.
+6. Produce T1 with event/checkpoint art and QA.
 7. Produce T3 to the same standard.
-8. Remaster eight approved videos if suitable media tools permit; otherwise record asset blocker.
+8. Remaster eight approved videos if tools permit; otherwise record asset blocker.
 9. Complete demo VFX, UI, narrative, responsive, accessibility and end-to-end QA.
-10. Prepare audio decision only after narrative/presentation/cinematics/Traversal are stable and locked.
+10. Prepare audio decision after narrative/presentation/cinematics/Traversal are stable and locked.
