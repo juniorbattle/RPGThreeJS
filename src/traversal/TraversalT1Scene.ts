@@ -3,7 +3,7 @@ import { TraversalRoadScene, type TraversalRoadSceneOptions } from './TraversalR
 import { T1_ROAD_AUTHORING } from './TraversalT1Authoring';
 import type { TraversalRoute } from './TraversalRouteModel';
 
-/** Authored candidate; not registered or rolled out until its acceptance QA passes. */
+/** Authored T1 adapter; GameApp/RunSystem retain campaign, branch and loot authority. */
 export class TraversalT1Scene extends TraversalRoadScene {
   declare route: TraversalRoute<'T1'>;
   constructor(options: TraversalRoadSceneOptions) {

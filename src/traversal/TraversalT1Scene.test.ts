@@ -16,7 +16,7 @@ import { isTraversalProductionEnabledForLeg } from './TraversalFeaturePolicy';
 afterEach(() => { document.body.replaceChildren(); vi.restoreAllMocks(); });
 const leg = LION_TRAVERSAL_LEGS.find(candidate => candidate.id === 'T1')!;
 
-describe('T1 authored candidate', () => {
+describe('T1 production authoring', () => {
   it('has byte-verified side-on checkpoint media and retains its source references', () => {
     const manifest = JSON.parse(fs.readFileSync('public/assets/generated/lion-phase/traversal/t1/asset-manifest.json', 'utf8'));
     for (const asset of manifest.assets) {
@@ -39,8 +39,8 @@ describe('T1 authored candidate', () => {
     expect(route.beats.filter(beat => beat.type !== 'fork').every(beat => beat.characterId && beat.visualAsset)).toBe(true);
     expect(() => resolveT1RouteSegment(3)).toThrow('canonical RunSystem');
     expect(() => resolveT1RouteSegment(3, 'lion-first-trial-event')).toThrow('canonical RunSystem');
-    expect(hasAuthoredTraversalPresentation('T1')).toBe(false);
-    expect(isTraversalProductionEnabledForLeg('T1')).toBe(false);
+    expect(hasAuthoredTraversalPresentation('T1')).toBe(true);
+    expect(isTraversalProductionEnabledForLeg('T1')).toBe(true);
   });
 
   it.each(['troll_crossing', 'serpent_checkpoint', 'serpent_duelist_trial'])(

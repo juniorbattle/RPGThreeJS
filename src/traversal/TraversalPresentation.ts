@@ -2,6 +2,7 @@ import type { LionPlayableTraversalLegId, LionTraversalLegId } from '../campaign
 import type { TraversalRunSession } from './TraversalRunRuntime';
 import type { TraversalRouteBeat } from './TraversalRouteModel';
 import { TraversalT0Scene } from './TraversalT0Scene';
+import { TraversalT1Scene } from './TraversalT1Scene';
 import type { TraversalRoadSceneOptions } from './TraversalRoadScene';
 
 /** The campaign boundary uses this surface without owning any road-specific presentation. */
@@ -26,6 +27,7 @@ type TraversalPresentationFactory = (options: TraversalRoadSceneOptions) => Trav
 // A campaign relation or rollout flag alone cannot cause a T0 world to present another leg.
 const PRESENTATIONS: Partial<Record<LionPlayableTraversalLegId, TraversalPresentationFactory>> = {
   T0: (options) => new TraversalT0Scene(options),
+  T1: (options) => new TraversalT1Scene(options),
 };
 
 export function hasAuthoredTraversalPresentation(legId: LionTraversalLegId): boolean {

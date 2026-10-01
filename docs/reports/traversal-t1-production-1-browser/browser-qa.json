@@ -1,0 +1,1317 @@
+{
+  "method": "built production; real GameApp, V6 localStorage, RunSystem and responsive UI; combat-result fixture only",
+  "startedAt": "2026-10-01T20:00:09.849Z",
+  "endedAt": "2026-10-01T20:07:45.124Z",
+  "scope": "Real production GameApp/V6/RunSystem; observational bootstrap hook and iframe combat-result fixture only; no production registry/gate override",
+  "capturesTotal": 59,
+  "selectedCaptures": [
+    {
+      "file": "lion-second-trial-event-refuge-1440.png",
+      "state": {
+        "controls": [],
+        "width": 1440,
+        "height": 810,
+        "overflow": 0,
+        "imagesLoaded": true,
+        "actors": 0
+      }
+    },
+    {
+      "file": "lion-second-trial-event-departure-390.png",
+      "state": {
+        "controls": [
+          {
+            "label": "Prendre la route",
+            "x": 24,
+            "y": 787,
+            "right": 366,
+            "bottom": 823
+          }
+        ],
+        "width": 390,
+        "height": 844,
+        "overflow": 0,
+        "imagesLoaded": true,
+        "actors": 0
+      }
+    },
+    {
+      "file": "lion-second-trial-event-route-1440.png",
+      "state": {
+        "phase": "RUNNING",
+        "view": "route",
+        "segment": "t1-route-1",
+        "controls": [
+          {
+            "label": "▲",
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "label": "▼",
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ],
+        "width": 1440,
+        "height": 810,
+        "overflow": 0,
+        "imagesLoaded": true,
+        "actors": 0
+      }
+    },
+    {
+      "file": "lion-second-trial-event-t1-route-2-390.png",
+      "state": {
+        "phase": "RUNNING",
+        "view": "checkpoint",
+        "segment": "t1-route-2",
+        "controls": [],
+        "width": 390,
+        "height": 844,
+        "overflow": 0,
+        "imagesLoaded": true,
+        "actors": 0
+      }
+    },
+    {
+      "file": "lion-second-trial-event-t1-route-4a-390.png",
+      "state": {
+        "phase": "RUNNING",
+        "view": "checkpoint",
+        "segment": "t1-route-4a",
+        "controls": [],
+        "width": 390,
+        "height": 844,
+        "overflow": 0,
+        "imagesLoaded": true,
+        "actors": 0
+      }
+    },
+    {
+      "file": "lion-second-trial-combat-t1-route-4b-1440.png",
+      "state": {
+        "phase": "RUNNING",
+        "view": "checkpoint",
+        "segment": "t1-route-4b",
+        "controls": [],
+        "width": 1440,
+        "height": 810,
+        "overflow": 0,
+        "imagesLoaded": true,
+        "actors": 0
+      }
+    },
+    {
+      "file": "lion-second-trial-event-reduced-fork-390.png",
+      "state": {
+        "phase": "FORK_OVERLAY",
+        "view": "checkpoint",
+        "segment": "t1-route-3",
+        "controls": [
+          {
+            "label": "Vieux sanctuaireHalte en clairière",
+            "x": 203.8125,
+            "y": 662,
+            "right": 361,
+            "bottom": 736
+          },
+          {
+            "label": "Barrage renforcéPiste occupée",
+            "x": 207.8125,
+            "y": 744,
+            "right": 365,
+            "bottom": 817
+          }
+        ],
+        "width": 390,
+        "height": 844,
+        "overflow": 0,
+        "imagesLoaded": true,
+        "actors": 0
+      }
+    },
+    {
+      "file": "lion-second-trial-event-reduced-bois-clair-agency-390.png",
+      "state": {
+        "controls": [],
+        "width": 390,
+        "height": 844,
+        "overflow": 0,
+        "imagesLoaded": true,
+        "actors": 0
+      }
+    }
+  ],
+  "failures": [],
+  "errors": [],
+  "frameIssues": [],
+  "runs": [
+    {
+      "branch": "lion-second-trial-event",
+      "reduced": false,
+      "complete": true,
+      "originBoundary": {
+        "current": "lion-first-refuge",
+        "resolved": [
+          "lion-camp",
+          "lion-audience",
+          "lion-opening-ambush",
+          "lion-nomad-crossroads",
+          "lion-refugees",
+          "lion-first-trial-event",
+          "lion-first-refuge"
+        ],
+        "secured": true,
+        "loot": {
+          "gold": 0,
+          "inventory": {
+            "consumables": {},
+            "accessories": {},
+            "materials": {},
+            "weapons": {}
+          }
+        }
+      },
+      "interrupts": [
+        "resolved-reserve",
+        "selected-fork"
+      ],
+      "resumeBoundaries": [
+        {
+          "kind": "resolved-reserve",
+          "current": "lion-first-refuge",
+          "loot": {
+            "gold": 0,
+            "inventory": {
+              "consumables": {},
+              "accessories": {},
+              "materials": {},
+              "weapons": {}
+            }
+          },
+          "expected": {
+            "gold": 0,
+            "inventory": {
+              "consumables": {},
+              "accessories": {},
+              "materials": {},
+              "weapons": {}
+            }
+          }
+        },
+        {
+          "kind": "selected-fork",
+          "current": "lion-first-refuge",
+          "loot": {
+            "gold": 0,
+            "inventory": {
+              "consumables": {},
+              "accessories": {},
+              "materials": {},
+              "weapons": {}
+            }
+          },
+          "expected": {
+            "gold": 0,
+            "inventory": {
+              "consumables": {},
+              "accessories": {},
+              "materials": {},
+              "weapons": {}
+            }
+          }
+        }
+      ],
+      "handoffs": [
+        "lion-reserve-trail",
+        "lion-valmir-road",
+        "lion-second-trial-event"
+      ],
+      "pickups": [
+        {
+          "id": "t1:t0:r2:reward-1",
+          "gold": 5,
+          "accepted": true,
+          "before": 120,
+          "after": 125,
+          "securedBefore": 115,
+          "securedAfter": 115
+        },
+        {
+          "id": "t1:t0:r4:reward-1",
+          "gold": 5,
+          "accepted": true,
+          "before": 215,
+          "after": 220,
+          "securedBefore": 115,
+          "securedAfter": 115
+        },
+        {
+          "id": "t1:t0:r5a:reward-2",
+          "gold": 5,
+          "accepted": true,
+          "before": 220,
+          "after": 225,
+          "securedBefore": 115,
+          "securedAfter": 115
+        }
+      ],
+      "mechanics": {
+        "t1-route-1": {
+          "hazards": [
+            "t1:t0:r1:branch-1"
+          ],
+          "risk": {
+            "segmentId": "t1-route-1",
+            "resolvedHazardIds": [
+              "t1:t0:r1:branch-1"
+            ],
+            "collisionCount": 1,
+            "lastCollisionId": "t1:t0:r1:branch-1"
+          },
+          "pouches": [
+            "t1:t0:r1:reward-1"
+          ],
+          "reward": {
+            "segmentId": "t1-route-1",
+            "resolvedPickupIds": [
+              "t1:t0:r1:reward-1"
+            ],
+            "collectedPickupIds": [],
+            "collectedGold": 0
+          },
+          "pursuitWindow": null,
+          "pursuit": {
+            "segmentId": "t1-route-1",
+            "activeWindowId": null,
+            "pressure01": 0,
+            "resolvedWindowIds": [],
+            "escapedWindowIds": [],
+            "caughtWindowIds": [],
+            "caughtCount": 0
+          }
+        },
+        "t1-route-2": {
+          "hazards": [
+            "t1:t0:r2:branch-1"
+          ],
+          "risk": {
+            "segmentId": "t1-route-2",
+            "resolvedHazardIds": [
+              "t1:t0:r2:branch-1"
+            ],
+            "collisionCount": 0,
+            "lastCollisionId": null
+          },
+          "pouches": [
+            "t1:t0:r2:reward-1"
+          ],
+          "reward": {
+            "segmentId": "t1-route-2",
+            "resolvedPickupIds": [
+              "t1:t0:r2:reward-1"
+            ],
+            "collectedPickupIds": [
+              "t1:t0:r2:reward-1"
+            ],
+            "collectedGold": 5
+          },
+          "pursuitWindow": null,
+          "pursuit": {
+            "segmentId": "t1-route-2",
+            "activeWindowId": null,
+            "pressure01": 0,
+            "resolvedWindowIds": [],
+            "escapedWindowIds": [],
+            "caughtWindowIds": [],
+            "caughtCount": 0
+          }
+        },
+        "t1-route-3": {
+          "hazards": [
+            "t1:t0:r4:block-1",
+            "t1:t0:r4:branch-2"
+          ],
+          "risk": {
+            "segmentId": "t1-route-3",
+            "resolvedHazardIds": [
+              "t1:t0:r4:block-1",
+              "t1:t0:r4:branch-2"
+            ],
+            "collisionCount": 1,
+            "lastCollisionId": "t1:t0:r4:branch-2"
+          },
+          "pouches": [
+            "t1:t0:r4:reward-1",
+            "t1:t0:r4:reward-2"
+          ],
+          "reward": {
+            "segmentId": "t1-route-3",
+            "resolvedPickupIds": [
+              "t1:t0:r4:reward-1",
+              "t1:t0:r4:reward-2"
+            ],
+            "collectedPickupIds": [
+              "t1:t0:r4:reward-1"
+            ],
+            "collectedGold": 5
+          },
+          "pursuitWindow": null,
+          "pursuit": {
+            "segmentId": "t1-route-3",
+            "activeWindowId": null,
+            "pressure01": 0,
+            "resolvedWindowIds": [],
+            "escapedWindowIds": [],
+            "caughtWindowIds": [],
+            "caughtCount": 0
+          }
+        },
+        "t1-route-4a": {
+          "hazards": [
+            "t1:t0:r5a:branch-1",
+            "t1:t0:r5a:block-2"
+          ],
+          "risk": {
+            "segmentId": "t1-route-4a",
+            "resolvedHazardIds": [
+              "t1:t0:r5a:branch-1",
+              "t1:t0:r5a:block-2"
+            ],
+            "collisionCount": 1,
+            "lastCollisionId": "t1:t0:r5a:branch-1"
+          },
+          "pouches": [
+            "t1:t0:r5a:reward-1",
+            "t1:t0:r5a:reward-2"
+          ],
+          "reward": {
+            "segmentId": "t1-route-4a",
+            "resolvedPickupIds": [
+              "t1:t0:r5a:reward-1",
+              "t1:t0:r5a:reward-2"
+            ],
+            "collectedPickupIds": [
+              "t1:t0:r5a:reward-2"
+            ],
+            "collectedGold": 5
+          },
+          "pursuitWindow": "t1:t0:r5a:pursuit-1",
+          "pursuit": {
+            "segmentId": "t1-route-4a",
+            "activeWindowId": null,
+            "pressure01": 0.6800000000000013,
+            "resolvedWindowIds": [
+              "t1:t0:r5a:pursuit-1"
+            ],
+            "caughtWindowIds": [],
+            "escapedWindowIds": [
+              "t1:t0:r5a:pursuit-1"
+            ],
+            "caughtCount": 0
+          }
+        },
+        "t1-route-5": {
+          "hazards": [
+            "t1:t0:r6:branch-1",
+            "t1:t0:r6:block-2",
+            "t1:t0:r6:branch-3"
+          ],
+          "risk": {
+            "segmentId": "t1-route-5",
+            "resolvedHazardIds": [
+              "t1:t0:r6:branch-1",
+              "t1:t0:r6:block-2",
+              "t1:t0:r6:branch-3"
+            ],
+            "collisionCount": 2,
+            "lastCollisionId": "t1:t0:r6:branch-3"
+          },
+          "pouches": [
+            "t1:t0:r6:reward-1"
+          ],
+          "reward": {
+            "segmentId": "t1-route-5",
+            "resolvedPickupIds": [
+              "t1:t0:r6:reward-1"
+            ],
+            "collectedPickupIds": [],
+            "collectedGold": 0
+          },
+          "pursuitWindow": "t1:t0:r6:pursuit-1",
+          "pursuit": {
+            "segmentId": "t1-route-5",
+            "activeWindowId": null,
+            "pressure01": 1,
+            "resolvedWindowIds": [
+              "t1:t0:r6:pursuit-1"
+            ],
+            "caughtWindowIds": [
+              "t1:t0:r6:pursuit-1"
+            ],
+            "escapedWindowIds": [],
+            "caughtCount": 1
+          }
+        }
+      },
+      "arrivals": 1,
+      "current": "lion-second-trial-event",
+      "visited": [
+        "lion-camp",
+        "lion-audience",
+        "lion-opening-ambush",
+        "lion-nomad-crossroads",
+        "lion-refugees",
+        "lion-first-trial-event",
+        "lion-first-refuge",
+        "lion-reserve-trail",
+        "lion-valmir-road",
+        "lion-second-trial-event"
+      ],
+      "assignment": {
+        "lion-second-trial-event": "old_shrine_event",
+        "lion-second-trial-combat": "serpent_checkpoint"
+      },
+      "branchState": {
+        "T1": "lion-second-trial-event"
+      },
+      "savedCurrent": "lion-second-trial-event",
+      "savedLoot": {
+        "gold": 225,
+        "inventory": {
+          "consumables": {
+            "bomb": 1
+          },
+          "accessories": {},
+          "materials": {
+            "iron_ore": 2,
+            "red_gem": 1
+          },
+          "weapons": {}
+        }
+      },
+      "destinationResume": {
+        "current": "lion-second-trial-event",
+        "traversal": false,
+        "branches": {
+          "T1": "lion-second-trial-event"
+        }
+      },
+      "destinationVideo": "/assets/cinematics/bois_clair_arrival.mp4",
+      "villageBoundary": {
+        "current": "lion-village-choice",
+        "resolved": false,
+        "dialogue": "village_choice"
+      },
+      "swaps": [
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0,
+          "gap": 16.200000047683716
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1,
+          "gap": 32.60000002384186
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0,
+          "gap": 17.100000023841858
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1,
+          "gap": 25.800000071525574
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0,
+          "gap": 18.399999976158142
+        },
+        {
+          "view": "route",
+          "cover": 1,
+          "globalCover": 0,
+          "gap": 16.399999976158142
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0,
+          "gap": 16.09999990463257
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1,
+          "gap": 24.199999928474426
+        }
+      ]
+    },
+    {
+      "branch": "lion-second-trial-combat",
+      "reduced": false,
+      "complete": true,
+      "originBoundary": {
+        "current": "lion-first-refuge",
+        "resolved": [
+          "lion-camp",
+          "lion-audience",
+          "lion-opening-ambush",
+          "lion-nomad-crossroads",
+          "lion-refugees",
+          "lion-first-trial-event",
+          "lion-first-refuge"
+        ],
+        "secured": true,
+        "loot": {
+          "gold": 0,
+          "inventory": {
+            "consumables": {},
+            "accessories": {},
+            "materials": {},
+            "weapons": {}
+          }
+        }
+      },
+      "interrupts": [],
+      "handoffs": [
+        "lion-reserve-trail",
+        "lion-valmir-road",
+        "lion-second-trial-combat"
+      ],
+      "pickups": [
+        {
+          "id": "t1:t0:r2:reward-1",
+          "gold": 5,
+          "accepted": true,
+          "before": 120,
+          "after": 125,
+          "securedBefore": 115,
+          "securedAfter": 115
+        },
+        {
+          "id": "t1:t0:r4:reward-1",
+          "gold": 5,
+          "accepted": true,
+          "before": 215,
+          "after": 220,
+          "securedBefore": 115,
+          "securedAfter": 115
+        },
+        {
+          "id": "t1:t0:r5b:reward-1",
+          "gold": 5,
+          "accepted": true,
+          "before": 220,
+          "after": 225,
+          "securedBefore": 115,
+          "securedAfter": 115
+        },
+        {
+          "id": "t1:t0:r5b:reward-2",
+          "gold": 5,
+          "accepted": true,
+          "before": 225,
+          "after": 230,
+          "securedBefore": 115,
+          "securedAfter": 115
+        }
+      ],
+      "mechanics": {
+        "t1-route-1": {
+          "hazards": [
+            "t1:t0:r1:branch-1"
+          ],
+          "risk": {
+            "segmentId": "t1-route-1",
+            "resolvedHazardIds": [
+              "t1:t0:r1:branch-1"
+            ],
+            "collisionCount": 1,
+            "lastCollisionId": "t1:t0:r1:branch-1"
+          },
+          "pouches": [
+            "t1:t0:r1:reward-1"
+          ],
+          "reward": {
+            "segmentId": "t1-route-1",
+            "resolvedPickupIds": [
+              "t1:t0:r1:reward-1"
+            ],
+            "collectedPickupIds": [],
+            "collectedGold": 0
+          },
+          "pursuitWindow": null,
+          "pursuit": {
+            "segmentId": "t1-route-1",
+            "activeWindowId": null,
+            "pressure01": 0,
+            "resolvedWindowIds": [],
+            "escapedWindowIds": [],
+            "caughtWindowIds": [],
+            "caughtCount": 0
+          }
+        },
+        "t1-route-2": {
+          "hazards": [
+            "t1:t0:r2:branch-1"
+          ],
+          "risk": {
+            "segmentId": "t1-route-2",
+            "resolvedHazardIds": [
+              "t1:t0:r2:branch-1"
+            ],
+            "collisionCount": 0,
+            "lastCollisionId": null
+          },
+          "pouches": [
+            "t1:t0:r2:reward-1"
+          ],
+          "reward": {
+            "segmentId": "t1-route-2",
+            "resolvedPickupIds": [
+              "t1:t0:r2:reward-1"
+            ],
+            "collectedPickupIds": [
+              "t1:t0:r2:reward-1"
+            ],
+            "collectedGold": 5
+          },
+          "pursuitWindow": null,
+          "pursuit": {
+            "segmentId": "t1-route-2",
+            "activeWindowId": null,
+            "pressure01": 0,
+            "resolvedWindowIds": [],
+            "escapedWindowIds": [],
+            "caughtWindowIds": [],
+            "caughtCount": 0
+          }
+        },
+        "t1-route-3": {
+          "hazards": [
+            "t1:t0:r4:block-1",
+            "t1:t0:r4:branch-2"
+          ],
+          "risk": {
+            "segmentId": "t1-route-3",
+            "resolvedHazardIds": [
+              "t1:t0:r4:block-1",
+              "t1:t0:r4:branch-2"
+            ],
+            "collisionCount": 1,
+            "lastCollisionId": "t1:t0:r4:branch-2"
+          },
+          "pouches": [
+            "t1:t0:r4:reward-1",
+            "t1:t0:r4:reward-2"
+          ],
+          "reward": {
+            "segmentId": "t1-route-3",
+            "resolvedPickupIds": [
+              "t1:t0:r4:reward-1",
+              "t1:t0:r4:reward-2"
+            ],
+            "collectedPickupIds": [
+              "t1:t0:r4:reward-1"
+            ],
+            "collectedGold": 5
+          },
+          "pursuitWindow": null,
+          "pursuit": {
+            "segmentId": "t1-route-3",
+            "activeWindowId": null,
+            "pressure01": 0,
+            "resolvedWindowIds": [],
+            "escapedWindowIds": [],
+            "caughtWindowIds": [],
+            "caughtCount": 0
+          }
+        },
+        "t1-route-4b": {
+          "hazards": [
+            "t1:t0:r5b:block-1",
+            "t1:t0:r5b:branch-2",
+            "t1:t0:r5b:block-3"
+          ],
+          "risk": {
+            "segmentId": "t1-route-4b",
+            "resolvedHazardIds": [
+              "t1:t0:r5b:block-1",
+              "t1:t0:r5b:branch-2",
+              "t1:t0:r5b:block-3"
+            ],
+            "collisionCount": 1,
+            "lastCollisionId": "t1:t0:r5b:branch-2"
+          },
+          "pouches": [
+            "t1:t0:r5b:reward-1",
+            "t1:t0:r5b:reward-2"
+          ],
+          "reward": {
+            "segmentId": "t1-route-4b",
+            "resolvedPickupIds": [
+              "t1:t0:r5b:reward-1",
+              "t1:t0:r5b:reward-2"
+            ],
+            "collectedPickupIds": [
+              "t1:t0:r5b:reward-1",
+              "t1:t0:r5b:reward-2"
+            ],
+            "collectedGold": 10
+          },
+          "pursuitWindow": "t1:t0:r5b:pursuit-1",
+          "pursuit": {
+            "segmentId": "t1-route-4b",
+            "activeWindowId": null,
+            "pressure01": 0.4252500000000001,
+            "resolvedWindowIds": [
+              "t1:t0:r5b:pursuit-1"
+            ],
+            "caughtWindowIds": [],
+            "escapedWindowIds": [
+              "t1:t0:r5b:pursuit-1"
+            ],
+            "caughtCount": 0
+          }
+        },
+        "t1-route-5": {
+          "hazards": [
+            "t1:t0:r6:branch-1",
+            "t1:t0:r6:block-2",
+            "t1:t0:r6:branch-3"
+          ],
+          "risk": {
+            "segmentId": "t1-route-5",
+            "resolvedHazardIds": [
+              "t1:t0:r6:branch-1",
+              "t1:t0:r6:block-2",
+              "t1:t0:r6:branch-3"
+            ],
+            "collisionCount": 2,
+            "lastCollisionId": "t1:t0:r6:branch-3"
+          },
+          "pouches": [
+            "t1:t0:r6:reward-1"
+          ],
+          "reward": {
+            "segmentId": "t1-route-5",
+            "resolvedPickupIds": [
+              "t1:t0:r6:reward-1"
+            ],
+            "collectedPickupIds": [],
+            "collectedGold": 0
+          },
+          "pursuitWindow": "t1:t0:r6:pursuit-1",
+          "pursuit": {
+            "segmentId": "t1-route-5",
+            "activeWindowId": null,
+            "pressure01": 1,
+            "resolvedWindowIds": [
+              "t1:t0:r6:pursuit-1"
+            ],
+            "caughtWindowIds": [
+              "t1:t0:r6:pursuit-1"
+            ],
+            "escapedWindowIds": [],
+            "caughtCount": 1
+          }
+        }
+      },
+      "arrivals": 1,
+      "current": "lion-second-trial-combat",
+      "visited": [
+        "lion-camp",
+        "lion-audience",
+        "lion-opening-ambush",
+        "lion-nomad-crossroads",
+        "lion-refugees",
+        "lion-first-trial-event",
+        "lion-first-refuge",
+        "lion-reserve-trail",
+        "lion-valmir-road",
+        "lion-second-trial-combat"
+      ],
+      "assignment": {
+        "lion-second-trial-event": "old_shrine_event",
+        "lion-second-trial-combat": "serpent_checkpoint"
+      },
+      "branchState": {
+        "T1": "lion-second-trial-combat"
+      },
+      "savedCurrent": "lion-second-trial-combat",
+      "savedLoot": {
+        "gold": 350,
+        "inventory": {
+          "consumables": {
+            "bomb": 1
+          },
+          "accessories": {},
+          "materials": {
+            "iron_ore": 4,
+            "red_gem": 3
+          },
+          "weapons": {}
+        }
+      },
+      "destinationResume": {
+        "current": "lion-second-trial-combat",
+        "traversal": false,
+        "branches": {
+          "T1": "lion-second-trial-combat"
+        }
+      },
+      "destinationVideo": "/assets/cinematics/bois_clair_arrival.mp4",
+      "villageBoundary": {
+        "current": "lion-village-choice",
+        "resolved": false,
+        "dialogue": "village_choice"
+      },
+      "swaps": [
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0,
+          "gap": 15.800000071525574
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1,
+          "gap": 29
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0,
+          "gap": 16.699999928474426
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1,
+          "gap": 26.399999976158142
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0,
+          "gap": 15.799999952316284
+        },
+        {
+          "view": "route",
+          "cover": 1,
+          "globalCover": 0,
+          "gap": 16.399999976158142
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0,
+          "gap": 15.899999976158142
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1,
+          "gap": 29.100000023841858
+        }
+      ]
+    },
+    {
+      "branch": "lion-second-trial-event",
+      "reduced": true,
+      "complete": true,
+      "originBoundary": {
+        "current": "lion-first-refuge",
+        "resolved": [
+          "lion-camp",
+          "lion-audience",
+          "lion-opening-ambush",
+          "lion-nomad-crossroads",
+          "lion-refugees",
+          "lion-first-trial-event",
+          "lion-first-refuge"
+        ],
+        "secured": true,
+        "loot": {
+          "gold": 0,
+          "inventory": {
+            "consumables": {},
+            "accessories": {},
+            "materials": {},
+            "weapons": {}
+          }
+        }
+      },
+      "interrupts": [],
+      "handoffs": [
+        "lion-reserve-trail",
+        "lion-valmir-road",
+        "lion-second-trial-event"
+      ],
+      "pickups": [
+        {
+          "id": "t1:t0:r2:reward-1",
+          "gold": 5,
+          "accepted": true,
+          "before": 120,
+          "after": 125,
+          "securedBefore": 115,
+          "securedAfter": 115
+        },
+        {
+          "id": "t1:t0:r4:reward-1",
+          "gold": 5,
+          "accepted": true,
+          "before": 215,
+          "after": 220,
+          "securedBefore": 115,
+          "securedAfter": 115
+        },
+        {
+          "id": "t1:t0:r5a:reward-2",
+          "gold": 5,
+          "accepted": true,
+          "before": 220,
+          "after": 225,
+          "securedBefore": 115,
+          "securedAfter": 115
+        }
+      ],
+      "mechanics": {
+        "t1-route-1": {
+          "hazards": [
+            "t1:t0:r1:branch-1"
+          ],
+          "risk": {
+            "segmentId": "t1-route-1",
+            "resolvedHazardIds": [
+              "t1:t0:r1:branch-1"
+            ],
+            "collisionCount": 1,
+            "lastCollisionId": "t1:t0:r1:branch-1"
+          },
+          "pouches": [
+            "t1:t0:r1:reward-1"
+          ],
+          "reward": {
+            "segmentId": "t1-route-1",
+            "resolvedPickupIds": [
+              "t1:t0:r1:reward-1"
+            ],
+            "collectedPickupIds": [],
+            "collectedGold": 0
+          },
+          "pursuitWindow": null,
+          "pursuit": {
+            "segmentId": "t1-route-1",
+            "activeWindowId": null,
+            "pressure01": 0,
+            "resolvedWindowIds": [],
+            "escapedWindowIds": [],
+            "caughtWindowIds": [],
+            "caughtCount": 0
+          }
+        },
+        "t1-route-2": {
+          "hazards": [
+            "t1:t0:r2:branch-1"
+          ],
+          "risk": {
+            "segmentId": "t1-route-2",
+            "resolvedHazardIds": [
+              "t1:t0:r2:branch-1"
+            ],
+            "collisionCount": 0,
+            "lastCollisionId": null
+          },
+          "pouches": [
+            "t1:t0:r2:reward-1"
+          ],
+          "reward": {
+            "segmentId": "t1-route-2",
+            "resolvedPickupIds": [
+              "t1:t0:r2:reward-1"
+            ],
+            "collectedPickupIds": [
+              "t1:t0:r2:reward-1"
+            ],
+            "collectedGold": 5
+          },
+          "pursuitWindow": null,
+          "pursuit": {
+            "segmentId": "t1-route-2",
+            "activeWindowId": null,
+            "pressure01": 0,
+            "resolvedWindowIds": [],
+            "escapedWindowIds": [],
+            "caughtWindowIds": [],
+            "caughtCount": 0
+          }
+        },
+        "t1-route-3": {
+          "hazards": [
+            "t1:t0:r4:block-1",
+            "t1:t0:r4:branch-2"
+          ],
+          "risk": {
+            "segmentId": "t1-route-3",
+            "resolvedHazardIds": [
+              "t1:t0:r4:block-1",
+              "t1:t0:r4:branch-2"
+            ],
+            "collisionCount": 1,
+            "lastCollisionId": "t1:t0:r4:branch-2"
+          },
+          "pouches": [
+            "t1:t0:r4:reward-1",
+            "t1:t0:r4:reward-2"
+          ],
+          "reward": {
+            "segmentId": "t1-route-3",
+            "resolvedPickupIds": [
+              "t1:t0:r4:reward-1",
+              "t1:t0:r4:reward-2"
+            ],
+            "collectedPickupIds": [
+              "t1:t0:r4:reward-1"
+            ],
+            "collectedGold": 5
+          },
+          "pursuitWindow": null,
+          "pursuit": {
+            "segmentId": "t1-route-3",
+            "activeWindowId": null,
+            "pressure01": 0,
+            "resolvedWindowIds": [],
+            "escapedWindowIds": [],
+            "caughtWindowIds": [],
+            "caughtCount": 0
+          }
+        },
+        "t1-route-4a": {
+          "hazards": [
+            "t1:t0:r5a:branch-1",
+            "t1:t0:r5a:block-2"
+          ],
+          "risk": {
+            "segmentId": "t1-route-4a",
+            "resolvedHazardIds": [
+              "t1:t0:r5a:branch-1",
+              "t1:t0:r5a:block-2"
+            ],
+            "collisionCount": 1,
+            "lastCollisionId": "t1:t0:r5a:branch-1"
+          },
+          "pouches": [
+            "t1:t0:r5a:reward-1",
+            "t1:t0:r5a:reward-2"
+          ],
+          "reward": {
+            "segmentId": "t1-route-4a",
+            "resolvedPickupIds": [
+              "t1:t0:r5a:reward-1",
+              "t1:t0:r5a:reward-2"
+            ],
+            "collectedPickupIds": [
+              "t1:t0:r5a:reward-2"
+            ],
+            "collectedGold": 5
+          },
+          "pursuitWindow": "t1:t0:r5a:pursuit-1",
+          "pursuit": {
+            "segmentId": "t1-route-4a",
+            "activeWindowId": null,
+            "pressure01": 0.6800000000000013,
+            "resolvedWindowIds": [
+              "t1:t0:r5a:pursuit-1"
+            ],
+            "caughtWindowIds": [],
+            "escapedWindowIds": [
+              "t1:t0:r5a:pursuit-1"
+            ],
+            "caughtCount": 0
+          }
+        },
+        "t1-route-5": {
+          "hazards": [
+            "t1:t0:r6:branch-1",
+            "t1:t0:r6:block-2",
+            "t1:t0:r6:branch-3"
+          ],
+          "risk": {
+            "segmentId": "t1-route-5",
+            "resolvedHazardIds": [
+              "t1:t0:r6:branch-1",
+              "t1:t0:r6:block-2",
+              "t1:t0:r6:branch-3"
+            ],
+            "collisionCount": 2,
+            "lastCollisionId": "t1:t0:r6:branch-3"
+          },
+          "pouches": [
+            "t1:t0:r6:reward-1"
+          ],
+          "reward": {
+            "segmentId": "t1-route-5",
+            "resolvedPickupIds": [
+              "t1:t0:r6:reward-1"
+            ],
+            "collectedPickupIds": [],
+            "collectedGold": 0
+          },
+          "pursuitWindow": "t1:t0:r6:pursuit-1",
+          "pursuit": {
+            "segmentId": "t1-route-5",
+            "activeWindowId": null,
+            "pressure01": 1,
+            "resolvedWindowIds": [
+              "t1:t0:r6:pursuit-1"
+            ],
+            "caughtWindowIds": [
+              "t1:t0:r6:pursuit-1"
+            ],
+            "escapedWindowIds": [],
+            "caughtCount": 1
+          }
+        }
+      },
+      "arrivals": 1,
+      "current": "lion-second-trial-event",
+      "visited": [
+        "lion-camp",
+        "lion-audience",
+        "lion-opening-ambush",
+        "lion-nomad-crossroads",
+        "lion-refugees",
+        "lion-first-trial-event",
+        "lion-first-refuge",
+        "lion-reserve-trail",
+        "lion-valmir-road",
+        "lion-second-trial-event"
+      ],
+      "assignment": {
+        "lion-second-trial-event": "old_shrine_event",
+        "lion-second-trial-combat": "serpent_checkpoint"
+      },
+      "branchState": {
+        "T1": "lion-second-trial-event"
+      },
+      "savedCurrent": "lion-second-trial-event",
+      "savedLoot": {
+        "gold": 225,
+        "inventory": {
+          "consumables": {
+            "bomb": 1
+          },
+          "accessories": {},
+          "materials": {
+            "iron_ore": 2,
+            "red_gem": 1
+          },
+          "weapons": {}
+        }
+      },
+      "destinationResume": {
+        "current": "lion-second-trial-event",
+        "traversal": false,
+        "branches": {
+          "T1": "lion-second-trial-event"
+        }
+      },
+      "destinationVideo": "reduced-motion dialogue fallback",
+      "villageBoundary": {
+        "current": "lion-village-choice",
+        "resolved": false,
+        "dialogue": "village_choice"
+      },
+      "keyboardLanes": {
+        "down": 1,
+        "up": 0
+      },
+      "keyboardFork": true,
+      "swaps": [
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0,
+          "gap": 17.100000023841858
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1,
+          "gap": 25.399999976158142
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0,
+          "gap": 17.600000023841858
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1,
+          "gap": 26.700000047683716
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0,
+          "gap": 17.100000023841858
+        },
+        {
+          "view": "route",
+          "cover": 1,
+          "globalCover": 0,
+          "gap": 17.899999976158142
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0,
+          "gap": 17.40000009536743
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1,
+          "gap": 25.100000023841858
+        }
+      ]
+    }
+  ],
+  "t0Regression": {
+    "source": "tmp/traversal/t1-rollout-t0-regression/browser-qa.json",
+    "captures": 23,
+    "issues": {
+      "missing": [],
+      "imperfectBlackFrames": [],
+      "simultaneousWorlds": [],
+      "duplicateCaravans": [],
+      "frameIssues": [],
+      "oldRouteArt": [],
+      "routeWorldFailures": [],
+      "canonicalFailures": [],
+      "checkpointFailures": [],
+      "coastFailures": [],
+      "riskFailures": [],
+      "integratedFailures": [],
+      "errors": []
+    }
+  }
+}

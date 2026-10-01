@@ -1,72 +1,66 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-01T15:44:07.5191217Z",
-  "runEndedAt": "2026-10-01T16:41:56.218Z",
-  "activeTask": "TRAVERSAL-T1-PRODUCTION",
-  "activePhase": "T1 candidate authoring and DEV QA complete; production integration pending",
-  "activeSubtask": "Verify origin/save-resume and production activation using existing T1 candidate",
+  "runStartedAt": "2026-10-01T19:39:28.3946484Z",
+  "runEndedAt": null,
+  "activeTask": "TRAVERSAL-T3-PRODUCTION",
+  "activePhase": "T1 COMPLETE; T3 canonical authoring preparation",
+  "activeSubtask": "Author adaptive T3 checkpoint entities/world from existing campaign content",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "2b05370f36b5f7a398cd3cdad1a06e0f4881f438",
-  "lastPushedCommit": "2b05370f36b5f7a398cd3cdad1a06e0f4881f438",
+  "lastKnownGoodCommit": "257fa5b1613e394f2649d9a4b0b19c1399bc7513",
+  "lastPushedCommit": "257fa5b1613e394f2649d9a4b0b19c1399bc7513",
   "completedThisRun": [
-    "Extracted shared TraversalRoadScene with narrow T0 adapter and neutral registry options",
-    "Generalized RunSystem branch/bypass authority across declared playable relations; preserved mandatory, availability and save boundaries",
-    "Reward acceptance requires enabled rollout and authored scene, remains T0-only in production",
-    "Completed item 5 with 155 focused tests, TypeScript, contracts, build and DEV/production two-branch browser QA",
-    "Authored T1 five-road scene and canonical reserve/Valmir/shrine/combat handoffs without enabling rollout",
-    "Generated two real side-on checkpoint paintings from canonical references with hashes and provenance",
-    "Verified three persisted adaptive combat formations; 163 focused tests pass",
-    "T1 isolated DEV candidate QA passed three paths, 38 responsive captures, zero machine/console/asset/frame issues; key captures inspected",
-    "Committed and pushed shared-scene completion e5aa20d and T1 candidate 2b05370; no T1/T3 rollout enabled"
+    "Recovered clearly abandoned 17:13 run lock after process/thread verification; preserved uncommitted integration driver",
+    "DEV isolated candidate integration passed 59 captures, origin/fork/destination V6 reloads, keyboard, mechanics and approved Bois-Clair agency",
+    "Registered T1 and intentionally added it to production rollout; T3 remains disabled",
+    "Updated gate/registry/reward/resume tests and old CIN-2 facade assertions; TypeScript/contracts/build passed",
+    "T1 built-production acceptance: three runs/59 captures/zero issues; T0 production regression both paths/23 captures/zero issues",
+    "Completed item 6 compliance; promoted eight new captures and compact machine report without overwriting history",
+    "Read-only subagent audited T3 variants, environment references and presentation-entity seam"
   ],
   "filesChanged": [
-    "src/traversal/TraversalRoadScene.ts and .test.ts",
-    "src/traversal/TraversalT0Scene.ts, TraversalPresentation.ts, TraversalRouteRenderer.ts",
-    "src/game/GameApp.ts, runSystem.ts and Traversal authority/rollout tests",
-    "docs/traversal/ARCHITECTURE.md, AUTHORING_GUIDE.md; docs/autonomy/TRAVERSAL_GENERALIZATION.md",
+    "tools/traversal-t1-production-qa.mjs (resumed uncommitted work)",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md and .json",
-    "src/traversal/TraversalT1{CheckpointRoute,Route,World,Authoring,Scene}.ts and TraversalT1Scene.test.ts",
-    "public/assets/generated/lion-phase/traversal/t1/asset-manifest.json and two world-v1 PNGs",
-    "tools/traversal-t1-browser-qa.mjs and tools/traversal/t1-production prompts",
-    "docs/autonomy/TRAVERSAL_T1_PRODUCTION.md"
+    "src/traversal/TraversalPresentation.ts, TraversalFeaturePolicy.ts and their tests",
+    "src/traversal/TraversalT1Scene.ts/.test.ts; src/game/traversalT0ProductionRollout.test.ts and cin2CampaignBridge.test.ts",
+    "docs/traversal/ARCHITECTURE.md and AUTHORING_GUIDE.md",
+    "public/assets/generated/lion-phase/traversal/t1/asset-manifest.json",
+    "docs/autonomy/TRAVERSAL_T1_PRODUCTION.md; docs/reports/traversal-t1-production-1.md and new bounded evidence folder"
   ],
   "testsRun": [
-    "155 focused tests across 27 files",
-    "TypeScript, contract validator and production build",
-    "DEV and built-production Chromium T0 branches at 1440x810, 620x780 and 390x844",
-    "163 focused tests across 28 files after candidate/adaptive formation authoring",
-    "T1 isolated DEV candidate: both strict branches and full reduced-motion mobile path"
+    "228 focused Traversal/GameApp/Journey/campaign tests across 34 files; targeted 13-test rerun after HUD fixture correction",
+    "TypeScript, eight-contract/eight-slot validator, Vite production build",
+    "DEV isolated candidate integration QA: three paths and 59 captures",
+    "Built-production T1 integration QA and T0 regression (running)"
   ],
   "testsPassed": [
-    "155/155 tests; TypeScript, contracts and build",
-    "DEV/production browser QA each 23 captures and zero machine issues; mobile captures inspected",
-    "163/163 focused tests; TypeScript; validator: eight LOCKED contracts/eight video slots",
-    "T1 candidate QA: both desktop branches and reduced-motion mobile shrine path; 38 captures at 1440/620/390, zero failures/errors/frame issues"
+    "227 initial focused tests plus all 13 orchestration tests on corrected fixture; no remaining unit failures",
+    "TypeScript/contracts/build",
+    "DEV candidate integration: three complete runs, 59 captures, zero failures/errors/frame issues",
+    "T1 built-production QA: three complete runs, 59 captures, zero issues; keyboard/save/mechanics/video/reduced-motion agency pass",
+    "T0 built-production regression: both paths, 23 captures, all issue arrays empty"
   ],
   "testsRemaining": [
-    "T1 real GameApp opening from first refuge and save/resume at origin/interrupt/fork/destination",
-    "T1 production registration and rollout; real reward acceptance; built-production both-branch responsive QA and approved Bois-Clair cinematic/dialogue boundary",
-    "T3 production authoring and QA"
+    "T3 authored adaptive checkpoint media/actors/world, nested dialogue combat, V6 resume and built-production acceptance before registration"
   ],
   "blockers": [],
   "remainingWork": [
-    "Item 6: T1 integration/save-resume/activation and built-production acceptance; candidate code/art already authored",
-    "Item 7: T3 production authoring and QA"
+    "Item 7: produce T3 with existing recruitment/witness/variant fork/Shadow arrival",
+    "Later items 8-10 remain queued"
   ],
-  "nextAction": "Read TRAVERSAL_T1_PRODUCTION.md and candidate QA results. Reuse authored TraversalT1Scene/Authoring/World and two generated checkpoint paintings. Verify first-refuge opening, persisted adaptive formation and saves at origin/interrupt/fork/destination through real GameApp. Then add T1 to TraversalPresentation registry and TraversalFeaturePolicy rollout in one tested change, update gate/reward tests and run built-production both-branch browser QA through the approved Bois-Clair cinematic/dialogue boundary. Keep T3 disabled. Do not regenerate accepted T1 art or redo item 5.",
+  "nextAction": "Author T3 lancer recruitment, witness road, existing final-trial event/combat variants and Shadow arrival using shared road core. Resolve adaptive content through RunSystem at the fork; declare content-specific checkpoint actors and world (dragon/shrine/informant), including explicit existing shrine_apparition presentation entity and legacy mystery_lancer_recruit assignment. Generate only missing side-on checkpoint paintings from canonical Witness Road/Shadow Ruins/Dragon Roost refs. Keep T3 unregistered until all authored media, nested dialogue combat, save/resume and production QA pass. T1 is complete; do not redo it.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-LOCK-1: COMPLETE",
     "Contract drift audit: COMPLETE",
     "CINEMATIC-EIGHT-SLOT-ALIGNMENT: COMPLETE",
     "Retire T2/T4 playable runtime: COMPLETE",
     "TRAVERSAL-GENERALIZATION: COMPLETE",
-    "TRAVERSAL-T1-PRODUCTION: ACTIVE",
-    "Produce T3",
+    "TRAVERSAL-T1-PRODUCTION: COMPLETE",
+    "TRAVERSAL-T3-PRODUCTION: ACTIVE",
     "Remaster eight approved videos if tools permit",
     "Complete demo QA and polish",
     "Audio decision after structure lock"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "Contract set v1: item 5 COMPLETE/PASS; T1 candidate checkpoint PASS including art/DEV QA, production integration pending; no LOCKED rule changed",
+  "contractComplianceStatus": "Contract set v1: T1 COMPLETE/PASS in TRAVERSAL_T1_PRODUCTION.md; no LOCKED rule changed; T3 pending",
   "commitReferenceScope": "Verified implementation checkpoint; a subsequent state-only closeout commit is identified by Git HEAD/origin/dev and automation memory."
 }

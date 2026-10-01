@@ -14,7 +14,7 @@ import { LION_TRAVERSAL_LEGS, type LionPlayableTraversalLegId, type LionTraversa
 export const TRAVERSAL_PRODUCTION_GATE = Object.freeze({
   enabled: true,
   designAssetsReady: true,
-  rolloutLegIds: Object.freeze(['T0'] as const satisfies readonly LionPlayableTraversalLegId[]),
+  rolloutLegIds: Object.freeze(['T0', 'T1'] as const satisfies readonly LionPlayableTraversalLegId[]),
 });
 
 export interface TraversalGateDecision {

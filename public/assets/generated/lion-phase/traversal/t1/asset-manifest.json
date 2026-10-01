@@ -1,6 +1,6 @@
 {
   "packId": "traversal-t1-checkpoints-v1",
-  "status": "CANDIDATE_NOT_ROLLED_OUT",
+  "status": "PRODUCTION_ACTIVE",
   "generatedAt": "2026-10-01",
   "visualModel": "baked_raster",
   "runtimeObjectModel": "interactive_entities",
@@ -42,7 +42,7 @@
         65,
         81
       ],
-      "acceptance": "PASS_DEV_CANDIDATE_QA"
+      "acceptance": "PASS_PRODUCTION_QA"
     },
     {
       "id": "old-shrine",
@@ -62,7 +62,7 @@
         65,
         81
       ],
-      "acceptance": "PASS_DEV_CANDIDATE_QA"
+      "acceptance": "PASS_PRODUCTION_QA"
     }
   ],
   "qa": {
@@ -75,6 +75,19 @@
     ],
     "runs": 3,
     "captures": 38,
+    "failures": 0,
+    "errors": 0,
+    "frameIssues": 0
+  },
+  "productionQa": {
+    "report": "docs/reports/traversal-t1-production-1-browser/browser-qa.json",
+    "viewports": [
+      "1440x810",
+      "620x780",
+      "390x844"
+    ],
+    "runs": 3,
+    "captures": 59,
     "failures": 0,
     "errors": 0,
     "frameIssues": 0

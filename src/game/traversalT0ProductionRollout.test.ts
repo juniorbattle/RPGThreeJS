@@ -5,12 +5,13 @@ import { createInitialState, SaveRepository } from './store';
 import { enterRunNode, getAvailableRunNodes } from './runSystem';
 import type { GameState, RunNode } from './types';
 import { TraversalT0Scene } from '../traversal/TraversalT0Scene';
+import { TraversalT1Scene } from '../traversal/TraversalT1Scene';
 import { sceneTransition } from '../ui/SceneTransition';
 import type { JourneyBoundaryOutcome } from '../journey/JourneyCampaignBoundary';
 
 interface Harness {
   state: GameState;
-  activeTraversal: TraversalT0Scene | null;
+  activeTraversal: TraversalT0Scene | TraversalT1Scene | null;
   mode: string;
   saves: SaveRepository;
   activeNarrativeStage: { prepareGlobalHandoff: ReturnType<typeof vi.fn>; dispose: ReturnType<typeof vi.fn> } | null;
@@ -71,17 +72,17 @@ describe('production T0 orchestration with real scenes, RunSystem and saves', ()
     delete document.body.dataset.campaignSurface;
   });
 
-  it('accepts route loot only during an authored, enabled running scene', () => {
+  it.each(['T0', 'T1'] as const)('accepts %s route loot only during an authored, enabled running scene', leg => {
     const app = harness();
     const refresh = vi.fn();
     Object.assign(app, { statusHud: { refresh } });
     const before = structuredClone(app.state);
-    for (const [legId, phase] of [['T1', 'RUNNING'], ['T3', 'RUNNING'], ['T0', 'NODE_RESOLUTION']] as const) {
+    for (const [legId, phase] of [['T3', 'RUNNING'], ['T0', 'NODE_RESOLUTION'], ['T1', 'NODE_RESOLUTION']] as const) {
       app.activeTraversal = { session: { legId, phase } } as unknown as TraversalT0Scene;
       expect(app.acceptTraversalRouteReward({ id: 'fixture-pouch', gold: 5 })).toBe(false);
       expect(app.state).toEqual(before);
     }
-    app.activeTraversal = { session: { legId: 'T0', phase: 'RUNNING' } } as unknown as TraversalT0Scene;
+    app.activeTraversal = { session: { legId: leg, phase: 'RUNNING' } } as unknown as TraversalT0Scene;
     for (const gold of [0, -1, .5, NaN]) {
       expect(app.acceptTraversalRouteReward({ id: 'fixture-pouch', gold })).toBe(false);
     }
@@ -181,10 +182,10 @@ describe('production T0 orchestration with real scenes, RunSystem and saves', ()
     expect(app.state).toEqual(before);
   });
 
-  it.each(['camp', 'unresolved', 'inactive', 'incompatible-route', 'T1', 'T2', 'T3', 'T4'])(
+  it.each(['camp', 'unresolved', 'inactive', 'incompatible-route', 'T2', 'T3', 'T4'])(
     'rejects %s as a new T0 entry', async kind => {
       const app = harness();
-      const origins: Record<string, string> = { camp: 'lion-camp', T1: 'lion-first-refuge',
+      const origins: Record<string, string> = { camp: 'lion-camp',
         T2: 'lion-village-choice', T3: 'lion-second-refuge', T4: 'lion-shadow-signs' };
       if (origins[kind]) {
         app.state.run.currentNodeId = app.state.currentNodeId = origins[kind]!;
@@ -199,6 +200,32 @@ describe('production T0 orchestration with real scenes, RunSystem and saves', ()
       expect(app.travel.open).not.toHaveBeenCalled();
     },
   );
+
+  it('mounts authored T1 from the resolved refuge and restarts from its durable origin', async () => {
+    const app = harness();
+    Object.assign(app, { statusHud: { refresh: vi.fn(), show: vi.fn(), hide: vi.fn() } });
+    // Durable boundary snapshot; the browser QA separately reaches the real refuge UI.
+    app.state.run.currentNodeId = app.state.currentNodeId = 'lion-first-refuge';
+    app.state.resolvedNodeIds.push('lion-first-refuge');
+    const before = structuredClone(app.state);
+    await finish(app.enterCampaignPresentation());
+    const original = app.activeTraversal!;
+    expect(original).toBeInstanceOf(TraversalT1Scene);
+    expect(document.querySelectorAll('[data-traversal-leg="T1"]')).toHaveLength(1);
+    expect(app.state).toEqual(before);
+    expect(app.saves.loadAuto()?.run.currentNodeId).toBe('lion-first-refuge');
+    expect(app.acceptTraversalRouteReward({ id: 't1-fixture-pouch', gold: 5 })).toBe(true);
+    expect(app.state.run.temporaryLoot.gold).toBe(before.run.temporaryLoot.gold + 5);
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+    await finish(app.continueChronicle());
+    expect(app.activeTraversal).toBeInstanceOf(TraversalT1Scene);
+    expect(app.activeTraversal).not.toBe(original);
+    expect(app.state).toEqual(before);
+    expect(app.activeTraversal?.session.routeProgress01).toBe(0);
+    expect(app.state.run.traversalBranches?.T1).toBeUndefined();
+    expect(app.travel.open).not.toHaveBeenCalled();
+    app.renderTitle();
+  });
 
   it('keeps the origin durable through canonical commitment and restarts cleanly after Escape/Continue', async () => {
     const app = harness();
