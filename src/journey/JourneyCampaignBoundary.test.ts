@@ -139,9 +139,9 @@ describe('journey campaign boundary', () => {
     click(`[data-journey-choice="${available[0]!.id}"]`);
     const outcome = await pending;
     expect(outcome).toMatchObject({ kind: 'node', id: available[0]!.id, boundary: 'branch' });
-    expect(outcome.cinematicId).toBe('refugees_approach');
+    expect(outcome.cinematicId).toBeUndefined();
     expect(outcome.presentationKey).toBe('node:lion-refugees:arrival');
-    expect(outcome.surfaceReason).toBe('unavailable');
+    expect(outcome.surfaceReason).toBe('ended');
     expect(outcome.trace).toContain('AGENCY');
   });
 
@@ -262,7 +262,7 @@ describe('journey campaign boundary', () => {
     const boundary = createBoundary();
     const pending = boundary.present({ currentNodeId: 'lion-refugees', available, reducedMotion: false });
     await flush();
-    expect(document.querySelectorAll('.journey-surface')).toHaveLength(1);
+    expect(document.querySelectorAll('.narrative-stage')).toHaveLength(1);
     click(`[data-journey-choice="${available[0]!.id}"]`);
     await pending;
     expect(document.querySelectorAll('.journey-overlay, .journey-surface, .cinematic-overlay')).toHaveLength(0);

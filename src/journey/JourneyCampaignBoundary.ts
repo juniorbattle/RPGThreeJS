@@ -195,6 +195,8 @@ export class JourneyCampaignBoundary {
         result = await session.presentStill(tableau.stillImage, `narrative-static:${tableau.id}`);
       } else if (tableau.staticFallbackOnly && session.presentStill) {
         result = await session.presentStill(tableau.stillImage, `narrative-static:${tableau.id}`);
+      } else if (!playId && session.presentStill) {
+        result = await session.presentStill(tableau.stillImage, `narrative-static:${tableau.id}`);
       } else if (fallbackBackdrop && session.presentPassiveBackdrop) {
         result = await session.presentPassiveBackdrop(fallbackBackdrop);
       } else {

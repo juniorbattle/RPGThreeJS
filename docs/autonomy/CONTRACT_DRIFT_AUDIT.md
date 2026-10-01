@@ -14,3 +14,7 @@ Baseline: `dev @ 00b96f1` after `git fetch --prune`; `origin/main` is an ancesto
 ## Contract compliance of this audit
 
 This task changed documentation and a contract validator only. It did not change campaign, saves, combat, runtime presentation, or assets. The constitution and all eight manifest contracts are locked; the validator checks their paths, markers, IDs, and exact eight approved video IDs. Historical reports remain intact. Runtime drift remains explicitly open for the subsequent queue items.
+
+## First runtime checkpoint
+
+The subsequent cinematic task introduced the eight-ID playback gate in `GameApp`, restricted dialogue preludes to approved major videos, removed global enemy-reveal video triggers, and made the refugees, Valmir road, and witnesses Journey boundaries present their existing still/tableau and agency. It did not remove media from the manifest or alter the historical generated registry. Focused and broader Cinematics/Journey tests passed (38 files, 378 tests); TypeScript and production Vite build passed. Browser acceptance and the remaining media conversions are pending, so the eight-slot contract is not yet marked implemented.

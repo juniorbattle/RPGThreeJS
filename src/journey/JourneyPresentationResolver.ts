@@ -41,15 +41,15 @@ export function stateKey(fact: string, variant: string): string {
 /**
  * REVIEWED CIN-6A JOURNEY BOUNDARIES.
  *
- * These are the moving/frozen contexts used by the initial continuation and three real route
- * choices. Every ID is local and present in the shipped manifest; missing media still degrades.
+ * These are reviewed Journey boundaries. A null value keeps the authored boundary and agency
+ * while presenting its still/tableau instead of an unapproved video.
  */
 export const JOURNEY_PRESENTATION_MAP: JourneyPresentationMap = Object.freeze({
   [nodeArrivalKey('lion-camp')]: 'camp_departure',
   [edgeKey('lion-audience', 'lion-opening-ambush')]: null,
-  [nodeArrivalKey('lion-refugees')]: 'refugees_approach',
-  [nodeArrivalKey('lion-valmir-road')]: 'valmir_route_fork',
-  [nodeArrivalKey('lion-witnesses')]: 'witnesses_encounter',
+  [nodeArrivalKey('lion-refugees')]: null,
+  [nodeArrivalKey('lion-valmir-road')]: null,
+  [nodeArrivalKey('lion-witnesses')]: null,
 });
 
 export function resolveJourneyPresentation(

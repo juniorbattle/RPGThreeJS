@@ -228,14 +228,11 @@ describe('CIN-2 campaign presentation bridge', () => {
     expect(at('lion-final-judgement')).toHaveLength(0);
   });
 
-  it('keeps Journey media through CIN-6C separate from the three global CIN-3 production triggers', () => {
+  it('keeps Journey media separate from the approved judgement trigger', () => {
     expect(VIDEO_CINEMATIC_TRIGGERS.beforeDialogue).toEqual({
       lion_finale_judgement: 'lion_judgement',
     });
-    expect(VIDEO_CINEMATIC_TRIGGERS.beforeCombat).toEqual({
-      serpent_captain: 'serpent_general_reveal',
-      lion_chief: 'lion_champion_reveal',
-    });
+    expect(VIDEO_CINEMATIC_TRIGGERS.beforeCombat).toEqual({});
     expect(VIDEO_CINEMATIC_TRIGGERS.afterCombat).toEqual({});
     expect(VIDEO_CINEMATIC_TRIGGERS.chapterBeat).toEqual({});
 

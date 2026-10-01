@@ -14,26 +14,27 @@ function method(name: string): string {
 }
 
 describe('CIN-6A vertical integration seams', () => {
-  it('keeps the three global production triggers unchanged and confines new lifecycle clips to Journey', () => {
+  it('gates lifecycle video playback to approved production slots', () => {
     expect(VIDEO_CINEMATIC_TRIGGERS).toEqual({
       beforeDialogue: { lion_finale_judgement: 'lion_judgement' },
-      beforeCombat: { serpent_captain: 'serpent_general_reveal', lion_chief: 'lion_champion_reveal' },
+      beforeCombat: {},
       afterCombat: {},
       chapterBeat: {},
     });
     const interlude = method('private cinematicInterlude');
     expect(interlude).toContain('resolveVideoCinematicTrigger(trigger)');
     expect(interlude).toContain('resolveCin6aJourneyTrigger(trigger) ?? resolveCin6cJourneyTrigger(trigger, { flags: this.state.flags })');
-    expect(method('private async playJourneyCinematic')).toContain('if (!id || !this.usesJourneyPresentation()) return');
+    expect(interlude).toContain('!isApprovedProductionVideo(id)');
+    expect(method('private async playJourneyCinematic')).toContain('!isApprovedProductionVideo(id)');
   });
 
   it('maps the reviewed CIN-6A boundaries plus the CIN-6D static audience-road release', () => {
     expect(JOURNEY_PRESENTATION_MAP).toEqual({
       'node:lion-camp:arrival': 'camp_departure',
       'edge:lion-audience>lion-opening-ambush': null,
-      'node:lion-refugees:arrival': 'refugees_approach',
-      'node:lion-valmir-road:arrival': 'valmir_route_fork',
-      'node:lion-witnesses:arrival': 'witnesses_encounter',
+      'node:lion-refugees:arrival': null,
+      'node:lion-valmir-road:arrival': null,
+      'node:lion-witnesses:arrival': null,
     });
     const journey = method('private async runJourneyBoundary');
     expect(journey).toContain('currentNodeId: current?.id ?? null');

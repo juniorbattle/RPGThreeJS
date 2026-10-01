@@ -11,10 +11,7 @@ export const VIDEO_CINEMATIC_TRIGGERS: VideoCinematicTriggerRegistry = Object.fr
   beforeDialogue: Object.freeze({
     lion_finale_judgement: 'lion_judgement',
   }),
-  beforeCombat: Object.freeze({
-    serpent_captain: 'serpent_general_reveal',
-    lion_chief: 'lion_champion_reveal',
-  }),
+  beforeCombat: Object.freeze({}),
   afterCombat: Object.freeze({}),
   chapterBeat: Object.freeze({}),
 });

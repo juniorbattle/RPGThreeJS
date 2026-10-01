@@ -53,18 +53,15 @@ describe('cinematic registry', () => {
     expect(resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId: 'missing' }, triggers)).toBeUndefined();
   });
 
-  it('ships exactly the three CIN-3 production trigger mappings', () => {
+  it('ships only the approved judgement video lifecycle trigger', () => {
     expect(VIDEO_CINEMATIC_TRIGGERS.beforeDialogue).toEqual({
       lion_finale_judgement: 'lion_judgement',
     });
-    expect(VIDEO_CINEMATIC_TRIGGERS.beforeCombat).toEqual({
-      serpent_captain: 'serpent_general_reveal',
-      lion_chief: 'lion_champion_reveal',
-    });
+    expect(VIDEO_CINEMATIC_TRIGGERS.beforeCombat).toEqual({});
     expect(VIDEO_CINEMATIC_TRIGGERS.afterCombat).toEqual({});
     expect(VIDEO_CINEMATIC_TRIGGERS.chapterBeat).toEqual({});
-    expect(resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId: 'serpent_captain' })).toBe('serpent_general_reveal');
-    expect(resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId: 'lion_chief' })).toBe('lion_champion_reveal');
+    expect(resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId: 'serpent_captain' })).toBeUndefined();
+    expect(resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId: 'lion_chief' })).toBeUndefined();
     expect(resolveVideoCinematicTrigger({ hook: 'beforeDialogue', dialogueId: 'lion_finale_judgement' })).toBe('lion_judgement');
     expect(resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId: 'serpent_ambush' })).toBeUndefined();
     expect(Object.isFrozen(VIDEO_CINEMATIC_TRIGGERS)).toBe(true);

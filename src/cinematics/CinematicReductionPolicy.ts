@@ -1,3 +1,5 @@
+import { isApprovedProductionVideo } from './ApprovedProductionVideos';
+
 export type CinematicReductionClassification =
   | 'KEEP_MAJOR_VIDEO'
   | 'OPTIONAL_VIDEO'
@@ -59,5 +61,5 @@ export function resolveCinematicReduction(cinematicId: string): Readonly<Cinemat
 
 export function shouldPlayDialoguePreludeVideo(cinematicId: string): boolean {
   const classification = resolveCinematicReduction(cinematicId)?.classification;
-  return classification === 'KEEP_MAJOR_VIDEO' || classification === 'OPTIONAL_VIDEO' || classification === 'COMBAT_OWNED';
+  return isApprovedProductionVideo(cinematicId) && classification === 'KEEP_MAJOR_VIDEO';
 }

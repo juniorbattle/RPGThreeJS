@@ -68,6 +68,7 @@ import { resolveNarrativeAuthoringMedia } from '../cinematics/NarrativePresentat
 import { createNarrativeDialogueResolver, resolveRepresentedDialogueActors } from '../cinematics/NarrativeDialogueAdapter';
 import { applyFinalDialoguePresentationPlan } from '../cinematics/DialoguePresentationSegments';
 import { resolveCinematicReduction, shouldPlayDialoguePreludeVideo } from '../cinematics/CinematicReductionPolicy';
+import { isApprovedProductionVideo } from '../cinematics/ApprovedProductionVideos';
 import {
   createGenericNarrativeTableau,
   resolveNarrativeCombatTableau,
@@ -693,7 +694,7 @@ export class GameApp {
       ?? (this.usesJourneyPresentation()
         ? resolveCin6aJourneyTrigger(trigger) ?? resolveCin6cJourneyTrigger(trigger, { flags: this.state.flags })
         : undefined);
-    if (!id) return undefined;
+    if (!id || !isApprovedProductionVideo(id)) return undefined;
     if (this.usesJourneyPresentation()) {
       const tableau = trigger.hook === 'beforeCombat' ? resolveNarrativeCombatTableau(trigger.combatId) : undefined;
       return () => this.playNarrativeCinematic(id, tableau);
@@ -702,6 +703,7 @@ export class GameApp {
   }
 
   private async playNarrativeCinematic(id: string, tableau?: NarrativeTableauSpec): Promise<unknown> {
+    if (!isApprovedProductionVideo(id)) return undefined;
     const stage = this.createNarrativeStage(tableau);
     try {
       const beat = resolveCinematicPresentation(id);
@@ -717,7 +719,7 @@ export class GameApp {
   }
 
   private async playJourneyCinematic(id: string | undefined, label = ''): Promise<void> {
-    if (!id || !this.usesJourneyPresentation()) return;
+    if (!id || !isApprovedProductionVideo(id) || !this.usesJourneyPresentation()) return;
     await sceneTransition.run({
       variant: 'fade',
       label,

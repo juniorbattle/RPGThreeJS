@@ -32,13 +32,13 @@ describe('journey presentation resolver', () => {
     expect(stateKey('lionConduct', 'honour')).toBe('state:lionConduct:honour');
   });
 
-  it('ships exactly the reviewed CIN-6A Journey boundary mappings', () => {
+  it('keeps only approved video at Journey boundaries', () => {
     expect(JOURNEY_PRESENTATION_MAP).toEqual({
       'node:lion-camp:arrival': 'camp_departure',
       'edge:lion-audience>lion-opening-ambush': null,
-      'node:lion-refugees:arrival': 'refugees_approach',
-      'node:lion-valmir-road:arrival': 'valmir_route_fork',
-      'node:lion-witnesses:arrival': 'witnesses_encounter',
+      'node:lion-refugees:arrival': null,
+      'node:lion-valmir-road:arrival': null,
+      'node:lion-witnesses:arrival': null,
     });
     expect(Object.isFrozen(JOURNEY_PRESENTATION_MAP)).toBe(true);
     for (const id of ['serpent_general_reveal', 'lion_judgement', 'lion_champion_reveal']) {
@@ -57,15 +57,15 @@ describe('journey presentation resolver', () => {
     });
   });
 
-  it('resolves the reviewed first-fork cinematic from the real current RunNode', () => {
+  it('keeps the first fork as static Journey agency', () => {
     const context = branchContext();
     const resolved = resolveBoundaryCinematic(context);
-    expect(resolved).toEqual({ key: 'node:lion-refugees:arrival', cinematicId: 'refugees_approach' });
+    expect(resolved).toEqual({ key: 'node:lion-refugees:arrival', cinematicId: undefined });
     expect(resolveCandidateCinematicIds(context)).toEqual([
       'injured_merchant_encounter',
       'serpent_road_tension',
     ]);
-    expect(resolveJourneyPresentation('node:lion-refugees:arrival')).toBe('refugees_approach');
+    expect(resolveJourneyPresentation('node:lion-refugees:arrival')).toBeUndefined();
     expect(resolveBoundaryCinematic(context, {}).cinematicId).toBeUndefined();
   });
 
