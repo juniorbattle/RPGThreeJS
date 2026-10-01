@@ -1,0 +1,773 @@
+{
+  "scope": "UNREGISTERED DEV CANDIDATE ONLY; not V6/production acceptance",
+  "method": "DEV isolated unregistered T3 candidate; real GameApp node/arrival and RunSystem temporary loot callbacks; DEV combat victory fixture",
+  "fullIgnoredReport": "tmp/traversal/t3-candidate-qa-2/results.json",
+  "captureCount": 86,
+  "promotedCaptureCount": 8,
+  "viewportCounts": [
+    {
+      "count": 31,
+      "width": 390
+    },
+    {
+      "count": 25,
+      "width": 620
+    },
+    {
+      "count": 30,
+      "width": 1440
+    }
+  ],
+  "failures": [],
+  "errors": [],
+  "frameIssues": [],
+  "runs": [
+    {
+      "branch": "lion-final-trial-event",
+      "contentId": "mystery_dragon_roost",
+      "reduced": false,
+      "handoffs": [
+        {
+          "id": "lion-lancer-recruit",
+          "contentId": "mystery_lancer_recruit"
+        },
+        {
+          "id": "lion-witnesses",
+          "contentId": "witnesses_on_road"
+        },
+        {
+          "id": "lion-final-trial-event",
+          "contentId": "mystery_dragon_roost"
+        }
+      ],
+      "pickups": [
+        {
+          "id": "t3:t0:r2:reward-1",
+          "gold": 5
+        },
+        {
+          "id": "t3:t0:r4:reward-1",
+          "gold": 5
+        },
+        {
+          "id": "t3:t0:r5a:reward-2",
+          "gold": 5
+        }
+      ],
+      "routes": [
+        "t3-route-1",
+        "t3-route-2",
+        "t3-route-3",
+        "t3-route-4a",
+        "t3-route-5"
+      ],
+      "checkpoints": [
+        "t3-route-1",
+        "t3-route-2",
+        "t3-route-3",
+        "t3-route-4a"
+      ],
+      "swaps": [
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1
+        }
+      ],
+      "complete": true,
+      "lastState": {
+        "fork": false,
+        "dialogue": false,
+        "cinematic": false,
+        "destination": true,
+        "arrivals": 1
+      },
+      "arrivals": 1,
+      "currentNode": "lion-final-trial-event",
+      "visited": [
+        "lion-camp",
+        "lion-second-refuge",
+        "lion-lancer-recruit",
+        "lion-witnesses",
+        "lion-final-trial-event"
+      ],
+      "frames": []
+    },
+    {
+      "branch": "lion-final-trial-event",
+      "contentId": "mystery_shrine",
+      "reduced": false,
+      "handoffs": [
+        {
+          "id": "lion-lancer-recruit",
+          "contentId": "mystery_lancer_recruit"
+        },
+        {
+          "id": "lion-witnesses",
+          "contentId": "witnesses_on_road"
+        },
+        {
+          "id": "lion-final-trial-event",
+          "contentId": "mystery_shrine"
+        }
+      ],
+      "pickups": [
+        {
+          "id": "t3:t0:r2:reward-1",
+          "gold": 5
+        },
+        {
+          "id": "t3:t0:r4:reward-1",
+          "gold": 5
+        },
+        {
+          "id": "t3:t0:r5a:reward-2",
+          "gold": 5
+        }
+      ],
+      "routes": [
+        "t3-route-1",
+        "t3-route-2",
+        "t3-route-3",
+        "t3-route-4a",
+        "t3-route-5"
+      ],
+      "checkpoints": [
+        "t3-route-1",
+        "t3-route-2",
+        "t3-route-3",
+        "t3-route-4a"
+      ],
+      "swaps": [
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1
+        }
+      ],
+      "complete": true,
+      "lastState": {
+        "fork": false,
+        "dialogue": false,
+        "cinematic": false,
+        "destination": true,
+        "arrivals": 1
+      },
+      "arrivals": 1,
+      "currentNode": "lion-final-trial-event",
+      "visited": [
+        "lion-camp",
+        "lion-second-refuge",
+        "lion-lancer-recruit",
+        "lion-witnesses",
+        "lion-final-trial-event"
+      ],
+      "frames": []
+    },
+    {
+      "branch": "lion-final-trial-event",
+      "contentId": "serpent_informant",
+      "reduced": false,
+      "handoffs": [
+        {
+          "id": "lion-lancer-recruit",
+          "contentId": "mystery_lancer_recruit"
+        },
+        {
+          "id": "lion-witnesses",
+          "contentId": "witnesses_on_road"
+        },
+        {
+          "id": "lion-final-trial-event",
+          "contentId": "serpent_informant"
+        }
+      ],
+      "pickups": [
+        {
+          "id": "t3:t0:r2:reward-1",
+          "gold": 5
+        },
+        {
+          "id": "t3:t0:r4:reward-1",
+          "gold": 5
+        },
+        {
+          "id": "t3:t0:r5a:reward-2",
+          "gold": 5
+        }
+      ],
+      "routes": [
+        "t3-route-1",
+        "t3-route-2",
+        "t3-route-3",
+        "t3-route-4a",
+        "t3-route-5"
+      ],
+      "checkpoints": [
+        "t3-route-1",
+        "t3-route-2",
+        "t3-route-3",
+        "t3-route-4a"
+      ],
+      "swaps": [
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1
+        }
+      ],
+      "complete": true,
+      "lastState": {
+        "fork": false,
+        "dialogue": false,
+        "cinematic": false,
+        "destination": true,
+        "arrivals": 1
+      },
+      "arrivals": 1,
+      "currentNode": "lion-final-trial-event",
+      "visited": [
+        "lion-camp",
+        "lion-second-refuge",
+        "lion-lancer-recruit",
+        "lion-witnesses",
+        "lion-final-trial-event"
+      ],
+      "frames": []
+    },
+    {
+      "branch": "lion-final-trial-combat",
+      "contentId": "ruins_guardians",
+      "reduced": false,
+      "handoffs": [
+        {
+          "id": "lion-lancer-recruit",
+          "contentId": "mystery_lancer_recruit"
+        },
+        {
+          "id": "lion-witnesses",
+          "contentId": "witnesses_on_road"
+        },
+        {
+          "id": "lion-final-trial-combat",
+          "contentId": "ruins_guardians"
+        }
+      ],
+      "pickups": [
+        {
+          "id": "t3:t0:r2:reward-1",
+          "gold": 5
+        },
+        {
+          "id": "t3:t0:r4:reward-1",
+          "gold": 5
+        },
+        {
+          "id": "t3:t0:r5b:reward-1",
+          "gold": 5
+        },
+        {
+          "id": "t3:t0:r5b:reward-2",
+          "gold": 5
+        }
+      ],
+      "routes": [
+        "t3-route-1",
+        "t3-route-2",
+        "t3-route-3",
+        "t3-route-4b",
+        "t3-route-5"
+      ],
+      "checkpoints": [
+        "t3-route-1",
+        "t3-route-2",
+        "t3-route-3",
+        "t3-route-4b"
+      ],
+      "swaps": [
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1
+        }
+      ],
+      "complete": true,
+      "lastState": {
+        "fork": false,
+        "dialogue": false,
+        "cinematic": false,
+        "destination": true,
+        "arrivals": 1
+      },
+      "arrivals": 1,
+      "currentNode": "lion-final-trial-combat",
+      "visited": [
+        "lion-camp",
+        "lion-second-refuge",
+        "lion-lancer-recruit",
+        "lion-witnesses",
+        "lion-final-trial-combat"
+      ],
+      "frames": []
+    },
+    {
+      "branch": "lion-final-trial-combat",
+      "contentId": "serpent_hunters",
+      "reduced": false,
+      "handoffs": [
+        {
+          "id": "lion-lancer-recruit",
+          "contentId": "mystery_lancer_recruit"
+        },
+        {
+          "id": "lion-witnesses",
+          "contentId": "witnesses_on_road"
+        },
+        {
+          "id": "lion-final-trial-combat",
+          "contentId": "serpent_hunters"
+        }
+      ],
+      "pickups": [
+        {
+          "id": "t3:t0:r2:reward-1",
+          "gold": 5
+        },
+        {
+          "id": "t3:t0:r4:reward-1",
+          "gold": 5
+        },
+        {
+          "id": "t3:t0:r5b:reward-1",
+          "gold": 5
+        },
+        {
+          "id": "t3:t0:r5b:reward-2",
+          "gold": 5
+        }
+      ],
+      "routes": [
+        "t3-route-1",
+        "t3-route-2",
+        "t3-route-3",
+        "t3-route-4b",
+        "t3-route-5"
+      ],
+      "checkpoints": [
+        "t3-route-1",
+        "t3-route-2",
+        "t3-route-3",
+        "t3-route-4b"
+      ],
+      "swaps": [
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1
+        }
+      ],
+      "complete": true,
+      "lastState": {
+        "fork": false,
+        "dialogue": false,
+        "cinematic": false,
+        "destination": true,
+        "arrivals": 1
+      },
+      "arrivals": 1,
+      "currentNode": "lion-final-trial-combat",
+      "visited": [
+        "lion-camp",
+        "lion-second-refuge",
+        "lion-lancer-recruit",
+        "lion-witnesses",
+        "lion-final-trial-combat"
+      ],
+      "frames": []
+    },
+    {
+      "branch": "lion-final-trial-event",
+      "contentId": "mystery_lancer_recruit",
+      "reduced": true,
+      "handoffs": [
+        {
+          "id": "lion-lancer-recruit",
+          "contentId": "mystery_lancer_recruit"
+        },
+        {
+          "id": "lion-witnesses",
+          "contentId": "witnesses_on_road"
+        },
+        {
+          "id": "lion-final-trial-event",
+          "contentId": "mystery_lancer_recruit"
+        }
+      ],
+      "pickups": [
+        {
+          "id": "t3:t0:r2:reward-1",
+          "gold": 5
+        },
+        {
+          "id": "t3:t0:r4:reward-1",
+          "gold": 5
+        },
+        {
+          "id": "t3:t0:r5a:reward-2",
+          "gold": 5
+        }
+      ],
+      "routes": [
+        "t3-route-1",
+        "t3-route-2",
+        "t3-route-3",
+        "t3-route-4a",
+        "t3-route-5"
+      ],
+      "checkpoints": [
+        "t3-route-1",
+        "t3-route-2",
+        "t3-route-3",
+        "t3-route-4a"
+      ],
+      "swaps": [
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "checkpoint",
+          "cover": 1,
+          "globalCover": 0
+        },
+        {
+          "view": "route",
+          "cover": 0,
+          "globalCover": 1
+        }
+      ],
+      "complete": true,
+      "lastState": {
+        "fork": false,
+        "dialogue": false,
+        "cinematic": false,
+        "destination": true,
+        "arrivals": 1
+      },
+      "arrivals": 1,
+      "currentNode": "lion-final-trial-event",
+      "visited": [
+        "lion-camp",
+        "lion-second-refuge",
+        "lion-lancer-recruit",
+        "lion-witnesses",
+        "lion-final-trial-event"
+      ],
+      "frames": []
+    }
+  ],
+  "selectedCaptures": [
+    {
+      "file": "lion-final-trial-event-mystery_dragon_roost-t3-route-1-1440.png",
+      "state": {
+        "phase": "RUNNING",
+        "view": "checkpoint",
+        "segment": "t3-route-1",
+        "controls": [],
+        "overflow": 0,
+        "width": 1440,
+        "height": 810,
+        "imagesLoaded": true
+      }
+    },
+    {
+      "file": "lion-final-trial-event-mystery_dragon_roost-t3-route-4a-1440.png",
+      "state": {
+        "phase": "RUNNING",
+        "view": "checkpoint",
+        "segment": "t3-route-4a",
+        "controls": [],
+        "overflow": 0,
+        "width": 1440,
+        "height": 810,
+        "imagesLoaded": true
+      }
+    },
+    {
+      "file": "lion-final-trial-event-mystery_shrine-t3-route-4a-390.png",
+      "state": {
+        "phase": "RUNNING",
+        "view": "checkpoint",
+        "segment": "t3-route-4a",
+        "controls": [],
+        "overflow": 0,
+        "width": 390,
+        "height": 844,
+        "imagesLoaded": true
+      }
+    },
+    {
+      "file": "lion-final-trial-event-serpent_informant-t3-route-2-390.png",
+      "state": {
+        "phase": "RUNNING",
+        "view": "checkpoint",
+        "segment": "t3-route-2",
+        "controls": [],
+        "overflow": 0,
+        "width": 390,
+        "height": 844,
+        "imagesLoaded": true
+      }
+    },
+    {
+      "file": "lion-final-trial-event-serpent_informant-t3-route-4a-1440.png",
+      "state": {
+        "phase": "RUNNING",
+        "view": "checkpoint",
+        "segment": "t3-route-4a",
+        "controls": [],
+        "overflow": 0,
+        "width": 1440,
+        "height": 810,
+        "imagesLoaded": true
+      }
+    },
+    {
+      "file": "lion-final-trial-combat-ruins_guardians-t3-route-4b-1440.png",
+      "state": {
+        "phase": "RUNNING",
+        "view": "checkpoint",
+        "segment": "t3-route-4b",
+        "controls": [],
+        "overflow": 0,
+        "width": 1440,
+        "height": 810,
+        "imagesLoaded": true
+      }
+    },
+    {
+      "file": "lion-final-trial-combat-serpent_hunters-t3-route-4b-390.png",
+      "state": {
+        "phase": "RUNNING",
+        "view": "checkpoint",
+        "segment": "t3-route-4b",
+        "controls": [],
+        "overflow": 0,
+        "width": 390,
+        "height": 844,
+        "imagesLoaded": true
+      }
+    },
+    {
+      "file": "lion-final-trial-event-mystery_lancer_recruit-reduced-destination-390.png",
+      "state": {
+        "controls": [],
+        "overflow": 0,
+        "width": 390,
+        "height": 844,
+        "imagesLoaded": true
+      }
+    }
+  ]
+}

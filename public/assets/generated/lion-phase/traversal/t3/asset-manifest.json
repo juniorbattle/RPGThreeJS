@@ -1,0 +1,108 @@
+{
+  "assets": [
+    {
+      "camera": "SIDE_ON_HORIZONTAL",
+      "prompt": "tools/traversal/t3-production/witness-road-checkpoint.prompt.txt",
+      "environmentFamily": "WITNESS_ROAD",
+      "width": 1536,
+      "source": "built-in image_gen",
+      "id": "witness-road",
+      "sha256": "f8dd31e8c1b5da2b6ccc798595cbba4d8cc7cde57dfe71b5edc3f0c171baf1c8",
+      "laneGroundingPercent": [
+        65,
+        81
+      ],
+      "height": 1024,
+      "path": "/assets/generated/lion-phase/traversal/t3/world-v1/witness-road.png",
+      "acceptance": "PASS_DEV_CANDIDATE_VISUAL_QA",
+      "campaignNodeIds": [
+        "lion-lancer-recruit",
+        "lion-witnesses"
+      ]
+    },
+    {
+      "camera": "SIDE_ON_HORIZONTAL",
+      "prompt": "tools/traversal/t3-production/shadow-ruins-checkpoint.prompt.txt",
+      "environmentFamily": "SHADOW_RUINS",
+      "width": 1536,
+      "source": "built-in image_gen",
+      "id": "shadow-ruins",
+      "sha256": "a678969b3417a1d33c087abc5e02df6893e8bed6c99e2d9d9930609bc5194520",
+      "laneGroundingPercent": [
+        65,
+        81
+      ],
+      "height": 1024,
+      "path": "/assets/generated/lion-phase/traversal/t3/world-v1/shadow-ruins.png",
+      "acceptance": "PASS_DEV_CANDIDATE_VISUAL_QA",
+      "campaignNodeIds": [
+        "lion-final-trial-event",
+        "lion-final-trial-combat"
+      ]
+    },
+    {
+      "camera": "SIDE_ON_HORIZONTAL",
+      "prompt": "tools/traversal/t3-production/dragon-roost-checkpoint.prompt.txt",
+      "environmentFamily": "SHADOW_RUINS",
+      "width": 1536,
+      "source": "built-in image_gen",
+      "id": "dragon-roost",
+      "sha256": "8145efcccf5603eb8d7bfabff143b601387d6588a875e9470a6d022a7a7c7580",
+      "laneGroundingPercent": [
+        65,
+        81
+      ],
+      "height": 1024,
+      "path": "/assets/generated/lion-phase/traversal/t3/world-v1/dragon-roost.png",
+      "acceptance": "PASS_DEV_CANDIDATE_VISUAL_QA",
+      "campaignNodeIds": [
+        "lion-final-trial-event"
+      ]
+    }
+  ],
+  "engineTarget": "project-native",
+  "status": "UNREGISTERED_CANDIDATE",
+  "routeBase": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+  "references": [
+    {
+      "sha256": "1b64195bc4cb92d5e8cd56c42a68fc85b250fe7cd64b1af7a4b4603ea8f13ccf",
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png"
+    },
+    {
+      "sha256": "6226da6d389a846698eb638e05916fa1ef02536b9f5bf8d345f4dea4a6f2ee5f",
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/witness-road-tableau.png"
+    },
+    {
+      "sha256": "79b62812616e699c07c9c5f2967cc981cc006eda61087dd0721491a7df3436e8",
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png"
+    },
+    {
+      "sha256": "e2f96863fd05d74b5b0f8de05b044086c2b7e584196710dd0e4170fc3937c12b",
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/dragon-roost-area.png"
+    },
+    {
+      "path": "public/assets/characters/pixel/archive/non-demo/shrine_apparition.png",
+      "sha256": "91d675b9112acc147ebdaa0713bbd524ef54a1994439218a84b058740d303729"
+    }
+  ],
+  "generatedAt": "2026-10-01",
+  "visualModel": "baked_raster",
+  "packId": "traversal-t3-checkpoints-v1",
+  "collisionModel": "scene-local-two-lane",
+  "runtimeObjectModel": "interactive_entities",
+  "artStyle": "modern-pixel-art-HD-2D",
+  "qa": {
+    "runs": 6,
+    "captures": 86,
+    "errors": 0,
+    "frameIssues": 0,
+    "scope": "UNREGISTERED DEV CANDIDATE ONLY",
+    "report": "docs/reports/traversal-t3-candidate-1-browser/browser-qa.json",
+    "failures": 0,
+    "viewports": [
+      "1440x810",
+      "620x780",
+      "390x844"
+    ]
+  }
+}

@@ -1,4 +1,12 @@
 {
+  "/assets/characters/pixel/archive/non-demo/shrine_apparition.png": {
+    "width": 640,
+    "height": 768,
+    "left": 79,
+    "top": 83,
+    "right": 561,
+    "bottom": 737
+  },
   "/assets/generated/lion-phase/traversal/t0/foreground/ferns.png": {
     "width": 2017,
     "height": 780,
