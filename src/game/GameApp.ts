@@ -1111,8 +1111,10 @@ export class GameApp {
       const gatheringFlag = `clanArrival:${node.id}`;
       if (gatheringId && !this.state.flags[gatheringFlag]) {
         const sequence = resolveGameDialogue(gatheringId, this.state)!.sequence;
+        const speakingActors = new Set(sequence.steps.map(step => step.actorId).filter((id): id is string => Boolean(id)));
         const clanActors = this.state.clan.members.map(member => resolveCharacterUnitId(member.definitionId))
-          .filter((id): id is string => Boolean(id));
+          .filter((id): id is string => typeof id === 'string' && !speakingActors.has(id))
+          .slice(0, Math.max(0, 4 - speakingActors.size));
         await this.playDialogue(gatheringId, node.label, {
           tableau: createGenericNarrativeTableau(sequence, clanActors),
         });

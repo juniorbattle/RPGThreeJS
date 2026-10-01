@@ -221,9 +221,8 @@ export interface NarrativeTableauSpec {
   exit: 'DIALOGUE_SEQUENCE_COMPLETE' | 'ROUTE_COMMIT' | 'COMBAT_HANDOFF' | 'COMBAT_RESULT' | 'RESOLVED_CAMPAIGN_BOUNDARY';
   next: 'RESOLVED_CAMPAIGN_TABLEAU';
   mediaRemasterNeeded?: boolean;
-  /** This authored beat intentionally uses its current tableau until CIN-6E produces media. */
+  /** Use this authored tableau for a local departure even when the generic edge is a travel still. */
   staticFallbackOnly?: boolean;
-  needsNewMediaCin6e?: boolean;
 }
 
 export function resolveNarrativeChoiceScreenLanes(
@@ -587,8 +586,6 @@ export const AUDIENCE_ROAD_DEPARTURE_TABLEAU = Object.freeze<NarrativeTableauSpe
   stillImage: demoBoundaryEnvironmentUrl('edge:lion-audience>lion-opening-ambush'),
   media: [],
   staticFallbackOnly: true,
-  needsNewMediaCin6e: true,
-  mediaRemasterNeeded: true,
   cast: {
     visualActors: ['sage_seraphine', 'alistair', 'maelor'],
     eventActors: ['sage_seraphine', 'alistair', 'maelor'],
@@ -714,7 +711,7 @@ export const FOREST_THREAT_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   family: 'PRE_COMBAT',
   stillImage: demoEnvironmentUrlForContext('dialogue:pre_opening_trail', 'STATIC_TABLEAU'),
   combatIds: ['forest_ambush', 'wolf_pack'],
-  media: [{ phase: 'INTRO_MEDIA', cinematicId: 'forest_journey_tension' }],
+  media: [],
   cast: {
     visualActors: ['sage_seraphine'],
     eventActors: ['kestrel', 'alistair', 'sage_seraphine'],
@@ -727,7 +724,7 @@ export const FOREST_THREAT_TABLEAU = Object.freeze<NarrativeTableauSpec>({
     { id: 'forest-right', placement: 'LOWER_RIGHT' },
   ],
   beats: [
-    { id: 'forest-pressure', kind: 'VISUAL', mediaPhase: 'INTRO_MEDIA', skippable: true },
+    { id: 'forest-pressure', kind: 'VISUAL', skippable: true },
     { id: 'kestrel-warning', kind: 'SPEAKER_CARD', dialogueStepId: '1', anchorId: 'forest-left', skippable: false },
     { id: 'alistair-rally', kind: 'HELD_DIALOGUE', dialogueStepId: '2', anchorId: 'forest-left', skippable: false },
     { id: 'seraphine-warning', kind: 'SPEAKER_CARD', dialogueStepId: '3', anchorId: 'forest-left', skippable: false },
@@ -735,7 +732,6 @@ export const FOREST_THREAT_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   ],
   exit: 'COMBAT_HANDOFF',
   next: 'RESOLVED_CAMPAIGN_TABLEAU',
-  mediaRemasterNeeded: true,
 });
 
 export const FOREST_AFTERMATH_TABLEAU = Object.freeze<NarrativeTableauSpec>({
@@ -764,7 +760,6 @@ export const FOREST_AFTERMATH_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   ],
   exit: 'COMBAT_RESULT',
   next: 'RESOLVED_CAMPAIGN_TABLEAU',
-  mediaRemasterNeeded: true,
 });
 
 export const VALMIR_FORK_TABLEAU = Object.freeze<NarrativeTableauSpec>({
@@ -779,7 +774,7 @@ export const VALMIR_FORK_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   presentationKey: 'node:lion-valmir-road:arrival',
   family: 'JOURNEY',
   stillImage: demoBoundaryEnvironmentUrl('node:lion-valmir-road:arrival'),
-  media: [{ phase: 'INTRO_MEDIA', cinematicId: 'valmir_route_fork' }],
+  media: [],
   cast: {
     visualActors: ['sage_seraphine', 'alistair', 'maelor'],
     eventActors: ['sage_seraphine', 'alistair', 'maelor'],
@@ -792,7 +787,7 @@ export const VALMIR_FORK_TABLEAU = Object.freeze<NarrativeTableauSpec>({
     { id: 'route-right', placement: 'LOWER_RIGHT', safeRegion: { x: 0.68, y: 0.66, width: 0.29, height: 0.28 }, routeIndex: 1 },
   ],
   beats: [
-    { id: 'valmir-arrival', kind: 'VISUAL', mediaPhase: 'INTRO_MEDIA', skippable: true },
+    { id: 'valmir-arrival', kind: 'VISUAL', skippable: true },
     { id: 'valmir-routes', kind: 'ROUTE_CHOICE', anchorId: 'route-left', skippable: false },
     { id: 'valmir-transition', kind: 'TRANSITION', transition: 'DEPTH_SHIFT', skippable: true },
   ],

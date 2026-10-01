@@ -26,13 +26,13 @@ describe('Narrative Tableau presentation data', () => {
     expect(resolveNarrativeBoundaryTableau('node:lion-refugees:arrival')).toBeUndefined();
   });
 
-  it('locks the post-audience company departure as a static CIN-6E placeholder', () => {
+  it('keeps the post-audience company departure on its static tableau', () => {
     expect(AUDIENCE_ROAD_DEPARTURE_TABLEAU).toMatchObject({
       grammar: 'DEPARTURE',
       staticFallbackOnly: true,
-      needsNewMediaCin6e: true,
       media: [],
     });
+    expect(AUDIENCE_ROAD_DEPARTURE_TABLEAU.mediaRemasterNeeded).not.toBe(true);
     expect(AUDIENCE_ROAD_DEPARTURE_TABLEAU.cast.visualActors).toEqual(['sage_seraphine', 'alistair', 'maelor']);
     expect(AUDIENCE_ROAD_DEPARTURE_TABLEAU.cast.playerRepresentatives).toEqual(['alistair']);
     expect(AUDIENCE_ROAD_DEPARTURE_TABLEAU.cast.visualActors).not.toContain('alaric');
@@ -45,6 +45,14 @@ describe('Narrative Tableau presentation data', () => {
     expect(resolveNarrativeCombatTableau('forest_ambush')).toBe(FOREST_THREAT_TABLEAU);
     expect(resolveNarrativeCombatTableau('wolf_pack')).toBe(FOREST_THREAT_TABLEAU);
     expect(resolveNarrativeCombatTableau('lion_chief')).toBeUndefined();
+  });
+
+  it('does not advertise retired travel clips as authored tableau media', () => {
+    expect(FOREST_THREAT_TABLEAU.media).toEqual([]);
+    expect(FOREST_AFTERMATH_TABLEAU.media).toEqual([]);
+    expect(VALMIR_FORK_TABLEAU.media).toEqual([]);
+    expect(FOREST_THREAT_TABLEAU.mediaRemasterNeeded).not.toBe(true);
+    expect(FOREST_AFTERMATH_TABLEAU.mediaRemasterNeeded).not.toBe(true);
   });
 
   it('keeps every required beat kind explicit', () => {

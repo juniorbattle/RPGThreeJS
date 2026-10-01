@@ -7,10 +7,10 @@ const OUTPUT_DIR = resolve(process.env.CIN6D6_OUTPUT_DIR ?? resolve(process.cwd(
 const [viewportWidth, viewportHeight] = (process.env.CIN6D6_VIEWPORT ?? '1920x1080').split('x').map(Number);
 const VIEWPORT = { width: viewportWidth, height: viewportHeight };
 const VIEWPORT_ID = `${VIEWPORT.width}x${VIEWPORT.height}`;
+const REDUCED_MOTION = process.env.CIN6D6_REDUCED_MOTION === '1';
 const URL = `${BASE_URL}/?journey=cinematic&presentation=narrative&media=video&qa=1&cin6a=golden`;
 
-function diagnosticsFor(page) {
-  const diagnostics = { consoleErrors: [], pageErrors: [], requestFailures: [] };
+function diagnosticsFor(page, diagnostics) {
   page.on('console', (message) => {
     if (message.type() === 'error' && !message.text().includes('[VFX Preview]')) diagnostics.consoleErrors.push(message.text());
   });
@@ -172,7 +172,7 @@ async function winCombat(page) {
 
 async function installNodeSave(page, nodeId, flags = {}, reputation = 60, seed = 6101) {
   await page.goto(URL, { waitUntil: 'domcontentloaded' });
-  await page.evaluate(async ({ nodeId: targetId, flags: targetFlags, reputation: targetReputation, seed: targetSeed }) => {
+  await page.evaluate(async ({ nodeId: targetId, flags: targetFlags, reputation: targetReputation, seed: targetSeed, reducedMotion }) => {
     const { createInitialState, SaveRepository } = await import('/src/game/store.ts');
     const { createRunState, enterRunNode } = await import('/src/game/runSystem.ts');
     const state = createInitialState();
@@ -180,6 +180,7 @@ async function installNodeSave(page, nodeId, flags = {}, reputation = 60, seed =
     state.currentNodeId = state.run.currentNodeId;
     state.visitedNodeIds = [...state.run.visitedNodeIds];
     state.flags.prologueSeen = true;
+    state.settings.reducedGraphics = reducedMotion;
     Object.assign(state.flags, targetFlags);
     state.reputation = targetReputation;
     const nodes = new Map(state.run.graph.nodes.map((node) => [node.id, node]));
@@ -206,7 +207,7 @@ async function installNodeSave(page, nodeId, flags = {}, reputation = 60, seed =
     }
     state.resolvedNodeIds = state.resolvedNodeIds.filter((id) => id !== targetId);
     new SaveRepository().saveAuto(state);
-  }, { nodeId, flags, reputation, seed });
+  }, { nodeId, flags, reputation, seed, reducedMotion: REDUCED_MOTION });
   await page.reload({ waitUntil: 'domcontentloaded' });
   await page.getByRole('button', { name: 'Continuer' }).click();
 }
@@ -270,16 +271,26 @@ async function runOpening(page) {
   return { id: 'A', pass: true, campHold, campDeparture, audienceHold, audienceChoices, road, forestTableau, postCombat, traversalHandoff, flashes, screenshots: [campShot, audienceShot, roadShot, forestShot, postShot, traversalShot] };
 }
 
-async function runRefuge(page, id, nodeId, expectedBeat, flags) {
+async function runRefuge(page, id, nodeId, gatheringId, expectedBeat, flags) {
   await installNodeSave(page, nodeId, flags);
-  await skipLeadInUntil(page, page.locator('.exploration-stop:visible'), `${nodeId} refuge gameplay`);
+  let gathering = null;
+  if (gatheringId) {
+    await waitForDialogue(page, gatheringId);
+    gathering = await readStage(page);
+    if (gathering?.surface !== 'STATIC_TABLEAU' || gathering.primarySurfaces !== 1
+      || !gathering.staticActors || gathering.staticActors > 4) {
+      throw new Error(`${nodeId} gathering did not retain its dialogue tableau: ${JSON.stringify(gathering)}.`);
+    }
+    await finishDialogue(page, gatheringId);
+  }
+  await page.locator(`.exploration-stop[data-refuge-node="${nodeId}"]:visible`).waitFor({ timeout: 20_000 });
   await page.locator('.exploration-stop [data-action="continue"]').click();
   await waitForJourney(page);
   const departure = await readStage(page);
   assertStage(departure, 'TRAVEL_STILL', `${nodeId} departure`);
   if (departure.beat !== expectedBeat) throw new Error(`${nodeId}: expected ${expectedBeat}, got ${departure.beat}.`);
   const screenshot = await capture(page, `${id.toLowerCase()}-${nodeId}-departure`);
-  return { id, pass: true, departure, screenshot };
+  return { id, pass: true, gathering, departure, screenshot };
 }
 
 async function runValmir(page) {
@@ -296,11 +307,18 @@ async function runValmir(page) {
   assertStage(fork, 'TRAVEL_STILL', 'Valmir fork');
   const routeChoices = await page.locator('.journey-overlay__choice:not([disabled]):visible').count();
   if (routeChoices !== 2) throw new Error(`Valmir fork expected two routes, got ${routeChoices}.`);
+  const routeChoiceRects = await page.locator('.journey-overlay__choice:not([disabled]):visible').evaluateAll((elements) => elements.map((element) => {
+    const rect = element.getBoundingClientRect();
+    return { left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom };
+  }));
+  if (routeChoiceRects.some((rect) => rect.left < 0 || rect.top < 0 || rect.right > VIEWPORT.width || rect.bottom > VIEWPORT.height)) {
+    throw new Error(`Valmir route choices leave viewport: ${JSON.stringify(routeChoiceRects)}.`);
+  }
   const retiredVideoRequested = await page.evaluate(() => performance.getEntriesByType('resource')
     .some((entry) => entry.name.includes('/assets/cinematics/valmir_route_fork.mp4')));
   if (retiredVideoRequested) throw new Error('Valmir fork requested its retired video.');
   const screenshot = await capture(page, 'e-valmir-fork');
-  return { id: 'E', pass: true, precombat, fork, routeChoices, retiredVideoRequested, screenshot };
+  return { id: 'E', pass: true, precombat, fork, routeChoices, routeChoiceRects, retiredVideoRequested, screenshot };
 }
 
 async function installFlashSampler(page) {
@@ -338,34 +356,37 @@ async function readFlashSampler(page) {
 
 await mkdir(OUTPUT_DIR, { recursive: true });
 const browser = await chromium.launch({ headless: true });
-const context = await browser.newContext({ viewport: VIEWPORT });
-const result = { schemaVersion: 1, viewport: VIEWPORT, flows: [], pass: false };
+const context = await browser.newContext({ viewport: VIEWPORT, reducedMotion: REDUCED_MOTION ? 'reduce' : 'no-preference' });
+const result = { schemaVersion: 1, viewport: VIEWPORT, reducedMotion: REDUCED_MOTION, flows: [], pass: false };
 try {
   result.flashes = { travelViewFlashes: 0, blackFlashes: 0, blackDetails: [] };
   result.diagnostics = { consoleErrors: [], pageErrors: [], requestFailures: [] };
-  if (process.env.CIN6D6_VALMIR_ONLY !== '1') {
+  if (process.env.CIN6D6_VALMIR_ONLY !== '1' && process.env.CIN6D6_REFUGE_ONLY !== '1') {
     const openingPage = await context.newPage();
-    const openingDiagnostics = diagnosticsFor(openingPage);
-    result.diagnostics = openingDiagnostics;
+    diagnosticsFor(openingPage, result.diagnostics);
     const opening = await runOpening(openingPage);
     result.flows.push(opening);
     result.flashes = opening.flashes;
-    result.diagnostics = openingDiagnostics;
     await openingPage.close();
   }
 
-  if (VIEWPORT.width === 1920 && process.env.CIN6D6_CORE_ONLY !== '1') {
+  if ((VIEWPORT.width === 1920 && process.env.CIN6D6_CORE_ONLY !== '1') || process.env.CIN6D6_VALMIR_ONLY === '1') {
     if (process.env.CIN6D6_VALMIR_ONLY !== '1') {
       const firstRefugePage = await context.newPage();
-      result.flows.push(await runRefuge(firstRefugePage, 'D', 'lion-first-refuge', 'edge:lion-first-refuge>lion-reserve-trail', { lionMissionAccepted: true, helpedRefugees: true }));
+      diagnosticsFor(firstRefugePage, result.diagnostics);
+      result.flows.push(await runRefuge(firstRefugePage, 'D', 'lion-first-refuge', 'first_refuge_gathering', 'edge:lion-first-refuge>lion-reserve-trail', { lionMissionAccepted: true, helpedRefugees: true }));
       await firstRefugePage.close();
       const secondRefugePage = await context.newPage();
-      result.flows.push(await runRefuge(secondRefugePage, 'H', 'lion-second-refuge', 'edge:lion-second-refuge>lion-lancer-recruit', { lionMissionAccepted: true, helpedRefugees: true, missionSuccess: true }));
+      diagnosticsFor(secondRefugePage, result.diagnostics);
+      result.flows.push(await runRefuge(secondRefugePage, 'H', 'lion-second-refuge', null, 'edge:lion-second-refuge>lion-lancer-recruit', { lionMissionAccepted: true, helpedRefugees: true, missionSuccess: true }));
       await secondRefugePage.close();
     }
-    const valmirPage = await context.newPage();
-    result.flows.push(await runValmir(valmirPage));
-    await valmirPage.close();
+    if (process.env.CIN6D6_REFUGE_ONLY !== '1') {
+      const valmirPage = await context.newPage();
+      diagnosticsFor(valmirPage, result.diagnostics);
+      result.flows.push(await runValmir(valmirPage));
+      await valmirPage.close();
+    }
   }
 
   const actionableFailures = (result.diagnostics?.requestFailures ?? []).filter((failure) => !/\.mp4 net::ERR_ABORTED$/u.test(failure));

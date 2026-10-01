@@ -6,6 +6,7 @@ const BASE_URL = process.env.CIN6D6_BASE_URL ?? 'http://127.0.0.1:5173';
 const OUTPUT_DIR = resolve(process.env.CIN6D6_ROUTE_OUTPUT_DIR ?? resolve(process.cwd(), 'tmp/cinematics/cin6d6/browser-qa/routes'));
 const [viewportWidth, viewportHeight] = (process.env.CIN6D6_VIEWPORT ?? '1920x1080').split('x').map(Number);
 const VIEWPORT = { width: viewportWidth, height: viewportHeight };
+const SCENARIO_FILTER = process.env.CIN6D6_ROUTE_SCENARIO ?? '';
 
 function diagnosticsFor(page) {
   const diagnostics = { consoleErrors: [], pageErrors: [], requestFailures: [] };
@@ -362,13 +363,16 @@ const finaleScenarios = [
   },
 ];
 
+if (SCENARIO_FILTER && ![...nodeScenarios, ...finaleScenarios].some((entry) => entry.id === SCENARIO_FILTER)) {
+  throw new Error(`Unknown CIN6D6_ROUTE_SCENARIO: ${SCENARIO_FILTER}`);
+}
 await mkdir(OUTPUT_DIR, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const context = await browser.newContext({ viewport: VIEWPORT });
 const result = { schemaVersion: 1, viewport: VIEWPORT, nodes: [], finales: [], pass: false };
 let failed = false;
 try {
-  for (const scenario of nodeScenarios) {
+  for (const scenario of nodeScenarios.filter((entry) => !SCENARIO_FILTER || entry.id === SCENARIO_FILTER)) {
     try {
       result.nodes.push(await runNodeScenario(context, scenario));
     } catch (error) {
@@ -376,7 +380,7 @@ try {
       result.nodes.push({ id: scenario.id, pass: false, error: error instanceof Error ? error.stack : String(error) });
     }
   }
-  for (const scenario of finaleScenarios) {
+  for (const scenario of finaleScenarios.filter((entry) => !SCENARIO_FILTER || entry.id === SCENARIO_FILTER)) {
     try {
       result.finales.push(await runFinaleScenario(context, scenario));
     } catch (error) {
