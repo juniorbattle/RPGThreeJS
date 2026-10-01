@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import type { VideoCinematicDescriptor, VideoCinematicManifest } from './CinematicTypes';
+import { isApprovedProductionVideo } from './ApprovedProductionVideos';
 
 const sourceSchema = z.object({
   src: z.string().min(1),
@@ -63,7 +64,13 @@ export class CinematicRegistry {
         if (!response.ok) throw new Error(`Cinematic manifest request failed (${response.status}).`);
         const parsed = manifestSchema.safeParse(await response.json());
         if (!parsed.success) throw new Error(parsed.error.issues.map((issue) => issue.message).join(' '));
-        this.apply(parsed.data);
+        const manifest = url === '/assets/cinematics/manifest.json'
+          ? { ...parsed.data, cinematics: parsed.data.cinematics.filter((descriptor) => (
+            isApprovedProductionVideo(descriptor.id)
+            || (descriptor.id === 'qa-placeholder' && descriptor.placeholderOnly === true)
+          )) }
+          : parsed.data;
+        this.apply(manifest);
       } catch (error) {
         this.apply(EMPTY_MANIFEST);
         console.warn('[Cinematics] Manifest unavailable; continuing without cinematics.', error);

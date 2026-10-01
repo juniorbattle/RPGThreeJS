@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 import { CinematicRegistry, parseVideoCinematicManifest } from './CinematicRegistry';
 import { resolveVideoCinematicTrigger, VIDEO_CINEMATIC_TRIGGERS } from './CinematicTriggers';
+import { APPROVED_PRODUCTION_VIDEO_IDS } from './ApprovedProductionVideos';
 
 const manifest = {
   version: 1 as const,
@@ -33,6 +34,30 @@ describe('cinematic registry', () => {
     expect(fetcher).toHaveBeenCalledTimes(1);
     expect(fetcher).toHaveBeenCalledWith('/manifest.json', { cache: 'no-cache' });
     expect(registry.get('opening')?.sources[0]?.type).toBe('video/webm');
+  });
+
+  it('exposes only approved video slots from the production manifest URL', async () => {
+    const productionManifest = {
+      version: 1,
+      cinematics: [
+        { id: 'camp_departure', title: 'Camp', sources: [{ src: '/camp.mp4', type: 'video/mp4' }] },
+        { id: 'serpent_general_reveal', title: 'Reveal', sources: [{ src: '/reveal.mp4', type: 'video/mp4' }] },
+        { id: 'qa-placeholder', title: 'QA', sources: [], placeholderOnly: true },
+      ],
+    };
+    const registry = new CinematicRegistry();
+    await registry.load(undefined, async () => new Response(JSON.stringify(productionManifest), { status: 200 }));
+    expect(registry.values().map((entry) => entry.id)).toEqual(['camp_departure', 'qa-placeholder']);
+    expect(registry.get('serpent_general_reveal')).toBeUndefined();
+  });
+
+  it('loads exactly eight playable videos from the current production manifest', async () => {
+    const raw = readFileSync(join(process.cwd(), 'public/assets/cinematics/manifest.json'), 'utf8');
+    const registry = new CinematicRegistry();
+    await registry.load(undefined, async () => new Response(raw, { status: 200 }));
+    const playable = registry.values().filter((entry) => entry.sources.length > 0).map((entry) => entry.id);
+    expect(new Set(playable)).toEqual(new Set(APPROVED_PRODUCTION_VIDEO_IDS));
+    expect(playable).toHaveLength(8);
   });
 
   it('falls back to an empty registry for missing or invalid manifests', async () => {
