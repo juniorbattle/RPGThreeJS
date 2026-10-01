@@ -110,6 +110,7 @@ describe('journey campaign boundary', () => {
     vi.spyOn(HTMLMediaElement.prototype, 'pause').mockImplementation(() => undefined);
     vi.spyOn(HTMLMediaElement.prototype, 'load').mockImplementation(() => undefined);
     vi.spyOn(HTMLMediaElement.prototype, 'canPlayType').mockReturnValue('probably');
+    vi.spyOn(HTMLImageElement.prototype, 'decode').mockResolvedValue(undefined);
     vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({ drawImage: vi.fn() } as unknown as CanvasRenderingContext2D);
     vi.spyOn(console, 'warn').mockImplementation(() => undefined);
   });
@@ -312,15 +313,17 @@ describe('journey campaign boundary', () => {
       presentationMap: { [nodeArrivalKey('lion-refugees')]: 'clip-arrival' },
     });
     const pending = boundary.present({ currentNodeId: 'lion-refugees', available, reducedMotion: true });
-    await flush();
+    await vi.waitFor(() => expect(document.querySelector(`[data-journey-choice="${available[0]!.id}"]`)).not.toBeNull());
     click(`[data-journey-choice="${available[0]!.id}"]`);
     const outcome = await pending;
     expect(outcome.cinematicId).toBe('clip-arrival');
-    expect(outcome.surfaceReason).toBe('reduced-motion');
+    expect(outcome.surfaceReason).toBe('ended');
+    expect(outcome.presentationMode).toBe('TRAVEL_STILL');
     expect(outcome.kind).toBe('node');
   });
 
   it('does not replay the same mapped clip after a secondary-action re-presentation', async () => {
+    const playHeld = vi.spyOn(CinematicPlayer.prototype, 'playHeld');
     const registry = new CinematicRegistry({
       version: 1,
       cinematics: [{ id: 'clip-arrival', title: 'Arrival', sources: [], placeholderOnly: true }],
@@ -333,16 +336,17 @@ describe('journey campaign boundary', () => {
     });
 
     const first = boundary.present({ currentNodeId: 'lion-refugees', available, secondary: SECONDARY, reducedMotion: true });
-    await flush();
+    await vi.waitFor(() => expect(document.querySelector('[data-journey-secondary="COMPANY"]')).not.toBeNull());
     click('[data-journey-secondary="COMPANY"]');
-    await expect(first).resolves.toMatchObject({ cinematicId: 'clip-arrival', surfaceReason: 'reduced-motion' });
+    await expect(first).resolves.toMatchObject({ cinematicId: 'clip-arrival', surfaceReason: 'ended', presentationMode: 'TRAVEL_STILL' });
 
     const second = boundary.present({ currentNodeId: 'lion-refugees', available, secondary: SECONDARY, reducedMotion: false });
-    await flush();
+    await vi.waitFor(() => expect(document.querySelector(`[data-journey-choice="${available[0]!.id}"]`)).not.toBeNull());
     expect(document.querySelector('.narrative-stage')).not.toBeNull();
-    expect(document.querySelector('.narrative-media-surface--passive')).not.toBeNull();
+    expect(document.querySelector('.narrative-media-surface--travel-still')).not.toBeNull();
     click(`[data-journey-choice="${available[0]!.id}"]`);
-    await expect(second).resolves.toMatchObject({ cinematicId: 'clip-arrival', surfaceReason: 'unavailable', kind: 'node' });
+    await expect(second).resolves.toMatchObject({ cinematicId: 'clip-arrival', surfaceReason: 'ended', kind: 'node', presentationMode: 'TRAVEL_STILL' });
+    expect(playHeld.mock.calls.filter(([id]) => id === 'clip-arrival')).toHaveLength(1);
     expect(document.querySelector('.narrative-stage')).toBeNull();
   });
 

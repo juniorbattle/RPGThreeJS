@@ -6,6 +6,7 @@ import { validateShotSpec } from './cin4_shot_spec.mjs';
 import { validateCinematicDialogueCastAudit } from './validate_cinematic_dialogue_cast_audit.mjs';
 import { validateJourneyCinematicGrammar } from './validate_journey_cinematic_grammar.mjs';
 import { validateCinematicContinuityBible } from './validate_cinematic_continuity_bible.mjs';
+import { historicalVideoPath } from './historical_video_path.mjs';
 
 const root = process.cwd();
 const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), 'utf8'));
@@ -88,8 +89,8 @@ describe('CIN-6.6 finalization contracts', () => {
   });
 
   it('preserves every CIN-6.6 production master while later batches add distinct IDs', async () => {
-    for (const [id, expected] of Object.entries(PRESERVED_MEDIA)) expect(await sha256(`public/assets/cinematics/${id}.mp4`)).toBe(expected);
-    const manifest = await readJson('public/assets/cinematics/manifest.json');
+    for (const [id, expected] of Object.entries(PRESERVED_MEDIA)) expect(await sha256(historicalVideoPath(root, id))).toBe(expected);
+    const manifest = await readJson('tools/cinematics/specs/historical_cinematic_manifest_31.json');
     expect(manifest.cinematics).toHaveLength(32);
     expect(new Set(manifest.cinematics.map((entry) => entry.id)).size).toBe(32);
     expect(manifest.cinematics.some((entry) => /^cin6[cp]-/u.test(entry.id))).toBe(false);

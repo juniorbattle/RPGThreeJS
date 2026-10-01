@@ -43,10 +43,15 @@ describe('CIN-5 campaign cinematic census contract', () => {
     expect(() => JSON.parse(readFileSync(censusPath, 'utf8'))).not.toThrow();
   });
 
-  it('passes the deterministic census validator', () => {
+  it('records the exact historical census drift against the eight-slot production map', () => {
     expect(validateCampaignCinematicCensus({ projectRoot, censusPath })).toMatchObject({
-      ok: true,
-      errors: [],
+      ok: false,
+      errors: [
+        'Approved media is missing: public/assets/cinematics/serpent_general_reveal.mp4.',
+        'Approved media is missing: public/assets/cinematics/lion_champion_reveal.mp4.',
+        'Production beforeCombat triggers changed.',
+        'Journey production map differs from the reviewed CIN-6A allowlist: lion-camp=camp_departure.',
+      ],
       summary: {
         prioritizedPrimaryMediaEntries: { P0: 17, P1: 9, P2: 0 },
         orderedTargetsIncludingReuse: { P0: 20, P1: 11, P2: 0 },
@@ -411,32 +416,34 @@ describe('CIN-5 campaign cinematic census contract', () => {
     expect(census.reputationEventAudit.events.every((event) => event.decision === 'REUSE_CONTEXT')).toBe(true);
   });
 
-  it('keeps exact production trigger maps unchanged', () => {
+  it('keeps the judgement video trigger and retires enemy reveal triggers', () => {
     expect(VIDEO_CINEMATIC_TRIGGERS).toEqual({
       beforeDialogue: { lion_finale_judgement: 'lion_judgement' },
-      beforeCombat: { serpent_captain: 'serpent_general_reveal', lion_chief: 'lion_champion_reveal' },
+      beforeCombat: {},
       afterCombat: {},
       chapterBeat: {},
     });
   });
 
-  it('keeps the reviewed production map plus the CIN-6D static-only audience-road edge', () => {
+  it('keeps the approved camp video and converts the three routine Journey arrivals', () => {
     expect(JOURNEY_PRESENTATION_MAP).toEqual({
       'node:lion-camp:arrival': 'camp_departure',
       'edge:lion-audience>lion-opening-ambush': null,
-      'node:lion-refugees:arrival': 'refugees_approach',
-      'node:lion-valmir-road:arrival': 'valmir_route_fork',
-      'node:lion-witnesses:arrival': 'witnesses_encounter',
+      'node:lion-refugees:arrival': null,
+      'node:lion-valmir-road:arrival': null,
+      'node:lion-witnesses:arrival': null,
     });
   });
 
-  it('keeps production video files inside the census-planned set', () => {
+  it('ships only eight approved videos from the historical planned set', () => {
     const planned = new Set(plannedProductionVideoFiles(census));
     const actual = readdirSync(resolve(projectRoot, 'public/assets/cinematics')).filter((name) => /\.(?:mp4|webm|mov)$/i.test(name));
     expect(actual.every((name) => planned.has(name))).toBe(true);
-    expect(actual).toEqual(expect.arrayContaining([
-      'lion_champion_reveal.mp4', 'lion_judgement.mp4', 'serpent_general_reveal.mp4',
-    ]));
+    expect(actual.sort()).toEqual([
+      'alaric_audience_arrival.mp4', 'bois_clair_arrival.mp4', 'bois_clair_sacrificed.mp4',
+      'bois_clair_saved.mp4', 'camp_departure.mp4', 'lion_judgement.mp4',
+      'lion_trial_route_ending.mp4', 'serpent_route_ending.mp4',
+    ]);
   });
 
   it('records exact current approved duration and byte totals', () => {

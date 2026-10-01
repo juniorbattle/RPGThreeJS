@@ -3,6 +3,7 @@ import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { validateShotSpec } from './cin4_shot_spec.mjs';
 import { probeMedia, technicalErrors } from './cin4_media.mjs';
+import { historicalVideoPath } from './historical_video_path.mjs';
 
 const root = process.cwd();
 const readJson = (path) => JSON.parse(readFileSync(resolve(root, path), 'utf8'));
@@ -23,7 +24,7 @@ const P1 = Object.freeze({
 
 describe('CIN-6C P1 adaptive cinematic production', () => {
   it('ships exactly eleven new local production descriptors', () => {
-    const manifest = readJson('public/assets/cinematics/manifest.json');
+    const manifest = readJson('tools/cinematics/specs/historical_cinematic_manifest_31.json');
     const ids = manifest.cinematics.map((entry) => entry.id);
     expect(ids).toHaveLength(32);
     expect(new Set(ids).size).toBe(32);
@@ -56,7 +57,7 @@ describe('CIN-6C P1 adaptive cinematic production', () => {
 
   it('decodes all eleven silent 1080p production masters', async () => {
     for (const [id, seconds] of Object.entries(P1)) {
-      const path = resolve(root, `public/assets/cinematics/${id}.mp4`);
+      const path = historicalVideoPath(root, id);
       expect(existsSync(path), id).toBe(true);
       const report = await probeMedia(path, root);
       expect(technicalErrors(report, seconds, true), id).toEqual([]);

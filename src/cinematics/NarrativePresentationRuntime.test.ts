@@ -5,6 +5,8 @@ import { resolve } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { CinematicPlayer } from './CinematicPlayer';
 import { CinematicRegistry } from './CinematicRegistry';
+import { resolveCinematicReduction } from './CinematicReductionPolicy';
+import { APPROVED_PRODUCTION_VIDEO_IDS } from './ApprovedProductionVideos';
 import { FINAL_PRESENTATION_BEATS } from './FinalPresentationRegistry.generated';
 import {
   NARRATIVE_PRESENTATION_MODES,
@@ -41,6 +43,10 @@ const audit = JSON.parse(readFileSync(
   resolve(process.cwd(), 'tools/cinematics/specs/final_presentation_mode_audit.json'),
   'utf8',
 )) as PlannedAudit;
+const production = JSON.parse(readFileSync(
+  resolve(process.cwd(), 'tools/cinematics/specs/production_presentation_modes.json'),
+  'utf8',
+)) as { approvedVideoIds: string[]; modeOverrides: Record<string, string> };
 const beats: readonly ResolvedPresentationBeat[] = FINAL_PRESENTATION_BEATS;
 
 function beat(id: string): ResolvedPresentationBeat {
@@ -64,22 +70,24 @@ describe('CIN-6D.6 presentation runtime', () => {
     ]);
   });
 
-  it('matches all 147 planned beat identities and exact mode counts', () => {
+  it('preserves all 147 historical beat identities with production mode conversions', () => {
     expect(beats).toHaveLength(147);
     const runtime = new Map(beats.map((entry) => [entry.beatId, entry]));
     for (const planned of audit.beats) {
-      expect(runtime.get(planned.beatId)?.mode, planned.beatId).toBe(planned.targetPresentationMode);
+      expect(runtime.get(planned.beatId)?.mode, planned.beatId).toBe(
+        production.modeOverrides[planned.beatId] ?? planned.targetPresentationMode,
+      );
       expect(runtime.get(planned.beatId)?.visualFamily, planned.beatId).toBe(planned.visualFamily);
     }
     expect(Object.fromEntries(PLAYER_FACING_SURFACE_MODES.map((mode) => [
       mode,
       beats.filter((entry) => entry.mode === mode).length,
     ]))).toEqual({
-      CINEMATIC_VIDEO: 29,
-      CINEMATIC_HOLD: 28,
-      TRAVEL_STILL: 19,
-      STATIC_TABLEAU: 51,
-      COMBAT: 18,
+      CINEMATIC_VIDEO: 8,
+      CINEMATIC_HOLD: 5,
+      TRAVEL_STILL: 31,
+      STATIC_TABLEAU: 77,
+      COMBAT: 24,
       GAMEPLAY_UI: 2,
     });
   });
@@ -97,7 +105,9 @@ describe('CIN-6D.6 presentation runtime', () => {
 
   it('keeps all 28 choice owners exact and all ten ATEs on tableaux', () => {
     for (const choice of audit.choiceAudit) {
-      expect(resolveDialoguePresentation(choice.dialogueId)?.mode, choice.dialogueId).toBe(choice.visualOwner);
+      expect(resolveDialoguePresentation(choice.dialogueId)?.mode, choice.dialogueId).toBe(
+        production.modeOverrides[`dialogue:${choice.dialogueId}`] ?? choice.visualOwner,
+      );
     }
     expect(audit.choiceAudit).toHaveLength(28);
     for (const ate of audit.ateAudit) {
@@ -119,9 +129,9 @@ describe('CIN-6D.6 presentation runtime', () => {
     expect(beats.filter((entry) => entry.mode === 'STATIC_TABLEAU' && !entry.tableauBackgroundId)).toEqual([]);
   });
 
-  it('validates all 19 Travel Still contracts identity by identity', () => {
+  it('validates all 31 production Travel Still contracts identity by identity', () => {
     const travelBeats = beats.filter((entry) => entry.mode === 'TRAVEL_STILL');
-    expect(travelBeats).toHaveLength(19);
+    expect(travelBeats).toHaveLength(31);
     for (const entry of travelBeats) {
       expect(entry.castOwnership, entry.beatId).toBe('TRAVEL_SURFACE_OWNS_ENVIRONMENT');
       expect(entry.staticCast, entry.beatId).toEqual([]);
@@ -134,9 +144,10 @@ describe('CIN-6D.6 presentation runtime', () => {
     }
   });
 
-  it('validates all 28 Hold contracts identity by identity', () => {
+  it('validates all five approved-video Hold contracts identity by identity', () => {
     const holdBeats = beats.filter((entry) => entry.mode === 'CINEMATIC_HOLD');
-    expect(holdBeats).toHaveLength(28);
+    expect(holdBeats).toHaveLength(5);
+    expect(holdBeats.every((entry) => !entry.beatId.startsWith('edge:'))).toBe(true);
     for (const entry of holdBeats) {
       expect(entry.castOwnership, entry.beatId).toBe('VIDEO_OWNS_CAST');
       expect(entry.staticCast, entry.beatId).toEqual([]);
@@ -148,9 +159,9 @@ describe('CIN-6D.6 presentation runtime', () => {
     }
   });
 
-  it('validates all 51 Static Tableau contracts identity by identity', () => {
+  it('validates all 77 production Static Tableau contracts identity by identity', () => {
     const tableauBeats = beats.filter((entry) => entry.mode === 'STATIC_TABLEAU');
-    expect(tableauBeats).toHaveLength(51);
+    expect(tableauBeats).toHaveLength(77);
     for (const entry of tableauBeats) {
       expect(entry.castOwnership, entry.beatId).toBe('STAGE_OWNS_CAST');
       expect(entry.tableauBackgroundId, entry.beatId).toBeTruthy();
@@ -161,14 +172,15 @@ describe('CIN-6D.6 presentation runtime', () => {
     }
   });
 
-  it('validates all 29 Cinematic Video contracts against the production manifest', () => {
+  it('limits the runtime registry to exactly the eight approved video slots', () => {
     const manifest = JSON.parse(readFileSync(
       resolve(process.cwd(), 'public/assets/cinematics/manifest.json'),
       'utf8',
     )) as { cinematics: Array<{ id: string }> };
     const manifestIds = new Set(manifest.cinematics.map((entry) => entry.id));
     const videoBeats = beats.filter((entry) => entry.mode === 'CINEMATIC_VIDEO');
-    expect(videoBeats).toHaveLength(29);
+    expect(videoBeats.map((entry) => entry.cinematicId).sort()).toEqual([...APPROVED_PRODUCTION_VIDEO_IDS].sort());
+    expect(production.approvedVideoIds).toEqual(APPROVED_PRODUCTION_VIDEO_IDS);
     for (const entry of videoBeats) {
       expect(entry.castOwnership, entry.beatId).toBe('VIDEO_OWNS_CAST');
       expect(entry.staticCast, entry.beatId).toEqual([]);
@@ -179,12 +191,41 @@ describe('CIN-6D.6 presentation runtime', () => {
     }
   });
 
+  it('retires all old MP4 and hold dependencies without losing dialogue identity', () => {
+    expect(Object.keys(production.modeOverrides)).toHaveLength(44);
+    for (const [beatId, mode] of Object.entries(production.modeOverrides)) {
+      const entry = beat(beatId);
+      expect(entry.mode, beatId).toBe(mode);
+      expect(entry.sourceAsset?.endsWith('.mp4') ?? false, beatId).toBe(false);
+      expect(entry.holdSourceCinematicId, beatId).toBeUndefined();
+      expect(entry.preloadRefs, beatId).not.toContainEqual(expect.stringMatching(/\.mp4$/));
+      if (beatId.startsWith('dialogue:')) {
+        expect(entry.dialogueId, beatId).toBe(beatId.slice('dialogue:'.length));
+        expect(entry.hasDialogue, beatId).toBe(true);
+      }
+    }
+  });
+
+  it('keeps the production reduction policy aligned with converted media beats', () => {
+    const classificationByMode = {
+      TRAVEL_STILL: 'CONVERT_TO_TRAVEL_STILL',
+      STATIC_TABLEAU: 'CONVERT_TO_STATIC_TABLEAU',
+      COMBAT: 'COMBAT_OWNED',
+    } as const;
+    for (const [beatId, mode] of Object.entries(production.modeOverrides)) {
+      if (!beatId.startsWith('media:')) continue;
+      expect(resolveCinematicReduction(beatId.slice('media:'.length))?.classification, beatId).toBe(
+        classificationByMode[mode as keyof typeof classificationByMode],
+      );
+    }
+  });
+
   it('locks the audience-to-road reference sequence', () => {
     expect(resolveCinematicPresentation('alaric_audience_arrival')?.mode).toBe('CINEMATIC_VIDEO');
     expect(resolveDialoguePresentation('lion_briefing')?.mode).toBe('CINEMATIC_HOLD');
     expect(resolveEdgePresentation('lion-audience', 'lion-opening-ambush')?.mode).toBe('TRAVEL_STILL');
-    expect(resolveCinematicPresentation('forest_journey_tension')?.mode).toBe('CINEMATIC_VIDEO');
-    expect(resolveDialoguePresentation('pre_opening_trail')?.mode).toBe('CINEMATIC_HOLD');
+    expect(resolveCinematicPresentation('forest_journey_tension')?.mode).toBe('TRAVEL_STILL');
+    expect(resolveDialoguePresentation('pre_opening_trail')?.mode).toBe('STATIC_TABLEAU');
     expect(beat('combat:forest_ambush').mode).toBe('COMBAT');
     expect(resolveDialoguePresentation('post_opening_trail')?.mode).toBe('STATIC_TABLEAU');
   });

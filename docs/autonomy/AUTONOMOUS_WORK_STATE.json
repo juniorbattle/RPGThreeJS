@@ -1,0 +1,73 @@
+{
+  "status": "IN_PROGRESS",
+  "runStartedAt": "2026-10-01T12:06:34.7146047Z",
+  "runEndedAt": "2026-10-01T12:55:00Z",
+  "activeTask": "CINEMATIC-EIGHT-SLOT-ALIGNMENT",
+  "activePhase": "Eight-slot source and shipped media aligned; final campaign browser continuity pending",
+  "activeSubtask": "Refresh saved-node refuge/witness and reduced-motion browser fixtures",
+  "workingBranch": "dev",
+  "lastKnownGoodCommit": "dev",
+  "lastPushedCommit": "origin/dev",
+  "completedThisRun": [
+    "Recovered clearly stale execution lock and fetched origin; dev and origin/dev began equal at da1678945c6d42fc76ccb0f3c8b13a7a81a01176",
+    "Initialized JSON state without resetting active cinematic item or queue",
+    "Converted six route-choice holds to travel still; 147 beat IDs retained",
+    "Moved 23 retired MP4s byte-identically to verified archive; production build ships exactly eight",
+    "Updated historical media tests and browser QA to current surfaces",
+    "Verified opening dialogue/choice/combat/T0 handoff and Valmir two-choice still in Chromium"
+  ],
+  "filesChanged": [
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md and .json",
+    "docs/autonomy/CINEMATIC_CONVERSION_MATRIX.md",
+    "tools/cinematics/specs/production_presentation_modes.json and historical_cinematic_manifest_31.json",
+    "src/cinematics/FinalPresentationRegistry.generated.ts and related policy/registry/Journey sources and tests",
+    "public/assets/cinematics/manifest.json",
+    "23 MP4 renames from public/assets/cinematics to tools/cinematics/archive/retired-video-masters",
+    "tools/cinematics/archive/retired-video-masters/inventory.json and README.md",
+    "tools/cinematics/historical_video_path.mjs and six dated audit suites",
+    "tools/cinematics/run_cin6d6_browser_qa.mjs and run_eight_slot_browser_qa.mjs"
+  ],
+  "testsRun": [
+    "Focused Cinematics/Journey/game Vitest: 37 files, 375 tests",
+    "Historical CIN-5/CIN-6 media Vitest: 6 files, 111 tests",
+    "TypeScript tsc --noEmit",
+    "Contract validator",
+    "Vite production build and dist MP4 count",
+    "Chromium isolated registry/fallback 1366x768 and 390x844",
+    "Chromium opening through T0 and Valmir two-choice still at 1920x1080"
+  ],
+  "testsPassed": [
+    "375/375 focused source tests",
+    "111/111 historical media tests",
+    "TypeScript",
+    "8 locked contracts and 8 slots",
+    "Vite build with exactly 8 MP4s",
+    "Isolated browser QA at two viewports",
+    "Opening and Valmir browser flows with no actionable errors or black flashes"
+  ],
+  "testsRemaining": [
+    "Update old first/second refuge and witness saved-node browser fixtures to current T0/refuge surfaces",
+    "Run desktop and 390x844 reduced-motion choice/combat continuity",
+    "Audit remaining executable legacy trigger references and finalize item-3 compliance matrix"
+  ],
+  "blockers": [],
+  "remainingWork": [
+    "Full CIN-6D.6 saved-node refuge/witness browser driver is obsolete at first-refuge .exploration-stop expectation",
+    "Reduced-motion campaign flow and final task-level compliance check remain"
+  ],
+  "nextAction": "In tools/cinematics/run_cin6d6_browser_qa.mjs runRefuge(), replace installNodeSave('lion-first-refuge') .exploration-stop assumption with current authoritative T0/refuge continuation; rerun D/H, witness and 390x844 reduced-motion Valmir/opening under ignored tmp/cinematics/eight-slot-qa/, then finish item-3 compliance.",
+  "taskQueue": [
+    "PRODUCTION-CONTRACTS-LOCK-1: COMPLETE",
+    "Contract drift audit: COMPLETE",
+    "CINEMATIC-EIGHT-SLOT-ALIGNMENT: ACTIVE",
+    "Retire T2/T4 playable runtime",
+    "Generalize Traversal from T0",
+    "Produce T1",
+    "Produce T3",
+    "Remaster eight approved videos if tools permit",
+    "Complete demo QA and polish",
+    "Audio decision after structure lock"
+  ],
+  "creditStatus": "AVAILABLE",
+  "contractComplianceStatus": "IN_PROGRESS; current checkpoint passes constitution/art/characters/environments/narrative/traversal/combat/save boundaries; QA_EVIDENCE blocked pending final campaign flows; no LOCKED rule modified"
+}

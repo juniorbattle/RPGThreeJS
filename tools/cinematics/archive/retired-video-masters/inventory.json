@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "masters": [
+    {
+      "id": "abandoned_cart_reveal",
+      "originalPath": "public/assets/cinematics/abandoned_cart_reveal.mp4",
+      "bytes": 5125482,
+      "gitBlob": "983aa4b6e4042fa09f1af6eba95215627c983201",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/abandoned_cart_reveal.mp4",
+      "sha256": "535b70307fa5aebadd846dc91f1bbcebbc8ad8f845c7c4d61823808def7a57f8"
+    },
+    {
+      "id": "cedric_encounter",
+      "originalPath": "public/assets/cinematics/cedric_encounter.mp4",
+      "bytes": 3519379,
+      "gitBlob": "be8b3ca4e8f0d86a67db289cc3b6fb22b9c7dd90",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/cedric_encounter.mp4",
+      "sha256": "aa41a28e8b8829eb9c1c4122184ace9756f01676c2bbc903899e2f366e819a82"
+    },
+    {
+      "id": "final_refuge_dossier",
+      "originalPath": "public/assets/cinematics/final_refuge_dossier.mp4",
+      "bytes": 16258584,
+      "gitBlob": "4a637a23339a378c6c249b9a8e0e36fa480939ce",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/final_refuge_dossier.mp4",
+      "sha256": "fa821768883d1afd897216c60c81f979c998db0b1437e1c7eb74f098b58f5ca2"
+    },
+    {
+      "id": "first_refuge_arrival",
+      "originalPath": "public/assets/cinematics/first_refuge_arrival.mp4",
+      "bytes": 10231757,
+      "gitBlob": "66012b8a0de42ff5b1082a75484ab8b8d1cb0fd1",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/first_refuge_arrival.mp4",
+      "sha256": "31b4a50f678d6d7431a855d7056bbcee66f44f8a623081be972b79986a55c56e"
+    },
+    {
+      "id": "first_refuge_departure",
+      "originalPath": "public/assets/cinematics/first_refuge_departure.mp4",
+      "bytes": 11142441,
+      "gitBlob": "dc3419a80aac78dc1b7a33660b60ff53f20a8654",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/first_refuge_departure.mp4",
+      "sha256": "a3078c6e149c02f78be58063d9f884004a7d3b0265ba29481506fe138d194425"
+    },
+    {
+      "id": "forest_journey_tension",
+      "originalPath": "public/assets/cinematics/forest_journey_tension.mp4",
+      "bytes": 17508957,
+      "gitBlob": "39e1efb8c9eea7a144a3f16273d31d7c2a2b7eaa",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/forest_journey_tension.mp4",
+      "sha256": "385f5f9b99b22d9710ef1ef7a89fd21a8b59e392664a51a2480eab6167511fac"
+    },
+    {
+      "id": "garen_encounter",
+      "originalPath": "public/assets/cinematics/garen_encounter.mp4",
+      "bytes": 3497854,
+      "gitBlob": "ad3f91ae5a387d2a1f8e7ccf68f7a9513f2c4c5a",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/garen_encounter.mp4",
+      "sha256": "2d9bb62eba5bc8c17a84beebe81ffd916d805a9063398054d424865fff5646a7"
+    },
+    {
+      "id": "injured_merchant_encounter",
+      "originalPath": "public/assets/cinematics/injured_merchant_encounter.mp4",
+      "bytes": 3199828,
+      "gitBlob": "f84177a2080c7c61b2e698bdfc824ebe2ab06a84",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/injured_merchant_encounter.mp4",
+      "sha256": "a1e6de8c63d1d83d5ee51c5de6548a62b068392fdcd746a948f231d253405892"
+    },
+    {
+      "id": "lion_champion_reveal",
+      "originalPath": "public/assets/cinematics/lion_champion_reveal.mp4",
+      "bytes": 10692772,
+      "gitBlob": "06812dc7169411e47594bf3928e9092f19957ba2",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/lion_champion_reveal.mp4",
+      "sha256": "2d581e76e5cc0a37d4633fd6d7166210780da55475f54abadfd90aedaf30b04c"
+    },
+    {
+      "id": "refugees_approach",
+      "originalPath": "public/assets/cinematics/refugees_approach.mp4",
+      "bytes": 9713540,
+      "gitBlob": "cb27a60219a1486fdb37c2744210cbaa8e60b4b2",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/refugees_approach.mp4",
+      "sha256": "5f1d76f8686c2bf2f9775576da6d50649cb33e1c5157b46e6d3f9d5b719e5a28"
+    },
+    {
+      "id": "ruins_approach_context",
+      "originalPath": "public/assets/cinematics/ruins_approach_context.mp4",
+      "bytes": 17438390,
+      "gitBlob": "c1d1c50d8d0d5cb8556c7ba46f8c912fe8fd33a7",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/ruins_approach_context.mp4",
+      "sha256": "adf235b6d84889cf80059ae314e7472f2c07e9dcd2f7e9cf99cf7f936bebe525"
+    },
+    {
+      "id": "second_refuge_departure",
+      "originalPath": "public/assets/cinematics/second_refuge_departure.mp4",
+      "bytes": 11299422,
+      "gitBlob": "e6fba4ceff78c4162cdf52a76c72b12f9e239af9",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/second_refuge_departure.mp4",
+      "sha256": "a7d4210b8223a6ef3946fc63bdb138310ed61168f6d902bfc0eb4f74dbe9be3d"
+    },
+    {
+      "id": "serpent_duelist_reveal",
+      "originalPath": "public/assets/cinematics/serpent_duelist_reveal.mp4",
+      "bytes": 7880492,
+      "gitBlob": "ab57cc0b3fd0e8f4ff50e0f23d361e5a1630703e",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/serpent_duelist_reveal.mp4",
+      "sha256": "9bf2e927a0940b5b0b3d116a7dbb692bf00c1371b19fa985f154bf08527c2560"
+    },
+    {
+      "id": "serpent_general_reveal",
+      "originalPath": "public/assets/cinematics/serpent_general_reveal.mp4",
+      "bytes": 9331600,
+      "gitBlob": "d83241092f5269b15e7a78e40b710d076e1c1312",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/serpent_general_reveal.mp4",
+      "sha256": "e8c918d292693e4bc7f612fc6f4fbcdb283c6d2f8095c805db287692e561a682"
+    },
+    {
+      "id": "serpent_informant_encounter",
+      "originalPath": "public/assets/cinematics/serpent_informant_encounter.mp4",
+      "bytes": 2183944,
+      "gitBlob": "ddb484a8227d78cdf0fb6f769254c36e4981d71b",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/serpent_informant_encounter.mp4",
+      "sha256": "5a1a79ed2c9c07f1da13aa2ed872be8823de7223324dba6faa2c7dc60507c069"
+    },
+    {
+      "id": "serpent_road_tension",
+      "originalPath": "public/assets/cinematics/serpent_road_tension.mp4",
+      "bytes": 11761479,
+      "gitBlob": "540442a27f0d9f64222da8ac1b676e5b1e06590b",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/serpent_road_tension.mp4",
+      "sha256": "33be67338637de8413738789b8a0fa067007ff65bae06081b229870817f56412"
+    },
+    {
+      "id": "shadow_signs",
+      "originalPath": "public/assets/cinematics/shadow_signs.mp4",
+      "bytes": 20631945,
+      "gitBlob": "b237148411f1143358082ab17f2eb40e7821864e",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/shadow_signs.mp4",
+      "sha256": "141d5e04d3573a1827cff7dbdc9efacb024d8a3ecab32a985b700da75a56f4c2"
+    },
+    {
+      "id": "shrine_reveal_context",
+      "originalPath": "public/assets/cinematics/shrine_reveal_context.mp4",
+      "bytes": 2380010,
+      "gitBlob": "f3949d72fcb1e96f2d42a1b85c0685fa2787f861",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/shrine_reveal_context.mp4",
+      "sha256": "e28a9ceb996e16291594f99e2905b25da35b316b0aafe1c058dfe5818d09f48c"
+    },
+    {
+      "id": "spider_nest_reveal",
+      "originalPath": "public/assets/cinematics/spider_nest_reveal.mp4",
+      "bytes": 7437452,
+      "gitBlob": "7a78f4c02d55493218b7be2fbea8eb9bb8e0c8a3",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/spider_nest_reveal.mp4",
+      "sha256": "7f98991ba6ae91f7904355736875d822c70b5af48ebeeef64598730405e57b0b"
+    },
+    {
+      "id": "troll_crossing_reveal",
+      "originalPath": "public/assets/cinematics/troll_crossing_reveal.mp4",
+      "bytes": 6689991,
+      "gitBlob": "64d2753456ed5edfbaca835def91db089e2d6564",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/troll_crossing_reveal.mp4",
+      "sha256": "6ddb0044b5259870bbad78d31a57ab77dc7d47268310514ef8d7e00a2a6d3281"
+    },
+    {
+      "id": "valmir_route_fork",
+      "originalPath": "public/assets/cinematics/valmir_route_fork.mp4",
+      "bytes": 13094926,
+      "gitBlob": "8ea8bd498b6a6d15e865f5889f798ed8d46f16c5",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/valmir_route_fork.mp4",
+      "sha256": "63a4a0c3793d6e29ce8fd94b1478dfab59e40f856d53a01915e47fb9a6343261"
+    },
+    {
+      "id": "witnesses_encounter",
+      "originalPath": "public/assets/cinematics/witnesses_encounter.mp4",
+      "bytes": 12057859,
+      "gitBlob": "e8fa6c4188276207d9b90a10d258fb91242403a2",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/witnesses_encounter.mp4",
+      "sha256": "de8f577bb18dc4ce30e0ec3d902fe7f27c4778154ade2e6e1a14eeec99ac4b98"
+    },
+    {
+      "id": "young_dragon_encounter",
+      "originalPath": "public/assets/cinematics/young_dragon_encounter.mp4",
+      "bytes": 7945209,
+      "gitBlob": "c746a38b6711dab330dc40627960cf8178927b4d",
+      "archivePath": "tools/cinematics/archive/retired-video-masters/young_dragon_encounter.mp4",
+      "sha256": "a9cf74c8372981aeb7afdde9efa2a8e5222284fe098b6be5f03223d2d22bdc91"
+    }
+  ],
+  "purpose": "Byte-identical archive of 23 video masters retired from the production public directory by the eight-slot contract",
+  "sourceCommit": "da1678945c6d42fc76ccb0f3c8b13a7a81a01176",
+  "historicalManifest": "tools/cinematics/specs/historical_cinematic_manifest_31.json"
+}

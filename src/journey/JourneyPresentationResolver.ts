@@ -1,5 +1,6 @@
 import type { RunNode } from '../game/types';
 import { resolveCin6cContentCandidateId } from '../cinematics/Cin6aPresentation';
+import { isApprovedProductionVideo } from '../cinematics/ApprovedProductionVideos';
 import { resolveCinematicPresentation, resolveEdgePresentation } from '../cinematics/NarrativePresentationResolver';
 import type { ResolvedPresentationBeat } from '../cinematics/NarrativePresentationMode';
 
@@ -107,7 +108,9 @@ export function resolveCandidateCinematicIds(
       if (cinematicId && !ids.includes(cinematicId)) ids.push(cinematicId);
     }
     const contentCinematicId = resolveCin6cContentCandidateId(node.contentId);
-    if (contentCinematicId && !ids.includes(contentCinematicId)) ids.push(contentCinematicId);
+    if (contentCinematicId && isApprovedProductionVideo(contentCinematicId) && !ids.includes(contentCinematicId)) {
+      ids.push(contentCinematicId);
+    }
   }
   return ids;
 }

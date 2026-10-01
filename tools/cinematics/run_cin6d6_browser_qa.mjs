@@ -64,8 +64,9 @@ async function readStage(page) {
 function assertStage(stage, expectedMode, label) {
   if (!stage || stage.mode !== expectedMode) throw new Error(`${label}: expected ${expectedMode}, got ${JSON.stringify(stage)}.`);
   if (stage.primarySurfaces > 1 || stage.primaryInvariant === 'FAIL') throw new Error(`${label}: multiple primary surfaces: ${JSON.stringify(stage)}.`);
-  if ((expectedMode === 'CINEMATIC_VIDEO' || expectedMode === 'CINEMATIC_HOLD') && stage.staticActors) {
-    throw new Error(`${label}: media-owned cast duplicated by ${stage.staticActors} static actors.`);
+  if ((expectedMode === 'CINEMATIC_VIDEO' || expectedMode === 'CINEMATIC_HOLD')
+    && stage.ownership === 'VIDEO_OWNS_CAST' && stage.staticActors) {
+    throw new Error(`${label}: media-owned cast duplicated by ${stage.staticActors} static actors: ${JSON.stringify(stage)}.`);
   }
   if (expectedMode === 'TRAVEL_STILL' && (stage.staticActors || stage.dialogues)) {
     throw new Error(`${label}: Travel Still contains static actors or dialogue: ${JSON.stringify(stage)}.`);
@@ -129,11 +130,15 @@ async function waitForJourney(page) {
   const state = await page.evaluate(() => ({
     bodyMode: document.body.dataset.mode ?? null,
     bodyClass: document.body.className,
+    transition: document.querySelector('.scene-transition')?.className ?? null,
+    transitionOpacity: document.querySelector('.scene-transition') instanceof HTMLElement
+      ? getComputedStyle(document.querySelector('.scene-transition')).opacity : null,
     stage: document.querySelector('.narrative-stage')?.outerHTML.slice(0, 600) ?? null,
     dialogues: document.querySelectorAll('.dialogue').length,
     journeys: document.querySelectorAll('.journey-overlay').length,
     combats: document.querySelectorAll('iframe.combat-frame').length,
     exploration: document.querySelectorAll('.exploration-stop').length,
+    traversal: document.querySelectorAll('.traversal-t0').length,
     chrome: document.querySelector('#ui-root')?.textContent?.replace(/\s+/g, ' ').trim().slice(0, 300) ?? null,
   }));
   throw new Error(`Journey boundary did not become visible: ${JSON.stringify(state)}.`);
@@ -234,14 +239,14 @@ async function runOpening(page) {
 
   await waitForJourney(page);
   const road = await readStage(page);
-  assertStage(road, 'TRAVEL_STILL', 'audience to road');
-  const roadShot = await capture(page, 'a-road-travel-still');
+  assertStage(road, 'STATIC_TABLEAU', 'audience to road');
+  const roadShot = await capture(page, 'a-road-static-tableau');
   await clickJourney(page);
 
   await waitForDialogue(page, 'pre_opening_trail');
-  const forestHold = await readStage(page);
-  assertStage(forestHold, 'CINEMATIC_HOLD', 'forest precombat hold');
-  const forestShot = await capture(page, 'a-forest-precombat-hold');
+  const forestTableau = await readStage(page);
+  assertStage(forestTableau, 'STATIC_TABLEAU', 'forest precombat tableau');
+  const forestShot = await capture(page, 'a-forest-precombat-tableau');
   await finishDialogue(page, 'pre_opening_trail');
   await winCombat(page);
 
@@ -250,10 +255,19 @@ async function runOpening(page) {
   assertStage(postCombat, 'STATIC_TABLEAU', 'opening postcombat tableau');
   const postShot = await capture(page, 'a-postcombat-tableau');
   await finishDialogue(page, 'post_opening_trail');
-  await waitForJourney(page);
+  await page.locator('.traversal-t0:visible').waitFor({ timeout: 20_000 });
+  const traversalHandoff = await page.evaluate(() => ({
+    surface: document.body.dataset.campaignSurface ?? null,
+    mounted: document.querySelectorAll('.traversal-t0').length,
+    dialogueMounted: document.querySelectorAll('.dialogue').length,
+  }));
+  if (traversalHandoff.surface !== 'traversal' || traversalHandoff.mounted !== 1) {
+    throw new Error(`Opening combat did not hand off to T0: ${JSON.stringify(traversalHandoff)}.`);
+  }
+  const traversalShot = await capture(page, 'a-traversal-handoff');
   const flashes = await readFlashSampler(page);
 
-  return { id: 'A', pass: true, campHold, campDeparture, audienceHold, audienceChoices, road, forestHold, postCombat, flashes, screenshots: [campShot, audienceShot, roadShot, forestShot, postShot] };
+  return { id: 'A', pass: true, campHold, campDeparture, audienceHold, audienceChoices, road, forestTableau, postCombat, traversalHandoff, flashes, screenshots: [campShot, audienceShot, roadShot, forestShot, postShot, traversalShot] };
 }
 
 async function runRefuge(page, id, nodeId, expectedBeat, flags) {
@@ -279,14 +293,14 @@ async function runValmir(page) {
   await winCombat(page);
   await waitForJourney(page);
   const fork = await readStage(page);
-  assertStage(fork, 'CINEMATIC_HOLD', 'Valmir fork');
+  assertStage(fork, 'TRAVEL_STILL', 'Valmir fork');
   const routeChoices = await page.locator('.journey-overlay__choice:not([disabled]):visible').count();
   if (routeChoices !== 2) throw new Error(`Valmir fork expected two routes, got ${routeChoices}.`);
-  const valmirVideoRequested = await page.evaluate(() => performance.getEntriesByType('resource')
+  const retiredVideoRequested = await page.evaluate(() => performance.getEntriesByType('resource')
     .some((entry) => entry.name.includes('/assets/cinematics/valmir_route_fork.mp4')));
-  if (!valmirVideoRequested) throw new Error('Valmir fork cinematic was not requested before the Travel Still choice surface.');
+  if (retiredVideoRequested) throw new Error('Valmir fork requested its retired video.');
   const screenshot = await capture(page, 'e-valmir-fork');
-  return { id: 'E', pass: true, precombat, fork, routeChoices, valmirVideoRequested, screenshot };
+  return { id: 'E', pass: true, precombat, fork, routeChoices, retiredVideoRequested, screenshot };
 }
 
 async function installFlashSampler(page) {
@@ -295,7 +309,7 @@ async function installFlashSampler(page) {
     const timer = window.setInterval(() => {
       const transition = document.querySelector('.scene-transition');
       const covered = transition instanceof HTMLElement && Number(getComputedStyle(transition).opacity) > 0.05;
-      const hasSurface = Boolean(document.querySelector('.narrative-stage,.journey-overlay,.dialogue,iframe.combat-frame,.exploration-stop,.travel-view'));
+      const hasSurface = Boolean(document.querySelector('.narrative-stage,.journey-overlay,.dialogue,iframe.combat-frame,.exploration-stop,.travel-view,.traversal-t0'));
       samples.push({
         at: performance.now(),
         travel: Boolean(document.querySelector('.travel-view')),
@@ -332,6 +346,7 @@ try {
   if (process.env.CIN6D6_VALMIR_ONLY !== '1') {
     const openingPage = await context.newPage();
     const openingDiagnostics = diagnosticsFor(openingPage);
+    result.diagnostics = openingDiagnostics;
     const opening = await runOpening(openingPage);
     result.flows.push(opening);
     result.flashes = opening.flashes;

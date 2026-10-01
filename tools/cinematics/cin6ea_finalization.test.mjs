@@ -3,6 +3,7 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { verifiedRetiredOriginalPaths } from './historical_video_path.mjs';
 
 const root = process.cwd();
 const baseline = '57ba69cf718ea630cc9306c4122666fd6b58420f';
@@ -91,6 +92,10 @@ describe('CIN-6E-A final operator approval and visual production lock', () => {
 
   it('changes no protected game system, production media or canonical sprite outside authorized presentation-only runtime proofs', () => {
     const authorizedPostLockFiles = new Set([
+      // PRODUCTION-CONTRACTS-LOCK-1 item 3 authorizes the eight-slot manifest and Journey preload conversion.
+      'public/assets/cinematics/manifest.json',
+      'src/journey/JourneyPresentationResolver.ts',
+      'src/journey/JourneyPresentationResolver.test.ts',
       // T0-CAMPAIGN-GRAMMAR-CONSOLIDATION-1 explicitly authorizes the presentation-only departure seam.
       'src/journey/JourneyCampaignBoundary.ts',
       'src/journey/JourneyCampaignBoundary.test.ts',
@@ -189,6 +194,7 @@ describe('CIN-6E-A final operator approval and visual production lock', () => {
       'src/combat', 'src/vfx', 'src/journey',
       'public/assets/characters/pixel/full', 'public/assets/cinematics',
     ], { cwd: root, encoding: 'utf8' }).trim().split(/\r?\n/u).filter(Boolean);
-    expect(protectedDiff.filter((path) => !authorizedPostLockFiles.has(path))).toEqual([]);
+    const verifiedRetirements = verifiedRetiredOriginalPaths(root);
+    expect(protectedDiff.filter((path) => !authorizedPostLockFiles.has(path) && !verifiedRetirements.has(path))).toEqual([]);
   });
 });

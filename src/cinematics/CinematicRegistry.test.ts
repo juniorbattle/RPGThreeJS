@@ -94,46 +94,23 @@ describe('cinematic registry', () => {
     expect(Reflect.set(VIDEO_CINEMATIC_TRIGGERS.beforeCombat, 'extra', 'not-allowed')).toBe(false);
   });
 
-  it('ships the QA placeholder and all thirty-one approved production videos through CIN-6C P1', () => {
+  it('ships the QA placeholder and exactly eight approved production videos', () => {
     const raw = readFileSync(join(process.cwd(), 'public', 'assets', 'cinematics', 'manifest.json'), 'utf-8');
     const parsed = parseVideoCinematicManifest(JSON.parse(raw));
     expect(parsed?.cinematics.map((descriptor) => descriptor.id)).toEqual([
       'qa-placeholder',
       'lion_judgement',
-      'serpent_general_reveal',
-      'lion_champion_reveal',
-      'forest_journey_tension',
       'camp_departure',
       'alaric_audience_arrival',
-      'refugees_approach',
-      'first_refuge_arrival',
-      'first_refuge_departure',
-      'valmir_route_fork',
       'bois_clair_arrival',
       'bois_clair_saved',
       'bois_clair_sacrificed',
-      'second_refuge_departure',
-      'witnesses_encounter',
-      'ruins_approach_context',
-      'shadow_signs',
-      'final_refuge_dossier',
       'serpent_route_ending',
       'lion_trial_route_ending',
-      'cedric_encounter',
-      'garen_encounter',
-      'serpent_road_tension',
-      'shrine_reveal_context',
-      'injured_merchant_encounter',
-      'abandoned_cart_reveal',
-      'spider_nest_reveal',
-      'troll_crossing_reveal',
-      'serpent_duelist_reveal',
-      'young_dragon_encounter',
-      'serpent_informant_encounter',
     ]);
     expect(parsed?.cinematics[0]?.placeholderOnly).toBe(true);
     const real = parsed?.cinematics.slice(1) ?? [];
-    expect(real).toHaveLength(31);
+    expect(real).toHaveLength(8);
     for (const descriptor of real) {
       expect(descriptor.placeholderOnly).not.toBe(true);
       expect(descriptor.sources).toEqual([{ src: `/assets/cinematics/${descriptor.id}.mp4`, type: 'video/mp4' }]);

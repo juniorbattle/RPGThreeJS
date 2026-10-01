@@ -154,6 +154,7 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .qa-lab__header { display:flex; align-items:end; justify-content:space-between; gap:24px; max-width:1120px; margin:0 auto 10px; padding-bottom:18px; border-bottom:1px solid rgba(244,217,139,.26); }
 .qa-lab h1 { margin:0; color:var(--gold-bright); font:700 clamp(32px,5vw,58px)/.95 Cinzel,serif; letter-spacing:.035em; text-transform:uppercase; }
 .qa-lab__header button { flex:0 0 auto; border:1px solid rgba(244,217,139,.48); border-radius:4px; padding:11px 15px; background:#0a1324; color:var(--cream); cursor:pointer; font:700 10px Cinzel,serif; letter-spacing:.1em; text-transform:uppercase; }
+@media (max-width:600px) { .qa-lab__header { align-items:flex-start; flex-direction:column; } .qa-lab__header button { align-self:flex-start; } .qa-lab__grid { grid-template-columns:minmax(0,1fr); } }
 .qa-lab__lead,.qa-lab__result { max-width:1120px; margin:14px auto 20px; color:#c4d1e4; font:500 14px/1.55 Inter,sans-serif; }
 .qa-lab__result { padding:10px 13px; border-left:2px solid #72c7ff; background:rgba(30,77,111,.25); color:#d9f1ff; }
 .qa-lab__section { max-width:1120px; margin:26px auto 12px; color:var(--gold-bright); font:700 12px Cinzel,serif; letter-spacing:.14em; text-transform:uppercase; }

@@ -46,7 +46,7 @@ describe('CIN-6D final narrative continuity lock', () => {
 
   it('classifies all current production masters and the one missing post-audience beat', () => {
     const plan = readJson('tools/cinematics/specs/final_cinematic_remaster_queue.json');
-    const manifest = readJson('public/assets/cinematics/manifest.json');
+    const manifest = readJson('tools/cinematics/specs/historical_cinematic_manifest_31.json');
     const productionIds = manifest.cinematics.filter((entry: any) => !entry.placeholderOnly).map((entry: any) => entry.id);
     expect(plan.existingProductionMasters.map((entry: any) => entry.runtimeId)).toEqual(productionIds);
     expect(plan.existingProductionMasters).toHaveLength(31);

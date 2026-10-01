@@ -61,10 +61,7 @@ describe('journey presentation resolver', () => {
     const context = branchContext();
     const resolved = resolveBoundaryCinematic(context);
     expect(resolved).toEqual({ key: 'node:lion-refugees:arrival', cinematicId: undefined });
-    expect(resolveCandidateCinematicIds(context)).toEqual([
-      'injured_merchant_encounter',
-      'serpent_road_tension',
-    ]);
+    expect(resolveCandidateCinematicIds(context)).toEqual([]);
     expect(resolveJourneyPresentation('node:lion-refugees:arrival')).toBeUndefined();
     expect(resolveBoundaryCinematic(context, {}).cinematicId).toBeUndefined();
   });
@@ -95,8 +92,6 @@ describe('journey presentation resolver', () => {
     })).toEqual([
       'clip-edge-a',
       'clip-arrival-a',
-      'injured_merchant_encounter',
-      'serpent_road_tension',
     ]);
   });
 
@@ -105,7 +100,7 @@ describe('journey presentation resolver', () => {
     const ids = resolveCandidateCinematicIds(context, {
       'node:lion-final-judgement:arrival': 'clip-finale',
     });
-    expect(ids).toEqual(['injured_merchant_encounter', 'serpent_road_tension']);
+    expect(ids).toEqual([]);
     expect(ids).not.toContain('clip-finale');
   });
 
@@ -116,6 +111,6 @@ describe('journey presentation resolver', () => {
         { id: 'a', contentId: 'forest_patrol' },
         { id: 'b', contentId: 'serpent_reprisals' },
       ] as RunNode[],
-    })).toEqual(['serpent_road_tension']);
+    })).toEqual([]);
   });
 });

@@ -27,7 +27,8 @@ export async function validateCinematicVisualPolishAudit(input, options = {}) {
   if (JSON.stringify(input.criteriaOrder) !== JSON.stringify(VISUAL_POLISH_CRITERIA)) errors.push('criteriaOrder must match the CIN-6.6 review contract.');
   if (!Array.isArray(input.entries)) errors.push('entries must be an array.');
 
-  const manifest = JSON.parse(await readFile(resolve(projectRoot, 'public/assets/cinematics/manifest.json'), 'utf8'));
+  // This validator reproduces the dated CIN-6.6 audit of all 31 historical masters.
+  const manifest = JSON.parse(await readFile(resolve(projectRoot, 'tools/cinematics/specs/historical_cinematic_manifest_31.json'), 'utf8'));
   const production = manifest.cinematics.filter((entry) => entry.sources?.[0]?.src?.endsWith('.mp4'));
   const expectedIds = production.map((entry) => entry.id);
   const ids = new Set();

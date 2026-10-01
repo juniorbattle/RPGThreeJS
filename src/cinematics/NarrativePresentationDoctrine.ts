@@ -1,5 +1,6 @@
 ﻿import { z } from 'zod';
 import type { PlayerFacingSurfaceMode } from './NarrativePresentationMode';
+import { APPROVED_PRODUCTION_VIDEO_IDS, isApprovedProductionVideo } from './ApprovedProductionVideos';
 
 /**
  * Narrative Presentation Doctrine - Phase 4C-GLM.3
@@ -11,8 +12,8 @@ import type { PlayerFacingSurfaceMode } from './NarrativePresentationMode';
  * what tier those cinematics are, where they are placed, and how combat
  * outcomes relate to each beat.
  *
- * Authoritative doctrine document:
- *   docs/art-direction/option-c/narrative-presentation-doctrine.md
+ * The historical Option C classification below is normalized to the locked
+ * eight-slot production decision. Main-event status does not require video.
  *
  * Invariants enforced here mirror the doctrine document and are validated
  * by `validateNarrativePresentationDoctrine` below.
@@ -126,7 +127,7 @@ export type NarrativePresentationDefinition = z.infer<
  * matrix. It is machine-readable and validated by
  * `validateNarrativePresentationDoctrine`.
  */
-export const NARRATIVE_PRESENTATION_DOCTRINE: readonly NarrativePresentationDefinition[] = Object.freeze([
+const HISTORICAL_NARRATIVE_PRESENTATION_DOCTRINE: readonly NarrativePresentationDefinition[] = Object.freeze([
   // --- Prologue / opening ---
   { beatId: 'media:camp_departure', primaryInteractiveMode: 'NONE', mainEvent: true, cinematicRequirement: 'REQUIRED', cinematicTier: 'MAJOR', cinematicPlacement: 'TBD', combatOutcome: 'NONE', notes: 'Prologue opening - company leaves the fallen camp.' },
   { beatId: 'dialogue:acte_ouverture', primaryInteractiveMode: 'STATIC_TABLEAU', mainEvent: false, cinematicRequirement: 'NONE', cinematicTier: 'NONE', cinematicPlacement: 'TBD', combatOutcome: 'NONE', notes: 'Opening camp dialogue.' },
@@ -285,6 +286,20 @@ export const NARRATIVE_PRESENTATION_DOCTRINE: readonly NarrativePresentationDefi
   { beatId: 'dialogue:shadow_signs', primaryInteractiveMode: 'STATIC_TABLEAU', mainEvent: false, cinematicRequirement: 'NONE', cinematicTier: 'NONE', cinematicPlacement: 'TBD', combatOutcome: 'NONE', notes: 'Shadow signs dialogue.' },
 ]);
 
+/** Main-event and combat meaning survives; only eight media beats require video. */
+export const NARRATIVE_PRESENTATION_DOCTRINE: readonly NarrativePresentationDefinition[] = Object.freeze(
+  HISTORICAL_NARRATIVE_PRESENTATION_DOCTRINE.map((def) => {
+    const approvedVideo = def.beatId.startsWith('media:')
+      && isApprovedProductionVideo(def.beatId.slice('media:'.length));
+    return Object.freeze({
+      ...def,
+      cinematicRequirement: approvedVideo ? 'REQUIRED' : 'NONE',
+      cinematicTier: approvedVideo ? 'MAJOR' : 'NONE',
+      cinematicPlacement: approvedVideo ? def.cinematicPlacement : 'TBD',
+    } as const);
+  }),
+);
+
 // ---------------------------------------------------------------------------
 // Section 6 - Validation rules
 // ---------------------------------------------------------------------------
@@ -298,15 +313,15 @@ export interface DoctrineValidationResult {
  * Validate the doctrine registry against all doctrine invariants.
  *
  * Rules:
- * 1. MAIN_EVENT â†’ cinematicRequirement must not be NONE
- * 2. PROLOGUE â†’ cinematicRequirement = REQUIRED
- * 3. EPILOGUE â†’ cinematicRequirement = REQUIRED
+ * 1. Only approved media beats require video, regardless of MAIN_EVENT.
+ * 2. The eight approved videos have MAJOR tier.
+ * 3. All other beats have no video requirement or tier.
  * 4. STATIC_TABLEAU â†’ dialogue allowed (no restriction)
  * 5. CINEMATIC_VIDEO â†’ normal dialogue forbidden (enforced by runtime, not here)
  * 6. CINEMATIC_HOLD â†’ dialogue forbidden, choices forbidden (enforced by runtime)
  * 7. COMBAT_OUTCOME = CONDITIONAL â†’ must not imply combat always occurs
  * 8. TBD cinematic placement â†’ valid state
- * 9. QUICK â†’ treated as CINEMATIC_VIDEO production subtype, not independent surface
+ * 9. QUICK remains historical vocabulary, not a production tier.
  * 10. primaryInteractiveMode must never be CINEMATIC_VIDEO
  */
 export function validateNarrativePresentationDoctrine(
@@ -317,20 +332,12 @@ export function validateNarrativePresentationDoctrine(
   for (const def of definitions) {
     const id = def.beatId;
 
-    // Rule 1: MAIN_EVENT â†’ cinematicRequirement MUST equal REQUIRED (strictly enforced)
-    // OPTIONAL is NOT valid for MAIN_EVENT.
-    if (def.mainEvent && def.cinematicRequirement !== 'REQUIRED') {
-      errors.push(`${id}: MAIN_EVENT requires cinematicRequirement = REQUIRED (got ${def.cinematicRequirement})`);
-    }
-
-    // Rule 2: PROLOGUE â†’ cinematicRequirement = REQUIRED
-    if (id.includes('camp_departure') && id.startsWith('media:') && def.cinematicRequirement !== 'REQUIRED') {
-      errors.push(`${id}: PROLOGUE requires cinematicRequirement = REQUIRED`);
-    }
-
-    // Rule 3: EPILOGUE â†’ cinematicRequirement = REQUIRED
-    if (id === 'dialogue:epilogue' && def.cinematicRequirement !== 'REQUIRED') {
-      errors.push(`${id}: EPILOGUE requires cinematicRequirement = REQUIRED`);
+    // The approved video list is independent of narrative main-event status.
+    const approvedVideo = id.startsWith('media:') && isApprovedProductionVideo(id.slice('media:'.length));
+    const required = approvedVideo ? 'REQUIRED' : 'NONE';
+    const tier = approvedVideo ? 'MAJOR' : 'NONE';
+    if (def.cinematicRequirement !== required || def.cinematicTier !== tier) {
+      errors.push(`${id}: production cinematic classification must be ${required}/${tier}`);
     }
 
     // Rule 7: COMBAT_OUTCOME = CONDITIONAL is valid, no additional constraint
@@ -347,6 +354,9 @@ export function validateNarrativePresentationDoctrine(
       errors.push(`${def.beatId}: duplicate doctrine definition`);
     }
     seen.add(def.beatId);
+  }
+  for (const videoId of APPROVED_PRODUCTION_VIDEO_IDS) {
+    if (!seen.has(`media:${videoId}`)) errors.push(`media:${videoId}: approved production video beat missing`);
   }
 
   return { valid: errors.length === 0, errors };

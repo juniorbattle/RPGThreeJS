@@ -236,7 +236,7 @@ describe('CIN-2 campaign presentation bridge', () => {
     expect(VIDEO_CINEMATIC_TRIGGERS.afterCombat).toEqual({});
     expect(VIDEO_CINEMATIC_TRIGGERS.chapterBeat).toEqual({});
 
-    const manifestPath = resolve(process.cwd(), 'public/assets/cinematics/manifest.json');
+    const manifestPath = resolve(process.cwd(), 'tools/cinematics/specs/historical_cinematic_manifest_31.json');
     const manifest = parseVideoCinematicManifest(JSON.parse(readFileSync(manifestPath, 'utf8')));
     expect(manifest?.cinematics.map((descriptor) => descriptor.id)).toEqual([
       'qa-placeholder',
@@ -283,6 +283,7 @@ describe('CIN-2 campaign presentation bridge', () => {
       }
     };
     walk(resolve(process.cwd(), 'public'));
+    walk(resolve(process.cwd(), 'tools/cinematics/archive/retired-video-masters'));
     expect(videos.map((path) => path.replaceAll('\\', '/').split('/').at(-1)).sort()).toEqual([
       'abandoned_cart_reveal.mp4',
       'alaric_audience_arrival.mp4',

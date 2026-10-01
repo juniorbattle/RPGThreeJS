@@ -3,11 +3,13 @@ import { resolve } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { describe, expect, it } from 'vitest';
 import { probeMedia, sha256, technicalErrors } from './cin4_media.mjs';
+import { historicalVideoPath } from './historical_video_path.mjs';
 
 const projectRoot = process.cwd();
 const readJson = (path) => JSON.parse(readFileSync(resolve(projectRoot, path), 'utf8'));
 const census = readJson('tools/cinematics/specs/campaign_cinematic_census.json');
-const manifest = readJson('public/assets/cinematics/manifest.json');
+const manifest = readJson('tools/cinematics/specs/historical_cinematic_manifest_31.json');
+const retiredInventory = readJson('tools/cinematics/archive/retired-video-masters/inventory.json');
 const boisSpec = readJson('tools/cinematics/specs/cin6b/bois_clair_sacrificed.json');
 const lionSpec = readJson('tools/cinematics/specs/cin6b/lion_trial_route_ending.json');
 
@@ -40,13 +42,15 @@ describe('CIN-6B P0 completion production contract', () => {
       expect(descriptor.placeholderOnly).not.toBe(true);
       expect(descriptor.sources).toEqual([{ src: `/assets/cinematics/${descriptor.id}.mp4`, type: 'video/mp4' }]);
       expect(descriptor.sources[0].src).not.toMatch(/^https?:/i);
-      expect(existsSync(resolve(projectRoot, 'public', descriptor.sources[0].src.replace(/^\//, '')))).toBe(true);
+      expect(existsSync(historicalVideoPath(projectRoot, descriptor.id))).toBe(true);
     }
   });
 
   it('preserves the five relevant approved continuity masters byte-for-byte', () => {
     for (const id of ['lion_judgement', 'serpent_general_reveal', 'lion_champion_reveal', 'serpent_route_ending', 'bois_clair_saved']) {
-      execFileSync('git', ['diff', '--quiet', 'HEAD', '--', `public/assets/cinematics/${id}.mp4`], { cwd: projectRoot });
+      const originalBlob = execFileSync('git', ['rev-parse', `${retiredInventory.sourceCommit}:public/assets/cinematics/${id}.mp4`], { cwd: projectRoot, encoding: 'utf8' }).trim();
+      const currentBlob = execFileSync('git', ['hash-object', historicalVideoPath(projectRoot, id)], { cwd: projectRoot, encoding: 'utf8' }).trim();
+      expect(currentBlob, id).toBe(originalBlob);
     }
   });
 
@@ -83,7 +87,7 @@ describe('CIN-6B P0 completion production contract', () => {
 
   it('decodes every production master with its manifest duration', async () => {
     for (const descriptor of manifest.cinematics.slice(1)) {
-      const path = resolve(projectRoot, 'public', descriptor.sources[0].src.replace(/^\//, ''));
+      const path = historicalVideoPath(projectRoot, descriptor.id);
       const report = await probeMedia(path, projectRoot);
       expect(technicalErrors(report, descriptor.durationMs / 1000, true), descriptor.id).toEqual([]);
     }

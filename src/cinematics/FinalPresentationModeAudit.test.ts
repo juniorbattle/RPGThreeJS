@@ -69,7 +69,7 @@ describe('CIN-6D.5 final presentation mode audit', () => {
 
   it('audits all production videos without changing their CIN-6D hashes', () => {
     const audit = readJson('tools/cinematics/specs/final_presentation_mode_audit.json');
-    const manifest = readJson('public/assets/cinematics/manifest.json');
+    const manifest = readJson('tools/cinematics/specs/historical_cinematic_manifest_31.json');
     const productionIds = manifest.cinematics.filter((entry: any) => !entry.placeholderOnly).map((entry: any) => entry.id);
     expect(audit.summary.productionVideos).toBe(31);
     expect(audit.productionVideoAudit.map((entry: any) => entry.runtimeId)).toEqual(productionIds);

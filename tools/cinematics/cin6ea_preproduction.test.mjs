@@ -3,6 +3,7 @@ import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { historicalVideoPath, verifiedRetiredOriginalPaths } from './historical_video_path.mjs';
 
 const root = process.cwd();
 const baseline = '57ba69cf718ea630cc9306c4122666fd6b58420f';
@@ -193,7 +194,7 @@ describe('CIN-6E-A final visual preproduction system', () => {
       ['valmir_route_fork', '63a4a0c3793d6e29ce8fd94b1478dfab59e40f856d53a01915e47fb9a6343261'],
     ]);
     for (const entry of data.references) {
-      expect(sha256(resolve(root, entry.source))).toBe(entry.sourceSha256);
+      expect(sha256(historicalVideoPath(root, entry.id))).toBe(entry.sourceSha256);
       expect(entry.whatWeKeep.length).toBeGreaterThan(2);
       expect(entry.whatWeImprove.length).toBeGreaterThan(2);
       expect(entry.whatWeMustNeverReproduce.length).toBeGreaterThan(2);
@@ -207,6 +208,10 @@ describe('CIN-6E-A final visual preproduction system', () => {
 
   it('keeps protected game systems and visual assets unchanged outside authorized presentation-only runtime proofs', () => {
     const authorizedPostLockFiles = new Set([
+      // PRODUCTION-CONTRACTS-LOCK-1 item 3 authorizes the eight-slot manifest and Journey preload conversion.
+      'public/assets/cinematics/manifest.json',
+      'src/journey/JourneyPresentationResolver.ts',
+      'src/journey/JourneyPresentationResolver.test.ts',
       // T0-CAMPAIGN-GRAMMAR-CONSOLIDATION-1 explicitly authorizes the presentation-only departure seam.
       'src/journey/JourneyCampaignBoundary.ts',
       'src/journey/JourneyCampaignBoundary.test.ts',
@@ -305,8 +310,21 @@ describe('CIN-6E-A final visual preproduction system', () => {
       'src/combat', 'src/vfx', 'src/journey',
       'public/assets/characters/pixel/full', 'public/assets/cinematics',
     ], { cwd: root, encoding: 'utf8' }).trim().split(/\r?\n/u).filter(Boolean);
-    expect(protectedDiff.filter((path) => !authorizedPostLockFiles.has(path))).toEqual([]);
+    const verifiedRetirements = verifiedRetiredOriginalPaths(root);
+    expect(protectedDiff.filter((path) => !authorizedPostLockFiles.has(path) && !verifiedRetirements.has(path))).toEqual([]);
     const allowedRuntime = new Set([
+      // Subsequent locked eight-slot work owns the production allowlist, manifest filter and local QA defaults.
+      'src/cinematics/ApprovedProductionVideos.ts',
+      'src/cinematics/ApprovedProductionVideos.test.ts',
+      'src/cinematics/CinematicRegistry.ts',
+      'src/cinematics/CinematicRegistry.test.ts',
+      'src/cinematics/CinematicTriggers.ts',
+      'src/cinematics/CinematicTriggers.test.ts',
+      'src/cinematics/JourneyQaScenarios.ts',
+      'src/cinematics/NarrativeMediaPlanning.test.ts',
+      // Approved T0 reward authority and CIN-6A vertical integration predate this migration.
+      'src/game/GameAppRouteReward.test.ts',
+      'src/game/cin6aVerticalIntegration.test.ts',
       // T0-CAMPAIGN-GRAMMAR-CONSOLIDATION-1 proves the new departure lifecycle.
       'src/game/traversalT0ProductionRollout.test.ts',
       'src/game/campaignPresentationMigration.test.ts',

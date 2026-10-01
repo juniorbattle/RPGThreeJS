@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { APPROVED_PRODUCTION_VIDEO_IDS } from './ApprovedProductionVideos';
 import {
   CINEMATIC_PLACEMENTS,
   CINEMATIC_REQUIREMENTS,
@@ -66,32 +67,28 @@ describe('NarrativePresentationDoctrine', () => {
       expect(result.valid).toBe(true);
     });
 
-    it('enforces MAIN_EVENT → cinematicRequirement = REQUIRED (strictly enforced)', () => {
+    it('keeps main-event status independent from video requirements', () => {
       const mainEvents = getMainEventBeats();
       expect(mainEvents.length).toBeGreaterThan(0);
-      for (const def of mainEvents) {
-        expect(def.cinematicRequirement, `${def.beatId}`).toBe('REQUIRED');
-      }
+      expect(mainEvents.find((def) => def.beatId === 'combat:serpent_captain')?.cinematicRequirement).toBe('NONE');
     });
 
-    it('fails validation when a MAIN_EVENT has cinematicRequirement = NONE', () => {
-      const invalid = [
+    it('allows a main event without video', () => {
+      const accepted = [
         ...NARRATIVE_PRESENTATION_DOCTRINE,
-        { beatId: 'test:main_event_none', primaryInteractiveMode: 'STATIC_TABLEAU' as const, mainEvent: true, cinematicRequirement: 'NONE' as const, cinematicTier: 'TBD' as const, cinematicPlacement: 'TBD' as const, combatOutcome: 'NONE' as const },
+        { beatId: 'test:main_event_none', primaryInteractiveMode: 'STATIC_TABLEAU' as const, mainEvent: true, cinematicRequirement: 'NONE' as const, cinematicTier: 'NONE' as const, cinematicPlacement: 'TBD' as const, combatOutcome: 'NONE' as const },
       ];
-      const result = validateNarrativePresentationDoctrine(invalid);
-      expect(result.valid).toBe(false);
-      expect(result.errors).toContain('test:main_event_none: MAIN_EVENT requires cinematicRequirement = REQUIRED (got NONE)');
+      expect(validateNarrativePresentationDoctrine(accepted).valid).toBe(true);
     });
 
-    it('fails validation when a MAIN_EVENT has cinematicRequirement = OPTIONAL', () => {
+    it('rejects unapproved optional video even for a main event', () => {
       const invalid = [
         ...NARRATIVE_PRESENTATION_DOCTRINE,
         { beatId: 'test:main_event_optional', primaryInteractiveMode: 'STATIC_TABLEAU' as const, mainEvent: true, cinematicRequirement: 'OPTIONAL' as const, cinematicTier: 'TBD' as const, cinematicPlacement: 'TBD' as const, combatOutcome: 'NONE' as const },
       ];
       const result = validateNarrativePresentationDoctrine(invalid);
       expect(result.valid).toBe(false);
-      expect(result.errors).toContain('test:main_event_optional: MAIN_EVENT requires cinematicRequirement = REQUIRED (got OPTIONAL)');
+      expect(result.errors).toContain('test:main_event_optional: production cinematic classification must be NONE/NONE');
     });
 
     it('enforces PROLOGUE → cinematicRequirement = REQUIRED', () => {
@@ -101,10 +98,10 @@ describe('NarrativePresentationDoctrine', () => {
       expect(prologue!.mainEvent).toBe(true);
     });
 
-    it('enforces EPILOGUE → cinematicRequirement = REQUIRED', () => {
+    it('uses the approved ending videos rather than an independent epilogue video', () => {
       const epilogue = getNarrativePresentationDefinition('dialogue:epilogue');
       expect(epilogue).toBeDefined();
-      expect(epilogue!.cinematicRequirement).toBe('REQUIRED');
+      expect(epilogue!.cinematicRequirement).toBe('NONE');
       expect(epilogue!.mainEvent).toBe(true);
     });
 
@@ -119,12 +116,9 @@ describe('NarrativePresentationDoctrine', () => {
       expect(tbdBeats.length).toBeGreaterThan(0);
     });
 
-    it('treats QUICK as a CINEMATIC_VIDEO production subtype, not an independent surface', () => {
+    it('has no QUICK production videos', () => {
       const quickBeats = NARRATIVE_PRESENTATION_DOCTRINE.filter((d) => d.cinematicTier === 'QUICK');
-      expect(quickBeats.length).toBeGreaterThan(0);
-      for (const def of quickBeats) {
-        expect(def.primaryInteractiveMode, def.beatId).not.toBe('QUICK');
-      }
+      expect(quickBeats).toEqual([]);
     });
   });
 
@@ -156,7 +150,9 @@ describe('NarrativePresentationDoctrine', () => {
   describe('cinematic requirement distribution', () => {
     it('identifies all REQUIRED cinematic beats', () => {
       const required = getCinematicRequiredBeats();
-      expect(required.length).toBeGreaterThan(0);
+      expect(required.map((def) => def.beatId).sort()).toEqual(
+        APPROVED_PRODUCTION_VIDEO_IDS.map((id) => `media:${id}`).sort(),
+      );
       for (const def of required) {
         expect(def.cinematicRequirement).toBe('REQUIRED');
       }

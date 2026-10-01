@@ -45,8 +45,8 @@ export const JOURNEY_QA_MANIFEST: VideoCinematicManifest = Object.freeze({
     {
       id: 'journey-qa-real-skip',
       title: 'Voyage réel à passer (QA)',
-      sources: [{ src: '/assets/cinematics/forest_journey_tension.mp4', type: 'video/mp4' as const }],
-      durationMs: 9_000,
+      sources: [{ src: '/assets/cinematics/camp_departure.mp4', type: 'video/mp4' as const }],
+      durationMs: 12_000,
     },
   ]),
 });

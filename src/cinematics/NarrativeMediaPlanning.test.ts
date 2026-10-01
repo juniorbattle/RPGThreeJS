@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import manifest from '../../public/assets/cinematics/manifest.json';
+import manifest from '../../tools/cinematics/specs/historical_cinematic_manifest_31.json';
 import plan from '../../tools/cinematics/specs/narrative_media_remaster_queue.json';
 
 describe('NarrativeStage current-media planning', () => {

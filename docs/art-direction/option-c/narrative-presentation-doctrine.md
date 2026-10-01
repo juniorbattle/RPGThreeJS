@@ -1,9 +1,15 @@
 # Narrative Presentation Doctrine — Option C Phase 4C-GLM.3
 
-Status: **FINAL STRUCTURAL LOCK BEFORE ART PRODUCTION**
-Authority: This document is the single authoritative reference for the narrative presentation doctrine.
-Machine contract: `src/cinematics/NarrativePresentationDoctrine.ts`
-Runtime authority: `src/cinematics/NarrativePresentationDoctrine.ts`
+> Historical Phase 4C baseline. The production decision in
+> [PRESENTATION_AND_MEDIA](../../contracts/PRESENTATION_AND_MEDIA.md) supersedes
+> the video requirement and tier rules below: exactly eight approved video
+> slots, no enemy-reveal video, and no automatic video for a main event.
+> Current runtime classifications come from
+> `tools/cinematics/specs/production_presentation_modes.json` and
+> `src/cinematics/NarrativePresentationDoctrine.ts`.
+
+Status: **HISTORICAL PHASE 4C BASELINE — video rules superseded**
+Current authority: `docs/contracts/PRESENTATION_AND_MEDIA.md` and production runtime sources above.
 
 ---
 

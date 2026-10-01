@@ -62,7 +62,7 @@ describe('CIN-6.5 cinematic dialogue integration', () => {
   });
 
   it('keeps the 21 approved IDs and adds the eleven CIN-6C production IDs', () => {
-    const manifest = JSON.parse(readFileSync(resolve(process.cwd(), 'public/assets/cinematics/manifest.json'), 'utf8'));
+    const manifest = JSON.parse(readFileSync(resolve(process.cwd(), 'tools/cinematics/specs/historical_cinematic_manifest_31.json'), 'utf8'));
     const ids = manifest.cinematics.map((entry: { id: string }) => entry.id);
     expect(ids).toHaveLength(32);
     expect(new Set(ids).size).toBe(32);
@@ -73,7 +73,7 @@ describe('CIN-6.5 cinematic dialogue integration', () => {
     expect(createHash('sha256').update(campMedia).digest('hex')).toBe('a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3');
     const audienceMedia = readFileSync(resolve(process.cwd(), 'public/assets/cinematics/alaric_audience_arrival.mp4'));
     expect(createHash('sha256').update(audienceMedia).digest('hex')).toBe('b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629');
-    const valmirMedia = readFileSync(resolve(process.cwd(), 'public/assets/cinematics/valmir_route_fork.mp4'));
+    const valmirMedia = readFileSync(resolve(process.cwd(), 'tools/cinematics/archive/retired-video-masters/valmir_route_fork.mp4'));
     expect(createHash('sha256').update(valmirMedia).digest('hex')).toBe('63a4a0c3793d6e29ce8fd94b1478dfab59e40f856d53a01915e47fb9a6343261');
 
     const spec = JSON.parse(readFileSync(resolve(process.cwd(), 'tools/cinematics/specs/cin6a/camp_departure.json'), 'utf8'));

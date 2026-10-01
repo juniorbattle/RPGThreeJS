@@ -510,8 +510,8 @@ export class GameApp {
     this.prologue.close();
     this.combat.close();
     this.canvas.hidden = true;
-    const requestedRealId = new URLSearchParams(window.location.search).get('real') ?? 'forest_journey_tension';
-    const selectedRealId = this.cinematicRegistry.get(requestedRealId) ? requestedRealId : 'forest_journey_tension';
+    const requestedRealId = new URLSearchParams(window.location.search).get('real') ?? 'camp_departure';
+    const selectedRealId = this.cinematicRegistry.get(requestedRealId) ? requestedRealId : 'camp_departure';
     const selectedDialogueId = [
       'lion_briefing', 'village_choice', 'shadow_signs', 'final_refuge',
       'mystery_recruit', 'mystery_lancer_recruit', 'mystery_help', 'mystery_treasure',
@@ -612,8 +612,8 @@ export class GameApp {
       return;
     }
     let result: Awaited<ReturnType<CinematicPlayer['play']>> | undefined;
-    const requestedRealId = new URLSearchParams(window.location.search).get('real') ?? 'forest_journey_tension';
-    const selectedRealId = this.cinematicRegistry.get(requestedRealId) ? requestedRealId : 'forest_journey_tension';
+    const requestedRealId = new URLSearchParams(window.location.search).get('real') ?? 'camp_departure';
+    const selectedRealId = this.cinematicRegistry.get(requestedRealId) ? requestedRealId : 'camp_departure';
     const selectedDuration = this.cinematicRegistry.get(selectedRealId)?.durationMs ?? 0;
     if (scenario === 'real-hold' || scenario === 'real-selected-hold') {
       const heldId = scenario === 'real-hold' ? 'lion_judgement' : selectedRealId;
