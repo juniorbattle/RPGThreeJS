@@ -1,6 +1,6 @@
 # Traversal authoring guide
 
-Baseline: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`.
+Current `dev` authoring guide, 2026-10-01. Earlier main-based audits remain historical.
 
 ## Current T0 ownership
 
@@ -10,6 +10,7 @@ Baseline: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`.
 - `public/assets/generated/lion-phase/traversal/t0/asset-manifest.json` and `TraversalT0Assets.test.ts`: current asset paths/integrity. The `world-v1` root remains canonical.
 - `GameApp` mounts and returns the scene. `RunSystem.addTemporaryLoot` is the reward authority.
 - `TraversalPresentation.ts` is the campaign-facing scene registry. It currently registers only T0. Campaign relation membership and the production rollout gate do not supply a scene or world for another leg.
+- `TraversalRoadAuthoring.ts` defines the per-leg presentation input. `TraversalT0Authoring.ts` is its only populated package. Neutral `TraversalRouteModel`, `TraversalCheckpointRoute`, and `TraversalWorldModel` contain reusable types and checks; T0 source files retain their authored values and compatibility exports. The route authoring audit rejects stage/checkpoint, branch, and painted-location drift before T0 opens.
 
 For an approved T0 edit, update the narrow owner, its meaningful regression test, the [production contract](T0_PRODUCTION_CONTRACT.md), and the [QA evidence](QA_GUIDE.md). Do not move canonical node effects into scene callbacks. An art replacement needs manifest/hash and runtime-reference review before removing any old asset. Do not infer a dependency is dead solely because its path is assembled dynamically.
 
@@ -17,4 +18,4 @@ For an approved T0 edit, update the narrow owner, its meaningful regression test
 
 The [leg audit](LEGS_ROADMAP.md) is an older planning checklist. The [locked Traversal contract](../contracts/TRAVERSAL.md) now approves playable T1/T3 with T0 grammar and retires playable T2/T4 plans. Route timing, world art, checkpoint staging, and QA acceptance still require authored implementation. Preserve campaign IDs and topology unless separately approved.
 
-For each future leg, author its route/checkpoint data, world/props, Risk/Reward/Pursuit presentation, and arrival context; then register its scene in `TraversalPresentation.ts`. Only after focused and browser QA should `TraversalFeaturePolicy.ts` add the leg to production rollout. The registry deliberately fails closed while T1/T3 scenes are absent.
+For each future leg, author its route/checkpoint data, world/props with registered sprite bounds, occluders, Risk/Reward/Pursuit presentation, and arrival context; then register its scene in `TraversalPresentation.ts`. Validate every checkpoint against the existing campaign relation and use `RunSystem` for branch selection and temporary loot. Only after focused and browser QA should `TraversalFeaturePolicy.ts` add the leg to production rollout. The registry deliberately fails closed while T1/T3 scenes are absent.

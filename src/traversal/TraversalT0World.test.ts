@@ -7,7 +7,7 @@ import { getAvailableRunNodes } from '../game/runSystem';
 import { beatWorldX, ROAD_SPACE } from './TraversalRoadSpace';
 import { resolveTraversalT0Route } from './TraversalT0Route';
 import { TRAVERSAL_T0_WORLD, TRAVERSAL_T0_ROUTE_WORLD, TRAVERSAL_T0_ROUTE_WORLD_PERIOD,
-  t0RouteWorldCamera, TRAVERSAL_WORLD_ASSETS,
+  t0RouteWorldCamera, TRAVERSAL_WORLD_ASSETS, TRAVERSAL_T0_WORLD_PRESENTATION,
   TRAVERSAL_SECTION_OVERLAP, resolveTraversalWorld, traversalLocation } from './TraversalT0World';
 import { TraversalT0Scene } from './TraversalT0Scene';
 import { TraversalWorldRenderer } from './TraversalWorldRenderer';
@@ -18,7 +18,7 @@ describe('T0 authored geography', () => {
   it('renders every Route from the exact generic checkpoint forest without event dressing', () => {
     expect(TRAVERSAL_T0_ROUTE_WORLD.every(section => section.asset === TRAVERSAL_WORLD_ASSETS.forest
       && section.kind === 'FOREST' && !section.props && !section.variantAssets)).toBe(true);
-    const renderer = new TraversalWorldRenderer();
+    const renderer = new TraversalWorldRenderer(TRAVERSAL_T0_WORLD_PRESENTATION);
     renderer.updateRoute(t0RouteWorldCamera(4800), ROAD_SPACE.referenceWidth);
     const visible = [...renderer.routeElement.querySelectorAll<HTMLElement>('[data-world-section]')]
       .filter(section => !section.hidden);
@@ -99,7 +99,7 @@ describe('T0 authored geography', () => {
   });
 
   it('only changes scenery from supplied resolved state and presented branch, keeping a single road camera', () => {
-    const renderer = new TraversalWorldRenderer();
+    const renderer = new TraversalWorldRenderer(TRAVERSAL_T0_WORLD_PRESENTATION);
     renderer.setDirections([{ id: 'lion-first-trial-event', label: 'Rencontre sur la route' }]);
     renderer.setDirections([{ id: 'lion-first-trial-event', label: 'Marchand blessé' }]);
     expect(renderer.element.querySelector('.traversal-sign-directions')?.textContent).toBe('↖ Marchand blessé');
@@ -126,7 +126,7 @@ describe('T0 authored geography', () => {
     expect(approach.worldStart).toBe(traversalLocation('forest-junction')!.worldStart);
     expect(approach.asset).toBe(branch.endsWith('event') ? TRAVERSAL_WORLD_ASSETS.forest : TRAVERSAL_WORLD_ASSETS.ruins);
     expect(selected.asset).toBe(branch.endsWith('event') ? TRAVERSAL_WORLD_ASSETS.caravan : TRAVERSAL_WORLD_ASSETS.ruins);
-    const renderer = new TraversalWorldRenderer();
+    const renderer = new TraversalWorldRenderer(TRAVERSAL_T0_WORLD_PRESENTATION);
     renderer.update(7200, 1463, branch, new Set());
     expect(renderer.element.querySelector('[data-world-section="forest-junction"]')).toBeNull();
     expect(renderer.element.querySelector('[data-location-prop="junction-sign"]')).toBeNull();

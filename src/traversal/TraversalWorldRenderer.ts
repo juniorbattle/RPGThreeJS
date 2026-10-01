@@ -1,7 +1,5 @@
 import { ROAD_SPACE, roadWorldToScreen } from './TraversalRoadSpace';
-import { TRAVERSAL_SECTION_OVERLAP, TRAVERSAL_T0_ROUTE_WORLD, TRAVERSAL_T0_ROUTE_WORLD_PERIOD,
-  TRAVERSAL_WORLD_ASSETS,
-  resolveTraversalWorld, type TraversalWorldSection } from './TraversalT0World';
+import { routeWorldCamera, type TraversalWorldPresentation, type TraversalWorldSection } from './TraversalWorldModel';
 import { createTraversalSprite } from './TraversalSprite';
 
 type RenderedSection = { definition: TraversalWorldSection; element: HTMLElement; image: HTMLImageElement };
@@ -16,21 +14,21 @@ export class TraversalWorldRenderer {
   private readonly preloaded: HTMLImageElement[] = [];
   private presentedBranch = 'main';
 
-  constructor() {
+  constructor(private readonly world: TraversalWorldPresentation) {
     this.element.className = 'traversal-world__sections';
     this.element.setAttribute('aria-hidden', 'true');
     this.routeElement.className = 'traversal-world__route-sections';
     this.routeElement.setAttribute('aria-hidden', 'true');
     this.mount('main');
     // The two overlap sections cover the viewport as the camera crosses the loop join.
-    const wrap = TRAVERSAL_T0_ROUTE_WORLD.slice(0, 2).map(definition => Object.freeze({
+    const wrap = world.routeSections.slice(0, 2).map(definition => Object.freeze({
       ...definition, id: `${definition.id}-wrap`,
-      worldStart: definition.worldStart + TRAVERSAL_T0_ROUTE_WORLD_PERIOD,
-      worldEnd: definition.worldEnd + TRAVERSAL_T0_ROUTE_WORLD_PERIOD,
-      coreStart: definition.coreStart + TRAVERSAL_T0_ROUTE_WORLD_PERIOD,
-      coreEnd: definition.coreEnd + TRAVERSAL_T0_ROUTE_WORLD_PERIOD,
+      worldStart: definition.worldStart + world.routePeriod,
+      worldEnd: definition.worldEnd + world.routePeriod,
+      coreStart: definition.coreStart + world.routePeriod,
+      coreEnd: definition.coreEnd + world.routePeriod,
     }));
-    this.routeSections = [...TRAVERSAL_T0_ROUTE_WORLD, ...wrap].map(definition =>
+    this.routeSections = [...world.routeSections, ...wrap].map(definition =>
       this.createSection(definition, this.routeElement));
   }
 
@@ -38,7 +36,7 @@ export class TraversalWorldRenderer {
     this.element.replaceChildren();
     this.preloaded.length = 0;
     this.presentedBranch = presentedBranch;
-    this.sections = resolveTraversalWorld(presentedBranch).map(definition =>
+    this.sections = this.world.resolveWorld(presentedBranch).map(definition =>
       this.createSection(definition, this.element, true));
   }
 
@@ -65,7 +63,7 @@ export class TraversalWorldRenderer {
       const margin = document.createElement('div');
       margin.className = `traversal-world-section__margin traversal-world-section__margin--${side}`;
       const forest = document.createElement('img');
-      forest.src = TRAVERSAL_WORLD_ASSETS.forest;
+      forest.src = this.world.forestAsset;
       forest.alt = '';
       forest.draggable = false;
       if (!definition.mirror) forest.style.transform = 'scaleX(-1)';
@@ -98,7 +96,8 @@ export class TraversalWorldRenderer {
   }
 
   setDirections(choices: readonly { id: string; label: string }[]): void {
-    const sign = this.element.querySelector<HTMLElement>('[data-location-prop="junction-sign"]');
+    const sign = Array.from(this.element.querySelectorAll<HTMLElement>('[data-location-prop]'))
+      .find(element => element.dataset.locationProp === this.world.directionSignPropId);
     if (!sign) return;
     let labels = sign.querySelector<HTMLElement>('.traversal-sign-directions');
     if (!labels) { labels = document.createElement('span'); labels.className = 'traversal-sign-directions'; sign.append(labels); }
@@ -128,8 +127,12 @@ export class TraversalWorldRenderer {
   }
 
   /** Move generic road sections with the route's visual distance; no checkpoint art or props. */
+  routeCamera(distance: number): number {
+    return routeWorldCamera(distance, this.world.routeSections, this.world.routePeriod);
+  }
+
   updateRoute(camera: number, viewportWidth: number): void {
-    this.positionSections(this.routeElement, this.routeSections, camera, viewportWidth, () => TRAVERSAL_WORLD_ASSETS.forest);
+    this.positionSections(this.routeElement, this.routeSections, camera, viewportWidth, () => this.world.forestAsset);
   }
 
   update(camera: number, viewportWidth: number, presentedBranch: string, resolvedLocations: ReadonlySet<string>): void {
@@ -141,7 +144,7 @@ export class TraversalWorldRenderer {
 
   private positionSections(container: HTMLElement, sections: readonly RenderedSection[], camera: number,
     viewportWidth: number, assetFor: (definition: TraversalWorldSection) => string): void {
-    container.style.setProperty('--section-overlap', `${TRAVERSAL_SECTION_OVERLAP * viewportWidth / ROAD_SPACE.referenceWidth}px`);
+    container.style.setProperty('--section-overlap', `${this.world.sectionOverlap * viewportWidth / ROAD_SPACE.referenceWidth}px`);
     // Both modes use the same section scale and camera transform as the vehicle.
     container.style.transform = `translateX(${roadWorldToScreen(0, camera, viewportWidth)}px)`;
     for (const { definition, element, image } of sections) {

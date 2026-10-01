@@ -1,12 +1,8 @@
-import type { TraversalRouteSegment } from './TraversalRouteRun';
+import type { TraversalCheckpointKind, TraversalCheckpointSegment } from './TraversalCheckpointRoute';
 
-export type T0CheckpointKind = 'CANONICAL' | 'FORK' | 'BRANCH' | 'ARRIVAL';
+export type T0CheckpointKind = TraversalCheckpointKind;
 
-export interface T0RouteSegment extends TraversalRouteSegment {
-  readonly checkpointKind: T0CheckpointKind;
-  readonly worldSectionId?: string;
-  readonly railLabel: string;
-}
+export type T0RouteSegment = TraversalCheckpointSegment;
 
 /** T0-only authoring. Relations and RunSystem still decide which nodes are available. */
 const ROUTES: readonly T0RouteSegment[] = Object.freeze([

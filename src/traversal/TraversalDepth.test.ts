@@ -2,7 +2,8 @@
 import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { TRAVERSAL_CARAVAN, buildTraversalCaravan, caravanWheelAngle } from './TraversalCaravan';
-import { TRAVERSAL_DEPTH, TRAVERSAL_OCCLUDERS, TRAVERSAL_FOREGROUND_ASSETS, TraversalForegroundRenderer } from './TraversalDepth';
+import { TRAVERSAL_DEPTH, TraversalForegroundRenderer } from './TraversalDepth';
+import { TRAVERSAL_OCCLUDERS, TRAVERSAL_FOREGROUND_ASSETS } from './TraversalT0Foreground';
 import { ROAD_SPACE } from './TraversalRoadSpace';
 
 describe('caravan component registration and semantic depth', () => {
@@ -41,14 +42,14 @@ describe('caravan component registration and semantic depth', () => {
     expect(TRAVERSAL_DEPTH['foreground-occlusion']).toBeLessThan(TRAVERSAL_DEPTH['foreground-extreme']);
     expect(TRAVERSAL_DEPTH['foreground-extreme']).toBeLessThan(TRAVERSAL_DEPTH.markers);
     expect(TRAVERSAL_DEPTH.markers).toBeLessThan(TRAVERSAL_DEPTH.ui);
-    const foreground = new TraversalForegroundRenderer();
+    const foreground = new TraversalForegroundRenderer(TRAVERSAL_OCCLUDERS);
     expect(foreground.element.dataset.depthPlane).toBe('foreground-occlusion');
     expect(foreground.element.querySelector('[data-traversal-beat]')).toBeNull();
     for (const piece of TRAVERSAL_OCCLUDERS) expect(piece.groundPercent).toBeGreaterThan(81);
   });
 
   it('moves vegetation with road-space and keeps its placement stable across lane/return updates', () => {
-    const foreground = new TraversalForegroundRenderer();
+    const foreground = new TraversalForegroundRenderer(TRAVERSAL_OCCLUDERS);
     foreground.update(0, 1463);
     const piece = foreground.element.querySelector<HTMLElement>('[data-occluder="near-road-1"]')!;
     const before = parseFloat(piece.style.left);

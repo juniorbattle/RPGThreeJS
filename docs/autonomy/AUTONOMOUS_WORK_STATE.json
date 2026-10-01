@@ -1,54 +1,46 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-01T13:33:56.5191691Z",
-  "runEndedAt": "2026-10-01T14:19:00Z",
+  "runStartedAt": "2026-10-01T15:03:59.6949450Z",
+  "runEndedAt": "2026-10-01T15:35:28Z",
   "activeTask": "TRAVERSAL-GENERALIZATION",
-  "activePhase": "Shared presentation entry with T0-only registration; per-leg route/world extraction pending",
-  "activeSubtask": "Extract reusable route beat schema and per-leg authored configuration without changing T0",
+  "activePhase": "Neutral route/checkpoint/world models and T0 authoring package complete; shared scene extraction pending",
+  "activeSubtask": "Extract remaining T0-only scene interactions into a shared road-scene core with a narrow T0 adapter",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "dev",
-  "lastPushedCommit": "origin/dev",
+  "lastKnownGoodCommit": "dev HEAD after checkpoint commit; verify with Git",
+  "lastPushedCommit": "origin/dev after push; verify with Git",
   "completedThisRun": [
-    "Completed cinematic eight-slot alignment and final browser QA; pushed e898e61ff8ec57283388f7ba721027d3d0764df4",
-    "Retired playable T2/T4 with direct Journey handoffs and preserved IDs; pushed 0e2c6d9d3a61670bc03d6bcb97930d55d10ac369",
-    "Added fail-closed Traversal scene registry; GameApp selects only gated authored presentations, currently T0",
-    "Documented item-5 checkpoint and next extraction seam"
+    "Resumed clean dev at d1bd2ac, fetched origin and verified origin/main already merged under exclusive lock",
+    "Extracted neutral route beat/crossing, checkpoint, world and occluder models; grouped T0 route/world/Risk/Reward/Pursuit inputs in TraversalRoadAuthoring",
+    "Added fail-closed campaign stage/checkpoint/branch/location audit before T0 opens; kept T0 values and rollout unchanged",
+    "Updated T0 browser driver arrival hook and current Traversal architecture/authoring docs"
   ],
   "filesChanged": [
-    "src/game/GameApp.ts",
-    "src/cinematics/NarrativeTableau.ts and test",
-    "tools/cinematics/run_cin6d6_browser_qa.mjs and run_cin6d6_route_browser_qa.mjs",
-    "docs/autonomy/CINEMATIC_CONVERSION_MATRIX.md",
-    "src/campaign/LionCampaignTravelRelations.ts and LionCampaignStructure.ts",
-    "src/traversal/TraversalFeaturePolicy.ts and focused tests",
-    "docs/autonomy/T2_T4_RETIREMENT.md and current traversal/content/status docs",
-    "src/traversal/TraversalPresentation.ts and test",
-    "docs/traversal/AUTHORING_GUIDE.md",
-    "docs/autonomy/TRAVERSAL_GENERALIZATION.md",
+    "src/traversal/TraversalRouteModel.ts, TraversalCheckpointRoute.ts, TraversalWorldModel.ts, TraversalRoadAuthoring.ts, TraversalT0Authoring.ts, TraversalT0Foreground.ts",
+    "src/traversal T0 route/checkpoint/world/scene, generic renderers, imports and focused tests",
+    "tools/traversal-t0-browser-qa.mjs",
+    "docs/traversal/ARCHITECTURE.md, AUTHORING_GUIDE.md; docs/autonomy/TRAVERSAL_GENERALIZATION.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md and .json"
   ],
   "testsRun": [
-    "Item 3: 56 focused Vitest, TypeScript, contract validator, Vite build, desktop/mobile reduced-motion/refuge/witness Chromium QA",
-    "Item 4: 51 focused Vitest, TypeScript, contract validator, Vite build, T2/T4 saved-node Chromium QA",
-    "Item 5: 14 focused Vitest, TypeScript, Vite build, Chromium opening through T0 mount"
+    "113 focused Traversal and rollout Vitest cases across 22 files",
+    "TypeScript, contract validator and Vite production build",
+    "DEV Chromium T0 two-branch full QA at 1440x810, 620x780 and 390x844"
   ],
   "testsPassed": [
-    "56/56 item-3 focused tests and eight-MP4 build",
-    "51/51 item-4 focused tests and direct Journey browser handoffs",
-    "14/14 item-5 registry/gate/T0 tests, TypeScript and build",
-    "Chromium opening through combat and T0 mount; no actionable diagnostics or flashes"
+    "113/113 focused tests; TypeScript, eight LOCKED contracts/eight slots and production build",
+    "Both T0 branches and Risk/Reward/Pursuit coexistence passed browser QA with 23 captures and zero machine-reported issues; mobile route 1/5B captures inspected"
   ],
   "testsRemaining": [
-    "T0 route/scene/flow regression after neutral route-beat schema extraction",
-    "T1/T3 authored scene, art, transition and browser QA before rollout"
+    "T0 regression after shared scene-core extraction",
+    "T1/T3 authored scene, art, transitions and browser QA before rollout"
   ],
   "blockers": [],
   "remainingWork": [
-    "Item 5: extract reusable route beat schema and per-leg authored route/checkpoint/world/Risk/Reward/Pursuit/branch configuration",
-    "Preserve T0 exact behavior and RunSystem authority; GameApp reward acceptance currently retains a T0 guard",
-    "Items 6/7: author T1/T3 scenes and event/checkpoint art, then perform acceptance QA before enabling"
+    "Item 5: extract shared road-scene lifecycle and remaining T0-only event/branch presentation with thin T0 adapter",
+    "Preserve optional refugee choice, RunSystem fork/temporary-loot authority, current T0 values and exact visual QA; GameApp reward acceptance retains T0 guard",
+    "Items 6/7: author T1/T3 event/checkpoint art and scenes, then perform acceptance QA before enabling"
   ],
-  "nextAction": "Extract TraversalRouteBeat and companion types from src/traversal/TraversalT0Route.ts into a neutral route model while preserving T0 exports and tests; rerun T0 route/scene/flow Vitest and TypeScript; then define authored per-leg route/checkpoint inputs without enabling T1/T3.",
+  "nextAction": "In src/traversal/TraversalT0Scene.ts, extract a shared road-scene core consuming TraversalRoadAuthoring; keep a thin T0 adapter for refugee optional decision, exact RunSystem fork/loot callbacks and CSS/QA contract. Rerun T0 flow/scene/world tests and both browser branches. Do not register or roll out T1/T3 until their authored art and transitions exist.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-LOCK-1: COMPLETE",
     "Contract drift audit: COMPLETE",
@@ -62,5 +54,5 @@
     "Audio decision after structure lock"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "Checkpoint PASS for constitution, art, characters, environments, narrative/campaign, narrative presentation, Traversal T0, combat, save, QA evidence and repository governance; item 5 IN_PROGRESS; no LOCKED rule modified"
+  "contractComplianceStatus": "Contract set v1 checkpoint PASS for constitution, art, characters, environments, narrative/campaign, narrative presentation, Traversal T0, combat, save, UI/accessibility, QA evidence and repository governance; item 5 IN_PROGRESS; no LOCKED rule modified"
 }

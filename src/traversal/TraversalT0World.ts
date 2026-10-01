@@ -1,26 +1,7 @@
 import { TRAVERSAL_T0_ASSETS } from './TraversalT0Assets';
+import { routeWorldCamera, type TraversalWorldPresentation, type TraversalWorldSection } from './TraversalWorldModel';
 
-/** Presentation geography only. No decisions, rewards or collision authority. */
-export type TraversalWorldSectionKind = 'FOREST' | 'ENVIRONMENT' | 'CORRIDOR' | 'TRANSITION';
-export interface TraversalWorldSection {
-  readonly id: string;
-  readonly kind: TraversalWorldSectionKind;
-  readonly worldStart: number;
-  readonly worldEnd: number;
-  readonly coreStart: number;
-  readonly coreEnd: number;
-  readonly asset: string;
-  readonly mirror: boolean;
-  readonly clearedAsset?: string;
-  readonly variantAssets?: Readonly<Record<string, string>>;
-  readonly props?: readonly {
-    readonly id: string;
-    readonly asset: string;
-    readonly worldX: number;
-    readonly groundPercent: number;
-    readonly vehicleHeightRatio: number;
-  }[];
-}
+export type { TraversalWorldSectionKind, TraversalWorldSection } from './TraversalWorldModel';
 
 const ROOT = '/assets/generated/lion-phase/traversal/t0/world-v1';
 /** Logical road units on each side of a join; presentation only, outside owned intervals. */
@@ -90,9 +71,7 @@ export const TRAVERSAL_T0_ROUTE_WORLD_PERIOD = TRAVERSAL_T0_ROUTE_WORLD.at(-1)!.
   - TRAVERSAL_T0_ROUTE_WORLD[0]!.worldStart;
 
 export function t0RouteWorldCamera(distance: number): number {
-  const first = TRAVERSAL_T0_ROUTE_WORLD[0]!.worldStart;
-  return ((distance - first) % TRAVERSAL_T0_ROUTE_WORLD_PERIOD + TRAVERSAL_T0_ROUTE_WORLD_PERIOD)
-    % TRAVERSAL_T0_ROUTE_WORLD_PERIOD + first;
+  return routeWorldCamera(distance, TRAVERSAL_T0_ROUTE_WORLD, TRAVERSAL_T0_ROUTE_WORLD_PERIOD);
 }
 
 export function traversalLocation(id: string): TraversalWorldSection | undefined {
@@ -119,3 +98,13 @@ export function resolveTraversalWorld(presentedBranch: string): readonly Travers
     return section.id === selected.id ? Object.freeze({ ...section, asset, variantAssets: undefined }) : section;
   });
 }
+
+export const TRAVERSAL_T0_WORLD_PRESENTATION: TraversalWorldPresentation = Object.freeze({
+  checkpointSections: TRAVERSAL_T0_WORLD,
+  routeSections: TRAVERSAL_T0_ROUTE_WORLD,
+  routePeriod: TRAVERSAL_T0_ROUTE_WORLD_PERIOD,
+  forestAsset: TRAVERSAL_WORLD_ASSETS.forest,
+  sectionOverlap: TRAVERSAL_SECTION_OVERLAP,
+  directionSignPropId: 'junction-sign',
+  resolveWorld: resolveTraversalWorld,
+});

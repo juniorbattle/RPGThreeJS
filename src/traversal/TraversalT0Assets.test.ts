@@ -4,7 +4,7 @@ import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { TRAVERSAL_T0_ASSETS } from './TraversalT0Assets';
 import { TRAVERSAL_WORLD_ASSETS } from './TraversalT0World';
-import { TRAVERSAL_FOREGROUND_ASSETS } from './TraversalDepth';
+import { TRAVERSAL_FOREGROUND_ASSETS } from './TraversalT0Foreground';
 import { TRAVERSAL_CARAVAN } from './TraversalCaravan';
 import bounds from './TraversalSpriteBounds.json';
 

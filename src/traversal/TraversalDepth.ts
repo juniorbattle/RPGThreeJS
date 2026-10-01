@@ -19,31 +19,25 @@ export function setTraversalDepth(element: HTMLElement, plane: keyof typeof TRAV
   element.style.zIndex = String(TRAVERSAL_DEPTH[plane]);
 }
 
-const ROOT = '/assets/generated/lion-phase/traversal/t0/foreground';
-export const TRAVERSAL_FOREGROUND_ASSETS = Object.freeze({ fern: `${ROOT}/ferns.png`, roots: `${ROOT}/roots.png` });
-
-/** Camera-side plants rooted BELOW the lower road, not collision/interaction beats.
- * Spacing leaves full-wheel openings; fixed world coordinates survive return/fork.
- */
-export const TRAVERSAL_OCCLUDERS = Object.freeze(Array.from({ length: 40 }, (_, index) => ({
-  id: `near-road-${index}`,
-  worldX: -120 + index * 435 + [0, 60, -35, 110][index % 4]!,
-  asset: index % 3 === 1 ? TRAVERSAL_FOREGROUND_ASSETS.roots : TRAVERSAL_FOREGROUND_ASSETS.fern,
-  groundPercent: index % 3 === 1 ? 87.6 : 86.1,
-  vehicleHeightRatio: index % 3 === 1 ? .24 : [.36, .32, .39][index % 3]!,
-  mirror: index % 2 === 1,
-})));
+export interface TraversalOccluder {
+  readonly id: string;
+  readonly worldX: number;
+  readonly asset: string;
+  readonly groundPercent: number;
+  readonly vehicleHeightRatio: number;
+  readonly mirror: boolean;
+}
 
 export class TraversalForegroundRenderer {
   readonly element = document.createElement('div');
   private readonly pieces: { worldX: number; element: HTMLElement }[];
   private lastCamera = NaN;
   private lastWidth = NaN;
-  constructor() {
+  constructor(occluders: readonly TraversalOccluder[]) {
     this.element.className = 'traversal-world__occlusion';
     this.element.setAttribute('aria-hidden', 'true');
     setTraversalDepth(this.element, 'foreground-occlusion');
-    this.pieces = TRAVERSAL_OCCLUDERS.map(definition => {
+    this.pieces = occluders.map(definition => {
       const element = createTraversalSprite(definition.asset, 'traversal-near-plant', definition.mirror);
       element.dataset.occluder = definition.id;
       element.dataset.physicalPlacement = 'camera-side-verge';

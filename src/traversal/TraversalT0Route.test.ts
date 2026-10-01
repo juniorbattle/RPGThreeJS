@@ -4,6 +4,10 @@ import { createInitialState } from '../game/store';
 import { resolveCharacterAsset } from '../render/CharacterVisualRegistry';
 import { auditTraversalT0Route, resolveTraversalBeatCrossing, resolveTraversalT0Route } from './TraversalT0Route';
 import { TRAVERSAL_T0_ASSETS } from './TraversalT0Assets';
+import { auditTraversalRouteAuthoring } from './TraversalCheckpointRoute';
+import { T0_ROUTE_SEGMENTS } from './TraversalT0CheckpointRoute';
+import { TRAVERSAL_T0_WORLD } from './TraversalT0World';
+import { traversalRouteProgressBounds } from './TraversalRouteModel';
 
 const t0 = () => LION_TRAVERSAL_LEGS.find(leg => leg.id === 'T0')!;
 const route = () => {
@@ -69,5 +73,37 @@ describe('TraversalT0Route', () => {
     expect(auditTraversalT0Route(t0(), nodes)).toEqual(expect.arrayContaining([
       expect.objectContaining({ code: 'MISSING_RUN_NODE', subjectId: 'lion-nomad-crossroads' }),
     ]));
+  });
+
+  it('matches every T0 checkpoint, branch and painted location to its campaign stage', () => {
+    const locations = new Set(TRAVERSAL_T0_WORLD.map(section => section.id));
+    expect(auditTraversalRouteAuthoring(t0(), route(), T0_ROUTE_SEGMENTS, locations)).toEqual([]);
+
+    const wrongStage = { ...T0_ROUTE_SEGMENTS[1]!, nextCheckpointId: 'lion-witnesses' };
+    const wrongLocation = { ...T0_ROUTE_SEGMENTS[2]!, worldSectionId: 'missing-clearing' };
+    const drifted = T0_ROUTE_SEGMENTS.map((segment, index) => index === 1 ? wrongStage
+      : index === 2 ? wrongLocation : segment);
+    expect(auditTraversalRouteAuthoring(t0(), route(), drifted, locations)).toEqual(expect.arrayContaining([
+      expect.objectContaining({ code: 'CHECKPOINT_MAPPING', subjectId: 'T0:1' }),
+      expect.objectContaining({ code: 'MISSING_LOCATION', subjectId: 'route-3' }),
+    ]));
+    const resolved = route();
+    const injected = { ...resolved, beats: [...resolved.beats, {
+      ...resolved.beats[0]!, id: 'invented-stage', campaignNodeIds: ['lion-witnesses'],
+    }] };
+    expect(auditTraversalRouteAuthoring(t0(), injected, T0_ROUTE_SEGMENTS, locations))
+      .toEqual(expect.arrayContaining([
+        expect.objectContaining({ code: 'BEAT_MAPPING', subjectId: 'invented-stage' }),
+      ]));
+  });
+
+  it('derives road progress from authored beats, including the branch and arrival', () => {
+    const resolved = route();
+    expect(T0_ROUTE_SEGMENTS.map((_, index) => traversalRouteProgressBounds(resolved, index)))
+      .toEqual([
+        { start: 0, end: .2 }, { start: .2, end: .4 },
+        { start: .4, end: .6 }, { start: .6, end: .8 },
+        { start: .8, end: .91 }, { start: .91, end: 1 },
+      ]);
   });
 });

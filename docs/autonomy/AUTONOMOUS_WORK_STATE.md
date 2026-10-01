@@ -1,50 +1,49 @@
 # Autonomous work state
 
-Updated 2026-10-01 14:19 UTC. Git on `dev` is authoritative for exact pushed HEAD.
+Updated 2026-10-01 15:35 UTC. Git on `dev` is authoritative for exact pushed HEAD.
 
 | Field | Value |
 | --- | --- |
 | `status` | `IN_PROGRESS` |
-| `runStartedAt` | `2026-10-01T13:33:56.5191691Z` |
-| `runEndedAt` | `2026-10-01T14:19:00Z` (checkpoint closeout) |
+| `runStartedAt` | `2026-10-01T15:03:59.6949450Z` |
+| `runEndedAt` | `2026-10-01T15:35:28Z` (checkpoint closeout) |
 | `activeTask` | `TRAVERSAL-GENERALIZATION` (queue item 5) |
-| `activePhase` | Shared presentation entry, T0-only registration; per-leg route/world extraction pending |
-| `activeSubtask` | Extract reusable route beat schema and per-leg authored configuration without changing T0 |
+| `activePhase` | Neutral route/checkpoint/world models and T0 authoring package complete; shared scene extraction pending |
+| `activeSubtask` | Extract remaining T0-only scene interactions into a shared road-scene core with a narrow T0 adapter |
 | `workingBranch` | `dev` |
 | `lastKnownGoodCommit` | `dev` HEAD after checkpoint commit; verify with Git |
 | `lastPushedCommit` | `origin/dev` after push; verify with Git |
 | `creditStatus` | `AVAILABLE` |
-| `contractComplianceStatus` | Checkpoint PASS for affected contracts; item 5 IN_PROGRESS; no LOCKED rule changed |
+| `contractComplianceStatus` | Contract set v1 checkpoint PASS for affected contracts; item 5 IN_PROGRESS; no LOCKED rule changed |
 
 ## Completed this run
 
-- Resumed clean `dev` at `c280006`, fetched origin, verified `origin/main` already merged, and acquired the exclusive local lock.
-- Completed item 3, `CINEMATIC-EIGHT-SLOT-ALIGNMENT`: refreshed refuge/witness and reduced-motion browser QA, removed dormant media references, capped first-refuge tableau at four actors, and recorded the final matrix in `CINEMATIC_CONVERSION_MATRIX.md`. Pushed `e898e61ff8ec57283388f7ba721027d3d0764df4`.
-- Completed item 4, playable T2/T4 retirement: kept durable IDs and direct Journey handoffs; removed playable relations; verified both saved-node continuations. Contract matrix in `T2_T4_RETIREMENT.md`. Pushed `0e2c6d9d3a61670bc03d6bcb97930d55d10ac369`.
-- Started item 5: `TraversalPresentation.ts` provides a campaign-facing scene contract and fail-closed factory. `GameApp` selects a relation only when both production rollout and an authored scene exist. Only T0 is registered; T1/T3 remain disabled. Added registry tests and `TRAVERSAL_GENERALIZATION.md`.
+- Resumed clean `dev` at `d1bd2ac`, fetched origin, verified `origin/main` already merged, and acquired the exclusive local lock.
+- Extracted reusable route beat/crossing, checkpoint, world and occluder models. `TraversalRoadAuthoring` now groups route/checkpoint/world and Risk/Reward/Pursuit inputs; T0 is its only populated package.
+- Kept T0's authored values, IDs and production gate. A fail-closed audit now checks route stages, branch beats, checkpoint mapping and painted locations before its scene opens. The world and foreground renderers take authored inputs.
+- Updated the T0 browser driver to the current arrival method and refreshed current Traversal architecture/authoring docs. No art, LOCKED contract, campaign rule or save schema changed.
 
 ## Files changed
 
-- Item 3: `src/game/GameApp.ts`, `src/cinematics/NarrativeTableau.ts` and test, two CIN-6D.6 browser drivers, `docs/autonomy/CINEMATIC_CONVERSION_MATRIX.md`.
-- Item 4: `src/campaign/LionCampaignTravelRelations.ts`, `LionCampaignStructure.ts`, `src/traversal/TraversalFeaturePolicy.ts`, focused tests, `docs/autonomy/T2_T4_RETIREMENT.md`, current traversal/content/status docs.
-- Item 5: `src/traversal/TraversalPresentation.ts` and test, `src/game/GameApp.ts`, `docs/traversal/AUTHORING_GUIDE.md`, `docs/autonomy/TRAVERSAL_GENERALIZATION.md`.
+- Neutral route/checkpoint/world/authoring models, `TraversalT0Authoring.ts`, `TraversalT0Foreground.ts`, and focused tests under `src/traversal/`.
+- T0 route/checkpoint/world/scene, generic world/foreground renderers and focused tests under `src/traversal/`.
+- `tools/traversal-t0-browser-qa.mjs`, current Traversal architecture/authoring docs and `docs/autonomy/TRAVERSAL_GENERALIZATION.md`.
 - This state pair. No LOCKED contract or historical evidence changed.
 
 ## Tests run and passed
 
-- Item 3: 56/56 focused Vitest, TypeScript, contract validator, Vite build; desktop A/D/H/E, mobile reduced-motion Valmir and saved witness passed in Chromium. Build shipped exactly eight MP4s.
-- Item 4: 51/51 focused campaign/Traversal/RunSystem tests, TypeScript, contract validator, Vite build; T2/T4 saved-node browser arrivals passed without Traversal mounts.
-- Item 5: 14/14 focused registry/gate/T0 scene/flow tests, TypeScript, Vite build; Chromium opening → choice → combat → T0 mount passed with no actionable page/console errors or flashes. Ignored evidence: `tmp/traversal/presentation-seam-opening/results.json`.
+- 113/113 focused Traversal and rollout Vitest cases across 22 files; TypeScript, eight-contract validator and Vite production build passed.
+- DEV Chromium T0 full two-branch browser QA at 1440×810, 620×780 and 390×844 passed with 23 compact captures under ignored `tmp/traversal/generalization-authoring-qa-dev/`. No black frame, world, checkpoint, Risk/Reward/Pursuit, asset, control or console/page failures. Mobile route 1/5B captures inspected.
 
 ## Remaining work
 
-`testsRemaining`: T0 regression after route-schema extraction; T1/T3 authored scene, art, transition and browser QA before rollout.
+`testsRemaining`: T0 regression after extracting the shared scene core; T1/T3 authored scene, art, transition and browser QA before rollout.
 
 `blockers`: none for generalization. T1/T3 art belongs to queue items 6/7 and requires appropriate tools.
 
-`remainingWork`: move reusable beat/route types out of `TraversalT0Route.ts`; parameterize route, world, checkpoint, Risk/Reward/Pursuit and branch presentation by leg while retaining T0 values and timing. `TraversalT0Scene` still rejects non-T0 legs and `GameApp` reward acceptance still has a T0 guard. Keep RunSystem as durable truth owner. Item 5 is not complete.
+`remainingWork`: extract shared road-scene lifecycle and remaining T0-only event/branch presentation while preserving optional refugee choice and RunSystem handoffs. `TraversalT0Scene` still rejects non-T0 legs and `GameApp` reward acceptance retains its T0 guard. T1/T3 need approved checkpoint/event art and QA before registration/rollout. Keep RunSystem as durable truth owner. Item 5 is not complete.
 
-`nextAction`: extract `TraversalRouteBeat` and companion types from `src/traversal/TraversalT0Route.ts` into a neutral route model, retain exports for T0 consumers, rerun T0 route/scene/flow Vitest and TypeScript. Then define authored per-leg route/checkpoint inputs without changing T0 gate or registering T1/T3.
+`nextAction`: in `src/traversal/TraversalT0Scene.ts`, extract a shared road-scene core that consumes `TraversalRoadAuthoring`; keep a thin T0 adapter for the refugee optional decision, exact RunSystem fork/loot callbacks, and current CSS/QA contract. Rerun T0 flow/scene/world tests and both browser branches before registering any new leg. Do not add T1/T3 to `TraversalPresentation` or rollout until their authored art and transitions exist.
 
 ## Ordered task queue
 

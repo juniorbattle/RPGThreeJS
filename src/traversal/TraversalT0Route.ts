@@ -10,49 +10,16 @@ import {
   resolveCharacterVisualProfile,
 } from '../render/CharacterVisualRegistry';
 import { TRAVERSAL_T0_ASSETS } from './TraversalT0Assets';
-import type { TraversalLane } from './TraversalRunRuntime';
-import { beatPassedProgress } from './TraversalRoadSpace';
+import type { TraversalRoute, TraversalRouteBeat } from './TraversalRouteModel';
 import { combatConfigs } from '../game/content';
 
-export type TraversalBeatType = 'campaign-node' | 'fork';
+export type {
+  TraversalBeatType, TraversalBeatPlacement, TraversalContentCategory,
+  TraversalInteractionPolicy, TraversalBeatCrossing, TraversalRouteBeat,
+} from './TraversalRouteModel';
+export { traversalContactProgress, resolveTraversalBeatCrossing } from './TraversalRouteModel';
 
-export type TraversalBeatPlacement = 'LANE' | 'CENTERED';
-export type TraversalContentCategory = 'MANDATORY_EVENT' | 'OPTIONAL_EVENT' | 'OPTIONAL_COMBAT'
-  | 'ROUTE_CHOICE';
-export type TraversalInteractionPolicy = 'OPTIONAL_CONFIRM' | 'MANDATORY_CONFIRM';
-export type TraversalBeatCrossing = 'NONE' | 'TRIGGERED' | 'BYPASSED';
-
-export interface TraversalRouteBeat {
-  readonly id: string;
-  readonly type: TraversalBeatType;
-  readonly category: TraversalContentCategory;
-  readonly engagement: 'LANE' | 'ROUTE';
-  readonly progress01: number;
-  readonly lane: TraversalLane | null;
-  readonly placement: TraversalBeatPlacement;
-  readonly label: string;
-  readonly marker: 'danger' | 'speech' | 'fork';
-  readonly interactionPolicy: TraversalInteractionPolicy;
-  readonly campaignNodeIds: readonly string[];
-  readonly characterId?: string;
-  readonly visualAsset?: string;
-  /** References independent presentation geography, never owns its rendering. */
-  readonly locationId?: string;
-  readonly mirrorX?: boolean;
-  /** Conditional encounter on a road selected by RunSystem, not a second branch authority. */
-  readonly branchNodeId?: string;
-  readonly formation?: readonly string[];
-}
-
-export interface TraversalT0Route {
-  readonly legId: 'T0';
-  readonly originNodeId: string;
-  readonly destinationNodeId: string;
-  readonly originLabel: string;
-  readonly destinationLabel: string;
-  readonly distanceKm: number;
-  readonly beats: readonly TraversalRouteBeat[];
-}
+export type TraversalT0Route = TraversalRoute<'T0'>;
 
 export interface TraversalRouteIssue {
   readonly code: 'NOT_T0' | 'MISSING_CAMPAIGN_NODE' | 'MISSING_RUN_NODE' | 'MISSING_CHARACTER_VISUAL';
@@ -161,28 +128,6 @@ function stageBeat(
       mirrorX: true,
     } : {}),
   });
-}
-
-/** Canonical situations meet their authored checkpoint at the same route progress. */
-export function traversalContactProgress(beat: TraversalRouteBeat): number {
-  return beat.progress01;
-}
-
-/** Physical engagement and optional narrative refusal are separate concerns. */
-export function resolveTraversalBeatCrossing(
-  beat: TraversalRouteBeat,
-  previousProgress01: number,
-  nextProgress01: number,
-  lane: TraversalLane,
-): TraversalBeatCrossing {
-  if (nextProgress01 <= previousProgress01) return 'NONE';
-  const contact = traversalContactProgress(beat);
-  if (previousProgress01 < contact && nextProgress01 >= contact) {
-    if (beat.engagement === 'ROUTE' || beat.lane === lane) return 'TRIGGERED';
-  }
-  const passed = beatPassedProgress(beat.progress01);
-  return beat.interactionPolicy === 'OPTIONAL_CONFIRM' && previousProgress01 < passed && nextProgress01 >= passed
-    ? 'BYPASSED' : 'NONE';
 }
 
 export function auditTraversalT0Route(

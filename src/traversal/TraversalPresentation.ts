@@ -1,6 +1,6 @@
 import type { LionPlayableTraversalLegId, LionTraversalLegId } from '../campaign/LionCampaignTravelRelations';
 import type { TraversalRunSession } from './TraversalRunRuntime';
-import type { TraversalRouteBeat } from './TraversalT0Route';
+import type { TraversalRouteBeat } from './TraversalRouteModel';
 import { TraversalT0Scene, type TraversalT0SceneOptions } from './TraversalT0Scene';
 
 /** The campaign boundary uses this surface without owning any road-specific presentation. */

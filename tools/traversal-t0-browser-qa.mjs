@@ -185,8 +185,8 @@ async function makePage(context) {
       requestAnimationFrame(inspectFrame);
     };
     requestAnimationFrame(inspectFrame);
-    const original = app.completeTraversalT0.bind(app);
-    app.completeTraversalT0 = (...args) => {
+    const original = app.completeTraversalArrival.bind(app);
+    app.completeTraversalArrival = (...args) => {
       window.__routeQaArrivalCount++;
       return original(...args);
     };

@@ -5,16 +5,15 @@ import type { CampaignStatusHud } from '../ui/CampaignStatusHud';
 import { createCampaignIcon, decorateCampaignButton, decorateCampaignFrame } from '../ui/design-system/CampaignUi';
 import { classifyTraversalInteraction } from './TraversalInteractionGrammar';
 import { ROAD_SPACE, beatWorldX, beatPassedProgress, roadCameraX, roadWorldToScreen } from './TraversalRoadSpace';
-import { TRAVERSAL_T0_ASSETS } from './TraversalT0Assets';
 import { createTraversalSprite } from './TraversalSprite';
 import { TraversalWorldRenderer } from './TraversalWorldRenderer';
 import { buildTraversalCaravan, caravanWheelAngle, TRAVERSAL_CARAVAN } from './TraversalCaravan';
 import { setTraversalDepth, TraversalForegroundRenderer } from './TraversalDepth';
-import { t0RouteWorldCamera, traversalLocation } from './TraversalT0World';
+import { T0_ROAD_AUTHORING } from './TraversalT0Authoring';
+import { traversalLocation } from './TraversalT0World';
 import { resolveCharacterVisualProfile, resolveCharacterAsset } from '../render/CharacterVisualRegistry';
 import {
   resolveTraversalBeatCrossing,
-  resolveTraversalT0Route,
   type TraversalBeatCrossing,
   type TraversalRouteBeat,
   type TraversalT0Route,
@@ -22,22 +21,21 @@ import {
 import { TraversalRunController } from './TraversalRunController';
 import { TRAVERSAL_RHYTHM, transitionEase } from './TraversalTransition';
 import { traversalContactProgress } from './TraversalT0Route';
+import { traversalRouteProgressBounds } from './TraversalRouteModel';
+import { auditTraversalRouteAuthoring } from './TraversalCheckpointRoute';
 import type { TraversalLane, TraversalRunSession } from './TraversalRunRuntime';
 import { advanceRouteRun, createRouteRun, forecastRouteDistance, resetRouteSpeed,
   routeSpeedRecovery01, setRouteLane, type TraversalRouteRunState } from './TraversalRouteRun';
-import { resolveT0RouteSegment, T0_ROUTE_SEGMENTS, type T0RouteSegment } from './TraversalT0CheckpointRoute';
+import type { T0RouteSegment } from './TraversalT0CheckpointRoute';
 import { TraversalRouteRenderer } from './TraversalRouteRenderer';
 import { createRouteRisk, resolveRouteRisk, type TraversalRouteRiskState } from './TraversalRouteRisk';
-import { t0RouteHazards } from './TraversalT0Risk';
 import { TraversalRouteRiskRenderer } from './TraversalRouteRiskRenderer';
 import { resolveTraversalRiskEnabled } from './TraversalRiskPresentationPolicy';
 import { createRouteReward, resolveRouteReward, type TraversalRouteRewardState } from './TraversalRouteReward';
-import { t0RoutePickups } from './TraversalT0Reward';
 import { TraversalRouteRewardRenderer } from './TraversalRouteRewardRenderer';
 import { resolveTraversalRewardEnabled } from './TraversalRewardPresentationPolicy';
 import { createRoutePursuit, pursuerLaneAt, resolveRoutePursuit,
   type TraversalRoutePursuitState, type TraversalRoutePursuitOutcome } from './TraversalRoutePursuit';
-import { t0RoutePursuitWindow } from './TraversalT0Pursuit';
 import { TraversalRoutePursuitRenderer } from './TraversalRoutePursuitRenderer';
 import { resolveTraversalPursuitEnabled } from './TraversalPursuitPresentationPolicy';
 
@@ -96,7 +94,7 @@ export class TraversalT0Scene {
   private readonly controller: TraversalRunController;
   private readonly entityElements = new Map<string, HTMLElement>();
   private readonly markerElements = new Map<string, HTMLElement>();
-  private readonly worldRenderer = new TraversalWorldRenderer();
+  private readonly worldRenderer = new TraversalWorldRenderer(T0_ROAD_AUTHORING.world);
   private readonly routeRenderer = new TraversalRouteRenderer();
   private readonly riskEnabled = resolveTraversalRiskEnabled({
     dev: import.meta.env.DEV, search: window.location.search,
@@ -113,7 +111,7 @@ export class TraversalT0Scene {
   });
   private readonly pursuitRenderer = this.pursuitEnabled ? new TraversalRoutePursuitRenderer() : null;
   private readonly pursuitQaEvents: TraversalRoutePursuitOutcome[] = [];
-  private readonly foregroundRenderer = new TraversalForegroundRenderer();
+  private readonly foregroundRenderer = new TraversalForegroundRenderer(T0_ROAD_AUTHORING.occluders);
   private readonly stageBeats: readonly TraversalRouteBeat[];
   private frameId: number | null = null;
   private previousFrameMs = 0;
@@ -137,7 +135,7 @@ export class TraversalT0Scene {
   private frameRenderPending = false;
   private hudVisible = false;
   private routeIndex = 0;
-  private routeSegment: T0RouteSegment = resolveT0RouteSegment(0);
+  private routeSegment: T0RouteSegment = T0_ROAD_AUTHORING.resolveSegment(0);
   private routeRun: TraversalRouteRunState = createRouteRun(this.routeSegment, 0);
   private routeRisk: TraversalRouteRiskState = createRouteRisk(this.routeSegment.id);
   private routeReward: TraversalRouteRewardState = createRouteReward(this.routeSegment.id);
@@ -157,31 +155,28 @@ export class TraversalT0Scene {
   constructor(private readonly options: TraversalT0SceneOptions) {
     if (options.leg.id !== 'T0') throw new Error('TraversalT0Scene only accepts the canonical T0 leg.');
     const state = options.getState();
-    this.route = resolveTraversalT0Route(
-      options.leg,
-      state.run.graph.nodes,
-      state.clan.members.map((member) => member.definitionId),
-      state.run.seed,
-    );
+    this.route = T0_ROAD_AUTHORING.resolveRoute(options.leg, state);
+    const routeIssues = auditTraversalRouteAuthoring(options.leg, this.route, T0_ROAD_AUTHORING.routeSegments,
+      new Set(T0_ROAD_AUTHORING.world.checkpointSections.map(section => section.id)));
+    if (routeIssues.length) throw new Error(routeIssues.map(issue => issue.detail).join('\n'));
     this.stageBeats = this.route.beats.filter((beat) => beat.campaignNodeIds.length > 0 && !beat.branchNodeId);
     this.controller = new TraversalRunController({
       leg: options.leg,
       getAvailableNodes: options.getAvailableNodes,
       onBranchSelect: nodeId => new Promise<boolean>(resolve => {
         this.beginCheckpointDeparture('fork', () => {
-          if (!selectTraversalBranch(options.getState().run, 'T0', nodeId)) { resolve(false); return; }
+          if (!selectTraversalBranch(options.getState().run, options.leg.id, nodeId)) { resolve(false); return; }
           const current = options.getState();
-          this.route = resolveTraversalT0Route(options.leg, current.run.graph.nodes,
-            current.clan.members.map(member => member.definitionId), current.run.seed);
+          this.route = T0_ROAD_AUTHORING.resolveRoute(options.leg, current);
           const entities = this.element.querySelector<HTMLElement>('.traversal-world__entities')!;
           for (const beat of this.route.beats.filter(candidate => candidate.branchNodeId)) {
             this.entityElements.get(beat.id)?.remove();
             this.markerElements.get(beat.id)?.remove();
             this.buildEntity(entities, beat);
           }
-          this.presentedBranch = current.run.traversalBranches!.T0!;
+          this.presentedBranch = current.run.traversalBranches![options.leg.id]!;
           this.checkpointExits++;
-          this.startRoute(4);
+          this.startRoute(this.options.leg.stages.length);
           // Mount the selected lateral road while the transition is fully opaque.
           this.updateWorldTransforms(true);
           resolve(true);
@@ -197,7 +192,7 @@ export class TraversalT0Scene {
       },
     });
     this.element.className = 'traversal-t0';
-    this.element.dataset.traversalLeg = 'T0';
+    this.element.dataset.traversalLeg = options.leg.id;
     this.element.dataset.singleRoad = 'false';
     this.element.dataset.view = 'route';
     this.element.dataset.routeSegment = 'route-1';
@@ -217,7 +212,7 @@ export class TraversalT0Scene {
 
   private get nextStage(): TraversalRouteBeat | undefined {
     const stage = this.stageBeats[this.session.stageIndex];
-    const branch = this.options.getState().run.traversalBranches?.T0;
+    const branch = this.options.getState().run.traversalBranches?.[this.options.leg.id];
     return stage?.type === 'fork' && branch
       ? this.route.beats.find(beat => beat.branchNodeId === branch) : stage;
   }
@@ -326,7 +321,7 @@ export class TraversalT0Scene {
         </div>
       </section>
       <aside class="traversal-hud traversal-hud--progress" aria-label="Progression de route">
-        <div class="traversal-route-rail" aria-label="Étapes de Traversal">${['Départ', ...T0_ROUTE_SEGMENTS.map(route => route.railLabel)].map((label, index) => `<span class="traversal-route-rail__stop" data-rail-stop="${index}" data-kind="${index === 4 ? 'fork' : 'checkpoint'}" title="${label}"><span>${index === 4 ? '◇' : index === 6 ? '◎' : '•'}</span></span>`).join('')}</div>
+        <div class="traversal-route-rail" aria-label="Étapes de Traversal">${['Départ', ...T0_ROAD_AUTHORING.routeSegments.map(route => route.railLabel)].map((label, index) => `<span class="traversal-route-rail__stop" data-rail-stop="${index}" data-kind="${T0_ROAD_AUTHORING.routeSegments[index - 1]?.checkpointKind === 'FORK' ? 'fork' : 'checkpoint'}" title="${label}"><span>${T0_ROAD_AUTHORING.routeSegments[index - 1]?.checkpointKind === 'FORK' ? '◇' : T0_ROAD_AUTHORING.routeSegments[index - 1]?.checkpointKind === 'ARRIVAL' ? '◎' : '•'}</span></span>`).join('')}</div>
         <div class="traversal-hud__destination-icon"></div><div class="traversal-hud__destination-copy"><p class="campaign-ui-type--eyebrow">Prochain arrêt</p><strong class="campaign-ui-type--compact-title" data-traversal-next>${escapeHtml(this.route.destinationLabel)}</strong><span class="campaign-ui-type--metadata" data-traversal-distance>${this.route.distanceKm.toFixed(1)} km</span></div>
       </aside>
       <nav class="traversal-lanes" aria-label="Changer de trajectoire">
@@ -353,12 +348,12 @@ export class TraversalT0Scene {
       ['.traversal-world__foreground', 'foreground-extreme'], ['.traversal-world__markers', 'markers'],
       ['.traversal-hud,.traversal-lanes,.traversal-event-panel,.traversal-toast', 'ui'],
     ] as const) this.element.querySelectorAll<HTMLElement>(selector).forEach(element => setTraversalDepth(element, plane));
-    this.element.style.setProperty('--traversal-foreground-image', `url("${TRAVERSAL_T0_ASSETS.foregroundLayer}")`);
+    this.element.style.setProperty('--traversal-foreground-image', `url("${T0_ROAD_AUTHORING.foregroundLayerAsset}")`);
     const vehicle = this.element.querySelector<HTMLElement>('.traversal-vehicle')!;
     buildTraversalCaravan(vehicle);
     this.riskRenderer?.bindVehicle(vehicle);
-    this.riskRenderer?.reset(t0RouteHazards(this.routeSegment.id));
-    this.rewardRenderer?.reset(t0RoutePickups(this.routeSegment.id));
+    this.riskRenderer?.reset(T0_ROAD_AUTHORING.hazards(this.routeSegment.id));
+    this.rewardRenderer?.reset(T0_ROAD_AUTHORING.pickups(this.routeSegment.id));
     this.pursuitRenderer?.reset();
     const entities = this.element.querySelector<HTMLElement>('.traversal-world__entities')!;
     for (const beat of this.route.beats) this.buildEntity(entities, beat);
@@ -569,7 +564,7 @@ export class TraversalT0Scene {
     const activeDriving = !this.routeRun.complete && !this.departure
       && !document.body.classList.contains('scene-transition--locked');
     if (this.rewardEnabled) {
-      const resolved = resolveRouteReward(this.routeReward, t0RoutePickups(this.routeSegment.id),
+      const resolved = resolveRouteReward(this.routeReward, T0_ROAD_AUTHORING.pickups(this.routeSegment.id),
         previous.progress01, this.routeRun.progress01, this.routeRun.lane, activeDriving);
       this.routeReward = resolved.state;
       for (const outcome of resolved.outcomes) {
@@ -581,7 +576,7 @@ export class TraversalT0Scene {
     }
     let collisionsThisStep = 0;
     if (this.riskEnabled) {
-      const resolved = resolveRouteRisk(this.routeRisk, t0RouteHazards(this.routeSegment.id),
+      const resolved = resolveRouteRisk(this.routeRisk, T0_ROAD_AUTHORING.hazards(this.routeSegment.id),
         previous.progress01, this.routeRun.progress01, this.routeRun.lane, activeDriving);
       this.routeRisk = resolved.state;
       for (const outcome of resolved.outcomes) {
@@ -596,7 +591,7 @@ export class TraversalT0Scene {
       }
     }
     if (this.pursuitEnabled) {
-      const window = t0RoutePursuitWindow(this.routeSegment.id);
+      const window = T0_ROAD_AUTHORING.pursuitWindow(this.routeSegment.id);
       const resolved = resolveRoutePursuit(this.routePursuit, window,
         previous.progress01, this.routeRun.progress01, this.routeRun.lane,
         this.routeRun.elapsedMs - previous.elapsedMs, collisionsThisStep, activeDriving);
@@ -624,10 +619,7 @@ export class TraversalT0Scene {
     this.speed = this.routeRun.speed * restart;
     this.element.dataset.motion = this.routeRun.progress01 > .8 ? 'rushing' : 'cruising';
     this.element.style.setProperty('--route-rush-opacity', String(Math.max(0, (this.routeRun.progress01 - .55) * 1.2)));
-    const start = this.routeIndex === 0 ? 0 : this.routeIndex === 5 ? .91
-      : this.routeIndex === 4 ? .8 : this.stageBeats[this.routeIndex - 1]!.progress01;
-    const end = this.routeIndex === 5 ? 1 : this.routeIndex === 4 ? .91
-      : this.stageBeats[this.routeIndex]!.progress01;
+    const { start, end } = traversalRouteProgressBounds(this.route, this.routeIndex);
     this.controller.advanceTo(start + (end - start) * this.routeRun.progress01);
     if (!this.routeRun.complete) return;
     if (this.routeSegment.checkpointKind === 'ARRIVAL') {
@@ -642,7 +634,7 @@ export class TraversalT0Scene {
       return;
     }
     const checkpointId = this.routeSegment.nextCheckpointId;
-    const beat = this.routeSegment.checkpointKind === 'FORK' ? this.stageBeats[3]
+    const beat = this.routeSegment.checkpointKind === 'FORK' ? this.stageBeats.find(candidate => candidate.type === 'fork')
       : this.route.beats.find(candidate => candidate.campaignNodeIds.includes(checkpointId ?? '')
         && (this.routeSegment.checkpointKind !== 'BRANCH' || candidate.branchNodeId === checkpointId));
     if (!beat) throw new Error(`T0 checkpoint beat missing: ${checkpointId}`);
@@ -738,7 +730,8 @@ export class TraversalT0Scene {
 
   private startRoute(index: number): void {
     this.routeIndex = index;
-    this.routeSegment = resolveT0RouteSegment(index, this.options.getState().run.traversalBranches?.T0);
+    this.routeSegment = T0_ROAD_AUTHORING.resolveSegment(index,
+      this.options.getState().run.traversalBranches?.[this.options.leg.id]);
     this.routeRun = createRouteRun(this.routeSegment, index, this.session.currentLane);
     this.routeRisk = createRouteRisk(this.routeSegment.id);
     this.routeReward = createRouteReward(this.routeSegment.id);
@@ -749,8 +742,8 @@ export class TraversalT0Scene {
     this.lastPursuitSpeedAfter = null;
     this.lastPursuitCatchElapsed = null;
     this.lastPursuitCatchProgress = null;
-    this.riskRenderer?.reset(t0RouteHazards(this.routeSegment.id));
-    this.rewardRenderer?.reset(t0RoutePickups(this.routeSegment.id));
+    this.riskRenderer?.reset(T0_ROAD_AUTHORING.hazards(this.routeSegment.id));
+    this.rewardRenderer?.reset(T0_ROAD_AUTHORING.pickups(this.routeSegment.id));
     this.pursuitRenderer?.reset();
     if (this.pursuitEnabled && this.riskQa) {
       this.element.dataset.pursuitWindow = '';
@@ -815,7 +808,7 @@ export class TraversalT0Scene {
     this.bypassCanonical(beat);
     this.controller.bypassBeat(beat.id);
     this.checkpointExits++;
-    this.beginCheckpointDeparture('return', () => { this.startRoute(3); this.updateWorldTransforms(); });
+    this.beginCheckpointDeparture('return', () => { this.startRoute(this.options.leg.stages.length - 1); this.updateWorldTransforms(); });
     this.renderRuntimeState();
   }
 
@@ -870,7 +863,7 @@ export class TraversalT0Scene {
     const nextLabel = this.routeSegment.checkpointKind === 'FORK' ? 'Choix d’itinéraire'
       : this.routeSegment.checkpointKind === 'ARRIVAL' ? this.route.destinationLabel
       : nextStage?.label ?? this.routeSegment.railLabel;
-    const distanceLabel = `Route ${this.routeIndex + 1}/6 · ${Math.ceil((this.routeSegment.durationMs - this.routeRun.elapsedMs) / 1000)} s`;
+    const distanceLabel = `Route ${this.routeIndex + 1}/${T0_ROAD_AUTHORING.routeSegments.length} · ${Math.ceil((this.routeSegment.durationMs - this.routeRun.elapsedMs) / 1000)} s`;
     if (next && next.textContent !== nextLabel) next.textContent = nextLabel;
     if (distance && distance.textContent !== distanceLabel) distance.textContent = distanceLabel;
     this.renderEventPanel();
@@ -924,10 +917,10 @@ export class TraversalT0Scene {
     // Read both viewport dimensions before any style writes to avoid forced layout.
     const height = this.element.clientHeight || 823;
     if (this.viewMode === 'ROUTE') {
-      this.worldRenderer.updateRoute(t0RouteWorldCamera(this.routeRenderer.distance), width);
+      this.worldRenderer.updateRoute(this.worldRenderer.routeCamera(this.routeRenderer.distance), width);
     }
     if (this.riskRenderer) {
-      const hazards = t0RouteHazards(this.routeSegment.id);
+      const hazards = T0_ROAD_AUTHORING.hazards(this.routeSegment.id);
       const active = this.viewMode === 'ROUTE' && this.session.phase === 'RUNNING'
         && !this.transition && !this.departure && this.approachElapsed === null
         && !this.routeRun.complete && !document.body.classList.contains('scene-transition--locked');
@@ -954,7 +947,7 @@ export class TraversalT0Scene {
       const active = this.viewMode === 'ROUTE' && session.phase === 'RUNNING'
         && !this.transition && !this.departure && this.approachElapsed === null
         && !this.routeRun.complete && !document.body.classList.contains('scene-transition--locked');
-      const pickups = t0RoutePickups(this.routeSegment.id);
+      const pickups = T0_ROAD_AUTHORING.pickups(this.routeSegment.id);
       this.rewardRenderer.update(pickups, this.routeReward, this.routeRun.progress01,
         this.routeRun.elapsedMs, this.routeSegment.durationMs, this.routeRenderer.distance,
         width, active, progress => forecastRouteDistance(this.routeRun, this.routeSegment, progress));
@@ -969,7 +962,7 @@ export class TraversalT0Scene {
         && !this.transition && !this.departure && this.approachElapsed === null
         && !this.routeRun.complete && !document.body.classList.contains('scene-transition--locked');
       const vehicleHeight = Math.min(height * .24, width * (width <= 1000 ? .16 : .14));
-      const window = t0RoutePursuitWindow(this.routeSegment.id);
+      const window = T0_ROAD_AUTHORING.pursuitWindow(this.routeSegment.id);
       this.pursuitRenderer.update(window, this.routePursuit, this.routeRun.progress01,
         this.routeRun.elapsedMs, width, vehicleHeight, active);
       if (this.riskQa) {
@@ -1001,7 +994,7 @@ export class TraversalT0Scene {
       this.element.querySelector<HTMLElement>('.traversal-world__foreground')!.style.setProperty('--foreground-offset',
         `${roadWorldToScreen(0, camera, width) * ROAD_SPACE.foregroundFactor}px`);
     } else {
-      const routeCamera = t0RouteWorldCamera(this.routeRenderer.distance);
+      const routeCamera = this.worldRenderer.routeCamera(this.routeRenderer.distance);
       this.foregroundRenderer.update(routeCamera, width);
       this.element.querySelector<HTMLElement>('.traversal-world__foreground')!.style.setProperty('--foreground-offset',
         `${roadWorldToScreen(0, routeCamera, width) * ROAD_SPACE.foregroundFactor}px`);
@@ -1038,7 +1031,8 @@ export class TraversalT0Scene {
       const stageIndex = this.stageBeats.findIndex((candidate) => candidate.id === beat.id);
       const stageConsumed = (stageIndex >= 0 && stageIndex < session.stageIndex)
         || Boolean(beat.branchNodeId && session.stageIndex >= this.stageBeats.length);
-      const branchUnavailable = beat.branchNodeId && this.options.getState().run.traversalBranches?.T0 !== beat.branchNodeId;
+      const branchUnavailable = beat.branchNodeId
+        && this.options.getState().run.traversalBranches?.[this.options.leg.id] !== beat.branchNodeId;
       const previousRoad = this.presentedBranch !== 'main'
         && beat.progress01 <= this.stageBeats.find(stage => stage.type === 'fork')!.progress01;
       entity.classList.toggle('is-consumed', !bypassed && (ambientConsumed || stageConsumed));
