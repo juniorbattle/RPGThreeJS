@@ -1,12 +1,13 @@
 # Documentation authority
 
-Current baseline: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0` (PROJECT-CONTINUITY-AUDIT-1). Read this index before using an older task report.
+The [game constitution](game/GAME_CONSTITUTION.md) and [locked production contracts](contracts/README.md) record the operator's approved target from `PRODUCTION-CONTRACTS-LOCK-1`. This index's older baseline, `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`, remains the source audit baseline. Read the contracts before using an older task report.
 
-1. **Production source and runtime are executable authority.** A discrepancy must be resolved against the checked-out source and a production run.
-2. **Canonical docs are the current human-readable contract.** Update these when an approved change alters behavior or scope; they describe the baseline named above.
-3. **Task reports are historical execution records.** Their baseline, branch, and claims describe the state at that task. Reports never silently override current canonical docs.
-4. **Browser evidence is validation evidence.** Screenshots and QA JSON prove the scenarios recorded; they do not define campaign or gameplay rules.
-5. **Git history is the recovery source for retired intermediate evidence.** No existing evidence is deleted by this audit. Retirement needs link repair, a unique-proof check, and operator approval.
+1. **Explicit operator decisions and locked contracts are the approved target.** Current source describes implementation and may still drift from that target.
+2. **Production source and runtime are executable evidence.** Verify current behavior against checked-out source and a production run.
+3. **Canonical docs describe the current implementation and intended target.** Update stale status after an approved change.
+4. **Task reports are historical execution records.** Their baseline, branch, and claims describe the state at that task. Reports never silently override current canonical docs.
+5. **Browser evidence is validation evidence.** Screenshots and QA JSON prove the scenarios recorded; they do not define campaign or gameplay rules.
+6. **Git history is the recovery source for retired intermediate evidence.** Retirement needs dependency and unique-proof checks; preserve approved historical proof.
 
 ## Start here
 

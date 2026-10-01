@@ -2,6 +2,8 @@
 
 Baseline: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. Scope labels are planning controls, not implementation approval.
 
+The [2026-10-01 production contracts](../contracts/README.md) approve T1/T3 production and retire playable T2/T4 plans. This roadmap's older undecided paragraph below is superseded for those legs; it remains historical context for the cited baseline.
+
 ## DEMO_REQUIRED
 
 1. Revalidate the existing Lion campaign from start through the terminal route in a built production app, including both T0 branches, save/resume boundaries, first and second refuge services, canonical combat, dialogue, Journey, cinematics, VFX, and narrow UI. Record failures and fixes against current source.

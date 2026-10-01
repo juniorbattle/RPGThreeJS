@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
+  "lockedAt": "2026-10-01",
+  "status": "LOCKED",
+  "constitution": "docs/game/GAME_CONSTITUTION.md",
+  "contracts": [
+    { "id": "WORLD_AND_CHARACTERS", "path": "docs/contracts/WORLD_AND_CHARACTERS.md", "status": "LOCKED" },
+    { "id": "CAMPAIGN_AND_STATE", "path": "docs/contracts/CAMPAIGN_AND_STATE.md", "status": "LOCKED" },
+    { "id": "PRESENTATION_AND_MEDIA", "path": "docs/contracts/PRESENTATION_AND_MEDIA.md", "status": "LOCKED" },
+    { "id": "TRAVERSAL", "path": "docs/contracts/TRAVERSAL.md", "status": "LOCKED" },
+    { "id": "COMBAT_AND_VFX", "path": "docs/contracts/COMBAT_AND_VFX.md", "status": "LOCKED" },
+    { "id": "UI_AND_ACCESSIBILITY", "path": "docs/contracts/UI_AND_ACCESSIBILITY.md", "status": "LOCKED" },
+    { "id": "AUTHORING_AND_QA", "path": "docs/contracts/AUTHORING_AND_QA.md", "status": "LOCKED" },
+    { "id": "AUTONOMOUS_WORK_PROTOCOL", "path": "docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md", "status": "LOCKED" }
+  ]
+}

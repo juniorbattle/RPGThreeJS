@@ -1,5 +1,7 @@
 # Remaining Traversal legs: current-source audit
 
+Historical planning baseline. The [2026-10-01 locked Traversal contract](../contracts/TRAVERSAL.md) supersedes this document's `UNDECIDED` labels and playable T4 proposal: T1/T3 are approved for production, T2/T4 playable plans are retired, and durable IDs remain. Source-readiness observations below still describe the cited older baseline and need fresh verification before implementation.
+
 Baseline: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. **CURRENT FACT** comes from `LionCampaignTravelRelations`, `LionCampaignStructure`, `runSystem`, `GameApp`, `TraversalFeaturePolicy`, and the T0 asset tree. **APPROVED DECISION** here is only the locked T0 production gate. All future presentation designs below are proposals or undecided.
 
 `GameApp.enterCampaignPresentation` selects `candidate.id === 'T0'`; the gate's rollout list is `['T0']`. T1–T4 therefore currently use Journey/canonical campaign presentation, even though their relation IDs and stages exist. The only runtime Traversal art pack is `public/assets/generated/lion-phase/traversal/t0/`. Existing environment plates for locations/dialogue are not side-on Traversal world art.

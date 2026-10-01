@@ -14,4 +14,4 @@ For an approved T0 edit, update the narrow owner, its meaningful regression test
 
 ## Future legs
 
-The [leg audit](LEGS_ROADMAP.md) is a planning checklist. No T1–T4 Route, world, hazard, reward, pursuit, or timing content is approved here. First decide demo scope, presentation type, world art, stage pacing, fork handling, arrival, and QA acceptance. Preserve campaign IDs and topology unless separately approved. A generic scene extraction is a proposal, not a prerequisite already satisfied.
+The [leg audit](LEGS_ROADMAP.md) is an older planning checklist. The [locked Traversal contract](../contracts/TRAVERSAL.md) now approves playable T1/T3 with T0 grammar and retires playable T2/T4 plans. Route timing, world art, checkpoint staging, and QA acceptance still require authored implementation. Preserve campaign IDs and topology unless separately approved.

@@ -2,6 +2,8 @@
 
 Baseline: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`.
 
+The [2026-10-01 production contracts](../contracts/README.md) supersede this older undecided classification for T1/T3 and T2/T4. This table is retained as a baseline record, not the current autonomous queue.
+
 | Item | Scope | Basis |
 | --- | --- | --- |
 | T1/T3/T4 playable Traversal | DEFERRED_UNDECIDED | Relations exist; production selector and art remain T0-only. A prior generic-scene proposal is historical planning, not approval. |
