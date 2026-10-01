@@ -6,7 +6,7 @@ Updated: 2026-10-01 (America/Toronto). Branch: `dev`. Starting verified commit: 
 | --- | --- |
 | Active task | `CINEMATIC-EIGHT-SLOT-ALIGNMENT` (queue item 3) |
 | Phase | Eight-slot playback guard, production registry filter and three Journey static boundaries implemented; generated presentation registry, holds, manifest and old doctrine still need migration. |
-| Last valid commit | `906fa99` runtime checkpoint pushed to `origin/dev`; registry filter and conversion inventory verified, pending commit. |
+| Last valid commit | `007122e` production-registry checkpoint pushed to `origin/dev`; current state closeout is documentation only. |
 | Remaining work | Migrate 21 non-approved video beats and 17 hold references from the old generated registry through a new production source; convert remaining CIN-6A/CIN-6C triggers to still/tableau surfaces; then trim manifest to eight videos, audit old MP4 dependencies, update doctrine/tests, run browser QA. Preserve dialogue, choice and combat handoffs. Later queue items remain below. |
 | Tests executed | Contract validator passed; Cinematics/Journey Vitest 38 files, 378 tests passed for the preceding checkpoint; registry tests passed with a current-manifest eight-playable-video assertion; TypeScript and Vite production build passed after registry filtering. |
 | Blockers | None for current documentation work. Final cinematic media remaster may require suitable asset tools and acceptance QA. |
