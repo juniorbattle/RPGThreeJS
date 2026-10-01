@@ -6,15 +6,16 @@ Git on `dev` and this state pair are the current continuation authority.
 | --- | --- |
 | `status` | IN_PROGRESS |
 | `runStartedAt` | 2026-10-01T15:44:07.5191217Z |
-| `runEndedAt` | pending |
+| `runEndedAt` | 2026-10-01T16:41:56.218Z |
 | `activeTask` | TRAVERSAL-T1-PRODUCTION |
 | `activePhase` | T1 candidate authoring and DEV QA complete; production integration pending |
 | `activeSubtask` | Verify origin/save-resume and production activation using existing T1 candidate |
 | `workingBranch` | dev |
-| `lastKnownGoodCommit` | e5aa20dadc61b1c8660dcec51f738551072397a1 |
-| `lastPushedCommit` | e5aa20dadc61b1c8660dcec51f738551072397a1 |
+| `lastKnownGoodCommit` | 2b05370f36b5f7a398cd3cdad1a06e0f4881f438 |
+| `lastPushedCommit` | 2b05370f36b5f7a398cd3cdad1a06e0f4881f438 |
 | `creditStatus` | AVAILABLE |
 | `contractComplianceStatus` | Contract set v1: item 5 COMPLETE/PASS; T1 candidate checkpoint PASS including art/DEV QA, production integration pending; no LOCKED rule changed |
+| `commitReferenceScope` | Verified implementation checkpoint; a subsequent state-only closeout commit is identified by Git HEAD/origin/dev and automation memory. |
 
 ## completedThisRun
 
@@ -26,6 +27,7 @@ Git on `dev` and this state pair are the current continuation authority.
 - Generated two real side-on checkpoint paintings from canonical references with hashes and provenance
 - Verified three persisted adaptive combat formations; 163 focused tests pass
 - T1 isolated DEV candidate QA passed three paths, 38 responsive captures, zero machine/console/asset/frame issues; key captures inspected
+- Committed and pushed shared-scene completion e5aa20d and T1 candidate 2b05370; no T1/T3 rollout enabled
 
 ## filesChanged
 
