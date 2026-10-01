@@ -1,58 +1,57 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-01T15:03:59.6949450Z",
-  "runEndedAt": "2026-10-01T15:35:28Z",
-  "activeTask": "TRAVERSAL-GENERALIZATION",
-  "activePhase": "Neutral route/checkpoint/world models and T0 authoring package complete; shared scene extraction pending",
-  "activeSubtask": "Extract remaining T0-only scene interactions into a shared road-scene core with a narrow T0 adapter",
+  "runStartedAt": "2026-10-01T15:44:07.5191217Z",
+  "runEndedAt": null,
+  "activeTask": "TRAVERSAL-T1-PRODUCTION",
+  "activePhase": "Item 5 complete; T1 checkpoint authoring preparation",
+  "activeSubtask": "Author canonical T1 road/checkpoint data and generate missing Valmir/shrine checkpoint art",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "dev HEAD after checkpoint commit; verify with Git",
-  "lastPushedCommit": "origin/dev after push; verify with Git",
+  "lastKnownGoodCommit": "5620f78a7203f3cd602216ccc9291ed12e4f922d",
+  "lastPushedCommit": "5620f78a7203f3cd602216ccc9291ed12e4f922d",
   "completedThisRun": [
-    "Resumed clean dev at d1bd2ac, fetched origin and verified origin/main already merged under exclusive lock",
-    "Extracted neutral route beat/crossing, checkpoint, world and occluder models; grouped T0 route/world/Risk/Reward/Pursuit inputs in TraversalRoadAuthoring",
-    "Added fail-closed campaign stage/checkpoint/branch/location audit before T0 opens; kept T0 values and rollout unchanged",
-    "Updated T0 browser driver arrival hook and current Traversal architecture/authoring docs"
+    "Extracted shared TraversalRoadScene with narrow T0 adapter and neutral registry options",
+    "Generalized RunSystem branch/bypass authority across declared playable relations; preserved mandatory, availability and save boundaries",
+    "Reward acceptance requires enabled rollout and authored scene, remains T0-only in production",
+    "Completed item 5 with 155 focused tests, TypeScript, contracts, build and DEV/production two-branch browser QA"
   ],
   "filesChanged": [
-    "src/traversal/TraversalRouteModel.ts, TraversalCheckpointRoute.ts, TraversalWorldModel.ts, TraversalRoadAuthoring.ts, TraversalT0Authoring.ts, TraversalT0Foreground.ts",
-    "src/traversal T0 route/checkpoint/world/scene, generic renderers, imports and focused tests",
-    "tools/traversal-t0-browser-qa.mjs",
+    "src/traversal/TraversalRoadScene.ts and .test.ts",
+    "src/traversal/TraversalT0Scene.ts, TraversalPresentation.ts, TraversalRouteRenderer.ts",
+    "src/game/GameApp.ts, runSystem.ts and Traversal authority/rollout tests",
     "docs/traversal/ARCHITECTURE.md, AUTHORING_GUIDE.md; docs/autonomy/TRAVERSAL_GENERALIZATION.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md and .json"
   ],
   "testsRun": [
-    "113 focused Traversal and rollout Vitest cases across 22 files",
-    "TypeScript, contract validator and Vite production build",
-    "DEV Chromium T0 two-branch full QA at 1440x810, 620x780 and 390x844"
+    "155 focused tests across 27 files",
+    "TypeScript, contract validator and production build",
+    "DEV and built-production Chromium T0 branches at 1440x810, 620x780 and 390x844"
   ],
   "testsPassed": [
-    "113/113 focused tests; TypeScript, eight LOCKED contracts/eight slots and production build",
-    "Both T0 branches and Risk/Reward/Pursuit coexistence passed browser QA with 23 captures and zero machine-reported issues; mobile route 1/5B captures inspected"
+    "155/155 tests; TypeScript, contracts and build",
+    "DEV/production browser QA each 23 captures and zero machine issues; mobile captures inspected"
   ],
   "testsRemaining": [
-    "T0 regression after shared scene-core extraction",
-    "T1/T3 authored scene, art, transitions and browser QA before rollout"
+    "T1 authored scene, assets, transitions, save/resume and real browser acceptance before rollout",
+    "T3 production authoring and QA"
   ],
   "blockers": [],
   "remainingWork": [
-    "Item 5: extract shared road-scene lifecycle and remaining T0-only event/branch presentation with thin T0 adapter",
-    "Preserve optional refugee choice, RunSystem fork/temporary-loot authority, current T0 values and exact visual QA; GameApp reward acceptance retains T0 guard",
-    "Items 6/7: author T1/T3 event/checkpoint art and scenes, then perform acceptance QA before enabling"
+    "Item 6: T1 authored road/checkpoint/world/art/mechanics and integration QA",
+    "Item 7: T3 production authoring and QA"
   ],
-  "nextAction": "In src/traversal/TraversalT0Scene.ts, extract a shared road-scene core consuming TraversalRoadAuthoring; keep a thin T0 adapter for refugee optional decision, exact RunSystem fork/loot callbacks and CSS/QA contract. Rerun T0 flow/scene/world tests and both browser branches. Do not register or roll out T1/T3 until their authored art and transitions exist.",
+  "nextAction": "Author T1 existing reserve-trail, Valmir-road, shrine/combat fork and Bois-Clair arrival using shared T0 forest Route base. Generate only missing checkpoint art from canonical location references. Keep T1 unregistered and outside rollout until authored media, transitions, real handoffs, save/resume and responsive browser QA pass.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-LOCK-1: COMPLETE",
     "Contract drift audit: COMPLETE",
     "CINEMATIC-EIGHT-SLOT-ALIGNMENT: COMPLETE",
     "Retire T2/T4 playable runtime: COMPLETE",
-    "TRAVERSAL-GENERALIZATION: ACTIVE",
-    "Produce T1",
+    "TRAVERSAL-GENERALIZATION: COMPLETE",
+    "TRAVERSAL-T1-PRODUCTION: ACTIVE",
     "Produce T3",
     "Remaster eight approved videos if tools permit",
     "Complete demo QA and polish",
     "Audio decision after structure lock"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "Contract set v1 checkpoint PASS for constitution, art, characters, environments, narrative/campaign, narrative presentation, Traversal T0, combat, save, UI/accessibility, QA evidence and repository governance; item 5 IN_PROGRESS; no LOCKED rule modified"
+  "contractComplianceStatus": "Contract set v1 item-5 PASS in TRAVERSAL_GENERALIZATION.md; no LOCKED rule changed; T1 production pending"
 }

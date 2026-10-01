@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { bypassTraversalNode, createRunState, enterRunNode, failRunToCheckpoint, getAvailableRunNodes, selectTraversalBranch } from './runSystem';
 import { createInitialState } from './store';
 import { runStateSchema } from './types';
+import { LION_TRAVERSAL_LEGS } from '../campaign/LionCampaignTravelRelations';
 
 function afterAmbush() {
   const run = createRunState(42);
@@ -67,7 +68,7 @@ describe('T0 canonical route participation', () => {
     expect(getAvailableRunNodes(run).map(node => node.id)).toEqual(['lion-first-refuge']);
   });
 
-  it('refuses unavailable nodes, mandatory ambush, and changes outside T0', () => {
+  it('refuses unavailable nodes and mandatory interruptions', () => {
     const run = afterAmbush();
     const snapshot = structuredClone(run);
     expect(bypassTraversalNode(run, 'T0', 'lion-refugees')).toBe(false);
@@ -96,5 +97,45 @@ describe('T0 canonical route participation', () => {
     const loaded = runStateSchema.parse(JSON.parse(JSON.stringify(run)));
     expect(getAvailableRunNodes(loaded).map(node => node.id)).toEqual(['lion-first-refuge']);
     expect(loaded.visitedNodeIds).not.toContain('lion-first-trial-event');
+  });
+});
+
+describe('shared authored road choice authority', () => {
+  it.each(['T1', 'T3'] as const)('keeps %s selection downstream of availability, save-compatible, and separate from entry', legId => {
+    const leg = LION_TRAVERSAL_LEGS.find(candidate => candidate.id === legId)!;
+    const fork = leg.stages.at(-1)!;
+    for (const selected of fork.nodeIds) {
+      const run = createRunState(42);
+      run.currentNodeId = leg.originNodeId;
+      const untouched = structuredClone(run);
+      expect(selectTraversalBranch(run, legId, selected)).toBe(false);
+      expect(run).toEqual(untouched);
+      run.currentNodeId = leg.stages.at(-2)!.nodeIds[0]!;
+      const before = structuredClone(run);
+      expect(selectTraversalBranch(run, legId, selected)).toBe(true);
+      expect(run.currentNodeId).toBe(before.currentNodeId);
+      expect(run.visitedNodeIds).toEqual(before.visitedNodeIds);
+      expect(run.temporaryLoot).toEqual(before.temporaryLoot);
+      expect(run.graph).toEqual(before.graph);
+      expect(selectTraversalBranch(run, legId, selected)).toBe(false);
+      expect(bypassTraversalNode(run, legId, selected)).toBe(false);
+      const loaded = runStateSchema.parse(JSON.parse(JSON.stringify(run)));
+      expect(getAvailableRunNodes(loaded).map(node => node.id)).toEqual([selected]);
+      const unselected = fork.nodeIds.find(id => id !== selected)!;
+      expect(enterRunNode(loaded, unselected)).toBeNull();
+      expect(enterRunNode(loaded, leg.destinationNodeId)).toBeNull();
+      expect(enterRunNode(loaded, selected)?.id).toBe(selected);
+      expect(getAvailableRunNodes(loaded).map(node => node.id)).toEqual([leg.destinationNodeId]);
+    }
+  });
+
+  it('rejects retired and unknown road IDs without mutation', () => {
+    const run = afterAmbush();
+    const before = structuredClone(run);
+    for (const legId of ['T2', 'T4', 'unknown']) {
+      expect(selectTraversalBranch(run, legId, 'lion-first-trial-event')).toBe(false);
+      expect(bypassTraversalNode(run, legId, 'lion-refugees')).toBe(false);
+    }
+    expect(run).toEqual(before);
   });
 });

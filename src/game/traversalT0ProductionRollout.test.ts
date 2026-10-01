@@ -23,6 +23,7 @@ interface Harness {
   continueChronicle(): Promise<void>;
   renderTitle(): void;
   commitRunNodeChoice(id: string): Promise<boolean>;
+  acceptTraversalRouteReward(reward: { id: string; gold: number }): boolean;
 }
 
 function harness() {
@@ -68,6 +69,27 @@ describe('production T0 orchestration with real scenes, RunSystem and saves', ()
   afterEach(() => {
     vi.useRealTimers(); vi.restoreAllMocks(); document.body.replaceChildren();
     delete document.body.dataset.campaignSurface;
+  });
+
+  it('accepts route loot only during an authored, enabled running scene', () => {
+    const app = harness();
+    const refresh = vi.fn();
+    Object.assign(app, { statusHud: { refresh } });
+    const before = structuredClone(app.state);
+    for (const [legId, phase] of [['T1', 'RUNNING'], ['T3', 'RUNNING'], ['T0', 'NODE_RESOLUTION']] as const) {
+      app.activeTraversal = { session: { legId, phase } } as unknown as TraversalT0Scene;
+      expect(app.acceptTraversalRouteReward({ id: 'fixture-pouch', gold: 5 })).toBe(false);
+      expect(app.state).toEqual(before);
+    }
+    app.activeTraversal = { session: { legId: 'T0', phase: 'RUNNING' } } as unknown as TraversalT0Scene;
+    for (const gold of [0, -1, .5, NaN]) {
+      expect(app.acceptTraversalRouteReward({ id: 'fixture-pouch', gold })).toBe(false);
+    }
+    expect(app.acceptTraversalRouteReward({ id: 'fixture-pouch', gold: 5 })).toBe(true);
+    const expected = structuredClone(before);
+    expected.run.temporaryLoot.gold += 5;
+    expect(app.state).toEqual(expected);
+    expect(refresh).toHaveBeenCalledOnce();
   });
 
   it('holds at departure without committing, then mounts exactly once under cover', async () => {

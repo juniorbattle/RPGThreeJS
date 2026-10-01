@@ -1,4 +1,4 @@
-/** T0 Route motion and rush overlay. TraversalWorldRenderer owns all painted scenery. */
+/** Shared Route motion and rush overlay. TraversalWorldRenderer owns all painted scenery. */
 export class TraversalRouteRenderer {
   readonly element = document.createElement('div');
   private distancePx = 0;

@@ -641,7 +641,7 @@ export function getAvailableRunNodes(source: RunState | GameState): RunNode[] {
 
 /** Records road choice only. No visit, dialogue, reward, or current-node mutation. */
 export function selectTraversalBranch(run: RunState, legId: string, nodeId: string): boolean {
-  const leg = LION_TRAVERSAL_LEGS.find((candidate) => candidate.id === legId && candidate.id === 'T0');
+  const leg = LION_TRAVERSAL_LEGS.find((candidate) => candidate.id === legId);
   const stage = leg?.stages.find((candidate) => candidate.mode === 'IN_TRAVERSAL_FORK' && candidate.nodeIds.includes(nodeId));
   if (!stage || run.traversalBranches?.[legId] || !getAvailableRunNodes(run).some((node) => node.id === nodeId)) return false;
   run.traversalBranches = { ...run.traversalBranches, [legId]: nodeId };
@@ -651,7 +651,7 @@ export function selectTraversalBranch(run: RunState, legId: string, nodeId: stri
 
 /** Canonical opt-out: advance route availability without pretending the event happened. */
 export function bypassTraversalNode(run: RunState, legId: string, nodeId: string): boolean {
-  const leg = LION_TRAVERSAL_LEGS.find((candidate) => candidate.id === legId && candidate.id === 'T0');
+  const leg = LION_TRAVERSAL_LEGS.find((candidate) => candidate.id === legId);
   const stage = leg?.stages.find((candidate) => candidate.nodeIds.includes(nodeId));
   const optional = stage?.mode === 'OPTIONAL_INTERRUPT'
     || ((stage?.branchEncounterMode === 'OPTIONAL_INTERRUPT' || stage?.optionalBranchNodeIds?.includes(nodeId))

@@ -373,7 +373,8 @@ export class GameApp {
 
   private acceptTraversalRouteReward(reward: { readonly id: string; readonly gold: number }): boolean {
     const traversal = this.activeTraversal;
-    if (!traversal || traversal.session.legId !== 'T0' || traversal.session.phase !== 'RUNNING'
+    if (!traversal || !isTraversalProductionEnabledForLeg(traversal.session.legId)
+      || !hasAuthoredTraversalPresentation(traversal.session.legId) || traversal.session.phase !== 'RUNNING'
       || !Number.isInteger(reward.gold) || reward.gold <= 0) return false;
     addTemporaryLoot(this.state.run, { gold: reward.gold });
     this.statusHud.refresh();
