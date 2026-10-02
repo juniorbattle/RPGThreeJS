@@ -10,8 +10,8 @@ Git on dev and this state pair are the continuation authority. Operator ledger: 
 | `runStartedAt` | 10/02/2026 14:54:51 |
 | `runEndedAt` |  |
 | `activeTask` | DEMO-QA-POLISH: continuous earned campaign beyond first refuge |
-| `activePhase` | Native earned defeat recovery QA |
-| `activeSubtask` | Native earned defeat recovery QA |
+| `activePhase` | Production natural-loss recovery and trial ending executing |
+| `activeSubtask` | Production natural-loss recovery and trial ending executing |
 | `workingBranch` | dev |
 | `lastKnownGoodCommit` | c7ae86632f2902c5065ab1acaac142a86d0a8783 |
 | `lastPushedCommit` | c7ae86632f2902c5065ab1acaac142a86d0a8783 |
@@ -24,17 +24,17 @@ Git on dev and this state pair are the continuation authority. Operator ledger: 
 {
   "runId": "rpgthreejs-auto-dev-90m-20261002T1453",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-02T14:59:20.8266832Z",
+  "lastHeartbeat": "2026-10-02T15:04:39.7973479Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261002T1453",
-    "sha": null,
+    "sha": "dc46dbf8c6499ce52ead643c11f1a56d1f2822a0",
     "dirtyFiles": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
       "tools/demo-continuous-production-qa.mjs"
     ],
     "status": "GREEN",
-    "lastGreenCheck": "48/48 owner tests; types/build/contracts; QA driver syntax PASS"
+    "lastGreenCheck": "48 owner tests/types/build/8contracts/syntax PASS; browser runs pending"
   }
 }
 ```
@@ -71,7 +71,7 @@ Git on dev and this state pair are the continuation authority. Operator ledger: 
 
 ## nextAction
 
-Execute current production native defeat-return from earned1153 seed and independent trial ending from earned1323 second-refuge proof; inspect exact recovery autosave and reload.
+Finish two isolated actual-input runs. The strengthened recovery driver now checks full graph-descendant cleanup and visible T1 departure; rerun it at mobile OS-only motion after desktop completion. Select inspected compact evidence only after exact V6 comparison.
 
 ## taskQueue
 
