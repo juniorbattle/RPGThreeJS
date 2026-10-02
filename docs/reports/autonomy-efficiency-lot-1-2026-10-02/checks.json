@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "task": "AUTONOMY-EFFICIENCY-LOT-1",
+  "recordedAt": "2026-10-02T18:57:45.177Z",
+  "runId": "codex-config-efficiency-20261002T1820",
+  "baseline": "c7ae86632f2902c5065ab1acaac142a86d0a8783",
+  "implementationCommit": "5f79d0369811282fd96785355fffcfeb324e7c67",
+  "scope": "Approved efficiency setup and receipt infrastructure; not demo browser acceptance",
+  "checks": [
+    {
+      "command": "node --test tools/qa/qa-job.test.mjs",
+      "exitCode": 0,
+      "passed": 14,
+      "total": 14,
+      "includes": "Real parent cutoff while detached worker survives and writes final receipt"
+    },
+    {
+      "command": "node node_modules/vitest/vitest.mjs run src/game/runSystem.test.ts --maxWorkers=4 --minWorkers=1",
+      "exitCode": 0,
+      "passed": 16,
+      "total": 16
+    },
+    {
+      "command": "node node_modules/typescript/bin/tsc --noEmit",
+      "exitCode": 0
+    },
+    {
+      "command": "node tools/contracts/validate-contracts.mjs",
+      "exitCode": 0,
+      "lockedContracts": 8,
+      "approvedVideoSlots": 8
+    },
+    {
+      "command": "node --check tools/demo-continuous-production-qa.mjs",
+      "exitCode": 0
+    }
+  ],
+  "independentReview": {
+    "role": "contracts-guardian",
+    "scope": "Sensitive QA assertions, receipt provenance, ownership and acceptance boundaries",
+    "status": "PASS",
+    "testsRerunByReviewer": false
+  },
+  "automation": {
+    "status": "PASS",
+    "changedFields": [
+      "prompt",
+      "updated_at"
+    ],
+    "otherFieldsPreserved": true,
+    "promptChars": 5938,
+    "promptSha256": "fe111cb223986915928bbdd62712bd35e138a84e5d6b609ea2d16f43e86c4b97",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "cadenceMinutes": 90,
+    "automationStatus": "PAUSED",
+    "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
+  },
+  "contractSet": "PRODUCTION-CONTRACTS-LOCK-1/v1",
+  "lockedRulesSilentlyModified": false,
+  "compliance": [
+    {
+      "contract": "GAME_CONSTITUTION",
+      "status": "PASS",
+      "basis": "No game truth or canon change; scoped independent review PASS"
+    },
+    {
+      "contract": "ART_DIRECTION",
+      "status": "PASS",
+      "basis": "No assets/style change"
+    },
+    {
+      "contract": "CHARACTERS",
+      "status": "PASS",
+      "basis": "No character changes"
+    },
+    {
+      "contract": "ENVIRONMENTS",
+      "status": "PASS",
+      "basis": "No environment changes"
+    },
+    {
+      "contract": "NARRATIVE / CAMPAIGN",
+      "status": "PASS",
+      "basis": "Native assertions preserve earned V6 lineage;16owner tests pass"
+    },
+    {
+      "contract": "NARRATIVE_PRESENTATION",
+      "status": "PASS",
+      "basis": "No presentation authority change"
+    },
+    {
+      "contract": "TRAVERSAL",
+      "status": "PASS",
+      "basis": "No runtime change; visible departure assertions strengthened"
+    },
+    {
+      "contract": "COMBAT",
+      "status": "PASS",
+      "basis": "No resolution change; trial timeout remains unaccepted"
+    },
+    {
+      "contract": "SAVE",
+      "status": "PASS",
+      "basis": "No schema/IDs changed; recovery checks strengthened; browser acceptance pending"
+    },
+    {
+      "contract": "QA_EVIDENCE",
+      "status": "PASS",
+      "basis": "14receipt tests and targeted review; legacy output unaccepted"
+    },
+    {
+      "contract": "REPOSITORY_GOVERNANCE",
+      "status": "PASS",
+      "basis": "Exclusive takeover, explicit paths, dev push, no main/LOCKED edits"
+    }
+  ],
+  "limitations": [
+    "Strengthened native defeat-recovery production browser and mobile OS-only cases pending",
+    "No full-suite/build rerun for tooling/config integration",
+    "Generic receipt infrastructure exists; only continuous-demo driver instrumented",
+    "Worker marker is an ownership guard, not hostile OS isolation",
+    "Untracked source requires owner-reviewed WIP provenance; unknown provenance is not reusable"
+  ],
+  "legacyQaJobs": [
+    {
+      "jobId": "legacy-1453-defeat-native",
+      "reportedPass": true,
+      "acceptance": "NOT_ACCEPTED",
+      "eligibleForReview": false,
+      "resultSha256": "7d73d390ba2a8f1e3a064c84fe49459ddddfae7b0186b830614bd6ebde6e0105"
+    },
+    {
+      "jobId": "legacy-1453-trial",
+      "reportedPass": false,
+      "acceptance": "NOT_ACCEPTED",
+      "eligibleForReview": false,
+      "resultSha256": "9d218c13c3924b7cc6c9141906405c0814a73f1cde08cc39cbd73735bd2c741d"
+    }
+  ]
+}

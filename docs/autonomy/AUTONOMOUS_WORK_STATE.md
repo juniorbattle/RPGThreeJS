@@ -1,87 +1,230 @@
 # Autonomous work state
 
-Git on dev and this state pair are the continuation authority. Operator ledger: [OPERATOR_DECISIONS.md](OPERATOR_DECISIONS.md).
+Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-02.md. Maintenance lot1 is complete; DEMO-QA-POLISH remains active. Automation is paused for manual operator reactivation.
 
 | Field | Value |
 | --- | --- |
 | `status` | IN_PROGRESS |
-| `runId` | rpgthreejs-auto-dev-90m-20261002T1323 |
+| `runId` | codex-config-efficiency-20261002T1820 |
 | `agent` | codex |
-| `runStartedAt` | 2026-10-02T13:24:21.2479571Z |
-| `runEndedAt` | 2026-10-02T14:34:08.697Z |
+| `runStartedAt` | 2026-10-02T18:19:25.9680976Z |
+| `runEndedAt` | 2026-10-02T18:57:45.177Z |
 | `activeTask` | DEMO-QA-POLISH: continuous earned campaign beyond first refuge |
-| `activePhase` | DEMO-QA-POLISH scoped checkpoint |
-| `activeSubtask` | Salvation adapter and earned rescue second-refuge COMPLETE/PASS; final route/broader demo verification continues |
+| `activePhase` | Native earned defeat recovery QA |
+| `activeSubtask` | Native earned defeat recovery QA |
 | `workingBranch` | dev |
-| `lastKnownGoodCommit` | 286af4718cae95d7fa8035ea5df1221846bea90f |
-| `lastPushedCommit` | 286af4718cae95d7fa8035ea5df1221846bea90f |
-| `creditStatus` | CODEX_AVAILABLE; NO_PROVIDER_REQUEST |
-| `contractComplianceStatus` | PRODUCTION-CONTRACTS-LOCK-1/v1: scoped Salvation correction, earned rescue second-refuge V6 and desktop native controls PASS across12 rows including UI/ACCESSIBILITY;317 focused tests/types/build/contracts PASS. Full demo incomplete; no LOCKED/canon/save/media changes; audio DEFERRED. |
+| `lastKnownGoodCommit` | 5f79d0369811282fd96785355fffcfeb324e7c67 |
+| `lastPushedCommit` | 5f79d0369811282fd96785355fffcfeb324e7c67 |
+| `creditStatus` | CODEX_AVAILABLE; automation remains PAUSED_BY_OPERATOR; no provider request |
+| `contractComplianceStatus` | PRODUCTION-CONTRACTS-LOCK-1/v1: approved efficiency configuration/QA infrastructure PASS; guardian scoped PASS,14receipt+16owner tests/types/8contracts PASS; no LOCKED/canon/V6-schema/media/main changes. DEMO-QA-POLISH remains IN_PROGRESS and strengthened browser acceptance pending. |
 
 ## Live run
 
 ```json
 {
-  "runId": "rpgthreejs-auto-dev-90m-20261002T1323",
+  "runId": "codex-config-efficiency-20261002T1820",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-02T14:34:08.697Z",
+  "lastHeartbeat": "2026-10-02T18:57:45.177Z",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261002T1323",
-    "sha": "706f2a5a48c94270d0379279daffc1c50adce83d",
-    "dirtyFiles": [],
     "status": "GREEN",
-    "lastGreenCheck": "317 focused tests/types/build/contracts/native Salvation and earned rescue refuge PASS; broader/partial QA explicitly pending",
-    "retirement": "Own WIP payload verified against dev; delete only after final push verification"
-  }
+    "dirtyFiles": [
+      ".agents/agents/cinematics-journey.md",
+      ".codex/agents/cinematics-journey.toml",
+      ".agents/agents/contracts-guardian.md",
+      ".codex/agents/contracts-guardian.toml",
+      ".agents/agents/handoff-governor.md",
+      ".codex/agents/handoff-governor.toml",
+      ".agents/agents/narrative-tableau.md",
+      ".codex/agents/narrative-tableau.toml",
+      ".agents/agents/qa-evidence-runner.md",
+      ".codex/agents/qa-evidence-runner.toml",
+      ".agents/agents/ui-accessibility.md",
+      ".codex/agents/ui-accessibility.toml",
+      ".agents/skills/autonomy-handoff/SKILL.md",
+      ".agents/skills/contracts-compliance/SKILL.md",
+      ".agents/skills/qa-evidence/SKILL.md",
+      "AGENTS.md",
+      "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
+      "docs/autonomy/OPERATOR_DECISIONS.md",
+      "docs/autonomy/RECURRING_RUN_PROMPT.md",
+      "docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-02.md",
+      "docs/autonomy/AUTONOMY_EFFICIENCY_BASELINE_2026-10-02.json",
+      "docs/autonomy/QA_JOB_CONTINUITY.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "tools/demo-continuous-production-qa.mjs",
+      "tools/qa/qa-job.mjs",
+      "tools/qa/qa-job.test.mjs"
+    ],
+    "sha": "f4bd6181492acf1432cc9427862dbb1deea98d2c",
+    "lastGreenCheck": "14receipt+16RunSystem tests/types/8contracts/syntax/LOCKED gates/scoped guardian PASS; production browser pending",
+    "branch": "wip/codex-config-efficiency-20261002T1820",
+    "retention": "Keep snapshot ref until reviewed retention of exact interrupted/interim state; implementation source is integrated on dev."
+  },
+  "qaJobs": [
+    {
+      "schemaVersion": 1,
+      "jobId": "legacy-1453-defeat-native",
+      "runId": "rpgthreejs-auto-dev-90m-20261002T1453",
+      "legacy": true,
+      "status": "FINISHED_LEGACY",
+      "reportedPass": true,
+      "startedAt": "2026-10-02T14:59:47.038Z",
+      "endedAt": "2026-10-02T15:24:25.803Z",
+      "pid": null,
+      "port": null,
+      "exitCode": null,
+      "output": "tmp/demo/continuous-1453-defeat-native",
+      "resultPath": "tmp/demo/continuous-1453-defeat-native/results.json",
+      "resultSha256": "7d73d390ba2a8f1e3a064c84fe49459ddddfae7b0186b830614bd6ebde6e0105",
+      "receiptPath": "tmp/demo/continuous-1453-defeat-native/qa-job.json",
+      "parameters": {
+        "target": "defeat-recovery",
+        "routePlan": "rescue",
+        "finalePlan": "serpent",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "osReducedMotion": false
+      },
+      "provenance": {
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": null
+        },
+        "build": [
+          {
+            "path": "dist/assets/combat-DDZeDf1A.js",
+            "sha256": "6334ff1f59575addd2a89128490a6f584631eba84198b07e967797f616451d3c"
+          },
+          {
+            "path": "dist/assets/game-DNVJsSmX.js",
+            "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+          }
+        ],
+        "gitHead": null,
+        "sourceTree": null
+      },
+      "acceptance": "NOT_ACCEPTED",
+      "eligibleForReview": false,
+      "limitation": "Old assertions; expected/visible-T1 departure fields absent; strengthened V6/agency checks unproven"
+    },
+    {
+      "schemaVersion": 1,
+      "jobId": "legacy-1453-trial",
+      "runId": "rpgthreejs-auto-dev-90m-20261002T1453",
+      "legacy": true,
+      "status": "FINISHED_LEGACY",
+      "reportedPass": false,
+      "startedAt": "2026-10-02T14:59:46.717Z",
+      "endedAt": "2026-10-02T15:24:51.542Z",
+      "pid": null,
+      "port": null,
+      "exitCode": null,
+      "output": "tmp/demo/continuous-1453-trial",
+      "resultPath": "tmp/demo/continuous-1453-trial/results.json",
+      "resultSha256": "9d218c13c3924b7cc6c9141906405c0814a73f1cde08cc39cbd73735bd2c741d",
+      "receiptPath": "tmp/demo/continuous-1453-trial/qa-job.json",
+      "parameters": {
+        "target": "ending",
+        "routePlan": "rescue",
+        "finalePlan": "trial",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "osReducedMotion": false
+      },
+      "provenance": {
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": null
+        },
+        "build": [
+          {
+            "path": "dist/assets/combat-DDZeDf1A.js",
+            "sha256": "6334ff1f59575addd2a89128490a6f584631eba84198b07e967797f616451d3c"
+          },
+          {
+            "path": "dist/assets/game-DNVJsSmX.js",
+            "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+          }
+        ],
+        "gitHead": null,
+        "sourceTree": null
+      },
+      "acceptance": "NOT_ACCEPTED",
+      "eligibleForReview": false,
+      "limitation": "Bounded combat timeout; cannot seed certified continuation"
+    }
+  ],
+  "status": "CHECKPOINT"
 }
 ```
 
 ## completedThisRun
 
-- Exclusive read-only preflight and dev/main parity; lock and pushed temporary-index WIP checkpoints
-- Preserved authored Salvation healPercent in tactical getSpec; existing upgrade0/1/2 values40%/55%/70% verified
-- Actual-input rescue marsh and Bois-Clair victories from exact earned1153 first-refuge V6; second-refuge autosave/reload exact
-- Native standalone built-production Salvation:52/75HP→75, AP3→1; six inspected screenshots and compact hashes promoted
-- Read-only contracts specialist scoped12-row PASS including UI/ACCESSIBILITY; full demo remains incomplete
-- Ending continuation: terminal exact reload=true; overall pass=false; failure=AssertionError [ERR_ASSERTION]: No new verified Salvation cast occurred
-- Corrected-build replay: pass=false; failure=AssertionError [ERR_ASSERTION]: Actual battle ended without victory: ✦
+- Preserved interrupted1453WIP in owned explicit-path snapshot3e23ec3 before integration
+- Approved lot1 implemented: milestone/risk reviews, short routed prompt, shared profiles/skills and safe snapshot recipes
+- Campaign worker receipts/provenance and owned live.qaJobs integration added;14Node tests pass including parent-exit survival;16RunSystem tests/types/8contracts pass
+- Sensitive scoped guardian review PASS after concrete fixes; existing V6 recovery assertions retained and agency enabled/non-inert/focus added
+- Implementation checkpoint5f79d03 pushed to origin/dev; source/profile changes and inherited recovery assertions conserved
+- Recurring prompt replaced and verified exactly (5938chars); all other automation fields preserved, GPT-6.1 Sol/high/90minutes/PAUSED
+- Explicit handoff and compact checks recorded; DEMO-QA-POLISH activeTask/taskQueue remain authoritative
 
 ## filesChanged
 
-- docs/autonomy/AUTONOMOUS_WORK_STATE.json
+- .agents/agents/cinematics-journey.md
+- .codex/agents/cinematics-journey.toml
+- .agents/agents/contracts-guardian.md
+- .codex/agents/contracts-guardian.toml
+- .agents/agents/handoff-governor.md
+- .codex/agents/handoff-governor.toml
+- .agents/agents/narrative-tableau.md
+- .codex/agents/narrative-tableau.toml
+- .agents/agents/qa-evidence-runner.md
+- .codex/agents/qa-evidence-runner.toml
+- .agents/agents/ui-accessibility.md
+- .codex/agents/ui-accessibility.toml
+- .agents/skills/autonomy-handoff/SKILL.md
+- .agents/skills/contracts-compliance/SKILL.md
+- .agents/skills/qa-evidence/SKILL.md
+- AGENTS.md
+- docs/autonomy/MULTI_AGENT_PROTOCOL.md
+- docs/autonomy/OPERATOR_DECISIONS.md
+- docs/autonomy/RECURRING_RUN_PROMPT.md
+- docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-02.md
+- docs/autonomy/AUTONOMY_EFFICIENCY_BASELINE_2026-10-02.json
+- docs/autonomy/QA_JOB_CONTINUITY.md
 - docs/autonomy/AUTONOMOUS_WORK_STATE.md
-- docs/autonomy/handoffs/2026-10-02T1433Z-codex-to-next-run.md
-- docs/project/CURRENT_STATUS.md
-- docs/reports/INDEX.md
-- docs/reports/earned-bois-clair-salvation-1-browser/browser-qa.json
-- docs/reports/earned-bois-clair-salvation-1-browser/earned-bois-clair-victory.png
-- docs/reports/earned-bois-clair-salvation-1-browser/earned-road-victory.png
-- docs/reports/earned-bois-clair-salvation-1-browser/earned-second-refuge-resumed.png
-- docs/reports/earned-bois-clair-salvation-1-browser/native-sacred-crosier.png
-- docs/reports/earned-bois-clair-salvation-1-browser/salvation-native-after.png
-- docs/reports/earned-bois-clair-salvation-1-browser/salvation-native-before.png
-- docs/reports/earned-bois-clair-salvation-1-browser/serpent-terminal-resumed.png
-- docs/reports/earned-bois-clair-salvation-1-browser/serpent-terminal.png
-- docs/reports/earned-bois-clair-salvation-1.md
-- src/combat/legacyCombatRuntime.js
-- src/combat/legacyCombatSkillSpec.test.ts
-- tools/combat-salvation-production-qa.mjs
+- docs/autonomy/AUTONOMOUS_WORK_STATE.json
 - tools/demo-continuous-production-qa.mjs
+- tools/qa/qa-job.mjs
+- tools/qa/qa-job.test.mjs
+- docs/autonomy/handoffs/2026-10-02T1819Z-codex-efficiency-integration.md
+- docs/reports/autonomy-efficiency-lot-1-2026-10-02.md
+- docs/reports/autonomy-efficiency-lot-1-2026-10-02/checks.json
+- docs/reports/INDEX.md
 
 ## testsRun
 
-- 142 narrative/content/finale Vitest tests
-- 175 combat adapter/hotfix/AP/KO/management focused Vitest tests; new3 adapter cases reproduced FAIL before fix then PASS
-- TypeScript --noEmit; direct contract validator; Vite production build and8 shippedMP4 count
-- Unique actual-input earned campaign continuations; exact native-save lineage guards; standalone Salvation cast
-- Both QA driver syntax; Git whitespace and baseline/working-tree LOCKED gates
+- node --test tools/qa/qa-job.test.mjs
+- node node_modules/vitest/vitest.mjs run src/game/runSystem.test.ts --maxWorkers=4 --minWorkers=1
+- node node_modules/typescript/bin/tsc --noEmit
+- node tools/contracts/validate-contracts.mjs
+- node --check tools/demo-continuous-production-qa.mjs
+- LOCKED Git gates and git diff --check
+- Scoped contracts-guardian review of receipt/provenance/ownership/recovered assertions
+- Python tomllib before/after comparison of automation fields and exact canonical prompt
 
 ## testsPassed
 
-- 317 focused tests PASS; TypeScript/contracts/build PASS; inherited chunk-size advisory only
-- Native40% Salvation HP/AP proof PASS; authored adapter40%/55%/70% cases PASS
-- Earned rescue second-refuge: missionSuccess=true; missionGreed absent/effectivefalse; V6 exact; temporarygold0
-- Six promoted capture hashes and raw/save lineage independently matched by contracts reviewer
+- 14/14receipt infrastructure tests including real parent exit with surviving detached worker
+- 16/16RunSystem owner tests
+- TypeScript,8contracts/8slots,driver syntax,LOCKED and whitespace gates
+- Independent scoped guardian PASS; production browser remains pending
+- Automation prompt/configuration comparison PASS; model/high/cadence/project/environment/preferences/pause preserved
 
 ## testsRemaining
 
@@ -93,7 +236,7 @@ Git on dev and this state pair are the continuation authority. Operator ledger: 
 
 ## blockers
 
-- None.
+- None recorded.
 
 ## remainingWork
 
@@ -116,8 +259,16 @@ Git on dev and this state pair are the continuation authority. Operator ledger: 
 
 ## nextAction
 
-Add a bounded native defeat-recovery target to tools/demo-continuous-production-qa.mjs: its current battle() asserts victory before clicking the defeat return. Preserve the successful-proof seed guard; start from exact1153 first-refuge earned save/proof, reproduce the observed road attrition/Bois-Clair defeat, activate the real return control and verify RunSystem checkpoint/loot/clan and V6 reload. Raw failure: tmp/demo/continuous-1323-rescue-final3/results.json (marsh8rounds46actions; village17actions; only2 deployable). Then test native preparation/conservation without balance changes. Independent trial ending can start from tmp/demo/continuous-1323-salvation-baseline/earned-lion-second-refuge-v6.json +results.json with TARGET=ending ROUTE=rescue FINALE=trial; leave VERIFY_SALVATION unset unless specifically arranging a surviving cleric cast. Rescue Serpent terminal/reload already observed; full driver failed only its extra cast requirement. Never treat pass=true with failure as accepted; do not repeat completed items1–8.
+Resume DEMO-QA-POLISH after exclusive preflight. Inspect legacy1453defeat/trial results: desktop defeat PASS uses old assertions; trial FAIL is a bounded combat timeout. Preserve successful1153earned first-refuge seed/proof. Configure AUTONOMY_RUN_ID/DEMO_QA_JOB_ID and unique output/free port; register-demo before launching strengthened desktop defeat-recovery (exact V6 descendant cleanup, enabled non-inert focused Prendre la route and exact reload), then sync/review receipts. Follow with390x844OS-only motion/game=false. Diagnose trial timeout from native action/progress records before another ending continuation; never seed from failed trial proof. Continue item9 subtasks without routine operator approval within75minute budget.
 
-## Retained scope and candidate history
+## Continuity and limits
 
-JSON retains operator authorization, creative direction, autonomyScope and six candidate provenance. Current operator decision excludes recurring media generation/replacement. Audio DEFERRED.
+- Current handoff: docs/autonomy/handoffs/2026-10-02T1819Z-codex-efficiency-integration.md.
+- Items1–8 stay complete; item9 remains active. This checkpoint accepts infrastructure only.
+- Legacy1453outputs are preserved, not accepted for strengthened recovery; the trial failed.
+- Follow QA_JOB_CONTINUITY.md; register before launch, inspect receipts after a cutoff, and let only the lock owner synchronize shared state.
+- Continue coherent dev work autonomously; the operator performs final testing. Routine subtasks do not wait for approval.
+- Eight slots/current MP4s preserved; media work remains external, audio deferred, canon and V6 IDs unchanged.
+- Prior interrupted run, historical candidate/provider scope and unknown fields are retained in the JSON state.
+- lastKnownGoodCommit/lastPushedCommit identify the verified implementation checkpoint; HEAD/origin/dev identify the subsequent final state/doc checkpoint, avoiding circular self-reference.
+- Snapshot refs retain exact interrupted/interim state until reviewed retention; no uncommitted source is intentionally left.
