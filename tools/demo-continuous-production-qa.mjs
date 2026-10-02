@@ -43,7 +43,8 @@ const rel = relative(resolve('tmp'), output);
 if (isAbsolute(rel) || rel.startsWith('..')) throw new Error('Output must stay in ignored tmp/');
 try { await access(output); throw new Error('Refusing to overwrite evidence'); }
 catch (error) { if (error.code !== 'ENOENT') throw error; }
-const qaJob=beginJob(demoJobOptions());
+const jobOptions=demoJobOptions();
+const qaJob=beginJob(jobOptions);
 const server = await preview({preview:{host:'127.0.0.1',port,strictPort:true}});
 const browser = await chromium.launch({headless:true});
 const context = await browser.newContext({viewport:{width:viewport[0],height:viewport[1]},
@@ -66,7 +67,8 @@ if(priorProof){
 page.on('pageerror',error=>report.errors.push(error.message));
 page.on('console',message=>{if(message.type()==='error'&&!message.text().includes('[VFX Preview]'))report.errors.push(message.text());});
 page.on('requestfailed',request=>{if(request.failure()?.errorText!=='net::ERR_ABORTED')report.errors.push(`${request.url()}: ${request.failure()?.errorText}`);});
-const deadline=Date.now()+25*60*1000;
+report.timeoutMinutes=jobOptions.parameters.timeoutMinutes;
+const deadline=Date.now()+report.timeoutMinutes*60*1000;
 async function capture(name){await page.screenshot({path:resolve(output,`${name}.png`)});report.captures.push(`${name}.png`);
   report.geometry??=[];report.geometry.push(await page.evaluate(name=>{
     const controls=[...document.querySelectorAll('.dialogue-choice,.exploration-stop button,[data-traversal-fork-choice],[data-traversal-confirm],[data-journey-choice],[data-journey-continue]')]
@@ -253,7 +255,7 @@ async function battle(){
     await page.waitForFunction(id=>window.__demoQaApp?.state.currentNodeId===id,savedBefore.run.checkpointNodeId);
     const departure=page.locator('[data-journey-continue]:visible:not([inert])');
     await departure.waitFor({state:'visible',timeout:30000});
-    assert.equal((await departure.innerText()).trim(),'Prendre la route');
+    assert.equal((await departure.textContent()).trim(),'Prendre la route');
     assert.equal(await departure.isEnabled(),true);assert.equal(await departure.evaluate(e=>!!e.closest('[inert]')),false);
     await departure.focus();assert.equal(await departure.evaluate(e=>e===document.activeElement),true);
     const recovered=await state();
@@ -286,7 +288,7 @@ async function battle(){
     await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
     await page.waitForFunction(id=>window.__demoQaApp?.state.currentNodeId===id,recovered.currentNodeId);
     await departure.waitFor({state:'visible',timeout:30000});
-    assert.equal((await departure.innerText()).trim(),'Prendre la route');
+    assert.equal((await departure.textContent()).trim(),'Prendre la route');
     assert.equal(await departure.isEnabled(),true);assert.equal(await departure.evaluate(e=>!!e.closest('[inert]')),false);
     await departure.focus();assert.equal(await departure.evaluate(e=>e===document.activeElement),true);
     const resumed=await state();assert.deepEqual(resumed,recovered,'Defeat recovery reload changed V6 truth');
@@ -295,7 +297,7 @@ async function battle(){
     entry.pass=true;entry.outcome='defeat';entry.ownerAfter=recovered;
     report.defeatRecovery={nodeId:entry.nodeId,checkpoint:recovered.currentNodeId,savedBefore,recovered,resumed,
       returnControlBounds:bounds,mode:await page.locator('body').getAttribute('data-mode'),
-      expected,departureLabel:await departure.innerText(),pass:true};
+      expected,departureLabel:await departure.textContent(),pass:true};
     report.resumed=resumed;assert.deepEqual(report.errors,[]);report.pass=true;
     return;
   }
@@ -320,6 +322,12 @@ try{
     await page.reload({waitUntil:'networkidle'});await click('.title-screen [data-action="continue"]');
     await page.waitForFunction(nodeId=>window.__demoQaApp?.state.currentNodeId===nodeId,JSON.parse(earnedText).currentNodeId);
   }else await click('.title-screen [data-action="new"]');
+  report.motionEvidence=await page.evaluate(()=>({
+    osRequested:matchMedia('(prefers-reduced-motion: reduce)').matches,
+    gameRequested:window.__demoQaApp.state.settings.reducedGraphics,
+  }));
+  assert.equal(report.motionEvidence.osRequested,report.osReducedMotion,'OS motion emulation does not match the requested scenario');
+  if(report.osReducedMotion)assert.equal(report.motionEvidence.gameRequested,false,'OS-only motion proof requires normal game graphics');
   for(let index=0;index<12000&&Date.now()<deadline;index++){
     const live=await state();if(report.nodes.at(-1)!==live.currentNodeId){report.nodes.push(live.currentNodeId);console.log(`NODE ${live.currentNodeId}`);}
     const hub=page.locator('.exploration-stop:visible:not([inert])');

@@ -56,10 +56,23 @@ test('demo registration and worker share canonical public parameters',()=>{
   const options=demoJobOptions({DEMO_QA_TARGET:'defeat-recovery',DEMO_QA_OS_MOTION:'1',DEMO_QA_VIEWPORT:'390x844'});
   assert.equal(options.parameters.osReducedMotion,true);assert.deepEqual(options.parameters.viewport,[390,844]);assert.ok(options.requiredAssertions.includes('EXACT_V6_CHECKPOINT_RECOVERY'));
 });
+test('bounded campaign timeout is recorded and invalid budgets are rejected',()=>{
+  assert.equal(demoJobOptions({}).parameters.timeoutMinutes,25);
+  assert.equal(demoJobOptions({DEMO_QA_TIMEOUT_MINUTES:'35'}).parameters.timeoutMinutes,35);
+  for(const value of ['0','46','Infinity','3.5','bad'])assert.throws(()=>demoJobOptions({DEMO_QA_TIMEOUT_MINUTES:value}),/timeout/);
+});
 test('failed proof and changed build cannot become successful receipts',t=>{
+  // A failure remains a failure after JSON normalization of optional observations.
   const job=fixture(t);registerJob(job);const worker=beginJob(job);writeFileSync(resolve(job.root,'dist/assets/game.js'),'// changed build\n');
   assert.equal(worker.finish(result(job)).status,'FAILED');assert.equal(syncAsOwner(job)[0].provenanceStable,false);
   assert.equal(JSON.parse(readFileSync(resolve(job.root,job.output,'results.json'))).pass,false);
+});
+test('receipt compares JSON values when optional observations are undefined',t=>{
+  const job=fixture(t);registerJob(job);const worker=beginJob(job);
+  const report={pass:true,errors:[],geometry:[{width:390,sequence:undefined,step:undefined}]};
+  writeFileSync(resolve(job.root,job.output,'results.json'),JSON.stringify(report));
+  assert.equal(worker.finish(report).status,'SUCCEEDED');
+  assert.equal(syncAsOwner(job)[0].eligibleForReview,true);
 });
 test('parameter drift, source drift and output overwrite are rejected',t=>{
   const job=fixture(t);registerJob(job);assert.throws(()=>beginJob({...job,parameters:{target:'ending'}}),/parameters changed/);

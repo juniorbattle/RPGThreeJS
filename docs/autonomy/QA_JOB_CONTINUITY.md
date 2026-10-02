@@ -40,6 +40,8 @@ node tools/qa/qa-job.mjs sync --run-id=$env:AUTONOMY_RUN_ID
 
 Set unique output/job names for each run. The worker refuses existing evidence. A mobile OS-only case uses `390x844` and `DEMO_QA_OS_MOTION=1` while the game setting remains false. Never reuse a failed prior proof as a certified earned seed. These scenarios test recovery; they do not by themselves accept campaign balance or the whole demo.
 
+`DEMO_QA_TIMEOUT_MINUTES` is an explicit public receipt parameter, default25 and bounded to an integer1–45. The Champion continuation previously reached the25-minute harness limit while still making tactical progress; a35-minute run must be registered as such. Increasing the QA deadline does not alter combat rules or certify balance. OS-only runs record and assert the actual media query and normal game graphics setting. Departure-label assertions use DOM text rather than CSS-transformed `innerText`. Receipts compare the persisted JSON value, so omitted optional observations cannot prevent finalization; failed assertions and provenance drift remain failures.
+
 Generic `register` supports existing `tools/*.mjs` drivers with explicit public parameters and assertions. Such a driver must integrate `beginJob`/`finish` to produce a worker receipt. Other drivers remain uninstrumented until their integration is needed; record their paths/PIDs/ports/provenance manually in the owned ledger and keep unknown execution identity unaccepted. Do not copy all environment variables or secrets into a job.
 
 ## Restart after interruption

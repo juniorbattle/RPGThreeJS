@@ -131,7 +131,7 @@ export function beginJob({root=process.cwd(),runId=process.env.AUTONOMY_RUN_ID??
     const result=resolve(path,'results.json');
     assert.ok(existsSync(result),'Write results.json before finalizing receipt');
     const persisted=JSON.parse(readFileSync(result,'utf8'));
-    assert.deepEqual(persisted,report,'Receipt must describe the persisted result');
+    assert.deepEqual(persisted,JSON.parse(JSON.stringify(report)),'Receipt must describe the persisted JSON result');
     if(!record.provenanceStable) {report.pass=false;report.failure='Source/driver/build changed during QA';atomicJson(result,report);}
     record.status=report.pass===true&&!report.failure&&Array.isArray(report.errors)&&!report.errors.length&&record.provenanceStable?'SUCCEEDED':'FAILED';
     if(record.status==='FAILED'&&report.pass===true){report.pass=false;atomicJson(result,report);}
@@ -141,8 +141,10 @@ export function beginJob({root=process.cwd(),runId=process.env.AUTONOMY_RUN_ID??
 }
 export function demoJobOptions(env=process.env) {
   const target=env.DEMO_QA_TARGET??'first-refuge',routePlan=env.DEMO_QA_ROUTE??'rescue';
+  const timeoutMinutes=Number(env.DEMO_QA_TIMEOUT_MINUTES??25);
+  assert.ok(Number.isInteger(timeoutMinutes)&&timeoutMinutes>=1&&timeoutMinutes<=45,'QA timeout must be an integer from 1 to 45 minutes');
   return {driver:'tools/demo-continuous-production-qa.mjs',output:env.DEMO_QA_OUTPUT??'tmp/demo/continuous-production',port:Number(env.DEMO_QA_PORT??5249),
-    parameters:{target,routePlan,finalePlan:env.DEMO_QA_FINALE??(routePlan==='rescue'?'serpent':'trial'),defeatNodeId:env.DEMO_QA_DEFEAT_NODE??'lion-village-choice',
+    parameters:{target,routePlan,timeoutMinutes,finalePlan:env.DEMO_QA_FINALE??(routePlan==='rescue'?'serpent':'trial'),defeatNodeId:env.DEMO_QA_DEFEAT_NODE??'lion-village-choice',
       nativeDefeatWait:env.DEMO_QA_DEFEAT_WAIT==='1',viewport:(env.DEMO_QA_VIEWPORT??'1366x768').split('x').map(Number),osReducedMotion:env.DEMO_QA_OS_MOTION==='1',
       earnedSavePath:env.DEMO_QA_EARNED_SAVE??null,priorProofPath:env.DEMO_QA_PRIOR_PROOF??null,verifySalvation:env.DEMO_QA_VERIFY_SALVATION==='1'},
     requiredAssertions:target==='defeat-recovery'?['EXACT_V6_CHECKPOINT_RECOVERY','VISIBLE_T1_DEPARTURE','EXACT_RELOAD']:['EARNED_LINEAGE','NATIVE_INPUTS','EXACT_RELOAD']};

@@ -37,6 +37,7 @@ import { renderCombatResult, renderDeploymentCard, renderDeploymentPreview } fro
 import { resolveCombatStageProfileUniversal, getStageProfileInfo, forceResolveCombatStageProfile } from './stage/combatStageProfiles';
 import { isActionPublished, playActionVfx as playPublishedActionVfx, getPublishedDraft, __devUpdateOverlay, __devClearOverlay, getActiveRegistry } from './vfx/PublishedVfxResolver';
 import { combatHudCameraFov, renderCombatActionDock, renderCombatActionPreview, renderCombatObjective, renderCombatSkillRows, renderCombatStatuses, renderCombatTurnOrder, renderCombatUnitCard, selectedCombatAction } from './combatHudPresentation';
+import { shouldHandleCombatShortcut } from './combatKeyboard';
 
 // ============================= CONFIG & UTILS =============================
 const CFG = {
@@ -2120,7 +2121,7 @@ function bindInput(){ const el=renderer.domElement;
   el.addEventListener('pointerdown',onClick);
   el.addEventListener('contextmenu',e=>{ e.preventDefault(); cancelToMenu(); });
   addEventListener('wheel',e=>e.preventDefault(),{passive:false});
-  addEventListener('keydown',e=>{ const k=e.key.toLowerCase();
+  addEventListener('keydown',e=>{ if(!shouldHandleCombatShortcut(e))return; const k=e.key.toLowerCase();
     if(STAGE_QA_ENABLED&&k==='o'){ e.preventDefault(); void togglePoseQaStage(); }
     else if(STAGE_QA_ENABLED&&combatStage.isActive()&&(k==='['||k===']')){ e.preventDefault(); announcePoseQa(combatStage.selectNextPoseQaUnit(k==='['?-1:1)); }
     else if(STAGE_QA_ENABLED&&combatStage.isActive()&&k==='p'){ e.preventDefault(); void cyclePoseQa(); }
