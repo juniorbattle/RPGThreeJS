@@ -6,13 +6,13 @@ Git on dev and this state pair are the current continuation authority.
 | --- | --- |
 | `status` | IN_PROGRESS |
 | `runStartedAt` | 2026-10-02T02:01:32.8986312Z |
-| `runEndedAt` | null (run active) |
+| `runEndedAt` | 2026-10-02T02:06:59.469Z |
 | `activeTask` | CINEMATIC-EIGHT-SLOT-REMASTER |
 | `activePhase` | Standing MiniMax authorization and active FF9-inspired direction persisted |
 | `activeSubtask` | Review conservative motion prompts; generate first active 12-second camp video candidate |
 | `workingBranch` | dev |
-| `lastKnownGoodCommit` | dbf21b338b45fab7c1a2ee49a019f0c76ca88abe |
-| `lastPushedCommit` | dbf21b338b45fab7c1a2ee49a019f0c76ca88abe |
+| `lastKnownGoodCommit` | af69c0eef0653f5ead9620f84075564901c8ad88 |
+| `lastPushedCommit` | af69c0eef0653f5ead9620f84075564901c8ad88 |
 | `creditStatus` | CODEX_AVAILABLE; MINIMAX_AUTHORIZED_AVAILABILITY_NOT_QUERIED |
 | `contractComplianceStatus` | Contract set v1: operator authorization/direction persistence PASS; no LOCKED contract changed. Current HD-2D/V2/canon/eight-slot boundaries retained. Generated replacement acceptance remains pending; prior missing-permission blocker resolved. |
 | `commitReferenceScope` | Verified implementation checkpoint; subsequent state-only closeout identified by Git HEAD/origin/dev and automation memory. |
@@ -23,6 +23,8 @@ Git on dev and this state pair are the current continuation authority.
 - Recorded active, rhythmic FF9-inspired staging direction within current HD-2D/V2/eight-slot contracts
 - Updated existing recurring automation prompt and verified saved text plus unchanged cadence/model/reasoning/project/status
 - Persisted operator decision, state pair, remaster brief/continuation and requested general memory note; no clip generated or runtime/LOCKED file changed
+
+- Authorization checkpoint af69c0eef0653f5ead9620f84075564901c8ad88 pushed to origin/dev and remote verified; state-only closeout follows
 
 ## filesChanged
 
@@ -42,6 +44,8 @@ Git on dev and this state pair are the current continuation authority.
 
 - Automation prompt saved exactly; other existing fields unchanged
 - 127 tests and production/media QA remain historical accepted evidence from 92278e2; no runtime change this checkpoint
+
+- Current authorization checkpoint: saved automation equality, 8 LOCKED contracts / 8 slots, JSON state/brief parsing and whitespace checks PASS
 
 ## testsRemaining
 
