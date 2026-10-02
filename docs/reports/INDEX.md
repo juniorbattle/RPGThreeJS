@@ -4,6 +4,8 @@ Baseline for this index: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. Repo
 
 | Report | Historical role | Current authority |
 | --- | --- | --- |
+| [Refuge autosave durability](refuge-autosave-durability-1.md) | Both-refuge immediate entry/rest V6 resume, native potion service and fresh earned opening/first-refuge proof, 2026-10-02 | [Project status](../project/CURRENT_STATUS.md); later campaign endings/combat/VFX remain item 9 |
+| [Management keyboard and services](management-keyboard-services-1.md) | Native details, contextual service names, preview focus and actual owner-service production QA, 2026-10-02 | [Project status](../project/CURRENT_STATUS.md); continuous earned demo acceptance remains item 9 |
 | [Cinematic structure readiness](cinematic-structure-readiness-1.md) | Existing eight-slot OS reduced-motion/agency/resume acceptance, 2026-10-02 | [Current structural map](../autonomy/CINEMATIC_STRUCTURE_READINESS.md); artistic remaster external/incomplete |
 | [Refuge keyboard focus](refuge-keyboard-focus-1.md) | Reproduced BODY-focus defect and bounded production service/focus correction, 2026-10-02 | [Project status](../project/CURRENT_STATUS.md); full demo/accessibility QA remains item 9 |
 | [T0 production loop final](traversal-t0-production-loop-final-1.md) | Latest integrated production validation; selected golden browser evidence | [T0 contract](../traversal/T0_PRODUCTION_CONTRACT.md) plus source |
