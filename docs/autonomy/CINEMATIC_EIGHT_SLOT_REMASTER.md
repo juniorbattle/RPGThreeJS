@@ -1,6 +1,6 @@
 # Eight-slot cinematic remaster preparation
 
-Status: **IN_PROGRESS**, queue item 8, 2026-10-02 UTC. Items 1–7 remain complete. Source/context review, generation specs and existing-media QA are prepared. Actual replacement videos and final artistic acceptance remain **BLOCKED_EXTERNAL_PROVIDER_APPROVAL**. No MP4 was replaced.
+Status: **IN_PROGRESS**, queue item 8, 2026-10-02 UTC. Items 1–7 remain complete. Source/context review, generation specs and existing-media QA are prepared. Actual replacement videos and final artistic acceptance remain pending; MiniMax is now **AUTHORIZED_BY_OPERATOR**. No MP4 was replaced.
 
 [Production brief](../../tools/cinematics/specs/production_eight_slot_remaster_brief.json) records current descriptors, measured streams, exact first/middle/final frame hashes, canonical triggers, V2 identities, environment references, exclusions and presentation ownership. All sources are silent H.264/yuv420p, 1920×1080, 24 fps; actual durations match their descriptors. Existing ffmpeg/ffprobe were located under ignored tmp/cinematics/toolchain despite their absence from PATH.
 
@@ -55,10 +55,10 @@ Read GAME_CONSTITUTION, contracts README/manifest and all eight LOCKED contracts
 | QA_EVIDENCE | PASS | Ignored runs; explicit new compact promotion; failures explained |
 | REPOSITORY_GOVERNANCE | PASS | Exclusive lock; dev checkpoint/push; no main or LOCKED edit |
 
-Item 8 remains IN_PROGRESS. Audio remains DEFERRED.
+Item 8 remains IN_PROGRESS. Audio remains DEFERRED. The missing-provider-authorization blocker was resolved by the operator on 2026-10-01; see the decision below.
 
 ## Exact continuation
 
-Automatic approval review rejected authenticating a read-only MiniMax request with the configured local key because explicit authorization to send that credential to MiniMax was absent. No provider request/generation occurred; availability and credits are unmeasured. Do not retry or bypass without explicit operator authorization. Adapter/provider documentation are recorded in the brief.
+Acquire exclusive lock and read Git/state plus CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md. MiniMax local-key use for RPGThreeJS clips/current and future recurring runs is explicitly authorized: do not request it again. Retain items 1–7 complete, eight-source audit/specs, camp keyframe and existing-media QA. Review/update conservative camera/action wording against very active, rhythmic FF9-inspired staging while preserving HD-2D/V2/canon and exactly eight slots. Validate source/spec; restore ignored camp source byte-identically if needed; generate first 12s candidate via existing MiniMax adapter. Inspect real motion/identity/framing/environment/decoded ending and runtime QA before any production replacement. Continue remaining clips through checkpoints; item 8 remains incomplete; audio DEFERRED.
 
-Acquire lock and read current Git/state; retain this preparation. Ask operator to authorize MiniMax use of the local key and the first 12-second camp candidate from the reviewable spec/keyframe. If authorized, verify candidate/source hash; restore ignored tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/source.png byte-identically from the tracked candidate if absent; run minimax_h3_generate.mjs --spec tools/cinematics/specs/production_camp_departure_v1.json --shot shot_01. Inspect actual motion, V2 masks/helmets, physical staging, native-to-master framing, environment continuity and first/middle/final frames before accepting any video. Keep current production bytes until acceptance. Then prepare/accept remaining seven keyframes and review their shot motion against existing specs; run replacement playback/skip/failure/reduced-motion/resume QA. Do not advance to item 9 or mark item 8 complete because preparation passed.
+[Standing operator decision: MiniMax and active FF9-inspired rhythm](CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md). The historical authentication rejection lacked explicit permission; this decision resolves it. No provider call was made by the persistence checkpoint; availability/credits remain unmeasured. Previous prepared motion specs require review against this new direction before generation.

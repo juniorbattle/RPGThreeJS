@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "contractSetVersion": 1,
   "status": "GENERATION_SPECS_PREPARED_EXISTING_MEDIA_QA_PASS_REPLACEMENT_PENDING",
-  "recordedAt": "2026-10-02T01:53:05.986Z",
+  "recordedAt": "2026-10-02T02:04:51.497Z",
   "authority": [
     "docs/game/GAME_CONSTITUTION.md",
     "docs/contracts/WORLD_AND_CHARACTERS.md",
@@ -12,7 +12,7 @@
   "productionOverlay": "tools/cinematics/specs/production_presentation_modes.json",
   "scope": "Exactly eight existing approved video IDs. No new plot, dialogue, choice, node or enemy/recruit/routine-travel video.",
   "toolAvailability": {
-    "videoGeneration": "LOCAL_MINIMAX_H3_ADAPTER_FOUND_PROVIDER_AUTHORIZATION_PENDING",
+    "videoGeneration": "LOCAL_MINIMAX_H3_ADAPTER_AUTHORIZED_BY_OPERATOR",
     "rasterImageGeneration": "BUILT_IN_AVAILABLE_CAMP_CANDIDATE_CREATED",
     "ffmpegAndFfprobeOnPath": false,
     "localMediaToolchain": {
@@ -22,9 +22,11 @@
     "adapter": "tools/cinematics/minimax_h3_generate.mjs",
     "providerDocumentation": "https://platform.minimax.io/docs/api-reference/video-generation-v2-create",
     "providerCredentialConfigured": true,
-    "providerAvailability": "NOT_QUERIED_AUTO_APPROVAL_REJECTED",
+    "providerAvailability": "NOT_QUERIED_AFTER_AUTHORIZATION",
     "creditAvailability": "NOT_MEASURED",
-    "assetBlocker": "Automatic approval review rejected authenticating a read-only MiniMax request with the configured local key because explicit external-provider authorization was absent. No provider request or generation was performed. Ask operator to authorize using the local key with MiniMax after reviewing the candidate/spec. Do not bypass."
+    "assetBlocker": null,
+    "providerAuthorization": "AUTHORIZED_BY_OPERATOR",
+    "priorApprovalRejection": "Historical missing-authorization rejection resolved by explicit operator decision on 2026-10-01; no retry performed during persistence checkpoint."
   },
   "lockedRequirements": [
     "Modern pixel-art / HD-2D; use approved V2 identities and poses as visual ceiling.",
@@ -56,7 +58,7 @@
       "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
       "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_CANDIDATE_MOTION_PENDING",
-      "assetGenerationStatus": "BLOCKED_EXTERNAL_PROVIDER_APPROVAL",
+      "assetGenerationStatus": "AUTHORIZED_PENDING_MOTION_DIRECTION_REVIEW_AND_GENERATION",
       "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
       "measuredStream": {
         "id": "camp_departure",
@@ -187,7 +189,8 @@
         "generationSpec": "tools/cinematics/specs/production_camp_departure_v1.json",
         "status": "CANDIDATE_ONLY_NOT_RUNTIME"
       },
-      "generationSpec": "tools/cinematics/specs/production_camp_departure_v1.json"
+      "generationSpec": "tools/cinematics/specs/production_camp_departure_v1.json",
+      "creativeDirectionSource": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
     },
     {
       "id": "alaric_audience_arrival",
@@ -210,7 +213,7 @@
       "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
       "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
-      "assetGenerationStatus": "BLOCKED_EXTERNAL_PROVIDER_APPROVAL",
+      "assetGenerationStatus": "AUTHORIZED_PENDING_MOTION_DIRECTION_REVIEW_AND_GENERATION",
       "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
       "measuredStream": {
         "id": "alaric_audience_arrival",
@@ -330,7 +333,8 @@
         }
       ],
       "sourceVisualReview": "Existing clip switches wide/medium/wide cast composition. Replacement must preserve V2 masks, silhouettes and continuous physical presence.",
-      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/alaric_audience_arrival.json"
+      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/alaric_audience_arrival.json",
+      "creativeDirectionSource": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
     },
     {
       "id": "bois_clair_arrival",
@@ -353,7 +357,7 @@
       "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
       "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
-      "assetGenerationStatus": "BLOCKED_EXTERNAL_PROVIDER_APPROVAL",
+      "assetGenerationStatus": "AUTHORIZED_PENDING_MOTION_DIRECTION_REVIEW_AND_GENERATION",
       "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
       "measuredStream": {
         "id": "bois_clair_arrival",
@@ -498,7 +502,8 @@
         }
       ],
       "sourceVisualReview": "Existing source changes from Alistair to a roguish actor/villageoise. Its source cast does not establish a universally recruited Cedric.",
-      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/bois_clair_arrival.json"
+      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/bois_clair_arrival.json",
+      "creativeDirectionSource": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
     },
     {
       "id": "bois_clair_saved",
@@ -521,7 +526,7 @@
       "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
       "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
-      "assetGenerationStatus": "BLOCKED_EXTERNAL_PROVIDER_APPROVAL",
+      "assetGenerationStatus": "AUTHORIZED_PENDING_MOTION_DIRECTION_REVIEW_AND_GENERATION",
       "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
       "measuredStream": {
         "id": "bois_clair_saved",
@@ -641,7 +646,8 @@
         }
       ],
       "sourceVisualReview": "Existing source remains heavily burning and changes foreground cast; replacement should follow the promoted saved-aftermath environment, not invent a rebuilt village.",
-      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/bois_clair_saved.json"
+      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/bois_clair_saved.json",
+      "creativeDirectionSource": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
     },
     {
       "id": "bois_clair_sacrificed",
@@ -664,7 +670,7 @@
       "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
       "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
-      "assetGenerationStatus": "BLOCKED_EXTERNAL_PROVIDER_APPROVAL",
+      "assetGenerationStatus": "AUTHORIZED_PENDING_MOTION_DIRECTION_REVIEW_AND_GENERATION",
       "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
       "measuredStream": {
         "id": "bois_clair_sacrificed",
@@ -777,7 +783,8 @@
         }
       ],
       "sourceVisualReview": "Existing source isolates villageoise then adds old Maelor. Replacement must convey the canonical reserves/human-cost distinction while preserving the pending provisions choice.",
-      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/bois_clair_sacrificed.json"
+      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/bois_clair_sacrificed.json",
+      "creativeDirectionSource": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
     },
     {
       "id": "lion_judgement",
@@ -801,7 +808,7 @@
       "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
       "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
-      "assetGenerationStatus": "BLOCKED_EXTERNAL_PROVIDER_APPROVAL",
+      "assetGenerationStatus": "AUTHORIZED_PENDING_MOTION_DIRECTION_REVIEW_AND_GENERATION",
       "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
       "measuredStream": {
         "id": "lion_judgement",
@@ -930,7 +937,8 @@
         }
       ],
       "sourceVisualReview": "Existing source shows Alaric/Champion and camera push. Its title/fallback is not authority to show a predetermined ruling before dynamic judgement.",
-      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/lion_judgement.json"
+      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/lion_judgement.json",
+      "creativeDirectionSource": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
     },
     {
       "id": "serpent_route_ending",
@@ -953,7 +961,7 @@
       "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
       "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
-      "assetGenerationStatus": "BLOCKED_EXTERNAL_PROVIDER_APPROVAL",
+      "assetGenerationStatus": "AUTHORIZED_PENDING_MOTION_DIRECTION_REVIEW_AND_GENERATION",
       "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
       "measuredStream": {
         "id": "serpent_route_ending",
@@ -1075,7 +1083,8 @@
         }
       ],
       "sourceVisualReview": "Existing frames depict Seraphine and a kneeling General with a ring-like artefact on the ground. The previous descriptor imposed final company custody; it is now corrected to the universally true recovered-artefact fact.",
-      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/serpent_route_ending.json"
+      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/serpent_route_ending.json",
+      "creativeDirectionSource": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
     },
     {
       "id": "lion_trial_route_ending",
@@ -1098,7 +1107,7 @@
       "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
       "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
-      "assetGenerationStatus": "BLOCKED_EXTERNAL_PROVIDER_APPROVAL",
+      "assetGenerationStatus": "AUTHORIZED_PENDING_MOTION_DIRECTION_REVIEW_AND_GENERATION",
       "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
       "measuredStream": {
         "id": "lion_trial_route_ending",
@@ -1228,7 +1237,8 @@
         }
       ],
       "sourceVisualReview": "Existing clip shows Alaric/Champion in a mountainous camp setting. Replacement must follow the promoted trial-finale environment and preserve voluntary/refused-route neutrality.",
-      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/lion_trial_route_ending.json"
+      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/lion_trial_route_ending.json",
+      "creativeDirectionSource": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
     }
   ],
   "integrationQaPlan": {
@@ -1247,7 +1257,7 @@
       "When replacement clips exist, compare protected character/environment identity, continuity, safe zones, readability and actual browser transition/hold behavior; promote bounded new evidence."
     ]
   },
-  "nextAction": "Retain eight validated generation specs and current-media QA. Obtain explicit operator authorization to authenticate MiniMax with the local key and generate the first 12s camp video candidate. Verify tracked camp keyframe/source SHA256, generate through the prepared spec, then inspect actual physical motion, V2 identity, environment, framing and final frames. Preserve all existing MP4 bytes/IDs until accepted replacement. Seven other keyframes and final replacement QA remain pending; no provider request has occurred.",
+  "nextAction": "Acquire exclusive lock and read Git/state plus CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md. MiniMax local-key use for RPGThreeJS clips/current and future recurring runs is explicitly authorized: do not request it again. Retain items 1–7 complete, eight-source audit/specs, camp keyframe and existing-media QA. Review/update conservative camera/action wording against very active, rhythmic FF9-inspired staging while preserving HD-2D/V2/canon and exactly eight slots. Validate source/spec; restore ignored camp source byte-identically if needed; generate first 12s candidate via existing MiniMax adapter. Inspect real motion/identity/framing/environment/decoded ending and runtime QA before any production replacement. Continue remaining clips through checkpoints; item 8 remains incomplete; audio DEFERRED.",
   "sourceProbe": "tmp/cinematics/eight-slot-remaster/source-probe/source-probe.json",
   "sharedShotRequirements": [
     "No baked dialogue, choices, UI, subtitles, watermark or generated speech",
@@ -1271,5 +1281,30 @@
     "scenariosPerMode": 8,
     "finalSerpentOutcomes": 2,
     "acceptedReplacementVideos": 0
+  },
+  "operatorAuthorization": {
+    "status": "AUTHORIZED_BY_OPERATOR",
+    "receivedLocalDate": "2026-10-01",
+    "timezone": "America/Toronto",
+    "decisionSource": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md",
+    "provider": "MiniMax",
+    "scope": "Existing local key for RPGThreeJS clip authentication/generation/polling/retrieval in current and future recurring runs; necessary source images/prompts permitted",
+    "requestPermissionAgain": false,
+    "credentialValueStored": false
+  },
+  "creativeDirection": {
+    "reference": "Final Fantasy IX (FF9)",
+    "intent": "Very rhythmic and active cinematic videos",
+    "interpretation": "Purposeful readable physical action/reactions, living world, dramatic progression and motivated camera/editing; adapt pace to canonical beat",
+    "preserve": [
+      "modern pixel-art/HD-2D",
+      "V2 identities",
+      "promoted environments",
+      "exact eight slots",
+      "dialogue/choices/outcomes/IDs",
+      "reduced motion",
+      "audio DEFERRED"
+    ],
+    "decisionSource": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
   }
 }
