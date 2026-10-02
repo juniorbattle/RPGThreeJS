@@ -6,13 +6,13 @@ Git on dev and this state pair are the current continuation authority.
 | --- | --- |
 | `status` | IN_PROGRESS |
 | `runStartedAt` | 2026-10-02T00:57:54.1597993Z |
-| `runEndedAt` | null (run active) |
+| `runEndedAt` | 2026-10-02T01:54:08.988Z |
 | `activeTask` | CINEMATIC-EIGHT-SLOT-REMASTER |
 | `activePhase` | Preparation and existing-media QA accepted; actual replacement generation pending |
 | `activeSubtask` | Await explicit MiniMax credential/generation authorization for first 12-second camp candidate |
 | `workingBranch` | dev |
-| `lastKnownGoodCommit` | 83c479e2c54c7c0b1b319ccbb06db7f9bc6b9de7 |
-| `lastPushedCommit` | 83c479e2c54c7c0b1b319ccbb06db7f9bc6b9de7 |
+| `lastKnownGoodCommit` | 92278e27594b7e2f84729f087bf25234d256ced2 |
+| `lastPushedCommit` | 92278e27594b7e2f84729f087bf25234d256ced2 |
 | `creditStatus` | CODEX_AVAILABLE; MINIMAX_NOT_QUERIED |
 | `contractComplianceStatus` | Contract set v1/all eight LOCKED contracts read; preparation/agency/source protection PASS in CINEMATIC_EIGHT_SLOT_REMASTER.md. Final artistic motion/replacement acceptance BLOCKED_EXTERNAL_PROVIDER_APPROVAL. No LOCKED rule changed; item 8 remains incomplete; audio DEFERRED. |
 | `commitReferenceScope` | Verified implementation checkpoint; subsequent state-only closeout identified by Git HEAD/origin/dev and automation memory. |
@@ -29,6 +29,7 @@ Git on dev and this state pair are the current continuation authority.
 - 127/127 focused tests across seven suites; TypeScript, eight-contract validator, final production build/eight MP4 inventory and 27 protected hashes pass
 - Promoted a new compact machine proof/four inspected screenshots; updated remaster documentation and contract compliance; no LOCKED rule modified
 - Automatic approval review rejected authenticating MiniMax with configured local key without explicit external-provider authorization; no provider request performed or credit availability measured
+- Implementation checkpoint 92278e27594b7e2f84729f087bf25234d256ced2 pushed to origin/dev and remote SHA verified; state-only closeout follows
 
 ## filesChanged
 
