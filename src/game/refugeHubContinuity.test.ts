@@ -3,10 +3,10 @@ import { afterEach, expect, it, vi } from 'vitest';
 import { GameApp } from './GameApp';
 import { POST_NODE_ATE } from './content';
 import { getFinalStats } from './catalog';
-import { createInitialState } from './store';
+import { createInitialState, SaveRepository } from './store';
 import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
 
-afterEach(() => { vi.restoreAllMocks(); document.body.replaceChildren(); });
+afterEach(() => { vi.restoreAllMocks(); document.body.replaceChildren(); localStorage.clear(); });
 
 it('keeps the same first refuge and route state through management and Rest; only Continue resolves it', async () => {
   const state = createInitialState();
@@ -27,6 +27,7 @@ it('keeps the same first refuge and route state through management and Rest; onl
   });
   const app = Object.assign(Object.create(GameApp.prototype), {
     state, mode: 'RESULT', activeNarrativeStage: null,
+    saves: { saveAuto: vi.fn() },
     statusHud: new CampaignStatusHud(() => selectCampaignStatus(state)),
     playJourneyCinematic: vi.fn(async () => undefined),
     playDialogue: vi.fn(async () => undefined),
@@ -77,6 +78,7 @@ it('keeps the second refuge interactive without moving its post-node ATE before 
   const order: string[] = [];
   const app = Object.assign(Object.create(GameApp.prototype), {
     state, mode: 'RESULT', activeNarrativeStage: null,
+    saves: { saveAuto: vi.fn() },
     statusHud: new CampaignStatusHud(() => selectCampaignStatus(state)),
     playJourneyCinematic: vi.fn(async () => { order.push('arrival'); }),
     playDialogue: vi.fn(async () => { order.push('gathering'); }),
@@ -113,4 +115,60 @@ it('keeps lion-final-refuge story-only and never opens the refuge hub', async ()
   await app.resolveRunNode(node, false);
   expect(app.playDialogue).toHaveBeenCalledWith(node.contentId, node.label);
   expect(exploration.open).not.toHaveBeenCalled();
+});
+
+it.each(['lion-first-refuge', 'lion-second-refuge'])('saves %s consolidation before initial agency and successful rest before reopening', async nodeId => {
+  const state = createInitialState(), saves = new SaveRepository();
+  saves.saveAuto(state);
+  const node = state.run.graph.nodes.find(candidate => candidate.id === nodeId)!;
+  state.run.currentNodeId = state.currentNodeId = node.id;
+  state.run.temporaryLoot.gold = 25; state.gold = 100;
+  state.clan.members[0]!.currentHealth = getFinalStats(state.clan.members[0]!).maxHealth - 10;
+  const save = vi.spyOn(saves, 'saveAuto');
+  let opened = 0;
+  const app = Object.assign(Object.create(GameApp.prototype), {
+    state, saves, mode: 'RESULT', activeNarrativeStage: null,
+    playJourneyCinematic: vi.fn(async () => undefined), playDialogue: vi.fn(async () => undefined),
+    exploration: { prepareBackground: vi.fn(async () => undefined), open: vi.fn(async () => {
+      opened++;
+      const stored = saves.loadAuto()!;
+      expect(stored.currentNodeId).toBe(node.id);
+      expect(stored.run.checkpointNodeId).toBe(node.id);
+      expect(stored.flags[`refugeSecured:${node.id}`]).toBe(true);
+      expect(stored.run.temporaryLoot.gold).toBe(0);
+      expect(stored.resolvedNodeIds).not.toContain(node.id);
+      expect(stored.gold).toBe(opened === 1 ? 125 : 110);
+      expect(stored.clan.members[0]!.currentHealth).toBe(state.clan.members[0]!.currentHealth);
+      return opened === 1 ? 'rest' : 'continue';
+    }) },
+    playPostNodeNarrative: vi.fn(async () => false), enterCampaignPresentation: vi.fn(async () => undefined),
+  });
+  await app.resolveRunNode(node, false);
+  expect(save).toHaveBeenCalledTimes(2);
+  expect(state.gold).toBe(110);
+});
+
+it.each(['healthy', 'insufficient gold'])('does not save or alter owner truth after rejected refuge rest: %s', async reason => {
+  const state = createInitialState(), saves = new SaveRepository();
+  const node = state.run.graph.nodes.find(candidate => candidate.id === 'lion-first-refuge')!;
+  state.run.currentNodeId = state.currentNodeId = node.id;
+  state.gold = reason === 'healthy' ? 100 : 0;
+  state.flags['refugeSecured:lion-first-refuge'] = true;
+  state.flags['clanArrival:lion-first-refuge'] = true;
+  for (const member of state.clan.members) member.currentHealth = getFinalStats(member).maxHealth;
+  if (reason === 'insufficient gold') state.clan.members[0]!.currentHealth -= 10;
+  const before = JSON.parse(JSON.stringify(state));
+  const save = vi.spyOn(saves, 'saveAuto');
+  let opened = 0;
+  const app = Object.assign(Object.create(GameApp.prototype), {
+    state, saves, mode: 'RESULT', activeNarrativeStage: null,
+    exploration: { prepareBackground: vi.fn(async () => undefined), open: vi.fn(async () => {
+      expect(state).toEqual(before);
+      expect(saves.loadAuto()).toEqual(before);
+      return ++opened === 1 ? 'rest' : 'continue';
+    }) },
+    playPostNodeNarrative: vi.fn(async () => false), enterCampaignPresentation: vi.fn(async () => undefined),
+  });
+  await app.resolveRunNode(node, false);
+  expect(save).toHaveBeenCalledTimes(1);
 });

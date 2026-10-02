@@ -1123,6 +1123,7 @@ export class GameApp {
       await refugeBackground;
       this.disposeNarrativeStage();
       this.statusHud?.hide();
+      this.saves.saveAuto(this.state);
       let refugeMessage = '';
       while (true) {
         this.setMode('NARRATIVE');
@@ -1139,7 +1140,9 @@ export class GameApp {
         if (action === 'continue') break;
         if (action === 'rest') {
           const costBeforeRest = getRestCost(this.state);
-          refugeMessage = restUnits(this.state)
+          const rested = restUnits(this.state);
+          if (rested) this.saves.saveAuto(this.state);
+          refugeMessage = rested
             ? `Repos effectu&eacute; : ${costBeforeRest} or d&eacute;pens&eacute;.`
             : getWoundedUnitCount(this.state) === 0
               ? 'Aucune unit&eacute; bless&eacute;e : le repos est inutile.'

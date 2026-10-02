@@ -8,6 +8,7 @@ import { createServer, preview } from 'vite';
 const port = Number(process.env.REFUGE_QA_PORT ?? 5246);
 const caseFilter = process.env.REFUGE_QA_CASE;
 const blockBackground = process.env.REFUGE_QA_BLOCK_BACKGROUND === '1';
+const useConsumable = process.env.REFUGE_QA_USE_CONSUMABLE === '1';
 const output = resolve(process.env.REFUGE_QA_OUTPUT ?? 'tmp/refuge/production-accessibility');
 const rel = relative(resolve('tmp'), output);
 if (isAbsolute(rel) || rel.startsWith('..')) throw new Error('Output must stay in ignored tmp/');
@@ -41,6 +42,7 @@ function fixture(nodeId) {
   state.run.temporaryLoot.gold = 25;
   state.shops.valmir.stock.potion = 2;
   state.clan.members[0].currentHealth = models.getFinalStats(state.clan.members[0]).maxHealth - 10;
+  if (useConsumable) state.clan.members[1].currentHealth = models.getFinalStats(state.clan.members[1]).maxHealth - 10;
   const nodes = new Map(state.run.graph.nodes.map(node => [node.id, node]));
   const previous = new Map([[state.currentNodeId, null]]), queue = [state.currentNodeId];
   while (queue.length && !previous.has(nodeId)) {
@@ -96,7 +98,7 @@ function projectTruth(state) {
 }
 async function ownerState(page) { return page.evaluate(() => JSON.parse(JSON.stringify(window.__refugeQaApp.state))); }
 async function truth(page) { return projectTruth(await ownerState(page)); }
-async function controlProof(page, selector, labelParts = []) {
+async function controlProof(page, selector, labelParts = [], expectedTag = 'BUTTON') {
   const proof = await page.locator(selector).evaluate(element => {
     const r = element.getBoundingClientRect(), style = getComputedStyle(element);
     const clips = [];
@@ -110,7 +112,7 @@ async function controlProof(page, selector, labelParts = []) {
       rect: { x:r.x, y:r.y, right:r.right, bottom:r.bottom, width:r.width, height:r.height },
       viewport: {width:innerWidth,height:innerHeight}, clips, nestedButton: Boolean(element.querySelector('button')) };
   });
-  assert.equal(proof.tag, 'BUTTON'); assert.equal(proof.nestedButton, false);
+  assert.equal(proof.tag, expectedTag); assert.equal(proof.nestedButton, false);
   for (const text of labelParts) assert.ok(proof.label.includes(text), `Missing ${text} in ${proof.label}`);
   assert.equal(proof.focused, true); assert.equal(proof.focusVisible, true);
   assert.ok(proof.outline !== 'none' && parseFloat(proof.outlineWidth) > 0 || proof.boxShadow !== 'none');
@@ -186,6 +188,12 @@ async function run(nodeId, viewport, osReduced) {
     assert.equal(layout.focusOwned, true, `Refuge entry loses focus to ${layout.activeTag}`);
     assert.equal(arrival.gold, 625); assert.equal(arrival.temporaryLoot.gold, 0);
     assert.equal(arrival.flags[`refugeSecured:${nodeId}`], true);
+    const entryOwner = await ownerState(page);
+    assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6'))), entryOwner,
+      'Initial refuge agency precedes durable consolidation');
+    await page.reload({ waitUntil: 'networkidle' });
+    await activate(page, '.title-screen [data-action="continue"]'); await hubReady(page);
+    assert.deepEqual(await ownerState(page), entryOwner, 'Immediate entry reload repeats or loses refuge truth');
     await tabTo(page, '.exploration-stop [data-action="clan"]');
     const focus = await page.evaluate(() => { const style = getComputedStyle(document.activeElement);
       return { visible: document.activeElement.matches(':focus-visible'), outline: style.outlineStyle,
@@ -309,6 +317,32 @@ async function run(nodeId, viewport, osReduced) {
         detailsAndPreviewTruthUnchanged: action === 'clan', blockedAtMax: action === 'skills' });
       assert.equal((await geometry(page)).focusOwned, true, 'Management return lost refuge focus');
     }
+    if (useConsumable) {
+      await activate(page, '.exploration-stop [data-action="clan"]');
+      await page.locator('.management').waitFor({ state: 'visible' });
+      await activate(page, '.management [data-tab="inventory"]');
+      const selector = '.management [data-use-unit="potion"]';
+      await tabTo(page, selector);
+      controls.push(await controlProof(page, selector, ['soigner', models.itemById.get('potion').name], 'SELECT'));
+      await page.keyboard.press('Home'); await page.keyboard.press('ArrowDown'); await page.keyboard.press('Enter');
+      const owner = await ownerState(page), unitId = owner.clan.members[0].id;
+      assert.equal(await page.locator(selector).inputValue(), unitId, 'Native keyboard target selection changed');
+      const button = '.management [data-use-item="potion"]';
+      await tabTo(page, button);
+      controls.push(await controlProof(page, button, ['Utiliser', models.itemById.get('potion').name]));
+      assert.equal(models.useConsumable(owner, unitId, 'potion'), true);
+      await page.keyboard.press('Space');
+      assert.deepEqual(await truth(page), projectTruth(owner), 'Potion differs from owner healing/inventory rules');
+      assert.equal(await page.locator('.item-modal').count(), 0, 'Potion unexpectedly opened details');
+      controls.push(await controlProof(page, button));
+      await settleManagementCapture(page);
+      await page.screenshot({ path: resolve(output, `${name}-potion-owner-result.png`) });
+      await activate(page, '.management [data-action="close"]'); await hubReady(page);
+      assert.deepEqual(await ownerState(page), owner, 'Potion return changed owner truth');
+      assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6'))), owner,
+        'Potion owner result was not persisted on the management close boundary');
+      services.push({ action: 'consumable', keyboardReachable: true, ownerResolvedOperations: ['potion'], savedOnManagementClose: true });
+    }
     const live = await page.evaluate(() => window.__refugeQaApp.state);
     const restCost = models.getRestCost(live);
     assert.equal(await page.locator('.exploration-stop [data-action="rest"]').isDisabled(), false);
@@ -316,9 +350,8 @@ async function run(nodeId, viewport, osReduced) {
     const rested = await truth(page); assert.equal(rested.gold, live.gold - restCost);
     assert.equal(models.getWoundedUnitCount(await page.evaluate(() => window.__refugeQaApp.state)), 0);
     assert.equal(await page.locator('.exploration-stop [data-action="rest"]').isDisabled(), true);
-    // Management's existing close boundary autosaves; no test writes game state after boot.
-    await activate(page, '.exploration-stop [data-action="clan"]'); await page.locator('.management').waitFor({ state: 'visible' });
-    await activate(page, '.management [data-action="close"]'); await hubReady(page);
+    assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6'))), await ownerState(page),
+      'Successful rest was not saved before reopening agency');
     const beforeReload = await truth(page);
     await page.reload({ waitUntil: 'networkidle' });
     await activate(page, '.title-screen [data-action="continue"]'); await hubReady(page);
@@ -329,8 +362,9 @@ async function run(nodeId, viewport, osReduced) {
       document.querySelector('.journey-overlay,.traversal-t0,.dialogue'));
     assert.ok((await truth(page)).resolved.includes(nodeId));
     assert.deepEqual(errors, []);
-    return { name, nodeId, viewport, osReduced, blockBackground, expectedAssetFailures, layout, focus, controls, services, restCost,
-      securedGold: 25, restGold: rested.gold, resumeTruthUnchanged: true, departureResolved: true, errors, pass: true };
+    return { name, nodeId, viewport, osReduced, blockBackground, useConsumable, expectedAssetFailures, layout, focus, controls, services, restCost,
+      securedGold: 25, restGold: rested.gold, immediateEntryResumeTruthUnchanged: true,
+      immediateRestResumeTruthUnchanged: true, resumeTruthUnchanged: true, departureResolved: true, errors, pass: true };
   } finally { await context.close(); }
 }
 try {
