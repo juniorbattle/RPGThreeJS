@@ -6,6 +6,7 @@ import type { NarrativeDialogueResolver, NarrativeDialogueStepPresentation } fro
 import type { NarrativeChoiceScreenLane } from '../cinematics/NarrativeTableau';
 import { createCampaignIcon, decorateCampaignButton, decorateCampaignFrame, type CampaignIcon } from './design-system/CampaignUi';
 import { resolveDialoguePortrait } from './DialoguePortrait';
+import { prefersReducedMotion } from './ReducedMotion';
 
 interface DialogueViewOptions {
   root: HTMLElement;
@@ -548,9 +549,7 @@ export class DialogueView {
     const reveal = element.querySelector<HTMLElement>('.dialogue__text-reveal');
     if (!reveal) return;
     element.dataset.finalText = value;
-    const reducedMotion = this.playOptions.reducedMotion
-      ?? window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
-      ?? false;
+    const reducedMotion = prefersReducedMotion(this.playOptions.reducedMotion);
     if (reducedMotion) {
       reveal.textContent = value;
       return;

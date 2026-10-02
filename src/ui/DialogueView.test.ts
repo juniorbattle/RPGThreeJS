@@ -10,6 +10,16 @@ import { DialogueView } from './DialogueView';
 import { resolveDialoguePortrait } from './DialoguePortrait';
 
 describe('DialogueView narrative boundaries', () => {
+  it('reveals dialogue immediately for OS reduced motion with normal graphics', () => {
+    const preference = vi.spyOn(window, 'matchMedia').mockReturnValue({ matches: true } as MediaQueryList);
+    const root = document.createElement('div');
+    const view = new DialogueView({ root, getState: createInitialState, applyEffects: async () => undefined });
+    const sequence = dialogues.get('lion_briefing')!;
+    void view.play(sequence, { reducedMotion: false });
+    expect(root.querySelector('.dialogue__text-reveal')?.textContent).toBe(sequence.steps[0]!.text);
+    view.close();
+    preference.mockRestore();
+  });
   it('crops the canonical master into a compact frame and falls back when it cannot load', () => {
     const portrait = resolveDialoguePortrait('alaric');
     expect(portrait?.src).toBe('/assets/characters/pixel/masters/alaric.png');

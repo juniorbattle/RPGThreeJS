@@ -1,4 +1,5 @@
 import type { ResolvedPresentationBeat, TravelStillSource } from './NarrativePresentationMode';
+import { prefersReducedMotion } from '../ui/ReducedMotion';
 
 export interface TravelStillSurfaceOptions {
   source?: TravelStillSource;
@@ -27,7 +28,7 @@ export class TravelStillSurface {
     options: TravelStillSurfaceOptions = {},
   ) {
     if (beat.mode !== 'TRAVEL_STILL') throw new Error(`TravelStillSurface requires TRAVEL_STILL, received ${beat.mode}.`);
-    this.asset = selectedAsset(options.source ?? beat.travelStillSource, options.reducedMotion ?? false);
+    this.asset = selectedAsset(options.source ?? beat.travelStillSource, prefersReducedMotion(options.reducedMotion));
     this.fallbackActive = !this.asset;
 
     this.element.className = 'narrative-travel-still narrative-media-surface narrative-media-surface--travel-still';

@@ -295,6 +295,15 @@ describe('CIN-6D.6 presentation runtime', () => {
     expect(surface.asset).toBe('/static.webp');
   });
 
+  it('uses static travel art for OS reduced motion with normal graphics', () => {
+    vi.spyOn(window, 'matchMedia').mockReturnValue({ matches: true } as MediaQueryList);
+    const surface = new TravelStillSurface(document.createElement('div'), beat('edge:lion-audience>lion-opening-ambush'), {
+      source: { kind: 'LIVING_STILL', assetId: '/living.webp', staticFallbackAssetId: '/static.webp' },
+      reducedMotion: false,
+    });
+    expect(surface.asset).toBe('/static.webp');
+  });
+
   it('keeps one primary surface and cleans it on release/dispose', async () => {
     const registry = new CinematicRegistry({ version: 1, cinematics: [] });
     const stage = new NarrativeStage({

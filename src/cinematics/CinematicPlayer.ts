@@ -1,4 +1,5 @@
 import { CinematicOverlay } from './CinematicOverlay';
+import { prefersReducedMotion } from '../ui/ReducedMotion';
 import type { CinematicRegistry } from './CinematicRegistry';
 import type {
   HeldVideoCinematic,
@@ -50,7 +51,7 @@ export class CinematicPlayer {
     const descriptor = this.registry.get(id);
     if (!descriptor) return settledWithoutSurface(id, 'unavailable');
     if (options.signal?.aborted) return settledWithoutSurface(id, 'aborted');
-    const reducedMotion = options.reducedMotion ?? window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+    const reducedMotion = prefersReducedMotion(options.reducedMotion);
     if (reducedMotion) return settledWithoutSurface(id, 'reduced-motion');
 
     const abortController = new AbortController();

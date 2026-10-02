@@ -15,6 +15,7 @@ import type { ResolvedPresentationBeat, TravelStillSource } from './NarrativePre
 import { TravelStillSurface } from './TravelStillSurface';
 import { validatePrimarySurface } from './NarrativePresentationTransition';
 import type { CampaignStatusHud } from '../ui/CampaignStatusHud';
+import { prefersReducedMotion } from '../ui/ReducedMotion';
 
 export type NarrativeMediaSurfaceKind = 'STILL' | 'STATIC_TABLEAU' | 'TRAVEL_STILL' | 'VIDEO' | 'HELD_VIDEO' | 'PASSIVE_BACKDROP' | 'FALLBACK' | 'NONE';
 
@@ -87,7 +88,7 @@ export class NarrativeStage {
     this.videoStartupTimeoutMs = options.videoStartupTimeoutMs ?? DEFAULT_VIDEO_STARTUP_TIMEOUT_MS;
     this.transitionRevealMs = options.transitionRevealMs ?? DEFAULT_TRANSITION_REVEAL_MS;
     this.dev = options.dev ?? false;
-    this.reducedMotion = options.reducedMotion ?? false;
+    this.reducedMotion = prefersReducedMotion(options.reducedMotion);
     this.element.className = 'narrative-stage';
     this.element.setAttribute('aria-label', 'Scène narrative');
     this.element.dataset.narrativeAuthoringMedia = this.mediaMode;

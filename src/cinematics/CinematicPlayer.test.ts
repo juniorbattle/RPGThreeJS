@@ -50,6 +50,21 @@ describe('cinematic player', () => {
     expect(document.querySelector('.cinematic-overlay')).toBeNull();
   });
 
+  it('honors OS reduced motion even when normal graphics passes false', async () => {
+    vi.spyOn(window, 'matchMedia').mockReturnValue({ matches: true } as MediaQueryList);
+    const play = vi.spyOn(HTMLMediaElement.prototype, 'play');
+    const player = new CinematicPlayer(registry());
+    await expect(player.play('video', { reducedMotion: false })).resolves.toMatchObject({
+      reason: 'reduced-motion', played: false,
+    });
+    await expect(player.playHeld('video', { reducedMotion: false })).resolves.toMatchObject({
+      result: { reason: 'reduced-motion', played: false }, surface: null,
+    });
+    expect(play).not.toHaveBeenCalled();
+    expect(document.querySelector('.cinematic-overlay')).toBeNull();
+    expect(player.isPlaying).toBe(false);
+  });
+
   it('aborts active playback and restores previous focus', async () => {
     const focus = document.createElement('button');
     document.body.append(focus);

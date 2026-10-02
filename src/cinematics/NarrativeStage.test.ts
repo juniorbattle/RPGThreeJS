@@ -88,6 +88,24 @@ describe('NarrativeStage', () => {
     expect(document.querySelector('.narrative-stage')).toBeNull();
   });
 
+  it('keeps OS reduced-motion fallback and agency usable with normal graphics', async () => {
+    vi.spyOn(window, 'matchMedia').mockReturnValue({ matches: true } as MediaQueryList);
+    const registry = new CinematicRegistry(manifest);
+    const player = new CinematicPlayer(registry);
+    const stage = new NarrativeStage({ player, registry, reducedMotion: false, transitionRevealMs: 0 });
+    stage.setTableau(CAMP_DEPARTURE_TABLEAU);
+    await expect(stage.presentCinematic('intro', { reducedMotion: false })).resolves.toMatchObject({
+      reason: 'reduced-motion', played: false,
+    });
+    expect(stage.currentMediaSurfaceKind).toBe('FALLBACK');
+    expect(document.querySelector('video, canvas')).toBeNull();
+    const agency = stage.requestAgency({ choices: [], continueLabel: 'Continuer' });
+    stage.element.querySelector<HTMLButtonElement>('[data-journey-continue]')!.click();
+    await expect(agency).resolves.toMatchObject({ kind: 'continue' });
+    stage.dispose();
+    expect(document.querySelector('.narrative-stage')).toBeNull();
+  });
+
   it('owns the live canvas and settles the same surface to a held frame', async () => {
     const { stage } = createStage(ALARIC_AUDIENCE_TABLEAU);
     stage.bindDialogue(dialogues.get('lion_briefing')!);

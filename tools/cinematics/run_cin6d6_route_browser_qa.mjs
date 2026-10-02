@@ -12,7 +12,16 @@ const VIEWPORT = { width: viewportWidth, height: viewportHeight };
 const SCENARIO_FILTER = process.env.CIN6D6_ROUTE_SCENARIO ?? '';
 const CIN8_GROUP = process.env.CIN6D6_ROUTE_GROUP === 'cin8';
 const REDUCED_MOTION = process.env.CIN6D6_REDUCED_MOTION === '1';
+// OS-only coverage keeps the saved graphics setting false to detect explicit-false overrides.
+const OS_REDUCED_MOTION = process.env.CIN6D6_OS_REDUCED_MOTION === '1';
+if (OS_REDUCED_MOTION && !PRODUCTION) throw new Error('OS-only motion proof requires built production.');
+const APPROVED_VIDEO_IDS = ['camp_departure', 'alaric_audience_arrival', 'bois_clair_arrival', 'bois_clair_saved',
+  'bois_clair_sacrificed', 'lion_judgement', 'serpent_route_ending', 'lion_trial_route_ending'];
 const BLOCK_MEDIA = process.env.CIN6D6_BLOCK_MEDIA === '1';
+const INTERRUPT_PRELUDE = process.env.CIN6D6_INTERRUPT_PRELUDE === '1';
+if (INTERRUPT_PRELUDE && (!PRODUCTION || REDUCED_MOTION || OS_REDUCED_MOTION || BLOCK_MEDIA)) {
+  throw new Error('Prelude interruption requires built production with normal motion and available media.');
+}
 let productionModels;
 if (PRODUCTION) {
   const models = await createServer({ server: { middlewareMode: true, hmr: false, watch: null }, appType: 'custom' });
@@ -119,7 +128,47 @@ async function installNodeSave(page, nodeId, flags = {}, reputation = 60, seed =
 }
 
 async function continueSavedNode(page) {
+  await observeSystemMotion(page);
   await page.getByRole('button', { name: 'Continuer' }).click();
+}
+
+async function observeSystemMotion(page) {
+  if (!OS_REDUCED_MOTION) return;
+  await page.waitForFunction(() => window.__cin8App);
+  await page.evaluate(() => {
+    const player = window.__cin8App.cinematicPlayer;
+    if (player.__motionObserved) return;
+    player.__motionObserved = true;
+    for (const method of ['play', 'playHeld']) {
+      const original = player[method].bind(player);
+      player[method] = async (id, options = {}) => {
+        const outcome = await original(id, options);
+        const result = outcome.result ?? outcome;
+        const records = JSON.parse(sessionStorage.getItem('cin8-system-motion') ?? '[]');
+        records.push({ id, reason: result.reason, played: result.played, requestedMotion: options.reducedMotion,
+          osReduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
+          reducedGraphics: window.__cin8App.state.settings.reducedGraphics });
+        sessionStorage.setItem('cin8-system-motion', JSON.stringify(records));
+        return outcome;
+      };
+    }
+  });
+}
+
+async function systemMotionProof(page) {
+  if (!OS_REDUCED_MOTION) return null;
+  const proof = await page.evaluate(() => ({
+    records: JSON.parse(sessionStorage.getItem('cin8-system-motion') ?? '[]'),
+    osReduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
+    reducedGraphics: window.__cin8App.state.settings.reducedGraphics,
+    activeVideos: document.querySelectorAll('.cinematic-overlay video').length,
+  }));
+  const attempted = proof.records.filter((entry) => APPROVED_VIDEO_IDS.includes(entry.id));
+  if (!proof.osReduced || proof.reducedGraphics || proof.activeVideos || !attempted.length
+    || attempted.some((entry) => !entry.osReduced || entry.reducedGraphics || entry.played || entry.reason !== 'reduced-motion')) {
+    throw new Error(`OS-only reduced-motion regression: ${JSON.stringify(proof)}`);
+  }
+  return proof;
 }
 
 async function recordVideo(page, trace) {
@@ -192,7 +241,10 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
       const selected = choices.nth(usedChoice ? 0 : Math.min(choiceIndex, (await choices.count()) - 1));
       await selected.focus();
       if (!await selected.evaluate((button) => button === document.activeElement)) throw new Error('Choice keyboard focus failed');
-      trace?.choiceBounds?.push({ sequenceId, stepId: await dialogue.getAttribute('data-dialogue-step'), bounds, keyboardActivation: true });
+      const stepId = await dialogue.getAttribute('data-dialogue-step');
+      const capture = `${trace?.capturePrefix ?? 'opening'}-${sequenceId}-${stepId}-choices.png`;
+      await page.screenshot({ path: resolve(OUTPUT_DIR, capture), fullPage: false });
+      trace?.choiceBounds?.push({ sequenceId, stepId, bounds, keyboardActivation: true, capture });
       await page.keyboard.press('Enter');
       usedChoice = true;
     } else {
@@ -314,14 +366,38 @@ function assertDialogueTableau(stage, label) {
   }
 }
 
+async function checkPreludeInterruption(page, sequenceId, trace) {
+  if (!INTERRUPT_PRELUDE) return null;
+  await page.waitForFunction(() => {
+    const overlay = document.querySelector('.cinematic-overlay');
+    const video = overlay?.querySelector('video');
+    return overlay?.getAttribute('data-cinematic-first-frame-painted') === 'true' && video?.currentTime > 0;
+  }, null, { timeout: 20000 });
+  const interrupted = await page.locator('.cinematic-overlay video').evaluate((video) => ({
+    src: video.currentSrc, currentTime: video.currentTime, paused: video.paused,
+  }));
+  if (!APPROVED_VIDEO_IDS.some((id) => interrupted.src.endsWith(`/${id}.mp4`))) throw new Error('Unapproved interruption source');
+  const before = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6')));
+  await page.screenshot({ path: resolve(OUTPUT_DIR, `${trace.capturePrefix}-prelude-interrupt.png`) });
+  await page.reload({ waitUntil: 'networkidle' });
+  await continueSavedNode(page);
+  await waitForDialogueSequence(page, sequenceId, trace);
+  const after = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6')));
+  if (JSON.stringify(before) !== JSON.stringify(after)) throw new Error('Unresolved prelude reload changed saved truth before player choice');
+  const tableau = await readPresentation(page);
+  assertDialogueTableau(tableau, 'unresolved prelude resume');
+  return { interrupted, truthUnchanged: true, resumedDialogue: sequenceId, tableau };
+}
+
 async function runNodeScenario(context, scenario) {
   const page = await context.newPage();
   await installHooks(page);
   const diagnostics = diagnosticsFor(page);
-  const trace = { dialogues: new Set(), media: new Set(), combats: 0, choiceBounds: [] };
+  const trace = { dialogues: new Set(), media: new Set(), combats: 0, choiceBounds: [], capturePrefix: scenario.id };
   try {
     await installNodeSave(page, scenario.nodeId, scenario.flags, scenario.reputation, scenario.seed);
     await continueSavedNode(page);
+    const interruption = await checkPreludeInterruption(page, scenario.dialogueId, trace);
     await waitForDialogueSequence(page, scenario.dialogueId, trace);
     const initialPresentation = await readPresentation(page);
     const expectedMode = scenario.expectedMode ?? 'STATIC_TABLEAU';
@@ -382,6 +458,8 @@ async function runNodeScenario(context, scenario) {
       capture,
       continuation,
       resume,
+      systemMotion: await systemMotionProof(page),
+      interruption,
       diagnostics: { ...diagnostics, requestFailures },
       expectedAbortedMediaRequests: expectedAbortedMediaRequests.length,
       pass: true,
@@ -395,10 +473,11 @@ async function runFinaleScenario(context, scenario) {
   const page = await context.newPage();
   await installHooks(page);
   const diagnostics = diagnosticsFor(page);
-  const trace = { dialogues: new Set(), media: new Set(), combats: 0, choiceBounds: [] };
+  const trace = { dialogues: new Set(), media: new Set(), combats: 0, choiceBounds: [], capturePrefix: scenario.id };
   try {
     await installNodeSave(page, 'lion-final-judgement', scenario.flags, scenario.reputation, scenario.seed);
     await continueSavedNode(page);
+    const interruption = await checkPreludeInterruption(page, 'lion_finale_judgement', trace);
     await waitForDialogueSequence(page, 'lion_finale_judgement', trace);
     const judgementPresentation = await readPresentation(page);
     assertDialogueTableau(judgementPresentation, scenario.id);
@@ -439,6 +518,8 @@ async function runFinaleScenario(context, scenario) {
       truth: scenario.pickTruth(truth),
       capture,
       resume,
+      systemMotion: await systemMotionProof(page),
+      interruption,
       diagnostics: { ...diagnostics, requestFailures },
       expectedAbortedMediaRequests: expectedAbortedMediaRequests.length,
       pass: true,
@@ -453,6 +534,7 @@ async function runOpeningScenario(context) {
   const diagnostics = diagnosticsFor(page), trace = { dialogues: new Set(), media: new Set(), combats: 0, choiceBounds: [] };
   try {
     await page.goto(`${BASE_URL}/?presentation=narrative&media=video`, { waitUntil: 'domcontentloaded' });
+    await observeSystemMotion(page);
     await page.locator('[data-action="new"]').click();
     await page.locator('[data-prologue-skip]').waitFor({ state: 'visible' });
     if (REDUCED_MOTION) await page.evaluate(() => { window.__cin8App.state.settings.reducedGraphics = true; });
@@ -475,7 +557,7 @@ async function runOpeningScenario(context) {
     const unexpected = diagnostics.requestFailures.filter((failure) => !isExpectedMediaFailure(failure));
     if (diagnostics.consoleErrors.length || diagnostics.pageErrors.length || unexpected.length) throw new Error(`Opening diagnostics: ${JSON.stringify(diagnostics)}`);
     return { id: 'opening-camp-audience', camp, audience, dialogues: [...trace.dialogues], media: [...trace.media],
-      truth: { lionMissionAccepted: true }, resume, choiceBounds: trace.choiceBounds,
+      truth: { lionMissionAccepted: true }, resume, choiceBounds: trace.choiceBounds, systemMotion: await systemMotionProof(page),
       diagnostics: { ...diagnostics, requestFailures: unexpected }, pass: true };
   } finally { await page.close(); }
 }
@@ -574,8 +656,9 @@ if (SCENARIO_FILTER && SCENARIO_FILTER.split(',').some((id) => ![...nodeScenario
 await mkdir(OUTPUT_DIR, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const productionServer = PRODUCTION ? await preview({ preview: { host: '127.0.0.1', port: PRODUCTION_PORT, strictPort: true } }) : null;
-const context = await browser.newContext({ viewport: VIEWPORT, reducedMotion: REDUCED_MOTION ? 'reduce' : 'no-preference' });
-const result = { schemaVersion: 1, viewport: VIEWPORT, reducedMotion: REDUCED_MOTION, blockedMedia: BLOCK_MEDIA,
+const context = await browser.newContext({ viewport: VIEWPORT, reducedMotion: REDUCED_MOTION || OS_REDUCED_MOTION ? 'reduce' : 'no-preference' });
+const result = { schemaVersion: 1, viewport: VIEWPORT, reducedMotion: REDUCED_MOTION, osReducedMotion: OS_REDUCED_MOTION, blockedMedia: BLOCK_MEDIA,
+  interruptPrelude: INTERRUPT_PRELUDE,
   method: PRODUCTION ? 'BUILT_PRODUCTION_REAL_GAMEAPP_V6_COMBAT_RESULT_FIXTURE_ONLY' : 'DEV_REAL_GAMEAPP_V6_QA_VICTORY', opening: [], nodes: [], finales: [], pass: false };
 let failed = false;
 try {
@@ -597,6 +680,15 @@ try {
     } catch (error) {
       failed = true;
       result.finales.push({ id: scenario.id, pass: false, error: error instanceof Error ? error.stack : String(error) });
+    }
+  }
+  if (OS_REDUCED_MOTION && CIN8_GROUP && !SCENARIO_FILTER && !failed) {
+    const records = [...result.opening, ...result.nodes, ...result.finales]
+      .flatMap((entry) => entry.systemMotion.records).filter((entry) => APPROVED_VIDEO_IDS.includes(entry.id));
+    result.systemMotionCoverage = { slots: [...new Set(records.map((entry) => entry.id))], attempts: records.length };
+    if (APPROVED_VIDEO_IDS.some((id) => !result.systemMotionCoverage.slots.includes(id))) {
+      failed = true;
+      result.systemMotionCoverage.error = 'OS-only run did not exercise all eight approved slots';
     }
   }
   result.pass = !failed;
