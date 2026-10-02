@@ -4,13 +4,13 @@
   "cinematicId": "lion_judgement",
   "tier": "HERO",
   "canonicalFacing": "SCREEN_RIGHT",
-  "promptVersion": "production-eight-lion_judgement-v1",
+  "promptVersion": "production-eight-lion_judgement-active-v2",
   "resolution": "2K",
   "frame": {
     "width": 1920,
     "height": 1080
   },
-  "status": "AUTHORING_PREPARED_KEYFRAMES_PENDING_PROVIDER_APPROVAL_REQUIRED",
+  "status": "AUTHORING_ACTIVE_DIRECTION_KEYFRAMES_PENDING_MINIMAX_AUTHORIZED",
   "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
   "artDirection": "Modern pixel-art/HD-2D. Immutable canonical V2 identities and promoted location; authored major cinematic motion. No production replacement before acceptance.",
   "canonicalContext": {
@@ -88,7 +88,7 @@
           "lookTarget": "CHARACTER:lion_champion",
           "depth": 10,
           "role": "PRIMARY",
-          "action": "OBSERVE",
+          "action": "RAISE_HAND",
           "mirrorPolicy": "FORBID"
         },
         {
@@ -106,12 +106,13 @@
           "lookTarget": "CHARACTER:alaric",
           "depth": 20,
           "role": "SECONDARY",
-          "action": "OBSERVE",
+          "action": "STEP_FORWARD",
           "mirrorPolicy": "FORBID"
         }
       ],
       "camera": {
-        "mode": "SLOW_PUSH"
+        "mode": "SLOW_PUSH",
+        "intent": "A deliberate forward reveal follows the authority figures coming into readiness; distinct column parallax establishes monumental scale without a passive zoom."
       },
       "durationSeconds": 8,
       "continuityOut": "DELIBERATE_CUT",
@@ -122,8 +123,8 @@
         "width": 1,
         "height": 0.15
       },
-      "promptIntent": "Establish the monumental canonical judgement architecture and separate authority/champion planes with controlled ceremonial light and depth; they await the company, no verdict gesture. Current canonical truth: A solemn appearance before Alaric and the Lion Champion. The factual dossier, credibility, Shadow disclosure, bluff/lie and route intent remain interactive and state-derived. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No verdict or recognition presumed before testimony; No Seal granted; No chosen pursuit or trial; No universal exposed/revealed Shadow truth. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. A deliberate between-block cut is authored, not an accidental model reset; retain place, time, cast identity and resolved truth.",
-      "authoringStatus": "KEYFRAME_REQUIRED_REVIEW_STAGING_AND_PHYSICAL_ACTION_BEFORE_GENERATION"
+      "promptIntent": "Active, rhythmic classic JRPG cinematic staging adapted to this canonical beat. First quarter: initiate the described action promptly. Middle half: develop readable grounded actor motion and living environment, with motivated camera progression. Final quarter: complete only that physical presentation action and remain alive, decelerating camera in the last second. Alaric shifts forward into attention and raises then rests an open hand inviting the appearance, without a verdict sign. The Champion takes one grounded step to his authored station and brings his weapon to a guarded nonattacking rest. Banners move, light crosses the court planes; no combat, recognition, Seal or chosen route. Establish the monumental canonical judgement architecture and separate authority/champion planes with controlled ceremonial light and depth; they await the company, no verdict gesture. Current canonical truth: A solemn appearance before Alaric and the Lion Champion. The factual dossier, credibility, Shadow disclosure, bluff/lie and route intent remain interactive and state-derived. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No verdict or recognition presumed before testimony; No Seal granted; No chosen pursuit or trial; No universal exposed/revealed Shadow truth. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. A deliberate between-block cut is authored, not an accidental model reset; retain place, time, cast identity and resolved truth.",
+      "authoringStatus": "ACTIVE_MOTION_REVIEWED_KEYFRAME_IDENTITY_FRAMING_STILL_REQUIRED"
     },
     {
       "shotId": "shot_02",
@@ -172,7 +173,7 @@
           "lookTarget": "CHARACTER:lion_champion",
           "depth": 10,
           "role": "PRIMARY",
-          "action": "OBSERVE",
+          "action": "LOWER_HAND",
           "mirrorPolicy": "FORBID"
         },
         {
@@ -190,7 +191,7 @@
           "lookTarget": "CHARACTER:sage_seraphine",
           "depth": 20,
           "role": "SECONDARY",
-          "action": "OBSERVE",
+          "action": "SHIFT_STANCE",
           "mirrorPolicy": "FORBID"
         },
         {
@@ -208,7 +209,7 @@
           "lookTarget": "CHARACTER:maelor",
           "depth": 30,
           "role": "SECONDARY",
-          "action": "OBSERVE",
+          "action": "WALK_PURPOSEFUL",
           "mirrorPolicy": "FORBID"
         },
         {
@@ -226,12 +227,13 @@
           "lookTarget": "CHARACTER:alaric",
           "depth": 40,
           "role": "SECONDARY",
-          "action": "OBSERVE",
+          "action": "WALK_PURPOSEFUL",
           "mirrorPolicy": "FORBID"
         }
       ],
       "camera": {
-        "mode": "SUBJECT_FOCUS_LEFT"
+        "mode": "SUBJECT_FOCUS_LEFT",
+        "intent": "Move attention from the active adviser arrival to the waiting authority plane, preserving the axis and all four visible identities."
       },
       "durationSeconds": 9,
       "continuityOut": "END",
@@ -242,8 +244,9 @@
         "width": 1,
         "height": 0.15
       },
-      "promptIntent": "Frame the factual confrontation with two company advisers present and subordinate to the court axis. Stop before any ruling or route commitment and transfer to the dynamic authored tableau. Current canonical truth: A solemn appearance before Alaric and the Lion Champion. The factual dossier, credibility, Shadow disclosure, bluff/lie and route intent remain interactive and state-derived. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No verdict or recognition presumed before testimony; No Seal granted; No chosen pursuit or trial; No universal exposed/revealed Shadow truth. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. Settle sharply and release to the existing STATIC_TABLEAU; no dialogue/choice on the video or hold.",
-      "authoringStatus": "KEYFRAME_REQUIRED_REVIEW_STAGING_AND_PHYSICAL_ACTION_BEFORE_GENERATION"
+      "promptIntent": "Active, rhythmic classic JRPG cinematic staging adapted to this canonical beat. First quarter: initiate the described action promptly. Middle half: develop readable grounded actor motion and living environment, with motivated camera progression. Final quarter: complete only that physical presentation action and remain alive, decelerating camera in the last second. Seraphine and Maelor advance to their existing adviser plane and stop, adjusting robe and book with readable inertia. Alaric lowers his inviting hand; the Champion shifts his stance and attends. Exchange visible listening reactions without lip sync or any disclosure, lie, judgement result or route selection. Frame the factual confrontation with two company advisers present and subordinate to the court axis. Stop before any ruling or route commitment and transfer to the dynamic authored tableau. Current canonical truth: A solemn appearance before Alaric and the Lion Champion. The factual dossier, credibility, Shadow disclosure, bluff/lie and route intent remain interactive and state-derived. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No verdict or recognition presumed before testimony; No Seal granted; No chosen pursuit or trial; No universal exposed/revealed Shadow truth. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. Settle sharply and release to the existing STATIC_TABLEAU; no dialogue/choice on the video or hold.",
+      "authoringStatus": "ACTIVE_MOTION_REVIEWED_KEYFRAME_IDENTITY_FRAMING_STILL_REQUIRED"
     }
-  ]
+  ],
+  "operatorDecision": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
 }

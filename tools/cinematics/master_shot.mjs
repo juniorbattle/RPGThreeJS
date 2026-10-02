@@ -16,9 +16,11 @@ async function main() {
   const input = resolve(projectRoot, args.input ?? '');
   assertWithin(root, input, '--input');
   await access(input);
-  const output = resolve(root, 'shot_master.mp4');
-  const partial = resolve(root, 'shot_master.part.mp4');
-  const metadataPath = resolve(root, 'shot_master.metadata.json');
+  const output = resolve(projectRoot, args.output ?? resolve(root, 'shot_master.mp4'));
+  assertWithin(root, output, '--output');
+  if (!output.endsWith('.mp4')) throw new Error('--output must end in .mp4.');
+  const partial = output.replace(/\.mp4$/u, '.part.mp4');
+  const metadataPath = output.replace(/\.mp4$/u, '.metadata.json');
   await Promise.all([output, partial, metadataPath].map(refuse));
   const ffmpeg = await findMediaTool('ffmpeg', projectRoot, args.ffmpeg);
   const duration = shot.durationSeconds;

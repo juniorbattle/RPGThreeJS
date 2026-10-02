@@ -4,13 +4,13 @@
   "cinematicId": "bois_clair_arrival",
   "tier": "HERO",
   "canonicalFacing": "SCREEN_RIGHT",
-  "promptVersion": "production-eight-bois_clair_arrival-v1",
+  "promptVersion": "production-eight-bois_clair_arrival-active-v2",
   "resolution": "2K",
   "frame": {
     "width": 1920,
     "height": 1080
   },
-  "status": "AUTHORING_PREPARED_KEYFRAMES_PENDING_PROVIDER_APPROVAL_REQUIRED",
+  "status": "AUTHORING_ACTIVE_DIRECTION_KEYFRAMES_PENDING_MINIMAX_AUTHORIZED",
   "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
   "artDirection": "Modern pixel-art/HD-2D. Immutable canonical V2 identities and promoted location; authored major cinematic motion. No production replacement before acceptance.",
   "canonicalContext": {
@@ -87,12 +87,13 @@
           "lookTarget": "ENVIRONMENT:canonical_location",
           "depth": 10,
           "role": "PRIMARY",
-          "action": "OBSERVE",
+          "action": "WALK_PURPOSEFUL",
           "mirrorPolicy": "FORBID"
         }
       ],
       "camera": {
-        "mode": "SLOW_PULL"
+        "mode": "SLOW_PULL",
+        "intent": "Pull back promptly from the arriving actor to reveal the authored divided village crisis; readable parallax and rising smoke motivate the expansion."
       },
       "durationSeconds": 10,
       "continuityOut": "DELIBERATE_CUT",
@@ -103,8 +104,8 @@
         "width": 1,
         "height": 0.15
       },
-      "promptIntent": "Reveal the canonical burning-village scale and existing divided crisis, with the arriving company represented by Alistair. Fire/smoke and street depth carry motion without selecting a rescue target. Current canonical truth: Bois-Clair is under Serpent pressure. Captives/northern old bridge and reserves/southern low gate define the existing urgency. Saving people or taking reserves remains undecided. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No rescue, loot or outcome resolved in the clip; No obligatory Cedric: the contextual dialogue can use Kestrel instead; No extra canonical combat. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. A deliberate between-block cut is authored, not an accidental model reset; retain place, time, cast identity and resolved truth.",
-      "authoringStatus": "KEYFRAME_REQUIRED_REVIEW_STAGING_AND_PHYSICAL_ACTION_BEFORE_GENERATION"
+      "promptIntent": "Active, rhythmic classic JRPG cinematic staging adapted to this canonical beat. First quarter: initiate the described action promptly. Middle half: develop readable grounded actor motion and living environment, with motivated camera progression. Final quarter: complete only that physical presentation action and remain alive, decelerating camera in the last second. Alistair strides briskly into the burning street, clears his weapon into a low nonattacking carry and stops as his attention is drawn across the unresolved crisis. Flames surge, smoke rolls across rooflines and sparks pass in depth. No new strike, rescue, casualty or selected route. Reveal the canonical burning-village scale and existing divided crisis, with the arriving company represented by Alistair. Fire/smoke and street depth carry motion without selecting a rescue target. Current canonical truth: Bois-Clair is under Serpent pressure. Captives/northern old bridge and reserves/southern low gate define the existing urgency. Saving people or taking reserves remains undecided. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No rescue, loot or outcome resolved in the clip; No obligatory Cedric: the contextual dialogue can use Kestrel instead; No extra canonical combat. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. A deliberate between-block cut is authored, not an accidental model reset; retain place, time, cast identity and resolved truth.",
+      "authoringStatus": "ACTIVE_MOTION_REVIEWED_KEYFRAME_IDENTITY_FRAMING_STILL_REQUIRED"
     },
     {
       "shotId": "shot_02",
@@ -152,7 +153,7 @@
           "lookTarget": "CHARACTER:white_mage",
           "depth": 10,
           "role": "PRIMARY",
-          "action": "OBSERVE",
+          "action": "REACT_SMALL",
           "mirrorPolicy": "FORBID"
         },
         {
@@ -170,7 +171,7 @@
           "lookTarget": "CHARACTER:serpent_raider",
           "depth": 20,
           "role": "SECONDARY",
-          "action": "OBSERVE",
+          "action": "STEP_FORWARD",
           "mirrorPolicy": "FORBID"
         },
         {
@@ -188,12 +189,13 @@
           "lookTarget": "CHARACTER:villageoise",
           "depth": 30,
           "role": "SECONDARY",
-          "action": "OBSERVE",
+          "action": "READY_STANCE",
           "mirrorPolicy": "FORBID"
         }
       ],
       "camera": {
-        "mode": "PAN_SMALL_RIGHT"
+        "mode": "PAN_SMALL_RIGHT",
+        "intent": "A purposeful lateral reveal links the already authored civilian-threat and arrival planes; hold the existing geography and stop before choosing either destination."
       },
       "durationSeconds": 10,
       "continuityOut": "END",
@@ -204,8 +206,9 @@
         "width": 1,
         "height": 0.15
       },
-      "promptIntent": "Within the same village geography, emphasize the unresolved civilian threat and company arrival. No blow, release of captives, pickup or tactical result. End ready for the canonical multi-phase choice tableau. Current canonical truth: Bois-Clair is under Serpent pressure. Captives/northern old bridge and reserves/southern low gate define the existing urgency. Saving people or taking reserves remains undecided. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No rescue, loot or outcome resolved in the clip; No obligatory Cedric: the contextual dialogue can use Kestrel instead; No extra canonical combat. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. Settle sharply and release to the existing STATIC_TABLEAU; no dialogue/choice on the video or hold.",
-      "authoringStatus": "KEYFRAME_REQUIRED_REVIEW_STAGING_AND_PHYSICAL_ACTION_BEFORE_GENERATION"
+      "promptIntent": "Active, rhythmic classic JRPG cinematic staging adapted to this canonical beat. First quarter: initiate the described action promptly. Middle half: develop readable grounded actor motion and living environment, with motivated camera progression. Final quarter: complete only that physical presentation action and remain alive, decelerating camera in the last second. The villageoise recoils and raises her open hands protectively; Marian steps into the arriving company plane and braces her staff; the raider shifts his guarded stance without striking. Wind catches fabric and thick smoke moves behind them. Preserve existing threat and every unresolved rescue/reserves option. Within the same village geography, emphasize the unresolved civilian threat and company arrival. No blow, release of captives, pickup or tactical result. End ready for the canonical multi-phase choice tableau. Current canonical truth: Bois-Clair is under Serpent pressure. Captives/northern old bridge and reserves/southern low gate define the existing urgency. Saving people or taking reserves remains undecided. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No rescue, loot or outcome resolved in the clip; No obligatory Cedric: the contextual dialogue can use Kestrel instead; No extra canonical combat. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. Settle sharply and release to the existing STATIC_TABLEAU; no dialogue/choice on the video or hold.",
+      "authoringStatus": "ACTIVE_MOTION_REVIEWED_KEYFRAME_IDENTITY_FRAMING_STILL_REQUIRED"
     }
-  ]
+  ],
+  "operatorDecision": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
 }

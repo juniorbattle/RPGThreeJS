@@ -38,6 +38,7 @@ export const ACTION_RISK = Object.freeze({
   REACT_SMALL: 'SAFE',
   STEP_FORWARD: 'MODERATE',
   WALK_SLOW: 'MODERATE',
+  WALK_PURPOSEFUL: 'MODERATE',
   STOP: 'MODERATE',
   RAISE_HAND: 'MODERATE',
   LOWER_HAND: 'MODERATE',
@@ -175,6 +176,7 @@ export async function validateShotSpec(input, options = {}) {
     if (!CONTINUITY_OUT.includes(shot.continuityOut)) errors.push(`${prefix}.continuityOut is invalid.`);
     if (shotIndex === input.shots.length - 1 && shot.continuityOut !== 'END') errors.push(`${prefix} final shot continuityOut must be END.`);
     if (!CAMERA_MODES.includes(shot.camera?.mode)) errors.push(`${prefix}.camera.mode is invalid.`);
+    if (shot.camera?.intent !== undefined && (typeof shot.camera.intent !== 'string' || !shot.camera.intent.trim())) errors.push(`${prefix}.camera.intent must be non-empty text.`);
     if (shot.mastering !== undefined) {
       if (!isRecord(shot.mastering)) errors.push(`${prefix}.mastering must be an object.`);
       else if (!Number.isFinite(shot.mastering.overscanPercent) || shot.mastering.overscanPercent < 0 || shot.mastering.overscanPercent > 5) {
@@ -307,7 +309,7 @@ export function buildShotPrompt(spec, shot) {
   return [
     spec.artDirection,
     `Shot ${shot.shotId}: ${shot.purpose}`,
-    `Framing: ${shot.framing}. Camera intent: ${shot.camera.mode} with conservative amplitude.`,
+    `Framing: ${shot.framing}. Camera intent: ${shot.camera.mode}${shot.camera.intent ? `: ${shot.camera.intent}` : ' with conservative amplitude'}.`,
     `Staging: ${characters}.`,
     ...(spec.cast ? [`Casting geography: player company [${spec.cast.playerFaction?.representatives?.join(', ') || 'waived'}] versus ${spec.cast.externalFaction?.id ?? 'external faction'} [${spec.cast.externalFaction?.representatives?.join(', ') || 'none'}]. Preserve both authored factions and never add an invented player avatar.`] : []),
     ...(props ? [`Deterministic props already present in the source: ${props}. Preserve their identity, position, and ownership ambiguity.`] : []),

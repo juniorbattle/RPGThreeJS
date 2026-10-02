@@ -5,62 +5,75 @@ Git on dev and this state pair are the current continuation authority.
 | Field | Value |
 | --- | --- |
 | `status` | IN_PROGRESS |
-| `runStartedAt` | 2026-10-02T02:01:32.8986312Z |
-| `runEndedAt` | 2026-10-02T02:06:59.469Z |
+| `runStartedAt` | 2026-10-02T02:09:32.4830893Z |
+| `runEndedAt` | RUNNING |
 | `activeTask` | CINEMATIC-EIGHT-SLOT-REMASTER |
-| `activePhase` | Standing MiniMax authorization and active FF9-inspired direction persisted |
-| `activeSubtask` | Review conservative motion prompts; generate first active 12-second camp video candidate |
+| `activePhase` | First authorized camp generation and active motion authoring |
+| `activeSubtask` | Camp attempt 1 artistically rejected; camp 2 and audience 1 accepted provider tasks running |
 | `workingBranch` | dev |
-| `lastKnownGoodCommit` | af69c0eef0653f5ead9620f84075564901c8ad88 |
-| `lastPushedCommit` | af69c0eef0653f5ead9620f84075564901c8ad88 |
-| `creditStatus` | CODEX_AVAILABLE; MINIMAX_AUTHORIZED_AVAILABILITY_NOT_QUERIED |
-| `contractComplianceStatus` | Contract set v1: operator authorization/direction persistence PASS; no LOCKED contract changed. Current HD-2D/V2/canon/eight-slot boundaries retained. Generated replacement acceptance remains pending; prior missing-permission blocker resolved. |
-| `commitReferenceScope` | Verified implementation checkpoint; subsequent state-only closeout identified by Git HEAD/origin/dev and automation memory. |
+| `lastKnownGoodCommit` | 3b4aa138144ae935ad91b9c4f0f0dcdf534ab6dc |
+| `lastPushedCommit` | 3b4aa138144ae935ad91b9c4f0f0dcdf534ab6dc |
+| `creditStatus` | CODEX_AVAILABLE; MINIMAX_THREE_TASKS_ACCEPTED_BALANCE_NOT_MEASURED |
+| `contractComplianceStatus` | Contract set v1: candidate authoring/preservation PASS; art/media replacement acceptance pending. No LOCKED rule changed; camp 1 rejected and no production replacement. |
 
 ## completedThisRun
 
-- Recorded explicit standing MiniMax credential/generation authorization for project clips and subsequent recurring runs; resolved prior authorization blocker
-- Recorded active, rhythmic FF9-inspired staging direction within current HD-2D/V2/eight-slot contracts
-- Updated existing recurring automation prompt and verified saved text plus unchanged cadence/model/reasoning/project/status
-- Persisted operator decision, state pair, remaster brief/continuation and requested general memory note; no clip generated or runtime/LOCKED file changed
-
-- Authorization checkpoint af69c0eef0653f5ead9620f84075564901c8ad88 pushed to origin/dev and remote verified; state-only closeout follows
+- Acquired exclusive lock, fetched and verified clean synchronized dev; items 1-7 remain complete
+- Updated all eight motion briefs to active grounded staging; validated source and camp hash; provider accepted first 12s camp task
+- 26 focused CIN-4 tests PASS
+- First camp candidate generated and physically inspected: true walking, but rejected for book loss, moon-phase drift and smoothing; no promotion
+- Camp candidate 1 real-player QA 11/11 PASS at four viewports; silent 1080p/24fps/12s master retained locally
+- Audience integrated V2 keyframe/provenance saved; camp 2 and audience 1 tasks submitted after first camp inspection
 
 ## filesChanged
 
-- docs/autonomy/AUTONOMOUS_WORK_STATE.json
 - docs/autonomy/AUTONOMOUS_WORK_STATE.md
-- docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md
-- docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md
+- docs/autonomy/AUTONOMOUS_WORK_STATE.json
+- docs/autonomy/CINEMATIC_ACTIVE_MOTION_CANDIDATES.md
+- docs/reports/cinematic-active-motion-1/candidate-qa.json
+- docs/reports/cinematic-active-motion-1/camp-attempt-01-contact.png
+- tools/cinematics/cin4_shot_spec.mjs
+- tools/cinematics/cin4_shot_spec.test.mjs
+- tools/cinematics/master_shot.mjs
+- tools/cinematics/run_production_eight_slot_media_qa.mjs
+- tools/cinematics/specs/production_camp_departure_v1.json
 - tools/cinematics/specs/production_eight_slot_remaster_brief.json
+- tools/cinematics/specs/production-eight-slot-remaster/*.json
+- tools/cinematics/candidates/production-eight-slot-remaster/alaric_audience_arrival/keyframe-v1.png
+- tools/cinematics/candidates/production-eight-slot-remaster/alaric_audience_arrival/provenance.json
 
 ## testsRun
 
-- Saved automation prompt/field equality verification
-- Contract/eight-slot validator
-- State/brief JSON parsing, eight-slot identity check and Git whitespace check
+- 26 focused CIN-4 tests
+- Extended 113 cinematic authoring/census/preproduction tests
+- TypeScript --noEmit
+- Contract validator, production Vite build and exact eight MP4 count
+- Eight production MP4/four protected camp/V2 hashes
+- Camp attempt 1 real-player browser candidate preview
 
 ## testsPassed
 
-- Automation prompt saved exactly; other existing fields unchanged
-- 127 tests and production/media QA remain historical accepted evidence from 92278e2; no runtime change this checkpoint
-
-- Current authorization checkpoint: saved automation equality, 8 LOCKED contracts / 8 slots, JSON state/brief parsing and whitespace checks PASS
+- 26/26 focused CIN-4 tests; extended run 112/113 (one historical allowlist failure)
+- TypeScript, 8 LOCKED contracts/8 slots, production build and eight shipped MP4s PASS
+- Protected media/reference hashes PASS
+- Camp candidate 1 real-player 11/11: completion/hold/skip/reduced-motion/fallback, four viewports, unchanged saves
 
 ## testsRemaining
 
-- Review revised active/FF9-inspired motion prompts and source/spec validation before submission
-- First camp generated motion and remaining seven clips/artistic/runtime replacement acceptance
-- Queued item 9 full-demo/accessibility QA and deferred audio
+- Camp 2 and audience 1 decoded motion/identity/style/ending acceptance
+- Accepted candidate campaign/runtime replacement QA
+- Remaining six slots/twelve shot blocks keyframe/generation/acceptance
+- Queued demo QA and deferred audio
 
 ## blockers
 
-None; previous MiniMax authorization blocker resolved.
+- Historical CIN-6E-A protected-runtime allowlist lacks NarrativeTableau.test.ts already modified by approved e898e61; current run has zero src runtime changes
+- Camp attempt 1 artistic rejection recorded; second attempt pending (not a permission blocker)
 
 ## remainingWork
 
-- Item 8 ACTIVE: motion-direction review, provider availability check, actual eight-video candidate generation/acceptance
-- Item 9 demo polish/QA queued; item 10 audio DEFERRED
+- Item 8 ACTIVE: camp 2/audience 1 review, remaining six slots keyframes/motion and replacement acceptance
+- Item 9 queued; audio DEFERRED
 
 ## taskQueue
 
@@ -75,10 +88,8 @@ None; previous MiniMax authorization blocker resolved.
 - Complete demo QA and polish: QUEUED
 - Audio decision after structure lock: DEFERRED
 
-## Standing operator authorization and direction
-
-MiniMax local-key use for RPGThreeJS clip generation/current and future recurring runs explicitly authorized. Do not ask again. Active/rhythmic FF9-inspired staging; preserve HD-2D, V2, canon and exactly eight slots. No credential value stored. Decision: [docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md](CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md).
-
 ## nextAction
 
-Acquire exclusive lock and read Git/state plus CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md. MiniMax local-key use for RPGThreeJS clips/current and future recurring runs is explicitly authorized: do not request it again. Retain items 1–7 complete, eight-source audit/specs, camp keyframe and existing-media QA. Review/update conservative camera/action wording against very active, rhythmic FF9-inspired staging while preserving HD-2D/V2/canon and exactly eight slots. Validate source/spec; restore ignored camp source byte-identically if needed; generate first 12s candidate via existing MiniMax adapter. Inspect real motion/identity/framing/environment/decoded ending and runtime QA before any production replacement. Continue remaining clips through checkpoints; item 8 remains incomplete; audio DEFERRED.
+Inspect accepted provider tasks camp 2 (447917133545949) and audience 1 (447917421400540) from existing tmp/cinematics/cin4 metadata. Do not resubmit duplicates. Camp 1 rejected for lost Maelor book, crescent/full-moon drift and pixel smoothing; its 11/11 player QA does not accept art. Decode second camp/audience first-middle-final and locomotion, preserve V2 equipment/location/pixel style. Candidate master names must be distinct via master_shot --output. Preview one approved slot via CIN8_MEDIA_CANDIDATE against local Vite with existing player tool. Do not replace public MP4 until artistic and campaign acceptance. All eight active briefs validated; remaining six slots need keyframes.
+
+Standing decision: docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md; no credential value stored.

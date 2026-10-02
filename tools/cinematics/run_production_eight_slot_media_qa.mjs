@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { isAbsolute, relative, resolve } from 'node:path';
 import { chromium } from 'playwright';
 
@@ -16,9 +17,18 @@ const modeFilter = process.env.CIN8_MEDIA_MODE;
 const slotFilter = process.env.CIN8_MEDIA_SLOT;
 if (slotFilter && !brief.slots.some((slot) => slot.id === slotFilter)) throw new Error('Unknown CIN8_MEDIA_SLOT');
 if (modeFilter && !['natural', 'hold', 'skip', 'reduced', 'failure'].includes(modeFilter)) throw new Error('Unknown CIN8_MEDIA_MODE');
+// Preview ignored candidates through the real player without replacing production assets.
+const candidate = process.env.CIN8_MEDIA_CANDIDATE ? resolve(process.env.CIN8_MEDIA_CANDIDATE) : null;
+let candidateProof = null;
+if (candidate) {
+  const candidateRel = relative(resolve('tmp/cinematics'), candidate);
+  if (!slotFilter || candidateRel.startsWith('..') || isAbsolute(candidateRel) || !candidate.endsWith('.mp4')) throw new Error('Candidate preview requires one approved slot and an MP4 inside ignored tmp/cinematics.');
+  const bytes = await readFile(candidate);
+  candidateProof = { path: relative(process.cwd(), candidate).replaceAll('\\', '/'), sha256: createHash('sha256').update(bytes).digest('hex'), bytes: bytes.length, productionAssetsReplaced: false };
+}
 const viewports = [{ width: 1920, height: 1080 }, { width: 1366, height: 768 }, { width: 620, height: 780 }, { width: 390, height: 844 }];
 const browser = await chromium.launch({ headless: true });
-const report = { schemaVersion: 1, recordedAt: new Date().toISOString(), scope: 'ISOLATED_DEV_REAL_PLAYER_NOT_CAMPAIGN_ACCEPTANCE', cases: [], pass: false };
+const report = { schemaVersion: 1, recordedAt: new Date().toISOString(), scope: 'ISOLATED_DEV_REAL_PLAYER_NOT_CAMPAIGN_ACCEPTANCE', candidateProof, cases: [], pass: false };
 async function canvasMetrics(page) {
   return page.locator('.cinematic-overlay').evaluate((overlay) => {
     const canvas = overlay.querySelector('canvas');
@@ -50,6 +60,7 @@ async function run(slot, viewport, mode) {
   page.on('request', (request) => { if (request.url().includes('.mp4')) requests.push(request.url()); });
   let result;
   try {
+    if (candidate && mode !== 'failure') await page.route(`**/assets/cinematics/${slot.id}.mp4`, (route) => route.fulfill({ path: candidate, contentType: 'video/mp4' }));
     await page.goto(`${base}/?qa=1&cinematic=1&real=${slot.id}`, { waitUntil: 'networkidle' });
     const registry = await page.locator('[data-cinematic-registry]').innerText();
     for (const approved of brief.slots) if (!registry.includes(approved.id)) throw new Error(`Registry missing ${approved.id}`);

@@ -1,0 +1,822 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-02T02:26:00.635Z",
+  "scope": "CANDIDATE_REVIEW_NO_PRODUCTION_REPLACEMENT",
+  "campAttempt01": {
+    "recordedAt": "2026-10-02T02:23:09.223Z",
+    "slot": "camp_departure",
+    "attempt": 1,
+    "taskId": "447913679147511",
+    "rawSha256": "a8ff175f218d39562ae64645f360fe6ace3180caf03e0a3cb936899ab18da019",
+    "masterSha256": "5175e7291c3062d747b3b00a69d2bbab7099e094b65d8189237708367f46b8f3",
+    "status": "REJECTED_ARTISTIC_NOT_PRODUCTION",
+    "positive": [
+      "Actual alternating leg locomotion and weight shifts, cape/banner/fire/environment motion",
+      "Three concealed V2 silhouettes stay readable; no dialogue, combat or new outcome",
+      "Technically decoded; 12s silent 1920x1080/24fps master"
+    ],
+    "defects": [
+      {
+        "id": "V2_BOOK_DISAPPEARS",
+        "evidence": "Visible Maelor book at 6s absent from final 11.9s frame"
+      },
+      {
+        "id": "ENVIRONMENT_MOON_PHASE_DRIFT",
+        "evidence": "Source crescent changes to large full disc in later frames"
+      },
+      {
+        "id": "PIXEL_STYLE_SOFTENING",
+        "evidence": "Middle/final actors and equipment rendered as smooth illustration rather than source intentional pixel clusters"
+      }
+    ],
+    "rawDurationSeconds": 12.25,
+    "rawHasAudio": true,
+    "masterDurationSeconds": 12,
+    "masterHasAudio": false,
+    "productionReplaced": false,
+    "nextAttemptPromptVersion": "production-eight-camp-departure-active-v3",
+    "submittedSpec": {
+      "schemaVersion": 1,
+      "sequenceId": "production_eight_camp_departure_v1",
+      "cinematicId": "camp_departure",
+      "tier": "HERO",
+      "canonicalFacing": "SCREEN_RIGHT",
+      "promptVersion": "production-eight-camp-departure-active-v2",
+      "resolution": "2K",
+      "frame": {
+        "width": 1920,
+        "height": 1080
+      },
+      "status": "CANDIDATE_NOT_PRODUCTION_MINIMAX_AUTHORIZED",
+      "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
+      "artDirection": "Modern pixel-art/HD-2D. Canonical moonlit Lion camp and protected V2 identities; final silent authored motion must pass separate visual/runtime acceptance.",
+      "shots": [
+        {
+          "shotId": "shot_01",
+          "purpose": "A rare major departure: the small company physically starts toward the existing route through the grand camp/valley environment.",
+          "framing": "WIDE_GROUNDED_CAMP_COMPANY",
+          "environment": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+          "source": {
+            "type": "ROOT_SOURCE",
+            "output": "tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/source.png",
+            "frame": {
+              "width": 1672,
+              "height": 941
+            },
+            "sha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+            "inputCandidate": "tools/cinematics/candidates/production-eight-slot-remaster/camp_departure/keyframe-v1.png",
+            "integration": {
+              "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+              "layoutReference": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+              "referenceAssets": [
+                "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+                "public/assets/characters/pixel/masters/white_mage.png",
+                "public/assets/characters/pixel/masters/maelor.png",
+                "public/assets/characters/pixel/masters/alistair.png"
+              ],
+              "qualityGates": [
+                "NO_COLLAGE_LOOK",
+                "WORLD_INTEGRATION",
+                "V2_IDENTITY",
+                "CANONICAL_ENVIRONMENT",
+                "NO_GAME_TRUTH_MUTATION"
+              ]
+            }
+          },
+          "characters": [
+            {
+              "id": "marian",
+              "asset": "public/assets/characters/pixel/masters/white_mage.png",
+              "position": {
+                "x": 0.3,
+                "groundY": 0.76
+              },
+              "scale": {
+                "framing": "WIDE",
+                "perspective": 1
+              },
+              "facing": "SCREEN_RIGHT",
+              "lookTarget": "ENVIRONMENT:camp_road",
+              "depth": 30,
+              "role": "SECONDARY",
+              "action": "WALK_PURPOSEFUL",
+              "mirrorPolicy": "FORBID"
+            },
+            {
+              "id": "maelor",
+              "asset": "public/assets/characters/pixel/masters/maelor.png",
+              "position": {
+                "x": 0.44,
+                "groundY": 0.76
+              },
+              "scale": {
+                "framing": "WIDE",
+                "perspective": 1
+              },
+              "facing": "SCREEN_RIGHT",
+              "lookTarget": "CHARACTER:alistair",
+              "depth": 20,
+              "role": "PRIMARY",
+              "action": "WALK_PURPOSEFUL",
+              "mirrorPolicy": "FORBID"
+            },
+            {
+              "id": "alistair",
+              "asset": "public/assets/characters/pixel/masters/alistair.png",
+              "position": {
+                "x": 0.56,
+                "groundY": 0.78
+              },
+              "scale": {
+                "framing": "WIDE",
+                "perspective": 1.02
+              },
+              "facing": "SCREEN_RIGHT",
+              "lookTarget": "ENVIRONMENT:camp_road",
+              "depth": 10,
+              "role": "PRIMARY",
+              "action": "WALK_PURPOSEFUL",
+              "mirrorPolicy": "FORBID"
+            }
+          ],
+          "camera": {
+            "mode": "TRACK_SMALL_RIGHT",
+            "intent": "Purposeful lateral tracking paced to the company steps, with foreground tent and banner parallax revealing valley depth. Ease into motion promptly; do not substitute a still-image zoom. Maintain the established axis and readable full-body cast, then decelerate only in the final second."
+          },
+          "durationSeconds": 12,
+          "continuityOut": "END",
+          "endIntent": "READABLE_STABLE_DEPARTURE_THEN_COVERED_STATIC_TABLEAU",
+          "nextStepUiSafeZone": {
+            "x": 0,
+            "y": 0.85,
+            "width": 1,
+            "height": 0.15
+          },
+          "promptIntent": "One physical moonlit Lion camp, one continuous 12-second shot. Energetic classic JRPG cinematic departure rhythm, with purposeful physical action and a living world. 0-2 seconds: Alistair lifts his greatsword clear of the ground into a low safe carry, shifts his weight and initiates the departure; Maelor secures his existing book against his body; Marian plants then lifts her star staff for walking. 2-6 seconds: all three stride screen-right along the existing camp road, with distinct alternating leg steps, grounded foot contact, weight transfer, arm motion and equipment inertia. Keep the small company coherent, without crossing or swapping sides. 6-11 seconds: sustain brisk readable walking as the camera travels with them, tent edges pass in parallax, banners and capes catch the breeze, fire flickers, sparks drift and the river moves beneath the same moonlit valley and castle. This is an active departure, not slow motion, idle breathing or a zoomed still. 11-12 seconds: camera decelerates to a sharp readable composition while the actors remain naturally alive for the covered STATIC_TABLEAU transfer. Preserve exact V2 helmets and face concealment, Maelor purple hood/mask/book/dagger, Alistair armor/lion tabard/greatsword, Marian veil/star staff, relative scale and intentional pixel clusters. Preserve night, moon, aqueduct, castle, river and tent-street geography. No new actor, destination arrival, outcome, loot, combat, attack, magic spectacle, lip sync, speech, text or UI. No sunrise, revealed face, redesign, teleport, disappearance, side swap, hidden cut or world reset. No dialogue or player choice on this video/hold. Silent visual candidate; audio remains deferred."
+        }
+      ],
+      "operatorDecision": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
+    },
+    "submittedPrompt": "Modern pixel-art/HD-2D. Canonical moonlit Lion camp and protected V2 identities; final silent authored motion must pass separate visual/runtime acceptance. Shot shot_01: A rare major departure: the small company physically starts toward the existing route through the grand camp/valley environment. Framing: WIDE_GROUNDED_CAMP_COMPANY. Camera intent: TRACK_SMALL_RIGHT: Purposeful lateral tracking paced to the company steps, with foreground tent and banner parallax revealing valley depth. Ease into motion promptly; do not substitute a still-image zoom. Maintain the established axis and readable full-body cast, then decelerate only in the final second.. Staging: marian is SECONDARY/SECONDARY, already facing SCREEN_RIGHT, attending to ENVIRONMENT:camp_road, with action WALK_PURPOSEFUL (MODERATE risk); maelor is PRIMARY/PRIMARY, already facing SCREEN_RIGHT, attending to CHARACTER:alistair, with action WALK_PURPOSEFUL (MODERATE risk); alistair is PRIMARY/PRIMARY, already facing SCREEN_RIGHT, attending to ENVIRONMENT:camp_road, with action WALK_PURPOSEFUL (MODERATE risk). Action intent: One physical moonlit Lion camp, one continuous 12-second shot. Energetic classic JRPG cinematic departure rhythm, with purposeful physical action and a living world. 0-2 seconds: Alistair lifts his greatsword clear of the ground into a low safe carry, shifts his weight and initiates the departure; Maelor secures his existing book against his body; Marian plants then lifts her star staff for walking. 2-6 seconds: all three stride screen-right along the existing camp road, with distinct alternating leg steps, grounded foot contact, weight transfer, arm motion and equipment inertia. Keep the small company coherent, without crossing or swapping sides. 6-11 seconds: sustain brisk readable walking as the camera travels with them, tent edges pass in parallax, banners and capes catch the breeze, fire flickers, sparks drift and the river moves beneath the same moonlit valley and castle. This is an active departure, not slow motion, idle breathing or a zoomed still. 11-12 seconds: camera decelerates to a sharp readable composition while the actors remain naturally alive for the covered STATIC_TABLEAU transfer. Preserve exact V2 helmets and face concealment, Maelor purple hood/mask/book/dagger, Alistair armor/lion tabard/greatsword, Marian veil/star staff, relative scale and intentional pixel clusters. Preserve night, moon, aqueduct, castle, river and tent-street geography. No new actor, destination arrival, outcome, loot, combat, attack, magic spectacle, lip sync, speech, text or UI. No sunrise, revealed face, redesign, teleport, disappearance, side swap, hidden cut or world reset. No dialogue or player choice on this video/hold. Silent visual candidate; audio remains deferred. The supplied first frame is authoritative. Preserve exactly every character identity, face or head, hair or helmet, armor, clothing, cape or tabard, weapon, body proportions, color palette, facing direction, spatial relationship, and environment identity. Animate the existing composition; do not redesign it. Preserve the exact facing direction already shown in the first frame. Do not turn either character around, reverse screen direction, rotate a body 180 degrees, cross the established axis, or swap character sides. End-state intent: READABLE_STABLE_DEPARTURE_THEN_COVERED_STATIC_TABLEAU. Finish stable, sharp, nonblank, nonverdict, and suitable for an editorial cut or deterministic dialogue handoff. No speech, lip sync, subtitles, text, UI, watermark, photorealism, live action, realistic 3D conversion, extra characters, duplicated limbs, duplicated weapons, anatomy melting, combat, attack, projectile, explosion, camera orbit, whip pan, large rotation, aggressive zoom, heavy blur, black ending, white ending, or style drift.",
+    "playerQa": {
+      "schemaVersion": 1,
+      "recordedAt": "2026-10-02T02:22:58.416Z",
+      "scope": "ISOLATED_DEV_REAL_PLAYER_NOT_CAMPAIGN_ACCEPTANCE",
+      "candidateProof": {
+        "path": "tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/shot_master.mp4",
+        "sha256": "5175e7291c3062d747b3b00a69d2bbab7099e094b65d8189237708367f46b8f3",
+        "bytes": 25084111,
+        "productionAssetsReplaced": false
+      },
+      "cases": [
+        {
+          "id": "camp_departure-1920x1080-natural",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 1920,
+            "height": 1080
+          },
+          "mode": "natural",
+          "measurements": {
+            "moving": {
+              "width": 1920,
+              "height": 1080,
+              "hidden": false,
+              "min": 0,
+              "max": 250.66666666666666,
+              "mean": 54.674917695473425,
+              "currentTime": 0.050018,
+              "duration": 12,
+              "paused": false,
+              "framePump": "video-frame",
+              "inert": false,
+              "role": "dialog",
+              "staticActors": 0
+            },
+            "clockDelta": 0.27339399999999997
+          },
+          "resultText": "Résultat : ended · overlay nettoyé.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [
+            "http://127.0.0.1:5197/assets/cinematics/camp_departure.mp4"
+          ],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-390x844-hold",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "mode": "hold",
+          "measurements": {
+            "moving": {
+              "width": 1920,
+              "height": 1080,
+              "hidden": false,
+              "min": 0,
+              "max": 250.66666666666666,
+              "mean": 54.674917695473425,
+              "currentTime": 0.062425,
+              "duration": 12,
+              "paused": false,
+              "framePump": "video-frame",
+              "inert": false,
+              "role": "dialog",
+              "staticActors": 0
+            },
+            "clockDelta": 0.260471,
+            "held": {
+              "width": 1920,
+              "height": 1080,
+              "hidden": false,
+              "min": 0,
+              "max": 254.33333333333334,
+              "mean": 47.23204732510255,
+              "currentTime": 12,
+              "duration": 12,
+              "paused": true,
+              "framePump": "stopped",
+              "freezeSurface": "canvas",
+              "inert": true,
+              "role": "presentation",
+              "staticActors": 0
+            }
+          },
+          "resultText": "Vidéo réelle camp_departure : ended · played true · résidu DOM 0.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [
+            "http://127.0.0.1:5197/assets/cinematics/camp_departure.mp4"
+          ],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-1920x1080-skip",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 1920,
+            "height": 1080
+          },
+          "mode": "skip",
+          "measurements": {
+            "moving": {
+              "width": 1920,
+              "height": 1080,
+              "hidden": false,
+              "min": 0,
+              "max": 250.66666666666666,
+              "mean": 54.674917695473425,
+              "currentTime": 0.054042,
+              "duration": 12,
+              "paused": false,
+              "framePump": "video-frame",
+              "inert": false,
+              "role": "dialog",
+              "staticActors": 0
+            },
+            "clockDelta": 0.262187
+          },
+          "resultText": "Résultat : skipped · overlay nettoyé.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [
+            "http://127.0.0.1:5197/assets/cinematics/camp_departure.mp4"
+          ],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-1920x1080-reduced",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 1920,
+            "height": 1080
+          },
+          "mode": "reduced",
+          "measurements": {},
+          "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-1366x768-skip",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "mode": "skip",
+          "measurements": {
+            "moving": {
+              "width": 1920,
+              "height": 1080,
+              "hidden": false,
+              "min": 0,
+              "max": 250.66666666666666,
+              "mean": 54.674917695473425,
+              "currentTime": 0.035487,
+              "duration": 12,
+              "paused": false,
+              "framePump": "video-frame",
+              "inert": false,
+              "role": "dialog",
+              "staticActors": 0
+            },
+            "clockDelta": 0.25915900000000003
+          },
+          "resultText": "Résultat : skipped · overlay nettoyé.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [
+            "http://127.0.0.1:5197/assets/cinematics/camp_departure.mp4"
+          ],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-1366x768-reduced",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "mode": "reduced",
+          "measurements": {},
+          "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-620x780-skip",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 620,
+            "height": 780
+          },
+          "mode": "skip",
+          "measurements": {
+            "moving": {
+              "width": 1920,
+              "height": 1080,
+              "hidden": false,
+              "min": 0,
+              "max": 250.66666666666666,
+              "mean": 54.674917695473425,
+              "currentTime": 0.062559,
+              "duration": 12,
+              "paused": false,
+              "framePump": "video-frame",
+              "inert": false,
+              "role": "dialog",
+              "staticActors": 0
+            },
+            "clockDelta": 0.261675
+          },
+          "resultText": "Résultat : skipped · overlay nettoyé.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [
+            "http://127.0.0.1:5197/assets/cinematics/camp_departure.mp4"
+          ],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-620x780-reduced",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 620,
+            "height": 780
+          },
+          "mode": "reduced",
+          "measurements": {},
+          "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-390x844-skip",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "mode": "skip",
+          "measurements": {
+            "moving": {
+              "width": 1920,
+              "height": 1080,
+              "hidden": false,
+              "min": 0,
+              "max": 250.66666666666666,
+              "mean": 54.674917695473425,
+              "currentTime": 0.05537,
+              "duration": 12,
+              "paused": false,
+              "framePump": "video-frame",
+              "inert": false,
+              "role": "dialog",
+              "staticActors": 0
+            },
+            "clockDelta": 0.26308600000000004
+          },
+          "resultText": "Résultat : skipped · overlay nettoyé.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [
+            "http://127.0.0.1:5197/assets/cinematics/camp_departure.mp4"
+          ],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-390x844-reduced",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "mode": "reduced",
+          "measurements": {},
+          "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-390x844-failure",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "mode": "failure",
+          "measurements": {
+            "held": {
+              "width": 0,
+              "height": 0,
+              "hidden": true,
+              "min": 255,
+              "max": 0,
+              "mean": 0,
+              "currentTime": 0,
+              "duration": null,
+              "paused": true,
+              "framePump": "stopped",
+              "freezeSurface": "fallback",
+              "inert": true,
+              "role": "presentation",
+              "staticActors": 0
+            },
+            "fallbackText": "La compagnie quitte le camp et prend la route."
+          },
+          "resultText": "Vidéo réelle camp_departure : timeout · played false · résidu DOM 0.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [
+            "http://127.0.0.1:5197/assets/cinematics/camp_departure.mp4"
+          ],
+          "expectedFailedRequests": 1,
+          "errors": [],
+          "pass": true
+        }
+      ],
+      "pass": true
+    }
+  },
+  "pendingJobs": [
+    {
+      "slot": "camp_departure",
+      "attempt": 2,
+      "taskId": "447917133545949",
+      "submittedSpec": {
+        "schemaVersion": 1,
+        "sequenceId": "production_eight_camp_departure_v1",
+        "cinematicId": "camp_departure",
+        "tier": "HERO",
+        "canonicalFacing": "SCREEN_RIGHT",
+        "promptVersion": "production-eight-camp-departure-active-v3",
+        "resolution": "2K",
+        "frame": {
+          "width": 1920,
+          "height": 1080
+        },
+        "status": "CANDIDATE_NOT_PRODUCTION_MINIMAX_AUTHORIZED",
+        "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
+        "artDirection": "Modern pixel-art/HD-2D. Canonical moonlit Lion camp and protected V2 identities; final silent authored motion must pass separate visual/runtime acceptance.",
+        "shots": [
+          {
+            "shotId": "shot_01",
+            "purpose": "A rare major departure: the small company physically starts toward the existing route through the grand camp/valley environment.",
+            "framing": "WIDE_GROUNDED_CAMP_COMPANY",
+            "environment": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+            "source": {
+              "type": "ROOT_SOURCE",
+              "output": "tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/source.png",
+              "frame": {
+                "width": 1672,
+                "height": 941
+              },
+              "sha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+              "inputCandidate": "tools/cinematics/candidates/production-eight-slot-remaster/camp_departure/keyframe-v1.png",
+              "integration": {
+                "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+                "layoutReference": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+                "referenceAssets": [
+                  "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+                  "public/assets/characters/pixel/masters/white_mage.png",
+                  "public/assets/characters/pixel/masters/maelor.png",
+                  "public/assets/characters/pixel/masters/alistair.png"
+                ],
+                "qualityGates": [
+                  "NO_COLLAGE_LOOK",
+                  "WORLD_INTEGRATION",
+                  "V2_IDENTITY",
+                  "CANONICAL_ENVIRONMENT",
+                  "NO_GAME_TRUTH_MUTATION"
+                ]
+              }
+            },
+            "characters": [
+              {
+                "id": "marian",
+                "asset": "public/assets/characters/pixel/masters/white_mage.png",
+                "position": {
+                  "x": 0.3,
+                  "groundY": 0.76
+                },
+                "scale": {
+                  "framing": "WIDE",
+                  "perspective": 1
+                },
+                "facing": "SCREEN_RIGHT",
+                "lookTarget": "ENVIRONMENT:camp_road",
+                "depth": 30,
+                "role": "SECONDARY",
+                "action": "WALK_PURPOSEFUL",
+                "mirrorPolicy": "FORBID"
+              },
+              {
+                "id": "maelor",
+                "asset": "public/assets/characters/pixel/masters/maelor.png",
+                "position": {
+                  "x": 0.44,
+                  "groundY": 0.76
+                },
+                "scale": {
+                  "framing": "WIDE",
+                  "perspective": 1
+                },
+                "facing": "SCREEN_RIGHT",
+                "lookTarget": "CHARACTER:alistair",
+                "depth": 20,
+                "role": "PRIMARY",
+                "action": "WALK_PURPOSEFUL",
+                "mirrorPolicy": "FORBID"
+              },
+              {
+                "id": "alistair",
+                "asset": "public/assets/characters/pixel/masters/alistair.png",
+                "position": {
+                  "x": 0.56,
+                  "groundY": 0.78
+                },
+                "scale": {
+                  "framing": "WIDE",
+                  "perspective": 1.02
+                },
+                "facing": "SCREEN_RIGHT",
+                "lookTarget": "ENVIRONMENT:camp_road",
+                "depth": 10,
+                "role": "PRIMARY",
+                "action": "WALK_PURPOSEFUL",
+                "mirrorPolicy": "FORBID"
+              }
+            ],
+            "camera": {
+              "mode": "TRACK_SMALL_RIGHT",
+              "intent": "Pace a purposeful lateral track with the actors, keeping the established castle, aqueduct, crescent moon and river geography coherent. Visible actor locomotion supplies the energy; no orbit or change of world layout. Decelerate only during the last second."
+            },
+            "durationSeconds": 12,
+            "continuityOut": "END",
+            "endIntent": "READABLE_STABLE_DEPARTURE_THEN_COVERED_STATIC_TABLEAU",
+            "nextStepUiSafeZone": {
+              "x": 0,
+              "y": 0.85,
+              "width": 1,
+              "height": 0.15
+            },
+            "promptIntent": "Continuous physical departure in the supplied modern pixel-art/HD-2D camp, exactly 12 seconds. 0-2 seconds: the three shift weight into their first grounded step and Alistair lifts the same greatsword into low safe carry. 2-11 seconds: brisk sustained screen-right walking, alternating legs, real footfalls, arm swing where equipment allows, cloth and cape inertia, wind in banners, flickering fire, sparks and moving river. Keep Marian staff in her existing hand and Maelor book visibly clamped in its existing hand against his chest for EVERY frame, including the final image; do not transfer, lower, hide, dissolve or remove the book or dagger. Exactly three actors, identity concealment and all equipment invariant. Preserve the supplied small silver CRESCENT moon, its exact phase and scale throughout: never transform it into a full moon or glowing disc. Distant castle and aqueduct retain their existing relation to the river and mountains in one continuous physical location; no new bridge, plank crossing, route destination or reconstructed geography. Preserve intentional stepped PIXEL CLUSTERS and crisp pixel-art edge detail on actors AND environment for every frame; no smoothing into anime illustration or generic rendered 3D. 11-12 seconds: ease camera and steps toward a sharp readable alive composition with all three actors, book, staff and sword present, before covered STATIC_TABLEAU transfer. Do not drift into slow motion or substitute a still zoom. No speech, lip sync, sound, text, UI, magic, combat, attack, new actor, side swap, teleport, world reset, sunrise, exposed face, new consequence, dialogue or choice. Audio remains deferred."
+          }
+        ],
+        "operatorDecision": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
+      },
+      "submittedPrompt": "Modern pixel-art/HD-2D. Canonical moonlit Lion camp and protected V2 identities; final silent authored motion must pass separate visual/runtime acceptance. Shot shot_01: A rare major departure: the small company physically starts toward the existing route through the grand camp/valley environment. Framing: WIDE_GROUNDED_CAMP_COMPANY. Camera intent: TRACK_SMALL_RIGHT: Pace a purposeful lateral track with the actors, keeping the established castle, aqueduct, crescent moon and river geography coherent. Visible actor locomotion supplies the energy; no orbit or change of world layout. Decelerate only during the last second.. Staging: marian is SECONDARY/SECONDARY, already facing SCREEN_RIGHT, attending to ENVIRONMENT:camp_road, with action WALK_PURPOSEFUL (MODERATE risk); maelor is PRIMARY/PRIMARY, already facing SCREEN_RIGHT, attending to CHARACTER:alistair, with action WALK_PURPOSEFUL (MODERATE risk); alistair is PRIMARY/PRIMARY, already facing SCREEN_RIGHT, attending to ENVIRONMENT:camp_road, with action WALK_PURPOSEFUL (MODERATE risk). Action intent: Continuous physical departure in the supplied modern pixel-art/HD-2D camp, exactly 12 seconds. 0-2 seconds: the three shift weight into their first grounded step and Alistair lifts the same greatsword into low safe carry. 2-11 seconds: brisk sustained screen-right walking, alternating legs, real footfalls, arm swing where equipment allows, cloth and cape inertia, wind in banners, flickering fire, sparks and moving river. Keep Marian staff in her existing hand and Maelor book visibly clamped in its existing hand against his chest for EVERY frame, including the final image; do not transfer, lower, hide, dissolve or remove the book or dagger. Exactly three actors, identity concealment and all equipment invariant. Preserve the supplied small silver CRESCENT moon, its exact phase and scale throughout: never transform it into a full moon or glowing disc. Distant castle and aqueduct retain their existing relation to the river and mountains in one continuous physical location; no new bridge, plank crossing, route destination or reconstructed geography. Preserve intentional stepped PIXEL CLUSTERS and crisp pixel-art edge detail on actors AND environment for every frame; no smoothing into anime illustration or generic rendered 3D. 11-12 seconds: ease camera and steps toward a sharp readable alive composition with all three actors, book, staff and sword present, before covered STATIC_TABLEAU transfer. Do not drift into slow motion or substitute a still zoom. No speech, lip sync, sound, text, UI, magic, combat, attack, new actor, side swap, teleport, world reset, sunrise, exposed face, new consequence, dialogue or choice. Audio remains deferred. The supplied first frame is authoritative. Preserve exactly every character identity, face or head, hair or helmet, armor, clothing, cape or tabard, weapon, body proportions, color palette, facing direction, spatial relationship, and environment identity. Animate the existing composition; do not redesign it. Preserve the exact facing direction already shown in the first frame. Do not turn either character around, reverse screen direction, rotate a body 180 degrees, cross the established axis, or swap character sides. End-state intent: READABLE_STABLE_DEPARTURE_THEN_COVERED_STATIC_TABLEAU. Finish stable, sharp, nonblank, nonverdict, and suitable for an editorial cut or deterministic dialogue handoff. No speech, lip sync, subtitles, text, UI, watermark, photorealism, live action, realistic 3D conversion, extra characters, duplicated limbs, duplicated weapons, anatomy melting, combat, attack, projectile, explosion, camera orbit, whip pan, large rotation, aggressive zoom, heavy blur, black ending, white ending, or style drift."
+    },
+    {
+      "slot": "alaric_audience_arrival",
+      "attempt": 1,
+      "taskId": "447917421400540",
+      "submittedSpec": {
+        "schemaVersion": 1,
+        "sequenceId": "production_eight_alaric_audience_arrival_v1",
+        "cinematicId": "alaric_audience_arrival",
+        "tier": "HERO",
+        "canonicalFacing": "SCREEN_RIGHT",
+        "promptVersion": "production-eight-alaric_audience_arrival-active-v2",
+        "resolution": "2K",
+        "frame": {
+          "width": 1920,
+          "height": 1080
+        },
+        "status": "KEYFRAME_CANDIDATE_NOT_PRODUCTION_MINIMAX_AUTHORIZED",
+        "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
+        "artDirection": "Modern pixel-art/HD-2D. Immutable canonical V2 identities and promoted location; authored major cinematic motion. No production replacement before acceptance.",
+        "canonicalContext": {
+          "nodeId": "lion-audience",
+          "trigger": "beforeDialogue lion_briefing, subject to approved prelude video policy",
+          "sources": [
+            "src/cinematics/Cin6aPresentation.ts:17",
+            "src/game/content.ts:294",
+            "src/game/content.ts:355",
+            "src/campaign/LionCampaignStructure.ts:92"
+          ],
+          "followingDialogueId": "lion_briefing",
+          "truth": "The company enters Alaric’s audience; the Bois-Clair mandate and accept/advance decision follow interactively.",
+          "exclusions": [
+            "No advance/gold handover before the player accepts it",
+            "No recognition or Seal awarded",
+            "No unnecessary additional court actors"
+          ]
+        },
+        "presentationBoundary": {
+          "duringVideoCastOwner": "VIDEO_OWNS_CAST",
+          "afterVideoSurface": "STATIC_TABLEAU",
+          "afterVideoCastOwner": "STAGE_OWNS_CAST",
+          "dialogueStepsDuringVideoOrHold": 0,
+          "choiceStepsDuringVideoOrHold": 0,
+          "maximumActorsPerComposition": 4,
+          "registryHoldSource": "alaric_audience_arrival",
+          "registryHoldMetadataIsDialogueSurfaceAuthority": false,
+          "finalFrameCastReferenceOnly": true,
+          "finalFramePolicy": "Readable stable final image for covered transfer; a hold is allowed only for the exact same established moment. Ending families release before LION_JUDGEMENT epilogue."
+        },
+        "shots": [
+          {
+            "shotId": "shot_01",
+            "purpose": "Grand audience-hall axis with the company delegation in a grounded foreground/midground and Alaric holding the far authority plane. Controlled forward movement and environmental depth establish a formal arrival; leave the mandate and response to the following tableau.",
+            "framing": "AUTHORED_LOCATION_MAJOR_EVENT",
+            "environment": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/alaric-audience-cinematic-source.png",
+            "source": {
+              "type": "ROOT_SOURCE",
+              "output": "tmp/cinematics/cin4/production_eight_alaric_audience_arrival_v1/shot_01/source.png",
+              "frame": {
+                "width": 1672,
+                "height": 941
+              },
+              "integration": {
+                "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+                "layoutReference": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/alaric-audience-cinematic-source.png",
+                "referenceAssets": [
+                  "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/alaric-audience-cinematic-source.png",
+                  "public/assets/characters/pixel/masters/alaric.png",
+                  "public/assets/characters/pixel/masters/sage_seraphine.png",
+                  "public/assets/characters/pixel/masters/maelor.png",
+                  "public/assets/characters/pixel/masters/alistair.png"
+                ],
+                "qualityGates": [
+                  "NO_COLLAGE_LOOK",
+                  "WORLD_INTEGRATION",
+                  "V2_IDENTITY",
+                  "CANONICAL_ENVIRONMENT",
+                  "NO_GAME_TRUTH_MUTATION"
+                ],
+                "generatedPosePolicy": "Alaric attends screen-left in the integrated raster; no protected master was mirrored or modified. Source frame governs facing."
+              },
+              "sha256": "bbb37404b513a091b04f5a8c79a19745e1cead5567c4fe777f7e2da09741768f",
+              "inputCandidate": "tools/cinematics/candidates/production-eight-slot-remaster/alaric_audience_arrival/keyframe-v1.png"
+            },
+            "characters": [
+              {
+                "id": "alaric",
+                "asset": "public/assets/characters/pixel/masters/alaric.png",
+                "position": {
+                  "x": 0.79,
+                  "groundY": 0.54
+                },
+                "scale": {
+                  "framing": "WIDE",
+                  "perspective": 1
+                },
+                "facing": "SCREEN_LEFT",
+                "lookTarget": "CHARACTER:alistair",
+                "depth": 10,
+                "role": "PRIMARY",
+                "action": "RAISE_HAND",
+                "mirrorPolicy": "WARN"
+              },
+              {
+                "id": "sage_seraphine",
+                "asset": "public/assets/characters/pixel/masters/sage_seraphine.png",
+                "position": {
+                  "x": 0.15,
+                  "groundY": 0.9
+                },
+                "scale": {
+                  "framing": "WIDE",
+                  "perspective": 1
+                },
+                "facing": "SCREEN_RIGHT",
+                "lookTarget": "CHARACTER:alaric",
+                "depth": 40,
+                "role": "SECONDARY",
+                "action": "SMALL_HEAD_TURN",
+                "mirrorPolicy": "FORBID"
+              },
+              {
+                "id": "maelor",
+                "asset": "public/assets/characters/pixel/masters/maelor.png",
+                "position": {
+                  "x": 0.3,
+                  "groundY": 0.88
+                },
+                "scale": {
+                  "framing": "WIDE",
+                  "perspective": 1
+                },
+                "facing": "SCREEN_RIGHT",
+                "lookTarget": "CHARACTER:alaric",
+                "depth": 30,
+                "role": "SECONDARY",
+                "action": "WALK_PURPOSEFUL",
+                "mirrorPolicy": "FORBID"
+              },
+              {
+                "id": "alistair",
+                "asset": "public/assets/characters/pixel/masters/alistair.png",
+                "position": {
+                  "x": 0.49,
+                  "groundY": 0.93
+                },
+                "scale": {
+                  "framing": "WIDE",
+                  "perspective": 1
+                },
+                "facing": "SCREEN_RIGHT",
+                "lookTarget": "ENVIRONMENT:audience_axis",
+                "depth": 20,
+                "role": "SECONDARY",
+                "action": "WALK_PURPOSEFUL",
+                "mirrorPolicy": "FORBID"
+              }
+            ],
+            "camera": {
+              "mode": "SLOW_PUSH",
+              "intent": "Track the approaching delegation with decisive foreground-column parallax, then ease to the established authority axis. Camera motion follows their entry rather than zooming a still."
+            },
+            "durationSeconds": 12,
+            "continuityOut": "END",
+            "endIntent": "STABLE_READABLE_FRAME_THEN_COVERED_TABLEAU_TRANSFER",
+            "nextStepUiSafeZone": {
+              "x": 0,
+              "y": 0.85,
+              "width": 1,
+              "height": 0.15
+            },
+            "promptIntent": "Active, rhythmic classic JRPG cinematic staging adapted to this canonical beat. First quarter: initiate the described action promptly. Middle half: develop readable grounded actor motion and living environment, with motivated camera progression. Final quarter: complete only that physical presentation action and remain alive, decelerating camera in the last second. The delegation enters with purposeful synchronized strides and stops on the hall axis. Maelor settles his book; Alistair brings his sword to a safe resting position. Alaric shifts forward and raises an open hand to receive their presence; Seraphine turns her attention between the delegation and court. Banners stir and torchlight plays across the existing columns. No bow signalling fealty, mandate accepted, payment, reward or ruling. Grand audience-hall axis with the company delegation in a grounded foreground/midground and Alaric holding the far authority plane. Controlled forward movement and environmental depth establish a formal arrival; leave the mandate and response to the following tableau. Current canonical truth: The company enters Alaric’s audience; the Bois-Clair mandate and accept/advance decision follow interactively. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No advance/gold handover before the player accepts it; No recognition or Seal awarded; No unnecessary additional court actors. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. Settle sharply and release to the existing STATIC_TABLEAU; no dialogue/choice on the video or hold.",
+            "authoringStatus": "KEYFRAME_CANDIDATE_STAGING_REVIEWED_MOTION_PENDING"
+          }
+        ],
+        "operatorDecision": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
+      },
+      "submittedPrompt": "Modern pixel-art/HD-2D. Immutable canonical V2 identities and promoted location; authored major cinematic motion. No production replacement before acceptance. Shot shot_01: Grand audience-hall axis with the company delegation in a grounded foreground/midground and Alaric holding the far authority plane. Controlled forward movement and environmental depth establish a formal arrival; leave the mandate and response to the following tableau. Framing: AUTHORED_LOCATION_MAJOR_EVENT. Camera intent: SLOW_PUSH: Track the approaching delegation with decisive foreground-column parallax, then ease to the established authority axis. Camera motion follows their entry rather than zooming a still.. Staging: sage_seraphine is SECONDARY/SECONDARY, already facing SCREEN_RIGHT, attending to CHARACTER:alaric, with action SMALL_HEAD_TURN (SAFE risk); maelor is SECONDARY/SECONDARY, already facing SCREEN_RIGHT, attending to CHARACTER:alaric, with action WALK_PURPOSEFUL (MODERATE risk); alistair is SECONDARY/SECONDARY, already facing SCREEN_RIGHT, attending to ENVIRONMENT:audience_axis, with action WALK_PURPOSEFUL (MODERATE risk); alaric is PRIMARY/PRIMARY, already facing SCREEN_LEFT, attending to CHARACTER:alistair, with action RAISE_HAND (MODERATE risk). Action intent: Active, rhythmic classic JRPG cinematic staging adapted to this canonical beat. First quarter: initiate the described action promptly. Middle half: develop readable grounded actor motion and living environment, with motivated camera progression. Final quarter: complete only that physical presentation action and remain alive, decelerating camera in the last second. The delegation enters with purposeful synchronized strides and stops on the hall axis. Maelor settles his book; Alistair brings his sword to a safe resting position. Alaric shifts forward and raises an open hand to receive their presence; Seraphine turns her attention between the delegation and court. Banners stir and torchlight plays across the existing columns. No bow signalling fealty, mandate accepted, payment, reward or ruling. Grand audience-hall axis with the company delegation in a grounded foreground/midground and Alaric holding the far authority plane. Controlled forward movement and environmental depth establish a formal arrival; leave the mandate and response to the following tableau. Current canonical truth: The company enters Alaric’s audience; the Bois-Clair mandate and accept/advance decision follow interactively. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No advance/gold handover before the player accepts it; No recognition or Seal awarded; No unnecessary additional court actors. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. Settle sharply and release to the existing STATIC_TABLEAU; no dialogue/choice on the video or hold. The supplied first frame is authoritative. Preserve exactly every character identity, face or head, hair or helmet, armor, clothing, cape or tabard, weapon, body proportions, color palette, facing direction, spatial relationship, and environment identity. Animate the existing composition; do not redesign it. Preserve the exact facing direction already shown in the first frame. Do not turn either character around, reverse screen direction, rotate a body 180 degrees, cross the established axis, or swap character sides. End-state intent: STABLE_READABLE_FRAME_THEN_COVERED_TABLEAU_TRANSFER. Finish stable, sharp, nonblank, nonverdict, and suitable for an editorial cut or deterministic dialogue handoff. No speech, lip sync, subtitles, text, UI, watermark, photorealism, live action, realistic 3D conversion, extra characters, duplicated limbs, duplicated weapons, anatomy melting, combat, attack, projectile, explosion, camera orbit, whip pan, large rotation, aggressive zoom, heavy blur, black ending, white ending, or style drift."
+    }
+  ],
+  "productionReplaced": false
+}

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "contractSetVersion": 1,
-  "status": "GENERATION_SPECS_PREPARED_EXISTING_MEDIA_QA_PASS_REPLACEMENT_PENDING",
-  "recordedAt": "2026-10-02T02:04:51.497Z",
+  "status": "ACTIVE_CANDIDATES_CAMP_01_REJECTED_CAMP_02_AUDIENCE_01_RUNNING",
+  "recordedAt": "2026-10-02T02:18:26.408Z",
   "authority": [
     "docs/game/GAME_CONSTITUTION.md",
     "docs/contracts/WORLD_AND_CHARACTERS.md",
@@ -22,8 +22,8 @@
     "adapter": "tools/cinematics/minimax_h3_generate.mjs",
     "providerDocumentation": "https://platform.minimax.io/docs/api-reference/video-generation-v2-create",
     "providerCredentialConfigured": true,
-    "providerAvailability": "NOT_QUERIED_AFTER_AUTHORIZATION",
-    "creditAvailability": "NOT_MEASURED",
+    "providerAvailability": "FIRST_AUTHORIZED_CREATE_ACCEPTED",
+    "creditAvailability": "FIRST_REQUEST_ACCEPTED_BALANCE_NOT_MEASURED",
     "assetBlocker": null,
     "providerAuthorization": "AUTHORIZED_BY_OPERATOR",
     "priorApprovalRejection": "Historical missing-authorization rejection resolved by explicit operator decision on 2026-10-01; no retry performed during persistence checkpoint."
@@ -57,8 +57,8 @@
       "currentDurationMs": 12000,
       "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
-      "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_CANDIDATE_MOTION_PENDING",
-      "assetGenerationStatus": "AUTHORIZED_PENDING_MOTION_DIRECTION_REVIEW_AND_GENERATION",
+      "shotSpecificationStatus": "ACTIVE_MOTION_BRIEF_VALIDATED_KEYFRAME_AND_GENERATED_MOTION_ACCEPTANCE_REQUIRED",
+      "assetGenerationStatus": "ATTEMPT_01_REJECTED_ARTISTIC_ATTEMPT_02_RUNNING",
       "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
       "measuredStream": {
         "id": "camp_departure",
@@ -212,8 +212,8 @@
       "currentDurationMs": 12000,
       "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
-      "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
-      "assetGenerationStatus": "AUTHORIZED_PENDING_MOTION_DIRECTION_REVIEW_AND_GENERATION",
+      "shotSpecificationStatus": "ACTIVE_MOTION_BRIEF_VALIDATED_KEYFRAME_AND_GENERATED_MOTION_ACCEPTANCE_REQUIRED",
+      "assetGenerationStatus": "KEYFRAME_PROVENANCE_SAVED_ATTEMPT_01_RUNNING",
       "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
       "measuredStream": {
         "id": "alaric_audience_arrival",
@@ -356,8 +356,8 @@
       "currentDurationMs": 20000,
       "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
-      "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
-      "assetGenerationStatus": "AUTHORIZED_PENDING_MOTION_DIRECTION_REVIEW_AND_GENERATION",
+      "shotSpecificationStatus": "ACTIVE_MOTION_BRIEF_VALIDATED_KEYFRAME_AND_GENERATED_MOTION_ACCEPTANCE_REQUIRED",
+      "assetGenerationStatus": "AUTHORIZED_KEYFRAME_PENDING",
       "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
       "measuredStream": {
         "id": "bois_clair_arrival",
@@ -525,8 +525,8 @@
       "currentDurationMs": 18000,
       "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
-      "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
-      "assetGenerationStatus": "AUTHORIZED_PENDING_MOTION_DIRECTION_REVIEW_AND_GENERATION",
+      "shotSpecificationStatus": "ACTIVE_MOTION_BRIEF_VALIDATED_KEYFRAME_AND_GENERATED_MOTION_ACCEPTANCE_REQUIRED",
+      "assetGenerationStatus": "AUTHORIZED_KEYFRAME_PENDING",
       "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
       "measuredStream": {
         "id": "bois_clair_saved",
@@ -669,8 +669,8 @@
       "currentDurationMs": 18000,
       "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
-      "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
-      "assetGenerationStatus": "AUTHORIZED_PENDING_MOTION_DIRECTION_REVIEW_AND_GENERATION",
+      "shotSpecificationStatus": "ACTIVE_MOTION_BRIEF_VALIDATED_KEYFRAME_AND_GENERATED_MOTION_ACCEPTANCE_REQUIRED",
+      "assetGenerationStatus": "AUTHORIZED_KEYFRAME_PENDING",
       "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
       "measuredStream": {
         "id": "bois_clair_sacrificed",
@@ -807,8 +807,8 @@
       "currentDurationMs": 17000,
       "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
-      "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
-      "assetGenerationStatus": "AUTHORIZED_PENDING_MOTION_DIRECTION_REVIEW_AND_GENERATION",
+      "shotSpecificationStatus": "ACTIVE_MOTION_BRIEF_VALIDATED_KEYFRAME_AND_GENERATED_MOTION_ACCEPTANCE_REQUIRED",
+      "assetGenerationStatus": "AUTHORIZED_KEYFRAME_PENDING",
       "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
       "measuredStream": {
         "id": "lion_judgement",
@@ -960,8 +960,8 @@
       "currentDurationMs": 18000,
       "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
-      "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
-      "assetGenerationStatus": "AUTHORIZED_PENDING_MOTION_DIRECTION_REVIEW_AND_GENERATION",
+      "shotSpecificationStatus": "ACTIVE_MOTION_BRIEF_VALIDATED_KEYFRAME_AND_GENERATED_MOTION_ACCEPTANCE_REQUIRED",
+      "assetGenerationStatus": "AUTHORIZED_KEYFRAME_PENDING",
       "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
       "measuredStream": {
         "id": "serpent_route_ending",
@@ -1106,8 +1106,8 @@
       "currentDurationMs": 20000,
       "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
-      "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
-      "assetGenerationStatus": "AUTHORIZED_PENDING_MOTION_DIRECTION_REVIEW_AND_GENERATION",
+      "shotSpecificationStatus": "ACTIVE_MOTION_BRIEF_VALIDATED_KEYFRAME_AND_GENERATED_MOTION_ACCEPTANCE_REQUIRED",
+      "assetGenerationStatus": "AUTHORIZED_KEYFRAME_PENDING",
       "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
       "measuredStream": {
         "id": "lion_trial_route_ending",
@@ -1306,5 +1306,24 @@
       "audio DEFERRED"
     ],
     "decisionSource": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
-  }
+  },
+  "activeGeneration": [
+    {
+      "slot": "camp_departure",
+      "attempt": 2,
+      "taskId": "447917133545949",
+      "promptVersion": "production-eight-camp-departure-active-v3",
+      "sourceSha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+      "productionReplacement": false
+    },
+    {
+      "slot": "alaric_audience_arrival",
+      "attempt": 1,
+      "taskId": "447917421400540",
+      "promptVersion": "production-eight-alaric_audience_arrival-active-v2",
+      "sourceSha256": "bbb37404b513a091b04f5a8c79a19745e1cead5567c4fe777f7e2da09741768f",
+      "productionReplacement": false
+    }
+  ],
+  "candidateEvidence": "docs/reports/cinematic-active-motion-1/candidate-qa.json"
 }

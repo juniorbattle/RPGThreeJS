@@ -68,6 +68,18 @@ describe('CIN-4 shot specification', () => {
     expect(buildShotPrompt(spec, spec.shots[0])).toContain('authored SEALED_ARTEFACT');
   });
 
+  it('compiles the operator camp direction without contradictory slow-walk or conservative-camera instructions', async () => {
+    const spec = JSON.parse(await readFile(resolve(projectRoot, 'tools/cinematics/specs/production_camp_departure_v1.json'), 'utf8'));
+    expect((await validateShotSpec(spec, { projectRoot })).valid).toBe(true);
+    const prompt = buildShotPrompt(spec, spec.shots[0]);
+    expect(prompt).toContain('WALK_PURPOSEFUL');
+    expect(prompt).toContain('0-2 seconds');
+    expect(prompt).not.toContain('WALK_SLOW');
+    expect(prompt).not.toContain('conservative amplitude');
+    expect(prompt).toContain('No speech');
+    expect(prompt).toContain('STATIC_TABLEAU');
+  });
+
   it('accepts declared native plate input while retaining the 1080p output requirement', async () => {
     const spec = await loadSpec();
     spec.shots[0].source.frame = { width: 1672, height: 941 };

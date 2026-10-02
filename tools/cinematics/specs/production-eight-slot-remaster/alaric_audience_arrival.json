@@ -4,13 +4,13 @@
   "cinematicId": "alaric_audience_arrival",
   "tier": "HERO",
   "canonicalFacing": "SCREEN_RIGHT",
-  "promptVersion": "production-eight-alaric_audience_arrival-v1",
+  "promptVersion": "production-eight-alaric_audience_arrival-active-v2",
   "resolution": "2K",
   "frame": {
     "width": 1920,
     "height": 1080
   },
-  "status": "AUTHORING_PREPARED_KEYFRAMES_PENDING_PROVIDER_APPROVAL_REQUIRED",
+  "status": "KEYFRAME_CANDIDATE_NOT_PRODUCTION_MINIMAX_AUTHORIZED",
   "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
   "artDirection": "Modern pixel-art/HD-2D. Immutable canonical V2 identities and promoted location; authored major cinematic motion. No production replacement before acceptance.",
   "canonicalContext": {
@@ -71,70 +71,37 @@
             "V2_IDENTITY",
             "CANONICAL_ENVIRONMENT",
             "NO_GAME_TRUTH_MUTATION"
-          ]
-        }
+          ],
+          "generatedPosePolicy": "Alaric attends screen-left in the integrated raster; no protected master was mirrored or modified. Source frame governs facing."
+        },
+        "sha256": "bbb37404b513a091b04f5a8c79a19745e1cead5567c4fe777f7e2da09741768f",
+        "inputCandidate": "tools/cinematics/candidates/production-eight-slot-remaster/alaric_audience_arrival/keyframe-v1.png"
       },
       "characters": [
         {
           "id": "alaric",
           "asset": "public/assets/characters/pixel/masters/alaric.png",
           "position": {
-            "x": 0.2,
-            "groundY": 0.79
+            "x": 0.79,
+            "groundY": 0.54
           },
           "scale": {
             "framing": "WIDE",
             "perspective": 1
           },
-          "facing": "SCREEN_RIGHT",
-          "lookTarget": "CHARACTER:sage_seraphine",
+          "facing": "SCREEN_LEFT",
+          "lookTarget": "CHARACTER:alistair",
           "depth": 10,
           "role": "PRIMARY",
-          "action": "OBSERVE",
-          "mirrorPolicy": "FORBID"
+          "action": "RAISE_HAND",
+          "mirrorPolicy": "WARN"
         },
         {
           "id": "sage_seraphine",
           "asset": "public/assets/characters/pixel/masters/sage_seraphine.png",
           "position": {
-            "x": 0.4,
-            "groundY": 0.79
-          },
-          "scale": {
-            "framing": "WIDE",
-            "perspective": 1
-          },
-          "facing": "SCREEN_RIGHT",
-          "lookTarget": "CHARACTER:maelor",
-          "depth": 20,
-          "role": "SECONDARY",
-          "action": "OBSERVE",
-          "mirrorPolicy": "FORBID"
-        },
-        {
-          "id": "maelor",
-          "asset": "public/assets/characters/pixel/masters/maelor.png",
-          "position": {
-            "x": 0.6,
-            "groundY": 0.79
-          },
-          "scale": {
-            "framing": "WIDE",
-            "perspective": 1
-          },
-          "facing": "SCREEN_RIGHT",
-          "lookTarget": "CHARACTER:alistair",
-          "depth": 30,
-          "role": "SECONDARY",
-          "action": "OBSERVE",
-          "mirrorPolicy": "FORBID"
-        },
-        {
-          "id": "alistair",
-          "asset": "public/assets/characters/pixel/masters/alistair.png",
-          "position": {
-            "x": 0.8,
-            "groundY": 0.79
+            "x": 0.15,
+            "groundY": 0.9
           },
           "scale": {
             "framing": "WIDE",
@@ -144,12 +111,49 @@
           "lookTarget": "CHARACTER:alaric",
           "depth": 40,
           "role": "SECONDARY",
-          "action": "OBSERVE",
+          "action": "SMALL_HEAD_TURN",
+          "mirrorPolicy": "FORBID"
+        },
+        {
+          "id": "maelor",
+          "asset": "public/assets/characters/pixel/masters/maelor.png",
+          "position": {
+            "x": 0.3,
+            "groundY": 0.88
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "CHARACTER:alaric",
+          "depth": 30,
+          "role": "SECONDARY",
+          "action": "WALK_PURPOSEFUL",
+          "mirrorPolicy": "FORBID"
+        },
+        {
+          "id": "alistair",
+          "asset": "public/assets/characters/pixel/masters/alistair.png",
+          "position": {
+            "x": 0.49,
+            "groundY": 0.93
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "ENVIRONMENT:audience_axis",
+          "depth": 20,
+          "role": "SECONDARY",
+          "action": "WALK_PURPOSEFUL",
           "mirrorPolicy": "FORBID"
         }
       ],
       "camera": {
-        "mode": "SLOW_PUSH"
+        "mode": "SLOW_PUSH",
+        "intent": "Track the approaching delegation with decisive foreground-column parallax, then ease to the established authority axis. Camera motion follows their entry rather than zooming a still."
       },
       "durationSeconds": 12,
       "continuityOut": "END",
@@ -160,8 +164,9 @@
         "width": 1,
         "height": 0.15
       },
-      "promptIntent": "Grand audience-hall axis with the company delegation in a grounded foreground/midground and Alaric holding the far authority plane. Controlled forward movement and environmental depth establish a formal arrival; leave the mandate and response to the following tableau. Current canonical truth: The company enters Alaric’s audience; the Bois-Clair mandate and accept/advance decision follow interactively. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No advance/gold handover before the player accepts it; No recognition or Seal awarded; No unnecessary additional court actors. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. Settle sharply and release to the existing STATIC_TABLEAU; no dialogue/choice on the video or hold.",
-      "authoringStatus": "KEYFRAME_REQUIRED_REVIEW_STAGING_AND_PHYSICAL_ACTION_BEFORE_GENERATION"
+      "promptIntent": "Active, rhythmic classic JRPG cinematic staging adapted to this canonical beat. First quarter: initiate the described action promptly. Middle half: develop readable grounded actor motion and living environment, with motivated camera progression. Final quarter: complete only that physical presentation action and remain alive, decelerating camera in the last second. The delegation enters with purposeful synchronized strides and stops on the hall axis. Maelor settles his book; Alistair brings his sword to a safe resting position. Alaric shifts forward and raises an open hand to receive their presence; Seraphine turns her attention between the delegation and court. Banners stir and torchlight plays across the existing columns. No bow signalling fealty, mandate accepted, payment, reward or ruling. Grand audience-hall axis with the company delegation in a grounded foreground/midground and Alaric holding the far authority plane. Controlled forward movement and environmental depth establish a formal arrival; leave the mandate and response to the following tableau. Current canonical truth: The company enters Alaric’s audience; the Bois-Clair mandate and accept/advance decision follow interactively. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No advance/gold handover before the player accepts it; No recognition or Seal awarded; No unnecessary additional court actors. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. Settle sharply and release to the existing STATIC_TABLEAU; no dialogue/choice on the video or hold.",
+      "authoringStatus": "KEYFRAME_CANDIDATE_STAGING_REVIEWED_MOTION_PENDING"
     }
-  ]
+  ],
+  "operatorDecision": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
 }

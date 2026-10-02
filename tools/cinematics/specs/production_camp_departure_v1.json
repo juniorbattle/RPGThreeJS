@@ -4,13 +4,13 @@
   "cinematicId": "camp_departure",
   "tier": "HERO",
   "canonicalFacing": "SCREEN_RIGHT",
-  "promptVersion": "production-eight-camp-departure-v1",
+  "promptVersion": "production-eight-camp-departure-active-v3",
   "resolution": "2K",
   "frame": {
     "width": 1920,
     "height": 1080
   },
-  "status": "CANDIDATE_NOT_PRODUCTION_PROVIDER_APPROVAL_REQUIRED",
+  "status": "CANDIDATE_NOT_PRODUCTION_MINIMAX_AUTHORIZED",
   "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
   "artDirection": "Modern pixel-art/HD-2D. Canonical moonlit Lion camp and protected V2 identities; final silent authored motion must pass separate visual/runtime acceptance.",
   "shots": [
@@ -62,7 +62,7 @@
           "lookTarget": "ENVIRONMENT:camp_road",
           "depth": 30,
           "role": "SECONDARY",
-          "action": "WALK_SLOW",
+          "action": "WALK_PURPOSEFUL",
           "mirrorPolicy": "FORBID"
         },
         {
@@ -80,7 +80,7 @@
           "lookTarget": "CHARACTER:alistair",
           "depth": 20,
           "role": "PRIMARY",
-          "action": "STEP_FORWARD",
+          "action": "WALK_PURPOSEFUL",
           "mirrorPolicy": "FORBID"
         },
         {
@@ -98,12 +98,13 @@
           "lookTarget": "ENVIRONMENT:camp_road",
           "depth": 10,
           "role": "PRIMARY",
-          "action": "WALK_SLOW",
+          "action": "WALK_PURPOSEFUL",
           "mirrorPolicy": "FORBID"
         }
       ],
       "camera": {
-        "mode": "TRACK_SMALL_RIGHT"
+        "mode": "TRACK_SMALL_RIGHT",
+        "intent": "Pace a purposeful lateral track with the actors, keeping the established castle, aqueduct, crescent moon and river geography coherent. Visible actor locomotion supplies the energy; no orbit or change of world layout. Decelerate only during the last second."
       },
       "durationSeconds": 12,
       "continuityOut": "END",
@@ -114,7 +115,8 @@
         "width": 1,
         "height": 0.15
       },
-      "promptIntent": "One physical Lion camp, one continuous shot, zero hidden or editorial cuts. Preserve the exact supplied V2 helmets, closed/veiled faces, Maelor’s purple hood and mask, Alistair’s armor/tabard/greatsword, Marian’s veil and star staff, all accessories and relative scale. The three actors coherently begin moving screen-right along the existing camp road, with a gently tracking camera revealing the authored valley depth. Animate physical walking, grounded contact, minor cloth and banner movement, firelight and atmospheric depth. Preserve the canonical night, moon, distant castle/aqueduct, river and tent street. No new actor, action outcome, loot, combat, lip sync, speech, text, UI or magical spectacle. No sunrise, redesign, visible invented face, side swap, teleport, disappearance, sprite collage or world reset. Motion must develop the departure, not merely zoom a still. Final second naturally settles into a sharp readable composition before the existing preparation dialogue transfers to STATIC_TABLEAU. No dialogue or player choice occurs on this video/hold."
+      "promptIntent": "Continuous physical departure in the supplied modern pixel-art/HD-2D camp, exactly 12 seconds. 0-2 seconds: the three shift weight into their first grounded step and Alistair lifts the same greatsword into low safe carry. 2-11 seconds: brisk sustained screen-right walking, alternating legs, real footfalls, arm swing where equipment allows, cloth and cape inertia, wind in banners, flickering fire, sparks and moving river. Keep Marian staff in her existing hand and Maelor book visibly clamped in its existing hand against his chest for EVERY frame, including the final image; do not transfer, lower, hide, dissolve or remove the book or dagger. Exactly three actors, identity concealment and all equipment invariant. Preserve the supplied small silver CRESCENT moon, its exact phase and scale throughout: never transform it into a full moon or glowing disc. Distant castle and aqueduct retain their existing relation to the river and mountains in one continuous physical location; no new bridge, plank crossing, route destination or reconstructed geography. Preserve intentional stepped PIXEL CLUSTERS and crisp pixel-art edge detail on actors AND environment for every frame; no smoothing into anime illustration or generic rendered 3D. 11-12 seconds: ease camera and steps toward a sharp readable alive composition with all three actors, book, staff and sword present, before covered STATIC_TABLEAU transfer. Do not drift into slow motion or substitute a still zoom. No speech, lip sync, sound, text, UI, magic, combat, attack, new actor, side swap, teleport, world reset, sunrise, exposed face, new consequence, dialogue or choice. Audio remains deferred."
     }
-  ]
+  ],
+  "operatorDecision": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
 }
