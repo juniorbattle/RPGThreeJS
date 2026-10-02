@@ -8,13 +8,13 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 | `runId` | rpgthreejs-auto-dev-90m-20261002T1952 |
 | `agent` | codex |
 | `runStartedAt` | 2026-10-02T19:52:37Z |
-| `runEndedAt` | RUNNING |
+| `runEndedAt` | 2026-10-02T21:04:30.549Z |
 | `activeTask` | DEMO-QA-POLISH: continuous earned campaign beyond first refuge |
 | `activePhase` | Native earned defeat recovery QA |
 | `activeSubtask` | Diagnose native campaign pilot targeting/preparation; 620recovery and Champion ending remain unaccepted |
 | `workingBranch` | dev |
 | `lastKnownGoodCommit` | c05ba67bd2823db16d80638d4aff3d1ba74b0052 |
-| `lastPushedCommit` | c05ba67bd2823db16d80638d4aff3d1ba74b0052 |
+| `lastPushedCommit` | b26b7f8889bca7a7ecd735881cd14780a269ebc3 |
 | `creditStatus` | CODEX_AVAILABLE; this run authorized; automation settings unchanged |
 | `contractComplianceStatus` | PRODUCTION-CONTRACTS-LOCK-1/v1: scoped combat keyboard,1366normal/390OS-only native V6 recovery PASS independently reviewed. 620recovery, Champion/full demo NOT_ACCEPTED. No LOCKED/canon/schema/media/main changes. |
 
@@ -24,36 +24,15 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 {
   "runId": "rpgthreejs-auto-dev-90m-20261002T1952",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-02T21:02:41.312Z",
+  "lastHeartbeat": "2026-10-02T21:04:30.579Z",
   "wip": {
+    "status": "RETIRED",
     "branch": "wip/rpgthreejs-auto-dev-90m-20261002T1952",
     "sha": "6151d271c5cfbad3f6c217416b1918ddc1585b50",
-    "status": "GREEN",
-    "dirtyFiles": [
-      "src/combat/combatKeyboard.ts",
-      "src/combat/combatKeyboard.test.ts",
-      "src/combat/legacyCombatRuntime.js",
-      "tools/demo-continuous-production-qa.mjs",
-      "tools/combat-keyboard-production-qa.mjs",
-      "tools/qa/qa-job.mjs",
-      "tools/qa/qa-job.test.mjs",
-      "docs/autonomy/QA_JOB_CONTINUITY.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/project/CURRENT_STATUS.md",
-      "docs/reports/INDEX.md",
-      "docs/reports/combat-keyboard-native-activation-1.md",
-      "docs/reports/combat-keyboard-native-activation-1/checks.json",
-      "docs/reports/combat-keyboard-native-activation-1/baseline-focused-attack.png",
-      "docs/reports/combat-keyboard-native-activation-1/baseline-unintended-foe-turn.png",
-      "docs/reports/combat-keyboard-native-activation-1/desktop-focused-attack.png",
-      "docs/reports/combat-keyboard-native-activation-1/intermediate-focused-attack.png",
-      "docs/reports/combat-keyboard-native-activation-1/mobile-os-motion-focused-attack.png",
-      "docs/reports/combat-keyboard-native-activation-1/mobile-native-defeat-return-focus.png",
-      "docs/reports/combat-keyboard-native-activation-1/mobile-recovered-departure.png",
-      "docs/reports/combat-keyboard-native-activation-1/mobile-recovered-resumed.png"
-    ],
-    "lastGreenCheck": "15receipt+23campaign tests/types/build/8contracts/syntax/LOCKED gates PASS; production jobs RUNNING"
+    "integratedImplementation": "c05ba67bd2823db16d80638d4aff3d1ba74b0052",
+    "integratedProof": "b26b7f8889bca7a7ecd735881cd14780a269ebc3",
+    "retiredAt": "2026-10-02T21:04:30.549Z",
+    "reason": "Identical source/capture payload verified on dev; terminal state/report supersede snapshot metadata; older WIP refs retained"
   },
   "qaJobs": [
     {
@@ -1161,7 +1140,7 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
       "provenanceRepresentation": "Reviewed before unchanged source commit; HEAD:src and diff representation changed at commit, raw provenance retained"
     }
   ],
-  "status": "CHECKPOINT_READY",
+  "status": "CHECKPOINT_COMPLETE",
   "implementationCommit": "c05ba67bd2823db16d80638d4aff3d1ba74b0052",
   "reviews": {
     "ui": 1,
@@ -1169,7 +1148,15 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
     "contractsPasses": 3,
     "scope": "Native source/keyboard; new mobile V6 boundary; new desktop width proof",
     "quotaGainClaimed": false
-  }
+  },
+  "qaProcessesStopped": true,
+  "ownedPortsClosed": [
+    5258,
+    5259,
+    5260,
+    5261,
+    5262
+  ]
 }
 ```
 
@@ -1190,6 +1177,7 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 - Desktop1366normal exact native recovery independently accepted:33marais actions4rounds,17Bois-Clair Wait8rounds; scoped owner/save/focus proof PASS
 - Champion35minute limit: round15,19/520HP, Kestrel90HP alive, other3KO; ending NOT_ACCEPTED
 - Implementationc05ba67 pushed/remote verified; reviewed file blob hashes equal committed payload; no worker active
+- Implementationc05ba67 and proofb26b7f8 verified on origin/dev; all owned QA workers/ports closed; ownedWIP retired after payload/path checks; final state-only commit follows
 
 ## filesChanged
 
