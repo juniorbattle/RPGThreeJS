@@ -65,7 +65,7 @@ Subagent profiles live in `.agents/agents/` (Devin) and `.codex/agents/` (Codex)
 | `cinematics-journey` | `cinematics-journey` | eight slots, Journey, skip, fallback, resume |
 | `narrative-tableau` | `narrative-tableau` | tableau staging, dialogue UI, cast ownership |
 
-Codex starts subagents only when asked, so name the roles in the run instruction.
+Codex starts subagents only when authorized. The recurring instruction authorizes the named roles for the milestone/risk triggers in MULTI_AGENT_PROTOCOL.md; applying a skill does not require spawning its reviewer. Continue coherent dev work autonomously without routine operator approval; the operator performs final demo testing.
 
 ## Conventions
 

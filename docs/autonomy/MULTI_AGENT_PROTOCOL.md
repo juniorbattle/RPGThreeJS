@@ -46,7 +46,7 @@ Rules:
 
 ### Operator-ordered takeover (**NEW**)
 
-Before the 105-minute threshold, another agent may take over only on an explicit operator order, after: the heartbeat age and `pid` are checked; the previous turn is confirmed stopped; a WIP snapshot is taken (section 5). Then archive the old lock and write a new one with `agent` set. Fresh heartbeats make scheduled Codex runs report `SKIPPED_ACTIVE_RUN` by rule 1. Release it at closeout like any run.
+Before the 105-minute threshold, another agent may take over only on an explicit operator order, after the heartbeat age and `pid` are checked and the previous turn and associated jobs are confirmed stopped. Then archive the old lock and acquire a new one atomically with `agent` set; take the reviewed WIP snapshot under the new lock before implementation (section 5). Fresh heartbeats make scheduled Codex runs report `SKIPPED_ACTIVE_RUN` by rule 1. Release it at closeout like any run.
 
 ## 3. Run budget
 
@@ -89,13 +89,17 @@ If quota or credit is exhausted or temporarily unavailable: do not abandon or na
 5. Continue from the working tree. Never `reset`, `clean` or `checkout` over it.
 6. Close out like any run and delete the `wip/<runId>` branch once the coherent commit is on `dev`.
 
-## 9. Specialists and orchestration (**NEW**)
+## 9. Specialists and orchestration (OD-2026-10-02-C)
 
-Roles and skills: see `AGENTS.md`. Flow: preflight (`handoff-governor`), scoping (`contracts-guardian`), parallel read-only impact analysis (domain reviewers), single-writer implementation, verification (`qa-evidence-runner`), closeout (`contracts-guardian` matrix, then `handoff-governor`). Specialists never hold the lock.
+Roles and skills: see AGENTS.md. The lock holder applies autonomy-handoff and contracts-compliance at their required boundaries; skill use does not require a separate agent each time. Do not spawn the six specialists routinely. Produce coherent work, verify the affected boundary, and continue the active task without routine human approval. The operator performs final demo testing; this never waives production acceptance or open operator decisions.
 
-Briefing: subagents do not inherit the parent conversation, so give each the task, the paths or diff to inspect, and the expected output. Domain reviewers return an impact brief: contracts read; files and owners affected; invariants at risk (contract section and why); verification required; cross-domain handoffs; verdict OK, OK with conditions or BLOCKED.
+Independent contracts-guardian review is triggered by a major milestone or sensitive campaign truth, V6/migration, tactical resolution, presentation-authority or validator change, including the QA assertions that certify those behaviors. Request review before implementation for ambiguous architecture; otherwise provide the actual diff, claims and ready proof together. Reuse the reviewer within the run. Additional passes need a substantive correction, unresolved blocker or new risk. Domain reviewers and the QA runner answer distinct scoped questions; avoid duplicating their exploration.
 
-Limits: Devin background subagents cannot ask for permissions, so keep them read-only. Each subagent runs its own context and costs accordingly: prefer cheap read-only reviewers in parallel and one strong writer. Tune the `model` field of a profile if its default is too weak.
+Briefs use fork_turns=none and name the question, paths/diff, relevant contract sections, expected result and selected proof. The reviewer reads required authorities and affected sections, then requests additional context only for an identified uncertainty. Reports and captures are allowed when they prove the claim; do not request global report/capture rereads. The orchestrator records the compliance matrix; independent reviewers verify relevant claims rather than repeating the whole matrix at every checkpoint.
+
+At changed checkpoints run git diff --check, the LOCKED gates, contracts:validate, TypeScript and relevant focused tests. Reuse verified outcomes only while relevant sources/driver/build/parameters/assertions are unchanged. UI/runtime changes need the relevant built-production scenario; sensitive save/combat changes need full boundary proof, not merely a smoke. Broad QA belongs at major acceptance milestones or a concrete regression risk. Correct introduced regressions before advancing.
+
+Specialists remain read-only for tracked source/state. QA workers may write their own ignored outputs, never the shared state; the single lock holder integrates results. Keep the current orchestrator and guardian high settings in lot1. No execpolicy change.
 
 Waves: 1 is `handoff-governor`, `contracts-guardian`, `qa-evidence-runner`, `ui-accessibility`, `cinematics-journey`, `narrative-tableau`. Planned: 2 is `combat-stage-vfx`, `tactical-combat-authority`, `campaign-state-authority`, `narrative-canon-guard`; 3 is `traversal-engineer`, `world-art-continuity`.
 
@@ -120,22 +124,15 @@ The mandatory list in the recurring prompt omits UI / ACCESSIBILITY, which the c
 
 One imperative line, then the trailer `Agent: <codex|devin>; Run: <runId>`. Snapshot commits say so in the subject (`WIP snapshot of ...`).
 
+## 12. QA jobs and recovery (OD-2026-10-02-C)
+
+Before long QA, the lock holder registers live.qaJobs in both state files: jobId/runId, parameters/command, expected assertions, start time/PID/port, ignored output and receipt paths, driver/helper/source/build identity and status. Use [QA_JOB_CONTINUITY.md](QA_JOB_CONTINUITY.md). Workers write only their own ignored receipts/results, so a quota cutoff does not lose their outcome. The lock holder alone syncs the shared state.
+
+At restart read terminal receipts before rerunning. Check result hash, assertions, exact save/proof lineage, viewport/motion parameters and current provenance; inspect selected captures. SUCCEEDED is an execution result, not acceptance. Unknown provenance or old assertions remain NOT_ACCEPTED. If the driver/source/build changes while QA runs, invalidate that proof rather than relabel it. Track unfinished workers/ports before considering a stale lock.
+
 ## Appendix A. Short recurring-run instruction (for the operator to adopt)
 
-French text, to replace the long prompt once this file is on `dev`:
-
-```
-Tu es l'agent de développement autonome du dépôt local C:\Users\miche\Documents\Projects\RPGThreeJS (GitHub juniorbattle/RPGThreeJS). Chaque run démarre dans un nouveau chat : le dépôt est la mémoire.
-
-1. Lis AGENTS.md, puis docs/autonomy/MULTI_AGENT_PROTOCOL.md, et suis-le : verrou, heartbeat, budget de 75 minutes, checkpoint, état MD/JSON, snapshots WIP, crédits.
-2. Lis docs/autonomy/OPERATOR_DECISIONS.md : les décisions opérateur en vigueur y sont indexées, la plus récente prime.
-3. Lis docs/autonomy/AUTONOMOUS_WORK_STATE.md et .json, puis inspecte Git. Reprends exactement la tâche active et le travail non commité cohérent. Ne repars jamais de zéro.
-4. Les contrats LOCKED (docs/contracts, docs/game/GAME_CONSTITUTION.md) sont obligatoires. Ne les modifie jamais dans une tâche normale et n'invente aucun canon.
-5. Tu peux déléguer l'analyse et la QA aux spécialistes en lecture seule décrits dans AGENTS.md (handoff-governor, contracts-guardian, qa-evidence-runner, ui-accessibility, cinematics-journey, narrative-tableau). Un seul écrivain sur l'arbre de travail.
-6. La file de travail est la tâche active de l'état autonome, puis taskQueue.
-
-Fin de run : état MD/JSON à jour, matrice de conformité, commit cohérent avec le trailer "Agent: codex; Run: <runId>", push sur origin/dev, libération du verrou.
-```
+The operator adopted the current instruction in [RECURRING_RUN_PROMPT.md](RECURRING_RUN_PROMPT.md) through OD-2026-10-02-C. Store that text in the existing automation; preserve its model, cadence, reasoning, project, environment and notification settings. Do not append historical prompts.
 
 ## Appendix B. Open points
 

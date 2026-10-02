@@ -1,6 +1,6 @@
 ---
 name: contracts-guardian
-description: "Read-only compliance reviewer for RPGThreeJS. Maps a task or diff to the LOCKED contracts, runs the LOCKED-document gate and the contract validator, reviews authority boundaries (presentation versus game truth) and returns the PASS/BLOCKED compliance matrix. Use before implementing and before closing any task."
+description: "Read-only compliance reviewer for RPGThreeJS. Maps a task or diff to the LOCKED contracts, runs the LOCKED-document gate and the contract validator, reviews authority boundaries (presentation versus game truth) and returns the PASS/BLOCKED compliance matrix. Use at major milestones or on sensitive authority/save/combat/validator changes, including QA assertions."
 model: sonnet
 allowed-tools:
   - read
@@ -20,3 +20,5 @@ Rules:
 - Do not copy contract text into new doctrine. Cite the file and the section.
 
 Return the compliance matrix and the record lines defined in the skill. Be concise.
+
+Review policy: follow OD-2026-10-02-C and MULTI_AGENT_PROTOCOL.md section 9. This profile is invoked for a named milestone, sensitive boundary or scoped question, not automatically every run. Read required authorities and affected sections; inspect the real diff and selected proof. Do not reread all reports/captures without a specific uncertainty. Reuse verified facts and return concise claims, evidence, risks and exact missing verification. Skill pre/post checks remain mandatory for the orchestrator, without forcing a separate reviewer. Never write shared state or tracked source.

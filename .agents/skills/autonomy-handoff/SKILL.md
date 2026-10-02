@@ -27,7 +27,7 @@ git ls-remote --heads origin dev main "wip/*"
 git --no-optional-locks diff --exit-code b1e8858 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md
 ```
 
-Also read `docs/autonomy/AUTONOMOUS_WORK_STATE.md` and `.json`, the newest file in `docs/autonomy/handoffs/`, and the Codex automation memory (`~/.codex/automations/rpgthreejs-auto-dev-90m/memory.md`). Compare the state with `git status`: the state is usually written only at run start, so uncommitted files it does not list are normal and must be examined, not ignored.
+Also read `docs/autonomy/AUTONOMOUS_WORK_STATE.md` and `.json`, the newest file in `docs/autonomy/handoffs/`, and the Codex automation memory (`~/.codex/automations/rpgthreejs-auto-dev-90m/memory.md`). Compare the state with `git status`: live state is refreshed at snapshots, but a cutoff can leave it stale. Examine unlisted work and live.qaJobs receipts/provenance before rerunning QA.
 
 ## 2. Classify
 
@@ -35,9 +35,9 @@ Also read `docs/autonomy/AUTONOMOUS_WORK_STATE.md` and `.json`, the newest file 
 | --- | --- |
 | no lock, clean tree, `dev` equals `origin/dev` | proceed under a new lock |
 | lock heartbeat recent | stop, report `SKIPPED_ACTIVE_RUN`, stay read-only |
-| lock older than 105 min, `pid` dead, no agent activity, no long process | stale: snapshot, archive the lock, take over |
+| lock older than 105 min, `pid` dead, no agent activity, no long process | confirm activity checks, archive/acquire, then snapshot reviewed WIP under the owned lock |
 | lock younger than 105 min, `pid` dead, no activity | ambiguous: stay read-only and report `BLOCKED_BY_EXECUTION_LOCK`; a takeover needs an explicit operator order and confirmation that the other turn is stopped (a turn stalled on an approval or a quota limit looks like a dead run) |
-| uncommitted work and no lock | coherent work from an interrupted run: snapshot, then continue |
+| uncommitted work and no lock | acquire an exclusive lock, snapshot reviewed interrupted work, then continue |
 | the LOCKED-document gate prints a diff | stop: a contract was edited; report it to the operator |
 
 ## 3. Takeover brief (return at most 30 lines)
@@ -60,25 +60,61 @@ Next action: <precise>
 
 Plumbing only: the checked-out branch, the real index and the working tree are not touched, and untracked files are included.
 
+Use an explicit reviewed path list, including intended deletions; never git add -A or an entire evidence directory. Deny secrets and paths outside the repository. Acquire/verify the execution lock before generating a snapshot. Temporary-index staging leaves the real index unchanged.
+
 ```powershell
-$env:GIT_TERMINAL_PROMPT = '0'
-$r = (git rev-parse --show-toplevel); $runId = '<runId>'; $branch = "wip/$runId"
-$parent = (git -C $r rev-parse HEAD).Trim()      # for a later snapshot of the same run, use the previous snapshot sha
-$idx = Join-Path $env:TEMP ("wip-index-" + [guid]::NewGuid().ToString('N'))
-try { $env:GIT_INDEX_FILE = $idx
-  git -C $r read-tree HEAD; git -C $r add -A 2>$null; $tree = (git -C $r write-tree).Trim()
-} finally { Remove-Item Env:GIT_INDEX_FILE -ErrorAction SilentlyContinue; Remove-Item $idx -ErrorAction SilentlyContinue }
-$msg = Join-Path $env:TEMP 'wip-msg.txt'         # ASCII: subject, base, lock facts, what was verified, trailer "Agent: ...; Run: ..."
-$sha = (git -C $r commit-tree $tree -p $parent -F $msg).Trim()
-git -C $r update-ref "refs/heads/$branch" $sha
-git -C $r push origin "refs/heads/${branch}:refs/heads/${branch}"
+$ErrorActionPreference = 'Stop'
+$taskRepoRoot = (git rev-parse --show-toplevel).Trim()
+$taskRunId = '<owned-runId>'
+$taskPaths = @('<reviewed-relative-path-1>', '<reviewed-relative-path-2>')
+$taskOwner = Get-Content -LiteralPath (Join-Path $taskRepoRoot '.git/codex-autonomy.lock') -Raw | ConvertFrom-Json
+if ($taskOwner.runId -ne $taskRunId) { throw 'Lock not owned' }
+if ((git remote get-url origin) -notmatch 'github\.com[:/]juniorbattle/RPGThreeJS(?:\.git)?$') { throw 'Unexpected remote' }
+foreach ($taskPath in $taskPaths) {
+  $taskAbsolute = [IO.Path]::GetFullPath((Join-Path $taskRepoRoot $taskPath))
+  if (-not $taskAbsolute.StartsWith($taskRepoRoot + [IO.Path]::DirectorySeparatorChar,[StringComparison]::OrdinalIgnoreCase)) { throw 'Path escaped repository' }
+  if ($taskPath -match '(^|[/\\])(\.env[^/\\]*|auth\.json|credentials[^/\\]*|[^/\\]*\.pem)$') { throw 'Secret path refused' }
+}
+$taskBase = (git rev-parse HEAD).Trim()
+$taskParent = $taskBase # existing owned WIP sha may be used for later snapshots
+$taskIndex = Join-Path $env:TEMP ('wip-index-' + [guid]::NewGuid().ToString('N'))
+$taskMessage = Join-Path $env:TEMP ('wip-message-' + [guid]::NewGuid().ToString('N') + '.txt')
+try {
+  $env:GIT_INDEX_FILE = $taskIndex
+  git read-tree HEAD
+  if ($LASTEXITCODE -ne 0) { throw 'read-tree failed' }
+  git --literal-pathspecs add -- $taskPaths
+  if ($LASTEXITCODE -ne 0) { throw 'explicit stage failed' }
+  $taskTree = (git write-tree).Trim()
+  if ($LASTEXITCODE -ne 0) { throw 'write-tree failed' }
+  [IO.File]::WriteAllText($taskMessage,"WIP snapshot of reviewed work
+
+Agent: codex; Run: $taskRunId
+",[Text.UTF8Encoding]::new($false))
+  $taskSha = (git commit-tree $taskTree -p $taskParent -F $taskMessage).Trim()
+  if ($LASTEXITCODE -ne 0) { throw 'commit-tree failed' }
+} finally {
+  Remove-Item Env:GIT_INDEX_FILE -ErrorAction SilentlyContinue
+  Remove-Item -LiteralPath $taskIndex,$taskMessage -ErrorAction SilentlyContinue
+}
+$taskChanged = @(git diff --name-only $taskBase $taskSha)
+if (@(Compare-Object $taskPaths $taskChanged).Count) { throw 'Unexpected snapshot paths' }
+foreach ($taskPath in $taskPaths) {
+  if (Test-Path -LiteralPath (Join-Path $taskRepoRoot $taskPath)) {
+    if ((git hash-object -- $taskPath) -ne (git rev-parse "${taskSha}:$taskPath")) { throw 'Snapshot content mismatch' }
+  }
+}
+git update-ref "refs/heads/wip/$taskRunId" $taskSha
+if ($LASTEXITCODE -ne 0) { throw 'update-ref failed' }
+git push origin "refs/heads/wip/${taskRunId}:refs/heads/wip/${taskRunId}"
+if ($LASTEXITCODE -ne 0) { throw 'push failed' }
 ```
 
-Verify: `git diff --name-status $parent $sha` lists exactly the dirty paths, and `git hash-object -- <path>` equals `git rev-parse ${sha}:<path>` for each. `git add -A` stats the whole tree and can take tens of seconds, so run it as a background command.
+Review the exact diff and deletions before push. Record the SHA in lock/live state and verify remote parity. A WIP snapshot is not acceptance. No broad staging, secrets, tracked evidence overwrite or force-push.
 
 ## 5. Takeover and closeout
 
-Takeover: snapshot; archive the old lock to `.git/codex-autonomy.abandoned-<YYYYMMDDTHHmm>.json`; write a new lock with `runId`, `agent`, `runStartedAt`, `heartbeat`, `branch`, `activeTask` (set `pid` to the long-lived agent process if known, else omit it); refresh the heartbeat about every 10 minutes by rewriting the same JSON; never `reset`, `clean` or `checkout` over uncommitted work.
+Takeover: confirm all conditions; archive the old lock to `.git/codex-autonomy.abandoned-<YYYYMMDDTHHmm>.json`; write a new lock with `runId`, `agent`, `runStartedAt`, `heartbeat`, `branch`, `activeTask` (set `pid` to the long-lived agent process if known, else omit it); acquire atomically before snapshotting reviewed WIP; refresh the heartbeat about every 10 minutes by rewriting the same JSON; never `reset`, `clean` or `checkout` over uncommitted work.
 
 Closeout: update the state files including the live block, run the quick checks, commit coherent work with the `Agent:` trailer, push `origin/dev`, set `runEndedAt`, release the lock, delete the `wip/<runId>` branch once its content is on `dev`.
 

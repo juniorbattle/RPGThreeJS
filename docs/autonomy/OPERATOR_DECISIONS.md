@@ -8,6 +8,7 @@ Append-only index of the explicit operator decisions that bind autonomous work. 
 | OD-2026-10-01-B | 2026-10-01 | Video production and art direction leave the autonomous queue (EXTERNAL_MANUAL_WORKSTREAM). Autonomy prepares structure and existing-media QA, then queue item 9. The prologue cinematic and the first-refuge scene are planning only: no new slot, no new ID. The Alistair emblem or origin is undecided and not urgent | [CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md](CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md) | ACTIVE |
 | OD-2026-10-02-A | 2026-10-02 | Multi-agent alignment: the six defaults listed below | [MULTI_AGENT_PROTOCOL.md](MULTI_AGENT_PROTOCOL.md) | ACTIVE, merged into `dev` on 2026-10-02 |
 | OD-2026-10-02-B | 2026-10-02 | Integrate `devin/agents-wave1` into `dev` through the lock holder, provided it does not impact Codex; push `origin/dev`; brief Codex through the repository and its automation memory so that it adapts, updates itself and resumes autonomous work knowing that Devin collaborates | [Devin to Codex briefing](handoffs/2026-10-02T0533Z-devin-to-codex-briefing.md) | ACTIVE |
+| OD-2026-10-02-C | 2026-10-02 | Adopt efficiency lot 1: milestone/risk reviews, short prompt, QA receipts and safe snapshots; continue autonomously to demo completion with operator final testing | [Autonomous efficiency decision](AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-02.md) | ACTIVE; models/cadence/budget retained, automation remains paused |
 
 ## OD-2026-10-02-A details
 
