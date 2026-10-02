@@ -8,13 +8,13 @@ Git on dev and this state pair are the current continuation authority. Latest sc
 | `runId` | rpgthreejs-auto-dev-90m-20261002T0553 |
 | `agent` | codex |
 | `runStartedAt` | 2026-10-02T05:54:44.8448644Z |
-| `runEndedAt` | null |
+| `runEndedAt` | 2026-10-02T06:51:05.9282410Z |
 | `activeTask` | DEMO-QA-POLISH |
-| `activePhase` | Checkpoint: cinematic readiness and refuge keyboard focus accepted |
-| `activeSubtask` | Close verified focus checkpoint; retain remaining ManagementView accessibility and full demo QA |
+| `activePhase` | Checkpoint complete; resume remaining ManagementView accessibility |
+| `activeSubtask` | Refuge focus checkpoint accepted; next native inventory/transaction/upgrade accessibility |
 | `workingBranch` | dev |
-| `lastKnownGoodCommit` | 7c4cd12b67145779803f8dff30ab72c93e0c228c |
-| `lastPushedCommit` | 7c4cd12b67145779803f8dff30ab72c93e0c228c |
+| `lastKnownGoodCommit` | 20da994b0e05f4ace965cbfca268a7d9620dfc4c |
+| `lastPushedCommit` | 20da994b0e05f4ace965cbfca268a7d9620dfc4c |
 | `creditStatus` | CODEX_AVAILABLE; NO_PROVIDER_REQUEST |
 | `contractComplianceStatus` | Contract set v1/PRODUCTION-CONTRACTS-LOCK-1: item8 structure COMPLETE/PASS; scoped item9 refuge focus checkpoint PASS including UI/ACCESSIBILITY. Remaining inherited ManagementView/full-demo acceptance explicit; no LOCKED rule modified, no new canon/slot/save schema/media; audio DEFERRED. |
 
@@ -24,24 +24,11 @@ Git on dev and this state pair are the current continuation authority. Latest sc
 {
   "runId": "rpgthreejs-auto-dev-90m-20261002T0553",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-02T06:45:44.586Z",
+  "lastHeartbeat": "2026-10-02T06:51:05.991Z",
   "wip": {
-    "sha": "9108a278862c4e412ff536914f99e3d9f811a7fc",
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261002T0553",
-    "dirtyFiles": [
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/project/CURRENT_STATUS.md",
-      "docs/reports/INDEX.md",
-      "tools/refuge-production-accessibility-qa.mjs",
-      "docs/autonomy/CINEMATIC_EXTENSION_PLANNING.md",
-      "docs/autonomy/CINEMATIC_STRUCTURE_READINESS.md",
-      "docs/autonomy/handoffs/2026-10-02T0553Z-codex-resume-checkpoint.md",
-      "docs/reports/cinematic-structure-readiness-1-browser/",
-      "docs/reports/cinematic-structure-readiness-1.md",
-      "docs/reports/refuge-keyboard-focus-1-browser/",
-      "docs/reports/refuge-keyboard-focus-1.md"
-    ],
+    "branch": null,
+    "sha": "20da994b0e05f4ace965cbfca268a7d9620dfc4c",
+    "dirtyFiles": [],
     "status": "GREEN",
     "lastGreenCheck": "182 focused tests/types/contracts/build/staging;60 cinematic+15 refuge final production cases PASS"
   }
@@ -64,6 +51,29 @@ Git on dev and this state pair are the current continuation authority. Latest sc
 
 ## filesChanged
 
+- docs/autonomy/AUTONOMOUS_WORK_STATE.json
+- docs/autonomy/AUTONOMOUS_WORK_STATE.md
+- docs/autonomy/CINEMATIC_EXTENSION_PLANNING.md
+- docs/autonomy/CINEMATIC_STRUCTURE_READINESS.md
+- docs/autonomy/handoffs/2026-10-02T0553Z-codex-resume-checkpoint.md
+- docs/project/CURRENT_STATUS.md
+- docs/reports/INDEX.md
+- docs/reports/cinematic-structure-readiness-1-browser/audience-tableau-390x844.png
+- docs/reports/cinematic-structure-readiness-1-browser/browser-qa.json
+- docs/reports/cinematic-structure-readiness-1-browser/camp-tableau-1366x768.png
+- docs/reports/cinematic-structure-readiness-1-browser/judgement-choice-os-390x844.png
+- docs/reports/cinematic-structure-readiness-1-browser/refuge-arrival-620x780.png
+- docs/reports/cinematic-structure-readiness-1-browser/village-choice-os-390x844.png
+- docs/reports/cinematic-structure-readiness-1-browser/village-choice-resumed-390x844.png
+- docs/reports/cinematic-structure-readiness-1.md
+- docs/reports/refuge-keyboard-focus-1-browser/browser-qa.json
+- docs/reports/refuge-keyboard-focus-1-browser/first-refuge-focus-1366x768.png
+- docs/reports/refuge-keyboard-focus-1-browser/first-refuge-focus-390x844.png
+- docs/reports/refuge-keyboard-focus-1-browser/second-refuge-fallback-focus-390x844.png
+- docs/reports/refuge-keyboard-focus-1-browser/second-refuge-os-focus-620x780.png
+- docs/reports/refuge-keyboard-focus-1-browser/shop-return-focus-390x844.png
+- docs/reports/refuge-keyboard-focus-1-browser/skills-dialog-focus-390x844.png
+- docs/reports/refuge-keyboard-focus-1.md
 - src/cinematics/CinematicPlayer.test.ts
 - src/cinematics/CinematicPlayer.ts
 - src/cinematics/NarrativePresentationRuntime.test.ts
@@ -79,17 +89,6 @@ Git on dev and this state pair are the current continuation authority. Latest sc
 - src/ui/ReducedMotion.ts
 - tools/cinematics/run_cin6d6_route_browser_qa.mjs
 - tools/refuge-production-accessibility-qa.mjs
-- docs/autonomy/AUTONOMOUS_WORK_STATE.json
-- docs/autonomy/AUTONOMOUS_WORK_STATE.md
-- docs/project/CURRENT_STATUS.md
-- docs/reports/INDEX.md
-- docs/autonomy/CINEMATIC_EXTENSION_PLANNING.md
-- docs/autonomy/CINEMATIC_STRUCTURE_READINESS.md
-- docs/autonomy/handoffs/2026-10-02T0553Z-codex-resume-checkpoint.md
-- docs/reports/cinematic-structure-readiness-1-browser/
-- docs/reports/cinematic-structure-readiness-1.md
-- docs/reports/refuge-keyboard-focus-1-browser/
-- docs/reports/refuge-keyboard-focus-1.md
 
 ## testsRun
 
