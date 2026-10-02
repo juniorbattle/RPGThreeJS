@@ -1,6 +1,6 @@
-/** Earned production campaign proof: fresh chronicle, actual tactical inputs, first-refuge V6 resume. */
+/** Earned production campaign proof: actual tactical inputs and bounded native campaign continuation. */
 import assert from 'node:assert/strict';
-import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { access, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { isAbsolute, relative, resolve } from 'node:path';
 import { chromium } from 'playwright';
@@ -10,15 +10,27 @@ const port = Number(process.env.DEMO_QA_PORT ?? 5249);
 const output = resolve(process.env.DEMO_QA_OUTPUT ?? 'tmp/demo/continuous-production');
 const earnedSavePath=process.env.DEMO_QA_EARNED_SAVE;
 const priorProofPath=process.env.DEMO_QA_PRIOR_PROOF;
+const target=process.env.DEMO_QA_TARGET??'first-refuge';
+const routePlan=process.env.DEMO_QA_ROUTE??'rescue';
+const finalePlan=process.env.DEMO_QA_FINALE??(routePlan==='rescue'?'serpent':'trial');
+assert.ok(['first-refuge','second-refuge','ending'].includes(target),'Unknown bounded target');
+assert.ok(['rescue','sacrifice'].includes(routePlan),'Unknown authored route plan');
+assert.ok(['serpent','trial'].includes(finalePlan),'Unknown authored finale intent');
 if(Boolean(earnedSavePath)!==Boolean(priorProofPath))throw new Error('Earned resume requires both save and its actual input proof');
 const earnedText=earnedSavePath?await readFile(earnedSavePath,'utf8'):null;
 const priorProof=priorProofPath?JSON.parse(await readFile(priorProofPath,'utf8')):null;
 if(priorProof){
+  assert.equal(priorProof.pass,true,'Certified continuation requires successful prior proof');
+  assert.equal(priorProof.failure,undefined,'Certified continuation cannot contain a failed assertion');
+  assert.deepEqual(priorProof.errors,[]);
   assert.equal(priorProof.runtimeMutated,false);assert.equal(priorProof.combatOutcomeInjected,false);
   assert.ok(priorProof.battles.length&&priorProof.battles.every(b=>b.pass));
   const save=JSON.parse(earnedText);assert.equal(save.version,6);
   assert.ok(save.resolvedNodeIds.includes('lion-opening-ambush'));
-  assert.deepEqual(save,priorProof.lastState??priorProof.resumed??priorProof.refuge,'Earned resume must match the exact observed owner state');
+  assert.deepEqual(save,priorProof.resumed,'Earned resume must match the exact verified resumed owner state');
+  assert.ok(['lion-first-refuge','lion-second-refuge'].includes(save.currentNodeId));
+  assert.equal(save.flags[`refugeSecured:${save.currentNodeId}`],true);
+  assert.equal(save.run.temporaryLoot.gold,0);
 }
 const rel = relative(resolve('tmp'), output);
 if (isAbsolute(rel) || rel.startsWith('..')) throw new Error('Output must stay in ignored tmp/');
@@ -31,18 +43,44 @@ const context = await browser.newContext({viewport:{width:1366,height:768}});
 const page = await context.newPage();
 const report = {schemaVersion:1, recordedAt:new Date().toISOString(), method:'FRESH_PRODUCTION_CHRONICLE_NORMAL_PLAYER_INPUTS_REAL_COMBAT',
   fixtureStateWritten:false, combatOutcomeInjected:false, runtimeMutated:false, inputs:[], nodes:[], battles:[], captures:[], errors:[], pass:false};
+Object.assign(report,{target,routePlan,finalePlan,observationHook:'Built bootstrap exposes GameApp for read-only snapshots; no owner method invoked',refuges:[],choices:[]});
+report.productionBundles=await Promise.all((await readdir('dist/assets')).filter(name=>/^(game|combat)-.*\.js$/.test(name))
+  .map(async name=>({path:`dist/assets/${name}`,sha256:createHash('sha256').update(await readFile(`dist/assets/${name}`)).digest('hex')})));
 if(priorProof){
   report.method='EARNED_PRODUCTION_CONTINUATION_NORMAL_PLAYER_INPUTS_REAL_COMBAT';
-  report.earnedResume={savePath:earnedSavePath,priorProofPath,kind:'EXACT_OBSERVED_OWNER_STATE_RECOVERY_SNAPSHOT',sha256:createHash('sha256').update(earnedText).digest('hex')};
+  report.earnedResume={savePath:earnedSavePath,priorProofPath,kind:'EXACT_VERIFIED_RESUMED_OWNER_STATE',sha256:createHash('sha256').update(earnedText).digest('hex'),proofSha256:createHash('sha256').update(await readFile(priorProofPath)).digest('hex')};
   report.nodes=[...priorProof.nodes];report.battles=structuredClone(priorProof.battles);
+  report.inheritedBattleCount=report.battles.length;report.priorInputs=structuredClone(priorProof.inputs);
 }
 page.on('pageerror',error=>report.errors.push(error.message));
 page.on('console',message=>{if(message.type()==='error'&&!message.text().includes('[VFX Preview]'))report.errors.push(message.text());});
 page.on('requestfailed',request=>{if(request.failure()?.errorText!=='net::ERR_ABORTED')report.errors.push(`${request.url()}: ${request.failure()?.errorText}`);});
-const deadline=Date.now()+20*60*1000;
-async function capture(name){await page.screenshot({path:resolve(output,`${name}.png`)});report.captures.push(`${name}.png`);}
+const deadline=Date.now()+25*60*1000;
+async function capture(name){await page.screenshot({path:resolve(output,`${name}.png`)});report.captures.push(`${name}.png`);
+  report.geometry??=[];report.geometry.push(await page.evaluate(name=>{
+    const controls=[...document.querySelectorAll('.dialogue-choice,.exploration-stop button,[data-traversal-fork-choice],[data-traversal-confirm],[data-journey-choice],[data-journey-continue]')]
+      .filter(e=>e.getClientRects().length&&!e.disabled).map(e=>{const r=e.getBoundingClientRect();return{label:e.textContent.trim(),x:r.x,y:r.y,right:r.right,bottom:r.bottom};});
+    return{name,width:innerWidth,height:innerHeight,overflow:document.documentElement.scrollWidth-innerWidth,controls,
+      sequence:document.querySelector('.dialogue')?.dataset.dialogueSequence,step:document.querySelector('.dialogue')?.dataset.dialogueStep};
+  },name));
+}
 async function state(){return page.evaluate(()=>JSON.parse(JSON.stringify(window.__demoQaApp.state)));}
 async function click(selector){const button=page.locator(selector).first();await button.click();report.inputs.push({action:'click',selector});}
+async function keyboardActivate(selector){await page.locator(selector).first().focus();await page.keyboard.press('Enter');report.inputs.push({action:'keyboard Enter',selector});}
+async function choose(){
+  const dialogue=page.locator('.dialogue:visible');
+  const sequence=await dialogue.getAttribute('data-dialogue-sequence'),step=await dialogue.getAttribute('data-dialogue-step');
+  const plans={reserve_trail:{'1':routePlan==='rescue'?1:0},village_choice:{'5':routePlan==='rescue'?0:1},
+    old_shrine_event:{'1':routePlan==='rescue'?0:1},mystery_dragon_roost:{'1':1},
+    serpent_informant:{'1':routePlan==='rescue'?0:1},mystery_lancer_recruit:{'1':routePlan==='rescue'?0:1},
+    witnesses_on_road:{'1':routePlan==='rescue'?0:1},shadow_signs:{'1':0},
+    lion_finale_judgement:{record:0,shadow:0,intent:finalePlan==='serpent'?0:1}};
+  const index=plans[sequence]?.[step]??0;
+  const button=dialogue.locator('.dialogue-choice:visible').nth(index);
+  assert.equal(await button.isEnabled(),true,`Authored choice disabled: ${sequence}/${step}/${index}`);
+  const text=await button.innerText();report.choices.push({sequence,step,index,text});
+  await button.focus();await page.keyboard.press('Enter');report.inputs.push({action:'keyboard choice',sequence,step,index,text});
+}
 async function cancel(frame){await frame.locator('body').press('Escape');}
 async function combatState(frame){return frame.evaluate(()=>{const g=window.G;return{round:g.round,turnIdx:g.turnIdx,mode:g.mode,busy:g.busy,
   over:g.over,moved:g.movedThisTurn,attacks:g.basicAttacksThisTurn,active:g.active&&{id:g.active.campaignId,name:g.active.name,team:g.active.team,
@@ -50,18 +88,19 @@ async function combatState(frame){return frame.evaluate(()=>{const g=window.G;re
   units:g.units.map(u=>({id:u.campaignId||u.id,name:u.name,team:u.team,gx:u.gx,gz:u.gz,hp:u.hp,maxhp:u.maxhp,alive:u.alive,downed:!!u.downed})),
   inventory:{...g.inv},diagnostics:window.__COMBAT_DIAGNOSTICS};});}
 async function cellClick(frame,cell){
-  const point=await frame.evaluate(({gx,gz})=>{const p=window.__qaHelpers.getCellScreenPosition(gx,gz);
-    return {...p,canvas:document.elementFromPoint(p.screenX,p.screenY)?.tagName==='CANVAS'};},cell);
-  if(!point.canvas)return false;
+  const point=await frame.evaluate(({gx,gz})=>window.__qaHelpers.getCellScreenPosition(gx,gz),cell);
   const box=await page.locator('iframe.combat-frame').boundingBox();
-  await page.mouse.move(box.x+point.screenX,box.y+point.screenY);
-  await page.mouse.click(box.x+point.screenX,box.y+point.screenY);
-  return true;
+  for(const [dx,dy] of [[0,0],[8,0],[-8,0],[0,8],[0,-8]]){
+    const x=point.screenX+dx,y=point.screenY+dy;
+    await page.mouse.move(box.x+x,box.y+y);await page.waitForTimeout(30);
+    const hit=await frame.evaluate(({x,y,gx,gz})=>document.elementFromPoint(x,y)?.tagName==='CANVAS'&&window.G.hover?.gx===gx&&window.G.hover?.gz===gz,{x,y,...cell});
+    if(hit){await page.mouse.click(box.x+x,box.y+y);return true;}
+  }return false;
 }
 async function settled(frame){await frame.waitForFunction(()=>window.G.over||!window.G.busy&&window.G.mode==='menu',null,{timeout:30000});}
 async function attack(frame,battle){
   const before=await combatState(frame), button=frame.locator('#menu [data-a="attack"]:not(:disabled)').first();
-  if(!await button.count()||before.active.ap<3)return false;
+  if(!await button.count())return false;
   await button.click();
   const charges=frame.locator('#skillmenu [data-ch]:not([data-ch="_back"]):not(:disabled)');
   if(!await charges.count()){await cancel(frame);return false;}
@@ -83,14 +122,54 @@ async function attack(frame,battle){
 }
 async function heal(frame,battle){
   const before=await combatState(frame);
-  if(before.active.hp>=before.active.maxhp*.5||before.active.ap<1||!(before.inventory.potion>0))return false;
+  const wounded=before.units.filter(u=>u.team==='player'&&u.alive&&u.hp<u.maxhp*.75);
+  const fallen=before.units.filter(u=>u.team==='player'&&u.downed&&!u.alive);
+  if(!wounded.length&&!fallen.length)return false;
   const item=frame.locator('#menu [data-a="item"]:not(:disabled)');if(!await item.count())return false;
-  await item.click();const potion=frame.locator('#skillmenu [data-i="potion"]:not(:disabled)');
-  if(!await potion.count()){await cancel(frame);return false;} await potion.click();
-  if(!await cellClick(frame,before.active)){await cancel(frame);return false;}
+  const itemId=fallen.length&&before.inventory.revive_vial>0?'revive_vial':'potion';
+  const targets=itemId==='revive_vial'?fallen:wounded.sort((a,b)=>a.hp/a.maxhp-b.hp/b.maxhp);
+  if(!(before.inventory[itemId]>0)||!targets.length)return false;
+  await item.click();const selected=frame.locator(`#skillmenu [data-i="${itemId}"]:not(:disabled)`);
+  if(!await selected.count()){await cancel(frame);return false;} await selected.click();
+  const centers=await frame.evaluate(()=>window.G.pending?.centers??[]);
+  if(!centers.length){await cancel(frame);return false;}
+  let chosen=false;
+  for(const target of targets){if(centers.some(c=>c.gx===target.gx&&c.gz===target.gz)&&await cellClick(frame,target)){chosen=true;break;}}
+  if(!chosen){await cancel(frame);return false;}
   await settled(frame); const after=await combatState(frame);
-  if(after.inventory.potion===before.inventory.potion){await cancel(frame);return false;}
-  battle.actions.push({kind:'potion',before,after});return true;
+  if(after.inventory[itemId]===before.inventory[itemId]){await cancel(frame);return false;}
+  battle.actions.push({kind:itemId,before,after});return true;
+}
+async function skill(frame,battle){
+  const before=await combatState(frame),menu=frame.locator('#menu [data-a="skill"]:not(:disabled)');
+  if(!await menu.count())return false;
+  const wounded=before.units.filter(u=>u.team==='player'&&u.alive&&u.hp<u.maxhp*.75);
+  const ids=before.active.id==='white_mage'&&wounded.length
+    ?['w_salvation','w_purify']:['n_dark_bolt','a_precise_shot','w_break_guard'];
+  for(const id of ids){
+    if(id==='w_salvation'&&process.env.DEMO_QA_VERIFY_SALVATION==='1'&&before.active.ap<=2)continue;
+    await menu.click();const option=frame.locator(`#skillmenu [data-s="${id}"]:not(:disabled)`);
+    if(!await option.count()){await cancel(frame);continue;}
+    await option.click();
+    const pending=await frame.evaluate(()=>window.G.pending&&({spec:window.G.pending.spec,centers:window.G.pending.centers}));
+    if(!pending){await cancel(frame);continue;}
+    const targets=(id.startsWith('w_s')||id==='w_purify'?wounded:before.units.filter(u=>u.team==='foe'&&u.alive))
+      .sort((a,b)=>a.hp/a.maxhp-b.hp/b.maxhp);
+    for(const target of targets){
+      if(!pending.centers.some(c=>c.gx===target.gx&&c.gz===target.gz)||!await cellClick(frame,target))continue;
+      await settled(frame);const after=await combatState(frame);
+      if(after.active?.id===before.active.id&&after.active.ap===before.active.ap){await cancel(frame);continue;}
+      battle.actions.push({kind:'skill',skillId:id,targetId:target.id,spec:pending.spec,before,after});
+      await capture(`combat-${battle.index}-${id}-${battle.actions.length}`);
+      if(id==='w_salvation'&&process.env.DEMO_QA_VERIFY_SALVATION==='1'){
+        const healed=after.units.find(u=>u.id===target.id);
+        assert.equal(pending.spec.healPercent,.4,'Lumière Salvatrice lost its authored 40 percent heal in the action spec');
+        assert.equal(healed.hp,Math.min(target.maxhp,target.hp+Math.round(target.maxhp*.4)));
+        battle.actions.at(-1).verifiedHealing=true;
+      }
+      return true;
+    }await cancel(frame);
+  }return false;
 }
 async function move(frame,battle){
   const before=await combatState(frame), button=frame.locator('#menu [data-a="move"]:not(:disabled)');
@@ -102,8 +181,7 @@ async function move(frame,battle){
       score=Math.min(score,(inRange?0:100)+d);
     }return score;};
     return(g.reach?.list??[]).filter(c=>(c.gx!==u.gx||c.gz!==u.gz)&&!g.grid[c.gx][c.gz].occupant)
-      .map(c=>({gx:c.gx,gz:c.gz,score:rank(c)})).sort((a,b)=>a.score-b.score)
-      .filter(c=>c.score<rank(u));});
+      .map(c=>({gx:c.gx,gz:c.gz,score:rank(c)})).sort((a,b)=>a.score-b.score);});
   for(const cell of candidates){if(await cellClick(frame,cell)){
     await page.waitForTimeout(50); const start=await combatState(frame);
     if(start.mode==='move'&&!start.busy)continue;
@@ -115,19 +193,23 @@ async function battle(){
   const element=page.locator('iframe.combat-frame');await element.waitFor({state:'attached'});
   const frame=await(await element.elementHandle()).contentFrame();
   await frame.waitForFunction(()=>window.__BOOTED===true,null,{timeout:60000});
-  const entry={index:report.battles.length,nodeId:(await state()).currentNodeId,actions:[],pass:false}; report.battles.push(entry);
+  const entry={index:report.battles.length,nodeId:(await state()).currentNodeId,
+    combatId:await page.evaluate(()=>window.__demoQaApp.combat.session?.config.id),actions:[],pass:false}; report.battles.push(entry);
   assert.equal(await frame.evaluate(()=>typeof window.__qaHelpers.teleportActiveUnit),'undefined','Production mutation helper present');
   for(const selector of ['#tutorial:not(.hidden) [data-action="skip"]','#boss-tutorial:not(.hidden) [data-action="start"]']){
     if(await frame.locator(selector).isVisible().catch(()=>false))await frame.locator(selector).click();
   }
   await frame.locator('#menu [data-d="auto"]').click();
-  entry.deployed=await frame.evaluate(()=>window.G.deployedUnits.length);assert.equal(entry.deployed,4);
+  entry.deployed=await frame.evaluate(()=>window.G.deployedUnits.length);assert.ok(entry.deployed>0&&entry.deployed<=4,'Deployment exceeds the existing four-unit cap');
   await capture(`combat-${entry.index}-deployment`);
   await frame.locator('#menu [data-d="start"]').click();
   for(let index=0;index<300&&Date.now()<deadline;index++){
-    if(index%5===0)console.log(`BATTLE ${entry.nodeId} iteration ${index}, actions ${entry.actions.length}`);
+    if(index%5===0){console.log(`BATTLE ${entry.nodeId} iteration ${index}, actions ${entry.actions.length}`);
+      await writeFile(resolve(output,'progress.json'),JSON.stringify({at:new Date().toISOString(),nodeId:entry.nodeId,combat:await combatState(frame),actions:entry.actions.map(a=>a.kind)},null,2)+'\n');}
     await frame.waitForFunction(()=>window.G.over||window.G.mode==='menu'&&window.G.active?.team==='player'&&!window.G.busy,null,{timeout:60000});
     const current=await combatState(frame);if(current.over)break;
+    if(current.active.ap<=0){await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait',before:current});continue;}
+    if(await skill(frame,entry))continue;
     if(await heal(frame,entry))continue;
     if(await attack(frame,entry))continue;
     if(await move(frame,entry))continue;
@@ -159,33 +241,92 @@ try{
   }else await click('.title-screen [data-action="new"]');
   for(let index=0;index<12000&&Date.now()<deadline;index++){
     const live=await state();if(report.nodes.at(-1)!==live.currentNodeId){report.nodes.push(live.currentNodeId);console.log(`NODE ${live.currentNodeId}`);}
-    if(await page.locator('.exploration-stop[data-refuge-node="lion-first-refuge"]:visible:not([inert])').count()){
-      report.refuge=live;await capture('first-refuge-earned');
+    const hub=page.locator('.exploration-stop:visible:not([inert])');
+    if(await hub.count()){
+      const nodeId=await hub.getAttribute('data-refuge-node');
+      const stop=target==='first-refuge'&&nodeId==='lion-first-refuge'||target==='second-refuge'&&nodeId==='lion-second-refuge';
+      report.refuge=live;await capture(`${nodeId}-earned`);
       assert.ok(report.battles.length&&report.battles.every(b=>b.pass));
       assert.ok(live.resolvedNodeIds.includes('lion-opening-ambush'));
-      assert.equal(live.flags['refugeSecured:lion-first-refuge'],true);assert.equal(live.run.temporaryLoot.gold,0);
+      assert.equal(live.flags[`refugeSecured:${nodeId}`],true);assert.equal(live.run.temporaryLoot.gold,0);
+      if(nodeId==='lion-second-refuge'){
+        assert.ok(live.resolvedNodeIds.includes('lion-village-choice'));
+        assert.equal(live.run.traversalBranches.T1,'lion-second-trial-event');
+        assert.equal(live.flags.missionSuccess,routePlan==='rescue');
+        assert.equal(Boolean(live.flags.missionGreed),routePlan==='sacrifice');
+      }
       const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
       assert.deepEqual(JSON.parse(saved),live,'Earned refuge agency precedes durable owner truth');
-      await writeFile(resolve(output,'earned-first-refuge-v6.json'),saved+'\n');
+      await writeFile(resolve(output,`earned-${nodeId}-v6.json`),saved+'\n');
+      if(nodeId==='lion-first-refuge')await writeFile(resolve(output,'earned-first-refuge-v6.json'),saved+'\n');
       await page.reload({waitUntil:'networkidle'});await click('.title-screen [data-action="continue"]');
-      await page.locator('.exploration-stop[data-refuge-node="lion-first-refuge"]:visible:not([inert])').waitFor({timeout:30000});
-      report.resumed=await state();assert.deepEqual(report.resumed,live,'Earned first-refuge reload changed V6 truth');
-      assert.equal(await page.locator('iframe.combat-frame').count(),0);await capture('first-refuge-earned-resumed');
+      await page.locator(`.exploration-stop[data-refuge-node="${nodeId}"]:visible:not([inert])`).waitFor({timeout:30000});
+      report.resumed=await state();assert.deepEqual(report.resumed,live,'Earned refuge reload changed V6 truth');
+      assert.equal(await page.locator('iframe.combat-frame').count(),0);await capture(`${nodeId}-earned-resumed`);
+      report.refuges.push({nodeId,entry:live,resumed:report.resumed});
+      if(stop){assert.deepEqual(report.errors,[]);report.pass=true;break;}
+      const rest=page.locator('.exploration-stop [data-action="rest"]:not(:disabled)');
+      if(await rest.count()){
+        await keyboardActivate('.exploration-stop [data-action="rest"]:not(:disabled)');
+        await hub.waitFor({state:'visible'});await page.waitForTimeout(150);
+        const rested=await state();assert.ok(rested.gold<live.gold,'Native rest did not debit owner gold');
+        assert.ok(rested.clan.members.every(u=>u.currentHealth>0),'Native rest left downed clan member');
+        report.refuges.at(-1).rested=rested;await capture(`${nodeId}-native-rest`);
+      }
+      if(nodeId==='lion-second-refuge'&&target==='ending'){
+        await keyboardActivate('.exploration-stop [data-action="shop"]');
+        const buy='.management [data-trade="buy"][data-item="sacred_crosier"]';
+        await page.locator(buy).waitFor({state:'visible'});assert.equal(await page.locator(buy).isEnabled(),true);
+        const before=await state(),price=Number.parseInt(await page.locator(buy).innerText(),10);
+        await keyboardActivate(buy);const bought=await state();assert.equal(bought.gold,before.gold-price);
+        assert.equal(bought.inventory.weapons.sacred_crosier,(before.inventory.weapons.sacred_crosier??0)+1);
+        report.refuges.at(-1).purchase={itemId:'sacred_crosier',price,before,after:bought};
+        await page.keyboard.press('Escape');await hub.waitFor({state:'visible'});
+      }
+      await keyboardActivate('.exploration-stop [data-action="clan"]');
+      await page.locator('.management [data-action="close"]').waitFor({state:'visible'});
+      if(nodeId==='lion-second-refuge'&&target==='ending'){
+        await keyboardActivate('.management [data-unit="white_mage"]');
+        await keyboardActivate('.management [data-equip-slot="weapon"]');
+        await keyboardActivate('.management [data-preview-item="sacred_crosier"]');
+        await keyboardActivate('.management [data-equip-confirm="sacred_crosier"]');
+        const equipped=await state();assert.deepEqual(equipped.clan.members.find(u=>u.id==='white_mage').equipment.weaponIds,['sacred_crosier']);
+        report.refuges.at(-1).equipped=equipped;await capture(`${nodeId}-native-sacred-crosier`);
+      }
+      await page.keyboard.press('Escape');await hub.waitFor({state:'visible'});
+      await keyboardActivate('.exploration-stop [data-action="continue"]');continue;
+    }
+    if(target==='ending'&&live.endingId&&await page.locator('.journey-overlay--terminal:visible').count()){
+      report.ending=live;await capture(`ending-${live.endingId}`);
+      assert.equal(live.run.status,'completed');assert.ok(live.resolvedNodeIds.includes('lion-final-judgement'));
+      assert.equal(live.run.temporaryLoot.gold,0);
+      assert.equal(live.endingId,finalePlan==='serpent'?'lion-seal-serpent-truth':'lion-seal-trial-truth');
+      const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+      assert.deepEqual(JSON.parse(saved),live);await writeFile(resolve(output,'earned-ending-v6.json'),saved+'\n');
+      await page.reload({waitUntil:'networkidle'});await click('.title-screen [data-action="continue"]');
+      await page.waitForFunction(id=>window.__demoQaApp?.state.endingId===id,live.endingId);
+      await page.locator('.journey-overlay--terminal:visible').waitFor({timeout:30000});
+      assert.equal(await page.locator('.dialogue:visible,iframe.combat-frame,.traversal-road:visible').count(),0);
+      report.resumed=await state();assert.deepEqual(report.resumed,live);await capture(`ending-${live.endingId}-resumed`);
       assert.deepEqual(report.errors,[]);report.pass=true;break;
     }
     if(await page.locator('iframe.combat-frame').count()){await battle();continue;}
     if(await page.locator('.prologue-view').count()){await page.keyboard.press('Enter');}
     else if(await page.locator('.cinematic-overlay__skip:visible').count()){await click('.cinematic-overlay__skip:visible');}
-    else if(await page.locator('.dialogue-choice:visible:not(:disabled)').count()){await click('.dialogue-choice:visible:not(:disabled)');}
+    else if(await page.locator('.dialogue-choice:visible:not(:disabled)').count()){await choose();}
     else if(await page.locator('.dialogue:visible').count()){await page.keyboard.press('Enter');}
     else if(await page.locator('[data-traversal-fork-choice="lion-first-trial-event"]:visible:not(:disabled)').count()){await click('[data-traversal-fork-choice="lion-first-trial-event"]:not(:disabled)');}
+    else if(await page.locator('[data-traversal-fork-choice="lion-second-trial-event"]:visible:not(:disabled)').count()){await keyboardActivate('[data-traversal-fork-choice="lion-second-trial-event"]:not(:disabled)');}
+    else if(await page.locator('[data-traversal-fork-choice="lion-final-trial-event"]:visible:not(:disabled)').count()){await keyboardActivate('[data-traversal-fork-choice="lion-final-trial-event"]:not(:disabled)');}
     else if(await page.locator('[data-traversal-confirm]:visible:not(:disabled)').count()){await click('[data-traversal-confirm]:visible:not(:disabled)');}
     else if(await page.locator('[data-journey-continue]:visible:not(:disabled)').count()){await click('[data-journey-continue]:visible:not(:disabled)');}
     else if(await page.locator('[data-journey-choice]:visible:not(:disabled)').count()){await click('[data-journey-choice]:visible:not(:disabled)');}
     await page.waitForTimeout(100);
   }
-  assert.equal(report.pass,true,'Did not reach earned first refuge before the bounded deadline');
-}catch(error){report.failure=error.stack;await capture('failure-state').catch(()=>{});
+  assert.equal(report.pass,true,`Did not reach earned ${target} before the bounded deadline`);
+  report.salvationVerified=report.battles.slice(report.inheritedBattleCount??0).some(b=>b.actions.some(a=>a.verifiedHealing));
+  if(target==='ending'&&process.env.DEMO_QA_VERIFY_SALVATION==='1')assert.equal(report.salvationVerified,true,'No new verified Salvation cast occurred');
+}catch(error){report.pass=false;report.failure=error.stack;await capture('failure-state').catch(()=>{});
   report.lastState=await state().catch(()=>null);console.error(error.stack);process.exitCode=1;
 }finally{
   const save=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')).catch(()=>null);

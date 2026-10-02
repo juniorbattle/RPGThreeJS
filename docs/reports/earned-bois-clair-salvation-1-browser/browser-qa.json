@@ -1,0 +1,802 @@
+{
+  "schemaVersion": 1,
+  "runId": "rpgthreejs-auto-dev-90m-20261002T1323",
+  "recordedAt": "2026-10-02T14:23:04.561Z",
+  "baseline": "ed1bbe38cb659f128ad534d810fbfb2de0577fc2",
+  "scope": "Scoped desktop earned rescue second refuge and authored Salvation adapter correction; full demo remains IN_PROGRESS",
+  "campaign": {
+    "rawPath": "tmp/demo/continuous-1323-salvation-baseline/results.json",
+    "rawSha256": "1399e4268dff72b77519fd3e874c7542bcd4a2fc207003b1494e32d2500c5e2a",
+    "pass": true,
+    "errors": [],
+    "method": "EARNED_PRODUCTION_CONTINUATION_NORMAL_PLAYER_INPUTS_REAL_COMBAT",
+    "earnedResume": {
+      "savePath": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+      "priorProofPath": "tmp/demo/continuous-1153-fresh-final/results.json",
+      "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+      "sha256": "d8b0deb62c66fc2fd3d01ec8c513fafb697021e8f9c808869277b90a250e8267",
+      "proofSha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+    },
+    "nodes": [
+      "lion-camp",
+      "lion-audience",
+      "lion-opening-ambush",
+      "lion-nomad-crossroads",
+      "lion-refugees",
+      "lion-first-trial-event",
+      "lion-first-refuge",
+      "lion-reserve-trail",
+      "lion-valmir-road",
+      "lion-second-trial-event",
+      "lion-village-choice",
+      "lion-second-refuge"
+    ],
+    "battles": [
+      {
+        "nodeId": "lion-opening-ambush",
+        "pass": true,
+        "result": {
+          "round": 5,
+          "turnIdx": 0,
+          "mode": "over",
+          "busy": true,
+          "over": true,
+          "moved": false,
+          "attacks": 0,
+          "active": {
+            "id": "archer",
+            "name": "Kestrel",
+            "team": "player",
+            "gx": 2,
+            "gz": 2,
+            "hp": 87,
+            "maxhp": 90,
+            "ap": 4
+          },
+          "units": [
+            {
+              "id": 1,
+              "name": "Loup",
+              "team": "foe",
+              "gx": 4,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 80,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 2,
+              "name": "Loup",
+              "team": "foe",
+              "gx": 3,
+              "gz": 2,
+              "hp": 0,
+              "maxhp": 80,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 3,
+              "name": "Blaireau",
+              "team": "foe",
+              "gx": 4,
+              "gz": 3,
+              "hp": 0,
+              "maxhp": 88,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "warrior",
+              "name": "Alistair",
+              "team": "player",
+              "gx": 4,
+              "gz": 2,
+              "hp": 111,
+              "maxhp": 140,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "white_mage",
+              "name": "Marian",
+              "team": "player",
+              "gx": 3,
+              "gz": 3,
+              "hp": 77,
+              "maxhp": 100,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "dark_mage",
+              "name": "Elara",
+              "team": "player",
+              "gx": 3,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 75,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "archer",
+              "name": "Kestrel",
+              "team": "player",
+              "gx": 2,
+              "gz": 2,
+              "hp": 87,
+              "maxhp": 90,
+              "alive": true,
+              "downed": false
+            }
+          ],
+          "inventory": {
+            "potion": 2,
+            "revive_vial": 1,
+            "antidote": 2
+          },
+          "diagnostics": {
+            "drawCalls": 1,
+            "triangles": 1,
+            "geometries": 65,
+            "textures": 41,
+            "reducedGraphics": false,
+            "units": 7,
+            "activeTweens": 0,
+            "activeVfxObjects": 0,
+            "grid": {
+              "width": 8,
+              "depth": 4,
+              "walkable": 32,
+              "blocked": 0
+            }
+          }
+        },
+        "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nMeute affamée\n\nOBJECTIF SÉCURISÉ\nRepoussez la meute qui encercle la compagnie.\nRÉCOMPENSES\nOr\n+80\nGemmes rouges\n+1\niron ore\n+1\nRéputation\n+1\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nDEBOUT\nElara\nK.O.\nKestrel\nDEBOUT\nCONTINUER LA CHRONIQUE",
+        "actions": 31,
+        "actionKinds": {
+          "move": 9,
+          "wait": 13,
+          "potion": 2,
+          "attack": 7
+        },
+        "verifiedHealing": []
+      },
+      {
+        "nodeId": "lion-valmir-road",
+        "combatId": "marsh_crossing",
+        "pass": true,
+        "result": {
+          "round": 5,
+          "turnIdx": 2,
+          "mode": "over",
+          "busy": true,
+          "over": true,
+          "moved": true,
+          "attacks": 0,
+          "active": {
+            "id": "warrior",
+            "name": "Alistair",
+            "team": "player",
+            "gx": 4,
+            "gz": 1,
+            "hp": 140,
+            "maxhp": 140,
+            "ap": 2
+          },
+          "units": [
+            {
+              "id": 1,
+              "name": "Crapaud toxique",
+              "team": "foe",
+              "gx": 4,
+              "gz": 0,
+              "hp": 0,
+              "maxhp": 108,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 2,
+              "name": "Sanglier",
+              "team": "foe",
+              "gx": 4,
+              "gz": 2,
+              "hp": 0,
+              "maxhp": 116,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 3,
+              "name": "Rat geant",
+              "team": "foe",
+              "gx": 4,
+              "gz": 3,
+              "hp": 0,
+              "maxhp": 65,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "warrior",
+              "name": "Alistair",
+              "team": "player",
+              "gx": 4,
+              "gz": 1,
+              "hp": 140,
+              "maxhp": 140,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "white_mage",
+              "name": "Marian",
+              "team": "player",
+              "gx": 4,
+              "gz": 3,
+              "hp": 100,
+              "maxhp": 100,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "dark_mage",
+              "name": "Elara",
+              "team": "player",
+              "gx": 5,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 75,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "archer",
+              "name": "Kestrel",
+              "team": "player",
+              "gx": 2,
+              "gz": 2,
+              "hp": 61,
+              "maxhp": 90,
+              "alive": true,
+              "downed": false
+            }
+          ],
+          "inventory": {
+            "potion": 1,
+            "revive_vial": 0,
+            "antidote": 2
+          },
+          "diagnostics": {
+            "drawCalls": 1,
+            "triangles": 1,
+            "geometries": 65,
+            "textures": 45,
+            "reducedGraphics": false,
+            "units": 7,
+            "activeTweens": 0,
+            "activeVfxObjects": 0,
+            "grid": {
+              "width": 8,
+              "depth": 4,
+              "walkable": 32,
+              "blocked": 0
+            }
+          }
+        },
+        "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nPassage des marais\n\nOBJECTIF SÉCURISÉ\nTraversez les eaux infestées qui coupent la route de Bois-Clair.\nRÉCOMPENSES\nOr\n+90\nGemmes rouges\n+1\niron ore\n+1\nRéputation\n+1\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nDEBOUT\nElara\nK.O.\nKestrel\nDEBOUT\nCONTINUER LA CHRONIQUE",
+        "actions": 46,
+        "actionKinds": {
+          "move": 15,
+          "attack": 11,
+          "wait": 16,
+          "potion": 3,
+          "revive_vial": 1
+        },
+        "verifiedHealing": []
+      },
+      {
+        "nodeId": "lion-village-choice",
+        "combatId": "village_defense",
+        "pass": true,
+        "result": {
+          "round": 5,
+          "turnIdx": 0,
+          "mode": "over",
+          "busy": true,
+          "over": true,
+          "moved": true,
+          "attacks": 0,
+          "active": {
+            "id": "white_mage",
+            "name": "Marian",
+            "team": "player",
+            "gx": 5,
+            "gz": 2,
+            "hp": 100,
+            "maxhp": 100,
+            "ap": 3
+          },
+          "units": [
+            {
+              "id": 1,
+              "name": "Pillard Serpent",
+              "team": "foe",
+              "gx": 4,
+              "gz": 0,
+              "hp": 0,
+              "maxhp": 85,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 2,
+              "name": "Brute Serpent",
+              "team": "foe",
+              "gx": 5,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 130,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 3,
+              "name": "Pillard Serpent",
+              "team": "foe",
+              "gx": 4,
+              "gz": 3,
+              "hp": 0,
+              "maxhp": 85,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "warrior",
+              "name": "Alistair",
+              "team": "player",
+              "gx": 5,
+              "gz": 0,
+              "hp": 140,
+              "maxhp": 140,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "white_mage",
+              "name": "Marian",
+              "team": "player",
+              "gx": 5,
+              "gz": 2,
+              "hp": 100,
+              "maxhp": 100,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "archer",
+              "name": "Kestrel",
+              "team": "player",
+              "gx": 4,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 90,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "rogue",
+              "name": "Cedric",
+              "team": "player",
+              "gx": 5,
+              "gz": 2,
+              "hp": 0,
+              "maxhp": 100,
+              "alive": false,
+              "downed": true
+            }
+          ],
+          "inventory": {
+            "potion": 0,
+            "revive_vial": 0,
+            "antidote": 2
+          },
+          "diagnostics": {
+            "drawCalls": 1,
+            "triangles": 1,
+            "geometries": 65,
+            "textures": 43,
+            "reducedGraphics": false,
+            "units": 7,
+            "activeTweens": 0,
+            "activeVfxObjects": 0,
+            "grid": {
+              "width": 8,
+              "depth": 4,
+              "walkable": 32,
+              "blocked": 0
+            }
+          }
+        },
+        "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nDéfense de Bois-Clair\n\nOBJECTIF SÉCURISÉ\nRepoussez les pillards et protégez les habitants de Bois-Clair.\nRÉCOMPENSES\nOr\n+160\nGemmes rouges\n+2\niron ore\n+2\nRéputation\n+10\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nDEBOUT\nKestrel\nK.O.\nCedric\nK.O.\nCONTINUER LA CHRONIQUE",
+        "actions": 36,
+        "actionKinds": {
+          "move": 10,
+          "wait": 14,
+          "attack": 11,
+          "potion": 1
+        },
+        "verifiedHealing": []
+      }
+    ],
+    "choices": [
+      {
+        "sequence": "reserve_trail",
+        "step": "1",
+        "index": 1,
+        "text": "MARQUER LE CONVOI ET CONTINUER VERS LE VILLAGE.\n◇\nLE CONVOI RESTE HORS DE PORTÉE\n◇\nLA COMPAGNIE GARDE SON AVANCE"
+      },
+      {
+        "sequence": "old_shrine_event",
+        "step": "1",
+        "index": 0,
+        "text": "ENTRETENIR LE FOYER ET LAISSER LE RELIQUAIRE INTACT.\n◇\nHALTE SÛRE POUR LA COMPAGNIE\n◇\nLE SANCTUAIRE RESTE INTACT"
+      },
+      {
+        "sequence": "village_choice",
+        "step": "5",
+        "index": 0,
+        "text": "PRENDRE LE VIEUX PONT ET EXTRAIRE LES CAPTIFS.\n◇\nCAPTIFS PRIORITAIRES\n◇\nRÉSERVES ET PUITS LAISSÉS AU SUD"
+      },
+      {
+        "sequence": "village_defense_aftermath",
+        "step": "1",
+        "index": 0,
+        "text": "REFUSER TOUTE RÉCOMPENSE.\n◇\nLE VILLAGE S’EN SOUVIENDRA\n◇\nLE CLAN GAGNE EN RESPECT"
+      },
+      {
+        "sequence": "rep_event_serpent_rumour_market",
+        "step": "1",
+        "index": 0,
+        "text": "PAYER LA RUMEUR — 20 OR.\n●\n335 OR DISPONIBLE"
+      }
+    ],
+    "savePath": "tmp/demo/continuous-1323-salvation-baseline/earned-lion-second-refuge-v6.json",
+    "saveSha256": "224d1796a1a0b92f98dcce27ba0652eb98fa7471b2c84653321c7470c0c83d50",
+    "resumedExact": true,
+    "ownerFacts": {
+      "currentNodeId": "lion-second-refuge",
+      "gold": 315,
+      "missionSuccess": true,
+      "missionGreed": false,
+      "missionGreedFlagPresent": false,
+      "temporaryLoot": {
+        "gold": 0,
+        "inventory": {
+          "consumables": {},
+          "accessories": {},
+          "materials": {},
+          "weapons": {}
+        }
+      },
+      "resolvedNodeIds": [
+        "lion-audience",
+        "lion-opening-ambush",
+        "lion-nomad-crossroads",
+        "lion-refugees",
+        "lion-first-trial-event",
+        "lion-first-refuge",
+        "lion-reserve-trail",
+        "lion-valmir-road",
+        "lion-second-trial-event",
+        "lion-village-choice"
+      ]
+    },
+    "productionBundles": [
+      {
+        "path": "dist/assets/game-DNVJsSmX.js",
+        "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+      }
+    ],
+    "buildChronology": "Road battle began before rebuild; novice party had no Salvation. Village combat loaded corrected build after rebuild. Separate corrected-build replay retained independently."
+  },
+  "salvation": {
+    "rawPath": "tmp/demo/salvation-1323-production-smoke/results.json",
+    "rawSha256": "53e3b9dff85fa1d0c3a65c7853d1b838c9149fa96c44d02dac9757b955fe9470",
+    "method": "BUILT_PRODUCTION_STANDALONE_COMBAT_NATIVE_INPUTS_AUTHORED_DEFAULT_PARTY",
+    "campaignAcceptance": false,
+    "pass": true,
+    "errors": [],
+    "bundleHashes": [
+      {
+        "file": "combat-DDZeDf1A.js",
+        "sha256": "6334ff1f59575addd2a89128490a6f584631eba84198b07e967797f616451d3c"
+      }
+    ],
+    "targetId": 7,
+    "spec": {
+      "key": "w_salvation",
+      "name": "Lumière Salvatrice",
+      "icon": "✚",
+      "ap": 2,
+      "type": "heal",
+      "power": 0,
+      "healPercent": 0.4,
+      "range": [
+        0,
+        3
+      ],
+      "dest": false,
+      "targetMode": "ally",
+      "support": true,
+      "offensive": false,
+      "self": false,
+      "heal": true,
+      "revive": false
+    },
+    "before": {
+      "mode": "menu",
+      "busy": false,
+      "over": false,
+      "round": 2,
+      "active": {
+        "id": 6,
+        "kind": "cleric",
+        "team": "player",
+        "hp": 100,
+        "maxhp": 100,
+        "ap": 3,
+        "gx": 3,
+        "gz": 3
+      },
+      "units": [
+        {
+          "id": 1,
+          "name": "Brigand",
+          "team": "foe",
+          "hp": 43,
+          "maxhp": 85,
+          "gx": 4,
+          "gz": 2,
+          "alive": true
+        },
+        {
+          "id": 2,
+          "name": "Brigand",
+          "team": "foe",
+          "hp": 57,
+          "maxhp": 85,
+          "gx": 3,
+          "gz": 2,
+          "alive": true
+        },
+        {
+          "id": 3,
+          "name": "Brute",
+          "team": "foe",
+          "hp": 130,
+          "maxhp": 130,
+          "gx": 5,
+          "gz": 1,
+          "alive": true
+        },
+        {
+          "id": 4,
+          "name": "Mage Noir",
+          "team": "foe",
+          "hp": 75,
+          "maxhp": 75,
+          "gx": 6,
+          "gz": 2,
+          "alive": true
+        },
+        {
+          "id": 5,
+          "name": "Chevalier",
+          "team": "player",
+          "hp": 140,
+          "maxhp": 140,
+          "gx": 2,
+          "gz": 0,
+          "alive": true
+        },
+        {
+          "id": 6,
+          "name": "Clerc",
+          "team": "player",
+          "hp": 100,
+          "maxhp": 100,
+          "gx": 3,
+          "gz": 3,
+          "alive": true
+        },
+        {
+          "id": 7,
+          "name": "Mage",
+          "team": "player",
+          "hp": 52,
+          "maxhp": 75,
+          "gx": 4,
+          "gz": 1,
+          "alive": true
+        },
+        {
+          "id": 8,
+          "name": "Archère",
+          "team": "player",
+          "hp": 0,
+          "maxhp": 90,
+          "gx": 5,
+          "gz": 2,
+          "alive": false
+        }
+      ]
+    },
+    "after": {
+      "mode": "menu",
+      "busy": false,
+      "over": false,
+      "round": 2,
+      "active": {
+        "id": 6,
+        "kind": "cleric",
+        "team": "player",
+        "hp": 100,
+        "maxhp": 100,
+        "ap": 1,
+        "gx": 3,
+        "gz": 3
+      },
+      "units": [
+        {
+          "id": 1,
+          "name": "Brigand",
+          "team": "foe",
+          "hp": 43,
+          "maxhp": 85,
+          "gx": 4,
+          "gz": 2,
+          "alive": true
+        },
+        {
+          "id": 2,
+          "name": "Brigand",
+          "team": "foe",
+          "hp": 57,
+          "maxhp": 85,
+          "gx": 3,
+          "gz": 2,
+          "alive": true
+        },
+        {
+          "id": 3,
+          "name": "Brute",
+          "team": "foe",
+          "hp": 130,
+          "maxhp": 130,
+          "gx": 5,
+          "gz": 1,
+          "alive": true
+        },
+        {
+          "id": 4,
+          "name": "Mage Noir",
+          "team": "foe",
+          "hp": 75,
+          "maxhp": 75,
+          "gx": 6,
+          "gz": 2,
+          "alive": true
+        },
+        {
+          "id": 5,
+          "name": "Chevalier",
+          "team": "player",
+          "hp": 140,
+          "maxhp": 140,
+          "gx": 2,
+          "gz": 0,
+          "alive": true
+        },
+        {
+          "id": 6,
+          "name": "Clerc",
+          "team": "player",
+          "hp": 100,
+          "maxhp": 100,
+          "gx": 3,
+          "gz": 3,
+          "alive": true
+        },
+        {
+          "id": 7,
+          "name": "Mage",
+          "team": "player",
+          "hp": 75,
+          "maxhp": 75,
+          "gx": 4,
+          "gz": 1,
+          "alive": true
+        },
+        {
+          "id": 8,
+          "name": "Archère",
+          "team": "player",
+          "hp": 0,
+          "maxhp": 90,
+          "gx": 5,
+          "gz": 2,
+          "alive": false
+        }
+      ]
+    },
+    "expected": 75
+  },
+  "fixtureStateWritten": false,
+  "runtimeMutated": false,
+  "combatOutcomeInjected": false,
+  "observation": "Read-only built GameApp/combat snapshots and cell projection; all actions use native DOM/keyboard/canvas inputs",
+  "verification": {
+    "focusedTests": 317,
+    "adapterBaseline": "3/3 cases fail with omitted healPercent;3/3 pass after correction",
+    "types": "PASS",
+    "contracts": "8 LOCKED contracts/8 video slots PASS",
+    "productionBuild": "PASS; inherited chunk-size advisory",
+    "lockedGate": "PASS"
+  },
+  "pending": [
+    "Sacrifice branch and trial ending actual-input acceptance",
+    "Mobile/OS reduced motion combat, defeat recovery and final VFX",
+    "Full demo balance/end-to-end accessibility",
+    "Observe attack banner remaining above victory modal after final attack; persistence after settling not yet established"
+  ],
+  "captures": [
+    {
+      "path": "docs/reports/earned-bois-clair-salvation-1-browser/salvation-native-before.png",
+      "source": "tmp/demo/salvation-1323-production-smoke/before-salvation.png",
+      "sha256": "f8249b2a77a152e0bf8f6aff68e659e5150708facc97a1f773b972f555c0ee17",
+      "visuallyReviewed": true
+    },
+    {
+      "path": "docs/reports/earned-bois-clair-salvation-1-browser/salvation-native-after.png",
+      "source": "tmp/demo/salvation-1323-production-smoke/after-salvation.png",
+      "sha256": "fbe3c27b2e4dfdd7a9479e91ae24d64c3077aa9f5957b0713e93ec58ab3f61ac",
+      "visuallyReviewed": true
+    },
+    {
+      "path": "docs/reports/earned-bois-clair-salvation-1-browser/earned-road-victory.png",
+      "source": "tmp/demo/continuous-1323-salvation-baseline/combat-1-result.png",
+      "sha256": "43180c81f7c062c604f393aae39e5f7f25b962054b3481f729894cb00b103af8",
+      "visuallyReviewed": true
+    },
+    {
+      "path": "docs/reports/earned-bois-clair-salvation-1-browser/earned-bois-clair-victory.png",
+      "source": "tmp/demo/continuous-1323-salvation-baseline/combat-2-result.png",
+      "sha256": "233e9ba3a34ea53d06200ddbfe6a11fd45d5e2b47f48e179fd93a717569ff940",
+      "visuallyReviewed": true
+    },
+    {
+      "path": "docs/reports/earned-bois-clair-salvation-1-browser/earned-second-refuge-resumed.png",
+      "source": "tmp/demo/continuous-1323-salvation-baseline/lion-second-refuge-earned-resumed.png",
+      "sha256": "bceb2ee780dbbd7bb8a073fc088434e6cb2216bcf2286958c0a63607b4c70b70",
+      "visuallyReviewed": true
+    },
+    {
+      "path": "docs/reports/earned-bois-clair-salvation-1-browser/native-sacred-crosier.png",
+      "source": "tmp/demo/continuous-1323-rescue-ending/lion-second-refuge-native-sacred-crosier.png",
+      "sha256": "3740251a847666adf0407948191dd1f6a2e88635cac82419ad3971fc6bd37397",
+      "visuallyReviewed": true
+    }
+  ],
+  "correctedReplay": {
+    "status": "IN_PROGRESS",
+    "rawRoot": "tmp/demo/continuous-1323-rescue-final3"
+  },
+  "endingContinuation": {
+    "status": "IN_PROGRESS",
+    "rawRoot": "tmp/demo/continuous-1323-rescue-ending"
+  }
+}

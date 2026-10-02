@@ -4,6 +4,7 @@ Baseline for this index: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. Repo
 
 | Report | Historical role | Current authority |
 | --- | --- | --- |
+| [Earned Bois-Clair and Salvation](earned-bois-clair-salvation-1.md) | Actual-input rescue victories/second-refuge V6 resume and authored healing adapter correction, 2026-10-02 | [Project status](../project/CURRENT_STATUS.md); ending/mobile/defeat/VFX acceptance remains item 9 |
 | [Refuge autosave durability](refuge-autosave-durability-1.md) | Both-refuge immediate entry/rest V6 resume, native potion service and fresh earned opening/first-refuge proof, 2026-10-02 | [Project status](../project/CURRENT_STATUS.md); later campaign endings/combat/VFX remain item 9 |
 | [Management keyboard and services](management-keyboard-services-1.md) | Native details, contextual service names, preview focus and actual owner-service production QA, 2026-10-02 | [Project status](../project/CURRENT_STATUS.md); continuous earned demo acceptance remains item 9 |
 | [Cinematic structure readiness](cinematic-structure-readiness-1.md) | Existing eight-slot OS reduced-motion/agency/resume acceptance, 2026-10-02 | [Current structural map](../autonomy/CINEMATIC_STRUCTURE_READINESS.md); artistic remaster external/incomplete |
