@@ -8,13 +8,13 @@ Git on dev and this state pair are the continuation authority. Current operator 
 | `runId` | rpgthreejs-auto-dev-90m-20261002T1153 |
 | `agent` | codex |
 | `runStartedAt` | 2026-10-02T11:56:32.7366145Z |
-| `runEndedAt` | NONE |
+| `runEndedAt` | 2026-10-02T12:22:20.0833110Z |
 | `activeTask` | DEMO-QA-POLISH: continuous earned campaign beyond first refuge |
 | `activePhase` | Accepted refuge durability/keyboard checkpoint; next continuous T1/Bois-Clair acceptance |
 | `activeSubtask` | Both-refuge immediate entry/rest reload, native potion and fresh earned first-refuge COMPLETE/PASS |
 | `workingBranch` | dev |
-| `lastKnownGoodCommit` | 8bec0c58703ab77d965b9e9b59b517083cee9c23 |
-| `lastPushedCommit` | 8bec0c58703ab77d965b9e9b59b517083cee9c23 |
+| `lastKnownGoodCommit` | fe5e36b2cd14ab10f1bc56a4b1085a33edaca6bc |
+| `lastPushedCommit` | fe5e36b2cd14ab10f1bc56a4b1085a33edaca6bc |
 | `creditStatus` | CODEX_AVAILABLE; recovered failed prior quota run; NO_PROVIDER_REQUEST |
 | `contractComplianceStatus` | Contract set v1/PRODUCTION-CONTRACTS-LOCK-1: scoped refuge entry/rest V6 durability, native potion and earned first-refuge checkpoint PASS across12 rows including UI/ACCESSIBILITY;94 tests/27 production scenarios green. Full demo/balance/final VFX incomplete. No LOCKED rule, truth owner, canon, save schema or media changed; audio DEFERRED. |
 
@@ -24,23 +24,25 @@ Git on dev and this state pair are the continuation authority. Current operator 
 {
   "runId": "rpgthreejs-auto-dev-90m-20261002T1153",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-02T12:20:00.157Z",
+  "lastHeartbeat": "2026-10-02T12:22:20.148Z",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261002T1153",
-    "sha": "1005c8e9dc35a1e95b01591d3dd552e412224a69",
-    "dirtyFiles": [
-      " M docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      " M docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      " M docs/project/CURRENT_STATUS.md",
-      " M docs/reports/INDEX.md",
-      "?? docs/autonomy/handoffs/2026-10-02T1153Z-codex-resume-checkpoint.md",
-      "?? docs/reports/management-keyboard-services-1-browser/",
-      "?? docs/reports/management-keyboard-services-1.md",
-      "?? docs/reports/refuge-autosave-durability-1-browser/",
-      "?? docs/reports/refuge-autosave-durability-1.md"
-    ],
+    "branch": null,
+    "sha": null,
+    "dirtyFiles": [],
     "status": "GREEN",
-    "lastGreenCheck": "94tests/types/contracts/build/exact8MP4;26 refuge+1 fresh earned scenario PASS; nine inspected captures; scoped compliance PASS"
+    "lastGreenCheck": "94/94 tests/types/contracts/build/exact8videos;26 refuge+1 fresh earned scenario PASS; scoped12-row compliance PASS",
+    "retiredSnapshots": [
+      {
+        "sha": "dd6f7c52449d1ffc119080a059749180462ff64f",
+        "preservedOnDev": "fe5e36b2cd14ab10f1bc56a4b1085a33edaca6bc",
+        "branch": "wip/rpgthreejs-auto-dev-90m-20261002T0723"
+      },
+      {
+        "sha": "1005c8e9dc35a1e95b01591d3dd552e412224a69",
+        "preservedOnDev": "fe5e36b2cd14ab10f1bc56a4b1085a33edaca6bc",
+        "branch": "wip/rpgthreejs-auto-dev-90m-20261002T1153"
+      }
+    ]
   }
 }
 ```
@@ -60,6 +62,8 @@ Git on dev and this state pair are the continuation authority. Current operator 
 - Selected nine inspected current captures and compact hashed proof in refuge-autosave-durability-1-browser; inherited management report/six-capture package preserved
 - Read-only contracts-guardian final scoped matrix PASS including UI/ACCESSIBILITY; no LOCKED rule, media/canon/save schema changed
 - Implementation checkpoint8bec0c5 pushed and verified against remote dev; evidence/state closeout follows
+- Evidence checkpointfe5e36b pushed/remote verified; both0723/1153 WIP refs retired locally/remotely after non-state/source/evidence preservation checks; no inherited file deleted
+- Both state files and latest1153 handoff finalized; final state-only closeout follows; all owned QA preview ports closed
 
 ## filesChanged
 
