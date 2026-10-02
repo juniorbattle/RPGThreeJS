@@ -2178,10 +2178,12 @@ function statBarsHTML(u){ const ST=[['⚔','FOR',Math.round(effSTR(u))],['✦','
   let h='<div class="du-stats">'; for(const [ico,k,v] of ST)h+='<div class="du-stat"><i>'+ico+'</i><span>'+k+'</span><b>'+v+'</b></div>'; return h+'</div>'; }
 function statsDetailsHTML(u){ return '<button type="button" class="stats-toggle" aria-expanded="'+(statsPanelExpanded?'true':'false')+'"><span>'+(statsPanelExpanded?'Masquer':'Afficher')+' stats</span><b>'+(statsPanelExpanded?'−':'+')+'</b></button>'+(statsPanelExpanded?statBarsHTML(u):''); }
 function bindStatsToggle(u){ const button=dom.panel.querySelector('.stats-toggle'); if(!button)return; button.onclick=()=>{statsPanelExpanded=!statsPanelExpanded;renderPanel(u);}; }
-function renderPanel(u){ dom.panel.classList.remove('hidden'); dom.panel.dataset.team=u.team;
+function renderPanel(u){ const restoreStatsFocus=dom.panel.querySelector('.stats-toggle')===document.activeElement;
+  dom.panel.classList.remove('hidden'); dom.panel.dataset.team=u.team;
   const wt=u.weapons&&u.weapons[0]&&u.weapons[0].weaponType?INNATE_GIFTS_BY_WEAPON[u.weapons[0].weaponType]:null;
   dom.panel.innerHTML=renderCombatUnitCard({name:u.name,className:u.className,team:u.team,portrait:u.portrait,hp:u.hp,maxhp:u.maxhp,ap:u.ap,maxap:u.maxap,alive:u.alive,aptitude:wt,statuses:getVisibleStatusIndicators(u.statuses,{exhausted:isExhausted(u),maxVisible:Number.POSITIVE_INFINITY}).visible},statsDetailsHTML(u));
-  bindStatsToggle(u); renderStatusPanelTags(u); }
+  bindStatsToggle(u); renderStatusPanelTags(u);
+  if(restoreStatsFocus)dom.panel.querySelector('.stats-toggle')?.focus(); }
 function refreshTurnbar(){ dom.turnbar.classList.remove('hidden'); renderObjective(); const order=G.order.length?G.order:G.units;
   const step=G.order.length&&G.turnIdx>=0?(G.turnIdx+1)+' / '+G.order.length:'Préparation';
   const ordered=G.order.length&&G.turnIdx>=0?order.slice(G.turnIdx).concat(order.slice(0,G.turnIdx)):order;

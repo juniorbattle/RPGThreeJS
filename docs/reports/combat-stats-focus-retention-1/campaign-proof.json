@@ -1,0 +1,680 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-02T23:41:40.598Z",
+  "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
+  "baseline": "122ffe6feffd3d6ae4df678bbd13e6421596e4ea",
+  "scope": "Earned continuation with native player inputs; failed620recovery excluded",
+  "mixedBuildAncestry": "1323 successful earned input comes from mixed-build lineage; cannot certify one corrected opening-to-ending build",
+  "driver": {
+    "path": "tools/demo-continuous-production-qa.mjs",
+    "sha256": "9448069f6a3ec6282c50eef4cdce8c283ae362db6156bf2ad1ceed1381dea541"
+  },
+  "jobs": [
+    {
+      "jobId": "2252-recovery-620",
+      "receipt": {
+        "schemaVersion": 1,
+        "jobId": "2252-recovery-620",
+        "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
+        "status": "FAILED",
+        "startedAt": "2026-10-02T23:01:40.220Z",
+        "endedAt": "2026-10-02T23:09:17.242Z",
+        "pid": 11700,
+        "port": 5269,
+        "output": "tmp/demo/2252-recovery-620",
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "defeat-recovery",
+          "routePlan": "rescue",
+          "timeoutMinutes": 25,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": true,
+          "viewport": [
+            620,
+            780
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/continuous-1153-fresh-final/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EXACT_V6_CHECKPOINT_RECOVERY",
+          "VISIBLE_T1_DEPARTURE",
+          "EXACT_RELOAD"
+        ],
+        "provenance": {
+          "gitHead": "122ffe6feffd3d6ae4df678bbd13e6421596e4ea",
+          "sourceTree": "87d808e01f7834248e795bbc5276d5eb7389121b",
+          "sourceDiffSha256": "3487bf9cdd153d2066b6325ddd0d65fb44cfda1c53ebbb37de34d3ee6b99b514",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "97ffed606c26ee8d3d2ec3a3cee4fa8b4559e62d8e50ecffc3cc137521f90128"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+              "sha256": "d8b0deb62c66fc2fd3d01ec8c513fafb697021e8f9c808869277b90a250e8267"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/continuous-1153-fresh-final/results.json",
+              "sha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+            }
+          ],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-CRVF3Hlw.js",
+              "sha256": "5d4855b52058f35243501afbe6c6c6c8b00b8629a841d5f451e40e43f1369de3"
+            },
+            {
+              "path": "dist/assets/combat-CVSHPmTa.css",
+              "sha256": "9af7a139b176c9980188c4d01d126241144d0b6d5327bf1e202591302cf243b7"
+            },
+            {
+              "path": "dist/assets/game-DNVJsSmX.js",
+              "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+            },
+            {
+              "path": "dist/assets/game-Z5tVqu3k.css",
+              "sha256": "ff17df7f056304ca1c29dbf47e7b8c2821311a645dc30e83a92a564d51a9926e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f7e71881a1d178a7f793a64f477c1c9e899a0077aa962e05f67c2fb2f871c361"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "provenanceStable": true,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/2252-recovery-620/results.json",
+        "resultSha256": "5c13f91ee6d369e6354c0eed09601dd4429113c1a336efdceba89e3a701b96f7"
+      },
+      "ownerAcceptance": "NOT_ACCEPTED",
+      "result": {
+        "path": "tmp/demo/2252-recovery-620/results.json",
+        "sha256": "5c13f91ee6d369e6354c0eed09601dd4429113c1a336efdceba89e3a701b96f7",
+        "pass": false,
+        "failure": "AssertionError [ERR_ASSERTION]: Defeat occurred before the requested native recovery boundary\n+ actual - expected\n\n+ 'lion-valmir-road'\n- 'lion-village-choice'\n         ^\n\n    at battle (file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:258:12)\n    at async file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:418:59",
+        "errors": [],
+        "runtimeMutated": false,
+        "combatOutcomeInjected": false,
+        "earnedResume": {
+          "savePath": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/continuous-1153-fresh-final/results.json",
+          "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+          "sha256": "d8b0deb62c66fc2fd3d01ec8c513fafb697021e8f9c808869277b90a250e8267",
+          "proofSha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+        },
+        "battles": [
+          {
+            "nodeId": "lion-valmir-road",
+            "combatId": "marsh_crossing",
+            "pass": false,
+            "resultText": "✦\n\nROUTE BRISÉE\n\nDéfaite\n\nVotre équipe a été vaincue…\n\nCHECKPOINT\nRetour au dernier refuge\nÉTAT DE LA COMPAGNIE\nAlistair\nK.O.\nMarian\nK.O.\nElara\nK.O.\nKestrel\nK.O.\nREVENIR À LA CARTE",
+            "result": {
+              "round": 11,
+              "turnIdx": 1,
+              "mode": "over",
+              "busy": true,
+              "over": true,
+              "moved": false,
+              "attacks": 0,
+              "active": {
+                "id": null,
+                "name": "Sanglier",
+                "team": "foe",
+                "gx": 4,
+                "gz": 0,
+                "hp": 1,
+                "maxhp": 116,
+                "ap": 2
+              },
+              "units": [
+                {
+                  "id": 1,
+                  "name": "Crapaud toxique",
+                  "team": "foe",
+                  "gx": 5,
+                  "gz": 1,
+                  "hp": 40,
+                  "maxhp": 108,
+                  "alive": true,
+                  "downed": false
+                },
+                {
+                  "id": 2,
+                  "name": "Sanglier",
+                  "team": "foe",
+                  "gx": 4,
+                  "gz": 0,
+                  "hp": 1,
+                  "maxhp": 116,
+                  "alive": true,
+                  "downed": false
+                },
+                {
+                  "id": 3,
+                  "name": "Rat geant",
+                  "team": "foe",
+                  "gx": 4,
+                  "gz": 3,
+                  "hp": 0,
+                  "maxhp": 65,
+                  "alive": false,
+                  "downed": true
+                },
+                {
+                  "id": "warrior",
+                  "name": "Alistair",
+                  "team": "player",
+                  "gx": 5,
+                  "gz": 0,
+                  "hp": 0,
+                  "maxhp": 140,
+                  "alive": false,
+                  "downed": true
+                },
+                {
+                  "id": "white_mage",
+                  "name": "Marian",
+                  "team": "player",
+                  "gx": 5,
+                  "gz": 2,
+                  "hp": 0,
+                  "maxhp": 100,
+                  "alive": false,
+                  "downed": true
+                },
+                {
+                  "id": "dark_mage",
+                  "name": "Elara",
+                  "team": "player",
+                  "gx": 4,
+                  "gz": 1,
+                  "hp": 0,
+                  "maxhp": 75,
+                  "alive": false,
+                  "downed": true
+                },
+                {
+                  "id": "archer",
+                  "name": "Kestrel",
+                  "team": "player",
+                  "gx": 4,
+                  "gz": 2,
+                  "hp": 0,
+                  "maxhp": 90,
+                  "alive": false,
+                  "downed": true
+                }
+              ],
+              "inventory": {
+                "potion": 0,
+                "revive_vial": 0,
+                "antidote": 2
+              },
+              "diagnostics": {
+                "drawCalls": 1,
+                "triangles": 1,
+                "geometries": 64,
+                "textures": 46,
+                "reducedGraphics": false,
+                "units": 7,
+                "activeTweens": 7,
+                "activeVfxObjects": 0,
+                "grid": {
+                  "width": 8,
+                  "depth": 4,
+                  "walkable": 32,
+                  "blocked": 0
+                }
+              }
+            },
+            "actionCounts": {
+              "move": 11,
+              "attack": 14,
+              "wait": 20,
+              "potion": 4,
+              "revive_vial": 1
+            },
+            "skills": [],
+            "conservation": [],
+            "nativeSkills": [],
+            "selectedAttempts": []
+          }
+        ]
+      }
+    },
+    {
+      "jobId": "2252-trial-unlocked",
+      "receipt": {
+        "schemaVersion": 1,
+        "jobId": "2252-trial-unlocked",
+        "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
+        "status": "FAILED",
+        "startedAt": "2026-10-02T23:19:28.794Z",
+        "endedAt": "2026-10-02T23:36:50.209Z",
+        "pid": 54872,
+        "port": 5270,
+        "output": "tmp/demo/2252-trial-unlocked",
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "ending",
+          "routePlan": "rescue",
+          "timeoutMinutes": 35,
+          "finalePlan": "trial",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/continuous-1323-salvation-baseline/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/continuous-1323-salvation-baseline/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "provenance": {
+          "gitHead": "122ffe6feffd3d6ae4df678bbd13e6421596e4ea",
+          "sourceTree": "87d808e01f7834248e795bbc5276d5eb7389121b",
+          "sourceDiffSha256": "3487bf9cdd153d2066b6325ddd0d65fb44cfda1c53ebbb37de34d3ee6b99b514",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "9448069f6a3ec6282c50eef4cdce8c283ae362db6156bf2ad1ceed1381dea541"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/continuous-1323-salvation-baseline/earned-lion-second-refuge-v6.json",
+              "sha256": "224d1796a1a0b92f98dcce27ba0652eb98fa7471b2c84653321c7470c0c83d50"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/continuous-1323-salvation-baseline/results.json",
+              "sha256": "1399e4268dff72b77519fd3e874c7542bcd4a2fc207003b1494e32d2500c5e2a"
+            }
+          ],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-CRVF3Hlw.js",
+              "sha256": "5d4855b52058f35243501afbe6c6c6c8b00b8629a841d5f451e40e43f1369de3"
+            },
+            {
+              "path": "dist/assets/combat-CVSHPmTa.css",
+              "sha256": "9af7a139b176c9980188c4d01d126241144d0b6d5327bf1e202591302cf243b7"
+            },
+            {
+              "path": "dist/assets/game-DNVJsSmX.js",
+              "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+            },
+            {
+              "path": "dist/assets/game-Z5tVqu3k.css",
+              "sha256": "ff17df7f056304ca1c29dbf47e7b8c2821311a645dc30e83a92a564d51a9926e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f7e71881a1d178a7f793a64f477c1c9e899a0077aa962e05f67c2fb2f871c361"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "provenanceStable": true,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/2252-trial-unlocked/results.json",
+        "resultSha256": "809adaecba576ac2a86fb3e8c37ff62dcd73359961178fdd4bc093035339f555"
+      },
+      "ownerAcceptance": "NOT_ACCEPTED",
+      "result": {
+        "path": "tmp/demo/2252-trial-unlocked/results.json",
+        "sha256": "809adaecba576ac2a86fb3e8c37ff62dcd73359961178fdd4bc093035339f555",
+        "pass": false,
+        "failure": "AssertionError [ERR_ASSERTION]: Actual battle ended without victory: ✦\n\nROUTE BRISÉE\n\nDéfaite\n\nVotre équipe a été vaincue…\n\nCHECKPOINT\nRetour au dernier refuge\nÉTAT DE LA COMPAGNIE\nAlistair\nK.O.\nMarian\nK.O.\nKestrel\nK.O.\nCedric\nK.O.\nREVENIR À LA CARTE\n    at battle (file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:324:10)\n    at async file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:422:59",
+        "errors": [],
+        "runtimeMutated": false,
+        "combatOutcomeInjected": false,
+        "earnedResume": {
+          "savePath": "tmp/demo/continuous-1323-salvation-baseline/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/continuous-1323-salvation-baseline/results.json",
+          "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+          "sha256": "224d1796a1a0b92f98dcce27ba0652eb98fa7471b2c84653321c7470c0c83d50",
+          "proofSha256": "1399e4268dff72b77519fd3e874c7542bcd4a2fc207003b1494e32d2500c5e2a"
+        },
+        "battles": [
+          {
+            "nodeId": "lion-final-judgement",
+            "combatId": "lion_chief",
+            "pass": false,
+            "resultText": "✦\n\nROUTE BRISÉE\n\nDéfaite\n\nVotre équipe a été vaincue…\n\nCHECKPOINT\nRetour au dernier refuge\nÉTAT DE LA COMPAGNIE\nAlistair\nK.O.\nMarian\nK.O.\nKestrel\nK.O.\nCedric\nK.O.\nREVENIR À LA CARTE",
+            "result": {
+              "round": 14,
+              "turnIdx": 1,
+              "mode": "over",
+              "busy": true,
+              "over": true,
+              "moved": false,
+              "attacks": 0,
+              "active": {
+                "id": null,
+                "name": "Champion du Lion",
+                "team": "foe",
+                "gx": 6,
+                "gz": 1,
+                "hp": 121,
+                "maxhp": 520,
+                "ap": 5,
+                "skills": [
+                  "enemy_heavy_strike",
+                  "boss_guard",
+                  "boss_quake",
+                  "boss_apocalypse"
+                ]
+              },
+              "units": [
+                {
+                  "id": 1,
+                  "name": "Champion du Lion",
+                  "team": "foe",
+                  "gx": 6,
+                  "gz": 1,
+                  "hp": 121,
+                  "maxhp": 520,
+                  "alive": true,
+                  "downed": false
+                },
+                {
+                  "id": "warrior",
+                  "name": "Alistair",
+                  "team": "player",
+                  "gx": 6,
+                  "gz": 0,
+                  "hp": 0,
+                  "maxhp": 140,
+                  "alive": false,
+                  "downed": true
+                },
+                {
+                  "id": "white_mage",
+                  "name": "Marian",
+                  "team": "player",
+                  "gx": 6,
+                  "gz": 3,
+                  "hp": 0,
+                  "maxhp": 113,
+                  "alive": false,
+                  "downed": true
+                },
+                {
+                  "id": "archer",
+                  "name": "Kestrel",
+                  "team": "player",
+                  "gx": 4,
+                  "gz": 1,
+                  "hp": 0,
+                  "maxhp": 90,
+                  "alive": false,
+                  "downed": true
+                },
+                {
+                  "id": "rogue",
+                  "name": "Cedric",
+                  "team": "player",
+                  "gx": 5,
+                  "gz": 1,
+                  "hp": 0,
+                  "maxhp": 100,
+                  "alive": false,
+                  "downed": true
+                }
+              ],
+              "inventory": {
+                "potion": 0,
+                "revive_vial": 0,
+                "antidote": 2
+              },
+              "diagnostics": {
+                "drawCalls": 1,
+                "triangles": 1,
+                "geometries": 53,
+                "textures": 45,
+                "reducedGraphics": false,
+                "units": 5,
+                "activeTweens": 0,
+                "activeVfxObjects": 0,
+                "grid": {
+                  "width": 8,
+                  "depth": 4,
+                  "walkable": 28,
+                  "blocked": 4
+                }
+              }
+            },
+            "actionCounts": {
+              "move": 9,
+              "wait": 31,
+              "attack": 27,
+              "potion": 1,
+              "wait-conserve-ap": 1
+            },
+            "skills": [],
+            "conservation": [
+              {
+                "before": {
+                  "round": 4,
+                  "turnIdx": 2,
+                  "mode": "menu",
+                  "busy": false,
+                  "over": false,
+                  "moved": false,
+                  "attacks": 0,
+                  "active": {
+                    "id": "white_mage",
+                    "name": "Marian",
+                    "team": "player",
+                    "gx": 6,
+                    "gz": 3,
+                    "hp": 100,
+                    "maxhp": 113,
+                    "ap": 1,
+                    "skills": [
+                      "w_salvation"
+                    ]
+                  },
+                  "units": [
+                    {
+                      "id": 1,
+                      "name": "Champion du Lion",
+                      "team": "foe",
+                      "gx": 6,
+                      "gz": 1,
+                      "hp": 373,
+                      "maxhp": 520,
+                      "alive": true,
+                      "downed": false
+                    },
+                    {
+                      "id": "warrior",
+                      "name": "Alistair",
+                      "team": "player",
+                      "gx": 6,
+                      "gz": 0,
+                      "hp": 140,
+                      "maxhp": 140,
+                      "alive": true,
+                      "downed": false
+                    },
+                    {
+                      "id": "white_mage",
+                      "name": "Marian",
+                      "team": "player",
+                      "gx": 6,
+                      "gz": 3,
+                      "hp": 100,
+                      "maxhp": 113,
+                      "alive": true,
+                      "downed": false
+                    },
+                    {
+                      "id": "archer",
+                      "name": "Kestrel",
+                      "team": "player",
+                      "gx": 4,
+                      "gz": 1,
+                      "hp": 90,
+                      "maxhp": 90,
+                      "alive": true,
+                      "downed": false
+                    },
+                    {
+                      "id": "rogue",
+                      "name": "Cedric",
+                      "team": "player",
+                      "gx": 5,
+                      "gz": 1,
+                      "hp": 17,
+                      "maxhp": 100,
+                      "alive": true,
+                      "downed": false
+                    }
+                  ],
+                  "inventory": {
+                    "potion": 0,
+                    "revive_vial": 0,
+                    "antidote": 2
+                  },
+                  "diagnostics": {
+                    "drawCalls": 1,
+                    "triangles": 1,
+                    "geometries": 49,
+                    "textures": 42,
+                    "reducedGraphics": false,
+                    "units": 5,
+                    "activeTweens": 0,
+                    "activeVfxObjects": 0,
+                    "grid": {
+                      "width": 8,
+                      "depth": 4,
+                      "walkable": 28,
+                      "blocked": 4
+                    }
+                  }
+                }
+              }
+            ],
+            "nativeSkills": [
+              {
+                "id": "rogue",
+                "skills": [],
+                "nativeMenuEnabled": false
+              },
+              {
+                "id": "archer",
+                "skills": [],
+                "nativeMenuEnabled": false
+              },
+              {
+                "id": "white_mage",
+                "skills": [
+                  "w_salvation"
+                ],
+                "menu": [
+                  {
+                    "id": "w_salvation",
+                    "disabled": false,
+                    "text": "✚Lumière SalvatriceRestaure 40% des PV maximum d'un allié à distance.2 PA"
+                  }
+                ]
+              },
+              {
+                "id": "warrior",
+                "skills": [],
+                "nativeMenuEnabled": false
+              }
+            ],
+            "selectedAttempts": []
+          }
+        ]
+      }
+    }
+  ],
+  "interrupted": {
+    "jobId": "2252-trial-native-skills",
+    "owner": {
+      "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
+      "jobId": "2252-trial-native-skills",
+      "status": "ABORTED_PILOT_POLICY_DEFECT",
+      "at": "2026-10-02T23:18:11.1782554Z",
+      "pid": 25540,
+      "descendants": [
+        17680,
+        12036,
+        34584,
+        3852,
+        13536
+      ],
+      "processConfirmedStopped": true,
+      "reason": "Static archer AP conservation assumes unlocked skill; earned archer weapon novice_longbow tier0 exposes no unlocked skills via catalog.ts409-417. Correct pilot using actual native skills before rerun. Not acceptance."
+    },
+    "rawReceiptSha256": "585b54e800fe9b931c47cc0dfae1603f246973f658975ea3f201d53a63cc15aa"
+  },
+  "selected": [
+    {
+      "path": "docs/reports/combat-stats-focus-retention-1/620-native-marais-defeat.png",
+      "sha256": "693d83c7717216adbd4a35fe28a3ffb0b3a689dfb0114641496fe5120a548d2f",
+      "source": "tmp/demo/2252-recovery-620/failure-state.png"
+    },
+    {
+      "path": "docs/reports/combat-stats-focus-retention-1/trial-native-failure.png",
+      "sha256": "1d981a17ac618684185a82e2076669852638a2f37d69c070bb212969b23583f3",
+      "source": "tmp/demo/2252-trial-unlocked/failure-state.png"
+    }
+  ]
+}

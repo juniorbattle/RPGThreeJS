@@ -55,7 +55,7 @@ const report = {schemaVersion:1, recordedAt:new Date().toISOString(), method:'FR
 report.qaJobReceipt=qaJob.receiptPath;
 Object.assign(report,{target,routePlan,finalePlan,defeatNodeId,nativeDefeatWait,viewport:{width:viewport[0],height:viewport[1]},
   osReducedMotion:process.env.DEMO_QA_OS_MOTION==='1',observationHook:'Built bootstrap exposes GameApp for read-only snapshots; no owner method invoked',refuges:[],choices:[]});
-report.nativeTacticalPolicy='Champion archer conserves its last AP before acting, using the existing Wait/Souffle rule';
+report.nativeTacticalPolicy='Champion AP conservation requires an actual unlocked two-AP skill; healer conserves for wounded allies via existing Wait/Souffle';
 report.driverSha256=createHash('sha256').update(await readFile('tools/demo-continuous-production-qa.mjs')).digest('hex');
 report.productionBundles=await Promise.all((await readdir('dist/assets')).filter(name=>/^(game|combat)-.*\.js$/.test(name))
   .map(async name=>({path:`dist/assets/${name}`,sha256:createHash('sha256').update(await readFile(`dist/assets/${name}`)).digest('hex')})));
@@ -98,7 +98,7 @@ async function choose(){
 async function cancel(frame){await frame.locator('body').press('Escape');}
 async function combatState(frame){return frame.evaluate(()=>{const g=window.G;return{round:g.round,turnIdx:g.turnIdx,mode:g.mode,busy:g.busy,
   over:g.over,moved:g.movedThisTurn,attacks:g.basicAttacksThisTurn,active:g.active&&{id:g.active.campaignId,name:g.active.name,team:g.active.team,
-    gx:g.active.gx,gz:g.active.gz,hp:g.active.hp,maxhp:g.active.maxhp,ap:g.active.ap},
+    gx:g.active.gx,gz:g.active.gz,hp:g.active.hp,maxhp:g.active.maxhp,ap:g.active.ap,skills:[...g.active.skills]},
   units:g.units.map(u=>({id:u.campaignId||u.id,name:u.name,team:u.team,gx:u.gx,gz:u.gz,hp:u.hp,maxhp:u.maxhp,alive:u.alive,downed:!!u.downed})),
   inventory:{...g.inv},diagnostics:window.__COMBAT_DIAGNOSTICS};});}
 async function cellClick(frame,cell){
@@ -156,21 +156,33 @@ async function heal(frame,battle){
 }
 async function skill(frame,battle){
   const before=await combatState(frame),menu=frame.locator('#menu [data-a="skill"]:not(:disabled)');
-  if(!await menu.count())return false;
+  if(!await menu.count()){
+    if(battle.combatId==='lion_chief')(battle.skillAttempts??=[]).push({round:before.round,active:before.active,nativeMenuEnabled:false});
+    return false;
+  }
   const wounded=before.units.filter(u=>u.team==='player'&&u.alive&&u.hp<u.maxhp*.75);
   const ids=before.active.id==='white_mage'&&wounded.length
-    ?['w_salvation','w_purify']:['n_dark_bolt','a_precise_shot','w_break_guard'];
+    ?['w_salvation','w_purify']:['n_dark_bolt','a_precise_shot','ar_calibrated_shot','w_break_guard'];
   for(const id of ids){
     if(id==='w_salvation'&&process.env.DEMO_QA_VERIFY_SALVATION==='1'&&before.active.ap<=2)continue;
     await menu.click();const option=frame.locator(`#skillmenu [data-s="${id}"]:not(:disabled)`);
+    const attempt={skillId:id,round:before.round,active:before.active,available:await option.count()>0};
+    if(battle.combatId==='lion_chief'){
+      attempt.menu=await frame.locator('#skillmenu [data-s]:not([data-s="_back"])').evaluateAll(buttons=>buttons.map(b=>({id:b.dataset.s,disabled:b.disabled,text:b.textContent.trim()})));
+      (battle.skillAttempts??=[]).push(attempt);
+    }
     if(!await option.count()){await cancel(frame);continue;}
     await option.click();
-    const pending=await frame.evaluate(()=>window.G.pending&&({spec:window.G.pending.spec,centers:window.G.pending.centers}));
+    const pending=await frame.evaluate(()=>window.G.pending&&({spec:window.G.pending.spec,centers:window.G.pending.centers.map(c=>{
+      const u=window.G.grid[c.gx]?.[c.gz]?.occupant;return{...c,targetId:u&&(u.campaignId||u.id)};
+    })}));
     if(!pending){await cancel(frame);continue;}
     const targets=(id.startsWith('w_s')||id==='w_purify'?wounded:before.units.filter(u=>u.team==='foe'&&u.alive))
       .sort((a,b)=>a.hp/a.maxhp-b.hp/b.maxhp);
-    for(const target of targets){
-      if(!pending.centers.some(c=>c.gx===target.gx&&c.gz===target.gz)||!await cellClick(frame,target))continue;
+    attempt.eligibleCenters=pending.centers.filter(c=>targets.some(t=>t.id===c.targetId));
+    for(const cell of attempt.eligibleCenters){
+      const target=targets.find(t=>t.id===cell.targetId);
+      if(!await cellClick(frame,cell))continue;
       await settled(frame);const after=await combatState(frame);
       if(after.active?.id===before.active.id&&after.active.ap===before.active.ap){await cancel(frame);continue;}
       battle.actions.push({kind:'skill',skillId:id,targetId:target.id,spec:pending.spec,before,after});
@@ -228,10 +240,11 @@ async function battle(){
       await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait-for-native-defeat',before:current});continue;
     }
     if(current.active.ap<=0){await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait',before:current});continue;}
-    // Wait retains the last AP and lets the runtime's existing Souffle rule
-    // restore one. Spending it every round prevented this pilot from using
-    // the archer's authored two-AP skill against the Champion.
-    if(entry.combatId==='lion_chief'&&current.active.id==='archer'&&current.active.ap===1&&current.attacks===0){
+    // A novice weapon unlocks no skills. Conserve only for a skill that the
+    // native combat payload actually exposes, never for an assumed class skill.
+    const conserveArcher=current.active.id==='archer'&&current.active.skills.some(id=>['a_precise_shot','ar_calibrated_shot'].includes(id));
+    const conserveHealer=current.active.id==='white_mage'&&current.active.skills.includes('w_salvation')&&current.units.some(u=>u.team==='player'&&u.alive&&u.hp<u.maxhp*.75);
+    if(entry.combatId==='lion_chief'&&(conserveArcher||conserveHealer)&&current.active.ap===1&&current.attacks===0){
       await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait-conserve-ap',before:current});continue;
     }
     if(await skill(frame,entry))continue;

@@ -1,80 +1,83 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-02T21:24:23.4164153Z",
-  "runEndedAt": "2026-10-02T22:35:48.2393948Z",
+  "runStartedAt": "2026-10-02T22:53:38.5177529Z",
+  "runEndedAt": null,
   "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
-  "activePhase": "Checkpoint; continue item9 native focus and campaign acceptance",
-  "activeSubtask": "Native stats-toggle focus retention and remaining earned campaign acceptance",
+  "activePhase": "Checkpoint; resume native support readiness and campaign acceptance",
+  "activeSubtask": "Native healer AP readiness/support positioning; earned Champion ending and620recovery",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "790dc26ad18bf1f6def706f91543298515a33d85",
   "lastPushedCommit": "790dc26ad18bf1f6def706f91543298515a33d85",
   "completedThisRun": [
-    "Clean lockless preflight;5455d067dev parity; no project QA; resumed exact item9",
-    "Native baseline620grid has6intercepted centers; CSS card reflow retains camera/art/truth",
-    "Generic sync observations reconciled with5455historical accepted/terminal jobs; no proof revoked",
-    "First grid harness aborted with owned tree closure; native Undo button/bounded waits/unique captures corrected",
-    "95focused+16unchanged-receipt tests, types,8contracts,build,syntax and LOCKED/whitespace PASS",
-    "Final wheel/card source and95tests verified; scoped terminal proof recorded without accepting interrupted work"
+    "Native stats-toggle focus retention fixed; eight built-production cases accepted scoped",
+    "Representative native exhaustion/aptitude content verified;103focused and16receipt tests/types/contracts/build PASS",
+    "Scoped contracts and UI reviewers PASS; six selected captures and compact proof promoted",
+    "Corrected unlocked-skill policy observed in terminal native Champion run; no archer skill/conservation assumed, one actual healer conservation wait. Ending/healing not accepted."
   ],
   "filesChanged": [
-    "src/styles/combat-hud.css",
-    "src/combat/combatKeyboard.ts",
-    "src/combat/combatKeyboard.test.ts",
     "src/combat/legacyCombatRuntime.js",
-    "tools/demo-continuous-production-qa.mjs",
-    "tools/combat-grid-hit-production-qa.mjs",
     "tools/combat-card-scroll-production-qa.mjs",
-    "docs/reports/INDEX.md",
-    "docs/reports/combat-grid-hit-reachability-1.md",
-    "docs/autonomy/handoffs/2026-10-02T2122Z-codex-grid-scroll-checkpoint.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/reports/combat-grid-hit-reachability-1/proof.json",
-    "docs/reports/combat-grid-hit-reachability-1/2122-grid-final-wheel-1366-768-no-preference-move.png",
-    "docs/reports/combat-grid-hit-reachability-1/2122-grid-final-wheel-620-780-no-preference-move.png",
-    "docs/reports/combat-grid-hit-reachability-1/2122-grid-final-wheel-620-780-no-preference-expanded.png",
-    "docs/reports/combat-grid-hit-reachability-1/2122-grid-final-wheel-390-844-reduce-expanded.png",
-    "docs/reports/combat-grid-hit-reachability-1/2122-grid-final-wheel-560-780-no-preference-expanded.png",
-    "docs/reports/combat-grid-hit-reachability-1/2122-grid-final-wheel-620-600-no-preference-expanded.png",
-    "docs/reports/combat-grid-hit-reachability-1/2122-card-final-wheel-390-600-no-preference-scrolled.png",
-    "docs/reports/combat-grid-hit-reachability-1/2122-card-final-wheel-390-844-reduce-scrolled.png",
-    "docs/reports/combat-grid-hit-reachability-1/2122-intermediate-final-wheel-combat-1-actual-impact.png"
+    "tools/demo-continuous-production-qa.mjs",
+    "docs/reports/combat-stats-focus-retention-1.md",
+    "docs/reports/combat-stats-focus-retention-1/proof.json",
+    "docs/reports/combat-stats-focus-retention-1/390-844-no-preference-aptitude.png",
+    "docs/reports/combat-stats-focus-retention-1/390-844-no-preference-status.png",
+    "docs/reports/combat-stats-focus-retention-1/390-600-no-preference-scrolled.png",
+    "docs/reports/combat-stats-focus-retention-1/620-780-no-preference-status.png",
+    "docs/reports/combat-stats-focus-retention-1/620-780-reduce-scrolled.png",
+    "docs/reports/combat-stats-focus-retention-1/1366-768-reduce-aptitude.png",
+    "docs/autonomy/handoffs/2026-10-02T2252Z-codex-stats-focus-checkpoint.md",
+    "docs/reports/combat-stats-focus-retention-1/campaign-proof.json",
+    "docs/reports/combat-stats-focus-retention-1/620-native-marais-defeat.png",
+    "docs/reports/combat-stats-focus-retention-1/trial-native-failure.png"
   ],
   "testsRun": [
-    "95 focused tests across5 suites after final wheel guard",
-    "16 receipt tests before unchanged receipt helper",
+    "79 focused tests/5suites",
+    "24status/shell tests/2suites",
+    "16 QA receipt tests",
     "TypeScript --noEmit",
-    "8contract/8slot validator",
-    "Vite production build after final source change",
-    "syntax checks on3 drivers",
-    "LOCKED gates and diff --check"
+    "Vite production build with8MP4s",
+    "Contract validator8LOCKED/8slots",
+    "Syntax and LOCKED/diff-check gates",
+    "2252-card-focus FAILED driver label assertion",
+    "2252-card-focus-labels SUCCEEDED/ACCEPTED_SCOPED",
+    "2252-recovery-620 FAILED native marais defeat before requested village boundary; no acceptance",
+    "Attempted catalogue/skills test paths matched no files; actual management.test.ts56PASS",
+    "56 management tests cover existing tier-based skill unlock; total159focused/8suites",
+    "2252-trial-native-skills ABORTED_PILOT_POLICY_DEFECT; owned pid25540/tree stopped and note preserved",
+    "Final159focused tests/8suites and TypeScript PASS; source/build unchanged since production card proof",
+    "2252-trial-unlocked FAILED actual native defeat round14/69actions; Champion121HP,zero skills; stable receipt/errors[]",
+    "Five owned QA workers stopped;5268–5270closed"
   ],
   "testsPassed": [
-    "95 focused tests across5 suites after final wheel guard",
-    "16 receipt tests before unchanged receipt helper",
+    "79 focused tests/5suites",
+    "24status/shell tests/2suites",
+    "16 QA receipt tests",
     "TypeScript --noEmit",
-    "8contract/8slot validator",
-    "Vite production build after final source change",
-    "syntax checks on3 drivers",
-    "LOCKED gates and diff --check"
+    "Vite production build with8MP4s",
+    "Contract validator8LOCKED/8slots",
+    "Syntax and LOCKED/diff-check gates",
+    "2252-card-focus-labels SUCCEEDED/ACCEPTED_SCOPED",
+    "56management tests; total159focused/8suites",
+    "Final159focused/8suites,types,8contracts/8slots,syntax,LOCKED/diff-check PASS;16receipt tests reused unchanged"
   ],
   "testsRemaining": [
-    "Full stats toggle focus retention and representative status/aptitude content",
-    "Champion ending if not terminal accepted",
-    "620exact recovery if not terminal accepted",
-    "Sacrifice branch,full keyboard grid/fallback,settled VFX and combat balance"
+    "Champion ending: native support readiness/preparation,actual skill/heal behavior and earned ending/exact reload",
+    "620exactV6recovery: requested village boundary not reached; marais pilot preparation/inputs need diagnosis",
+    "Sacrifice branch,Tab/full keyboard grid/scroll/fallback,settled VFX and combat balance"
   ],
   "blockers": [
-    "Statistics toggle rebuild loses focus to BODY; full accessibility acceptance remains open",
-    "2122-intermediate-final-wheel: FAILED; no acceptance",
-    "2122-trial-final-wheel: FAILED; no acceptance"
+    "2252-recovery-620 FAILED native marais defeat50actions before lion-village-choice; no recovery acceptance",
+    "2252-trial-unlocked FAILED actual native defeat round14/69actions,Champion121HP; no ending/healing acceptance",
+    "Full keyboard battlefield targeting absent; fallback/VFX/balance and sacrifice criteria open",
+    "1323 earned second-refuge ancestry is mixed-build; not a single corrected-build campaign"
   ],
   "remainingWork": [
     "Item9 remains active: scoped healing/earned rescue second-refuge delivered; both full ending/branch, combat/VFX/mobile/defeat acceptance incomplete",
     "Artistic videos incomplete EXTERNAL_MANUAL_WORKSTREAM; recurring generation/polling/replacement excluded",
     "Prologue/refuge extra-slot and Alistair decisions remain dedicated; audio DEFERRED"
   ],
-  "nextAction": "Resume item9 from this checkpoint. Read2122-final-wheel terminal receipts first. Keep accepted card/grid scopes as ledger records; fix native stats-toggle focus retention in renderPanel without tactical writes, verify representative status/aptitude rows and focused native controls. 620deadline ended village round9Alistair2HP after22Wait and real marais54actions8rounds; rerun recovery solo with25minute bound from successful1153seed/proof. Champion ended round8HP312/520,Alistair72/Kestrel90alive;4conserve waits but no skill casts: inspect native skill selection/target eligibility before another35minute solo ending run from successful1323seed/proof. Preserve exact owner/reload assertions;1323mixed-build ancestry stays explicit. Then sacrifice/full keyboard grid/fallback/VFX/balance. Do not accept interrupted/failed continuations.",
+  "nextAction": "Resume item9 from this checkpoint; inspect final2252receipts and campaign-proof.json first. Card focus/content8cases ACCEPTED_SCOPED; no repeat unchanged. Correct only the native pilot issue supported by trial trace: Marian has w_salvation but spends/prepares AP too late, one conserve wait at round4/gx6gz3 then KO without casting. Plan early support AP readiness and positioning through existing controls; do not unlock skills or alter combat truth/balance. Register a new solo35minute trial from successful1323exact second-refuge save/proof after correction; preserve mixed-build lineage and owner/ending/exactV6reload assertions. Diagnose620marais50action defeat and affordable prep from successful1153first-refuge seed(gold130;220gold healer upgrade is not affordable as-is), then new registered25minute village recovery. Never seed from failed2252outputs. Continue sacrifice,shared native keyboard cell navigation/focus/announcement, fallback,VFX/balance; demo remains incomplete.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-LOCK-1: COMPLETE",
     "Contract drift audit: COMPLETE",
@@ -88,7 +91,7 @@
     "Audio decision after structure lock: DEFERRED"
   ],
   "creditStatus": "CODEX_AVAILABLE; this run authorized; automation settings unchanged",
-  "contractComplianceStatus": "PRODUCTION-CONTRACTS-LOCK-1/v1: scoped wheel/card/grid per terminal ledger; no LOCKED changes. Full item9 IN_PROGRESS; unresolved focus/campaign criteria excluded.",
+  "contractComplianceStatus": "PRODUCTION-CONTRACTS-LOCK-1/v1: native card8cases and unlocked-skill observation scoped PASS; full item9 IN_PROGRESS/BLOCKED. No LOCKED rule changed.",
   "commitReferenceScope": "Verified implementation/evidence checkpoint; final state-only closeout identified by HEAD/origin/dev and automation memory rather than circular self-reference.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
@@ -197,67 +200,62 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
+  "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-02T18:57:45.177Z",
+  "lastHeartbeat": "2026-10-02T23:48:33.660Z",
   "wip": {
-    "status": "GREEN",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261002T2252",
+    "sha": "5033b41bab499bee2ce6f4e715b14206e594771f",
+    "status": "UNKNOWN",
     "dirtyFiles": [
-      ".agents/agents/cinematics-journey.md",
-      ".codex/agents/cinematics-journey.toml",
-      ".agents/agents/contracts-guardian.md",
-      ".codex/agents/contracts-guardian.toml",
-      ".agents/agents/handoff-governor.md",
-      ".codex/agents/handoff-governor.toml",
-      ".agents/agents/narrative-tableau.md",
-      ".codex/agents/narrative-tableau.toml",
-      ".agents/agents/qa-evidence-runner.md",
-      ".codex/agents/qa-evidence-runner.toml",
-      ".agents/agents/ui-accessibility.md",
-      ".codex/agents/ui-accessibility.toml",
-      ".agents/skills/autonomy-handoff/SKILL.md",
-      ".agents/skills/contracts-compliance/SKILL.md",
-      ".agents/skills/qa-evidence/SKILL.md",
-      "AGENTS.md",
-      "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/RECURRING_RUN_PROMPT.md",
-      "docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-02.md",
-      "docs/autonomy/AUTONOMY_EFFICIENCY_BASELINE_2026-10-02.json",
-      "docs/autonomy/QA_JOB_CONTINUITY.md",
+      "src/combat/legacyCombatRuntime.js",
+      "tools/combat-card-scroll-production-qa.mjs",
+      "tools/demo-continuous-production-qa.mjs",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "tools/demo-continuous-production-qa.mjs",
-      "tools/qa/qa-job.mjs",
-      "tools/qa/qa-job.test.mjs"
+      "docs/reports/combat-stats-focus-retention-1.md",
+      "docs/reports/combat-stats-focus-retention-1/proof.json",
+      "docs/reports/combat-stats-focus-retention-1/390-844-no-preference-aptitude.png",
+      "docs/reports/combat-stats-focus-retention-1/390-844-no-preference-status.png",
+      "docs/reports/combat-stats-focus-retention-1/390-600-no-preference-scrolled.png",
+      "docs/reports/combat-stats-focus-retention-1/620-780-no-preference-status.png",
+      "docs/reports/combat-stats-focus-retention-1/620-780-reduce-scrolled.png",
+      "docs/reports/combat-stats-focus-retention-1/1366-768-reduce-aptitude.png",
+      "docs/autonomy/handoffs/2026-10-02T2252Z-codex-stats-focus-checkpoint.md",
+      "docs/reports/combat-stats-focus-retention-1/campaign-proof.json",
+      "docs/reports/combat-stats-focus-retention-1/620-native-marais-defeat.png",
+      "docs/reports/combat-stats-focus-retention-1/trial-native-failure.png"
     ],
-    "sha": "f4bd6181492acf1432cc9427862dbb1deea98d2c",
-    "lastGreenCheck": "14receipt+16RunSystem tests/types/8contracts/syntax/LOCKED gates/scoped guardian PASS; production browser pending",
-    "branch": "wip/codex-config-efficiency-20261002T1820",
-    "retention": "Keep snapshot ref until reviewed retention of exact interrupted/interim state; implementation source is integrated on dev."
+    "lastGreenCheck": "Final159focused/8suites,16unchanged receipt tests,types/contracts/build and8native card cases PASS; two continuous runs FAILED/NOT_ACCEPTED"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
+    "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-02T22:35:48.311Z",
+    "lastHeartbeat": "2026-10-02T23:48:33.660Z",
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261002T2122",
-      "sha": "72c958c5761ac3a9fc74fa9c81c10f4f8df86f36",
-      "status": "RETIRED_AFTER_VERIFIED_DEV_CHECKPOINT",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261002T2252",
+      "sha": "5033b41bab499bee2ce6f4e715b14206e594771f",
+      "status": "UNKNOWN",
       "dirtyFiles": [
-        "src/styles/combat-hud.css",
-        "src/combat/combatKeyboard.ts",
-        "src/combat/combatKeyboard.test.ts",
         "src/combat/legacyCombatRuntime.js",
-        "tools/demo-continuous-production-qa.mjs",
-        "tools/combat-grid-hit-production-qa.mjs",
         "tools/combat-card-scroll-production-qa.mjs",
-        "docs/reports/combat-grid-hit-reachability-1.md",
+        "tools/demo-continuous-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/reports/combat-stats-focus-retention-1.md",
+        "docs/reports/combat-stats-focus-retention-1/proof.json",
+        "docs/reports/combat-stats-focus-retention-1/390-844-no-preference-aptitude.png",
+        "docs/reports/combat-stats-focus-retention-1/390-844-no-preference-status.png",
+        "docs/reports/combat-stats-focus-retention-1/390-600-no-preference-scrolled.png",
+        "docs/reports/combat-stats-focus-retention-1/620-780-no-preference-status.png",
+        "docs/reports/combat-stats-focus-retention-1/620-780-reduce-scrolled.png",
+        "docs/reports/combat-stats-focus-retention-1/1366-768-reduce-aptitude.png",
+        "docs/autonomy/handoffs/2026-10-02T2252Z-codex-stats-focus-checkpoint.md",
+        "docs/reports/combat-stats-focus-retention-1/campaign-proof.json",
+        "docs/reports/combat-stats-focus-retention-1/620-native-marais-defeat.png",
+        "docs/reports/combat-stats-focus-retention-1/trial-native-failure.png"
       ],
-      "lastGreenCheck": "95focused tests/types/contracts/build PASS; browser final proofs pending",
-      "preservationVerifiedAt": "2026-10-02T22:35:48.2393948Z"
+      "lastGreenCheck": "Final159focused/8suites,16unchanged receipt tests,types/contracts/build and8native card cases PASS; two continuous runs FAILED/NOT_ACCEPTED"
     },
     "qaJobs": [
       {
@@ -2889,6 +2887,589 @@
         "provenanceStable": true,
         "eligibleForReviewAtReview": false,
         "processConfirmedStopped": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "2252-card-focus",
+        "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
+        "status": "FAILED",
+        "registeredAt": "2026-10-02T22:59:23.759Z",
+        "pid": 21708,
+        "port": 5268,
+        "command": [
+          "node",
+          "tools/combat-card-scroll-production-qa.mjs"
+        ],
+        "parameters": {
+          "cases": [
+            [
+              390,
+              844,
+              "no-preference"
+            ],
+            [
+              390,
+              844,
+              "reduce"
+            ],
+            [
+              390,
+              600,
+              "no-preference"
+            ],
+            [
+              560,
+              780,
+              "no-preference"
+            ],
+            [
+              620,
+              780,
+              "no-preference"
+            ],
+            [
+              620,
+              780,
+              "reduce"
+            ],
+            [
+              1366,
+              768,
+              "no-preference"
+            ],
+            [
+              1366,
+              768,
+              "reduce"
+            ]
+          ],
+          "campaignAcceptance": false
+        },
+        "requiredAssertions": [
+          "NATIVE_CARD_SCROLL",
+          "NATIVE_TOGGLE_FOCUS_RETENTION",
+          "FOCUSED_TOGGLE_VISIBLE",
+          "CARD_PREVIEW_PRESERVES_TACTICAL_TRUTH",
+          "NATIVE_STATUS_AND_APTITUDE_CONTENT"
+        ],
+        "output": "tmp/demo/2252-card-focus",
+        "receiptPath": "tmp/demo/2252-card-focus/qa-job.json",
+        "provenance": {
+          "gitHead": "122ffe6feffd3d6ae4df678bbd13e6421596e4ea",
+          "sourceTree": "87d808e01f7834248e795bbc5276d5eb7389121b",
+          "sourceDiffSha256": "3487bf9cdd153d2066b6325ddd0d65fb44cfda1c53ebbb37de34d3ee6b99b514",
+          "driver": {
+            "path": "tools/combat-card-scroll-production-qa.mjs",
+            "sha256": "5d56e051332d2d7fc65dccf16f0c9a104999cfe0297c23098548282904febe59"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-CRVF3Hlw.js",
+              "sha256": "5d4855b52058f35243501afbe6c6c6c8b00b8629a841d5f451e40e43f1369de3"
+            },
+            {
+              "path": "dist/assets/combat-CVSHPmTa.css",
+              "sha256": "9af7a139b176c9980188c4d01d126241144d0b6d5327bf1e202591302cf243b7"
+            },
+            {
+              "path": "dist/assets/game-DNVJsSmX.js",
+              "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+            },
+            {
+              "path": "dist/assets/game-Z5tVqu3k.css",
+              "sha256": "ff17df7f056304ca1c29dbf47e7b8c2821311a645dc30e83a92a564d51a9926e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f7e71881a1d178a7f793a64f477c1c9e899a0077aa962e05f67c2fb2f871c361"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-02T22:59:24.419Z",
+        "endedAt": "2026-10-02T22:59:36.646Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/2252-card-focus/results.json",
+        "resultSha256": "d3ba6d8ab311e1f0f5e6cf9555b513f5c69cad995569e5f0e2efd9bd98bc4d49",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "limitation": "Driver initially expected visible status text; runtime uses accessible icon label. Corrected label assertion in final labels job; no runtime status change."
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "2252-card-focus-labels",
+        "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-02T23:01:07.653Z",
+        "pid": 29220,
+        "port": 5268,
+        "command": [
+          "node",
+          "tools/combat-card-scroll-production-qa.mjs"
+        ],
+        "parameters": {
+          "cases": [
+            [
+              390,
+              844,
+              "no-preference"
+            ],
+            [
+              390,
+              844,
+              "reduce"
+            ],
+            [
+              390,
+              600,
+              "no-preference"
+            ],
+            [
+              560,
+              780,
+              "no-preference"
+            ],
+            [
+              620,
+              780,
+              "no-preference"
+            ],
+            [
+              620,
+              780,
+              "reduce"
+            ],
+            [
+              1366,
+              768,
+              "no-preference"
+            ],
+            [
+              1366,
+              768,
+              "reduce"
+            ]
+          ],
+          "campaignAcceptance": false
+        },
+        "requiredAssertions": [
+          "NATIVE_CARD_SCROLL",
+          "NATIVE_TOGGLE_FOCUS_RETENTION",
+          "FOCUSED_TOGGLE_VISIBLE",
+          "CARD_PREVIEW_PRESERVES_TACTICAL_TRUTH",
+          "NATIVE_STATUS_AND_APTITUDE_CONTENT"
+        ],
+        "output": "tmp/demo/2252-card-focus-labels",
+        "receiptPath": "tmp/demo/2252-card-focus-labels/qa-job.json",
+        "provenance": {
+          "gitHead": "122ffe6feffd3d6ae4df678bbd13e6421596e4ea",
+          "sourceTree": "87d808e01f7834248e795bbc5276d5eb7389121b",
+          "sourceDiffSha256": "3487bf9cdd153d2066b6325ddd0d65fb44cfda1c53ebbb37de34d3ee6b99b514",
+          "driver": {
+            "path": "tools/combat-card-scroll-production-qa.mjs",
+            "sha256": "6befdf9d5054c8532b6d9ce50b8cfad390b767d7942cd22d4aef529fb3328bc4"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-CRVF3Hlw.js",
+              "sha256": "5d4855b52058f35243501afbe6c6c6c8b00b8629a841d5f451e40e43f1369de3"
+            },
+            {
+              "path": "dist/assets/combat-CVSHPmTa.css",
+              "sha256": "9af7a139b176c9980188c4d01d126241144d0b6d5327bf1e202591302cf243b7"
+            },
+            {
+              "path": "dist/assets/game-DNVJsSmX.js",
+              "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+            },
+            {
+              "path": "dist/assets/game-Z5tVqu3k.css",
+              "sha256": "ff17df7f056304ca1c29dbf47e7b8c2821311a645dc30e83a92a564d51a9926e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f7e71881a1d178a7f793a64f477c1c9e899a0077aa962e05f67c2fb2f871c361"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED",
+        "startedAt": "2026-10-02T23:01:08.332Z",
+        "endedAt": "2026-10-02T23:04:09.345Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "exitCode": 0,
+        "resultPath": "tmp/demo/2252-card-focus-labels/results.json",
+        "resultSha256": "53483b0d5b65cd27d4a4f3fdb58cee8cf894e1dca124bce1660ce5f4cf45a940",
+        "provenanceStable": true,
+        "reviewedAt": "2026-10-02T23:41:21.719Z",
+        "scope": "Native stats focus retention, scrolling, exhausted indicator and innate aptitude in standalone production; no full campaign/grid keyboard claim"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "2252-recovery-620",
+        "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
+        "status": "FAILED",
+        "registeredAt": "2026-10-02T23:01:39.09Z",
+        "pid": 11700,
+        "port": 5269,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "defeat-recovery",
+          "routePlan": "rescue",
+          "timeoutMinutes": 25,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": true,
+          "viewport": [
+            620,
+            780
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/continuous-1153-fresh-final/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EXACT_V6_CHECKPOINT_RECOVERY",
+          "VISIBLE_T1_DEPARTURE",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/2252-recovery-620",
+        "receiptPath": "tmp/demo/2252-recovery-620/qa-job.json",
+        "provenance": {
+          "gitHead": "122ffe6feffd3d6ae4df678bbd13e6421596e4ea",
+          "sourceTree": "87d808e01f7834248e795bbc5276d5eb7389121b",
+          "sourceDiffSha256": "3487bf9cdd153d2066b6325ddd0d65fb44cfda1c53ebbb37de34d3ee6b99b514",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "97ffed606c26ee8d3d2ec3a3cee4fa8b4559e62d8e50ecffc3cc137521f90128"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+              "sha256": "d8b0deb62c66fc2fd3d01ec8c513fafb697021e8f9c808869277b90a250e8267"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/continuous-1153-fresh-final/results.json",
+              "sha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+            }
+          ],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-CRVF3Hlw.js",
+              "sha256": "5d4855b52058f35243501afbe6c6c6c8b00b8629a841d5f451e40e43f1369de3"
+            },
+            {
+              "path": "dist/assets/combat-CVSHPmTa.css",
+              "sha256": "9af7a139b176c9980188c4d01d126241144d0b6d5327bf1e202591302cf243b7"
+            },
+            {
+              "path": "dist/assets/game-DNVJsSmX.js",
+              "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+            },
+            {
+              "path": "dist/assets/game-Z5tVqu3k.css",
+              "sha256": "ff17df7f056304ca1c29dbf47e7b8c2821311a645dc30e83a92a564d51a9926e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f7e71881a1d178a7f793a64f477c1c9e899a0077aa962e05f67c2fb2f871c361"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-02T23:01:40.220Z",
+        "endedAt": "2026-10-02T23:09:17.242Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/2252-recovery-620/results.json",
+        "resultSha256": "5c13f91ee6d369e6354c0eed09601dd4429113c1a336efdceba89e3a701b96f7",
+        "provenanceStable": true,
+        "limitation": "Actual native marsh defeat after50actions (14attack,11move,4potion,1revive,20wait); remaining foes40and1HP. Requested village recovery boundary never reached. Not evidence of recovery or balance/deadlock."
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "2252-trial-native-skills",
+        "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
+        "status": "ABORTED_PILOT_POLICY_DEFECT",
+        "registeredAt": "2026-10-02T23:10:28.062Z",
+        "pid": 25540,
+        "port": 5270,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "ending",
+          "routePlan": "rescue",
+          "timeoutMinutes": 35,
+          "finalePlan": "trial",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/continuous-1323-salvation-baseline/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/continuous-1323-salvation-baseline/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/2252-trial-native-skills",
+        "receiptPath": "tmp/demo/2252-trial-native-skills/qa-job.json",
+        "provenance": {
+          "gitHead": "122ffe6feffd3d6ae4df678bbd13e6421596e4ea",
+          "sourceTree": "87d808e01f7834248e795bbc5276d5eb7389121b",
+          "sourceDiffSha256": "3487bf9cdd153d2066b6325ddd0d65fb44cfda1c53ebbb37de34d3ee6b99b514",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "97ffed606c26ee8d3d2ec3a3cee4fa8b4559e62d8e50ecffc3cc137521f90128"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/continuous-1323-salvation-baseline/earned-lion-second-refuge-v6.json",
+              "sha256": "224d1796a1a0b92f98dcce27ba0652eb98fa7471b2c84653321c7470c0c83d50"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/continuous-1323-salvation-baseline/results.json",
+              "sha256": "1399e4268dff72b77519fd3e874c7542bcd4a2fc207003b1494e32d2500c5e2a"
+            }
+          ],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-CRVF3Hlw.js",
+              "sha256": "5d4855b52058f35243501afbe6c6c6c8b00b8629a841d5f451e40e43f1369de3"
+            },
+            {
+              "path": "dist/assets/combat-CVSHPmTa.css",
+              "sha256": "9af7a139b176c9980188c4d01d126241144d0b6d5327bf1e202591302cf243b7"
+            },
+            {
+              "path": "dist/assets/game-DNVJsSmX.js",
+              "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+            },
+            {
+              "path": "dist/assets/game-Z5tVqu3k.css",
+              "sha256": "ff17df7f056304ca1c29dbf47e7b8c2821311a645dc30e83a92a564d51a9926e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f7e71881a1d178a7f793a64f477c1c9e899a0077aa962e05f67c2fb2f871c361"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-02T23:10:28.789Z",
+        "endedAt": null,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": false,
+        "eligibleForReview": false,
+        "workerReceiptStatus": "RUNNING",
+        "ownerDisposition": "tmp/demo/2252-trial-native-skills/owner-interruption.json",
+        "processConfirmedStopped": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "2252-trial-unlocked",
+        "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
+        "status": "FAILED",
+        "registeredAt": "2026-10-02T23:19:28.025Z",
+        "pid": 54872,
+        "port": 5270,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "ending",
+          "routePlan": "rescue",
+          "timeoutMinutes": 35,
+          "finalePlan": "trial",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/continuous-1323-salvation-baseline/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/continuous-1323-salvation-baseline/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/2252-trial-unlocked",
+        "receiptPath": "tmp/demo/2252-trial-unlocked/qa-job.json",
+        "provenance": {
+          "gitHead": "122ffe6feffd3d6ae4df678bbd13e6421596e4ea",
+          "sourceTree": "87d808e01f7834248e795bbc5276d5eb7389121b",
+          "sourceDiffSha256": "3487bf9cdd153d2066b6325ddd0d65fb44cfda1c53ebbb37de34d3ee6b99b514",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "9448069f6a3ec6282c50eef4cdce8c283ae362db6156bf2ad1ceed1381dea541"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/continuous-1323-salvation-baseline/earned-lion-second-refuge-v6.json",
+              "sha256": "224d1796a1a0b92f98dcce27ba0652eb98fa7471b2c84653321c7470c0c83d50"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/continuous-1323-salvation-baseline/results.json",
+              "sha256": "1399e4268dff72b77519fd3e874c7542bcd4a2fc207003b1494e32d2500c5e2a"
+            }
+          ],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-CRVF3Hlw.js",
+              "sha256": "5d4855b52058f35243501afbe6c6c6c8b00b8629a841d5f451e40e43f1369de3"
+            },
+            {
+              "path": "dist/assets/combat-CVSHPmTa.css",
+              "sha256": "9af7a139b176c9980188c4d01d126241144d0b6d5327bf1e202591302cf243b7"
+            },
+            {
+              "path": "dist/assets/game-DNVJsSmX.js",
+              "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+            },
+            {
+              "path": "dist/assets/game-Z5tVqu3k.css",
+              "sha256": "ff17df7f056304ca1c29dbf47e7b8c2821311a645dc30e83a92a564d51a9926e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f7e71881a1d178a7f793a64f477c1c9e899a0077aa962e05f67c2fb2f871c361"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-02T23:19:28.794Z",
+        "endedAt": "2026-10-02T23:36:50.209Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/2252-trial-unlocked/results.json",
+        "resultSha256": "809adaecba576ac2a86fb3e8c37ff62dcd73359961178fdd4bc093035339f555",
+        "provenanceStable": true
       }
     ],
     "status": "CHECKPOINT_COMPLETE",
@@ -2920,6 +3501,18 @@
         "ui-accessibility"
       ],
       "scope": "Same reviewers reused for source/card/grid/terminal proof; no quota gain claim"
+    },
+    "nextAction": "Resume item9 from this checkpoint; inspect final2252receipts and campaign-proof.json first. Card focus/content8cases ACCEPTED_SCOPED; no repeat unchanged. Correct only the native pilot issue supported by trial trace: Marian has w_salvation but spends/prepares AP too late, one conserve wait at round4/gx6gz3 then KO without casting. Plan early support AP readiness and positioning through existing controls; do not unlock skills or alter combat truth/balance. Register a new solo35minute trial from successful1323exact second-refuge save/proof after correction; preserve mixed-build lineage and owner/ending/exactV6reload assertions. Diagnose620marais50action defeat and affordable prep from successful1153first-refuge seed(gold130;220gold healer upgrade is not affordable as-is), then new registered25minute village recovery. Never seed from failed2252outputs. Continue sacrifice,shared native keyboard cell navigation/focus/announcement, fallback,VFX/balance; demo remains incomplete.",
+    "closeout": {
+      "status": "READY_TO_COMMIT",
+      "ownedWorkersStopped": true,
+      "portsClosed": [
+        5268,
+        5269,
+        5270
+      ],
+      "noMainChange": true,
+      "proofScope": "Card/native policy observations only; full campaign blocked"
     }
   },
   "previousInterruptedRun": {
@@ -2978,5 +3571,41 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-02T2122Z-codex-grid-scroll-checkpoint.md"
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-02T2252Z-codex-stats-focus-checkpoint.md",
+  "runMeasurement": {
+    "readOnlySpecialists": [
+      "contracts-guardian",
+      "ui-accessibility"
+    ],
+    "reviewPasses": {
+      "contracts": 3,
+      "ui": 2
+    },
+    "acceptedSubtasks": [
+      "Native inspection focus/content8cases",
+      "Unlocked-skill policy source and native observation; no ending acceptance"
+    ],
+    "recoveredJobs": 0,
+    "reruns": [
+      "Card accessible-label assertion",
+      "Trial actual-unlocked-skill policy"
+    ],
+    "regressions": "No introduced tactical rule/source regression observed; campaign acceptance open",
+    "quotaSavingsClaim": false,
+    "failedContinuousRuns": 2,
+    "interruptedPilotRuns": 1,
+    "orchestrator": {
+      "asOf": "2026-10-02T23:44:45.250Z",
+      "input_tokens": 13951077,
+      "cached_input_tokens": 13705088,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 61923,
+      "reasoning_output_tokens": 28347,
+      "total_tokens": 14013000,
+      "uncachedInput": 245989,
+      "workUnits": 307912,
+      "units": "Token work units, not credits or account quota; cumulative orchestrator session only",
+      "reviewerWorkUnits": "Unavailable; review counts recorded instead"
+    }
+  }
 }
