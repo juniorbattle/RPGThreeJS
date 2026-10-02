@@ -6,16 +6,16 @@ Git on dev and this state pair are the current continuation authority.
 | --- | --- |
 | `status` | IN_PROGRESS |
 | `runStartedAt` | 2026-10-02T02:09:32.4830893Z |
-| `runEndedAt` | 2026-10-02T02:58:56.065Z |
+| `runEndedAt` | 2026-10-02T03:03:23.1387394Z |
 | `activeTask` | CINEMATIC-EIGHT-SLOT-REMASTER |
 | `activePhase` | Six candidate review checkpoint; no production replacements |
 | `activeSubtask` | Bois-Clair arrival shot 2 keyframe/motion and full-slot portrait/cut QA |
 | `workingBranch` | dev |
-| `lastKnownGoodCommit` | 733264c2952614992572d244c2bca9f96bad99c6 |
-| `lastPushedCommit` | 733264c2952614992572d244c2bca9f96bad99c6 |
+| `lastKnownGoodCommit` | 93f8df11c1f9ff2bef652ad1e31306739c2382c1 |
+| `lastPushedCommit` | 93f8df11c1f9ff2bef652ad1e31306739c2382c1 |
 | `creditStatus` | CODEX_AVAILABLE; MINIMAX_SIX_TASKS_SUCCEEDED_BALANCE_NOT_MEASURED |
 | `contractComplianceStatus` | Contract set v1: protected-byte/gameplay/narrative/save/LOCKED preservation PASS; candidate review/evidence PASS; final replacement art and portrait acceptance BLOCKED/pending. No rule changed; no video promoted; item 8 incomplete. |
-| `commitReferenceScope` | Verified prior tooling checkpoint; final implementation/state closeout commits identified by Git HEAD/origin/dev and automation memory. |
+| `commitReferenceScope` | Verified implementation checkpoint; the subsequent state-only closeout is identified by Git HEAD/origin/dev and automation memory. |
 
 ## completedThisRun
 
@@ -29,6 +29,8 @@ Git on dev and this state pair are the current continuation authority.
 - 115/115 focused tests, TypeScript, contracts/build/eight shipped MP4s PASS; 55/55 full-candidate player cases and 4/4 partial-block skip previews PASS
 - Compact four-capture gallery and separate immutable checkpoint/followup/final proofs promoted; inherited historical allowlist failure documented
 - No production MP4, source runtime, gameplay, save, canonical reference or LOCKED contract changed
+
+- Implementation checkpoint 93f8df1 pushed and verified against remote dev; state-only closeout follows; owned QA server stopped
 
 ## filesChanged
 
