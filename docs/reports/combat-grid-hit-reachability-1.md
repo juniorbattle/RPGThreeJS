@@ -6,7 +6,7 @@
 | DOMAIN | Combat UI and production QA |
 | BASELINE | dev5455d067e45e8120c318453268ebc51143a46ad0 |
 | BRANCH | dev |
-| HEAD | Implementation checkpoint in autonomy state; final state commit is HEAD/origin/dev |
+| HEAD | 790dc26ad18bf1f6def706f91543298515a33d85; final state commit is HEAD/origin/dev |
 | STATUS | Review; scoped dev checkpoint; demo item9 IN_PROGRESS |
 | MERGED_IN | NONE; dev checkpoint |
 | SUPERSEDES | NONE; complements native keyboard checkpoint |

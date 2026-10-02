@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-02T21:24:23.4164153Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-02T22:35:48.2393948Z",
   "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
-  "activePhase": "Final production grid/card and campaign proof",
+  "activePhase": "Checkpoint; continue item9 native focus and campaign acceptance",
   "activeSubtask": "Native stats-toggle focus retention and remaining earned campaign acceptance",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "c05ba67bd2823db16d80638d4aff3d1ba74b0052",
-  "lastPushedCommit": "b26b7f8889bca7a7ecd735881cd14780a269ebc3",
+  "lastKnownGoodCommit": "790dc26ad18bf1f6def706f91543298515a33d85",
+  "lastPushedCommit": "790dc26ad18bf1f6def706f91543298515a33d85",
   "completedThisRun": [
     "Clean lockless preflight;5455d067dev parity; no project QA; resumed exact item9",
     "Native baseline620grid has6intercepted centers; CSS card reflow retains camera/art/truth",
@@ -239,11 +239,11 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-02T22:33:59.429Z",
+    "lastHeartbeat": "2026-10-02T22:35:48.311Z",
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261002T2122",
       "sha": "72c958c5761ac3a9fc74fa9c81c10f4f8df86f36",
-      "status": "GREEN",
+      "status": "RETIRED_AFTER_VERIFIED_DEV_CHECKPOINT",
       "dirtyFiles": [
         "src/styles/combat-hud.css",
         "src/combat/combatKeyboard.ts",
@@ -256,7 +256,8 @@
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
       ],
-      "lastGreenCheck": "95focused tests/types/contracts/build PASS; browser final proofs pending"
+      "lastGreenCheck": "95focused tests/types/contracts/build PASS; browser final proofs pending",
+      "preservationVerifiedAt": "2026-10-02T22:35:48.2393948Z"
     },
     "qaJobs": [
       {
@@ -885,7 +886,7 @@
         },
         "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-02T20:23:26.064Z",
-        "endedAt": "2026-10-02T20:34:46.490Z",
+        "endedAt": "2026-10-02T20:34:46.49Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": false,
@@ -1594,7 +1595,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T21:35:25.150Z",
+        "startedAt": "2026-10-02T21:35:25.15Z",
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
@@ -2093,7 +2094,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T21:57:42.750Z",
+        "startedAt": "2026-10-02T21:57:42.75Z",
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
@@ -2551,7 +2552,10 @@
         "eligibleForReviewAtReview": true,
         "acceptedScope": "Standalone native32cell center raycasts,DOM margins,move/Undo/attack;13cases; campaignAcceptance=false",
         "contractsReview": "Scoped source/proof independently reviewed",
-        "provenanceRepresentation": "Reviewed precommit sourceTree/diff; verify unchanged code blobs at implementation commit"
+        "provenanceRepresentation": "Reviewed precommit sourceTree/diff; verify unchanged code blobs at implementation commit",
+        "processConfirmedStopped": true,
+        "acceptanceLinkedImplementationCommit": "790dc26ad18bf1f6def706f91543298515a33d85",
+        "reviewedPayloadMatchesCommittedBlobs": true
       },
       {
         "schemaVersion": 1,
@@ -2661,7 +2665,10 @@
         "eligibleForReviewAtReview": true,
         "acceptedScope": "Native card scroll4cases,refocused toggle visibility;focusRetentionAccepted=false;campaignAcceptance=false",
         "contractsReview": "Scoped source/proof independently reviewed",
-        "provenanceRepresentation": "Reviewed precommit sourceTree/diff; verify unchanged code blobs at implementation commit"
+        "provenanceRepresentation": "Reviewed precommit sourceTree/diff; verify unchanged code blobs at implementation commit",
+        "processConfirmedStopped": true,
+        "acceptanceLinkedImplementationCommit": "790dc26ad18bf1f6def706f91543298515a33d85",
+        "reviewedPayloadMatchesCommittedBlobs": true
       },
       {
         "schemaVersion": 1,
@@ -2770,7 +2777,8 @@
         "resultPath": "tmp/demo/2122-intermediate-final-wheel/results.json",
         "resultSha256": "1fbfa5a9e677936f6f3140a3792bc8ba4b49bf91cf9d6933a940c2680c7c994e",
         "provenanceStable": true,
-        "eligibleForReviewAtReview": false
+        "eligibleForReviewAtReview": false,
+        "processConfirmedStopped": true
       },
       {
         "schemaVersion": 1,
@@ -2879,10 +2887,11 @@
         "resultPath": "tmp/demo/2122-trial-final-wheel/results.json",
         "resultSha256": "bf44045d4bd602f8aa378004d4b29a9dc01507d730beee1d3da7a46a0c748166",
         "provenanceStable": true,
-        "eligibleForReviewAtReview": false
+        "eligibleForReviewAtReview": false,
+        "processConfirmedStopped": true
       }
     ],
-    "status": "PRODUCTION_QA_RUNNING",
+    "status": "CHECKPOINT_COMPLETE",
     "implementationCommit": "c05ba67bd2823db16d80638d4aff3d1ba74b0052",
     "reviews": {
       "ui": 1,
@@ -2892,7 +2901,26 @@
       "contractsPasses": 1
     },
     "qaProcessesStopped": false,
-    "ownedPortsClosed": []
+    "ownedPortsClosed": [],
+    "activeSubtask": "Native stats-toggle focus retention and remaining earned campaign acceptance",
+    "qaProcessAndPortClosure": {
+      "closed": true,
+      "ports": [
+        5263,
+        5264,
+        5265,
+        5266,
+        5267
+      ],
+      "checkedAt": "2026-10-02T22:35:48.2393948Z"
+    },
+    "reviewUsage": {
+      "specialists": [
+        "contracts-guardian",
+        "ui-accessibility"
+      ],
+      "scope": "Same reviewers reused for source/card/grid/terminal proof; no quota gain claim"
+    }
   },
   "previousInterruptedRun": {
     "runId": "rpgthreejs-auto-dev-90m-20261002T1453",
