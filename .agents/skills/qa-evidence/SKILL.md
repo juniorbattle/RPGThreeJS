@@ -33,6 +33,12 @@ Other drivers (`tools/ui-*-qa.mjs`, `tools/narrative-stage-utility-consistency-1
 
 Viewports used by accepted evidence: desktop 1440x810 or 1920x1080 (1366x768 for cinematics), intermediate 620x780, narrow 390x844.
 
+## Long jobs and interruption recovery (OD-2026-10-02-C)
+
+Follow docs/autonomy/QA_JOB_CONTINUITY.md. Register live.qaJobs before launching long QA. The campaign driver writes qa-job.json with PID/port, parameters and driver/helper/source/build hashes, then a final result hash/status after cleanup. Workers never edit shared MD/JSON. The lock holder runs sync at heartbeat/checkpoint and inspects receipts at restart before rerunning. Legacy results with unknown driver identity or old assertions are not current acceptance. A terminal quota event does not prove child processes stopped.
+
+QA broadens at major milestones or concrete regression risks. Reuse results only while relevant provenance and expected assertions match. Sensitive save/combat work needs boundary proof; do not substitute a smoke for required acceptance.
+
 ## Ports and processes
 
 The recurring Codex run and a Devin session may run QA at the same time. Pick a port nobody listens on (`Get-NetTCPConnection -LocalPort <n> -ErrorAction SilentlyContinue`). The DEV server default 5173 is not strict and may shift. Stop only the servers you started and record their PIDs.

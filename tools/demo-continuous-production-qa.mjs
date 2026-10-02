@@ -1,10 +1,11 @@
 /** Earned production campaign proof: actual tactical inputs and bounded native campaign continuation. */
 import assert from 'node:assert/strict';
-import { access, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
+import { access, readFile, readdir, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { isAbsolute, relative, resolve } from 'node:path';
 import { chromium } from 'playwright';
 import { preview } from 'vite';
+import { beginJob, demoJobOptions } from './qa/qa-job.mjs';
 
 const port = Number(process.env.DEMO_QA_PORT ?? 5249);
 const output = resolve(process.env.DEMO_QA_OUTPUT ?? 'tmp/demo/continuous-production');
@@ -42,7 +43,7 @@ const rel = relative(resolve('tmp'), output);
 if (isAbsolute(rel) || rel.startsWith('..')) throw new Error('Output must stay in ignored tmp/');
 try { await access(output); throw new Error('Refusing to overwrite evidence'); }
 catch (error) { if (error.code !== 'ENOENT') throw error; }
-await mkdir(output, {recursive:true});
+const qaJob=beginJob(demoJobOptions());
 const server = await preview({preview:{host:'127.0.0.1',port,strictPort:true}});
 const browser = await chromium.launch({headless:true});
 const context = await browser.newContext({viewport:{width:viewport[0],height:viewport[1]},
@@ -50,6 +51,7 @@ const context = await browser.newContext({viewport:{width:viewport[0],height:vie
 const page = await context.newPage();
 const report = {schemaVersion:1, recordedAt:new Date().toISOString(), method:'FRESH_PRODUCTION_CHRONICLE_NORMAL_PLAYER_INPUTS_REAL_COMBAT',
   fixtureStateWritten:false, combatOutcomeInjected:false, runtimeMutated:false, inputs:[], nodes:[], battles:[], captures:[], errors:[], pass:false};
+report.qaJobReceipt=qaJob.receiptPath;
 Object.assign(report,{target,routePlan,finalePlan,defeatNodeId,nativeDefeatWait,viewport:{width:viewport[0],height:viewport[1]},
   osReducedMotion:process.env.DEMO_QA_OS_MOTION==='1',observationHook:'Built bootstrap exposes GameApp for read-only snapshots; no owner method invoked',refuges:[],choices:[]});
 report.driverSha256=createHash('sha256').update(await readFile('tools/demo-continuous-production-qa.mjs')).digest('hex');
@@ -252,6 +254,8 @@ async function battle(){
     const departure=page.locator('[data-journey-continue]:visible:not([inert])');
     await departure.waitFor({state:'visible',timeout:30000});
     assert.equal((await departure.innerText()).trim(),'Prendre la route');
+    assert.equal(await departure.isEnabled(),true);assert.equal(await departure.evaluate(e=>!!e.closest('[inert]')),false);
+    await departure.focus();assert.equal(await departure.evaluate(e=>e===document.activeElement),true);
     const recovered=await state();
     const expected=structuredClone(savedBefore),downstream=new Set();
     const nodes=new Map(expected.run.graph.nodes.map(node=>[node.id,node]));
@@ -283,6 +287,8 @@ async function battle(){
     await page.waitForFunction(id=>window.__demoQaApp?.state.currentNodeId===id,recovered.currentNodeId);
     await departure.waitFor({state:'visible',timeout:30000});
     assert.equal((await departure.innerText()).trim(),'Prendre la route');
+    assert.equal(await departure.isEnabled(),true);assert.equal(await departure.evaluate(e=>!!e.closest('[inert]')),false);
+    await departure.focus();assert.equal(await departure.evaluate(e=>e===document.activeElement),true);
     const resumed=await state();assert.deepEqual(resumed,recovered,'Defeat recovery reload changed V6 truth');
     assert.equal(await page.locator('iframe.combat-frame').count(),0,'Reload replayed defeated combat');
     await capture('native-defeat-recovered-resumed');
@@ -410,5 +416,6 @@ try{
   if(live)await writeFile(resolve(output,'last-earned-owner-state-v6.json'),JSON.stringify(live,null,2)+'\n');
   await context.close();await browser.close();await new Promise((accept,reject)=>server.httpServer.close(error=>error?reject(error):accept()));
   report.endedAt=new Date().toISOString();await writeFile(resolve(output,'results.json'),JSON.stringify(report,null,2)+'\n');
+  if(qaJob.finish(report).status!=='SUCCEEDED')process.exitCode=1;
 }
 console.log(JSON.stringify({pass:report.pass,nodes:report.nodes,battles:report.battles.map(b=>({node:b.nodeId,pass:b.pass,actions:b.actions.length})),failure:report.failure},null,2));

@@ -7,6 +7,10 @@ description: "Use before implementing and before declaring any RPGThreeJS task c
 
 Read first: `docs/game/GAME_CONSTITUTION.md`, `docs/contracts/README.md`, `docs/contracts/contracts.manifest.json`, `docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md`, then every contract the task touches. Lock `PRODUCTION-CONTRACTS-LOCK-1`, commit `b1e8858`. These documents are authoritative: cite them, never paraphrase them into new doctrine.
 
+## Orchestration (OD-2026-10-02-C)
+
+The orchestrator applies this skill before implementation and task completion. Independent contracts-guardian review is required at major milestones or sensitive truth/save/combat/presentation/validator changes, including their QA assertions; it is not mandatory for every run or small checkpoint. Brief the actual diff, claims, relevant contract sections and selected proof. Reports/captures are allowed for a specific claim. Keep the matrix and the LOCKED gates; do not duplicate global readings without an unresolved question.
+
 ## Gates (run them, do not assume)
 
 ```
