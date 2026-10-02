@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "production_eight_serpent_route_ending_v1",
+  "cinematicId": "serpent_route_ending",
+  "tier": "HERO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "production-eight-serpent_route_ending-v1",
+  "resolution": "2K",
+  "frame": {
+    "width": 1920,
+    "height": 1080
+  },
+  "status": "AUTHORING_PREPARED_KEYFRAMES_PENDING_PROVIDER_APPROVAL_REQUIRED",
+  "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
+  "artDirection": "Modern pixel-art/HD-2D. Immutable canonical V2 identities and promoted location; authored major cinematic motion. No production replacement before acceptance.",
+  "canonicalContext": {
+    "nodeId": "lion-final-judgement",
+    "trigger": "after serpent_captain victory, serpentGeneralDefeated=true, completed serpent_pursuit route, AFTER serpent_general_aftermath; before epilogue",
+    "sources": [
+      "src/cinematics/Cin6aPresentation.ts:153",
+      "src/game/GameApp.ts:1527",
+      "src/game/lionFinale.ts:492",
+      "src/game/lionFinale.ts:542"
+    ],
+    "followingDialogueId": "epilogue",
+    "truth": "The General is defeated, the artefact recovered and recognition/Seal earned. The prior aftermath may have entrusted the evidence to Alaric or concealed it; the same slot serves both outcomes.",
+    "exclusions": [
+      "No universally final artefact owner or custody transfer",
+      "No universal public disclosure to the court",
+      "No new execution, reward or route choice",
+      "Do not turn descriptor fallback into game truth"
+    ]
+  },
+  "presentationBoundary": {
+    "duringVideoCastOwner": "VIDEO_OWNS_CAST",
+    "afterVideoSurface": "STATIC_TABLEAU",
+    "afterVideoCastOwner": "STAGE_OWNS_CAST",
+    "dialogueStepsDuringVideoOrHold": 0,
+    "choiceStepsDuringVideoOrHold": 0,
+    "maximumActorsPerComposition": 4,
+    "registryHoldSource": null,
+    "registryHoldMetadataIsDialogueSurfaceAuthority": false,
+    "finalFrameCastReferenceOnly": true,
+    "finalFramePolicy": "Readable stable final image for covered transfer; a hold is allowed only for the exact same established moment. Ending families release before LION_JUDGEMENT epilogue."
+  },
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Acknowledge the already-resolved defeat in the canonical finale battlefield. The General remains defeated without a new execution; scale, atmospheric release and grounded motion carry the culmination.",
+      "framing": "AUTHORED_LOCATION_MAJOR_EVENT",
+      "environment": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+      "source": {
+        "type": "ROOT_SOURCE",
+        "output": "tmp/cinematics/cin4/production_eight_serpent_route_ending_v1/shot_01/source.png",
+        "frame": {
+          "width": 1672,
+          "height": 941
+        },
+        "integration": {
+          "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+          "layoutReference": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+          "referenceAssets": [
+            "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+            "public/assets/characters/pixel/masters/serpent_general_boss.png",
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
+          ],
+          "qualityGates": [
+            "NO_COLLAGE_LOOK",
+            "WORLD_INTEGRATION",
+            "V2_IDENTITY",
+            "CANONICAL_ENVIRONMENT",
+            "NO_GAME_TRUTH_MUTATION"
+          ]
+        }
+      },
+      "characters": [
+        {
+          "id": "serpent_general_boss",
+          "asset": "public/assets/characters/pixel/masters/serpent_general_boss.png",
+          "position": {
+            "x": 0.3333333333333333,
+            "groundY": 0.79
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "CHARACTER:sage_seraphine",
+          "depth": 10,
+          "role": "PRIMARY",
+          "action": "OBSERVE",
+          "mirrorPolicy": "FORBID"
+        },
+        {
+          "id": "sage_seraphine",
+          "asset": "public/assets/characters/pixel/masters/sage_seraphine.png",
+          "position": {
+            "x": 0.6666666666666666,
+            "groundY": 0.79
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "CHARACTER:serpent_general_boss",
+          "depth": 20,
+          "role": "SECONDARY",
+          "action": "OBSERVE",
+          "mirrorPolicy": "FORBID"
+        }
+      ],
+      "camera": {
+        "mode": "SLOW_PULL"
+      },
+      "durationSeconds": 9,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "AUTHORED_CUT_WITH_SAME_WORLD_TIME_AND_TRUTH",
+      "nextStepUiSafeZone": {
+        "x": 0,
+        "y": 0.85,
+        "width": 1,
+        "height": 0.15
+      },
+      "promptIntent": "Acknowledge the already-resolved defeat in the canonical finale battlefield. The General remains defeated without a new execution; scale, atmospheric release and grounded motion carry the culmination. Current canonical truth: The General is defeated, the artefact recovered and recognition/Seal earned. The prior aftermath may have entrusted the evidence to Alaric or concealed it; the same slot serves both outcomes. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No universally final artefact owner or custody transfer; No universal public disclosure to the court; No new execution, reward or route choice; Do not turn descriptor fallback into game truth. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. A deliberate between-block cut is authored, not an accidental model reset; retain place, time, cast identity and resolved truth.",
+      "authoringStatus": "KEYFRAME_REQUIRED_REVIEW_STAGING_AND_PHYSICAL_ACTION_BEFORE_GENERATION"
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Frame the company after its earned victory without showing a final artefact handover, holder or public disclosure. End on the route’s visual culmination, then release this family for the state-built epilogue tableau.",
+      "framing": "AUTHORED_LOCATION_MAJOR_EVENT",
+      "environment": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+      "source": {
+        "type": "CUT_SOURCE",
+        "output": "tmp/cinematics/cin4/production_eight_serpent_route_ending_v1/shot_02/source.png",
+        "frame": {
+          "width": 1672,
+          "height": 941
+        },
+        "integration": {
+          "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+          "layoutReference": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+          "referenceAssets": [
+            "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+            "public/assets/characters/pixel/masters/sage_seraphine.png",
+            "public/assets/characters/pixel/masters/maelor.png"
+          ],
+          "qualityGates": [
+            "NO_COLLAGE_LOOK",
+            "WORLD_INTEGRATION",
+            "V2_IDENTITY",
+            "CANONICAL_ENVIRONMENT",
+            "NO_GAME_TRUTH_MUTATION"
+          ]
+        }
+      },
+      "characters": [
+        {
+          "id": "sage_seraphine",
+          "asset": "public/assets/characters/pixel/masters/sage_seraphine.png",
+          "position": {
+            "x": 0.3333333333333333,
+            "groundY": 0.79
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "CHARACTER:maelor",
+          "depth": 10,
+          "role": "PRIMARY",
+          "action": "OBSERVE",
+          "mirrorPolicy": "FORBID"
+        },
+        {
+          "id": "maelor",
+          "asset": "public/assets/characters/pixel/masters/maelor.png",
+          "position": {
+            "x": 0.6666666666666666,
+            "groundY": 0.79
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "CHARACTER:sage_seraphine",
+          "depth": 20,
+          "role": "SECONDARY",
+          "action": "OBSERVE",
+          "mirrorPolicy": "FORBID"
+        }
+      ],
+      "camera": {
+        "mode": "TRACK_SMALL_RIGHT"
+      },
+      "durationSeconds": 9,
+      "continuityOut": "END",
+      "endIntent": "STABLE_READABLE_FRAME_THEN_COVERED_TABLEAU_TRANSFER",
+      "nextStepUiSafeZone": {
+        "x": 0,
+        "y": 0.85,
+        "width": 1,
+        "height": 0.15
+      },
+      "promptIntent": "Frame the company after its earned victory without showing a final artefact handover, holder or public disclosure. End on the route’s visual culmination, then release this family for the state-built epilogue tableau. Current canonical truth: The General is defeated, the artefact recovered and recognition/Seal earned. The prior aftermath may have entrusted the evidence to Alaric or concealed it; the same slot serves both outcomes. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No universally final artefact owner or custody transfer; No universal public disclosure to the court; No new execution, reward or route choice; Do not turn descriptor fallback into game truth. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. Settle sharply and release to the existing STATIC_TABLEAU; no dialogue/choice on the video or hold.",
+      "authoringStatus": "KEYFRAME_REQUIRED_REVIEW_STAGING_AND_PHYSICAL_ACTION_BEFORE_GENERATION"
+    }
+  ]
+}

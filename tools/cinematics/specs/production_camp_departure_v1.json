@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "production_eight_camp_departure_v1",
+  "cinematicId": "camp_departure",
+  "tier": "HERO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "production-eight-camp-departure-v1",
+  "resolution": "2K",
+  "frame": {
+    "width": 1920,
+    "height": 1080
+  },
+  "status": "CANDIDATE_NOT_PRODUCTION_PROVIDER_APPROVAL_REQUIRED",
+  "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
+  "artDirection": "Modern pixel-art/HD-2D. Canonical moonlit Lion camp and protected V2 identities; final silent authored motion must pass separate visual/runtime acceptance.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "A rare major departure: the small company physically starts toward the existing route through the grand camp/valley environment.",
+      "framing": "WIDE_GROUNDED_CAMP_COMPANY",
+      "environment": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+      "source": {
+        "type": "ROOT_SOURCE",
+        "output": "tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/source.png",
+        "frame": {
+          "width": 1672,
+          "height": 941
+        },
+        "sha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+        "inputCandidate": "tools/cinematics/candidates/production-eight-slot-remaster/camp_departure/keyframe-v1.png",
+        "integration": {
+          "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+          "layoutReference": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+          "referenceAssets": [
+            "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+            "public/assets/characters/pixel/masters/white_mage.png",
+            "public/assets/characters/pixel/masters/maelor.png",
+            "public/assets/characters/pixel/masters/alistair.png"
+          ],
+          "qualityGates": [
+            "NO_COLLAGE_LOOK",
+            "WORLD_INTEGRATION",
+            "V2_IDENTITY",
+            "CANONICAL_ENVIRONMENT",
+            "NO_GAME_TRUTH_MUTATION"
+          ]
+        }
+      },
+      "characters": [
+        {
+          "id": "marian",
+          "asset": "public/assets/characters/pixel/masters/white_mage.png",
+          "position": {
+            "x": 0.3,
+            "groundY": 0.76
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "ENVIRONMENT:camp_road",
+          "depth": 30,
+          "role": "SECONDARY",
+          "action": "WALK_SLOW",
+          "mirrorPolicy": "FORBID"
+        },
+        {
+          "id": "maelor",
+          "asset": "public/assets/characters/pixel/masters/maelor.png",
+          "position": {
+            "x": 0.44,
+            "groundY": 0.76
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "CHARACTER:alistair",
+          "depth": 20,
+          "role": "PRIMARY",
+          "action": "STEP_FORWARD",
+          "mirrorPolicy": "FORBID"
+        },
+        {
+          "id": "alistair",
+          "asset": "public/assets/characters/pixel/masters/alistair.png",
+          "position": {
+            "x": 0.56,
+            "groundY": 0.78
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1.02
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "ENVIRONMENT:camp_road",
+          "depth": 10,
+          "role": "PRIMARY",
+          "action": "WALK_SLOW",
+          "mirrorPolicy": "FORBID"
+        }
+      ],
+      "camera": {
+        "mode": "TRACK_SMALL_RIGHT"
+      },
+      "durationSeconds": 12,
+      "continuityOut": "END",
+      "endIntent": "READABLE_STABLE_DEPARTURE_THEN_COVERED_STATIC_TABLEAU",
+      "nextStepUiSafeZone": {
+        "x": 0,
+        "y": 0.85,
+        "width": 1,
+        "height": 0.15
+      },
+      "promptIntent": "One physical Lion camp, one continuous shot, zero hidden or editorial cuts. Preserve the exact supplied V2 helmets, closed/veiled faces, Maelor’s purple hood and mask, Alistair’s armor/tabard/greatsword, Marian’s veil and star staff, all accessories and relative scale. The three actors coherently begin moving screen-right along the existing camp road, with a gently tracking camera revealing the authored valley depth. Animate physical walking, grounded contact, minor cloth and banner movement, firelight and atmospheric depth. Preserve the canonical night, moon, distant castle/aqueduct, river and tent street. No new actor, action outcome, loot, combat, lip sync, speech, text, UI or magical spectacle. No sunrise, redesign, visible invented face, side swap, teleport, disappearance, sprite collage or world reset. Motion must develop the departure, not merely zoom a still. Final second naturally settles into a sharp readable composition before the existing preparation dialogue transfers to STATIC_TABLEAU. No dialogue or player choice occurs on this video/hold."
+    }
+  ]
+}

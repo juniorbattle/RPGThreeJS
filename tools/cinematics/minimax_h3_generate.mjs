@@ -126,6 +126,8 @@ async function main() {
   let expectedSource;
   let candidateRoot;
   let cin4Metadata;
+  let configuredSourceFrame = { width: 1920, height: 1080 };
+  let configuredSourceSha256;
   let configuredDuration = 8;
   let configuredResolution = '2K';
 
@@ -146,6 +148,8 @@ async function main() {
     candidateRoot = resolve(projectRoot, 'tmp', 'cinematics', 'cin4', spec.sequenceId, shot.shotId);
     configuredDuration = shot.durationSeconds;
     configuredResolution = spec.resolution;
+    configuredSourceFrame = shot.source.frame ?? configuredSourceFrame;
+    configuredSourceSha256 = shot.source.sha256;
     cin4Metadata = {
       pipeline: 'CIN-4',
       sequenceId: spec.sequenceId,
@@ -161,6 +165,7 @@ async function main() {
         id: characterId, facing, lookTarget, depth, role, action, mirrorPolicy,
       })),
       specPath: relative(projectRoot, specPath).replaceAll('\\', '/'),
+      sourceFrame: configuredSourceFrame,
     };
     if (shot.source.type === 'CHAIN_SOURCE') {
       const chainMetadataPath = resolve(dirname(expectedSource), 'last_frame.metadata.json');
@@ -203,7 +208,12 @@ async function main() {
   if (!sourceBytes.subarray(0, 8).equals(pngSignature)) throw new Error('Cinematic source must be a valid PNG.');
   const width = sourceBytes.readUInt32BE(16);
   const height = sourceBytes.readUInt32BE(20);
-  if (width !== 1920 || height !== 1080) throw new Error(`Cinematic source must be 1920x1080; received ${width}x${height}.`);
+  if (width !== configuredSourceFrame.width || height !== configuredSourceFrame.height) {
+    throw new Error(`Cinematic source must match its declared ${configuredSourceFrame.width}x${configuredSourceFrame.height} frame; received ${width}x${height}.`);
+  }
+  if (configuredSourceSha256 && createHash('sha256').update(sourceBytes).digest('hex') !== configuredSourceSha256) {
+    throw new Error('Cinematic source does not match the declared candidate SHA256.');
+  }
 
   const defaultName = `candidate_${String(attempt).padStart(2, '0')}_raw.mp4`;
   const output = resolve(projectRoot, args.output ?? resolve(candidateRoot, defaultName));

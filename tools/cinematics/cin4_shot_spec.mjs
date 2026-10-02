@@ -91,6 +91,17 @@ function validateSafeZone(zone, label, errors) {
   if (Number.isFinite(zone.y) && Number.isFinite(zone.height) && zone.y + zone.height > 1) errors.push(`${label} must remain inside the frame vertically.`);
 }
 
+export function validateNativeSourceFrame(frame) {
+  if (!isRecord(frame) || !Number.isInteger(frame.width) || !Number.isInteger(frame.height)
+    || frame.width < 256 || frame.height < 256 || frame.width > 5760 || frame.height > 5760) {
+    return 'native source frame dimensions must be integers from 256 to 5760';
+  }
+  // Promoted plates are 1672x941, very slightly different from mathematical 16:9. Keep their
+  // native pixels as generation input; final mastered video remains strictly 1920x1080.
+  if (Math.abs(frame.width / frame.height - 16 / 9) > 0.002) return 'native source frame must match the 16:9 production composition';
+  return null;
+}
+
 export function sourcePathForShot(spec, shot) {
   if (shot.source.type === 'CHAIN_SOURCE') return shot.source.path;
   return shot.source.output;
@@ -153,6 +164,13 @@ export async function validateShotSpec(input, options = {}) {
       }
     } else if (typeof shot.source.output !== 'string' || !shot.source.output) {
       errors.push(`${prefix} ${shot.source.type} requires source.output.`);
+    }
+    if (shot.source?.frame !== undefined) {
+      const error = validateNativeSourceFrame(shot.source.frame);
+      if (error) errors.push(`${prefix}.source.frame: ${error}.`);
+    }
+    if (shot.source?.sha256 !== undefined && !/^[a-f0-9]{64}$/u.test(shot.source.sha256)) {
+      errors.push(`${prefix}.source.sha256 must be a SHA256 hash.`);
     }
     if (!CONTINUITY_OUT.includes(shot.continuityOut)) errors.push(`${prefix}.continuityOut is invalid.`);
     if (shotIndex === input.shots.length - 1 && shot.continuityOut !== 'END') errors.push(`${prefix} final shot continuityOut must be END.`);

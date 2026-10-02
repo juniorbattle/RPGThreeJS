@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "contractSetVersion": 1,
-  "status": "PREPARATION_IN_PROGRESS",
-  "recordedAt": "2026-10-02T00:49:12.503Z",
+  "status": "GENERATION_SPECS_PREPARED_EXISTING_MEDIA_QA_PASS_REPLACEMENT_PENDING",
+  "recordedAt": "2026-10-02T01:53:05.986Z",
   "authority": [
     "docs/game/GAME_CONSTITUTION.md",
     "docs/contracts/WORLD_AND_CHARACTERS.md",
@@ -12,10 +12,19 @@
   "productionOverlay": "tools/cinematics/specs/production_presentation_modes.json",
   "scope": "Exactly eight existing approved video IDs. No new plot, dialogue, choice, node or enemy/recruit/routine-travel video.",
   "toolAvailability": {
-    "videoGeneration": "NONE_EXPOSED_IN_CURRENT_TOOL_CATALOG",
-    "rasterImageGeneration": "AVAILABLE_BUT_DOES_NOT_GENERATE_VIDEO",
+    "videoGeneration": "LOCAL_MINIMAX_H3_ADAPTER_FOUND_PROVIDER_AUTHORIZATION_PENDING",
+    "rasterImageGeneration": "BUILT_IN_AVAILABLE_CAMP_CANDIDATE_CREATED",
     "ffmpegAndFfprobeOnPath": false,
-    "assetBlocker": "A suitable authored video generator and resulting eight modern pixel-art/HD-2D clips are required; preparation and existing-media QA remain unblocked."
+    "localMediaToolchain": {
+      "ffmpeg": "tmp/cinematics/toolchain/node_modules/ffmpeg-static/ffmpeg.exe",
+      "ffprobe": "tmp/cinematics/toolchain/node_modules/ffprobe-static/bin/win32/x64/ffprobe.exe"
+    },
+    "adapter": "tools/cinematics/minimax_h3_generate.mjs",
+    "providerDocumentation": "https://platform.minimax.io/docs/api-reference/video-generation-v2-create",
+    "providerCredentialConfigured": true,
+    "providerAvailability": "NOT_QUERIED_AUTO_APPROVAL_REJECTED",
+    "creditAvailability": "NOT_MEASURED",
+    "assetBlocker": "Automatic approval review rejected authenticating a read-only MiniMax request with the configured local key because explicit external-provider authorization was absent. No provider request or generation was performed. Ask operator to authorize using the local key with MiniMax after reviewing the candidate/spec. Do not bypass."
   },
   "lockedRequirements": [
     "Modern pixel-art / HD-2D; use approved V2 identities and poses as visual ceiling.",
@@ -28,7 +37,7 @@
   "slots": [
     {
       "id": "camp_departure",
-      "status": "BASELINE_RECORDED_SHOT_REVIEW_PENDING",
+      "status": "SOURCE_AUDITED_CANONICAL_SHOT_BRIEF_PREPARED",
       "currentDescriptor": {
         "id": "camp_departure",
         "title": "Le départ du camp",
@@ -44,15 +53,145 @@
       "sourceByteSize": 14245824,
       "sourceSha256": "a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3",
       "currentDurationMs": 12000,
-      "durationAuthority": "Existing descriptor only; actual stream timing must be probed before authoring",
+      "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
-      "shotSpecificationStatus": "PENDING_VISUAL_AND_CANONICAL_CONTEXT_AUDIT",
-      "assetGenerationStatus": "BLOCKED_EXTERNAL_VIDEO_TOOL",
-      "artAcceptance": "NOT_REVIEWED_FOR_REMASTER"
+      "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_CANDIDATE_MOTION_PENDING",
+      "assetGenerationStatus": "BLOCKED_EXTERNAL_PROVIDER_APPROVAL",
+      "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
+      "measuredStream": {
+        "id": "camp_departure",
+        "sourceSha256": "a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3",
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 288,
+        "measuredDurationMs": 12000,
+        "descriptorDurationMs": 12000,
+        "durationDeltaMs": 0,
+        "audioStreams": []
+      },
+      "frameEvidence": [
+        {
+          "label": "first",
+          "decodedFrameIndex": 0,
+          "timestampSeconds": 0,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/camp_departure-first.png",
+          "sha256": "79200f294990e620b8c4e778663b72ee0ff13daf723db02feaa229f3c147ae6b",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "label": "middle",
+          "decodedFrameIndex": 144,
+          "timestampSeconds": 6,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/camp_departure-middle.png",
+          "sha256": "21a2ca864fd9d78686597a40b59f5ec885e671d02107f0a749d319e6ae9dfb29",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "label": "final",
+          "decodedFrameIndex": 287,
+          "timestampSeconds": 11.958333,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/camp_departure-final.png",
+          "sha256": "b065e543a6894e7bf0cca3d48378206581682f59f87401ef087dd19d62b6d9a7",
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "canonicalContext": {
+        "nodeId": "lion-camp",
+        "trigger": "GameApp.startNewChronicle: after prologue and acte_ouverture, before camp_departure dialogue and campaign entry",
+        "sources": [
+          "src/game/GameApp.ts:1596",
+          "src/game/content.ts:204",
+          "src/campaign/LionCampaignStructure.ts:77"
+        ],
+        "followingDialogueId": "camp_departure",
+        "truth": "A vulnerable company prepares its departure from the Lion camp. Preserve the existing repaired-banner/preparation context; no battle, new recruit or acquired reward.",
+        "exclusions": [
+          "No optional Cedric/Garen as universally recruited cast",
+          "No victory or new route choice",
+          "Do not replace canonical moonlit camp with the old video sunrise"
+        ]
+      },
+      "environmentReference": {
+        "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+        "visualFamily": "LION_CAMP",
+        "sha256": "7e2eaba3b2d18d409fb0126a0e4ad9361caa5f61148f2a145b4cd2fbec379c32",
+        "policy": "Promoted environment determines landmarks, ground, horizon, palette and light/time; do not import old video lighting as authority."
+      },
+      "characterReferences": [
+        {
+          "id": "maelor",
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "alistair",
+          "path": "public/assets/characters/pixel/masters/alistair.png",
+          "sha256": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "white_mage",
+          "path": "public/assets/characters/pixel/masters/white_mage.png",
+          "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "sage_seraphine",
+          "path": "public/assets/characters/pixel/masters/sage_seraphine.png",
+          "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "archer",
+          "path": "public/assets/characters/pixel/masters/archer.png",
+          "sha256": "cf9f50e30fe534ea9637857be43774ad19a39dbb721b0834a9bec54dd9e0c022",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        }
+      ],
+      "presentationBoundary": {
+        "duringVideoCastOwner": "VIDEO_OWNS_CAST",
+        "afterVideoSurface": "STATIC_TABLEAU",
+        "afterVideoCastOwner": "STAGE_OWNS_CAST",
+        "dialogueStepsDuringVideoOrHold": 0,
+        "choiceStepsDuringVideoOrHold": 0,
+        "maximumActorsPerComposition": 4,
+        "registryHoldSource": "camp_departure",
+        "registryHoldMetadataIsDialogueSurfaceAuthority": false,
+        "finalFrameCastReferenceOnly": true,
+        "finalFramePolicy": "Readable stable final image for covered transfer; a hold is allowed only for the exact same established moment. Ending families release before LION_JUDGEMENT epilogue."
+      },
+      "shotBlocks": [
+        {
+          "durationSeconds": 12,
+          "camera": "TRACK_SMALL_RIGHT",
+          "cast": [
+            "white_mage",
+            "maelor",
+            "alistair"
+          ],
+          "intent": "Wide moonlit tent-street departure. The three canonical actors make a coherent restrained movement toward the existing route as cloth, flags and fire animate; depth and valley scale make the company feel small. Settle without a cast/angle reset before the preparation tableau."
+        }
+      ],
+      "sourceVisualReview": "Old source is sunset camp with three exposed/different character identities. New V2/night integrated keyframe candidate exists; motion acceptance remains pending.",
+      "firstFrameCandidate": {
+        "path": "tools/cinematics/candidates/production-eight-slot-remaster/camp_departure/keyframe-v1.png",
+        "sha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+        "provenance": "tools/cinematics/candidates/production-eight-slot-remaster/camp_departure/provenance.json",
+        "generationSpec": "tools/cinematics/specs/production_camp_departure_v1.json",
+        "status": "CANDIDATE_ONLY_NOT_RUNTIME"
+      },
+      "generationSpec": "tools/cinematics/specs/production_camp_departure_v1.json"
     },
     {
       "id": "alaric_audience_arrival",
-      "status": "BASELINE_RECORDED_SHOT_REVIEW_PENDING",
+      "status": "SOURCE_AUDITED_CANONICAL_SHOT_BRIEF_PREPARED",
       "currentDescriptor": {
         "id": "alaric_audience_arrival",
         "title": "L’audience d’Alaric",
@@ -68,15 +207,134 @@
       "sourceByteSize": 12340443,
       "sourceSha256": "b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629",
       "currentDurationMs": 12000,
-      "durationAuthority": "Existing descriptor only; actual stream timing must be probed before authoring",
+      "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
-      "shotSpecificationStatus": "PENDING_VISUAL_AND_CANONICAL_CONTEXT_AUDIT",
-      "assetGenerationStatus": "BLOCKED_EXTERNAL_VIDEO_TOOL",
-      "artAcceptance": "NOT_REVIEWED_FOR_REMASTER"
+      "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
+      "assetGenerationStatus": "BLOCKED_EXTERNAL_PROVIDER_APPROVAL",
+      "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
+      "measuredStream": {
+        "id": "alaric_audience_arrival",
+        "sourceSha256": "b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629",
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 288,
+        "measuredDurationMs": 12000,
+        "descriptorDurationMs": 12000,
+        "durationDeltaMs": 0,
+        "audioStreams": []
+      },
+      "frameEvidence": [
+        {
+          "label": "first",
+          "decodedFrameIndex": 0,
+          "timestampSeconds": 0,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/alaric_audience_arrival-first.png",
+          "sha256": "97236e83ad6afacd1cf2a66ebe07ddbfaed997370110c9b9d92486f6941b84f7",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "label": "middle",
+          "decodedFrameIndex": 144,
+          "timestampSeconds": 6,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/alaric_audience_arrival-middle.png",
+          "sha256": "203fe5cbd87fc39482c5eb3f31c342620243a95061b8ce76d1c39c7dd79b667a",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "label": "final",
+          "decodedFrameIndex": 287,
+          "timestampSeconds": 11.958333,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/alaric_audience_arrival-final.png",
+          "sha256": "38469ebf5c4c596acd9fd97d4938bf5f68b4f5f06fecc0c5932b08612ae6e7d8",
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "canonicalContext": {
+        "nodeId": "lion-audience",
+        "trigger": "beforeDialogue lion_briefing, subject to approved prelude video policy",
+        "sources": [
+          "src/cinematics/Cin6aPresentation.ts:17",
+          "src/game/content.ts:294",
+          "src/game/content.ts:355",
+          "src/campaign/LionCampaignStructure.ts:92"
+        ],
+        "followingDialogueId": "lion_briefing",
+        "truth": "The company enters Alaric’s audience; the Bois-Clair mandate and accept/advance decision follow interactively.",
+        "exclusions": [
+          "No advance/gold handover before the player accepts it",
+          "No recognition or Seal awarded",
+          "No unnecessary additional court actors"
+        ]
+      },
+      "environmentReference": {
+        "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/alaric-audience-cinematic-source.png",
+        "visualFamily": "ALARIC_AUDIENCE",
+        "sha256": "1214cc5627b41456f8540e9c0f043fb45edda7ddd502cf01cebc4c4f8325f13b",
+        "policy": "Promoted environment determines landmarks, ground, horizon, palette and light/time; do not import old video lighting as authority."
+      },
+      "characterReferences": [
+        {
+          "id": "alaric",
+          "path": "public/assets/characters/pixel/masters/alaric.png",
+          "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "sage_seraphine",
+          "path": "public/assets/characters/pixel/masters/sage_seraphine.png",
+          "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "maelor",
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "alistair",
+          "path": "public/assets/characters/pixel/masters/alistair.png",
+          "sha256": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        }
+      ],
+      "presentationBoundary": {
+        "duringVideoCastOwner": "VIDEO_OWNS_CAST",
+        "afterVideoSurface": "STATIC_TABLEAU",
+        "afterVideoCastOwner": "STAGE_OWNS_CAST",
+        "dialogueStepsDuringVideoOrHold": 0,
+        "choiceStepsDuringVideoOrHold": 0,
+        "maximumActorsPerComposition": 4,
+        "registryHoldSource": "alaric_audience_arrival",
+        "registryHoldMetadataIsDialogueSurfaceAuthority": false,
+        "finalFrameCastReferenceOnly": true,
+        "finalFramePolicy": "Readable stable final image for covered transfer; a hold is allowed only for the exact same established moment. Ending families release before LION_JUDGEMENT epilogue."
+      },
+      "shotBlocks": [
+        {
+          "durationSeconds": 12,
+          "camera": "SLOW_PUSH",
+          "cast": [
+            "alaric",
+            "sage_seraphine",
+            "maelor",
+            "alistair"
+          ],
+          "intent": "Grand audience-hall axis with the company delegation in a grounded foreground/midground and Alaric holding the far authority plane. Controlled forward movement and environmental depth establish a formal arrival; leave the mandate and response to the following tableau."
+        }
+      ],
+      "sourceVisualReview": "Existing clip switches wide/medium/wide cast composition. Replacement must preserve V2 masks, silhouettes and continuous physical presence.",
+      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/alaric_audience_arrival.json"
     },
     {
       "id": "bois_clair_arrival",
-      "status": "BASELINE_RECORDED_SHOT_REVIEW_PENDING",
+      "status": "SOURCE_AUDITED_CANONICAL_SHOT_BRIEF_PREPARED",
       "currentDescriptor": {
         "id": "bois_clair_arrival",
         "title": "Bois-Clair sous les flammes",
@@ -92,15 +350,159 @@
       "sourceByteSize": 25714244,
       "sourceSha256": "a37d397665960f8f6749d8f1ece69eaf91c7160cec68fc581ed26ea78042a699",
       "currentDurationMs": 20000,
-      "durationAuthority": "Existing descriptor only; actual stream timing must be probed before authoring",
+      "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
-      "shotSpecificationStatus": "PENDING_VISUAL_AND_CANONICAL_CONTEXT_AUDIT",
-      "assetGenerationStatus": "BLOCKED_EXTERNAL_VIDEO_TOOL",
-      "artAcceptance": "NOT_REVIEWED_FOR_REMASTER"
+      "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
+      "assetGenerationStatus": "BLOCKED_EXTERNAL_PROVIDER_APPROVAL",
+      "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
+      "measuredStream": {
+        "id": "bois_clair_arrival",
+        "sourceSha256": "a37d397665960f8f6749d8f1ece69eaf91c7160cec68fc581ed26ea78042a699",
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 480,
+        "measuredDurationMs": 20000,
+        "descriptorDurationMs": 20000,
+        "durationDeltaMs": 0,
+        "audioStreams": []
+      },
+      "frameEvidence": [
+        {
+          "label": "first",
+          "decodedFrameIndex": 0,
+          "timestampSeconds": 0,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_arrival-first.png",
+          "sha256": "bd71be33dc05a72cd26682736d44e94023a2eca2530f3a0cadf29c1ad35d9339",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "label": "middle",
+          "decodedFrameIndex": 240,
+          "timestampSeconds": 10,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_arrival-middle.png",
+          "sha256": "571ef88e77861e293b92442eeb1d01515d41b7ae249ddf77a7f12e54c5ebea88",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "label": "final",
+          "decodedFrameIndex": 479,
+          "timestampSeconds": 19.958333,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_arrival-final.png",
+          "sha256": "325785a4c70a4a3e1a182823bc528c6fe8c78d5aa963df2e34053555e836d019",
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "canonicalContext": {
+        "nodeId": "lion-village-choice",
+        "trigger": "beforeDialogue village_choice",
+        "sources": [
+          "src/cinematics/Cin6aPresentation.ts:18",
+          "src/game/content.ts:618",
+          "src/game/contextualDialogueContent.ts:87",
+          "src/campaign/LionCampaignStructure.ts:236"
+        ],
+        "followingDialogueId": "village_choice",
+        "truth": "Bois-Clair is under Serpent pressure. Captives/northern old bridge and reserves/southern low gate define the existing urgency. Saving people or taking reserves remains undecided.",
+        "exclusions": [
+          "No rescue, loot or outcome resolved in the clip",
+          "No obligatory Cedric: the contextual dialogue can use Kestrel instead",
+          "No extra canonical combat"
+        ]
+      },
+      "environmentReference": {
+        "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png",
+        "visualFamily": "BOIS_CLAIR",
+        "sha256": "a3e69c055552b41f4c6c8f13196bb1500d6781a79533d45aab7410f6b67af7ec",
+        "policy": "Promoted environment determines landmarks, ground, horizon, palette and light/time; do not import old video lighting as authority."
+      },
+      "characterReferences": [
+        {
+          "id": "villageoise",
+          "path": "public/assets/characters/pixel/masters/villageoise.png",
+          "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "white_mage",
+          "path": "public/assets/characters/pixel/masters/white_mage.png",
+          "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "archer",
+          "path": "public/assets/characters/pixel/masters/archer.png",
+          "sha256": "cf9f50e30fe534ea9637857be43774ad19a39dbb721b0834a9bec54dd9e0c022",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "serpent_raider",
+          "path": "public/assets/characters/pixel/masters/serpent_raider.png",
+          "sha256": "4f4bfb55016f325544a598a34213567657d43159c895bff57ac740ed4892ed9f",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "sage_seraphine",
+          "path": "public/assets/characters/pixel/masters/sage_seraphine.png",
+          "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "maelor",
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "alistair",
+          "path": "public/assets/characters/pixel/masters/alistair.png",
+          "sha256": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        }
+      ],
+      "presentationBoundary": {
+        "duringVideoCastOwner": "VIDEO_OWNS_CAST",
+        "afterVideoSurface": "STATIC_TABLEAU",
+        "afterVideoCastOwner": "STAGE_OWNS_CAST",
+        "dialogueStepsDuringVideoOrHold": 0,
+        "choiceStepsDuringVideoOrHold": 0,
+        "maximumActorsPerComposition": 4,
+        "registryHoldSource": "bois_clair_arrival",
+        "registryHoldMetadataIsDialogueSurfaceAuthority": false,
+        "finalFrameCastReferenceOnly": true,
+        "finalFramePolicy": "Readable stable final image for covered transfer; a hold is allowed only for the exact same established moment. Ending families release before LION_JUDGEMENT epilogue."
+      },
+      "shotBlocks": [
+        {
+          "durationSeconds": 10,
+          "camera": "SLOW_PULL",
+          "cast": [
+            "alistair"
+          ],
+          "intent": "Reveal the canonical burning-village scale and existing divided crisis, with the arriving company represented by Alistair. Fire/smoke and street depth carry motion without selecting a rescue target."
+        },
+        {
+          "durationSeconds": 10,
+          "camera": "PAN_SMALL_RIGHT",
+          "cast": [
+            "villageoise",
+            "white_mage",
+            "serpent_raider"
+          ],
+          "intent": "Within the same village geography, emphasize the unresolved civilian threat and company arrival. No blow, release of captives, pickup or tactical result. End ready for the canonical multi-phase choice tableau."
+        }
+      ],
+      "sourceVisualReview": "Existing source changes from Alistair to a roguish actor/villageoise. Its source cast does not establish a universally recruited Cedric.",
+      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/bois_clair_arrival.json"
     },
     {
       "id": "bois_clair_saved",
-      "status": "BASELINE_RECORDED_SHOT_REVIEW_PENDING",
+      "status": "SOURCE_AUDITED_CANONICAL_SHOT_BRIEF_PREPARED",
       "currentDescriptor": {
         "id": "bois_clair_saved",
         "title": "Bois-Clair sauvée",
@@ -116,15 +518,134 @@
       "sourceByteSize": 21378564,
       "sourceSha256": "a57d9ef8ff2fbb26084066b057f89948bdfe59de22dc7f7770d6576900223b1f",
       "currentDurationMs": 18000,
-      "durationAuthority": "Existing descriptor only; actual stream timing must be probed before authoring",
+      "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
-      "shotSpecificationStatus": "PENDING_VISUAL_AND_CANONICAL_CONTEXT_AUDIT",
-      "assetGenerationStatus": "BLOCKED_EXTERNAL_VIDEO_TOOL",
-      "artAcceptance": "NOT_REVIEWED_FOR_REMASTER"
+      "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
+      "assetGenerationStatus": "BLOCKED_EXTERNAL_PROVIDER_APPROVAL",
+      "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
+      "measuredStream": {
+        "id": "bois_clair_saved",
+        "sourceSha256": "a57d9ef8ff2fbb26084066b057f89948bdfe59de22dc7f7770d6576900223b1f",
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 432,
+        "measuredDurationMs": 18000,
+        "descriptorDurationMs": 18000,
+        "durationDeltaMs": 0,
+        "audioStreams": []
+      },
+      "frameEvidence": [
+        {
+          "label": "first",
+          "decodedFrameIndex": 0,
+          "timestampSeconds": 0,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_saved-first.png",
+          "sha256": "6ef3aa596b1662fe8d58762b6ae81083137c59eb5887223816ba939b7f2c1726",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "label": "middle",
+          "decodedFrameIndex": 216,
+          "timestampSeconds": 9,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_saved-middle.png",
+          "sha256": "6a62060bfcc131068cf7295bd7ef10437d358ff19e425ac2e3551c167a1fd5c4",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "label": "final",
+          "decodedFrameIndex": 431,
+          "timestampSeconds": 17.958333,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_saved-final.png",
+          "sha256": "1d74b4ca7a546461646b229609e9e34bf65240d09e8133b50c37746d45e79d71",
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "canonicalContext": {
+        "nodeId": "lion-village-choice",
+        "trigger": "after village_defense victory and missionSuccess=true, missionGreed!==true; before village_defense_aftermath",
+        "sources": [
+          "src/cinematics/Cin6aPresentation.ts:132",
+          "src/game/GameApp.ts:1517",
+          "src/game/content.ts:1021"
+        ],
+        "followingDialogueId": "village_defense_aftermath",
+        "truth": "The Serpents have fled and children/captives are safe; damage remains. Reward refusal versus receiving gratitude/provisions remains in the following dialogue.",
+        "exclusions": [
+          "No automatically accepted/refused provisions",
+          "No complete reconstruction",
+          "No extra reward, slain enemy or named civilian"
+        ]
+      },
+      "environmentReference": {
+        "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-saved.png",
+        "visualFamily": "BOIS_CLAIR",
+        "sha256": "09485b94cb0f4e4b56386a2fcb4e02d0ecae8fbfb0dca1a6309cb6f97cd1444b",
+        "policy": "Promoted environment determines landmarks, ground, horizon, palette and light/time; do not import old video lighting as authority."
+      },
+      "characterReferences": [
+        {
+          "id": "villageoise",
+          "path": "public/assets/characters/pixel/masters/villageoise.png",
+          "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "white_mage",
+          "path": "public/assets/characters/pixel/masters/white_mage.png",
+          "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "maelor",
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        }
+      ],
+      "presentationBoundary": {
+        "duringVideoCastOwner": "VIDEO_OWNS_CAST",
+        "afterVideoSurface": "STATIC_TABLEAU",
+        "afterVideoCastOwner": "STAGE_OWNS_CAST",
+        "dialogueStepsDuringVideoOrHold": 0,
+        "choiceStepsDuringVideoOrHold": 0,
+        "maximumActorsPerComposition": 4,
+        "registryHoldSource": null,
+        "registryHoldMetadataIsDialogueSurfaceAuthority": false,
+        "finalFrameCastReferenceOnly": true,
+        "finalFramePolicy": "Readable stable final image for covered transfer; a hold is allowed only for the exact same established moment. Ending families release before LION_JUDGEMENT epilogue."
+      },
+      "shotBlocks": [
+        {
+          "durationSeconds": 9,
+          "camera": "SLOW_PULL",
+          "cast": [
+            "villageoise",
+            "white_mage"
+          ],
+          "intent": "Reprieve in the canonical damaged saved-village plate. Survivor protection and relief are visible through calm grounded presence and retreating smoke; preserve the existing result without rebuilding the town."
+        },
+        {
+          "durationSeconds": 9,
+          "camera": "TRACK_SMALL_RIGHT",
+          "cast": [
+            "villageoise",
+            "maelor"
+          ],
+          "intent": "Restrained aftermath amid the same landmarks. Gratitude is offered through staging, while provisions remain untouched and the player’s response is still open."
+        }
+      ],
+      "sourceVisualReview": "Existing source remains heavily burning and changes foreground cast; replacement should follow the promoted saved-aftermath environment, not invent a rebuilt village.",
+      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/bois_clair_saved.json"
     },
     {
       "id": "bois_clair_sacrificed",
-      "status": "BASELINE_RECORDED_SHOT_REVIEW_PENDING",
+      "status": "SOURCE_AUDITED_CANONICAL_SHOT_BRIEF_PREPARED",
       "currentDescriptor": {
         "id": "bois_clair_sacrificed",
         "title": "Le prix de Bois-Clair",
@@ -140,15 +661,127 @@
       "sourceByteSize": 20858964,
       "sourceSha256": "db07031a3105fb31280abe3aca026cb74e4612e2aa44f7023b5401847322f1a4",
       "currentDurationMs": 18000,
-      "durationAuthority": "Existing descriptor only; actual stream timing must be probed before authoring",
+      "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
-      "shotSpecificationStatus": "PENDING_VISUAL_AND_CANONICAL_CONTEXT_AUDIT",
-      "assetGenerationStatus": "BLOCKED_EXTERNAL_VIDEO_TOOL",
-      "artAcceptance": "NOT_REVIEWED_FOR_REMASTER"
+      "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
+      "assetGenerationStatus": "BLOCKED_EXTERNAL_PROVIDER_APPROVAL",
+      "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
+      "measuredStream": {
+        "id": "bois_clair_sacrificed",
+        "sourceSha256": "db07031a3105fb31280abe3aca026cb74e4612e2aa44f7023b5401847322f1a4",
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 432,
+        "measuredDurationMs": 18000,
+        "descriptorDurationMs": 18000,
+        "durationDeltaMs": 0,
+        "audioStreams": []
+      },
+      "frameEvidence": [
+        {
+          "label": "first",
+          "decodedFrameIndex": 0,
+          "timestampSeconds": 0,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_sacrificed-first.png",
+          "sha256": "9bb89b8ff450602a01053781b3f706ed1e02118da95f93f80ca5926c3163c7fe",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "label": "middle",
+          "decodedFrameIndex": 216,
+          "timestampSeconds": 9,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_sacrificed-middle.png",
+          "sha256": "eefd794435b3846810b160b3ac34faf78463436a215df1797fd57a47f8af7f25",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "label": "final",
+          "decodedFrameIndex": 431,
+          "timestampSeconds": 17.958333,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_sacrificed-final.png",
+          "sha256": "d935e1d95ca2c8f352a14a7025d923ccd0bb8616d9846cdb87ce996a092131ff",
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "canonicalContext": {
+        "nodeId": "lion-village-choice",
+        "trigger": "after village_raid victory and missionGreed=true; before village_raid_aftermath",
+        "sources": [
+          "src/cinematics/Cin6aPresentation.ts:132",
+          "src/game/GameApp.ts:1517",
+          "src/game/content.ts:1044"
+        ],
+        "followingDialogueId": "village_raid_aftermath",
+        "truth": "The coffers/reserves are secured and the Serpents dispersed, with captives abandoned and human cost. Leaving provisions versus taking everything remains a dialogue choice.",
+        "exclusions": [
+          "No invented massacre or additional death",
+          "No automatic charitable donation or decision to take everything",
+          "No extra loot total or unique treasure"
+        ]
+      },
+      "environmentReference": {
+        "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-sacrificed.png",
+        "visualFamily": "BOIS_CLAIR",
+        "sha256": "0ea6afe5a97c962c586667675488a3de4312782046afe96fb812630d677b3464",
+        "policy": "Promoted environment determines landmarks, ground, horizon, palette and light/time; do not import old video lighting as authority."
+      },
+      "characterReferences": [
+        {
+          "id": "maelor",
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "villageoise",
+          "path": "public/assets/characters/pixel/masters/villageoise.png",
+          "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        }
+      ],
+      "presentationBoundary": {
+        "duringVideoCastOwner": "VIDEO_OWNS_CAST",
+        "afterVideoSurface": "STATIC_TABLEAU",
+        "afterVideoCastOwner": "STAGE_OWNS_CAST",
+        "dialogueStepsDuringVideoOrHold": 0,
+        "choiceStepsDuringVideoOrHold": 0,
+        "maximumActorsPerComposition": 4,
+        "registryHoldSource": null,
+        "registryHoldMetadataIsDialogueSurfaceAuthority": false,
+        "finalFrameCastReferenceOnly": true,
+        "finalFramePolicy": "Readable stable final image for covered transfer; a hold is allowed only for the exact same established moment. Ending families release before LION_JUDGEMENT epilogue."
+      },
+      "shotBlocks": [
+        {
+          "durationSeconds": 9,
+          "camera": "PAN_SMALL_RIGHT",
+          "cast": [
+            "maelor"
+          ],
+          "intent": "Show the existing secured coffers/reserve context in the damaged sacrificed-village geography; restrained movement through the consequence, no new pickup reward."
+        },
+        {
+          "durationSeconds": 9,
+          "camera": "SLOW_PUSH",
+          "cast": [
+            "maelor",
+            "villageoise"
+          ],
+          "intent": "Place the villageoise and steward in an uneasy spatial relationship against the same harmed settlement. End before the player chooses whether to leave provisions; do not depict extra violence."
+        }
+      ],
+      "sourceVisualReview": "Existing source isolates villageoise then adds old Maelor. Replacement must convey the canonical reserves/human-cost distinction while preserving the pending provisions choice.",
+      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/bois_clair_sacrificed.json"
     },
     {
       "id": "lion_judgement",
-      "status": "BASELINE_RECORDED_SHOT_REVIEW_PENDING",
+      "status": "SOURCE_AUDITED_CANONICAL_SHOT_BRIEF_PREPARED",
       "currentDescriptor": {
         "id": "lion_judgement",
         "title": "Le Jugement du Lion",
@@ -165,15 +798,143 @@
       "sourceByteSize": 21565194,
       "sourceSha256": "6ea5b12bb8c97deadbea2177725d7e3eb958ab7971361d34064729acf776e5f9",
       "currentDurationMs": 17000,
-      "durationAuthority": "Existing descriptor only; actual stream timing must be probed before authoring",
+      "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
-      "shotSpecificationStatus": "PENDING_VISUAL_AND_CANONICAL_CONTEXT_AUDIT",
-      "assetGenerationStatus": "BLOCKED_EXTERNAL_VIDEO_TOOL",
-      "artAcceptance": "NOT_REVIEWED_FOR_REMASTER"
+      "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
+      "assetGenerationStatus": "BLOCKED_EXTERNAL_PROVIDER_APPROVAL",
+      "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
+      "measuredStream": {
+        "id": "lion_judgement",
+        "sourceSha256": "6ea5b12bb8c97deadbea2177725d7e3eb958ab7971361d34064729acf776e5f9",
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 408,
+        "measuredDurationMs": 17000,
+        "descriptorDurationMs": 17000,
+        "durationDeltaMs": 0,
+        "audioStreams": []
+      },
+      "frameEvidence": [
+        {
+          "label": "first",
+          "decodedFrameIndex": 0,
+          "timestampSeconds": 0,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/lion_judgement-first.png",
+          "sha256": "038f9998e108fcf7dca9559cd3d98db8f9ee76efc5baa7179b7de8eb8bbf463c",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "label": "middle",
+          "decodedFrameIndex": 204,
+          "timestampSeconds": 8.5,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/lion_judgement-middle.png",
+          "sha256": "da333f243aeddd75905a60a39c1c48289dc2f52f24014ae1658f4ee3a6f460a0",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "label": "final",
+          "decodedFrameIndex": 407,
+          "timestampSeconds": 16.958333,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/lion_judgement-final.png",
+          "sha256": "c566f2f301b30459fd6c051073f71a0418839a5def16047dac06a69db2295155",
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "canonicalContext": {
+        "nodeId": "lion-final-judgement",
+        "trigger": "before current dynamic lion_finale_judgement, before testimony, verdict and final route choice",
+        "sources": [
+          "src/game/lionFinale.ts:321",
+          "src/game/contextualDialogueContent.ts:501",
+          "src/game/GameApp.ts:1288"
+        ],
+        "followingDialogueId": "lion_finale_judgement",
+        "truth": "A solemn appearance before Alaric and the Lion Champion. The factual dossier, credibility, Shadow disclosure, bluff/lie and route intent remain interactive and state-derived.",
+        "exclusions": [
+          "No verdict or recognition presumed before testimony",
+          "No Seal granted",
+          "No chosen pursuit or trial",
+          "No universal exposed/revealed Shadow truth"
+        ]
+      },
+      "environmentReference": {
+        "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-judgement-tableau.png",
+        "visualFamily": "LION_JUDGEMENT",
+        "sha256": "280361d3b73ba06753562c8fe73009c48dbda7db592d65ef891ae8ec323e3ebf",
+        "policy": "Promoted environment determines landmarks, ground, horizon, palette and light/time; do not import old video lighting as authority."
+      },
+      "characterReferences": [
+        {
+          "id": "alaric",
+          "path": "public/assets/characters/pixel/masters/alaric.png",
+          "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "lion_champion",
+          "path": "public/assets/characters/pixel/masters/lion_champion.png",
+          "sha256": "fba0f3cca3ca9fa59bfbafd6f90fc8b0778e636ab5b2140a3516f5ca9ef848bc",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "sage_seraphine",
+          "path": "public/assets/characters/pixel/masters/sage_seraphine.png",
+          "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "maelor",
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        }
+      ],
+      "presentationBoundary": {
+        "duringVideoCastOwner": "VIDEO_OWNS_CAST",
+        "afterVideoSurface": "STATIC_TABLEAU",
+        "afterVideoCastOwner": "STAGE_OWNS_CAST",
+        "dialogueStepsDuringVideoOrHold": 0,
+        "choiceStepsDuringVideoOrHold": 0,
+        "maximumActorsPerComposition": 4,
+        "registryHoldSource": "lion_judgement",
+        "registryHoldMetadataIsDialogueSurfaceAuthority": false,
+        "finalFrameCastReferenceOnly": true,
+        "finalFramePolicy": "Readable stable final image for covered transfer; a hold is allowed only for the exact same established moment. Ending families release before LION_JUDGEMENT epilogue."
+      },
+      "shotBlocks": [
+        {
+          "durationSeconds": 8,
+          "camera": "SLOW_PUSH",
+          "cast": [
+            "alaric",
+            "lion_champion"
+          ],
+          "intent": "Establish the monumental canonical judgement architecture and separate authority/champion planes with controlled ceremonial light and depth; they await the company, no verdict gesture."
+        },
+        {
+          "durationSeconds": 9,
+          "camera": "SUBJECT_FOCUS_LEFT",
+          "cast": [
+            "alaric",
+            "lion_champion",
+            "sage_seraphine",
+            "maelor"
+          ],
+          "intent": "Frame the factual confrontation with two company advisers present and subordinate to the court axis. Stop before any ruling or route commitment and transfer to the dynamic authored tableau."
+        }
+      ],
+      "sourceVisualReview": "Existing source shows Alaric/Champion and camera push. Its title/fallback is not authority to show a predetermined ruling before dynamic judgement.",
+      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/lion_judgement.json"
     },
     {
       "id": "serpent_route_ending",
-      "status": "BASELINE_RECORDED_SHOT_REVIEW_PENDING",
+      "status": "SOURCE_AUDITED_CANONICAL_SHOT_BRIEF_PREPARED",
       "currentDescriptor": {
         "id": "serpent_route_ending",
         "title": "La chute du Général Serpent",
@@ -183,21 +944,142 @@
             "type": "video/mp4"
           }
         ],
-        "fallbackText": "Le général est vaincu et l’artefact reste avec la compagnie.",
+        "fallbackText": "Le général est vaincu et l’artefact a été récupéré.",
         "durationMs": 18000
       },
       "sourceByteSize": 16058120,
       "sourceSha256": "f1de1f29ccc98ca66f97da94c21060d100687e4fef39b2d0378bcdea36db395c",
       "currentDurationMs": 18000,
-      "durationAuthority": "Existing descriptor only; actual stream timing must be probed before authoring",
+      "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
-      "shotSpecificationStatus": "PENDING_VISUAL_AND_CANONICAL_CONTEXT_AUDIT",
-      "assetGenerationStatus": "BLOCKED_EXTERNAL_VIDEO_TOOL",
-      "artAcceptance": "NOT_REVIEWED_FOR_REMASTER"
+      "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
+      "assetGenerationStatus": "BLOCKED_EXTERNAL_PROVIDER_APPROVAL",
+      "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
+      "measuredStream": {
+        "id": "serpent_route_ending",
+        "sourceSha256": "f1de1f29ccc98ca66f97da94c21060d100687e4fef39b2d0378bcdea36db395c",
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 432,
+        "measuredDurationMs": 18000,
+        "descriptorDurationMs": 18000,
+        "durationDeltaMs": 0,
+        "audioStreams": []
+      },
+      "frameEvidence": [
+        {
+          "label": "first",
+          "decodedFrameIndex": 0,
+          "timestampSeconds": 0,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/serpent_route_ending-first.png",
+          "sha256": "2d6c1db6fa57ebfd75646a463f276f1e5f246eff4e8a377e9da02c6e4e6335c5",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "label": "middle",
+          "decodedFrameIndex": 216,
+          "timestampSeconds": 9,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/serpent_route_ending-middle.png",
+          "sha256": "957abd3a704640722711399027886de80f573d713edc2c8e7c4c2714470ec7d7",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "label": "final",
+          "decodedFrameIndex": 431,
+          "timestampSeconds": 17.958333,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/serpent_route_ending-final.png",
+          "sha256": "905fe95c87c896e5d9826f4d62db8dd83bc13a3a1487c80459f32a82e2e9b185",
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "canonicalContext": {
+        "nodeId": "lion-final-judgement",
+        "trigger": "after serpent_captain victory, serpentGeneralDefeated=true, completed serpent_pursuit route, AFTER serpent_general_aftermath; before epilogue",
+        "sources": [
+          "src/cinematics/Cin6aPresentation.ts:153",
+          "src/game/GameApp.ts:1527",
+          "src/game/lionFinale.ts:492",
+          "src/game/lionFinale.ts:542"
+        ],
+        "followingDialogueId": "epilogue",
+        "truth": "The General is defeated, the artefact recovered and recognition/Seal earned. The prior aftermath may have entrusted the evidence to Alaric or concealed it; the same slot serves both outcomes.",
+        "exclusions": [
+          "No universally final artefact owner or custody transfer",
+          "No universal public disclosure to the court",
+          "No new execution, reward or route choice",
+          "Do not turn descriptor fallback into game truth"
+        ]
+      },
+      "environmentReference": {
+        "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+        "visualFamily": "SERPENT_FINALE",
+        "sha256": "1b804263ddf29b5ff7a75628beca9eb8188a4e7205d8e5d439ef9c4b0bffd762",
+        "policy": "Promoted environment determines landmarks, ground, horizon, palette and light/time; do not import old video lighting as authority."
+      },
+      "characterReferences": [
+        {
+          "id": "serpent_general_boss",
+          "path": "public/assets/characters/pixel/masters/serpent_general_boss.png",
+          "sha256": "b5dc5c8d644ede7cdb83a82492976a82d8bf133936a0b0db7c696ecc416ba33d",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "sage_seraphine",
+          "path": "public/assets/characters/pixel/masters/sage_seraphine.png",
+          "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "maelor",
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        }
+      ],
+      "presentationBoundary": {
+        "duringVideoCastOwner": "VIDEO_OWNS_CAST",
+        "afterVideoSurface": "STATIC_TABLEAU",
+        "afterVideoCastOwner": "STAGE_OWNS_CAST",
+        "dialogueStepsDuringVideoOrHold": 0,
+        "choiceStepsDuringVideoOrHold": 0,
+        "maximumActorsPerComposition": 4,
+        "registryHoldSource": null,
+        "registryHoldMetadataIsDialogueSurfaceAuthority": false,
+        "finalFrameCastReferenceOnly": true,
+        "finalFramePolicy": "Readable stable final image for covered transfer; a hold is allowed only for the exact same established moment. Ending families release before LION_JUDGEMENT epilogue."
+      },
+      "shotBlocks": [
+        {
+          "durationSeconds": 9,
+          "camera": "SLOW_PULL",
+          "cast": [
+            "serpent_general_boss",
+            "sage_seraphine"
+          ],
+          "intent": "Acknowledge the already-resolved defeat in the canonical finale battlefield. The General remains defeated without a new execution; scale, atmospheric release and grounded motion carry the culmination."
+        },
+        {
+          "durationSeconds": 9,
+          "camera": "TRACK_SMALL_RIGHT",
+          "cast": [
+            "sage_seraphine",
+            "maelor"
+          ],
+          "intent": "Frame the company after its earned victory without showing a final artefact handover, holder or public disclosure. End on the route’s visual culmination, then release this family for the state-built epilogue tableau."
+        }
+      ],
+      "sourceVisualReview": "Existing frames depict Seraphine and a kneeling General with a ring-like artefact on the ground. The previous descriptor imposed final company custody; it is now corrected to the universally true recovered-artefact fact.",
+      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/serpent_route_ending.json"
     },
     {
       "id": "lion_trial_route_ending",
-      "status": "BASELINE_RECORDED_SHOT_REVIEW_PENDING",
+      "status": "SOURCE_AUDITED_CANONICAL_SHOT_BRIEF_PREPARED",
       "currentDescriptor": {
         "id": "lion_trial_route_ending",
         "title": "Le Sceau par l’épreuve",
@@ -213,11 +1095,140 @@
       "sourceByteSize": 19773930,
       "sourceSha256": "34f023ac0313e622a82d53c955e63e1e56a62eb4bd3bfdef9580196fcff178b2",
       "currentDurationMs": 20000,
-      "durationAuthority": "Existing descriptor only; actual stream timing must be probed before authoring",
+      "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
-      "shotSpecificationStatus": "PENDING_VISUAL_AND_CANONICAL_CONTEXT_AUDIT",
-      "assetGenerationStatus": "BLOCKED_EXTERNAL_VIDEO_TOOL",
-      "artAcceptance": "NOT_REVIEWED_FOR_REMASTER"
+      "shotSpecificationStatus": "GENERATION_SPEC_VALID_KEYFRAME_AND_MOTION_PENDING",
+      "assetGenerationStatus": "BLOCKED_EXTERNAL_PROVIDER_APPROVAL",
+      "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
+      "measuredStream": {
+        "id": "lion_trial_route_ending",
+        "sourceSha256": "34f023ac0313e622a82d53c955e63e1e56a62eb4bd3bfdef9580196fcff178b2",
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 480,
+        "measuredDurationMs": 20000,
+        "descriptorDurationMs": 20000,
+        "durationDeltaMs": 0,
+        "audioStreams": []
+      },
+      "frameEvidence": [
+        {
+          "label": "first",
+          "decodedFrameIndex": 0,
+          "timestampSeconds": 0,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/lion_trial_route_ending-first.png",
+          "sha256": "80b6b6362f777e9e0b8d17b8a9fd61d65f34e46babf6397b8151555ef9003aed",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "label": "middle",
+          "decodedFrameIndex": 240,
+          "timestampSeconds": 10,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/lion_trial_route_ending-middle.png",
+          "sha256": "1c23955789bd9a0aeed06c741ef70d3f51251fc657401c5ea935d36778451a64",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "label": "final",
+          "decodedFrameIndex": 479,
+          "timestampSeconds": 19.958333,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/lion_trial_route_ending-final.png",
+          "sha256": "e4824db0e7b50162902042b3bbdc9f26a9897d443280ee117f2090a95cb8bea5",
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "canonicalContext": {
+        "nodeId": "lion-final-judgement",
+        "trigger": "after lion_chief victory, lionTrialWon=true, completed lion_trial route, AFTER lion_trial_aftermath; before epilogue",
+        "sources": [
+          "src/cinematics/Cin6aPresentation.ts:166",
+          "src/game/GameApp.ts:1527",
+          "src/game/lionFinale.ts:524",
+          "src/game/lionFinale.ts:542"
+        ],
+        "followingDialogueId": "epilogue",
+        "truth": "The Champion is defeated and Alaric recognizes the Seal earned under Lion martial law. Trial can be voluntary or follow refused recognition; the Serpent General remains free and Shadow disclosure varies.",
+        "exclusions": [
+          "No killing Alaric or the Champion",
+          "No capture/defeat of Serpent General",
+          "No universal punishment framing",
+          "No universal Shadow revelation"
+        ]
+      },
+      "environmentReference": {
+        "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png",
+        "visualFamily": "LION_TRIAL",
+        "sha256": "a6111e975110dd070b9f54ea276d9d7499e44efefcd36676f7cb95a740f1aec1",
+        "policy": "Promoted environment determines landmarks, ground, horizon, palette and light/time; do not import old video lighting as authority."
+      },
+      "characterReferences": [
+        {
+          "id": "alaric",
+          "path": "public/assets/characters/pixel/masters/alaric.png",
+          "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "lion_champion",
+          "path": "public/assets/characters/pixel/masters/lion_champion.png",
+          "sha256": "fba0f3cca3ca9fa59bfbafd6f90fc8b0778e636ab5b2140a3516f5ca9ef848bc",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "sage_seraphine",
+          "path": "public/assets/characters/pixel/masters/sage_seraphine.png",
+          "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        },
+        {
+          "id": "maelor",
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+          "policy": "IMMUTABLE_V2_IDENTITY_REFERENCE; preserve visible/concealed face and actual equipment from the image, not historical textual descriptions."
+        }
+      ],
+      "presentationBoundary": {
+        "duringVideoCastOwner": "VIDEO_OWNS_CAST",
+        "afterVideoSurface": "STATIC_TABLEAU",
+        "afterVideoCastOwner": "STAGE_OWNS_CAST",
+        "dialogueStepsDuringVideoOrHold": 0,
+        "choiceStepsDuringVideoOrHold": 0,
+        "maximumActorsPerComposition": 4,
+        "registryHoldSource": null,
+        "registryHoldMetadataIsDialogueSurfaceAuthority": false,
+        "finalFrameCastReferenceOnly": true,
+        "finalFramePolicy": "Readable stable final image for covered transfer; a hold is allowed only for the exact same established moment. Ending families release before LION_JUDGEMENT epilogue."
+      },
+      "shotBlocks": [
+        {
+          "durationSeconds": 10,
+          "camera": "SLOW_PULL",
+          "cast": [
+            "alaric",
+            "lion_champion"
+          ],
+          "intent": "Show the canonical martial-law culmination: the defeated Champion inclines and Alaric accepts the already-resolved result. Preserve the living figures and trial grounds."
+        },
+        {
+          "durationSeconds": 10,
+          "camera": "TRACK_SMALL_RIGHT",
+          "cast": [
+            "alaric",
+            "lion_champion",
+            "sage_seraphine",
+            "maelor"
+          ],
+          "intent": "Stage the company’s earned recognition with disciplined gestures and depth, without inventing a physical Seal design, custody event, punishment or Serpent capture. Transfer to the separate state-derived epilogue."
+        }
+      ],
+      "sourceVisualReview": "Existing clip shows Alaric/Champion in a mountainous camp setting. Replacement must follow the promoted trial-finale environment and preserve voluntary/refused-route neutrality.",
+      "generationSpec": "tools/cinematics/specs/production-eight-slot-remaster/lion_trial_route_ending.json"
     }
   ],
   "integrationQaPlan": {
@@ -236,5 +1247,29 @@
       "When replacement clips exist, compare protected character/environment identity, continuity, safe zones, readability and actual browser transition/hold behavior; promote bounded new evidence."
     ]
   },
-  "nextAction": "Find a read-only local MP4 probing/frame extraction capability; inspect all eight current sources under ignored tmp/cinematics/eight-slot-remaster; resolve each current trigger/cast/environment/hold and complete per-slot shot briefs from existing authored content. Keep asset generation explicitly blocked while no video tool exists."
+  "nextAction": "Retain eight validated generation specs and current-media QA. Obtain explicit operator authorization to authenticate MiniMax with the local key and generate the first 12s camp video candidate. Verify tracked camp keyframe/source SHA256, generate through the prepared spec, then inspect actual physical motion, V2 identity, environment, framing and final frames. Preserve all existing MP4 bytes/IDs until accepted replacement. Seven other keyframes and final replacement QA remain pending; no provider request has occurred.",
+  "sourceProbe": "tmp/cinematics/eight-slot-remaster/source-probe/source-probe.json",
+  "sharedShotRequirements": [
+    "No baked dialogue, choices, UI, subtitles, watermark or generated speech",
+    "Modern pixel clusters and grounded HD-2D composition; no generic smooth/anime/photoreal substitute",
+    "Authored physical motion and world scale; not fake still-image zoom sold as generated video",
+    "No extra outcome, consequence, reward or choice; combat and RunSystem remain authoritative",
+    "Final mastering stays 1920x1080, H264 yuv420p, 24fps and silent while audio is deferred",
+    "Native starting keyframe may use promoted plate dimensions; no resizing or replacement of protected art is required",
+    "Short generated blocks must have deliberately authored cut/chain continuity; no padding to invent footage; max four visible principal actors per composition"
+  ],
+  "presentationTextCorrection": {
+    "slot": "serpent_route_ending",
+    "reason": "Existing aftermath permits entrusted or concealed evidence; fallback must not impose final custody.",
+    "status": "NEUTRAL_RECOVERY_TEXT_APPLIED"
+  },
+  "existingMediaQa": {
+    "status": "PASS",
+    "evidence": "docs/reports/cinematic-eight-slot-remaster-preparation-1-browser/browser-qa.json",
+    "isolatedPlayerCases": 88,
+    "builtProductionModes": 3,
+    "scenariosPerMode": 8,
+    "finalSerpentOutcomes": 2,
+    "acceptedReplacementVideos": 0
+  }
 }

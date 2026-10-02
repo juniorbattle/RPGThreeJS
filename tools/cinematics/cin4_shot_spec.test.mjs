@@ -7,6 +7,7 @@ import {
   CANONICAL_FACING,
   sourcePathForShot,
   validateShotSpec,
+  validateNativeSourceFrame,
 } from './cin4_shot_spec.mjs';
 
 const projectRoot = process.cwd();
@@ -66,4 +67,19 @@ describe('CIN-4 shot specification', () => {
     expect((await validateShotSpec(spec, { projectRoot })).valid).toBe(true);
     expect(buildShotPrompt(spec, spec.shots[0])).toContain('authored SEALED_ARTEFACT');
   });
+
+  it('accepts declared native plate input while retaining the 1080p output requirement', async () => {
+    const spec = await loadSpec();
+    spec.shots[0].source.frame = { width: 1672, height: 941 };
+    spec.shots[0].source.sha256 = 'a'.repeat(64);
+    expect((await validateShotSpec(spec, { projectRoot })).valid).toBe(true);
+    spec.frame = { width: 1672, height: 941 };
+    expect((await validateShotSpec(spec, { projectRoot })).errors).toContain('frame must be 1920x1080.');
+  });
+
+  it.each([{ width: 512, height: 512 }, { width: 1920.5, height: 1080 }, { width: 9000, height: 5062 }])(
+    'rejects incompatible native source frames %j', (frame) => {
+      expect(validateNativeSourceFrame(frame)).not.toBeNull();
+    },
+  );
 });

@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "production_eight_alaric_audience_arrival_v1",
+  "cinematicId": "alaric_audience_arrival",
+  "tier": "HERO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "production-eight-alaric_audience_arrival-v1",
+  "resolution": "2K",
+  "frame": {
+    "width": 1920,
+    "height": 1080
+  },
+  "status": "AUTHORING_PREPARED_KEYFRAMES_PENDING_PROVIDER_APPROVAL_REQUIRED",
+  "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
+  "artDirection": "Modern pixel-art/HD-2D. Immutable canonical V2 identities and promoted location; authored major cinematic motion. No production replacement before acceptance.",
+  "canonicalContext": {
+    "nodeId": "lion-audience",
+    "trigger": "beforeDialogue lion_briefing, subject to approved prelude video policy",
+    "sources": [
+      "src/cinematics/Cin6aPresentation.ts:17",
+      "src/game/content.ts:294",
+      "src/game/content.ts:355",
+      "src/campaign/LionCampaignStructure.ts:92"
+    ],
+    "followingDialogueId": "lion_briefing",
+    "truth": "The company enters Alaric’s audience; the Bois-Clair mandate and accept/advance decision follow interactively.",
+    "exclusions": [
+      "No advance/gold handover before the player accepts it",
+      "No recognition or Seal awarded",
+      "No unnecessary additional court actors"
+    ]
+  },
+  "presentationBoundary": {
+    "duringVideoCastOwner": "VIDEO_OWNS_CAST",
+    "afterVideoSurface": "STATIC_TABLEAU",
+    "afterVideoCastOwner": "STAGE_OWNS_CAST",
+    "dialogueStepsDuringVideoOrHold": 0,
+    "choiceStepsDuringVideoOrHold": 0,
+    "maximumActorsPerComposition": 4,
+    "registryHoldSource": "alaric_audience_arrival",
+    "registryHoldMetadataIsDialogueSurfaceAuthority": false,
+    "finalFrameCastReferenceOnly": true,
+    "finalFramePolicy": "Readable stable final image for covered transfer; a hold is allowed only for the exact same established moment. Ending families release before LION_JUDGEMENT epilogue."
+  },
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Grand audience-hall axis with the company delegation in a grounded foreground/midground and Alaric holding the far authority plane. Controlled forward movement and environmental depth establish a formal arrival; leave the mandate and response to the following tableau.",
+      "framing": "AUTHORED_LOCATION_MAJOR_EVENT",
+      "environment": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/alaric-audience-cinematic-source.png",
+      "source": {
+        "type": "ROOT_SOURCE",
+        "output": "tmp/cinematics/cin4/production_eight_alaric_audience_arrival_v1/shot_01/source.png",
+        "frame": {
+          "width": 1672,
+          "height": 941
+        },
+        "integration": {
+          "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+          "layoutReference": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/alaric-audience-cinematic-source.png",
+          "referenceAssets": [
+            "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/alaric-audience-cinematic-source.png",
+            "public/assets/characters/pixel/masters/alaric.png",
+            "public/assets/characters/pixel/masters/sage_seraphine.png",
+            "public/assets/characters/pixel/masters/maelor.png",
+            "public/assets/characters/pixel/masters/alistair.png"
+          ],
+          "qualityGates": [
+            "NO_COLLAGE_LOOK",
+            "WORLD_INTEGRATION",
+            "V2_IDENTITY",
+            "CANONICAL_ENVIRONMENT",
+            "NO_GAME_TRUTH_MUTATION"
+          ]
+        }
+      },
+      "characters": [
+        {
+          "id": "alaric",
+          "asset": "public/assets/characters/pixel/masters/alaric.png",
+          "position": {
+            "x": 0.2,
+            "groundY": 0.79
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "CHARACTER:sage_seraphine",
+          "depth": 10,
+          "role": "PRIMARY",
+          "action": "OBSERVE",
+          "mirrorPolicy": "FORBID"
+        },
+        {
+          "id": "sage_seraphine",
+          "asset": "public/assets/characters/pixel/masters/sage_seraphine.png",
+          "position": {
+            "x": 0.4,
+            "groundY": 0.79
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "CHARACTER:maelor",
+          "depth": 20,
+          "role": "SECONDARY",
+          "action": "OBSERVE",
+          "mirrorPolicy": "FORBID"
+        },
+        {
+          "id": "maelor",
+          "asset": "public/assets/characters/pixel/masters/maelor.png",
+          "position": {
+            "x": 0.6,
+            "groundY": 0.79
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "CHARACTER:alistair",
+          "depth": 30,
+          "role": "SECONDARY",
+          "action": "OBSERVE",
+          "mirrorPolicy": "FORBID"
+        },
+        {
+          "id": "alistair",
+          "asset": "public/assets/characters/pixel/masters/alistair.png",
+          "position": {
+            "x": 0.8,
+            "groundY": 0.79
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "CHARACTER:alaric",
+          "depth": 40,
+          "role": "SECONDARY",
+          "action": "OBSERVE",
+          "mirrorPolicy": "FORBID"
+        }
+      ],
+      "camera": {
+        "mode": "SLOW_PUSH"
+      },
+      "durationSeconds": 12,
+      "continuityOut": "END",
+      "endIntent": "STABLE_READABLE_FRAME_THEN_COVERED_TABLEAU_TRANSFER",
+      "nextStepUiSafeZone": {
+        "x": 0,
+        "y": 0.85,
+        "width": 1,
+        "height": 0.15
+      },
+      "promptIntent": "Grand audience-hall axis with the company delegation in a grounded foreground/midground and Alaric holding the far authority plane. Controlled forward movement and environmental depth establish a formal arrival; leave the mandate and response to the following tableau. Current canonical truth: The company enters Alaric’s audience; the Bois-Clair mandate and accept/advance decision follow interactively. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No advance/gold handover before the player accepts it; No recognition or Seal awarded; No unnecessary additional court actors. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. Settle sharply and release to the existing STATIC_TABLEAU; no dialogue/choice on the video or hold.",
+      "authoringStatus": "KEYFRAME_REQUIRED_REVIEW_STAGING_AND_PHYSICAL_ACTION_BEFORE_GENERATION"
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "production_eight_bois_clair_sacrificed_v1",
+  "cinematicId": "bois_clair_sacrificed",
+  "tier": "HERO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "production-eight-bois_clair_sacrificed-v1",
+  "resolution": "2K",
+  "frame": {
+    "width": 1920,
+    "height": 1080
+  },
+  "status": "AUTHORING_PREPARED_KEYFRAMES_PENDING_PROVIDER_APPROVAL_REQUIRED",
+  "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
+  "artDirection": "Modern pixel-art/HD-2D. Immutable canonical V2 identities and promoted location; authored major cinematic motion. No production replacement before acceptance.",
+  "canonicalContext": {
+    "nodeId": "lion-village-choice",
+    "trigger": "after village_raid victory and missionGreed=true; before village_raid_aftermath",
+    "sources": [
+      "src/cinematics/Cin6aPresentation.ts:132",
+      "src/game/GameApp.ts:1517",
+      "src/game/content.ts:1044"
+    ],
+    "followingDialogueId": "village_raid_aftermath",
+    "truth": "The coffers/reserves are secured and the Serpents dispersed, with captives abandoned and human cost. Leaving provisions versus taking everything remains a dialogue choice.",
+    "exclusions": [
+      "No invented massacre or additional death",
+      "No automatic charitable donation or decision to take everything",
+      "No extra loot total or unique treasure"
+    ]
+  },
+  "presentationBoundary": {
+    "duringVideoCastOwner": "VIDEO_OWNS_CAST",
+    "afterVideoSurface": "STATIC_TABLEAU",
+    "afterVideoCastOwner": "STAGE_OWNS_CAST",
+    "dialogueStepsDuringVideoOrHold": 0,
+    "choiceStepsDuringVideoOrHold": 0,
+    "maximumActorsPerComposition": 4,
+    "registryHoldSource": null,
+    "registryHoldMetadataIsDialogueSurfaceAuthority": false,
+    "finalFrameCastReferenceOnly": true,
+    "finalFramePolicy": "Readable stable final image for covered transfer; a hold is allowed only for the exact same established moment. Ending families release before LION_JUDGEMENT epilogue."
+  },
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Show the existing secured coffers/reserve context in the damaged sacrificed-village geography; restrained movement through the consequence, no new pickup reward.",
+      "framing": "AUTHORED_LOCATION_MAJOR_EVENT",
+      "environment": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-sacrificed.png",
+      "source": {
+        "type": "ROOT_SOURCE",
+        "output": "tmp/cinematics/cin4/production_eight_bois_clair_sacrificed_v1/shot_01/source.png",
+        "frame": {
+          "width": 1672,
+          "height": 941
+        },
+        "integration": {
+          "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+          "layoutReference": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-sacrificed.png",
+          "referenceAssets": [
+            "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-sacrificed.png",
+            "public/assets/characters/pixel/masters/maelor.png"
+          ],
+          "qualityGates": [
+            "NO_COLLAGE_LOOK",
+            "WORLD_INTEGRATION",
+            "V2_IDENTITY",
+            "CANONICAL_ENVIRONMENT",
+            "NO_GAME_TRUTH_MUTATION"
+          ]
+        }
+      },
+      "characters": [
+        {
+          "id": "maelor",
+          "asset": "public/assets/characters/pixel/masters/maelor.png",
+          "position": {
+            "x": 0.5,
+            "groundY": 0.79
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "ENVIRONMENT:canonical_location",
+          "depth": 10,
+          "role": "PRIMARY",
+          "action": "OBSERVE",
+          "mirrorPolicy": "FORBID"
+        }
+      ],
+      "camera": {
+        "mode": "PAN_SMALL_RIGHT"
+      },
+      "durationSeconds": 9,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "AUTHORED_CUT_WITH_SAME_WORLD_TIME_AND_TRUTH",
+      "nextStepUiSafeZone": {
+        "x": 0,
+        "y": 0.85,
+        "width": 1,
+        "height": 0.15
+      },
+      "promptIntent": "Show the existing secured coffers/reserve context in the damaged sacrificed-village geography; restrained movement through the consequence, no new pickup reward. Current canonical truth: The coffers/reserves are secured and the Serpents dispersed, with captives abandoned and human cost. Leaving provisions versus taking everything remains a dialogue choice. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No invented massacre or additional death; No automatic charitable donation or decision to take everything; No extra loot total or unique treasure. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. A deliberate between-block cut is authored, not an accidental model reset; retain place, time, cast identity and resolved truth.",
+      "authoringStatus": "KEYFRAME_REQUIRED_REVIEW_STAGING_AND_PHYSICAL_ACTION_BEFORE_GENERATION"
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Place the villageoise and steward in an uneasy spatial relationship against the same harmed settlement. End before the player chooses whether to leave provisions; do not depict extra violence.",
+      "framing": "AUTHORED_LOCATION_MAJOR_EVENT",
+      "environment": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-sacrificed.png",
+      "source": {
+        "type": "CUT_SOURCE",
+        "output": "tmp/cinematics/cin4/production_eight_bois_clair_sacrificed_v1/shot_02/source.png",
+        "frame": {
+          "width": 1672,
+          "height": 941
+        },
+        "integration": {
+          "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+          "layoutReference": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-sacrificed.png",
+          "referenceAssets": [
+            "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-sacrificed.png",
+            "public/assets/characters/pixel/masters/maelor.png",
+            "public/assets/characters/pixel/masters/villageoise.png"
+          ],
+          "qualityGates": [
+            "NO_COLLAGE_LOOK",
+            "WORLD_INTEGRATION",
+            "V2_IDENTITY",
+            "CANONICAL_ENVIRONMENT",
+            "NO_GAME_TRUTH_MUTATION"
+          ]
+        }
+      },
+      "characters": [
+        {
+          "id": "maelor",
+          "asset": "public/assets/characters/pixel/masters/maelor.png",
+          "position": {
+            "x": 0.3333333333333333,
+            "groundY": 0.79
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "CHARACTER:villageoise",
+          "depth": 10,
+          "role": "PRIMARY",
+          "action": "OBSERVE",
+          "mirrorPolicy": "FORBID"
+        },
+        {
+          "id": "villageoise",
+          "asset": "public/assets/characters/pixel/masters/villageoise.png",
+          "position": {
+            "x": 0.6666666666666666,
+            "groundY": 0.79
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "CHARACTER:maelor",
+          "depth": 20,
+          "role": "SECONDARY",
+          "action": "OBSERVE",
+          "mirrorPolicy": "FORBID"
+        }
+      ],
+      "camera": {
+        "mode": "SLOW_PUSH"
+      },
+      "durationSeconds": 9,
+      "continuityOut": "END",
+      "endIntent": "STABLE_READABLE_FRAME_THEN_COVERED_TABLEAU_TRANSFER",
+      "nextStepUiSafeZone": {
+        "x": 0,
+        "y": 0.85,
+        "width": 1,
+        "height": 0.15
+      },
+      "promptIntent": "Place the villageoise and steward in an uneasy spatial relationship against the same harmed settlement. End before the player chooses whether to leave provisions; do not depict extra violence. Current canonical truth: The coffers/reserves are secured and the Serpents dispersed, with captives abandoned and human cost. Leaving provisions versus taking everything remains a dialogue choice. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No invented massacre or additional death; No automatic charitable donation or decision to take everything; No extra loot total or unique treasure. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. Settle sharply and release to the existing STATIC_TABLEAU; no dialogue/choice on the video or hold.",
+      "authoringStatus": "KEYFRAME_REQUIRED_REVIEW_STAGING_AND_PHYSICAL_ACTION_BEFORE_GENERATION"
+    }
+  ]
+}
