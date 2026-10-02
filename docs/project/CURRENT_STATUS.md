@@ -4,17 +4,20 @@ Baseline: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. This is a source au
 
 2026-10-01 production update: [locked production contracts](../contracts/README.md) approve playable T1/T3, retire playable T2/T4 plans, and limit production video to eight slots. The table below combines the cited older baseline with completed `dev` alignment; full demo acceptance remains later work.
 
+2026-10-02 CURRENT FACT on `dev`: T1 and T3 are production-active, with their accepted integration evidence linked below. [Cinematic structural readiness](../autonomy/CINEMATIC_STRUCTURE_READINESS.md) passes existing-media/agency/reduced-motion/resume checks. Artistic video remaster remains an incomplete external manual workstream; independent demo QA is active and audio remains DEFERRED.
+
 | Area | Status | Current fact and remaining check |
 | --- | --- | --- |
 | Lion campaign and save | PRODUCTION | `src/game/runSystem.ts`, `src/campaign/LionCampaignStructure.ts`, and `GameApp` own the existing route, effects, and saves. A prior full-route report is historical proof, not a fresh release pass. |
-| T0 Traversal | PRODUCTION | Gate includes only `T0`; Route Motion, Risk, Reward, Pursuit, checkpoints, arrival, and Journey handoff are active. See [locked contract](../traversal/T0_PRODUCTION_CONTRACT.md). |
-| T1/T3 Traversal | APPROVED_NOT_IMPLEMENTED | Relations exist, but `GameApp` selects only T0 for Traversal. T1/T3 are approved future playable legs; Journey currently carries them. |
+| T0 Traversal | PRODUCTION | The shared gate and authored scene registry include T0/T1/T3; T0 retains its accepted route/checkpoint/arrival/Journey grammar. See [locked contract](../traversal/T0_PRODUCTION_CONTRACT.md). |
+| T1/T3 Traversal | PRODUCTION | Both authored scenes are registered and intentionally enabled. [T1 production](../autonomy/TRAVERSAL_T1_PRODUCTION.md), [T3 production](../autonomy/TRAVERSAL_T3_PRODUCTION.md) retain real GameApp/V6/loot/branch/handoff evidence. |
 | T2/T4 playable Traversal | RETIRED | Historical IDs remain as direct narrative handoffs for campaign/save compatibility; neither is a playable leg and T3 keeps its ID. |
 | First and second refuge hubs | PRODUCTION | Both are `refuge` nodes and registered in `src/ui/RefugePresentation.ts`. |
 | Final refuge | DEFERRED_UNDECIDED | `runSystem` currently types it as `story`; `final_refuge` dialogue is present. An interactive hub conversion is only a proposal. |
 | Journey and dialogue | PRODUCTION | Journey is the default campaign presentation in `GameApp`; NarrativeStage and dialogue are called by the current runtime. Per-scene visual acceptance is not certified by this audit. |
 | Canonical combat | PRODUCTION | `GameApp` uses `CombatBridge` for campaign combat nodes. There is no local Traversal road combat. |
-| Cinematics and VFX | EIGHT_VIDEO_ALIGNMENT_COMPLETE | The production manifest/build contains exactly eight approved MP4s; retired masters are archived byte-identically. [Final browser proof](../autonomy/CINEMATIC_CONVERSION_MATRIX.md) passed. Artistic remaster of those eight and the partial VFX catalog remain separate work. |
-| UI | PRODUCTION_NEEDS_POLISH | Shared status HUD, Journey, refuge, dialogue, combat, and Traversal surfaces exist. A current end-to-end responsive release pass remains a demo gate. |
+| Cinematics | STRUCTURE_READY | Exactly eight approved MP4s; existing-media triggers, tableau ownership, agency, OS/game reduced motion, unavailable-media fallback and resolved V6 resume pass [current structural QA](../autonomy/CINEMATIC_STRUCTURE_READINESS.md). Artistic remaster remains incomplete EXTERNAL_MANUAL_WORKSTREAM. |
+| VFX | CATALOG_PARTIAL | Presentation-only runtime remains implemented; final authored effect coverage and full-demo acceptance remain item 9. |
+| UI | PRODUCTION_NEEDS_POLISH | [Refuge/management focus checkpoint](../reports/refuge-keyboard-focus-1.md) passes keyboard/service/resume checks at three widths, including failed background recovery. Item 9 retains inventory-detail/transaction-label/upgrade accessibility and full-demo release checks. |
 
 Current T0 production evidence: [integrated report](../reports/traversal-t0-production-loop-final-1.md) and [QA JSON](../reports/traversal-t0-production-loop-final-1-browser/production/browser-qa.json). They were produced before this documentation audit and remain the selected golden evidence.

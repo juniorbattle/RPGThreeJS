@@ -63,6 +63,15 @@ async function tabTo(page, selector) {
   throw new Error(`Keyboard could not reach ${selector}`);
 }
 async function activate(page, selector) { await tabTo(page, selector); await page.keyboard.press('Enter'); }
+async function settleManagementCapture(page) {
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    const panel = document.querySelector('.management');
+    await Promise.all(panel.getAnimations({ subtree: true })
+      .filter(animation => Number.isFinite(animation.effect?.getComputedTiming().iterations))
+      .map(animation => animation.finished.catch(() => undefined)));
+  });
+}
 async function hubReady(page) {
   for (let index = 0; index < 500; index++) {
     if (await page.locator('.exploration-stop:visible:not([inert])').count()) return;
@@ -186,6 +195,7 @@ async function run(nodeId, viewport, osReduced) {
         assert.equal(await page.evaluate(() => document.activeElement?.getAttribute('data-item')), 'potion');
       }
       await tabTo(page, '.management [data-action="close"]');
+      await settleManagementCapture(page);
       await page.screenshot({ path: resolve(output, `${name}-${action}.png`) });
       await page.keyboard.press('Enter'); await hubReady(page);
       assert.deepEqual(await truth(page), expected, `${action} return differs from authoritative service result`);

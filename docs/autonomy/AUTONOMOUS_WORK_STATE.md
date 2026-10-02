@@ -5,65 +5,126 @@ Git on dev and this state pair are the current continuation authority. Latest sc
 | Field | Value |
 | --- | --- |
 | `status` | IN_PROGRESS |
-| `runStartedAt` | 2026-10-02T03:19:48.4805501+00:00 |
-| `runEndedAt` | 2026-10-02T03:25:14.5992175+00:00 |
-| `activeTask` | CINEMATIC-STRUCTURE-READINESS |
-| `activePhase` | Operator scope change persisted; structural readiness audit next |
-| `activeSubtask` | Audit existing integration and handoffs without generating new video or keyframes |
+| `runId` | rpgthreejs-auto-dev-90m-20261002T0553 |
+| `agent` | codex |
+| `runStartedAt` | 2026-10-02T05:54:44.8448644Z |
+| `runEndedAt` | null |
+| `activeTask` | DEMO-QA-POLISH |
+| `activePhase` | Checkpoint: cinematic readiness and refuge keyboard focus accepted |
+| `activeSubtask` | Close verified focus checkpoint; retain remaining ManagementView accessibility and full demo QA |
 | `workingBranch` | dev |
-| `lastKnownGoodCommit` | 2a92a0f92ed07d8a579cc760c6403c45091b207a |
-| `lastPushedCommit` | 2a92a0f92ed07d8a579cc760c6403c45091b207a |
-| `creditStatus` | CODEX_AVAILABLE; NO_PROVIDER_REQUEST_IN_SCOPE_CHANGE |
-| `contractComplianceStatus` | Contract set v1: preservation PASS, no runtime/media/LOCKED edit. Exactly eight active slots retained. Prologue/refuge contract extension DEFERRED to dedicated decision; Alistair DECISION_PENDING. Final video remaster incomplete and external to automation; audio DEFERRED. |
-| `commitReferenceScope` | Verified scope-decision checkpoint; subsequent state-only closeout identified by HEAD/origin/dev and automation memory. |
+| `lastKnownGoodCommit` | 7c4cd12b67145779803f8dff30ab72c93e0c228c |
+| `lastPushedCommit` | 7c4cd12b67145779803f8dff30ab72c93e0c228c |
+| `creditStatus` | CODEX_AVAILABLE; NO_PROVIDER_REQUEST |
+| `contractComplianceStatus` | Contract set v1/PRODUCTION-CONTRACTS-LOCK-1: item8 structure COMPLETE/PASS; scoped item9 refuge focus checkpoint PASS including UI/ACCESSIBILITY. Remaining inherited ManagementView/full-demo acceptance explicit; no LOCKED rule modified, no new canon/slot/save schema/media; audio DEFERRED. |
+
+## Live run
+
+```json
+{
+  "runId": "rpgthreejs-auto-dev-90m-20261002T0553",
+  "agent": "codex",
+  "lastHeartbeat": "2026-10-02T06:45:44.586Z",
+  "wip": {
+    "sha": "9108a278862c4e412ff536914f99e3d9f811a7fc",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261002T0553",
+    "dirtyFiles": [
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/project/CURRENT_STATUS.md",
+      "docs/reports/INDEX.md",
+      "tools/refuge-production-accessibility-qa.mjs",
+      "docs/autonomy/CINEMATIC_EXTENSION_PLANNING.md",
+      "docs/autonomy/CINEMATIC_STRUCTURE_READINESS.md",
+      "docs/autonomy/handoffs/2026-10-02T0553Z-codex-resume-checkpoint.md",
+      "docs/reports/cinematic-structure-readiness-1-browser/",
+      "docs/reports/cinematic-structure-readiness-1.md",
+      "docs/reports/refuge-keyboard-focus-1-browser/",
+      "docs/reports/refuge-keyboard-focus-1.md"
+    ],
+    "status": "GREEN",
+    "lastGreenCheck": "182 focused tests/types/contracts/build/staging;60 cinematic+15 refuge final production cases PASS"
+  }
+}
+```
 
 ## completedThisRun
 
-- Latest operator decision: video/keyframe generation and artistic remaster moved outside autonomous work
-- Recurring automation prompt updated; technical structure and existing-media QA remain in scope
-- Prologue desired extension and optional first-refuge scene recorded for dedicated contract planning
-- Alistair lion-emblem issue recorded as nonurgent unresolved visual/narrative decision; no canon or protected art changed
-- Six existing candidates/evidence and completed items 1-7 preserved; no provider job or replacement started
-
-- Saved automation scope and unchanged cadence/model/reasoning/project verified; decision checkpoint 2a92a0f pushed to dev
+- Read AGENTS/active decisions/multi-agent protocol/Devin handoff and automation memory; exclusive canonical lock acquired; interrupted source preserved without reset/clean
+- Byte-identical Desktop design audit archive verified; origin/main unchanged and ancestor of dev; Devin integration retained; no LOCKED document edited
+- CINEMATIC-STRUCTURE-READINESS COMPLETE/PASS: shared OS/game preference resolver, static fallback/immediate text, canonical eight-slot trigger/ownership/agency/loading/skip/resume map
+- 60/60 cinematic production scenarios in nine runs: all-eight OS-only with normal graphics at1366x768/620x780/390x844; normal, game-reduced and failed-media controls; focused choices; two actual decoded-prelude interruption/reload checks
+- Prepared factual prologue/first-refuge planning without new slot/ID/canon; Alistair unresolved; artistic remaster remains incomplete EXTERNAL_MANUAL_WORKSTREAM; no generation/provider/media replacement
+- Reduced-motion implementation50c2489 pushed and remote verified; interrupted snapshot source bytes match that commit exactly
+- Item9: reproduced inherited BODY focus loss at refuge entry; fixed ready/return focus, named management dialog, inert siblings/Tab/Escape, stable control focus through rerenders and transient nested-modal cleanup
+- 15/15 final production refuge cases: both hubs xthree widths xnormal/OS-only, two failed-background cases, one supplemental settled-capture run; native keyboard, equipment details, permanent-wallet purchase, authoritative rest, V6 resume and departure PASS
+- 182/182 focused tests across19 suites, TypeScript/contracts/build/eight MP4s and narrative staging PASS; all eight shipped MP4 hashes unchanged
+- Refuge focus implementation7c4cd12 pushed and remote verified; read-only specialists returned scoped PASS; two new immutable report packages with six inspected captures each prepared
+- Updated current project status to actual T0/T1/T3 production and existing-media readiness; adopted exclusive writer/canonical lock/live state/WIP/trailer protocol; automation configuration unchanged
 
 ## filesChanged
 
-- docs/autonomy/CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md
-- docs/autonomy/AUTONOMOUS_WORK_STATE.md
+- src/cinematics/CinematicPlayer.test.ts
+- src/cinematics/CinematicPlayer.ts
+- src/cinematics/NarrativePresentationRuntime.test.ts
+- src/cinematics/NarrativeStage.test.ts
+- src/cinematics/NarrativeStage.ts
+- src/cinematics/TravelStillSurface.ts
+- src/ui/DialogueView.test.ts
+- src/ui/DialogueView.ts
+- src/ui/ExplorationView.test.ts
+- src/ui/ExplorationView.ts
+- src/ui/ManagementView.test.ts
+- src/ui/ManagementView.ts
+- src/ui/ReducedMotion.ts
+- tools/cinematics/run_cin6d6_route_browser_qa.mjs
+- tools/refuge-production-accessibility-qa.mjs
 - docs/autonomy/AUTONOMOUS_WORK_STATE.json
-- docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md
-- docs/autonomy/CINEMATIC_ACTIVE_MOTION_CANDIDATES.md
-- docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md
-- tools/cinematics/specs/production_eight_slot_remaster_brief.json
+- docs/autonomy/AUTONOMOUS_WORK_STATE.md
+- docs/project/CURRENT_STATUS.md
+- docs/reports/INDEX.md
+- docs/autonomy/CINEMATIC_EXTENSION_PLANNING.md
+- docs/autonomy/CINEMATIC_STRUCTURE_READINESS.md
+- docs/autonomy/handoffs/2026-10-02T0553Z-codex-resume-checkpoint.md
+- docs/reports/cinematic-structure-readiness-1-browser/
+- docs/reports/cinematic-structure-readiness-1.md
+- docs/reports/refuge-keyboard-focus-1-browser/
+- docs/reports/refuge-keyboard-focus-1.md
 
 ## testsRun
 
-- Contract validator (8 LOCKED contracts/8 active slots)
-- State/brief JSON parse, MD/JSON continuity, Git whitespace and zero runtime/media/LOCKED diff
-- Saved automation prompt and cadence/model/reasoning/project/status comparison
+- 92 focused player/stage/presentation/dialogue/session tests plus74 adjacent registry/overlay/preloader/triggers/scene/continuity/Journey tests
+- 16 focused ExplorationView/ManagementView/refuge background/presentation/HUD tests
+- TypeScript --noEmit; direct8-contract validator; production Vite build/eight shipped MP4s
+- Narrative staging validator:75/75 dialogues,257/257 steps,282/282 runtime steps; zero choice/text/ownership violations; two dead/unreachable historical steps explicitly reported
+- 60 final cinematic production route cases;15 final refuge keyboard/service/fallback/resume cases; selected captures manually inspected
+- Before-fix refuge focus failure reproduced separately; twelve earlier mechanics-only baseline cases retained but not counted as final focus acceptance
+- Protected-path Git gates, whitespace, source/MP4 hashes, owned-port cleanup and remote commit parity
 
 ## testsPassed
 
-- 8 LOCKED contracts/8 active slots preserved
-- State/brief JSON parse and Git whitespace PASS; source runtime/media/LOCKED contracts unchanged
-- Saved recurring prompt matches expected scope; unchanged 90-minute cadence, gpt-6.1-sol/high, ACTIVE/local project
+- 182/182 focused tests PASS; types,8-contract validator,production build/eight MP4s PASS
+- 75/75 final production browser scenarios PASS; zero unexpected browser diagnostics
+- OS-only all-eight coverage xthree widths; keyboard choice bounds and unchanged resolved V6 resume PASS
+- Two actual decoded-prelude interruptions preserve complete V6 save before resumed player choice PASS
+- Refuge focus/service/owner-resolved purchase/rest/resume/departure and two dark-background fallback cases PASS
+- No LOCKED/public asset change; protected existing MP4 hashes unchanged; scoped contract matrix including UI/ACCESSIBILITY PASS
 
 ## testsRemaining
 
-- Structural readiness audit using retained existing-media/player/campaign QA; fix only observed independent defects
-- Full demo QA/polish; artistic media acceptance remains independent and incomplete
+- Native keyboard access to inherited clickable inventory details; contextual transaction/upgrade names
+- Equipment preview Retour focus, actual skill upgrade, sale/crafting and equip-confirm owner-result acceptance
+- Continuous built-production Lion demo from new chronicle through both terminal routes, combat/VFX and all refuge/Traversal/save boundaries; existing seeded cases are lifecycle proof only
 
 ## blockers
 
-- No blocker to structural readiness or independent demo QA
-- Prologue/refuge activation waits for dedicated slot-contract decision; Alistair art/origin unresolved and nonurgent
+- None.
 
 ## remainingWork
 
-- Item 8 structural readiness audit, then independent item 9 demo QA
-- External manual workstream: new videos, integrated keyframes, remaster and final art/runtime acceptance
-- Prologue planning and optional first-refuge brief; Alistair design/origin dedicated decision
+- Item9 full demo QA/polish remains IN_PROGRESS; delivered focus checkpoint is accepted, not full ManagementView/demo accessibility
+- External manual video/keyframe/remaster and final artistic acceptance remain incomplete; recurring generation/polling/replacement excluded
+- Prologue/refuge slot extension and Alistair emblem/origin require dedicated decisions; audio remains DEFERRED
 
 ## taskQueue
 
@@ -74,18 +135,14 @@ Git on dev and this state pair are the current continuation authority. Latest sc
 - TRAVERSAL-GENERALIZATION: COMPLETE
 - TRAVERSAL-T1-PRODUCTION: COMPLETE
 - TRAVERSAL-T3-PRODUCTION: COMPLETE
-- CINEMATIC-STRUCTURE-READINESS: ACTIVE; item 8 media remaster incomplete in EXTERNAL_MANUAL_WORKSTREAM
-- Complete demo QA and polish: QUEUED; independent work may proceed after structural readiness without waiting for new videos
+- CINEMATIC-STRUCTURE-READINESS: COMPLETE; artistic remaster incomplete EXTERNAL_MANUAL_WORKSTREAM
+- Complete demo QA and polish: ACTIVE; remaining ManagementView accessibility/actual service operations and continuous demo QA
 - Audio decision after structure lock: DEFERRED
 
 ## nextAction
 
-Acquire exclusive lock/read Git and both states, then docs/autonomy/CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md. Resume CINEMATIC-STRUCTURE-READINESS: reuse existing preparation and active-motion QA, map current eight triggers/cast ownership/surface handoffs/dialogue-choices/skip/fallback/reduced-motion/save-resume to code and evidence; identify any real structural gaps without new media. Preserve six reviewed candidates and all completed items. Do NOT generate Bois-Clair shot_02, any video/keyframe or call MiniMax in recurring runs. After an explicit readiness checkpoint, proceed to independent item 9 demo QA without marking artistic remaster complete. Prologue is a desired extension to plan and first-refuge scene an option: dedicated contract/list decision precedes any new active slot/ID. Alistair lion-emblem/design/origin remains a deferred nonurgent decision; no asset or narrative edits. Audio DEFERRED.
+Resume item9 at ManagementView accessibility using tools/refuge-production-accessibility-qa.mjs (ignored unique output; REFUGE_QA_CASE supports a single seeded production case). Reproduce native Tab/Enter access to .item-row[data-item-details] and contextual names for [data-trade]/[data-upgrade-skill]; fix only observed presentation defects while retaining owner callbacks. Restore equipment preview Retour to its [data-preview-item] opener. Then extend the real production driver with an actually unlocked skill upgrade, sale/craft/equip-confirm expected by existing management owner rules, at1366x768/620x780/390x844. Keep full continuous Lion campaign/combat/VFX QA open; do not redo completed T0/T1/T3/cinematic readiness or generate media.
 
-## External media and deferred decisions
+## Retained scope and candidate history
 
-Video/keyframe generation and replacement are EXTERNAL_MANUAL_WORKSTREAM; remaster incomplete. Prologue desired, first-refuge first scene optional, both require dedicated contract/list decisions before activation. Alistair sober design versus Lion-region origin hypothesis remains nonurgent and unadopted. The eight current slots, canon, V2 and deferred audio remain unchanged. Standing provider permission is retained but recurring generation is excluded.
-
-## Retained candidate history
-
-Six candidate reviews, hashes, prompts and sources remain preserved in [the report](../reports/cinematic-active-motion-1.md); detailed prior run results/manual-media next action remain in JSON lastCandidateCheckpoint. Raw/master/frame galleries remain ignored as recorded in retainedIgnoredArtifacts. No provider job is pending.
+The JSON companion preserves operator authorization, creative direction, autonomyScope, six candidate provenance and ignored-artifact inventory. Video remaster remains incomplete EXTERNAL_MANUAL_WORKSTREAM; prologue/refuge activation requires dedicated contract work; Alistair decision pending; audio DEFERRED.

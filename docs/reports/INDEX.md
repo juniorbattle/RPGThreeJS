@@ -4,6 +4,8 @@ Baseline for this index: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. Repo
 
 | Report | Historical role | Current authority |
 | --- | --- | --- |
+| [Cinematic structure readiness](cinematic-structure-readiness-1.md) | Existing eight-slot OS reduced-motion/agency/resume acceptance, 2026-10-02 | [Current structural map](../autonomy/CINEMATIC_STRUCTURE_READINESS.md); artistic remaster external/incomplete |
+| [Refuge keyboard focus](refuge-keyboard-focus-1.md) | Reproduced BODY-focus defect and bounded production service/focus correction, 2026-10-02 | [Project status](../project/CURRENT_STATUS.md); full demo/accessibility QA remains item 9 |
 | [T0 production loop final](traversal-t0-production-loop-final-1.md) | Latest integrated production validation; selected golden browser evidence | [T0 contract](../traversal/T0_PRODUCTION_CONTRACT.md) plus source |
 | [Project continuity cleanup](project-continuity-cleanup-1.md) | Physical retirement of six superseded browser folders; output-policy and retention review | [Documentation index](../README.md) and current source |
 | [Risk production](traversal-t0-route-risk-production-1.md), [Reward production](traversal-t0-route-reward-production-1.md), [Pursuit production](traversal-t0-pursuit-production-1.md) | Component activation records; their browser folders were retired, with original files in Git history | T0 contract and integrated report |
