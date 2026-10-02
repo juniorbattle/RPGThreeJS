@@ -7,3 +7,8 @@ export function shouldHandleCombatShortcut(event: Pick<KeyboardEvent, 'key' | 't
   if ((target as HTMLElement).isContentEditable) return false;
   return !target.closest('button, input, textarea, select, a[href], summary, [contenteditable]:not([contenteditable="false"]), [role="button"], [role="menuitem"], [role="menuitemcheckbox"], [role="menuitemradio"], [role="textbox"], [role="combobox"], [role="slider"], [role="spinbutton"]');
 }
+
+/** Inspection owns its native scrolling; the battlefield still blocks wheel input. */
+export function shouldPreventCombatWheel(event: Pick<WheelEvent, 'target'>): boolean {
+  return !(event.target instanceof Element && event.target.closest('#panel'));
+}

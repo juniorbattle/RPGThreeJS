@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 import { describe, expect, it } from 'vitest';
-import { shouldHandleCombatShortcut } from './combatKeyboard';
+import { shouldHandleCombatShortcut, shouldPreventCombatWheel } from './combatKeyboard';
 
 function routed(key: string, target: EventTarget, defaultPrevented = false): boolean {
   return shouldHandleCombatShortcut({ key, target, defaultPrevented });
@@ -45,5 +45,21 @@ describe('combat shortcut ownership', () => {
       expect(routed(key, canvas)).toBe(true);
       expect(routed(key, document.body)).toBe(true);
     }
+  });
+});
+
+describe('combat wheel ownership', () => {
+  it('leaves inspection and its nested controls to native scrolling', () => {
+    const panel = document.createElement('div');
+    panel.id = 'panel';
+    const button = panel.appendChild(document.createElement('button'));
+    const text = button.appendChild(document.createElement('span'));
+    for (const target of [panel, button, text]) expect(shouldPreventCombatWheel({ target })).toBe(false);
+  });
+  it.each(['canvas', 'body', 'button'])('still blocks wheel input over %s outside inspection', tag => {
+    expect(shouldPreventCombatWheel({ target: document.createElement(tag) })).toBe(true);
+  });
+  it('blocks unrecognized event targets', () => {
+    expect(shouldPreventCombatWheel({ target: null })).toBe(true);
   });
 });

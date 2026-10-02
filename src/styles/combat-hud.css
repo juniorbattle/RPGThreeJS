@@ -315,3 +315,20 @@
 @media(max-width:700px){
   #ui:has(#skillmenu:not(.hidden)) #help{display:none}
 }
+
+/* Keep inspection above the grid at intermediate widths. This rule belongs
+   after the HUD rails so their bottom anchor cannot stretch the card. */
+@media(min-width:561px) and (max-width:1240px){
+  #panel:not(.deploy-preview){top:160px;bottom:auto;max-height:34dvh;overflow:auto}
+  #panel:not(.deploy-preview):has(.stats-details.is-open){overflow:auto}
+}
+@media(min-width:561px) and (max-width:1240px) and (max-height:620px){
+  #panel:not(.deploy-preview){top:120px;bottom:auto;max-height:28dvh}
+}
+/* Expanded inspection must also leave the narrow battlefield clickable. */
+@media(max-width:560px){
+  #panel:not(.deploy-preview){top:240px;bottom:auto;max-height:22dvh;overflow:auto}
+}
+@media(max-width:560px) and (max-height:620px){
+  #panel:not(.deploy-preview){top:160px;max-height:24dvh}
+}

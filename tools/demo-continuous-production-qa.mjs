@@ -55,6 +55,7 @@ const report = {schemaVersion:1, recordedAt:new Date().toISOString(), method:'FR
 report.qaJobReceipt=qaJob.receiptPath;
 Object.assign(report,{target,routePlan,finalePlan,defeatNodeId,nativeDefeatWait,viewport:{width:viewport[0],height:viewport[1]},
   osReducedMotion:process.env.DEMO_QA_OS_MOTION==='1',observationHook:'Built bootstrap exposes GameApp for read-only snapshots; no owner method invoked',refuges:[],choices:[]});
+report.nativeTacticalPolicy='Champion archer conserves its last AP before acting, using the existing Wait/Souffle rule';
 report.driverSha256=createHash('sha256').update(await readFile('tools/demo-continuous-production-qa.mjs')).digest('hex');
 report.productionBundles=await Promise.all((await readdir('dist/assets')).filter(name=>/^(game|combat)-.*\.js$/.test(name))
   .map(async name=>({path:`dist/assets/${name}`,sha256:createHash('sha256').update(await readFile(`dist/assets/${name}`)).digest('hex')})));
@@ -227,6 +228,12 @@ async function battle(){
       await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait-for-native-defeat',before:current});continue;
     }
     if(current.active.ap<=0){await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait',before:current});continue;}
+    // Wait retains the last AP and lets the runtime's existing Souffle rule
+    // restore one. Spending it every round prevented this pilot from using
+    // the archer's authored two-AP skill against the Champion.
+    if(entry.combatId==='lion_chief'&&current.active.id==='archer'&&current.active.ap===1&&current.attacks===0){
+      await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait-conserve-ap',before:current});continue;
+    }
     if(await skill(frame,entry))continue;
     if(await heal(frame,entry))continue;
     if(await attack(frame,entry))continue;
