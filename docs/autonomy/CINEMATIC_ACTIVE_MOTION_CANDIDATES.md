@@ -36,3 +36,21 @@ Read GAME_CONSTITUTION, README/manifest and all eight LOCKED contracts, operator
 ## Continuation
 
 Inspect the camp task's actual motion before any replacement or further video submission. Keep the existing production MP4 until separate artistic and runtime acceptance. Never duplicate the accepted provider task because a process/run ended. Remaining seven clips still need accepted keyframes and motion; preparation cannot close item 8. Audio remains DEFERRED.
+
+## First camp inspection and continuation support
+
+Task `447913679147511` downloaded a real 2560×1440/24fps H.264 candidate, 12.25 seconds, with provider-generated AAC. The existing mastering pipeline removes audio and trims to the approved 12 seconds at 1920×1080/24fps; no frames were cloned because the raw source exceeds the target duration. No audio was adopted into production.
+
+**REJECTED_ARTISTIC_NOT_PRODUCTION**: alternating walking and cloth/environment movement are real, but Maelor's visible book disappears before the final frame; the source crescent moon becomes a full disc; actor/equipment pixel clusters soften into smooth illustration. [Decoded contact sheet and exact submitted prompts/review/player proof](../reports/cinematic-active-motion-1/candidate-qa.json) retain the decision. Real-player preview passed **11/11**, including natural finish, passive hold/release, keyboard skip at four widths, reduced motion, missing-media fallback and unchanged isolated saves. This pass does not override the art rejection.
+
+Camp attempt 2 (`447917133545949`, prompt active-v3) targets those three defects. Audience attempt 1 (`447917421400540`, prompt active-v2) uses the reviewed integrated source. Both were submitted after first-camp inspection and remain candidates.
+
+The adapter now supports `--resume true` for the same spec/shot/attempt/output. It validates the saved task ID, source and prompt hashes, model, duration, resolution and slot before loading credentials; it skips the create endpoint and polls the accepted task. Poll/download interruptions preserve `pending_resume` rather than imply a new submission is needed. Restore the exact submitted spec from candidate proof if subsequent authoring changed it. A downloaded candidate is refused before authentication. Timeout arguments are checked before submission. **38/38** focused specification/media/continuation tests pass; this protects continuity without claiming provider-side cancellation.
+
+## Second review checkpoint
+
+[Separate followup proof](../reports/cinematic-active-motion-1/candidate-qa-followup.json) preserves the first checkpoint evidence unchanged. Camp attempt 2 fixes the missing book and moon phase and has real locomotion, but source pixel construction still becomes smooth actor illustration, so final art is not accepted. Audience attempt 1 is rejected: Alaric sits and displays an invented paper/scroll while original held equipment vanishes; Maelor's held book moves to an invented back strap and changes its cover; the final camera push crops the delegation. These are presentation defects, not adopted campaign events.
+
+All three generated technical masters passed **33/33** isolated player cases. The final focused suite is **115/115** (continuation, CIN-4 spec/media and campaign census). The separate historical allowlist failure remains documented above; it was not hidden by the focused selection.
+
+Camp attempt 3 (`447919636996606`, active-v4) deliberately holds the scenic camera while keeping actual walking/cloth/fire/river motion, to isolate pixel and identity preservation. This is a diagnostic variant, not a revised production camera doctrine or final creative acceptance. Audience attempt 2 (`447920461500891`, active-v3) keeps Alaric standing with both original items, forbids new documents and book straps, and retains wide full-body framing. Do not submit a fourth autonomous camp attempt or erase its first three review records. Remaining six slot families are still awaiting integrated keyframes and generated-motion acceptance.

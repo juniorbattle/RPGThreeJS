@@ -8,12 +8,12 @@ Git on dev and this state pair are the current continuation authority.
 | `runStartedAt` | 2026-10-02T02:09:32.4830893Z |
 | `runEndedAt` | RUNNING |
 | `activeTask` | CINEMATIC-EIGHT-SLOT-REMASTER |
-| `activePhase` | First authorized camp generation and active motion authoring |
-| `activeSubtask` | Camp attempt 1 artistically rejected; camp 2 and audience 1 accepted provider tasks running |
+| `activePhase` | Targeted pixel-style, equipment and framing candidate review |
+| `activeSubtask` | Camp final permitted attempt 3 and audience attempt 2 running; all first three clips unpromoted |
 | `workingBranch` | dev |
 | `lastKnownGoodCommit` | 3b4aa138144ae935ad91b9c4f0f0dcdf534ab6dc |
 | `lastPushedCommit` | 3b4aa138144ae935ad91b9c4f0f0dcdf534ab6dc |
-| `creditStatus` | CODEX_AVAILABLE; MINIMAX_THREE_TASKS_ACCEPTED_BALANCE_NOT_MEASURED |
+| `creditStatus` | CODEX_AVAILABLE; MINIMAX_FIVE_TASKS_ACCEPTED_BALANCE_NOT_MEASURED |
 | `contractComplianceStatus` | Contract set v1: candidate authoring/preservation PASS; art/media replacement acceptance pending. No LOCKED rule changed; camp 1 rejected and no production replacement. |
 
 ## completedThisRun
@@ -24,6 +24,9 @@ Git on dev and this state pair are the current continuation authority.
 - First camp candidate generated and physically inspected: true walking, but rejected for book loss, moon-phase drift and smoothing; no promotion
 - Camp candidate 1 real-player QA 11/11 PASS at four viewports; silent 1080p/24fps/12s master retained locally
 - Audience integrated V2 keyframe/provenance saved; camp 2 and audience 1 tasks submitted after first camp inspection
+- Camp 2 fixed book/moon but final style unaccepted; audience 1 rejected for equipment/prop/framing drift; separate followup proof retains earlier evidence
+- Guarded MiniMax accepted-task resume implemented; 115 focused tests PASS; already-downloaded resume refusal verified before authentication
+- 33/33 isolated player cases pass for first three clips; camp 3 diagnostic and audience 2 correction submitted
 
 ## filesChanged
 
@@ -41,6 +44,10 @@ Git on dev and this state pair are the current continuation authority.
 - tools/cinematics/specs/production-eight-slot-remaster/*.json
 - tools/cinematics/candidates/production-eight-slot-remaster/alaric_audience_arrival/keyframe-v1.png
 - tools/cinematics/candidates/production-eight-slot-remaster/alaric_audience_arrival/provenance.json
+- tools/cinematics/minimax_h3_generate.mjs
+- tools/cinematics/minimax_task_checkpoint.mjs
+- tools/cinematics/minimax_task_checkpoint.test.mjs
+- docs/reports/cinematic-active-motion-1/candidate-qa-followup.json
 
 ## testsRun
 
@@ -57,18 +64,19 @@ Git on dev and this state pair are the current continuation authority.
 - TypeScript, 8 LOCKED contracts/8 slots, production build and eight shipped MP4s PASS
 - Protected media/reference hashes PASS
 - Camp candidate 1 real-player 11/11: completion/hold/skip/reduced-motion/fallback, four viewports, unchanged saves
+- 115/115 final focused continuation/CIN-4/media/census tests PASS
+- 33/33 isolated candidate player cases across four viewports PASS
 
 ## testsRemaining
 
-- Camp 2 and audience 1 decoded motion/identity/style/ending acceptance
-- Accepted candidate campaign/runtime replacement QA
-- Remaining six slots/twelve shot blocks keyframe/generation/acceptance
-- Queued demo QA and deferred audio
+- Camp attempt 3 and audience attempt 2 actual motion/identity/pixel/framing acceptance
+- Accepted candidate campaign and production replacement QA (none accepted yet)
+- Remaining six slot families/twelve blocks keyframes, motion and acceptance
+- Historical CIN-6E-A allowlist failure remains inherited/documented; demo/audio queue retained
 
 ## blockers
 
-- Historical CIN-6E-A protected-runtime allowlist lacks NarrativeTableau.test.ts already modified by approved e898e61; current run has zero src runtime changes
-- Camp attempt 1 artistic rejection recorded; second attempt pending (not a permission blocker)
+None.
 
 ## remainingWork
 
@@ -84,12 +92,12 @@ Git on dev and this state pair are the current continuation authority.
 - TRAVERSAL-GENERALIZATION: COMPLETE
 - TRAVERSAL-T1-PRODUCTION: COMPLETE
 - TRAVERSAL-T3-PRODUCTION: COMPLETE
-- CINEMATIC-EIGHT-SLOT-REMASTER: ACTIVE (MiniMax authorized; active FF9-inspired motion review/generation/acceptance pending)
+- CINEMATIC-EIGHT-SLOT-REMASTER: ACTIVE (five candidate tasks, artistic review/remaining six families/replacement acceptance pending)
 - Complete demo QA and polish: QUEUED
 - Audio decision after structure lock: DEFERRED
 
 ## nextAction
 
-Inspect accepted provider tasks camp 2 (447917133545949) and audience 1 (447917421400540) from existing tmp/cinematics/cin4 metadata. Do not resubmit duplicates. Camp 1 rejected for lost Maelor book, crescent/full-moon drift and pixel smoothing; its 11/11 player QA does not accept art. Decode second camp/audience first-middle-final and locomotion, preserve V2 equipment/location/pixel style. Candidate master names must be distinct via master_shot --output. Preview one approved slot via CIN8_MEDIA_CANDIDATE against local Vite with existing player tool. Do not replace public MP4 until artistic and campaign acceptance. All eight active briefs validated; remaining six slots need keyframes.
+Retain accepted camp task 447919636996606 (attempt 3, active-v4) and audience task 447920461500891 (attempt 2, active-v3), with source/spec/hash snapshots in candidate-qa-followup.json. Await/download via current processes or existing adapter --resume true with the same spec/shot/attempt; never resubmit a duplicate. Inspect decoded first/middle/final and actual physical motion. Camp attempts 1/2 and audience 1 are not accepted; reasons in immutable first/followup evidence. Camp 3 is a locked-camera style diagnostic and the last allowed autonomous camp attempt. Preserve all eight public MP4s until separate artistic/campaign acceptance; six remaining slot families need keyframes. No LOCKED rule changed; audio DEFERRED.
 
-Standing decision: docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md; no credential value stored.
+Standing operator decision retained; no credential value stored.

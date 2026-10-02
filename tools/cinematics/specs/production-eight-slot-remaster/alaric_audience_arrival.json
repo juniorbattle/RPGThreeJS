@@ -4,7 +4,7 @@
   "cinematicId": "alaric_audience_arrival",
   "tier": "HERO",
   "canonicalFacing": "SCREEN_RIGHT",
-  "promptVersion": "production-eight-alaric_audience_arrival-active-v2",
+  "promptVersion": "production-eight-alaric_audience_arrival-active-v3",
   "resolution": "2K",
   "frame": {
     "width": 1920,
@@ -93,7 +93,7 @@
           "lookTarget": "CHARACTER:alistair",
           "depth": 10,
           "role": "PRIMARY",
-          "action": "RAISE_HAND",
+          "action": "SMALL_HEAD_TURN",
           "mirrorPolicy": "WARN"
         },
         {
@@ -152,8 +152,8 @@
         }
       ],
       "camera": {
-        "mode": "SLOW_PUSH",
-        "intent": "Track the approaching delegation with decisive foreground-column parallax, then ease to the established authority axis. Camera motion follows their entry rather than zooming a still."
+        "mode": "WIDE_HOLD",
+        "intent": "Maintain the original wide grounded authority-axis composition with only a short readable lateral parallax adjustment. Never push into or crop the company foreground; all four full bodies and held equipment remain inside the frame at the end."
       },
       "durationSeconds": 12,
       "continuityOut": "END",
@@ -164,7 +164,7 @@
         "width": 1,
         "height": 0.15
       },
-      "promptIntent": "Active, rhythmic classic JRPG cinematic staging adapted to this canonical beat. First quarter: initiate the described action promptly. Middle half: develop readable grounded actor motion and living environment, with motivated camera progression. Final quarter: complete only that physical presentation action and remain alive, decelerating camera in the last second. The delegation enters with purposeful synchronized strides and stops on the hall axis. Maelor settles his book; Alistair brings his sword to a safe resting position. Alaric shifts forward and raises an open hand to receive their presence; Seraphine turns her attention between the delegation and court. Banners stir and torchlight plays across the existing columns. No bow signalling fealty, mandate accepted, payment, reward or ruling. Grand audience-hall axis with the company delegation in a grounded foreground/midground and Alaric holding the far authority plane. Controlled forward movement and environmental depth establish a formal arrival; leave the mandate and response to the following tableau. Current canonical truth: The company enters Alaric’s audience; the Bois-Clair mandate and accept/advance decision follow interactively. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No advance/gold handover before the player accepts it; No recognition or Seal awarded; No unnecessary additional court actors. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. Settle sharply and release to the existing STATIC_TABLEAU; no dialogue/choice on the video or hold.",
+      "promptIntent": "Active 12-second modern pixel-art/HD-2D formal arrival in the exact supplied hall. Retain crisp stepped pixel clusters throughout; do not smooth into anime/vector/3D illustration. 0-4 seconds: the delegation takes two firm grounded steps diagonally screen-right/upstage while remaining in the supplied three-quarter orientation; equipment and capes respond with readable inertia. Maelor visibly clamps his existing book in its source hand against his torso for every frame; NEVER put it on his back, replace its cover/symbols, add straps or lose his dagger. Alistair keeps the same greatsword safely carried; Seraphine keeps the same veiled head, sage-green robe and lantern staff, including purple/gold identity accents. 4-9 seconds: the three settle into distinct listening weight shifts and small attention reactions. Alaric remains STANDING beside the throne on his original ground plane; retain his exact lion helmet, sword AND regal staff in their source hands. He acknowledges their presence with a subtle shoulder/head reaction compatible with holding both items. NEVER sit, spawn or receive a scroll/paper/document, replace a weapon with paper, hand anything over, rule, award, accept mission/gold or choose a route. 9-12 seconds: wind stirs banners and fabrics, torches flicker; the cast remains visibly alive and fully readable in the same wide composition before covered STATIC_TABLEAU transfer. No hidden cut, new actor/prop, identity change, axis crossing, 180-degree turn, world reset, cropped feet, speech, text, UI, combat, magic or audio.",
       "authoringStatus": "KEYFRAME_CANDIDATE_STAGING_REVIEWED_MOTION_PENDING"
     }
   ],

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "contractSetVersion": 1,
-  "status": "ACTIVE_CANDIDATES_CAMP_01_REJECTED_CAMP_02_AUDIENCE_01_RUNNING",
+  "status": "ARTISTIC_DRIFT_RECORDED_CAMP_03_AUDIENCE_02_RUNNING",
   "recordedAt": "2026-10-02T02:18:26.408Z",
   "authority": [
     "docs/game/GAME_CONSTITUTION.md",
@@ -58,7 +58,7 @@
       "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
       "shotSpecificationStatus": "ACTIVE_MOTION_BRIEF_VALIDATED_KEYFRAME_AND_GENERATED_MOTION_ACCEPTANCE_REQUIRED",
-      "assetGenerationStatus": "ATTEMPT_01_REJECTED_ARTISTIC_ATTEMPT_02_RUNNING",
+      "assetGenerationStatus": "ATTEMPTS_01_02_REJECTED_FINAL_ATTEMPT_03_RUNNING",
       "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
       "measuredStream": {
         "id": "camp_departure",
@@ -213,7 +213,7 @@
       "durationAuthority": "Measured existing stream timing; shot block totals preserve the current descriptor duration, without new duration approval.",
       "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
       "shotSpecificationStatus": "ACTIVE_MOTION_BRIEF_VALIDATED_KEYFRAME_AND_GENERATED_MOTION_ACCEPTANCE_REQUIRED",
-      "assetGenerationStatus": "KEYFRAME_PROVENANCE_SAVED_ATTEMPT_01_RUNNING",
+      "assetGenerationStatus": "ATTEMPT_01_REJECTED_ATTEMPT_02_RUNNING",
       "artAcceptance": "CURRENT_SOURCE_NOT_ACCEPTED_AS_FINAL_REMASTER",
       "measuredStream": {
         "id": "alaric_audience_arrival",
@@ -1310,20 +1310,21 @@
   "activeGeneration": [
     {
       "slot": "camp_departure",
-      "attempt": 2,
-      "taskId": "447917133545949",
-      "promptVersion": "production-eight-camp-departure-active-v3",
+      "attempt": 3,
+      "taskId": "447919636996606",
+      "promptVersion": "production-eight-camp-departure-active-v4",
       "sourceSha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
       "productionReplacement": false
     },
     {
       "slot": "alaric_audience_arrival",
-      "attempt": 1,
-      "taskId": "447917421400540",
-      "promptVersion": "production-eight-alaric_audience_arrival-active-v2",
+      "attempt": 2,
+      "taskId": "447920461500891",
+      "promptVersion": "production-eight-alaric_audience_arrival-active-v3",
       "sourceSha256": "bbb37404b513a091b04f5a8c79a19745e1cead5567c4fe777f7e2da09741768f",
       "productionReplacement": false
     }
   ],
-  "candidateEvidence": "docs/reports/cinematic-active-motion-1/candidate-qa.json"
+  "candidateEvidence": "docs/reports/cinematic-active-motion-1/candidate-qa.json",
+  "candidateEvidenceFollowup": "docs/reports/cinematic-active-motion-1/candidate-qa-followup.json"
 }

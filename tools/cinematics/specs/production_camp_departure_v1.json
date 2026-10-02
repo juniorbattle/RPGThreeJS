@@ -4,7 +4,7 @@
   "cinematicId": "camp_departure",
   "tier": "HERO",
   "canonicalFacing": "SCREEN_RIGHT",
-  "promptVersion": "production-eight-camp-departure-active-v3",
+  "promptVersion": "production-eight-camp-departure-active-v4",
   "resolution": "2K",
   "frame": {
     "width": 1920,
@@ -103,8 +103,8 @@
         }
       ],
       "camera": {
-        "mode": "TRACK_SMALL_RIGHT",
-        "intent": "Pace a purposeful lateral track with the actors, keeping the established castle, aqueduct, crescent moon and river geography coherent. Visible actor locomotion supplies the energy; no orbit or change of world layout. Decelerate only during the last second."
+        "mode": "STATIC",
+        "intent": "Locked scenic camera for this targeted pixel-construction test; purposeful physical walking and active cloth/fire/banner/river carry the scene. Keep the established world pixels stable; no pan, zoom, orbit, new framing or new world surfaces."
       },
       "durationSeconds": 12,
       "continuityOut": "END",
@@ -115,7 +115,7 @@
         "width": 1,
         "height": 0.15
       },
-      "promptIntent": "Continuous physical departure in the supplied modern pixel-art/HD-2D camp, exactly 12 seconds. 0-2 seconds: the three shift weight into their first grounded step and Alistair lifts the same greatsword into low safe carry. 2-11 seconds: brisk sustained screen-right walking, alternating legs, real footfalls, arm swing where equipment allows, cloth and cape inertia, wind in banners, flickering fire, sparks and moving river. Keep Marian staff in her existing hand and Maelor book visibly clamped in its existing hand against his chest for EVERY frame, including the final image; do not transfer, lower, hide, dissolve or remove the book or dagger. Exactly three actors, identity concealment and all equipment invariant. Preserve the supplied small silver CRESCENT moon, its exact phase and scale throughout: never transform it into a full moon or glowing disc. Distant castle and aqueduct retain their existing relation to the river and mountains in one continuous physical location; no new bridge, plank crossing, route destination or reconstructed geography. Preserve intentional stepped PIXEL CLUSTERS and crisp pixel-art edge detail on actors AND environment for every frame; no smoothing into anime illustration or generic rendered 3D. 11-12 seconds: ease camera and steps toward a sharp readable alive composition with all three actors, book, staff and sword present, before covered STATIC_TABLEAU transfer. Do not drift into slow motion or substitute a still zoom. No speech, lip sync, sound, text, UI, magic, combat, attack, new actor, side swap, teleport, world reset, sunrise, exposed face, new consequence, dialogue or choice. Audio remains deferred."
+      "promptIntent": "Animate this exact image as a modern PIXEL-ART / HD-2D cinematic with intentionally discrete pixel clusters and stepped contours. Preserve the original pixel-art construction on every actor, ornament and world surface; never redraw them as smooth vector/anime/3D illustration. Camera is locked, while the three actors remain active: 0-2 seconds, one readable weight shift and first grounded step; 2-10 seconds, continuous purposeful screen-right walking with alternating feet, body weight transfer, cloth/cape inertia and equipment contact; 10-12 seconds, decelerate into an alive stable formation within the existing camp street. Travel only a modest span inside this authored composition so all three full bodies remain readable; no exit or new destination. Marian keeps her star staff; Maelor clamps his book in its source hand visibly against his chest throughout, never lowers, transfers, straps, hides or dissolves it; preserve his dagger. Alistair carries the source greatsword low without attacking. Exact helmets/veil/hood/mask/colors/proportions. Wind moves banners and capes, fire flickers, sparks rise and river ripples: all are actual independent motion, never a still zoom. The small silver CRESCENT moon retains exact phase, size and place relative to the castle, aqueduct, mountains and river. No new bridge/cart/room, geography reconstruction, full moon, sunrise, exposed face, actor, magic, combat, outcome, text, speech, UI or audio. Final frame retains all original equipment and pixel detail, then the existing covered STATIC_TABLEAU transfers agency. This camera variant is an isolated style/identity test; no production acceptance is implied."
     }
   ],
   "operatorDecision": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"

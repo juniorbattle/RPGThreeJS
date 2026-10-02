@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { CIN3_PROMPT_VERSION, getCin3Pilot } from './cin3_config.mjs';
 import { buildShotPrompt, sourcePathForShot, validateShotSpec } from './cin4_shot_spec.mjs';
 import { validateChainProof } from './cin4_media.mjs';
+import { assertResumableTask } from './minimax_task_checkpoint.mjs';
 
 const API_ORIGIN = 'https://api.minimax.io';
 const CREATE_ENDPOINT = `${API_ORIGIN}/v2/video_generation`;
@@ -220,7 +221,18 @@ async function main() {
   assertWithin(candidateRoot, output, '--output');
   const metadataPath = output.replace(/\.mp4$/iu, '.metadata.json');
   if (metadataPath === output) throw new Error('--output must end in .mp4.');
-  for (const path of [output, metadataPath, `${output}.part`]) {
+  const resume = args.resume === 'true';
+  if (args.resume !== undefined && !resume) throw new Error('--resume must be true when provided.');
+  const timeoutMinutes = Number(args['timeout-minutes'] ?? 45);
+  if (!Number.isFinite(timeoutMinutes) || timeoutMinutes <= 0 || timeoutMinutes > 120) throw new Error('--timeout-minutes must be greater than 0 and no more than 120.');
+  const sourceSha256 = createHash('sha256').update(sourceBytes).digest('hex');
+  const promptSha256 = createHash('sha256').update(prompt, 'utf8').digest('hex');
+  let resumedMetadata;
+  if (resume) {
+    resumedMetadata = JSON.parse(await readFile(metadataPath, 'utf8'));
+    assertResumableTask(resumedMetadata, { cinematicId: id, ...cin4Metadata, model: MODEL, attempt, duration, resolution, sourceSha256, promptSha256, outputCandidatePath: relative(projectRoot, output).replaceAll('\\', '/') });
+  }
+  for (const path of [output, ...(!resume ? [metadataPath] : []), `${output}.part`]) {
     try {
       await access(path);
       throw new Error(`Refusing to overwrite existing candidate artifact: ${path}`);
@@ -232,10 +244,8 @@ async function main() {
   await mkdir(dirname(output), { recursive: true });
 
   const apiKey = loadApiKey(await readFile(resolve(projectRoot, '.env.local'), 'utf8'));
-  const sourceSha256 = createHash('sha256').update(sourceBytes).digest('hex');
-  const promptSha256 = createHash('sha256').update(prompt, 'utf8').digest('hex');
   const startedAt = new Date().toISOString();
-  const metadata = {
+  const metadata = resumedMetadata ? { ...resumedMetadata, resumedAt: startedAt, status: 'resuming' } : {
     cinematicId: id,
     ...cin4Metadata,
     sourcePath: relative(projectRoot, source).replaceAll('\\', '/'),
@@ -259,8 +269,10 @@ async function main() {
   await writeMetadata(metadataPath, metadata);
 
   try {
-    console.log(`Submitting ${id} attempt ${attempt} to ${MODEL} (${resolution}, ${duration}s).`);
-    const created = await fetchJson(CREATE_ENDPOINT, {
+    let taskId = metadata.taskId;
+    if (!resume) {
+      console.log(`Submitting ${id} attempt ${attempt} to ${MODEL} (${resolution}, ${duration}s).`);
+      const created = await fetchJson(CREATE_ENDPOINT, {
       method: 'POST',
       headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -274,15 +286,14 @@ async function main() {
         ratio: 'adaptive',
       }),
     }, apiKey);
-    const taskId = String(created.task_id ?? '');
-    if (!taskId) throw new Error('MiniMax create response did not include task_id.');
+      taskId = String(created.task_id ?? '');
+      if (!taskId) throw new Error('MiniMax create response did not include task_id.');
+    }
     metadata.taskId = taskId;
     metadata.status = 'queued';
     await writeMetadata(metadataPath, metadata);
-    console.log(`Task accepted (${taskId}). Polling every ${POLL_INTERVAL_MS / 1_000}s.`);
+    console.log(`Task ${resume ? 'resumed' : 'accepted'} (${taskId}). Polling every ${POLL_INTERVAL_MS / 1_000}s.`);
 
-    const timeoutMinutes = Number(args['timeout-minutes'] ?? 45);
-    if (!Number.isFinite(timeoutMinutes) || timeoutMinutes <= 0 || timeoutMinutes > 120) throw new Error('--timeout-minutes must be greater than 0 and no more than 120.');
     const deadline = Date.now() + timeoutMinutes * 60_000;
     let completedTask;
     let lastStatus = '';
@@ -299,6 +310,7 @@ async function main() {
           console.log(`Task status: ${status}.`);
           lastStatus = status;
           metadata.status = status;
+          metadata.lastProviderStatus = status;
           metadata.usage = safeUsage(task);
           await writeMetadata(metadataPath, metadata);
         }
@@ -339,7 +351,7 @@ async function main() {
     console.log(`Candidate saved: ${relative(projectRoot, output).replaceAll('\\', '/')} (${outputStat.size} bytes, SHA-256 ${outputSha256}).`);
   } catch (error) {
     await rm(`${output}.part`, { force: true });
-    metadata.status = 'failed';
+    metadata.status = metadata.taskId && !['failed', 'cancelled'].includes(metadata.lastProviderStatus) ? 'pending_resume' : 'failed';
     metadata.completedAt = new Date().toISOString();
     metadata.error = sanitizeError(error, apiKey);
     await writeMetadata(metadataPath, metadata);
