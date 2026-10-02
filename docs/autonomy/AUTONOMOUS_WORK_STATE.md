@@ -6,82 +6,101 @@ Git on dev and this state pair are the current continuation authority.
 | --- | --- |
 | `status` | IN_PROGRESS |
 | `runStartedAt` | 2026-10-02T02:09:32.4830893Z |
-| `runEndedAt` | RUNNING |
+| `runEndedAt` | 2026-10-02T02:58:56.065Z |
 | `activeTask` | CINEMATIC-EIGHT-SLOT-REMASTER |
-| `activePhase` | Targeted pixel-style, equipment and framing candidate review |
-| `activeSubtask` | Camp final permitted attempt 3 and audience attempt 2 running; all first three clips unpromoted |
+| `activePhase` | Six candidate review checkpoint; no production replacements |
+| `activeSubtask` | Bois-Clair arrival shot 2 keyframe/motion and full-slot portrait/cut QA |
 | `workingBranch` | dev |
-| `lastKnownGoodCommit` | 3b4aa138144ae935ad91b9c4f0f0dcdf534ab6dc |
-| `lastPushedCommit` | 3b4aa138144ae935ad91b9c4f0f0dcdf534ab6dc |
-| `creditStatus` | CODEX_AVAILABLE; MINIMAX_FIVE_TASKS_ACCEPTED_BALANCE_NOT_MEASURED |
-| `contractComplianceStatus` | Contract set v1: candidate authoring/preservation PASS; art/media replacement acceptance pending. No LOCKED rule changed; camp 1 rejected and no production replacement. |
+| `lastKnownGoodCommit` | 733264c2952614992572d244c2bca9f96bad99c6 |
+| `lastPushedCommit` | 733264c2952614992572d244c2bca9f96bad99c6 |
+| `creditStatus` | CODEX_AVAILABLE; MINIMAX_SIX_TASKS_SUCCEEDED_BALANCE_NOT_MEASURED |
+| `contractComplianceStatus` | Contract set v1: protected-byte/gameplay/narrative/save/LOCKED preservation PASS; candidate review/evidence PASS; final replacement art and portrait acceptance BLOCKED/pending. No rule changed; no video promoted; item 8 incomplete. |
+| `commitReferenceScope` | Verified prior tooling checkpoint; final implementation/state closeout commits identified by Git HEAD/origin/dev and automation memory. |
 
 ## completedThisRun
 
-- Acquired exclusive lock, fetched and verified clean synchronized dev; items 1-7 remain complete
-- Updated all eight motion briefs to active grounded staging; validated source and camp hash; provider accepted first 12s camp task
-- 26 focused CIN-4 tests PASS
-- First camp candidate generated and physically inspected: true walking, but rejected for book loss, moon-phase drift and smoothing; no promotion
-- Camp candidate 1 real-player QA 11/11 PASS at four viewports; silent 1080p/24fps/12s master retained locally
-- Audience integrated V2 keyframe/provenance saved; camp 2 and audience 1 tasks submitted after first camp inspection
-- Camp 2 fixed book/moon but final style unaccepted; audience 1 rejected for equipment/prop/framing drift; separate followup proof retains earlier evidence
-- Guarded MiniMax accepted-task resume implemented; 115 focused tests PASS; already-downloaded resume refusal verified before authentication
-- 33/33 isolated player cases pass for first three clips; camp 3 diagnostic and audience 2 correction submitted
+- Exclusive lock acquired; clean dev fetched/synchronized; items 1-7 retained complete
+- All eight motion briefs adapted to active grounded staging while preserving canon/V2/eight slots; protected camp source verified
+- Six actual MiniMax candidates generated: camp attempts 1-3, audience attempts 1-2, Bois-Clair arrival shot_01 attempt 1
+- Two new integrated raster keyframes/provenance saved for audience and Bois-Clair first block; all protected source inputs unchanged
+- Thirty-six decoded first/action/middle/final frames plus six sequence sheets inspected; six separate silent 1080p/24fps masters retained locally
+- Camp 1-3 unaccepted (identity/style/activity defects); audience 1 rejected, audience 2 retains correction progress but no final art acceptance; Bois-Clair shot 1 limited block review passes, full slot/portrait framing pending
+- Guarded existing-task resume and distinct master paths implemented; duration-aware candidate inspection reusable from repository
+- 115/115 focused tests, TypeScript, contracts/build/eight shipped MP4s PASS; 55/55 full-candidate player cases and 4/4 partial-block skip previews PASS
+- Compact four-capture gallery and separate immutable checkpoint/followup/final proofs promoted; inherited historical allowlist failure documented
+- No production MP4, source runtime, gameplay, save, canonical reference or LOCKED contract changed
 
 ## filesChanged
 
-- docs/autonomy/AUTONOMOUS_WORK_STATE.md
 - docs/autonomy/AUTONOMOUS_WORK_STATE.json
+- docs/autonomy/AUTONOMOUS_WORK_STATE.md
 - docs/autonomy/CINEMATIC_ACTIVE_MOTION_CANDIDATES.md
-- docs/reports/cinematic-active-motion-1/candidate-qa.json
 - docs/reports/cinematic-active-motion-1/camp-attempt-01-contact.png
+- docs/reports/cinematic-active-motion-1/candidate-qa-followup.json
+- docs/reports/cinematic-active-motion-1/candidate-qa.json
+- tools/cinematics/candidates/production-eight-slot-remaster/alaric_audience_arrival/keyframe-v1.png
+- tools/cinematics/candidates/production-eight-slot-remaster/alaric_audience_arrival/provenance.json
 - tools/cinematics/cin4_shot_spec.mjs
 - tools/cinematics/cin4_shot_spec.test.mjs
 - tools/cinematics/master_shot.mjs
-- tools/cinematics/run_production_eight_slot_media_qa.mjs
-- tools/cinematics/specs/production_camp_departure_v1.json
-- tools/cinematics/specs/production_eight_slot_remaster_brief.json
-- tools/cinematics/specs/production-eight-slot-remaster/*.json
-- tools/cinematics/candidates/production-eight-slot-remaster/alaric_audience_arrival/keyframe-v1.png
-- tools/cinematics/candidates/production-eight-slot-remaster/alaric_audience_arrival/provenance.json
 - tools/cinematics/minimax_h3_generate.mjs
 - tools/cinematics/minimax_task_checkpoint.mjs
 - tools/cinematics/minimax_task_checkpoint.test.mjs
-- docs/reports/cinematic-active-motion-1/candidate-qa-followup.json
+- tools/cinematics/run_production_eight_slot_media_qa.mjs
+- tools/cinematics/specs/production-eight-slot-remaster/alaric_audience_arrival.json
+- tools/cinematics/specs/production-eight-slot-remaster/bois_clair_arrival.json
+- tools/cinematics/specs/production-eight-slot-remaster/bois_clair_sacrificed.json
+- tools/cinematics/specs/production-eight-slot-remaster/bois_clair_saved.json
+- tools/cinematics/specs/production-eight-slot-remaster/lion_judgement.json
+- tools/cinematics/specs/production-eight-slot-remaster/lion_trial_route_ending.json
+- tools/cinematics/specs/production-eight-slot-remaster/serpent_route_ending.json
+- tools/cinematics/specs/production_camp_departure_v1.json
+- tools/cinematics/specs/production_eight_slot_remaster_brief.json
+- docs/reports/cinematic-active-motion-1.md
+- docs/reports/cinematic-active-motion-1/audience-attempt-02-contact.png
+- docs/reports/cinematic-active-motion-1/bois-shot-01-390x844-skip.png
+- docs/reports/cinematic-active-motion-1/camp-attempt-03-contact.png
+- docs/reports/cinematic-active-motion-1/candidate-qa-final.json
+- docs/reports/cinematic-active-motion-1/protected-hashes.json
+- tools/cinematics/candidates/production-eight-slot-remaster/bois_clair_arrival/shot-01-keyframe-v1.png
+- tools/cinematics/candidates/production-eight-slot-remaster/bois_clair_arrival/shot-01-provenance.json
+- tools/cinematics/inspect_remaster_candidate.mjs
 
 ## testsRun
 
-- 26 focused CIN-4 tests
-- Extended 113 cinematic authoring/census/preproduction tests
-- TypeScript --noEmit
-- Contract validator, production Vite build and exact eight MP4 count
-- Eight production MP4/four protected camp/V2 hashes
-- Camp attempt 1 real-player browser candidate preview
+- 115 focused tests: MiniMax continuation, CIN-4 specification/media and cinematic census
+- Extended 113 historical preproduction/census tests (112 pass; inherited allowlist failure)
+- TypeScript --noEmit, contract validator, production Vite build and exact eight MP4 count
+- Six raw probes and silent master validation; manual motion/identity/environment/framing review
+- 55 real-player cases across five full camp/audience candidates; 4 partial Bois-Clair block skip previews
+- Eight shipped source and eight distinct protected keyframe/reference hashes; Git whitespace and zero src/public/LOCKED diff
 
 ## testsPassed
 
-- 26/26 focused CIN-4 tests; extended run 112/113 (one historical allowlist failure)
-- TypeScript, 8 LOCKED contracts/8 slots, production build and eight shipped MP4s PASS
-- Protected media/reference hashes PASS
-- Camp candidate 1 real-player 11/11: completion/hold/skip/reduced-motion/fallback, four viewports, unchanged saves
-- 115/115 final focused continuation/CIN-4/media/census tests PASS
-- 33/33 isolated candidate player cases across four viewports PASS
+- 115/115 final focused tests PASS; extended 112/113 with one documented inherited allowlist failure
+- TypeScript, 8 LOCKED contracts/8 slots, Vite build and eight shipped MP4s PASS
+- Six silent masters 1920x1080/24fps/exact authored duration PASS; provider audio excluded
+- 55/55 isolated full-candidate player cases and 4/4 partial-block skip cases PASS; art acceptance separate
+- Eight production MP4/eight protected reference hashes unchanged; no src/public/LOCKED diff; whitespace PASS
 
 ## testsRemaining
 
-- Camp attempt 3 and audience attempt 2 actual motion/identity/pixel/framing acceptance
-- Accepted candidate campaign and production replacement QA (none accepted yet)
-- Remaining six slot families/twelve blocks keyframes, motion and acceptance
-- Historical CIN-6E-A allowlist failure remains inherited/documented; demo/audio queue retained
+- Bois-Clair shot 2 integrated keyframe/motion, deliberate-cut geography/identity and complete 20s slot artistic/runtime acceptance
+- Portrait framing acceptance: partial left armor/cape crop at 390x844; source correction/presentation decision before any promotion
+- Audience 2 final pixel/cadence/lantern-detail acceptance or concrete correction before attempt 3
+- Camp three-attempt generation cap reached with no accepted replacement; review recorded defects before any authorized changed attempt policy
+- Five other slot families keyframes, generated motion and acceptance; final eight-slot campaign/production QA
+- Queued full demo and deferred audio; historical CIN-6E-A allowlist omission remains separate
 
 ## blockers
 
-None.
+- Camp final replacement unaccepted after three allowed autonomous attempts; do not submit a fourth or reset attempt numbering
+- Final full-media art/portrait acceptance incomplete; no replacement authorized by this QA result (standing provider permission remains resolved)
 
 ## remainingWork
 
-- Item 8 ACTIVE: camp 2/audience 1 review, remaining six slots keyframes/motion and replacement acceptance
-- Item 9 queued; audio DEFERRED
+- Item 8 ACTIVE: finish Bois-Clair second block and full-slot cut/portrait QA; retain camp/audience review boundaries; author/generate remaining five slot families
+- No completed items reopened; item 9 queued and item 10 audio DEFERRED
 
 ## taskQueue
 
@@ -92,12 +111,18 @@ None.
 - TRAVERSAL-GENERALIZATION: COMPLETE
 - TRAVERSAL-T1-PRODUCTION: COMPLETE
 - TRAVERSAL-T3-PRODUCTION: COMPLETE
-- CINEMATIC-EIGHT-SLOT-REMASTER: ACTIVE (five candidate tasks, artistic review/remaining six families/replacement acceptance pending)
+- CINEMATIC-EIGHT-SLOT-REMASTER: ACTIVE (six candidates reviewed; zero production replacements; Bois-Clair second block next)
 - Complete demo QA and polish: QUEUED
 - Audio decision after structure lock: DEFERRED
 
+## Retained ignored artifacts
+
+Ordinary unaccepted raw videos, silent technical masters and full decoder/player galleries stay in ignored QA storage per QA_EVIDENCE. Tracked proofs retain exact paths/hashes/submitted specs/prompts; source keyframes/provenance and compact gallery are committed. No coherent source edit is intentionally left uncommitted.
+
+Roots: tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01, tmp/cinematics/cin4/production_eight_alaric_audience_arrival_v1/shot_01, tmp/cinematics/cin4/production_eight_bois_clair_arrival_v1/shot_01. No pending provider task.
+
 ## nextAction
 
-Retain accepted camp task 447919636996606 (attempt 3, active-v4) and audience task 447920461500891 (attempt 2, active-v3), with source/spec/hash snapshots in candidate-qa-followup.json. Await/download via current processes or existing adapter --resume true with the same spec/shot/attempt; never resubmit a duplicate. Inspect decoded first/middle/final and actual physical motion. Camp attempts 1/2 and audience 1 are not accepted; reasons in immutable first/followup evidence. Camp 3 is a locked-camera style diagnostic and the last allowed autonomous camp attempt. Preserve all eight public MP4s until separate artistic/campaign acceptance; six remaining slot families need keyframes. No LOCKED rule changed; audio DEFERRED.
+Acquire lock/read Git and both state files; no provider task is pending and MiniMax use remains explicitly authorized. Resume item 8 at tools/cinematics/specs/production-eight-slot-remaster/bois_clair_arrival.json shot_02: integrate the declared promoted burning tableau with V2 villageoise/white_mage/serpent_raider, preserve unresolved rescue/reserves agency, validate/hash source, then generate its 10s block with the existing adapter. Reuse shot_01 keyframe (31918e9e8b1a8bc73f913cbd8e16f98cd9b3c0e795f7984288f12729cd35b8f8) and local silent 10s master (b0e80d01845f82f3d42c4024a7ffc047b306ad00d567586fea9eac98b533411f); it is NOT the full 20s slot. Use tools/cinematics/inspect_remaster_candidate.mjs with --spec/--shot/--input/--output in a new ignored directory, then review cut continuity and 390x844 portrait crop before full-slot/campaign acceptance. Camp attempts 1-3 are unaccepted and capped; do not create attempt 4 or reset numbering. Audience 2 fixes equipment/framing but final art/cadence remains unaccepted; prepare a concrete correction before attempt 3. Five remaining slot families still need keyframes/motion. Preserve exactly eight current public MP4s until separate final artist and runtime acceptance; no LOCKED change; audio DEFERRED.
 
-Standing operator decision retained; no credential value stored.
+Standing operator authorization/direction: docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md. No credential value stored.

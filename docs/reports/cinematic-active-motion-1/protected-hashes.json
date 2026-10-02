@@ -1,0 +1,74 @@
+{
+  "recordedAt": "2026-10-02T02:55:07.291Z",
+  "production": [
+    {
+      "path": "public/assets/cinematics/camp_departure.mp4",
+      "sha256": "a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3"
+    },
+    {
+      "path": "public/assets/cinematics/alaric_audience_arrival.mp4",
+      "sha256": "b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629"
+    },
+    {
+      "path": "public/assets/cinematics/bois_clair_arrival.mp4",
+      "sha256": "a37d397665960f8f6749d8f1ece69eaf91c7160cec68fc581ed26ea78042a699"
+    },
+    {
+      "path": "public/assets/cinematics/bois_clair_saved.mp4",
+      "sha256": "a57d9ef8ff2fbb26084066b057f89948bdfe59de22dc7f7770d6576900223b1f"
+    },
+    {
+      "path": "public/assets/cinematics/bois_clair_sacrificed.mp4",
+      "sha256": "db07031a3105fb31280abe3aca026cb74e4612e2aa44f7023b5401847322f1a4"
+    },
+    {
+      "path": "public/assets/cinematics/lion_judgement.mp4",
+      "sha256": "6ea5b12bb8c97deadbea2177725d7e3eb958ab7971361d34064729acf776e5f9"
+    },
+    {
+      "path": "public/assets/cinematics/serpent_route_ending.mp4",
+      "sha256": "f1de1f29ccc98ca66f97da94c21060d100687e4fef39b2d0378bcdea36db395c"
+    },
+    {
+      "path": "public/assets/cinematics/lion_trial_route_ending.mp4",
+      "sha256": "34f023ac0313e622a82d53c955e63e1e56a62eb4bd3bfdef9580196fcff178b2"
+    }
+  ],
+  "protectedReferences": [
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+      "role": "CANONICAL_ENVIRONMENT",
+      "sha256": "7e2eaba3b2d18d409fb0126a0e4ad9361caa5f61148f2a145b4cd2fbec379c32"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/white_mage.png",
+      "role": "IMMUTABLE_V2_IDENTITY",
+      "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/maelor.png",
+      "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/alistair.png",
+      "sha256": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/alaric-audience-cinematic-source.png",
+      "sha256": "1214cc5627b41456f8540e9c0f043fb45edda7ddd502cf01cebc4c4f8325f13b"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/alaric.png",
+      "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/sage_seraphine.png",
+      "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png",
+      "sha256": "a3e69c055552b41f4c6c8f13196bb1500d6781a79533d45aab7410f6b67af7ec"
+    }
+  ],
+  "pass": true
+}

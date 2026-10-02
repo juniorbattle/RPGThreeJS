@@ -1,0 +1,2042 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-02T02:55:07.119Z",
+  "scope": "GENERATED_CANDIDATE_REVIEW_NO_PRODUCTION_REPLACEMENT",
+  "reviews": [
+    {
+      "slot": "camp_departure",
+      "attempt": 3,
+      "taskId": "447919636996606",
+      "status": "REJECTED_ACTIVE_STAGING_INSUFFICIENT",
+      "positive": [
+        "Book, dagger, star staff, sword and source crescent retained through sampled final frame",
+        "Stepped world/armor detail improves and full-body framing remains readable"
+      ],
+      "defects": [
+        {
+          "id": "ACTIVE_DEPARTURE_NOT_DELIVERED",
+          "evidence": "Contact sequence shows minimal weight/leg changes rather than sustained alternating brisk walking; most of the block stays in a near-resting formation"
+        },
+        {
+          "id": "CAMERA_DIAGNOSTIC_NOT_FOLLOWED",
+          "evidence": "World parallax changes despite requested locked camera; diagnostic cannot certify pixel preservation under the intended active production camera"
+        }
+      ],
+      "generationLimit": "Three autonomous attempts consumed; no fourth submission or numbering reset",
+      "submittedSpec": {
+        "schemaVersion": 1,
+        "sequenceId": "production_eight_camp_departure_v1",
+        "cinematicId": "camp_departure",
+        "tier": "HERO",
+        "canonicalFacing": "SCREEN_RIGHT",
+        "promptVersion": "production-eight-camp-departure-active-v4",
+        "resolution": "2K",
+        "frame": {
+          "width": 1920,
+          "height": 1080
+        },
+        "status": "CANDIDATE_NOT_PRODUCTION_MINIMAX_AUTHORIZED",
+        "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
+        "artDirection": "Modern pixel-art/HD-2D. Canonical moonlit Lion camp and protected V2 identities; final silent authored motion must pass separate visual/runtime acceptance.",
+        "shots": [
+          {
+            "shotId": "shot_01",
+            "purpose": "A rare major departure: the small company physically starts toward the existing route through the grand camp/valley environment.",
+            "framing": "WIDE_GROUNDED_CAMP_COMPANY",
+            "environment": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+            "source": {
+              "type": "ROOT_SOURCE",
+              "output": "tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/source.png",
+              "frame": {
+                "width": 1672,
+                "height": 941
+              },
+              "sha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+              "inputCandidate": "tools/cinematics/candidates/production-eight-slot-remaster/camp_departure/keyframe-v1.png",
+              "integration": {
+                "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+                "layoutReference": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+                "referenceAssets": [
+                  "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+                  "public/assets/characters/pixel/masters/white_mage.png",
+                  "public/assets/characters/pixel/masters/maelor.png",
+                  "public/assets/characters/pixel/masters/alistair.png"
+                ],
+                "qualityGates": [
+                  "NO_COLLAGE_LOOK",
+                  "WORLD_INTEGRATION",
+                  "V2_IDENTITY",
+                  "CANONICAL_ENVIRONMENT",
+                  "NO_GAME_TRUTH_MUTATION"
+                ]
+              }
+            },
+            "characters": [
+              {
+                "id": "marian",
+                "asset": "public/assets/characters/pixel/masters/white_mage.png",
+                "position": {
+                  "x": 0.3,
+                  "groundY": 0.76
+                },
+                "scale": {
+                  "framing": "WIDE",
+                  "perspective": 1
+                },
+                "facing": "SCREEN_RIGHT",
+                "lookTarget": "ENVIRONMENT:camp_road",
+                "depth": 30,
+                "role": "SECONDARY",
+                "action": "WALK_PURPOSEFUL",
+                "mirrorPolicy": "FORBID"
+              },
+              {
+                "id": "maelor",
+                "asset": "public/assets/characters/pixel/masters/maelor.png",
+                "position": {
+                  "x": 0.44,
+                  "groundY": 0.76
+                },
+                "scale": {
+                  "framing": "WIDE",
+                  "perspective": 1
+                },
+                "facing": "SCREEN_RIGHT",
+                "lookTarget": "CHARACTER:alistair",
+                "depth": 20,
+                "role": "PRIMARY",
+                "action": "WALK_PURPOSEFUL",
+                "mirrorPolicy": "FORBID"
+              },
+              {
+                "id": "alistair",
+                "asset": "public/assets/characters/pixel/masters/alistair.png",
+                "position": {
+                  "x": 0.56,
+                  "groundY": 0.78
+                },
+                "scale": {
+                  "framing": "WIDE",
+                  "perspective": 1.02
+                },
+                "facing": "SCREEN_RIGHT",
+                "lookTarget": "ENVIRONMENT:camp_road",
+                "depth": 10,
+                "role": "PRIMARY",
+                "action": "WALK_PURPOSEFUL",
+                "mirrorPolicy": "FORBID"
+              }
+            ],
+            "camera": {
+              "mode": "STATIC",
+              "intent": "Locked scenic camera for this targeted pixel-construction test; purposeful physical walking and active cloth/fire/banner/river carry the scene. Keep the established world pixels stable; no pan, zoom, orbit, new framing or new world surfaces."
+            },
+            "durationSeconds": 12,
+            "continuityOut": "END",
+            "endIntent": "READABLE_STABLE_DEPARTURE_THEN_COVERED_STATIC_TABLEAU",
+            "nextStepUiSafeZone": {
+              "x": 0,
+              "y": 0.85,
+              "width": 1,
+              "height": 0.15
+            },
+            "promptIntent": "Animate this exact image as a modern PIXEL-ART / HD-2D cinematic with intentionally discrete pixel clusters and stepped contours. Preserve the original pixel-art construction on every actor, ornament and world surface; never redraw them as smooth vector/anime/3D illustration. Camera is locked, while the three actors remain active: 0-2 seconds, one readable weight shift and first grounded step; 2-10 seconds, continuous purposeful screen-right walking with alternating feet, body weight transfer, cloth/cape inertia and equipment contact; 10-12 seconds, decelerate into an alive stable formation within the existing camp street. Travel only a modest span inside this authored composition so all three full bodies remain readable; no exit or new destination. Marian keeps her star staff; Maelor clamps his book in its source hand visibly against his chest throughout, never lowers, transfers, straps, hides or dissolves it; preserve his dagger. Alistair carries the source greatsword low without attacking. Exact helmets/veil/hood/mask/colors/proportions. Wind moves banners and capes, fire flickers, sparks rise and river ripples: all are actual independent motion, never a still zoom. The small silver CRESCENT moon retains exact phase, size and place relative to the castle, aqueduct, mountains and river. No new bridge/cart/room, geography reconstruction, full moon, sunrise, exposed face, actor, magic, combat, outcome, text, speech, UI or audio. Final frame retains all original equipment and pixel detail, then the existing covered STATIC_TABLEAU transfers agency. This camera variant is an isolated style/identity test; no production acceptance is implied."
+          }
+        ],
+        "operatorDecision": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
+      },
+      "decodedEvidence": {
+        "recordedAt": "2026-10-02T02:45:24.751Z",
+        "input": "tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/candidate_03_raw.mp4",
+        "sha256": "712e9b33a7e635f2143c4f3e4571a648320d8de553f901cb51edb14a1e346d8f",
+        "media": {
+          "container": "mov,mp4,m4a,3gp,3g2,mj2",
+          "codec": "h264",
+          "profile": "High",
+          "pixelFormat": "yuv420p",
+          "width": 2560,
+          "height": 1440,
+          "sampleAspectRatio": null,
+          "displayAspectRatio": null,
+          "averageFrameRate": "24/1",
+          "durationSeconds": 12.25,
+          "audioStream": true,
+          "rotation": 0
+        },
+        "frames": [
+          {
+            "label": "first",
+            "seconds": 0,
+            "path": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\tmp\\cinematics\\eight-slot-remaster\\active-motion-1\\camp-03-raw-review\\first.png",
+            "sha256": "d5b3488127c7e63337f2e3f9341ce3d39b1d5296ff128a6cdab6d2339ba434a2"
+          },
+          {
+            "label": "initiation",
+            "seconds": 1.5,
+            "path": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\tmp\\cinematics\\eight-slot-remaster\\active-motion-1\\camp-03-raw-review\\initiation.png",
+            "sha256": "264db88097390ca2db0b37c3282985e402a4711d80d5ed4896fb4f50230b80f2"
+          },
+          {
+            "label": "stride",
+            "seconds": 3,
+            "path": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\tmp\\cinematics\\eight-slot-remaster\\active-motion-1\\camp-03-raw-review\\stride.png",
+            "sha256": "c861349e35e73fe421f2fe896c462a4c0c1510bc14494deac44137414736256f"
+          },
+          {
+            "label": "middle",
+            "seconds": 6,
+            "path": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\tmp\\cinematics\\eight-slot-remaster\\active-motion-1\\camp-03-raw-review\\middle.png",
+            "sha256": "ee579401652ba6131a5cf0dcbea855c996605e1d7ad86243e6130da05e5af364"
+          },
+          {
+            "label": "progression",
+            "seconds": 9,
+            "path": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\tmp\\cinematics\\eight-slot-remaster\\active-motion-1\\camp-03-raw-review\\progression.png",
+            "sha256": "2d0c4e2d05414cc5dae27ca323522a89b2880c711d6b35da87e1a62f34928cbd"
+          },
+          {
+            "label": "final",
+            "seconds": 11.9,
+            "path": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\tmp\\cinematics\\eight-slot-remaster\\active-motion-1\\camp-03-raw-review\\final.png",
+            "sha256": "2d282420a0adc2ce0c8a5b0b72b4de27d802caca08e1c8afb0317cd4c6040ecc"
+          }
+        ],
+        "motion": [
+          {
+            "seconds": 0.5,
+            "worldMeanAbsoluteDelta": 15.417,
+            "actorsMeanAbsoluteDelta": 25.247
+          },
+          {
+            "seconds": 1,
+            "worldMeanAbsoluteDelta": 15.412,
+            "actorsMeanAbsoluteDelta": 26.859
+          },
+          {
+            "seconds": 1.5,
+            "worldMeanAbsoluteDelta": 15.01,
+            "actorsMeanAbsoluteDelta": 25.45
+          },
+          {
+            "seconds": 2,
+            "worldMeanAbsoluteDelta": 15.064,
+            "actorsMeanAbsoluteDelta": 25.945
+          },
+          {
+            "seconds": 2.5,
+            "worldMeanAbsoluteDelta": 14.71,
+            "actorsMeanAbsoluteDelta": 20.814
+          },
+          {
+            "seconds": 3,
+            "worldMeanAbsoluteDelta": 14.399,
+            "actorsMeanAbsoluteDelta": 25.26
+          },
+          {
+            "seconds": 3.5,
+            "worldMeanAbsoluteDelta": 13.906,
+            "actorsMeanAbsoluteDelta": 23.127
+          },
+          {
+            "seconds": 4,
+            "worldMeanAbsoluteDelta": 13.616,
+            "actorsMeanAbsoluteDelta": 23.134
+          },
+          {
+            "seconds": 4.5,
+            "worldMeanAbsoluteDelta": 13.461,
+            "actorsMeanAbsoluteDelta": 21.333
+          },
+          {
+            "seconds": 5,
+            "worldMeanAbsoluteDelta": 13.602,
+            "actorsMeanAbsoluteDelta": 22.372
+          },
+          {
+            "seconds": 5.5,
+            "worldMeanAbsoluteDelta": 13.422,
+            "actorsMeanAbsoluteDelta": 24.988
+          },
+          {
+            "seconds": 6,
+            "worldMeanAbsoluteDelta": 13.213,
+            "actorsMeanAbsoluteDelta": 25.379
+          },
+          {
+            "seconds": 6.5,
+            "worldMeanAbsoluteDelta": 13.342,
+            "actorsMeanAbsoluteDelta": 22.08
+          },
+          {
+            "seconds": 7,
+            "worldMeanAbsoluteDelta": 13.405,
+            "actorsMeanAbsoluteDelta": 24.025
+          },
+          {
+            "seconds": 7.5,
+            "worldMeanAbsoluteDelta": 13.322,
+            "actorsMeanAbsoluteDelta": 24.986
+          },
+          {
+            "seconds": 8,
+            "worldMeanAbsoluteDelta": 13.261,
+            "actorsMeanAbsoluteDelta": 23.46
+          },
+          {
+            "seconds": 8.5,
+            "worldMeanAbsoluteDelta": 13.011,
+            "actorsMeanAbsoluteDelta": 25.278
+          },
+          {
+            "seconds": 9,
+            "worldMeanAbsoluteDelta": 12.701,
+            "actorsMeanAbsoluteDelta": 22.385
+          },
+          {
+            "seconds": 9.5,
+            "worldMeanAbsoluteDelta": 12.598,
+            "actorsMeanAbsoluteDelta": 23.829
+          },
+          {
+            "seconds": 10,
+            "worldMeanAbsoluteDelta": 12.498,
+            "actorsMeanAbsoluteDelta": 26.84
+          },
+          {
+            "seconds": 10.5,
+            "worldMeanAbsoluteDelta": 12.262,
+            "actorsMeanAbsoluteDelta": 26.389
+          },
+          {
+            "seconds": 11,
+            "worldMeanAbsoluteDelta": 4.713,
+            "actorsMeanAbsoluteDelta": 24.625
+          },
+          {
+            "seconds": 11.5,
+            "worldMeanAbsoluteDelta": 1.385,
+            "actorsMeanAbsoluteDelta": 6.604
+          },
+          {
+            "seconds": 12,
+            "worldMeanAbsoluteDelta": 0.27,
+            "actorsMeanAbsoluteDelta": 0.842
+          }
+        ],
+        "scope": "DECODED_FRAME_DIFFERENCE_IS_DIAGNOSTIC_ONLY_CAMERA_MOTION_CAN_CAUSE_IT; ARTISTIC_REVIEW_REQUIRED"
+      },
+      "technicalMaster": {
+        "schemaVersion": 1,
+        "sequenceId": "production_eight_camp_departure_v1",
+        "cinematicId": "camp_departure",
+        "tier": "HERO",
+        "shotId": "shot_01",
+        "sourceCandidatePath": "tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/candidate_03_raw.mp4",
+        "sourceCandidateSha256": "712e9b33a7e635f2143c4f3e4571a648320d8de553f901cb51edb14a1e346d8f",
+        "outputPath": "tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/candidate_03_master.mp4",
+        "outputSha256": "a1ec6df5632bbf7576b430d5338b86e1cda4122e118bff6c312adeccc700af24",
+        "mastering": {
+          "overscanPercent": 0
+        },
+        "report": {
+          "container": "mov,mp4,m4a,3gp,3g2,mj2",
+          "codec": "h264",
+          "profile": "High",
+          "pixelFormat": "yuv420p",
+          "width": 1920,
+          "height": 1080,
+          "sampleAspectRatio": "1:1",
+          "displayAspectRatio": "16:9",
+          "averageFrameRate": "24/1",
+          "durationSeconds": 12,
+          "audioStream": false,
+          "rotation": 0
+        }
+      },
+      "playerQa": {
+        "schemaVersion": 1,
+        "recordedAt": "2026-10-02T02:46:48.424Z",
+        "scope": "ISOLATED_DEV_REAL_PLAYER_NOT_CAMPAIGN_ACCEPTANCE",
+        "candidateProof": {
+          "path": "tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/candidate_03_master.mp4",
+          "sha256": "a1ec6df5632bbf7576b430d5338b86e1cda4122e118bff6c312adeccc700af24",
+          "bytes": 27010407,
+          "productionAssetsReplaced": false
+        },
+        "cases": [
+          {
+            "id": "camp_departure-1920x1080-natural",
+            "slot": "camp_departure",
+            "viewport": {
+              "width": 1920,
+              "height": 1080
+            },
+            "mode": "natural",
+            "measurements": {
+              "moving": {
+                "width": 1920,
+                "height": 1080,
+                "hidden": false,
+                "min": 0,
+                "max": 252.66666666666666,
+                "mean": 57.094711934155605,
+                "currentTime": 0.051574,
+                "duration": 12,
+                "paused": false,
+                "framePump": "video-frame",
+                "inert": false,
+                "role": "dialog",
+                "staticActors": 0
+              },
+              "clockDelta": 0.260917
+            },
+            "resultText": "Résultat : ended · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [
+              "http://127.0.0.1:5197/assets/cinematics/camp_departure.mp4"
+            ],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "camp_departure-390x844-hold",
+            "slot": "camp_departure",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "mode": "hold",
+            "measurements": {
+              "moving": {
+                "width": 1920,
+                "height": 1080,
+                "hidden": false,
+                "min": 0,
+                "max": 252.66666666666666,
+                "mean": 57.094711934155605,
+                "currentTime": 0.036196,
+                "duration": 12,
+                "paused": false,
+                "framePump": "video-frame",
+                "inert": false,
+                "role": "dialog",
+                "staticActors": 0
+              },
+              "clockDelta": 0.263412,
+              "held": {
+                "width": 1920,
+                "height": 1080,
+                "hidden": false,
+                "min": 0,
+                "max": 252.33333333333334,
+                "mean": 52.19282921810722,
+                "currentTime": 12,
+                "duration": 12,
+                "paused": true,
+                "framePump": "stopped",
+                "freezeSurface": "canvas",
+                "inert": true,
+                "role": "presentation",
+                "staticActors": 0
+              }
+            },
+            "resultText": "Vidéo réelle camp_departure : ended · played true · résidu DOM 0.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [
+              "http://127.0.0.1:5197/assets/cinematics/camp_departure.mp4"
+            ],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "camp_departure-1920x1080-skip",
+            "slot": "camp_departure",
+            "viewport": {
+              "width": 1920,
+              "height": 1080
+            },
+            "mode": "skip",
+            "measurements": {
+              "moving": {
+                "width": 1920,
+                "height": 1080,
+                "hidden": false,
+                "min": 0,
+                "max": 252.66666666666666,
+                "mean": 57.094711934155605,
+                "currentTime": 0.041885,
+                "duration": 12,
+                "paused": false,
+                "framePump": "video-frame",
+                "inert": false,
+                "role": "dialog",
+                "staticActors": 0
+              },
+              "clockDelta": 0.273413
+            },
+            "resultText": "Résultat : skipped · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [
+              "http://127.0.0.1:5197/assets/cinematics/camp_departure.mp4"
+            ],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "camp_departure-1920x1080-reduced",
+            "slot": "camp_departure",
+            "viewport": {
+              "width": 1920,
+              "height": 1080
+            },
+            "mode": "reduced",
+            "measurements": {},
+            "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "camp_departure-1366x768-skip",
+            "slot": "camp_departure",
+            "viewport": {
+              "width": 1366,
+              "height": 768
+            },
+            "mode": "skip",
+            "measurements": {
+              "moving": {
+                "width": 1920,
+                "height": 1080,
+                "hidden": false,
+                "min": 0,
+                "max": 252.66666666666666,
+                "mean": 57.094711934155605,
+                "currentTime": 0.058908,
+                "duration": 12,
+                "paused": false,
+                "framePump": "video-frame",
+                "inert": false,
+                "role": "dialog",
+                "staticActors": 0
+              },
+              "clockDelta": 0.26026699999999997
+            },
+            "resultText": "Résultat : skipped · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [
+              "http://127.0.0.1:5197/assets/cinematics/camp_departure.mp4"
+            ],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "camp_departure-1366x768-reduced",
+            "slot": "camp_departure",
+            "viewport": {
+              "width": 1366,
+              "height": 768
+            },
+            "mode": "reduced",
+            "measurements": {},
+            "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "camp_departure-620x780-skip",
+            "slot": "camp_departure",
+            "viewport": {
+              "width": 620,
+              "height": 780
+            },
+            "mode": "skip",
+            "measurements": {
+              "moving": {
+                "width": 1920,
+                "height": 1080,
+                "hidden": false,
+                "min": 0,
+                "max": 252.66666666666666,
+                "mean": 57.094711934155605,
+                "currentTime": 0.039972,
+                "duration": 12,
+                "paused": false,
+                "framePump": "video-frame",
+                "inert": false,
+                "role": "dialog",
+                "staticActors": 0
+              },
+              "clockDelta": 0.27297
+            },
+            "resultText": "Résultat : skipped · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [
+              "http://127.0.0.1:5197/assets/cinematics/camp_departure.mp4"
+            ],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "camp_departure-620x780-reduced",
+            "slot": "camp_departure",
+            "viewport": {
+              "width": 620,
+              "height": 780
+            },
+            "mode": "reduced",
+            "measurements": {},
+            "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "camp_departure-390x844-skip",
+            "slot": "camp_departure",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "mode": "skip",
+            "measurements": {
+              "moving": {
+                "width": 1920,
+                "height": 1080,
+                "hidden": false,
+                "min": 0,
+                "max": 252.66666666666666,
+                "mean": 57.094711934155605,
+                "currentTime": 0.034336,
+                "duration": 12,
+                "paused": false,
+                "framePump": "video-frame",
+                "inert": false,
+                "role": "dialog",
+                "staticActors": 0
+              },
+              "clockDelta": 0.26681200000000005
+            },
+            "resultText": "Résultat : skipped · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [
+              "http://127.0.0.1:5197/assets/cinematics/camp_departure.mp4"
+            ],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "camp_departure-390x844-reduced",
+            "slot": "camp_departure",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "mode": "reduced",
+            "measurements": {},
+            "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "camp_departure-390x844-failure",
+            "slot": "camp_departure",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "mode": "failure",
+            "measurements": {
+              "held": {
+                "width": 0,
+                "height": 0,
+                "hidden": true,
+                "min": 255,
+                "max": 0,
+                "mean": 0,
+                "currentTime": 0,
+                "duration": null,
+                "paused": true,
+                "framePump": "stopped",
+                "freezeSurface": "fallback",
+                "inert": true,
+                "role": "presentation",
+                "staticActors": 0
+              },
+              "fallbackText": "La compagnie quitte le camp et prend la route."
+            },
+            "resultText": "Vidéo réelle camp_departure : timeout · played false · résidu DOM 0.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [
+              "http://127.0.0.1:5197/assets/cinematics/camp_departure.mp4"
+            ],
+            "expectedFailedRequests": 1,
+            "errors": [],
+            "pass": true
+          }
+        ],
+        "pass": true
+      }
+    },
+    {
+      "slot": "alaric_audience_arrival",
+      "attempt": 2,
+      "taskId": "447920461500891",
+      "status": "RETAINED_PROGRESS_FINAL_ART_UNACCEPTED",
+      "positive": [
+        "No invented scroll; Alaric remains standing with source held items",
+        "Maelor held book retained; four full bodies remain readable; original hall axis and torch motion retained",
+        "Real initial delegation steps and settled listening reactions"
+      ],
+      "remainingAcceptance": [
+        "Modern pixel construction/ornament preservation remains unaccepted versus protected V2 and starting frame",
+        "Premium active court staging remains modest; artist review of cadence and source lantern purple/gold detail required"
+      ],
+      "submittedSpec": {
+        "schemaVersion": 1,
+        "sequenceId": "production_eight_alaric_audience_arrival_v1",
+        "cinematicId": "alaric_audience_arrival",
+        "tier": "HERO",
+        "canonicalFacing": "SCREEN_RIGHT",
+        "promptVersion": "production-eight-alaric_audience_arrival-active-v3",
+        "resolution": "2K",
+        "frame": {
+          "width": 1920,
+          "height": 1080
+        },
+        "status": "KEYFRAME_CANDIDATE_NOT_PRODUCTION_MINIMAX_AUTHORIZED",
+        "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
+        "artDirection": "Modern pixel-art/HD-2D. Immutable canonical V2 identities and promoted location; authored major cinematic motion. No production replacement before acceptance.",
+        "canonicalContext": {
+          "nodeId": "lion-audience",
+          "trigger": "beforeDialogue lion_briefing, subject to approved prelude video policy",
+          "sources": [
+            "src/cinematics/Cin6aPresentation.ts:17",
+            "src/game/content.ts:294",
+            "src/game/content.ts:355",
+            "src/campaign/LionCampaignStructure.ts:92"
+          ],
+          "followingDialogueId": "lion_briefing",
+          "truth": "The company enters Alaric’s audience; the Bois-Clair mandate and accept/advance decision follow interactively.",
+          "exclusions": [
+            "No advance/gold handover before the player accepts it",
+            "No recognition or Seal awarded",
+            "No unnecessary additional court actors"
+          ]
+        },
+        "presentationBoundary": {
+          "duringVideoCastOwner": "VIDEO_OWNS_CAST",
+          "afterVideoSurface": "STATIC_TABLEAU",
+          "afterVideoCastOwner": "STAGE_OWNS_CAST",
+          "dialogueStepsDuringVideoOrHold": 0,
+          "choiceStepsDuringVideoOrHold": 0,
+          "maximumActorsPerComposition": 4,
+          "registryHoldSource": "alaric_audience_arrival",
+          "registryHoldMetadataIsDialogueSurfaceAuthority": false,
+          "finalFrameCastReferenceOnly": true,
+          "finalFramePolicy": "Readable stable final image for covered transfer; a hold is allowed only for the exact same established moment. Ending families release before LION_JUDGEMENT epilogue."
+        },
+        "shots": [
+          {
+            "shotId": "shot_01",
+            "purpose": "Grand audience-hall axis with the company delegation in a grounded foreground/midground and Alaric holding the far authority plane. Controlled forward movement and environmental depth establish a formal arrival; leave the mandate and response to the following tableau.",
+            "framing": "AUTHORED_LOCATION_MAJOR_EVENT",
+            "environment": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/alaric-audience-cinematic-source.png",
+            "source": {
+              "type": "ROOT_SOURCE",
+              "output": "tmp/cinematics/cin4/production_eight_alaric_audience_arrival_v1/shot_01/source.png",
+              "frame": {
+                "width": 1672,
+                "height": 941
+              },
+              "integration": {
+                "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+                "layoutReference": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/alaric-audience-cinematic-source.png",
+                "referenceAssets": [
+                  "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/alaric-audience-cinematic-source.png",
+                  "public/assets/characters/pixel/masters/alaric.png",
+                  "public/assets/characters/pixel/masters/sage_seraphine.png",
+                  "public/assets/characters/pixel/masters/maelor.png",
+                  "public/assets/characters/pixel/masters/alistair.png"
+                ],
+                "qualityGates": [
+                  "NO_COLLAGE_LOOK",
+                  "WORLD_INTEGRATION",
+                  "V2_IDENTITY",
+                  "CANONICAL_ENVIRONMENT",
+                  "NO_GAME_TRUTH_MUTATION"
+                ],
+                "generatedPosePolicy": "Alaric attends screen-left in the integrated raster; no protected master was mirrored or modified. Source frame governs facing."
+              },
+              "sha256": "bbb37404b513a091b04f5a8c79a19745e1cead5567c4fe777f7e2da09741768f",
+              "inputCandidate": "tools/cinematics/candidates/production-eight-slot-remaster/alaric_audience_arrival/keyframe-v1.png"
+            },
+            "characters": [
+              {
+                "id": "alaric",
+                "asset": "public/assets/characters/pixel/masters/alaric.png",
+                "position": {
+                  "x": 0.79,
+                  "groundY": 0.54
+                },
+                "scale": {
+                  "framing": "WIDE",
+                  "perspective": 1
+                },
+                "facing": "SCREEN_LEFT",
+                "lookTarget": "CHARACTER:alistair",
+                "depth": 10,
+                "role": "PRIMARY",
+                "action": "SMALL_HEAD_TURN",
+                "mirrorPolicy": "WARN"
+              },
+              {
+                "id": "sage_seraphine",
+                "asset": "public/assets/characters/pixel/masters/sage_seraphine.png",
+                "position": {
+                  "x": 0.15,
+                  "groundY": 0.9
+                },
+                "scale": {
+                  "framing": "WIDE",
+                  "perspective": 1
+                },
+                "facing": "SCREEN_RIGHT",
+                "lookTarget": "CHARACTER:alaric",
+                "depth": 40,
+                "role": "SECONDARY",
+                "action": "SMALL_HEAD_TURN",
+                "mirrorPolicy": "FORBID"
+              },
+              {
+                "id": "maelor",
+                "asset": "public/assets/characters/pixel/masters/maelor.png",
+                "position": {
+                  "x": 0.3,
+                  "groundY": 0.88
+                },
+                "scale": {
+                  "framing": "WIDE",
+                  "perspective": 1
+                },
+                "facing": "SCREEN_RIGHT",
+                "lookTarget": "CHARACTER:alaric",
+                "depth": 30,
+                "role": "SECONDARY",
+                "action": "WALK_PURPOSEFUL",
+                "mirrorPolicy": "FORBID"
+              },
+              {
+                "id": "alistair",
+                "asset": "public/assets/characters/pixel/masters/alistair.png",
+                "position": {
+                  "x": 0.49,
+                  "groundY": 0.93
+                },
+                "scale": {
+                  "framing": "WIDE",
+                  "perspective": 1
+                },
+                "facing": "SCREEN_RIGHT",
+                "lookTarget": "ENVIRONMENT:audience_axis",
+                "depth": 20,
+                "role": "SECONDARY",
+                "action": "WALK_PURPOSEFUL",
+                "mirrorPolicy": "FORBID"
+              }
+            ],
+            "camera": {
+              "mode": "WIDE_HOLD",
+              "intent": "Maintain the original wide grounded authority-axis composition with only a short readable lateral parallax adjustment. Never push into or crop the company foreground; all four full bodies and held equipment remain inside the frame at the end."
+            },
+            "durationSeconds": 12,
+            "continuityOut": "END",
+            "endIntent": "STABLE_READABLE_FRAME_THEN_COVERED_TABLEAU_TRANSFER",
+            "nextStepUiSafeZone": {
+              "x": 0,
+              "y": 0.85,
+              "width": 1,
+              "height": 0.15
+            },
+            "promptIntent": "Active 12-second modern pixel-art/HD-2D formal arrival in the exact supplied hall. Retain crisp stepped pixel clusters throughout; do not smooth into anime/vector/3D illustration. 0-4 seconds: the delegation takes two firm grounded steps diagonally screen-right/upstage while remaining in the supplied three-quarter orientation; equipment and capes respond with readable inertia. Maelor visibly clamps his existing book in its source hand against his torso for every frame; NEVER put it on his back, replace its cover/symbols, add straps or lose his dagger. Alistair keeps the same greatsword safely carried; Seraphine keeps the same veiled head, sage-green robe and lantern staff, including purple/gold identity accents. 4-9 seconds: the three settle into distinct listening weight shifts and small attention reactions. Alaric remains STANDING beside the throne on his original ground plane; retain his exact lion helmet, sword AND regal staff in their source hands. He acknowledges their presence with a subtle shoulder/head reaction compatible with holding both items. NEVER sit, spawn or receive a scroll/paper/document, replace a weapon with paper, hand anything over, rule, award, accept mission/gold or choose a route. 9-12 seconds: wind stirs banners and fabrics, torches flicker; the cast remains visibly alive and fully readable in the same wide composition before covered STATIC_TABLEAU transfer. No hidden cut, new actor/prop, identity change, axis crossing, 180-degree turn, world reset, cropped feet, speech, text, UI, combat, magic or audio.",
+            "authoringStatus": "KEYFRAME_CANDIDATE_STAGING_REVIEWED_MOTION_PENDING"
+          }
+        ],
+        "operatorDecision": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
+      },
+      "decodedEvidence": {
+        "recordedAt": "2026-10-02T02:46:37.158Z",
+        "input": "tmp/cinematics/cin4/production_eight_alaric_audience_arrival_v1/shot_01/candidate_02_raw.mp4",
+        "sha256": "cdd0b9967260cb606abe949ed69134c6acd05f82a42f7fce091dd90c948d4b21",
+        "media": {
+          "container": "mov,mp4,m4a,3gp,3g2,mj2",
+          "codec": "h264",
+          "profile": "High",
+          "pixelFormat": "yuv420p",
+          "width": 2560,
+          "height": 1440,
+          "sampleAspectRatio": null,
+          "displayAspectRatio": null,
+          "averageFrameRate": "24/1",
+          "durationSeconds": 12.25,
+          "audioStream": true,
+          "rotation": 0
+        },
+        "frames": [
+          {
+            "label": "first",
+            "seconds": 0,
+            "path": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\tmp\\cinematics\\eight-slot-remaster\\active-motion-1\\audience-02-raw-review\\first.png",
+            "sha256": "844a526f816aff619445b632884aefeabf15769bd1958f1b0cc1d92fefc48bc1"
+          },
+          {
+            "label": "initiation",
+            "seconds": 1.5,
+            "path": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\tmp\\cinematics\\eight-slot-remaster\\active-motion-1\\audience-02-raw-review\\initiation.png",
+            "sha256": "13920f63d2de0aaf8255e03eb661c17d94af2f4570562df44df29b135b229978"
+          },
+          {
+            "label": "stride",
+            "seconds": 3,
+            "path": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\tmp\\cinematics\\eight-slot-remaster\\active-motion-1\\audience-02-raw-review\\stride.png",
+            "sha256": "be760393de6f1a72a788308e7b5d2557d4602061ab61f4529df18c3d76023e1c"
+          },
+          {
+            "label": "middle",
+            "seconds": 6,
+            "path": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\tmp\\cinematics\\eight-slot-remaster\\active-motion-1\\audience-02-raw-review\\middle.png",
+            "sha256": "75c87c09cc7cf2e0de3132ef1fc79ea655ddc2b5c701052624dc2e7a7e85bac1"
+          },
+          {
+            "label": "progression",
+            "seconds": 9,
+            "path": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\tmp\\cinematics\\eight-slot-remaster\\active-motion-1\\audience-02-raw-review\\progression.png",
+            "sha256": "ccf1928dc093aa6983afda2191bb8f8a235495a4a9b30530acfa600feb92476e"
+          },
+          {
+            "label": "final",
+            "seconds": 11.9,
+            "path": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\tmp\\cinematics\\eight-slot-remaster\\active-motion-1\\audience-02-raw-review\\final.png",
+            "sha256": "4aecf9c0250c5ead25f396a101e05e4c6a391d93576ba87b2a4bc62b7af5227b"
+          }
+        ],
+        "motion": [
+          {
+            "seconds": 0.5,
+            "worldMeanAbsoluteDelta": 27.578,
+            "actorsMeanAbsoluteDelta": 28.136
+          },
+          {
+            "seconds": 1,
+            "worldMeanAbsoluteDelta": 30.354,
+            "actorsMeanAbsoluteDelta": 29.097
+          },
+          {
+            "seconds": 1.5,
+            "worldMeanAbsoluteDelta": 31.316,
+            "actorsMeanAbsoluteDelta": 28.135
+          },
+          {
+            "seconds": 2,
+            "worldMeanAbsoluteDelta": 30.919,
+            "actorsMeanAbsoluteDelta": 29.825
+          },
+          {
+            "seconds": 2.5,
+            "worldMeanAbsoluteDelta": 29.199,
+            "actorsMeanAbsoluteDelta": 28.517
+          },
+          {
+            "seconds": 3,
+            "worldMeanAbsoluteDelta": 26.754,
+            "actorsMeanAbsoluteDelta": 26.912
+          },
+          {
+            "seconds": 3.5,
+            "worldMeanAbsoluteDelta": 23.888,
+            "actorsMeanAbsoluteDelta": 26.529
+          },
+          {
+            "seconds": 4,
+            "worldMeanAbsoluteDelta": 20.618,
+            "actorsMeanAbsoluteDelta": 23.518
+          },
+          {
+            "seconds": 4.5,
+            "worldMeanAbsoluteDelta": 17.245,
+            "actorsMeanAbsoluteDelta": 20.846
+          },
+          {
+            "seconds": 5,
+            "worldMeanAbsoluteDelta": 15.406,
+            "actorsMeanAbsoluteDelta": 19.133
+          },
+          {
+            "seconds": 5.5,
+            "worldMeanAbsoluteDelta": 11.84,
+            "actorsMeanAbsoluteDelta": 15.824
+          },
+          {
+            "seconds": 6,
+            "worldMeanAbsoluteDelta": 8.176,
+            "actorsMeanAbsoluteDelta": 12.088
+          },
+          {
+            "seconds": 6.5,
+            "worldMeanAbsoluteDelta": 4.335,
+            "actorsMeanAbsoluteDelta": 7.611
+          },
+          {
+            "seconds": 7,
+            "worldMeanAbsoluteDelta": 4.078,
+            "actorsMeanAbsoluteDelta": 3.527
+          },
+          {
+            "seconds": 7.5,
+            "worldMeanAbsoluteDelta": 7.539,
+            "actorsMeanAbsoluteDelta": 2.267
+          },
+          {
+            "seconds": 8,
+            "worldMeanAbsoluteDelta": 9.422,
+            "actorsMeanAbsoluteDelta": 3.405
+          },
+          {
+            "seconds": 8.5,
+            "worldMeanAbsoluteDelta": 8.252,
+            "actorsMeanAbsoluteDelta": 3.903
+          },
+          {
+            "seconds": 9,
+            "worldMeanAbsoluteDelta": 5.389,
+            "actorsMeanAbsoluteDelta": 3.773
+          },
+          {
+            "seconds": 9.5,
+            "worldMeanAbsoluteDelta": 7.075,
+            "actorsMeanAbsoluteDelta": 4.149
+          },
+          {
+            "seconds": 10,
+            "worldMeanAbsoluteDelta": 5.225,
+            "actorsMeanAbsoluteDelta": 3.503
+          },
+          {
+            "seconds": 10.5,
+            "worldMeanAbsoluteDelta": 5.748,
+            "actorsMeanAbsoluteDelta": 3.711
+          },
+          {
+            "seconds": 11,
+            "worldMeanAbsoluteDelta": 5.565,
+            "actorsMeanAbsoluteDelta": 2.244
+          },
+          {
+            "seconds": 11.5,
+            "worldMeanAbsoluteDelta": 6.023,
+            "actorsMeanAbsoluteDelta": 2.354
+          },
+          {
+            "seconds": 12,
+            "worldMeanAbsoluteDelta": 3.84,
+            "actorsMeanAbsoluteDelta": 0.969
+          }
+        ],
+        "scope": "DECODED_FRAME_DIFFERENCE_IS_DIAGNOSTIC_ONLY_CAMERA_MOTION_CAN_CAUSE_IT; ARTISTIC_REVIEW_REQUIRED"
+      },
+      "technicalMaster": {
+        "schemaVersion": 1,
+        "sequenceId": "production_eight_alaric_audience_arrival_v1",
+        "cinematicId": "alaric_audience_arrival",
+        "tier": "HERO",
+        "shotId": "shot_01",
+        "sourceCandidatePath": "tmp/cinematics/cin4/production_eight_alaric_audience_arrival_v1/shot_01/candidate_02_raw.mp4",
+        "sourceCandidateSha256": "cdd0b9967260cb606abe949ed69134c6acd05f82a42f7fce091dd90c948d4b21",
+        "outputPath": "tmp/cinematics/cin4/production_eight_alaric_audience_arrival_v1/shot_01/candidate_02_master.mp4",
+        "outputSha256": "36c89493d842885a4238f71f18fadc471fd98e30bfd22b0f706a2dda0df50aa5",
+        "mastering": {
+          "overscanPercent": 0
+        },
+        "report": {
+          "container": "mov,mp4,m4a,3gp,3g2,mj2",
+          "codec": "h264",
+          "profile": "High",
+          "pixelFormat": "yuv420p",
+          "width": 1920,
+          "height": 1080,
+          "sampleAspectRatio": "1:1",
+          "displayAspectRatio": "16:9",
+          "averageFrameRate": "24/1",
+          "durationSeconds": 12,
+          "audioStream": false,
+          "rotation": 0
+        }
+      },
+      "playerQa": {
+        "schemaVersion": 1,
+        "recordedAt": "2026-10-02T02:48:34.630Z",
+        "scope": "ISOLATED_DEV_REAL_PLAYER_NOT_CAMPAIGN_ACCEPTANCE",
+        "candidateProof": {
+          "path": "tmp/cinematics/cin4/production_eight_alaric_audience_arrival_v1/shot_01/candidate_02_master.mp4",
+          "sha256": "36c89493d842885a4238f71f18fadc471fd98e30bfd22b0f706a2dda0df50aa5",
+          "bytes": 20795828,
+          "productionAssetsReplaced": false
+        },
+        "cases": [
+          {
+            "id": "alaric_audience_arrival-1920x1080-natural",
+            "slot": "alaric_audience_arrival",
+            "viewport": {
+              "width": 1920,
+              "height": 1080
+            },
+            "mode": "natural",
+            "measurements": {
+              "moving": {
+                "width": 1920,
+                "height": 1080,
+                "hidden": false,
+                "min": 0.6666666666666666,
+                "max": 251.66666666666666,
+                "mean": 73.5442283950621,
+                "currentTime": 0.065655,
+                "duration": 12,
+                "paused": false,
+                "framePump": "video-frame",
+                "inert": false,
+                "role": "dialog",
+                "staticActors": 0
+              },
+              "clockDelta": 0.274704
+            },
+            "resultText": "Résultat : ended · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [
+              "http://127.0.0.1:5197/assets/cinematics/alaric_audience_arrival.mp4"
+            ],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "alaric_audience_arrival-390x844-hold",
+            "slot": "alaric_audience_arrival",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "mode": "hold",
+            "measurements": {
+              "moving": {
+                "width": 1920,
+                "height": 1080,
+                "hidden": false,
+                "min": 0.6666666666666666,
+                "max": 251.66666666666666,
+                "mean": 73.5442283950621,
+                "currentTime": 0.060826,
+                "duration": 12,
+                "paused": false,
+                "framePump": "video-frame",
+                "inert": false,
+                "role": "dialog",
+                "staticActors": 0
+              },
+              "clockDelta": 0.274246,
+              "held": {
+                "width": 1920,
+                "height": 1080,
+                "hidden": false,
+                "min": 0,
+                "max": 252.33333333333334,
+                "mean": 78.13616255144079,
+                "currentTime": 12,
+                "duration": 12,
+                "paused": true,
+                "framePump": "stopped",
+                "freezeSurface": "canvas",
+                "inert": true,
+                "role": "presentation",
+                "staticActors": 0
+              }
+            },
+            "resultText": "Vidéo réelle alaric_audience_arrival : ended · played true · résidu DOM 0.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [
+              "http://127.0.0.1:5197/assets/cinematics/alaric_audience_arrival.mp4"
+            ],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "alaric_audience_arrival-1920x1080-skip",
+            "slot": "alaric_audience_arrival",
+            "viewport": {
+              "width": 1920,
+              "height": 1080
+            },
+            "mode": "skip",
+            "measurements": {
+              "moving": {
+                "width": 1920,
+                "height": 1080,
+                "hidden": false,
+                "min": 0.6666666666666666,
+                "max": 251.66666666666666,
+                "mean": 73.5442283950621,
+                "currentTime": 0.066551,
+                "duration": 12,
+                "paused": false,
+                "framePump": "video-frame",
+                "inert": false,
+                "role": "dialog",
+                "staticActors": 0
+              },
+              "clockDelta": 0.27473000000000003
+            },
+            "resultText": "Résultat : skipped · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [
+              "http://127.0.0.1:5197/assets/cinematics/alaric_audience_arrival.mp4"
+            ],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "alaric_audience_arrival-1920x1080-reduced",
+            "slot": "alaric_audience_arrival",
+            "viewport": {
+              "width": 1920,
+              "height": 1080
+            },
+            "mode": "reduced",
+            "measurements": {},
+            "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "alaric_audience_arrival-1366x768-skip",
+            "slot": "alaric_audience_arrival",
+            "viewport": {
+              "width": 1366,
+              "height": 768
+            },
+            "mode": "skip",
+            "measurements": {
+              "moving": {
+                "width": 1920,
+                "height": 1080,
+                "hidden": false,
+                "min": 0.6666666666666666,
+                "max": 251.66666666666666,
+                "mean": 73.5442283950621,
+                "currentTime": 0.059702,
+                "duration": 12,
+                "paused": false,
+                "framePump": "video-frame",
+                "inert": false,
+                "role": "dialog",
+                "staticActors": 0
+              },
+              "clockDelta": 0.27522100000000005
+            },
+            "resultText": "Résultat : skipped · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [
+              "http://127.0.0.1:5197/assets/cinematics/alaric_audience_arrival.mp4"
+            ],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "alaric_audience_arrival-1366x768-reduced",
+            "slot": "alaric_audience_arrival",
+            "viewport": {
+              "width": 1366,
+              "height": 768
+            },
+            "mode": "reduced",
+            "measurements": {},
+            "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "alaric_audience_arrival-620x780-skip",
+            "slot": "alaric_audience_arrival",
+            "viewport": {
+              "width": 620,
+              "height": 780
+            },
+            "mode": "skip",
+            "measurements": {
+              "moving": {
+                "width": 1920,
+                "height": 1080,
+                "hidden": false,
+                "min": 0.6666666666666666,
+                "max": 251.66666666666666,
+                "mean": 73.5442283950621,
+                "currentTime": 0.054111,
+                "duration": 12,
+                "paused": false,
+                "framePump": "video-frame",
+                "inert": false,
+                "role": "dialog",
+                "staticActors": 0
+              },
+              "clockDelta": 0.26142499999999996
+            },
+            "resultText": "Résultat : skipped · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [
+              "http://127.0.0.1:5197/assets/cinematics/alaric_audience_arrival.mp4"
+            ],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "alaric_audience_arrival-620x780-reduced",
+            "slot": "alaric_audience_arrival",
+            "viewport": {
+              "width": 620,
+              "height": 780
+            },
+            "mode": "reduced",
+            "measurements": {},
+            "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "alaric_audience_arrival-390x844-skip",
+            "slot": "alaric_audience_arrival",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "mode": "skip",
+            "measurements": {
+              "moving": {
+                "width": 1920,
+                "height": 1080,
+                "hidden": false,
+                "min": 0.6666666666666666,
+                "max": 251.66666666666666,
+                "mean": 73.5442283950621,
+                "currentTime": 0.062565,
+                "duration": 12,
+                "paused": false,
+                "framePump": "video-frame",
+                "inert": false,
+                "role": "dialog",
+                "staticActors": 0
+              },
+              "clockDelta": 0.261473
+            },
+            "resultText": "Résultat : skipped · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [
+              "http://127.0.0.1:5197/assets/cinematics/alaric_audience_arrival.mp4"
+            ],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "alaric_audience_arrival-390x844-reduced",
+            "slot": "alaric_audience_arrival",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "mode": "reduced",
+            "measurements": {},
+            "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "alaric_audience_arrival-390x844-failure",
+            "slot": "alaric_audience_arrival",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "mode": "failure",
+            "measurements": {
+              "held": {
+                "width": 0,
+                "height": 0,
+                "hidden": true,
+                "min": 255,
+                "max": 0,
+                "mean": 0,
+                "currentTime": 0,
+                "duration": null,
+                "paused": true,
+                "framePump": "stopped",
+                "freezeSurface": "fallback",
+                "inert": true,
+                "role": "presentation",
+                "staticActors": 0
+              },
+              "fallbackText": "La compagnie entre dans la salle d’audience du Lion."
+            },
+            "resultText": "Vidéo réelle alaric_audience_arrival : timeout · played false · résidu DOM 0.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [
+              "http://127.0.0.1:5197/assets/cinematics/alaric_audience_arrival.mp4"
+            ],
+            "expectedFailedRequests": 1,
+            "errors": [],
+            "pass": true
+          }
+        ],
+        "pass": true
+      }
+    },
+    {
+      "slot": "bois_clair_arrival",
+      "shot": "shot_01",
+      "attempt": 1,
+      "taskId": "447922993545675",
+      "status": "PASS_CANDIDATE_BLOCK_REVIEW_NOT_FULL_SLOT_ACCEPTANCE",
+      "positive": [
+        "Readable initial physical arrival steps then attention/stopping; low nonattacking source sword and concealed V2 identity retained",
+        "Source street, broken palisade, cart, church, ridge and amber time retained; independent fire/smoke/embers develop urgency",
+        "Stepped armor silhouette and environment family remain recognizable; no rescue, loot, new combat or selected outcome"
+      ],
+      "limits": [
+        "Only first 10-second block of approved 20-second slot; shot_02 keyframe and motion remain missing",
+        "Need second-block identity/geography and deliberate-cut continuity before final full-slot artistic/campaign acceptance",
+        "Contact sheet has two empty padding tiles; sampled 9.9-second final frame is nonblank",
+        "390x844 source/player preview partially crops left armor/cape; portrait artistic framing acceptance remains pending"
+      ],
+      "submittedSpec": {
+        "schemaVersion": 1,
+        "sequenceId": "production_eight_bois_clair_arrival_v1",
+        "cinematicId": "bois_clair_arrival",
+        "tier": "HERO",
+        "canonicalFacing": "SCREEN_RIGHT",
+        "promptVersion": "production-eight-bois_clair_arrival-active-v3",
+        "resolution": "2K",
+        "frame": {
+          "width": 1920,
+          "height": 1080
+        },
+        "status": "SHOT_01_KEYFRAME_CANDIDATE_SHOT_02_REQUIRED_NOT_PRODUCTION",
+        "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
+        "artDirection": "Modern pixel-art/HD-2D. Immutable canonical V2 identities and promoted location; authored major cinematic motion. No production replacement before acceptance.",
+        "canonicalContext": {
+          "nodeId": "lion-village-choice",
+          "trigger": "beforeDialogue village_choice",
+          "sources": [
+            "src/cinematics/Cin6aPresentation.ts:18",
+            "src/game/content.ts:618",
+            "src/game/contextualDialogueContent.ts:87",
+            "src/campaign/LionCampaignStructure.ts:236"
+          ],
+          "followingDialogueId": "village_choice",
+          "truth": "Bois-Clair is under Serpent pressure. Captives/northern old bridge and reserves/southern low gate define the existing urgency. Saving people or taking reserves remains undecided.",
+          "exclusions": [
+            "No rescue, loot or outcome resolved in the clip",
+            "No obligatory Cedric: the contextual dialogue can use Kestrel instead",
+            "No extra canonical combat"
+          ]
+        },
+        "presentationBoundary": {
+          "duringVideoCastOwner": "VIDEO_OWNS_CAST",
+          "afterVideoSurface": "STATIC_TABLEAU",
+          "afterVideoCastOwner": "STAGE_OWNS_CAST",
+          "dialogueStepsDuringVideoOrHold": 0,
+          "choiceStepsDuringVideoOrHold": 0,
+          "maximumActorsPerComposition": 4,
+          "registryHoldSource": "bois_clair_arrival",
+          "registryHoldMetadataIsDialogueSurfaceAuthority": false,
+          "finalFrameCastReferenceOnly": true,
+          "finalFramePolicy": "Readable stable final image for covered transfer; a hold is allowed only for the exact same established moment. Ending families release before LION_JUDGEMENT epilogue."
+        },
+        "shots": [
+          {
+            "shotId": "shot_01",
+            "purpose": "Reveal the canonical burning-village scale and existing divided crisis, with the arriving company represented by Alistair. Fire/smoke and street depth carry motion without selecting a rescue target.",
+            "framing": "AUTHORED_LOCATION_MAJOR_EVENT",
+            "environment": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png",
+            "source": {
+              "type": "ROOT_SOURCE",
+              "output": "tmp/cinematics/cin4/production_eight_bois_clair_arrival_v1/shot_01/source.png",
+              "frame": {
+                "width": 1672,
+                "height": 941
+              },
+              "integration": {
+                "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+                "layoutReference": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png",
+                "referenceAssets": [
+                  "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png",
+                  "public/assets/characters/pixel/masters/alistair.png"
+                ],
+                "qualityGates": [
+                  "NO_COLLAGE_LOOK",
+                  "WORLD_INTEGRATION",
+                  "V2_IDENTITY",
+                  "CANONICAL_ENVIRONMENT",
+                  "NO_GAME_TRUTH_MUTATION"
+                ]
+              },
+              "sha256": "31918e9e8b1a8bc73f913cbd8e16f98cd9b3c0e795f7984288f12729cd35b8f8",
+              "inputCandidate": "tools/cinematics/candidates/production-eight-slot-remaster/bois_clair_arrival/shot-01-keyframe-v1.png"
+            },
+            "characters": [
+              {
+                "id": "alistair",
+                "asset": "public/assets/characters/pixel/masters/alistair.png",
+                "position": {
+                  "x": 0.39,
+                  "groundY": 0.83
+                },
+                "scale": {
+                  "framing": "WIDE",
+                  "perspective": 1
+                },
+                "facing": "SCREEN_RIGHT",
+                "lookTarget": "ENVIRONMENT:canonical_location",
+                "depth": 10,
+                "role": "PRIMARY",
+                "action": "WALK_PURPOSEFUL",
+                "mirrorPolicy": "FORBID"
+              }
+            ],
+            "camera": {
+              "mode": "SLOW_PULL",
+              "intent": "Pull back promptly from the arriving actor to reveal the authored divided village crisis; readable parallax and rising smoke motivate the expansion."
+            },
+            "durationSeconds": 10,
+            "continuityOut": "DELIBERATE_CUT",
+            "endIntent": "AUTHORED_CUT_WITH_SAME_WORLD_TIME_AND_TRUTH",
+            "nextStepUiSafeZone": {
+              "x": 0,
+              "y": 0.85,
+              "width": 1,
+              "height": 0.15
+            },
+            "promptIntent": "Preserve exact discrete source pixel clusters and stepped armor/cloth detail in every frame; never smooth into generic illustration or 3D. Keep the exact closed helmet and red crest, lion tabard/cape, greatsword and full body readable. The weapon remains a low safe carry, never an attack. Active, rhythmic classic JRPG cinematic staging adapted to this canonical beat. First quarter: initiate the described action promptly. Middle half: develop readable grounded actor motion and living environment, with motivated camera progression. Final quarter: complete only that physical presentation action and remain alive, decelerating camera in the last second. Alistair strides briskly into the burning street, clears his weapon into a low nonattacking carry and stops as his attention is drawn across the unresolved crisis. Flames surge, smoke rolls across rooflines and sparks pass in depth. No new strike, rescue, casualty or selected route. Reveal the canonical burning-village scale and existing divided crisis, with the arriving company represented by Alistair. Fire/smoke and street depth carry motion without selecting a rescue target. Current canonical truth: Bois-Clair is under Serpent pressure. Captives/northern old bridge and reserves/southern low gate define the existing urgency. Saving people or taking reserves remains undecided. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No rescue, loot or outcome resolved in the clip; No obligatory Cedric: the contextual dialogue can use Kestrel instead; No extra canonical combat. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. A deliberate between-block cut is authored, not an accidental model reset; retain place, time, cast identity and resolved truth.",
+            "authoringStatus": "SHOT_01_KEYFRAME_CANDIDATE_REVIEWED_SHOT_02_KEYFRAME_REQUIRED"
+          },
+          {
+            "shotId": "shot_02",
+            "purpose": "Within the same village geography, emphasize the unresolved civilian threat and company arrival. No blow, release of captives, pickup or tactical result. End ready for the canonical multi-phase choice tableau.",
+            "framing": "AUTHORED_LOCATION_MAJOR_EVENT",
+            "environment": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png",
+            "source": {
+              "type": "CUT_SOURCE",
+              "output": "tmp/cinematics/cin4/production_eight_bois_clair_arrival_v1/shot_02/source.png",
+              "frame": {
+                "width": 1672,
+                "height": 941
+              },
+              "integration": {
+                "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+                "layoutReference": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png",
+                "referenceAssets": [
+                  "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png",
+                  "public/assets/characters/pixel/masters/villageoise.png",
+                  "public/assets/characters/pixel/masters/white_mage.png",
+                  "public/assets/characters/pixel/masters/serpent_raider.png"
+                ],
+                "qualityGates": [
+                  "NO_COLLAGE_LOOK",
+                  "WORLD_INTEGRATION",
+                  "V2_IDENTITY",
+                  "CANONICAL_ENVIRONMENT",
+                  "NO_GAME_TRUTH_MUTATION"
+                ]
+              }
+            },
+            "characters": [
+              {
+                "id": "villageoise",
+                "asset": "public/assets/characters/pixel/masters/villageoise.png",
+                "position": {
+                  "x": 0.25,
+                  "groundY": 0.79
+                },
+                "scale": {
+                  "framing": "WIDE",
+                  "perspective": 1
+                },
+                "facing": "SCREEN_RIGHT",
+                "lookTarget": "CHARACTER:white_mage",
+                "depth": 10,
+                "role": "PRIMARY",
+                "action": "REACT_SMALL",
+                "mirrorPolicy": "FORBID"
+              },
+              {
+                "id": "white_mage",
+                "asset": "public/assets/characters/pixel/masters/white_mage.png",
+                "position": {
+                  "x": 0.5,
+                  "groundY": 0.79
+                },
+                "scale": {
+                  "framing": "WIDE",
+                  "perspective": 1
+                },
+                "facing": "SCREEN_RIGHT",
+                "lookTarget": "CHARACTER:serpent_raider",
+                "depth": 20,
+                "role": "SECONDARY",
+                "action": "STEP_FORWARD",
+                "mirrorPolicy": "FORBID"
+              },
+              {
+                "id": "serpent_raider",
+                "asset": "public/assets/characters/pixel/masters/serpent_raider.png",
+                "position": {
+                  "x": 0.75,
+                  "groundY": 0.79
+                },
+                "scale": {
+                  "framing": "WIDE",
+                  "perspective": 1
+                },
+                "facing": "SCREEN_RIGHT",
+                "lookTarget": "CHARACTER:villageoise",
+                "depth": 30,
+                "role": "SECONDARY",
+                "action": "READY_STANCE",
+                "mirrorPolicy": "FORBID"
+              }
+            ],
+            "camera": {
+              "mode": "PAN_SMALL_RIGHT",
+              "intent": "A purposeful lateral reveal links the already authored civilian-threat and arrival planes; hold the existing geography and stop before choosing either destination."
+            },
+            "durationSeconds": 10,
+            "continuityOut": "END",
+            "endIntent": "STABLE_READABLE_FRAME_THEN_COVERED_TABLEAU_TRANSFER",
+            "nextStepUiSafeZone": {
+              "x": 0,
+              "y": 0.85,
+              "width": 1,
+              "height": 0.15
+            },
+            "promptIntent": "Active, rhythmic classic JRPG cinematic staging adapted to this canonical beat. First quarter: initiate the described action promptly. Middle half: develop readable grounded actor motion and living environment, with motivated camera progression. Final quarter: complete only that physical presentation action and remain alive, decelerating camera in the last second. The villageoise recoils and raises her open hands protectively; Marian steps into the arriving company plane and braces her staff; the raider shifts his guarded stance without striking. Wind catches fabric and thick smoke moves behind them. Preserve existing threat and every unresolved rescue/reserves option. Within the same village geography, emphasize the unresolved civilian threat and company arrival. No blow, release of captives, pickup or tactical result. End ready for the canonical multi-phase choice tableau. Current canonical truth: Bois-Clair is under Serpent pressure. Captives/northern old bridge and reserves/southern low gate define the existing urgency. Saving people or taking reserves remains undecided. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No rescue, loot or outcome resolved in the clip; No obligatory Cedric: the contextual dialogue can use Kestrel instead; No extra canonical combat. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. Settle sharply and release to the existing STATIC_TABLEAU; no dialogue/choice on the video or hold.",
+            "authoringStatus": "ACTIVE_MOTION_REVIEWED_KEYFRAME_IDENTITY_FRAMING_STILL_REQUIRED"
+          }
+        ],
+        "operatorDecision": "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md"
+      },
+      "submittedPrompt": "Modern pixel-art/HD-2D. Immutable canonical V2 identities and promoted location; authored major cinematic motion. No production replacement before acceptance. Shot shot_01: Reveal the canonical burning-village scale and existing divided crisis, with the arriving company represented by Alistair. Fire/smoke and street depth carry motion without selecting a rescue target. Framing: AUTHORED_LOCATION_MAJOR_EVENT. Camera intent: SLOW_PULL: Pull back promptly from the arriving actor to reveal the authored divided village crisis; readable parallax and rising smoke motivate the expansion.. Staging: alistair is PRIMARY/PRIMARY, already facing SCREEN_RIGHT, attending to ENVIRONMENT:canonical_location, with action WALK_PURPOSEFUL (MODERATE risk). Action intent: Preserve exact discrete source pixel clusters and stepped armor/cloth detail in every frame; never smooth into generic illustration or 3D. Keep the exact closed helmet and red crest, lion tabard/cape, greatsword and full body readable. The weapon remains a low safe carry, never an attack. Active, rhythmic classic JRPG cinematic staging adapted to this canonical beat. First quarter: initiate the described action promptly. Middle half: develop readable grounded actor motion and living environment, with motivated camera progression. Final quarter: complete only that physical presentation action and remain alive, decelerating camera in the last second. Alistair strides briskly into the burning street, clears his weapon into a low nonattacking carry and stops as his attention is drawn across the unresolved crisis. Flames surge, smoke rolls across rooflines and sparks pass in depth. No new strike, rescue, casualty or selected route. Reveal the canonical burning-village scale and existing divided crisis, with the arriving company represented by Alistair. Fire/smoke and street depth carry motion without selecting a rescue target. Current canonical truth: Bois-Clair is under Serpent pressure. Captives/northern old bridge and reserves/southern low gate define the existing urgency. Saving people or taking reserves remains undecided. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No rescue, loot or outcome resolved in the clip; No obligatory Cedric: the contextual dialogue can use Kestrel instead; No extra canonical combat. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. A deliberate between-block cut is authored, not an accidental model reset; retain place, time, cast identity and resolved truth. The supplied first frame is authoritative. Preserve exactly every character identity, face or head, hair or helmet, armor, clothing, cape or tabard, weapon, body proportions, color palette, facing direction, spatial relationship, and environment identity. Animate the existing composition; do not redesign it. Preserve the exact facing direction already shown in the first frame. Do not turn either character around, reverse screen direction, rotate a body 180 degrees, cross the established axis, or swap character sides. End-state intent: AUTHORED_CUT_WITH_SAME_WORLD_TIME_AND_TRUTH. Finish stable, sharp, nonblank, nonverdict, and suitable for an editorial cut or deterministic dialogue handoff. No speech, lip sync, subtitles, text, UI, watermark, photorealism, live action, realistic 3D conversion, extra characters, duplicated limbs, duplicated weapons, anatomy melting, combat, attack, projectile, explosion, camera orbit, whip pan, large rotation, aggressive zoom, heavy blur, black ending, white ending, or style drift.",
+      "decodedEvidence": {
+        "recordedAt": "2026-10-02T02:52:02.917Z",
+        "slot": "bois_clair_arrival",
+        "shot": "shot_01",
+        "input": "tmp/cinematics/cin4/production_eight_bois_clair_arrival_v1/shot_01/candidate_01_raw.mp4",
+        "sha256": "b2e13fb83a11d6ca2e9006be6b565eee9b432fb2b53d7c7bc9619255e13756d9",
+        "media": {
+          "container": "mov,mp4,m4a,3gp,3g2,mj2",
+          "codec": "h264",
+          "profile": "High",
+          "pixelFormat": "yuv420p",
+          "width": 2560,
+          "height": 1440,
+          "sampleAspectRatio": null,
+          "displayAspectRatio": null,
+          "averageFrameRate": "24/1",
+          "durationSeconds": 10.125,
+          "audioStream": true,
+          "rotation": 0
+        },
+        "authoredBlockDurationSeconds": 10,
+        "durationDeltaSeconds": 0.125,
+        "frames": [
+          {
+            "label": "first",
+            "seconds": 0,
+            "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/bois-01-raw-review/first.png",
+            "sha256": "6821065568e65642f7238fce7150e77494e0903fa09074ca7a3fdb507ddd187e"
+          },
+          {
+            "label": "initiation",
+            "seconds": 1.25,
+            "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/bois-01-raw-review/initiation.png",
+            "sha256": "8aec1ae4f380d29e4291d69177ede0b363642c3c7ed645b15d92cbd19652894e"
+          },
+          {
+            "label": "stride",
+            "seconds": 2.5,
+            "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/bois-01-raw-review/stride.png",
+            "sha256": "0df9c128775faae594d0147146a75ebab45ab22556c2e5a143ec1ae04eb29a3d"
+          },
+          {
+            "label": "middle",
+            "seconds": 5,
+            "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/bois-01-raw-review/middle.png",
+            "sha256": "df7a5a3475cecbdeb7c89a8a833293b87e821b0bb15433e12d565e4b524d851e"
+          },
+          {
+            "label": "progression",
+            "seconds": 7.5,
+            "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/bois-01-raw-review/progression.png",
+            "sha256": "7c8d897a9de30cec849e9cb4b706dc8e3124b3ec4ca078ccbb87db52b93216cc"
+          },
+          {
+            "label": "final",
+            "seconds": 9.9,
+            "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/bois-01-raw-review/final.png",
+            "sha256": "68237219bc3e33084b4fc91461f6d1b10e1791dc8cdcf77ef0344f69951f583d"
+          }
+        ],
+        "motion": [
+          {
+            "seconds": 0.5,
+            "worldMeanAbsoluteDelta": 12.27,
+            "actorsMeanAbsoluteDelta": 17.673
+          },
+          {
+            "seconds": 1,
+            "worldMeanAbsoluteDelta": 13.55,
+            "actorsMeanAbsoluteDelta": 17.619
+          },
+          {
+            "seconds": 1.5,
+            "worldMeanAbsoluteDelta": 13.606,
+            "actorsMeanAbsoluteDelta": 18.033
+          },
+          {
+            "seconds": 2,
+            "worldMeanAbsoluteDelta": 13.724,
+            "actorsMeanAbsoluteDelta": 17.927
+          },
+          {
+            "seconds": 2.5,
+            "worldMeanAbsoluteDelta": 13.402,
+            "actorsMeanAbsoluteDelta": 16.104
+          },
+          {
+            "seconds": 3,
+            "worldMeanAbsoluteDelta": 13.345,
+            "actorsMeanAbsoluteDelta": 14.017
+          },
+          {
+            "seconds": 3.5,
+            "worldMeanAbsoluteDelta": 13.599,
+            "actorsMeanAbsoluteDelta": 13.189
+          },
+          {
+            "seconds": 4,
+            "worldMeanAbsoluteDelta": 12.977,
+            "actorsMeanAbsoluteDelta": 12.36
+          },
+          {
+            "seconds": 4.5,
+            "worldMeanAbsoluteDelta": 13.109,
+            "actorsMeanAbsoluteDelta": 12.421
+          },
+          {
+            "seconds": 5,
+            "worldMeanAbsoluteDelta": 13.127,
+            "actorsMeanAbsoluteDelta": 12.727
+          },
+          {
+            "seconds": 5.5,
+            "worldMeanAbsoluteDelta": 12.616,
+            "actorsMeanAbsoluteDelta": 12.621
+          },
+          {
+            "seconds": 6,
+            "worldMeanAbsoluteDelta": 12.365,
+            "actorsMeanAbsoluteDelta": 12.396
+          },
+          {
+            "seconds": 6.5,
+            "worldMeanAbsoluteDelta": 11.655,
+            "actorsMeanAbsoluteDelta": 11.164
+          },
+          {
+            "seconds": 7,
+            "worldMeanAbsoluteDelta": 10.742,
+            "actorsMeanAbsoluteDelta": 10.104
+          },
+          {
+            "seconds": 7.5,
+            "worldMeanAbsoluteDelta": 9.3,
+            "actorsMeanAbsoluteDelta": 8.583
+          },
+          {
+            "seconds": 8,
+            "worldMeanAbsoluteDelta": 8.323,
+            "actorsMeanAbsoluteDelta": 7.957
+          },
+          {
+            "seconds": 8.5,
+            "worldMeanAbsoluteDelta": 6.998,
+            "actorsMeanAbsoluteDelta": 6.765
+          },
+          {
+            "seconds": 9,
+            "worldMeanAbsoluteDelta": 5.362,
+            "actorsMeanAbsoluteDelta": 4.731
+          },
+          {
+            "seconds": 9.5,
+            "worldMeanAbsoluteDelta": 4.027,
+            "actorsMeanAbsoluteDelta": 3.106
+          }
+        ],
+        "contactSheetPaddingTiles": 2,
+        "scope": "DECODED_FRAME_DIFFERENCES_ARE_DIAGNOSTIC_ONLY_CAMERA_MOTION_CAN_CAUSE_THEM;_ARTISTIC_REVIEW_REQUIRED"
+      },
+      "technicalMaster": {
+        "schemaVersion": 1,
+        "sequenceId": "production_eight_bois_clair_arrival_v1",
+        "cinematicId": "bois_clair_arrival",
+        "tier": "HERO",
+        "shotId": "shot_01",
+        "sourceCandidatePath": "tmp/cinematics/cin4/production_eight_bois_clair_arrival_v1/shot_01/candidate_01_raw.mp4",
+        "sourceCandidateSha256": "b2e13fb83a11d6ca2e9006be6b565eee9b432fb2b53d7c7bc9619255e13756d9",
+        "outputPath": "tmp/cinematics/cin4/production_eight_bois_clair_arrival_v1/shot_01/shot_master.mp4",
+        "outputSha256": "b0e80d01845f82f3d42c4024a7ffc047b306ad00d567586fea9eac98b533411f",
+        "mastering": {
+          "overscanPercent": 0
+        },
+        "report": {
+          "container": "mov,mp4,m4a,3gp,3g2,mj2",
+          "codec": "h264",
+          "profile": "High",
+          "pixelFormat": "yuv420p",
+          "width": 1920,
+          "height": 1080,
+          "sampleAspectRatio": "1:1",
+          "displayAspectRatio": "16:9",
+          "averageFrameRate": "24/1",
+          "durationSeconds": 10,
+          "audioStream": false,
+          "rotation": 0
+        }
+      },
+      "playerQa": {
+        "schemaVersion": 1,
+        "recordedAt": "2026-10-02T02:53:30.975Z",
+        "scope": "ISOLATED_DEV_REAL_PLAYER_NOT_CAMPAIGN_ACCEPTANCE",
+        "candidateProof": {
+          "path": "tmp/cinematics/cin4/production_eight_bois_clair_arrival_v1/shot_01/shot_master.mp4",
+          "sha256": "b0e80d01845f82f3d42c4024a7ffc047b306ad00d567586fea9eac98b533411f",
+          "bytes": 16118986,
+          "productionAssetsReplaced": false
+        },
+        "cases": [
+          {
+            "id": "bois_clair_arrival-1920x1080-skip",
+            "slot": "bois_clair_arrival",
+            "viewport": {
+              "width": 1920,
+              "height": 1080
+            },
+            "mode": "skip",
+            "measurements": {
+              "moving": {
+                "width": 1920,
+                "height": 1080,
+                "hidden": false,
+                "min": 0,
+                "max": 251.66666666666666,
+                "mean": 55.92971193415695,
+                "currentTime": 0.042769,
+                "duration": 10,
+                "paused": false,
+                "framePump": "video-frame",
+                "inert": false,
+                "role": "dialog",
+                "staticActors": 0
+              },
+              "clockDelta": 0.26258
+            },
+            "resultText": "Résultat : skipped · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [
+              "http://127.0.0.1:5197/assets/cinematics/bois_clair_arrival.mp4"
+            ],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "bois_clair_arrival-1366x768-skip",
+            "slot": "bois_clair_arrival",
+            "viewport": {
+              "width": 1366,
+              "height": 768
+            },
+            "mode": "skip",
+            "measurements": {
+              "moving": {
+                "width": 1920,
+                "height": 1080,
+                "hidden": false,
+                "min": 0,
+                "max": 251.66666666666666,
+                "mean": 55.92971193415695,
+                "currentTime": 0.041947,
+                "duration": 10,
+                "paused": false,
+                "framePump": "video-frame",
+                "inert": false,
+                "role": "dialog",
+                "staticActors": 0
+              },
+              "clockDelta": 0.27053099999999997
+            },
+            "resultText": "Résultat : skipped · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [
+              "http://127.0.0.1:5197/assets/cinematics/bois_clair_arrival.mp4"
+            ],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "bois_clair_arrival-620x780-skip",
+            "slot": "bois_clair_arrival",
+            "viewport": {
+              "width": 620,
+              "height": 780
+            },
+            "mode": "skip",
+            "measurements": {
+              "moving": {
+                "width": 1920,
+                "height": 1080,
+                "hidden": false,
+                "min": 0,
+                "max": 251.66666666666666,
+                "mean": 55.92971193415695,
+                "currentTime": 0.056855,
+                "duration": 10,
+                "paused": false,
+                "framePump": "video-frame",
+                "inert": false,
+                "role": "dialog",
+                "staticActors": 0
+              },
+              "clockDelta": 0.277157
+            },
+            "resultText": "Résultat : skipped · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [
+              "http://127.0.0.1:5197/assets/cinematics/bois_clair_arrival.mp4"
+            ],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          },
+          {
+            "id": "bois_clair_arrival-390x844-skip",
+            "slot": "bois_clair_arrival",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "mode": "skip",
+            "measurements": {
+              "moving": {
+                "width": 1920,
+                "height": 1080,
+                "hidden": false,
+                "min": 0,
+                "max": 251.66666666666666,
+                "mean": 55.92971193415695,
+                "currentTime": 0.062705,
+                "duration": 10,
+                "paused": false,
+                "framePump": "video-frame",
+                "inert": false,
+                "role": "dialog",
+                "staticActors": 0
+              },
+              "clockDelta": 0.26775299999999996
+            },
+            "resultText": "Résultat : skipped · overlay nettoyé.",
+            "residues": 0,
+            "saveBytesUnchanged": true,
+            "requests": [
+              "http://127.0.0.1:5197/assets/cinematics/bois_clair_arrival.mp4"
+            ],
+            "expectedFailedRequests": 0,
+            "errors": [],
+            "pass": true
+          }
+        ],
+        "pass": true,
+        "previewScope": "PARTIAL_10S_SHOT_01_SKIP_ONLY_NOT_FULL_20S_SLOT_ACCEPTANCE"
+      }
+    }
+  ],
+  "generatedRawCandidates": 6,
+  "fullCandidatePlayerCasesPassed": 55,
+  "partialBlockSkipCasesPassed": 4,
+  "productionReplaced": false,
+  "pendingProviderTasks": []
+}

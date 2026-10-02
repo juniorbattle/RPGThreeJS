@@ -4,13 +4,13 @@
   "cinematicId": "bois_clair_arrival",
   "tier": "HERO",
   "canonicalFacing": "SCREEN_RIGHT",
-  "promptVersion": "production-eight-bois_clair_arrival-active-v2",
+  "promptVersion": "production-eight-bois_clair_arrival-active-v3",
   "resolution": "2K",
   "frame": {
     "width": 1920,
     "height": 1080
   },
-  "status": "AUTHORING_ACTIVE_DIRECTION_KEYFRAMES_PENDING_MINIMAX_AUTHORIZED",
+  "status": "SHOT_01_KEYFRAME_CANDIDATE_SHOT_02_REQUIRED_NOT_PRODUCTION",
   "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
   "artDirection": "Modern pixel-art/HD-2D. Immutable canonical V2 identities and promoted location; authored major cinematic motion. No production replacement before acceptance.",
   "canonicalContext": {
@@ -69,15 +69,17 @@
             "CANONICAL_ENVIRONMENT",
             "NO_GAME_TRUTH_MUTATION"
           ]
-        }
+        },
+        "sha256": "31918e9e8b1a8bc73f913cbd8e16f98cd9b3c0e795f7984288f12729cd35b8f8",
+        "inputCandidate": "tools/cinematics/candidates/production-eight-slot-remaster/bois_clair_arrival/shot-01-keyframe-v1.png"
       },
       "characters": [
         {
           "id": "alistair",
           "asset": "public/assets/characters/pixel/masters/alistair.png",
           "position": {
-            "x": 0.5,
-            "groundY": 0.79
+            "x": 0.39,
+            "groundY": 0.83
           },
           "scale": {
             "framing": "WIDE",
@@ -104,8 +106,8 @@
         "width": 1,
         "height": 0.15
       },
-      "promptIntent": "Active, rhythmic classic JRPG cinematic staging adapted to this canonical beat. First quarter: initiate the described action promptly. Middle half: develop readable grounded actor motion and living environment, with motivated camera progression. Final quarter: complete only that physical presentation action and remain alive, decelerating camera in the last second. Alistair strides briskly into the burning street, clears his weapon into a low nonattacking carry and stops as his attention is drawn across the unresolved crisis. Flames surge, smoke rolls across rooflines and sparks pass in depth. No new strike, rescue, casualty or selected route. Reveal the canonical burning-village scale and existing divided crisis, with the arriving company represented by Alistair. Fire/smoke and street depth carry motion without selecting a rescue target. Current canonical truth: Bois-Clair is under Serpent pressure. Captives/northern old bridge and reserves/southern low gate define the existing urgency. Saving people or taking reserves remains undecided. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No rescue, loot or outcome resolved in the clip; No obligatory Cedric: the contextual dialogue can use Kestrel instead; No extra canonical combat. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. A deliberate between-block cut is authored, not an accidental model reset; retain place, time, cast identity and resolved truth.",
-      "authoringStatus": "ACTIVE_MOTION_REVIEWED_KEYFRAME_IDENTITY_FRAMING_STILL_REQUIRED"
+      "promptIntent": "Preserve exact discrete source pixel clusters and stepped armor/cloth detail in every frame; never smooth into generic illustration or 3D. Keep the exact closed helmet and red crest, lion tabard/cape, greatsword and full body readable. The weapon remains a low safe carry, never an attack. Active, rhythmic classic JRPG cinematic staging adapted to this canonical beat. First quarter: initiate the described action promptly. Middle half: develop readable grounded actor motion and living environment, with motivated camera progression. Final quarter: complete only that physical presentation action and remain alive, decelerating camera in the last second. Alistair strides briskly into the burning street, clears his weapon into a low nonattacking carry and stops as his attention is drawn across the unresolved crisis. Flames surge, smoke rolls across rooflines and sparks pass in depth. No new strike, rescue, casualty or selected route. Reveal the canonical burning-village scale and existing divided crisis, with the arriving company represented by Alistair. Fire/smoke and street depth carry motion without selecting a rescue target. Current canonical truth: Bois-Clair is under Serpent pressure. Captives/northern old bridge and reserves/southern low gate define the existing urgency. Saving people or taking reserves remains undecided. Preserve the actual V2 reference identities, face concealment, equipment, clothing, relative scale and grounded world integration. Keep every intended actor physically continuous within this shot. Preserve the promoted location landmarks, palette, horizon and lighting rather than old video architecture/time. Exclusions: No rescue, loot or outcome resolved in the clip; No obligatory Cedric: the contextual dialogue can use Kestrel instead; No extra canonical combat. No generated speech, lip sync, baked dialogue, text, UI, watermark or extra game consequence. No hidden cut, identity morph, teleport, duplicated actor, world reset or forced extreme motion within a block. A deliberate between-block cut is authored, not an accidental model reset; retain place, time, cast identity and resolved truth.",
+      "authoringStatus": "SHOT_01_KEYFRAME_CANDIDATE_REVIEWED_SHOT_02_KEYFRAME_REQUIRED"
     },
     {
       "shotId": "shot_02",
