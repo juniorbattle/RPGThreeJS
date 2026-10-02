@@ -15,14 +15,11 @@ describe('TraversalFeaturePolicy', () => {
     });
   });
 
-  it('opens the authored T0/T1 rollout and keeps T3 closed', () => {
-    expect([...TRAVERSAL_PRODUCTION_GATE.rolloutLegIds]).toEqual(['T0', 'T1']);
+  it('opens only the accepted T0/T1/T3 rollout', () => {
+    expect([...TRAVERSAL_PRODUCTION_GATE.rolloutLegIds]).toEqual(['T0', 'T1', 'T3']);
     expect(isTraversalProductionEnabledForLeg('T0')).toBe(true);
     expect(isTraversalProductionEnabledForLeg('T1')).toBe(true);
-    for (const id of ['T3'] as const) {
-      expect(isTraversalProductionEnabledForLeg(id)).toBe(false);
-      expect(evaluateTraversalProductionGate(id).reason).toBe('LEG_NOT_IN_ROLLOUT');
-    }
+    expect(isTraversalProductionEnabledForLeg('T3')).toBe(true);
     for (const id of ['T2', 'T4'] as const) {
       expect(isTraversalProductionEnabledForLeg(id)).toBe(false);
       expect(evaluateTraversalProductionGate(id).reason).toBe('RETIRED_PLAYABLE_LEG');

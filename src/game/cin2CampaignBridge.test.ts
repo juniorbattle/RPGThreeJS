@@ -78,11 +78,11 @@ describe('CIN-2 campaign presentation bridge', () => {
     expect(method('private async flushPendingCombat')).not.toContain('enterTravel');
   });
 
-  it('selects the explicitly approved authored T0/T1 rollout through the facade', () => {
+  it('selects the explicitly approved authored T0/T1/T3 rollout through the facade', () => {
     const gate = readFileSync(resolve(process.cwd(), 'src/traversal/TraversalFeaturePolicy.ts'), 'utf8');
     expect(gate).toContain('enabled: true');
     expect(gate).toContain('designAssetsReady: true');
-    expect(gate).toContain("rolloutLegIds: Object.freeze(['T0', 'T1']");
+    expect(gate).toContain("rolloutLegIds: Object.freeze(['T0', 'T1', 'T3']");
     expect(SOURCE).toContain('private usesTraversalPresentation');
     expect(SOURCE).toContain('isTraversalProductionEnabledForLeg(legId)');
 

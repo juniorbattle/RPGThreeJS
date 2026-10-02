@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "contractSetVersion": 1,
+  "status": "PREPARATION_IN_PROGRESS",
+  "recordedAt": "2026-10-02T00:49:12.503Z",
+  "authority": [
+    "docs/game/GAME_CONSTITUTION.md",
+    "docs/contracts/WORLD_AND_CHARACTERS.md",
+    "docs/contracts/PRESENTATION_AND_MEDIA.md"
+  ],
+  "productionSource": "public/assets/cinematics/manifest.json",
+  "productionOverlay": "tools/cinematics/specs/production_presentation_modes.json",
+  "scope": "Exactly eight existing approved video IDs. No new plot, dialogue, choice, node or enemy/recruit/routine-travel video.",
+  "toolAvailability": {
+    "videoGeneration": "NONE_EXPOSED_IN_CURRENT_TOOL_CATALOG",
+    "rasterImageGeneration": "AVAILABLE_BUT_DOES_NOT_GENERATE_VIDEO",
+    "ffmpegAndFfprobeOnPath": false,
+    "assetBlocker": "A suitable authored video generator and resulting eight modern pixel-art/HD-2D clips are required; preparation and existing-media QA remain unblocked."
+  },
+  "lockedRequirements": [
+    "Modern pixel-art / HD-2D; use approved V2 identities and poses as visual ceiling.",
+    "Match canonical environment family, location, light/time and actor ownership across tableau, Traversal, combat and cinematic.",
+    "Rare major, grand authored moments; narrative importance alone does not require video.",
+    "Preserve existing canonical outcomes, durable IDs, dialogue/choices, skip/reduced-motion/failure agency.",
+    "Holds remain only for their exact preceding moment; avoid duplicate integrated actors; audio remains deferred.",
+    "Keep current media bytes until explicit accepted replacement; preserve historical audits and ordinary ignored QA outputs."
+  ],
+  "slots": [
+    {
+      "id": "camp_departure",
+      "status": "BASELINE_RECORDED_SHOT_REVIEW_PENDING",
+      "currentDescriptor": {
+        "id": "camp_departure",
+        "title": "Le départ du camp",
+        "sources": [
+          {
+            "src": "/assets/cinematics/camp_departure.mp4",
+            "type": "video/mp4"
+          }
+        ],
+        "fallbackText": "La compagnie quitte le camp et prend la route.",
+        "durationMs": 12000
+      },
+      "sourceByteSize": 14245824,
+      "sourceSha256": "a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3",
+      "currentDurationMs": 12000,
+      "durationAuthority": "Existing descriptor only; actual stream timing must be probed before authoring",
+      "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
+      "shotSpecificationStatus": "PENDING_VISUAL_AND_CANONICAL_CONTEXT_AUDIT",
+      "assetGenerationStatus": "BLOCKED_EXTERNAL_VIDEO_TOOL",
+      "artAcceptance": "NOT_REVIEWED_FOR_REMASTER"
+    },
+    {
+      "id": "alaric_audience_arrival",
+      "status": "BASELINE_RECORDED_SHOT_REVIEW_PENDING",
+      "currentDescriptor": {
+        "id": "alaric_audience_arrival",
+        "title": "L’audience d’Alaric",
+        "sources": [
+          {
+            "src": "/assets/cinematics/alaric_audience_arrival.mp4",
+            "type": "video/mp4"
+          }
+        ],
+        "fallbackText": "La compagnie entre dans la salle d’audience du Lion.",
+        "durationMs": 12000
+      },
+      "sourceByteSize": 12340443,
+      "sourceSha256": "b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629",
+      "currentDurationMs": 12000,
+      "durationAuthority": "Existing descriptor only; actual stream timing must be probed before authoring",
+      "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
+      "shotSpecificationStatus": "PENDING_VISUAL_AND_CANONICAL_CONTEXT_AUDIT",
+      "assetGenerationStatus": "BLOCKED_EXTERNAL_VIDEO_TOOL",
+      "artAcceptance": "NOT_REVIEWED_FOR_REMASTER"
+    },
+    {
+      "id": "bois_clair_arrival",
+      "status": "BASELINE_RECORDED_SHOT_REVIEW_PENDING",
+      "currentDescriptor": {
+        "id": "bois_clair_arrival",
+        "title": "Bois-Clair sous les flammes",
+        "sources": [
+          {
+            "src": "/assets/cinematics/bois_clair_arrival.mp4",
+            "type": "video/mp4"
+          }
+        ],
+        "fallbackText": "La compagnie découvre Bois-Clair sous la pression du Serpent.",
+        "durationMs": 20000
+      },
+      "sourceByteSize": 25714244,
+      "sourceSha256": "a37d397665960f8f6749d8f1ece69eaf91c7160cec68fc581ed26ea78042a699",
+      "currentDurationMs": 20000,
+      "durationAuthority": "Existing descriptor only; actual stream timing must be probed before authoring",
+      "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
+      "shotSpecificationStatus": "PENDING_VISUAL_AND_CANONICAL_CONTEXT_AUDIT",
+      "assetGenerationStatus": "BLOCKED_EXTERNAL_VIDEO_TOOL",
+      "artAcceptance": "NOT_REVIEWED_FOR_REMASTER"
+    },
+    {
+      "id": "bois_clair_saved",
+      "status": "BASELINE_RECORDED_SHOT_REVIEW_PENDING",
+      "currentDescriptor": {
+        "id": "bois_clair_saved",
+        "title": "Bois-Clair sauvée",
+        "sources": [
+          {
+            "src": "/assets/cinematics/bois_clair_saved.mp4",
+            "type": "video/mp4"
+          }
+        ],
+        "fallbackText": "Les survivants reprennent souffle au milieu des dégâts.",
+        "durationMs": 18000
+      },
+      "sourceByteSize": 21378564,
+      "sourceSha256": "a57d9ef8ff2fbb26084066b057f89948bdfe59de22dc7f7770d6576900223b1f",
+      "currentDurationMs": 18000,
+      "durationAuthority": "Existing descriptor only; actual stream timing must be probed before authoring",
+      "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
+      "shotSpecificationStatus": "PENDING_VISUAL_AND_CANONICAL_CONTEXT_AUDIT",
+      "assetGenerationStatus": "BLOCKED_EXTERNAL_VIDEO_TOOL",
+      "artAcceptance": "NOT_REVIEWED_FOR_REMASTER"
+    },
+    {
+      "id": "bois_clair_sacrificed",
+      "status": "BASELINE_RECORDED_SHOT_REVIEW_PENDING",
+      "currentDescriptor": {
+        "id": "bois_clair_sacrificed",
+        "title": "Le prix de Bois-Clair",
+        "sources": [
+          {
+            "src": "/assets/cinematics/bois_clair_sacrificed.mp4",
+            "type": "video/mp4"
+          }
+        ],
+        "fallbackText": "Les réserves sont sécurisées, mais les familles quittent un village meurtri.",
+        "durationMs": 18000
+      },
+      "sourceByteSize": 20858964,
+      "sourceSha256": "db07031a3105fb31280abe3aca026cb74e4612e2aa44f7023b5401847322f1a4",
+      "currentDurationMs": 18000,
+      "durationAuthority": "Existing descriptor only; actual stream timing must be probed before authoring",
+      "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
+      "shotSpecificationStatus": "PENDING_VISUAL_AND_CANONICAL_CONTEXT_AUDIT",
+      "assetGenerationStatus": "BLOCKED_EXTERNAL_VIDEO_TOOL",
+      "artAcceptance": "NOT_REVIEWED_FOR_REMASTER"
+    },
+    {
+      "id": "lion_judgement",
+      "status": "BASELINE_RECORDED_SHOT_REVIEW_PENDING",
+      "currentDescriptor": {
+        "id": "lion_judgement",
+        "title": "Le Jugement du Lion",
+        "sources": [
+          {
+            "src": "/assets/cinematics/lion_judgement.mp4",
+            "type": "video/mp4"
+          }
+        ],
+        "poster": "/assets/cinematics/source/lion_judgement_source.png",
+        "fallbackText": "Alaric rend son jugement devant la cour du Lion.",
+        "durationMs": 17000
+      },
+      "sourceByteSize": 21565194,
+      "sourceSha256": "6ea5b12bb8c97deadbea2177725d7e3eb958ab7971361d34064729acf776e5f9",
+      "currentDurationMs": 17000,
+      "durationAuthority": "Existing descriptor only; actual stream timing must be probed before authoring",
+      "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
+      "shotSpecificationStatus": "PENDING_VISUAL_AND_CANONICAL_CONTEXT_AUDIT",
+      "assetGenerationStatus": "BLOCKED_EXTERNAL_VIDEO_TOOL",
+      "artAcceptance": "NOT_REVIEWED_FOR_REMASTER"
+    },
+    {
+      "id": "serpent_route_ending",
+      "status": "BASELINE_RECORDED_SHOT_REVIEW_PENDING",
+      "currentDescriptor": {
+        "id": "serpent_route_ending",
+        "title": "La chute du Général Serpent",
+        "sources": [
+          {
+            "src": "/assets/cinematics/serpent_route_ending.mp4",
+            "type": "video/mp4"
+          }
+        ],
+        "fallbackText": "Le général est vaincu et l’artefact reste avec la compagnie.",
+        "durationMs": 18000
+      },
+      "sourceByteSize": 16058120,
+      "sourceSha256": "f1de1f29ccc98ca66f97da94c21060d100687e4fef39b2d0378bcdea36db395c",
+      "currentDurationMs": 18000,
+      "durationAuthority": "Existing descriptor only; actual stream timing must be probed before authoring",
+      "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
+      "shotSpecificationStatus": "PENDING_VISUAL_AND_CANONICAL_CONTEXT_AUDIT",
+      "assetGenerationStatus": "BLOCKED_EXTERNAL_VIDEO_TOOL",
+      "artAcceptance": "NOT_REVIEWED_FOR_REMASTER"
+    },
+    {
+      "id": "lion_trial_route_ending",
+      "status": "BASELINE_RECORDED_SHOT_REVIEW_PENDING",
+      "currentDescriptor": {
+        "id": "lion_trial_route_ending",
+        "title": "Le Sceau par l’épreuve",
+        "sources": [
+          {
+            "src": "/assets/cinematics/lion_trial_route_ending.mp4",
+            "type": "video/mp4"
+          }
+        ],
+        "fallbackText": "Le Champion s’incline et Alaric reconnaît le Sceau gagné sous la loi du Lion.",
+        "durationMs": 20000
+      },
+      "sourceByteSize": 19773930,
+      "sourceSha256": "34f023ac0313e622a82d53c955e63e1e56a62eb4bd3bfdef9580196fcff178b2",
+      "currentDurationMs": 20000,
+      "durationAuthority": "Existing descriptor only; actual stream timing must be probed before authoring",
+      "canonicalContextSource": "Existing GameApp triggers, production registry beat, dialogue/campaign owners and current environment/Character V2 sources",
+      "shotSpecificationStatus": "PENDING_VISUAL_AND_CANONICAL_CONTEXT_AUDIT",
+      "assetGenerationStatus": "BLOCKED_EXTERNAL_VIDEO_TOOL",
+      "artAcceptance": "NOT_REVIEWED_FOR_REMASTER"
+    }
+  ],
+  "integrationQaPlan": {
+    "viewports": [
+      "1920x1080",
+      "1366x768",
+      "620x780",
+      "390x844"
+    ],
+    "checks": [
+      "Probe actual duration/dimensions/frame rate/codecs and inspect first/middle/final frames of each current source in ignored output.",
+      "Resolve current trigger/beat, canonical cast/environment and final hold ownership before per-slot shot briefs; do not apply old 31-video queues.",
+      "Check production registry exposes exactly the eight slots plus source-free QA placeholder and rejects retired/enemy video playback.",
+      "Exercise each approved trigger and existing campaign outcome with normal playback, skip, reduced motion and unavailable-media fallback.",
+      "Assert no automatic route/choice resolution, destination replay, duplicated integrated actor, permanent black frame, missing control or corrupted V6 resume.",
+      "When replacement clips exist, compare protected character/environment identity, continuity, safe zones, readability and actual browser transition/hold behavior; promote bounded new evidence."
+    ]
+  },
+  "nextAction": "Find a read-only local MP4 probing/frame extraction capability; inspect all eight current sources under ignored tmp/cinematics/eight-slot-remaster; resolve each current trigger/cast/environment/hold and complete per-slot shot briefs from existing authored content. Keep asset generation explicitly blocked while no video tool exists."
+}

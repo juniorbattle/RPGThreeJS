@@ -17,7 +17,7 @@ import { resolveTraversalT3World, TRAVERSAL_T3_WORLD_ASSETS } from './TraversalT
 afterEach(() => { document.body.replaceChildren(); vi.restoreAllMocks(); });
 const leg = LION_TRAVERSAL_LEGS.find(candidate => candidate.id === 'T3')!;
 
-describe('T3 candidate authoring', () => {
+describe('T3 production authoring', () => {
   it.each([
     ['mystery_dragon_roost', 'young_dragon_elite', TRAVERSAL_T3_WORLD_ASSETS.dragon],
     ['mystery_shrine', 'shrine_apparition', TRAVERSAL_T3_WORLD_ASSETS.ruins],
@@ -65,8 +65,8 @@ describe('T3 candidate authoring', () => {
     expect(route.beats.filter(beat => beat.type !== 'fork').every(beat => beat.characterId && beat.visualAsset)).toBe(true);
     expect(() => resolveT3RouteSegment(3)).toThrow('canonical RunSystem');
     expect(() => resolveT3RouteSegment(3, 'lion-first-trial-event')).toThrow('canonical RunSystem');
-    expect(hasAuthoredTraversalPresentation('T3')).toBe(false);
-    expect(isTraversalProductionEnabledForLeg('T3')).toBe(false);
+    expect(hasAuthoredTraversalPresentation('T3')).toBe(true);
+    expect(isTraversalProductionEnabledForLeg('T3')).toBe(true);
   });
 
   it.each(['ruins_guardians', 'serpent_hunters'])(

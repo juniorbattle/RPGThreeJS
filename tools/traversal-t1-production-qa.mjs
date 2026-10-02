@@ -9,7 +9,7 @@ if (production && candidate) throw new Error('Candidate overrides are DEV-only.'
 const output = process.argv.find(arg => arg.startsWith('--output='))?.slice(9)
   ?? `tmp/traversal/t1-integration-${production ? 'production' : 'dev'}`;
 await mkdir(output, { recursive: true });
-const models = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
+const models = await createServer({ server: { middlewareMode: true, hmr: false, watch: null }, appType: 'custom' });
 const { createInitialState } = await models.ssrLoadModule('/src/game/store.ts');
 const { createRunState, enterRunNode } = await models.ssrLoadModule('/src/game/runSystem.ts');
 const origin = createInitialState(); origin.run = createRunState(6101);

@@ -14,7 +14,7 @@
       ],
       "height": 1024,
       "path": "/assets/generated/lion-phase/traversal/t3/world-v1/witness-road.png",
-      "acceptance": "PASS_DEV_CANDIDATE_VISUAL_QA",
+      "acceptance": "PASS_REAL_GAMEAPP_V6_AND_BUILT_PRODUCTION_QA",
       "campaignNodeIds": [
         "lion-lancer-recruit",
         "lion-witnesses"
@@ -34,7 +34,7 @@
       ],
       "height": 1024,
       "path": "/assets/generated/lion-phase/traversal/t3/world-v1/shadow-ruins.png",
-      "acceptance": "PASS_DEV_CANDIDATE_VISUAL_QA",
+      "acceptance": "PASS_REAL_GAMEAPP_V6_AND_BUILT_PRODUCTION_QA",
       "campaignNodeIds": [
         "lion-final-trial-event",
         "lion-final-trial-combat"
@@ -54,14 +54,14 @@
       ],
       "height": 1024,
       "path": "/assets/generated/lion-phase/traversal/t3/world-v1/dragon-roost.png",
-      "acceptance": "PASS_DEV_CANDIDATE_VISUAL_QA",
+      "acceptance": "PASS_REAL_GAMEAPP_V6_AND_BUILT_PRODUCTION_QA",
       "campaignNodeIds": [
         "lion-final-trial-event"
       ]
     }
   ],
   "engineTarget": "project-native",
-  "status": "UNREGISTERED_CANDIDATE",
+  "status": "PRODUCTION_ACCEPTED",
   "routeBase": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
   "references": [
     {
@@ -92,17 +92,18 @@
   "runtimeObjectModel": "interactive_entities",
   "artStyle": "modern-pixel-art-HD-2D",
   "qa": {
-    "runs": 6,
-    "captures": 86,
+    "runs": 10,
+    "captures": 291,
     "errors": 0,
     "frameIssues": 0,
-    "scope": "UNREGISTERED DEV CANDIDATE ONLY",
-    "report": "docs/reports/traversal-t3-candidate-1-browser/browser-qa.json",
+    "scope": "BUILT PRODUCTION GAMEAPP/V6; COMBAT RESULT FIXTURES",
+    "report": "docs/reports/traversal-t3-production-1-browser/browser-qa.json",
     "failures": 0,
     "viewports": [
       "1440x810",
       "620x780",
       "390x844"
-    ]
+    ],
+    "candidateReport": "docs/reports/traversal-t3-candidate-1-browser/browser-qa.json"
   }
 }

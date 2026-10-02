@@ -98,7 +98,7 @@ describe('shared road scene authoring boundary', () => {
       const before = structuredClone(state);
       scene.completeArrival(); expect(scene.session.phase).toBe('COMPLETE'); expect(state).toEqual(before);
       expect(state.run.currentNodeId).toBe(branch);
-      expect(hasAuthoredTraversalPresentation('T3')).toBe(false);
+      expect(hasAuthoredTraversalPresentation('T3')).toBe(true);
       scene.dispose();
     });
 });

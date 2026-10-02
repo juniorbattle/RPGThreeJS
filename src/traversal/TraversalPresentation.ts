@@ -3,6 +3,7 @@ import type { TraversalRunSession } from './TraversalRunRuntime';
 import type { TraversalRouteBeat } from './TraversalRouteModel';
 import { TraversalT0Scene } from './TraversalT0Scene';
 import { TraversalT1Scene } from './TraversalT1Scene';
+import { TraversalT3Scene } from './TraversalT3Scene';
 import type { TraversalRoadSceneOptions } from './TraversalRoadScene';
 
 /** The campaign boundary uses this surface without owning any road-specific presentation. */
@@ -28,6 +29,7 @@ type TraversalPresentationFactory = (options: TraversalRoadSceneOptions) => Trav
 const PRESENTATIONS: Partial<Record<LionPlayableTraversalLegId, TraversalPresentationFactory>> = {
   T0: (options) => new TraversalT0Scene(options),
   T1: (options) => new TraversalT1Scene(options),
+  T3: (options) => new TraversalT3Scene(options),
 };
 
 export function hasAuthoredTraversalPresentation(legId: LionTraversalLegId): boolean {
