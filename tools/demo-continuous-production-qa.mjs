@@ -13,7 +13,13 @@ const priorProofPath=process.env.DEMO_QA_PRIOR_PROOF;
 const target=process.env.DEMO_QA_TARGET??'first-refuge';
 const routePlan=process.env.DEMO_QA_ROUTE??'rescue';
 const finalePlan=process.env.DEMO_QA_FINALE??(routePlan==='rescue'?'serpent':'trial');
-assert.ok(['first-refuge','second-refuge','ending'].includes(target),'Unknown bounded target');
+const defeatNodeId=process.env.DEMO_QA_DEFEAT_NODE??'lion-village-choice';
+const nativeDefeatWait=process.env.DEMO_QA_DEFEAT_WAIT==='1';
+const viewport=(process.env.DEMO_QA_VIEWPORT??'1366x768').split('x').map(Number);
+assert.ok(viewport.length===2&&viewport.every(n=>Number.isInteger(n)&&n>0),'Invalid viewport');
+assert.ok(['first-refuge','second-refuge','ending','defeat-recovery'].includes(target),'Unknown bounded target');
+if(target==='defeat-recovery')assert.equal(defeatNodeId,'lion-village-choice','Only the observed Bois-Clair defeat boundary is currently supported');
+assert.ok(!nativeDefeatWait||target==='defeat-recovery','Native defeat wait requires the recovery target');
 assert.ok(['rescue','sacrifice'].includes(routePlan),'Unknown authored route plan');
 assert.ok(['serpent','trial'].includes(finalePlan),'Unknown authored finale intent');
 if(Boolean(earnedSavePath)!==Boolean(priorProofPath))throw new Error('Earned resume requires both save and its actual input proof');
@@ -39,11 +45,14 @@ catch (error) { if (error.code !== 'ENOENT') throw error; }
 await mkdir(output, {recursive:true});
 const server = await preview({preview:{host:'127.0.0.1',port,strictPort:true}});
 const browser = await chromium.launch({headless:true});
-const context = await browser.newContext({viewport:{width:1366,height:768}});
+const context = await browser.newContext({viewport:{width:viewport[0],height:viewport[1]},
+  reducedMotion:process.env.DEMO_QA_OS_MOTION==='1'?'reduce':'no-preference'});
 const page = await context.newPage();
 const report = {schemaVersion:1, recordedAt:new Date().toISOString(), method:'FRESH_PRODUCTION_CHRONICLE_NORMAL_PLAYER_INPUTS_REAL_COMBAT',
   fixtureStateWritten:false, combatOutcomeInjected:false, runtimeMutated:false, inputs:[], nodes:[], battles:[], captures:[], errors:[], pass:false};
-Object.assign(report,{target,routePlan,finalePlan,observationHook:'Built bootstrap exposes GameApp for read-only snapshots; no owner method invoked',refuges:[],choices:[]});
+Object.assign(report,{target,routePlan,finalePlan,defeatNodeId,nativeDefeatWait,viewport:{width:viewport[0],height:viewport[1]},
+  osReducedMotion:process.env.DEMO_QA_OS_MOTION==='1',observationHook:'Built bootstrap exposes GameApp for read-only snapshots; no owner method invoked',refuges:[],choices:[]});
+report.driverSha256=createHash('sha256').update(await readFile('tools/demo-continuous-production-qa.mjs')).digest('hex');
 report.productionBundles=await Promise.all((await readdir('dist/assets')).filter(name=>/^(game|combat)-.*\.js$/.test(name))
   .map(async name=>({path:`dist/assets/${name}`,sha256:createHash('sha256').update(await readFile(`dist/assets/${name}`)).digest('hex')})));
 if(priorProof){
@@ -201,6 +210,8 @@ async function battle(){
   }
   await frame.locator('#menu [data-d="auto"]').click();
   entry.deployed=await frame.evaluate(()=>window.G.deployedUnits.length);assert.ok(entry.deployed>0&&entry.deployed<=4,'Deployment exceeds the existing four-unit cap');
+  entry.ownerBefore=await state();
+  entry.autosaveBefore=JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')));
   await capture(`combat-${entry.index}-deployment`);
   await frame.locator('#menu [data-d="start"]').click();
   for(let index=0;index<300&&Date.now()<deadline;index++){
@@ -208,6 +219,9 @@ async function battle(){
       await writeFile(resolve(output,'progress.json'),JSON.stringify({at:new Date().toISOString(),nodeId:entry.nodeId,combat:await combatState(frame),actions:entry.actions.map(a=>a.kind)},null,2)+'\n');}
     await frame.waitForFunction(()=>window.G.over||window.G.mode==='menu'&&window.G.active?.team==='player'&&!window.G.busy,null,{timeout:60000});
     const current=await combatState(frame);if(current.over)break;
+    if(nativeDefeatWait&&entry.nodeId===defeatNodeId){
+      await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait-for-native-defeat',before:current});continue;
+    }
     if(current.active.ap<=0){await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait',before:current});continue;}
     if(await skill(frame,entry))continue;
     if(await heal(frame,entry))continue;
@@ -217,11 +231,72 @@ async function battle(){
     await frame.locator('#menu [data-a="wait"]').click(); entry.actions.push({kind:'wait',before});
   }
   entry.result=await combatState(frame);
+  assert.equal(entry.result.over,true,'Battle did not finish before bounded deadline');
   await capture(`combat-${entry.index}-result`);
   entry.resultText=await frame.locator('.combat-result-card').innerText();
+  if(target==='defeat-recovery'&&entry.resultText.includes('Défaite')){
+    assert.equal(entry.nodeId,defeatNodeId,'Defeat occurred before the requested native recovery boundary');
+    assert.equal(entry.result.units.filter(u=>u.team==='player'&&u.alive).length,0);
+    assert.ok(entry.actions.length>0,'Native defeat requires actual player actions');
+    const savedBefore=JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')));
+    assert.deepEqual(savedBefore,entry.autosaveBefore,'Combat altered autosave before defeat acknowledgement');
+    const action=frame.getByRole('button',{name:'Revenir à la carte',exact:true});
+    await action.focus();assert.equal(await action.evaluate(e=>e===document.activeElement),true);
+    const bounds=await action.boundingBox();
+    assert.ok(bounds&&bounds.x>=0&&bounds.y>=0&&bounds.x+bounds.width<=viewport[0]&&bounds.y+bounds.height<=viewport[1],
+      'Defeat return control is clipped');
+    await capture(`combat-${entry.index}-native-defeat-return-focus`);
+    await action.press('Enter');report.inputs.push({action:'keyboard Enter',selector:'iframe #combat-result-action',outcome:'native defeat'});
+    await element.waitFor({state:'detached',timeout:30000});
+    await page.waitForFunction(id=>window.__demoQaApp?.state.currentNodeId===id,savedBefore.run.checkpointNodeId);
+    const departure=page.locator('[data-journey-continue]:visible:not([inert])');
+    await departure.waitFor({state:'visible',timeout:30000});
+    assert.equal((await departure.innerText()).trim(),'Prendre la route');
+    const recovered=await state();
+    const expected=structuredClone(savedBefore),downstream=new Set();
+    const nodes=new Map(expected.run.graph.nodes.map(node=>[node.id,node]));
+    const visit=id=>{if(downstream.has(id))return;downstream.add(id);for(const next of nodes.get(id)?.links??[])visit(next);};
+    for(const id of nodes.get(expected.run.checkpointNodeId)?.links??[])visit(id);
+    expected.currentNodeId=expected.run.currentNodeId=expected.run.checkpointNodeId;
+    expected.run.status='active';expected.run.temporaryLoot.gold=0;
+    for(const category of Object.keys(expected.run.temporaryLoot.inventory))expected.run.temporaryLoot.inventory[category]={};
+    if(expected.run.bypassedRouteNodeIds)expected.run.bypassedRouteNodeIds=expected.run.bypassedRouteNodeIds.filter(id=>!downstream.has(id));
+    if(expected.run.traversalBranches)expected.run.traversalBranches=Object.fromEntries(Object.entries(expected.run.traversalBranches).filter(([,id])=>!downstream.has(id)));
+    assert.deepEqual(recovered,expected,'Full recovery differs from the existing checkpoint rule');
+    assert.equal(recovered.currentNodeId,savedBefore.run.checkpointNodeId);
+    assert.equal(recovered.run.currentNodeId,savedBefore.run.checkpointNodeId);
+    assert.equal(recovered.run.status,'active');
+    assert.equal(recovered.run.temporaryLoot.gold,0);
+    for(const inventory of Object.values(recovered.run.temporaryLoot.inventory))assert.deepEqual(inventory,{});
+    for(const key of Object.keys(savedBefore).filter(key=>!['currentNodeId','run'].includes(key))){
+      assert.deepEqual(recovered[key],savedBefore[key],`Defeat changed autosaved ${key}`);
+    }
+    assert.equal(recovered.run.traversalBranches?.T1,undefined,'Failed leg branch survives checkpoint recovery');
+    assert.equal(recovered.run.traversalBranches?.T3,undefined);
+    assert.equal(recovered.run.traversalBranches?.T0,savedBefore.run.traversalBranches?.T0);
+    for(const key of ['checkpointNodeId','graph','visitedNodeIds','revealedNodeIds'])assert.deepEqual(recovered.run[key],savedBefore.run[key]);
+    const savedAfter=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+    assert.deepEqual(JSON.parse(savedAfter),recovered,'Recovery agency precedes durable owner truth');
+    await writeFile(resolve(output,'earned-defeat-recovery-v6.json'),savedAfter+'\n');
+    await page.waitForTimeout(400);await capture('native-defeat-recovered');
+    await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
+    await page.waitForFunction(id=>window.__demoQaApp?.state.currentNodeId===id,recovered.currentNodeId);
+    await departure.waitFor({state:'visible',timeout:30000});
+    assert.equal((await departure.innerText()).trim(),'Prendre la route');
+    const resumed=await state();assert.deepEqual(resumed,recovered,'Defeat recovery reload changed V6 truth');
+    assert.equal(await page.locator('iframe.combat-frame').count(),0,'Reload replayed defeated combat');
+    await capture('native-defeat-recovered-resumed');
+    entry.pass=true;entry.outcome='defeat';entry.ownerAfter=recovered;
+    report.defeatRecovery={nodeId:entry.nodeId,checkpoint:recovered.currentNodeId,savedBefore,recovered,resumed,
+      returnControlBounds:bounds,mode:await page.locator('body').getAttribute('data-mode'),
+      expected,departureLabel:await departure.innerText(),pass:true};
+    report.resumed=resumed;assert.deepEqual(report.errors,[]);report.pass=true;
+    return;
+  }
   assert.ok(entry.resultText.includes('Victoire'),`Actual battle ended without victory: ${entry.resultText}`);
   assert.equal(entry.result.units.filter(u=>u.team==='foe'&&u.alive).length,0);
   assert.ok(entry.actions.some(a=>a.kind==='attack'));entry.pass=true;
+  entry.outcome='victory';
   await frame.locator('#combat-result-action').click();await element.waitFor({state:'detached',timeout:30000});
   entry.ownerAfter=await state();
   assert.ok(entry.ownerAfter.resolvedNodeIds.includes(entry.nodeId));
@@ -310,7 +385,7 @@ try{
       report.resumed=await state();assert.deepEqual(report.resumed,live);await capture(`ending-${live.endingId}-resumed`);
       assert.deepEqual(report.errors,[]);report.pass=true;break;
     }
-    if(await page.locator('iframe.combat-frame').count()){await battle();continue;}
+    if(await page.locator('iframe.combat-frame').count()){await battle();if(report.defeatRecovery?.pass)break;continue;}
     if(await page.locator('.prologue-view').count()){await page.keyboard.press('Enter');}
     else if(await page.locator('.cinematic-overlay__skip:visible').count()){await click('.cinematic-overlay__skip:visible');}
     else if(await page.locator('.dialogue-choice:visible:not(:disabled)').count()){await choose();}
