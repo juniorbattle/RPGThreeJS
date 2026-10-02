@@ -6,14 +6,14 @@
 | DOMAIN | Combat truth adapter, campaign QA tooling |
 | BASELINE | dev @ ed1bbe38cb659f128ad534d810fbfb2de0577fc2 |
 | BRANCH | dev |
-| HEAD | Implementation/evidence checkpoint identified by Git history and autonomous state |
+| HEAD | 786d760b0e1838440966ecd7833860320af1f6aa (implementation/evidence; later closeout appends QA results) |
 | STATUS | Review; scoped correction and second-refuge proof PASS; full demo IN_PROGRESS |
 | MERGED_IN | NONE; direct dev checkpoint |
 | SUPERSEDES | NONE; extends refuge-autosave-durability-1 |
 | SUPERSEDED_BY | NONE |
 | PRODUCTION_IMPACT | Existing Salvation authored healing percentage now reaches the tactical skill adapter, including existing upgrade increments |
 | CANONICAL_DOCS_UPDATED | docs/project/CURRENT_STATUS.md |
-| EVIDENCE | [Compact machine proof](earned-bois-clair-salvation-1-browser/browser-qa.json), six inspected desktop captures; raw runs remain ignored under tmp/demo |
+| EVIDENCE | [Compact machine proof](earned-bois-clair-salvation-1-browser/browser-qa.json), eight inspected desktop captures; raw runs remain ignored under tmp/demo |
 
 CURRENT FACT: the exact previously earned first-refuge V6 state continued through native T1 choices, a real marsh victory (46 actions), Bois-Clair defense victory (36 actions), and the second refuge. Opening victory (31 actions) is inherited from the verified prior run. The second-refuge autosave equals the resumed owner state, missionSuccess=true, missionGreed is absent (effective false), and temporary gold=0. Campaign owners resolve all outcomes and rewards. This rescue lineage is accepted only for the recorded desktop scenario. The road battle began before rebuild; the novice party had no Salvation, and village combat loaded the corrected build after rebuilding. A separate corrected-build replay is recorded independently rather than silently relabeling this run.
 
@@ -35,9 +35,13 @@ Validation:142 narrative/content/finale tests and175 focused combat/management t
 | COMBAT | PASS | Authored40%/55%/70% adapter tests and native40% cast |
 | SAVE | PASS | V6 schema unchanged; exact second-refuge autosave/reload |
 | UI / ACCESSIBILITY | PASS | Scoped native keyboard/canvas desktop controls; wider demo/mobile/motion acceptance pending |
-| QA_EVIDENCE | PASS | Ignored unique raw runs; explicit immutable six-capture promotion |
+| QA_EVIDENCE | PASS | Ignored unique raw runs; explicit immutable eight-capture promotion |
 | REPOSITORY_GOVERNANCE | PASS | Exclusive Codex lock, dev/WIP only; protected main/contracts/media |
 
 Contract set:PRODUCTION-CONTRACTS-LOCK-1/v1. Read: constitution and all eight LOCKED contracts, plus T0 production authority. No LOCKED rule was changed. Final artistic remaster remains EXTERNAL_MANUAL_WORKSTREAM; prologue/refuge/Alistair decisions remain unactivated; audio DEFERRED.
 
-The machine proof records completed or still-running ending/replay continuations at checkpoint time. Neither an unfinished boss nor an unverified terminal reload is accepted. Sacrifice/trial, mobile/reduced-motion combat, defeat recovery, full balance and final authored VFX remain item9. Inspected victory captures also show an attack banner above the result modal; establish whether it persists after settling before treating that as a presentation defect.
+CURRENT FACT at closeout: the earned second-refuge continuation wins the Serpent boss through61 native actions over8 rounds and reaches lion-seal-serpent-truth. Terminal UI settles, contains no dialogue/combat/Traversal surface, and V6 autosave/reload equals the completed owner state. Both terminal captures were inspected and promoted, giving eight selected captures. These outcome/reload checks PASS. The run's additional campaign-Salvation requirement FAILS because the cleric was KO before using the skill. Its older executing driver leaves raw pass=true alongside failure; the compact proof normalizes overall pass=false. The committed driver now clears pass on every caught failure and rejects prior proofs containing failure. Raw historical output remains unchanged. No successful campaign-native Salvation cast is claimed.
+
+The independent corrected-build replay wins the marsh in8 rounds/46 actions but loses Bois-Clair with only Alistair and Cedric deployable (17 actions). Potion/revive supplies were exhausted and three members were KO after the road. This is a real strategy/preparation failure; it is not evidence of a Salvation regression because no novice-party skill cast occurred. The earlier successful lineage remains a separate recorded scenario; deterministic route/balance acceptance is incomplete. Next QA must examine native preparation and the real defeat return without injecting an outcome or altering balance to pass the driver.
+
+Sacrifice/trial, mobile/reduced-motion combat, defeat recovery, full balance and final authored VFX remain item9. Inspected victory captures also show an attack banner above the result modal; establish whether it persists after settling before treating that as a presentation defect.

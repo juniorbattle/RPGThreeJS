@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "runId": "rpgthreejs-auto-dev-90m-20261002T1323",
-  "recordedAt": "2026-10-02T14:23:04.561Z",
+  "recordedAt": "2026-10-02T14:31:23.229Z",
   "baseline": "ed1bbe38cb659f128ad534d810fbfb2de0577fc2",
   "scope": "Scoped desktop earned rescue second refuge and authored Salvation adapter correction; full demo remains IN_PROGRESS",
   "campaign": {
@@ -493,7 +493,11 @@
         "lion-valmir-road",
         "lion-second-trial-event",
         "lion-village-choice"
-      ]
+      ],
+      "traversalBranches": {
+        "T0": "lion-first-trial-event",
+        "T1": "lion-second-trial-event"
+      }
     },
     "productionBundles": [
       {
@@ -789,14 +793,964 @@
       "source": "tmp/demo/continuous-1323-rescue-ending/lion-second-refuge-native-sacred-crosier.png",
       "sha256": "3740251a847666adf0407948191dd1f6a2e88635cac82419ad3971fc6bd37397",
       "visuallyReviewed": true
+    },
+    {
+      "path": "docs/reports/earned-bois-clair-salvation-1-browser/serpent-terminal.png",
+      "source": "tmp/demo/continuous-1323-rescue-ending/ending-lion-seal-serpent-truth.png",
+      "sha256": "248aa0754c21e17fd729cc19909a3695708ca3b09c466ec1517640974b6694bb",
+      "visuallyReviewed": true
+    },
+    {
+      "path": "docs/reports/earned-bois-clair-salvation-1-browser/serpent-terminal-resumed.png",
+      "source": "tmp/demo/continuous-1323-rescue-ending/ending-lion-seal-serpent-truth-resumed.png",
+      "sha256": "610c27273be39436648fad84518989ecaddabd27a1328ef6ad5438b667b0de2a",
+      "visuallyReviewed": true
     }
   ],
   "correctedReplay": {
-    "status": "IN_PROGRESS",
-    "rawRoot": "tmp/demo/continuous-1323-rescue-final3"
+    "rawPath": "tmp/demo/continuous-1323-rescue-final3/results.json",
+    "rawSha256": "d3f58b47d4b5b06b5b2e4c4f7865b8df60f6312b2d803adea19118c3ed8daaaa",
+    "rawReportPass": false,
+    "pass": false,
+    "failure": "AssertionError [ERR_ASSERTION]: Actual battle ended without victory: ✦\n\nROUTE BRISÉE\n\nDéfaite\n\nVotre équipe a été vaincue…\n\nCHECKPOINT\nRetour au dernier refuge\nÉTAT DE LA COMPAGNIE\nAlistair\nK.O.\nCedric\nK.O.\nREVENIR À LA CARTE\n    at battle (file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:219:10)\n    at async file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:310:59",
+    "errors": [],
+    "earnedResume": {
+      "savePath": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+      "priorProofPath": "tmp/demo/continuous-1153-fresh-final/results.json",
+      "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+      "sha256": "d8b0deb62c66fc2fd3d01ec8c513fafb697021e8f9c808869277b90a250e8267",
+      "proofSha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+    },
+    "battles": [
+      {
+        "nodeId": "lion-opening-ambush",
+        "pass": true,
+        "result": {
+          "round": 5,
+          "turnIdx": 0,
+          "mode": "over",
+          "busy": true,
+          "over": true,
+          "moved": false,
+          "attacks": 0,
+          "active": {
+            "id": "archer",
+            "name": "Kestrel",
+            "team": "player",
+            "gx": 2,
+            "gz": 2,
+            "hp": 87,
+            "maxhp": 90,
+            "ap": 4
+          },
+          "units": [
+            {
+              "id": 1,
+              "name": "Loup",
+              "team": "foe",
+              "gx": 4,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 80,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 2,
+              "name": "Loup",
+              "team": "foe",
+              "gx": 3,
+              "gz": 2,
+              "hp": 0,
+              "maxhp": 80,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 3,
+              "name": "Blaireau",
+              "team": "foe",
+              "gx": 4,
+              "gz": 3,
+              "hp": 0,
+              "maxhp": 88,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "warrior",
+              "name": "Alistair",
+              "team": "player",
+              "gx": 4,
+              "gz": 2,
+              "hp": 111,
+              "maxhp": 140,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "white_mage",
+              "name": "Marian",
+              "team": "player",
+              "gx": 3,
+              "gz": 3,
+              "hp": 77,
+              "maxhp": 100,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "dark_mage",
+              "name": "Elara",
+              "team": "player",
+              "gx": 3,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 75,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "archer",
+              "name": "Kestrel",
+              "team": "player",
+              "gx": 2,
+              "gz": 2,
+              "hp": 87,
+              "maxhp": 90,
+              "alive": true,
+              "downed": false
+            }
+          ],
+          "inventory": {
+            "potion": 2,
+            "revive_vial": 1,
+            "antidote": 2
+          },
+          "diagnostics": {
+            "drawCalls": 1,
+            "triangles": 1,
+            "geometries": 65,
+            "textures": 41,
+            "reducedGraphics": false,
+            "units": 7,
+            "activeTweens": 0,
+            "activeVfxObjects": 0,
+            "grid": {
+              "width": 8,
+              "depth": 4,
+              "walkable": 32,
+              "blocked": 0
+            }
+          }
+        },
+        "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nMeute affamée\n\nOBJECTIF SÉCURISÉ\nRepoussez la meute qui encercle la compagnie.\nRÉCOMPENSES\nOr\n+80\nGemmes rouges\n+1\niron ore\n+1\nRéputation\n+1\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nDEBOUT\nElara\nK.O.\nKestrel\nDEBOUT\nCONTINUER LA CHRONIQUE",
+        "actions": 31,
+        "actionKinds": {
+          "move": 9,
+          "wait": 13,
+          "potion": 2,
+          "attack": 7
+        },
+        "verifiedHealing": []
+      },
+      {
+        "nodeId": "lion-valmir-road",
+        "combatId": "marsh_crossing",
+        "pass": true,
+        "result": {
+          "round": 8,
+          "turnIdx": 0,
+          "mode": "over",
+          "busy": true,
+          "over": true,
+          "moved": false,
+          "attacks": 0,
+          "active": {
+            "id": "warrior",
+            "name": "Alistair",
+            "team": "player",
+            "gx": 4,
+            "gz": 1,
+            "hp": 140,
+            "maxhp": 140,
+            "ap": 2
+          },
+          "units": [
+            {
+              "id": 1,
+              "name": "Crapaud toxique",
+              "team": "foe",
+              "gx": 5,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 108,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 2,
+              "name": "Sanglier",
+              "team": "foe",
+              "gx": 4,
+              "gz": 2,
+              "hp": 0,
+              "maxhp": 116,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 3,
+              "name": "Rat geant",
+              "team": "foe",
+              "gx": 4,
+              "gz": 3,
+              "hp": 0,
+              "maxhp": 65,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "warrior",
+              "name": "Alistair",
+              "team": "player",
+              "gx": 4,
+              "gz": 1,
+              "hp": 140,
+              "maxhp": 140,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "white_mage",
+              "name": "Marian",
+              "team": "player",
+              "gx": 5,
+              "gz": 2,
+              "hp": 0,
+              "maxhp": 100,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "dark_mage",
+              "name": "Elara",
+              "team": "player",
+              "gx": 4,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 75,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "archer",
+              "name": "Kestrel",
+              "team": "player",
+              "gx": 4,
+              "gz": 2,
+              "hp": 0,
+              "maxhp": 90,
+              "alive": false,
+              "downed": true
+            }
+          ],
+          "inventory": {
+            "potion": 0,
+            "revive_vial": 0,
+            "antidote": 2
+          },
+          "diagnostics": {
+            "drawCalls": 1,
+            "triangles": 1,
+            "geometries": 65,
+            "textures": 46,
+            "reducedGraphics": false,
+            "units": 7,
+            "activeTweens": 0,
+            "activeVfxObjects": 0,
+            "grid": {
+              "width": 8,
+              "depth": 4,
+              "walkable": 32,
+              "blocked": 0
+            }
+          }
+        },
+        "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nPassage des marais\n\nOBJECTIF SÉCURISÉ\nTraversez les eaux infestées qui coupent la route de Bois-Clair.\nRÉCOMPENSES\nOr\n+90\nGemmes rouges\n+1\niron ore\n+1\nRéputation\n+1\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nK.O.\nElara\nK.O.\nKestrel\nK.O.\nCONTINUER LA CHRONIQUE",
+        "actions": 46,
+        "actionKinds": {
+          "move": 12,
+          "attack": 12,
+          "wait": 17,
+          "potion": 4,
+          "revive_vial": 1
+        },
+        "verifiedHealing": []
+      },
+      {
+        "nodeId": "lion-village-choice",
+        "combatId": "village_defense",
+        "pass": false,
+        "result": {
+          "round": 5,
+          "turnIdx": 3,
+          "mode": "over",
+          "busy": true,
+          "over": true,
+          "moved": false,
+          "attacks": 0,
+          "active": {
+            "id": null,
+            "name": "Brute Serpent",
+            "team": "foe",
+            "gx": 3,
+            "gz": 1,
+            "hp": 83,
+            "maxhp": 130,
+            "ap": 2
+          },
+          "units": [
+            {
+              "id": 1,
+              "name": "Pillard Serpent",
+              "team": "foe",
+              "gx": 3,
+              "gz": 2,
+              "hp": 30,
+              "maxhp": 85,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": 2,
+              "name": "Brute Serpent",
+              "team": "foe",
+              "gx": 3,
+              "gz": 1,
+              "hp": 83,
+              "maxhp": 130,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": 3,
+              "name": "Pillard Serpent",
+              "team": "foe",
+              "gx": 3,
+              "gz": 3,
+              "hp": 5,
+              "maxhp": 85,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "warrior",
+              "name": "Alistair",
+              "team": "player",
+              "gx": 3,
+              "gz": 0,
+              "hp": 0,
+              "maxhp": 140,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "rogue",
+              "name": "Cedric",
+              "team": "player",
+              "gx": 3,
+              "gz": 3,
+              "hp": 0,
+              "maxhp": 100,
+              "alive": false,
+              "downed": true
+            }
+          ],
+          "inventory": {
+            "potion": 0,
+            "revive_vial": 0,
+            "antidote": 2
+          },
+          "diagnostics": {
+            "drawCalls": 1,
+            "triangles": 1,
+            "geometries": 53,
+            "textures": 38,
+            "reducedGraphics": false,
+            "units": 5,
+            "activeTweens": 0,
+            "activeVfxObjects": 0,
+            "grid": {
+              "width": 8,
+              "depth": 4,
+              "walkable": 32,
+              "blocked": 0
+            }
+          }
+        },
+        "resultText": "✦\n\nROUTE BRISÉE\n\nDéfaite\n\nVotre équipe a été vaincue…\n\nCHECKPOINT\nRetour au dernier refuge\nÉTAT DE LA COMPAGNIE\nAlistair\nK.O.\nCedric\nK.O.\nREVENIR À LA CARTE",
+        "actions": 17,
+        "actionKinds": {
+          "move": 3,
+          "wait": 8,
+          "attack": 6
+        },
+        "verifiedHealing": []
+      }
+    ],
+    "terminalReloadPassed": false,
+    "resumedExact": true,
+    "productionBundles": [
+      {
+        "path": "dist/assets/combat-DDZeDf1A.js",
+        "sha256": "6334ff1f59575addd2a89128490a6f584631eba84198b07e967797f616451d3c"
+      },
+      {
+        "path": "dist/assets/game-DNVJsSmX.js",
+        "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+      }
+    ]
   },
   "endingContinuation": {
-    "status": "IN_PROGRESS",
-    "rawRoot": "tmp/demo/continuous-1323-rescue-ending"
+    "rawPath": "tmp/demo/continuous-1323-rescue-ending/results.json",
+    "rawSha256": "32e06aa7af9587f6d9df7ff639ebc8beaf6a136f7ceff72cde62e2c0df52ec40",
+    "rawReportPass": true,
+    "pass": false,
+    "failure": "AssertionError [ERR_ASSERTION]: No new verified Salvation cast occurred\n\nfalse !== true\n\n    at file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:325:75",
+    "errors": [],
+    "earnedResume": {
+      "savePath": "tmp/demo/continuous-1323-salvation-baseline/earned-lion-second-refuge-v6.json",
+      "priorProofPath": "tmp/demo/continuous-1323-salvation-baseline/results.json",
+      "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+      "sha256": "224d1796a1a0b92f98dcce27ba0652eb98fa7471b2c84653321c7470c0c83d50",
+      "proofSha256": "1399e4268dff72b77519fd3e874c7542bcd4a2fc207003b1494e32d2500c5e2a"
+    },
+    "battles": [
+      {
+        "nodeId": "lion-opening-ambush",
+        "pass": true,
+        "result": {
+          "round": 5,
+          "turnIdx": 0,
+          "mode": "over",
+          "busy": true,
+          "over": true,
+          "moved": false,
+          "attacks": 0,
+          "active": {
+            "id": "archer",
+            "name": "Kestrel",
+            "team": "player",
+            "gx": 2,
+            "gz": 2,
+            "hp": 87,
+            "maxhp": 90,
+            "ap": 4
+          },
+          "units": [
+            {
+              "id": 1,
+              "name": "Loup",
+              "team": "foe",
+              "gx": 4,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 80,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 2,
+              "name": "Loup",
+              "team": "foe",
+              "gx": 3,
+              "gz": 2,
+              "hp": 0,
+              "maxhp": 80,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 3,
+              "name": "Blaireau",
+              "team": "foe",
+              "gx": 4,
+              "gz": 3,
+              "hp": 0,
+              "maxhp": 88,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "warrior",
+              "name": "Alistair",
+              "team": "player",
+              "gx": 4,
+              "gz": 2,
+              "hp": 111,
+              "maxhp": 140,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "white_mage",
+              "name": "Marian",
+              "team": "player",
+              "gx": 3,
+              "gz": 3,
+              "hp": 77,
+              "maxhp": 100,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "dark_mage",
+              "name": "Elara",
+              "team": "player",
+              "gx": 3,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 75,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "archer",
+              "name": "Kestrel",
+              "team": "player",
+              "gx": 2,
+              "gz": 2,
+              "hp": 87,
+              "maxhp": 90,
+              "alive": true,
+              "downed": false
+            }
+          ],
+          "inventory": {
+            "potion": 2,
+            "revive_vial": 1,
+            "antidote": 2
+          },
+          "diagnostics": {
+            "drawCalls": 1,
+            "triangles": 1,
+            "geometries": 65,
+            "textures": 41,
+            "reducedGraphics": false,
+            "units": 7,
+            "activeTweens": 0,
+            "activeVfxObjects": 0,
+            "grid": {
+              "width": 8,
+              "depth": 4,
+              "walkable": 32,
+              "blocked": 0
+            }
+          }
+        },
+        "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nMeute affamée\n\nOBJECTIF SÉCURISÉ\nRepoussez la meute qui encercle la compagnie.\nRÉCOMPENSES\nOr\n+80\nGemmes rouges\n+1\niron ore\n+1\nRéputation\n+1\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nDEBOUT\nElara\nK.O.\nKestrel\nDEBOUT\nCONTINUER LA CHRONIQUE",
+        "actions": 31,
+        "actionKinds": {
+          "move": 9,
+          "wait": 13,
+          "potion": 2,
+          "attack": 7
+        },
+        "verifiedHealing": []
+      },
+      {
+        "nodeId": "lion-valmir-road",
+        "combatId": "marsh_crossing",
+        "pass": true,
+        "result": {
+          "round": 5,
+          "turnIdx": 2,
+          "mode": "over",
+          "busy": true,
+          "over": true,
+          "moved": true,
+          "attacks": 0,
+          "active": {
+            "id": "warrior",
+            "name": "Alistair",
+            "team": "player",
+            "gx": 4,
+            "gz": 1,
+            "hp": 140,
+            "maxhp": 140,
+            "ap": 2
+          },
+          "units": [
+            {
+              "id": 1,
+              "name": "Crapaud toxique",
+              "team": "foe",
+              "gx": 4,
+              "gz": 0,
+              "hp": 0,
+              "maxhp": 108,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 2,
+              "name": "Sanglier",
+              "team": "foe",
+              "gx": 4,
+              "gz": 2,
+              "hp": 0,
+              "maxhp": 116,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 3,
+              "name": "Rat geant",
+              "team": "foe",
+              "gx": 4,
+              "gz": 3,
+              "hp": 0,
+              "maxhp": 65,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "warrior",
+              "name": "Alistair",
+              "team": "player",
+              "gx": 4,
+              "gz": 1,
+              "hp": 140,
+              "maxhp": 140,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "white_mage",
+              "name": "Marian",
+              "team": "player",
+              "gx": 4,
+              "gz": 3,
+              "hp": 100,
+              "maxhp": 100,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "dark_mage",
+              "name": "Elara",
+              "team": "player",
+              "gx": 5,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 75,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "archer",
+              "name": "Kestrel",
+              "team": "player",
+              "gx": 2,
+              "gz": 2,
+              "hp": 61,
+              "maxhp": 90,
+              "alive": true,
+              "downed": false
+            }
+          ],
+          "inventory": {
+            "potion": 1,
+            "revive_vial": 0,
+            "antidote": 2
+          },
+          "diagnostics": {
+            "drawCalls": 1,
+            "triangles": 1,
+            "geometries": 65,
+            "textures": 45,
+            "reducedGraphics": false,
+            "units": 7,
+            "activeTweens": 0,
+            "activeVfxObjects": 0,
+            "grid": {
+              "width": 8,
+              "depth": 4,
+              "walkable": 32,
+              "blocked": 0
+            }
+          }
+        },
+        "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nPassage des marais\n\nOBJECTIF SÉCURISÉ\nTraversez les eaux infestées qui coupent la route de Bois-Clair.\nRÉCOMPENSES\nOr\n+90\nGemmes rouges\n+1\niron ore\n+1\nRéputation\n+1\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nDEBOUT\nElara\nK.O.\nKestrel\nDEBOUT\nCONTINUER LA CHRONIQUE",
+        "actions": 46,
+        "actionKinds": {
+          "move": 15,
+          "attack": 11,
+          "wait": 16,
+          "potion": 3,
+          "revive_vial": 1
+        },
+        "verifiedHealing": []
+      },
+      {
+        "nodeId": "lion-village-choice",
+        "combatId": "village_defense",
+        "pass": true,
+        "result": {
+          "round": 5,
+          "turnIdx": 0,
+          "mode": "over",
+          "busy": true,
+          "over": true,
+          "moved": true,
+          "attacks": 0,
+          "active": {
+            "id": "white_mage",
+            "name": "Marian",
+            "team": "player",
+            "gx": 5,
+            "gz": 2,
+            "hp": 100,
+            "maxhp": 100,
+            "ap": 3
+          },
+          "units": [
+            {
+              "id": 1,
+              "name": "Pillard Serpent",
+              "team": "foe",
+              "gx": 4,
+              "gz": 0,
+              "hp": 0,
+              "maxhp": 85,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 2,
+              "name": "Brute Serpent",
+              "team": "foe",
+              "gx": 5,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 130,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 3,
+              "name": "Pillard Serpent",
+              "team": "foe",
+              "gx": 4,
+              "gz": 3,
+              "hp": 0,
+              "maxhp": 85,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "warrior",
+              "name": "Alistair",
+              "team": "player",
+              "gx": 5,
+              "gz": 0,
+              "hp": 140,
+              "maxhp": 140,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "white_mage",
+              "name": "Marian",
+              "team": "player",
+              "gx": 5,
+              "gz": 2,
+              "hp": 100,
+              "maxhp": 100,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "archer",
+              "name": "Kestrel",
+              "team": "player",
+              "gx": 4,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 90,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "rogue",
+              "name": "Cedric",
+              "team": "player",
+              "gx": 5,
+              "gz": 2,
+              "hp": 0,
+              "maxhp": 100,
+              "alive": false,
+              "downed": true
+            }
+          ],
+          "inventory": {
+            "potion": 0,
+            "revive_vial": 0,
+            "antidote": 2
+          },
+          "diagnostics": {
+            "drawCalls": 1,
+            "triangles": 1,
+            "geometries": 65,
+            "textures": 43,
+            "reducedGraphics": false,
+            "units": 7,
+            "activeTweens": 0,
+            "activeVfxObjects": 0,
+            "grid": {
+              "width": 8,
+              "depth": 4,
+              "walkable": 32,
+              "blocked": 0
+            }
+          }
+        },
+        "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nDéfense de Bois-Clair\n\nOBJECTIF SÉCURISÉ\nRepoussez les pillards et protégez les habitants de Bois-Clair.\nRÉCOMPENSES\nOr\n+160\nGemmes rouges\n+2\niron ore\n+2\nRéputation\n+10\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nDEBOUT\nKestrel\nK.O.\nCedric\nK.O.\nCONTINUER LA CHRONIQUE",
+        "actions": 36,
+        "actionKinds": {
+          "move": 10,
+          "wait": 14,
+          "attack": 11,
+          "potion": 1
+        },
+        "verifiedHealing": []
+      },
+      {
+        "nodeId": "lion-final-judgement",
+        "combatId": "serpent_captain",
+        "pass": true,
+        "result": {
+          "round": 8,
+          "turnIdx": 2,
+          "mode": "over",
+          "busy": true,
+          "over": true,
+          "moved": false,
+          "attacks": 0,
+          "active": {
+            "id": "warrior",
+            "name": "Alistair",
+            "team": "player",
+            "gx": 6,
+            "gz": 0,
+            "hp": 140,
+            "maxhp": 140,
+            "ap": 2
+          },
+          "units": [
+            {
+              "id": 1,
+              "name": "Général Serpent",
+              "team": "foe",
+              "gx": 6,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 450,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "warrior",
+              "name": "Alistair",
+              "team": "player",
+              "gx": 6,
+              "gz": 0,
+              "hp": 140,
+              "maxhp": 140,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "white_mage",
+              "name": "Marian",
+              "team": "player",
+              "gx": 6,
+              "gz": 3,
+              "hp": 0,
+              "maxhp": 113,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "archer",
+              "name": "Kestrel",
+              "team": "player",
+              "gx": 4,
+              "gz": 1,
+              "hp": 90,
+              "maxhp": 90,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "rogue",
+              "name": "Cedric",
+              "team": "player",
+              "gx": 5,
+              "gz": 1,
+              "hp": 5,
+              "maxhp": 100,
+              "alive": true,
+              "downed": false
+            }
+          ],
+          "inventory": {
+            "potion": 0,
+            "revive_vial": 0,
+            "antidote": 2
+          },
+          "diagnostics": {
+            "drawCalls": 1,
+            "triangles": 1,
+            "geometries": 53,
+            "textures": 40,
+            "reducedGraphics": false,
+            "units": 5,
+            "activeTweens": 0,
+            "activeVfxObjects": 0,
+            "grid": {
+              "width": 8,
+              "depth": 4,
+              "walkable": 32,
+              "blocked": 0
+            }
+          }
+        },
+        "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nGénéral Serpent\n\nOBJECTIF SÉCURISÉ\nTraquez le général Serpent et exposez l’artefact des Ombres.\nRÉCOMPENSES\nOr\n+300\nGemmes rouges\n+5\niron ore\n+2\nRéputation\n+12\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nK.O.\nKestrel\nDEBOUT\nCedric\nDEBOUT\nCONTINUER LA CHRONIQUE",
+        "actions": 61,
+        "actionKinds": {
+          "move": 9,
+          "wait": 27,
+          "attack": 24,
+          "potion": 1
+        },
+        "verifiedHealing": []
+      }
+    ],
+    "endingId": "lion-seal-serpent-truth",
+    "salvationVerified": false,
+    "terminalReloadPassed": true,
+    "resumedExact": true,
+    "productionBundles": [
+      {
+        "path": "dist/assets/combat-DDZeDf1A.js",
+        "sha256": "6334ff1f59575addd2a89128490a6f584631eba84198b07e967797f616451d3c"
+      },
+      {
+        "path": "dist/assets/game-DNVJsSmX.js",
+        "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+      }
+    ]
   }
 }
