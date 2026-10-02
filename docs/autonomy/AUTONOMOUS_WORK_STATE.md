@@ -5,115 +5,86 @@ Git on dev and this state pair are the current continuation authority. Latest sc
 | Field | Value |
 | --- | --- |
 | `status` | IN_PROGRESS |
-| `runId` | rpgthreejs-auto-dev-90m-20261002T0553 |
+| `runId` | rpgthreejs-auto-dev-90m-20261002T0723 |
 | `agent` | codex |
-| `runStartedAt` | 2026-10-02T05:54:44.8448644Z |
-| `runEndedAt` | 2026-10-02T06:51:05.9282410Z |
+| `runStartedAt` | 2026-10-02T07:24:40.2317966Z |
+| `runEndedAt` | NONE |
 | `activeTask` | DEMO-QA-POLISH |
-| `activePhase` | Checkpoint complete; resume remaining ManagementView accessibility |
-| `activeSubtask` | Refuge focus checkpoint accepted; next native inventory/transaction/upgrade accessibility |
+| `activePhase` | Earned continuous production campaign QA |
+| `activeSubtask` | ManagementView checkpoint complete; actual opening battle in progress |
 | `workingBranch` | dev |
-| `lastKnownGoodCommit` | 20da994b0e05f4ace965cbfca268a7d9620dfc4c |
-| `lastPushedCommit` | 20da994b0e05f4ace965cbfca268a7d9620dfc4c |
+| `lastKnownGoodCommit` | e9df0f6047c0e983d5218152caf41f100705e301 |
+| `lastPushedCommit` | e9df0f6047c0e983d5218152caf41f100705e301 |
 | `creditStatus` | CODEX_AVAILABLE; NO_PROVIDER_REQUEST |
-| `contractComplianceStatus` | Contract set v1/PRODUCTION-CONTRACTS-LOCK-1: item8 structure COMPLETE/PASS; scoped item9 refuge focus checkpoint PASS including UI/ACCESSIBILITY. Remaining inherited ManagementView/full-demo acceptance explicit; no LOCKED rule modified, no new canon/slot/save schema/media; audio DEFERRED. |
+| `contractComplianceStatus` | Contract set v1/PRODUCTION-CONTRACTS-LOCK-1: scoped ManagementView keyboard/service checkpoint PASS including UI/ACCESSIBILITY and final12/12 production cases; continuous full-demo acceptance incomplete. No LOCKED rule, owner/save schema/canon/media changed; audio DEFERRED. |
 
 ## Live run
 
 ```json
 {
-  "runId": "rpgthreejs-auto-dev-90m-20261002T0553",
+  "runId": "rpgthreejs-auto-dev-90m-20261002T0723",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-02T06:51:05.991Z",
+  "lastHeartbeat": "2026-10-02T07:46:23.6973923Z",
   "wip": {
-    "branch": null,
-    "sha": "20da994b0e05f4ace965cbfca268a7d9620dfc4c",
-    "dirtyFiles": [],
-    "status": "GREEN",
-    "lastGreenCheck": "182 focused tests/types/contracts/build/staging;60 cinematic+15 refuge final production cases PASS"
+    "status": "UNKNOWN",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261002T0723",
+    "sha": "7bb79a0c1d1b3fe6af9495c2f0735b5dcb41239b",
+    "lastGreenCheck": "80 focused/types/contracts/build;12/12 management operations PASS;6px focus-ring refinement and actual campaign driver ongoing",
+    "dirtyFiles": [
+      " M docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      " M docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      " M src/styles/app.css",
+      " M src/ui/ManagementView.test.ts",
+      " M src/ui/ManagementView.ts",
+      " M tools/refuge-production-accessibility-qa.mjs",
+      "?? tools/demo-continuous-production-qa.mjs"
+    ]
   }
 }
 ```
 
 ## completedThisRun
 
-- Read AGENTS/active decisions/multi-agent protocol/Devin handoff and automation memory; exclusive canonical lock acquired; interrupted source preserved without reset/clean
-- Byte-identical Desktop design audit archive verified; origin/main unchanged and ancestor of dev; Devin integration retained; no LOCKED document edited
-- CINEMATIC-STRUCTURE-READINESS COMPLETE/PASS: shared OS/game preference resolver, static fallback/immediate text, canonical eight-slot trigger/ownership/agency/loading/skip/resume map
-- 60/60 cinematic production scenarios in nine runs: all-eight OS-only with normal graphics at1366x768/620x780/390x844; normal, game-reduced and failed-media controls; focused choices; two actual decoded-prelude interruption/reload checks
-- Prepared factual prologue/first-refuge planning without new slot/ID/canon; Alistair unresolved; artistic remaster remains incomplete EXTERNAL_MANUAL_WORKSTREAM; no generation/provider/media replacement
-- Reduced-motion implementation50c2489 pushed and remote verified; interrupted snapshot source bytes match that commit exactly
-- Item9: reproduced inherited BODY focus loss at refuge entry; fixed ready/return focus, named management dialog, inert siblings/Tab/Escape, stable control focus through rerenders and transient nested-modal cleanup
-- 15/15 final production refuge cases: both hubs xthree widths xnormal/OS-only, two failed-background cases, one supplemental settled-capture run; native keyboard, equipment details, permanent-wallet purchase, authoritative rest, V6 resume and departure PASS
-- 182/182 focused tests across19 suites, TypeScript/contracts/build/eight MP4s and narrative staging PASS; all eight shipped MP4 hashes unchanged
-- Refuge focus implementation7c4cd12 pushed and remote verified; read-only specialists returned scoped PASS; two new immutable report packages with six inspected captures each prepared
-- Updated current project status to actual T0/T1/T3 production and existing-media readiness; adopted exclusive writer/canonical lock/live state/WIP/trailer protocol; automation configuration unchanged
+- Read-only preflight: absent lock, clean dev; exclusive canonical lock acquired; remote dev parity/main ancestry and byte-identical original design audit archive verified
+- Reproduced three inherited ManagementView failures before fix: nonnative inventory details, missing contextual trade label, preview Retour focus loss
+- Added separate native details controls, contextual trade/craft/upgrade/consumable/equip names and replacement Retour focus; existing management owner callbacks unchanged
+- 80/80 focused tests across seven suites, TypeScript, eight-contract validator and production build PASS
+- Expanded actual built-production refuge driver: Enter/Space details, Escape/Retour/confirm focus, owner-resolved equip/purchase/sale/craft/two capped upgrades, stock/wallet/equipment/health/skill truth and V6 resume
+- 12/12 service scenarios passed at both refuges/three widths/normal and OS motion; intermediate entry-animation measurement corrected in QA; inspected captures revealed outline clipping, now corrected with native scroll margins and six-pixel ancestor/viewport ring bounds
+- New bounded continuous driver starts a fresh production chronicle and drives actual deployment/movement/attack/turn/end-result inputs; first opening battle underway without outcome injection or runtime mutation
+- Corrected stale current demo map T0-only/T1-T3-unimplemented statements from already accepted production source
 
 ## filesChanged
 
-- docs/autonomy/AUTONOMOUS_WORK_STATE.json
-- docs/autonomy/AUTONOMOUS_WORK_STATE.md
-- docs/autonomy/CINEMATIC_EXTENSION_PLANNING.md
-- docs/autonomy/CINEMATIC_STRUCTURE_READINESS.md
-- docs/autonomy/handoffs/2026-10-02T0553Z-codex-resume-checkpoint.md
-- docs/project/CURRENT_STATUS.md
-- docs/reports/INDEX.md
-- docs/reports/cinematic-structure-readiness-1-browser/audience-tableau-390x844.png
-- docs/reports/cinematic-structure-readiness-1-browser/browser-qa.json
-- docs/reports/cinematic-structure-readiness-1-browser/camp-tableau-1366x768.png
-- docs/reports/cinematic-structure-readiness-1-browser/judgement-choice-os-390x844.png
-- docs/reports/cinematic-structure-readiness-1-browser/refuge-arrival-620x780.png
-- docs/reports/cinematic-structure-readiness-1-browser/village-choice-os-390x844.png
-- docs/reports/cinematic-structure-readiness-1-browser/village-choice-resumed-390x844.png
-- docs/reports/cinematic-structure-readiness-1.md
-- docs/reports/refuge-keyboard-focus-1-browser/browser-qa.json
-- docs/reports/refuge-keyboard-focus-1-browser/first-refuge-focus-1366x768.png
-- docs/reports/refuge-keyboard-focus-1-browser/first-refuge-focus-390x844.png
-- docs/reports/refuge-keyboard-focus-1-browser/second-refuge-fallback-focus-390x844.png
-- docs/reports/refuge-keyboard-focus-1-browser/second-refuge-os-focus-620x780.png
-- docs/reports/refuge-keyboard-focus-1-browser/shop-return-focus-390x844.png
-- docs/reports/refuge-keyboard-focus-1-browser/skills-dialog-focus-390x844.png
-- docs/reports/refuge-keyboard-focus-1.md
-- src/cinematics/CinematicPlayer.test.ts
-- src/cinematics/CinematicPlayer.ts
-- src/cinematics/NarrativePresentationRuntime.test.ts
-- src/cinematics/NarrativeStage.test.ts
-- src/cinematics/NarrativeStage.ts
-- src/cinematics/TravelStillSurface.ts
-- src/ui/DialogueView.test.ts
-- src/ui/DialogueView.ts
-- src/ui/ExplorationView.test.ts
-- src/ui/ExplorationView.ts
-- src/ui/ManagementView.test.ts
 - src/ui/ManagementView.ts
-- src/ui/ReducedMotion.ts
-- tools/cinematics/run_cin6d6_route_browser_qa.mjs
+- src/ui/ManagementView.test.ts
+- src/styles/app.css
 - tools/refuge-production-accessibility-qa.mjs
+- tools/demo-continuous-production-qa.mjs
+- docs/content/DEMO_CONTENT_MAP.md
+- docs/autonomy/AUTONOMOUS_WORK_STATE.md
+- docs/autonomy/AUTONOMOUS_WORK_STATE.json
 
 ## testsRun
 
-- 92 focused player/stage/presentation/dialogue/session tests plus74 adjacent registry/overlay/preloader/triggers/scene/continuity/Journey tests
-- 16 focused ExplorationView/ManagementView/refuge background/presentation/HUD tests
-- TypeScript --noEmit; direct8-contract validator; production Vite build/eight shipped MP4s
-- Narrative staging validator:75/75 dialogues,257/257 steps,282/282 runtime steps; zero choice/text/ownership violations; two dead/unreachable historical steps explicitly reported
-- 60 final cinematic production route cases;15 final refuge keyboard/service/fallback/resume cases; selected captures manually inspected
-- Before-fix refuge focus failure reproduced separately; twelve earlier mechanics-only baseline cases retained but not counted as final focus acceptance
-- Protected-path Git gates, whitespace, source/MP4 hashes, owned-port cleanup and remote commit parity
+- Before-fix ManagementView regression6:3 PASS/3 expected FAIL; after-fix8 PASS
+- 80 focused UI/refuge/management/reputation tests across7 suites
+- TypeScript --noEmit;8-contract validator;production Vite build/exact8 MP4s
+- Mobile smoke1/1 and first full matrix8/12 due transient620 entry-animation measurement; settled12/12 PASS
+- Focus-ring620 targeted PASS; final twelve-case ring/ancestor matrix in progress
+- Fresh earned production chronicle through real opening battle in progress
 
 ## testsPassed
 
-- 182/182 focused tests PASS; types,8-contract validator,production build/eight MP4s PASS
-- 75/75 final production browser scenarios PASS; zero unexpected browser diagnostics
-- OS-only all-eight coverage xthree widths; keyboard choice bounds and unchanged resolved V6 resume PASS
-- Two actual decoded-prelude interruptions preserve complete V6 save before resumed player choice PASS
-- Refuge focus/service/owner-resolved purchase/rest/resume/departure and two dark-background fallback cases PASS
-- No LOCKED/public asset change; protected existing MP4 hashes unchanged; scoped contract matrix including UI/ACCESSIBILITY PASS
+- 80/80 focused tests across7 suites PASS;TypeScript/eight-contract validator/production build/eight MP4s PASS
+- Final12/12 real built-production management cases PASS including complete6px focus ring in viewport/clipping ancestors, owner-resolved services and unchanged resumed V6 truth
+- Inspected desktop/intermediate/mobile detail/preview/forge/skill captures; scoped specialist boundary PASS
 
 ## testsRemaining
 
-- Native keyboard access to inherited clickable inventory details; contextual transaction/upgrade names
-- Equipment preview Retour focus, actual skill upgrade, sale/crafting and equip-confirm owner-result acceptance
-- Continuous built-production Lion demo from new chronicle through both terminal routes, combat/VFX and all refuge/Traversal/save boundaries; existing seeded cases are lifecycle proof only
+- Earned first-refuge actual tactical victory, temporary-loot securing and V6 reload proof
+- Continuous campaign through both terminal routes, representative combat/VFX/responsive/motion/defeat acceptance
+- Consumable-use browser acceptance remains separate; labels covered by unit tests
 
 ## blockers
 
@@ -140,7 +111,7 @@ Git on dev and this state pair are the current continuation authority. Latest sc
 
 ## nextAction
 
-Resume item9 at ManagementView accessibility using tools/refuge-production-accessibility-qa.mjs (ignored unique output; REFUGE_QA_CASE supports a single seeded production case). Reproduce native Tab/Enter access to .item-row[data-item-details] and contextual names for [data-trade]/[data-upgrade-skill]; fix only observed presentation defects while retaining owner callbacks. Restore equipment preview Retour to its [data-preview-item] opener. Then extend the real production driver with an actually unlocked skill upgrade, sale/craft/equip-confirm expected by existing management owner rules, at1366x768/620x780/390x844. Keep full continuous Lion campaign/combat/VFX QA open; do not redo completed T0/T1/T3/cinematic readiness or generate media.
+Finish tools/demo-continuous-production-qa.mjs running at tmp/demo/continuous-0723-first: actual opening combat from fresh production chronicle through native result acknowledgement to earned first-refuge/reload. Preserve earned save and exact strategy/outcome; no outcome injection. ManagementView final12/12 acceptance is complete; prepare its six inspected captures/report and continue the earned campaign toward both endings.
 
 ## Retained scope and candidate history
 

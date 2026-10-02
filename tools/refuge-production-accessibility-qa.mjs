@@ -33,7 +33,11 @@ function fixture(nodeId) {
   state.flags.prologueSeen = true;
   state.flags.lionMissionAccepted = true;
   state.settings.reducedGraphics = false;
-  state.gold = 120;
+  state.gold = 600;
+  // Explicit preparation fixture; services below still run through real owner callbacks.
+  state.inventory.weapons.steel_greatsword = 2;
+  state.inventory.accessories.strength_ring = 1;
+  state.inventory.materials.red_gem = 3;
   state.run.temporaryLoot.gold = 25;
   state.shops.valmir.stock.potion = 2;
   state.clan.members[0].currentHealth = models.getFinalStats(state.clan.members[0]).maxHealth - 10;
@@ -82,14 +86,41 @@ async function hubReady(page) {
   }
   throw new Error('Real refuge flow did not reach the hub');
 }
-async function truth(page) {
-  return page.evaluate(() => {
-    const state = window.__refugeQaApp.state;
-    return { currentNodeId: state.currentNodeId, runNodeId: state.run.currentNodeId, stepCounter: state.stepCounter,
+function projectTruth(state) {
+  return { currentNodeId: state.currentNodeId, runNodeId: state.run.currentNodeId, stepCounter: state.stepCounter,
       resolved: [...state.resolvedNodeIds], flags: { ...state.flags }, gold: state.gold,
       temporaryLoot: JSON.parse(JSON.stringify(state.run.temporaryLoot)),
-      inventory: JSON.parse(JSON.stringify(state.inventory)), health: state.clan.members.map(unit => unit.currentHealth) };
+      inventory: structuredClone(state.inventory), shops: structuredClone(state.shops),
+      units: state.clan.members.map(unit => ({ id: unit.id, health: unit.currentHealth,
+        equipment: structuredClone(unit.equipment), skillUpgrades: { ...unit.skillUpgrades } })) };
+}
+async function ownerState(page) { return page.evaluate(() => JSON.parse(JSON.stringify(window.__refugeQaApp.state))); }
+async function truth(page) { return projectTruth(await ownerState(page)); }
+async function controlProof(page, selector, labelParts = []) {
+  const proof = await page.locator(selector).evaluate(element => {
+    const r = element.getBoundingClientRect(), style = getComputedStyle(element);
+    const clips = [];
+    for (let parent = element.parentElement; parent; parent = parent.parentElement) {
+      const css = getComputedStyle(parent), box = parent.getBoundingClientRect();
+      if (/(auto|scroll|hidden|clip)/.test(css.overflowY)) clips.push({ className: parent.className, y: box.y, bottom: box.bottom });
+    }
+    return { tag: element.tagName, label: element.getAttribute('aria-label') || element.textContent.trim(),
+      focused: document.activeElement === element, focusVisible: element.matches(':focus-visible'),
+      outline: style.outlineStyle, outlineWidth: style.outlineWidth, boxShadow: style.boxShadow,
+      rect: { x:r.x, y:r.y, right:r.right, bottom:r.bottom, width:r.width, height:r.height },
+      viewport: {width:innerWidth,height:innerHeight}, clips, nestedButton: Boolean(element.querySelector('button')) };
   });
+  assert.equal(proof.tag, 'BUTTON'); assert.equal(proof.nestedButton, false);
+  for (const text of labelParts) assert.ok(proof.label.includes(text), `Missing ${text} in ${proof.label}`);
+  assert.equal(proof.focused, true); assert.equal(proof.focusVisible, true);
+  assert.ok(proof.outline !== 'none' && parseFloat(proof.outlineWidth) > 0 || proof.boxShadow !== 'none');
+  const focusMargin = selector.includes('data-item-details') ? 6 : 0;
+  const inside = proof.rect.x >= focusMargin - 1 && proof.rect.right <= proof.viewport.width - focusMargin + 1
+    && proof.rect.y >= focusMargin - 1 && proof.rect.bottom <= proof.viewport.height - focusMargin + 1
+    && (!focusMargin || proof.clips.every(clip => proof.rect.y - focusMargin >= clip.y - 1 && proof.rect.bottom + focusMargin <= clip.bottom + 1));
+  if (!inside) await page.screenshot({ path: resolve(output, 'control-clipped.png') });
+  assert.ok(inside, `${selector} clipped: ${JSON.stringify(proof)}`);
+  return proof;
 }
 async function geometry(page) {
   return page.evaluate(() => {
@@ -153,7 +184,7 @@ async function run(nodeId, viewport, osReduced) {
     const arrival = await truth(page), layout = await geometry(page); assertGeometry(layout);
     await page.screenshot({ path: resolve(output, `${name}-initial-focus.png`) });
     assert.equal(layout.focusOwned, true, `Refuge entry loses focus to ${layout.activeTag}`);
-    assert.equal(arrival.gold, 145); assert.equal(arrival.temporaryLoot.gold, 0);
+    assert.equal(arrival.gold, 625); assert.equal(arrival.temporaryLoot.gold, 0);
     assert.equal(arrival.flags[`refugeSecured:${nodeId}`], true);
     await tabTo(page, '.exploration-stop [data-action="clan"]');
     const focus = await page.evaluate(() => { const style = getComputedStyle(document.activeElement);
@@ -163,11 +194,13 @@ async function run(nodeId, viewport, osReduced) {
     assert.ok(focus.outline !== 'none' && parseFloat(focus.outlineWidth) > 0 || focus.boxShadow !== 'none', 'Visible focus indicator missing');
     await page.screenshot({ path: resolve(output, `${name}-hub.png`) });
     const services = [];
+    const controls = [];
     for (const action of ['clan', 'shop', 'skills']) {
       const before = await truth(page);
       let expected = before;
       await activate(page, `.exploration-stop [data-action="${action}"]`);
       await page.locator('.management').waitFor({ state: 'visible' });
+      await settleManagementCapture(page);
       const modal = await page.locator('.management').evaluate(element => ({
         focusOwned: element.contains(document.activeElement), name: element.getAttribute('aria-label')
           || (element.getAttribute('aria-labelledby') && document.getElementById(element.getAttribute('aria-labelledby'))?.textContent),
@@ -178,21 +211,93 @@ async function run(nodeId, viewport, osReduced) {
       if (action === 'clan') {
         await activate(page, '.management [data-tab="inventory"]');
         assert.equal(await page.evaluate(() => document.activeElement?.getAttribute('data-tab')), 'inventory');
+        const detailSelector = '.management [data-item-details="steel_greatsword"]';
+        await tabTo(page, detailSelector);
+        controls.push(await controlProof(page, detailSelector, ['détails', models.itemById.get('steel_greatsword').name]));
+        await settleManagementCapture(page);
+        await page.screenshot({path:resolve(output,`${name}-inventory-detail-focus.png`)});
+        for (const key of ['Enter', 'Space']) {
+          await page.keyboard.press(key);
+          assert.equal(await page.locator('.item-modal').count(), 1);
+          assert.equal(await page.locator('.management__shell').evaluate(element => element.inert), true);
+          assert.equal(await page.evaluate(() => Boolean(document.activeElement?.closest('.item-modal'))), true);
+          await settleManagementCapture(page);
+          if (key === 'Space') await page.screenshot({path:resolve(output,`${name}-inventory-details.png`)});
+          await page.keyboard.press('Escape');
+          controls.push(await controlProof(page, detailSelector));
+          assert.deepEqual(await truth(page), before, 'Details changed owner truth');
+        }
         await activate(page, '.management [data-tab="clan"]');
         await activate(page, '.management [data-equip-slot="weapon"]');
         assert.equal(await page.evaluate(() => Boolean(document.activeElement?.closest('.item-modal'))), true);
         await page.keyboard.press('Shift+Tab');
         assert.equal(await page.evaluate(() => Boolean(document.activeElement?.closest('.item-modal'))), true);
-        await page.keyboard.press('Escape');
+        const replacement = '.management [data-preview-item="steel_greatsword"]';
+        await activate(page, replacement);
+        await activate(page, '.management [data-preview-back]');
+        controls.push(await controlProof(page, replacement));
+        assert.deepEqual(await truth(page), before, 'Preview/Retour changed owner truth');
+        await settleManagementCapture(page);
+        await page.screenshot({path:resolve(output,`${name}-preview-return-focus.png`)});
+        await activate(page, replacement);
+        await tabTo(page, '.management [data-equip-confirm="steel_greatsword"]');
+        controls.push(await controlProof(page, '.management [data-equip-confirm="steel_greatsword"]', ['Équiper', models.itemById.get('steel_greatsword').name]));
+        const owner = await ownerState(page);
+        assert.equal(models.equipWeapon(owner, owner.clan.members[0].id, 'steel_greatsword'), true);
+        expected = projectTruth(owner);
+        await page.keyboard.press('Enter');
+        assert.equal(await page.locator('.item-modal').count(), 0);
         assert.equal(await page.evaluate(() => document.activeElement?.getAttribute('data-equip-slot')), 'weapon');
       }
       if (action === 'shop') {
-        const ownerState = await page.evaluate(() => JSON.parse(JSON.stringify(window.__refugeQaApp.state)));
-        assert.equal(models.buyItem(ownerState, 'valmir', 'potion', false), true, 'Owner expected purchase refused');
-        expected = { ...before, gold: ownerState.gold, inventory: ownerState.inventory };
-        await activate(page, '.management [data-trade="buy"][data-item="potion"]');
-        assert.equal(await page.evaluate(() => document.activeElement?.getAttribute('data-trade')), 'buy');
-        assert.equal(await page.evaluate(() => document.activeElement?.getAttribute('data-item')), 'potion');
+        for (const itemId of ['potion', 'steel_greatsword']) {
+          const selector = `.management [data-trade="buy"][data-item="${itemId}"]`;
+          await tabTo(page, selector);
+          controls.push(await controlProof(page, selector, ['Acheter', models.itemById.get(itemId).name]));
+          const owner = await ownerState(page);
+          assert.equal(models.buyItem(owner, 'valmir', itemId, false), true);
+          await page.keyboard.press('Enter');
+          assert.deepEqual(await truth(page), projectTruth(owner));
+          assert.equal(await page.locator('.item-modal').count(), 0, 'Trade unexpectedly opened details');
+        }
+        await activate(page, '.management [data-shop-mode="sell"]');
+        const sale = '.management [data-trade="sell"][data-item="steel_greatsword"]';
+        await tabTo(page, sale);
+        controls.push(await controlProof(page, sale, ['Vendre', models.itemById.get('steel_greatsword').name]));
+        const saleOwner = await ownerState(page);
+        assert.equal(models.sellItem(saleOwner, 'valmir', 'steel_greatsword', false), true);
+        await page.keyboard.press('Space');
+        assert.deepEqual(await truth(page), projectTruth(saleOwner));
+        assert.equal(await page.locator('.item-modal').count(), 0);
+        controls.push(await controlProof(page, sale));
+        await activate(page, '.management [data-shop-mode="craft"]');
+        const craft = '.management [data-craft="craft_lion_guard_greatsword"]';
+        await tabTo(page, craft);
+        controls.push(await controlProof(page, craft, ['Forger', models.itemById.get('lion_guard_greatsword').name]));
+        const craftOwner = await ownerState(page);
+        assert.equal(models.craftItem(craftOwner, 'craft_lion_guard_greatsword'), true);
+        await page.keyboard.press('Enter');
+        assert.deepEqual(await truth(page), projectTruth(craftOwner));
+        assert.equal(await page.locator(craft).isDisabled(), true, 'Consumed ring should disable second craft');
+        expected = projectTruth(craftOwner);
+      }
+      if (action === 'skills') {
+        const owner = await ownerState(page), unit = owner.clan.members[0];
+        const skillId = models.getResolvedSkills(unit).find(id => models.isSkillUnlockedForHero(unit,id));
+        assert.ok(skillId, 'Equipped weapon should unlock an existing skill');
+        const selector = `.management [data-upgrade-skill="${skillId}"]`;
+        await tabTo(page, selector);
+        controls.push(await controlProof(page, selector, ['Améliorer', unit.name]));
+        assert.equal(models.upgradeSkill(owner,unit.id,skillId), true);
+        await page.keyboard.press('Enter');
+        assert.deepEqual(await truth(page), projectTruth(owner));
+        controls.push(await controlProof(page, selector));
+        assert.equal(models.upgradeSkill(owner,unit.id,skillId), true);
+        await page.keyboard.press('Space');
+        assert.deepEqual(await truth(page), projectTruth(owner));
+        assert.equal(await page.locator(selector).isDisabled(), true);
+        assert.ok((await page.locator(selector).getAttribute('aria-label')).includes('maximal'));
+        expected = projectTruth(owner);
       }
       await tabTo(page, '.management [data-action="close"]');
       await settleManagementCapture(page);
@@ -200,7 +305,8 @@ async function run(nodeId, viewport, osReduced) {
       await page.keyboard.press('Enter'); await hubReady(page);
       assert.deepEqual(await truth(page), expected, `${action} return differs from authoritative service result`);
       assertGeometry(await geometry(page)); services.push({ action, keyboardReachable: true,
-        truthUnchanged: action !== 'shop', ownerResolvedPurchase: action === 'shop', rerenderFocusPreserved: action !== 'skills' });
+        ownerResolvedOperations: action === 'clan' ? ['equip'] : action === 'shop' ? ['buy-potion','buy-weapon','sell-weapon','craft'] : ['upgrade-1','upgrade-2'],
+        detailsAndPreviewTruthUnchanged: action === 'clan', blockedAtMax: action === 'skills' });
       assert.equal((await geometry(page)).focusOwned, true, 'Management return lost refuge focus');
     }
     const live = await page.evaluate(() => window.__refugeQaApp.state);
@@ -223,7 +329,7 @@ async function run(nodeId, viewport, osReduced) {
       document.querySelector('.journey-overlay,.traversal-t0,.dialogue'));
     assert.ok((await truth(page)).resolved.includes(nodeId));
     assert.deepEqual(errors, []);
-    return { name, nodeId, viewport, osReduced, blockBackground, expectedAssetFailures, layout, focus, services, restCost,
+    return { name, nodeId, viewport, osReduced, blockBackground, expectedAssetFailures, layout, focus, controls, services, restCost,
       securedGold: 25, restGold: rested.gold, resumeTruthUnchanged: true, departureResolved: true, errors, pass: true };
   } finally { await context.close(); }
 }

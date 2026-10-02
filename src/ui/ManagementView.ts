@@ -15,6 +15,10 @@ import type { GameState, InnateGiftModifier, ItemCategory, ItemDefinition, UnitD
 type ManagementTab = 'clan' | 'inventory' | 'shop' | 'skills';
 type ControlFocusKey = { tag: string; attributes: Array<[string, string]> };
 
+function escapeAttribute(value: string): string {
+  return value.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 const STATUS_LABELS: Record<string, string> = {
   burn: 'Brûlure',
   poison: 'Poison',
@@ -362,7 +366,7 @@ export class ManagementView {
           <div class="${statsClass(previewItem)}">${this.itemStatRows(previewItem, currentWeapon ?? undefined, unit)}</div>
           <div class="weapon-modal__actions">
             <button type="button" class="ui-button ui-button--secondary" data-preview-back>← Retour</button>
-            <button type="button" class="ui-button" data-equip-confirm="${previewItem.id}">Équiper</button>
+            <button type="button" class="ui-button" data-equip-confirm="${previewItem.id}" aria-label="${escapeAttribute(`Équiper ${previewItem.name} pour ${unit.name}`)}">Équiper</button>
           </div>
         ` : `
           <div class="weapon-modal__header">
@@ -578,7 +582,7 @@ export class ManagementView {
           <p><b>Actuel</b> ${effect}</p>
           <p><b>Prochain</b> ${next}</p>
         </div>
-        <button type="button" class="ui-button ui-button--secondary" data-upgrade-skill="${skillId}" ${disabled ? 'disabled' : ''}>
+        <button type="button" class="ui-button ui-button--secondary" data-upgrade-skill="${skillId}" aria-label="${escapeAttribute(`Améliorer ${skill.name} pour ${selected.name} · ${cost === null ? 'niveau maximal atteint' : `${cost} gemme${cost > 1 ? 's' : ''}`}`)}" ${disabled ? 'disabled' : ''}>
           ${cost === null ? 'Amélioration max' : `Améliorer · ${cost} gemme${cost > 1 ? 's' : ''}`}
         </button>
       </article>`;
@@ -651,7 +655,7 @@ export class ManagementView {
         const maxHealth = getFinalStats(unit).maxHealth;
         return `<option value="${unit.id}">${unit.name} (0/${maxHealth})</option>`;
       }).join('');
-      return `<span class="item-row__action"><select data-use-unit="${itemId}"><option value="">— Ranimer —</option>${options}</select><button type="button" class="ui-button ui-button--secondary" data-use-item="${itemId}">Utiliser</button></span>`;
+      return `<span class="item-row__action"><select data-use-unit="${itemId}" aria-label="Unité à ranimer avec ${escapeAttribute(itemById.get(itemId)!.name)}"><option value="">— Ranimer —</option>${options}</select><button type="button" class="ui-button ui-button--secondary" data-use-item="${itemId}" aria-label="Utiliser ${escapeAttribute(itemById.get(itemId)!.name)} sur l’unité sélectionnée">Utiliser</button></span>`;
     }
     if (itemId === 'potion') {
       const wounded = state.clan.members.filter((unit) => unit.currentHealth > 0 && unit.currentHealth < getFinalStats(unit).maxHealth);
@@ -660,7 +664,7 @@ export class ManagementView {
         const maxHealth = getFinalStats(unit).maxHealth;
         return `<option value="${unit.id}">${unit.name} (${unit.currentHealth}/${maxHealth})</option>`;
       }).join('');
-      return `<span class="item-row__action"><select data-use-unit="${itemId}"><option value="">— Soigner —</option>${options}</select><button type="button" class="ui-button ui-button--secondary" data-use-item="${itemId}">Utiliser</button></span>`;
+      return `<span class="item-row__action"><select data-use-unit="${itemId}" aria-label="Unité à soigner avec ${escapeAttribute(itemById.get(itemId)!.name)}"><option value="">— Soigner —</option>${options}</select><button type="button" class="ui-button ui-button--secondary" data-use-item="${itemId}" aria-label="Utiliser ${escapeAttribute(itemById.get(itemId)!.name)} sur l’unité sélectionnée">Utiliser</button></span>`;
     }
     return '';
   }
@@ -669,11 +673,11 @@ export class ManagementView {
     const item = itemById.get(id);
     if (!item) return '';
     const hasDetails = item.category === 'weapons' || item.category === 'accessories';
-    const detailsAttr = hasDetails ? ` data-item-details="${id}"` : '';
     const detailsClass = hasDetails ? ' item-row--details' : '';
-    return `<div class="item-row ui-panel ui-panel--dense${detailsClass}"${detailsAttr}>
-      <span class="item-row__icon ui-chip">${item.icon}</span>
-      <span><strong>${item.name}</strong><small>${item.description}</small></span>
+    const content = `<span class="item-row__icon ui-chip" aria-hidden="true">${item.icon}</span>
+      <span class="item-row__body"><strong>${item.name}</strong><small>${item.description}</small></span>`;
+    return `<div class="item-row ui-panel ui-panel--dense${detailsClass}">
+      ${hasDetails ? `<button type="button" class="item-row__details" data-item-details="${id}" aria-label="${escapeAttribute(`Voir les détails de ${item.name}`)}">${content}</button>` : content}
       <b>×${quantity}</b>${action}
     </div>`;
   }
@@ -780,7 +784,7 @@ export class ManagementView {
       const price = this.shopMode === 'buy' ? getShopPrice(item.price, state.reputation) : Math.floor(item.price / 2);
       const availableGold = this.shopWallet === 'temporary' ? state.run.temporaryLoot.gold : state.gold;
       const disabled = this.shopMode === 'buy' && availableGold < price;
-      const action = `<button type="button" class="ui-button ui-button--secondary" data-trade="${this.shopMode}" data-item="${id}" ${disabled ? 'disabled' : ''}>${price} or</button>`;
+      const action = `<button type="button" class="ui-button ui-button--secondary" data-trade="${this.shopMode}" data-item="${id}" aria-label="${escapeAttribute(`${this.shopMode === 'buy' ? 'Acheter' : 'Vendre'} ${item.name} · ${price} or`)}" ${disabled ? 'disabled' : ''}>${price} or</button>`;
       return this.itemRow(id, quantity, action);
     }).join('');
     return `<div class="shop-view">
@@ -817,7 +821,7 @@ export class ManagementView {
           <p><b>Effet</b> ${recipe.preview}</p>
         </div>
         <div class="craft-recipe__ingredients">${ingredients}<span class="ui-chip">${recipe.inputs.gold} or</span></div>
-        <button type="button" class="ui-button ui-button--secondary" data-craft="${recipe.id}" ${disabled ? 'disabled' : ''}>Forger</button>
+        <button type="button" class="ui-button ui-button--secondary" data-craft="${recipe.id}" aria-label="${escapeAttribute(`Forger ${output?.name ?? recipe.output.itemId} · ${recipe.inputs.gold} or`)}" ${disabled ? 'disabled' : ''}>Forger</button>
       </article>`;
     }).join('');
     return `<div class="shop-view shop-view--forge">
@@ -897,8 +901,12 @@ export class ManagementView {
     this.overlay.querySelectorAll<HTMLButtonElement>('[data-preview-back]').forEach((button) => {
       button.addEventListener('click', (e) => {
         e.stopPropagation();
+        const itemId = this.previewItemId;
         this.previewItemId = null;
         this.render();
+        const replacement = [...this.overlay?.querySelectorAll<HTMLButtonElement>('[data-preview-item]') ?? []]
+          .find(control => control.dataset.previewItem === itemId);
+        replacement?.focus();
       });
     });
     this.overlay.querySelectorAll<HTMLButtonElement>('[data-equip-confirm]').forEach((button) => {
