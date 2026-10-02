@@ -6,13 +6,13 @@ Git on `dev` and this state pair are the current continuation authority.
 | --- | --- |
 | `status` | IN_PROGRESS |
 | `runStartedAt` | 2026-10-01T23:52:29.3266191Z |
-| `runEndedAt` | RUNNING |
+| `runEndedAt` | 2026-10-02T00:54:40.566Z |
 | `activeTask` | CINEMATIC-EIGHT-SLOT-REMASTER |
 | `activePhase` | Eight-slot source inventory/locked brief prepared; shot/context/media QA pending |
 | `activeSubtask` | Probe existing eight MP4 streams/frames and complete canonical per-slot shot briefs |
 | `workingBranch` | dev |
-| `lastKnownGoodCommit` | a90f90e733273c9ba6688fbf4a84d7f9a153a046 |
-| `lastPushedCommit` | a90f90e733273c9ba6688fbf4a84d7f9a153a046 |
+| `lastKnownGoodCommit` | 2a062c7f41e575d7b8f827051af43c16defa2987 |
+| `lastPushedCommit` | 2a062c7f41e575d7b8f827051af43c16defa2987 |
 | `creditStatus` | AVAILABLE |
 | `contractComplianceStatus` | Contract set v1: item 7 COMPLETE/PASS in TRAVERSAL_T3_PRODUCTION.md; no LOCKED rule changed. Item 8 inventory/preparation boundaries PASS; final artistic replacement acceptance pending and generation externally blocked. |
 | `commitReferenceScope` | Verified implementation checkpoint; a subsequent state-only closeout commit is identified by Git HEAD/origin/dev and automation memory. |
@@ -30,6 +30,7 @@ Git on `dev` and this state pair are the current continuation authority.
 - Supplied missing byte-identical source-audit archive and 15-section trace index; scoped -text preserves archive bytes in Git; existing contract/drift work retained
 - Item 7 COMPLETE/PASS; began item 8 with exact eight-source byte/hash/descriptor inventory, locked brief and integration QA plan; no existing video modified
 - Video generation unavailable in current tool catalog; per-slot visual/context/shot review remains active, asset generation explicitly externally blocked
+- Implementation checkpoint 2a062c7 pushed to origin/dev and remote SHA verified; final build and eight-MP4 inventory pass; staged audit Git blob matches Desktop bytes
 
 ## filesChanged
 
@@ -72,6 +73,7 @@ Git on `dev` and this state pair are the current continuation authority.
 - DEV ten-scenario GameApp/V6 integration candidate QA and final built-production ten-scenario QA
 - Built-production T0 and T1 regression QA in separate ignored output directories
 - New/protected image and archived-audit SHA256 checks; eight approved video byte/hash inventory
+- Final Vite rebuild after public-manifest acceptance annotation; staged diff whitespace and archive byte validation
 
 ## testsPassed
 
@@ -81,6 +83,7 @@ Git on `dev` and this state pair are the current continuation authority.
 - T0 both production paths/23 captures/zero issues; T1 three production paths/59 captures/zero issues
 - Desktop/intermediate/mobile/reduced motion/keyboard; all route mechanics; selected captures inspected; all new/protected source hashes exact
 - Eight existing cinematic sources inventoried without modifying their bytes; full design-source copy hash verified
+- Final Vite build, eight shipped MP4s, staged diff check and byte-identical archived Git blob pass
 
 ## testsRemaining
 
