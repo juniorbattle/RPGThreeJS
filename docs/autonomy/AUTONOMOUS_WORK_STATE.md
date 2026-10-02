@@ -6,16 +6,16 @@ Git on dev and this state pair are the current continuation authority. Latest sc
 | --- | --- |
 | `status` | IN_PROGRESS |
 | `runStartedAt` | 2026-10-02T03:19:48.4805501+00:00 |
-| `runEndedAt` | 2026-10-02T03:24:06.069Z |
+| `runEndedAt` | 2026-10-02T03:25:14.5992175+00:00 |
 | `activeTask` | CINEMATIC-STRUCTURE-READINESS |
 | `activePhase` | Operator scope change persisted; structural readiness audit next |
 | `activeSubtask` | Audit existing integration and handoffs without generating new video or keyframes |
 | `workingBranch` | dev |
-| `lastKnownGoodCommit` | 89b931bbe0f729d4ae8e387a4820fd395586ff1a |
-| `lastPushedCommit` | 89b931bbe0f729d4ae8e387a4820fd395586ff1a |
+| `lastKnownGoodCommit` | 2a92a0f92ed07d8a579cc760c6403c45091b207a |
+| `lastPushedCommit` | 2a92a0f92ed07d8a579cc760c6403c45091b207a |
 | `creditStatus` | CODEX_AVAILABLE; NO_PROVIDER_REQUEST_IN_SCOPE_CHANGE |
 | `contractComplianceStatus` | Contract set v1: preservation PASS, no runtime/media/LOCKED edit. Exactly eight active slots retained. Prologue/refuge contract extension DEFERRED to dedicated decision; Alistair DECISION_PENDING. Final video remaster incomplete and external to automation; audio DEFERRED. |
-| `commitReferenceScope` | Verified previous candidate checkpoint; this scope-decision commit is identified by HEAD/origin/dev and automation memory. |
+| `commitReferenceScope` | Verified scope-decision checkpoint; subsequent state-only closeout identified by HEAD/origin/dev and automation memory. |
 
 ## completedThisRun
 
@@ -24,6 +24,8 @@ Git on dev and this state pair are the current continuation authority. Latest sc
 - Prologue desired extension and optional first-refuge scene recorded for dedicated contract planning
 - Alistair lion-emblem issue recorded as nonurgent unresolved visual/narrative decision; no canon or protected art changed
 - Six existing candidates/evidence and completed items 1-7 preserved; no provider job or replacement started
+
+- Saved automation scope and unchanged cadence/model/reasoning/project verified; decision checkpoint 2a92a0f pushed to dev
 
 ## filesChanged
 
