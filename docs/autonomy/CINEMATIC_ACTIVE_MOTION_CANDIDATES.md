@@ -1,5 +1,7 @@
 # Active eight-slot cinematic candidates
 
+> **Scope changed by operator on 2026-10-01:** preserve these candidate records; no further autonomous video/keyframe generation or production replacement. Resume structure readiness instead, following [the newer operator decision](CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md). Candidate generation steps below belong to the independent manual workstream.
+
 2026-10-02 UTC. Queue item 8 remains **IN_PROGRESS**; items 1–7 remain complete. Authority: [operator decision](CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md), contract set v1 and current campaign source. This checkpoint develops candidates outside production.
 
 All eight specs now give actors physical actions, living environments and motivated camera progression. Departure uses purposeful walking; audience and judgement use entry, listening and open-hand gestures without a ruling; the village and ending families animate only already-authored circumstances. Existing exclusions, shot totals, dialogue/choice ownership, durable IDs, eight slots and deferred audio remain binding. `cin4_shot_spec.mjs` supports an explicit camera intent and `WALK_PURPOSEFUL`; historical specs retain their existing default camera wording. The current camp compiled prompt no longer contradicts active direction with slow walking or conservative camera amplitude.

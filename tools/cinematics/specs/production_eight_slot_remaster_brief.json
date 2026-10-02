@@ -1310,5 +1310,26 @@
   "activeGeneration": [],
   "candidateEvidence": "docs/reports/cinematic-active-motion-1/candidate-qa.json",
   "candidateEvidenceFollowup": "docs/reports/cinematic-active-motion-1/candidate-qa-followup.json",
-  "candidateEvidenceFinal": "docs/reports/cinematic-active-motion-1/candidate-qa-final.json"
+  "candidateEvidenceFinal": "docs/reports/cinematic-active-motion-1/candidate-qa-final.json",
+  "autonomyScope": {
+    "decisionSource": "docs/autonomy/CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md",
+    "allowed": [
+      "cinematic structure readiness",
+      "existing-media integration/QA",
+      "independent demo QA and fixes"
+    ],
+    "excluded": [
+      "new video/keyframe generation",
+      "MiniMax generation/polling jobs",
+      "artistic media remaster",
+      "production MP4 replacement",
+      "automatic Alistair redesign or biography change"
+    ],
+    "mediaWorkstream": "EXTERNAL_MANUAL_WORKSTREAM",
+    "mediaRemasterComplete": false,
+    "prologue": "DESIRED_EXTENSION_TO_PLAN; dedicated contract work before activation",
+    "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
+    "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
+  },
+  "latestExecutionDecision": "docs/autonomy/CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md"
 }

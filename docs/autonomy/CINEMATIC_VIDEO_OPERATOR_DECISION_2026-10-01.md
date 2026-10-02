@@ -1,5 +1,7 @@
 # Operator decision: MiniMax authorization and active cinematic rhythm
 
+> **Later operator scope decision:** [structure readiness and independent video work](CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md) supersedes recurring generation instructions below. Provider permission remains recorded; autonomous runs no longer generate video/keyframes or replace production media. Historical authorization and creative direction are preserved.
+
 Decision received **2026-10-01, America/Toronto**; recorded 2026-10-02 UTC. Applies to RPGThreeJS autonomous development and subsequent recurring runs. This is an explicit operator decision, retained with Git/state as continuation evidence.
 
 The operator authorized: “Oui on peut utiliser la cle Minimax pour generer nos clips” and asked to retain that information for recurring work. The operator also specified very rhythmic, active videos inspired by FF9 and requested durable storage so autonomous development continues correctly.

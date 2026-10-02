@@ -1,93 +1,53 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-02T02:09:32.4830893Z",
-  "runEndedAt": "2026-10-02T03:03:23.1387394Z",
-  "activeTask": "CINEMATIC-EIGHT-SLOT-REMASTER",
-  "activePhase": "Six candidate review checkpoint; no production replacements",
-  "activeSubtask": "Bois-Clair arrival shot 2 keyframe/motion and full-slot portrait/cut QA",
+  "runStartedAt": "2026-10-02T03:19:48.4805501+00:00",
+  "runEndedAt": "2026-10-02T03:24:06.069Z",
+  "activeTask": "CINEMATIC-STRUCTURE-READINESS",
+  "activePhase": "Operator scope change persisted; structural readiness audit next",
+  "activeSubtask": "Audit existing integration and handoffs without generating new video or keyframes",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "93f8df11c1f9ff2bef652ad1e31306739c2382c1",
-  "lastPushedCommit": "93f8df11c1f9ff2bef652ad1e31306739c2382c1",
+  "lastKnownGoodCommit": "89b931bbe0f729d4ae8e387a4820fd395586ff1a",
+  "lastPushedCommit": "89b931bbe0f729d4ae8e387a4820fd395586ff1a",
   "completedThisRun": [
-    "Exclusive lock acquired; clean dev fetched/synchronized; items 1-7 retained complete",
-    "All eight motion briefs adapted to active grounded staging while preserving canon/V2/eight slots; protected camp source verified",
-    "Six actual MiniMax candidates generated: camp attempts 1-3, audience attempts 1-2, Bois-Clair arrival shot_01 attempt 1",
-    "Two new integrated raster keyframes/provenance saved for audience and Bois-Clair first block; all protected source inputs unchanged",
-    "Thirty-six decoded first/action/middle/final frames plus six sequence sheets inspected; six separate silent 1080p/24fps masters retained locally",
-    "Camp 1-3 unaccepted (identity/style/activity defects); audience 1 rejected, audience 2 retains correction progress but no final art acceptance; Bois-Clair shot 1 limited block review passes, full slot/portrait framing pending",
-    "Guarded existing-task resume and distinct master paths implemented; duration-aware candidate inspection reusable from repository",
-    "115/115 focused tests, TypeScript, contracts/build/eight shipped MP4s PASS; 55/55 full-candidate player cases and 4/4 partial-block skip previews PASS",
-    "Compact four-capture gallery and separate immutable checkpoint/followup/final proofs promoted; inherited historical allowlist failure documented",
-    "No production MP4, source runtime, gameplay, save, canonical reference or LOCKED contract changed",
-    "Implementation checkpoint 93f8df1 pushed and verified against remote dev; state-only closeout follows; owned QA server stopped"
+    "Latest operator decision: video/keyframe generation and artistic remaster moved outside autonomous work",
+    "Recurring automation prompt updated; technical structure and existing-media QA remain in scope",
+    "Prologue desired extension and optional first-refuge scene recorded for dedicated contract planning",
+    "Alistair lion-emblem issue recorded as nonurgent unresolved visual/narrative decision; no canon or protected art changed",
+    "Six existing candidates/evidence and completed items 1-7 preserved; no provider job or replacement started"
   ],
   "filesChanged": [
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
     "docs/autonomy/CINEMATIC_ACTIVE_MOTION_CANDIDATES.md",
-    "docs/reports/cinematic-active-motion-1/camp-attempt-01-contact.png",
-    "docs/reports/cinematic-active-motion-1/candidate-qa-followup.json",
-    "docs/reports/cinematic-active-motion-1/candidate-qa.json",
-    "tools/cinematics/candidates/production-eight-slot-remaster/alaric_audience_arrival/keyframe-v1.png",
-    "tools/cinematics/candidates/production-eight-slot-remaster/alaric_audience_arrival/provenance.json",
-    "tools/cinematics/cin4_shot_spec.mjs",
-    "tools/cinematics/cin4_shot_spec.test.mjs",
-    "tools/cinematics/master_shot.mjs",
-    "tools/cinematics/minimax_h3_generate.mjs",
-    "tools/cinematics/minimax_task_checkpoint.mjs",
-    "tools/cinematics/minimax_task_checkpoint.test.mjs",
-    "tools/cinematics/run_production_eight_slot_media_qa.mjs",
-    "tools/cinematics/specs/production-eight-slot-remaster/alaric_audience_arrival.json",
-    "tools/cinematics/specs/production-eight-slot-remaster/bois_clair_arrival.json",
-    "tools/cinematics/specs/production-eight-slot-remaster/bois_clair_sacrificed.json",
-    "tools/cinematics/specs/production-eight-slot-remaster/bois_clair_saved.json",
-    "tools/cinematics/specs/production-eight-slot-remaster/lion_judgement.json",
-    "tools/cinematics/specs/production-eight-slot-remaster/lion_trial_route_ending.json",
-    "tools/cinematics/specs/production-eight-slot-remaster/serpent_route_ending.json",
-    "tools/cinematics/specs/production_camp_departure_v1.json",
-    "tools/cinematics/specs/production_eight_slot_remaster_brief.json",
-    "docs/reports/cinematic-active-motion-1.md",
-    "docs/reports/cinematic-active-motion-1/audience-attempt-02-contact.png",
-    "docs/reports/cinematic-active-motion-1/bois-shot-01-390x844-skip.png",
-    "docs/reports/cinematic-active-motion-1/camp-attempt-03-contact.png",
-    "docs/reports/cinematic-active-motion-1/candidate-qa-final.json",
-    "docs/reports/cinematic-active-motion-1/protected-hashes.json",
-    "tools/cinematics/candidates/production-eight-slot-remaster/bois_clair_arrival/shot-01-keyframe-v1.png",
-    "tools/cinematics/candidates/production-eight-slot-remaster/bois_clair_arrival/shot-01-provenance.json",
-    "tools/cinematics/inspect_remaster_candidate.mjs"
+    "docs/autonomy/CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md",
+    "tools/cinematics/specs/production_eight_slot_remaster_brief.json"
   ],
   "testsRun": [
-    "115 focused tests: MiniMax continuation, CIN-4 specification/media and cinematic census",
-    "Extended 113 historical preproduction/census tests (112 pass; inherited allowlist failure)",
-    "TypeScript --noEmit, contract validator, production Vite build and exact eight MP4 count",
-    "Six raw probes and silent master validation; manual motion/identity/environment/framing review",
-    "55 real-player cases across five full camp/audience candidates; 4 partial Bois-Clair block skip previews",
-    "Eight shipped source and eight distinct protected keyframe/reference hashes; Git whitespace and zero src/public/LOCKED diff"
+    "Contract validator (8 LOCKED contracts/8 active slots)",
+    "State/brief JSON parse, MD/JSON continuity, Git whitespace and zero runtime/media/LOCKED diff",
+    "Saved automation prompt and cadence/model/reasoning/project/status comparison"
   ],
   "testsPassed": [
-    "115/115 final focused tests PASS; extended 112/113 with one documented inherited allowlist failure",
-    "TypeScript, 8 LOCKED contracts/8 slots, Vite build and eight shipped MP4s PASS",
-    "Six silent masters 1920x1080/24fps/exact authored duration PASS; provider audio excluded",
-    "55/55 isolated full-candidate player cases and 4/4 partial-block skip cases PASS; art acceptance separate",
-    "Eight production MP4/eight protected reference hashes unchanged; no src/public/LOCKED diff; whitespace PASS"
+    "8 LOCKED contracts/8 active slots preserved",
+    "State/brief JSON parse and Git whitespace PASS; source runtime/media/LOCKED contracts unchanged",
+    "Saved recurring prompt matches expected scope; unchanged 90-minute cadence, gpt-6.1-sol/high, ACTIVE/local project"
   ],
   "testsRemaining": [
-    "Bois-Clair shot 2 integrated keyframe/motion, deliberate-cut geography/identity and complete 20s slot artistic/runtime acceptance",
-    "Portrait framing acceptance: partial left armor/cape crop at 390x844; source correction/presentation decision before any promotion",
-    "Audience 2 final pixel/cadence/lantern-detail acceptance or concrete correction before attempt 3",
-    "Camp three-attempt generation cap reached with no accepted replacement; review recorded defects before any authorized changed attempt policy",
-    "Five other slot families keyframes, generated motion and acceptance; final eight-slot campaign/production QA",
-    "Queued full demo and deferred audio; historical CIN-6E-A allowlist omission remains separate"
+    "Structural readiness audit using retained existing-media/player/campaign QA; fix only observed independent defects",
+    "Full demo QA/polish; artistic media acceptance remains independent and incomplete"
   ],
   "blockers": [
-    "Camp final replacement unaccepted after three allowed autonomous attempts; do not submit a fourth or reset attempt numbering",
-    "Final full-media art/portrait acceptance incomplete; no replacement authorized by this QA result (standing provider permission remains resolved)"
+    "No blocker to structural readiness or independent demo QA",
+    "Prologue/refuge activation waits for dedicated slot-contract decision; Alistair art/origin unresolved and nonurgent"
   ],
   "remainingWork": [
-    "Item 8 ACTIVE: finish Bois-Clair second block and full-slot cut/portrait QA; retain camp/audience review boundaries; author/generate remaining five slot families",
-    "No completed items reopened; item 9 queued and item 10 audio DEFERRED"
+    "Item 8 structural readiness audit, then independent item 9 demo QA",
+    "External manual workstream: new videos, integrated keyframes, remaster and final art/runtime acceptance",
+    "Prologue planning and optional first-refuge brief; Alistair design/origin dedicated decision"
   ],
-  "nextAction": "Acquire lock/read Git and both state files; no provider task is pending and MiniMax use remains explicitly authorized. Resume item 8 at tools/cinematics/specs/production-eight-slot-remaster/bois_clair_arrival.json shot_02: integrate the declared promoted burning tableau with V2 villageoise/white_mage/serpent_raider, preserve unresolved rescue/reserves agency, validate/hash source, then generate its 10s block with the existing adapter. Reuse shot_01 keyframe (31918e9e8b1a8bc73f913cbd8e16f98cd9b3c0e795f7984288f12729cd35b8f8) and local silent 10s master (b0e80d01845f82f3d42c4024a7ffc047b306ad00d567586fea9eac98b533411f); it is NOT the full 20s slot. Use tools/cinematics/inspect_remaster_candidate.mjs with --spec/--shot/--input/--output in a new ignored directory, then review cut continuity and 390x844 portrait crop before full-slot/campaign acceptance. Camp attempts 1-3 are unaccepted and capped; do not create attempt 4 or reset numbering. Audience 2 fixes equipment/framing but final art/cadence remains unaccepted; prepare a concrete correction before attempt 3. Five remaining slot families still need keyframes/motion. Preserve exactly eight current public MP4s until separate final artist and runtime acceptance; no LOCKED change; audio DEFERRED.",
+  "nextAction": "Acquire exclusive lock/read Git and both states, then docs/autonomy/CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md. Resume CINEMATIC-STRUCTURE-READINESS: reuse existing preparation and active-motion QA, map current eight triggers/cast ownership/surface handoffs/dialogue-choices/skip/fallback/reduced-motion/save-resume to code and evidence; identify any real structural gaps without new media. Preserve six reviewed candidates and all completed items. Do NOT generate Bois-Clair shot_02, any video/keyframe or call MiniMax in recurring runs. After an explicit readiness checkpoint, proceed to independent item 9 demo QA without marking artistic remaster complete. Prologue is a desired extension to plan and first-refuge scene an option: dedicated contract/list decision precedes any new active slot/ID. Alistair lion-emblem/design/origin remains a deferred nonurgent decision; no asset or narrative edits. Audio DEFERRED.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-LOCK-1: COMPLETE",
     "Contract drift audit: COMPLETE",
@@ -96,13 +56,13 @@
     "TRAVERSAL-GENERALIZATION: COMPLETE",
     "TRAVERSAL-T1-PRODUCTION: COMPLETE",
     "TRAVERSAL-T3-PRODUCTION: COMPLETE",
-    "CINEMATIC-EIGHT-SLOT-REMASTER: ACTIVE (six candidates reviewed; zero production replacements; Bois-Clair second block next)",
-    "Complete demo QA and polish: QUEUED",
+    "CINEMATIC-STRUCTURE-READINESS: ACTIVE; item 8 media remaster incomplete in EXTERNAL_MANUAL_WORKSTREAM",
+    "Complete demo QA and polish: QUEUED; independent work may proceed after structural readiness without waiting for new videos",
     "Audio decision after structure lock: DEFERRED"
   ],
-  "creditStatus": "CODEX_AVAILABLE; MINIMAX_SIX_TASKS_SUCCEEDED_BALANCE_NOT_MEASURED",
-  "contractComplianceStatus": "Contract set v1: protected-byte/gameplay/narrative/save/LOCKED preservation PASS; candidate review/evidence PASS; final replacement art and portrait acceptance BLOCKED/pending. No rule changed; no video promoted; item 8 incomplete.",
-  "commitReferenceScope": "Verified implementation checkpoint; the subsequent state-only closeout is identified by Git HEAD/origin/dev and automation memory.",
+  "creditStatus": "CODEX_AVAILABLE; NO_PROVIDER_REQUEST_IN_SCOPE_CHANGE",
+  "contractComplianceStatus": "Contract set v1: preservation PASS, no runtime/media/LOCKED edit. Exactly eight active slots retained. Prologue/refuge contract extension DEFERRED to dedicated decision; Alistair DECISION_PENDING. Final video remaster incomplete and external to automation; audio DEFERRED.",
+  "commitReferenceScope": "Verified previous candidate checkpoint; this scope-decision commit is identified by HEAD/origin/dev and automation memory.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -111,7 +71,9 @@
     "provider": "MiniMax",
     "scope": "Existing local key for RPGThreeJS clip authentication/generation/polling/retrieval in current and future recurring runs; necessary source images/prompts permitted",
     "requestPermissionAgain": false,
-    "credentialValueStored": false
+    "credentialValueStored": false,
+    "executionScopeDecision": "docs/autonomy/CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md",
+    "recurringExecutionPolicy": "Provider authorization retained; later operator decision excludes generation/polling from recurring runs"
   },
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -139,5 +101,73 @@
     "proof": "docs/reports/cinematic-active-motion-1/candidate-qa-final.json",
     "providerTasksPending": 0
   },
-  "providerTasksPending": []
+  "providerTasksPending": [],
+  "lastCandidateCheckpoint": {
+    "stateCommit": "89b931bbe0f729d4ae8e387a4820fd395586ff1a",
+    "implementationCommit": "93f8df11c1f9ff2bef652ad1e31306739c2382c1",
+    "runStartedAt": "2026-10-02T02:09:32.4830893Z",
+    "runEndedAt": "2026-10-02T03:03:23.1387394Z",
+    "completedThisRun": [
+      "Exclusive lock acquired; clean dev fetched/synchronized; items 1-7 retained complete",
+      "All eight motion briefs adapted to active grounded staging while preserving canon/V2/eight slots; protected camp source verified",
+      "Six actual MiniMax candidates generated: camp attempts 1-3, audience attempts 1-2, Bois-Clair arrival shot_01 attempt 1",
+      "Two new integrated raster keyframes/provenance saved for audience and Bois-Clair first block; all protected source inputs unchanged",
+      "Thirty-six decoded first/action/middle/final frames plus six sequence sheets inspected; six separate silent 1080p/24fps masters retained locally",
+      "Camp 1-3 unaccepted (identity/style/activity defects); audience 1 rejected, audience 2 retains correction progress but no final art acceptance; Bois-Clair shot 1 limited block review passes, full slot/portrait framing pending",
+      "Guarded existing-task resume and distinct master paths implemented; duration-aware candidate inspection reusable from repository",
+      "115/115 focused tests, TypeScript, contracts/build/eight shipped MP4s PASS; 55/55 full-candidate player cases and 4/4 partial-block skip previews PASS",
+      "Compact four-capture gallery and separate immutable checkpoint/followup/final proofs promoted; inherited historical allowlist failure documented",
+      "No production MP4, source runtime, gameplay, save, canonical reference or LOCKED contract changed",
+      "Implementation checkpoint 93f8df1 pushed and verified against remote dev; state-only closeout follows; owned QA server stopped"
+    ],
+    "testsRun": [
+      "115 focused tests: MiniMax continuation, CIN-4 specification/media and cinematic census",
+      "Extended 113 historical preproduction/census tests (112 pass; inherited allowlist failure)",
+      "TypeScript --noEmit, contract validator, production Vite build and exact eight MP4 count",
+      "Six raw probes and silent master validation; manual motion/identity/environment/framing review",
+      "55 real-player cases across five full camp/audience candidates; 4 partial Bois-Clair block skip previews",
+      "Eight shipped source and eight distinct protected keyframe/reference hashes; Git whitespace and zero src/public/LOCKED diff"
+    ],
+    "testsPassed": [
+      "115/115 final focused tests PASS; extended 112/113 with one documented inherited allowlist failure",
+      "TypeScript, 8 LOCKED contracts/8 slots, Vite build and eight shipped MP4s PASS",
+      "Six silent masters 1920x1080/24fps/exact authored duration PASS; provider audio excluded",
+      "55/55 isolated full-candidate player cases and 4/4 partial-block skip cases PASS; art acceptance separate",
+      "Eight production MP4/eight protected reference hashes unchanged; no src/public/LOCKED diff; whitespace PASS"
+    ],
+    "testsRemaining": [
+      "Bois-Clair shot 2 integrated keyframe/motion, deliberate-cut geography/identity and complete 20s slot artistic/runtime acceptance",
+      "Portrait framing acceptance: partial left armor/cape crop at 390x844; source correction/presentation decision before any promotion",
+      "Audience 2 final pixel/cadence/lantern-detail acceptance or concrete correction before attempt 3",
+      "Camp three-attempt generation cap reached with no accepted replacement; review recorded defects before any authorized changed attempt policy",
+      "Five other slot families keyframes, generated motion and acceptance; final eight-slot campaign/production QA",
+      "Queued full demo and deferred audio; historical CIN-6E-A allowlist omission remains separate"
+    ],
+    "blockers": [
+      "Camp final replacement unaccepted after three allowed autonomous attempts; do not submit a fourth or reset attempt numbering",
+      "Final full-media art/portrait acceptance incomplete; no replacement authorized by this QA result (standing provider permission remains resolved)"
+    ],
+    "manualMediaNextAction": "Acquire lock/read Git and both state files; no provider task is pending and MiniMax use remains explicitly authorized. Resume item 8 at tools/cinematics/specs/production-eight-slot-remaster/bois_clair_arrival.json shot_02: integrate the declared promoted burning tableau with V2 villageoise/white_mage/serpent_raider, preserve unresolved rescue/reserves agency, validate/hash source, then generate its 10s block with the existing adapter. Reuse shot_01 keyframe (31918e9e8b1a8bc73f913cbd8e16f98cd9b3c0e795f7984288f12729cd35b8f8) and local silent 10s master (b0e80d01845f82f3d42c4024a7ffc047b306ad00d567586fea9eac98b533411f); it is NOT the full 20s slot. Use tools/cinematics/inspect_remaster_candidate.mjs with --spec/--shot/--input/--output in a new ignored directory, then review cut continuity and 390x844 portrait crop before full-slot/campaign acceptance. Camp attempts 1-3 are unaccepted and capped; do not create attempt 4 or reset numbering. Audience 2 fixes equipment/framing but final art/cadence remains unaccepted; prepare a concrete correction before attempt 3. Five remaining slot families still need keyframes/motion. Preserve exactly eight current public MP4s until separate final artist and runtime acceptance; no LOCKED change; audio DEFERRED.",
+    "proof": "docs/reports/cinematic-active-motion-1.md"
+  },
+  "autonomyScope": {
+    "decisionSource": "docs/autonomy/CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md",
+    "allowed": [
+      "cinematic structure readiness",
+      "existing-media integration/QA",
+      "independent demo QA and fixes"
+    ],
+    "excluded": [
+      "new video/keyframe generation",
+      "MiniMax generation/polling jobs",
+      "artistic media remaster",
+      "production MP4 replacement",
+      "automatic Alistair redesign or biography change"
+    ],
+    "mediaWorkstream": "EXTERNAL_MANUAL_WORKSTREAM",
+    "mediaRemasterComplete": false,
+    "prologue": "DESIRED_EXTENSION_TO_PLAN; dedicated contract work before activation",
+    "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
+    "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
+  }
 }

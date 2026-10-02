@@ -1,5 +1,7 @@
 # Eight-slot cinematic remaster preparation
 
+> **Current scope override — operator decision, 2026-10-01 America/Toronto:** new video/keyframe generation, artistic remaster and replacement are now a separate manual workstream. Autonomous runs focus on structure readiness and existing-media QA, then independent demo work. Follow [the latest decision](CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md) and current MD/JSON state; the generation continuation below is historical. Prologue is a desired extension to prepare; first-refuge video is optional/pending; neither expands the LOCKED eight-slot registry yet. Alistair emblem/origin decision is deferred.
+
 Status: **IN_PROGRESS**, queue item 8, 2026-10-02 UTC. Items 1–7 remain complete. Source/context review, generation specs and existing-media QA are prepared. Actual replacement videos and final artistic acceptance remain pending; MiniMax is now **AUTHORIZED_BY_OPERATOR**. No MP4 was replaced.
 
 [Production brief](../../tools/cinematics/specs/production_eight_slot_remaster_brief.json) records current descriptors, measured streams, exact first/middle/final frame hashes, canonical triggers, V2 identities, environment references, exclusions and presentation ownership. All sources are silent H.264/yuv420p, 1920×1080, 24 fps; actual durations match their descriptors. Existing ffmpeg/ffprobe were located under ignored tmp/cinematics/toolchain despite their absence from PATH.
