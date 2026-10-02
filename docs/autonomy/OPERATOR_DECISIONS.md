@@ -6,7 +6,8 @@ Append-only index of the explicit operator decisions that bind autonomous work. 
 | --- | --- | --- | --- | --- |
 | OD-2026-10-01-A | 2026-10-01 | Standing authorization to use the local MiniMax key for RPGThreeJS clip work; active, rhythmic FF9-inspired direction for the eight cinematics | [CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md](CINEMATIC_VIDEO_OPERATOR_DECISION_2026-10-01.md) | SUPERSEDED IN PART by OD-2026-10-01-B: generation, polling and replacement are excluded from recurring runs; the provider permission remains for explicitly engaged independent video work |
 | OD-2026-10-01-B | 2026-10-01 | Video production and art direction leave the autonomous queue (EXTERNAL_MANUAL_WORKSTREAM). Autonomy prepares structure and existing-media QA, then queue item 9. The prologue cinematic and the first-refuge scene are planning only: no new slot, no new ID. The Alistair emblem or origin is undecided and not urgent | [CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md](CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md) | ACTIVE |
-| OD-2026-10-02-A | 2026-10-02 | Multi-agent alignment: the six defaults listed below | [MULTI_AGENT_PROTOCOL.md](MULTI_AGENT_PROTOCOL.md) | ACTIVE once merged into `dev` |
+| OD-2026-10-02-A | 2026-10-02 | Multi-agent alignment: the six defaults listed below | [MULTI_AGENT_PROTOCOL.md](MULTI_AGENT_PROTOCOL.md) | ACTIVE, merged into `dev` on 2026-10-02 |
+| OD-2026-10-02-B | 2026-10-02 | Integrate `devin/agents-wave1` into `dev` through the lock holder, provided it does not impact Codex; push `origin/dev`; brief Codex through the repository and its automation memory so that it adapts, updates itself and resumes autonomous work knowing that Devin collaborates | [Devin to Codex briefing](handoffs/2026-10-02T0533Z-devin-to-codex-briefing.md) | ACTIVE |
 
 ## OD-2026-10-02-A details
 
@@ -16,3 +17,9 @@ Append-only index of the explicit operator decisions that bind autonomous work. 
 4. WIP snapshots go to `wip/<runId>` branches.
 5. Stable run rules live in the repository. The operator shortens the recurring prompt (protocol Appendix A).
 6. The stale-lock threshold stays 105 minutes. An earlier takeover needs an explicit operator order.
+
+## OD-2026-10-02-B details
+
+1. The integration was done by the lock holder only after the stale-lock conditions held (heartbeat older than 105 minutes, dead `pid`, automation paused, no Codex activity, no QA process). It adds documentation files only, overlaps none of the uncommitted work and has no consumer in `src/` or `tools/`.
+2. `origin/dev` is pushed after the integration, then the lock is released.
+3. Codex is informed through [the briefing](handoffs/2026-10-02T0533Z-devin-to-codex-briefing.md) and a short note appended to its automation memory. Changing the recurring prompt stays an operator action.
