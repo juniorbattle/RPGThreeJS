@@ -6,7 +6,7 @@
 | DOMAIN | Combat UI and production QA |
 | BASELINE | dev 122ffe6feffd3d6ae4df678bbd13e6421596e4ea |
 | BRANCH | dev |
-| HEAD | Checkpoint pending; final commit recorded in current state and handoff |
+| HEAD | e6f1a03568d14875db7a8c72f8dadc089b021072; final state commit is HEAD/origin/dev |
 | STATUS | Review; scoped production PASS; item 9 IN_PROGRESS |
 | MERGED_IN | NONE; dev checkpoint |
 | SUPERSEDES | NONE; closes the focus/content gap recorded by combat-grid-hit-reachability-1 |

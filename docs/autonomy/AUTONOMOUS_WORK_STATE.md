@@ -8,13 +8,13 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 | `runId` | rpgthreejs-auto-dev-90m-20261002T2252 |
 | `agent` | codex |
 | `runStartedAt` | 2026-10-02T22:53:38.5177529Z |
-| `runEndedAt` | NONE |
+| `runEndedAt` | 2026-10-02T23:50:23.210Z |
 | `activeTask` | DEMO-QA-POLISH: continuous earned campaign beyond first refuge |
 | `activePhase` | Checkpoint; resume native support readiness and campaign acceptance |
 | `activeSubtask` | Native healer AP readiness/support positioning; earned Champion ending and620recovery |
 | `workingBranch` | dev |
-| `lastKnownGoodCommit` | 790dc26ad18bf1f6def706f91543298515a33d85 |
-| `lastPushedCommit` | 790dc26ad18bf1f6def706f91543298515a33d85 |
+| `lastKnownGoodCommit` | e6f1a03568d14875db7a8c72f8dadc089b021072 |
+| `lastPushedCommit` | e6f1a03568d14875db7a8c72f8dadc089b021072 |
 | `creditStatus` | CODEX_AVAILABLE; this run authorized; automation settings unchanged |
 | `contractComplianceStatus` | PRODUCTION-CONTRACTS-LOCK-1/v1: native card8cases and unlocked-skill observation scoped PASS; full item9 IN_PROGRESS/BLOCKED. No LOCKED rule changed. |
 
@@ -24,31 +24,17 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 {
   "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-02T23:48:33.660Z",
+  "lastHeartbeat": "2026-10-02T23:50:23.248Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261002T2252",
     "sha": "5033b41bab499bee2ce6f4e715b14206e594771f",
-    "status": "UNKNOWN",
-    "dirtyFiles": [
-      "src/combat/legacyCombatRuntime.js",
-      "tools/combat-card-scroll-production-qa.mjs",
-      "tools/demo-continuous-production-qa.mjs",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/reports/combat-stats-focus-retention-1.md",
-      "docs/reports/combat-stats-focus-retention-1/proof.json",
-      "docs/reports/combat-stats-focus-retention-1/390-844-no-preference-aptitude.png",
-      "docs/reports/combat-stats-focus-retention-1/390-844-no-preference-status.png",
-      "docs/reports/combat-stats-focus-retention-1/390-600-no-preference-scrolled.png",
-      "docs/reports/combat-stats-focus-retention-1/620-780-no-preference-status.png",
-      "docs/reports/combat-stats-focus-retention-1/620-780-reduce-scrolled.png",
-      "docs/reports/combat-stats-focus-retention-1/1366-768-reduce-aptitude.png",
-      "docs/autonomy/handoffs/2026-10-02T2252Z-codex-stats-focus-checkpoint.md",
-      "docs/reports/combat-stats-focus-retention-1/campaign-proof.json",
-      "docs/reports/combat-stats-focus-retention-1/620-native-marais-defeat.png",
-      "docs/reports/combat-stats-focus-retention-1/trial-native-failure.png"
-    ],
-    "lastGreenCheck": "Final159focused/8suites,16unchanged receipt tests,types/contracts/build and8native card cases PASS; two continuous runs FAILED/NOT_ACCEPTED"
+    "status": "GREEN",
+    "dirtyFiles": [],
+    "lastGreenCheck": "Final159focused/8suites,16unchanged receipt tests,types/contracts/build and8native card cases PASS; two continuous runs FAILED/NOT_ACCEPTED",
+    "retired": true,
+    "retiredAt": "2026-10-02T23:50:23.210Z",
+    "preservedOnDev": "e6f1a03568d14875db7a8c72f8dadc089b021072",
+    "preservationScope": "All source/driver/selected evidence blobs equal owned snapshot; mutable state/report/handoff evolved"
   },
   "status": "CHECKPOINT_COMPLETE",
   "implementationCommit": "c05ba67bd2823db16d80638d4aff3d1ba74b0052",
@@ -82,7 +68,7 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
   },
   "nextAction": "Resume item9 from this checkpoint; inspect final2252receipts and campaign-proof.json first. Card focus/content8cases ACCEPTED_SCOPED; no repeat unchanged. Correct only the native pilot issue supported by trial trace: Marian has w_salvation but spends/prepares AP too late, one conserve wait at round4/gx6gz3 then KO without casting. Plan early support AP readiness and positioning through existing controls; do not unlock skills or alter combat truth/balance. Register a new solo35minute trial from successful1323exact second-refuge save/proof after correction; preserve mixed-build lineage and owner/ending/exactV6reload assertions. Diagnose620marais50action defeat and affordable prep from successful1153first-refuge seed(gold130;220gold healer upgrade is not affordable as-is), then new registered25minute village recovery. Never seed from failed2252outputs. Continue sacrifice,shared native keyboard cell navigation/focus/announcement, fallback,VFX/balance; demo remains incomplete.",
   "closeout": {
-    "status": "READY_TO_COMMIT",
+    "status": "IMPLEMENTATION_PUSHED_WIP_RETIRED",
     "ownedWorkersStopped": true,
     "portsClosed": [
       5268,
@@ -90,7 +76,30 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
       5270
     ],
     "noMainChange": true,
-    "proofScope": "Card/native policy observations only; full campaign blocked"
+    "proofScope": "Card/native policy observations only; full campaign blocked",
+    "implementationCommit": "e6f1a03568d14875db7a8c72f8dadc089b021072",
+    "finalStateCommit": "HEAD/origin/dev after closeout commit",
+    "reviewedCodeBlobs": [
+      {
+        "path": "src/combat/legacyCombatRuntime.js",
+        "sha256": "8efed9de5307fe35cf5e43b41552a75465e5b2e1dec06da4655199bc4750acd0",
+        "gitBlob": "0ec58a7695a197b1c48029cf5cece50a8e8d464a"
+      },
+      {
+        "path": "tools/combat-card-scroll-production-qa.mjs",
+        "sha256": "6befdf9d5054c8532b6d9ce50b8cfad390b767d7942cd22d4aef529fb3328bc4",
+        "gitBlob": "76eadc5b7ecf07cc93c6afa8587d79b46a5a2dfe"
+      },
+      {
+        "path": "tools/demo-continuous-production-qa.mjs",
+        "sha256": "9448069f6a3ec6282c50eef4cdce8c283ae362db6156bf2ad1ceed1381dea541",
+        "gitBlob": "71330e92564641f232167d1390e4cfd137505233"
+      }
+    ],
+    "workersStopped": true,
+    "ownedWipRetired": true,
+    "lockRelease": "After final state push/parity/memory",
+    "endedAt": "2026-10-02T23:50:23.210Z"
   }
 }
 ```
@@ -101,6 +110,7 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 - Representative native exhaustion/aptitude content verified;103focused and16receipt tests/types/contracts/build PASS
 - Scoped contracts and UI reviewers PASS; six selected captures and compact proof promoted
 - Corrected unlocked-skill policy observed in terminal native Champion run; no archer skill/conservation assumed, one actual healer conservation wait. Ending/healing not accepted.
+- Implementation e6f1a03 pushed/verified; final guardian honesty PASS scoped; owned WIP5033b41 source/evidence preserved and retired; historical24 QA dispositions intact.
 
 ## filesChanged
 
