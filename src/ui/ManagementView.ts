@@ -13,6 +13,7 @@ import { skills as SKILL_DEFS } from '../game/skills';
 import type { GameState, InnateGiftModifier, ItemCategory, ItemDefinition, UnitDefinition, UnitInstance, WeaponDefinition } from '../game/types';
 
 type ManagementTab = 'clan' | 'inventory' | 'shop' | 'skills';
+type ControlFocusKey = { tag: string; attributes: Array<[string, string]> };
 
 const STATUS_LABELS: Record<string, string> = {
   burn: 'Brûlure',
@@ -112,11 +113,15 @@ export class ManagementView {
   private shopOnly = false;
   private skillsEnabled = false;
   private shopWallet: 'temporary' | 'permanent' = 'temporary';
+  private returnFocus: HTMLElement | null = null;
+  private readonly inertSiblings = new Map<HTMLElement, boolean>();
+  private modalReturnFocus: ControlFocusKey | null = null;
 
   constructor(private readonly options: ManagementViewOptions) {}
 
   open(initialTab: ManagementTab = 'clan', shopId?: string, shopWallet: 'temporary' | 'permanent' = 'temporary'): Promise<void> {
     this.close();
+    this.returnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     this.shopEnabled = shopId !== undefined;
     this.shopOnly = initialTab === 'shop' && this.shopEnabled;
     this.skillsEnabled = initialTab === 'skills';
@@ -133,7 +138,15 @@ export class ManagementView {
     applyScreenEnvironment(this.overlay, 'management');
     this.overlay.setAttribute('role', 'dialog');
     this.overlay.setAttribute('aria-modal', 'true');
+    this.overlay.setAttribute('aria-label', 'Registre de Compagnie');
     this.options.root.append(this.overlay);
+    for (const sibling of this.options.root.children) {
+      if (sibling instanceof HTMLElement && sibling !== this.overlay) {
+        this.inertSiblings.set(sibling, sibling.inert);
+        sibling.inert = true;
+      }
+    }
+    this.overlay.addEventListener('keydown', (event) => this.handleKeydown(event));
     this.render();
     return new Promise((resolve) => {
       this.overlay?.addEventListener('management:close', () => resolve(), { once: true });
@@ -145,10 +158,22 @@ export class ManagementView {
     this.overlay.dispatchEvent(new Event('management:close'));
     this.overlay.remove();
     this.overlay = null;
+    for (const [sibling, wasInert] of this.inertSiblings) sibling.inert = wasInert;
+    this.inertSiblings.clear();
+    if (this.returnFocus?.isConnected && !this.returnFocus.closest('[inert]')) this.returnFocus.focus({ preventScroll: true });
+    this.returnFocus = null;
+    this.activeItemId = null;
+    this.activeEquipSlot = null;
+    this.previewItemId = null;
+    this.modalReturnFocus = null;
   }
 
   private render(): void {
     if (!this.overlay) return;
+    const active = document.activeElement;
+    const focusKey = active instanceof HTMLElement && this.overlay.contains(active)
+      ? this.controlFocusKey(active) : null;
+    const hadModal = Boolean(this.overlay.querySelector('.item-modal'));
     const scrollEls = this.overlay.querySelectorAll<HTMLElement>('.ui-scroll-panel, .shop-view, .inventory-grid, .inventory-view');
     const savedScrolls = Array.from(scrollEls).map((el) => el.scrollTop);
     const state = this.options.getState();
@@ -184,6 +209,47 @@ export class ManagementView {
     this.bind();
     this.overlay.querySelectorAll<HTMLElement>('.ui-scroll-panel, .shop-view, .inventory-grid, .inventory-view')
       .forEach((el, i) => { if (savedScrolls[i] !== undefined) el.scrollTop = savedScrolls[i]; });
+    const hasModal = Boolean(this.overlay.querySelector('.item-modal'));
+    if (hasModal && !hadModal) this.modalReturnFocus = focusKey;
+    const shell = this.overlay.querySelector<HTMLElement>('.management__shell');
+    if (shell) shell.inert = hasModal;
+    const restoreKey = hadModal && !hasModal ? this.modalReturnFocus : focusKey;
+    const controls = this.focusableControls();
+    const restore = restoreKey && controls.find(control => control.tagName === restoreKey.tag
+      && restoreKey.attributes.every(([name, value]) => control.getAttribute(name) === value));
+    (restore || controls[0])?.focus({ preventScroll: true });
+    if (!hasModal) this.modalReturnFocus = null;
+  }
+
+  private controlFocusKey(control: HTMLElement): ControlFocusKey | null {
+    const attributes = [...control.attributes].filter(attribute => attribute.name.startsWith('data-'))
+      .map(attribute => [attribute.name, attribute.value] as [string, string]);
+    return attributes.length ? { tag: control.tagName, attributes } : null;
+  }
+
+  private focusableControls(): HTMLElement[] {
+    const scope = this.overlay?.querySelector<HTMLElement>('.item-modal') ?? this.overlay;
+    return [...scope?.querySelectorAll<HTMLElement>('button,input,select,textarea,a[href],[tabindex]') ?? []]
+      .filter(control => control.tabIndex >= 0 && !control.matches(':disabled') && !control.closest('[inert]')
+        && !control.hidden && getComputedStyle(control).display !== 'none' && getComputedStyle(control).visibility !== 'hidden');
+  }
+
+  private handleKeydown(event: KeyboardEvent): void {
+    if (event.key === 'Escape') {
+      event.preventDefault(); event.stopPropagation();
+      if (this.activeEquipSlot) { this.activeEquipSlot = null; this.previewItemId = null; this.render(); }
+      else if (this.activeItemId) { this.activeItemId = null; this.render(); }
+      else this.close();
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    const controls = this.focusableControls();
+    const first = controls[0], last = controls.at(-1);
+    if (!first || !last) { event.preventDefault(); return; }
+    const active = document.activeElement;
+    if (!controls.includes(active as HTMLElement) || event.shiftKey && active === first || !event.shiftKey && active === last) {
+      event.preventDefault(); (event.shiftKey ? last : first).focus();
+    }
   }
 
   private tabButton(tab: ManagementTab, label: string): string {
@@ -283,7 +349,7 @@ export class ManagementView {
     const slotLabel = isWeaponSlot ? 'Arme' : `Accessoire ${slot.slot + 1}`;
     const statsClass = (item: ItemDefinition) => item.category === 'weapons' ? 'item-modal__weapon-details' : 'item-modal__stats';
     return `<div class="item-modal-overlay" data-equip-slot-close>
-      <div class="item-modal ui-panel weapon-modal">
+      <div class="item-modal ui-panel weapon-modal" role="dialog" aria-modal="true" aria-label="Équipement">
         <button type="button" class="icon-button ui-icon-button" data-equip-slot-close aria-label="Fermer">×</button>
         ${previewItem ? `
           <div class="weapon-modal__header">
@@ -616,7 +682,7 @@ export class ManagementView {
     const item = this.activeItemId ? itemById.get(this.activeItemId) : null;
     if (!item) return '';
     return `<div class="item-modal-overlay" data-item-modal-close>
-      <div class="item-modal ui-panel weapon-modal">
+      <div class="item-modal ui-panel weapon-modal" role="dialog" aria-modal="true" aria-label="Détails de l’objet">
         <button type="button" class="icon-button ui-icon-button" data-item-modal-close aria-label="Fermer">×</button>
         <div class="weapon-modal__header">
           <span class="item-row__icon ui-chip">${item.icon}</span>

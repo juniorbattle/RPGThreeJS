@@ -20,6 +20,8 @@ interface RestSummary {
 
 export class ExplorationView {
   private element: HTMLElement | null = null;
+  private focusNodeId: string | null = null;
+  private preferredFocusAction: ExplorationAction = 'clan';
   private readonly backgroundRequests = new Map<string, Promise<RefugeBackgroundReadiness>>();
 
   constructor(private readonly options: ExplorationViewOptions) {}
@@ -35,6 +37,8 @@ export class ExplorationView {
 
   open(presentation: RefugePresentation, reputationLabel: string, securedGold: number, rest: RestSummary): Promise<ExplorationAction> {
     this.close();
+    if (this.focusNodeId !== presentation.nodeId) this.preferredFocusAction = 'clan';
+    this.focusNodeId = presentation.nodeId;
     const restHint = rest.woundedCount <= 0
       ? 'Compagnie en pleine forme'
       : rest.canRest
@@ -57,7 +61,7 @@ export class ExplorationView {
         <h2></h2>
         <p class="exploration-stop__description"></p>
         <strong class="exploration-stop__secured">+${securedGold} or plac&eacute; dans le coffre</strong>
-        ${rest.message ? `<em class="exploration-stop__feedback">${rest.message}</em>` : ''}
+        ${rest.message ? `<em class="exploration-stop__feedback" role="status">${rest.message}</em>` : ''}
       </header>
       <div class="exploration-stop__hotspots">
         <button type="button" data-action="clan"><b>Clan</b><small>G&eacute;rer la compagnie</small></button>
@@ -90,12 +94,15 @@ export class ExplorationView {
       }
       section.style.visibility = 'visible';
       section.inert = false;
+      const preferred = section.querySelector<HTMLButtonElement>(`[data-action="${this.preferredFocusAction}"]:not(:disabled)`);
+      (preferred ?? section.querySelector<HTMLButtonElement>('[data-action]:not(:disabled)'))?.focus({ preventScroll: true });
     });
     return new Promise((resolve) => {
       section.querySelectorAll<HTMLButtonElement>('[data-action]').forEach((button) => {
         button.addEventListener('click', () => {
           if (section.dataset.backgroundReady === 'pending') return;
           const action = button.dataset.action as ExplorationAction;
+          this.preferredFocusAction = action;
           this.close();
           resolve(action);
         });

@@ -27,6 +27,25 @@ const decoded = (backgroundUrl: string): RefugeBackgroundReadiness => ({
 const readyBackground = async (backgroundUrl: string) => decoded(backgroundUrl);
 const settledHub = async () => { await Promise.resolve(); };
 
+it('owns focus only after readiness and restores the last enabled action within the same refuge', async () => {
+  const state = createInitialState();
+  const hud = new CampaignStatusHud(() => selectCampaignStatus(state));
+  const view = new ExplorationView({ root: document.body, statusHud: hud, backgroundPreloader: readyBackground });
+  const firstAction = view.open(first, 'Neutre', 0, { cost: 0, woundedCount: 0, canRest: false });
+  expect(document.activeElement?.closest('.exploration-stop')).toBeNull();
+  await settledHub();
+  expect((document.activeElement as HTMLElement).dataset.action).toBe('clan');
+  document.querySelector<HTMLButtonElement>('[data-action="shop"]')!.click();
+  expect(await firstAction).toBe('shop');
+  void view.open(first, 'Neutre', 0, { cost: 0, woundedCount: 0, canRest: false });
+  await settledHub();
+  expect((document.activeElement as HTMLElement).dataset.action).toBe('shop');
+  void view.open(second, 'Neutre', 0, { cost: 0, woundedCount: 0, canRest: false });
+  await settledHub();
+  expect((document.activeElement as HTMLElement).dataset.action).toBe('clan');
+  view.close();
+});
+
 it('renders five unchanged action IDs, truthful healthy Rest, and the one movable HUD', async () => {
   const state = createInitialState();
   const hud = new CampaignStatusHud(() => selectCampaignStatus(state));
