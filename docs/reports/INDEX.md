@@ -4,6 +4,7 @@ Baseline for this index: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. Repo
 
 | Report | Historical role | Current authority |
 | --- | --- | --- |
+| [Native combat keyboard activation](combat-keyboard-native-activation-1.md) | Reproduced focused Attack/Enter ending-turn defect and six native production control cases,2026-10-02 | [Project status](../project/CURRENT_STATUS.md); full demo/recovery/ending acceptance remains in current autonomy state |
 | [Autonomy efficiency lot1](autonomy-efficiency-lot-1-2026-10-02.md) | Approved operational integration and tested QA receipts,2026-10-02; demo browser acceptance still pending | [Operator decision](../autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-02.md), protocol and current state |
 | [Earned Bois-Clair and Salvation](earned-bois-clair-salvation-1.md) | Actual-input rescue victories/second-refuge V6 resume and authored healing adapter correction, 2026-10-02 | [Project status](../project/CURRENT_STATUS.md); ending/mobile/defeat/VFX acceptance remains item 9 |
 | [Refuge autosave durability](refuge-autosave-durability-1.md) | Both-refuge immediate entry/rest V6 resume, native potion service and fresh earned opening/first-refuge proof, 2026-10-02 | [Project status](../project/CURRENT_STATUS.md); later campaign endings/combat/VFX remain item 9 |

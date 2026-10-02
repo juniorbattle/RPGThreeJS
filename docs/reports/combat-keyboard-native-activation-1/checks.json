@@ -1,0 +1,1859 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "387dd732b3578b3e0ff620ff7e6c3cf5c01a8fe8",
+  "baselineReproduction": {
+    "path": "tmp/demo/1952-combat-keyboard-baseline/results.json",
+    "sha256": "0b8ceb9c9f3c55fb6022b14bfc11a9a6bd59b1c5037c71edd70054cb1a26bad6",
+    "method": "NATIVE_BUILT_STANDALONE_KEYBOARD_PROBE",
+    "runtimeMutated": false,
+    "outcomeInjected": false,
+    "before": {
+      "mode": "menu",
+      "active": {
+        "id": 8,
+        "name": "Archère",
+        "ap": 1,
+        "team": "player"
+      },
+      "turnIdx": 0
+    },
+    "after": {
+      "mode": "ai",
+      "active": {
+        "id": 1,
+        "name": "Brigand",
+        "ap": 1,
+        "team": "foe"
+      },
+      "turnIdx": 1
+    },
+    "pass": false,
+    "errors": []
+  },
+  "keyboard": {
+    "resultPath": "tmp/demo/1952-keyboard-final/results.json",
+    "resultSha256": "7c807510638a4a2b73f8c310a806c832b2520ff84d4f7e079b3ac4fcee6defcb",
+    "receiptPath": "tmp/demo/1952-keyboard-final/qa-job.json",
+    "receiptSha256": "b5d0c3e5430dbc68f36fb979cca80967df28d5c5c89ad2618dfe635405d3d65b",
+    "status": "SUCCEEDED",
+    "eligibleForReview": true,
+    "provenance": {
+      "gitHead": "387dd732b3578b3e0ff620ff7e6c3cf5c01a8fe8",
+      "sourceTree": "a217d771f09008d7e07f0a15236317376000bbc9",
+      "sourceDiffSha256": "6a9d0d99de50c0170942550df93088ffcc83723168f9b3366fb23d996805c220",
+      "driver": {
+        "path": "tools/combat-keyboard-production-qa.mjs",
+        "sha256": "e5b0675210c37fc9b2520c1b93716c45646dd30abd2fa3c618511a46cac27014"
+      },
+      "inputs": [],
+      "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+      "build": [
+        {
+          "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+          "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+        },
+        {
+          "path": "dist/assets/combat-D77u3W0i.css",
+          "sha256": "0a129bc6287a9a8bfb62aa0d19fc65482032b89d26634d9736afc29cb54bda04"
+        },
+        {
+          "path": "dist/assets/combat-DWj918UO.js",
+          "sha256": "efdb2aede6bc709a6fb8f3f30ce516df93d4a00dae15c58f9bb2c21d2f131539"
+        },
+        {
+          "path": "dist/assets/game-DNVJsSmX.js",
+          "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+        },
+        {
+          "path": "dist/assets/game-Z5tVqu3k.css",
+          "sha256": "ff17df7f056304ca1c29dbf47e7b8c2821311a645dc30e83a92a564d51a9926e"
+        },
+        {
+          "path": "dist/assets/three-core-f0ajj1rG.js",
+          "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+        },
+        {
+          "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+          "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+        },
+        {
+          "path": "dist/assets/validation-mSkvzYyn.js",
+          "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "f7e71881a1d178a7f793a64f477c1c9e899a0077aa962e05f67c2fb2f871c361"
+        }
+      ]
+    },
+    "parameters": {
+      "viewports": [
+        [
+          1366,
+          768
+        ],
+        [
+          620,
+          780
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "motionModes": [
+        "no-preference",
+        "reduce"
+      ]
+    },
+    "result": {
+      "schemaVersion": 1,
+      "method": "NATIVE_BUILT_STANDALONE_KEYBOARD",
+      "runtimeMutated": false,
+      "outcomeInjected": false,
+      "campaignAcceptance": false,
+      "errors": [],
+      "cases": [
+        {
+          "width": 1366,
+          "height": 768,
+          "reducedMotion": "no-preference",
+          "checks": [
+            "Attack Enter opens submenu without ending turn",
+            "Escape cancels native target",
+            "Attack Space opens submenu without ending turn",
+            "Escape cancels native target",
+            "Native Retour preserves turn",
+            "skill Enter preserves turn",
+            "skill Retour preserves turn",
+            "item Enter preserves turn",
+            "item Retour preserves turn",
+            "Battlefield A and Escape preserved",
+            "Battlefield M and Escape preserved",
+            "Native Wait advances exactly one turn"
+          ],
+          "pass": true,
+          "before": {
+            "mode": "menu",
+            "busy": false,
+            "round": 1,
+            "turnIdx": 0,
+            "active": {
+              "id": 8,
+              "ap": 1,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "hp": 85,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 2,
+                "hp": 85,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 3,
+                "hp": 130,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 4,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 5,
+                "hp": 140,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 6,
+                "hp": 100,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 7,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 8,
+                "hp": 90,
+                "ap": 1,
+                "alive": true
+              }
+            ]
+          },
+          "afterWait": {
+            "mode": "ai",
+            "busy": true,
+            "round": 1,
+            "turnIdx": 1,
+            "active": {
+              "id": 1,
+              "ap": 1,
+              "team": "foe"
+            },
+            "units": [
+              {
+                "id": 1,
+                "hp": 85,
+                "ap": 1,
+                "alive": true
+              },
+              {
+                "id": 2,
+                "hp": 85,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 3,
+                "hp": 130,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 4,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 5,
+                "hp": 140,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 6,
+                "hp": 100,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 7,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 8,
+                "hp": 90,
+                "ap": 2,
+                "alive": true
+              }
+            ]
+          }
+        },
+        {
+          "width": 1366,
+          "height": 768,
+          "reducedMotion": "reduce",
+          "checks": [
+            "Attack Enter opens submenu without ending turn",
+            "Escape cancels native target",
+            "Attack Space opens submenu without ending turn",
+            "Escape cancels native target",
+            "Native Retour preserves turn",
+            "skill Enter preserves turn",
+            "skill Retour preserves turn",
+            "item Enter preserves turn",
+            "item Retour preserves turn",
+            "Battlefield A and Escape preserved",
+            "Battlefield M and Escape preserved",
+            "Native Wait advances exactly one turn"
+          ],
+          "pass": true,
+          "before": {
+            "mode": "menu",
+            "busy": false,
+            "round": 1,
+            "turnIdx": 0,
+            "active": {
+              "id": 8,
+              "ap": 1,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "hp": 85,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 2,
+                "hp": 85,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 3,
+                "hp": 130,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 4,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 5,
+                "hp": 140,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 6,
+                "hp": 100,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 7,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 8,
+                "hp": 90,
+                "ap": 1,
+                "alive": true
+              }
+            ]
+          },
+          "afterWait": {
+            "mode": "ai",
+            "busy": true,
+            "round": 1,
+            "turnIdx": 1,
+            "active": {
+              "id": 1,
+              "ap": 1,
+              "team": "foe"
+            },
+            "units": [
+              {
+                "id": 1,
+                "hp": 85,
+                "ap": 1,
+                "alive": true
+              },
+              {
+                "id": 2,
+                "hp": 85,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 3,
+                "hp": 130,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 4,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 5,
+                "hp": 140,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 6,
+                "hp": 100,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 7,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 8,
+                "hp": 90,
+                "ap": 2,
+                "alive": true
+              }
+            ]
+          }
+        },
+        {
+          "width": 620,
+          "height": 780,
+          "reducedMotion": "no-preference",
+          "checks": [
+            "Attack Enter opens submenu without ending turn",
+            "Escape cancels native target",
+            "Attack Space opens submenu without ending turn",
+            "Escape cancels native target",
+            "Native Retour preserves turn",
+            "skill Enter preserves turn",
+            "skill Retour preserves turn",
+            "item Enter preserves turn",
+            "item Retour preserves turn",
+            "Battlefield A and Escape preserved",
+            "Battlefield M and Escape preserved",
+            "Native Wait advances exactly one turn"
+          ],
+          "pass": true,
+          "before": {
+            "mode": "menu",
+            "busy": false,
+            "round": 1,
+            "turnIdx": 0,
+            "active": {
+              "id": 8,
+              "ap": 1,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "hp": 85,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 2,
+                "hp": 85,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 3,
+                "hp": 130,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 4,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 5,
+                "hp": 140,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 6,
+                "hp": 100,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 7,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 8,
+                "hp": 90,
+                "ap": 1,
+                "alive": true
+              }
+            ]
+          },
+          "afterWait": {
+            "mode": "ai",
+            "busy": true,
+            "round": 1,
+            "turnIdx": 1,
+            "active": {
+              "id": 1,
+              "ap": 1,
+              "team": "foe"
+            },
+            "units": [
+              {
+                "id": 1,
+                "hp": 85,
+                "ap": 1,
+                "alive": true
+              },
+              {
+                "id": 2,
+                "hp": 85,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 3,
+                "hp": 130,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 4,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 5,
+                "hp": 140,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 6,
+                "hp": 100,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 7,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 8,
+                "hp": 90,
+                "ap": 2,
+                "alive": true
+              }
+            ]
+          }
+        },
+        {
+          "width": 620,
+          "height": 780,
+          "reducedMotion": "reduce",
+          "checks": [
+            "Attack Enter opens submenu without ending turn",
+            "Escape cancels native target",
+            "Attack Space opens submenu without ending turn",
+            "Escape cancels native target",
+            "Native Retour preserves turn",
+            "skill Enter preserves turn",
+            "skill Retour preserves turn",
+            "item Enter preserves turn",
+            "item Retour preserves turn",
+            "Battlefield A and Escape preserved",
+            "Battlefield M and Escape preserved",
+            "Native Wait advances exactly one turn"
+          ],
+          "pass": true,
+          "before": {
+            "mode": "menu",
+            "busy": false,
+            "round": 1,
+            "turnIdx": 0,
+            "active": {
+              "id": 8,
+              "ap": 1,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "hp": 85,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 2,
+                "hp": 85,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 3,
+                "hp": 130,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 4,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 5,
+                "hp": 140,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 6,
+                "hp": 100,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 7,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 8,
+                "hp": 90,
+                "ap": 1,
+                "alive": true
+              }
+            ]
+          },
+          "afterWait": {
+            "mode": "ai",
+            "busy": true,
+            "round": 1,
+            "turnIdx": 1,
+            "active": {
+              "id": 1,
+              "ap": 1,
+              "team": "foe"
+            },
+            "units": [
+              {
+                "id": 1,
+                "hp": 85,
+                "ap": 1,
+                "alive": true
+              },
+              {
+                "id": 2,
+                "hp": 85,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 3,
+                "hp": 130,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 4,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 5,
+                "hp": 140,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 6,
+                "hp": 100,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 7,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 8,
+                "hp": 90,
+                "ap": 2,
+                "alive": true
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "reducedMotion": "no-preference",
+          "checks": [
+            "Attack Enter opens submenu without ending turn",
+            "Escape cancels native target",
+            "Attack Space opens submenu without ending turn",
+            "Escape cancels native target",
+            "Native Retour preserves turn",
+            "skill Enter preserves turn",
+            "skill Retour preserves turn",
+            "item Enter preserves turn",
+            "item Retour preserves turn",
+            "Battlefield A and Escape preserved",
+            "Battlefield M and Escape preserved",
+            "Native Wait advances exactly one turn"
+          ],
+          "pass": true,
+          "before": {
+            "mode": "menu",
+            "busy": false,
+            "round": 1,
+            "turnIdx": 0,
+            "active": {
+              "id": 8,
+              "ap": 1,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "hp": 85,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 2,
+                "hp": 85,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 3,
+                "hp": 130,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 4,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 5,
+                "hp": 140,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 6,
+                "hp": 100,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 7,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 8,
+                "hp": 90,
+                "ap": 1,
+                "alive": true
+              }
+            ]
+          },
+          "afterWait": {
+            "mode": "ai",
+            "busy": true,
+            "round": 1,
+            "turnIdx": 1,
+            "active": {
+              "id": 1,
+              "ap": 1,
+              "team": "foe"
+            },
+            "units": [
+              {
+                "id": 1,
+                "hp": 85,
+                "ap": 1,
+                "alive": true
+              },
+              {
+                "id": 2,
+                "hp": 85,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 3,
+                "hp": 130,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 4,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 5,
+                "hp": 140,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 6,
+                "hp": 100,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 7,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 8,
+                "hp": 90,
+                "ap": 2,
+                "alive": true
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "reducedMotion": "reduce",
+          "checks": [
+            "Attack Enter opens submenu without ending turn",
+            "Escape cancels native target",
+            "Attack Space opens submenu without ending turn",
+            "Escape cancels native target",
+            "Native Retour preserves turn",
+            "skill Enter preserves turn",
+            "skill Retour preserves turn",
+            "item Enter preserves turn",
+            "item Retour preserves turn",
+            "Battlefield A and Escape preserved",
+            "Battlefield M and Escape preserved",
+            "Native Wait advances exactly one turn"
+          ],
+          "pass": true,
+          "before": {
+            "mode": "menu",
+            "busy": false,
+            "round": 1,
+            "turnIdx": 0,
+            "active": {
+              "id": 8,
+              "ap": 1,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "hp": 85,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 2,
+                "hp": 85,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 3,
+                "hp": 130,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 4,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 5,
+                "hp": 140,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 6,
+                "hp": 100,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 7,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 8,
+                "hp": 90,
+                "ap": 1,
+                "alive": true
+              }
+            ]
+          },
+          "afterWait": {
+            "mode": "ai",
+            "busy": true,
+            "round": 1,
+            "turnIdx": 1,
+            "active": {
+              "id": 1,
+              "ap": 1,
+              "team": "foe"
+            },
+            "units": [
+              {
+                "id": 1,
+                "hp": 85,
+                "ap": 1,
+                "alive": true
+              },
+              {
+                "id": 2,
+                "hp": 85,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 3,
+                "hp": 130,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 4,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 5,
+                "hp": 140,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 6,
+                "hp": 100,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 7,
+                "hp": 75,
+                "ap": 0,
+                "alive": true
+              },
+              {
+                "id": 8,
+                "hp": 90,
+                "ap": 2,
+                "alive": true
+              }
+            ]
+          }
+        }
+      ],
+      "pass": true,
+      "endedAt": "2026-10-02T20:34:44.100Z"
+    }
+  },
+  "verification": {
+    "focusedTests": 81,
+    "focusedSuites": 5,
+    "receiptTests": 16,
+    "types": "PASS",
+    "contracts": 8,
+    "videoSlots": 8,
+    "build": "PASS",
+    "lockedGate": "PASS",
+    "whitespace": "PASS",
+    "uiReview": "Read-only targeted input guard recommendation",
+    "contractsReview": "Scoped source/native keyboard,1366normal and390OS-only exact V6 recovery PASS;620/trial not accepted"
+  },
+  "selectedCaptures": [
+    {
+      "path": "docs/reports/combat-keyboard-native-activation-1/baseline-focused-attack.png",
+      "sha256": "8bd918ea9d83ac1c946d5902a4fa7213d67c946b2eff3013ad7bd245798b8d46"
+    },
+    {
+      "path": "docs/reports/combat-keyboard-native-activation-1/baseline-unintended-foe-turn.png",
+      "sha256": "0ef163ca4ef49f923ccb9e1ba4e526aa55f54c65a2ca900e5dc998949672511e"
+    },
+    {
+      "path": "docs/reports/combat-keyboard-native-activation-1/desktop-focused-attack.png",
+      "sha256": "9108b78e8849929c9598eda723fc5732574c97dda5ca4333bc81076d4fa1ac79"
+    },
+    {
+      "path": "docs/reports/combat-keyboard-native-activation-1/desktop-native-defeat-return-focus.png",
+      "sha256": "23a6af8a984d805cb6d1588b2d41210d6b92bd0f9a4a97c1cd6b0de535d6d4b0"
+    },
+    {
+      "path": "docs/reports/combat-keyboard-native-activation-1/desktop-recovered-resumed.png",
+      "sha256": "61e55e66ae1886a01f79bfade3cba3fb85588b7f5bb6a54c652e7fa6c92ce13d"
+    },
+    {
+      "path": "docs/reports/combat-keyboard-native-activation-1/intermediate-focused-attack.png",
+      "sha256": "b3809daaf481d66b1ab11aea60a12213b251fda494e4aa7a899f4ce78e121170"
+    },
+    {
+      "path": "docs/reports/combat-keyboard-native-activation-1/mobile-native-defeat-return-focus.png",
+      "sha256": "89104bbd599e582aa9f6e4dcc1df0a9671ce1d951b514406809a69b5e5350e9e"
+    },
+    {
+      "path": "docs/reports/combat-keyboard-native-activation-1/mobile-os-motion-focused-attack.png",
+      "sha256": "49862bade8b0e1668d4a91114259b100f75ff6229584e7ea3161bc4b7408a063"
+    },
+    {
+      "path": "docs/reports/combat-keyboard-native-activation-1/mobile-recovered-departure.png",
+      "sha256": "1c4b23a7346151d1edfd253c6a0ed17c0f2a710ee669670ef90ba0edb363d301"
+    },
+    {
+      "path": "docs/reports/combat-keyboard-native-activation-1/mobile-recovered-resumed.png",
+      "sha256": "f035de9fefc8a9e0517ed9ed9fc71e700641f0473a30fc573682e90ff44fe0d0"
+    }
+  ],
+  "limits": [
+    "Standalone campaignAcceptance=false",
+    "Recovery accepted only1366normal and390OS-only/gamefalse; T3 was already absent",
+    "620/trial require independent terminal review; failed attempts cannot certify requested boundary",
+    "Full keyboard grid targeting/fallback/VFX/balance remain open"
+  ],
+  "campaignContinuations": [
+    {
+      "name": "desktop",
+      "rawResult": "tmp/demo/1952-final-desktop/results.json",
+      "rawResultSha256": "0c97f1658d5b65035be11e78800f00f69841fd6dae352d9e7309435c76e89819",
+      "receiptPath": "tmp/demo/1952-final-desktop/qa-job.json",
+      "receiptSha256": "cc2b96a331873a9b61e65184f36dfd8481b6ce6b539571f3f3a5a83483a508ef",
+      "pass": true,
+      "failure": null,
+      "errors": [],
+      "startedAt": "2026-10-02T20:25:43.258Z",
+      "endedAt": "2026-10-02T20:57:00.318Z",
+      "receiptStatus": "SUCCEEDED",
+      "eligibleForReview": true,
+      "provenanceStable": true,
+      "requestMatches": true,
+      "sourceTree": "a217d771f09008d7e07f0a15236317376000bbc9",
+      "sourceDiffSha256": "6a9d0d99de50c0170942550df93088ffcc83723168f9b3366fb23d996805c220",
+      "driver": {
+        "path": "tools/demo-continuous-production-qa.mjs",
+        "sha256": "558df230a943da57ec0bccc583ee1b8fd76aaab709e80e746b106aa3bcbe195c"
+      },
+      "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+      "build": [
+        {
+          "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+          "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+        },
+        {
+          "path": "dist/assets/combat-D77u3W0i.css",
+          "sha256": "0a129bc6287a9a8bfb62aa0d19fc65482032b89d26634d9736afc29cb54bda04"
+        },
+        {
+          "path": "dist/assets/combat-DWj918UO.js",
+          "sha256": "efdb2aede6bc709a6fb8f3f30ce516df93d4a00dae15c58f9bb2c21d2f131539"
+        },
+        {
+          "path": "dist/assets/game-DNVJsSmX.js",
+          "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+        },
+        {
+          "path": "dist/assets/game-Z5tVqu3k.css",
+          "sha256": "ff17df7f056304ca1c29dbf47e7b8c2821311a645dc30e83a92a564d51a9926e"
+        },
+        {
+          "path": "dist/assets/three-core-f0ajj1rG.js",
+          "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+        },
+        {
+          "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+          "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+        },
+        {
+          "path": "dist/assets/validation-mSkvzYyn.js",
+          "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "f7e71881a1d178a7f793a64f477c1c9e899a0077aa962e05f67c2fb2f871c361"
+        }
+      ],
+      "inputs": [
+        {
+          "role": "earnedSavePath",
+          "path": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+          "sha256": "d8b0deb62c66fc2fd3d01ec8c513fafb697021e8f9c808869277b90a250e8267"
+        },
+        {
+          "role": "priorProofPath",
+          "path": "tmp/demo/continuous-1153-fresh-final/results.json",
+          "sha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+        }
+      ],
+      "parameters": {
+        "target": "defeat-recovery",
+        "routePlan": "rescue",
+        "timeoutMinutes": 35,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": true,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/continuous-1153-fresh-final/results.json",
+        "verifySalvation": false
+      },
+      "motionEvidence": {
+        "osRequested": false,
+        "gameRequested": false
+      },
+      "runtimeMutated": false,
+      "combatOutcomeInjected": false,
+      "fixtureStateWritten": false,
+      "inheritedBattleCount": 1,
+      "earnedResume": {
+        "savePath": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/continuous-1153-fresh-final/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "d8b0deb62c66fc2fd3d01ec8c513fafb697021e8f9c808869277b90a250e8267",
+        "proofSha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+      },
+      "newBattles": [
+        {
+          "node": "lion-valmir-road",
+          "combatId": "marsh_crossing",
+          "pass": true,
+          "outcome": "victory",
+          "actions": 33,
+          "kinds": {
+            "move": 11,
+            "attack": 7,
+            "wait": 11,
+            "potion": 3,
+            "revive_vial": 1
+          },
+          "round": 4,
+          "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nPassage des marais\n\nOBJECTIF SÉCURISÉ\nTraversez les eaux infestées qui coupent la route de Bois-Clair.\nRÉCOMPENSES\nOr\n+90\nGemmes rouges\n+1\niron ore\n+1\nRéputation\n+1\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nDEBOUT\nElara\nDEBOUT\nKestrel\nDEBOUT\nCONTINUER LA CHRONIQUE",
+          "participants": [
+            {
+              "id": "warrior",
+              "hp": 140,
+              "maxhp": 140,
+              "alive": true
+            },
+            {
+              "id": "white_mage",
+              "hp": 100,
+              "maxhp": 100,
+              "alive": true
+            },
+            {
+              "id": "dark_mage",
+              "hp": 38,
+              "maxhp": 75,
+              "alive": true
+            },
+            {
+              "id": "archer",
+              "hp": 68,
+              "maxhp": 90,
+              "alive": true
+            }
+          ]
+        },
+        {
+          "node": "lion-village-choice",
+          "combatId": "village_defense",
+          "pass": true,
+          "outcome": "defeat",
+          "actions": 17,
+          "kinds": {
+            "wait-for-native-defeat": 17
+          },
+          "round": 8,
+          "resultText": "✦\n\nROUTE BRISÉE\n\nDéfaite\n\nVotre équipe a été vaincue…\n\nCHECKPOINT\nRetour au dernier refuge\nÉTAT DE LA COMPAGNIE\nAlistair\nK.O.\nMarian\nK.O.\nElara\nK.O.\nKestrel\nK.O.\nREVENIR À LA CARTE",
+          "participants": [
+            {
+              "id": "warrior",
+              "hp": 0,
+              "maxhp": 140,
+              "alive": false
+            },
+            {
+              "id": "white_mage",
+              "hp": 0,
+              "maxhp": 100,
+              "alive": false
+            },
+            {
+              "id": "dark_mage",
+              "hp": 0,
+              "maxhp": 75,
+              "alive": false
+            },
+            {
+              "id": "archer",
+              "hp": 0,
+              "maxhp": 90,
+              "alive": false
+            }
+          ]
+        }
+      ],
+      "recovery": {
+        "node": "lion-village-choice",
+        "checkpoint": "lion-first-refuge",
+        "mode": "narrative",
+        "departureLabel": "Prendre la route",
+        "exactOwnerRule": true,
+        "exactReload": true,
+        "temporaryLootBefore": {
+          "gold": 105,
+          "inventory": {
+            "consumables": {},
+            "accessories": {},
+            "materials": {
+              "red_gem": 1,
+              "iron_ore": 1
+            },
+            "weapons": {}
+          }
+        },
+        "clearedTemporaryGold": true,
+        "clearedTemporaryInventory": true,
+        "failedT1Removed": true,
+        "t0Preserved": true,
+        "t3WasAbsent": true,
+        "t3RemainsAbsent": true,
+        "returnControlBounds": {
+          "x": 454,
+          "y": 496.3125,
+          "width": 458,
+          "height": 40
+        }
+      },
+      "ending": null,
+      "captureCount": 11,
+      "maxDocumentOverflow": 0,
+      "captures": [
+        "lion-first-refuge-earned.png",
+        "lion-first-refuge-earned-resumed.png",
+        "lion-first-refuge-native-rest.png",
+        "combat-1-deployment.png",
+        "combat-1-actual-impact.png",
+        "combat-1-result.png",
+        "combat-2-deployment.png",
+        "combat-2-result.png",
+        "combat-2-native-defeat-return-focus.png",
+        "native-defeat-recovered.png",
+        "native-defeat-recovered-resumed.png"
+      ]
+    },
+    {
+      "name": "mobile",
+      "rawResult": "tmp/demo/1952-final-mobile/results.json",
+      "rawResultSha256": "ad0ba70b3f9cdedbb8ad6a46b75acb78aac2c7b9f8f19e5bb0b45a9b9a727561",
+      "receiptPath": "tmp/demo/1952-final-mobile/qa-job.json",
+      "receiptSha256": "aa470e65ab23501761b7a124c3e9f0f4202afc5dd7da1e45149a4c6e34e98f82",
+      "pass": true,
+      "failure": null,
+      "errors": [],
+      "startedAt": "2026-10-02T20:25:45.067Z",
+      "endedAt": "2026-10-02T20:45:02.091Z",
+      "receiptStatus": "SUCCEEDED",
+      "eligibleForReview": true,
+      "provenanceStable": true,
+      "requestMatches": true,
+      "sourceTree": "a217d771f09008d7e07f0a15236317376000bbc9",
+      "sourceDiffSha256": "6a9d0d99de50c0170942550df93088ffcc83723168f9b3366fb23d996805c220",
+      "driver": {
+        "path": "tools/demo-continuous-production-qa.mjs",
+        "sha256": "558df230a943da57ec0bccc583ee1b8fd76aaab709e80e746b106aa3bcbe195c"
+      },
+      "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+      "build": [
+        {
+          "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+          "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+        },
+        {
+          "path": "dist/assets/combat-D77u3W0i.css",
+          "sha256": "0a129bc6287a9a8bfb62aa0d19fc65482032b89d26634d9736afc29cb54bda04"
+        },
+        {
+          "path": "dist/assets/combat-DWj918UO.js",
+          "sha256": "efdb2aede6bc709a6fb8f3f30ce516df93d4a00dae15c58f9bb2c21d2f131539"
+        },
+        {
+          "path": "dist/assets/game-DNVJsSmX.js",
+          "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+        },
+        {
+          "path": "dist/assets/game-Z5tVqu3k.css",
+          "sha256": "ff17df7f056304ca1c29dbf47e7b8c2821311a645dc30e83a92a564d51a9926e"
+        },
+        {
+          "path": "dist/assets/three-core-f0ajj1rG.js",
+          "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+        },
+        {
+          "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+          "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+        },
+        {
+          "path": "dist/assets/validation-mSkvzYyn.js",
+          "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "f7e71881a1d178a7f793a64f477c1c9e899a0077aa962e05f67c2fb2f871c361"
+        }
+      ],
+      "inputs": [
+        {
+          "role": "earnedSavePath",
+          "path": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+          "sha256": "d8b0deb62c66fc2fd3d01ec8c513fafb697021e8f9c808869277b90a250e8267"
+        },
+        {
+          "role": "priorProofPath",
+          "path": "tmp/demo/continuous-1153-fresh-final/results.json",
+          "sha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+        }
+      ],
+      "parameters": {
+        "target": "defeat-recovery",
+        "routePlan": "rescue",
+        "timeoutMinutes": 35,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": true,
+        "viewport": [
+          390,
+          844
+        ],
+        "osReducedMotion": true,
+        "earnedSavePath": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/continuous-1153-fresh-final/results.json",
+        "verifySalvation": false
+      },
+      "motionEvidence": {
+        "osRequested": true,
+        "gameRequested": false
+      },
+      "runtimeMutated": false,
+      "combatOutcomeInjected": false,
+      "fixtureStateWritten": false,
+      "inheritedBattleCount": 1,
+      "earnedResume": {
+        "savePath": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/continuous-1153-fresh-final/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "d8b0deb62c66fc2fd3d01ec8c513fafb697021e8f9c808869277b90a250e8267",
+        "proofSha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+      },
+      "newBattles": [
+        {
+          "node": "lion-valmir-road",
+          "combatId": "marsh_crossing",
+          "pass": true,
+          "outcome": "victory",
+          "actions": 43,
+          "kinds": {
+            "move": 12,
+            "attack": 10,
+            "wait": 16,
+            "potion": 4,
+            "revive_vial": 1
+          },
+          "round": 6,
+          "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nPassage des marais\n\nOBJECTIF SÉCURISÉ\nTraversez les eaux infestées qui coupent la route de Bois-Clair.\nRÉCOMPENSES\nOr\n+90\nGemmes rouges\n+1\niron ore\n+1\nRéputation\n+1\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nDEBOUT\nElara\nK.O.\nKestrel\nK.O.\nCONTINUER LA CHRONIQUE",
+          "participants": [
+            {
+              "id": "warrior",
+              "hp": 140,
+              "maxhp": 140,
+              "alive": true
+            },
+            {
+              "id": "white_mage",
+              "hp": 50,
+              "maxhp": 100,
+              "alive": true
+            },
+            {
+              "id": "dark_mage",
+              "hp": 0,
+              "maxhp": 75,
+              "alive": false
+            },
+            {
+              "id": "archer",
+              "hp": 0,
+              "maxhp": 90,
+              "alive": false
+            }
+          ]
+        },
+        {
+          "node": "lion-village-choice",
+          "combatId": "village_defense",
+          "pass": true,
+          "outcome": "defeat",
+          "actions": 15,
+          "kinds": {
+            "wait-for-native-defeat": 15
+          },
+          "round": 8,
+          "resultText": "✦\n\nROUTE BRISÉE\n\nDéfaite\n\nVotre équipe a été vaincue…\n\nCHECKPOINT\nRetour au dernier refuge\nÉTAT DE LA COMPAGNIE\nAlistair\nK.O.\nMarian\nK.O.\nCedric\nK.O.\nREVENIR À LA CARTE",
+          "participants": [
+            {
+              "id": "warrior",
+              "hp": 0,
+              "maxhp": 140,
+              "alive": false
+            },
+            {
+              "id": "white_mage",
+              "hp": 0,
+              "maxhp": 100,
+              "alive": false
+            },
+            {
+              "id": "rogue",
+              "hp": 0,
+              "maxhp": 100,
+              "alive": false
+            }
+          ]
+        }
+      ],
+      "recovery": {
+        "node": "lion-village-choice",
+        "checkpoint": "lion-first-refuge",
+        "mode": "narrative",
+        "departureLabel": "Prendre la route",
+        "exactOwnerRule": true,
+        "exactReload": true,
+        "temporaryLootBefore": {
+          "gold": 105,
+          "inventory": {
+            "consumables": {},
+            "accessories": {},
+            "materials": {
+              "red_gem": 1,
+              "iron_ore": 1
+            },
+            "weapons": {}
+          }
+        },
+        "clearedTemporaryGold": true,
+        "clearedTemporaryInventory": true,
+        "failedT1Removed": true,
+        "t0Preserved": true,
+        "t3WasAbsent": true,
+        "t3RemainsAbsent": true,
+        "returnControlBounds": {
+          "x": 28,
+          "y": 532.4375,
+          "width": 334,
+          "height": 40
+        }
+      },
+      "ending": null,
+      "captureCount": 11,
+      "maxDocumentOverflow": 0,
+      "captures": [
+        "lion-first-refuge-earned.png",
+        "lion-first-refuge-earned-resumed.png",
+        "lion-first-refuge-native-rest.png",
+        "combat-1-deployment.png",
+        "combat-1-actual-impact.png",
+        "combat-1-result.png",
+        "combat-2-deployment.png",
+        "combat-2-result.png",
+        "combat-2-native-defeat-return-focus.png",
+        "native-defeat-recovered.png",
+        "native-defeat-recovered-resumed.png"
+      ]
+    },
+    {
+      "name": "intermediate",
+      "rawResult": "tmp/demo/1952-final-intermediate/results.json",
+      "rawResultSha256": "feaba095048511c64fa233a1cbf00cea5bd80d63a3420fa87cd5a461201c78e0",
+      "receiptPath": "tmp/demo/1952-final-intermediate/qa-job.json",
+      "receiptSha256": "3742530965a1f42588dc314ac123faa1bea2beb967d85a9ac54f904172d13805",
+      "pass": false,
+      "failure": "AssertionError [ERR_ASSERTION]: Defeat occurred before the requested native recovery boundary\n+ actual - expected\n\n+ 'lion-valmir-road'\n- 'lion-village-choice'\n         ^\n\n    at battle (file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:242:12)\n    at async file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:402:59",
+      "errors": [],
+      "startedAt": "2026-10-02T20:25:46.855Z",
+      "endedAt": "2026-10-02T20:52:22.438Z",
+      "receiptStatus": "FAILED",
+      "eligibleForReview": false,
+      "provenanceStable": true,
+      "requestMatches": true,
+      "sourceTree": "a217d771f09008d7e07f0a15236317376000bbc9",
+      "sourceDiffSha256": "6a9d0d99de50c0170942550df93088ffcc83723168f9b3366fb23d996805c220",
+      "driver": {
+        "path": "tools/demo-continuous-production-qa.mjs",
+        "sha256": "558df230a943da57ec0bccc583ee1b8fd76aaab709e80e746b106aa3bcbe195c"
+      },
+      "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+      "build": [
+        {
+          "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+          "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+        },
+        {
+          "path": "dist/assets/combat-D77u3W0i.css",
+          "sha256": "0a129bc6287a9a8bfb62aa0d19fc65482032b89d26634d9736afc29cb54bda04"
+        },
+        {
+          "path": "dist/assets/combat-DWj918UO.js",
+          "sha256": "efdb2aede6bc709a6fb8f3f30ce516df93d4a00dae15c58f9bb2c21d2f131539"
+        },
+        {
+          "path": "dist/assets/game-DNVJsSmX.js",
+          "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+        },
+        {
+          "path": "dist/assets/game-Z5tVqu3k.css",
+          "sha256": "ff17df7f056304ca1c29dbf47e7b8c2821311a645dc30e83a92a564d51a9926e"
+        },
+        {
+          "path": "dist/assets/three-core-f0ajj1rG.js",
+          "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+        },
+        {
+          "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+          "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+        },
+        {
+          "path": "dist/assets/validation-mSkvzYyn.js",
+          "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "f7e71881a1d178a7f793a64f477c1c9e899a0077aa962e05f67c2fb2f871c361"
+        }
+      ],
+      "inputs": [
+        {
+          "role": "earnedSavePath",
+          "path": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+          "sha256": "d8b0deb62c66fc2fd3d01ec8c513fafb697021e8f9c808869277b90a250e8267"
+        },
+        {
+          "role": "priorProofPath",
+          "path": "tmp/demo/continuous-1153-fresh-final/results.json",
+          "sha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+        }
+      ],
+      "parameters": {
+        "target": "defeat-recovery",
+        "routePlan": "rescue",
+        "timeoutMinutes": 35,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": true,
+        "viewport": [
+          620,
+          780
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/continuous-1153-fresh-final/results.json",
+        "verifySalvation": false
+      },
+      "motionEvidence": {
+        "osRequested": false,
+        "gameRequested": false
+      },
+      "runtimeMutated": false,
+      "combatOutcomeInjected": false,
+      "fixtureStateWritten": false,
+      "inheritedBattleCount": 1,
+      "earnedResume": {
+        "savePath": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/continuous-1153-fresh-final/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "d8b0deb62c66fc2fd3d01ec8c513fafb697021e8f9c808869277b90a250e8267",
+        "proofSha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+      },
+      "newBattles": [
+        {
+          "node": "lion-valmir-road",
+          "combatId": "marsh_crossing",
+          "pass": false,
+          "outcome": "victory",
+          "actions": 42,
+          "kinds": {
+            "move": 3,
+            "attack": 4,
+            "wait": 31,
+            "potion": 3,
+            "revive_vial": 1
+          },
+          "round": 13,
+          "resultText": "✦\n\nROUTE BRISÉE\n\nDéfaite\n\nVotre équipe a été vaincue…\n\nCHECKPOINT\nRetour au dernier refuge\nÉTAT DE LA COMPAGNIE\nAlistair\nK.O.\nMarian\nK.O.\nElara\nK.O.\nKestrel\nK.O.\nREVENIR À LA CARTE",
+          "participants": [
+            {
+              "id": "warrior",
+              "hp": 0,
+              "maxhp": 140,
+              "alive": false
+            },
+            {
+              "id": "white_mage",
+              "hp": 0,
+              "maxhp": 100,
+              "alive": false
+            },
+            {
+              "id": "dark_mage",
+              "hp": 0,
+              "maxhp": 75,
+              "alive": false
+            },
+            {
+              "id": "archer",
+              "hp": 0,
+              "maxhp": 90,
+              "alive": false
+            }
+          ]
+        }
+      ],
+      "recovery": null,
+      "ending": null,
+      "captureCount": 7,
+      "maxDocumentOverflow": 0,
+      "captures": [
+        "lion-first-refuge-earned.png",
+        "lion-first-refuge-earned-resumed.png",
+        "lion-first-refuge-native-rest.png",
+        "combat-1-deployment.png",
+        "combat-1-actual-impact.png",
+        "combat-1-result.png",
+        "failure-state.png"
+      ]
+    },
+    {
+      "name": "trial",
+      "rawResult": "tmp/demo/1952-final-trial/results.json",
+      "rawResultSha256": "e7bf16509a154e0121f1a260fcfe3eeaa93eb7625597d8ed5493aca379e5c9e2",
+      "receiptPath": "tmp/demo/1952-final-trial/qa-job.json",
+      "receiptSha256": "3158cf69c348518ae81592add437267d9d1ac19e148f14196730b9f632cd50c4",
+      "pass": false,
+      "failure": "AssertionError [ERR_ASSERTION]: Battle did not finish before bounded deadline\n\nfalse !== true\n\n    at battle (file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:238:10)\n    at async file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:402:59",
+      "errors": [],
+      "startedAt": "2026-10-02T20:25:48.838Z",
+      "endedAt": "2026-10-02T21:01:03.775Z",
+      "receiptStatus": "FAILED",
+      "eligibleForReview": false,
+      "provenanceStable": true,
+      "requestMatches": true,
+      "sourceTree": "a217d771f09008d7e07f0a15236317376000bbc9",
+      "sourceDiffSha256": "6a9d0d99de50c0170942550df93088ffcc83723168f9b3366fb23d996805c220",
+      "driver": {
+        "path": "tools/demo-continuous-production-qa.mjs",
+        "sha256": "558df230a943da57ec0bccc583ee1b8fd76aaab709e80e746b106aa3bcbe195c"
+      },
+      "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+      "build": [
+        {
+          "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+          "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+        },
+        {
+          "path": "dist/assets/combat-D77u3W0i.css",
+          "sha256": "0a129bc6287a9a8bfb62aa0d19fc65482032b89d26634d9736afc29cb54bda04"
+        },
+        {
+          "path": "dist/assets/combat-DWj918UO.js",
+          "sha256": "efdb2aede6bc709a6fb8f3f30ce516df93d4a00dae15c58f9bb2c21d2f131539"
+        },
+        {
+          "path": "dist/assets/game-DNVJsSmX.js",
+          "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+        },
+        {
+          "path": "dist/assets/game-Z5tVqu3k.css",
+          "sha256": "ff17df7f056304ca1c29dbf47e7b8c2821311a645dc30e83a92a564d51a9926e"
+        },
+        {
+          "path": "dist/assets/three-core-f0ajj1rG.js",
+          "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+        },
+        {
+          "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+          "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+        },
+        {
+          "path": "dist/assets/validation-mSkvzYyn.js",
+          "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "f7e71881a1d178a7f793a64f477c1c9e899a0077aa962e05f67c2fb2f871c361"
+        }
+      ],
+      "inputs": [
+        {
+          "role": "earnedSavePath",
+          "path": "tmp/demo/continuous-1323-salvation-baseline/earned-lion-second-refuge-v6.json",
+          "sha256": "224d1796a1a0b92f98dcce27ba0652eb98fa7471b2c84653321c7470c0c83d50"
+        },
+        {
+          "role": "priorProofPath",
+          "path": "tmp/demo/continuous-1323-salvation-baseline/results.json",
+          "sha256": "1399e4268dff72b77519fd3e874c7542bcd4a2fc207003b1494e32d2500c5e2a"
+        }
+      ],
+      "parameters": {
+        "target": "ending",
+        "routePlan": "rescue",
+        "timeoutMinutes": 35,
+        "finalePlan": "trial",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/continuous-1323-salvation-baseline/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/continuous-1323-salvation-baseline/results.json",
+        "verifySalvation": false
+      },
+      "motionEvidence": {
+        "osRequested": false,
+        "gameRequested": false
+      },
+      "runtimeMutated": false,
+      "combatOutcomeInjected": false,
+      "fixtureStateWritten": false,
+      "inheritedBattleCount": 3,
+      "earnedResume": {
+        "savePath": "tmp/demo/continuous-1323-salvation-baseline/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/continuous-1323-salvation-baseline/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "224d1796a1a0b92f98dcce27ba0652eb98fa7471b2c84653321c7470c0c83d50",
+        "proofSha256": "1399e4268dff72b77519fd3e874c7542bcd4a2fc207003b1494e32d2500c5e2a"
+      },
+      "newBattles": [
+        {
+          "node": "lion-final-judgement",
+          "combatId": "lion_chief",
+          "pass": false,
+          "outcome": "victory",
+          "actions": 81,
+          "kinds": {
+            "move": 9,
+            "wait": 37,
+            "attack": 33,
+            "potion": 1,
+            "skill": 1
+          },
+          "round": 15,
+          "participants": [
+            {
+              "id": "warrior",
+              "hp": 0,
+              "maxhp": 140,
+              "alive": false
+            },
+            {
+              "id": "white_mage",
+              "hp": 0,
+              "maxhp": 113,
+              "alive": false
+            },
+            {
+              "id": "archer",
+              "hp": 90,
+              "maxhp": 90,
+              "alive": true
+            },
+            {
+              "id": "rogue",
+              "hp": 0,
+              "maxhp": 100,
+              "alive": false
+            }
+          ]
+        }
+      ],
+      "recovery": null,
+      "ending": null,
+      "captureCount": 8,
+      "maxDocumentOverflow": 0,
+      "captures": [
+        "lion-second-refuge-earned.png",
+        "lion-second-refuge-earned-resumed.png",
+        "lion-second-refuge-native-rest.png",
+        "lion-second-refuge-native-sacred-crosier.png",
+        "combat-3-deployment.png",
+        "combat-3-actual-impact.png",
+        "combat-3-w_salvation-21.png",
+        "failure-state.png"
+      ]
+    }
+  ],
+  "reviewedAt": "2026-10-02T21:01:29.949Z",
+  "reviewedPayload": [
+    {
+      "path": "src/combat/combatKeyboard.ts",
+      "sha256": "9bf94d6d44562531aae02c66631d9f89e1288e8d2f3d115bc23875529ac4e3fb"
+    },
+    {
+      "path": "src/combat/combatKeyboard.test.ts",
+      "sha256": "0ea318becac2f0c6eb51984cb8080d4a0e57951e54524c814afed2efad8e1940"
+    },
+    {
+      "path": "src/combat/legacyCombatRuntime.js",
+      "sha256": "48b545023fe13f3d2d6a34c3cbcc9ca8498acf93629974dbd33b075bd9e88361"
+    },
+    {
+      "path": "tools/demo-continuous-production-qa.mjs",
+      "sha256": "558df230a943da57ec0bccc583ee1b8fd76aaab709e80e746b106aa3bcbe195c"
+    },
+    {
+      "path": "tools/combat-keyboard-production-qa.mjs",
+      "sha256": "e5b0675210c37fc9b2520c1b93716c45646dd30abd2fa3c618511a46cac27014"
+    },
+    {
+      "path": "tools/qa/qa-job.mjs",
+      "sha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f"
+    },
+    {
+      "path": "tools/qa/qa-job.test.mjs",
+      "sha256": "61f3398f0df36899fadf63197dda30fef8fc8920ccf74e3bed506d4cea94e715"
+    }
+  ],
+  "implementationCommit": "c05ba67bd2823db16d80638d4aff3d1ba74b0052",
+  "reviewedPayloadMatchesCommittedBlobs": true,
+  "acceptedScopes": [
+    "Standalone6native-controls cases",
+    "1366x768normal exact V6 defeat recovery/reload",
+    "390x844OS-only/gamefalse exact V6 defeat recovery/reload"
+  ]
+}
