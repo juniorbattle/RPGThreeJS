@@ -1,59 +1,35 @@
 # Autonomous work state
 
-CURRENT FACT — Demo and TRAVERSAL-ROAD-ELEMENTS incomplete. OD-2026-10-03-A, set1.1.0 baseline d7ca28a retained.
+CURRENT FACT — TRAVERSAL-ROAD-ELEMENTS and demo incomplete. OD-2026-10-03-A; LOCKED set1.1.0 / immutable d7ca28a unchanged.
 
 | Field | Value |
 | --- | --- |
-| status | IN_PROGRESS |
-| runId | rpgthreejs-auto-dev-90m-20261003T1815 |
-| runStartedAt | 2026-10-03T18:17:53.9658597+00:00 |
-| runEndedAt | 2026-10-03T19:27:19.540Z |
+| status | CHECKPOINTED_IN_PROGRESS |
+| runId | rpgthreejs-auto-dev-90m-20261003T1945 |
+| runStartedAt | 2026-10-03T19:46:31.3657056Z |
+| runEndedAt | 2026-10-03T23:57:24.712Z |
 | activeTask | TRAVERSAL-ROAD-ELEMENTS |
-| activePhase | Shared physical anchor/depth implementation checkpoint; production acceptance OPEN |
-| activeSubtask | Correct CSSOM anchor precision QA guard, then complete native multi-leg lifetime/depth acceptance |
+| activePhase | Road entry correction checkpoint; native late-reset contact remains open |
+| activeSubtask | Design bounded compensation for already-visible road anchors after late Pursuit reset |
 | workingBranch | dev |
-| lastKnownGoodCommit | 91b4d2e1ba0f697dde1e703e8fc164ca49ec84ed |
-| lastPushedCommit | 91b4d2e1ba0f697dde1e703e8fc164ca49ec84ed |
-| contractComplianceStatus | PASS_BOUNDARIES_AND_GATES; ROAD_RUNTIME_ACCEPTANCE_OPEN |
+| contractComplianceStatus | PASS_AUTHORITY_BOUNDARIES_AND_LOCKED_GATES; TRAVERSAL_UI_QA_EXPANDED_ACCEPTANCE_BLOCKED |
 
-## Checkpoint
+Checkpoint: 170 Traversal tests/29files,35focused,types/build/8contracts8slots/gates PASS.54 current OS/game first+early fixture-origin production cases,3 screen-clear early reveals,9 isolated lab cases scoped accepted. Normal frame-budget and all remaining-road jobs FAILED/NOT_ACCEPTED; late-reset contact lag remains. No earned V6/full gold/fallback/background freeze/full-demo acceptance.
 
-- Inherited road WIP preserved and reviewed under verified stale-lock takeover
-- Presentation-only Risk/Reward frozen anchors, natural entry/full exit, collected retention, shared ground depth and frame-aligned camera implemented
-- Native resize and reduced-motion stale-ground defects fixed
-- 167 Traversal tests/29 files,32 focused tests,TypeScript,build,8contracts8slots and immutable/whitespace gates PASS
-- Registered native production diagnostics and selected captures retained; no full road or earned V6 acceptance
+Full ledger: JSON97jobs, all26 new terminal; original71 objects exact. Six deferred battlefield blobs/exact action unchanged and unstaged. Build identity includes this preserved WIP; dev does not publish it as accepted source.
 
-Owned remote WIP wip/rpgthreejs-auto-dev-90m-20261003T1815@bbfd403ab1f03f5024765a794cf310332fcf44e8; six deferred hashes and original55ledger/deferredDemoTask exact. Current handoff: docs/autonomy/handoffs/2026-10-03T1815Z-codex-road-anchor-checkpoint.md. Final publication identity follows in automation memory.
+Handoff: [run1945](handoffs/2026-10-03T1945Z-codex-road-lifetime-checkpoint.md). Proof: [checks](../reports/traversal-road-lifetime-entry-2-browser/checks.json).
 
-## Next action
+## Exact next action
 
-Normal exclusive-lock/Git/WIP/receipt preflight; read TRAVERSAL_ROAD_ELEMENTS.md and run1815 handoff. First inspect terminal road-1815-v3-normal/os/game receipts, assertions/result hashes and frozen386-source/driver/build identities; all remain NOT_ACCEPTED until explicit review. Normal v3 failed only .0202904 world-unit CSSOM reconstruction after full exit at390px: reconstruct logical frozen anchor from full-precision predictedLeft/predictedRight, separately assert CSS position within serialization precision, and capture entry only after cover<.01. Register fresh native matrix on identical source/build or rebuild if changed; do not relabel old FAILED receipts. Complete remaining roads/spacing, pause/document visibility/fallback, deliberately unaligned contact crossings, launch-target acceleration/compensation bounds and already-visible future pickup reset; preserve contact clocks/temp-loot uniqueness/V6. Earned defeat/refuge/V6 proof needed for broader gold acceptance. Reuse rock selector/Pursuit candidate; all10 canonical collision mappings remain blocked. Preserve original55ledger entries/sixdeferred blobs/exact deferredDemoTask; no media generation or new canon.
-
-## QA jobs this run
-
-| Job | Status | Acceptance | Port | PID | Receipt |
-| --- | --- | --- | --- | --- | --- |
-| road-1815-reset-probe | FAILED | NOT_ACCEPTED | 5287 | 19940 | tmp/traversal/road-1815-reset-probe/qa-job.json |
-| road-1815-reset-probe-v2 | FAILED | NOT_ACCEPTED | 5287 | 28224 | tmp/traversal/road-1815-reset-probe-v2/qa-job.json |
-| road-1815-reset-probe-v3 | FAILED | NOT_ACCEPTED | 5287 | 49560 | tmp/traversal/road-1815-reset-probe-v3/qa-job.json |
-| road-1815-reset-probe-v4 | FAILED | NOT_ACCEPTED | 5287 | 63304 | tmp/traversal/road-1815-reset-probe-v4/qa-job.json |
-| road-1815-reset-probe-v5 | FAILED | NOT_ACCEPTED | 5287 | 51872 | tmp/traversal/road-1815-reset-probe-v5/qa-job.json |
-| road-1815-early-probe-v6 | SUCCEEDED | NOT_ACCEPTED | 5287 | 7252 | tmp/traversal/road-1815-early-probe-v6/qa-job.json |
-| road-1815-final-normal | FAILED | NOT_ACCEPTED | 5288 | 41256 | tmp/traversal/road-1815-final-normal/qa-job.json |
-| road-1815-final-os | FAILED | NOT_ACCEPTED | 5289 | 63924 | tmp/traversal/road-1815-final-os/qa-job.json |
-| road-1815-final-game | FAILED | NOT_ACCEPTED | 5290 | 59040 | tmp/traversal/road-1815-final-game/qa-job.json |
-| road-1815-v2-normal | FAILED | NOT_ACCEPTED | 5291 | 50508 | tmp/traversal/road-1815-v2-normal/qa-job.json |
-| road-1815-v2-os | FAILED | NOT_ACCEPTED | 5292 | 53944 | tmp/traversal/road-1815-v2-os/qa-job.json |
-| road-1815-v2-game | FAILED | NOT_ACCEPTED | 5293 | 27100 | tmp/traversal/road-1815-v2-game/qa-job.json |
-| road-1815-v3-normal | FAILED | NOT_ACCEPTED | 5294 | 3312 | tmp/traversal/road-1815-v3-normal/qa-job.json |
-| road-1815-v3-os | FAILED | NOT_ACCEPTED | 5295 | 49924 | tmp/traversal/road-1815-v3-os/qa-job.json |
-| road-1815-v3-game | FAILED | NOT_ACCEPTED | 5296 | 38844 | tmp/traversal/road-1815-v3-game/qa-job.json |
-
-Exact command, parameters, expected assertions and source/driver/build identities remain in JSON.
+Normal read-only lock/Git/WIP/receipt preflight. Read traversal-road-lifetime-entry-2.md and frozen checks. Keep TRAVERSAL-ROAD-ELEMENTS active. Reproduce T0 route-5b block3 progress .68 /10200ms: normal native Pursuit reset10082.9ms leaves117.1ms, speed3.506->base1.77, ratio>2 fallback yields417.512px versus authored360px (game620:158.711 vs155). Design bounded presentation compensation for an already-visible anchor under this late reset, with guardian review; preserve authored clocks/owners/lanes and do not relax/remove safety or QA guards to obtain PASS. Add unaligned late-reset regression, then fresh isolated/native branch-combat normal/OS/game1440/620/390. Normal v5 50ms frame-gap rejection remains separate; rerun lower concurrency only if frozen inputs still match. Reuse unchanged scoped OS/game/entry/lab proofs; complete remaining route/visibility/fallback/earned V6 gold acceptance later. Preserve original71ledger, six deferred blobs and exact deferredDemoTask. Ten canonical Pursuit mapping gaps remain BLOCKED; demo incomplete.
 
 ## Deferred battlefield keyboard/combat
 
 Finish exact battlefield production driver: real Tab entry, cursor bounds/announcement/no truth mutation, invalid/legal movement and native target execution, Escape/Retour focus, native controls and pointer regression in1366/620/390 OS on/off. Build new sources, review exact activation/assertion diff with guardian, register job and freeze tested inputs. Add actual fresh campaign iframe keyboard entry/return if budget permits; incomplete acceptance stays explicit. Preserve historical0350recovery and original726trial proofs. No media/audio work.
 
-Full original deferredDemoTask retained unchanged in JSON.
+## Timing and publication
+
+Preflight19:46Z, production browser QA20:36Z; final verification after23:43Z; approval/interruption resume23:43Z. Wall gap is not continuous coding; budget expired, closeout only. Final source/report SHA and verified origin/dev parity recorded in automation memory after publication. Owned WIP retained for six deferred files.
+
+Source checkpoint 354b83d3a738540c8ddca6fced73f7602675ceda; owned local WIP wip/rpgthreejs-auto-dev-90m-20261003T1945@5c2a777069e5bf721a3c32a73df53d34be2abb39 preserves exactly six deferred files. Publication parity follows in automation memory.

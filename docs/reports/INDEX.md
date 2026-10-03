@@ -4,6 +4,7 @@ Baseline for this index: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. Repo
 
 | Report | Historical role | Current authority |
 | --- | --- | --- |
+| [Road entry and late-reset checkpoint](traversal-road-lifetime-entry-2.md) | Unseen entry fix and scoped native proof,2026-10-03; late-reset contact/full acceptance OPEN | [Road elements status](../autonomy/TRAVERSAL_ROAD_ELEMENTS.md) and paired autonomy state |
 | [Physical road anchors and depth](traversal-road-anchor-depth-1.md) | Shared anchor/lifetime/depth implementation checkpoint,2026-10-03; expanded production acceptance remains open | [Road elements status](../autonomy/TRAVERSAL_ROAD_ELEMENTS.md) and paired autonomy state |
 | [Rock-only active obstacles](traversal-rock-family-1.md) | Scoped first-road production rock-family PASS; lifetime/depth remain open,2026-10-03 | [Road elements status](../autonomy/TRAVERSAL_ROAD_ELEMENTS.md) and paired autonomy state |
 | [Isolated Pursuit charge candidate](traversal-pursuit-charge-candidate-1.md) | Native-clock minified candidate PASS; canonical collision integration blocked,2026-10-03 | [Pursuit status](../autonomy/TRAVERSAL_PURSUIT_THREAT.md) and paired autonomy state |

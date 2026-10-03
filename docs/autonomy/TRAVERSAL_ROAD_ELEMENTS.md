@@ -25,13 +25,15 @@ CURRENT FACT — TRAVERSAL-ROAD-ELEMENTS remains IN_PROGRESS. Run1430 completed 
 | Authored spacing | Deterministic existing lanes/progress retained | Audit all roads and reaction time without arbitrary randomness or canon changes |
 | Temporary loot / V6 | Owners and schema unchanged; fixture runs observe unique temporary awards/no secured writes | Earned defeat/refuge/V6 continuation required for broader gold acceptance |
 
+## Run1945 current checkpoint
+
+CURRENT FACT — unseen reforecast now preserves the full entry edge after slowdown; already-visible anchors freeze. [Report](../reports/traversal-road-lifetime-entry-2.md) and [proof](../reports/traversal-road-lifetime-entry-2-browser/checks.json) retain170Traversal tests,54 current OS/game fixture-origin first/early cases,3 screen-clear reveals,9 isolated unit-distance lab cases,19configuration structural audit and all26 terminal receipts. Production build includes preserved unaccepted keyboard WIP; dev checkpoint excludes those files. Historical81cases are older-source diagnostics. Normal v5 failed native50ms>40ms frame guard; all more-v2 jobs fail late-reset physical contact. No full task/demo acceptance.
+
+Native route-5b block3 .68/10200ms after Pursuit reset10082.9ms remains417.512 vs360px at1440,158.711 vs155px game620. Bounded speed guard and authored owners stay intact. Remaining matrix/arrival/background freeze/fallback/production disposal/earned gold V6 remain open. Earlier inventory rows are superseded only for the scoped isolated reset and structural audit proofs described above.
+
 ## Exact next action
 
-Normal lock/Git/WIP/receipt preflight; first inspect road-1815-v3-normal/os/game final receipts and compare source/driver/build/parameters before any rerun. Reuse the implemented shared anchor/depth seam and accepted rock selector; inspect representative final captures and document only scoped acceptance. Finish remaining roads/spacing and native pause/visibility/fallback, unaligned crossings, launch-acquisition and already-visible future-pickup reset proof. Preserve Risk contact clocks, unique temporary-loot/RunSystem/V6 owners and foreground/UI.
-
-Focused tests must cover offscreen entry, no middle-road pop, miss/contact/collected persistence, single collection, complete exit, momentum reset, inactive/cover, resize and near/far occlusion. Register new native production T0/T1/T3 normal/OS/game scenarios at1440/620/390, measuring spawn/contact/exit/depth sequence and selected captures. Owner/V6/defeat/refuge proof is required for any claim about gold; fixtures do not earn that acceptance. Independent guardian reviews the exact presentation-authority/assertion diff; traversal review inspects actual motion/depth. Do not rerun unchanged prior motion/Pursuit proof or revive removed road-combat owners.
-
-Pursuit full integration remains separately BLOCKED by all ten missing authored eligible canonical mappings. No mapped collision may be invented to unblock this queue. Six deferred battlefield files and their exact continuation remain protected.
+Normal read-only lock/Git/WIP/receipt preflight. Read traversal-road-lifetime-entry-2.md and frozen checks. Keep TRAVERSAL-ROAD-ELEMENTS active. Reproduce T0 route-5b block3 progress .68 /10200ms: normal native Pursuit reset10082.9ms leaves117.1ms, speed3.506->base1.77, ratio>2 fallback yields417.512px versus authored360px (game620:158.711 vs155). Design bounded presentation compensation for an already-visible anchor under this late reset, with guardian review; preserve authored clocks/owners/lanes and do not relax/remove safety or QA guards to obtain PASS. Add unaligned late-reset regression, then fresh isolated/native branch-combat normal/OS/game1440/620/390. Normal v5 50ms frame-gap rejection remains separate; rerun lower concurrency only if frozen inputs still match. Reuse unchanged scoped OS/game/entry/lab proofs; complete remaining route/visibility/fallback/earned V6 gold acceptance later. Preserve original71ledger, six deferred blobs and exact deferredDemoTask. Ten canonical Pursuit mapping gaps remain BLOCKED; demo incomplete.
 
 ## Orchestrator compliance matrix
 
@@ -43,11 +45,11 @@ Pursuit full integration remains separately BLOCKED by all ten missing authored 
 | ENVIRONMENTS | PASS scope | First-road family/scale inspected; broader narrative acceptance not claimed |
 | NARRATIVE / CAMPAIGN | PASS boundary | Authored descriptors and owners unchanged |
 | NARRATIVE_PRESENTATION | N/A | No dialogue/tableau/Journey/video change |
-| TRAVERSAL | PASS rock family / implementation boundary; OPEN acceptance | Shared anchors/depth implemented; receipt/capture and remaining scenario acceptance explicit |
+| TRAVERSAL | BLOCKED expanded acceptance; PASS implementation boundary | Shared anchors/depth implemented; receipt/capture and remaining scenario acceptance explicit |
 | COMBAT | PASS boundary | No combat resolution change; fixtures explicitly limited |
 | SAVE | PASS boundary | No schema/serialization change; no earned V6 claim |
-| UI / ACCESSIBILITY | PASS prior rock scope; OPEN expanded scope | Native lane/resize/reduction assertions in current registered matrix |
-| QA_EVIDENCE | PASS provenance boundary; OPEN expanded acceptance | Failed receipts retained; final source/driver/build identities and reviewed selection required |
+| UI / ACCESSIBILITY | BLOCKED expanded acceptance; scoped responsive/reduction proof | Native lane/resize/reduction assertions in current registered matrix |
+| QA_EVIDENCE | BLOCKED full acceptance; PASS provenance honesty | Failed receipts retained; final source/driver/build identities and reviewed selection required |
 | REPOSITORY_GOVERNANCE | PASS gates | Owned lock, reviewed explicit staging, WIP/ledger preserved |
 
 Contracts read: all eight current contracts, constitution, index/manifest and T0 source baseline; matching autonomy/Traversal/UI/QA skills. Set1.1.0. Relevant rule: TRAVERSAL Road elements and depth; no LOCKED rule changed, immutable d7ca28a/protected gates empty. The task and full demo are incomplete.
