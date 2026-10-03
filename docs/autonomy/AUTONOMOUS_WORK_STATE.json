@@ -203,7 +203,7 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-03T08:30:56.580Z",
+    "lastHeartbeat": "2026-10-03T08:36:19.947Z",
     "status": "RUNNING",
     "qaJobs": [
       {
@@ -306,7 +306,7 @@
         "schemaVersion": 1,
         "jobId": "1952-desktop",
         "runId": "rpgthreejs-auto-dev-90m-20261002T1952",
-        "status": "ABORTED_HARNESS_DEFECT",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T19:57:51.764Z",
         "pid": 50700,
         "port": 5258,
@@ -526,7 +526,7 @@
         "schemaVersion": 1,
         "jobId": "1952-trial",
         "runId": "rpgthreejs-auto-dev-90m-20261002T1952",
-        "status": "ABORTED_HARNESS_DEFECT",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T19:57:53.79Z",
         "pid": 54404,
         "port": 5261,
@@ -636,7 +636,7 @@
         "schemaVersion": 1,
         "jobId": "1952-intermediate",
         "runId": "rpgthreejs-auto-dev-90m-20261002T1952",
-        "status": "ABORTED_HARNESS_DEFECT",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T20:03:03.233Z",
         "pid": 25412,
         "port": 5260,
@@ -830,9 +830,9 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-02T20:23:26.064Z",
-        "endedAt": "2026-10-02T20:34:46.49Z",
+        "endedAt": "2026-10-02T20:34:46.490Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": false,
@@ -947,7 +947,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-02T20:25:43.258Z",
         "endedAt": "2026-10-02T20:57:00.318Z",
         "provenanceMatches": true,
@@ -1064,7 +1064,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-02T20:25:45.067Z",
         "endedAt": "2026-10-02T20:45:02.091Z",
         "provenanceMatches": true,
@@ -1314,7 +1314,7 @@
         "schemaVersion": 1,
         "jobId": "2122-grid-final",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "ABORTED_HARNESS_DEFECT",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T21:34:18.903Z",
         "pid": 42288,
         "port": 5264,
@@ -1449,7 +1449,7 @@
         "schemaVersion": 1,
         "jobId": "2122-trial-final",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "ABORTED_SOURCE_CORRECTION",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T21:35:24.027Z",
         "pid": 48956,
         "port": 5265,
@@ -1541,7 +1541,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T21:35:25.15Z",
+        "startedAt": "2026-10-02T21:35:25.150Z",
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
@@ -1662,7 +1662,7 @@
         "schemaVersion": 1,
         "jobId": "2122-grid-bounded",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "ABORTED_HARNESS_COST",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T21:40:25.115Z",
         "pid": 26404,
         "port": 5264,
@@ -1797,7 +1797,7 @@
         "schemaVersion": 1,
         "jobId": "2122-grid-sampled",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "ABORTED_SOURCE_CORRECTION",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T21:47:08.793Z",
         "pid": 46904,
         "port": 5264,
@@ -1925,7 +1925,7 @@
         "schemaVersion": 1,
         "jobId": "2122-grid-fixed",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "ABORTED_SOURCE_CORRECTION",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T21:57:42.013Z",
         "pid": 19668,
         "port": 5264,
@@ -2040,7 +2040,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T21:57:42.75Z",
+        "startedAt": "2026-10-02T21:57:42.750Z",
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
@@ -2053,7 +2053,7 @@
         "schemaVersion": 1,
         "jobId": "2122-intermediate-fixed",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "ABORTED_SOURCE_CORRECTION",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T21:59:10.912Z",
         "pid": 58780,
         "port": 5266,
@@ -2158,7 +2158,7 @@
         "schemaVersion": 1,
         "jobId": "2122-trial-conserve",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "ABORTED_SOURCE_CORRECTION",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T21:59:25.788Z",
         "pid": 4192,
         "port": 5265,
@@ -2483,14 +2483,14 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-02T22:13:42.318Z",
         "endedAt": "2026-10-02T22:31:47.778Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "exitCode": 0,
         "resultPath": "tmp/demo/2122-grid-final-wheel/results.json",
         "resultSha256": "4e95082353997a37f7d8cb2bbdf7bd1c9f9b74df193d72dd647f2ad17e8dd0b4",
@@ -2596,7 +2596,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-02T22:13:56.941Z",
         "endedAt": "2026-10-02T22:14:33.067Z",
         "exitCode": 0,
@@ -2605,9 +2605,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "eligibleForReviewAtReview": true,
         "acceptedScope": "Native card scroll4cases,refocused toggle visibility;focusRetentionAccepted=false;campaignAcceptance=false",
         "contractsReview": "Scoped source/proof independently reviewed",
@@ -2716,7 +2716,7 @@
         "endedAt": "2026-10-02T22:31:30.216Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "exitCode": 1,
@@ -2826,7 +2826,7 @@
         "endedAt": "2026-10-02T22:31:54.521Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "exitCode": 1,
@@ -3088,7 +3088,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-02T23:01:08.332Z",
         "endedAt": "2026-10-02T23:04:09.345Z",
         "provenanceMatches": true,
@@ -3207,7 +3207,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T23:01:40.22Z",
+        "startedAt": "2026-10-02T23:01:40.220Z",
         "endedAt": "2026-10-02T23:09:17.242Z",
         "provenanceMatches": true,
         "requestMatches": true,
@@ -3232,7 +3232,7 @@
         "schemaVersion": 1,
         "jobId": "2252-trial-native-skills",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
-        "status": "ABORTED_PILOT_POLICY_DEFECT",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T23:10:28.062Z",
         "pid": 25540,
         "port": 5270,
@@ -3565,7 +3565,7 @@
         "resultPath": "tmp/demo/0228-trial-support/results.json",
         "resultSha256": "51ab857632fa6692bea752b7c5cd7a4b46e0ad3119ce59f86569f5a242d5e1b5",
         "provenanceStable": true,
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "ownerReview": {
           "at": "2026-10-03T03:11:10.5631806Z",
           "reviewer": "contracts-guardian",
@@ -3678,12 +3678,12 @@
             }
           ]
         },
-        "acceptance": "FAILED_NOT_ACCEPTED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T03:12:10.577Z",
         "endedAt": "2026-10-03T03:24:09.072Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "exitCode": 1,
@@ -3801,14 +3801,14 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T03:58:19.322Z",
         "endedAt": "2026-10-03T04:12:44.910Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "exitCode": 0,
         "resultPath": "tmp/demo/0350-recovery-crosier/results.json",
         "resultSha256": "78e51a9e707cda929bc36fd658ab578ebc0ec0982e1846e0cf8d0ce9717b9600",
@@ -3924,14 +3924,14 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T04:14:54.197Z",
         "endedAt": "2026-10-03T04:24:29.368Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "exitCode": 0,
         "resultPath": "tmp/demo/0350-recovery-mobile-os/results.json",
         "resultSha256": "c4bf812331b219612c40ac8b3246f1d204d78085d067a749b6dd245fe1c5f208",
@@ -3956,9 +3956,9 @@
         "schemaVersion": 1,
         "jobId": "visual-0820-normal",
         "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
-        "status": "PLANNED",
+        "status": "FAILED",
         "registeredAt": "2026-10-03T08:35:09.065Z",
-        "pid": null,
+        "pid": 7112,
         "port": 5276,
         "command": [
           "node",
@@ -4033,15 +4033,26 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-03T08:35:15.236Z",
+        "endedAt": "2026-10-03T08:39:36.250Z",
+        "exitCode": 1,
+        "resultPath": "tmp/traversal/visual-0820-normal/results.json",
+        "resultSha256": "8f436d53e689a95ff86b7ba21dc5ff36cdd15f0b2e1aab994d3177aad7c24f6a",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
         "jobId": "visual-0820-os",
         "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
-        "status": "PLANNED",
+        "status": "RUNNING",
         "registeredAt": "2026-10-03T08:35:09.245Z",
-        "pid": null,
+        "pid": 59148,
         "port": 5277,
         "command": [
           "node",
@@ -4116,13 +4127,369 @@
             }
           ]
         },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-03T08:35:15.236Z",
+        "endedAt": null,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": false,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "visual-0820-probe",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-03T08:41:53.794Z",
+        "pid": 57112,
+        "port": 5278,
+        "command": [
+          "node",
+          "tools/traversal-visual-convergence-probe-qa.mjs"
+        ],
+        "parameters": {
+          "cases": [
+            "normal",
+            "os",
+            "missing-shadow",
+            "missing-ground"
+          ],
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "scope": "T0 production missing-art agency and computed CSS/focus/hit targets"
+        },
+        "requiredAssertions": [
+          "computed-os-reduction",
+          "lane-keyboard-focus",
+          "hit-targets",
+          "missing-art-handoff-return"
+        ],
+        "output": "tmp/traversal/visual-0820-probe",
+        "receiptPath": "tmp/traversal/visual-0820-probe/qa-job.json",
+        "provenance": {
+          "gitHead": "c9e16a8f2685435ce6432c5a1dc5980b7c2152a6",
+          "sourceTree": "7f7b49e9c657b24e25c105b96f3b8186ebcbef8b",
+          "sourceDiffSha256": "d7a97d238e67e71785f5cfc7c8bf7e2a163b9283f237f2ac273c7d245f46de66",
+          "driver": {
+            "path": "tools/traversal-visual-convergence-probe-qa.mjs",
+            "sha256": "5b4fbf1f290919dc3daaea25462958f3ae122224f1f3688f3b92fded79265231"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-B-Q4peil.js",
+              "sha256": "3afa1b2f479ea8326e471b32778436825a70452f99b03a55e252d636f002aeb4"
+            },
+            {
+              "path": "dist/assets/game-D7TpUbkt.css",
+              "sha256": "d6cdbfe35fa526c5f01a6238c853b1efd1179812c92ad3f0186c42d7b67b69e8"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "3b6ba42138640e27e93110426d431cc9900ad7f93e13858bbe2eb672d9d2245e"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-03T08:41:58.025Z",
+        "endedAt": "2026-10-03T08:43:35.294Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/visual-0820-probe/results.json",
+        "resultSha256": "0a6c2ca8c77038a9457b8caa87e4de7950d18208df609b8427b693a61acbb048",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "visual-0820-v2-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-03T08:43:48.530Z",
+        "pid": null,
+        "port": 5276,
+        "command": [
+          "node",
+          "tools/traversal-visual-convergence-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "normal",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "gameReducedMotion": false,
+          "scope": "production presentation with V6 origin and combat-result fixtures"
+        },
+        "requiredAssertions": [
+          "shared-native-ground",
+          "clan-empty-stops",
+          "single-shadow",
+          "native-handoffs",
+          "responsive-controls",
+          "os-only-reduction"
+        ],
+        "output": "tmp/traversal/visual-0820-v2-normal",
+        "receiptPath": "tmp/traversal/visual-0820-v2-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "c9e16a8f2685435ce6432c5a1dc5980b7c2152a6",
+          "sourceTree": "7f7b49e9c657b24e25c105b96f3b8186ebcbef8b",
+          "sourceDiffSha256": "d7a97d238e67e71785f5cfc7c8bf7e2a163b9283f237f2ac273c7d245f46de66",
+          "driver": {
+            "path": "tools/traversal-visual-convergence-qa.mjs",
+            "sha256": "a0fec0b6cf2f44b27e2e225723dd6f1cb9dbf4a0c04e172a7b0d430f72ca0a01"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-B-Q4peil.js",
+              "sha256": "3afa1b2f479ea8326e471b32778436825a70452f99b03a55e252d636f002aeb4"
+            },
+            {
+              "path": "dist/assets/game-D7TpUbkt.css",
+              "sha256": "d6cdbfe35fa526c5f01a6238c853b1efd1179812c92ad3f0186c42d7b67b69e8"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "3b6ba42138640e27e93110426d431cc9900ad7f93e13858bbe2eb672d9d2245e"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "visual-0820-v2-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-03T08:43:48.715Z",
+        "pid": null,
+        "port": 5279,
+        "command": [
+          "node",
+          "tools/traversal-visual-convergence-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "os",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "gameReducedMotion": false,
+          "scope": "production presentation with V6 origin and combat-result fixtures"
+        },
+        "requiredAssertions": [
+          "shared-native-ground",
+          "clan-empty-stops",
+          "single-shadow",
+          "native-handoffs",
+          "responsive-controls",
+          "os-only-reduction"
+        ],
+        "output": "tmp/traversal/visual-0820-v2-os",
+        "receiptPath": "tmp/traversal/visual-0820-v2-os/qa-job.json",
+        "provenance": {
+          "gitHead": "c9e16a8f2685435ce6432c5a1dc5980b7c2152a6",
+          "sourceTree": "7f7b49e9c657b24e25c105b96f3b8186ebcbef8b",
+          "sourceDiffSha256": "d7a97d238e67e71785f5cfc7c8bf7e2a163b9283f237f2ac273c7d245f46de66",
+          "driver": {
+            "path": "tools/traversal-visual-convergence-qa.mjs",
+            "sha256": "a0fec0b6cf2f44b27e2e225723dd6f1cb9dbf4a0c04e172a7b0d430f72ca0a01"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-B-Q4peil.js",
+              "sha256": "3afa1b2f479ea8326e471b32778436825a70452f99b03a55e252d636f002aeb4"
+            },
+            {
+              "path": "dist/assets/game-D7TpUbkt.css",
+              "sha256": "d6cdbfe35fa526c5f01a6238c853b1efd1179812c92ad3f0186c42d7b67b69e8"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "3b6ba42138640e27e93110426d431cc9900ad7f93e13858bbe2eb672d9d2245e"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "visual-0820-probe-v2",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-03T08:47:02.703Z",
+        "pid": null,
+        "port": 5278,
+        "command": [
+          "node",
+          "tools/traversal-visual-convergence-probe-qa.mjs"
+        ],
+        "parameters": {
+          "cases": [
+            "normal",
+            "os",
+            "missing-shadow",
+            "missing-ground"
+          ],
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "scope": "T0 production missing-art agency and computed CSS/focus/hit targets"
+        },
+        "requiredAssertions": [
+          "computed-os-reduction",
+          "lane-keyboard-focus",
+          "hit-targets",
+          "missing-art-handoff-return"
+        ],
+        "output": "tmp/traversal/visual-0820-probe-v2",
+        "receiptPath": "tmp/traversal/visual-0820-probe-v2/qa-job.json",
+        "provenance": {
+          "gitHead": "c9e16a8f2685435ce6432c5a1dc5980b7c2152a6",
+          "sourceTree": "7f7b49e9c657b24e25c105b96f3b8186ebcbef8b",
+          "sourceDiffSha256": "d7a97d238e67e71785f5cfc7c8bf7e2a163b9283f237f2ac273c7d245f46de66",
+          "driver": {
+            "path": "tools/traversal-visual-convergence-probe-qa.mjs",
+            "sha256": "b488243bb82bb54ea02d6b35be1e0bb92a4a104e3c9d1dcd59417ac9aee90e51"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-B-Q4peil.js",
+              "sha256": "3afa1b2f479ea8326e471b32778436825a70452f99b03a55e252d636f002aeb4"
+            },
+            {
+              "path": "dist/assets/game-D7TpUbkt.css",
+              "sha256": "d6cdbfe35fa526c5f01a6238c853b1efd1179812c92ad3f0186c42d7b67b69e8"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "3b6ba42138640e27e93110426d431cc9900ad7f93e13858bbe2eb672d9d2245e"
+            }
+          ]
+        },
         "acceptance": "NOT_ACCEPTED"
       }
     ],
     "wip": {
-      "sha": "d47d2b9975497e5eddd62e44dd279788f2c215a0",
+      "sha": "47fb42810a6d96c4e1abfd0dc5eaca4b9fa0313b",
       "dirtyFiles": [
-        "egacy-combat.html",
+        "ocs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "legacy-combat.html",
         "src/combat/combatKeyboard.test.ts",
         "src/combat/combatKeyboard.ts",
         "src/combat/legacyCombatRuntime.js",
@@ -4133,7 +4500,8 @@
         "src/traversal/TraversalWorldRenderer.ts",
         "src/traversal/TraversalWorldSubject.test.ts",
         "src/traversal/TraversalWorldSubject.ts",
-        "tools/combat-battlefield-keyboard-production-qa.mjs"
+        "tools/combat-battlefield-keyboard-production-qa.mjs",
+        "tools/traversal-visual-convergence-qa.mjs"
       ],
       "lastGreenCheck": "49 focused Traversal tests/types/8 contracts8slots/immutable gates PASS; visual acceptance pending",
       "status": "UNKNOWN",

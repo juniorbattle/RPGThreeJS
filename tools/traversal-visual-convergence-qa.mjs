@@ -125,10 +125,10 @@ try {
       if(s.arrivals===1) { entry.complete=true; break; }
       if(s.view==='route'&&!s.transition&&s.progress>.12&&s.progress<.8) await capture(`route-${s.segment}`);
       if(s.view==='checkpoint'&&!s.transition&&s.cp>=.8) await capture(`checkpoint-${s.segment}`);
-      const fork=page.locator(`[data-traversal-fork-choice="${branch}"]:visible`);
-      if(await fork.count()){await fork.focus();await fork.press('Enter');}
+      const fork=page.locator(`[data-traversal-fork-choice="${branch}"]:visible:not([disabled])`);
+      if(await fork.count()){await fork.focus();await page.keyboard.press('Enter');}
       const event=page.locator('[data-traversal-confirm]:visible:not([disabled])');
-      if(await event.count()){await event.focus();await event.press('Enter');}
+      if(await event.count()){await event.focus();await page.keyboard.press('Enter');}
       const refuge=page.locator('.exploration-stop [data-action="continue"]:visible');if(await refuge.count())await refuge.click();
       const journey=page.locator('[data-journey-continue]:visible:not([disabled])');if(await journey.count()&&!s.segment)await journey.first().click();
       const choices=page.locator('.dialogue .dialogue__choices button:visible:not([disabled])');
@@ -144,7 +144,7 @@ try {
       await page.waitForTimeout(80);
     }
     const final=await page.evaluate(()=>({ ...window.__visualProof,branch:window.__visualApp.state.run.traversalBranches,node:window.__visualApp.state.run.currentNodeId }));
-    Object.assign(entry,final);
+    Object.assign(entry,{...final,branchState:final.branch,branch});
     assert.ok(entry.complete,'Native arrival reached');assert.equal(final.arrivals,1);assert.equal(final.branch?.[leg],branch);
     assert.ok(final.handoffs.includes(branch),'Canonical selected branch handoff preserved');
     assert.ok(entry.captures.some(x=>x.includes('checkpoint'))&&entry.captures.some(x=>x.includes('route')),'Representative route/checkpoint sequence');
