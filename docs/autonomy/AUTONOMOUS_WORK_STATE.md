@@ -1,48 +1,52 @@
 # Autonomous work state
 
-Current highest priority: docs/autonomy/MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md. Contract set1.1.0 is locked at d7ca28aed5c377ffedb03202f6364b7a947d1096; runtime corrections are unaccepted. Integration is complete. Scheduler remains ACTIVE.
+OD-2026-10-03-A remains highest priority. Contract set1.1.0 at immutable d7ca28aed5c377ffedb03202f6364b7a947d1096. Demo acceptance remains open.
 
 | Field | Value |
 | --- | --- |
 | `status` | IN_PROGRESS |
-| `runId` | codex-manual-playtest-20261003T0735 |
+| `runId` | rpgthreejs-auto-dev-90m-20261003T0820 |
 | `agent` | codex |
-| `runStartedAt` | 2026-10-03T07:35:50.593674Z |
-| `runEndedAt` | 2026-10-03T07:58:05.429Z |
+| `runStartedAt` | 2026-10-03T08:20:01Z |
+| `runEndedAt` |  |
 | `activeTask` | TRAVERSAL-VISUAL-CONVERGENCE |
-| `activePhase` | Ground/checkpoint/cast/shadow remediation under amended set1.1.0 |
-| `activeSubtask` | Inventory exact route/checkpoint ground and clan/hostile world actors for T0/T1/T3 |
+| `activePhase` | Shared ground and world subject correction; fresh production evidence |
+| `activeSubtask` | Verify common ground layer, empty clan stops and one Shadow marker on production T0/T1/T3 |
 | `workingBranch` | dev |
 | `lastKnownGoodCommit` | d7ca28aed5c377ffedb03202f6364b7a947d1096 |
 | `lastPushedCommit` | d7ca28aed5c377ffedb03202f6364b7a947d1096 |
-| `creditStatus` | CODEX_AVAILABLE_IN_INTERACTIVE_RUN; prior0520/0650quota failures retained; scheduler ACTIVE/model/high/90m preserved |
-| `contractComplianceStatus` | PRODUCTION-CONTRACTS-LOCK-1/set1.1.0: dedicated approved amendment OD-2026-10-03-A documentary PASS; baselined7ca28aed5c377ffedb03202f6364b7a947d1096; runtime remediation/visual acceptance IN_PROGRESS. No silent LOCKED change. |
+| `creditStatus` | AVAILABLE; original quota history retained in deferredDemoTask |
+| `contractComplianceStatus` | set1.1.0 immutable gates PASS; runtime correction verification IN_PROGRESS |
 
 ## Live run
 
 ```json
 {
-  "runId": "codex-manual-playtest-20261003T0735",
+  "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-03T07:58:05.429Z",
-  "status": "CHECKPOINT",
+  "lastHeartbeat": "2026-10-03T08:30:56.580Z",
+  "status": "RUNNING",
   "wip": {
-    "sha": "5f89ea4179b36eca001decef92cfa4ff83fc5575",
+    "sha": "d47d2b9975497e5eddd62e44dd279788f2c215a0",
     "dirtyFiles": [
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "legacy-combat.html",
+      "egacy-combat.html",
       "src/combat/combatKeyboard.test.ts",
       "src/combat/combatKeyboard.ts",
       "src/combat/legacyCombatRuntime.js",
       "src/styles/combat-shell.css",
+      "src/styles/traversal.css",
+      "src/traversal/TraversalRoadScene.ts",
+      "src/traversal/TraversalWorldRenderer.test.ts",
+      "src/traversal/TraversalWorldRenderer.ts",
+      "src/traversal/TraversalWorldSubject.test.ts",
+      "src/traversal/TraversalWorldSubject.ts",
       "tools/combat-battlefield-keyboard-production-qa.mjs"
     ],
-    "lastGreenCheck": "Prior0520reported81focused/types/build; full production keyboard acceptance incomplete; preserved without certifying",
+    "lastGreenCheck": "49 focused Traversal tests/types/8 contracts8slots/immutable gates PASS; visual acceptance pending",
     "status": "UNKNOWN",
-    "branch": "wip/codex-manual-playtest-20261003T0735"
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0820"
   },
-  "nextAction": "Under owned lock read OD-2026-10-03-A/current1.1.0 contracts and preserved deferredDemoTask; verify its six keyboard source blobs without modifying them. Resume TRAVERSAL-VISUAL-CONVERGENCE: inspect TraversalRoadScene/Presentation, WorldModel/WorldRenderer, T0/T1/T3World and CheckpointRoute/Authoring plus current referenced ground assets; map Route/Checkpoint/Return Route ground palette/scale/perspective/lane geometry. Classify clan membership from existing campaign facts; remove clan sprites only from Traversal world, retaining authored STATIC_TABLEAU cast, valid external subjects and stops without NPC. Reduce hostile world formation to one approved Shadow marker matching Pursuit. Apply the smallest coherent shared-source correction, obtain a scoped traversal-engineer review or use its skill when profile is unavailable, then focused tests/types/build and native production sequence/captures across T0/T1/T3 and motion/viewports. No invented assets/canon. Continue the ordered remediation queue; retain exact deferred battlefield keyboard QA nextAction until item11.",
+  "nextAction": "Finish fresh built-production ground/subject sequences T0/T1/T3 at1440/620/390 normal and OS-only reduction; inspect selected captures and focused subject facts; obtain exact-diff Traversal and authority guardian reviews. Preserve six deferred keyboard blobs. Remote publication awaits automatic-review authorization; keep local snapshots and exact checkpoint if denied. Continue motion task only after visual acceptance; demo remains incomplete.",
   "runMetrics": {
     "registeredNativeJobs": 2,
     "scopedRecoveriesAccepted": 2,
@@ -76,79 +80,39 @@ Current highest priority: docs/autonomy/MANUAL_PLAYTEST_OPERATOR_DECISION_2026-1
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
   ],
   "qaJobCount": 33,
-  "qaLedger": "AUTONOMOUS_WORK_STATE.json: live.qaJobs; full historical receipts/dispositions unchanged; load only the jobs relevant to the active question"
+  "qaLedger": "AUTONOMOUS_WORK_STATE.json live.qaJobs; historical dispositions retained"
 }
 ```
 
 ## completedThisRun
 
-- Read-only stopped-turn/process preflight; abandoned0520lock archived; exclusive takeover after105minutes
-- Eight interrupted files preserved in explicit-path snapshot5f89ea4179b36eca001decef92cfa4ff83fc5575 without real-index mutation
-- OD-2026-10-03-A recorded; dedicated contract set1.1.0 amendment reviewed PASS and pushed atd7ca28aed5c377ffedb03202f6364b7a947d1096
-- New immutable LOCKED baseline and manual-playtest priority routing installed; existing keyboard/combat work deferred, not accepted or removed
-- Read-only traversal-engineer profile/skill created; narrative/UI/Journey/guardian responsibilities aligned
-- Saved automation prompt verified exactly; all other fields preserved ACTIVE/GPT-6.1Sol/high/90m/local project/environment/preferences
-- Operational guardian PASS: immutable baseline,11item priority,33historical QA dispositions and6source blobs preserved; protocol baseline reference completed
-- Seven Codex profiles parse; existing model/sandbox fields unchanged; new traversal skill strict-format check PASS
+- Read-only preflight and exclusive lock; dev/origin dev c9e16a8 verified
+- Six deferred keyboard blobs verified and preserved in local temporary-index snapshot d47d2b9; remote snapshot blocked by automatic review
+- Scoped Traversal reviewer identified clan/external subject distinctions
+- Shared native forest ground and world-only subject policy implemented; canonical data/formation/tableau untouched
+- 49 focused Traversal tests, TypeScript, contract validator and immutable gates PASS
 
 ## filesChanged
 
-- docs/autonomy/MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md
-- docs/autonomy/OPERATOR_DECISIONS.md
-- docs/contracts/TRAVERSAL.md
-- docs/contracts/CAMPAIGN_AND_STATE.md
-- docs/contracts/PRESENTATION_AND_MEDIA.md
-- docs/contracts/WORLD_AND_CHARACTERS.md
-- docs/contracts/UI_AND_ACCESSIBILITY.md
-- docs/contracts/AUTHORING_AND_QA.md
-- docs/contracts/README.md
-- docs/contracts/contracts.manifest.json
-- docs/traversal/T0_PRODUCTION_CONTRACT.md
-- AGENTS.md
-- .agents/skills/autonomy-handoff/SKILL.md
-- .agents/skills/contracts-compliance/SKILL.md
-- .agents/skills/narrative-tableau/SKILL.md
-- .agents/skills/ui-accessibility/SKILL.md
-- .agents/skills/cinematics-journey/SKILL.md
-- .agents/skills/traversal-engineer/SKILL.md
-- .agents/agents/contracts-guardian.md
-- .codex/agents/contracts-guardian.toml
-- .agents/agents/narrative-tableau.md
-- .codex/agents/narrative-tableau.toml
-- .agents/agents/ui-accessibility.md
-- .codex/agents/ui-accessibility.toml
-- .agents/agents/cinematics-journey.md
-- .codex/agents/cinematics-journey.toml
-- .agents/agents/traversal-engineer.md
-- .codex/agents/traversal-engineer.toml
-- docs/autonomy/MULTI_AGENT_PROTOCOL.md
-- docs/autonomy/RECURRING_RUN_PROMPT.md
-- docs/autonomy/AUTONOMOUS_WORK_STATE.json
+- src/traversal/TraversalWorldSubject.ts
+- src/traversal/TraversalWorldSubject.test.ts
+- src/traversal/TraversalRoadScene.ts
+- src/traversal/TraversalWorldRenderer.ts
+- src/traversal/TraversalWorldRenderer.test.ts
+- src/styles/traversal.css
 - docs/autonomy/AUTONOMOUS_WORK_STATE.md
-- docs/reports/manual-playtest-contracts-1.md
-- docs/reports/manual-playtest-contracts-1/checks.json
-- docs/autonomy/handoffs/2026-10-03T0735Z-codex-manual-playtest-priority.md
-- docs/reports/INDEX.md
+- docs/autonomy/AUTONOMOUS_WORK_STATE.json
 
 ## testsRun
 
-- node tools/contracts/validate-contracts.mjs:8contracts/8slots PASS
-- Independent contracts-guardian pre-review and real-diff documentary review PASS
-- Git diff --check; approved amendment path review; snapshot file hashes/real-index preservation
-- Python tomllib:7profiles and exact parsed before/after automation comparison
-- Strict new skill frontmatter/name/description/body checks (official quick_validate unavailable: bundled Python lacks PyYAML)
-- Python historicalQA/deferredNextAction/snapshot6source preservation assertions
-- Independent contracts-guardian operational baseline/priority/WIP review PASS
+- node node_modules/vitest/vitest.mjs run selected7Traversal suites
+- node node_modules/typescript/bin/tsc --noEmit
+- node tools/contracts/validate-contracts.mjs
+- git diff --check and immutable LOCKED gates
 
 ## testsPassed
 
-- 8LOCKED contracts and8video slots
-- Independent scoped contract documentary review PASS
-- Explicit amendment only; constitution/COMBAT_AND_VFX/AUTONOMOUS_WORK_PROTOCOL unchanged
-- Inherited8snapshot blobs match files and real index unchanged
-- Automation exact prompt and all other configuration fields PASS
-- 7Codex TOML profiles, strict new skill format,6source blobs and33QA dispositions PASS
-- Current LOCKED baseline gates empty; protocol/AGENTS/skills share approved SHA
+- 49tests/7suites; types; 8contracts8slots; immutable gates
 
 ## testsRemaining
 
@@ -161,7 +125,7 @@ Current highest priority: docs/autonomy/MANUAL_PLAYTEST_OPERATOR_DECISION_2026-1
 
 ## blockers
 
-- None recorded.
+- Automatic approval review rejected remote WIP push twice as source-code egress lacking exact payload authorization; explicit permission requested asynchronously; local work continues
 
 ## remainingWork
 
@@ -178,40 +142,64 @@ Current highest priority: docs/autonomy/MANUAL_PLAYTEST_OPERATOR_DECISION_2026-1
 
 ## taskQueue
 
-- PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY
-- TRAVERSAL-VISUAL-CONVERGENCE: ACTIVE
-- TRAVERSAL-MOTION-POLISH: PENDING
-- TRAVERSAL-PURSUIT-THREAT: PENDING
-- TRAVERSAL-ROAD-ELEMENTS: PENDING
-- PRE-JUDGEMENT-CAMPFIRE: PENDING
-- NARRATIVE-CONTEXT-COHERENCE: PENDING
-- STATIC-TABLEAU-STAGING-POLISH: PENDING
-- SCENE-TRANSITION-COPY: PENDING
-- ENVIRONMENT-NARRATIVE-COHERENCE: PENDING
-- Resume deferred DEMO-QA-POLISH: PENDING
+- "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY"
+- "TRAVERSAL-VISUAL-CONVERGENCE: ACTIVE"
+- "TRAVERSAL-MOTION-POLISH: PENDING"
+- "TRAVERSAL-PURSUIT-THREAT: PENDING"
+- "TRAVERSAL-ROAD-ELEMENTS: PENDING"
+- "PRE-JUDGEMENT-CAMPFIRE: PENDING"
+- "NARRATIVE-CONTEXT-COHERENCE: PENDING"
+- "STATIC-TABLEAU-STAGING-POLISH: PENDING"
+- "SCENE-TRANSITION-COPY: PENDING"
+- "ENVIRONMENT-NARRATIVE-COHERENCE: PENDING"
+- "Resume deferred DEMO-QA-POLISH: PENDING"
 
 ## Next action
 
-Under owned lock read OD-2026-10-03-A/current1.1.0 contracts and preserved deferredDemoTask; verify its six keyboard source blobs without modifying them. Resume TRAVERSAL-VISUAL-CONVERGENCE: inspect TraversalRoadScene/Presentation, WorldModel/WorldRenderer, T0/T1/T3World and CheckpointRoute/Authoring plus current referenced ground assets; map Route/Checkpoint/Return Route ground palette/scale/perspective/lane geometry. Classify clan membership from existing campaign facts; remove clan sprites only from Traversal world, retaining authored STATIC_TABLEAU cast, valid external subjects and stops without NPC. Reduce hostile world formation to one approved Shadow marker matching Pursuit. Apply the smallest coherent shared-source correction, obtain a scoped traversal-engineer review or use its skill when profile is unavailable, then focused tests/types/build and native production sequence/captures across T0/T1/T3 and motion/viewports. No invented assets/canon. Continue the ordered remediation queue; retain exact deferred battlefield keyboard QA nextAction until item11.
+Finish fresh built-production ground/subject sequences T0/T1/T3 at1440/620/390 normal and OS-only reduction; inspect selected captures and focused subject facts; obtain exact-diff Traversal and authority guardian reviews. Preserve six deferred keyboard blobs. Remote publication awaits automatic-review authorization; keep local snapshots and exact checkpoint if denied. Continue motion task only after visual acceptance; demo remains incomplete.
 
 ## Deferred battlefield keyboard/combat
 
 Finish exact battlefield production driver: real Tab entry, cursor bounds/announcement/no truth mutation, invalid/legal movement and native target execution, Escape/Retour focus, native controls and pointer regression in1366/620/390 OS on/off. Build new sources, review exact activation/assertion diff with guardian, register job and freeze tested inputs. Add actual fresh campaign iframe keyboard entry/return if budget permits; incomplete acceptance stays explicit. Preserve historical0350recovery and original726trial proofs. No media/audio work.
 
-## Deliberately uncommitted inherited work
+Six inherited source/driver blobs remain unstaged and unchanged; full original evidence and queue retained in JSON.deferredDemoTask.
 
-Six inherited battlefield keyboard implementation/driver files remain deliberately unstaged: interrupted before full production acceptance; operator defers them behind manual-playtest remediation. Dedicated contract/integration commits do not silently ship or discard them. Exact six blobs preserved on remote WIP snapshot; fresh owners must preserve them.
+<!-- QA_JOBS_START -->
+## Live QA jobs
 
-- legacy-combat.html @ 1a49cd0e44116fd215d34bb448e89943736908c6
-- src/combat/combatKeyboard.test.ts @ ea17c82429b377811937c3e226fd8cafcf706922
-- src/combat/combatKeyboard.ts @ c8c41388618805fc92baee138aec17d5c94112df
-- src/combat/legacyCombatRuntime.js @ e4c8dfe9c1ce0caf2f0f1a9d2cb08d93034707f2
-- src/styles/combat-shell.css @ ae9d24d6f1dea23c99dff938235ba6fcca458f16
-- tools/combat-battlefield-keyboard-production-qa.mjs @ bfd2cd6a3f81e4d67645dabf29cc7c93ddd50321
-
-- Snapshot: wip/codex-manual-playtest-20261003T0735 @ 5f89ea4179b36eca001decef92cfa4ff83fc5575.
-- All33historic QA job dispositions remain unchanged in JSON.live.qaJobs.
-- Original items1–8 retain historical completion; affected Traversal/narrative acceptance is reopened.
-- No runtime correction, new art or full playtest acceptance is claimed by this contract/integration checkpoint.
-- lastKnownGoodCommit/lastPushedCommit identify the verified dedicated contract checkpoint; HEAD/origin/dev identify the later operational state/doc commit without circular self-reference.
-- Current handoff: docs/autonomy/handoffs/2026-10-03T0735Z-codex-manual-playtest-priority.md.
+- legacy-1453-defeat-native: FINISHED_LEGACY; port null; receipt `tmp/demo/continuous-1453-defeat-native/qa-job.json`; NOT_ACCEPTED
+- legacy-1453-trial: FINISHED_LEGACY; port null; receipt `tmp/demo/continuous-1453-trial/qa-job.json`; NOT_ACCEPTED
+- 1952-desktop: ABORTED_HARNESS_DEFECT; port 5258; receipt `tmp/demo/1952-desktop/qa-job.json`; NOT_ACCEPTED
+- 1952-mobile: FAILED; port 5259; receipt `tmp/demo/1952-mobile/qa-job.json`; NOT_ACCEPTED
+- 1952-trial: ABORTED_HARNESS_DEFECT; port 5261; receipt `tmp/demo/1952-trial/qa-job.json`; NOT_ACCEPTED
+- 1952-intermediate: ABORTED_HARNESS_DEFECT; port 5260; receipt `tmp/demo/1952-intermediate/qa-job.json`; NOT_ACCEPTED
+- 1952-keyboard-final: SUCCEEDED; port 5262; receipt `tmp/demo/1952-keyboard-final/qa-job.json`; ACCEPTED_SCOPED
+- 1952-final-desktop: SUCCEEDED; port 5258; receipt `tmp/demo/1952-final-desktop/qa-job.json`; ACCEPTED_SCOPED
+- 1952-final-mobile: SUCCEEDED; port 5259; receipt `tmp/demo/1952-final-mobile/qa-job.json`; ACCEPTED_SCOPED
+- 1952-final-intermediate: FAILED; port 5260; receipt `tmp/demo/1952-final-intermediate/qa-job.json`; NOT_ACCEPTED
+- 1952-final-trial: FAILED; port 5261; receipt `tmp/demo/1952-final-trial/qa-job.json`; NOT_ACCEPTED
+- 2122-grid-final: ABORTED_HARNESS_DEFECT; port 5264; receipt `tmp/demo/2122-grid-final/qa-job.json`; NOT_ACCEPTED
+- 2122-trial-final: ABORTED_SOURCE_CORRECTION; port 5265; receipt `tmp/demo/2122-trial-final/qa-job.json`; NOT_ACCEPTED
+- 2122-intermediate-final: FAILED; port 5266; receipt `tmp/demo/2122-intermediate-final/qa-job.json`; NOT_ACCEPTED
+- 2122-grid-bounded: ABORTED_HARNESS_COST; port 5264; receipt `tmp/demo/2122-grid-bounded/qa-job.json`; NOT_ACCEPTED
+- 2122-grid-sampled: ABORTED_SOURCE_CORRECTION; port 5264; receipt `tmp/demo/2122-grid-sampled/qa-job.json`; NOT_ACCEPTED
+- 2122-grid-fixed: ABORTED_SOURCE_CORRECTION; port 5264; receipt `tmp/demo/2122-grid-fixed/qa-job.json`; NOT_ACCEPTED
+- 2122-intermediate-fixed: ABORTED_SOURCE_CORRECTION; port 5266; receipt `tmp/demo/2122-intermediate-fixed/qa-job.json`; NOT_ACCEPTED
+- 2122-trial-conserve: ABORTED_SOURCE_CORRECTION; port 5265; receipt `tmp/demo/2122-trial-conserve/qa-job.json`; NOT_ACCEPTED
+- 2122-card-scroll: FAILED; port 5267; receipt `tmp/demo/2122-card-scroll/qa-job.json`; NOT_ACCEPTED
+- 2122-grid-final-wheel: SUCCEEDED; port 5264; receipt `tmp/demo/2122-grid-final-wheel/qa-job.json`; ACCEPTED_SCOPED
+- 2122-card-final-wheel: SUCCEEDED; port 5267; receipt `tmp/demo/2122-card-final-wheel/qa-job.json`; ACCEPTED_SCOPED
+- 2122-intermediate-final-wheel: FAILED; port 5266; receipt `tmp/demo/2122-intermediate-final-wheel/qa-job.json`; NOT_ACCEPTED
+- 2122-trial-final-wheel: FAILED; port 5265; receipt `tmp/demo/2122-trial-final-wheel/qa-job.json`; NOT_ACCEPTED
+- 2252-card-focus: FAILED; port 5268; receipt `tmp/demo/2252-card-focus/qa-job.json`; NOT_ACCEPTED
+- 2252-card-focus-labels: SUCCEEDED; port 5268; receipt `tmp/demo/2252-card-focus-labels/qa-job.json`; ACCEPTED_SCOPED
+- 2252-recovery-620: FAILED; port 5269; receipt `tmp/demo/2252-recovery-620/qa-job.json`; NOT_ACCEPTED
+- 2252-trial-native-skills: ABORTED_PILOT_POLICY_DEFECT; port 5270; receipt `tmp/demo/2252-trial-native-skills/qa-job.json`; NOT_ACCEPTED
+- 2252-trial-unlocked: FAILED; port 5270; receipt `tmp/demo/2252-trial-unlocked/qa-job.json`; NOT_ACCEPTED
+- 0228-trial-support: SUCCEEDED; port 5271; receipt `tmp/demo/0228-trial-support/qa-job.json`; ACCEPTED_SCOPED
+- 0228-recovery-stock: FAILED; port 5272; receipt `tmp/demo/0228-recovery-stock/qa-job.json`; FAILED_NOT_ACCEPTED
+- 0350-recovery-crosier: SUCCEEDED; port 5273; receipt `tmp/demo/0350-recovery-crosier/qa-job.json`; ACCEPTED_SCOPED
+- 0350-recovery-mobile-os: SUCCEEDED; port 5274; receipt `tmp/demo/0350-recovery-mobile-os/qa-job.json`; ACCEPTED_SCOPED
+- visual-0820-normal: PLANNED; port 5276; receipt `tmp/traversal/visual-0820-normal/qa-job.json`; NOT_ACCEPTED
+- visual-0820-os: PLANNED; port 5277; receipt `tmp/traversal/visual-0820-os/qa-job.json`; NOT_ACCEPTED
+<!-- QA_JOBS_END -->

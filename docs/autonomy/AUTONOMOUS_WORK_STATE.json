@@ -1,78 +1,38 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-03T07:35:50.593674Z",
-  "runEndedAt": "2026-10-03T07:58:05.429Z",
+  "runStartedAt": "2026-10-03T08:20:01Z",
+  "runEndedAt": null,
   "activeTask": "TRAVERSAL-VISUAL-CONVERGENCE",
-  "activePhase": "Ground/checkpoint/cast/shadow remediation under amended set1.1.0",
-  "activeSubtask": "Inventory exact route/checkpoint ground and clan/hostile world actors for T0/T1/T3",
+  "activePhase": "Shared ground and world subject correction; fresh production evidence",
+  "activeSubtask": "Verify common ground layer, empty clan stops and one Shadow marker on production T0/T1/T3",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "d7ca28aed5c377ffedb03202f6364b7a947d1096",
   "lastPushedCommit": "d7ca28aed5c377ffedb03202f6364b7a947d1096",
   "completedThisRun": [
-    "Read-only stopped-turn/process preflight; abandoned0520lock archived; exclusive takeover after105minutes",
-    "Eight interrupted files preserved in explicit-path snapshot5f89ea4179b36eca001decef92cfa4ff83fc5575 without real-index mutation",
-    "OD-2026-10-03-A recorded; dedicated contract set1.1.0 amendment reviewed PASS and pushed atd7ca28aed5c377ffedb03202f6364b7a947d1096",
-    "New immutable LOCKED baseline and manual-playtest priority routing installed; existing keyboard/combat work deferred, not accepted or removed",
-    "Read-only traversal-engineer profile/skill created; narrative/UI/Journey/guardian responsibilities aligned",
-    "Saved automation prompt verified exactly; all other fields preserved ACTIVE/GPT-6.1Sol/high/90m/local project/environment/preferences",
-    "Operational guardian PASS: immutable baseline,11item priority,33historical QA dispositions and6source blobs preserved; protocol baseline reference completed",
-    "Seven Codex profiles parse; existing model/sandbox fields unchanged; new traversal skill strict-format check PASS"
+    "Read-only preflight and exclusive lock; dev/origin dev c9e16a8 verified",
+    "Six deferred keyboard blobs verified and preserved in local temporary-index snapshot d47d2b9; remote snapshot blocked by automatic review",
+    "Scoped Traversal reviewer identified clan/external subject distinctions",
+    "Shared native forest ground and world-only subject policy implemented; canonical data/formation/tableau untouched",
+    "49 focused Traversal tests, TypeScript, contract validator and immutable gates PASS"
   ],
   "filesChanged": [
-    "docs/autonomy/MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md",
-    "docs/autonomy/OPERATOR_DECISIONS.md",
-    "docs/contracts/TRAVERSAL.md",
-    "docs/contracts/CAMPAIGN_AND_STATE.md",
-    "docs/contracts/PRESENTATION_AND_MEDIA.md",
-    "docs/contracts/WORLD_AND_CHARACTERS.md",
-    "docs/contracts/UI_AND_ACCESSIBILITY.md",
-    "docs/contracts/AUTHORING_AND_QA.md",
-    "docs/contracts/README.md",
-    "docs/contracts/contracts.manifest.json",
-    "docs/traversal/T0_PRODUCTION_CONTRACT.md",
-    "AGENTS.md",
-    ".agents/skills/autonomy-handoff/SKILL.md",
-    ".agents/skills/contracts-compliance/SKILL.md",
-    ".agents/skills/narrative-tableau/SKILL.md",
-    ".agents/skills/ui-accessibility/SKILL.md",
-    ".agents/skills/cinematics-journey/SKILL.md",
-    ".agents/skills/traversal-engineer/SKILL.md",
-    ".agents/agents/contracts-guardian.md",
-    ".codex/agents/contracts-guardian.toml",
-    ".agents/agents/narrative-tableau.md",
-    ".codex/agents/narrative-tableau.toml",
-    ".agents/agents/ui-accessibility.md",
-    ".codex/agents/ui-accessibility.toml",
-    ".agents/agents/cinematics-journey.md",
-    ".codex/agents/cinematics-journey.toml",
-    ".agents/agents/traversal-engineer.md",
-    ".codex/agents/traversal-engineer.toml",
-    "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
-    "docs/autonomy/RECURRING_RUN_PROMPT.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "src/traversal/TraversalWorldSubject.ts",
+    "src/traversal/TraversalWorldSubject.test.ts",
+    "src/traversal/TraversalRoadScene.ts",
+    "src/traversal/TraversalWorldRenderer.ts",
+    "src/traversal/TraversalWorldRenderer.test.ts",
+    "src/styles/traversal.css",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/reports/manual-playtest-contracts-1.md",
-    "docs/reports/manual-playtest-contracts-1/checks.json",
-    "docs/autonomy/handoffs/2026-10-03T0735Z-codex-manual-playtest-priority.md",
-    "docs/reports/INDEX.md"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
   ],
   "testsRun": [
-    "node tools/contracts/validate-contracts.mjs:8contracts/8slots PASS",
-    "Independent contracts-guardian pre-review and real-diff documentary review PASS",
-    "Git diff --check; approved amendment path review; snapshot file hashes/real-index preservation",
-    "Python tomllib:7profiles and exact parsed before/after automation comparison",
-    "Strict new skill frontmatter/name/description/body checks (official quick_validate unavailable: bundled Python lacks PyYAML)",
-    "Python historicalQA/deferredNextAction/snapshot6source preservation assertions",
-    "Independent contracts-guardian operational baseline/priority/WIP review PASS"
+    "node node_modules/vitest/vitest.mjs run selected7Traversal suites",
+    "node node_modules/typescript/bin/tsc --noEmit",
+    "node tools/contracts/validate-contracts.mjs",
+    "git diff --check and immutable LOCKED gates"
   ],
   "testsPassed": [
-    "8LOCKED contracts and8video slots",
-    "Independent scoped contract documentary review PASS",
-    "Explicit amendment only; constitution/COMBAT_AND_VFX/AUTONOMOUS_WORK_PROTOCOL unchanged",
-    "Inherited8snapshot blobs match files and real index unchanged",
-    "Automation exact prompt and all other configuration fields PASS",
-    "7Codex TOML profiles, strict new skill format,6source blobs and33QA dispositions PASS",
-    "Current LOCKED baseline gates empty; protocol/AGENTS/skills share approved SHA"
+    "49tests/7suites; types; 8contracts8slots; immutable gates"
   ],
   "testsRemaining": [
     "New T0/T1/T3 ground/checkpoint/clan/shadow visual acceptance",
@@ -82,7 +42,9 @@
     "Relational tableau/cast/facing/ATE/contextual environments with desktop/intermediate/narrow OS-motion variants",
     "Deferred battlefield keyboard and original DEMO-QA-POLISH acceptance (exact details in deferredDemoTask)"
   ],
-  "blockers": [],
+  "blockers": [
+    "Automatic approval review rejected remote WIP push twice as source-code egress lacking exact payload authorization; explicit permission requested asynchronously; local work continues"
+  ],
   "remainingWork": [
     "PENDING: TRAVERSAL-VISUAL-CONVERGENCE",
     "PENDING: TRAVERSAL-MOTION-POLISH",
@@ -95,7 +57,7 @@
     "PENDING: ENVIRONMENT-NARRATIVE-COHERENCE",
     "PENDING: Resume deferred DEMO-QA-POLISH"
   ],
-  "nextAction": "Under owned lock read OD-2026-10-03-A/current1.1.0 contracts and preserved deferredDemoTask; verify its six keyboard source blobs without modifying them. Resume TRAVERSAL-VISUAL-CONVERGENCE: inspect TraversalRoadScene/Presentation, WorldModel/WorldRenderer, T0/T1/T3World and CheckpointRoute/Authoring plus current referenced ground assets; map Route/Checkpoint/Return Route ground palette/scale/perspective/lane geometry. Classify clan membership from existing campaign facts; remove clan sprites only from Traversal world, retaining authored STATIC_TABLEAU cast, valid external subjects and stops without NPC. Reduce hostile world formation to one approved Shadow marker matching Pursuit. Apply the smallest coherent shared-source correction, obtain a scoped traversal-engineer review or use its skill when profile is unavailable, then focused tests/types/build and native production sequence/captures across T0/T1/T3 and motion/viewports. No invented assets/canon. Continue the ordered remediation queue; retain exact deferred battlefield keyboard QA nextAction until item11.",
+  "nextAction": "Finish fresh built-production ground/subject sequences T0/T1/T3 at1440/620/390 normal and OS-only reduction; inspect selected captures and focused subject facts; obtain exact-diff Traversal and authority guardian reviews. Preserve six deferred keyboard blobs. Remote publication awaits automatic-review authorization; keep local snapshots and exact checkpoint if denied. Continue motion task only after visual acceptance; demo remains incomplete.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: ACTIVE",
@@ -109,8 +71,8 @@
     "ENVIRONMENT-NARRATIVE-COHERENCE: PENDING",
     "Resume deferred DEMO-QA-POLISH: PENDING"
   ],
-  "creditStatus": "CODEX_AVAILABLE_IN_INTERACTIVE_RUN; prior0520/0650quota failures retained; scheduler ACTIVE/model/high/90m preserved",
-  "contractComplianceStatus": "PRODUCTION-CONTRACTS-LOCK-1/set1.1.0: dedicated approved amendment OD-2026-10-03-A documentary PASS; baselined7ca28aed5c377ffedb03202f6364b7a947d1096; runtime remediation/visual acceptance IN_PROGRESS. No silent LOCKED change.",
+  "creditStatus": "AVAILABLE; original quota history retained in deferredDemoTask",
+  "contractComplianceStatus": "set1.1.0 immutable gates PASS; runtime correction verification IN_PROGRESS",
   "commitReferenceScope": "Verified implementation/evidence checkpoint; final state-only closeout identified by HEAD/origin/dev and automation memory rather than circular self-reference.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
@@ -219,7 +181,7 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "codex-manual-playtest-20261003T0735",
+  "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
   "agent": "codex",
   "lastHeartbeat": "2026-10-03T07:58:05.429Z",
   "wip": {
@@ -239,10 +201,10 @@
     "branch": "wip/codex-manual-playtest-20261003T0735"
   },
   "live": {
-    "runId": "codex-manual-playtest-20261003T0735",
+    "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-03T07:58:05.429Z",
-    "status": "CHECKPOINT",
+    "lastHeartbeat": "2026-10-03T08:30:56.580Z",
+    "status": "RUNNING",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -3989,25 +3951,195 @@
           "resultDigestMatches": true,
           "eligibleForReview": true
         }
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "visual-0820-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-03T08:35:09.065Z",
+        "pid": null,
+        "port": 5276,
+        "command": [
+          "node",
+          "tools/traversal-visual-convergence-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "normal",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "gameReducedMotion": false,
+          "scope": "production presentation with V6 origin and combat-result fixtures"
+        },
+        "requiredAssertions": [
+          "shared-native-ground",
+          "clan-empty-stops",
+          "single-shadow",
+          "native-handoffs",
+          "responsive-controls",
+          "os-only-reduction"
+        ],
+        "output": "tmp/traversal/visual-0820-normal",
+        "receiptPath": "tmp/traversal/visual-0820-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "c9e16a8f2685435ce6432c5a1dc5980b7c2152a6",
+          "sourceTree": "7f7b49e9c657b24e25c105b96f3b8186ebcbef8b",
+          "sourceDiffSha256": "d7a97d238e67e71785f5cfc7c8bf7e2a163b9283f237f2ac273c7d245f46de66",
+          "driver": {
+            "path": "tools/traversal-visual-convergence-qa.mjs",
+            "sha256": "d96ef734ed852d6fc7fa46c846322ed2e5b7c7cb87e8d8c4cf59d4084ea9ddd8"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-B-Q4peil.js",
+              "sha256": "3afa1b2f479ea8326e471b32778436825a70452f99b03a55e252d636f002aeb4"
+            },
+            {
+              "path": "dist/assets/game-D7TpUbkt.css",
+              "sha256": "d6cdbfe35fa526c5f01a6238c853b1efd1179812c92ad3f0186c42d7b67b69e8"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "3b6ba42138640e27e93110426d431cc9900ad7f93e13858bbe2eb672d9d2245e"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "visual-0820-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-03T08:35:09.245Z",
+        "pid": null,
+        "port": 5277,
+        "command": [
+          "node",
+          "tools/traversal-visual-convergence-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "os",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "gameReducedMotion": false,
+          "scope": "production presentation with V6 origin and combat-result fixtures"
+        },
+        "requiredAssertions": [
+          "shared-native-ground",
+          "clan-empty-stops",
+          "single-shadow",
+          "native-handoffs",
+          "responsive-controls",
+          "os-only-reduction"
+        ],
+        "output": "tmp/traversal/visual-0820-os",
+        "receiptPath": "tmp/traversal/visual-0820-os/qa-job.json",
+        "provenance": {
+          "gitHead": "c9e16a8f2685435ce6432c5a1dc5980b7c2152a6",
+          "sourceTree": "7f7b49e9c657b24e25c105b96f3b8186ebcbef8b",
+          "sourceDiffSha256": "d7a97d238e67e71785f5cfc7c8bf7e2a163b9283f237f2ac273c7d245f46de66",
+          "driver": {
+            "path": "tools/traversal-visual-convergence-qa.mjs",
+            "sha256": "d96ef734ed852d6fc7fa46c846322ed2e5b7c7cb87e8d8c4cf59d4084ea9ddd8"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-B-Q4peil.js",
+              "sha256": "3afa1b2f479ea8326e471b32778436825a70452f99b03a55e252d636f002aeb4"
+            },
+            {
+              "path": "dist/assets/game-D7TpUbkt.css",
+              "sha256": "d6cdbfe35fa526c5f01a6238c853b1efd1179812c92ad3f0186c42d7b67b69e8"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "3b6ba42138640e27e93110426d431cc9900ad7f93e13858bbe2eb672d9d2245e"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
       }
     ],
     "wip": {
-      "sha": "5f89ea4179b36eca001decef92cfa4ff83fc5575",
+      "sha": "d47d2b9975497e5eddd62e44dd279788f2c215a0",
       "dirtyFiles": [
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "legacy-combat.html",
+        "egacy-combat.html",
         "src/combat/combatKeyboard.test.ts",
         "src/combat/combatKeyboard.ts",
         "src/combat/legacyCombatRuntime.js",
         "src/styles/combat-shell.css",
+        "src/styles/traversal.css",
+        "src/traversal/TraversalRoadScene.ts",
+        "src/traversal/TraversalWorldRenderer.test.ts",
+        "src/traversal/TraversalWorldRenderer.ts",
+        "src/traversal/TraversalWorldSubject.test.ts",
+        "src/traversal/TraversalWorldSubject.ts",
         "tools/combat-battlefield-keyboard-production-qa.mjs"
       ],
-      "lastGreenCheck": "Prior0520reported81focused/types/build; full production keyboard acceptance incomplete; preserved without certifying",
+      "lastGreenCheck": "49 focused Traversal tests/types/8 contracts8slots/immutable gates PASS; visual acceptance pending",
       "status": "UNKNOWN",
-      "branch": "wip/codex-manual-playtest-20261003T0735"
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0820"
     },
-    "nextAction": "Under owned lock read OD-2026-10-03-A/current1.1.0 contracts and preserved deferredDemoTask; verify its six keyboard source blobs without modifying them. Resume TRAVERSAL-VISUAL-CONVERGENCE: inspect TraversalRoadScene/Presentation, WorldModel/WorldRenderer, T0/T1/T3World and CheckpointRoute/Authoring plus current referenced ground assets; map Route/Checkpoint/Return Route ground palette/scale/perspective/lane geometry. Classify clan membership from existing campaign facts; remove clan sprites only from Traversal world, retaining authored STATIC_TABLEAU cast, valid external subjects and stops without NPC. Reduce hostile world formation to one approved Shadow marker matching Pursuit. Apply the smallest coherent shared-source correction, obtain a scoped traversal-engineer review or use its skill when profile is unavailable, then focused tests/types/build and native production sequence/captures across T0/T1/T3 and motion/viewports. No invented assets/canon. Continue the ordered remediation queue; retain exact deferred battlefield keyboard QA nextAction until item11.",
+    "nextAction": "Finish fresh built-production ground/subject sequences T0/T1/T3 at1440/620/390 normal and OS-only reduction; inspect selected captures and focused subject facts; obtain exact-diff Traversal and authority guardian reviews. Preserve six deferred keyboard blobs. Remote publication awaits automatic-review authorization; keep local snapshots and exact checkpoint if denied. Continue motion task only after visual acceptance; demo remains incomplete.",
     "runMetrics": {
       "registeredNativeJobs": 2,
       "scopedRecoveriesAccepted": 2,
