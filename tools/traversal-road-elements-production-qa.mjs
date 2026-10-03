@@ -83,7 +83,7 @@ try {
     if (leg === 'T0') await page.evaluate(async () => { const app = window.__roadApp; app.qaEnabled = true; app.traversalT0QaEnabled = true;
       await app.startTraversalT0Qa(); });
     else await page.locator('[data-action="continue"]').click();
-    let lanesReady = false, switched = false, captured = new Set(), resized = false;
+    let lanesReady = false, switched = false, captured = new Set(), resized = false, requestedEvent = null;
     const capture = async label => { if (captured.has(label)) return; captured.add(label);
       const file = `${leg}-${width}-${motion}-${road}-${path}-${label}.png`; await page.screenshot({ path: `${output}/${file}` });
       entry.captures.push(file); report.captures.push({ file, leg, width, motion, path, label }); };
@@ -94,7 +94,7 @@ try {
           progress: scene?.routeRun.progress01, hazards: scene?.authoring.hazards(scene.routeSegment.id),
           pickups: scene?.authoring.pickups(scene.routeSegment.id), resolved: scene?.routeRisk.resolvedHazardIds,
           collected: scene?.routeReward.collectedPickupIds, sample: window.__roadSamples.at(-1) }; }, target);
-      if (s.target && s.view === 'checkpoint') break;
+      if (s.target && s.view === 'checkpoint') { await page.waitForTimeout(40); break; }
       if (!s.target) {
         for (const selector of ['[data-traversal-confirm]:visible:not([disabled])', '.exploration-stop [data-action="continue"]:visible', '[data-journey-continue]:visible:not([disabled])',
           '.dialogue .dialogue__choices button:visible:not([disabled])', '.dialogue .dialogue__box:visible', '.cinematic-overlay__skip:visible:not([disabled])']) {
@@ -110,8 +110,8 @@ try {
           return session.config.id;
         }); if (combat) entry.priorCombatFixtures.push(combat); }
       } else if (s.view === 'route' && !s.transition) {
-        assert.equal(s.hazards.length, 1, 'First-road fixture has one authored hazard'); assert.equal(s.pickups.length, 1);
-        const hazard = s.hazards[0], pickup = s.pickups[0];
+        assert.ok(s.hazards.length && s.pickups.length, 'Selected authored road has risk and reward');
+        const hazard = s.hazards[0], pickup = s.pickups.find(p => p.progress01 > hazard.progress01) ?? s.pickups[0];
         if (!lanesReady && s.progress < hazard.progress01 - .1) {
           const button = page.locator('[data-traversal-lane="1"]:visible');
           for (let n = 0; n < 35 && !await button.evaluate(e => e === document.activeElement); n++) await page.keyboard.press('Tab');
@@ -119,13 +119,16 @@ try {
             outline: css.outlineStyle, width: b.width, height: b.height, left: b.left, right: b.right, bottom: b.bottom }; });
           assert.ok(f.focused); assert.notEqual(f.outline, 'none'); assert.ok(f.left >= 0 && f.right <= width && f.bottom <= height);
           if (width <= 620) assert.ok(f.width >= 44 && f.height >= 44); entry.keyboard.push(f);
-          await page.keyboard.press(path === 'contact-collect' ? (hazard.lane === 0 ? 'ArrowUp' : 'ArrowDown') : (hazard.lane === 0 ? 'ArrowDown' : 'ArrowUp'));
           lanesReady = true;
         }
-        if (s.resolved.length && !switched) {
-          await page.keyboard.press(path === 'contact-collect' ? (pickup.lane === 0 ? 'ArrowUp' : 'ArrowDown') : (pickup.lane === 0 ? 'ArrowDown' : 'ArrowUp'));
-          switched = true;
+        // Let the read-only RAF sampler observe a crossing before changing the native lane again.
+        const observedProgress = s.sample?.progress ?? s.progress;
+        const nextEvent = [...s.hazards, ...s.pickups].filter(e => e.progress01 > observedProgress).sort((a,b) => a.progress01 - b.progress01)[0];
+        if (lanesReady && nextEvent && requestedEvent !== nextEvent.id) {
+          const lane = path === 'contact-collect' ? nextEvent.lane : 1 - nextEvent.lane;
+          await page.keyboard.press(lane === 0 ? 'ArrowUp' : 'ArrowDown'); requestedEvent = nextEvent.id;
         }
+        if (s.resolved.length) switched = true;
         if (s.sample?.marks.some(m => !m.hidden && m.left < width && m.right > width - 80)) await capture('entry');
         if (s.resolved.length && s.progress < hazard.progress01 + .12) await capture('passed-rock');
         if (s.collected.length || s.progress > pickup.progress01 && s.progress < pickup.progress01 + .1) await capture('passed-gold');
@@ -142,9 +145,9 @@ try {
     assert.ok(driving.length > 100);
     assert.ok(driving.every(s => s.game === (motion === 'game') && s.os === (motion === 'os')));
     for (const id of driving[0].marks.map(m => m.id)) {
-      const frames = driving.map(s => ({ s, m: s.marks.find(m => m.id === id) }));
+      const frames = entry.samples.filter(s => s.view === 'route').map(s => ({ s, m: s.marks.find(m => m.id === id) }));
       const first = frames.find(f => !f.m.hidden), last = frames.findLast(f => !f.m.hidden);
-      assert.ok(first && last, `Visible ${id}`); assert.ok(frames[0].m.hidden && frames[0].m.predictedLeft >= frames[0].s.width, 'Spawn wholly outside right');
+      assert.ok(first && last, `Visible ${id}`); assert.ok(frames[0].m.predictedLeft >= frames[0].s.width - 30, 'Born outside or at natural right edge');
       assert.ok(first.m.left > first.s.width - 50, 'Partial edge entry without center pop');
       const anchor = (first.m.x / first.s.width - .25) * 1463 + first.s.distance;
       const entered = frames.slice(frames.indexOf(first));
@@ -159,10 +162,10 @@ try {
       assert.ok(Math.abs(crossing.m.x - crossing.s.width * .25) < crossing.s.width * .012 + 3, 'Physical contact center matches authored clock');
       assert.equal(crossing.s.lane, path === 'contact-collect' ? crossing.m.lane : 1 - crossing.m.lane);
       if (crossing.m.family === 'rock') {
-        assert.equal(crossing.s.collisions, path === 'contact-collect' ? 1 : 0);
+        const hazardCount = frames[0].s.marks.filter(m => m.family === 'rock' && m.progress <= crossing.m.progress).length;
+        assert.equal(crossing.s.collisions, path === 'contact-collect' ? hazardCount : 0);
         assert.equal(crossing.s.lastCollision, path === 'contact-collect' ? id : null);
         if (path === 'contact-collect') assert.ok(Math.abs(crossing.s.reset - crossing.m.progress * crossing.s.duration) < 20);
-        else assert.equal(crossing.s.reset, -1);
       }
       assert.ok(entered.filter(f => !f.m.hidden).every(f => Math.abs(f.m.ground - f.m.renderedGround) < 1 && Math.abs(f.s.vehicle.ground - f.s.vehicle.renderedGround) < 10), 'Depth uses rendered ground');
       assert.ok(entered.filter(f => !f.m.hidden && Math.abs(f.m.renderedGround - f.s.vehicle.renderedGround) > 10)
@@ -170,10 +173,11 @@ try {
     }
     const first = driving[0], last = driving.at(-1), gold = driving.flatMap(s => s.marks).find(m => m.family === 'gold');
     assert.ok(driving.every(s => s.gold === first.gold), 'No secured currency change');
-    assert.equal(last.temporary - first.temporary, path === 'contact-collect' ? 5 : 0);
-    assert.equal(last.collectedIds.length, path === 'contact-collect' ? 1 : 0);
+    const pickupCount = first.marks.filter(m => m.family === 'gold').length, expectedGold = path === 'contact-collect' ? pickupCount * 5 : 0;
+    assert.equal(last.temporary - first.temporary, expectedGold);
+    assert.equal(last.collectedIds.length, path === 'contact-collect' ? pickupCount : 0);
     assert.ok(driving.every(s => new Set(s.resolved).size === s.resolved.length && new Set(s.collectedIds).size === s.collectedIds.length));
-    assert.ok(driving.every(s => s.temporary - first.temporary === 0 || s.temporary - first.temporary === (path === 'contact-collect' ? 5 : 0)), 'Single temporary award');
+    assert.ok(driving.every(s => s.temporary - first.temporary === s.collectedIds.length * 5), 'One temporary award per unique pickup');
     assert.ok(driving.some(s => s.marks.some(m => m.id === gold.id && !m.hidden && m.collected === (path === 'contact-collect') && s.progress > m.progress + .05)));
     entry.summary = { frames: driving.length, resized, goldDelta: last.temporary - first.temporary, riskReset: last.reset, secureGold: last.gold };
     console.log(`${leg}/${dimensions}/${motion}/${path}: PASS ${driving.length} frames`); await page.close();

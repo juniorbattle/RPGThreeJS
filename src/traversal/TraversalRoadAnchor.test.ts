@@ -1,11 +1,25 @@
 // @vitest-environment happy-dom
 import { describe, expect, it } from 'vitest';
-import { anchoredRoadSpeed, TraversalRoadAnchors, setRoadGroundDepth } from './TraversalRoadAnchor';
+import { anchoredRoadSpeed, roadEntryScale, TraversalRoadAnchors, setRoadGroundDepth } from './TraversalRoadAnchor';
 import { advanceRouteRun, createRouteRun, forecastRouteDistance, resetRouteSpeed } from './TraversalRouteRun';
 import { TraversalRouteRewardRenderer } from './TraversalRouteRewardRenderer';
 import { createRouteReward, resolveRouteReward } from './TraversalRouteReward';
 
 describe('physical road lifetime', () => {
+  it.each([1440, 620, 390])('starts early authored gold at the natural edge in one shared world (%spx)', width => {
+    const segment = { id: 'authored-road', durationMs: 12000, vMin: 1.05, vMax: 2.45 };
+    const state = createRouteRun(segment, 0);
+    const contacts = [{ progress01: .18, halfWidth: 24 }, { progress01: .31, halfWidth: 100 }];
+    const scale = roadEntryScale(state, segment, width, contacts);
+    expect(scale).toBeGreaterThan(1); expect(scale).toBeLessThan(2);
+    for (const contact of contacts) {
+      const anchors = new TraversalRoadAnchors();
+      const mark = anchors.update('mark', 0, width, contact.halfWidth,
+        () => forecastRouteDistance(state, segment, contact.progress01) * scale);
+      expect(mark.left).toBeGreaterThan(width);
+      expect(mark.visible).toBe(false);
+    }
+  });
   it.each([16, 160, 1000])('aligns an already-visible pouch after collision without changing its clock (%sms frames)', frameMs => {
     const segment = { id: 'authored-road', durationMs: 12000, vMin: 1.05, vMax: 2.45 };
     const initial = createRouteRun(segment, 0, 1);

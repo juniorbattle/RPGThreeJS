@@ -3,24 +3,34 @@ import { forecastRouteDistance, type TraversalRouteRunState, type TraversalRoute
 
 export interface RoadContactAnchor { readonly progress01: number; readonly distance: number }
 
+/** One world-distance scale keeps even the earliest authored mark outside the entry edge. */
+export function roadEntryScale(state: TraversalRouteRunState, segment: TraversalRouteSegment,
+  viewportWidth: number, contacts: readonly { progress01: number; halfWidth: number }[]): number {
+  return Math.max(1, ...contacts.map(contact => {
+    const forecast = forecastRouteDistance(state, segment, contact.progress01);
+    const entryDistance = ROAD_SPACE.referenceWidth * (.75 + (contact.halfWidth + 8) / viewportWidth);
+    return forecast > 0 ? entryDistance / forecast : 1;
+  }));
+}
+
 /** Reconcile the shared world, never a visible object or its authored contact clock. */
 export function anchoredRoadSpeed(previous: TraversalRouteRunState, next: TraversalRouteRunState,
   segment: TraversalRouteSegment, visualDistance: number, target: RoadContactAnchor | null,
-  launchMultiplier: number): number {
-  const base = (previous.speed + next.speed) / 2 * launchMultiplier;
+  launchMultiplier: number, distanceScale = 1): number {
+  const base = (previous.speed + next.speed) / 2 * launchMultiplier * distanceScale;
   if (!target || target.progress01 <= previous.progress01) return base;
   const remaining = target.distance - visualDistance;
-  const forecast = forecastRouteDistance(previous, segment, target.progress01);
+  const forecast = forecastRouteDistance(previous, segment, target.progress01) * distanceScale;
   if (!Number.isFinite(remaining) || remaining <= 0 || forecast <= 0) return base;
   const ratio = remaining / forecast;
   // A malformed or incompatible presentation target cannot force a road jump.
   if (!Number.isFinite(ratio) || ratio < .5 || ratio > 2) return base;
   if (next.progress01 >= target.progress01) {
     const afterMs = next.elapsedMs - target.progress01 * segment.durationMs;
-    const distance = remaining + Math.max(0, afterMs) * next.speed * .28;
+    const distance = remaining + Math.max(0, afterMs) * next.speed * distanceScale * .28;
     return distance / ((next.elapsedMs - previous.elapsedMs) * .28);
   }
-  return (previous.speed + next.speed) / 2 * ratio;
+  return (previous.speed + next.speed) / 2 * distanceScale * ratio;
 }
 
 /** Presentation-only world anchors. Once seen, an object cannot move with a new forecast. */

@@ -18,7 +18,7 @@ OD-2026-10-03-A priority; set1.1.0 immutable d7ca28a. Demo incomplete.
 
 ## Live checkpoint
 
-Run rpgthreejs-auto-dev-90m-20261003T1815; heartbeat 2026-10-03T18:22:29.451Z; WIP wip/rpgthreejs-auto-dev-90m-20261003T1815@fe6e84c05390800bc72fd17c3fef52d382f76b5f. Inherited55 ledger entries restored exactly from committed baseline after interrupted sync drift; new jobs retained.
+Run rpgthreejs-auto-dev-90m-20261003T1815; heartbeat 2026-10-03T18:41:44.396Z; WIP wip/rpgthreejs-auto-dev-90m-20261003T1815@38a56a4071fcfef15f7467e92ac43bcbfc1117d3. Inherited55 ledger entries restored exactly from committed baseline after interrupted sync drift; new jobs retained.
 
 ## Next action
 
@@ -90,4 +90,7 @@ Exact six deferred files and historical job provenance remain in JSON.
 - rock-1430-production: SUCCEEDED; port 5285; receipt `tmp/traversal/rock-1430/qa-job.json`; ACCEPTED_SCOPED_ROCK_FAMILY
 - road-1600-probe: SUCCEEDED; port 5286; receipt `tmp/traversal/road-1600-probe/qa-job.json`; NOT_ACCEPTED
 - road-1815-reset-probe: PLANNED; port 5287; receipt `tmp/traversal/road-1815-reset-probe/qa-job.json`; NOT_ACCEPTED
+- road-1815-reset-probe-v2: PLANNED; port 5287; receipt `tmp/traversal/road-1815-reset-probe-v2/qa-job.json`; NOT_ACCEPTED
+- road-1815-reset-probe-v3: PLANNED; port 5287; receipt `tmp/traversal/road-1815-reset-probe-v3/qa-job.json`; NOT_ACCEPTED
+- road-1815-reset-probe-v4: PLANNED; port 5287; receipt `tmp/traversal/road-1815-reset-probe-v4/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
