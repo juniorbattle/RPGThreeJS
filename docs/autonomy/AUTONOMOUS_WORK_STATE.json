@@ -1,48 +1,41 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-03T13:04:04.9263411Z",
-  "runEndedAt": "2026-10-03T13:49:57.986Z",
-  "activeTask": "TRAVERSAL-PURSUIT-THREAT",
-  "activePhase": "Unwired committed charge model verified; independent renderer/harness next",
-  "activeSubtask": "Render authored committed lane/acceleration/genuine-miss full exit without canonical writes; collision integration blocked by missing mappings",
+  "runStartedAt": "2026-10-03T14:32:18.2646434Z",
+  "runEndedAt": null,
+  "activeTask": "TRAVERSAL-ROAD-ELEMENTS",
+  "activePhase": "Pursuit isolated renderer verified; canonical collision blocked; road elements visual inventory",
+  "activeSubtask": "Constrain active obstacle art to rocks; then physical road-element lifetime/depth without changing contact or temporary-loot owners",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "b6996366ccb1650f037a5b338af477b4da809b6c",
   "lastPushedCommit": "f46d819cf2c92fd246d2e840857f33d9397a3401",
   "completedThisRun": [
-    "Recovered interrupted1002 after105minute cumulative checks; all8workers dead,three final receipts recovered,16reviewed paths snapshotted71cee262; remote refs unchanged21398e4",
-    "Recovered3exact terminal motion receipts and completed9additional game-setting journeys;27journeys/106captures/10promoted;4jobs accepted scoped presentation",
-    "Committed motionb994912 and unwired modelb699636 separately;7model tests and independent guards review PASS",
-    "Restored47inherited ledger objects after timestamp serialization regression;original39/deferredDemoTask/sixkeyboard blobs exactly preserved",
-    "Publication verified dev@f46d819cf2c92fd246d2e840857f33d9397a3401; main00b96f1 unchanged; owned remote WIP575604d56aed8b3bcb2317fc876ec2b9a6f64045 retained for6deferred blobs;9workers terminal/5280–5283closed."
+    "Acquired absent exclusive lock; remote dev58e9c5b parity verified; preserved6deferred blobs in remote WIP2a7933e8",
+    "Unwired charge renderer/native-clock minified lab:38freshv6cases/8selectedcaptures; independent authority and visual reviews scoped PASS",
+    "Four failed attempts plus v5 responsive rejection retained; fixed load latency/offscreen origin/narrow overlap and actual hit-test assertions",
+    "153Traversal tests/28files;TypeScript including lab;8contracts8slots/build/protected/whitespace gates PASS;old48ledger/deferred exact"
   ],
   "filesChanged": [
-    "src/styles/traversal.css",
-    "src/traversal/TraversalForkOverlay.ts",
-    "src/traversal/TraversalPursuitCharge.test.ts",
-    "src/traversal/TraversalPursuitCharge.ts",
-    "src/traversal/TraversalRoadMotion.test.ts",
-    "src/traversal/TraversalRoadScene.ts",
-    "src/traversal/TraversalRunController.test.ts",
-    "src/traversal/TraversalRunController.ts",
-    "tools/traversal-game-motion-production-qa.mjs",
-    "tools/traversal-motion-fallback-qa.mjs",
-    "tools/traversal-motion-production-qa.mjs"
+    "src/traversal/TraversalPursuitChargeRenderer.ts",
+    "src/traversal/TraversalPursuitChargeRenderer.test.ts",
+    "src/styles/traversal-pursuit-charge.css",
+    "tools/traversal/pursuit-charge-lab.ts",
+    "tools/traversal-pursuit-charge-qa.mjs",
+    "docs/autonomy/TRAVERSAL_PURSUIT_THREAT.md",
+    "docs/reports/traversal-pursuit-charge-candidate-1.md"
   ],
   "testsRun": [
     "node node_modules/vitest/vitest.mjs run src/traversal",
-    "node --test tools/qa/qa-job.test.mjs",
     "node node_modules/typescript/bin/tsc --noEmit",
+    "node node_modules/typescript/bin/tsc --noEmit -p tmp/traversal/pursuit-1430-control/lab-tsconfig.json",
     "node tools/contracts/validate-contracts.mjs",
-    "node tmp/traversal/motion-1300/audit.mjs",
-    "node node_modules/vitest/vitest.mjs run src/traversal/TraversalPursuitCharge.test.ts",
     "node node_modules/vite/bin/vite.js build",
-    "registered motion-1300-game:9native production journeys"
+    "registered pursuit-1430-v6 native browser38cases"
   ],
   "testsPassed": [
-    "143Traversal tests/26suites;16receipt tests;types;8contracts/8slots;immutable/dirtyprotected/syntax gates;3receipts current source/driver/helper/build/result hashes exact",
-    "7candidate model tests;TypeScript;fresh candidate build byte-identical to9QA files;8MP4 slots",
-    "27native-clock motion journeys normal/OS/game;3fallback/layout cases;4receipts exact hashes/registration/assertions",
-    "LOCKED/dirtyprotected/whitespace gates;2reused read-only reviewers;47inherited ledger precision restored"
+    "153Traversal tests/28files",
+    "TypeScript src+lab",
+    "8contracts8slots;gamebuild;protected/whitespace gates",
+    "Isolated native-clock candidate38cases;normalOSgame1440/620/390;8selectedcaptures;guardian/traversal scoped PASS"
   ],
   "testsRemaining": [
     "Pursuit committed-charge/miss visuals and canonical collision mapping/owner handoff;candidate model is not runtime acceptance",
@@ -52,11 +45,11 @@
     "Deferred battlefield keyboard and original DEMO-QA-POLISH acceptance (exact details in deferredDemoTask)"
   ],
   "blockers": [
-    "Pursuit collision integration: all10variants lack an explicit authored eligible canonical encounter/node binding; independent renderer/miss work remains authorized."
+    "Pursuit production collision integration:10windows lack explicitly authored eligible canonical mappings; isolated candidate PASS does not close full task"
   ],
   "remainingWork": [
-    "ACTIVE: TRAVERSAL-PURSUIT-THREAT (model verified;visuals pending;collision blocked)",
-    "PENDING: TRAVERSAL-ROAD-ELEMENTS",
+    "BLOCKED: TRAVERSAL-PURSUIT-THREAT canonical mapping (isolated candidate verified)",
+    "ACTIVE: TRAVERSAL-ROAD-ELEMENTS",
     "PENDING: PRE-JUDGEMENT-CAMPFIRE",
     "PENDING: NARRATIVE-CONTEXT-COHERENCE",
     "PENDING: STATIC-TABLEAU-STAGING-POLISH",
@@ -64,13 +57,13 @@
     "PENDING: ENVIRONMENT-NARRATIVE-COHERENCE",
     "PENDING: Resume deferred DEMO-QA-POLISH"
   ],
-  "nextAction": "Normal lock/Git/WIP preflight. Read TRAVERSAL_MOTION_POLISH.md/PURSUIT_THREAT.md and matching skills. Reuse unwired TraversalPursuitCharge modelb699636 (7tests); implement an isolated charge renderer/harness with existing Shadow art, committed lane/acceleration/full genuine-miss right exit, grounded coordinates/resize and normal/OS/game reduction. Split steps at lane/geometry/viewport changes; freeze unresolved CONTACT once. No production collision wiring until explicit eligible authored mapping exists for10windows. Guardian exactdiff/assertions and native isolated browser proof; preserve six deferred keyboard blobs/48ledger entries/deferredDemoTask. Do not rerun unchanged accepted27motion journeys.",
+  "nextAction": "Under owned lock, implement rock-only visual selector preserving authored hazard IDs/kinds/lanes/contact times/severity. Fresh real built-game T0/T1/T3 first-road visual proof; then implement offscreen spawn/full-exit lifetime and physical lane-depth shared seam for risk/reward. Pursuit full integration remains blocked; preserve54jobs/sixdeferred blobs/exact deferred task.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
     "TRAVERSAL-MOTION-POLISH: COMPLETE_SCOPED_PRESENTATION",
-    "TRAVERSAL-PURSUIT-THREAT: ACTIVE_MODEL_ONLY; COLLISION_INTEGRATION_BLOCKED",
-    "TRAVERSAL-ROAD-ELEMENTS: PENDING",
+    "TRAVERSAL-PURSUIT-THREAT: BLOCKED_CANONICAL_MAPPING; ISOLATED_CANDIDATE_PASS",
+    "TRAVERSAL-ROAD-ELEMENTS: ACTIVE_VISUAL_INVENTORY",
     "PRE-JUDGEMENT-CAMPFIRE: PENDING",
     "NARRATIVE-CONTEXT-COHERENCE: PENDING",
     "STATIC-TABLEAU-STAGING-POLISH: PENDING",
@@ -79,7 +72,7 @@
     "Resume deferred DEMO-QA-POLISH: PENDING"
   ],
   "creditStatus": "AVAILABLE; no credit-saving claim",
-  "contractComplianceStatus": "Repository publication/gates PASS;set1.1.0 immutable;motion SCOPED_PRESENTATION PASS;unwired Pursuit MODEL_ONLY PASS;collision mapping BLOCKED;visual Pursuit/road/narrative/full demo remain open.",
+  "contractComplianceStatus": "Set1.1.0 unchanged;Pursuit isolated candidate authority/UI/QA PASS;canonical runtime integration BLOCKED10mappings;road corrections/full demo open",
   "commitReferenceScope": "Motion implementationb994912;modelb699636;final documentation/state SHA and verified publication recorded in automation memory/handoff.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
@@ -206,9 +199,9 @@
     "lastGreenCheck": "137 Traversal tests; stable scoped production visual proof; types/build; 8contracts8slots; immutable/whitespace gates"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261003T1300",
+    "runId": "rpgthreejs-auto-dev-90m-20261003T1430",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-03T13:49:57.986Z",
+    "lastHeartbeat": "2026-10-03T15:00:51.153Z",
     "status": "CHECKPOINTED",
     "qaJobs": [
       {
@@ -5731,11 +5724,640 @@
           "review": "Root and reused contracts-guardian/traversal-engineer;game terminal reviewed",
           "executionIdentityNote": "Original receipt Git representation retained. Postcommit all15rawsource/driver/deferred files and9build hashes verified exact; unwired candidate created only after final QA worker exit."
         }
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "pursuit-1430-isolated",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T1430",
+        "status": "FAILED",
+        "registeredAt": "2026-10-03T14:41:09.325Z",
+        "pid": 42164,
+        "port": 5284,
+        "command": [
+          "node",
+          "tools/traversal-pursuit-charge-qa.mjs"
+        ],
+        "parameters": {
+          "scope": "isolated minified candidate with native RAF and controls; no campaign owner/save/combat",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "motion": [
+            "normal",
+            "os",
+            "game"
+          ],
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ]
+        },
+        "requiredAssertions": [
+          "committed-lane-acceleration",
+          "genuine-miss-full-exit",
+          "contact-freezes-once",
+          "pause-resize-input-boundaries",
+          "normal-os-game-reduction",
+          "keyboard-focus-responsive",
+          "failed-art-disposal",
+          "isolated-owner-scope"
+        ],
+        "output": "tmp/traversal/pursuit-1430",
+        "receiptPath": "tmp/traversal/pursuit-1430/qa-job.json",
+        "provenance": {
+          "gitHead": "58e9c5b2e7ddfbd548dc6d6b17f842aca61ce848",
+          "sourceTree": "6c9f54d9079bd71c9fd9d062fddde65216801dee",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/traversal-pursuit-charge-qa.mjs",
+            "sha256": "377918cceab9e0419a1ade88b1edc8e017c401154fcf7e66a201ec53326a0f03"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BztuXMkj.css",
+              "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+            },
+            {
+              "path": "dist/assets/game-D8fui7sl.js",
+              "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-03T14:41:13.034Z",
+        "endedAt": "2026-10-03T14:41:47.769Z",
+        "exitCode": 1,
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": false,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "pursuit-1430-v2",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T1430",
+        "status": "FAILED",
+        "registeredAt": "2026-10-03T14:42:20.972Z",
+        "pid": 52200,
+        "port": 5284,
+        "command": [
+          "node",
+          "tools/traversal-pursuit-charge-qa.mjs"
+        ],
+        "parameters": {
+          "scope": "isolated minified candidate with native RAF and controls; no campaign owner/save/combat",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "motion": [
+            "normal",
+            "os",
+            "game"
+          ],
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ]
+        },
+        "requiredAssertions": [
+          "committed-lane-acceleration",
+          "genuine-miss-full-exit",
+          "contact-freezes-once",
+          "pause-resize-input-boundaries",
+          "normal-os-game-reduction",
+          "keyboard-focus-responsive",
+          "failed-art-disposal",
+          "isolated-owner-scope"
+        ],
+        "output": "tmp/traversal/pursuit-1430-v2",
+        "receiptPath": "tmp/traversal/pursuit-1430-v2/qa-job.json",
+        "provenance": {
+          "gitHead": "58e9c5b2e7ddfbd548dc6d6b17f842aca61ce848",
+          "sourceTree": "6c9f54d9079bd71c9fd9d062fddde65216801dee",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/traversal-pursuit-charge-qa.mjs",
+            "sha256": "78f63c933229ae6b85dc91efcd94fa0df63947af16591c0ecc544febe62a4627"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BztuXMkj.css",
+              "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+            },
+            {
+              "path": "dist/assets/game-D8fui7sl.js",
+              "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-03T14:42:25.416Z",
+        "endedAt": "2026-10-03T14:42:27.890Z",
+        "exitCode": 1,
+        "resultPath": "tmp/traversal/pursuit-1430-v2/results.json",
+        "resultSha256": "5cea3ff60c2b2e598b79446c03f128bfcdb4be7e15a03c10dc0df692ce7e4e65",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "pursuit-1430-v3",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T1430",
+        "status": "FAILED",
+        "registeredAt": "2026-10-03T14:43:32.940Z",
+        "pid": 24088,
+        "port": 5284,
+        "command": [
+          "node",
+          "tools/traversal-pursuit-charge-qa.mjs"
+        ],
+        "parameters": {
+          "scope": "isolated minified candidate with native RAF and controls; no campaign owner/save/combat",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "motion": [
+            "normal",
+            "os",
+            "game"
+          ],
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ]
+        },
+        "requiredAssertions": [
+          "committed-lane-acceleration",
+          "genuine-miss-full-exit",
+          "contact-freezes-once",
+          "pause-resize-input-boundaries",
+          "normal-os-game-reduction",
+          "keyboard-focus-responsive",
+          "failed-art-disposal",
+          "isolated-owner-scope"
+        ],
+        "output": "tmp/traversal/pursuit-1430-v3",
+        "receiptPath": "tmp/traversal/pursuit-1430-v3/qa-job.json",
+        "provenance": {
+          "gitHead": "58e9c5b2e7ddfbd548dc6d6b17f842aca61ce848",
+          "sourceTree": "6c9f54d9079bd71c9fd9d062fddde65216801dee",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/traversal-pursuit-charge-qa.mjs",
+            "sha256": "032b828fc64e27196fde43b8e611bba523edcce5dfa248665309cfe6e944c065"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BztuXMkj.css",
+              "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+            },
+            {
+              "path": "dist/assets/game-D8fui7sl.js",
+              "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-03T14:43:36.351Z",
+        "endedAt": "2026-10-03T14:43:38.798Z",
+        "exitCode": 1,
+        "resultPath": "tmp/traversal/pursuit-1430-v3/results.json",
+        "resultSha256": "eca742f5e0e07e281f5f69ddb3de3790553e0fa603dc105fa8babf65eb24eefe",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "pursuit-1430-v4",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T1430",
+        "status": "FAILED",
+        "registeredAt": "2026-10-03T14:45:01.890Z",
+        "pid": 45892,
+        "port": 5284,
+        "command": [
+          "node",
+          "tools/traversal-pursuit-charge-qa.mjs"
+        ],
+        "parameters": {
+          "scope": "isolated minified candidate with native RAF and controls; no campaign owner/save/combat",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "motion": [
+            "normal",
+            "os",
+            "game"
+          ],
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ]
+        },
+        "requiredAssertions": [
+          "committed-lane-acceleration",
+          "genuine-miss-full-exit",
+          "contact-freezes-once",
+          "pause-resize-input-boundaries",
+          "normal-os-game-reduction",
+          "keyboard-focus-responsive",
+          "failed-art-disposal",
+          "isolated-owner-scope"
+        ],
+        "output": "tmp/traversal/pursuit-1430-v4",
+        "receiptPath": "tmp/traversal/pursuit-1430-v4/qa-job.json",
+        "provenance": {
+          "gitHead": "58e9c5b2e7ddfbd548dc6d6b17f842aca61ce848",
+          "sourceTree": "6c9f54d9079bd71c9fd9d062fddde65216801dee",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/traversal-pursuit-charge-qa.mjs",
+            "sha256": "ea760be3ca66493bef85c968be86363f60265a1f986652051f946ca2be24fc5f"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BztuXMkj.css",
+              "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+            },
+            {
+              "path": "dist/assets/game-D8fui7sl.js",
+              "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-03T14:45:05.223Z",
+        "endedAt": "2026-10-03T14:45:29.686Z",
+        "exitCode": 1,
+        "resultPath": "tmp/traversal/pursuit-1430-v4/results.json",
+        "resultSha256": "fff8d93f193008cc576045a9bfa501bef2051ce3f3defabba657335e1c4ea488",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "pursuit-1430-v5",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T1430",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-03T14:47:25.576Z",
+        "pid": 36848,
+        "port": 5284,
+        "command": [
+          "node",
+          "tools/traversal-pursuit-charge-qa.mjs"
+        ],
+        "parameters": {
+          "scope": "isolated minified candidate with native RAF and controls; no campaign owner/save/combat",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "motion": [
+            "normal",
+            "os",
+            "game"
+          ],
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ]
+        },
+        "requiredAssertions": [
+          "committed-lane-acceleration",
+          "genuine-miss-full-exit",
+          "contact-freezes-once",
+          "pause-resize-input-boundaries",
+          "normal-os-game-reduction",
+          "keyboard-focus-responsive",
+          "failed-art-disposal",
+          "isolated-owner-scope"
+        ],
+        "output": "tmp/traversal/pursuit-1430-v5",
+        "receiptPath": "tmp/traversal/pursuit-1430-v5/qa-job.json",
+        "provenance": {
+          "gitHead": "58e9c5b2e7ddfbd548dc6d6b17f842aca61ce848",
+          "sourceTree": "6c9f54d9079bd71c9fd9d062fddde65216801dee",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/traversal-pursuit-charge-qa.mjs",
+            "sha256": "f99e14e98aa1fbb6485a44264472cb27c43f2be2c4d3dedf7c0f556c863b4cd4"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BztuXMkj.css",
+              "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+            },
+            {
+              "path": "dist/assets/game-D8fui7sl.js",
+              "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-03T14:47:29.015Z",
+        "endedAt": "2026-10-03T14:49:01.160Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/pursuit-1430-v5/results.json",
+        "resultSha256": "56bfd9fe624ca76365a22fa8e9f68e5babe8099939a76f6b4657f3db27d74a7d",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "pursuit-1430-v6",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T1430",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-03T14:50:43.034Z",
+        "pid": 32184,
+        "port": 5284,
+        "command": [
+          "node",
+          "tools/traversal-pursuit-charge-qa.mjs"
+        ],
+        "parameters": {
+          "scope": "isolated minified candidate with native RAF and controls; no campaign owner/save/combat",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "motion": [
+            "normal",
+            "os",
+            "game"
+          ],
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ]
+        },
+        "requiredAssertions": [
+          "committed-lane-acceleration",
+          "genuine-miss-full-exit",
+          "contact-freezes-once",
+          "pause-resize-input-boundaries",
+          "normal-os-game-reduction",
+          "keyboard-focus-responsive",
+          "failed-art-disposal",
+          "isolated-owner-scope"
+        ],
+        "output": "tmp/traversal/pursuit-1430-v6",
+        "receiptPath": "tmp/traversal/pursuit-1430-v6/qa-job.json",
+        "provenance": {
+          "gitHead": "58e9c5b2e7ddfbd548dc6d6b17f842aca61ce848",
+          "sourceTree": "6c9f54d9079bd71c9fd9d062fddde65216801dee",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/traversal-pursuit-charge-qa.mjs",
+            "sha256": "390f95fc70bf1111921a2dd0d6c4576a16b86b779b749c029570b99df978499a"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BztuXMkj.css",
+              "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+            },
+            {
+              "path": "dist/assets/game-D8fui7sl.js",
+              "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_ISOLATED_CANDIDATE",
+        "startedAt": "2026-10-03T14:50:46.609Z",
+        "endedAt": "2026-10-03T14:52:18.732Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/pursuit-1430-v6/results.json",
+        "resultSha256": "900d6db8a637c8bee435079c7c37bae27d10d9b69404ed0f501d8e01eedcc84f",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "acceptanceAtReview": {
+          "reviewedAt": "2026-10-03T14:57:52.770Z",
+          "checksPath": "docs/reports/traversal-pursuit-charge-candidate-1-browser/checks.json",
+          "checksSha256": "65d0421024e6b165ee9235376889eb4cc286ff97df811b8f51c8d827b344b3e6",
+          "scope": "isolated minified candidate with native RAF and controls; no campaign owner/save/combat",
+          "identityNote": "Original receipt Git identity retained; raw bundle/input/assets hashes checked before commit; later Git representation does not replace tested bytes"
+        }
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261003T1300",
-      "sha": "575604d56aed8b3bcb2317fc876ec2b9a6f64045",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261003T1430",
+      "sha": "2a7933e830123290feaae5d0e28a17672ed3e25e",
       "publication": "REMOTE_VERIFIED",
       "status": "REMOTE_PRESERVED_DEFERRED_KEYBOARD",
       "dirtyFiles": [
@@ -5748,7 +6370,7 @@
       ],
       "lastGreenCheck": "143Traversal tests/26suites;16receipt tests;types;8contracts/8slots;immutable/dirtyprotected/syntax gates;3receipts current source/driver/helper/build/result hashes exact"
     },
-    "nextAction": "Normal lock/Git/WIP preflight. Read TRAVERSAL_MOTION_POLISH.md/PURSUIT_THREAT.md and matching skills. Reuse unwired TraversalPursuitCharge modelb699636 (7tests); implement an isolated charge renderer/harness with existing Shadow art, committed lane/acceleration/full genuine-miss right exit, grounded coordinates/resize and normal/OS/game reduction. Split steps at lane/geometry/viewport changes; freeze unresolved CONTACT once. No production collision wiring until explicit eligible authored mapping exists for10windows. Guardian exactdiff/assertions and native isolated browser proof; preserve six deferred keyboard blobs/48ledger entries/deferredDemoTask. Do not rerun unchanged accepted27motion journeys.",
+    "nextAction": "Under owned lock, implement rock-only visual selector preserving authored hazard IDs/kinds/lanes/contact times/severity. Fresh real built-game T0/T1/T3 first-road visual proof; then implement offscreen spawn/full-exit lifetime and physical lane-depth shared seam for risk/reward. Pursuit full integration remains blocked; preserve54jobs/sixdeferred blobs/exact deferred task.",
     "runMetrics": {
       "recoveredTerminalReceipts": 3,
       "newRegisteredJobs": 1,

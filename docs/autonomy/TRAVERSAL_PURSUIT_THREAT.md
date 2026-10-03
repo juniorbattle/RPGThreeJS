@@ -1,5 +1,34 @@
 # Traversal Pursuit threat
 
+CURRENT FACT — Run1430 adds an **unwired isolated charge renderer/lab**, verified by fresh minified native-clock browser job `pursuit-1430-v6`. Candidate presentation scope PASS; production Pursuit/canonical collision integration remains BLOCKED for the ten mappings below. The preceding model checkpoint remains historical evidence for its own scope.
+
+## Isolated renderer checkpoint — 2026-10-03
+
+`TraversalPursuitChargeRenderer` projects the unchanged committed-charge model into logical road coordinates, reuses the existing Shadow image, assigns lane depth beside the caravan and stops its stride on pause/contact. Normal motion accelerates and fully exits; OS or game reduction uses a stationary fade and semantic contact/exit status. Reduced contact is not visible geometric collision. No production consumer was added. No campaign/save/combat owner is instantiated by the lab; storage checks are supplementary, never V6 acceptance.
+
+Fresh v6 passes 38 scenarios: 27 representative authored-window cases (three legs × three sizes × normal/OS/game), seven remaining authored windows, three active/paused resize/lane/disposal cases and one failed-Shadow case. Each representative case observes both a genuine miss and a single frozen geometric CONTACT. Native RAF samples measure acceleration and full exit; static captures alone do not prove the complete perceptual sequence or articulated gait. Visibility freeze remains unverified. Eight selected captures and compact hashes are in [candidate proof](../reports/traversal-pursuit-charge-candidate-1-browser/checks.json); [historical report](../reports/traversal-pursuit-charge-candidate-1.md) records exact scope and failures.
+
+First four receipts FAILED and confer no acceptance. v5 succeeded geometrically but missed a narrow status/control overlap; it remains NOT_ACCEPTED. v6 fixes the normal-flow status placement and asserts center hit testing plus rectangle separation before start/contact. Root and reused read-only contracts/traversal reviewers inspected corrected captures. 153 Traversal tests/28 files, TypeScript including lab, contract validator and build pass. The build contains six preserved unaccepted keyboard WIP files; this does not accept or publish them on dev.
+
+### Orchestrator compliance matrix
+
+| Row | Verdict | Evidence |
+| --- | --- | --- |
+| GAME_CONSTITUTION | PASS boundary | No presentation write path to truth |
+| ART_DIRECTION | PASS reuse | Existing Shadow/caravan bytes hashed |
+| CHARACTERS | N/A | No promotion/remaster |
+| ENVIRONMENTS | PASS candidate | Existing T0 forest family; not T3 narrative environment acceptance |
+| NARRATIVE / CAMPAIGN | PASS boundary | Actual authored windows read; no canonical relation authored |
+| NARRATIVE_PRESENTATION | N/A | No Journey/tableau/video change |
+| TRAVERSAL | PASS isolated; BLOCKED integration | Fixed lane, acceleration, genuine miss and pending CONTACT; ten mappings absent |
+| COMBAT | PASS boundary | No tactical owner, outcome or battle request |
+| SAVE | PASS boundary | No serialization; no earned V6 proof claimed |
+| UI / ACCESSIBILITY | PASS isolated scope | Normal/OS/game; native controls/focus, 1440/620/390, actual hit/nonoverlap tests |
+| QA_EVIDENCE | PASS scoped | Registered v6 receipt/input/bundle/asset/result/capture hashes; failures retained |
+| REPOSITORY_GOVERNANCE | PASS gates | Owned lock and explicit WIP paths; old48ledger/deferred task retained |
+
+Contracts read: constitution, README/manifest, AUTONOMOUS_WORK_PROTOCOL, WORLD_AND_CHARACTERS, CAMPAIGN_AND_STATE, PRESENTATION_AND_MEDIA, TRAVERSAL/T0 source contract, COMBAT_AND_VFX, UI_AND_ACCESSIBILITY and AUTHORING_AND_QA. Set1.1.0; no LOCKED rule changed; immutable d7ca28a diff and dirty protected-path gates empty. Independent contracts-guardian verifies the scoped boundary, not full demo acceptance.
+
 CURRENT FACT — feasibility audit and unwired model checkpoint on2026-10-03. Model commit `b6996366ccb1650f037a5b338af477b4da809b6c`, after motion `b9949123941ec13630ff3c398e4bb2551d68d50f`. Full task remains IN_PROGRESS; no runtime/visual Pursuit acceptance. Collision integration is BLOCKED by absent authored eligible mappings; independent charge/miss presentation remains authorized by OD-2026-10-03-A. This document does not create a mapping or canon.
 
 ## Verified independent model

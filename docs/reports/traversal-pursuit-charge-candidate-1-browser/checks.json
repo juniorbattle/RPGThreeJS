@@ -1,0 +1,1759 @@
+{
+  "scope": "isolated minified candidate with native RAF and controls; no campaign owner/save/combat",
+  "productionIntegration": "BLOCKED:10 missing authored eligible mappings",
+  "baseline": "58e9c5b2e7ddfbd548dc6d6b17f842aca61ce848",
+  "jobId": "pursuit-1430-v6",
+  "resultSha256": "900d6db8a637c8bee435079c7c37bae27d10d9b69404ed0f501d8e01eedcc84f",
+  "parameters": {
+    "scope": "isolated minified candidate with native RAF and controls; no campaign owner/save/combat",
+    "viewports": [
+      "1440x810",
+      "620x780",
+      "390x844"
+    ],
+    "motion": [
+      "normal",
+      "os",
+      "game"
+    ],
+    "legs": [
+      "T0",
+      "T1",
+      "T3"
+    ]
+  },
+  "assertions": [
+    {
+      "id": "committed-lane-acceleration",
+      "pass": true
+    },
+    {
+      "id": "genuine-miss-full-exit",
+      "pass": true
+    },
+    {
+      "id": "contact-freezes-once",
+      "pass": true
+    },
+    {
+      "id": "pause-resize-input-boundaries",
+      "pass": true
+    },
+    {
+      "id": "normal-os-game-reduction",
+      "pass": true
+    },
+    {
+      "id": "keyboard-focus-responsive",
+      "pass": true
+    },
+    {
+      "id": "failed-art-disposal",
+      "pass": true
+    },
+    {
+      "id": "isolated-owner-scope",
+      "pass": true
+    }
+  ],
+  "provenance": {
+    "gitHead": "58e9c5b2e7ddfbd548dc6d6b17f842aca61ce848",
+    "sourceTree": "6c9f54d9079bd71c9fd9d062fddde65216801dee",
+    "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+    "driver": {
+      "path": "tools/traversal-pursuit-charge-qa.mjs",
+      "sha256": "390f95fc70bf1111921a2dd0d6c4576a16b86b779b749c029570b99df978499a"
+    },
+    "inputs": [],
+    "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+    "build": [
+      {
+        "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+        "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+      },
+      {
+        "path": "dist/assets/combat-DSUtGYdZ.js",
+        "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+      },
+      {
+        "path": "dist/assets/combat-s2FWu0a6.css",
+        "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+      },
+      {
+        "path": "dist/assets/game-BztuXMkj.css",
+        "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+      },
+      {
+        "path": "dist/assets/game-D8fui7sl.js",
+        "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+      },
+      {
+        "path": "dist/assets/three-core-f0ajj1rG.js",
+        "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+      },
+      {
+        "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+        "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+      },
+      {
+        "path": "dist/assets/validation-mSkvzYyn.js",
+        "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+      }
+    ]
+  },
+  "bundleInputs": [
+    {
+      "path": "node_modules/zod/lib/index.mjs",
+      "sha256": "f4587d736f8f981db3f0234b944e70acd8b1eb7b9a5152b533ff9fc1e5cfebd2"
+    },
+    {
+      "path": "src/campaign/LionCampaignStructure.ts",
+      "sha256": "dede76984fd7892c0f2127921f69c089c5e3c1278aaca1935da42a0a171f7c91"
+    },
+    {
+      "path": "src/campaign/LionCampaignTravelRelations.ts",
+      "sha256": "58bf66d6d7a3110ccbeb0656d658b3d7d9b5ab0fa99a195858c43fc1869fdfb8"
+    },
+    {
+      "path": "src/game/campaignGrammarContent.ts",
+      "sha256": "d9eb6d8c810634a97dbd5941caf3204bcb69eb48c73eee31fe86d68921a03ff5"
+    },
+    {
+      "path": "src/game/content.ts",
+      "sha256": "1dc408feb32f7f791af5cc386f490c8917eda2b167f9545003e1773b58c43e68"
+    },
+    {
+      "path": "src/game/lionNarrative.ts",
+      "sha256": "bb4e2f2107e2c4fd628cf1d2897df318e0b5c8abb83392518b244da98c11c63e"
+    },
+    {
+      "path": "src/game/r5NarrativeContent.ts",
+      "sha256": "1b12f2b791625ff86d0ca177437767dc29d1e05757fb73516eb0943937158404"
+    },
+    {
+      "path": "src/game/runSystem.ts",
+      "sha256": "e63304fc82f0e060f1aed95f0cb988c0951f013a4ce4a09fa5df89e7760f53ea"
+    },
+    {
+      "path": "src/game/types.ts",
+      "sha256": "c965ae3999f1319b1b945380d677238cb93db1b8b7ac891816e7b1b4badf42d9"
+    },
+    {
+      "path": "src/render/CharacterVisualRegistry.ts",
+      "sha256": "13a4caa3586f1c5433cf0859e54c6b39ddb7416076fa6cd03142d0a91a8eb3e8"
+    },
+    {
+      "path": "src/render/assetManifest.ts",
+      "sha256": "86e80e121aa3c2951da8779a63b42a072ceafcf8e47293476a4aa77f3f5ba0af"
+    },
+    {
+      "path": "src/render/generated/characterSystemV2Manifest.json",
+      "sha256": "f61eeeca782bb73d85b17bb698ee33d4e63ea4b1a72f520b46f309e8c88acb5d"
+    },
+    {
+      "path": "src/styles/traversal-pursuit-charge.css",
+      "sha256": "cd15fece8ac92970233adb7077e2bb67804847ddd584f34538a4ff6fe76ed82c"
+    },
+    {
+      "path": "src/styles/traversal.css",
+      "sha256": "003373d0b2f05af922d9e80c91285a2e1c28056cda80766deb890f181e6307a2"
+    },
+    {
+      "path": "src/traversal/TraversalCaravan.ts",
+      "sha256": "4219741621d65f0f2127fe8684eb66e12d438e88f4d0d7973aded5a433f976ca"
+    },
+    {
+      "path": "src/traversal/TraversalPursuitCharge.ts",
+      "sha256": "37b32a80728e408a299d4e605c200a82552974fe1776383ce35e6fa9a5dd5fb2"
+    },
+    {
+      "path": "src/traversal/TraversalPursuitChargeRenderer.ts",
+      "sha256": "6680975d63da363924bdde76057f28a509d54ef47549a2741d04082413b4a7e0"
+    },
+    {
+      "path": "src/traversal/TraversalRoadSpace.ts",
+      "sha256": "e007db5ea45c07b1a06ff0f3ff2532b53c21e40904147af347c518bbafd82a64"
+    },
+    {
+      "path": "src/traversal/TraversalRouteModel.ts",
+      "sha256": "fa8b830206056bcfa7acb4fcfd4fcf500f0198787ea87ec1fd6808b1e190a500"
+    },
+    {
+      "path": "src/traversal/TraversalRoutePursuit.ts",
+      "sha256": "2e13a39115252f57063a5c04a6f7108ea39112fe7bd100533ac6338b785ee265"
+    },
+    {
+      "path": "src/traversal/TraversalRoutePursuitRenderer.ts",
+      "sha256": "b2d11d4840dc52a203f58d849422537c515659d0e527fa70d3d75febf6765870"
+    },
+    {
+      "path": "src/traversal/TraversalSprite.ts",
+      "sha256": "9db52c11aeb9327daaaeb3e25452687a7f6d60e9bb12fcb39cbb014f59770797"
+    },
+    {
+      "path": "src/traversal/TraversalSpriteBounds.json",
+      "sha256": "3e7e37131df6129f01a6fca89365ccfe7d74397cf35a9914e58333353c3b58c3"
+    },
+    {
+      "path": "src/traversal/TraversalT0Assets.ts",
+      "sha256": "2d77857391565b771b9d62179576892bca8b5da1accb236f0229e6a5b69e877c"
+    },
+    {
+      "path": "src/traversal/TraversalT0Authoring.ts",
+      "sha256": "65a1627f896ea012a79e61ffc4d4713abe7193c6665cadc8fc941f6cc8bd4f47"
+    },
+    {
+      "path": "src/traversal/TraversalT0CheckpointRoute.ts",
+      "sha256": "6167f022daf20f0027a0c83ac82a2be07747c46ed2c2c3920085fd8f88eb3d58"
+    },
+    {
+      "path": "src/traversal/TraversalT0Foreground.ts",
+      "sha256": "9752279336e8b21a1200898626ae04c6a2044cf28005041a38059a810451dce6"
+    },
+    {
+      "path": "src/traversal/TraversalT0Pursuit.ts",
+      "sha256": "b77f70919b4db627d8d8fd28217020dc720d0c8c1f8581534bdf0499b262de39"
+    },
+    {
+      "path": "src/traversal/TraversalT0Reward.ts",
+      "sha256": "0888ec4012f9509f1867bbe3986da7d3a6303866a4005e309ff103e3cac6dfdb"
+    },
+    {
+      "path": "src/traversal/TraversalT0Risk.ts",
+      "sha256": "d315348374a6dfd7aa7358d0e0defddebd18ea73755bae6ccbeec8859538d7c6"
+    },
+    {
+      "path": "src/traversal/TraversalT0Route.ts",
+      "sha256": "384aa0bb906764ff0649f0ae1ac6fdd5bf3df34fd71905d301ae66e3dfc106ab"
+    },
+    {
+      "path": "src/traversal/TraversalT0World.ts",
+      "sha256": "525eacf58d90a78489bda9c9f7ccf02c9c51412b0c0b5af0832c0414e89773ae"
+    },
+    {
+      "path": "src/traversal/TraversalT1Authoring.ts",
+      "sha256": "0de9bd7605a80ebf5f668dc865d9b7cd5e240e2edb5fd40786ac395a3d305ece"
+    },
+    {
+      "path": "src/traversal/TraversalT1CheckpointRoute.ts",
+      "sha256": "45b5271d5ca776f47914864e71ea9d185a8d28eab70b7cb3c30f3b76ae78e6f4"
+    },
+    {
+      "path": "src/traversal/TraversalT1Route.ts",
+      "sha256": "1842e9ef4ef15c374f6ebce9ec6b625bf213646012e2b50296d129ea7e998882"
+    },
+    {
+      "path": "src/traversal/TraversalT1World.ts",
+      "sha256": "faad50b613a3d4808b13078ffe2901b231f6624c6fd9845b6cad79fea2a3692f"
+    },
+    {
+      "path": "src/traversal/TraversalT3Authoring.ts",
+      "sha256": "937cd713e642ea647b2e4f647b15ef8c104015d307c36ec7629b822e5b69ecd2"
+    },
+    {
+      "path": "src/traversal/TraversalT3CheckpointRoute.ts",
+      "sha256": "b9535004b4a7f24838bcfefe043147a0ac4d44eb5007385399749c57c2391245"
+    },
+    {
+      "path": "src/traversal/TraversalT3Route.ts",
+      "sha256": "6dd7f72ae95740d24735f2d1534c3cfc99119578bcf101e56e9d0916cf7b1a96"
+    },
+    {
+      "path": "src/traversal/TraversalT3World.ts",
+      "sha256": "3f19477ec9502676ced433e4cf5e56d6d81d55428967982b16680bc20da59ea0"
+    },
+    {
+      "path": "src/traversal/TraversalWorldModel.ts",
+      "sha256": "1db118ef0b7edad129b4a9169d11640f84ca55e5afee88eaa23f15451a5e90c2"
+    },
+    {
+      "path": "src/traversal/TraversalWorldRenderer.ts",
+      "sha256": "7508cde4a292032743a964168e16dc7e4d2fd4afb86748497a8b7f15baa492d9"
+    },
+    {
+      "path": "src/ui/ReducedMotion.ts",
+      "sha256": "52d5623b1d416b65998f5c945228dcdc5b7fa2083773706cbb3abbb9bcfb3524"
+    },
+    {
+      "path": "tools/traversal/pursuit-charge-lab.ts",
+      "sha256": "2aed6a70bf0436585816fb3f026c1d47ec9d7e7b85007600da1f1a05e541cd93"
+    }
+  ],
+  "assets": [
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/wheel.png",
+      "sha256": "cd7516ff563ad47f67c87697c643149a505a040a3d5f5a6a3d4fe238f8f77a70"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/chassis.png",
+      "sha256": "16b17208d6473f977cd14d0d122a91b876e8c3ac508edb227c7e5f0a7c912b46"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+      "sha256": "1b64195bc4cb92d5e8cd56c42a68fc85b250fe7cd64b1af7a4b4603ea8f13ccf"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/opening-ambush.png",
+      "sha256": "d9445d596edf6063a4e46f57d1e90700d1f25904c7c0f353675eb9bf69bcbe58"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/ambush-cleared.png",
+      "sha256": "473188f0f500323606b58f593ed5eb244cd9caada4f2855b7037f4a464f93c41"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/nomad-waystation.png",
+      "sha256": "7010ce775a143762bb0a4dee92ed0a081842dd4540d5b66e051cd1c10252c231"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/refugee-halt.png",
+      "sha256": "232610b915a48672faaadb2aacf649df304838eeeb888e94e9ccdd94b00c3677"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/props/fork-sign.png",
+      "sha256": "f8d519acac367f5c9faf9f17c6f64c504babb569a109af4913e032445ad41713"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-junction.png",
+      "sha256": "82a708b225d0bd7c28f2b418329e6a999ebd9921dadfa5caf33ea64de9068876"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/damaged-caravan.png",
+      "sha256": "cd6bf5375ec4d149098209d44d9a80da47268802f76b5145728d47307899bb7d"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+      "sha256": "55dfad9b50076ab3cd3b30f5245d6701ef2eea03bb6707959618276b155b9fc1"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/ruined-outpost.png",
+      "sha256": "a25162191ee1de2c406bdc62600e22f311eb1994a0ca2ad22c3e0fb83f68cb88"
+    }
+  ],
+  "bundle": [
+    {
+      "path": "lab.js",
+      "sha256": "087d979d16652e4fa189b44b4e3b73df59f9c97f023491392d7777329d82fec4"
+    },
+    {
+      "path": "lab.css",
+      "sha256": "e179cf816d4ce92a64d74a7251252375bbc2f8d73eec2d7d56cf93e3a4852005"
+    }
+  ],
+  "captures": [
+    {
+      "file": "T0-1440-normal-miss.png",
+      "sha256": "ac6c9683a4691276c6a0bdb9e37d68d5d1018698f9b5b6f3431b71af972e8096"
+    },
+    {
+      "file": "T0-620-normal-miss.png",
+      "sha256": "00a66f7ee7193cc499c7a0bf91b034e1bec43b1c2fc77f3e1ab7d86e63ef3a81"
+    },
+    {
+      "file": "T0-390-normal-miss.png",
+      "sha256": "6a2ec9ea70f5daa4b02efadd72768ae39df7a3294a6aaaf6a30c19225bd294de"
+    },
+    {
+      "file": "T0-1440-normal-contact.png",
+      "sha256": "4faee7cbdade73831baad6069cdf141a6fbc81770259dabbf612808f8ce05d18"
+    },
+    {
+      "file": "T0-390-normal-contact.png",
+      "sha256": "10160f4923343566a488e5a4ce3ab021943f56c7ee77b018b6110b9c5f1dd433"
+    },
+    {
+      "file": "T0-1440-os-miss.png",
+      "sha256": "9f093072d02cdedcd050157195e388c30ba70a2af4f4909b93850732e63027fe"
+    },
+    {
+      "file": "T0-390-os-miss.png",
+      "sha256": "6425fa03e48eec36c5b7352856f39e8d91d81410f346efa4d2db897ffb41200c"
+    },
+    {
+      "file": "missing-shadow.png",
+      "sha256": "79ba467cada40ca83dddb3519195efe3c1bec9d52a131f875860ab150e7c71ad"
+    }
+  ],
+  "cases": [
+    {
+      "leg": "T0",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "motion": "normal",
+      "window": "t0:r3:pursuit-1",
+      "miss": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1785.3126905376519,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.6898028321448983
+      },
+      "contact": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": 5.825965711805566,
+        "speed": 647.0786179802435,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.49166170313709867
+      },
+      "observations": [
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 102
+    },
+    {
+      "leg": "T1",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "motion": "normal",
+      "window": "t1:t0:r5a:pursuit-1",
+      "miss": {
+        "windowId": "t1:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1785.3126905376516,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.6898028321448955
+      },
+      "contact": {
+        "windowId": "t1:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 5.825965711805566,
+        "speed": 647.0786179802435,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.49166170313709867
+      },
+      "observations": [
+        {
+          "windowId": "t1:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t1:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 103
+    },
+    {
+      "leg": "T3",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "motion": "normal",
+      "window": "t3:t0:r5a:pursuit-1",
+      "miss": {
+        "windowId": "t3:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1785.3126905376516,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.6898028321448955
+      },
+      "contact": {
+        "windowId": "t3:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 5.825965711805566,
+        "speed": 647.0786179802436,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4916617031370987
+      },
+      "observations": [
+        {
+          "windowId": "t3:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t3:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 103
+    },
+    {
+      "leg": "T0",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "motion": "os",
+      "window": "t0:r3:pursuit-1",
+      "miss": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1785.3126905376516,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.6898028321448952
+      },
+      "contact": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": 5.825965711805566,
+        "speed": 647.0786179802434,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.49166170313709867
+      },
+      "observations": [
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 103
+    },
+    {
+      "leg": "T1",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "motion": "os",
+      "window": "t1:t0:r5a:pursuit-1",
+      "miss": {
+        "windowId": "t1:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1785.312690537652,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.6898028321448955
+      },
+      "contact": {
+        "windowId": "t1:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 5.825965711805566,
+        "speed": 647.0786179802434,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4916617031370986
+      },
+      "observations": [
+        {
+          "windowId": "t1:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t1:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 102
+    },
+    {
+      "leg": "T3",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "motion": "os",
+      "window": "t3:t0:r5a:pursuit-1",
+      "miss": {
+        "windowId": "t3:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1785.3126905376519,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.6898028321448952
+      },
+      "contact": {
+        "windowId": "t3:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 5.825965711805566,
+        "speed": 647.0786179802434,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4916617031370987
+      },
+      "observations": [
+        {
+          "windowId": "t3:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t3:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 103
+    },
+    {
+      "leg": "T0",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "motion": "game",
+      "window": "t0:r3:pursuit-1",
+      "miss": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1785.3126905376519,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.6898028321448955
+      },
+      "contact": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": 5.825965711805566,
+        "speed": 647.0786179802434,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4916617031370986
+      },
+      "observations": [
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 103
+    },
+    {
+      "leg": "T1",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "motion": "game",
+      "window": "t1:t0:r5a:pursuit-1",
+      "miss": {
+        "windowId": "t1:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1785.3126905376519,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.6898028321448957
+      },
+      "contact": {
+        "windowId": "t1:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 5.825965711805566,
+        "speed": 647.0786179802435,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.49166170313709867
+      },
+      "observations": [
+        {
+          "windowId": "t1:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t1:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 103
+    },
+    {
+      "leg": "T3",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "motion": "game",
+      "window": "t3:t0:r5a:pursuit-1",
+      "miss": {
+        "windowId": "t3:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1785.3126905376516,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.6898028321448952
+      },
+      "contact": {
+        "windowId": "t3:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 5.825965711805566,
+        "speed": 647.0786179802435,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4916617031370987
+      },
+      "observations": [
+        {
+          "windowId": "t3:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t3:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 103
+    },
+    {
+      "leg": "T0",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "motion": "normal",
+      "window": "t0:r3:pursuit-1",
+      "miss": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1804.6595129445577,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.7101679083626908
+      },
+      "contact": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -60.780128528225816,
+        "speed": 601.3432575972406,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.44351921852341125
+      },
+      "observations": [
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 104
+    },
+    {
+      "leg": "T1",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "motion": "normal",
+      "window": "t1:t0:r5a:pursuit-1",
+      "miss": {
+        "windowId": "t1:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1804.659512944558,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.7101679083626913
+      },
+      "contact": {
+        "windowId": "t1:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": -60.780128528225816,
+        "speed": 601.3432575972405,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4435192185234112
+      },
+      "observations": [
+        {
+          "windowId": "t1:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t1:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 104
+    },
+    {
+      "leg": "T3",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "motion": "normal",
+      "window": "t3:t0:r5a:pursuit-1",
+      "miss": {
+        "windowId": "t3:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1804.6595129445575,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.7101679083626906
+      },
+      "contact": {
+        "windowId": "t3:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": -60.780128528225816,
+        "speed": 601.3432575972405,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.44351921852341114
+      },
+      "observations": [
+        {
+          "windowId": "t3:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t3:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 104
+    },
+    {
+      "leg": "T0",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "motion": "os",
+      "window": "t0:r3:pursuit-1",
+      "miss": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1804.6595129445584,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.7101679083626917
+      },
+      "contact": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -60.780128528225816,
+        "speed": 601.3432575972406,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4435192185234113
+      },
+      "observations": [
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 104
+    },
+    {
+      "leg": "T1",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "motion": "os",
+      "window": "t1:t0:r5a:pursuit-1",
+      "miss": {
+        "windowId": "t1:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1804.6595129445582,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.7101679083626917
+      },
+      "contact": {
+        "windowId": "t1:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": -60.780128528225816,
+        "speed": 601.3432575972404,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4435192185234111
+      },
+      "observations": [
+        {
+          "windowId": "t1:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t1:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 104
+    },
+    {
+      "leg": "T3",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "motion": "os",
+      "window": "t3:t0:r5a:pursuit-1",
+      "miss": {
+        "windowId": "t3:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1804.659512944558,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.7101679083626913
+      },
+      "contact": {
+        "windowId": "t3:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": -60.780128528225816,
+        "speed": 601.3432575972405,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.44351921852341114
+      },
+      "observations": [
+        {
+          "windowId": "t3:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t3:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 104
+    },
+    {
+      "leg": "T0",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "motion": "game",
+      "window": "t0:r3:pursuit-1",
+      "miss": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1804.659512944558,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.710167908362691
+      },
+      "contact": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -60.780128528225816,
+        "speed": 601.3432575972405,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.44351921852341125
+      },
+      "observations": [
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 104
+    },
+    {
+      "leg": "T1",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "motion": "game",
+      "window": "t1:t0:r5a:pursuit-1",
+      "miss": {
+        "windowId": "t1:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1804.6595129445582,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.710167908362691
+      },
+      "contact": {
+        "windowId": "t1:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": -60.780128528225816,
+        "speed": 601.3432575972405,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4435192185234112
+      },
+      "observations": [
+        {
+          "windowId": "t1:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t1:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 104
+    },
+    {
+      "leg": "T3",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "motion": "game",
+      "window": "t3:t0:r5a:pursuit-1",
+      "miss": {
+        "windowId": "t3:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1804.6595129445575,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.710167908362691
+      },
+      "contact": {
+        "windowId": "t3:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": -60.780128528225816,
+        "speed": 601.3432575972406,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.44351921852341125
+      },
+      "observations": [
+        {
+          "windowId": "t3:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t3:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 104
+    },
+    {
+      "leg": "T0",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "motion": "normal",
+      "window": "t0:r3:pursuit-1",
+      "miss": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1804.656526956988,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.710164765217881
+      },
+      "contact": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -60.7824919871795,
+        "speed": 601.330562596664,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4435058553649096
+      },
+      "observations": [
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 104
+    },
+    {
+      "leg": "T1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "motion": "normal",
+      "window": "t1:t0:r5a:pursuit-1",
+      "miss": {
+        "windowId": "t1:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1804.6565269569885,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.7101647652178813
+      },
+      "contact": {
+        "windowId": "t1:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": -60.7824919871795,
+        "speed": 601.3305625966638,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4435058553649094
+      },
+      "observations": [
+        {
+          "windowId": "t1:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t1:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 104
+    },
+    {
+      "leg": "T3",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "motion": "normal",
+      "window": "t3:t0:r5a:pursuit-1",
+      "miss": {
+        "windowId": "t3:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1804.6565269569887,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.7101647652178817
+      },
+      "contact": {
+        "windowId": "t3:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": -60.7824919871795,
+        "speed": 601.330562596664,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4435058553649095
+      },
+      "observations": [
+        {
+          "windowId": "t3:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t3:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 104
+    },
+    {
+      "leg": "T0",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "motion": "os",
+      "window": "t0:r3:pursuit-1",
+      "miss": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1804.656526956988,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.7101647652178809
+      },
+      "contact": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -60.7824919871795,
+        "speed": 601.3305625966638,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.44350585536490944
+      },
+      "observations": [
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 104
+    },
+    {
+      "leg": "T1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "motion": "os",
+      "window": "t1:t0:r5a:pursuit-1",
+      "miss": {
+        "windowId": "t1:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1804.6565269569883,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.710164765217881
+      },
+      "contact": {
+        "windowId": "t1:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": -60.7824919871795,
+        "speed": 601.3305625966638,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4435058553649095
+      },
+      "observations": [
+        {
+          "windowId": "t1:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t1:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 104
+    },
+    {
+      "leg": "T3",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "motion": "os",
+      "window": "t3:t0:r5a:pursuit-1",
+      "miss": {
+        "windowId": "t3:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1804.6565269569887,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.7101647652178817
+      },
+      "contact": {
+        "windowId": "t3:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": -60.7824919871795,
+        "speed": 601.3305625966639,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.44350585536490955
+      },
+      "observations": [
+        {
+          "windowId": "t3:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t3:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 104
+    },
+    {
+      "leg": "T0",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "motion": "game",
+      "window": "t0:r3:pursuit-1",
+      "miss": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1804.6565269569883,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.710164765217881
+      },
+      "contact": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -60.7824919871795,
+        "speed": 601.3305625966639,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4435058553649095
+      },
+      "observations": [
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 104
+    },
+    {
+      "leg": "T1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "motion": "game",
+      "window": "t1:t0:r5a:pursuit-1",
+      "miss": {
+        "windowId": "t1:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1804.656526956988,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.7101647652178809
+      },
+      "contact": {
+        "windowId": "t1:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": -60.7824919871795,
+        "speed": 601.3305625966639,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.44350585536490944
+      },
+      "observations": [
+        {
+          "windowId": "t1:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t1:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 103
+    },
+    {
+      "leg": "T3",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "motion": "game",
+      "window": "t3:t0:r5a:pursuit-1",
+      "miss": {
+        "windowId": "t3:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1804.6565269569885,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.710164765217881
+      },
+      "contact": {
+        "windowId": "t3:t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": -60.7824919871795,
+        "speed": 601.3305625966638,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4435058553649094
+      },
+      "observations": [
+        {
+          "windowId": "t3:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        },
+        {
+          "windowId": "t3:t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ],
+      "nativeChargingSamples": 104
+    },
+    {
+      "leg": "T0",
+      "segment": "route-5a",
+      "window": "t0:r5a:pursuit-1",
+      "state": {
+        "windowId": "t0:r5a:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1785.3126905376516,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.6898028321448955
+      },
+      "observations": [
+        {
+          "windowId": "t0:r5a:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        }
+      ]
+    },
+    {
+      "leg": "T0",
+      "segment": "route-5b",
+      "window": "t0:r5b:pursuit-1",
+      "state": {
+        "windowId": "t0:r5b:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1785.3126905376519,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.6898028321448955
+      },
+      "observations": [
+        {
+          "windowId": "t0:r5b:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        }
+      ]
+    },
+    {
+      "leg": "T0",
+      "segment": "route-6",
+      "window": "t0:r6:pursuit-1",
+      "state": {
+        "windowId": "t0:r6:pursuit-1",
+        "lane": 0,
+        "left": 1463,
+        "speed": 1785.3126905376516,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.6898028321448952
+      },
+      "observations": [
+        {
+          "windowId": "t0:r6:pursuit-1",
+          "lane": 0,
+          "kind": "MISS_EXITED"
+        }
+      ]
+    },
+    {
+      "leg": "T1",
+      "segment": "t1-route-4b",
+      "window": "t1:t0:r5b:pursuit-1",
+      "state": {
+        "windowId": "t1:t0:r5b:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1785.3126905376516,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.6898028321448952
+      },
+      "observations": [
+        {
+          "windowId": "t1:t0:r5b:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        }
+      ]
+    },
+    {
+      "leg": "T1",
+      "segment": "t1-route-5",
+      "window": "t1:t0:r6:pursuit-1",
+      "state": {
+        "windowId": "t1:t0:r6:pursuit-1",
+        "lane": 0,
+        "left": 1463,
+        "speed": 1785.312690537653,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.6898028321448968
+      },
+      "observations": [
+        {
+          "windowId": "t1:t0:r6:pursuit-1",
+          "lane": 0,
+          "kind": "MISS_EXITED"
+        }
+      ]
+    },
+    {
+      "leg": "T3",
+      "segment": "t3-route-4b",
+      "window": "t3:t0:r5b:pursuit-1",
+      "state": {
+        "windowId": "t3:t0:r5b:pursuit-1",
+        "lane": 1,
+        "left": 1463,
+        "speed": 1785.312690537652,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.689802832144896
+      },
+      "observations": [
+        {
+          "windowId": "t3:t0:r5b:pursuit-1",
+          "lane": 1,
+          "kind": "MISS_EXITED"
+        }
+      ]
+    },
+    {
+      "leg": "T3",
+      "segment": "t3-route-5",
+      "window": "t3:t0:r6:pursuit-1",
+      "state": {
+        "windowId": "t3:t0:r6:pursuit-1",
+        "lane": 0,
+        "left": 1463,
+        "speed": 1785.3126905376516,
+        "acceleration": 950,
+        "phase": "EXITED",
+        "elapsedSeconds": 1.6898028321448952
+      },
+      "observations": [
+        {
+          "windowId": "t3:t0:r6:pursuit-1",
+          "lane": 0,
+          "kind": "MISS_EXITED"
+        }
+      ]
+    },
+    {
+      "motion": "normal",
+      "resized": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -213.0410480386697,
+        "speed": 268.9199999773502,
+        "acceleration": 950,
+        "phase": "CHARGING",
+        "elapsedSeconds": 0.09359999997615813
+      },
+      "paused": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -202.47113528225813,
+        "speed": 303.97499999999997,
+        "acceleration": 950,
+        "phase": "CHARGING",
+        "elapsedSeconds": 0.1305
+      },
+      "contact": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -60.780128528225816,
+        "speed": 601.3432575972406,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4435192185234112
+      },
+      "disposed": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -60.780128528225816,
+        "speed": 601.3432575972406,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4435192185234112
+      }
+    },
+    {
+      "motion": "os",
+      "resized": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -212.74466128225814,
+        "speed": 269.965,
+        "acceleration": 950,
+        "phase": "CHARGING",
+        "elapsedSeconds": 0.09469999999999998
+      },
+      "paused": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -202.0751650104278,
+        "speed": 305.2100000679493,
+        "acceleration": 950,
+        "phase": "CHARGING",
+        "elapsedSeconds": 0.13180000007152556
+      },
+      "contact": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -60.780128528225816,
+        "speed": 601.3432575972407,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.44351921852341114
+      },
+      "disposed": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -60.780128528225816,
+        "speed": 601.3432575972407,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.44351921852341114
+      }
+    },
+    {
+      "motion": "game",
+      "resized": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -216.9679730322581,
+        "speed": 254.66999999999996,
+        "acceleration": 950,
+        "phase": "CHARGING",
+        "elapsedSeconds": 0.0786
+      },
+      "paused": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -201.67758927495186,
+        "speed": 306.44500002264977,
+        "acceleration": 950,
+        "phase": "CHARGING",
+        "elapsedSeconds": 0.13310000002384187
+      },
+      "contact": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -60.780128528225816,
+        "speed": 601.3432575972406,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4435192185234111
+      },
+      "disposed": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -60.780128528225816,
+        "speed": 601.3432575972406,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4435192185234111
+      }
+    },
+    {
+      "missingAsset": true,
+      "state": {
+        "windowId": "t0:r3:pursuit-1",
+        "lane": 1,
+        "left": -60.7824919871795,
+        "speed": 601.3305625966642,
+        "acceleration": 950,
+        "phase": "COLLISION_PENDING",
+        "elapsedSeconds": 0.4435058553649095
+      },
+      "observations": [
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "lane": 1,
+          "kind": "CONTACT"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Unwired isolated minified bundle; no production Pursuit acceptance",
+    "No canonical owner instantiated; no earned campaign/V6/loot/combat proof",
+    "Stationary semantic reduced contact; no visible reduced geometric contact",
+    "Native motion samples; static captures cannot independently certify perceptual sequence or articulated gait",
+    "Visibility freeze unverified",
+    "Dist includes six preserved unaccepted keyboard WIP files"
+  ],
+  "reviewedAt": "2026-10-03T14:57:52.770Z",
+  "reviewers": [
+    "root",
+    "contracts-guardian",
+    "traversal-engineer"
+  ]
+}

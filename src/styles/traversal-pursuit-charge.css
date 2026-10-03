@@ -1,0 +1,13 @@
+/* Unwired candidate: each actor participates in lane depth beside the caravan. */
+.traversal-pursuit-charge { position: absolute; pointer-events: none; transform: translateY(-95%); }
+.traversal-pursuit-charge[hidden] { display: none; }
+.traversal-pursuit-charge img { width: 100%; height: 100%; object-fit: contain;
+  filter: brightness(1.35) drop-shadow(0 3px 3px #10080ac0); }
+.traversal-pursuit-charge[data-active='true'][data-reduced-motion='false'] img {
+  animation: traversal-charge-stride .16s ease-in-out infinite alternate;
+}
+.traversal-pursuit-charge[data-asset-failed='true'] { border: 2px solid #e9a68f;
+  border-radius: 50% 50% 15% 15%; background: #23141ee8; box-sizing: border-box; }
+.traversal-pursuit-charge[data-asset-failed='true'] img { visibility: hidden; }
+@keyframes traversal-charge-stride { to { translate: 0 -2px; rotate: -2deg; } }
+@media (prefers-reduced-motion: reduce) { .traversal-pursuit-charge img { animation: none !important; } }
