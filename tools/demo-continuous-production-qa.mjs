@@ -56,6 +56,7 @@ report.qaJobReceipt=qaJob.receiptPath;
 Object.assign(report,{target,routePlan,finalePlan,defeatNodeId,nativeDefeatWait,viewport:{width:viewport[0],height:viewport[1]},
   osReducedMotion:process.env.DEMO_QA_OS_MOTION==='1',observationHook:'Built bootstrap exposes GameApp for read-only snapshots; no owner method invoked',refuges:[],choices:[]});
 report.nativeTacticalPolicy='Champion healer retains AP from the first turn, follows allies using native reachable cells, and prioritizes unlocked Salvation; all actions use existing native controls';
+report.nativePreparationPolicy=target==='defeat-recovery'?'Four affordable first-refuge potions through native shop; exact secured wallet/inventory/stock transaction and reload':'Existing refuge preparation';
 report.driverSha256=createHash('sha256').update(await readFile('tools/demo-continuous-production-qa.mjs')).digest('hex');
 report.productionBundles=await Promise.all((await readdir('dist/assets')).filter(name=>/^(game|combat)-.*\.js$/.test(name))
   .map(async name=>({path:`dist/assets/${name}`,sha256:createHash('sha256').update(await readFile(`dist/assets/${name}`)).digest('hex')})));
@@ -397,6 +398,36 @@ try{
         const rested=await state();assert.ok(rested.gold<live.gold,'Native rest did not debit owner gold');
         assert.ok(rested.clan.members.every(u=>u.currentHealth>0),'Native rest left downed clan member');
         report.refuges.at(-1).rested=rested;await capture(`${nodeId}-native-rest`);
+      }
+      if(nodeId==='lion-first-refuge'&&target==='defeat-recovery'){
+        await keyboardActivate('.exploration-stop [data-action="shop"]');
+        const buy='.management [data-trade="buy"][data-item="potion"]';
+        await page.locator(buy).waitFor({state:'visible'});
+        const entry=await state(),prices=[];
+        for(let purchase=0;purchase<4;purchase++){
+          const before=await state(),price=Number.parseInt(await page.locator(buy).textContent(),10);
+          assert.ok(Number.isInteger(price)&&price>0&&before.gold>=price,'Native potion preparation is not affordable');
+          assert.equal(await page.locator(buy).isEnabled(),true);
+          await keyboardActivate(buy);
+          const bought=await state(),expected=structuredClone(before);
+          expected.gold-=price;
+          expected.inventory.consumables.potion=(expected.inventory.consumables.potion??0)+1;
+          expected.shops.valmir.stock.potion-=1;
+          assert.deepEqual(bought,expected,'Native supply purchase changed unrelated V6 truth');
+          prices.push(price);
+        }
+        const prepared=await state();await capture(`${nodeId}-native-potion-stock`);
+        await page.keyboard.press('Escape');await hub.waitFor({state:'visible'});
+        const saved=JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')));
+        assert.deepEqual(saved,prepared,'Native potion preparation was not saved before departure');
+        await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
+        await hub.waitFor({state:'visible'});
+        const resumed=await state();assert.deepEqual(resumed,prepared,'Prepared first-refuge V6 truth changed on reload');
+        report.refuges.at(-1).supplyPurchase={quantity:4,prices,goldBefore:entry.gold,goldAfter:prepared.gold,
+          potionsBefore:entry.inventory.consumables.potion,potionsAfter:prepared.inventory.consumables.potion,
+          stockBefore:entry.shops.valmir.stock.potion,stockAfter:prepared.shops.valmir.stock.potion,
+          temporaryLootUnchanged:true,exactV6ReloadVerified:true};
+        await capture(`${nodeId}-native-potion-stock-resumed`);
       }
       if(nodeId==='lion-second-refuge'&&target==='ending'){
         await keyboardActivate('.exploration-stop [data-action="shop"]');

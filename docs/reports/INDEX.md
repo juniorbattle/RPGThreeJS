@@ -4,6 +4,7 @@ Baseline for this index: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. Repo
 
 | Report | Historical role | Current authority |
 | --- | --- | --- |
+| [Native support campaign QA](native-support-campaign-1.md) | Champion trial/13 native heals/exact V6 continuation scoped PASS; 620 requested recovery failed before village, 2026-10-03 | Current autonomy state; full demo acceptance remains item 9 |
 | [Combat grid and native card scrolling](combat-grid-hit-reachability-1.md) | Responsive card obstruction and wheel correction; scoped native production proof,2026-10-02 | Current autonomy state; full focus/campaign/demo remains item9 |
 | [Native combat keyboard activation](combat-keyboard-native-activation-1.md) | Reproduced focused Attack/Enter ending-turn defect and six native production control cases,2026-10-02 | [Project status](../project/CURRENT_STATUS.md); full demo/recovery/ending acceptance remains in current autonomy state |
 | [Autonomy efficiency lot1](autonomy-efficiency-lot-1-2026-10-02.md) | Approved operational integration and tested QA receipts,2026-10-02; demo browser acceptance still pending | [Operator decision](../autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-02.md), protocol and current state |

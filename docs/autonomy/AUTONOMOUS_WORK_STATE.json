@@ -3,55 +3,65 @@
   "runStartedAt": "2026-10-03T02:29:49.8377979Z",
   "runEndedAt": null,
   "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
-  "activePhase": "Terminal trial proof review; native620potion preparation next",
-  "activeSubtask": "Native healer AP readiness/support positioning; earned Champion ending and620recovery",
+  "activePhase": "Checkpoint: trial continuation accepted;620recovery still open",
+  "activeSubtask": "Diagnose native marais AP/potion and novice support inputs before620village recovery",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "e6f1a03568d14875db7a8c72f8dadc089b021072",
-  "lastPushedCommit": "e6f1a03568d14875db7a8c72f8dadc089b021072",
+  "lastKnownGoodCommit": "726bb751cf4a90cff088c4fda3af73f8de14702b",
+  "lastPushedCommit": "726bb751cf4a90cff088c4fda3af73f8de14702b",
   "completedThisRun": [
-    "Read-only preflight: no lock/WIP; local and remote dev b9aa73e verified; prior2252failed receipts inspected",
-    "Native Champion victory round16/103actions with13verified Salvation casts; trial ending/exactV6reload/errors[] PASS, terminal reviewer pending"
+    "Read-only preflight and exclusive lock; baseline b9aa73e/dev remote parity verified;29historical QA jobs retained exactly",
+    "Native Champion victory16rounds/103actions with13verified Salvation casts; lion-seal-trial-truth/exactV6reload/errors[] independently ACCEPTED_SCOPED",
+    "Original accepted trial pilot/evidence checkpoint726bb75pushed/verified before separate stock-preparation change",
+    "Native first-refuge rest and four15gold purchases executed: potions4to8,stock10to6,gold70to10,exact prepared autosave/reload",
+    "620requested village recovery FAILED before boundary: marais defeat round18/59actions,allheroesKO,Sanglier32HP; no outcome/recovery acceptance or failed-output seed",
+    "Eight selected captures inspected/promoted; owned workers35608/9992exited;5271/5272no listeners"
   ],
   "filesChanged": [
     "tools/demo-continuous-production-qa.mjs",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
     "docs/autonomy/handoffs/2026-10-03T0228Z-codex-native-support-checkpoint.md",
-    "docs/reports/native-support-campaign-1.md"
+    "docs/reports/INDEX.md",
+    "docs/reports/native-support-campaign-1.md",
+    "docs/reports/native-support-campaign-1/proof.json",
+    "docs/reports/native-support-campaign-1/620-native-potion-stock.png",
+    "docs/reports/native-support-campaign-1/620-native-potion-stock-resumed.png",
+    "docs/reports/native-support-campaign-1/620-marais-native-defeat.png"
   ],
   "testsRun": [
-    "45focused tests/4suites",
-    "16receipt tests",
-    "TypeScript --noEmit",
-    "Syntax/diff-check/LOCKED gate",
-    "8contracts/8slots validator",
-    "0228-trial-support RUNNING; first native Salvation capture at round2, acceptance pending",
-    "0228-trial-support SUCCEEDED; receipt/digests/requests/current execution match; terminal scoped acceptance pending"
+    "101focused tests/5suites PASS: combat skill3,exhaustion2,runSystem16,lionFinale24,management56",
+    "16QAreceipt tests PASS; unchanged helper",
+    "TypeScript --noEmit PASS after final driver stock assertions",
+    "Syntax,diff-check,LOCKED HEAD/working-tree gates and8contracts/8slots PASS",
+    "0228-trial-support SUCCEEDED/ACCEPTED_SCOPED on original726bb75driver:13heals/native victory/ending/exact reload",
+    "0228-recovery-stock FAILED_NOT_ACCEPTED; provenance/request/current/result digests match; successful preparation does not certify recovery",
+    "Existing built-production bundles reused only because src/runtime/build/helper unchanged and receipt binds exact9build hashes"
   ],
   "testsPassed": [
-    "45focused tests/4suites",
-    "16receipt tests",
-    "TypeScript --noEmit",
-    "Syntax/diff-check/LOCKED gate",
-    "8contracts/8slots validator"
+    "101focused tests/5suites PASS: combat skill3,exhaustion2,runSystem16,lionFinale24,management56",
+    "16QAreceipt tests PASS; unchanged helper",
+    "TypeScript --noEmit PASS after final driver stock assertions",
+    "Syntax,diff-check,LOCKED HEAD/working-tree gates and8contracts/8slots PASS",
+    "0228-trial-support SUCCEEDED/ACCEPTED_SCOPED on original726bb75driver:13heals/native victory/ending/exact reload",
+    "Existing built-production bundles reused only because src/runtime/build/helper unchanged and receipt binds exact9build hashes"
   ],
   "testsRemaining": [
-    "Champion ending: native support readiness/preparation,actual skill/heal behavior and earned ending/exact reload",
-    "620exactV6recovery: requested village boundary not reached; marais pilot preparation/inputs need diagnosis",
-    "Sacrifice branch,Tab/full keyboard grid/scroll/fallback,settled VFX and combat balance"
+    "620requested village native defeat/full ownerV6checkpoint recovery/focused departure/reload",
+    "Sacrifice branch, full keyboard battlefield targeting, fallback, settledVFX and combat balance",
+    "One corrected-build earned opening-to-ending campaign;1323ancestry remains mixed-build",
+    "Exact2AP-start Salvation affordability has static coverage only; all13observed casts start3or5AP"
   ],
   "blockers": [
-    "2252-recovery-620 FAILED native marais defeat50actions before lion-village-choice; no recovery acceptance",
-    "2252-trial-unlocked FAILED actual native defeat round14/69actions,Champion121HP; no ending/healing acceptance",
-    "Full keyboard battlefield targeting absent; fallback/VFX/balance and sacrifice criteria open",
-    "1323 earned second-refuge ancestry is mixed-build; not a single corrected-build campaign"
+    "620recovery not reached: native marais pilot still loses after affordable extra potions",
+    "Full keyboard targeting,sacrifice,fallback,settledVFX,balance and full campaign acceptance remain open",
+    "1323second-refuge ancestry is mixed-build; no single corrected opening-to-ending claim"
   ],
   "remainingWork": [
-    "Item9 remains active: scoped healing/earned rescue second-refuge delivered; both full ending/branch, combat/VFX/mobile/defeat acceptance incomplete",
-    "Artistic videos incomplete EXTERNAL_MANUAL_WORKSTREAM; recurring generation/polling/replacement excluded",
-    "Prologue/refuge extra-slot and Alistair decisions remain dedicated; audio DEFERRED"
+    "Item9 remains IN_PROGRESS: trial continuation scoped PASS; requested620village recovery and full demo acceptance incomplete",
+    "Artistic videos remain EXTERNAL_MANUAL_WORKSTREAM; recurring generation/polling/replacement excluded",
+    "Dedicated canon/extra-slot decisions remain operator-owned; audio DEFERRED"
   ],
-  "nextAction": "Review terminal0228-trial-support proof, commit/push its exact driver scope, then add four native first-refuge potion buys with owner/stock/exact reload assertions and register25minute620recovery from successful1153seed/proof.",
+  "nextAction": "Resume item9 from successful continuous-1153-fresh-final first-refuge save and its successful results.json only. First add read-only native rejection telemetry for attack/cellClick attempts (button/charge enablement,native centers,projected point,DOM hit/hover), plus active AP/status and skipped-turn reason. Diagnose native novice-crosier ally support/potion priority;0228warrior attacks resume12/15/16/17/18, potions spend last AP7/8 and all3AP11, second attack15requires2AP with only1left. Do not infer obstruction or change balance. Contracts-review the exact telemetry/pilot diff, then register a new25minute620x780normal village recovery job after a supported correction. Freeze source/driver/helper/build while running; require marais victory, actual village defeat, full ownerV6cleanup/focused departure/exact reload. Never use failed0228outputs as seeds; preserve trial acceptance on726bb75original driver. Full demo remains incomplete.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-LOCK-1: COMPLETE",
     "Contract drift audit: COMPLETE",
@@ -65,7 +75,7 @@
     "Audio decision after structure lock: DEFERRED"
   ],
   "creditStatus": "CODEX_AVAILABLE; this run authorized; automation settings unchanged",
-  "contractComplianceStatus": "PRODUCTION-CONTRACTS-LOCK-1/v1: native card8cases and unlocked-skill observation scoped PASS; full item9 IN_PROGRESS/BLOCKED. No LOCKED rule changed.",
+  "contractComplianceStatus": "PRODUCTION-CONTRACTS-LOCK-1/v1: native trial/ending/V6 continuation scoped PASS;620requested recovery FAILED_NOT_ACCEPTED; full item9 BLOCKED/IN_PROGRESS. No LOCKED rule changed; pre-lock fetch drift disclosed.",
   "commitReferenceScope": "Verified implementation/evidence checkpoint; final state-only closeout identified by HEAD/origin/dev and automation memory rather than circular self-reference.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
@@ -174,7 +184,7 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
+  "runId": "rpgthreejs-auto-dev-90m-20261003T0228",
   "agent": "codex",
   "lastHeartbeat": "2026-10-02T23:50:23.248Z",
   "wip": {
@@ -191,8 +201,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261003T0228",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-03T03:08:07.4903844Z",
-    "status": "TRIAL_TERMINAL_REVIEW",
+    "lastHeartbeat": "2026-10-03T03:30:33.4504792Z",
+    "status": "CHECKPOINTING",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -3542,34 +3552,187 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T02:35:04.309Z",
         "endedAt": "2026-10-03T03:07:05.755Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "exitCode": 0,
         "resultPath": "tmp/demo/0228-trial-support/results.json",
         "resultSha256": "51ab857632fa6692bea752b7c5cd7a4b46e0ad3119ce59f86569f5a242d5e1b5",
-        "provenanceStable": true
+        "provenanceStable": true,
+        "acceptance": "ACCEPTED_SCOPED",
+        "ownerReview": {
+          "at": "2026-10-03T03:11:10.5631806Z",
+          "reviewer": "contracts-guardian",
+          "scope": "1366normal second-refuge native Champion victory13casts/trial ending/exactV6reload; mixed-build ancestry retained",
+          "driverSha256": "acfda8ec859ae62fcc8cd642a208d8e0b92ee7b96a40fd5135b5ca425fa91dae",
+          "driverGitBlob": "cd384cd606fa5e4e91c7cf55eb0cf0a2f18a448c",
+          "implementationCommit": "726bb751cf4a90cff088c4fda3af73f8de14702b",
+          "exactTwoApStart": "STATIC_ONLY; actual casts start3or5AP"
+        },
+        "acceptanceAtReview": {
+          "provenanceMatches": true,
+          "requestMatches": true,
+          "matchesCurrentExecution": true,
+          "resultDigestMatches": true,
+          "eligibleForReview": true
+        }
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "0228-recovery-stock",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T0228",
+        "status": "FAILED",
+        "registeredAt": "2026-10-03T03:12:09.818Z",
+        "pid": 9992,
+        "port": 5272,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "defeat-recovery",
+          "routePlan": "rescue",
+          "timeoutMinutes": 25,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": true,
+          "viewport": [
+            620,
+            780
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/continuous-1153-fresh-final/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EXACT_V6_CHECKPOINT_RECOVERY",
+          "VISIBLE_T1_DEPARTURE",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/0228-recovery-stock",
+        "receiptPath": "tmp/demo/0228-recovery-stock/qa-job.json",
+        "provenance": {
+          "gitHead": "726bb751cf4a90cff088c4fda3af73f8de14702b",
+          "sourceTree": "7f7b49e9c657b24e25c105b96f3b8186ebcbef8b",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "ae3d8b7b62cdf05d9f133ffa942f7617929f13cfd34a6892f2cc90d8629ebe50"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+              "sha256": "d8b0deb62c66fc2fd3d01ec8c513fafb697021e8f9c808869277b90a250e8267"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/continuous-1153-fresh-final/results.json",
+              "sha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+            }
+          ],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-CRVF3Hlw.js",
+              "sha256": "5d4855b52058f35243501afbe6c6c6c8b00b8629a841d5f451e40e43f1369de3"
+            },
+            {
+              "path": "dist/assets/combat-CVSHPmTa.css",
+              "sha256": "9af7a139b176c9980188c4d01d126241144d0b6d5327bf1e202591302cf243b7"
+            },
+            {
+              "path": "dist/assets/game-DNVJsSmX.js",
+              "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+            },
+            {
+              "path": "dist/assets/game-Z5tVqu3k.css",
+              "sha256": "ff17df7f056304ca1c29dbf47e7b8c2821311a645dc30e83a92a564d51a9926e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f7e71881a1d178a7f793a64f477c1c9e899a0077aa962e05f67c2fb2f871c361"
+            }
+          ]
+        },
+        "acceptance": "FAILED_NOT_ACCEPTED",
+        "startedAt": "2026-10-03T03:12:10.577Z",
+        "endedAt": "2026-10-03T03:24:09.072Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/0228-recovery-stock/results.json",
+        "resultSha256": "4703eba85a7adcd2de65c900ff39e3a23910f24f5298202da607caac0e1e8b67",
+        "provenanceStable": true,
+        "ownerReview": {
+          "at": "2026-10-03T03:28:43.852Z",
+          "reviewer": "orchestrator and contracts_review",
+          "scope": "Native preparation executed; requested village recovery NOT reached",
+          "failure": "Native marais defeat round18/59actions; one surviving Sanglier32HP",
+          "continuationSeedAllowed": false
+        },
+        "acceptanceAtReview": {
+          "provenanceMatches": true,
+          "requestMatches": true,
+          "matchesCurrentExecution": true,
+          "resultDigestMatches": true,
+          "eligibleForReview": false,
+          "disposition": "FAILED_NOT_ACCEPTED"
+        }
       }
     ],
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0228",
-      "sha": "93205e4530bc8a6bfe562b76b38edca3bbf197ef",
+      "sha": "93c529c3a023e554b4f9c1f501179807149eea9d",
       "dirtyFiles": [
         "tools/demo-continuous-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
         "docs/autonomy/handoffs/2026-10-03T0228Z-codex-native-support-checkpoint.md",
-        "docs/reports/native-support-campaign-1.md"
+        "docs/reports/native-support-campaign-1.md",
+        "docs/reports/native-support-campaign-1/proof.json",
+        "docs/reports/INDEX.md",
+        "docs/reports/native-support-campaign-1/620-native-potion-stock.png",
+        "docs/reports/native-support-campaign-1/620-native-potion-stock-resumed.png",
+        "docs/reports/native-support-campaign-1/620-marais-native-defeat.png"
       ],
       "status": "GREEN",
-      "lastGreenCheck": "45focused/16receipt/types/syntax/LOCKED/8contractsPASS; production trial pending"
+      "lastGreenCheck": "101focused/16receipt/types/syntax/LOCKED/8contracts8slots PASS; trial continuation accepted scoped;620recovery pending"
     },
-    "nextAction": "Review terminal0228-trial-support proof, commit/push its exact driver scope, then add four native first-refuge potion buys with owner/stock/exact reload assertions and register25minute620recovery from successful1153seed/proof."
+    "nextAction": "Resume item9 from successful continuous-1153-fresh-final first-refuge save and its successful results.json only. First add read-only native rejection telemetry for attack/cellClick attempts (button/charge enablement,native centers,projected point,DOM hit/hover), plus active AP/status and skipped-turn reason. Diagnose native novice-crosier ally support/potion priority;0228warrior attacks resume12/15/16/17/18, potions spend last AP7/8 and all3AP11, second attack15requires2AP with only1left. Do not infer obstruction or change balance. Contracts-review the exact telemetry/pilot diff, then register a new25minute620x780normal village recovery job after a supported correction. Freeze source/driver/helper/build while running; require marais victory, actual village defeat, full ownerV6cleanup/focused departure/exact reload. Never use failed0228outputs as seeds; preserve trial acceptance on726bb75original driver. Full demo remains incomplete.",
+    "runMetrics": {
+      "registeredNativeJobs": 2,
+      "scopedContinuationsAccepted": 1,
+      "failedRequestedScenarios": 1,
+      "readOnlyReviewerPasses": 4,
+      "unchangedAcceptedProofReruns": 0,
+      "failedOutputsUsedAsSeeds": 0,
+      "creditSavings": "Not measured; no quota-gain claim"
+    }
   },
   "previousInterruptedRun": {
     "runId": "rpgthreejs-auto-dev-90m-20261002T1453",

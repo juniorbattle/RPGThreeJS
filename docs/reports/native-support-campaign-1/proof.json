@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "recordedAt": "2026-10-03T03:08:07.681Z",
+  "recordedAt": "2026-10-03T03:30:00.950Z",
   "baseline": "b9aa73e5bbd598e6d79eae89876831d9c84ce7a6",
   "runId": "rpgthreejs-auto-dev-90m-20261003T0228",
   "scope": "Registered native campaign continuations; acceptance is scoped to each exact driver receipt",
@@ -9,7 +9,7 @@
     {
       "jobId": "0228-trial-support",
       "testedDriverGitBlob": "cd384cd606fa5e4e91c7cf55eb0cf0a2f18a448c",
-      "ownerDisposition": "NOT_ACCEPTED",
+      "ownerDisposition": "ACCEPTED_SCOPED",
       "receipt": {
         "schemaVersion": 1,
         "jobId": "0228-trial-support",
@@ -1205,15 +1205,531 @@
         "ending-lion-seal-trial-truth.png",
         "ending-lion-seal-trial-truth-resumed.png"
       ]
+    },
+    {
+      "jobId": "0228-recovery-stock",
+      "testedDriverGitBlob": "9db6c7850469c4e16a2217ebce2711a431a0afb1",
+      "ownerDisposition": "FAILED_NOT_ACCEPTED",
+      "receipt": {
+        "schemaVersion": 1,
+        "jobId": "0228-recovery-stock",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T0228",
+        "status": "FAILED",
+        "startedAt": "2026-10-03T03:12:10.577Z",
+        "endedAt": "2026-10-03T03:24:09.072Z",
+        "pid": 9992,
+        "port": 5272,
+        "output": "tmp/demo/0228-recovery-stock",
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "defeat-recovery",
+          "routePlan": "rescue",
+          "timeoutMinutes": 25,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": true,
+          "viewport": [
+            620,
+            780
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/continuous-1153-fresh-final/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EXACT_V6_CHECKPOINT_RECOVERY",
+          "VISIBLE_T1_DEPARTURE",
+          "EXACT_RELOAD"
+        ],
+        "provenance": {
+          "gitHead": "726bb751cf4a90cff088c4fda3af73f8de14702b",
+          "sourceTree": "7f7b49e9c657b24e25c105b96f3b8186ebcbef8b",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "ae3d8b7b62cdf05d9f133ffa942f7617929f13cfd34a6892f2cc90d8629ebe50"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+              "sha256": "d8b0deb62c66fc2fd3d01ec8c513fafb697021e8f9c808869277b90a250e8267"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/continuous-1153-fresh-final/results.json",
+              "sha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+            }
+          ],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-CRVF3Hlw.js",
+              "sha256": "5d4855b52058f35243501afbe6c6c6c8b00b8629a841d5f451e40e43f1369de3"
+            },
+            {
+              "path": "dist/assets/combat-CVSHPmTa.css",
+              "sha256": "9af7a139b176c9980188c4d01d126241144d0b6d5327bf1e202591302cf243b7"
+            },
+            {
+              "path": "dist/assets/game-DNVJsSmX.js",
+              "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+            },
+            {
+              "path": "dist/assets/game-Z5tVqu3k.css",
+              "sha256": "ff17df7f056304ca1c29dbf47e7b8c2821311a645dc30e83a92a564d51a9926e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f7e71881a1d178a7f793a64f477c1c9e899a0077aa962e05f67c2fb2f871c361"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "provenanceStable": true,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/0228-recovery-stock/results.json",
+        "resultSha256": "4703eba85a7adcd2de65c900ff39e3a23910f24f5298202da607caac0e1e8b67"
+      },
+      "resultPath": "tmp/demo/0228-recovery-stock/results.json",
+      "resultSha256": "4703eba85a7adcd2de65c900ff39e3a23910f24f5298202da607caac0e1e8b67",
+      "pass": false,
+      "failure": "AssertionError [ERR_ASSERTION]: Defeat occurred before the requested native recovery boundary\n+ actual - expected\n\n+ 'lion-valmir-road'\n- 'lion-village-choice'\n         ^\n\n    at battle (file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:279:12)\n    at async file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:469:59",
+      "errors": [],
+      "runtimeMutated": false,
+      "combatOutcomeInjected": false,
+      "motionEvidence": {
+        "osRequested": false,
+        "gameRequested": false
+      },
+      "earnedResume": {
+        "savePath": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/continuous-1153-fresh-final/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "d8b0deb62c66fc2fd3d01ec8c513fafb697021e8f9c808869277b90a250e8267",
+        "proofSha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+      },
+      "geometry": [
+        {
+          "name": "lion-first-refuge-earned",
+          "width": 620,
+          "height": 780,
+          "overflow": 0,
+          "controls": [
+            {
+              "label": "ClanGérer la compagnie",
+              "x": 14,
+              "y": 549,
+              "right": 306,
+              "bottom": 616
+            },
+            {
+              "label": "ShopÉchanger avec le marchand",
+              "x": 314,
+              "y": 549,
+              "right": 606,
+              "bottom": 616
+            },
+            {
+              "label": "AméliorationRenforcer les compétences",
+              "x": 14,
+              "y": 624,
+              "right": 306,
+              "bottom": 691
+            },
+            {
+              "label": "Repos4 unités blessées · 60 or",
+              "x": 314,
+              "y": 624,
+              "right": 606,
+              "bottom": 691
+            },
+            {
+              "label": "Reprendre la routeQuitter le refuge",
+              "x": 14,
+              "y": 699,
+              "right": 606,
+              "bottom": 766
+            }
+          ]
+        },
+        {
+          "name": "lion-first-refuge-earned-resumed",
+          "width": 620,
+          "height": 780,
+          "overflow": 0,
+          "controls": [
+            {
+              "label": "ClanGérer la compagnie",
+              "x": 14,
+              "y": 549,
+              "right": 306,
+              "bottom": 616
+            },
+            {
+              "label": "ShopÉchanger avec le marchand",
+              "x": 314,
+              "y": 549,
+              "right": 606,
+              "bottom": 616
+            },
+            {
+              "label": "AméliorationRenforcer les compétences",
+              "x": 14,
+              "y": 624,
+              "right": 306,
+              "bottom": 691
+            },
+            {
+              "label": "Repos4 unités blessées · 60 or",
+              "x": 314,
+              "y": 624,
+              "right": 606,
+              "bottom": 691
+            },
+            {
+              "label": "Reprendre la routeQuitter le refuge",
+              "x": 14,
+              "y": 699,
+              "right": 606,
+              "bottom": 766
+            }
+          ]
+        },
+        {
+          "name": "lion-first-refuge-native-rest",
+          "width": 620,
+          "height": 780,
+          "overflow": 0,
+          "controls": [
+            {
+              "label": "ClanGérer la compagnie",
+              "x": 14,
+              "y": 549,
+              "right": 306,
+              "bottom": 616
+            },
+            {
+              "label": "ShopÉchanger avec le marchand",
+              "x": 314,
+              "y": 549,
+              "right": 606,
+              "bottom": 616
+            },
+            {
+              "label": "AméliorationRenforcer les compétences",
+              "x": 14,
+              "y": 624,
+              "right": 306,
+              "bottom": 691
+            },
+            {
+              "label": "Reprendre la routeQuitter le refuge",
+              "x": 14,
+              "y": 699,
+              "right": 606,
+              "bottom": 766
+            }
+          ]
+        },
+        {
+          "name": "lion-first-refuge-native-potion-stock",
+          "width": 620,
+          "height": 780,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "lion-first-refuge-native-potion-stock-resumed",
+          "width": 620,
+          "height": 780,
+          "overflow": 0,
+          "controls": [
+            {
+              "label": "ClanGérer la compagnie",
+              "x": 14,
+              "y": 549,
+              "right": 306,
+              "bottom": 616
+            },
+            {
+              "label": "ShopÉchanger avec le marchand",
+              "x": 314,
+              "y": 549,
+              "right": 606,
+              "bottom": 616
+            },
+            {
+              "label": "AméliorationRenforcer les compétences",
+              "x": 14,
+              "y": 624,
+              "right": 306,
+              "bottom": 691
+            },
+            {
+              "label": "Reprendre la routeQuitter le refuge",
+              "x": 14,
+              "y": 699,
+              "right": 606,
+              "bottom": 766
+            }
+          ]
+        },
+        {
+          "name": "combat-1-deployment",
+          "width": 620,
+          "height": 780,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "combat-1-actual-impact",
+          "width": 620,
+          "height": 780,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "combat-1-result",
+          "width": 620,
+          "height": 780,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "failure-state",
+          "width": 620,
+          "height": 780,
+          "overflow": 0,
+          "controls": []
+        }
+      ],
+      "battles": [
+        {
+          "nodeId": "lion-valmir-road",
+          "combatId": "marsh_crossing",
+          "pass": false,
+          "round": 18,
+          "actionCount": 59,
+          "actionKinds": {
+            "move": 12,
+            "attack": 15,
+            "wait": 23,
+            "potion": 8,
+            "revive_vial": 1
+          },
+          "finalUnits": [
+            {
+              "id": 1,
+              "name": "Crapaud toxique",
+              "team": "foe",
+              "gx": 5,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 108,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 2,
+              "name": "Sanglier",
+              "team": "foe",
+              "gx": 4,
+              "gz": 0,
+              "hp": 32,
+              "maxhp": 116,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": 3,
+              "name": "Rat geant",
+              "team": "foe",
+              "gx": 4,
+              "gz": 3,
+              "hp": 0,
+              "maxhp": 65,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "warrior",
+              "name": "Alistair",
+              "team": "player",
+              "gx": 4,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 140,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "white_mage",
+              "name": "Marian",
+              "team": "player",
+              "gx": 5,
+              "gz": 2,
+              "hp": 0,
+              "maxhp": 100,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "dark_mage",
+              "name": "Elara",
+              "team": "player",
+              "gx": 4,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 75,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "archer",
+              "name": "Kestrel",
+              "team": "player",
+              "gx": 4,
+              "gz": 2,
+              "hp": 0,
+              "maxhp": 90,
+              "alive": false,
+              "downed": true
+            }
+          ],
+          "healing": []
+        }
+      ],
+      "preparations": [
+        {
+          "nodeId": "lion-first-refuge",
+          "goldAtEntry": 130,
+          "goldAfterRest": 70,
+          "supplyPurchase": {
+            "quantity": 4,
+            "prices": [
+              15,
+              15,
+              15,
+              15
+            ],
+            "goldBefore": 70,
+            "goldAfter": 10,
+            "potionsBefore": 4,
+            "potionsAfter": 8,
+            "stockBefore": 10,
+            "stockAfter": 6,
+            "temporaryLootUnchanged": true,
+            "exactV6ReloadVerified": true
+          }
+        }
+      ],
+      "captures": [
+        "lion-first-refuge-earned.png",
+        "lion-first-refuge-earned-resumed.png",
+        "lion-first-refuge-native-rest.png",
+        "lion-first-refuge-native-potion-stock.png",
+        "lion-first-refuge-native-potion-stock-resumed.png",
+        "combat-1-deployment.png",
+        "combat-1-actual-impact.png",
+        "combat-1-result.png",
+        "failure-state.png"
+      ]
     }
   ],
   "currentDriver": {
-    "sha256": "acfda8ec859ae62fcc8cd642a208d8e0b92ee7b96a40fd5135b5ca425fa91dae",
-    "gitBlob": "cd384cd606fa5e4e91c7cf55eb0cf0a2f18a448c"
+    "sha256": "ae3d8b7b62cdf05d9f133ffa942f7617929f13cfd34a6892f2cc90d8629ebe50",
+    "gitBlob": "9db6c7850469c4e16a2217ebce2711a431a0afb1"
   },
   "runtime": {
     "sha256": "8efed9de5307fe35cf5e43b41552a75465e5b2e1dec06da4655199bc4750acd0",
     "gitBlob": "0ec58a7695a197b1c48029cf5cece50a8e8d464a",
     "buildReuse": "No src diff; runtime bytes match prior2252accepted build proof"
-  }
+  },
+  "promotedCaptures": [
+    {
+      "jobId": "0228-trial-support",
+      "path": "docs/reports/native-support-campaign-1/combat-3-deployment.png",
+      "rawPath": "tmp/demo/0228-trial-support/combat-3-deployment.png",
+      "sha256": "7668177af44561e4d25daed910a2bd239a83bb55ed983012f77f3678ef6ade52",
+      "inspected": true,
+      "settledVfxAccepted": false
+    },
+    {
+      "jobId": "0228-trial-support",
+      "path": "docs/reports/native-support-campaign-1/combat-3-w_salvation-34.png",
+      "rawPath": "tmp/demo/0228-trial-support/combat-3-w_salvation-34.png",
+      "sha256": "fd514c28205f430a03e1f1c4aa7de285c54aef1fbc13515dc347ebc2c8d8c96f",
+      "inspected": true,
+      "settledVfxAccepted": false
+    },
+    {
+      "jobId": "0228-trial-support",
+      "path": "docs/reports/native-support-campaign-1/combat-3-result.png",
+      "rawPath": "tmp/demo/0228-trial-support/combat-3-result.png",
+      "sha256": "2f8dd07719c20cf0084750979a3319e718eaa58ced5e1d34ad689f73ee137907",
+      "inspected": true,
+      "settledVfxAccepted": false
+    },
+    {
+      "jobId": "0228-trial-support",
+      "path": "docs/reports/native-support-campaign-1/ending-lion-seal-trial-truth.png",
+      "rawPath": "tmp/demo/0228-trial-support/ending-lion-seal-trial-truth.png",
+      "sha256": "f43b913c6407ed0355c2d5555263195a129a43d9ac809e192e8805f765c5dfe9",
+      "inspected": true,
+      "settledVfxAccepted": false
+    },
+    {
+      "jobId": "0228-trial-support",
+      "path": "docs/reports/native-support-campaign-1/ending-lion-seal-trial-truth-resumed.png",
+      "rawPath": "tmp/demo/0228-trial-support/ending-lion-seal-trial-truth-resumed.png",
+      "sha256": "2815a9f9f229bf93aa86859cb70b4fe5cff89c1ab6f222c56337461bd5b942f3",
+      "inspected": true,
+      "settledVfxAccepted": false
+    },
+    {
+      "jobId": "0228-recovery-stock",
+      "path": "docs/reports/native-support-campaign-1/620-native-potion-stock.png",
+      "rawPath": "tmp/demo/0228-recovery-stock/lion-first-refuge-native-potion-stock.png",
+      "sha256": "d198d81b6533d34364eed0dc642d953f686940d78233cb62c944fc0d2f15b34f",
+      "inspected": true,
+      "settledVfxAccepted": false
+    },
+    {
+      "jobId": "0228-recovery-stock",
+      "path": "docs/reports/native-support-campaign-1/620-native-potion-stock-resumed.png",
+      "rawPath": "tmp/demo/0228-recovery-stock/lion-first-refuge-native-potion-stock-resumed.png",
+      "sha256": "fbc5208bc5fe7773d615030e493ecf376c9c851ea0e3eafb828236d5e5f378f6",
+      "inspected": true,
+      "settledVfxAccepted": false
+    },
+    {
+      "jobId": "0228-recovery-stock",
+      "path": "docs/reports/native-support-campaign-1/620-marais-native-defeat.png",
+      "rawPath": "tmp/demo/0228-recovery-stock/combat-1-result.png",
+      "sha256": "09bc7ae7ded0da4633f5be66bc97d00a70353a7ffb1fc1b411855780320045ed",
+      "inspected": true,
+      "settledVfxAccepted": false
+    }
+  ]
 }
