@@ -1,0 +1,1647 @@
+{
+  "task": "TRAVERSAL-VISUAL-CONVERGENCE",
+  "baseline": "c9e16a8f2685435ce6432c5a1dc5980b7c2152a6",
+  "contractSetVersion": "1.1.0",
+  "scope": "Shared ground/subjects; V6 origin and combat-result fixtures, native scene clocks/UI/handoffs. Not earned/full campaign acceptance.",
+  "tests": {
+    "focused": 49,
+    "broadTraversal": 137,
+    "suites": 25,
+    "types": true,
+    "build": true,
+    "contracts": 8,
+    "videoSlots": 8,
+    "immutableGate": true
+  },
+  "jobs": [
+    {
+      "jobId": "visual-0820-v2-normal",
+      "output": "tmp/traversal/visual-0820-v2-normal",
+      "status": "SUCCEEDED",
+      "provenanceStable": true,
+      "resultSha256": "7bc1af31457498a1c157393b09b32732bd2ffece56078f3a0fba2aec2cfec3e0",
+      "parameters": {
+        "motion": "normal",
+        "viewports": [
+          "1440x810",
+          "620x780",
+          "390x844"
+        ],
+        "gameReducedMotion": false,
+        "scope": "production presentation with V6 origin and combat-result fixtures"
+      },
+      "assertions": {
+        "shared-native-ground": true,
+        "clan-empty-stops": true,
+        "single-shadow": true,
+        "native-handoffs": true,
+        "responsive-controls": true,
+        "os-only-reduction": true
+      },
+      "driver": {
+        "path": "tools/traversal-visual-convergence-qa.mjs",
+        "sha256": "a0fec0b6cf2f44b27e2e225723dd6f1cb9dbf4a0c04e172a7b0d430f72ca0a01"
+      },
+      "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+      "executionSource": {
+        "gitHead": "c9e16a8f2685435ce6432c5a1dc5980b7c2152a6",
+        "sourceTree": "7f7b49e9c657b24e25c105b96f3b8186ebcbef8b",
+        "sourceDiffSha256": "d7a97d238e67e71785f5cfc7c8bf7e2a163b9283f237f2ac273c7d245f46de66"
+      },
+      "sourceHashes": {
+        "src/traversal/TraversalWorldSubject.ts": "35772ccf2768401b1db2ccdd683dbc739193471ceb6be6385e9f397d5799496c",
+        "src/traversal/TraversalRoadScene.ts": "8e876b300a2349147ca4d3e84efc703488240a9bfd23335e4ecda74b750f194d",
+        "src/traversal/TraversalWorldRenderer.ts": "7508cde4a292032743a964168e16dc7e4d2fd4afb86748497a8b7f15baa492d9",
+        "src/styles/traversal.css": "312567a6a64318dc67c4cb0b85c7b26c8a7a158fdaffb22e1420451ecff760f0"
+      },
+      "counts": {
+        "runs": 6,
+        "captures": 174
+      },
+      "runs": [
+        {
+          "leg": "T0",
+          "branch": "lion-first-trial-event",
+          "complete": true,
+          "arrivals": 1,
+          "handoffs": [
+            "lion-opening-ambush",
+            "lion-nomad-crossroads",
+            "lion-refugees",
+            "lion-first-trial-event"
+          ],
+          "combats": [
+            "forest_ambush"
+          ],
+          "branchState": {
+            "T0": "lion-first-trial-event"
+          }
+        },
+        {
+          "leg": "T0",
+          "branch": "lion-first-trial-combat",
+          "complete": true,
+          "arrivals": 1,
+          "handoffs": [
+            "lion-opening-ambush",
+            "lion-nomad-crossroads",
+            "lion-refugees",
+            "lion-first-trial-combat"
+          ],
+          "combats": [
+            "wolf_pack",
+            "spider_nest"
+          ],
+          "branchState": {
+            "T0": "lion-first-trial-combat"
+          }
+        },
+        {
+          "leg": "T1",
+          "branch": "lion-second-trial-event",
+          "complete": true,
+          "arrivals": 1,
+          "handoffs": [
+            "lion-reserve-trail",
+            "lion-valmir-road",
+            "lion-second-trial-event"
+          ],
+          "combats": [
+            "marsh_crossing"
+          ],
+          "branchState": {
+            "T1": "lion-second-trial-event"
+          }
+        },
+        {
+          "leg": "T1",
+          "branch": "lion-second-trial-combat",
+          "complete": true,
+          "arrivals": 1,
+          "handoffs": [
+            "lion-reserve-trail",
+            "lion-valmir-road",
+            "lion-second-trial-combat"
+          ],
+          "combats": [
+            "marsh_crossing",
+            "serpent_checkpoint"
+          ],
+          "branchState": {
+            "T1": "lion-second-trial-combat"
+          }
+        },
+        {
+          "leg": "T3",
+          "branch": "lion-final-trial-event",
+          "complete": true,
+          "arrivals": 1,
+          "handoffs": [
+            "lion-lancer-recruit",
+            "lion-witnesses",
+            "lion-final-trial-event"
+          ],
+          "combats": [
+            "young_dragon_roost"
+          ],
+          "branchState": {
+            "T3": "lion-final-trial-event"
+          }
+        },
+        {
+          "leg": "T3",
+          "branch": "lion-final-trial-combat",
+          "complete": true,
+          "arrivals": 1,
+          "handoffs": [
+            "lion-lancer-recruit",
+            "lion-witnesses",
+            "lion-final-trial-combat"
+          ],
+          "combats": [
+            "ruins_guardians"
+          ],
+          "branchState": {
+            "T3": "lion-final-trial-combat"
+          }
+        }
+      ],
+      "errors": [],
+      "failures": []
+    },
+    {
+      "jobId": "visual-0820-v2-os",
+      "output": "tmp/traversal/visual-0820-v2-os",
+      "status": "SUCCEEDED",
+      "provenanceStable": true,
+      "resultSha256": "55fb875b891a1cb00a042c295d0be42c85485b68f7afc8dbf845fdc48a7e3c35",
+      "parameters": {
+        "motion": "os",
+        "viewports": [
+          "1440x810",
+          "620x780",
+          "390x844"
+        ],
+        "gameReducedMotion": false,
+        "scope": "production presentation with V6 origin and combat-result fixtures"
+      },
+      "assertions": {
+        "shared-native-ground": true,
+        "clan-empty-stops": true,
+        "single-shadow": true,
+        "native-handoffs": true,
+        "responsive-controls": true,
+        "os-only-reduction": true
+      },
+      "driver": {
+        "path": "tools/traversal-visual-convergence-qa.mjs",
+        "sha256": "a0fec0b6cf2f44b27e2e225723dd6f1cb9dbf4a0c04e172a7b0d430f72ca0a01"
+      },
+      "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+      "executionSource": {
+        "gitHead": "c9e16a8f2685435ce6432c5a1dc5980b7c2152a6",
+        "sourceTree": "7f7b49e9c657b24e25c105b96f3b8186ebcbef8b",
+        "sourceDiffSha256": "d7a97d238e67e71785f5cfc7c8bf7e2a163b9283f237f2ac273c7d245f46de66"
+      },
+      "sourceHashes": {
+        "src/traversal/TraversalWorldSubject.ts": "35772ccf2768401b1db2ccdd683dbc739193471ceb6be6385e9f397d5799496c",
+        "src/traversal/TraversalRoadScene.ts": "8e876b300a2349147ca4d3e84efc703488240a9bfd23335e4ecda74b750f194d",
+        "src/traversal/TraversalWorldRenderer.ts": "7508cde4a292032743a964168e16dc7e4d2fd4afb86748497a8b7f15baa492d9",
+        "src/styles/traversal.css": "312567a6a64318dc67c4cb0b85c7b26c8a7a158fdaffb22e1420451ecff760f0"
+      },
+      "counts": {
+        "runs": 6,
+        "captures": 174
+      },
+      "runs": [
+        {
+          "leg": "T0",
+          "branch": "lion-first-trial-event",
+          "complete": true,
+          "arrivals": 1,
+          "handoffs": [
+            "lion-opening-ambush",
+            "lion-nomad-crossroads",
+            "lion-refugees",
+            "lion-first-trial-event"
+          ],
+          "combats": [
+            "forest_ambush"
+          ],
+          "branchState": {
+            "T0": "lion-first-trial-event"
+          }
+        },
+        {
+          "leg": "T0",
+          "branch": "lion-first-trial-combat",
+          "complete": true,
+          "arrivals": 1,
+          "handoffs": [
+            "lion-opening-ambush",
+            "lion-nomad-crossroads",
+            "lion-refugees",
+            "lion-first-trial-combat"
+          ],
+          "combats": [
+            "forest_ambush",
+            "spider_nest"
+          ],
+          "branchState": {
+            "T0": "lion-first-trial-combat"
+          }
+        },
+        {
+          "leg": "T1",
+          "branch": "lion-second-trial-event",
+          "complete": true,
+          "arrivals": 1,
+          "handoffs": [
+            "lion-reserve-trail",
+            "lion-valmir-road",
+            "lion-second-trial-event"
+          ],
+          "combats": [
+            "marsh_crossing"
+          ],
+          "branchState": {
+            "T1": "lion-second-trial-event"
+          }
+        },
+        {
+          "leg": "T1",
+          "branch": "lion-second-trial-combat",
+          "complete": true,
+          "arrivals": 1,
+          "handoffs": [
+            "lion-reserve-trail",
+            "lion-valmir-road",
+            "lion-second-trial-combat"
+          ],
+          "combats": [
+            "marsh_crossing",
+            "serpent_checkpoint"
+          ],
+          "branchState": {
+            "T1": "lion-second-trial-combat"
+          }
+        },
+        {
+          "leg": "T3",
+          "branch": "lion-final-trial-event",
+          "complete": true,
+          "arrivals": 1,
+          "handoffs": [
+            "lion-lancer-recruit",
+            "lion-witnesses",
+            "lion-final-trial-event"
+          ],
+          "combats": [
+            "young_dragon_roost"
+          ],
+          "branchState": {
+            "T3": "lion-final-trial-event"
+          }
+        },
+        {
+          "leg": "T3",
+          "branch": "lion-final-trial-combat",
+          "complete": true,
+          "arrivals": 1,
+          "handoffs": [
+            "lion-lancer-recruit",
+            "lion-witnesses",
+            "lion-final-trial-combat"
+          ],
+          "combats": [
+            "ruins_guardians"
+          ],
+          "branchState": {
+            "T3": "lion-final-trial-combat"
+          }
+        }
+      ],
+      "errors": [],
+      "failures": []
+    },
+    {
+      "jobId": "visual-0820-probe-v2",
+      "output": "tmp/traversal/visual-0820-probe-v2",
+      "status": "SUCCEEDED",
+      "provenanceStable": true,
+      "resultSha256": "07677dacc9a47e35b34dbf660cbbf41558aa5030464d80008e4a7c9d79e6bf76",
+      "parameters": {
+        "cases": [
+          "normal",
+          "os",
+          "missing-shadow",
+          "missing-ground"
+        ],
+        "viewports": [
+          "1440x810",
+          "620x780",
+          "390x844"
+        ],
+        "scope": "T0 production missing-art agency and computed CSS/focus/hit targets"
+      },
+      "assertions": {
+        "computed-os-reduction": true,
+        "lane-keyboard-focus": true,
+        "hit-targets": true,
+        "missing-art-handoff-return": true
+      },
+      "driver": {
+        "path": "tools/traversal-visual-convergence-probe-qa.mjs",
+        "sha256": "b488243bb82bb54ea02d6b35be1e0bb92a4a104e3c9d1dcd59417ac9aee90e51"
+      },
+      "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+      "executionSource": {
+        "gitHead": "c9e16a8f2685435ce6432c5a1dc5980b7c2152a6",
+        "sourceTree": "7f7b49e9c657b24e25c105b96f3b8186ebcbef8b",
+        "sourceDiffSha256": "d7a97d238e67e71785f5cfc7c8bf7e2a163b9283f237f2ac273c7d245f46de66"
+      },
+      "counts": {
+        "cases": 4
+      },
+      "probeCases": [
+        {
+          "mode": "normal",
+          "expectedDecodeErrors": [],
+          "views": [
+            {
+              "viewport": {
+                "width": 1440,
+                "height": 810
+              },
+              "file": "normal-route-1440.png",
+              "buttons": [
+                {
+                  "label": "▲",
+                  "lane": "0",
+                  "width": 30,
+                  "height": 30,
+                  "x": 14,
+                  "y": 371,
+                  "right": 44,
+                  "bottom": 401,
+                  "hit": true,
+                  "outline": "none"
+                },
+                {
+                  "label": "▼",
+                  "lane": "1",
+                  "width": 30,
+                  "height": 30,
+                  "x": 14,
+                  "y": 409,
+                  "right": 44,
+                  "bottom": 439,
+                  "hit": true,
+                  "outline": "solid"
+                }
+              ],
+              "focused": "1",
+              "gameReduced": false,
+              "osReduced": false,
+              "animations": [
+                "none",
+                "none",
+                "traversal-pursuit-run"
+              ],
+              "groundDecoded": true,
+              "shadowDecoded": true
+            },
+            {
+              "viewport": {
+                "width": 620,
+                "height": 780
+              },
+              "file": "normal-route-620.png",
+              "buttons": [
+                {
+                  "label": "▲",
+                  "lane": "0",
+                  "width": 44,
+                  "height": 44,
+                  "x": 10,
+                  "y": 341,
+                  "right": 54,
+                  "bottom": 385,
+                  "hit": true,
+                  "outline": "none"
+                },
+                {
+                  "label": "▼",
+                  "lane": "1",
+                  "width": 44,
+                  "height": 44,
+                  "x": 10,
+                  "y": 395,
+                  "right": 54,
+                  "bottom": 439,
+                  "hit": true,
+                  "outline": "solid"
+                }
+              ],
+              "focused": "1",
+              "gameReduced": false,
+              "osReduced": false,
+              "animations": [
+                "none",
+                "none",
+                "traversal-pursuit-run"
+              ],
+              "groundDecoded": true,
+              "shadowDecoded": true
+            },
+            {
+              "viewport": {
+                "width": 390,
+                "height": 844
+              },
+              "file": "normal-route-390.png",
+              "buttons": [
+                {
+                  "label": "▲",
+                  "lane": "0",
+                  "width": 44,
+                  "height": 44,
+                  "x": 10,
+                  "y": 373,
+                  "right": 54,
+                  "bottom": 417,
+                  "hit": true,
+                  "outline": "none"
+                },
+                {
+                  "label": "▼",
+                  "lane": "1",
+                  "width": 44,
+                  "height": 44,
+                  "x": 10,
+                  "y": 427,
+                  "right": 54,
+                  "bottom": 471,
+                  "hit": true,
+                  "outline": "solid"
+                }
+              ],
+              "focused": "1",
+              "gameReduced": false,
+              "osReduced": false,
+              "animations": [
+                "none",
+                "none",
+                "traversal-pursuit-run"
+              ],
+              "groundDecoded": true,
+              "shadowDecoded": true
+            }
+          ],
+          "interceptedRequests": 0,
+          "returned": true,
+          "combatId": "wolf_pack"
+        },
+        {
+          "mode": "os",
+          "expectedDecodeErrors": [],
+          "views": [
+            {
+              "viewport": {
+                "width": 1440,
+                "height": 810
+              },
+              "file": "os-route-1440.png",
+              "buttons": [
+                {
+                  "label": "▲",
+                  "lane": "0",
+                  "width": 30,
+                  "height": 30,
+                  "x": 14,
+                  "y": 371,
+                  "right": 44,
+                  "bottom": 401,
+                  "hit": true,
+                  "outline": "none"
+                },
+                {
+                  "label": "▼",
+                  "lane": "1",
+                  "width": 30,
+                  "height": 30,
+                  "x": 14,
+                  "y": 409,
+                  "right": 44,
+                  "bottom": 439,
+                  "hit": true,
+                  "outline": "solid"
+                }
+              ],
+              "focused": "1",
+              "gameReduced": false,
+              "osReduced": true,
+              "animations": [
+                "none",
+                "none",
+                "none"
+              ],
+              "groundDecoded": true,
+              "shadowDecoded": true
+            },
+            {
+              "viewport": {
+                "width": 620,
+                "height": 780
+              },
+              "file": "os-route-620.png",
+              "buttons": [
+                {
+                  "label": "▲",
+                  "lane": "0",
+                  "width": 44,
+                  "height": 44,
+                  "x": 10,
+                  "y": 341,
+                  "right": 54,
+                  "bottom": 385,
+                  "hit": true,
+                  "outline": "none"
+                },
+                {
+                  "label": "▼",
+                  "lane": "1",
+                  "width": 44,
+                  "height": 44,
+                  "x": 10,
+                  "y": 395,
+                  "right": 54,
+                  "bottom": 439,
+                  "hit": true,
+                  "outline": "solid"
+                }
+              ],
+              "focused": "1",
+              "gameReduced": false,
+              "osReduced": true,
+              "animations": [
+                "none",
+                "none",
+                "none"
+              ],
+              "groundDecoded": true,
+              "shadowDecoded": true
+            },
+            {
+              "viewport": {
+                "width": 390,
+                "height": 844
+              },
+              "file": "os-route-390.png",
+              "buttons": [
+                {
+                  "label": "▲",
+                  "lane": "0",
+                  "width": 44,
+                  "height": 44,
+                  "x": 10,
+                  "y": 373,
+                  "right": 54,
+                  "bottom": 417,
+                  "hit": true,
+                  "outline": "none"
+                },
+                {
+                  "label": "▼",
+                  "lane": "1",
+                  "width": 44,
+                  "height": 44,
+                  "x": 10,
+                  "y": 427,
+                  "right": 54,
+                  "bottom": 471,
+                  "hit": true,
+                  "outline": "solid"
+                }
+              ],
+              "focused": "1",
+              "gameReduced": false,
+              "osReduced": true,
+              "animations": [
+                "none",
+                "none",
+                "none"
+              ],
+              "groundDecoded": true,
+              "shadowDecoded": true
+            }
+          ],
+          "interceptedRequests": 0,
+          "returned": true,
+          "combatId": "wolf_pack"
+        },
+        {
+          "mode": "missing-shadow",
+          "expectedDecodeErrors": [],
+          "views": [
+            {
+              "viewport": {
+                "width": 1440,
+                "height": 810
+              },
+              "file": "missing-shadow-route-1440.png",
+              "buttons": [
+                {
+                  "label": "▲",
+                  "lane": "0",
+                  "width": 30,
+                  "height": 30,
+                  "x": 14,
+                  "y": 371,
+                  "right": 44,
+                  "bottom": 401,
+                  "hit": true,
+                  "outline": "none"
+                },
+                {
+                  "label": "▼",
+                  "lane": "1",
+                  "width": 30,
+                  "height": 30,
+                  "x": 14,
+                  "y": 409,
+                  "right": 44,
+                  "bottom": 439,
+                  "hit": true,
+                  "outline": "solid"
+                }
+              ],
+              "focused": "1",
+              "gameReduced": false,
+              "osReduced": false,
+              "animations": [
+                "none",
+                "none",
+                "traversal-pursuit-run"
+              ],
+              "groundDecoded": true,
+              "shadowDecoded": false
+            },
+            {
+              "viewport": {
+                "width": 620,
+                "height": 780
+              },
+              "file": "missing-shadow-route-620.png",
+              "buttons": [
+                {
+                  "label": "▲",
+                  "lane": "0",
+                  "width": 44,
+                  "height": 44,
+                  "x": 10,
+                  "y": 341,
+                  "right": 54,
+                  "bottom": 385,
+                  "hit": true,
+                  "outline": "none"
+                },
+                {
+                  "label": "▼",
+                  "lane": "1",
+                  "width": 44,
+                  "height": 44,
+                  "x": 10,
+                  "y": 395,
+                  "right": 54,
+                  "bottom": 439,
+                  "hit": true,
+                  "outline": "solid"
+                }
+              ],
+              "focused": "1",
+              "gameReduced": false,
+              "osReduced": false,
+              "animations": [
+                "none",
+                "none",
+                "traversal-pursuit-run"
+              ],
+              "groundDecoded": true,
+              "shadowDecoded": false
+            },
+            {
+              "viewport": {
+                "width": 390,
+                "height": 844
+              },
+              "file": "missing-shadow-route-390.png",
+              "buttons": [
+                {
+                  "label": "▲",
+                  "lane": "0",
+                  "width": 44,
+                  "height": 44,
+                  "x": 10,
+                  "y": 373,
+                  "right": 54,
+                  "bottom": 417,
+                  "hit": true,
+                  "outline": "none"
+                },
+                {
+                  "label": "▼",
+                  "lane": "1",
+                  "width": 44,
+                  "height": 44,
+                  "x": 10,
+                  "y": 427,
+                  "right": 54,
+                  "bottom": 471,
+                  "hit": true,
+                  "outline": "solid"
+                }
+              ],
+              "focused": "1",
+              "gameReduced": false,
+              "osReduced": false,
+              "animations": [
+                "none",
+                "none",
+                "traversal-pursuit-run"
+              ],
+              "groundDecoded": true,
+              "shadowDecoded": false
+            }
+          ],
+          "interceptedRequests": 1,
+          "returned": true,
+          "combatId": "wolf_pack"
+        },
+        {
+          "mode": "missing-ground",
+          "expectedDecodeErrors": [
+            "[Traversal] Shared route art did not decode. EncodingError: The source image cannot be decoded.",
+            "[Traversal] Checkpoint art did not decode. EncodingError: The source image cannot be decoded."
+          ],
+          "views": [
+            {
+              "viewport": {
+                "width": 1440,
+                "height": 810
+              },
+              "file": "missing-ground-route-1440.png",
+              "buttons": [
+                {
+                  "label": "▲",
+                  "lane": "0",
+                  "width": 30,
+                  "height": 30,
+                  "x": 14,
+                  "y": 371,
+                  "right": 44,
+                  "bottom": 401,
+                  "hit": true,
+                  "outline": "none"
+                },
+                {
+                  "label": "▼",
+                  "lane": "1",
+                  "width": 30,
+                  "height": 30,
+                  "x": 14,
+                  "y": 409,
+                  "right": 44,
+                  "bottom": 439,
+                  "hit": true,
+                  "outline": "solid"
+                }
+              ],
+              "focused": "1",
+              "gameReduced": false,
+              "osReduced": false,
+              "animations": [
+                "none",
+                "none",
+                "traversal-pursuit-run"
+              ],
+              "groundDecoded": false,
+              "shadowDecoded": true
+            },
+            {
+              "viewport": {
+                "width": 620,
+                "height": 780
+              },
+              "file": "missing-ground-route-620.png",
+              "buttons": [
+                {
+                  "label": "▲",
+                  "lane": "0",
+                  "width": 44,
+                  "height": 44,
+                  "x": 10,
+                  "y": 341,
+                  "right": 54,
+                  "bottom": 385,
+                  "hit": true,
+                  "outline": "none"
+                },
+                {
+                  "label": "▼",
+                  "lane": "1",
+                  "width": 44,
+                  "height": 44,
+                  "x": 10,
+                  "y": 395,
+                  "right": 54,
+                  "bottom": 439,
+                  "hit": true,
+                  "outline": "solid"
+                }
+              ],
+              "focused": "1",
+              "gameReduced": false,
+              "osReduced": false,
+              "animations": [
+                "none",
+                "none",
+                "traversal-pursuit-run"
+              ],
+              "groundDecoded": false,
+              "shadowDecoded": true
+            },
+            {
+              "viewport": {
+                "width": 390,
+                "height": 844
+              },
+              "file": "missing-ground-route-390.png",
+              "buttons": [
+                {
+                  "label": "▲",
+                  "lane": "0",
+                  "width": 44,
+                  "height": 44,
+                  "x": 10,
+                  "y": 373,
+                  "right": 54,
+                  "bottom": 417,
+                  "hit": true,
+                  "outline": "none"
+                },
+                {
+                  "label": "▼",
+                  "lane": "1",
+                  "width": 44,
+                  "height": 44,
+                  "x": 10,
+                  "y": 427,
+                  "right": 54,
+                  "bottom": 471,
+                  "hit": true,
+                  "outline": "solid"
+                }
+              ],
+              "focused": "1",
+              "gameReduced": false,
+              "osReduced": false,
+              "animations": [
+                "none",
+                "none",
+                "traversal-pursuit-run"
+              ],
+              "groundDecoded": false,
+              "shadowDecoded": true
+            }
+          ],
+          "interceptedRequests": 1,
+          "returned": true,
+          "combatId": "forest_ambush"
+        }
+      ],
+      "errors": [],
+      "failures": []
+    }
+  ],
+  "build": [
+    {
+      "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+      "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+    },
+    {
+      "path": "dist/assets/combat-DSUtGYdZ.js",
+      "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+    },
+    {
+      "path": "dist/assets/combat-s2FWu0a6.css",
+      "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+    },
+    {
+      "path": "dist/assets/game-B-Q4peil.js",
+      "sha256": "3afa1b2f479ea8326e471b32778436825a70452f99b03a55e252d636f002aeb4"
+    },
+    {
+      "path": "dist/assets/game-D7TpUbkt.css",
+      "sha256": "d6cdbfe35fa526c5f01a6238c853b1efd1179812c92ad3f0186c42d7b67b69e8"
+    },
+    {
+      "path": "dist/assets/three-core-f0ajj1rG.js",
+      "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+    },
+    {
+      "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+      "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+    },
+    {
+      "path": "dist/assets/validation-mSkvzYyn.js",
+      "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+    },
+    {
+      "path": "dist/index.html",
+      "sha256": "3b6ba42138640e27e93110426d431cc9900ad7f93e13858bbe2eb672d9d2245e"
+    }
+  ],
+  "captures": [
+    {
+      "file": "normal-T0-event-route-route-1-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "view": "route",
+      "segment": "route-1",
+      "phase": "RUNNING",
+      "gameReduced": false,
+      "osReduced": false,
+      "ground": [
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1215,
+          "height": 810,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        },
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1215,
+          "height": 810,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        }
+      ],
+      "subjects": [],
+      "controls": [
+        {
+          "label": "▲",
+          "x": 14,
+          "y": 371,
+          "right": 44,
+          "bottom": 401
+        },
+        {
+          "label": "▼",
+          "x": 14,
+          "y": 409,
+          "right": 44,
+          "bottom": 439
+        }
+      ],
+      "facts": {
+        "node": "lion-audience",
+        "flags": {}
+      },
+      "caravan": {
+        "x": 200.125,
+        "y": 332.109375,
+        "width": 319.75,
+        "height": 194.390625,
+        "top": 332.109375,
+        "right": 519.875,
+        "bottom": 526.5,
+        "left": 200.125
+      },
+      "motion": "normal",
+      "sha256": "6a565352a4267ac46c3a706505663b7bb93f696d891e2a7d1180fde9b191d251"
+    },
+    {
+      "file": "normal-T0-event-checkpoint-route-1-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "view": "checkpoint",
+      "segment": "route-1",
+      "phase": "RUNNING",
+      "gameReduced": false,
+      "osReduced": false,
+      "ground": [
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1215,
+          "height": 810,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        },
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1215,
+          "height": 810,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        }
+      ],
+      "subjects": [
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "kind": "shadow",
+          "marker": "danger",
+          "images": [
+            "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png"
+          ],
+          "formation": 0
+        }
+      ],
+      "controls": [],
+      "facts": {
+        "node": "lion-audience",
+        "flags": {}
+      },
+      "caravan": {
+        "x": 200.125,
+        "y": 332.109375,
+        "width": 319.75,
+        "height": 194.390625,
+        "top": 332.109375,
+        "right": 519.875,
+        "bottom": 526.5,
+        "left": 200.125
+      },
+      "motion": "normal",
+      "sha256": "fa623d66b0a88ac20749065f174e67deae105dabfc8ed16d0870a55edd309692"
+    },
+    {
+      "file": "normal-T0-event-checkpoint-route-2-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "view": "checkpoint",
+      "segment": "route-2",
+      "phase": "RUNNING",
+      "gameReduced": false,
+      "osReduced": false,
+      "ground": [
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1266,
+          "height": 844,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        },
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1266,
+          "height": 844,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        }
+      ],
+      "subjects": [
+        {
+          "id": "t0:stage:1:lion-nomad-crossroads",
+          "kind": "external",
+          "marker": "speech",
+          "images": [
+            "/assets/characters/pixel/masters/rogue.png"
+          ],
+          "formation": 0
+        }
+      ],
+      "controls": [],
+      "facts": {
+        "node": "lion-opening-ambush",
+        "flags": {
+          "ate:ate_alaric_reports": true
+        }
+      },
+      "caravan": {
+        "x": 46.1875,
+        "y": 486.203125,
+        "width": 102.625,
+        "height": 62.390625,
+        "top": 486.203125,
+        "right": 148.8125,
+        "bottom": 548.59375,
+        "left": 46.1875
+      },
+      "motion": "normal",
+      "sha256": "affbd3b45620204e8739b005c287b35e863372d6677ee6d3cfbab6ca9fa3bd10"
+    },
+    {
+      "file": "normal-T1-event-checkpoint-t1-route-1-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "view": "checkpoint",
+      "segment": "t1-route-1",
+      "phase": "RUNNING",
+      "gameReduced": false,
+      "osReduced": false,
+      "ground": [
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1215,
+          "height": 810,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        },
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1215,
+          "height": 810,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        },
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1215,
+          "height": 810,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        }
+      ],
+      "subjects": [
+        {
+          "id": "t1:stage:0",
+          "kind": "none",
+          "marker": "speech",
+          "images": [],
+          "formation": 0
+        }
+      ],
+      "controls": [],
+      "facts": {
+        "node": "lion-first-refuge",
+        "flags": {
+          "prologueSeen": true,
+          "lionMissionAccepted": true,
+          "helpedRefugees": true,
+          "refugeSecured:lion-first-refuge": true,
+          "clanArrival:lion-first-refuge": true,
+          "ate:ate_first_refuge_watch": true,
+          "r4FundedPublicPetition": true
+        }
+      },
+      "caravan": {
+        "x": 200.125,
+        "y": 332.109375,
+        "width": 319.75,
+        "height": 194.390625,
+        "top": 332.109375,
+        "right": 519.875,
+        "bottom": 526.5,
+        "left": 200.125
+      },
+      "motion": "normal",
+      "sha256": "f190f855442d56dc1de0b284ab3908210a22cfbc9826fabe4afe69c18c8c45c0"
+    },
+    {
+      "file": "normal-T1-event-checkpoint-t1-route-4a-620.png",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "view": "checkpoint",
+      "segment": "t1-route-4a",
+      "phase": "RUNNING",
+      "gameReduced": false,
+      "osReduced": false,
+      "ground": [
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1170,
+          "height": 780,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        },
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1170,
+          "height": 780,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        }
+      ],
+      "subjects": [
+        {
+          "id": "t1:branch:lion-second-trial-event",
+          "kind": "none",
+          "marker": "speech",
+          "images": [],
+          "formation": 0
+        }
+      ],
+      "controls": [],
+      "facts": {
+        "node": "lion-valmir-road",
+        "flags": {
+          "prologueSeen": true,
+          "lionMissionAccepted": true,
+          "helpedRefugees": true,
+          "refugeSecured:lion-first-refuge": true,
+          "clanArrival:lion-first-refuge": true,
+          "ate:ate_first_refuge_watch": true,
+          "r4FundedPublicPetition": true,
+          "prioritizedLoot": true,
+          "ate:ate_serpent_general_warning": true
+        },
+        "branch": {
+          "T1": "lion-second-trial-event"
+        }
+      },
+      "caravan": {
+        "x": 73.4296875,
+        "y": 407.8125,
+        "width": 163.140625,
+        "height": 99.1875,
+        "top": 407.8125,
+        "right": 236.5703125,
+        "bottom": 507,
+        "left": 73.4296875
+      },
+      "motion": "normal",
+      "sha256": "d03ac1479fd777b80eb6695a7d5185304e871c86604e8a99e683372916cafc12"
+    },
+    {
+      "file": "normal-T3-event-checkpoint-t3-route-1-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "view": "checkpoint",
+      "segment": "t3-route-1",
+      "phase": "RUNNING",
+      "gameReduced": false,
+      "osReduced": false,
+      "ground": [
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1266,
+          "height": 844,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        },
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1266,
+          "height": 844,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        }
+      ],
+      "subjects": [
+        {
+          "id": "t3:stage:0",
+          "kind": "external",
+          "marker": "speech",
+          "images": [
+            "/assets/characters/pixel/masters/lancer.png"
+          ],
+          "formation": 0
+        }
+      ],
+      "controls": [],
+      "facts": {
+        "node": "lion-second-refuge",
+        "flags": {
+          "prologueSeen": true,
+          "lionMissionAccepted": true,
+          "helpedRefugees": true,
+          "refugeSecured:lion-second-refuge": true,
+          "ate:ate_bois_clair_night_watch": true
+        }
+      },
+      "caravan": {
+        "x": 46.1875,
+        "y": 486.203125,
+        "width": 102.625,
+        "height": 62.390625,
+        "top": 486.203125,
+        "right": 148.8125,
+        "bottom": 548.59375,
+        "left": 46.1875
+      },
+      "motion": "normal",
+      "sha256": "e867d78b5a6928e4d5f384f725953a36eff538b54d692d7563ff3b562907e9ff"
+    },
+    {
+      "file": "normal-T3-event-checkpoint-t3-route-4a-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "view": "checkpoint",
+      "segment": "t3-route-4a",
+      "phase": "RUNNING",
+      "gameReduced": false,
+      "osReduced": false,
+      "ground": [
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1215,
+          "height": 810,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        },
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1215,
+          "height": 810,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        }
+      ],
+      "subjects": [
+        {
+          "id": "t3:branch:lion-final-trial-event",
+          "kind": "external",
+          "marker": "speech",
+          "images": [
+            "/assets/characters/pixel/masters/young_dragon_elite.png"
+          ],
+          "formation": 0
+        }
+      ],
+      "controls": [],
+      "facts": {
+        "node": "lion-witnesses",
+        "flags": {
+          "prologueSeen": true,
+          "lionMissionAccepted": true,
+          "helpedRefugees": true,
+          "refugeSecured:lion-second-refuge": true,
+          "ate:ate_bois_clair_night_watch": true,
+          "recruitedLancer": true,
+          "protectedWitnesses": true,
+          "ate:ate_lion_council_doubt": true
+        },
+        "branch": {
+          "T3": "lion-final-trial-event"
+        }
+      },
+      "caravan": {
+        "x": 200.125,
+        "y": 332.109375,
+        "width": 319.75,
+        "height": 194.390625,
+        "top": 332.109375,
+        "right": 519.875,
+        "bottom": 526.5,
+        "left": 200.125
+      },
+      "motion": "normal",
+      "sha256": "623903fa3549bbdd382cb34dff9a8ae950cfc8b7af49c944731421295f5050f1"
+    },
+    {
+      "file": "normal-T3-combat-checkpoint-t3-route-4b-620.png",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "view": "checkpoint",
+      "segment": "t3-route-4b",
+      "phase": "RUNNING",
+      "gameReduced": false,
+      "osReduced": false,
+      "ground": [
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1170,
+          "height": 780,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        },
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1170,
+          "height": 780,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        }
+      ],
+      "subjects": [
+        {
+          "id": "t3:branch:lion-final-trial-combat",
+          "kind": "shadow",
+          "marker": "danger",
+          "images": [
+            "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png"
+          ],
+          "formation": 0
+        }
+      ],
+      "controls": [],
+      "facts": {
+        "node": "lion-witnesses",
+        "flags": {
+          "prologueSeen": true,
+          "lionMissionAccepted": true,
+          "helpedRefugees": true,
+          "refugeSecured:lion-second-refuge": true,
+          "ate:ate_bois_clair_night_watch": true,
+          "recruitedLancer": true,
+          "protectedWitnesses": true,
+          "ate:ate_lion_council_doubt": true
+        },
+        "branch": {
+          "T3": "lion-final-trial-combat"
+        }
+      },
+      "caravan": {
+        "x": 73.4296875,
+        "y": 407.8125,
+        "width": 163.140625,
+        "height": 99.1875,
+        "top": 407.8125,
+        "right": 236.5703125,
+        "bottom": 507,
+        "left": 73.4296875
+      },
+      "motion": "normal",
+      "sha256": "6ab778ee5b342b47f5cb8f9b77a3652909794ec1effa4a50f2c27f3905c35427"
+    },
+    {
+      "file": "os-T1-event-checkpoint-t1-route-1-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "view": "checkpoint",
+      "segment": "t1-route-1",
+      "phase": "RUNNING",
+      "gameReduced": false,
+      "osReduced": true,
+      "ground": [
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1266,
+          "height": 844,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        },
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1266,
+          "height": 844,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        },
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1266,
+          "height": 844,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        }
+      ],
+      "subjects": [
+        {
+          "id": "t1:stage:0",
+          "kind": "none",
+          "marker": "speech",
+          "images": [],
+          "formation": 0
+        }
+      ],
+      "controls": [],
+      "facts": {
+        "node": "lion-first-refuge",
+        "flags": {
+          "prologueSeen": true,
+          "lionMissionAccepted": true,
+          "helpedRefugees": true,
+          "refugeSecured:lion-first-refuge": true,
+          "clanArrival:lion-first-refuge": true,
+          "ate:ate_first_refuge_watch": true,
+          "r4FundedPublicPetition": true
+        }
+      },
+      "caravan": {
+        "x": 46.1875,
+        "y": 486.203125,
+        "width": 102.625,
+        "height": 62.390625,
+        "top": 486.203125,
+        "right": 148.8125,
+        "bottom": 548.59375,
+        "left": 46.1875
+      },
+      "motion": "os",
+      "sha256": "365b64cc9df885ad859c470a43dc7ff2e447b1bed6ec18303e112cc60d25626d"
+    },
+    {
+      "file": "os-T3-combat-checkpoint-t3-route-4b-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "view": "checkpoint",
+      "segment": "t3-route-4b",
+      "phase": "RUNNING",
+      "gameReduced": false,
+      "osReduced": true,
+      "ground": [
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1266,
+          "height": 844,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        },
+        {
+          "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "decoded": true,
+          "width": 1266,
+          "height": 844,
+          "mask": "linear-gradient(rgba(0, 0, 0, 0) 48%, rgb(0, 0, 0) 56%)"
+        }
+      ],
+      "subjects": [
+        {
+          "id": "t3:branch:lion-final-trial-combat",
+          "kind": "shadow",
+          "marker": "danger",
+          "images": [
+            "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png"
+          ],
+          "formation": 0
+        }
+      ],
+      "controls": [],
+      "facts": {
+        "node": "lion-witnesses",
+        "flags": {
+          "prologueSeen": true,
+          "lionMissionAccepted": true,
+          "helpedRefugees": true,
+          "refugeSecured:lion-second-refuge": true,
+          "ate:ate_bois_clair_night_watch": true,
+          "recruitedLancer": true,
+          "protectedWitnesses": true,
+          "ate:ate_lion_council_doubt": true
+        },
+        "branch": {
+          "T3": "lion-final-trial-combat"
+        }
+      },
+      "caravan": {
+        "x": 46.1875,
+        "y": 486.203125,
+        "width": 102.625,
+        "height": 62.390625,
+        "top": 486.203125,
+        "right": 148.8125,
+        "bottom": 548.59375,
+        "left": 46.1875
+      },
+      "motion": "os",
+      "sha256": "54346767a8c193d00d0fb4b36b20f88e5f707a897537873cd3b3963196dfc55c"
+    }
+  ],
+  "limitations": [
+    "Motion/pursuit/road-lifecycle/campfire/context/tableau/environment/full-demo targets remain open",
+    "Authored upper day/night scenery retained; contextual lighting correctness reserved for ENVIRONMENT-NARRATIVE-COHERENCE",
+    "Desktop lane targets remain30px;620/390targets44px. Scope does not certify full UI accessibility",
+    "Build includes six preserved unaccepted keyboard/combat WIP files; these are excluded from the implementation commit and combat acceptance claims",
+    "Publication blocked by automatic approval review; no remote push bypassed"
+  ],
+  "unacceptedRuns": [
+    {
+      "jobId": "visual-0820-normal",
+      "reason": "Disabled fork re-press harness timeout"
+    },
+    {
+      "jobId": "visual-0820-os",
+      "reason": "Driver changed during run; receipt FAILED despite old assertions completing"
+    },
+    {
+      "jobId": "visual-0820-probe",
+      "reason": "Guardian found vacuous lane-size assertion and absent shadow-failure proof; superseded"
+    }
+  ],
+  "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
+  "testedLocalSnapshot": "020b3a90ae8096fb41d5802c328fe696d22d876a",
+  "acceptance": {
+    "scope": "SCOPED_PRESENTATION_PASS",
+    "recordedAt": "2026-10-03T09:08:59.280Z",
+    "reviewers": [
+      "orchestrator",
+      "traversal-engineer",
+      "contracts-guardian"
+    ],
+    "publication": "BLOCKED_PENDING_EXPLICIT_GITHUB_AUTHORIZATION",
+    "executionIdentity": "Original receipt HEAD/tree/diff retained; source bytes and frozen build verified after implementation commit. Fixture-assisted origins/results; no earned or full-demo acceptance."
+  }
+}

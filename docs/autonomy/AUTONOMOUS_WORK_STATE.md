@@ -4,19 +4,19 @@ OD-2026-10-03-A remains highest priority. Contract set1.1.0 at immutable d7ca28a
 
 | Field | Value |
 | --- | --- |
-| `status` | IN_PROGRESS |
+| `status` | BLOCKED_BY_PUBLICATION_APPROVAL |
 | `runId` | rpgthreejs-auto-dev-90m-20261003T0820 |
 | `agent` | codex |
 | `runStartedAt` | 2026-10-03T08:20:01Z |
-| `runEndedAt` |  |
+| `runEndedAt` | 2026-10-03T09:08:59.280Z |
 | `activeTask` | TRAVERSAL-VISUAL-CONVERGENCE |
-| `activePhase` | Shared ground and world subject correction; fresh production evidence |
-| `activeSubtask` | Verify common ground layer, empty clan stops and one Shadow marker on production T0/T1/T3 |
+| `activePhase` | Scoped visual runtime accepted locally; coherent checkpoint publication pending |
+| `activeSubtask` | Publish verified local dev and owned WIP after exact GitHub authorization; then release lock and resume motion |
 | `workingBranch` | dev |
-| `lastKnownGoodCommit` | d7ca28aed5c377ffedb03202f6364b7a947d1096 |
-| `lastPushedCommit` | d7ca28aed5c377ffedb03202f6364b7a947d1096 |
-| `creditStatus` | AVAILABLE; original quota history retained in deferredDemoTask |
-| `contractComplianceStatus` | set1.1.0 immutable gates PASS; runtime correction verification IN_PROGRESS |
+| `lastKnownGoodCommit` | fa4dac612dd8b883759794a837c7d9eed9aa73cc |
+| `lastPushedCommit` | c9e16a8f2685435ce6432c5a1dc5980b7c2152a6 |
+| `creditStatus` | AVAILABLE; no credit-saving claim |
+| `contractComplianceStatus` | Scoped visual presentation PASS; immutable set1.1.0 protected. Publication BLOCKED; motion/remaining demo acceptance open. |
 
 ## Live run
 
@@ -24,102 +24,111 @@ OD-2026-10-03-A remains highest priority. Contract set1.1.0 at immutable d7ca28a
 {
   "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-03T08:36:19.947Z",
-  "status": "RUNNING",
+  "lastHeartbeat": "2026-10-03T09:08:59.396Z",
+  "status": "BLOCKED_BY_PUBLICATION_APPROVAL",
   "wip": {
-    "sha": "47fb42810a6d96c4e1abfd0dc5eaca4b9fa0313b",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0820",
+    "sha": "020b3a90ae8096fb41d5802c328fe696d22d876a",
     "dirtyFiles": [
       "ocs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/reports/INDEX.md",
       "legacy-combat.html",
       "src/combat/combatKeyboard.test.ts",
       "src/combat/combatKeyboard.ts",
       "src/combat/legacyCombatRuntime.js",
       "src/styles/combat-shell.css",
-      "src/styles/traversal.css",
-      "src/traversal/TraversalRoadScene.ts",
-      "src/traversal/TraversalWorldRenderer.test.ts",
-      "src/traversal/TraversalWorldRenderer.ts",
-      "src/traversal/TraversalWorldSubject.test.ts",
-      "src/traversal/TraversalWorldSubject.ts",
-      "tools/combat-battlefield-keyboard-production-qa.mjs",
-      "tools/traversal-visual-convergence-qa.mjs"
+      "docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md",
+      "docs/reports/traversal-visual-convergence-1.md",
+      "docs/reports/traversal-visual-convergence-1/",
+      "tools/combat-battlefield-keyboard-production-qa.mjs"
     ],
-    "lastGreenCheck": "49 focused Traversal tests/types/8 contracts8slots/immutable gates PASS; visual acceptance pending",
-    "status": "UNKNOWN",
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0820"
+    "status": "LOCAL_ONLY_PUBLICATION_BLOCKED",
+    "lastGreenCheck": "137 Traversal tests; types/build; 8 contracts8slots; immutable gates; 12 production journeys plus4 focused probes PASS scoped"
   },
-  "nextAction": "Finish fresh built-production ground/subject sequences T0/T1/T3 at1440/620/390 normal and OS-only reduction; inspect selected captures and focused subject facts; obtain exact-diff Traversal and authority guardian reviews. Preserve six deferred keyboard blobs. Remote publication awaits automatic-review authorization; keep local snapshots and exact checkpoint if denied. Continue motion task only after visual acceptance; demo remains incomplete.",
+  "nextAction": "First resolve publication approval: verify owned lock, preserved six keyboard blobs, local dev checkpoint and local WIP; publish only to https://github.com/juniorbattle/RPGThreeJS on dev and wip/rpgthreejs-auto-dev-90m-20261003T0820 when explicitly authorized, verify parity, then release owned lock. Do not rerun unchanged accepted visual proof. Resume TRAVERSAL-MOTION-POLISH from docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md: inspect departure .24*distance body displacement, departure clear/reveal and restarted elapsedMs easing, arrival zero-speed coast/fixed2.88s handoff without geometry gate. Correct presentation continuity/full right-edge exit without modifying canonical clocks, Risk/Reward/Pursuit or V6. Fresh production native T0/T1/T3 desktop620390 normal/OS proof required. Six deferred keyboard files and deferredDemoTask.nextAction remain exact; demo incomplete.",
   "runMetrics": {
-    "registeredNativeJobs": 2,
-    "scopedRecoveriesAccepted": 2,
-    "failedRequestedScenarios": 0,
-    "readOnlyReviewerPasses": 3,
-    "distinctReviewers": 1,
-    "unchangedAcceptedProofReruns": 0,
+    "registeredJobs": 6,
+    "scopedPresentationJobsAccepted": 3,
+    "unacceptedJobs": 3,
+    "distinctReadOnlyReviewers": 2,
+    "productionJourneys": 12,
+    "productionCaptures": 348,
+    "focusedProbeCases": 4,
+    "focusedProbeCaptures": 12,
+    "trackedCaptures": 10,
     "failedOutputsUsedAsSeeds": 0,
-    "creditSavings": "Not measured; no quota-gain claim"
+    "creditSavings": "Not measured"
   },
   "closeout": {
-    "implementationCommit": "66608d2fd526d88d866c57e9f29b7b985333c316",
-    "trialDriverCommit": "726bb751cf4a90cff088c4fda3af73f8de14702b",
-    "finalStateCommit": "HEAD/origin/dev after state-only closeout; exact SHA in automation memory",
-    "wipPayloadPreserved": true,
-    "ownedWipRetired": true,
+    "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
+    "finalStateCommit": "Local HEAD after documentation/state commit; exact SHA in automation memory",
+    "publicationBlocked": true,
+    "writerStopped": true,
+    "ownedWipRetired": false,
     "olderWipsRetained": true,
-    "ownedWorkersExited": [
-      35608,
-      9992
-    ],
+    "ownedWorkersExited": true,
     "portsClosed": [
-      5271,
-      5272
+      5276,
+      5277,
+      5278,
+      5279
     ],
     "demoAcceptance": "IN_PROGRESS",
-    "lockRelease": "After verified final push and memory write"
+    "lockRelease": "PENDING verified origin/dev publication; lock retained under MULTI_AGENT_PROTOCOL section2 rule7"
   },
   "checkpointPaths": [
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
   ],
-  "qaJobCount": 35,
+  "qaJobCount": 39,
   "qaLedger": "AUTONOMOUS_WORK_STATE.json live.qaJobs; historical dispositions retained"
 }
 ```
 
 ## completedThisRun
 
-- Read-only preflight and exclusive lock; dev/origin dev c9e16a8 verified
-- Six deferred keyboard blobs verified and preserved in local temporary-index snapshot d47d2b9; remote snapshot blocked by automatic review
-- Scoped Traversal reviewer identified clan/external subject distinctions
-- Shared native forest ground and world-only subject policy implemented; canonical data/formation/tableau untouched
-- 49 focused Traversal tests, TypeScript, contract validator and immutable gates PASS
+- Read-only preflight; exclusive owned lock; preserved all six deferred keyboard blobs and exact nextAction
+- Shared native ground and world subject policy committed locally at fa4dac612dd8b883759794a837c7d9eed9aa73cc; no canonical route/formation/clan/save/tactical changes
+- 137 Traversal tests/25 suites, types, production build, 8 contracts/8 video slots and immutable/whitespace gates PASS
+- 12 fixture-assisted production journeys T0/T1/T3 normal and OS-only reduction at1440/620/390:348 captures;4 focused keyboard/focus/hit-target/missing-art probes:12 captures
+- Orchestrator inspected10 promoted captures; reused read-only Traversal and contracts specialists accept scoped presentation only
+- Six current QA jobs terminal:3accepted scoped,3unaccepted retained honestly; original33 historical ledger entries preserved exactly
+- Automatic approval review rejected remote publication twice; explicit permission pending; local snapshots and coherent source/doc checkpoints retained
 
 ## filesChanged
 
-- src/traversal/TraversalWorldSubject.ts
-- src/traversal/TraversalWorldSubject.test.ts
+- src/styles/traversal.css
 - src/traversal/TraversalRoadScene.ts
 - src/traversal/TraversalWorldRenderer.ts
 - src/traversal/TraversalWorldRenderer.test.ts
-- src/styles/traversal.css
+- src/traversal/TraversalWorldSubject.ts
+- src/traversal/TraversalWorldSubject.test.ts
+- tools/traversal-visual-convergence-qa.mjs
+- tools/traversal-visual-convergence-probe-qa.mjs
 - docs/autonomy/AUTONOMOUS_WORK_STATE.md
 - docs/autonomy/AUTONOMOUS_WORK_STATE.json
+- docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md
+- docs/autonomy/handoffs/2026-10-03T0820Z-codex-visual-convergence.md
+- docs/reports/INDEX.md
+- docs/reports/traversal-visual-convergence-1.md
+- docs/reports/traversal-visual-convergence-1/checks.json
+- 10 explicitly selected new report captures
 
 ## testsRun
 
-- node node_modules/vitest/vitest.mjs run selected7Traversal suites
-- node node_modules/typescript/bin/tsc --noEmit
-- node tools/contracts/validate-contracts.mjs
-- git diff --check and immutable LOCKED gates
+- 49 focused tests/7 suites then137 broad Traversal tests/25 suites
+- Local TypeScript and Vite production build
+- Contract validator and both immutable/dirty protected gates; diff --check
+- Two6-journey production drivers and4-case probe v2; original failed/defective jobs retained
 
 ## testsPassed
 
-- 49tests/7suites; types; 8contracts8slots; immutable gates
+- 137 Traversal tests/25 suites; types/build; 8contracts/8slots; protected/whitespace gates
+- 12 production journeys plus4 focused probes PASS scoped; source/driver/build/result/capture hashes verified
 
 ## testsRemaining
 
-- New T0/T1/T3 ground/checkpoint/clan/shadow visual acceptance
 - Departure/final-exit motion and pursuit canonical charge/collision/miss acceptance
 - Road rock/reward spawn lifetime/depth/spacing and owner-boundary checks
 - Pre-judgement campfire/save-resume/agency and fact-consistent dialogue
@@ -128,11 +137,11 @@ OD-2026-10-03-A remains highest priority. Contract set1.1.0 at immutable d7ca28a
 
 ## blockers
 
-- Automatic approval review rejected remote WIP push twice as source-code egress lacking exact payload authorization; explicit permission requested asynchronously; local work continues
+- Automatic approval review rejected push twice: potentially private source code sent to an unverified external repository without exact sensitive-egress authorization. Permission requested for juniorbattle/RPGThreeJS dev and wip/rpgthreejs-auto-dev-90m-20261003T0820; no reply yet. No push performed. Owned lock retained per MULTI_AGENT_PROTOCOL section2 rule7.
 
 ## remainingWork
 
-- PENDING: TRAVERSAL-VISUAL-CONVERGENCE
+- Publish this local checkpoint after explicit approval, verify origin/dev parity, release owned lock
 - PENDING: TRAVERSAL-MOTION-POLISH
 - PENDING: TRAVERSAL-PURSUIT-THREAT
 - PENDING: TRAVERSAL-ROAD-ELEMENTS
@@ -146,7 +155,7 @@ OD-2026-10-03-A remains highest priority. Contract set1.1.0 at immutable d7ca28a
 ## taskQueue
 
 - "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY"
-- "TRAVERSAL-VISUAL-CONVERGENCE: ACTIVE"
+- "TRAVERSAL-VISUAL-CONVERGENCE: SCOPED_PASS_LOCAL_PENDING_PUBLICATION"
 - "TRAVERSAL-MOTION-POLISH: PENDING"
 - "TRAVERSAL-PURSUIT-THREAT: PENDING"
 - "TRAVERSAL-ROAD-ELEMENTS: PENDING"
@@ -159,54 +168,10 @@ OD-2026-10-03-A remains highest priority. Contract set1.1.0 at immutable d7ca28a
 
 ## Next action
 
-Finish fresh built-production ground/subject sequences T0/T1/T3 at1440/620/390 normal and OS-only reduction; inspect selected captures and focused subject facts; obtain exact-diff Traversal and authority guardian reviews. Preserve six deferred keyboard blobs. Remote publication awaits automatic-review authorization; keep local snapshots and exact checkpoint if denied. Continue motion task only after visual acceptance; demo remains incomplete.
+First resolve publication approval: verify owned lock, preserved six keyboard blobs, local dev checkpoint and local WIP; publish only to https://github.com/juniorbattle/RPGThreeJS on dev and wip/rpgthreejs-auto-dev-90m-20261003T0820 when explicitly authorized, verify parity, then release owned lock. Do not rerun unchanged accepted visual proof. Resume TRAVERSAL-MOTION-POLISH from docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md: inspect departure .24*distance body displacement, departure clear/reveal and restarted elapsedMs easing, arrival zero-speed coast/fixed2.88s handoff without geometry gate. Correct presentation continuity/full right-edge exit without modifying canonical clocks, Risk/Reward/Pursuit or V6. Fresh production native T0/T1/T3 desktop620390 normal/OS proof required. Six deferred keyboard files and deferredDemoTask.nextAction remain exact; demo incomplete.
 
 ## Deferred battlefield keyboard/combat
 
 Finish exact battlefield production driver: real Tab entry, cursor bounds/announcement/no truth mutation, invalid/legal movement and native target execution, Escape/Retour focus, native controls and pointer regression in1366/620/390 OS on/off. Build new sources, review exact activation/assertion diff with guardian, register job and freeze tested inputs. Add actual fresh campaign iframe keyboard entry/return if budget permits; incomplete acceptance stays explicit. Preserve historical0350recovery and original726trial proofs. No media/audio work.
 
 Six inherited source/driver blobs remain unstaged and unchanged; full original evidence and queue retained in JSON.deferredDemoTask.
-
-<!-- QA_JOBS_START -->
-## Live QA jobs
-
-- legacy-1453-defeat-native: FINISHED_LEGACY; port null; receipt `tmp/demo/continuous-1453-defeat-native/qa-job.json`; NOT_ACCEPTED
-- legacy-1453-trial: FINISHED_LEGACY; port null; receipt `tmp/demo/continuous-1453-trial/qa-job.json`; NOT_ACCEPTED
-- 1952-desktop: RUNNING; port 5258; receipt `tmp/demo/1952-desktop/qa-job.json`; NOT_ACCEPTED
-- 1952-mobile: FAILED; port 5259; receipt `tmp/demo/1952-mobile/qa-job.json`; NOT_ACCEPTED
-- 1952-trial: RUNNING; port 5261; receipt `tmp/demo/1952-trial/qa-job.json`; NOT_ACCEPTED
-- 1952-intermediate: RUNNING; port 5260; receipt `tmp/demo/1952-intermediate/qa-job.json`; NOT_ACCEPTED
-- 1952-keyboard-final: SUCCEEDED; port 5262; receipt `tmp/demo/1952-keyboard-final/qa-job.json`; NOT_ACCEPTED
-- 1952-final-desktop: SUCCEEDED; port 5258; receipt `tmp/demo/1952-final-desktop/qa-job.json`; NOT_ACCEPTED
-- 1952-final-mobile: SUCCEEDED; port 5259; receipt `tmp/demo/1952-final-mobile/qa-job.json`; NOT_ACCEPTED
-- 1952-final-intermediate: FAILED; port 5260; receipt `tmp/demo/1952-final-intermediate/qa-job.json`; NOT_ACCEPTED
-- 1952-final-trial: FAILED; port 5261; receipt `tmp/demo/1952-final-trial/qa-job.json`; NOT_ACCEPTED
-- 2122-grid-final: RUNNING; port 5264; receipt `tmp/demo/2122-grid-final/qa-job.json`; NOT_ACCEPTED
-- 2122-trial-final: RUNNING; port 5265; receipt `tmp/demo/2122-trial-final/qa-job.json`; NOT_ACCEPTED
-- 2122-intermediate-final: FAILED; port 5266; receipt `tmp/demo/2122-intermediate-final/qa-job.json`; NOT_ACCEPTED
-- 2122-grid-bounded: RUNNING; port 5264; receipt `tmp/demo/2122-grid-bounded/qa-job.json`; NOT_ACCEPTED
-- 2122-grid-sampled: RUNNING; port 5264; receipt `tmp/demo/2122-grid-sampled/qa-job.json`; NOT_ACCEPTED
-- 2122-grid-fixed: RUNNING; port 5264; receipt `tmp/demo/2122-grid-fixed/qa-job.json`; NOT_ACCEPTED
-- 2122-intermediate-fixed: RUNNING; port 5266; receipt `tmp/demo/2122-intermediate-fixed/qa-job.json`; NOT_ACCEPTED
-- 2122-trial-conserve: RUNNING; port 5265; receipt `tmp/demo/2122-trial-conserve/qa-job.json`; NOT_ACCEPTED
-- 2122-card-scroll: FAILED; port 5267; receipt `tmp/demo/2122-card-scroll/qa-job.json`; NOT_ACCEPTED
-- 2122-grid-final-wheel: SUCCEEDED; port 5264; receipt `tmp/demo/2122-grid-final-wheel/qa-job.json`; NOT_ACCEPTED
-- 2122-card-final-wheel: SUCCEEDED; port 5267; receipt `tmp/demo/2122-card-final-wheel/qa-job.json`; NOT_ACCEPTED
-- 2122-intermediate-final-wheel: FAILED; port 5266; receipt `tmp/demo/2122-intermediate-final-wheel/qa-job.json`; NOT_ACCEPTED
-- 2122-trial-final-wheel: FAILED; port 5265; receipt `tmp/demo/2122-trial-final-wheel/qa-job.json`; NOT_ACCEPTED
-- 2252-card-focus: FAILED; port 5268; receipt `tmp/demo/2252-card-focus/qa-job.json`; NOT_ACCEPTED
-- 2252-card-focus-labels: SUCCEEDED; port 5268; receipt `tmp/demo/2252-card-focus-labels/qa-job.json`; NOT_ACCEPTED
-- 2252-recovery-620: FAILED; port 5269; receipt `tmp/demo/2252-recovery-620/qa-job.json`; NOT_ACCEPTED
-- 2252-trial-native-skills: RUNNING; port 5270; receipt `tmp/demo/2252-trial-native-skills/qa-job.json`; NOT_ACCEPTED
-- 2252-trial-unlocked: FAILED; port 5270; receipt `tmp/demo/2252-trial-unlocked/qa-job.json`; NOT_ACCEPTED
-- 0228-trial-support: SUCCEEDED; port 5271; receipt `tmp/demo/0228-trial-support/qa-job.json`; NOT_ACCEPTED
-- 0228-recovery-stock: FAILED; port 5272; receipt `tmp/demo/0228-recovery-stock/qa-job.json`; NOT_ACCEPTED
-- 0350-recovery-crosier: SUCCEEDED; port 5273; receipt `tmp/demo/0350-recovery-crosier/qa-job.json`; NOT_ACCEPTED
-- 0350-recovery-mobile-os: SUCCEEDED; port 5274; receipt `tmp/demo/0350-recovery-mobile-os/qa-job.json`; NOT_ACCEPTED
-- visual-0820-normal: FAILED; port 5276; receipt `tmp/traversal/visual-0820-normal/qa-job.json`; NOT_ACCEPTED
-- visual-0820-os: RUNNING; port 5277; receipt `tmp/traversal/visual-0820-os/qa-job.json`; NOT_ACCEPTED
-- visual-0820-probe: SUCCEEDED; port 5278; receipt `tmp/traversal/visual-0820-probe/qa-job.json`; NOT_ACCEPTED
-- visual-0820-v2-normal: PLANNED; port 5276; receipt `tmp/traversal/visual-0820-v2-normal/qa-job.json`; NOT_ACCEPTED
-- visual-0820-v2-os: PLANNED; port 5279; receipt `tmp/traversal/visual-0820-v2-os/qa-job.json`; NOT_ACCEPTED
-- visual-0820-probe-v2: PLANNED; port 5278; receipt `tmp/traversal/visual-0820-probe-v2/qa-job.json`; NOT_ACCEPTED
-<!-- QA_JOBS_END -->

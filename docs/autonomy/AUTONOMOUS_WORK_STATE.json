@@ -1,41 +1,51 @@
 {
-  "status": "IN_PROGRESS",
+  "status": "BLOCKED_BY_PUBLICATION_APPROVAL",
   "runStartedAt": "2026-10-03T08:20:01Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-03T09:08:59.280Z",
   "activeTask": "TRAVERSAL-VISUAL-CONVERGENCE",
-  "activePhase": "Shared ground and world subject correction; fresh production evidence",
-  "activeSubtask": "Verify common ground layer, empty clan stops and one Shadow marker on production T0/T1/T3",
+  "activePhase": "Scoped visual runtime accepted locally; coherent checkpoint publication pending",
+  "activeSubtask": "Publish verified local dev and owned WIP after exact GitHub authorization; then release lock and resume motion",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "d7ca28aed5c377ffedb03202f6364b7a947d1096",
-  "lastPushedCommit": "d7ca28aed5c377ffedb03202f6364b7a947d1096",
+  "lastKnownGoodCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
+  "lastPushedCommit": "c9e16a8f2685435ce6432c5a1dc5980b7c2152a6",
   "completedThisRun": [
-    "Read-only preflight and exclusive lock; dev/origin dev c9e16a8 verified",
-    "Six deferred keyboard blobs verified and preserved in local temporary-index snapshot d47d2b9; remote snapshot blocked by automatic review",
-    "Scoped Traversal reviewer identified clan/external subject distinctions",
-    "Shared native forest ground and world-only subject policy implemented; canonical data/formation/tableau untouched",
-    "49 focused Traversal tests, TypeScript, contract validator and immutable gates PASS"
+    "Read-only preflight; exclusive owned lock; preserved all six deferred keyboard blobs and exact nextAction",
+    "Shared native ground and world subject policy committed locally at fa4dac612dd8b883759794a837c7d9eed9aa73cc; no canonical route/formation/clan/save/tactical changes",
+    "137 Traversal tests/25 suites, types, production build, 8 contracts/8 video slots and immutable/whitespace gates PASS",
+    "12 fixture-assisted production journeys T0/T1/T3 normal and OS-only reduction at1440/620/390:348 captures;4 focused keyboard/focus/hit-target/missing-art probes:12 captures",
+    "Orchestrator inspected10 promoted captures; reused read-only Traversal and contracts specialists accept scoped presentation only",
+    "Six current QA jobs terminal:3accepted scoped,3unaccepted retained honestly; original33 historical ledger entries preserved exactly",
+    "Automatic approval review rejected remote publication twice; explicit permission pending; local snapshots and coherent source/doc checkpoints retained"
   ],
   "filesChanged": [
-    "src/traversal/TraversalWorldSubject.ts",
-    "src/traversal/TraversalWorldSubject.test.ts",
+    "src/styles/traversal.css",
     "src/traversal/TraversalRoadScene.ts",
     "src/traversal/TraversalWorldRenderer.ts",
     "src/traversal/TraversalWorldRenderer.test.ts",
-    "src/styles/traversal.css",
+    "src/traversal/TraversalWorldSubject.ts",
+    "src/traversal/TraversalWorldSubject.test.ts",
+    "tools/traversal-visual-convergence-qa.mjs",
+    "tools/traversal-visual-convergence-probe-qa.mjs",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md",
+    "docs/autonomy/handoffs/2026-10-03T0820Z-codex-visual-convergence.md",
+    "docs/reports/INDEX.md",
+    "docs/reports/traversal-visual-convergence-1.md",
+    "docs/reports/traversal-visual-convergence-1/checks.json",
+    "10 explicitly selected new report captures"
   ],
   "testsRun": [
-    "node node_modules/vitest/vitest.mjs run selected7Traversal suites",
-    "node node_modules/typescript/bin/tsc --noEmit",
-    "node tools/contracts/validate-contracts.mjs",
-    "git diff --check and immutable LOCKED gates"
+    "49 focused tests/7 suites then137 broad Traversal tests/25 suites",
+    "Local TypeScript and Vite production build",
+    "Contract validator and both immutable/dirty protected gates; diff --check",
+    "Two6-journey production drivers and4-case probe v2; original failed/defective jobs retained"
   ],
   "testsPassed": [
-    "49tests/7suites; types; 8contracts8slots; immutable gates"
+    "137 Traversal tests/25 suites; types/build; 8contracts/8slots; protected/whitespace gates",
+    "12 production journeys plus4 focused probes PASS scoped; source/driver/build/result/capture hashes verified"
   ],
   "testsRemaining": [
-    "New T0/T1/T3 ground/checkpoint/clan/shadow visual acceptance",
     "Departure/final-exit motion and pursuit canonical charge/collision/miss acceptance",
     "Road rock/reward spawn lifetime/depth/spacing and owner-boundary checks",
     "Pre-judgement campfire/save-resume/agency and fact-consistent dialogue",
@@ -43,10 +53,10 @@
     "Deferred battlefield keyboard and original DEMO-QA-POLISH acceptance (exact details in deferredDemoTask)"
   ],
   "blockers": [
-    "Automatic approval review rejected remote WIP push twice as source-code egress lacking exact payload authorization; explicit permission requested asynchronously; local work continues"
+    "Automatic approval review rejected push twice: potentially private source code sent to an unverified external repository without exact sensitive-egress authorization. Permission requested for juniorbattle/RPGThreeJS dev and wip/rpgthreejs-auto-dev-90m-20261003T0820; no reply yet. No push performed. Owned lock retained per MULTI_AGENT_PROTOCOL section2 rule7."
   ],
   "remainingWork": [
-    "PENDING: TRAVERSAL-VISUAL-CONVERGENCE",
+    "Publish this local checkpoint after explicit approval, verify origin/dev parity, release owned lock",
     "PENDING: TRAVERSAL-MOTION-POLISH",
     "PENDING: TRAVERSAL-PURSUIT-THREAT",
     "PENDING: TRAVERSAL-ROAD-ELEMENTS",
@@ -57,10 +67,10 @@
     "PENDING: ENVIRONMENT-NARRATIVE-COHERENCE",
     "PENDING: Resume deferred DEMO-QA-POLISH"
   ],
-  "nextAction": "Finish fresh built-production ground/subject sequences T0/T1/T3 at1440/620/390 normal and OS-only reduction; inspect selected captures and focused subject facts; obtain exact-diff Traversal and authority guardian reviews. Preserve six deferred keyboard blobs. Remote publication awaits automatic-review authorization; keep local snapshots and exact checkpoint if denied. Continue motion task only after visual acceptance; demo remains incomplete.",
+  "nextAction": "First resolve publication approval: verify owned lock, preserved six keyboard blobs, local dev checkpoint and local WIP; publish only to https://github.com/juniorbattle/RPGThreeJS on dev and wip/rpgthreejs-auto-dev-90m-20261003T0820 when explicitly authorized, verify parity, then release owned lock. Do not rerun unchanged accepted visual proof. Resume TRAVERSAL-MOTION-POLISH from docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md: inspect departure .24*distance body displacement, departure clear/reveal and restarted elapsedMs easing, arrival zero-speed coast/fixed2.88s handoff without geometry gate. Correct presentation continuity/full right-edge exit without modifying canonical clocks, Risk/Reward/Pursuit or V6. Fresh production native T0/T1/T3 desktop620390 normal/OS proof required. Six deferred keyboard files and deferredDemoTask.nextAction remain exact; demo incomplete.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
-    "TRAVERSAL-VISUAL-CONVERGENCE: ACTIVE",
+    "TRAVERSAL-VISUAL-CONVERGENCE: SCOPED_PASS_LOCAL_PENDING_PUBLICATION",
     "TRAVERSAL-MOTION-POLISH: PENDING",
     "TRAVERSAL-PURSUIT-THREAT: PENDING",
     "TRAVERSAL-ROAD-ELEMENTS: PENDING",
@@ -71,9 +81,9 @@
     "ENVIRONMENT-NARRATIVE-COHERENCE: PENDING",
     "Resume deferred DEMO-QA-POLISH: PENDING"
   ],
-  "creditStatus": "AVAILABLE; original quota history retained in deferredDemoTask",
-  "contractComplianceStatus": "set1.1.0 immutable gates PASS; runtime correction verification IN_PROGRESS",
-  "commitReferenceScope": "Verified implementation/evidence checkpoint; final state-only closeout identified by HEAD/origin/dev and automation memory rather than circular self-reference.",
+  "creditStatus": "AVAILABLE; no credit-saving claim",
+  "contractComplianceStatus": "Scoped visual presentation PASS; immutable set1.1.0 protected. Publication BLOCKED; motion/remaining demo acceptance open.",
+  "commitReferenceScope": "Local verified implementation fa4dac6; final documentation/state checkpoint is local HEAD, exact SHA recorded in automation memory. origin/dev remains c9e16a8; no publication claimed.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -183,28 +193,32 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-03T07:58:05.429Z",
+  "lastHeartbeat": "2026-10-03T09:08:59.396Z",
   "wip": {
-    "sha": "5f89ea4179b36eca001decef92cfa4ff83fc5575",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0820",
+    "sha": "020b3a90ae8096fb41d5802c328fe696d22d876a",
     "dirtyFiles": [
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "ocs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/reports/INDEX.md",
       "legacy-combat.html",
       "src/combat/combatKeyboard.test.ts",
       "src/combat/combatKeyboard.ts",
       "src/combat/legacyCombatRuntime.js",
       "src/styles/combat-shell.css",
+      "docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md",
+      "docs/reports/traversal-visual-convergence-1.md",
+      "docs/reports/traversal-visual-convergence-1/",
       "tools/combat-battlefield-keyboard-production-qa.mjs"
     ],
-    "lastGreenCheck": "Prior0520reported81focused/types/build; full production keyboard acceptance incomplete; preserved without certifying",
-    "status": "UNKNOWN",
-    "branch": "wip/codex-manual-playtest-20261003T0735"
+    "status": "LOCAL_ONLY_PUBLICATION_BLOCKED",
+    "lastGreenCheck": "137 Traversal tests; types/build; 8 contracts8slots; immutable gates; 12 production journeys plus4 focused probes PASS scoped"
   },
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-03T08:36:19.947Z",
-    "status": "RUNNING",
+    "lastHeartbeat": "2026-10-03T09:08:59.396Z",
+    "status": "BLOCKED_BY_PUBLICATION_APPROVAL",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -306,7 +320,7 @@
         "schemaVersion": 1,
         "jobId": "1952-desktop",
         "runId": "rpgthreejs-auto-dev-90m-20261002T1952",
-        "status": "RUNNING",
+        "status": "ABORTED_HARNESS_DEFECT",
         "registeredAt": "2026-10-02T19:57:51.764Z",
         "pid": 50700,
         "port": 5258,
@@ -526,7 +540,7 @@
         "schemaVersion": 1,
         "jobId": "1952-trial",
         "runId": "rpgthreejs-auto-dev-90m-20261002T1952",
-        "status": "RUNNING",
+        "status": "ABORTED_HARNESS_DEFECT",
         "registeredAt": "2026-10-02T19:57:53.79Z",
         "pid": 54404,
         "port": 5261,
@@ -636,7 +650,7 @@
         "schemaVersion": 1,
         "jobId": "1952-intermediate",
         "runId": "rpgthreejs-auto-dev-90m-20261002T1952",
-        "status": "RUNNING",
+        "status": "ABORTED_HARNESS_DEFECT",
         "registeredAt": "2026-10-02T20:03:03.233Z",
         "pid": 25412,
         "port": 5260,
@@ -830,9 +844,9 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-02T20:23:26.064Z",
-        "endedAt": "2026-10-02T20:34:46.490Z",
+        "endedAt": "2026-10-02T20:34:46.49Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": false,
@@ -947,7 +961,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-02T20:25:43.258Z",
         "endedAt": "2026-10-02T20:57:00.318Z",
         "provenanceMatches": true,
@@ -1064,7 +1078,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-02T20:25:45.067Z",
         "endedAt": "2026-10-02T20:45:02.091Z",
         "provenanceMatches": true,
@@ -1314,7 +1328,7 @@
         "schemaVersion": 1,
         "jobId": "2122-grid-final",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "RUNNING",
+        "status": "ABORTED_HARNESS_DEFECT",
         "registeredAt": "2026-10-02T21:34:18.903Z",
         "pid": 42288,
         "port": 5264,
@@ -1449,7 +1463,7 @@
         "schemaVersion": 1,
         "jobId": "2122-trial-final",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "RUNNING",
+        "status": "ABORTED_SOURCE_CORRECTION",
         "registeredAt": "2026-10-02T21:35:24.027Z",
         "pid": 48956,
         "port": 5265,
@@ -1541,7 +1555,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T21:35:25.150Z",
+        "startedAt": "2026-10-02T21:35:25.15Z",
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
@@ -1662,7 +1676,7 @@
         "schemaVersion": 1,
         "jobId": "2122-grid-bounded",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "RUNNING",
+        "status": "ABORTED_HARNESS_COST",
         "registeredAt": "2026-10-02T21:40:25.115Z",
         "pid": 26404,
         "port": 5264,
@@ -1797,7 +1811,7 @@
         "schemaVersion": 1,
         "jobId": "2122-grid-sampled",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "RUNNING",
+        "status": "ABORTED_SOURCE_CORRECTION",
         "registeredAt": "2026-10-02T21:47:08.793Z",
         "pid": 46904,
         "port": 5264,
@@ -1925,7 +1939,7 @@
         "schemaVersion": 1,
         "jobId": "2122-grid-fixed",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "RUNNING",
+        "status": "ABORTED_SOURCE_CORRECTION",
         "registeredAt": "2026-10-02T21:57:42.013Z",
         "pid": 19668,
         "port": 5264,
@@ -2040,7 +2054,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T21:57:42.750Z",
+        "startedAt": "2026-10-02T21:57:42.75Z",
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
@@ -2053,7 +2067,7 @@
         "schemaVersion": 1,
         "jobId": "2122-intermediate-fixed",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "RUNNING",
+        "status": "ABORTED_SOURCE_CORRECTION",
         "registeredAt": "2026-10-02T21:59:10.912Z",
         "pid": 58780,
         "port": 5266,
@@ -2158,7 +2172,7 @@
         "schemaVersion": 1,
         "jobId": "2122-trial-conserve",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "RUNNING",
+        "status": "ABORTED_SOURCE_CORRECTION",
         "registeredAt": "2026-10-02T21:59:25.788Z",
         "pid": 4192,
         "port": 5265,
@@ -2483,14 +2497,14 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-02T22:13:42.318Z",
         "endedAt": "2026-10-02T22:31:47.778Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
-        "eligibleForReview": false,
+        "eligibleForReview": true,
         "exitCode": 0,
         "resultPath": "tmp/demo/2122-grid-final-wheel/results.json",
         "resultSha256": "4e95082353997a37f7d8cb2bbdf7bd1c9f9b74df193d72dd647f2ad17e8dd0b4",
@@ -2596,7 +2610,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-02T22:13:56.941Z",
         "endedAt": "2026-10-02T22:14:33.067Z",
         "exitCode": 0,
@@ -2605,9 +2619,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
-        "eligibleForReview": false,
+        "eligibleForReview": true,
         "eligibleForReviewAtReview": true,
         "acceptedScope": "Native card scroll4cases,refocused toggle visibility;focusRetentionAccepted=false;campaignAcceptance=false",
         "contractsReview": "Scoped source/proof independently reviewed",
@@ -2716,7 +2730,7 @@
         "endedAt": "2026-10-02T22:31:30.216Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "exitCode": 1,
@@ -2826,7 +2840,7 @@
         "endedAt": "2026-10-02T22:31:54.521Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "exitCode": 1,
@@ -3088,7 +3102,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-02T23:01:08.332Z",
         "endedAt": "2026-10-02T23:04:09.345Z",
         "provenanceMatches": true,
@@ -3207,7 +3221,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T23:01:40.220Z",
+        "startedAt": "2026-10-02T23:01:40.22Z",
         "endedAt": "2026-10-02T23:09:17.242Z",
         "provenanceMatches": true,
         "requestMatches": true,
@@ -3232,7 +3246,7 @@
         "schemaVersion": 1,
         "jobId": "2252-trial-native-skills",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
-        "status": "RUNNING",
+        "status": "ABORTED_PILOT_POLICY_DEFECT",
         "registeredAt": "2026-10-02T23:10:28.062Z",
         "pid": 25540,
         "port": 5270,
@@ -3565,7 +3579,7 @@
         "resultPath": "tmp/demo/0228-trial-support/results.json",
         "resultSha256": "51ab857632fa6692bea752b7c5cd7a4b46e0ad3119ce59f86569f5a242d5e1b5",
         "provenanceStable": true,
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED",
         "ownerReview": {
           "at": "2026-10-03T03:11:10.5631806Z",
           "reviewer": "contracts-guardian",
@@ -3678,12 +3692,12 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "FAILED_NOT_ACCEPTED",
         "startedAt": "2026-10-03T03:12:10.577Z",
         "endedAt": "2026-10-03T03:24:09.072Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "exitCode": 1,
@@ -3801,14 +3815,14 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-03T03:58:19.322Z",
         "endedAt": "2026-10-03T04:12:44.910Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
-        "eligibleForReview": false,
+        "eligibleForReview": true,
         "exitCode": 0,
         "resultPath": "tmp/demo/0350-recovery-crosier/results.json",
         "resultSha256": "78e51a9e707cda929bc36fd658ab578ebc0ec0982e1846e0cf8d0ce9717b9600",
@@ -3924,14 +3938,14 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-03T04:14:54.197Z",
         "endedAt": "2026-10-03T04:24:29.368Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
-        "eligibleForReview": false,
+        "eligibleForReview": true,
         "exitCode": 0,
         "resultPath": "tmp/demo/0350-recovery-mobile-os/results.json",
         "resultSha256": "c4bf812331b219612c40ac8b3246f1d204d78085d067a749b6dd245fe1c5f208",
@@ -4044,13 +4058,22 @@
         "requestMatches": true,
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": false
+        "eligibleForReview": false,
+        "acceptanceAtReview": {
+          "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
+          "recordedAt": "2026-10-03T09:08:59.396Z",
+          "scope": "Presentation only; fixture-assisted origins/results, not earned campaign or tactical acceptance",
+          "sourceBytesVerified": true,
+          "buildBytesVerified": true,
+          "executionIdentityNote": "Original receipt HEAD/tree/diff preserved; commit changes Git representation, not tested runtime bytes",
+          "reason": "Disabled fork repress timeout"
+        }
       },
       {
         "schemaVersion": 1,
         "jobId": "visual-0820-os",
         "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
-        "status": "RUNNING",
+        "status": "FAILED",
         "registeredAt": "2026-10-03T08:35:09.245Z",
         "pid": 59148,
         "port": 5277,
@@ -4129,12 +4152,25 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T08:35:15.236Z",
-        "endedAt": null,
+        "endedAt": "2026-10-03T08:47:08.923Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": false,
-        "resultDigestMatches": false,
-        "eligibleForReview": false
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 1,
+        "resultPath": "tmp/traversal/visual-0820-os/results.json",
+        "resultSha256": "77a277efb16ee86649bb91231313ce77b7757dd3ef49d4ac3e78050ffa74e1c9",
+        "provenanceStable": false,
+        "acceptanceAtReview": {
+          "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
+          "recordedAt": "2026-10-03T09:08:59.396Z",
+          "scope": "Presentation only; fixture-assisted origins/results, not earned campaign or tactical acceptance",
+          "sourceBytesVerified": true,
+          "buildBytesVerified": true,
+          "executionIdentityNote": "Original receipt HEAD/tree/diff preserved; commit changes Git representation, not tested runtime bytes",
+          "reason": "Driver changed during execution"
+        }
       },
       {
         "schemaVersion": 1,
@@ -4228,17 +4264,26 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true
+        "eligibleForReview": false,
+        "acceptanceAtReview": {
+          "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
+          "recordedAt": "2026-10-03T09:08:59.396Z",
+          "scope": "Presentation only; fixture-assisted origins/results, not earned campaign or tactical acceptance",
+          "sourceBytesVerified": true,
+          "buildBytesVerified": true,
+          "executionIdentityNote": "Original receipt HEAD/tree/diff preserved; commit changes Git representation, not tested runtime bytes",
+          "reason": "Initial hit-target assertion vacuous and corrupt-image decode proof absent; superseded by v2"
+        }
       },
       {
         "schemaVersion": 1,
         "jobId": "visual-0820-v2-normal",
         "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-03T08:43:48.530Z",
-        "pid": null,
+        "pid": 41876,
         "port": 5276,
         "command": [
           "node",
@@ -4313,15 +4358,34 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
+        "startedAt": "2026-10-03T08:43:58.217Z",
+        "endedAt": "2026-10-03T08:56:28.373Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/visual-0820-v2-normal/results.json",
+        "resultSha256": "7bc1af31457498a1c157393b09b32732bd2ffece56078f3a0fba2aec2cfec3e0",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "acceptanceAtReview": {
+          "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
+          "recordedAt": "2026-10-03T09:08:59.396Z",
+          "scope": "Presentation only; fixture-assisted origins/results, not earned campaign or tactical acceptance",
+          "sourceBytesVerified": true,
+          "buildBytesVerified": true,
+          "executionIdentityNote": "Original receipt HEAD/tree/diff preserved; commit changes Git representation, not tested runtime bytes"
+        }
       },
       {
         "schemaVersion": 1,
         "jobId": "visual-0820-v2-os",
         "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-03T08:43:48.715Z",
-        "pid": null,
+        "pid": 18012,
         "port": 5279,
         "command": [
           "node",
@@ -4396,15 +4460,34 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
+        "startedAt": "2026-10-03T08:43:58.615Z",
+        "endedAt": "2026-10-03T08:55:54.967Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/visual-0820-v2-os/results.json",
+        "resultSha256": "55fb875b891a1cb00a042c295d0be42c85485b68f7afc8dbf845fdc48a7e3c35",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "acceptanceAtReview": {
+          "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
+          "recordedAt": "2026-10-03T09:08:59.396Z",
+          "scope": "Presentation only; fixture-assisted origins/results, not earned campaign or tactical acceptance",
+          "sourceBytesVerified": true,
+          "buildBytesVerified": true,
+          "executionIdentityNote": "Original receipt HEAD/tree/diff preserved; commit changes Git representation, not tested runtime bytes"
+        }
       },
       {
         "schemaVersion": 1,
         "jobId": "visual-0820-probe-v2",
         "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-03T08:47:02.703Z",
-        "pid": null,
+        "pid": 33736,
         "port": 5278,
         "command": [
           "node",
@@ -4481,60 +4564,78 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
+        "startedAt": "2026-10-03T08:47:06.479Z",
+        "endedAt": "2026-10-03T08:48:45.202Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/visual-0820-probe-v2/results.json",
+        "resultSha256": "07677dacc9a47e35b34dbf660cbbf41558aa5030464d80008e4a7c9d79e6bf76",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "acceptanceAtReview": {
+          "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
+          "recordedAt": "2026-10-03T09:08:59.396Z",
+          "scope": "Presentation only; fixture-assisted origins/results, not earned campaign or tactical acceptance",
+          "sourceBytesVerified": true,
+          "buildBytesVerified": true,
+          "executionIdentityNote": "Original receipt HEAD/tree/diff preserved; commit changes Git representation, not tested runtime bytes"
+        }
       }
     ],
     "wip": {
-      "sha": "47fb42810a6d96c4e1abfd0dc5eaca4b9fa0313b",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0820",
+      "sha": "020b3a90ae8096fb41d5802c328fe696d22d876a",
       "dirtyFiles": [
         "ocs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/reports/INDEX.md",
         "legacy-combat.html",
         "src/combat/combatKeyboard.test.ts",
         "src/combat/combatKeyboard.ts",
         "src/combat/legacyCombatRuntime.js",
         "src/styles/combat-shell.css",
-        "src/styles/traversal.css",
-        "src/traversal/TraversalRoadScene.ts",
-        "src/traversal/TraversalWorldRenderer.test.ts",
-        "src/traversal/TraversalWorldRenderer.ts",
-        "src/traversal/TraversalWorldSubject.test.ts",
-        "src/traversal/TraversalWorldSubject.ts",
-        "tools/combat-battlefield-keyboard-production-qa.mjs",
-        "tools/traversal-visual-convergence-qa.mjs"
+        "docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md",
+        "docs/reports/traversal-visual-convergence-1.md",
+        "docs/reports/traversal-visual-convergence-1/",
+        "tools/combat-battlefield-keyboard-production-qa.mjs"
       ],
-      "lastGreenCheck": "49 focused Traversal tests/types/8 contracts8slots/immutable gates PASS; visual acceptance pending",
-      "status": "UNKNOWN",
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0820"
+      "status": "LOCAL_ONLY_PUBLICATION_BLOCKED",
+      "lastGreenCheck": "137 Traversal tests; types/build; 8 contracts8slots; immutable gates; 12 production journeys plus4 focused probes PASS scoped"
     },
-    "nextAction": "Finish fresh built-production ground/subject sequences T0/T1/T3 at1440/620/390 normal and OS-only reduction; inspect selected captures and focused subject facts; obtain exact-diff Traversal and authority guardian reviews. Preserve six deferred keyboard blobs. Remote publication awaits automatic-review authorization; keep local snapshots and exact checkpoint if denied. Continue motion task only after visual acceptance; demo remains incomplete.",
+    "nextAction": "First resolve publication approval: verify owned lock, preserved six keyboard blobs, local dev checkpoint and local WIP; publish only to https://github.com/juniorbattle/RPGThreeJS on dev and wip/rpgthreejs-auto-dev-90m-20261003T0820 when explicitly authorized, verify parity, then release owned lock. Do not rerun unchanged accepted visual proof. Resume TRAVERSAL-MOTION-POLISH from docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md: inspect departure .24*distance body displacement, departure clear/reveal and restarted elapsedMs easing, arrival zero-speed coast/fixed2.88s handoff without geometry gate. Correct presentation continuity/full right-edge exit without modifying canonical clocks, Risk/Reward/Pursuit or V6. Fresh production native T0/T1/T3 desktop620390 normal/OS proof required. Six deferred keyboard files and deferredDemoTask.nextAction remain exact; demo incomplete.",
     "runMetrics": {
-      "registeredNativeJobs": 2,
-      "scopedRecoveriesAccepted": 2,
-      "failedRequestedScenarios": 0,
-      "readOnlyReviewerPasses": 3,
-      "distinctReviewers": 1,
-      "unchangedAcceptedProofReruns": 0,
+      "registeredJobs": 6,
+      "scopedPresentationJobsAccepted": 3,
+      "unacceptedJobs": 3,
+      "distinctReadOnlyReviewers": 2,
+      "productionJourneys": 12,
+      "productionCaptures": 348,
+      "focusedProbeCases": 4,
+      "focusedProbeCaptures": 12,
+      "trackedCaptures": 10,
       "failedOutputsUsedAsSeeds": 0,
-      "creditSavings": "Not measured; no quota-gain claim"
+      "creditSavings": "Not measured"
     },
     "closeout": {
-      "implementationCommit": "66608d2fd526d88d866c57e9f29b7b985333c316",
-      "trialDriverCommit": "726bb751cf4a90cff088c4fda3af73f8de14702b",
-      "finalStateCommit": "HEAD/origin/dev after state-only closeout; exact SHA in automation memory",
-      "wipPayloadPreserved": true,
-      "ownedWipRetired": true,
+      "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
+      "finalStateCommit": "Local HEAD after documentation/state commit; exact SHA in automation memory",
+      "publicationBlocked": true,
+      "writerStopped": true,
+      "ownedWipRetired": false,
       "olderWipsRetained": true,
-      "ownedWorkersExited": [
-        35608,
-        9992
-      ],
+      "ownedWorkersExited": true,
       "portsClosed": [
-        5271,
-        5272
+        5276,
+        5277,
+        5278,
+        5279
       ],
       "demoAcceptance": "IN_PROGRESS",
-      "lockRelease": "After verified final push and memory write"
+      "lockRelease": "PENDING verified origin/dev publication; lock retained under MULTI_AGENT_PROTOCOL section2 rule7"
     },
     "checkpointPaths": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -4599,43 +4700,21 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-03T0735Z-codex-manual-playtest-priority.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-03T0820Z-codex-visual-convergence.md",
   "runMeasurement": {
     "readOnlySpecialists": [
-      "contracts-guardian",
-      "ui-accessibility"
+      "traversal-engineer",
+      "contracts-guardian"
     ],
-    "reviewPasses": {
-      "contracts": 3,
-      "ui": 2
-    },
     "acceptedSubtasks": [
-      "Native inspection focus/content8cases",
-      "Unlocked-skill policy source and native observation; no ending acceptance"
+      "TRAVERSAL-VISUAL-CONVERGENCE scoped presentation"
     ],
-    "recoveredJobs": 0,
-    "reruns": [
-      "Card accessible-label assertion",
-      "Trial actual-unlocked-skill policy"
-    ],
-    "regressions": "No introduced tactical rule/source regression observed; campaign acceptance open",
+    "registeredJobs": 6,
+    "acceptedJobs": 3,
+    "unacceptedJobs": 3,
+    "failedOutputsUsedAsSeeds": 0,
     "quotaSavingsClaim": false,
-    "failedContinuousRuns": 2,
-    "interruptedPilotRuns": 1,
-    "orchestrator": {
-      "asOf": "2026-10-02T23:50:23.21Z",
-      "input_tokens": 14567679,
-      "cached_input_tokens": 14292352,
-      "cache_write_input_tokens": 0,
-      "output_tokens": 66223,
-      "reasoning_output_tokens": 28936,
-      "total_tokens": 14633902,
-      "uncachedInput": 275327,
-      "workUnits": 341550,
-      "units": "Token work units, not credits or account quota; cumulative orchestrator session only",
-      "reviewerWorkUnits": "Unavailable; review counts recorded instead"
-    },
-    "elapsedMinutesAtCheckpoint": 56.7
+    "elapsedMinutesAtCheckpoint": 49
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
