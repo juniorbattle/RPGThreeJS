@@ -1,107 +1,59 @@
 # Autonomous work state
 
-OD-2026-10-03-A priority; set1.1.0 immutable d7ca28a. Demo incomplete.
+CURRENT FACT — Demo and TRAVERSAL-ROAD-ELEMENTS incomplete. OD-2026-10-03-A, set1.1.0 baseline d7ca28a retained.
 
 | Field | Value |
 | --- | --- |
 | status | IN_PROGRESS |
-| runStartedAt | 2026-10-03T14:32:18.2646434Z |
-| runEndedAt | 2026-10-03T15:23:01.106Z |
+| runId | rpgthreejs-auto-dev-90m-20261003T1815 |
+| runStartedAt | 2026-10-03T18:17:53.9658597+00:00 |
+| runEndedAt | 2026-10-03T19:27:19.540Z |
 | activeTask | TRAVERSAL-ROAD-ELEMENTS |
-| activePhase | Rock-family scoped production PASS; physical lifetime/depth/spacing pending |
-| activeSubtask | Shared Risk/Reward physical anchors, natural spawn/full-exit lifetime and ground-depth sorting |
+| activePhase | Shared physical anchor/depth implementation checkpoint; production acceptance OPEN |
+| activeSubtask | Correct CSSOM anchor precision QA guard, then complete native multi-leg lifetime/depth acceptance |
 | workingBranch | dev |
-| lastKnownGoodCommit | 5abf0643255af171200aaa26601e93c5f67c5732 |
-| lastPushedCommit | 5abf0643255af171200aaa26601e93c5f67c5732 |
-| creditStatus | AVAILABLE; no credit-saving claim |
-| contractComplianceStatus | Set1.1.0 immutable gates PASS;Pursuit isolated38cases/UI/QA PASS but canonical integration BLOCKED10mappings;rockfamily18first-roadcases PASS;full roadlifetime/depth/spacing,earnedV6/deferredkeyboard/narrative/demo acceptance open |
+| lastKnownGoodCommit | 91b4d2e1ba0f697dde1e703e8fc164ca49ec84ed |
+| lastPushedCommit | 91b4d2e1ba0f697dde1e703e8fc164ca49ec84ed |
+| contractComplianceStatus | PASS_BOUNDARIES_AND_GATES; ROAD_RUNTIME_ACCEPTANCE_OPEN |
 
-## Live checkpoint
+## Checkpoint
 
-Run rpgthreejs-auto-dev-90m-20261003T1430; checkpoint 2026-10-03T15:23:01.106Z; WIP wip/rpgthreejs-auto-dev-90m-20261003T1430@2a7933e830123290feaae5d0e28a17672ed3e25e. Original48ledger and exact deferred task preserved;55jobs retained.
+- Inherited road WIP preserved and reviewed under verified stale-lock takeover
+- Presentation-only Risk/Reward frozen anchors, natural entry/full exit, collected retention, shared ground depth and frame-aligned camera implemented
+- Native resize and reduced-motion stale-ground defects fixed
+- 167 Traversal tests/29 files,32 focused tests,TypeScript,build,8contracts8slots and immutable/whitespace gates PASS
+- Registered native production diagnostics and selected captures retained; no full road or earned V6 acceptance
 
-## Verification
-
-- 153Traversal tests/28files
-- TypeScript src+lab
-- 8contracts8slots;gamebuild;protected/whitespace gates
-- Isolated native-clock candidate38cases;normalOSgame1440/620/390;8selectedcaptures;guardian/traversal scoped PASS
-- Rockfamily18realbuiltfirst-roadcases normalOS T0/T1/T3×1440/620/390;6selectedcaptures;guardian/traversal PASS
-- Final153Traversaltests/28files;typesincludinglab;8contracts8slots;buildidentity exact to rock receipt
-- Original48ledger/deferred task/sixblobs preserved;Pursuit44labinputs12assets remain exact;oldgamebuild not reused after rock
-
-## Blocker
-
-Pursuit production collision integration:10windows lack explicitly authored eligible canonical mappings; isolated candidate PASS does not close full task
+Owned remote WIP wip/rpgthreejs-auto-dev-90m-20261003T1815@bbfd403ab1f03f5024765a794cf310332fcf44e8; six deferred hashes and original55ledger/deferredDemoTask exact. Current handoff: docs/autonomy/handoffs/2026-10-03T1815Z-codex-road-anchor-checkpoint.md. Final publication identity follows in automation memory.
 
 ## Next action
 
-Normal exclusive-lock/Git/WIP/receipt preflight. Read TRAVERSAL_ROAD_ELEMENTS.md. Reuse accepted rock-only selector and isolated Pursuit candidate; do not regenerate art/rerun unchanged proof. Implement shared presentation-only Risk/Reward frozen road-anchor/lifetime seam: forecast natural offscreen entry, freeze visible anchors, retain contact/collected marks and suppress only duplicate rewards, despawn after complete trailing-edge exit. Inventory actual mark/caravan ground bounds and wrapper stacking; sort by screenGroundY in one actor plane while preserving foreground/UI/impact feedback. Keep hazard IDs/kinds/lanes/contact clocks/severity and temporary-loot/RunSystem/V6 owners. Focused freeze/resize/contact/miss/collection/reset tests; registered fresh native production T0/T1/T3 normalOSgame1440/620/390 spawn/contact/exit/depth sequences and owner proof for any gold claim; guardian exact diff/assertions and traversal visual review. Pursuit integration remains blocked10missing mappings. Preserve55ledger entries/sixdeferred blobs/exact deferredDemoTask.
+Normal exclusive-lock/Git/WIP/receipt preflight; read TRAVERSAL_ROAD_ELEMENTS.md and run1815 handoff. First inspect terminal road-1815-v3-normal/os/game receipts, assertions/result hashes and frozen386-source/driver/build identities; all remain NOT_ACCEPTED until explicit review. Normal v3 failed only .0202904 world-unit CSSOM reconstruction after full exit at390px: reconstruct logical frozen anchor from full-precision predictedLeft/predictedRight, separately assert CSS position within serialization precision, and capture entry only after cover<.01. Register fresh native matrix on identical source/build or rebuild if changed; do not relabel old FAILED receipts. Complete remaining roads/spacing, pause/document visibility/fallback, deliberately unaligned contact crossings, launch-target acceleration/compensation bounds and already-visible future pickup reset; preserve contact clocks/temp-loot uniqueness/V6. Earned defeat/refuge/V6 proof needed for broader gold acceptance. Reuse rock selector/Pursuit candidate; all10 canonical collision mappings remain blocked. Preserve original55ledger entries/sixdeferred blobs/exact deferredDemoTask; no media generation or new canon.
+
+## QA jobs this run
+
+| Job | Status | Acceptance | Port | PID | Receipt |
+| --- | --- | --- | --- | --- | --- |
+| road-1815-reset-probe | FAILED | NOT_ACCEPTED | 5287 | 19940 | tmp/traversal/road-1815-reset-probe/qa-job.json |
+| road-1815-reset-probe-v2 | FAILED | NOT_ACCEPTED | 5287 | 28224 | tmp/traversal/road-1815-reset-probe-v2/qa-job.json |
+| road-1815-reset-probe-v3 | FAILED | NOT_ACCEPTED | 5287 | 49560 | tmp/traversal/road-1815-reset-probe-v3/qa-job.json |
+| road-1815-reset-probe-v4 | FAILED | NOT_ACCEPTED | 5287 | 63304 | tmp/traversal/road-1815-reset-probe-v4/qa-job.json |
+| road-1815-reset-probe-v5 | FAILED | NOT_ACCEPTED | 5287 | 51872 | tmp/traversal/road-1815-reset-probe-v5/qa-job.json |
+| road-1815-early-probe-v6 | SUCCEEDED | NOT_ACCEPTED | 5287 | 7252 | tmp/traversal/road-1815-early-probe-v6/qa-job.json |
+| road-1815-final-normal | FAILED | NOT_ACCEPTED | 5288 | 41256 | tmp/traversal/road-1815-final-normal/qa-job.json |
+| road-1815-final-os | FAILED | NOT_ACCEPTED | 5289 | 63924 | tmp/traversal/road-1815-final-os/qa-job.json |
+| road-1815-final-game | FAILED | NOT_ACCEPTED | 5290 | 59040 | tmp/traversal/road-1815-final-game/qa-job.json |
+| road-1815-v2-normal | FAILED | NOT_ACCEPTED | 5291 | 50508 | tmp/traversal/road-1815-v2-normal/qa-job.json |
+| road-1815-v2-os | FAILED | NOT_ACCEPTED | 5292 | 53944 | tmp/traversal/road-1815-v2-os/qa-job.json |
+| road-1815-v2-game | FAILED | NOT_ACCEPTED | 5293 | 27100 | tmp/traversal/road-1815-v2-game/qa-job.json |
+| road-1815-v3-normal | FAILED | NOT_ACCEPTED | 5294 | 3312 | tmp/traversal/road-1815-v3-normal/qa-job.json |
+| road-1815-v3-os | FAILED | NOT_ACCEPTED | 5295 | 49924 | tmp/traversal/road-1815-v3-os/qa-job.json |
+| road-1815-v3-game | FAILED | NOT_ACCEPTED | 5296 | 38844 | tmp/traversal/road-1815-v3-game/qa-job.json |
+
+Exact command, parameters, expected assertions and source/driver/build identities remain in JSON.
 
 ## Deferred battlefield keyboard/combat
 
 Finish exact battlefield production driver: real Tab entry, cursor bounds/announcement/no truth mutation, invalid/legal movement and native target execution, Escape/Retour focus, native controls and pointer regression in1366/620/390 OS on/off. Build new sources, review exact activation/assertion diff with guardian, register job and freeze tested inputs. Add actual fresh campaign iframe keyboard entry/return if budget permits; incomplete acceptance stays explicit. Preserve historical0350recovery and original726trial proofs. No media/audio work.
 
-All six deferred files and historical QA ledger retained in JSON.
-
-
-
-<!-- QA_JOBS_START -->
-## Live QA jobs
-
-- legacy-1453-defeat-native: FINISHED_LEGACY; port null; receipt tmp/demo/continuous-1453-defeat-native/qa-job.json; NOT_ACCEPTED
-- legacy-1453-trial: FINISHED_LEGACY; port null; receipt tmp/demo/continuous-1453-trial/qa-job.json; NOT_ACCEPTED
-- 1952-desktop: ABORTED_HARNESS_DEFECT; port 5258; receipt tmp/demo/1952-desktop/qa-job.json; NOT_ACCEPTED
-- 1952-mobile: FAILED; port 5259; receipt tmp/demo/1952-mobile/qa-job.json; NOT_ACCEPTED
-- 1952-trial: ABORTED_HARNESS_DEFECT; port 5261; receipt tmp/demo/1952-trial/qa-job.json; NOT_ACCEPTED
-- 1952-intermediate: ABORTED_HARNESS_DEFECT; port 5260; receipt tmp/demo/1952-intermediate/qa-job.json; NOT_ACCEPTED
-- 1952-keyboard-final: SUCCEEDED; port 5262; receipt tmp/demo/1952-keyboard-final/qa-job.json; ACCEPTED_SCOPED
-- 1952-final-desktop: SUCCEEDED; port 5258; receipt tmp/demo/1952-final-desktop/qa-job.json; ACCEPTED_SCOPED
-- 1952-final-mobile: SUCCEEDED; port 5259; receipt tmp/demo/1952-final-mobile/qa-job.json; ACCEPTED_SCOPED
-- 1952-final-intermediate: FAILED; port 5260; receipt tmp/demo/1952-final-intermediate/qa-job.json; NOT_ACCEPTED
-- 1952-final-trial: FAILED; port 5261; receipt tmp/demo/1952-final-trial/qa-job.json; NOT_ACCEPTED
-- 2122-grid-final: ABORTED_HARNESS_DEFECT; port 5264; receipt tmp/demo/2122-grid-final/qa-job.json; NOT_ACCEPTED
-- 2122-trial-final: ABORTED_SOURCE_CORRECTION; port 5265; receipt tmp/demo/2122-trial-final/qa-job.json; NOT_ACCEPTED
-- 2122-intermediate-final: FAILED; port 5266; receipt tmp/demo/2122-intermediate-final/qa-job.json; NOT_ACCEPTED
-- 2122-grid-bounded: ABORTED_HARNESS_COST; port 5264; receipt tmp/demo/2122-grid-bounded/qa-job.json; NOT_ACCEPTED
-- 2122-grid-sampled: ABORTED_SOURCE_CORRECTION; port 5264; receipt tmp/demo/2122-grid-sampled/qa-job.json; NOT_ACCEPTED
-- 2122-grid-fixed: ABORTED_SOURCE_CORRECTION; port 5264; receipt tmp/demo/2122-grid-fixed/qa-job.json; NOT_ACCEPTED
-- 2122-intermediate-fixed: ABORTED_SOURCE_CORRECTION; port 5266; receipt tmp/demo/2122-intermediate-fixed/qa-job.json; NOT_ACCEPTED
-- 2122-trial-conserve: ABORTED_SOURCE_CORRECTION; port 5265; receipt tmp/demo/2122-trial-conserve/qa-job.json; NOT_ACCEPTED
-- 2122-card-scroll: FAILED; port 5267; receipt tmp/demo/2122-card-scroll/qa-job.json; NOT_ACCEPTED
-- 2122-grid-final-wheel: SUCCEEDED; port 5264; receipt tmp/demo/2122-grid-final-wheel/qa-job.json; ACCEPTED_SCOPED
-- 2122-card-final-wheel: SUCCEEDED; port 5267; receipt tmp/demo/2122-card-final-wheel/qa-job.json; ACCEPTED_SCOPED
-- 2122-intermediate-final-wheel: FAILED; port 5266; receipt tmp/demo/2122-intermediate-final-wheel/qa-job.json; NOT_ACCEPTED
-- 2122-trial-final-wheel: FAILED; port 5265; receipt tmp/demo/2122-trial-final-wheel/qa-job.json; NOT_ACCEPTED
-- 2252-card-focus: FAILED; port 5268; receipt tmp/demo/2252-card-focus/qa-job.json; NOT_ACCEPTED
-- 2252-card-focus-labels: SUCCEEDED; port 5268; receipt tmp/demo/2252-card-focus-labels/qa-job.json; ACCEPTED_SCOPED
-- 2252-recovery-620: FAILED; port 5269; receipt tmp/demo/2252-recovery-620/qa-job.json; NOT_ACCEPTED
-- 2252-trial-native-skills: ABORTED_PILOT_POLICY_DEFECT; port 5270; receipt tmp/demo/2252-trial-native-skills/qa-job.json; NOT_ACCEPTED
-- 2252-trial-unlocked: FAILED; port 5270; receipt tmp/demo/2252-trial-unlocked/qa-job.json; NOT_ACCEPTED
-- 0228-trial-support: SUCCEEDED; port 5271; receipt tmp/demo/0228-trial-support/qa-job.json; ACCEPTED_SCOPED
-- 0228-recovery-stock: FAILED; port 5272; receipt tmp/demo/0228-recovery-stock/qa-job.json; FAILED_NOT_ACCEPTED
-- 0350-recovery-crosier: SUCCEEDED; port 5273; receipt tmp/demo/0350-recovery-crosier/qa-job.json; ACCEPTED_SCOPED
-- 0350-recovery-mobile-os: SUCCEEDED; port 5274; receipt tmp/demo/0350-recovery-mobile-os/qa-job.json; ACCEPTED_SCOPED
-- visual-0820-normal: FAILED; port 5276; receipt tmp/traversal/visual-0820-normal/qa-job.json; NOT_ACCEPTED
-- visual-0820-os: FAILED; port 5277; receipt tmp/traversal/visual-0820-os/qa-job.json; NOT_ACCEPTED
-- visual-0820-probe: SUCCEEDED; port 5278; receipt tmp/traversal/visual-0820-probe/qa-job.json; NOT_ACCEPTED
-- visual-0820-v2-normal: SUCCEEDED; port 5276; receipt tmp/traversal/visual-0820-v2-normal/qa-job.json; ACCEPTED_SCOPED_PRESENTATION
-- visual-0820-v2-os: SUCCEEDED; port 5279; receipt tmp/traversal/visual-0820-v2-os/qa-job.json; ACCEPTED_SCOPED_PRESENTATION
-- visual-0820-probe-v2: SUCCEEDED; port 5278; receipt tmp/traversal/visual-0820-probe-v2/qa-job.json; ACCEPTED_SCOPED_PRESENTATION
-- motion-1002-normal: ABORTED_SOURCE_CORRECTION; port 5280; receipt tmp/traversal/motion-1002-normal/qa-job.json; NOT_ACCEPTED
-- motion-1002-os: ABORTED_SOURCE_CORRECTION; port 5281; receipt tmp/traversal/motion-1002-os/qa-job.json; NOT_ACCEPTED
-- motion-1002-v2-normal: FAILED; port 5280; receipt tmp/traversal/motion-1002-v2-normal/qa-job.json; NOT_ACCEPTED
-- motion-1002-v2-os: FAILED; port 5281; receipt tmp/traversal/motion-1002-v2-os/qa-job.json; NOT_ACCEPTED
-- motion-1002-probe: SUCCEEDED; port 5282; receipt tmp/traversal/motion-1002-probe/qa-job.json; NOT_ACCEPTED
-- motion-1002-v3-normal: SUCCEEDED; port 5280; receipt tmp/traversal/motion-1002-v3-normal/qa-job.json; ACCEPTED_SCOPED_PRESENTATION
-- motion-1002-v3-os: SUCCEEDED; port 5281; receipt tmp/traversal/motion-1002-v3-os/qa-job.json; ACCEPTED_SCOPED_PRESENTATION
-- motion-1002-probe-v2: SUCCEEDED; port 5282; receipt tmp/traversal/motion-1002-probe-v2/qa-job.json; ACCEPTED_SCOPED_PRESENTATION
-- motion-1300-game: SUCCEEDED; port 5283; receipt tmp/traversal/motion-1300-game/qa-job.json; ACCEPTED_SCOPED_PRESENTATION
-- pursuit-1430-isolated: FAILED; port 5284; receipt tmp/traversal/pursuit-1430/qa-job.json; NOT_ACCEPTED
-- pursuit-1430-v2: FAILED; port 5284; receipt tmp/traversal/pursuit-1430-v2/qa-job.json; NOT_ACCEPTED
-- pursuit-1430-v3: FAILED; port 5284; receipt tmp/traversal/pursuit-1430-v3/qa-job.json; NOT_ACCEPTED
-- pursuit-1430-v4: FAILED; port 5284; receipt tmp/traversal/pursuit-1430-v4/qa-job.json; NOT_ACCEPTED
-- pursuit-1430-v5: SUCCEEDED; port 5284; receipt tmp/traversal/pursuit-1430-v5/qa-job.json; NOT_ACCEPTED
-- pursuit-1430-v6: SUCCEEDED; port 5284; receipt tmp/traversal/pursuit-1430-v6/qa-job.json; ACCEPTED_SCOPED_ISOLATED_CANDIDATE
-- rock-1430-production: SUCCEEDED; port 5285; receipt tmp/traversal/rock-1430/qa-job.json; ACCEPTED_SCOPED_ROCK_FAMILY
-<!-- QA_JOBS_END -->
+Full original deferredDemoTask retained unchanged in JSON.
