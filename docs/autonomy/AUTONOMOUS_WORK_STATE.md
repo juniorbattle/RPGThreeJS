@@ -7,7 +7,7 @@ CURRENT FACT — TRAVERSAL-ROAD-ELEMENTS and demo incomplete. OD-2026-10-03-A; L
 | status | CHECKPOINTED_IN_PROGRESS |
 | runId | rpgthreejs-auto-dev-90m-20261003T1945 |
 | runStartedAt | 2026-10-03T19:46:31.3657056Z |
-| runEndedAt | 2026-10-03T23:57:24.712Z |
+| runEndedAt | 2026-10-03T23:59:11.038Z |
 | activeTask | TRAVERSAL-ROAD-ELEMENTS |
 | activePhase | Road entry correction checkpoint; native late-reset contact remains open |
 | activeSubtask | Design bounded compensation for already-visible road anchors after late Pursuit reset |
@@ -33,3 +33,5 @@ Finish exact battlefield production driver: real Tab entry, cursor bounds/announ
 Preflight19:46Z, production browser QA20:36Z; final verification after23:43Z; approval/interruption resume23:43Z. Wall gap is not continuous coding; budget expired, closeout only. Final source/report SHA and verified origin/dev parity recorded in automation memory after publication. Owned WIP retained for six deferred files.
 
 Source checkpoint 354b83d3a738540c8ddca6fced73f7602675ceda; owned local WIP wip/rpgthreejs-auto-dev-90m-20261003T1945@5c2a777069e5bf721a3c32a73df53d34be2abb39 preserves exactly six deferred files. Publication parity follows in automation memory.
+
+Verified publication checkpoint 1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf, WIP 5c2a777069e5bf721a3c32a73df53d34be2abb39; main 00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. Final state commit/parity is recorded in automation memory.

@@ -13,3 +13,7 @@ Read-only preflight and inspect exact terminal receipts before relaunch. T0 rout
 ## Independent review and preservation
 
 Two read-only reviewers reused: contracts-guardian exact authority/assertions; traversal-engineer selected entry/depth evidence. Final guardian: PASS incomplete checkpoint, reviewed exact anchor/test +six tool inputs and verified386sources/six tools/eight listed buildassets/six accepted receipt+result digests/six promoted captures. Expanded TRAVERSAL/UI/QA remain BLOCKED. Traversal reviewer: T0/1440 normal,T1/390 OS,T3/620 game screen-clear reveal PASS only; no first-pouch edge or full-lifetime inference. Orchestrator matrix in report: boundary gates PASS; TRAVERSAL/UI/QA expanded acceptance BLOCKED. No contract edit/main/media/audio/canon/save schema change. Six deferred paths remain unstaged; their exact action is in paired MD/JSON. WIP branch retained until those files are incorporated. No quota-saving claim.
+
+## Verified publication
+
+Source 354b83d3a738540c8ddca6fced73f7602675ceda; evidence checkpoint 1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf; retained remote WIP 5c2a777069e5bf721a3c32a73df53d34be2abb39 on wip/rpgthreejs-auto-dev-90m-20261003T1945. Main 00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. Final state publication SHA/parity and lock release follow in automation memory. Original71 ledger/six blobs reverified; real index empty and only six deferred paths dirty. Old workerPID50328 is recycled to ShellHost started22:24UTC after its job; it was left untouched. All owned QA ports5297–5306 closed; all26 jobs terminal.

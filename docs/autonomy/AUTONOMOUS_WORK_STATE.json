@@ -1,13 +1,13 @@
 {
   "status": "CHECKPOINTED_IN_PROGRESS",
   "runStartedAt": "2026-10-03T19:46:31.3657056Z",
-  "runEndedAt": "2026-10-03T23:57:24.712Z",
+  "runEndedAt": "2026-10-03T23:59:11.038Z",
   "activeTask": "TRAVERSAL-ROAD-ELEMENTS",
   "activePhase": "Road entry correction checkpoint; native late-reset contact remains open",
   "activeSubtask": "Design bounded compensation for already-visible road anchors after late Pursuit reset",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "354b83d3a738540c8ddca6fced73f7602675ceda",
-  "lastPushedCommit": "354b83d3a738540c8ddca6fced73f7602675ceda",
+  "lastPushedCommit": "1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf",
   "completedThisRun": [
     "QA logical anchor precision separated from CSS serialization; independent CSS/render bounds preserved",
     "Unseen reforecast now retains full edge margin instead of middle-road pop; three viewport regressions",
@@ -198,11 +198,11 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261003T1945",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-03T23:57:24.712Z",
+  "lastHeartbeat": "2026-10-03T23:59:11.038Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261003T1945",
     "sha": "5c2a777069e5bf721a3c32a73df53d34be2abb39",
-    "status": "LOCAL_VERIFIED_PUBLICATION_PENDING",
+    "status": "REMOTE_VERIFIED_RETAINED_DEFERRED_WIP",
     "dirtyFiles": [
       "legacy-combat.html",
       "src/combat/combatKeyboard.test.ts",
@@ -216,7 +216,7 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261003T1945",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-03T23:57:24.712Z",
+    "lastHeartbeat": "2026-10-03T23:59:11.038Z",
     "status": "CHECKPOINTED_IN_PROGRESS",
     "qaJobs": [
       {
@@ -11000,7 +11000,7 @@
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261003T1945",
       "sha": "5c2a777069e5bf721a3c32a73df53d34be2abb39",
-      "status": "LOCAL_VERIFIED_PUBLICATION_PENDING",
+      "status": "REMOTE_VERIFIED_RETAINED_DEFERRED_WIP",
       "dirtyFiles": [
         "legacy-combat.html",
         "src/combat/combatKeyboard.test.ts",
@@ -11049,10 +11049,13 @@
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
     ],
     "publication": {
+      "verifiedAt": "2026-10-03T23:58:08.335Z",
+      "dev": "1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf",
+      "wip": "5c2a777069e5bf721a3c32a73df53d34be2abb39",
+      "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "status": "REMOTE_VERIFIED",
       "devSource": "354b83d3a738540c8ddca6fced73f7602675ceda",
-      "wipSha": "5c2a777069e5bf721a3c32a73df53d34be2abb39",
-      "status": "PUBLICATION_PENDING_VERIFICATION",
-      "authorizedBy": "Explicit operator reply authorizing WIP/dev checkpoint and subsequent continue"
+      "authorization": "Explicit operator authorization of this dev/WIP publication; final state publication parity recorded in automation memory"
     }
   },
   "previousInterruptedRun": {
@@ -11285,7 +11288,7 @@
     "snapshot": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261003T1945",
       "sha": "5c2a777069e5bf721a3c32a73df53d34be2abb39",
-      "status": "LOCAL_VERIFIED_PUBLICATION_PENDING",
+      "status": "REMOTE_VERIFIED_RETAINED_DEFERRED_WIP",
       "dirtyFiles": [
         "legacy-combat.html",
         "src/combat/combatKeyboard.test.ts",
@@ -11299,6 +11302,6 @@
   },
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
-    "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push."
+    "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection."
   ]
 }
