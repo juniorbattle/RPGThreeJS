@@ -261,6 +261,7 @@ export class TraversalRoadScene {
     this.opened = true;
     this.options.root.append(this.element);
     window.addEventListener('keydown', this.onKeyDown);
+    window.addEventListener('resize', this.onResize);
     this.element.querySelectorAll<HTMLButtonElement>('[data-traversal-lane]').forEach((button) => {
       button.addEventListener('click', () => this.moveToLane(Number(button.dataset.traversalLane) as TraversalLane));
     });
@@ -313,6 +314,7 @@ export class TraversalRoadScene {
     if (this.frameId !== null) window.cancelAnimationFrame(this.frameId);
     this.frameId = null;
     window.removeEventListener('keydown', this.onKeyDown);
+    window.removeEventListener('resize', this.onResize);
     this.controller.dispose();
     this.element.remove();
   }
@@ -999,6 +1001,10 @@ export class TraversalRoadScene {
     portrait.src = beat.visualAsset ?? '';
     portrait.classList.toggle('is-mirrored', Boolean(beat.mirrorX));
   }
+
+  private readonly onResize = (): void => {
+    if (this.opened) this.updateWorldTransforms();
+  };
 
   private updateWorldTransforms(forceWorld = false): void {
     const session = this.controller.session;

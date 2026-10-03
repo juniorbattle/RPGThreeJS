@@ -36,7 +36,15 @@ describe('shared road scene authoring boundary', () => {
     expect(Number(vehicle.dataset.screenGroundY)).toBeCloseTo(823 * clock.vehicleGroundPercent / 100);
     expect(Number(vehicle.style.zIndex)).toBe(Math.round(823 * clock.vehicleGroundPercent / 10));
     clock.tick(1570); expect(clock.vehicleGroundPercent).toBe(81);
+    const beforeResize = clock.routeRun.elapsedMs;
+    Object.defineProperty(scene.element, 'clientHeight', { configurable: true, value: 700 });
+    window.dispatchEvent(new Event('resize'));
+    expect(Number(vehicle.dataset.screenGroundY)).toBeCloseTo(567);
+    expect(clock.routeRun.elapsedMs).toBe(beforeResize);
     scene.dispose();
+    Object.defineProperty(scene.element, 'clientHeight', { configurable: true, value: 900 });
+    window.dispatchEvent(new Event('resize'));
+    expect(Number(vehicle.dataset.screenGroundY)).toBeCloseTo(567);
   });
   it('rejects a different leg before reading campaign state', () => {
     const getState = vi.fn(() => { throw new Error('Unexpected campaign read'); });

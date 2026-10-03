@@ -18,7 +18,7 @@ OD-2026-10-03-A priority; set1.1.0 immutable d7ca28a. Demo incomplete.
 
 ## Live checkpoint
 
-Run rpgthreejs-auto-dev-90m-20261003T1815; heartbeat 2026-10-03T18:52:47.861Z; WIP wip/rpgthreejs-auto-dev-90m-20261003T1815@bc97b08cab213dbaf187fc82968efa3938e3081c. Inherited55 ledger entries restored exactly from committed baseline after interrupted sync drift; new jobs retained.
+Run rpgthreejs-auto-dev-90m-20261003T1815; heartbeat 2026-10-03T18:56:23.422Z; WIP wip/rpgthreejs-auto-dev-90m-20261003T1815@ffb16b08a0453c4e8b0f60ed07d56104ba504c94. Inherited55 ledger entries restored exactly from committed baseline after interrupted sync drift; new jobs retained.
 
 ## Next action
 
@@ -35,67 +35,70 @@ Exact six deferred files and historical job provenance remain in JSON.
 
 - legacy-1453-defeat-native: FINISHED_LEGACY; port null; receipt `tmp/demo/continuous-1453-defeat-native/qa-job.json`; NOT_ACCEPTED
 - legacy-1453-trial: FINISHED_LEGACY; port null; receipt `tmp/demo/continuous-1453-trial/qa-job.json`; NOT_ACCEPTED
-- 1952-desktop: ABORTED_HARNESS_DEFECT; port 5258; receipt `tmp/demo/1952-desktop/qa-job.json`; NOT_ACCEPTED
+- 1952-desktop: RUNNING; port 5258; receipt `tmp/demo/1952-desktop/qa-job.json`; NOT_ACCEPTED
 - 1952-mobile: FAILED; port 5259; receipt `tmp/demo/1952-mobile/qa-job.json`; NOT_ACCEPTED
-- 1952-trial: ABORTED_HARNESS_DEFECT; port 5261; receipt `tmp/demo/1952-trial/qa-job.json`; NOT_ACCEPTED
-- 1952-intermediate: ABORTED_HARNESS_DEFECT; port 5260; receipt `tmp/demo/1952-intermediate/qa-job.json`; NOT_ACCEPTED
-- 1952-keyboard-final: SUCCEEDED; port 5262; receipt `tmp/demo/1952-keyboard-final/qa-job.json`; ACCEPTED_SCOPED
-- 1952-final-desktop: SUCCEEDED; port 5258; receipt `tmp/demo/1952-final-desktop/qa-job.json`; ACCEPTED_SCOPED
-- 1952-final-mobile: SUCCEEDED; port 5259; receipt `tmp/demo/1952-final-mobile/qa-job.json`; ACCEPTED_SCOPED
+- 1952-trial: RUNNING; port 5261; receipt `tmp/demo/1952-trial/qa-job.json`; NOT_ACCEPTED
+- 1952-intermediate: RUNNING; port 5260; receipt `tmp/demo/1952-intermediate/qa-job.json`; NOT_ACCEPTED
+- 1952-keyboard-final: SUCCEEDED; port 5262; receipt `tmp/demo/1952-keyboard-final/qa-job.json`; NOT_ACCEPTED
+- 1952-final-desktop: SUCCEEDED; port 5258; receipt `tmp/demo/1952-final-desktop/qa-job.json`; NOT_ACCEPTED
+- 1952-final-mobile: SUCCEEDED; port 5259; receipt `tmp/demo/1952-final-mobile/qa-job.json`; NOT_ACCEPTED
 - 1952-final-intermediate: FAILED; port 5260; receipt `tmp/demo/1952-final-intermediate/qa-job.json`; NOT_ACCEPTED
 - 1952-final-trial: FAILED; port 5261; receipt `tmp/demo/1952-final-trial/qa-job.json`; NOT_ACCEPTED
-- 2122-grid-final: ABORTED_HARNESS_DEFECT; port 5264; receipt `tmp/demo/2122-grid-final/qa-job.json`; NOT_ACCEPTED
-- 2122-trial-final: ABORTED_SOURCE_CORRECTION; port 5265; receipt `tmp/demo/2122-trial-final/qa-job.json`; NOT_ACCEPTED
+- 2122-grid-final: RUNNING; port 5264; receipt `tmp/demo/2122-grid-final/qa-job.json`; NOT_ACCEPTED
+- 2122-trial-final: RUNNING; port 5265; receipt `tmp/demo/2122-trial-final/qa-job.json`; NOT_ACCEPTED
 - 2122-intermediate-final: FAILED; port 5266; receipt `tmp/demo/2122-intermediate-final/qa-job.json`; NOT_ACCEPTED
-- 2122-grid-bounded: ABORTED_HARNESS_COST; port 5264; receipt `tmp/demo/2122-grid-bounded/qa-job.json`; NOT_ACCEPTED
-- 2122-grid-sampled: ABORTED_SOURCE_CORRECTION; port 5264; receipt `tmp/demo/2122-grid-sampled/qa-job.json`; NOT_ACCEPTED
-- 2122-grid-fixed: ABORTED_SOURCE_CORRECTION; port 5264; receipt `tmp/demo/2122-grid-fixed/qa-job.json`; NOT_ACCEPTED
-- 2122-intermediate-fixed: ABORTED_SOURCE_CORRECTION; port 5266; receipt `tmp/demo/2122-intermediate-fixed/qa-job.json`; NOT_ACCEPTED
-- 2122-trial-conserve: ABORTED_SOURCE_CORRECTION; port 5265; receipt `tmp/demo/2122-trial-conserve/qa-job.json`; NOT_ACCEPTED
+- 2122-grid-bounded: RUNNING; port 5264; receipt `tmp/demo/2122-grid-bounded/qa-job.json`; NOT_ACCEPTED
+- 2122-grid-sampled: RUNNING; port 5264; receipt `tmp/demo/2122-grid-sampled/qa-job.json`; NOT_ACCEPTED
+- 2122-grid-fixed: RUNNING; port 5264; receipt `tmp/demo/2122-grid-fixed/qa-job.json`; NOT_ACCEPTED
+- 2122-intermediate-fixed: RUNNING; port 5266; receipt `tmp/demo/2122-intermediate-fixed/qa-job.json`; NOT_ACCEPTED
+- 2122-trial-conserve: RUNNING; port 5265; receipt `tmp/demo/2122-trial-conserve/qa-job.json`; NOT_ACCEPTED
 - 2122-card-scroll: FAILED; port 5267; receipt `tmp/demo/2122-card-scroll/qa-job.json`; NOT_ACCEPTED
-- 2122-grid-final-wheel: SUCCEEDED; port 5264; receipt `tmp/demo/2122-grid-final-wheel/qa-job.json`; ACCEPTED_SCOPED
-- 2122-card-final-wheel: SUCCEEDED; port 5267; receipt `tmp/demo/2122-card-final-wheel/qa-job.json`; ACCEPTED_SCOPED
+- 2122-grid-final-wheel: SUCCEEDED; port 5264; receipt `tmp/demo/2122-grid-final-wheel/qa-job.json`; NOT_ACCEPTED
+- 2122-card-final-wheel: SUCCEEDED; port 5267; receipt `tmp/demo/2122-card-final-wheel/qa-job.json`; NOT_ACCEPTED
 - 2122-intermediate-final-wheel: FAILED; port 5266; receipt `tmp/demo/2122-intermediate-final-wheel/qa-job.json`; NOT_ACCEPTED
 - 2122-trial-final-wheel: FAILED; port 5265; receipt `tmp/demo/2122-trial-final-wheel/qa-job.json`; NOT_ACCEPTED
 - 2252-card-focus: FAILED; port 5268; receipt `tmp/demo/2252-card-focus/qa-job.json`; NOT_ACCEPTED
-- 2252-card-focus-labels: SUCCEEDED; port 5268; receipt `tmp/demo/2252-card-focus-labels/qa-job.json`; ACCEPTED_SCOPED
+- 2252-card-focus-labels: SUCCEEDED; port 5268; receipt `tmp/demo/2252-card-focus-labels/qa-job.json`; NOT_ACCEPTED
 - 2252-recovery-620: FAILED; port 5269; receipt `tmp/demo/2252-recovery-620/qa-job.json`; NOT_ACCEPTED
-- 2252-trial-native-skills: ABORTED_PILOT_POLICY_DEFECT; port 5270; receipt `tmp/demo/2252-trial-native-skills/qa-job.json`; NOT_ACCEPTED
+- 2252-trial-native-skills: RUNNING; port 5270; receipt `tmp/demo/2252-trial-native-skills/qa-job.json`; NOT_ACCEPTED
 - 2252-trial-unlocked: FAILED; port 5270; receipt `tmp/demo/2252-trial-unlocked/qa-job.json`; NOT_ACCEPTED
-- 0228-trial-support: SUCCEEDED; port 5271; receipt `tmp/demo/0228-trial-support/qa-job.json`; ACCEPTED_SCOPED
-- 0228-recovery-stock: FAILED; port 5272; receipt `tmp/demo/0228-recovery-stock/qa-job.json`; FAILED_NOT_ACCEPTED
-- 0350-recovery-crosier: SUCCEEDED; port 5273; receipt `tmp/demo/0350-recovery-crosier/qa-job.json`; ACCEPTED_SCOPED
-- 0350-recovery-mobile-os: SUCCEEDED; port 5274; receipt `tmp/demo/0350-recovery-mobile-os/qa-job.json`; ACCEPTED_SCOPED
+- 0228-trial-support: SUCCEEDED; port 5271; receipt `tmp/demo/0228-trial-support/qa-job.json`; NOT_ACCEPTED
+- 0228-recovery-stock: FAILED; port 5272; receipt `tmp/demo/0228-recovery-stock/qa-job.json`; NOT_ACCEPTED
+- 0350-recovery-crosier: SUCCEEDED; port 5273; receipt `tmp/demo/0350-recovery-crosier/qa-job.json`; NOT_ACCEPTED
+- 0350-recovery-mobile-os: SUCCEEDED; port 5274; receipt `tmp/demo/0350-recovery-mobile-os/qa-job.json`; NOT_ACCEPTED
 - visual-0820-normal: FAILED; port 5276; receipt `tmp/traversal/visual-0820-normal/qa-job.json`; NOT_ACCEPTED
 - visual-0820-os: FAILED; port 5277; receipt `tmp/traversal/visual-0820-os/qa-job.json`; NOT_ACCEPTED
 - visual-0820-probe: SUCCEEDED; port 5278; receipt `tmp/traversal/visual-0820-probe/qa-job.json`; NOT_ACCEPTED
-- visual-0820-v2-normal: SUCCEEDED; port 5276; receipt `tmp/traversal/visual-0820-v2-normal/qa-job.json`; ACCEPTED_SCOPED_PRESENTATION
-- visual-0820-v2-os: SUCCEEDED; port 5279; receipt `tmp/traversal/visual-0820-v2-os/qa-job.json`; ACCEPTED_SCOPED_PRESENTATION
-- visual-0820-probe-v2: SUCCEEDED; port 5278; receipt `tmp/traversal/visual-0820-probe-v2/qa-job.json`; ACCEPTED_SCOPED_PRESENTATION
-- motion-1002-normal: ABORTED_SOURCE_CORRECTION; port 5280; receipt `tmp/traversal/motion-1002-normal/qa-job.json`; NOT_ACCEPTED
-- motion-1002-os: ABORTED_SOURCE_CORRECTION; port 5281; receipt `tmp/traversal/motion-1002-os/qa-job.json`; NOT_ACCEPTED
+- visual-0820-v2-normal: SUCCEEDED; port 5276; receipt `tmp/traversal/visual-0820-v2-normal/qa-job.json`; NOT_ACCEPTED
+- visual-0820-v2-os: SUCCEEDED; port 5279; receipt `tmp/traversal/visual-0820-v2-os/qa-job.json`; NOT_ACCEPTED
+- visual-0820-probe-v2: SUCCEEDED; port 5278; receipt `tmp/traversal/visual-0820-probe-v2/qa-job.json`; NOT_ACCEPTED
+- motion-1002-normal: RUNNING; port 5280; receipt `tmp/traversal/motion-1002-normal/qa-job.json`; NOT_ACCEPTED
+- motion-1002-os: RUNNING; port 5281; receipt `tmp/traversal/motion-1002-os/qa-job.json`; NOT_ACCEPTED
 - motion-1002-v2-normal: FAILED; port 5280; receipt `tmp/traversal/motion-1002-v2-normal/qa-job.json`; NOT_ACCEPTED
 - motion-1002-v2-os: FAILED; port 5281; receipt `tmp/traversal/motion-1002-v2-os/qa-job.json`; NOT_ACCEPTED
 - motion-1002-probe: SUCCEEDED; port 5282; receipt `tmp/traversal/motion-1002-probe/qa-job.json`; NOT_ACCEPTED
-- motion-1002-v3-normal: SUCCEEDED; port 5280; receipt `tmp/traversal/motion-1002-v3-normal/qa-job.json`; ACCEPTED_SCOPED_PRESENTATION
-- motion-1002-v3-os: SUCCEEDED; port 5281; receipt `tmp/traversal/motion-1002-v3-os/qa-job.json`; ACCEPTED_SCOPED_PRESENTATION
-- motion-1002-probe-v2: SUCCEEDED; port 5282; receipt `tmp/traversal/motion-1002-probe-v2/qa-job.json`; ACCEPTED_SCOPED_PRESENTATION
-- motion-1300-game: SUCCEEDED; port 5283; receipt `tmp/traversal/motion-1300-game/qa-job.json`; ACCEPTED_SCOPED_PRESENTATION
+- motion-1002-v3-normal: SUCCEEDED; port 5280; receipt `tmp/traversal/motion-1002-v3-normal/qa-job.json`; NOT_ACCEPTED
+- motion-1002-v3-os: SUCCEEDED; port 5281; receipt `tmp/traversal/motion-1002-v3-os/qa-job.json`; NOT_ACCEPTED
+- motion-1002-probe-v2: SUCCEEDED; port 5282; receipt `tmp/traversal/motion-1002-probe-v2/qa-job.json`; NOT_ACCEPTED
+- motion-1300-game: SUCCEEDED; port 5283; receipt `tmp/traversal/motion-1300-game/qa-job.json`; NOT_ACCEPTED
 - pursuit-1430-isolated: FAILED; port 5284; receipt `tmp/traversal/pursuit-1430/qa-job.json`; NOT_ACCEPTED
 - pursuit-1430-v2: FAILED; port 5284; receipt `tmp/traversal/pursuit-1430-v2/qa-job.json`; NOT_ACCEPTED
 - pursuit-1430-v3: FAILED; port 5284; receipt `tmp/traversal/pursuit-1430-v3/qa-job.json`; NOT_ACCEPTED
 - pursuit-1430-v4: FAILED; port 5284; receipt `tmp/traversal/pursuit-1430-v4/qa-job.json`; NOT_ACCEPTED
 - pursuit-1430-v5: SUCCEEDED; port 5284; receipt `tmp/traversal/pursuit-1430-v5/qa-job.json`; NOT_ACCEPTED
-- pursuit-1430-v6: SUCCEEDED; port 5284; receipt `tmp/traversal/pursuit-1430-v6/qa-job.json`; ACCEPTED_SCOPED_ISOLATED_CANDIDATE
-- rock-1430-production: SUCCEEDED; port 5285; receipt `tmp/traversal/rock-1430/qa-job.json`; ACCEPTED_SCOPED_ROCK_FAMILY
+- pursuit-1430-v6: SUCCEEDED; port 5284; receipt `tmp/traversal/pursuit-1430-v6/qa-job.json`; NOT_ACCEPTED
+- rock-1430-production: SUCCEEDED; port 5285; receipt `tmp/traversal/rock-1430/qa-job.json`; NOT_ACCEPTED
 - road-1600-probe: SUCCEEDED; port 5286; receipt `tmp/traversal/road-1600-probe/qa-job.json`; NOT_ACCEPTED
-- road-1815-reset-probe: PLANNED; port 5287; receipt `tmp/traversal/road-1815-reset-probe/qa-job.json`; NOT_ACCEPTED
-- road-1815-reset-probe-v2: PLANNED; port 5287; receipt `tmp/traversal/road-1815-reset-probe-v2/qa-job.json`; NOT_ACCEPTED
-- road-1815-reset-probe-v3: PLANNED; port 5287; receipt `tmp/traversal/road-1815-reset-probe-v3/qa-job.json`; NOT_ACCEPTED
-- road-1815-reset-probe-v4: PLANNED; port 5287; receipt `tmp/traversal/road-1815-reset-probe-v4/qa-job.json`; NOT_ACCEPTED
-- road-1815-reset-probe-v5: PLANNED; port 5287; receipt `tmp/traversal/road-1815-reset-probe-v5/qa-job.json`; NOT_ACCEPTED
-- road-1815-early-probe-v6: PLANNED; port 5287; receipt `tmp/traversal/road-1815-early-probe-v6/qa-job.json`; NOT_ACCEPTED
-- road-1815-final-normal: PLANNED; port 5288; receipt `tmp/traversal/road-1815-final-normal/qa-job.json`; NOT_ACCEPTED
-- road-1815-final-os: PLANNED; port 5289; receipt `tmp/traversal/road-1815-final-os/qa-job.json`; NOT_ACCEPTED
-- road-1815-final-game: PLANNED; port 5290; receipt `tmp/traversal/road-1815-final-game/qa-job.json`; NOT_ACCEPTED
+- road-1815-reset-probe: FAILED; port 5287; receipt `tmp/traversal/road-1815-reset-probe/qa-job.json`; NOT_ACCEPTED
+- road-1815-reset-probe-v2: FAILED; port 5287; receipt `tmp/traversal/road-1815-reset-probe-v2/qa-job.json`; NOT_ACCEPTED
+- road-1815-reset-probe-v3: FAILED; port 5287; receipt `tmp/traversal/road-1815-reset-probe-v3/qa-job.json`; NOT_ACCEPTED
+- road-1815-reset-probe-v4: FAILED; port 5287; receipt `tmp/traversal/road-1815-reset-probe-v4/qa-job.json`; NOT_ACCEPTED
+- road-1815-reset-probe-v5: FAILED; port 5287; receipt `tmp/traversal/road-1815-reset-probe-v5/qa-job.json`; NOT_ACCEPTED
+- road-1815-early-probe-v6: SUCCEEDED; port 5287; receipt `tmp/traversal/road-1815-early-probe-v6/qa-job.json`; NOT_ACCEPTED
+- road-1815-final-normal: FAILED; port 5288; receipt `tmp/traversal/road-1815-final-normal/qa-job.json`; NOT_ACCEPTED
+- road-1815-final-os: FAILED; port 5289; receipt `tmp/traversal/road-1815-final-os/qa-job.json`; NOT_ACCEPTED
+- road-1815-final-game: FAILED; port 5290; receipt `tmp/traversal/road-1815-final-game/qa-job.json`; NOT_ACCEPTED
+- road-1815-v2-normal: PLANNED; port 5291; receipt `tmp/traversal/road-1815-v2-normal/qa-job.json`; NOT_ACCEPTED
+- road-1815-v2-os: PLANNED; port 5292; receipt `tmp/traversal/road-1815-v2-os/qa-job.json`; NOT_ACCEPTED
+- road-1815-v2-game: PLANNED; port 5293; receipt `tmp/traversal/road-1815-v2-game/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->

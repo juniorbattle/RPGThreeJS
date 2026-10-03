@@ -328,7 +328,7 @@
 .traversal-entity[data-placement='centered'][data-formation='true'] .traversal-formation-member { bottom: calc((var(--formation-index) - .5) * 6vh); }
 /* Lane changes are essential spatial feedback, even with decorative motion reduced. */
 @media (prefers-reduced-motion: reduce) {
-  .traversal-t0 .traversal-vehicle { transition-duration: .25s !important; }
+  .traversal-t0 .traversal-vehicle { transition: none !important; }
   .traversal-t0 .traversal-world__lane-glow { transition-duration: .25s !important; }
 }
 .traversal-entity--fork .traversal-entity__subject { height: calc(var(--vehicle-height) * .54); }
