@@ -1,4 +1,4 @@
-/** Native built GameApp first-road sequences; fixture origins/bootstrap, no injected outcomes. */
+/** Native built GameApp road sequences; fixture V6 origins/bootstrap and prior combat outcomes. */
 import assert from 'node:assert/strict';
 import { writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -9,7 +9,7 @@ const arg = (name, fallback) => process.argv.find(x => x.startsWith(`--${name}=`
 const motion = arg('motion', 'normal'); assert.ok(['normal', 'os', 'game'].includes(motion));
 const port = Number(arg('port', '5286')), output = arg('output', 'tmp/traversal/road-1600-normal');
 const parameters = { motion, legs: arg('legs', 'T0,T1,T3').split(','), viewports: arg('viewports', '1440x810,620x780,390x844').split(','),
-  paths: arg('paths', 'contact-collect,miss-miss').split(','), scope: 'native real built first roads; V6 fixture origins/bootstrap; no earned campaign/full road acceptance' };
+  roads: arg('roads', 'first').split(','), paths: arg('paths', 'contact-collect,miss-miss').split(','), scope: 'native real built selected roads; V6 fixture origins/bootstrap/prior combat outcomes; no earned campaign/full road acceptance' };
 const requiredAssertions = ['edge-entry-frozen-anchor', 'contact-collected-retention-full-exit', 'rendered-ground-depth',
   'native-keyboard-responsive-motion', 'single-temporary-pickup-no-secured-write', 'physical-contact-after-reset'];
 const options = { runId: process.env.AUTONOMY_RUN_ID, jobId: process.env.DEMO_QA_JOB_ID, output,
@@ -36,10 +36,11 @@ try {
   await models.close(); models = null;
   server = await preview({ preview: { host: '127.0.0.1', port, strictPort: true } });
   browser = await chromium.launch({ headless: true });
-  for (const leg of parameters.legs) for (const dimensions of parameters.viewports) for (const path of parameters.paths) {
-    const [width, height] = dimensions.split('x').map(Number), target = leg === 'T0' ? 'route-1' : `${leg.toLowerCase()}-route-1`;
+  for (const leg of parameters.legs) for (const dimensions of parameters.viewports) for (const road of parameters.roads) for (const path of parameters.paths) {
+    const [width, height] = dimensions.split('x').map(Number), number = road === 'reset-visible' ? (leg === 'T0' ? 4 : 3) : 1;
+    const target = leg === 'T0' ? `route-${number}` : `${leg.toLowerCase()}-route-${number}`;
     const page = await browser.newPage({ viewport: { width, height }, reducedMotion: motion === 'os' ? 'reduce' : 'no-preference' });
-    const entry = { leg, dimensions, motion, path, target, samples: [], captures: [], keyboard: [] }; report.runs.push(entry);
+    const entry = { leg, dimensions, motion, path, road, target, samples: [], captures: [], keyboard: [], priorCombatFixtures: [] }; report.runs.push(entry);
     page.on('pageerror', e => report.errors.push(e.message)); page.on('console', m => { if (m.type() === 'error') report.errors.push(m.text()); });
     await page.route('**/assets/game-*.js', async route => {
       const response = await route.fetch(), source = await response.text();
@@ -63,13 +64,15 @@ try {
               lane: Number(e.dataset.riskLane ?? e.dataset.rewardLane), progress: Number(e.dataset.riskProgress ?? e.dataset.rewardProgress),
               hidden: e.hidden || e.parentElement.hidden, visibility: style.visibility, left: b.left, right: b.right, top: b.top, bottom: b.bottom,
               x: parseFloat(e.style.left), predictedLeft: Number(e.dataset.roadLeft), predictedRight: Number(e.dataset.roadRight),
-              ground: Number(e.dataset.screenGroundY), z: Number(style.zIndex), parentZ: getComputedStyle(e.parentElement).zIndex,
+              ground: Number(e.dataset.screenGroundY), renderedGround: parseFloat(style.top), z: Number(style.zIndex), parentZ: getComputedStyle(e.parentElement).zIndex,
               collected: e.dataset.collected === 'true', contact: e.dataset.contact === 'true', decoded: i.complete && i.naturalWidth > 0 };
           });
           window.__roadSamples.push({ time: performance.now(), width: innerWidth, height: innerHeight, distance: s.routeRenderer.distance,
-            progress: s.routeRun.progress01, elapsed: s.routeRun.elapsedMs, reset: s.routeRun.speedResetAtMs, lane: s.routeRun.lane,
+            progress: s.routeRun.progress01, elapsed: s.routeRun.elapsedMs, duration: s.routeSegment.durationMs,
+            reset: s.routeRun.speedResetAtMs, lane: s.routeRun.lane, visualSpeed: s.speed,
+            collisions: s.routeRisk.collisionCount, lastCollision: s.routeRisk.lastCollisionId,
             view: root.dataset.view, phase: s.session.phase, cover, vehicle: { left: v.left, right: v.right, top: v.top, bottom: v.bottom,
-              z: Number(getComputedStyle(vehicle).zIndex), ground: Number(vehicle.dataset.screenGroundY) }, marks,
+              z: Number(getComputedStyle(vehicle).zIndex), ground: Number(vehicle.dataset.screenGroundY), renderedGround: parseFloat(getComputedStyle(vehicle).top) }, marks,
             resolved: [...s.routeRisk.resolvedHazardIds], collectedIds: [...s.routeReward.collectedPickupIds],
             gold: app.state.gold, temporary: app.state.run.temporaryLoot.gold, game: app.state.settings.reducedGraphics,
             os: matchMedia('(prefers-reduced-motion: reduce)').matches });
@@ -82,9 +85,9 @@ try {
     else await page.locator('[data-action="continue"]').click();
     let lanesReady = false, switched = false, captured = new Set(), resized = false;
     const capture = async label => { if (captured.has(label)) return; captured.add(label);
-      const file = `${leg}-${width}-${motion}-${path}-${label}.png`; await page.screenshot({ path: `${output}/${file}` });
+      const file = `${leg}-${width}-${motion}-${road}-${path}-${label}.png`; await page.screenshot({ path: `${output}/${file}` });
       entry.captures.push(file); report.captures.push({ file, leg, width, motion, path, label }); };
-    const deadline = Date.now() + 90000;
+    const deadline = Date.now() + 180000;
     while (Date.now() < deadline) {
       const s = await page.evaluate(target => { const scene = window.__roadApp.activeTraversal, r = scene?.element;
         return { target: r?.dataset.routeSegment === target, view: r?.dataset.view, transition: r?.dataset.transition,
@@ -93,9 +96,19 @@ try {
           collected: scene?.routeReward.collectedPickupIds, sample: window.__roadSamples.at(-1) }; }, target);
       if (s.target && s.view === 'checkpoint') break;
       if (!s.target) {
-        for (const selector of ['.exploration-stop [data-action="continue"]:visible', '[data-journey-continue]:visible:not([disabled])',
+        for (const selector of ['[data-traversal-confirm]:visible:not([disabled])', '.exploration-stop [data-action="continue"]:visible', '[data-journey-continue]:visible:not([disabled])',
           '.dialogue .dialogue__choices button:visible:not([disabled])', '.dialogue .dialogue__box:visible', '.cinematic-overlay__skip:visible:not([disabled])']) {
           const c = page.locator(selector); if (await c.count()) await c.first().click(); }
+        const frame = page.frames().find(f => f.url().includes('legacy-combat'));
+        if (frame) { const combat = await frame.evaluate(() => {
+          if (window.__roadSent || !window.__BOOTED) return null;
+          const session = window.parent.__roadApp.combat.session; if (!session) return null;
+          window.__roadSent = true;
+          window.parent.postMessage({ type: 'rpg-threejs:combat-result', victory: true, combatId: session.config.id,
+            inventory: session.inventory, participants: session.preferredUnitIds,
+            unitHealth: Object.fromEntries(session.clan.map(u => [u.id, u.currentHealth])) }, location.origin);
+          return session.config.id;
+        }); if (combat) entry.priorCombatFixtures.push(combat); }
       } else if (s.view === 'route' && !s.transition) {
         assert.equal(s.hazards.length, 1, 'First-road fixture has one authored hazard'); assert.equal(s.pickups.length, 1);
         const hazard = s.hazards[0], pickup = s.pickups[0];
@@ -142,13 +155,25 @@ try {
       assert.ok(entered.filter(f => !f.m.hidden).every(f => f.m.decoded && f.m.visibility === 'visible' && f.m.parentZ === 'auto'));
       const crossing = frames.find(f => f.s.progress >= f.m.progress);
       assert.ok(crossing && !crossing.m.hidden, 'Resolution retains the mark');
-      if (path === 'contact-collect') assert.ok(crossing.m.right >= crossing.s.vehicle.left - 3 && crossing.m.left <= crossing.s.vehicle.right + 3, 'Canonical contact overlaps vehicle after reset');
-      assert.ok(entered.filter(f => !f.m.hidden).every(f => Math.sign(f.m.z - f.s.vehicle.z) === Math.sign(Math.round(f.m.ground * 10) - Math.round(f.s.vehicle.ground * 10))), 'Actual rendered depth');
+      assert.ok(Math.abs(crossing.s.elapsed - crossing.m.progress * crossing.s.duration) < 40, 'Authored crossing clock');
+      assert.ok(Math.abs(crossing.m.x - crossing.s.width * .25) < crossing.s.width * .012 + 3, 'Physical contact center matches authored clock');
+      assert.equal(crossing.s.lane, path === 'contact-collect' ? crossing.m.lane : 1 - crossing.m.lane);
+      if (crossing.m.family === 'rock') {
+        assert.equal(crossing.s.collisions, path === 'contact-collect' ? 1 : 0);
+        assert.equal(crossing.s.lastCollision, path === 'contact-collect' ? id : null);
+        if (path === 'contact-collect') assert.ok(Math.abs(crossing.s.reset - crossing.m.progress * crossing.s.duration) < 20);
+        else assert.equal(crossing.s.reset, -1);
+      }
+      assert.ok(entered.filter(f => !f.m.hidden).every(f => Math.abs(f.m.ground - f.m.renderedGround) < 1 && Math.abs(f.s.vehicle.ground - f.s.vehicle.renderedGround) < 10), 'Depth uses rendered ground');
+      assert.ok(entered.filter(f => !f.m.hidden && Math.abs(f.m.renderedGround - f.s.vehicle.renderedGround) > 10)
+        .every(f => Math.sign(f.m.z - f.s.vehicle.z) === Math.sign(f.m.renderedGround - f.s.vehicle.renderedGround)), 'Actual near/far ground ordering');
     }
     const first = driving[0], last = driving.at(-1), gold = driving.flatMap(s => s.marks).find(m => m.family === 'gold');
     assert.ok(driving.every(s => s.gold === first.gold), 'No secured currency change');
     assert.equal(last.temporary - first.temporary, path === 'contact-collect' ? 5 : 0);
     assert.equal(last.collectedIds.length, path === 'contact-collect' ? 1 : 0);
+    assert.ok(driving.every(s => new Set(s.resolved).size === s.resolved.length && new Set(s.collectedIds).size === s.collectedIds.length));
+    assert.ok(driving.every(s => s.temporary - first.temporary === 0 || s.temporary - first.temporary === (path === 'contact-collect' ? 5 : 0)), 'Single temporary award');
     assert.ok(driving.some(s => s.marks.some(m => m.id === gold.id && !m.hidden && m.collected === (path === 'contact-collect') && s.progress > m.progress + .05)));
     entry.summary = { frames: driving.length, resized, goldDelta: last.temporary - first.temporary, riskReset: last.reset, secureGold: last.gold };
     console.log(`${leg}/${dimensions}/${motion}/${path}: PASS ${driving.length} frames`); await page.close();

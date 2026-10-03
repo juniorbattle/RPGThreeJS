@@ -1,4 +1,4 @@
-import { TraversalRoadAnchors, roadVehicleHeight, setRoadGroundDepth } from './TraversalRoadAnchor';
+import { TraversalRoadAnchors, roadVehicleHeight, setRoadGroundDepth, type RoadContactAnchor } from './TraversalRoadAnchor';
 import type { TraversalRouteHazard, TraversalRouteRiskState } from './TraversalRouteRisk';
 import { resolveRouteRiskVisual } from './TraversalRouteRiskVisual';
 
@@ -57,6 +57,14 @@ export class TraversalRouteRiskRenderer {
   /** Reforecast future marks still beyond the viewport after momentum changes. */
   reforecastUnseen(_visualDistance: number, _viewportWidth: number): void {
     this.anchors.reforecastUnseen();
+  }
+
+  nextContact(hazards: readonly TraversalRouteHazard[], progress01: number): RoadContactAnchor | null {
+    const targets = hazards.flatMap(hazard => {
+      const distance = this.anchors.enteredDistance(hazard.id);
+      return hazard.progress01 > progress01 && distance !== null ? [{ progress01: hazard.progress01, distance }] : [];
+    });
+    return targets.sort((a, b) => a.progress01 - b.progress01)[0] ?? null;
   }
 
   clearImpact(): void {

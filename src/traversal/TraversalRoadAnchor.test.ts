@@ -1,10 +1,48 @@
 // @vitest-environment happy-dom
 import { describe, expect, it } from 'vitest';
-import { TraversalRoadAnchors, setRoadGroundDepth } from './TraversalRoadAnchor';
+import { anchoredRoadSpeed, TraversalRoadAnchors, setRoadGroundDepth } from './TraversalRoadAnchor';
+import { advanceRouteRun, createRouteRun, forecastRouteDistance, resetRouteSpeed } from './TraversalRouteRun';
 import { TraversalRouteRewardRenderer } from './TraversalRouteRewardRenderer';
 import { createRouteReward, resolveRouteReward } from './TraversalRouteReward';
 
 describe('physical road lifetime', () => {
+  it.each([16, 160, 1000])('aligns an already-visible pouch after collision without changing its clock (%sms frames)', frameMs => {
+    const segment = { id: 'authored-road', durationMs: 12000, vMin: 1.05, vMax: 2.45 };
+    const initial = createRouteRun(segment, 0, 1);
+    const target = { progress01: .5, distance: forecastRouteDistance(initial, segment, .5) };
+    let state = initial, distance = 0, firstRecoverySpeed = 0, beforeResetSpeed = 0;
+    while (state.progress01 < .5) {
+      const boundary = state.progress01 < .31 ? .31 : .5;
+      const previous = state;
+      const next = advanceRouteRun(previous, segment, Math.min(frameMs, boundary * segment.durationMs - previous.elapsedMs));
+      const speed = anchoredRoadSpeed(previous, next, segment, distance, target, 1);
+      expect(Number.isFinite(speed) && speed > 0).toBe(true);
+      expect(next).toEqual(advanceRouteRun(previous, segment, next.elapsedMs - previous.elapsedMs));
+      distance += speed * (next.elapsedMs - previous.elapsedMs) * .28;
+      if (previous.speedResetAtMs >= 0 && !firstRecoverySpeed) firstRecoverySpeed = speed;
+      state = next;
+      if (state.progress01 === .31 && state.speedResetAtMs < 0) {
+        beforeResetSpeed = speed;
+        // The future pouch has already entered at every accepted viewport.
+        expect((target.distance - distance) / 1463 + .25).toBeLessThan(1);
+        state = resetRouteSpeed(state, segment);
+      }
+    }
+    expect(distance).toBeCloseTo(target.distance, 6);
+    if (frameMs <= 160) expect(firstRecoverySpeed).toBeLessThan(beforeResetSpeed);
+    expect(state.elapsedMs).toBe(6000);
+    expect(state.speedResetAtMs).toBe(3720);
+  });
+
+  it('keeps invalid, elapsed and incompatible anchors from causing a camera jump or reversal', () => {
+    const segment = { id: 'road', durationMs: 10000, vMin: 1, vMax: 2 };
+    const previous = createRouteRun(segment, 0), next = advanceRouteRun(previous, segment, 16);
+    const baseline = anchoredRoadSpeed(previous, next, segment, 0, null, .4);
+    for (const target of [{ progress01: 0, distance: 20 }, { progress01: .5, distance: -1 },
+      { progress01: .5, distance: Infinity }, { progress01: .5, distance: 99999 }]) {
+      expect(anchoredRoadSpeed(previous, next, segment, 0, target, .4)).toBe(baseline);
+    }
+  });
   it('enters from the edge, freezes partial bounds through reforecast/resize, then exits completely', () => {
     const anchors = new TraversalRoadAnchors();
     let mark = anchors.update('rock', 0, 1463, 100, () => 1250);

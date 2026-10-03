@@ -1,4 +1,4 @@
-import { TraversalRoadAnchors, setRoadGroundDepth } from './TraversalRoadAnchor';
+import { TraversalRoadAnchors, setRoadGroundDepth, type RoadContactAnchor } from './TraversalRoadAnchor';
 import type { TraversalRoutePickup, TraversalRouteRewardState } from './TraversalRouteReward';
 
 const COLLECTION_MS = 450;
@@ -56,6 +56,14 @@ export class TraversalRouteRewardRenderer {
 
   reforecastUnseen(_visualDistance: number, _viewportWidth: number): void {
     this.anchors.reforecastUnseen();
+  }
+
+  nextContact(pickups: readonly TraversalRoutePickup[], progress01: number): RoadContactAnchor | null {
+    const targets = pickups.flatMap(pickup => {
+      const distance = this.anchors.enteredDistance(pickup.id);
+      return pickup.progress01 > progress01 && distance !== null ? [{ progress01: pickup.progress01, distance }] : [];
+    });
+    return targets.sort((a, b) => a.progress01 - b.progress01)[0] ?? null;
   }
 
   update(pickups: readonly TraversalRoutePickup[], state: TraversalRouteRewardState,

@@ -1,9 +1,9 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-03T16:01:38.0211127Z",
+  "runStartedAt": "2026-10-03T18:17:53.9658597+00:00",
   "runEndedAt": null,
   "activeTask": "TRAVERSAL-ROAD-ELEMENTS",
-  "activePhase": "Rock-family scoped production PASS; physical lifetime/depth/spacing pending",
+  "activePhase": "Inherited physical road anchors/depth implementation; fresh multi-leg production acceptance pending",
   "activeSubtask": "Shared Risk/Reward physical anchors, natural spawn/full-exit lifetime and ground-depth sorting",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "5abf0643255af171200aaa26601e93c5f67c5732",
@@ -195,9 +195,9 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
+  "runId": "rpgthreejs-auto-dev-90m-20261003T1815",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-03T09:59:16.122Z",
+  "lastHeartbeat": "2026-10-03T18:22:29.451Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0820",
     "sha": "f5623538264da5a1019cd69a5ba864e1e6a9eaaa",
@@ -213,10 +213,10 @@
     "lastGreenCheck": "137 Traversal tests; stable scoped production visual proof; types/build; 8contracts8slots; immutable/whitespace gates"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261003T1600",
+    "runId": "rpgthreejs-auto-dev-90m-20261003T1815",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-03T16:18:46.330Z",
-    "status": "CHECKPOINTED",
+    "lastHeartbeat": "2026-10-03T18:22:29.451Z",
+    "status": "IN_PROGRESS",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -318,7 +318,7 @@
         "schemaVersion": 1,
         "jobId": "1952-desktop",
         "runId": "rpgthreejs-auto-dev-90m-20261002T1952",
-        "status": "RUNNING",
+        "status": "ABORTED_HARNESS_DEFECT",
         "registeredAt": "2026-10-02T19:57:51.764Z",
         "pid": 50700,
         "port": 5258,
@@ -538,7 +538,7 @@
         "schemaVersion": 1,
         "jobId": "1952-trial",
         "runId": "rpgthreejs-auto-dev-90m-20261002T1952",
-        "status": "RUNNING",
+        "status": "ABORTED_HARNESS_DEFECT",
         "registeredAt": "2026-10-02T19:57:53.79Z",
         "pid": 54404,
         "port": 5261,
@@ -648,7 +648,7 @@
         "schemaVersion": 1,
         "jobId": "1952-intermediate",
         "runId": "rpgthreejs-auto-dev-90m-20261002T1952",
-        "status": "RUNNING",
+        "status": "ABORTED_HARNESS_DEFECT",
         "registeredAt": "2026-10-02T20:03:03.233Z",
         "pid": 25412,
         "port": 5260,
@@ -842,9 +842,9 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-02T20:23:26.064Z",
-        "endedAt": "2026-10-02T20:34:46.490Z",
+        "endedAt": "2026-10-02T20:34:46.49Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": false,
@@ -959,7 +959,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-02T20:25:43.258Z",
         "endedAt": "2026-10-02T20:57:00.318Z",
         "provenanceMatches": true,
@@ -1076,7 +1076,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-02T20:25:45.067Z",
         "endedAt": "2026-10-02T20:45:02.091Z",
         "provenanceMatches": true,
@@ -1326,7 +1326,7 @@
         "schemaVersion": 1,
         "jobId": "2122-grid-final",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "RUNNING",
+        "status": "ABORTED_HARNESS_DEFECT",
         "registeredAt": "2026-10-02T21:34:18.903Z",
         "pid": 42288,
         "port": 5264,
@@ -1461,7 +1461,7 @@
         "schemaVersion": 1,
         "jobId": "2122-trial-final",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "RUNNING",
+        "status": "ABORTED_SOURCE_CORRECTION",
         "registeredAt": "2026-10-02T21:35:24.027Z",
         "pid": 48956,
         "port": 5265,
@@ -1553,7 +1553,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T21:35:25.150Z",
+        "startedAt": "2026-10-02T21:35:25.15Z",
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
@@ -1674,7 +1674,7 @@
         "schemaVersion": 1,
         "jobId": "2122-grid-bounded",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "RUNNING",
+        "status": "ABORTED_HARNESS_COST",
         "registeredAt": "2026-10-02T21:40:25.115Z",
         "pid": 26404,
         "port": 5264,
@@ -1809,7 +1809,7 @@
         "schemaVersion": 1,
         "jobId": "2122-grid-sampled",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "RUNNING",
+        "status": "ABORTED_SOURCE_CORRECTION",
         "registeredAt": "2026-10-02T21:47:08.793Z",
         "pid": 46904,
         "port": 5264,
@@ -1937,7 +1937,7 @@
         "schemaVersion": 1,
         "jobId": "2122-grid-fixed",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "RUNNING",
+        "status": "ABORTED_SOURCE_CORRECTION",
         "registeredAt": "2026-10-02T21:57:42.013Z",
         "pid": 19668,
         "port": 5264,
@@ -2052,7 +2052,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T21:57:42.750Z",
+        "startedAt": "2026-10-02T21:57:42.75Z",
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
@@ -2065,7 +2065,7 @@
         "schemaVersion": 1,
         "jobId": "2122-intermediate-fixed",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "RUNNING",
+        "status": "ABORTED_SOURCE_CORRECTION",
         "registeredAt": "2026-10-02T21:59:10.912Z",
         "pid": 58780,
         "port": 5266,
@@ -2170,7 +2170,7 @@
         "schemaVersion": 1,
         "jobId": "2122-trial-conserve",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "RUNNING",
+        "status": "ABORTED_SOURCE_CORRECTION",
         "registeredAt": "2026-10-02T21:59:25.788Z",
         "pid": 4192,
         "port": 5265,
@@ -2495,14 +2495,14 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-02T22:13:42.318Z",
         "endedAt": "2026-10-02T22:31:47.778Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
-        "eligibleForReview": false,
+        "eligibleForReview": true,
         "exitCode": 0,
         "resultPath": "tmp/demo/2122-grid-final-wheel/results.json",
         "resultSha256": "4e95082353997a37f7d8cb2bbdf7bd1c9f9b74df193d72dd647f2ad17e8dd0b4",
@@ -2608,7 +2608,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-02T22:13:56.941Z",
         "endedAt": "2026-10-02T22:14:33.067Z",
         "exitCode": 0,
@@ -2617,9 +2617,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
-        "eligibleForReview": false,
+        "eligibleForReview": true,
         "eligibleForReviewAtReview": true,
         "acceptedScope": "Native card scroll4cases,refocused toggle visibility;focusRetentionAccepted=false;campaignAcceptance=false",
         "contractsReview": "Scoped source/proof independently reviewed",
@@ -2728,7 +2728,7 @@
         "endedAt": "2026-10-02T22:31:30.216Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "exitCode": 1,
@@ -2838,7 +2838,7 @@
         "endedAt": "2026-10-02T22:31:54.521Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "exitCode": 1,
@@ -3100,7 +3100,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-02T23:01:08.332Z",
         "endedAt": "2026-10-02T23:04:09.345Z",
         "provenanceMatches": true,
@@ -3219,7 +3219,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T23:01:40.220Z",
+        "startedAt": "2026-10-02T23:01:40.22Z",
         "endedAt": "2026-10-02T23:09:17.242Z",
         "provenanceMatches": true,
         "requestMatches": true,
@@ -3244,7 +3244,7 @@
         "schemaVersion": 1,
         "jobId": "2252-trial-native-skills",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
-        "status": "RUNNING",
+        "status": "ABORTED_PILOT_POLICY_DEFECT",
         "registeredAt": "2026-10-02T23:10:28.062Z",
         "pid": 25540,
         "port": 5270,
@@ -3577,7 +3577,7 @@
         "resultPath": "tmp/demo/0228-trial-support/results.json",
         "resultSha256": "51ab857632fa6692bea752b7c5cd7a4b46e0ad3119ce59f86569f5a242d5e1b5",
         "provenanceStable": true,
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED",
         "ownerReview": {
           "at": "2026-10-03T03:11:10.5631806Z",
           "reviewer": "contracts-guardian",
@@ -3690,12 +3690,12 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "FAILED_NOT_ACCEPTED",
         "startedAt": "2026-10-03T03:12:10.577Z",
         "endedAt": "2026-10-03T03:24:09.072Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "exitCode": 1,
@@ -3813,14 +3813,14 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-03T03:58:19.322Z",
         "endedAt": "2026-10-03T04:12:44.910Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
-        "eligibleForReview": false,
+        "eligibleForReview": true,
         "exitCode": 0,
         "resultPath": "tmp/demo/0350-recovery-crosier/results.json",
         "resultSha256": "78e51a9e707cda929bc36fd658ab578ebc0ec0982e1846e0cf8d0ce9717b9600",
@@ -3936,14 +3936,14 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-03T04:14:54.197Z",
         "endedAt": "2026-10-03T04:24:29.368Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
-        "eligibleForReview": false,
+        "eligibleForReview": true,
         "exitCode": 0,
         "resultPath": "tmp/demo/0350-recovery-mobile-os/results.json",
         "resultSha256": "c4bf812331b219612c40ac8b3246f1d204d78085d067a749b6dd245fe1c5f208",
@@ -4356,7 +4356,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
         "startedAt": "2026-10-03T08:43:58.217Z",
         "endedAt": "2026-10-03T08:56:28.373Z",
         "exitCode": 0,
@@ -4365,9 +4365,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
-        "eligibleForReview": false,
+        "eligibleForReview": true,
         "acceptanceAtReview": {
           "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
           "recordedAt": "2026-10-03T09:11:28.360Z",
@@ -4458,7 +4458,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
         "startedAt": "2026-10-03T08:43:58.615Z",
         "endedAt": "2026-10-03T08:55:54.967Z",
         "exitCode": 0,
@@ -4467,9 +4467,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
-        "eligibleForReview": false,
+        "eligibleForReview": true,
         "acceptanceAtReview": {
           "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
           "recordedAt": "2026-10-03T09:11:28.360Z",
@@ -4562,7 +4562,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
         "startedAt": "2026-10-03T08:47:06.479Z",
         "endedAt": "2026-10-03T08:48:45.202Z",
         "exitCode": 0,
@@ -4571,9 +4571,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
-        "eligibleForReview": false,
+        "eligibleForReview": true,
         "acceptanceAtReview": {
           "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
           "recordedAt": "2026-10-03T09:11:28.360Z",
@@ -4587,7 +4587,7 @@
         "schemaVersion": 1,
         "jobId": "motion-1002-normal",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
-        "status": "RUNNING",
+        "status": "ABORTED_SOURCE_CORRECTION",
         "registeredAt": "2026-10-03T10:17:22.807Z",
         "pid": 13260,
         "port": 5280,
@@ -4680,25 +4680,20 @@
           "tools/traversal-motion-production-qa.mjs"
         ],
         "reason": "Independent review found rejected-fork retry edge case; owned workers stopped before correction",
-        "endedAt": null,
+        "endedAt": "2026-10-03T10:20:31.111Z",
         "executionCommand": [
           "node",
           "tools/traversal-motion-production-qa.mjs",
           "--motion=normal",
           "--port=5280",
           "--output=tmp/traversal/motion-1002-normal"
-        ],
-        "provenanceMatches": true,
-        "requestMatches": true,
-        "matchesCurrentExecution": false,
-        "resultDigestMatches": false,
-        "eligibleForReview": false
+        ]
       },
       {
         "schemaVersion": 1,
         "jobId": "motion-1002-os",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
-        "status": "RUNNING",
+        "status": "ABORTED_SOURCE_CORRECTION",
         "registeredAt": "2026-10-03T10:17:23.540Z",
         "pid": 47316,
         "port": 5281,
@@ -4791,19 +4786,14 @@
           "tools/traversal-motion-production-qa.mjs"
         ],
         "reason": "Independent review found rejected-fork retry edge case; owned workers stopped before correction",
-        "endedAt": null,
+        "endedAt": "2026-10-03T10:20:31.112Z",
         "executionCommand": [
           "node",
           "tools/traversal-motion-production-qa.mjs",
           "--motion=os",
           "--port=5281",
           "--output=tmp/traversal/motion-1002-os"
-        ],
-        "provenanceMatches": true,
-        "requestMatches": true,
-        "matchesCurrentExecution": false,
-        "resultDigestMatches": false,
-        "eligibleForReview": false
+        ]
       },
       {
         "schemaVersion": 1,
@@ -4909,12 +4899,7 @@
         "resultPath": "tmp/traversal/motion-1002-v2-normal/results.json",
         "resultSha256": "0ad0676a7824d3dc501b2235669a93462c2ab6535a77c358f50ff2bdc483c3de",
         "provenanceStable": true,
-        "reason": "Inherited 32px checkpoint action found by fresh 620px native QA; two desktop scenarios passed but job failed",
-        "provenanceMatches": true,
-        "requestMatches": true,
-        "matchesCurrentExecution": false,
-        "resultDigestMatches": true,
-        "eligibleForReview": false
+        "reason": "Inherited 32px checkpoint action found by fresh 620px native QA; two desktop scenarios passed but job failed"
       },
       {
         "schemaVersion": 1,
@@ -5020,12 +5005,7 @@
         "resultPath": "tmp/traversal/motion-1002-v2-os/results.json",
         "resultSha256": "04d4535aa19415a69e899fffa35d5828ddd77592e16fd981f5dea88b4b9c2ecb",
         "provenanceStable": true,
-        "reason": "Inherited 32px checkpoint action found by fresh 620px native QA; two desktop scenarios passed but job failed",
-        "provenanceMatches": true,
-        "requestMatches": true,
-        "matchesCurrentExecution": false,
-        "resultDigestMatches": true,
-        "eligibleForReview": false
+        "reason": "Inherited 32px checkpoint action found by fresh 620px native QA; two desktop scenarios passed but job failed"
       },
       {
         "schemaVersion": 1,
@@ -5124,12 +5104,7 @@
         "resultPath": "tmp/traversal/motion-1002-probe/results.json",
         "resultSha256": "5c47fd44d30e02309af98db0798c966d8b32183eb0f8ccb417641b0c1e9511fb",
         "provenanceStable": true,
-        "reason": "Succeeded on prior build; CSS correction now requires matching proof",
-        "provenanceMatches": true,
-        "requestMatches": true,
-        "matchesCurrentExecution": false,
-        "resultDigestMatches": true,
-        "eligibleForReview": false
+        "reason": "Succeeded on prior build; CSS correction now requires matching proof"
       },
       {
         "schemaVersion": 1,
@@ -5221,7 +5196,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
         "startedAt": "2026-10-03T10:31:09.835Z",
         "endedAt": "2026-10-03T10:48:29.654Z",
         "exitCode": 0,
@@ -5289,8 +5264,7 @@
           "scope": "SCOPED_PRESENTATION:27native-clock event-branch journeys;V6origins/combat outcomes fixtures;not earned campaign,tactical,battlefield keyboard,demo",
           "review": "Root and reused contracts-guardian/traversal-engineer;game terminal reviewed",
           "executionIdentityNote": "Original receipt Git representation retained. Postcommit all15rawsource/driver/deferred files and9build hashes verified exact; unwired candidate created only after final QA worker exit."
-        },
-        "provenanceMatches": true
+        }
       },
       {
         "schemaVersion": 1,
@@ -5382,7 +5356,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
         "startedAt": "2026-10-03T10:31:08.195Z",
         "endedAt": "2026-10-03T10:47:24.702Z",
         "exitCode": 0,
@@ -5450,8 +5424,7 @@
           "scope": "SCOPED_PRESENTATION:27native-clock event-branch journeys;V6origins/combat outcomes fixtures;not earned campaign,tactical,battlefield keyboard,demo",
           "review": "Root and reused contracts-guardian/traversal-engineer;game terminal reviewed",
           "executionIdentityNote": "Original receipt Git representation retained. Postcommit all15rawsource/driver/deferred files and9build hashes verified exact; unwired candidate created only after final QA worker exit."
-        },
-        "provenanceMatches": true
+        }
       },
       {
         "schemaVersion": 1,
@@ -5536,7 +5509,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
         "startedAt": "2026-10-03T10:31:10.139Z",
         "endedAt": "2026-10-03T10:32:30.399Z",
         "exitCode": 0,
@@ -5604,8 +5577,7 @@
           "scope": "SCOPED_PRESENTATION:27native-clock event-branch journeys;V6origins/combat outcomes fixtures;not earned campaign,tactical,battlefield keyboard,demo",
           "review": "Root and reused contracts-guardian/traversal-engineer;game terminal reviewed",
           "executionIdentityNote": "Original receipt Git representation retained. Postcommit all15rawsource/driver/deferred files and9build hashes verified exact; unwired candidate created only after final QA worker exit."
-        },
-        "provenanceMatches": true
+        }
       },
       {
         "schemaVersion": 1,
@@ -5697,7 +5669,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
         "startedAt": "2026-10-03T13:09:51.788Z",
         "endedAt": "2026-10-03T13:26:19.775Z",
         "exitCode": 0,
@@ -5765,8 +5737,7 @@
           "scope": "SCOPED_PRESENTATION:27native-clock event-branch journeys;V6origins/combat outcomes fixtures;not earned campaign,tactical,battlefield keyboard,demo",
           "review": "Root and reused contracts-guardian/traversal-engineer;game terminal reviewed",
           "executionIdentityNote": "Original receipt Git representation retained. Postcommit all15rawsource/driver/deferred files and9build hashes verified exact; unwired candidate created only after final QA worker exit."
-        },
-        "provenanceMatches": true
+        }
       },
       {
         "schemaVersion": 1,
@@ -6377,7 +6348,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_ISOLATED_CANDIDATE",
         "startedAt": "2026-10-03T14:50:46.609Z",
         "endedAt": "2026-10-03T14:52:18.732Z",
         "exitCode": 0,
@@ -6386,9 +6357,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
-        "eligibleForReview": false,
+        "eligibleForReview": true,
         "acceptanceAtReview": {
           "reviewedAt": "2026-10-03T14:57:52.770Z",
           "checksPath": "docs/reports/traversal-pursuit-charge-candidate-1-browser/checks.json",
@@ -6483,7 +6454,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_ROCK_FAMILY",
         "startedAt": "2026-10-03T15:05:45.873Z",
         "endedAt": "2026-10-03T15:08:07.832Z",
         "exitCode": 0,
@@ -6492,9 +6463,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": false,
+        "matchesCurrentExecution": true,
         "resultDigestMatches": true,
-        "eligibleForReview": false,
+        "eligibleForReview": true,
         "acceptanceAtReview": {
           "reviewedAt": "2026-10-03T15:12:58.371Z",
           "checksPath": "docs/reports/traversal-rock-family-1-browser/checks.json",
@@ -6599,18 +6570,116 @@
         "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "road-1815-reset-probe",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T1815",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-03T18:30:12.887Z",
+        "pid": null,
+        "port": 5287,
+        "command": [
+          "node",
+          "tools/traversal-road-elements-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "normal",
+          "legs": [
+            "T1"
+          ],
+          "viewports": [
+            "1440x810"
+          ],
+          "roads": [
+            "reset-visible"
+          ],
+          "paths": [
+            "contact-collect"
+          ],
+          "scope": "native real built selected roads; V6 fixture origins/bootstrap/prior combat outcomes; no earned campaign/full road acceptance"
+        },
+        "requiredAssertions": [
+          "edge-entry-frozen-anchor",
+          "contact-collected-retention-full-exit",
+          "rendered-ground-depth",
+          "native-keyboard-responsive-motion",
+          "single-temporary-pickup-no-secured-write",
+          "physical-contact-after-reset"
+        ],
+        "output": "tmp/traversal/road-1815-reset-probe",
+        "receiptPath": "tmp/traversal/road-1815-reset-probe/qa-job.json",
+        "provenance": {
+          "gitHead": "8dccef3d13491d2c50db76fb6a60895d128e06ae",
+          "sourceTree": "445289e4edde31859db1faf82bc2a7971446174c",
+          "sourceDiffSha256": "4f0d5f05db33e3f0e4c1eec9ae2d81ba42c1f56267a821ae830d9b2df474fea1",
+          "driver": {
+            "path": "tools/traversal-road-elements-production-qa.mjs",
+            "sha256": "d64951da06a296af2a144e73e5dc1fdce9299935a79762a3c64df7555b2044f4"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-Bz5YPBaj.css",
+              "sha256": "166982bdaf8520940633135b75150707bb9c6be29c230ff82b368c70eb81bcf3"
+            },
+            {
+              "path": "dist/assets/game-DePkwuyB.js",
+              "sha256": "2520e6959c25c571b79a1c11439d6b5e3fe4b930badec2fa198c1127cb7e9a6f"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "db05548765c6f33232a33b834cd1753cca0687fb5d6b226eee1cc7b155971f2a"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261003T1600",
-      "sha": "81ed1ff5b8f791c49b5ec43a368640650eadf0bb",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261003T1815",
+      "sha": "fe6e84c05390800bc72fd17c3fef52d382f76b5f",
       "dirtyFiles": [
         "legacy-combat.html",
         "src/combat/combatKeyboard.test.ts",
         "src/combat/combatKeyboard.ts",
         "src/combat/legacyCombatRuntime.js",
         "src/styles/combat-shell.css",
-        "tools/combat-battlefield-keyboard-production-qa.mjs"
+        "tools/combat-battlefield-keyboard-production-qa.mjs",
+        "src/traversal/TraversalRoadAnchor.ts",
+        "src/traversal/TraversalRoadAnchor.test.ts",
+        "src/traversal/TraversalRouteRiskRenderer.ts",
+        "src/traversal/TraversalRouteRewardRenderer.ts",
+        "src/traversal/TraversalRouteRisk.test.ts",
+        "src/traversal/TraversalRouteReward.test.ts",
+        "src/traversal/TraversalRoadScene.ts",
+        "src/styles/traversal.css",
+        "tools/traversal-road-elements-production-qa.mjs"
       ],
       "status": "UNKNOWN"
     },
@@ -6636,24 +6705,11 @@
     ]
   },
   "previousInterruptedRun": {
-    "runId": "rpgthreejs-auto-dev-90m-20261002T1453",
-    "runStartedAt": "2026-10-02T14:54:51.7122401Z",
-    "lastHeartbeat": "2026-10-02T15:04:44.2021044Z",
-    "terminalEvent": "usage_limit_exceeded",
-    "turnEndedAt": "2026-10-02T15:06:12.264Z",
-    "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
-    "activeSubtask": "Native earned defeat recovery QA",
-    "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261002T1453",
-      "sha": "1e5eab375595f5eec1ade3c8af6717e2cec72ae8",
-      "dirtyFiles": [
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "tools/demo-continuous-production-qa.mjs"
-      ],
-      "status": "GREEN",
-      "lastGreenCheck": "48 owner tests/types/build/8contracts/syntax PASS; browser runs pending"
-    }
+    "runId": "rpgthreejs-auto-dev-90m-20261003T1600",
+    "terminal": "usage limit",
+    "heartbeat": "2026-10-03T16:18:46.330Z",
+    "qaJob": "road-1600-probe SUCCEEDED/NOT_ACCEPTED",
+    "takeoverChecks": "Heartbeat >105 minutes, idle failed owning chat, PID61456 dead, no associated Git/build/QA; unrelated dev service preserved"
   },
   "autonomousExecutionPolicy": {
     "decisionSource": "docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-02.md",

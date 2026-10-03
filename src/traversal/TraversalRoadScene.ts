@@ -1,4 +1,4 @@
-import { setRoadGroundDepth } from './TraversalRoadAnchor';
+import { anchoredRoadSpeed, setRoadGroundDepth } from './TraversalRoadAnchor';
 import type { LionTraversalLeg } from '../campaign/LionCampaignTravelRelations';
 import type { GameState, RunNode } from '../game/types';
 import type { CampaignStatusHud } from '../ui/CampaignStatusHud';
@@ -594,8 +594,12 @@ export class TraversalRoadScene {
     if (this.routeRun === previous) return;
     const restart = this.routeLaunchSpeed === null
       ? transitionEase(this.routeRun.elapsedMs / (TRAVERSAL_RHYTHM.restart * 1000)) : 1;
-    this.routeRenderer.advance(this.routeRun.elapsedMs - previous.elapsedMs,
-      (previous.speed + this.routeRun.speed) / 2 * restart);
+    const contact = [this.riskRenderer?.nextContact(this.authoring.hazards(this.routeSegment.id), previous.progress01),
+      this.rewardRenderer?.nextContact(this.authoring.pickups(this.routeSegment.id), previous.progress01)]
+      .filter(target => target != null).sort((a, b) => a!.progress01 - b!.progress01)[0] ?? null;
+    const presentedSpeed = anchoredRoadSpeed(previous, this.routeRun, this.routeSegment,
+      this.routeRenderer.distance, contact, restart);
+    this.routeRenderer.advance(this.routeRun.elapsedMs - previous.elapsedMs, presentedSpeed);
     const activeDriving = !this.routeRun.complete && !this.departure
       && !document.body.classList.contains('scene-transition--locked');
     if (this.rewardEnabled) {
@@ -651,7 +655,7 @@ export class TraversalRoadScene {
         }
       }
     }
-    this.speed = this.routeRun.speed * restart;
+    this.speed = presentedSpeed;
     this.element.dataset.motion = this.routeRun.progress01 > .8 ? 'rushing' : 'cruising';
     this.element.style.setProperty('--route-rush-opacity', String(Math.max(0, (this.routeRun.progress01 - .55) * 1.2)));
     const { start, end } = traversalRouteProgressBounds(this.route, this.routeIndex);
