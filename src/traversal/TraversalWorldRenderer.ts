@@ -73,6 +73,15 @@ export class TraversalWorldRenderer {
     const painting = document.createElement('div');
     painting.className = 'traversal-world-section__painting';
     painting.append(image);
+    // Keep the same native ground pixels/scale under each authored checkpoint backdrop.
+    // Upper scenery retains its event identity; road geometry never follows its palette.
+    const ground = document.createElement('img');
+    ground.className = 'traversal-world-section__ground';
+    ground.src = this.world.forestAsset;
+    ground.alt = '';
+    ground.draggable = false;
+    if (definition.mirror) ground.style.transform = 'scaleX(-1)';
+    painting.append(ground);
     terrain.append(margins[0]!, painting, margins[1]!);
     element.append(terrain);
     for (const prop of definition.props ?? []) {

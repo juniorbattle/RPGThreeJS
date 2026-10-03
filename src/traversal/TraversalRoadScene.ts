@@ -9,7 +9,8 @@ import { TraversalWorldRenderer } from './TraversalWorldRenderer';
 import { buildTraversalCaravan, caravanWheelAngle, TRAVERSAL_CARAVAN } from './TraversalCaravan';
 import { setTraversalDepth, TraversalForegroundRenderer } from './TraversalDepth';
 import type { TraversalRoadAuthoring } from './TraversalRoadAuthoring';
-import { resolveCharacterVisualProfile, resolveCharacterAsset } from '../render/CharacterVisualRegistry';
+import { resolveCharacterVisualProfile } from '../render/CharacterVisualRegistry';
+import { resolveTraversalWorldSubject } from './TraversalWorldSubject';
 import type { TraversalRouteBeat, TraversalRoute } from './TraversalRouteModel';
 import { TraversalRunController } from './TraversalRunController';
 import { TRAVERSAL_RHYTHM, transitionEase } from './TraversalTransition';
@@ -377,13 +378,15 @@ export class TraversalRoadScene {
     entity.dataset.category = beat.category;
     entity.dataset.placement = beat.placement.toLowerCase();
     entity.dataset.interactionPolicy = beat.interactionPolicy;
-    if (beat.formation) entity.dataset.formation = 'true';
+    const subject = resolveTraversalWorldSubject(beat, this.options.getState());
+    entity.dataset.worldSubject = subject?.kind ?? 'none';
     const location = this.authoring.world.checkpointSections.find(section => section.id === beat.locationId);
     if (location) entity.dataset.location = location.id;
     if (location?.kind === 'ENVIRONMENT' && beat.lane === 0) entity.dataset.roadside = 'true';
     if (beat.lane !== null) entity.dataset.routeLane = String(beat.lane);
     entity.setAttribute('aria-label', `${markerLabel(beat)} : ${beat.label}, ${beatPlacementLabel(beat)}`);
-    const family = resolveCharacterVisualProfile(beat.characterId ?? beat.visualAsset)?.scaleFamily;
+    const family = subject?.kind === 'external'
+      ? resolveCharacterVisualProfile(beat.characterId ?? beat.visualAsset)?.scaleFamily : undefined;
     entity.dataset.scale = family === 'SMALL_CREATURE' ? 'creature' : family === 'LARGE_ELITE_BOSS' ? 'elite'
       : family ? 'human' : beat.type;
     const marker = document.createElement('span');
@@ -394,23 +397,20 @@ export class TraversalRoadScene {
     if (beat.type === 'fork') {
       // Its sign belongs to the persistent junction; only the interaction marker is a beat.
       body.classList.add('traversal-entity__body--location');
-    } else if (beat.visualAsset) {
-      const image = createTraversalSprite(beat.visualAsset, 'traversal-entity__subject', beat.mirrorX);
-      image.dataset.facing = 'left';
-      image.classList.toggle('is-mirrored', Boolean(beat.mirrorX));
+    } else if (subject?.kind === 'shadow') {
+      const image = document.createElement('img');
+      image.className = 'traversal-entity__shadow';
+      image.src = subject.asset;
+      image.alt = '';
+      image.draggable = false;
       body.append(image);
-      for (const [index, characterId] of (beat.formation?.slice(1) ?? []).entries()) {
-        const asset = resolveCharacterAsset(characterId, 'full');
-        if (!asset) throw new Error(`Missing canonical formation sprite: ${characterId}`);
-        const companion = createTraversalSprite(asset, 'traversal-formation-member', true);
-        companion.style.setProperty('--formation-index', String(index));
-        body.append(companion);
-      }
+    } else if (subject) {
+      const image = createTraversalSprite(subject.asset, 'traversal-entity__subject', subject.mirror);
+      image.dataset.facing = 'left';
+      image.classList.toggle('is-mirrored', subject.mirror);
+      body.append(image);
     } else {
-      const prop = document.createElement('i');
-      prop.className = `traversal-entity__prop traversal-entity__prop--${beat.type}`;
-      prop.setAttribute('aria-hidden', 'true');
-      body.append(prop);
+      body.classList.add('traversal-entity__body--location');
     }
     const label = document.createElement('strong');
     label.textContent = beat.label;

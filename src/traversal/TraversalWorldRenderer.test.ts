@@ -27,5 +27,11 @@ describe('TraversalWorldRenderer authored inputs', () => {
       .toBe('/other/checkpoint.png');
     expect(renderer.routeElement.querySelector('img')?.getAttribute('src')).toBe('/other/forest.png');
     expect(renderer.element.querySelector('[data-location-prop="other-sign"]')?.textContent).toContain('Route A');
+    // Authored upper scenery remains; road pixels and perspective share the supplied forest.
+    for (const container of [renderer.element, renderer.routeElement]) {
+      for (const painting of container.querySelectorAll('.traversal-world-section__painting')) {
+        expect(painting.querySelector('.traversal-world-section__ground')?.getAttribute('src')).toBe('/other/forest.png');
+      }
+    }
   });
 });
