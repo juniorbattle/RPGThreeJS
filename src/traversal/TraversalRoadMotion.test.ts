@@ -6,6 +6,8 @@ import { getAvailableRunNodes } from '../game/runSystem';
 import { TraversalT0Scene } from './TraversalT0Scene';
 import type { TraversalRouteRunState } from './TraversalRouteRun';
 import type { TraversalRunSession } from './TraversalRunRuntime';
+import { TraversalRoadScene } from './TraversalRoadScene';
+import { T0_ROAD_AUTHORING } from './TraversalT0Authoring';
 
 afterEach(() => { document.body.replaceChildren(); vi.restoreAllMocks(); });
 
@@ -77,8 +79,11 @@ it('waits for actual trailing-edge exit after resize, then hands off once and st
   const vehicle = scene.element.querySelector<HTMLElement>('.traversal-vehicle')!;
   let left = 800;
   vi.spyOn(vehicle, 'getBoundingClientRect').mockImplementation(() => ({ left, width: 200 } as DOMRect));
-  vi.spyOn(scene.element, 'getBoundingClientRect').mockReturnValue({ right: 1440 } as DOMRect);
+  let viewportRight = 1024;
+  vi.spyOn(scene.element, 'getBoundingClientRect').mockImplementation(() => ({ right: viewportRight } as DOMRect));
   motion.advanceArrival(3); expect(arrival).not.toHaveBeenCalled(); expect(motion.speed).toBe(2);
+  left = 1200; viewportRight = 1440;
+  motion.advanceArrival(.1); expect(arrival).not.toHaveBeenCalled();
   left = 2000;
   motion.advanceArrival(.1); expect(arrival).not.toHaveBeenCalled();
   motion.advanceArrival(.5); expect(arrival).toHaveBeenCalledExactlyOnceWith('lion-first-refuge');
@@ -86,6 +91,27 @@ it('waits for actual trailing-edge exit after resize, then hands off once and st
   expect(state).toEqual(before);
   motion.arrivalRequested = true; scene.dispose(); motion.advanceArrival(20);
   expect(arrival).toHaveBeenCalledOnce();
+});
+
+it('ends a rejected fork departure without repeating the canonical selection', async () => {
+  vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
+  vi.spyOn(window, 'cancelAnimationFrame').mockImplementation(() => undefined);
+  vi.spyOn(HTMLImageElement.prototype, 'decode').mockResolvedValue();
+  const state = createInitialState(), selectBranch = vi.fn(() => false);
+  const leg = LION_TRAVERSAL_LEGS.find(leg => leg.id === 'T0')!;
+  const scene = new TraversalRoadScene({ root: document.body, leg, getState: () => state,
+    getAvailableNodes: () => getAvailableRunNodes(state), onNodeHandoff: vi.fn(), onArrival: vi.fn(), onMenu: vi.fn() },
+    T0_ROAD_AUTHORING, { selectBranch, optionalDecision: () => undefined });
+  const motion = scene as unknown as { viewMode: string; advance(n: number): void; advanceTransition(n: number): void;
+    departure: unknown; controller: { options: { onBranchSelect(id: string): Promise<boolean> } } };
+  scene.open(); motion.viewMode = 'CHECKPOINT';
+  const before = structuredClone(state);
+  const accepted = motion.controller.options.onBranchSelect('lion-first-trial-event');
+  motion.advance(.28); motion.advanceTransition(.5);
+  expect(await accepted).toBe(false); expect(motion.departure).toBeNull();
+  motion.advanceTransition(2); motion.advance(1); motion.advanceTransition(2);
+  expect(selectBranch).toHaveBeenCalledOnce(); expect(state).toEqual(before);
+  expect(scene.element.dataset.departure).toBeUndefined(); scene.dispose();
 });
 
 it.each(['os', 'game'])('covers the equivalent exit gently for %s reduction without visible large displacement', source => {

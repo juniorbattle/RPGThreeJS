@@ -59,6 +59,17 @@ export class TraversalForkOverlay {
     return this.committed;
   }
 
+  cancelSelection(): void {
+    if (this.disposed) return;
+    this.committed = false;
+    this.element.classList.remove('traversal-fork-overlay--committed');
+    for (const button of this.element.querySelectorAll<HTMLButtonElement>('button')) {
+      button.disabled = false;
+      button.classList.remove('is-selected');
+    }
+    this.rail.querySelector<HTMLButtonElement>('button')?.focus({ preventScroll: true });
+  }
+
   mount(): void {
     this.root.append(this.element);
     this.rail.querySelector<HTMLButtonElement>('button:not([disabled])')?.focus();

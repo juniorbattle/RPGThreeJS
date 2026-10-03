@@ -1,70 +1,18 @@
 # Autonomous work state
 
-OD-2026-10-03-A has priority. Contract set1.1.0 immutable d7ca28a; demo incomplete.
+OD-2026-10-03-A priority; set1.1.0 immutable d7ca28a; demo incomplete.
 
-| Field | Value |
-| --- | --- |
-| status | IN_PROGRESS |
-| runStartedAt | 2026-10-03T10:04:53.034883Z |
-| runEndedAt |  |
-| activeTask | TRAVERSAL-MOTION-POLISH |
-| activePhase | Implement continuous checkpoint departure and geometry-gated final exit |
-| activeSubtask | Presentation-only motion; preserve route clocks and existing canonical callbacks |
-| workingBranch | dev |
-| lastKnownGoodCommit | fa4dac612dd8b883759794a837c7d9eed9aa73cc |
-| lastPushedCommit | bdaca0dd934738b6eb593899ffe0333ad9c312ec |
-| creditStatus | AVAILABLE; no credit-saving claim |
-| contractComplianceStatus | Scoped visual presentation and repository governance PASS; set1.1.0 immutable. Motion/Pursuit/road and remaining demo acceptance open. |
+Status: IN_PROGRESS. Active task: TRAVERSAL-MOTION-POLISH.
+Run: rpgthreejs-auto-dev-90m-20261003T1300; started 2026-10-03T13:04:04.9263411Z.
+Phase: Review inherited frozen motion proof; complete game-setting-only production motion.
+Heartbeat: 2026-10-03T13:09:01.353Z. Local snapshot 71cee26253ceb27de644f98ec0c66c941e9108a0.
+Last pushed dev:21398e4b02f92908a5378403e612b660006f336e.
 
-## Live run
-
-```json
-{
-  "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
-  "agent": "codex",
-  "lastHeartbeat": "2026-10-03T10:08:18.492Z",
-  "status": "RUNNING",
-  "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261003T1002",
-    "sha": "46c12d7b815276b36732aa67f8554dba6346a7c6",
-    "publication": "BLOCKED_AUTO_REVIEW",
-    "remoteFallback": "wip/rpgthreejs-auto-dev-90m-20261003T0820",
-    "status": "LOCAL_PRESERVED_REMOTE_PUBLICATION_BLOCKED",
-    "dirtyFiles": [
-      "legacy-combat.html",
-      "src/combat/combatKeyboard.test.ts",
-      "src/combat/combatKeyboard.ts",
-      "src/combat/legacyCombatRuntime.js",
-      "src/styles/combat-shell.css",
-      "tools/combat-battlefield-keyboard-production-qa.mjs"
-    ],
-    "lastGreenCheck": "Six inherited keyboard blobs match prior verified remote snapshot"
-  },
-  "nextAction": "Implement and verify TRAVERSAL-MOTION-POLISH; register fresh native production motion sequences before launch; preserve all historical QA dispositions and deferredDemoTask.",
-  "runMetrics": {
-    "registeredJobs": 6,
-    "scopedPresentationJobsAccepted": 3,
-    "unacceptedJobs": 3,
-    "distinctReadOnlyReviewers": 2,
-    "productionJourneys": 12,
-    "productionCaptures": 348,
-    "focusedProbeCases": 4,
-    "focusedProbeCaptures": 12,
-    "trackedCaptures": 10,
-    "failedOutputsUsedAsSeeds": 0,
-    "creditSavings": "Not measured"
-  },
-  "checkpointPaths": [
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
-  ],
-  "qaJobCount": 39
-}
-```
+143Traversal tests/26suites;16receipt tests;types;8contracts/8slots;immutable/dirtyprotected/syntax gates;3receipts current source/driver/helper/build/result hashes exact
 
 ## Next action
 
-Implement and verify TRAVERSAL-MOTION-POLISH; register fresh native production motion sequences before launch; preserve all historical QA dispositions and deferredDemoTask.
+Review exact motion source/assertions/captures and complete registered game-setting-only production motion; preserve original39QA ledger/deferredDemoTask/sixkeyboard blobs.
 
 ## Deferred battlefield keyboard/combat
 
@@ -114,6 +62,13 @@ All six deferred files and historical QA ledger retained in JSON.
 - visual-0820-v2-normal: SUCCEEDED; port 5276; receipt `tmp/traversal/visual-0820-v2-normal/qa-job.json`; ACCEPTED_SCOPED_PRESENTATION
 - visual-0820-v2-os: SUCCEEDED; port 5279; receipt `tmp/traversal/visual-0820-v2-os/qa-job.json`; ACCEPTED_SCOPED_PRESENTATION
 - visual-0820-probe-v2: SUCCEEDED; port 5278; receipt `tmp/traversal/visual-0820-probe-v2/qa-job.json`; ACCEPTED_SCOPED_PRESENTATION
-- motion-1002-normal: PLANNED; port 5280; receipt `tmp/traversal/motion-1002-normal/qa-job.json`; NOT_ACCEPTED
-- motion-1002-os: PLANNED; port 5281; receipt `tmp/traversal/motion-1002-os/qa-job.json`; NOT_ACCEPTED
+- motion-1002-normal: ABORTED_SOURCE_CORRECTION; port 5280; receipt `tmp/traversal/motion-1002-normal/qa-job.json`; NOT_ACCEPTED
+- motion-1002-os: ABORTED_SOURCE_CORRECTION; port 5281; receipt `tmp/traversal/motion-1002-os/qa-job.json`; NOT_ACCEPTED
+- motion-1002-v2-normal: FAILED; port 5280; receipt `tmp/traversal/motion-1002-v2-normal/qa-job.json`; NOT_ACCEPTED
+- motion-1002-v2-os: FAILED; port 5281; receipt `tmp/traversal/motion-1002-v2-os/qa-job.json`; NOT_ACCEPTED
+- motion-1002-probe: SUCCEEDED; port 5282; receipt `tmp/traversal/motion-1002-probe/qa-job.json`; NOT_ACCEPTED
+- motion-1002-v3-normal: PLANNED; port 5280; receipt `tmp/traversal/motion-1002-v3-normal/qa-job.json`; NOT_ACCEPTED
+- motion-1002-v3-os: PLANNED; port 5281; receipt `tmp/traversal/motion-1002-v3-os/qa-job.json`; NOT_ACCEPTED
+- motion-1002-probe-v2: PLANNED; port 5282; receipt `tmp/traversal/motion-1002-probe-v2/qa-job.json`; NOT_ACCEPTED
+- motion-1300-game: PLANNED; port 5283; receipt `tmp/traversal/motion-1300-game/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->

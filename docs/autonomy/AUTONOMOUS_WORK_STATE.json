@@ -1,19 +1,27 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-03T10:04:53.034883Z",
+  "runStartedAt": "2026-10-03T13:04:04.9263411Z",
   "runEndedAt": null,
   "activeTask": "TRAVERSAL-MOTION-POLISH",
-  "activePhase": "Implement continuous checkpoint departure and geometry-gated final exit",
+  "activePhase": "Review inherited frozen motion proof; complete game-setting-only production motion",
   "activeSubtask": "Presentation-only motion; preserve route clocks and existing canonical callbacks",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
   "lastPushedCommit": "bdaca0dd934738b6eb593899ffe0333ad9c312ec",
   "completedThisRun": [
-    "Read-only preflight; remote parity; six deferred keyboard blobs verified and locally snapshotted; prior remote WIP retained"
+    "Recovered interrupted1002 after105minute cumulative checks; all8workers dead,three final receipts recovered,16reviewed paths snapshotted71cee262; remote refs unchanged21398e4"
   ],
   "filesChanged": [],
-  "testsRun": [],
-  "testsPassed": [],
+  "testsRun": [
+    "node node_modules/vitest/vitest.mjs run src/traversal",
+    "node --test tools/qa/qa-job.test.mjs",
+    "node node_modules/typescript/bin/tsc --noEmit",
+    "node tools/contracts/validate-contracts.mjs",
+    "node tmp/traversal/motion-1300/audit.mjs"
+  ],
+  "testsPassed": [
+    "143Traversal tests/26suites;16receipt tests;types;8contracts/8slots;immutable/dirtyprotected/syntax gates;3receipts current source/driver/helper/build/result hashes exact"
+  ],
   "testsRemaining": [
     "Departure/final-exit motion and pursuit canonical charge/collision/miss acceptance",
     "Road rock/reward spawn lifetime/depth/spacing and owner-boundary checks",
@@ -35,7 +43,7 @@
     "PENDING: ENVIRONMENT-NARRATIVE-COHERENCE",
     "PENDING: Resume deferred DEMO-QA-POLISH"
   ],
-  "nextAction": "Implement and verify TRAVERSAL-MOTION-POLISH; register fresh native production motion sequences before launch; preserve all historical QA dispositions and deferredDemoTask.",
+  "nextAction": "Review exact motion source/assertions/captures and complete registered game-setting-only production motion; preserve original39QA ledger/deferredDemoTask/sixkeyboard blobs.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
@@ -177,9 +185,9 @@
     "lastGreenCheck": "137 Traversal tests; stable scoped production visual proof; types/build; 8contracts8slots; immutable/whitespace gates"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
+    "runId": "rpgthreejs-auto-dev-90m-20261003T1300",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-03T10:08:18.492Z",
+    "lastHeartbeat": "2026-10-03T13:09:01.353Z",
     "status": "RUNNING",
     "qaJobs": [
       {
@@ -4551,9 +4559,9 @@
         "schemaVersion": 1,
         "jobId": "motion-1002-normal",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
-        "status": "PLANNED",
+        "status": "ABORTED_SOURCE_CORRECTION",
         "registeredAt": "2026-10-03T10:17:22.807Z",
-        "pid": null,
+        "pid": 13260,
         "port": 5280,
         "command": [
           "node",
@@ -4637,15 +4645,29 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-03T10:17:43.705Z",
+        "workerReceiptCommand": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "reason": "Independent review found rejected-fork retry edge case; owned workers stopped before correction",
+        "endedAt": "2026-10-03T10:20:31.111Z",
+        "executionCommand": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs",
+          "--motion=normal",
+          "--port=5280",
+          "--output=tmp/traversal/motion-1002-normal"
+        ]
       },
       {
         "schemaVersion": 1,
         "jobId": "motion-1002-os",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
-        "status": "PLANNED",
+        "status": "ABORTED_SOURCE_CORRECTION",
         "registeredAt": "2026-10-03T10:17:23.540Z",
-        "pid": null,
+        "pid": 47316,
         "port": 5281,
         "command": [
           "node",
@@ -4729,15 +4751,700 @@
             }
           ]
         },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-03T10:17:45.170Z",
+        "workerReceiptCommand": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "reason": "Independent review found rejected-fork retry edge case; owned workers stopped before correction",
+        "endedAt": "2026-10-03T10:20:31.112Z",
+        "executionCommand": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs",
+          "--motion=os",
+          "--port=5281",
+          "--output=tmp/traversal/motion-1002-os"
+        ]
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "motion-1002-v2-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
+        "status": "FAILED",
+        "registeredAt": "2026-10-03T10:24:48.499Z",
+        "pid": 45156,
+        "port": 5280,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "normal",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "native-keyboard-focus",
+          "responsive-controls",
+          "forward-exit-and-resize"
+        ],
+        "output": "tmp/traversal/motion-1002-v2-normal",
+        "receiptPath": "tmp/traversal/motion-1002-v2-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+          "sourceTree": "80a784c7aa8ab30850ebc629147e0fc5a1a2cebf",
+          "sourceDiffSha256": "db0cb09175bbb42440c633baf053cd266df72d4e282607d229b46d17dd12e599",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "f248923c3e0a5ab3b687d0c479a726982f8977ae64f08f12ac82d0da747bb151"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-2MqwR69l.js",
+              "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+            },
+            {
+              "path": "dist/assets/game-D7TpUbkt.css",
+              "sha256": "d6cdbfe35fa526c5f01a6238c853b1efd1179812c92ad3f0186c42d7b67b69e8"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "dba0fd5ecaf6220d3431698e96a723489c8ef032e884c7e069d00590f8968bdf"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-03T10:24:54.044Z",
+        "executionCommand": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs",
+          "--motion=normal",
+          "--port=5280",
+          "--output=tmp/traversal/motion-1002-v2-normal"
+        ],
+        "endedAt": "2026-10-03T10:28:11.648Z",
+        "exitCode": 1,
+        "resultPath": "tmp/traversal/motion-1002-v2-normal/results.json",
+        "resultSha256": "0ad0676a7824d3dc501b2235669a93462c2ab6535a77c358f50ff2bdc483c3de",
+        "provenanceStable": true,
+        "reason": "Inherited 32px checkpoint action found by fresh 620px native QA; two desktop scenarios passed but job failed"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "motion-1002-v2-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
+        "status": "FAILED",
+        "registeredAt": "2026-10-03T10:24:49.305Z",
+        "pid": 41212,
+        "port": 5281,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "os",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "native-keyboard-focus",
+          "responsive-controls",
+          "os-covered-exit"
+        ],
+        "output": "tmp/traversal/motion-1002-v2-os",
+        "receiptPath": "tmp/traversal/motion-1002-v2-os/qa-job.json",
+        "provenance": {
+          "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+          "sourceTree": "80a784c7aa8ab30850ebc629147e0fc5a1a2cebf",
+          "sourceDiffSha256": "db0cb09175bbb42440c633baf053cd266df72d4e282607d229b46d17dd12e599",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "f248923c3e0a5ab3b687d0c479a726982f8977ae64f08f12ac82d0da747bb151"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-2MqwR69l.js",
+              "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+            },
+            {
+              "path": "dist/assets/game-D7TpUbkt.css",
+              "sha256": "d6cdbfe35fa526c5f01a6238c853b1efd1179812c92ad3f0186c42d7b67b69e8"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "dba0fd5ecaf6220d3431698e96a723489c8ef032e884c7e069d00590f8968bdf"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-03T10:24:53.332Z",
+        "executionCommand": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs",
+          "--motion=os",
+          "--port=5281",
+          "--output=tmp/traversal/motion-1002-v2-os"
+        ],
+        "endedAt": "2026-10-03T10:28:05.358Z",
+        "exitCode": 1,
+        "resultPath": "tmp/traversal/motion-1002-v2-os/results.json",
+        "resultSha256": "04d4535aa19415a69e899fffa35d5828ddd77592e16fd981f5dea88b4b9c2ecb",
+        "provenanceStable": true,
+        "reason": "Inherited 32px checkpoint action found by fresh 620px native QA; two desktop scenarios passed but job failed"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "motion-1002-probe",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-03T10:28:00.454Z",
+        "pid": 18124,
+        "port": 5282,
+        "command": [
+          "node",
+          "tools/traversal-motion-fallback-qa.mjs"
+        ],
+        "parameters": {
+          "cases": [
+            "game",
+            "missing-shadow",
+            "missing-ground"
+          ],
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "scope": "T0 native production game reduction, hit targets and corrupt-art return momentum; combat fixture only"
+        },
+        "requiredAssertions": [
+          "game-setting-reduction",
+          "lane-keyboard-focus",
+          "hit-targets",
+          "missing-art-handoff-return",
+          "engaged-return"
+        ],
+        "output": "tmp/traversal/motion-1002-probe",
+        "receiptPath": "tmp/traversal/motion-1002-probe/qa-job.json",
+        "provenance": {
+          "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+          "sourceTree": "80a784c7aa8ab30850ebc629147e0fc5a1a2cebf",
+          "sourceDiffSha256": "db0cb09175bbb42440c633baf053cd266df72d4e282607d229b46d17dd12e599",
+          "driver": {
+            "path": "tools/traversal-motion-fallback-qa.mjs",
+            "sha256": "6f7c628c0f5d7f1e8c8ceaae67cc39f1d7f65d9435c727f0eafc6e90ecd4ff26"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-2MqwR69l.js",
+              "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+            },
+            {
+              "path": "dist/assets/game-D7TpUbkt.css",
+              "sha256": "d6cdbfe35fa526c5f01a6238c853b1efd1179812c92ad3f0186c42d7b67b69e8"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "dba0fd5ecaf6220d3431698e96a723489c8ef032e884c7e069d00590f8968bdf"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-03T10:28:06.018Z",
+        "executionCommand": [
+          "node",
+          "tools/traversal-motion-fallback-qa.mjs",
+          "--motion=undefined",
+          "--port=5282",
+          "--output=tmp/traversal/motion-1002-probe"
+        ],
+        "endedAt": "2026-10-03T10:29:23.698Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/motion-1002-probe/results.json",
+        "resultSha256": "5c47fd44d30e02309af98db0798c966d8b32183eb0f8ccb417641b0c1e9511fb",
+        "provenanceStable": true,
+        "reason": "Succeeded on prior build; CSS correction now requires matching proof"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "motion-1002-v3-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-03T10:31:02.664Z",
+        "pid": null,
+        "port": 5280,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "normal",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "native-keyboard-focus",
+          "responsive-controls",
+          "forward-exit-and-resize"
+        ],
+        "output": "tmp/traversal/motion-1002-v3-normal",
+        "receiptPath": "tmp/traversal/motion-1002-v3-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+          "sourceTree": "80a784c7aa8ab30850ebc629147e0fc5a1a2cebf",
+          "sourceDiffSha256": "3ac022b9d6adb915210f0fe50af76cf296c22515cd1577f113472e545d95cd8e",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "f248923c3e0a5ab3b687d0c479a726982f8977ae64f08f12ac82d0da747bb151"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BztuXMkj.css",
+              "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+            },
+            {
+              "path": "dist/assets/game-D8fui7sl.js",
+              "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "motion-1002-v3-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-03T10:31:03.420Z",
+        "pid": null,
+        "port": 5281,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "os",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "native-keyboard-focus",
+          "responsive-controls",
+          "os-covered-exit"
+        ],
+        "output": "tmp/traversal/motion-1002-v3-os",
+        "receiptPath": "tmp/traversal/motion-1002-v3-os/qa-job.json",
+        "provenance": {
+          "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+          "sourceTree": "80a784c7aa8ab30850ebc629147e0fc5a1a2cebf",
+          "sourceDiffSha256": "3ac022b9d6adb915210f0fe50af76cf296c22515cd1577f113472e545d95cd8e",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "f248923c3e0a5ab3b687d0c479a726982f8977ae64f08f12ac82d0da747bb151"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BztuXMkj.css",
+              "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+            },
+            {
+              "path": "dist/assets/game-D8fui7sl.js",
+              "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "motion-1002-probe-v2",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-03T10:31:04.205Z",
+        "pid": null,
+        "port": 5282,
+        "command": [
+          "node",
+          "tools/traversal-motion-fallback-qa.mjs"
+        ],
+        "parameters": {
+          "cases": [
+            "game",
+            "missing-shadow",
+            "missing-ground"
+          ],
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "scope": "T0 native production game reduction, hit targets and corrupt-art return momentum; combat fixture only"
+        },
+        "requiredAssertions": [
+          "game-setting-reduction",
+          "lane-keyboard-focus",
+          "hit-targets",
+          "missing-art-handoff-return",
+          "engaged-return"
+        ],
+        "output": "tmp/traversal/motion-1002-probe-v2",
+        "receiptPath": "tmp/traversal/motion-1002-probe-v2/qa-job.json",
+        "provenance": {
+          "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+          "sourceTree": "80a784c7aa8ab30850ebc629147e0fc5a1a2cebf",
+          "sourceDiffSha256": "3ac022b9d6adb915210f0fe50af76cf296c22515cd1577f113472e545d95cd8e",
+          "driver": {
+            "path": "tools/traversal-motion-fallback-qa.mjs",
+            "sha256": "6f7c628c0f5d7f1e8c8ceaae67cc39f1d7f65d9435c727f0eafc6e90ecd4ff26"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BztuXMkj.css",
+              "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+            },
+            {
+              "path": "dist/assets/game-D8fui7sl.js",
+              "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "motion-1300-game",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T1300",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-03T13:09:01.903Z",
+        "pid": null,
+        "port": 5283,
+        "command": [
+          "node",
+          "tools/traversal-game-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "game",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ],
+          "branch": "event",
+          "gameReducedMotion": true,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "native-keyboard-focus",
+          "responsive-controls",
+          "game-covered-exit"
+        ],
+        "output": "tmp/traversal/motion-1300-game",
+        "receiptPath": "tmp/traversal/motion-1300-game/qa-job.json",
+        "provenance": {
+          "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+          "sourceTree": "80a784c7aa8ab30850ebc629147e0fc5a1a2cebf",
+          "sourceDiffSha256": "3ac022b9d6adb915210f0fe50af76cf296c22515cd1577f113472e545d95cd8e",
+          "driver": {
+            "path": "tools/traversal-game-motion-production-qa.mjs",
+            "sha256": "2bb9550e8d929d497829c307a039c3a8fc2724c1737fff6df862bd1baca5a2a7"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BztuXMkj.css",
+              "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+            },
+            {
+              "path": "dist/assets/game-D8fui7sl.js",
+              "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+            }
+          ]
+        },
         "acceptance": "NOT_ACCEPTED"
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261003T1002",
-      "sha": "46c12d7b815276b36732aa67f8554dba6346a7c6",
-      "publication": "BLOCKED_AUTO_REVIEW",
-      "remoteFallback": "wip/rpgthreejs-auto-dev-90m-20261003T0820",
-      "status": "LOCAL_PRESERVED_REMOTE_PUBLICATION_BLOCKED",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261003T1300",
+      "sha": "71cee26253ceb27de644f98ec0c66c941e9108a0",
+      "publication": "LOCAL_ONLY",
+      "status": "LOCAL_SNAPSHOT",
       "dirtyFiles": [
         "legacy-combat.html",
         "src/combat/combatKeyboard.test.ts",
@@ -4746,9 +5453,9 @@
         "src/styles/combat-shell.css",
         "tools/combat-battlefield-keyboard-production-qa.mjs"
       ],
-      "lastGreenCheck": "Six inherited keyboard blobs match prior verified remote snapshot"
+      "lastGreenCheck": "143Traversal tests/26suites;16receipt tests;types;8contracts/8slots;immutable/dirtyprotected/syntax gates;3receipts current source/driver/helper/build/result hashes exact"
     },
-    "nextAction": "Implement and verify TRAVERSAL-MOTION-POLISH; register fresh native production motion sequences before launch; preserve all historical QA dispositions and deferredDemoTask.",
+    "nextAction": "Review exact motion source/assertions/captures and complete registered game-setting-only production motion; preserve original39QA ledger/deferredDemoTask/sixkeyboard blobs.",
     "runMetrics": {
       "registeredJobs": 6,
       "scopedPresentationJobsAccepted": 3,

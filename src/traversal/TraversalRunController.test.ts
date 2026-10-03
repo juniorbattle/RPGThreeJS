@@ -94,4 +94,21 @@ describe('TraversalRunController', () => {
     expect(controller.session.phase).toBe('COMPLETE');
     expect(controller.session.worldMountState).toBe('RELEASED');
   });
+
+  it('restores fork controls and focus after the canonical owner rejects selection', async () => {
+    const state = createInitialState();
+    state.run.currentNodeId = state.currentNodeId = 'lion-refugees';
+    const source = leg('T0'), onBranchSelect = vi.fn(async () => false), onNodeHandoff = vi.fn();
+    const controller = new TraversalRunController({ leg: { ...source, stages: [source.stages.at(-1)!] },
+      getAvailableNodes: () => getAvailableRunNodes(state), onBranchSelect, onNodeHandoff });
+    controller.approachNextStage(.62);
+    const before = structuredClone(state);
+    const button = document.querySelector<HTMLButtonElement>('[data-traversal-fork-choice]')!;
+    button.click(); expect(button.disabled).toBe(true);
+    await Promise.resolve(); await Promise.resolve();
+    expect(onBranchSelect).toHaveBeenCalledOnce(); expect(onNodeHandoff).not.toHaveBeenCalled();
+    expect(controller.session.phase).toBe('FORK_OVERLAY'); expect(state).toEqual(before);
+    expect(button.disabled).toBe(false); expect(document.activeElement).toBe(button);
+    controller.dispose();
+  });
 });

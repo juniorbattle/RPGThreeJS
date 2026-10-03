@@ -1,3 +1,4 @@
+/** Game-setting-only supplement, derived from original motion driver. Uses the same frozen production build and fixture scope. */
 /** Native production clocks/input; V6-origin and combat-result fixtures.
  * Certifies motion/lifecycle only, never earned campaign or tactical outcomes. */
 import assert from 'node:assert/strict';
@@ -7,19 +8,19 @@ import { createServer, preview } from 'vite';
 import { beginJob, registerJob } from './qa/qa-job.mjs';
 
 const arg=(name,fallback)=>process.argv.find(x=>x.startsWith(`--${name}=`))?.slice(name.length+3)??fallback;
-const motion=arg('motion','normal');assert.ok(['normal','os'].includes(motion));
-const port=Number(arg('port',motion==='os'?'5281':'5280'));
-const output=arg('output',`tmp/traversal/motion-1002-${motion}`);
-const parameters={motion,viewports:['1440x810','620x780','390x844'],legs:['T0','T1','T3'],branch:'event',gameReducedMotion:false,
+const motion=arg('motion','game');assert.ok(['game'].includes(motion));
+const port=Number(arg('port','5283'));
+const output=arg('output',`tmp/traversal/motion-1300-${motion}`);
+const parameters={motion,viewports:['1440x810','620x780','390x844'],legs:['T0','T1','T3'],branch:'event',gameReducedMotion:true,
   scope:'native production motion with V6-origin/combat-result fixtures; not earned campaign'};
 const requiredAssertions=['continuous-departure','opaque-swap','reveal-momentum','clock-zero-during-reveal','full-exit-before-arrival','single-canonical-arrival','native-keyboard-focus','responsive-controls',
-  motion==='os'?'os-covered-exit':'forward-exit-and-resize'];
+  'game-covered-exit'];
 if(process.argv.includes('--register')){
   const registered=registerJob({runId:process.env.AUTONOMY_RUN_ID,jobId:process.env.DEMO_QA_JOB_ID,output,
-    driver:'tools/traversal-motion-production-qa.mjs',port,parameters,requiredAssertions});
+    driver:'tools/traversal-game-motion-production-qa.mjs',port,parameters,requiredAssertions});
   console.log(JSON.stringify({jobId:registered.jobId,output:registered.output,registered:true}));process.exit(0);
 }
-const job=beginJob({output,driver:'tools/traversal-motion-production-qa.mjs',port,parameters,requiredAssertions});
+const job=beginJob({output,driver:'tools/traversal-game-motion-production-qa.mjs',port,parameters,requiredAssertions});
 const report={parameters,startedAt:new Date().toISOString(),runs:[],captures:[],errors:[],failures:[],assertions:{}};
 let server,browser,models;
 try{
@@ -38,7 +39,7 @@ try{
     const path=[];for(let id=target;id;id=previous.get(id))path.unshift(id);
     for(const id of path.slice(1)){seed.resolvedNodeIds.push(seed.run.currentNodeId);assert.ok(enterRunNode(seed.run,id));
       seed.currentNodeId=id;seed.visitedNodeIds=[...seed.run.visitedNodeIds];seed.stepCounter++;}
-    seed.settings.reducedGraphics=false;origins[leg]=seed;
+    seed.settings.reducedGraphics=true;origins[leg]=seed;
   }
   await models.close();models=null;
   server=await preview({preview:{host:'127.0.0.1',port,strictPort:true}});
@@ -63,9 +64,10 @@ try{
       await page.addInitScript(seed=>localStorage.setItem('rpg-threejs:autosave:v6',JSON.stringify(seed)),seed);
     }
     await page.goto(`http://127.0.0.1:${port}/?qa=1`);await page.waitForFunction(()=>!!window.__motionApp);
-    if(leg==='T0')await page.evaluate(async()=>{const app=window.__motionApp;app.qaEnabled=true;app.traversalT0QaEnabled=true;await app.startTraversalT0Qa();app.state.settings.reducedGraphics=false;});
+    if(leg==='T0')await page.evaluate(async()=>{const app=window.__motionApp;app.qaEnabled=true;app.traversalT0QaEnabled=true;await app.startTraversalT0Qa();app.state.settings.reducedGraphics=true;});
     else await page.locator('[data-action="continue"]').click();
     await page.evaluate(()=>{
+      window.__motionApp.state.settings.reducedGraphics=true;
       const app=window.__motionApp,proof=window.__motionProof={samples:[],handoffs:[],arrivals:[],returns:[],combats:[]};
       const original=app.commitRunNodeChoice.bind(app);app.commitRunNodeChoice=(...args)=>{proof.handoffs.push(args[0]);return original(...args);};
       const arrival=app.completeTraversalArrival.bind(app);app.completeTraversalArrival=(...args)=>{
@@ -151,7 +153,7 @@ try{
     const proof=await page.evaluate(()=>{cancelAnimationFrame(window.__motionSampler);const app=window.__motionApp;return {...window.__motionProof,branch:app.state.run.traversalBranches,gameReduced:app.state.settings.reducedGraphics,osReduced:matchMedia('(prefers-reduced-motion: reduce)').matches};});
     Object.assign(entry,proof);
     assert.ok(entry.complete,`${leg}/${width}: native arrival reached`);assert.ok(lanesChecked,'Keyboard lanes exercised');
-    assert.equal(proof.gameReduced,false);assert.equal(proof.osReduced,motion==='os');assert.equal(proof.branch[leg],branch);
+    assert.equal(proof.gameReduced,true);assert.equal(proof.osReduced,motion==='os');assert.equal(proof.branch[leg],branch);
     assert.equal(proof.arrivals.length,1);const arrival=proof.arrivals[0];
     assert.ok(arrival.left>=arrival.viewport+arrival.width*.1+4,'Full trailing-edge exit before callback');assert.ok(arrival.speed>0,'Forward speed until handoff');assert.equal(arrival.resolved,false,'Destination agency unresolved');
     assert.ok(proof.handoffs.includes(branch),'Existing selected branch handoff');

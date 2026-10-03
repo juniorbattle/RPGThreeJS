@@ -178,7 +178,11 @@ export class TraversalRoadScene {
       getAvailableNodes: options.getAvailableNodes,
       onBranchSelect: nodeId => new Promise<boolean>(resolve => {
         this.beginCheckpointDeparture('fork', () => {
-          if (!adapter.selectBranch(nodeId)) { resolve(false); return; }
+          if (!adapter.selectBranch(nodeId)) {
+            this.finishCheckpointDeparture();
+            resolve(false);
+            return;
+          }
           const current = options.getState();
           this.route = this.authoring.resolveRoute(options.leg, current);
           const entities = this.element.querySelector<HTMLElement>('.traversal-world__entities')!;
@@ -499,7 +503,11 @@ export class TraversalRoadScene {
     }
     if (this.departure && this.viewMode === 'ROUTE') {
       // Reveal with engaged momentum, without skipping any authored route-clock windows.
-      this.routeRenderer.advance(seconds * 1000, this.speed);
+      const reveal = Math.max(0, transition.elapsed - TRAVERSAL_RHYTHM.hold - TRAVERSAL_RHYTHM.fade);
+      const nextSpeed = this.routeSegment.vMin + ((this.routeLaunchSpeed ?? this.routeSegment.vMin)
+        - this.routeSegment.vMin) * (1 - transitionEase((reveal + seconds) / TRAVERSAL_RHYTHM.fade));
+      this.routeRenderer.advance(seconds * 1000, (this.speed + nextSpeed) / 2);
+      this.speed = nextSpeed;
     }
     if (transition.blackHoldRemaining > 0) {
       const held = Math.min(seconds, transition.blackHoldRemaining);
@@ -550,6 +558,7 @@ export class TraversalRoadScene {
       : half * (transition.reveal ? 1 : 2);
     if (time >= duration) {
       const carriedDeparture = Boolean(this.departure && this.viewMode === 'ROUTE');
+      if (carriedDeparture) this.routeLaunchSpeed = this.speed = this.routeSegment.vMin;
       this.transition = null;
       delete this.element.dataset.transition;
       if (carriedDeparture) this.finishCheckpointDeparture();
@@ -584,10 +593,8 @@ export class TraversalRoadScene {
     if (this.routeRun === previous) return;
     const restart = this.routeLaunchSpeed === null
       ? transitionEase(this.routeRun.elapsedMs / (TRAVERSAL_RHYTHM.restart * 1000)) : 1;
-    const carried = this.routeLaunchSpeed === null ? 0 : this.routeLaunchSpeed
-      * (1 - transitionEase(this.routeRun.elapsedMs / (TRAVERSAL_RHYTHM.restart * 1000)));
     this.routeRenderer.advance(this.routeRun.elapsedMs - previous.elapsedMs,
-      Math.max((previous.speed + this.routeRun.speed) / 2 * restart, carried));
+      (previous.speed + this.routeRun.speed) / 2 * restart);
     const activeDriving = !this.routeRun.complete && !this.departure
       && !document.body.classList.contains('scene-transition--locked');
     if (this.rewardEnabled) {
@@ -643,7 +650,7 @@ export class TraversalRoadScene {
         }
       }
     }
-    this.speed = Math.max(this.routeRun.speed * restart, carried);
+    this.speed = this.routeRun.speed * restart;
     this.element.dataset.motion = this.routeRun.progress01 > .8 ? 'rushing' : 'cruising';
     this.element.style.setProperty('--route-rush-opacity', String(Math.max(0, (this.routeRun.progress01 - .55) * 1.2)));
     const { start, end } = traversalRouteProgressBounds(this.route, this.routeIndex);

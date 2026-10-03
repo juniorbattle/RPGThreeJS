@@ -144,7 +144,8 @@ export class TraversalRunController {
     if (this.options.onBranchSelect) {
       if (!this.sessionState.forkOptionIds.includes(nodeId)) return;
       const accepted = await this.options.onBranchSelect(nodeId);
-      if (!accepted || this.disposed) return;
+      if (this.disposed) return;
+      if (!accepted) { this.forkOverlay?.cancelSelection(); return; }
       this.disposeForkOverlay();
       this.setSession(continueTraversalAfterBranchSelection(this.sessionState));
       return;
