@@ -189,7 +189,7 @@
 .traversal-vehicle {
   position: absolute; top: var(--traversal-lane-y); left: calc(25% + var(--vehicle-exit-x, 0px) + var(--vehicle-entry-x, 0px)); z-index: 22;
   height: var(--vehicle-height); aspect-ratio: 818 / 433; margin: 0;
-  transform: translate(-50%, -100%); transition: top .38s cubic-bezier(.2,.72,.2,1);
+  transform: translate(-50%, -100%);
   pointer-events: none;
 }
 .traversal-vehicle__art { position: absolute; max-width: none; z-index: 2; translate: 0 var(--suspension-y, 0px); transition: translate .12s ease-out; }

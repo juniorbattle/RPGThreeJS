@@ -9,7 +9,8 @@ const arg = (name, fallback) => process.argv.find(x => x.startsWith(`--${name}=`
 const motion = arg('motion', 'normal'); assert.ok(['normal', 'os', 'game'].includes(motion));
 const port = Number(arg('port', '5286')), output = arg('output', 'tmp/traversal/road-1600-normal');
 const parameters = { motion, legs: arg('legs', 'T0,T1,T3').split(','), viewports: arg('viewports', '1440x810,620x780,390x844').split(','),
-  roads: arg('roads', 'first').split(','), paths: arg('paths', 'contact-collect,miss-miss').split(','), scope: 'native real built selected roads; V6 fixture origins/bootstrap/prior combat outcomes; no earned campaign/full road acceptance' };
+  roads: arg('roads', 'first').split(','), paths: arg('paths', 'contact-collect,miss-miss').split(','),
+  earlyPaths: arg('early-paths', 'contact-collect').split(','), scope: 'native real built selected roads; V6 fixture origins/bootstrap/prior combat outcomes; no earned campaign/full road acceptance' };
 const requiredAssertions = ['edge-entry-frozen-anchor', 'contact-collected-retention-full-exit', 'rendered-ground-depth',
   'native-keyboard-responsive-motion', 'single-temporary-pickup-no-secured-write', 'physical-contact-after-reset'];
 const options = { runId: process.env.AUTONOMY_RUN_ID, jobId: process.env.DEMO_QA_JOB_ID, output,
@@ -36,8 +37,9 @@ try {
   await models.close(); models = null;
   server = await preview({ preview: { host: '127.0.0.1', port, strictPort: true } });
   browser = await chromium.launch({ headless: true });
-  for (const leg of parameters.legs) for (const dimensions of parameters.viewports) for (const road of parameters.roads) for (const path of parameters.paths) {
-    const [width, height] = dimensions.split('x').map(Number), number = road === 'reset-visible' ? (leg === 'T0' ? 4 : 3) : 1;
+  for (const leg of parameters.legs) for (const dimensions of parameters.viewports) for (const road of parameters.roads)
+    for (const path of road === 'early-reset' ? parameters.earlyPaths : parameters.paths) {
+    const [width, height] = dimensions.split('x').map(Number), number = road === 'early-reset' ? (leg === 'T0' ? 4 : 3) : 1;
     const target = leg === 'T0' ? `route-${number}` : `${leg.toLowerCase()}-route-${number}`;
     const page = await browser.newPage({ viewport: { width, height }, reducedMotion: motion === 'os' ? 'reduce' : 'no-preference' });
     const entry = { leg, dimensions, motion, path, road, target, samples: [], captures: [], keyboard: [], priorCombatFixtures: [] }; report.runs.push(entry);
@@ -69,7 +71,7 @@ try {
           });
           window.__roadSamples.push({ time: performance.now(), width: innerWidth, height: innerHeight, distance: s.routeRenderer.distance,
             progress: s.routeRun.progress01, elapsed: s.routeRun.elapsedMs, duration: s.routeSegment.durationMs,
-            reset: s.routeRun.speedResetAtMs, lane: s.routeRun.lane, visualSpeed: s.speed,
+            reset: s.routeRun.speedResetAtMs, lane: s.routeRun.lane, visualSpeed: s.speed, distanceScale: s.roadDistanceScale,
             collisions: s.routeRisk.collisionCount, lastCollision: s.routeRisk.lastCollisionId,
             view: root.dataset.view, phase: s.session.phase, cover, vehicle: { left: v.left, right: v.right, top: v.top, bottom: v.bottom,
               z: Number(getComputedStyle(vehicle).zIndex), ground: Number(vehicle.dataset.screenGroundY), renderedGround: parseFloat(getComputedStyle(vehicle).top) }, marks,
@@ -80,8 +82,8 @@ try {
         window.__roadSampler = requestAnimationFrame(sample);
       }; sample();
     }, { target, game: motion === 'game' });
-    if (leg === 'T0') await page.evaluate(async () => { const app = window.__roadApp; app.qaEnabled = true; app.traversalT0QaEnabled = true;
-      await app.startTraversalT0Qa(); });
+    if (leg === 'T0') await page.evaluate(async game => { const app = window.__roadApp; app.qaEnabled = true; app.traversalT0QaEnabled = true;
+      await app.startTraversalT0Qa(); app.state.settings.reducedGraphics = game; app.activeTraversal.renderRuntimeState(); }, motion === 'game');
     else await page.locator('[data-action="continue"]').click();
     let lanesReady = false, switched = false, captured = new Set(), resized = false, requestedEvent = null;
     const capture = async label => { if (captured.has(label)) return; captured.add(label);
@@ -130,8 +132,11 @@ try {
         }
         if (s.resolved.length) switched = true;
         if (s.sample?.marks.some(m => !m.hidden && m.left < width && m.right > width - 80)) await capture('entry');
+        if (road === 'early-reset' && s.progress > hazard.progress01 - .05 && s.progress < hazard.progress01
+          && s.sample?.marks.some(m => m.id === pickup.id && !m.hidden)) await capture('visible-gold-before-reset');
         if (s.resolved.length && s.progress < hazard.progress01 + .12) await capture('passed-rock');
         if (s.collected.length || s.progress > pickup.progress01 && s.progress < pickup.progress01 + .1) await capture('passed-gold');
+        if (s.collected.includes(pickup.id)) await capture('gold-after-reset');
         if (width === 1440 && path === 'miss-miss' && !resized && s.sample?.marks.some(m => !m.hidden && m.left > width * .7)) {
           await page.setViewportSize({ width: 1280, height }); await page.waitForTimeout(100);
           await page.setViewportSize({ width, height }); resized = true;
@@ -144,6 +149,8 @@ try {
     const driving = entry.samples.filter(s => s.view === 'route' && s.cover < .01 && s.progress > .01);
     assert.ok(driving.length > 100);
     assert.ok(driving.every(s => s.game === (motion === 'game') && s.os === (motion === 'os')));
+    assert.ok(driving.every(s => Number.isFinite(s.visualSpeed) && s.visualSpeed > 0));
+    assert.ok(driving.every((s,i) => i === 0 || s.distance >= driving[i-1].distance), 'Shared world never reverses');
     for (const id of driving[0].marks.map(m => m.id)) {
       const frames = entry.samples.filter(s => s.view === 'route').map(s => ({ s, m: s.marks.find(m => m.id === id) }));
       const first = frames.find(f => !f.m.hidden), last = frames.findLast(f => !f.m.hidden);
@@ -166,6 +173,11 @@ try {
         assert.equal(crossing.s.collisions, path === 'contact-collect' ? hazardCount : 0);
         assert.equal(crossing.s.lastCollision, path === 'contact-collect' ? id : null);
         if (path === 'contact-collect') assert.ok(Math.abs(crossing.s.reset - crossing.m.progress * crossing.s.duration) < 20);
+        if (path === 'contact-collect') {
+          const before = frames.filter(f => f.s.progress < crossing.m.progress).at(-1);
+          const after = frames.filter(f => f.s.elapsed > crossing.s.elapsed && f.s.elapsed < crossing.s.elapsed + 150);
+          assert.ok(before && after.length && Math.min(...after.map(f => f.s.visualSpeed)) < before.s.visualSpeed, 'Collision visibly slows the shared world');
+        }
       }
       assert.ok(entered.filter(f => !f.m.hidden).every(f => Math.abs(f.m.ground - f.m.renderedGround) < 1 && Math.abs(f.s.vehicle.ground - f.s.vehicle.renderedGround) < 10), 'Depth uses rendered ground');
       assert.ok(entered.filter(f => !f.m.hidden && Math.abs(f.m.renderedGround - f.s.vehicle.renderedGround) > 10)

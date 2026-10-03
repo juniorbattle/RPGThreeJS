@@ -123,6 +123,8 @@ export class TraversalRoadScene {
   private opened = false;
   private roadDistanceScale = 1;
   private approachStartSpeed = 0;
+  private vehicleGroundPercent = 65;
+  private laneMotion: { from: number; to: number; elapsed: number } | null = null;
   private arrivalRequested = false;
   private arrivalElapsed = 0;
   private arrivalVisualSpeed = 0;
@@ -453,6 +455,12 @@ export class TraversalRoadScene {
     else if (this.departure && !document.hidden) this.advanceCheckpointDeparture(deltaSeconds);
     else if (this.controller.session.phase === 'RUNNING' && !document.hidden) this.advance(deltaSeconds);
     if (wasArriving && !document.hidden) this.advanceArrival(deltaSeconds);
+    if (!document.hidden && this.laneMotion) {
+      this.laneMotion.elapsed = Math.min(.38, this.laneMotion.elapsed + deltaSeconds);
+      this.vehicleGroundPercent = this.laneMotion.from + (this.laneMotion.to - this.laneMotion.from)
+        * transitionEase(this.laneMotion.elapsed / .38);
+      if (this.laneMotion.elapsed >= .38) this.laneMotion = null;
+    }
     this.inAnimationFrame = false;
     if (this.frameRenderPending) {
       this.frameRenderPending = false;
@@ -897,6 +905,10 @@ export class TraversalRoadScene {
     if (lane === current) return;
     this.controller.moveLane(lane < current ? -1 : 1);
     this.routeRun = setRouteLane(this.routeRun, lane);
+    if (prefersReducedMotion(this.options.getState().settings.reducedGraphics)) {
+      this.vehicleGroundPercent = LANE_TOP_PERCENT[lane];
+      this.laneMotion = null;
+    } else this.laneMotion = { from: this.vehicleGroundPercent, to: LANE_TOP_PERCENT[lane], elapsed: 0 };
     this.renderRuntimeState();
   }
 
@@ -914,7 +926,7 @@ export class TraversalRoadScene {
       : this.nextStage?.category === 'ROUTE_CHOICE' ? this.nextStage.campaignNodeIds : [];
     if (forkIds.length) this.worldRenderer.setDirections(this.options.getAvailableNodes()
       .filter(node => forkIds.includes(node.id)));
-    this.element.style.setProperty('--traversal-lane-y', `${LANE_TOP_PERCENT[session.currentLane]}%`);
+    this.element.style.setProperty('--traversal-lane-y', `${this.vehicleGroundPercent}%`);
     this.element.querySelectorAll<HTMLElement>('[data-rail-stop]').forEach(stop => {
       const stopIndex = Number(stop.dataset.railStop);
       stop.dataset.complete = String(stopIndex <= this.routeIndex);
@@ -991,9 +1003,7 @@ export class TraversalRoadScene {
   private updateWorldTransforms(forceWorld = false): void {
     const session = this.controller.session;
     const width = this.element.clientWidth || ROAD_SPACE.referenceWidth;
-    // Read the interpolated lane ground before writes so depth follows the visible caravan.
     const groundVehicle = this.element.querySelector<HTMLElement>('.traversal-vehicle')!;
-    const renderedGroundY = Number.parseFloat(getComputedStyle(groundVehicle).top);
     // Read both viewport dimensions before any style writes to avoid forced layout.
     const height = this.element.clientHeight || 823;
     if (this.viewMode === 'ROUTE') {
@@ -1056,7 +1066,9 @@ export class TraversalRoadScene {
       }
     }
     const vehicle = groundVehicle;
-    setRoadGroundDepth(vehicle, Number.isFinite(renderedGroundY) ? renderedGroundY : height * LANE_TOP_PERCENT[session.currentLane] / 100);
+    // One presentation clock owns both the rendered foot and its draw order.
+    this.element.style.setProperty('--traversal-lane-y', `${this.vehicleGroundPercent}%`);
+    setRoadGroundDepth(vehicle, height * this.vehicleGroundPercent / 100);
     const exitDistance = session.phase === 'ARRIVING' ? this.arrivalExitDistance : 0;
     const departureDistance = this.viewMode === 'CHECKPOINT'
       && !prefersReducedMotion(this.options.getState().settings.reducedGraphics) ? this.departure?.distance ?? 0 : 0;

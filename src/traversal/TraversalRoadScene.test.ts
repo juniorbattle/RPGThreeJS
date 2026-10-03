@@ -12,6 +12,32 @@ import { hasAuthoredTraversalPresentation } from './TraversalPresentation';
 afterEach(() => { document.body.replaceChildren(); vi.restoreAllMocks(); });
 
 describe('shared road scene authoring boundary', () => {
+  it.each([false, true])('keeps interpolated lane ground and depth together without changing owner clocks (reduced=%s)', async reduced => {
+    vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
+    vi.spyOn(window, 'cancelAnimationFrame').mockImplementation(() => undefined);
+    vi.spyOn(HTMLImageElement.prototype, 'decode').mockResolvedValue();
+    const state = createInitialState(); state.settings.reducedGraphics = reduced;
+    const leg = LION_TRAVERSAL_LEGS.find(l => l.id === 'T0')!;
+    const scene = new TraversalRoadScene({ leg, getState: () => state, root: document.body,
+      getAvailableNodes: () => [], onNodeHandoff: vi.fn(), onArrival: vi.fn(), onMenu: vi.fn() },
+      T0_ROAD_AUTHORING, { selectBranch: vi.fn(), optionalDecision: () => undefined });
+    scene.open();
+    const clock = scene as unknown as { transition: unknown; tick(time: number): void;
+      routeRun: { elapsedMs: number; lane: number }; vehicleGroundPercent: number };
+    clock.transition = null;
+    clock.tick(1000);
+    const elapsed = clock.routeRun.elapsedMs;
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+    expect(clock.routeRun.lane).toBe(1); expect(clock.routeRun.elapsedMs).toBe(elapsed);
+    if (reduced) expect(clock.vehicleGroundPercent).toBe(81);
+    else { expect(clock.vehicleGroundPercent).toBe(65); clock.tick(1190);
+      expect(clock.vehicleGroundPercent).toBeCloseTo(73); }
+    const vehicle = scene.element.querySelector<HTMLElement>('.traversal-vehicle')!;
+    expect(Number(vehicle.dataset.screenGroundY)).toBeCloseTo(823 * clock.vehicleGroundPercent / 100);
+    expect(Number(vehicle.style.zIndex)).toBe(Math.round(823 * clock.vehicleGroundPercent / 10));
+    clock.tick(1570); expect(clock.vehicleGroundPercent).toBe(81);
+    scene.dispose();
+  });
   it('rejects a different leg before reading campaign state', () => {
     const getState = vi.fn(() => { throw new Error('Unexpected campaign read'); });
     const leg = LION_TRAVERSAL_LEGS.find(candidate => candidate.id === 'T3')!;
