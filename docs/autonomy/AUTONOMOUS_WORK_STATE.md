@@ -5,16 +5,16 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 | Field | Value |
 | --- | --- |
 | `status` | IN_PROGRESS |
-| `runStartedAt` | 10/03/2026 03:52:01 |
+| `runStartedAt` | 2026-10-03T03:52:01.5739175Z |
 | `runEndedAt` |  |
 | `activeTask` | DEMO-QA-POLISH: continuous earned campaign beyond first refuge |
-| `activePhase` | Registered native620recovery; frozen execution |
-| `activeSubtask` | Review precise native input diff, then registered620recovery |
+| `activePhase` | Recovery QA checkpoint complete; full battlefield keyboard next |
+| `activeSubtask` | Add native battlefield keyboard targeting with shared pointer activation and focus ownership |
 | `workingBranch` | dev |
-| `lastKnownGoodCommit` | 66608d2fd526d88d866c57e9f29b7b985333c316 |
-| `lastPushedCommit` | 66608d2fd526d88d866c57e9f29b7b985333c316 |
+| `lastKnownGoodCommit` | 770ec706fd5ffb9b2cb49cfa9259a6f41b9d783f |
+| `lastPushedCommit` | 770ec706fd5ffb9b2cb49cfa9259a6f41b9d783f |
 | `creditStatus` | CODEX_AVAILABLE; this run authorized; automation settings unchanged |
-| `contractComplianceStatus` | PRODUCTION-CONTRACTS-LOCK-1/v1: native telemetry/pilot authority scoped PASS by guardian; recovery pending; full item9 BLOCKED/IN_PROGRESS. No LOCKED rule changed. |
+| `contractComplianceStatus` | PRODUCTION-CONTRACTS-LOCK-1/v1: pilot and620normal/390OS full-ownerV6recovery scoped PASS by reused guardian; full item9 acceptance remains BLOCKED/IN_PROGRESS. No LOCKED rule changed. |
 | `runId` | rpgthreejs-auto-dev-90m-20261003T0350 |
 | `agent` | codex |
 
@@ -24,20 +24,30 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 {
   "runId": "rpgthreejs-auto-dev-90m-20261003T0350",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-03T03:57:43.5896388Z",
-  "status": "QA_RUNNING",
+  "lastHeartbeat": "2026-10-03T04:31:15.8157083Z",
+  "status": "CHECKPOINTING",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0350",
-    "sha": "a45743235cb2a5e4834f8eeca2402932abeee44c",
+    "sha": "3948bb08970cdee206789ab2b002dd82bb3cd2f7",
     "dirtyFiles": [
-      "tools/demo-continuous-production-qa.mjs",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/handoffs/2026-10-03T0350Z-codex-native-rejection-checkpoint.md",
+      "docs/reports/INDEX.md",
+      "docs/reports/native-rejection-recovery-1.md",
+      "docs/reports/native-rejection-recovery-1/proof.json",
+      "docs/reports/native-rejection-recovery-1/620-combat-1-result.png",
+      "docs/reports/native-rejection-recovery-1/620-combat-2-native-defeat-return-focus.png",
+      "docs/reports/native-rejection-recovery-1/620-native-defeat-recovered.png",
+      "docs/reports/native-rejection-recovery-1/620-native-defeat-recovered-resumed.png",
+      "docs/reports/native-rejection-recovery-1/390-os-combat-2-native-defeat-return-focus.png",
+      "docs/reports/native-rejection-recovery-1/390-os-native-defeat-recovered.png",
+      "docs/reports/native-rejection-recovery-1/390-os-native-defeat-recovered-resumed.png"
     ],
     "status": "GREEN",
-    "lastGreenCheck": "101focused/types/contracts/syntax/LOCKED and existing9build hashes PASS"
+    "lastGreenCheck": "117focused/receipt,types,LOCKED/contracts/syntax PASS;both native recovery jobs accepted scoped"
   },
-  "nextAction": "Inspect0350-recovery-crosier terminal receipt/results first, sync owned state preserving31historical QA dispositions, then review native marais victory/requested village defeat/full ownerV6cleanup/focus/reload and selected captures. Freeze source/driver/helper/build until worker11028ends; failures never seed continuation."
+  "nextAction": "Resume item9. Inspect accepted0350 recovery proof/receipts first; do not rerun unchanged620normal/390OS recovery or original726bb75trial. Begin full battlefield keyboard targeting: load ui-accessibility/contracts skills, inventory ALL legacyCombatRuntime references before touching production owner, then obtain a precise UI impact brief. First atomic change: share current onClick cell activation with keyboard without duplicating legality, AP, damage or outcomes. Add canvas Tab entry/visible focus, transient arrow cursor and cell announcement, Enter only through native reach/pending centers, Escape cancellation and dock focus restoration; respect native controls/busy/over/stage. Relevant files: legacyCombatRuntime.js(onClick/bindInput/enterMove/enterTarget/cancelToMenu),combatKeyboard.ts/tests,legacyCombat.ts shell/styles. Keep cursor out of V6. Contracts guardian review is required for shared activation and QA assertions; production keyboard-only desktop1366/620/390 with OS motion on/off and pointer regression before acceptance. Changed runtime/build invalidates source-specific reuse. Full sacrifice/fallback/settledVFX/balance/single-build earned campaign and exact2AP-start Salvation remain open; no media/audio work."
 }
 ```
 
@@ -47,6 +57,10 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 - Scoped guardian PASS for native input pilot launch
 - Initial reviewed WIP a457432 pushed
 - Registered0350-recovery-crosier25min620normal; worker11028/port5273
+- Pilot770ec70pushed/remote verified; original trial acceptance preserved
+- 620x780normal native marais victory/village defeat/full ownerV6cleanup/focused departure/exact reload independently ACCEPTED_SCOPED
+- 390x844OS reduced motion native marais victory/village defeat/full ownerV6cleanup/focused departure/exact reload independently ACCEPTED_SCOPED
+- 390OS-only recovery independently ACCEPTED_SCOPED;7selected captures inspected/promoted;workers11028/37092exited and5273/5274closed
 
 ## filesChanged
 
@@ -54,6 +68,16 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 - docs/autonomy/AUTONOMOUS_WORK_STATE.json
 - docs/autonomy/AUTONOMOUS_WORK_STATE.md
 - docs/autonomy/handoffs/2026-10-03T0350Z-codex-native-rejection-checkpoint.md
+- docs/reports/INDEX.md
+- docs/reports/native-rejection-recovery-1.md
+- docs/reports/native-rejection-recovery-1/proof.json
+- docs/reports/native-rejection-recovery-1/620-combat-1-result.png
+- docs/reports/native-rejection-recovery-1/620-combat-2-native-defeat-return-focus.png
+- docs/reports/native-rejection-recovery-1/620-native-defeat-recovered.png
+- docs/reports/native-rejection-recovery-1/620-native-defeat-recovered-resumed.png
+- docs/reports/native-rejection-recovery-1/390-os-combat-2-native-defeat-return-focus.png
+- docs/reports/native-rejection-recovery-1/390-os-native-defeat-recovered.png
+- docs/reports/native-rejection-recovery-1/390-os-native-defeat-recovered-resumed.png
 
 ## testsRun
 
@@ -63,6 +87,8 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 - Syntax,diff-check,LOCKED gates PASS
 - Original production runtime tree and9build hashes byte-identical; reuse permitted
 - 16QA receipt tests PASS
+- 0350-recovery-crosier SUCCEEDED/ACCEPTED_SCOPED; current provenance and exact ownerV6 assertions match
+- 0350-recovery-mobile-os SUCCEEDED/ACCEPTED_SCOPED; current provenance and exact ownerV6 assertions match
 
 ## testsPassed
 
@@ -72,25 +98,26 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 - Syntax,diff-check,LOCKED gates PASS
 - Original production runtime tree and9build hashes byte-identical; reuse permitted
 - 16QA receipt tests PASS
+- 0350-recovery-crosier SUCCEEDED/ACCEPTED_SCOPED; current provenance and exact ownerV6 assertions match
+- 0350-recovery-mobile-os SUCCEEDED/ACCEPTED_SCOPED; current provenance and exact ownerV6 assertions match
 
 ## testsRemaining
 
-- 620requested village native defeat/full ownerV6checkpoint recovery/focused departure/reload
-- Sacrifice branch, full keyboard battlefield targeting, fallback, settledVFX and combat balance
-- One corrected-build earned opening-to-ending campaign;1323ancestry remains mixed-build
-- Exact2AP-start Salvation affordability has static coverage only; all13observed casts start3or5AP
+- Full battlefield keyboard targeting/Tab entry/visible focus/live cell announcement/cancellation at desktop620390/motion variants
+- Sacrifice branch and ending/reload, fallback, settledVFX and combat balance
+- One corrected-build earned opening-to-ending campaign; historical seed ancestry retained
+- Exact2AP-start Salvation has static coverage only; original trial observed casts start3or5AP
 
 ## blockers
 
-- 620recovery not reached: native marais pilot still loses after affordable extra potions
-- Full keyboard targeting,sacrifice,fallback,settledVFX,balance and full campaign acceptance remain open
-- 1323second-refuge ancestry is mixed-build; no single corrected opening-to-ending claim
+- Full demo acceptance remains open: keyboard battlefield,sacrifice,fallback,settledVFX,balance,single-build campaign
+- Historical1323trial ancestry mixed-build; no new opening-to-ending acceptance
 
 ## remainingWork
 
-- Item9 remains IN_PROGRESS: trial continuation scoped PASS; requested620village recovery and full demo acceptance incomplete
-- Artistic videos remain EXTERNAL_MANUAL_WORKSTREAM; recurring generation/polling/replacement excluded
-- Dedicated canon/extra-slot decisions remain operator-owned; audio DEFERRED
+- Item9 IN_PROGRESS: trial continuation and scoped defeat recovery at620normal/390OS accepted; full demo acceptance incomplete
+- Artistic videos EXTERNAL_MANUAL_WORKSTREAM; recurring generation/polling/replacement excluded
+- Dedicated canon/extra-slot decisions operator-owned; audio DEFERRED
 
 ## taskQueue
 
@@ -107,7 +134,7 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 
 ## Exact next action
 
-Inspect0350-recovery-crosier terminal receipt/results first, sync owned state preserving31historical QA dispositions, then review native marais victory/requested village defeat/full ownerV6cleanup/focus/reload and selected captures. Freeze source/driver/helper/build until worker11028ends; failures never seed continuation.
+Resume item9. Inspect accepted0350 recovery proof/receipts first; do not rerun unchanged620normal/390OS recovery or original726bb75trial. Begin full battlefield keyboard targeting: load ui-accessibility/contracts skills, inventory ALL legacyCombatRuntime references before touching production owner, then obtain a precise UI impact brief. First atomic change: share current onClick cell activation with keyboard without duplicating legality, AP, damage or outcomes. Add canvas Tab entry/visible focus, transient arrow cursor and cell announcement, Enter only through native reach/pending centers, Escape cancellation and dock focus restoration; respect native controls/busy/over/stage. Relevant files: legacyCombatRuntime.js(onClick/bindInput/enterMove/enterTarget/cancelToMenu),combatKeyboard.ts/tests,legacyCombat.ts shell/styles. Keep cursor out of V6. Contracts guardian review is required for shared activation and QA assertions; production keyboard-only desktop1366/620/390 with OS motion on/off and pointer regression before acceptance. Changed runtime/build invalidates source-specific reuse. Full sacrifice/fallback/settledVFX/balance/single-build earned campaign and exact2AP-start Salvation remain open; no media/audio work.
 
 ## Current handoff
 
@@ -147,5 +174,6 @@ docs/autonomy/handoffs/2026-10-03T0350Z-codex-native-rejection-checkpoint.md
 - 2252-trial-unlocked: FAILED; port 5270; receipt `tmp/demo/2252-trial-unlocked/qa-job.json`; NOT_ACCEPTED
 - 0228-trial-support: SUCCEEDED; port 5271; receipt `tmp/demo/0228-trial-support/qa-job.json`; ACCEPTED_SCOPED
 - 0228-recovery-stock: FAILED; port 5272; receipt `tmp/demo/0228-recovery-stock/qa-job.json`; FAILED_NOT_ACCEPTED
-- 0350-recovery-crosier: PLANNED; port 5273; receipt `tmp/demo/0350-recovery-crosier/qa-job.json`; NOT_ACCEPTED
+- 0350-recovery-crosier: SUCCEEDED; port 5273; receipt `tmp/demo/0350-recovery-crosier/qa-job.json`; ACCEPTED_SCOPED
+- 0350-recovery-mobile-os: SUCCEEDED; port 5274; receipt `tmp/demo/0350-recovery-mobile-os/qa-job.json`; ACCEPTED_SCOPED
 <!-- QA_JOBS_END -->
