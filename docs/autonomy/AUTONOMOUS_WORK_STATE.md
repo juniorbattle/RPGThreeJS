@@ -6,13 +6,13 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 | --- | --- |
 | `status` | IN_PROGRESS |
 | `runStartedAt` | 2026-10-03T03:52:01.5739175Z |
-| `runEndedAt` |  |
+| `runEndedAt` | 2026-10-03T04:32:35.4864482Z |
 | `activeTask` | DEMO-QA-POLISH: continuous earned campaign beyond first refuge |
 | `activePhase` | Recovery QA checkpoint complete; full battlefield keyboard next |
 | `activeSubtask` | Add native battlefield keyboard targeting with shared pointer activation and focus ownership |
 | `workingBranch` | dev |
-| `lastKnownGoodCommit` | 770ec706fd5ffb9b2cb49cfa9259a6f41b9d783f |
-| `lastPushedCommit` | 770ec706fd5ffb9b2cb49cfa9259a6f41b9d783f |
+| `lastKnownGoodCommit` | 97082da5014dd98420fc08f91bef822510fcf69a |
+| `lastPushedCommit` | 97082da5014dd98420fc08f91bef822510fcf69a |
 | `creditStatus` | CODEX_AVAILABLE; this run authorized; automation settings unchanged |
 | `contractComplianceStatus` | PRODUCTION-CONTRACTS-LOCK-1/v1: pilot and620normal/390OS full-ownerV6recovery scoped PASS by reused guardian; full item9 acceptance remains BLOCKED/IN_PROGRESS. No LOCKED rule changed. |
 | `runId` | rpgthreejs-auto-dev-90m-20261003T0350 |
@@ -24,27 +24,13 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 {
   "runId": "rpgthreejs-auto-dev-90m-20261003T0350",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-03T04:31:15.8157083Z",
-  "status": "CHECKPOINTING",
+  "lastHeartbeat": "2026-10-03T04:32:35.4864482Z",
+  "status": "CHECKPOINTED",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0350",
     "sha": "3948bb08970cdee206789ab2b002dd82bb3cd2f7",
-    "dirtyFiles": [
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-03T0350Z-codex-native-rejection-checkpoint.md",
-      "docs/reports/INDEX.md",
-      "docs/reports/native-rejection-recovery-1.md",
-      "docs/reports/native-rejection-recovery-1/proof.json",
-      "docs/reports/native-rejection-recovery-1/620-combat-1-result.png",
-      "docs/reports/native-rejection-recovery-1/620-combat-2-native-defeat-return-focus.png",
-      "docs/reports/native-rejection-recovery-1/620-native-defeat-recovered.png",
-      "docs/reports/native-rejection-recovery-1/620-native-defeat-recovered-resumed.png",
-      "docs/reports/native-rejection-recovery-1/390-os-combat-2-native-defeat-return-focus.png",
-      "docs/reports/native-rejection-recovery-1/390-os-native-defeat-recovered.png",
-      "docs/reports/native-rejection-recovery-1/390-os-native-defeat-recovered-resumed.png"
-    ],
-    "status": "GREEN",
+    "dirtyFiles": [],
+    "status": "RETIRED_AFTER_DEV_PRESERVATION",
     "lastGreenCheck": "117focused/receipt,types,LOCKED/contracts/syntax PASS;both native recovery jobs accepted scoped"
   },
   "nextAction": "Resume item9. Inspect accepted0350 recovery proof/receipts first; do not rerun unchanged620normal/390OS recovery or original726bb75trial. Begin full battlefield keyboard targeting: load ui-accessibility/contracts skills, inventory ALL legacyCombatRuntime references before touching production owner, then obtain a precise UI impact brief. First atomic change: share current onClick cell activation with keyboard without duplicating legality, AP, damage or outcomes. Add canvas Tab entry/visible focus, transient arrow cursor and cell announcement, Enter only through native reach/pending centers, Escape cancellation and dock focus restoration; respect native controls/busy/over/stage. Relevant files: legacyCombatRuntime.js(onClick/bindInput/enterMove/enterTarget/cancelToMenu),combatKeyboard.ts/tests,legacyCombat.ts shell/styles. Keep cursor out of V6. Contracts guardian review is required for shared activation and QA assertions; production keyboard-only desktop1366/620/390 with OS motion on/off and pointer regression before acceptance. Changed runtime/build invalidates source-specific reuse. Full sacrifice/fallback/settledVFX/balance/single-build earned campaign and exact2AP-start Salvation remain open; no media/audio work."
@@ -61,6 +47,7 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 - 620x780normal native marais victory/village defeat/full ownerV6cleanup/focused departure/exact reload independently ACCEPTED_SCOPED
 - 390x844OS reduced motion native marais victory/village defeat/full ownerV6cleanup/focused departure/exact reload independently ACCEPTED_SCOPED
 - 390OS-only recovery independently ACCEPTED_SCOPED;7selected captures inspected/promoted;workers11028/37092exited and5273/5274closed
+- Evidence97082da pushed/remote verified;owned WIP3948bb0payload preserved and branch retired;main unchanged
 
 ## filesChanged
 
