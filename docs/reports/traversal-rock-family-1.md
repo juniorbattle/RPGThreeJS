@@ -6,9 +6,9 @@
 | DOMAIN | Traversal presentation |
 | BASELINE | dev@f3fee793dde2d77d0241e9730ecf61be39ffb345 |
 | BRANCH | dev |
-| HEAD | Implementation SHA in paired state/closeout handoff |
+| HEAD | 5abf0643255af171200aaa26601e93c5f67c5732 |
 | STATUS | Reviewed scoped production PASS |
-| MERGED_IN | Direct dev checkpoint; exact SHA in handoff |
+| MERGED_IN | Direct dev checkpoint 5abf0643255af171200aaa26601e93c5f67c5732 |
 | SUPERSEDES | NONE; prior obstacle proofs retain older target |
 | SUPERSEDED_BY | NONE |
 | PRODUCTION_IMPACT | All authored hazards select existing boulder-a/b art, including T1/T3 remaps |

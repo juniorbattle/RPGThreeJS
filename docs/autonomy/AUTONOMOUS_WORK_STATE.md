@@ -6,19 +6,19 @@ OD-2026-10-03-A priority; set1.1.0 immutable d7ca28a. Demo incomplete.
 | --- | --- |
 | status | IN_PROGRESS |
 | runStartedAt | 2026-10-03T14:32:18.2646434Z |
-| runEndedAt | pending |
+| runEndedAt | 2026-10-03T15:23:01.106Z |
 | activeTask | TRAVERSAL-ROAD-ELEMENTS |
 | activePhase | Rock-family scoped production PASS; physical lifetime/depth/spacing pending |
 | activeSubtask | Shared Risk/Reward physical anchors, natural spawn/full-exit lifetime and ground-depth sorting |
 | workingBranch | dev |
-| lastKnownGoodCommit | f3fee793dde2d77d0241e9730ecf61be39ffb345 |
-| lastPushedCommit | f3fee793dde2d77d0241e9730ecf61be39ffb345 |
+| lastKnownGoodCommit | 5abf0643255af171200aaa26601e93c5f67c5732 |
+| lastPushedCommit | 5abf0643255af171200aaa26601e93c5f67c5732 |
 | creditStatus | AVAILABLE; no credit-saving claim |
 | contractComplianceStatus | Set1.1.0 immutable gates PASS;Pursuit isolated38cases/UI/QA PASS but canonical integration BLOCKED10mappings;rockfamily18first-roadcases PASS;full roadlifetime/depth/spacing,earnedV6/deferredkeyboard/narrative/demo acceptance open |
 
 ## Live checkpoint
 
-Run rpgthreejs-auto-dev-90m-20261003T1430; checkpoint 2026-10-03T15:19:34.211Z; WIP wip/rpgthreejs-auto-dev-90m-20261003T1430@2a7933e830123290feaae5d0e28a17672ed3e25e. Original48ledger and exact deferred task preserved;55jobs retained.
+Run rpgthreejs-auto-dev-90m-20261003T1430; checkpoint 2026-10-03T15:23:01.106Z; WIP wip/rpgthreejs-auto-dev-90m-20261003T1430@2a7933e830123290feaae5d0e28a17672ed3e25e. Original48ledger and exact deferred task preserved;55jobs retained.
 
 ## Verification
 

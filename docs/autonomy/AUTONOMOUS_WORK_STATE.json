@@ -1,20 +1,21 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-03T14:32:18.2646434Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-03T15:23:01.106Z",
   "activeTask": "TRAVERSAL-ROAD-ELEMENTS",
   "activePhase": "Rock-family scoped production PASS; physical lifetime/depth/spacing pending",
   "activeSubtask": "Shared Risk/Reward physical anchors, natural spawn/full-exit lifetime and ground-depth sorting",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "f3fee793dde2d77d0241e9730ecf61be39ffb345",
-  "lastPushedCommit": "f3fee793dde2d77d0241e9730ecf61be39ffb345",
+  "lastKnownGoodCommit": "5abf0643255af171200aaa26601e93c5f67c5732",
+  "lastPushedCommit": "5abf0643255af171200aaa26601e93c5f67c5732",
   "completedThisRun": [
     "Acquired absent exclusive lock; remote dev58e9c5b parity verified; preserved6deferred blobs in remote WIP2a7933e8",
     "Unwired charge renderer/native-clock minified lab:38freshv6cases/8selectedcaptures; independent authority and visual reviews scoped PASS",
     "Four failed attempts plus v5 responsive rejection retained; fixed load latency/offscreen origin/narrow overlap and actual hit-test assertions",
     "153Traversal tests/28files;TypeScript including lab;8contracts8slots/build/protected/whitespace gates PASS;old48ledger/deferred exact",
     "Rock-only runtime selector keeps hazard authoring/owners unchanged;18realbuilt-gamefirst-roadcases normalOS,6selectedframes,independent scoped PASS",
-    "Final153Traversal tests/28files+TypeScript src/lab+8contracts8slots;55ledger entries/48inherited/deferred task exact;13related owner/assets byte-identical"
+    "Final153Traversal tests/28files+TypeScript src/lab+8contracts8slots;55ledger entries/48inherited/deferred task exact;13related owner/assets byte-identical",
+    "Published f3fee793 candidate and5abf064 rock; postcommit proof/source/build/14selectedcapture hashes exact;all7workers terminal/5284–5285closed"
   ],
   "filesChanged": [
     "src/traversal/TraversalPursuitChargeRenderer.ts",
@@ -86,7 +87,7 @@
   ],
   "creditStatus": "AVAILABLE; no credit-saving claim",
   "contractComplianceStatus": "Set1.1.0 immutable gates PASS;Pursuit isolated38cases/UI/QA PASS but canonical integration BLOCKED10mappings;rockfamily18first-roadcases PASS;full roadlifetime/depth/spacing,earnedV6/deferredkeyboard/narrative/demo acceptance open",
-  "commitReferenceScope": "Candidate f3fee793; rock implementation/final closeout SHAs recorded in handoff/automation memory; original QA Git identities retained",
+  "commitReferenceScope": "Pursuit candidate f3fee793dde2d77d0241e9730ecf61be39ffb345; rock5abf0643255af171200aaa26601e93c5f67c5732; closeout publication SHA in automation memory",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -214,7 +215,7 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261003T1430",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-03T15:19:34.211Z",
+    "lastHeartbeat": "2026-10-03T15:23:01.106Z",
     "status": "CHECKPOINTED",
     "qaJobs": [
       {
@@ -6487,7 +6488,7 @@
         "src/styles/combat-shell.css",
         "tools/combat-battlefield-keyboard-production-qa.mjs"
       ],
-      "lastGreenCheck": "Final153Traversaltests/typeslab/contracts/build/source/input/result/capture hashes PASS;deferred sixfiles unaccepted"
+      "lastGreenCheck": "Both accepted scoped proofs hashes exact after commit; final153Traversal/types/contracts;index empty except closeout;deferred6blobs exact"
     },
     "nextAction": "Normal exclusive-lock/Git/WIP/receipt preflight. Read TRAVERSAL_ROAD_ELEMENTS.md. Reuse accepted rock-only selector and isolated Pursuit candidate; do not regenerate art/rerun unchanged proof. Implement shared presentation-only Risk/Reward frozen road-anchor/lifetime seam: forecast natural offscreen entry, freeze visible anchors, retain contact/collected marks and suppress only duplicate rewards, despawn after complete trailing-edge exit. Inventory actual mark/caravan ground bounds and wrapper stacking; sort by screenGroundY in one actor plane while preserving foreground/UI/impact feedback. Keep hazard IDs/kinds/lanes/contact clocks/severity and temporary-loot/RunSystem/V6 owners. Focused freeze/resize/contact/miss/collection/reset tests; registered fresh native production T0/T1/T3 normalOSgame1440/620/390 spawn/contact/exit/depth sequences and owner proof for any gold claim; guardian exact diff/assertions and traversal visual review. Pursuit integration remains blocked10missing mappings. Preserve55ledger entries/sixdeferred blobs/exact deferredDemoTask.",
     "runMetrics": {
