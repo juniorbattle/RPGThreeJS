@@ -1,6 +1,6 @@
 # Traversal motion polish
 
-CURRENT FACT — normal/OS/game scoped presentation PASS on 2026-10-03. Implementation `b9949123941ec13630ff3c398e4bb2551d68d50f`; publication checkpoint pending. Contract set1.1.0 / OD-2026-10-03-A; baseline dev `21398e4b02f92908a5378403e612b660006f336e`. Full demo remains incomplete.
+CURRENT FACT — normal/OS/game scoped presentation PASS on 2026-10-03. Implementation `b9949123941ec13630ff3c398e4bb2551d68d50f`; published and verified on origin/dev through f46d819cf2c92fd246d2e840857f33d9397a3401. Contract set1.1.0 / OD-2026-10-03-A; baseline dev `21398e4b02f92908a5378403e612b660006f336e`. Full demo remains incomplete.
 
 ## Implemented boundary
 

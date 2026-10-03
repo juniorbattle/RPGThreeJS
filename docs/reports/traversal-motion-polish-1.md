@@ -7,7 +7,7 @@
 | BASELINE | dev21398e4b02f92908a5378403e612b660006f336e |
 | BRANCH | dev |
 | HEAD | Motionb9949123941ec13630ff3c398e4bb2551d68d50f; separate unwired modelb6996366ccb1650f037a5b338af477b4da809b6c |
-| STATUS | Scoped presentation PASS; local checkpoints committed; final publication pending |
+| STATUS | Scoped presentation PASS; published and verified on origin/dev through f46d819cf2c92fd246d2e840857f33d9397a3401 |
 | MERGED_IN | NONE; direct dev checkpoints |
 | SUPERSEDES | NONE; older proofs retain their original scopes |
 | SUPERSEDED_BY | NONE |
@@ -50,7 +50,7 @@ Contract set1.1.0; read constitution, contract index/manifest, AUTONOMOUS_WORK_P
 | SAVE | PASS source boundary: no IDs/schema/transient serialization changed; earned acceptance unclaimed |
 | UI / ACCESSIBILITY | PASS scoped Traversal controls/focus/three sizes/normal+OS+game motion |
 | QA_EVIDENCE | PASS scoped: exact identities/assertions/selected captures; four accepted jobs; limits explicit |
-| REPOSITORY_GOVERNANCE | PASS local gates/checkpoints/safe reviewed WIP; publication checkpoint pending |
+| REPOSITORY_GOVERNANCE | PASS: local gates/checkpoints,remote dev parityf46d819cf2c92fd246d2e840857f33d9397a3401,main unchanged,safe reviewed WIP retained |
 
 Motion completion does not close the BLOCKED collision integration or full demo. Audio remains deferred; eight slots, Alaric climax and temporary gold remain protected.
 

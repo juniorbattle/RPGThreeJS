@@ -1,18 +1,19 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-03T13:04:04.9263411Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-03T13:49:57.986Z",
   "activeTask": "TRAVERSAL-PURSUIT-THREAT",
   "activePhase": "Unwired committed charge model verified; independent renderer/harness next",
   "activeSubtask": "Render authored committed lane/acceleration/genuine-miss full exit without canonical writes; collision integration blocked by missing mappings",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "b6996366ccb1650f037a5b338af477b4da809b6c",
-  "lastPushedCommit": "21398e4b02f92908a5378403e612b660006f336e",
+  "lastPushedCommit": "f46d819cf2c92fd246d2e840857f33d9397a3401",
   "completedThisRun": [
     "Recovered interrupted1002 after105minute cumulative checks; all8workers dead,three final receipts recovered,16reviewed paths snapshotted71cee262; remote refs unchanged21398e4",
     "Recovered3exact terminal motion receipts and completed9additional game-setting journeys;27journeys/106captures/10promoted;4jobs accepted scoped presentation",
     "Committed motionb994912 and unwired modelb699636 separately;7model tests and independent guards review PASS",
-    "Restored47inherited ledger objects after timestamp serialization regression;original39/deferredDemoTask/sixkeyboard blobs exactly preserved"
+    "Restored47inherited ledger objects after timestamp serialization regression;original39/deferredDemoTask/sixkeyboard blobs exactly preserved",
+    "Publication verified dev@f46d819cf2c92fd246d2e840857f33d9397a3401; main00b96f1 unchanged; owned remote WIP575604d56aed8b3bcb2317fc876ec2b9a6f64045 retained for6deferred blobs;9workers terminal/5280–5283closed."
   ],
   "filesChanged": [
     "src/styles/traversal.css",
@@ -78,7 +79,7 @@
     "Resume deferred DEMO-QA-POLISH: PENDING"
   ],
   "creditStatus": "AVAILABLE; no credit-saving claim",
-  "contractComplianceStatus": "set1.1.0 immutable;motion SCOPED_PRESENTATION PASS;unwired Pursuit MODEL_ONLY PASS;collision mapping BLOCKED;visual Pursuit/road/narrative/full demo remain open.",
+  "contractComplianceStatus": "Repository publication/gates PASS;set1.1.0 immutable;motion SCOPED_PRESENTATION PASS;unwired Pursuit MODEL_ONLY PASS;collision mapping BLOCKED;visual Pursuit/road/narrative/full demo remain open.",
   "commitReferenceScope": "Motion implementationb994912;modelb699636;final documentation/state SHA and verified publication recorded in automation memory/handoff.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
@@ -207,8 +208,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261003T1300",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-03T13:46:53.930Z",
-    "status": "CHECKPOINT_READY",
+    "lastHeartbeat": "2026-10-03T13:49:57.986Z",
+    "status": "CHECKPOINTED",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -5736,7 +5737,7 @@
       "branch": "wip/rpgthreejs-auto-dev-90m-20261003T1300",
       "sha": "575604d56aed8b3bcb2317fc876ec2b9a6f64045",
       "publication": "REMOTE_VERIFIED",
-      "status": "LOCAL_SNAPSHOT",
+      "status": "REMOTE_PRESERVED_DEFERRED_KEYBOARD",
       "dirtyFiles": [
         "legacy-combat.html",
         "src/combat/combatKeyboard.test.ts",

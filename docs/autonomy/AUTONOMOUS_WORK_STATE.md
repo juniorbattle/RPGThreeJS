@@ -6,19 +6,19 @@ OD-2026-10-03-A priority; set1.1.0 immutable d7ca28a. Demo incomplete.
 | --- | --- |
 | status | IN_PROGRESS |
 | runStartedAt | 2026-10-03T13:04:04.9263411Z |
-| runEndedAt |  |
+| runEndedAt | 2026-10-03T13:49:57.986Z |
 | activeTask | TRAVERSAL-PURSUIT-THREAT |
 | activePhase | Unwired committed charge model verified; independent renderer/harness next |
 | activeSubtask | Render authored committed lane/acceleration/genuine-miss full exit without canonical writes; collision integration blocked by missing mappings |
 | workingBranch | dev |
 | lastKnownGoodCommit | b6996366ccb1650f037a5b338af477b4da809b6c |
-| lastPushedCommit | 21398e4b02f92908a5378403e612b660006f336e |
+| lastPushedCommit | f46d819cf2c92fd246d2e840857f33d9397a3401 |
 | creditStatus | AVAILABLE; no credit-saving claim |
-| contractComplianceStatus | set1.1.0 immutable;motion SCOPED_PRESENTATION PASS;unwired Pursuit MODEL_ONLY PASS;collision mapping BLOCKED;visual Pursuit/road/narrative/full demo remain open. |
+| contractComplianceStatus | Repository publication/gates PASS;set1.1.0 immutable;motion SCOPED_PRESENTATION PASS;unwired Pursuit MODEL_ONLY PASS;collision mapping BLOCKED;visual Pursuit/road/narrative/full demo remain open. |
 
 ## Live checkpoint
 
-Run rpgthreejs-auto-dev-90m-20261003T1300; heartbeat 2026-10-03T13:39:56.419Z; remote WIP wip/rpgthreejs-auto-dev-90m-20261003T1300@292a35f9f01ff2eb9dfcee1689693ebc92a88431. 48QA ledger entries retained in JSON; original39/deferredDemoTask/sixkeyboard blobs verified exactly. Motionb994912 scoped PASS; candidateb699636 model-only PASS.
+Run rpgthreejs-auto-dev-90m-20261003T1300; checkpointed 2026-10-03T13:49:57.986Z; remote WIP wip/rpgthreejs-auto-dev-90m-20261003T1300@575604d56aed8b3bcb2317fc876ec2b9a6f64045. 48QA entries retained; original39/deferredDemoTask/sixblobs verified. Final state publication SHA/release follows in automation memory.
 
 ## Verification
 

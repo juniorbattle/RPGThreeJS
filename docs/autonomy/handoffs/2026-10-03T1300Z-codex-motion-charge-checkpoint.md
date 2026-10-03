@@ -1,6 +1,6 @@
 # Motion acceptance and independent charge model checkpoint
 
-Run `rpgthreejs-auto-dev-90m-20261003T1300`, started13:00UTC/preflight, exclusive ownership13:04:04Z. dev baseline21398e4; main00b96f1unchanged. Motion implementationb9949123941ec13630ff3c398e4bb2551d68d50f and separate unwired modelb6996366ccb1650f037a5b338af477b4da809b6c are committed. Documentation/publication checkpoint pending; final verified SHA/time and lock release are recorded in automation memory.
+Run `rpgthreejs-auto-dev-90m-20261003T1300`, started13:00UTC/preflight, exclusive ownership13:04:04Z. dev baseline21398e4; main00b96f1unchanged. Motion implementationb9949123941ec13630ff3c398e4bb2551d68d50f and separate unwired modelb6996366ccb1650f037a5b338af477b4da809b6c are committed. Documentation/runtime/model publication verified dev@f46d819cf2c92fd246d2e840857f33d9397a3401,main unchanged. Final closeout state SHA/time and lock release follow in automation memory.
 
 ## Accepted and open boundaries
 
