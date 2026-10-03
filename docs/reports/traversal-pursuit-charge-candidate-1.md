@@ -6,9 +6,9 @@
 | DOMAIN | Traversal presentation / isolated QA |
 | BASELINE | dev@58e9c5b2e7ddfbd548dc6d6b17f842aca61ce848 |
 | BRANCH | dev |
-| HEAD | Implementation commit recorded in paired state/closeout handoff |
+| HEAD | f3fee793dde2d77d0241e9730ecf61be39ffb345 |
 | STATUS | Reviewed; isolated candidate PASS |
-| MERGED_IN | Direct dev checkpoint; final SHA in handoff |
+| MERGED_IN | Direct dev checkpoint f3fee793dde2d77d0241e9730ecf61be39ffb345 |
 | SUPERSEDES | NONE; prior model proof retained |
 | SUPERSEDED_BY | NONE |
 | PRODUCTION_IMPACT | NONE; renderer/lab remain unwired |

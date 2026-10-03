@@ -42,15 +42,15 @@ describe('T0 Route risk authoring', () => {
     for (const hazard of T0_ROUTE_HAZARDS) {
       const visual = resolveRouteRiskVisual(hazard);
       expect(resolveRouteRiskVisual(hazard)).toEqual(visual);
-      expect(['fallen-branch', 'boulder', 'roadblock']).toContain(visual.kind);
+      expect(visual.kind).toBe('boulder');
       expect(['a', 'b']).toContain(visual.variant);
       expect(visual.src).toBe(`/assets/generated/lion-phase/traversal/t0/risk/${visual.kind}-${visual.variant}.png`);
       visualNames.add(`${visual.kind}-${visual.variant}`);
     }
     expect(resolveRouteRiskVisual(t0RouteHazards('route-3')[1]!).kind).toBe('boulder');
     expect(resolveRouteRiskVisual(t0RouteHazards('route-4')[0]!).kind).toBe('boulder');
-    expect(resolveRouteRiskVisual(t0RouteHazards('route-5b')[0]!).kind).toBe('roadblock');
-    for (const kind of ['fallen-branch', 'boulder', 'roadblock']) {
+    expect(resolveRouteRiskVisual(t0RouteHazards('route-5b')[0]!).kind).toBe('boulder');
+    for (const kind of ['boulder']) {
       for (const variant of ['a', 'b']) {
         const name = `${kind}-${variant}`;
         expect(visualNames.has(name)).toBe(true);

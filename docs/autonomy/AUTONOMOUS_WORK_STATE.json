@@ -3,16 +3,18 @@
   "runStartedAt": "2026-10-03T14:32:18.2646434Z",
   "runEndedAt": null,
   "activeTask": "TRAVERSAL-ROAD-ELEMENTS",
-  "activePhase": "Pursuit isolated renderer verified; canonical collision blocked; road elements visual inventory",
-  "activeSubtask": "Constrain active obstacle art to rocks; then physical road-element lifetime/depth without changing contact or temporary-loot owners",
+  "activePhase": "Rock-family scoped production PASS; physical lifetime/depth/spacing pending",
+  "activeSubtask": "Shared Risk/Reward physical anchors, natural spawn/full-exit lifetime and ground-depth sorting",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "b6996366ccb1650f037a5b338af477b4da809b6c",
-  "lastPushedCommit": "f46d819cf2c92fd246d2e840857f33d9397a3401",
+  "lastKnownGoodCommit": "f3fee793dde2d77d0241e9730ecf61be39ffb345",
+  "lastPushedCommit": "f3fee793dde2d77d0241e9730ecf61be39ffb345",
   "completedThisRun": [
     "Acquired absent exclusive lock; remote dev58e9c5b parity verified; preserved6deferred blobs in remote WIP2a7933e8",
     "Unwired charge renderer/native-clock minified lab:38freshv6cases/8selectedcaptures; independent authority and visual reviews scoped PASS",
     "Four failed attempts plus v5 responsive rejection retained; fixed load latency/offscreen origin/narrow overlap and actual hit-test assertions",
-    "153Traversal tests/28files;TypeScript including lab;8contracts8slots/build/protected/whitespace gates PASS;old48ledger/deferred exact"
+    "153Traversal tests/28files;TypeScript including lab;8contracts8slots/build/protected/whitespace gates PASS;old48ledger/deferred exact",
+    "Rock-only runtime selector keeps hazard authoring/owners unchanged;18realbuilt-gamefirst-roadcases normalOS,6selectedframes,independent scoped PASS",
+    "Final153Traversal tests/28files+TypeScript src/lab+8contracts8slots;55ledger entries/48inherited/deferred task exact;13related owner/assets byte-identical"
   ],
   "filesChanged": [
     "src/traversal/TraversalPursuitChargeRenderer.ts",
@@ -21,7 +23,12 @@
     "tools/traversal/pursuit-charge-lab.ts",
     "tools/traversal-pursuit-charge-qa.mjs",
     "docs/autonomy/TRAVERSAL_PURSUIT_THREAT.md",
-    "docs/reports/traversal-pursuit-charge-candidate-1.md"
+    "docs/reports/traversal-pursuit-charge-candidate-1.md",
+    "src/traversal/TraversalRouteRiskVisual.ts",
+    "src/traversal/TraversalRouteRisk.test.ts",
+    "tools/traversal-rock-production-qa.mjs",
+    "docs/autonomy/TRAVERSAL_ROAD_ELEMENTS.md",
+    "docs/reports/traversal-rock-family-1.md"
   ],
   "testsRun": [
     "node node_modules/vitest/vitest.mjs run src/traversal",
@@ -29,17 +36,23 @@
     "node node_modules/typescript/bin/tsc --noEmit -p tmp/traversal/pursuit-1430-control/lab-tsconfig.json",
     "node tools/contracts/validate-contracts.mjs",
     "node node_modules/vite/bin/vite.js build",
-    "registered pursuit-1430-v6 native browser38cases"
+    "registered pursuit-1430-v6 native browser38cases",
+    "29focusedRisk/T1/T3tests",
+    "registered rock-1430-production:18realbuiltGameAppfirst-roadcases",
+    "final153Traversaltests/28files+typeslab+8contracts8slots+protected/whitespace"
   ],
   "testsPassed": [
     "153Traversal tests/28files",
     "TypeScript src+lab",
     "8contracts8slots;gamebuild;protected/whitespace gates",
-    "Isolated native-clock candidate38cases;normalOSgame1440/620/390;8selectedcaptures;guardian/traversal scoped PASS"
+    "Isolated native-clock candidate38cases;normalOSgame1440/620/390;8selectedcaptures;guardian/traversal scoped PASS",
+    "Rockfamily18realbuiltfirst-roadcases normalOS T0/T1/T3×1440/620/390;6selectedcaptures;guardian/traversal PASS",
+    "Final153Traversaltests/28files;typesincludinglab;8contracts8slots;buildidentity exact to rock receipt",
+    "Original48ledger/deferred task/sixblobs preserved;Pursuit44labinputs12assets remain exact;oldgamebuild not reused after rock"
   ],
   "testsRemaining": [
-    "Pursuit committed-charge/miss visuals and canonical collision mapping/owner handoff;candidate model is not runtime acceptance",
-    "Road rock/reward spawn lifetime/depth/spacing and owner-boundary checks",
+    "Pursuit production eligible canonical mappings/single owner combat lifecycle;isolated candidate is not integration acceptance;visibility freeze unverified",
+    "Road natural/offscreen spawn,contact/collection persistence,complete exit,ground depth/spacing/reaction;native normalOSgame1440/620/390 plus temporary-loot owner proof",
     "Pre-judgement campfire/save-resume/agency and fact-consistent dialogue",
     "Relational tableau/cast/facing/ATE/contextual environments with desktop/intermediate/narrow OS-motion variants",
     "Deferred battlefield keyboard and original DEMO-QA-POLISH acceptance (exact details in deferredDemoTask)"
@@ -57,13 +70,13 @@
     "PENDING: ENVIRONMENT-NARRATIVE-COHERENCE",
     "PENDING: Resume deferred DEMO-QA-POLISH"
   ],
-  "nextAction": "Under owned lock, implement rock-only visual selector preserving authored hazard IDs/kinds/lanes/contact times/severity. Fresh real built-game T0/T1/T3 first-road visual proof; then implement offscreen spawn/full-exit lifetime and physical lane-depth shared seam for risk/reward. Pursuit full integration remains blocked; preserve54jobs/sixdeferred blobs/exact deferred task.",
+  "nextAction": "Normal exclusive-lock/Git/WIP/receipt preflight. Read TRAVERSAL_ROAD_ELEMENTS.md. Reuse accepted rock-only selector and isolated Pursuit candidate; do not regenerate art/rerun unchanged proof. Implement shared presentation-only Risk/Reward frozen road-anchor/lifetime seam: forecast natural offscreen entry, freeze visible anchors, retain contact/collected marks and suppress only duplicate rewards, despawn after complete trailing-edge exit. Inventory actual mark/caravan ground bounds and wrapper stacking; sort by screenGroundY in one actor plane while preserving foreground/UI/impact feedback. Keep hazard IDs/kinds/lanes/contact clocks/severity and temporary-loot/RunSystem/V6 owners. Focused freeze/resize/contact/miss/collection/reset tests; registered fresh native production T0/T1/T3 normalOSgame1440/620/390 spawn/contact/exit/depth sequences and owner proof for any gold claim; guardian exact diff/assertions and traversal visual review. Pursuit integration remains blocked10missing mappings. Preserve55ledger entries/sixdeferred blobs/exact deferredDemoTask.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
     "TRAVERSAL-MOTION-POLISH: COMPLETE_SCOPED_PRESENTATION",
     "TRAVERSAL-PURSUIT-THREAT: BLOCKED_CANONICAL_MAPPING; ISOLATED_CANDIDATE_PASS",
-    "TRAVERSAL-ROAD-ELEMENTS: ACTIVE_VISUAL_INVENTORY",
+    "TRAVERSAL-ROAD-ELEMENTS: ACTIVE_LIFETIME_DEPTH; ROCK_FAMILY_SCOPED_PASS",
     "PRE-JUDGEMENT-CAMPFIRE: PENDING",
     "NARRATIVE-CONTEXT-COHERENCE: PENDING",
     "STATIC-TABLEAU-STAGING-POLISH: PENDING",
@@ -72,8 +85,8 @@
     "Resume deferred DEMO-QA-POLISH: PENDING"
   ],
   "creditStatus": "AVAILABLE; no credit-saving claim",
-  "contractComplianceStatus": "Set1.1.0 unchanged;Pursuit isolated candidate authority/UI/QA PASS;canonical runtime integration BLOCKED10mappings;road corrections/full demo open",
-  "commitReferenceScope": "Motion implementationb994912;modelb699636;final documentation/state SHA and verified publication recorded in automation memory/handoff.",
+  "contractComplianceStatus": "Set1.1.0 immutable gates PASS;Pursuit isolated38cases/UI/QA PASS but canonical integration BLOCKED10mappings;rockfamily18first-roadcases PASS;full roadlifetime/depth/spacing,earnedV6/deferredkeyboard/narrative/demo acceptance open",
+  "commitReferenceScope": "Candidate f3fee793; rock implementation/final closeout SHAs recorded in handoff/automation memory; original QA Git identities retained",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -201,7 +214,7 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261003T1430",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-03T15:00:51.153Z",
+    "lastHeartbeat": "2026-10-03T15:19:34.211Z",
     "status": "CHECKPOINTED",
     "qaJobs": [
       {
@@ -6353,13 +6366,119 @@
           "scope": "isolated minified candidate with native RAF and controls; no campaign owner/save/combat",
           "identityNote": "Original receipt Git identity retained; raw bundle/input/assets hashes checked before commit; later Git representation does not replace tested bytes"
         }
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "rock-1430-production",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T1430",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-03T15:05:40.796Z",
+        "pid": 53268,
+        "port": 5285,
+        "command": [
+          "node",
+          "tools/traversal-rock-production-qa.mjs"
+        ],
+        "parameters": {
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ],
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "motion": [
+            "normal",
+            "os"
+          ],
+          "scope": "real built-game first-road rock-only visuals; V6 origins and combat-result fixtures; no earned/combat/lifetime/depth acceptance"
+        },
+        "requiredAssertions": [
+          "rock-only-active-art",
+          "authored-leg-inputs",
+          "real-first-road-visible",
+          "normal-os-responsive-focus"
+        ],
+        "output": "tmp/traversal/rock-1430",
+        "receiptPath": "tmp/traversal/rock-1430/qa-job.json",
+        "provenance": {
+          "gitHead": "f3fee793dde2d77d0241e9730ecf61be39ffb345",
+          "sourceTree": "639ba764f4a7a62461edc5057bd5075d39f0ae48",
+          "sourceDiffSha256": "2ed9680a76c1272d68973f5d08b07a9d34cdd067671fed8bbfa71d8c45d35e02",
+          "driver": {
+            "path": "tools/traversal-rock-production-qa.mjs",
+            "sha256": "9887a3d9ac3025060f59c446f0bb006b06f0d57de33e78f410b1126e9831a920"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BztuXMkj.css",
+              "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+            },
+            {
+              "path": "dist/assets/game-CMMiTj92.js",
+              "sha256": "0b694c2eff8a26a244eb0dc505acedac4b3e39f3234d3611bcfccef0a4a1ea31"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "152cc0ba84985b7720349d9bb1a92b14c1a6d5c6f95ea926c5d2ab61597b81fa"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_ROCK_FAMILY",
+        "startedAt": "2026-10-03T15:05:45.873Z",
+        "endedAt": "2026-10-03T15:08:07.832Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/rock-1430/results.json",
+        "resultSha256": "decf5631fd29f4c878c62aa4a37445d69555f525b126fd88a92b2ac4898959d8",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "acceptanceAtReview": {
+          "reviewedAt": "2026-10-03T15:12:58.371Z",
+          "checksPath": "docs/reports/traversal-rock-family-1-browser/checks.json",
+          "checksSha256": "10f570e177b5697a11491d4cae143185bc072937743b4db4b1cda471e1dee8c8",
+          "scope": "real built-game first-road rock-only visuals; V6 origins and combat-result fixtures; no earned/combat/lifetime/depth acceptance",
+          "identityNote": "Original receipt Git representation retained; raw source/driver/build/result/assets/capture hashes verified before commit"
+        }
       }
     ],
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261003T1430",
       "sha": "2a7933e830123290feaae5d0e28a17672ed3e25e",
       "publication": "REMOTE_VERIFIED",
-      "status": "REMOTE_PRESERVED_DEFERRED_KEYBOARD",
+      "status": "GREEN",
       "dirtyFiles": [
         "legacy-combat.html",
         "src/combat/combatKeyboard.test.ts",
@@ -6368,9 +6487,9 @@
         "src/styles/combat-shell.css",
         "tools/combat-battlefield-keyboard-production-qa.mjs"
       ],
-      "lastGreenCheck": "143Traversal tests/26suites;16receipt tests;types;8contracts/8slots;immutable/dirtyprotected/syntax gates;3receipts current source/driver/helper/build/result hashes exact"
+      "lastGreenCheck": "Final153Traversaltests/typeslab/contracts/build/source/input/result/capture hashes PASS;deferred sixfiles unaccepted"
     },
-    "nextAction": "Under owned lock, implement rock-only visual selector preserving authored hazard IDs/kinds/lanes/contact times/severity. Fresh real built-game T0/T1/T3 first-road visual proof; then implement offscreen spawn/full-exit lifetime and physical lane-depth shared seam for risk/reward. Pursuit full integration remains blocked; preserve54jobs/sixdeferred blobs/exact deferred task.",
+    "nextAction": "Normal exclusive-lock/Git/WIP/receipt preflight. Read TRAVERSAL_ROAD_ELEMENTS.md. Reuse accepted rock-only selector and isolated Pursuit candidate; do not regenerate art/rerun unchanged proof. Implement shared presentation-only Risk/Reward frozen road-anchor/lifetime seam: forecast natural offscreen entry, freeze visible anchors, retain contact/collected marks and suppress only duplicate rewards, despawn after complete trailing-edge exit. Inventory actual mark/caravan ground bounds and wrapper stacking; sort by screenGroundY in one actor plane while preserving foreground/UI/impact feedback. Keep hazard IDs/kinds/lanes/contact clocks/severity and temporary-loot/RunSystem/V6 owners. Focused freeze/resize/contact/miss/collection/reset tests; registered fresh native production T0/T1/T3 normalOSgame1440/620/390 spawn/contact/exit/depth sequences and owner proof for any gold claim; guardian exact diff/assertions and traversal visual review. Pursuit integration remains blocked10missing mappings. Preserve55ledger entries/sixdeferred blobs/exact deferredDemoTask.",
     "runMetrics": {
       "recoveredTerminalReceipts": 3,
       "newRegisteredJobs": 1,

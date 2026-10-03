@@ -5,10 +5,8 @@ export type TraversalRouteRiskVisualVariant = 'a' | 'b';
 
 const RISK_ASSET_ROOT = '/assets/generated/lion-phase/traversal/t0/risk';
 
-// These authored roadblocks read as rocks in the painted world. Their gameplay
-// kind, lane, contact progress, and collision resolution remain unchanged.
-const BOULDER_HAZARD_IDS = new Set(['t0:r3:block-2', 't0:r4:block-1']);
-// Route 5B deliberately shows both timber variants in its alternating hazards.
+// OD-2026-10-03-A: active obstacle art is rock-only. Historical gameplay kinds
+// and authored IDs/lanes/contact times/severity remain unchanged, including remapped legs.
 const AUTHORED_VARIANTS: Readonly<Record<string, TraversalRouteRiskVisualVariant>> = {
   't0:r5b:block-1': 'a',
 };
@@ -24,8 +22,7 @@ export function resolveRouteRiskVisual(hazard: TraversalRouteHazard): {
   readonly variant: TraversalRouteRiskVisualVariant;
   readonly src: string;
 } {
-  const kind = hazard.kind === 'fallen-branch' ? 'fallen-branch'
-    : BOULDER_HAZARD_IDS.has(hazard.id) ? 'boulder' : 'roadblock';
+  const kind = 'boulder';
   const variant = AUTHORED_VARIANTS[hazard.id] ?? stableVariant(hazard.id);
   return { kind, variant, src: `${RISK_ASSET_ROOT}/${kind}-${variant}.png` };
 }

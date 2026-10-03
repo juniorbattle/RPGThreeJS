@@ -8,17 +8,17 @@ OD-2026-10-03-A priority; set1.1.0 immutable d7ca28a. Demo incomplete.
 | runStartedAt | 2026-10-03T14:32:18.2646434Z |
 | runEndedAt | pending |
 | activeTask | TRAVERSAL-ROAD-ELEMENTS |
-| activePhase | Pursuit isolated renderer verified; canonical collision blocked; road elements visual inventory |
-| activeSubtask | Constrain active obstacle art to rocks; then physical road-element lifetime/depth without changing contact or temporary-loot owners |
+| activePhase | Rock-family scoped production PASS; physical lifetime/depth/spacing pending |
+| activeSubtask | Shared Risk/Reward physical anchors, natural spawn/full-exit lifetime and ground-depth sorting |
 | workingBranch | dev |
-| lastKnownGoodCommit | b6996366ccb1650f037a5b338af477b4da809b6c |
-| lastPushedCommit | f46d819cf2c92fd246d2e840857f33d9397a3401 |
+| lastKnownGoodCommit | f3fee793dde2d77d0241e9730ecf61be39ffb345 |
+| lastPushedCommit | f3fee793dde2d77d0241e9730ecf61be39ffb345 |
 | creditStatus | AVAILABLE; no credit-saving claim |
-| contractComplianceStatus | Set1.1.0 unchanged;Pursuit isolated candidate authority/UI/QA PASS;canonical runtime integration BLOCKED10mappings;road corrections/full demo open |
+| contractComplianceStatus | Set1.1.0 immutable gates PASS;Pursuit isolated38cases/UI/QA PASS but canonical integration BLOCKED10mappings;rockfamily18first-roadcases PASS;full roadlifetime/depth/spacing,earnedV6/deferredkeyboard/narrative/demo acceptance open |
 
 ## Live checkpoint
 
-Run rpgthreejs-auto-dev-90m-20261003T1430; 2026-10-03T15:00:51.153Z; WIP wip/rpgthreejs-auto-dev-90m-20261003T1430@2a7933e830123290feaae5d0e28a17672ed3e25e. Original48ledger and deferred task exact;54jobs retained.
+Run rpgthreejs-auto-dev-90m-20261003T1430; checkpoint 2026-10-03T15:19:34.211Z; WIP wip/rpgthreejs-auto-dev-90m-20261003T1430@2a7933e830123290feaae5d0e28a17672ed3e25e. Original48ledger and exact deferred task preserved;55jobs retained.
 
 ## Verification
 
@@ -26,6 +26,9 @@ Run rpgthreejs-auto-dev-90m-20261003T1430; 2026-10-03T15:00:51.153Z; WIP wip/rpg
 - TypeScript src+lab
 - 8contracts8slots;gamebuild;protected/whitespace gates
 - Isolated native-clock candidate38cases;normalOSgame1440/620/390;8selectedcaptures;guardian/traversal scoped PASS
+- Rockfamily18realbuiltfirst-roadcases normalOS T0/T1/T3×1440/620/390;6selectedcaptures;guardian/traversal PASS
+- Final153Traversaltests/28files;typesincludinglab;8contracts8slots;buildidentity exact to rock receipt
+- Original48ledger/deferred task/sixblobs preserved;Pursuit44labinputs12assets remain exact;oldgamebuild not reused after rock
 
 ## Blocker
 
@@ -33,13 +36,14 @@ Pursuit production collision integration:10windows lack explicitly authored elig
 
 ## Next action
 
-Under owned lock, implement rock-only visual selector preserving authored hazard IDs/kinds/lanes/contact times/severity. Fresh real built-game T0/T1/T3 first-road visual proof; then implement offscreen spawn/full-exit lifetime and physical lane-depth shared seam for risk/reward. Pursuit full integration remains blocked; preserve54jobs/sixdeferred blobs/exact deferred task.
+Normal exclusive-lock/Git/WIP/receipt preflight. Read TRAVERSAL_ROAD_ELEMENTS.md. Reuse accepted rock-only selector and isolated Pursuit candidate; do not regenerate art/rerun unchanged proof. Implement shared presentation-only Risk/Reward frozen road-anchor/lifetime seam: forecast natural offscreen entry, freeze visible anchors, retain contact/collected marks and suppress only duplicate rewards, despawn after complete trailing-edge exit. Inventory actual mark/caravan ground bounds and wrapper stacking; sort by screenGroundY in one actor plane while preserving foreground/UI/impact feedback. Keep hazard IDs/kinds/lanes/contact clocks/severity and temporary-loot/RunSystem/V6 owners. Focused freeze/resize/contact/miss/collection/reset tests; registered fresh native production T0/T1/T3 normalOSgame1440/620/390 spawn/contact/exit/depth sequences and owner proof for any gold claim; guardian exact diff/assertions and traversal visual review. Pursuit integration remains blocked10missing mappings. Preserve55ledger entries/sixdeferred blobs/exact deferredDemoTask.
 
 ## Deferred battlefield keyboard/combat
 
 Finish exact battlefield production driver: real Tab entry, cursor bounds/announcement/no truth mutation, invalid/legal movement and native target execution, Escape/Retour focus, native controls and pointer regression in1366/620/390 OS on/off. Build new sources, review exact activation/assertion diff with guardian, register job and freeze tested inputs. Add actual fresh campaign iframe keyboard entry/return if budget permits; incomplete acceptance stays explicit. Preserve historical0350recovery and original726trial proofs. No media/audio work.
 
 All six deferred files and historical QA ledger retained in JSON.
+
 
 
 <!-- QA_JOBS_START -->
@@ -99,4 +103,5 @@ All six deferred files and historical QA ledger retained in JSON.
 - pursuit-1430-v4: FAILED; port 5284; receipt tmp/traversal/pursuit-1430-v4/qa-job.json; NOT_ACCEPTED
 - pursuit-1430-v5: SUCCEEDED; port 5284; receipt tmp/traversal/pursuit-1430-v5/qa-job.json; NOT_ACCEPTED
 - pursuit-1430-v6: SUCCEEDED; port 5284; receipt tmp/traversal/pursuit-1430-v6/qa-job.json; ACCEPTED_SCOPED_ISOLATED_CANDIDATE
+- rock-1430-production: SUCCEEDED; port 5285; receipt tmp/traversal/rock-1430/qa-job.json; ACCEPTED_SCOPED_ROCK_FAMILY
 <!-- QA_JOBS_END -->

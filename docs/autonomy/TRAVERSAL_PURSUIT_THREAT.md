@@ -29,7 +29,7 @@ First four receipts FAILED and confer no acceptance. v5 succeeded geometrically 
 
 Contracts read: constitution, README/manifest, AUTONOMOUS_WORK_PROTOCOL, WORLD_AND_CHARACTERS, CAMPAIGN_AND_STATE, PRESENTATION_AND_MEDIA, TRAVERSAL/T0 source contract, COMBAT_AND_VFX, UI_AND_ACCESSIBILITY and AUTHORING_AND_QA. Set1.1.0; no LOCKED rule changed; immutable d7ca28a diff and dirty protected-path gates empty. Independent contracts-guardian verifies the scoped boundary, not full demo acceptance.
 
-CURRENT FACT — feasibility audit and unwired model checkpoint on2026-10-03. Model commit `b6996366ccb1650f037a5b338af477b4da809b6c`, after motion `b9949123941ec13630ff3c398e4bb2551d68d50f`. Full task remains IN_PROGRESS; no runtime/visual Pursuit acceptance. Collision integration is BLOCKED by absent authored eligible mappings; independent charge/miss presentation remains authorized by OD-2026-10-03-A. This document does not create a mapping or canon.
+HISTORICAL CHECKPOINT — feasibility audit and unwired model on2026-10-03, before the isolated renderer checkpoint above. Model commit `b6996366ccb1650f037a5b338af477b4da809b6c`, after motion `b9949123941ec13630ff3c398e4bb2551d68d50f`. No runtime/visual acceptance existed at that model checkpoint. Full Pursuit integration remains BLOCKED by absent authored eligible mappings. This document creates no mapping or canon.
 
 ## Verified independent model
 
@@ -50,7 +50,7 @@ All10variants lack a canonical Pursuit collision relation. `TraversalRoutePursui
 
 `TraversalRoadScene` still handles CAUGHT with reset/reforecast and feedback. `TraversalRoutePursuitRenderer` holds feedback650ms behind the caravan, then disappears. This is implemented historical behavior and drift under set1.1.0, not the approved new conclusion.
 
-## Independent next action
+## Historical renderer plan (completed only in isolated scope above)
 
 Read the Traversal/domain/UI/contracts skills and inspect `TraversalPursuitCharge`, `TraversalRoutePursuit`, its renderer, `TraversalRoadScene`, T0/T1/T3 authoring and CSS references. Reuse the verified model in an isolated renderer/harness: choose one authored lane at window end, retain that lane, accelerate with readable existing running art, and on a genuine lane miss overtake the caravan and fully exit right. Verify freeze/disposal, no duplicate observation, lane commitment, grounded scale/resize/depth, normal and OS/game reduction, and unchanged canonical state/temporary loot/V6. No new asset/video/audio generation is needed.
 
