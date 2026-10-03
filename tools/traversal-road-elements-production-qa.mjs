@@ -165,14 +165,19 @@ try {
       assert.ok(entered.filter(f => !f.m.hidden).every(f => f.m.decoded && f.m.visibility === 'visible' && f.m.parentZ === 'auto'));
       const crossing = frames.find(f => f.s.progress >= f.m.progress);
       assert.ok(crossing && !crossing.m.hidden, 'Resolution retains the mark');
-      assert.ok(Math.abs(crossing.s.elapsed - crossing.m.progress * crossing.s.duration) < 40, 'Authored crossing clock');
-      assert.ok(Math.abs(crossing.m.x - crossing.s.width * .25) < crossing.s.width * .012 + 3, 'Physical contact center matches authored clock');
+      const beforeCrossing = frames[frames.indexOf(crossing) - 1], contactMs = crossing.m.progress * crossing.s.duration;
+      assert.ok(beforeCrossing && beforeCrossing.s.elapsed < contactMs && crossing.s.elapsed >= contactMs
+        && crossing.s.elapsed - beforeCrossing.s.elapsed < 40, 'Authored crossing bracketed by native frames');
+      const fraction = (contactMs - beforeCrossing.s.elapsed) / (crossing.s.elapsed - beforeCrossing.s.elapsed);
+      const contactX = beforeCrossing.m.x + (crossing.m.x - beforeCrossing.m.x) * fraction;
+      assert.ok(beforeCrossing.s.width === crossing.s.width && Math.abs(contactX - crossing.s.width * .25) < 3,
+        'Interpolated physical center matches authored clock');
       assert.equal(crossing.s.lane, path === 'contact-collect' ? crossing.m.lane : 1 - crossing.m.lane);
       if (crossing.m.family === 'rock') {
         const hazardCount = frames[0].s.marks.filter(m => m.family === 'rock' && m.progress <= crossing.m.progress).length;
         assert.equal(crossing.s.collisions, path === 'contact-collect' ? hazardCount : 0);
         assert.equal(crossing.s.lastCollision, path === 'contact-collect' ? id : null);
-        if (path === 'contact-collect') assert.ok(Math.abs(crossing.s.reset - crossing.m.progress * crossing.s.duration) < 20);
+        if (path === 'contact-collect') assert.equal(crossing.s.reset, crossing.s.elapsed, 'Owner reset occurs on native resolving frame');
         if (path === 'contact-collect') {
           const before = frames.filter(f => f.s.progress < crossing.m.progress).at(-1);
           const after = frames.filter(f => f.s.elapsed > crossing.s.elapsed && f.s.elapsed < crossing.s.elapsed + 150);

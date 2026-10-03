@@ -18,7 +18,7 @@ OD-2026-10-03-A priority; set1.1.0 immutable d7ca28a. Demo incomplete.
 
 ## Live checkpoint
 
-Run rpgthreejs-auto-dev-90m-20261003T1815; heartbeat 2026-10-03T18:56:23.422Z; WIP wip/rpgthreejs-auto-dev-90m-20261003T1815@ffb16b08a0453c4e8b0f60ed07d56104ba504c94. Inherited55 ledger entries restored exactly from committed baseline after interrupted sync drift; new jobs retained.
+Run rpgthreejs-auto-dev-90m-20261003T1815; heartbeat 2026-10-03T19:06:03.347Z; WIP wip/rpgthreejs-auto-dev-90m-20261003T1815@b69d8c1a0dcd570f73b251dc974191f537b2d4f3. Inherited55 ledger entries restored exactly from committed baseline after interrupted sync drift; new jobs retained.
 
 ## Next action
 
@@ -98,7 +98,10 @@ Exact six deferred files and historical job provenance remain in JSON.
 - road-1815-final-normal: FAILED; port 5288; receipt `tmp/traversal/road-1815-final-normal/qa-job.json`; NOT_ACCEPTED
 - road-1815-final-os: FAILED; port 5289; receipt `tmp/traversal/road-1815-final-os/qa-job.json`; NOT_ACCEPTED
 - road-1815-final-game: FAILED; port 5290; receipt `tmp/traversal/road-1815-final-game/qa-job.json`; NOT_ACCEPTED
-- road-1815-v2-normal: PLANNED; port 5291; receipt `tmp/traversal/road-1815-v2-normal/qa-job.json`; NOT_ACCEPTED
-- road-1815-v2-os: PLANNED; port 5292; receipt `tmp/traversal/road-1815-v2-os/qa-job.json`; NOT_ACCEPTED
-- road-1815-v2-game: PLANNED; port 5293; receipt `tmp/traversal/road-1815-v2-game/qa-job.json`; NOT_ACCEPTED
+- road-1815-v2-normal: FAILED; port 5291; receipt `tmp/traversal/road-1815-v2-normal/qa-job.json`; NOT_ACCEPTED
+- road-1815-v2-os: FAILED; port 5292; receipt `tmp/traversal/road-1815-v2-os/qa-job.json`; NOT_ACCEPTED
+- road-1815-v2-game: FAILED; port 5293; receipt `tmp/traversal/road-1815-v2-game/qa-job.json`; NOT_ACCEPTED
+- road-1815-v3-normal: PLANNED; port 5294; receipt `tmp/traversal/road-1815-v3-normal/qa-job.json`; NOT_ACCEPTED
+- road-1815-v3-os: PLANNED; port 5295; receipt `tmp/traversal/road-1815-v3-os/qa-job.json`; NOT_ACCEPTED
+- road-1815-v3-game: PLANNED; port 5296; receipt `tmp/traversal/road-1815-v3-game/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
