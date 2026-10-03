@@ -55,7 +55,7 @@ const report = {schemaVersion:1, recordedAt:new Date().toISOString(), method:'FR
 report.qaJobReceipt=qaJob.receiptPath;
 Object.assign(report,{target,routePlan,finalePlan,defeatNodeId,nativeDefeatWait,viewport:{width:viewport[0],height:viewport[1]},
   osReducedMotion:process.env.DEMO_QA_OS_MOTION==='1',observationHook:'Built bootstrap exposes GameApp for read-only snapshots; no owner method invoked',refuges:[],choices:[]});
-report.nativeTacticalPolicy='Champion healer retains AP from the first turn, follows allies using native reachable cells, and prioritizes unlocked Salvation; all actions use existing native controls';
+report.nativeTacticalPolicy='Champion Salvation policy retained; novice crosier uses native lowest-charge ally attacks and follows wounded allies; non-Champion potions below half health; read-only rejection telemetry; all actions use existing native controls';
 report.nativePreparationPolicy=target==='defeat-recovery'?'Four affordable first-refuge potions through native shop; exact secured wallet/inventory/stock transaction and reload':'Existing refuge preparation';
 report.driverSha256=createHash('sha256').update(await readFile('tools/demo-continuous-production-qa.mjs')).digest('hex');
 report.productionBundles=await Promise.all((await readdir('dist/assets')).filter(name=>/^(game|combat)-.*\.js$/.test(name))
@@ -99,45 +99,60 @@ async function choose(){
 async function cancel(frame){await frame.locator('body').press('Escape');}
 async function combatState(frame){return frame.evaluate(()=>{const g=window.G;return{round:g.round,turnIdx:g.turnIdx,mode:g.mode,busy:g.busy,
   over:g.over,moved:g.movedThisTurn,attacks:g.basicAttacksThisTurn,active:g.active&&{id:g.active.campaignId,name:g.active.name,team:g.active.team,
-    gx:g.active.gx,gz:g.active.gz,hp:g.active.hp,maxhp:g.active.maxhp,ap:g.active.ap,skills:[...g.active.skills]},
+    gx:g.active.gx,gz:g.active.gz,hp:g.active.hp,maxhp:g.active.maxhp,ap:g.active.ap,skills:[...g.active.skills],
+    statuses:{...g.active.statuses},weapons:g.active.weapons.map(w=>({name:w.name,weaponType:w.weaponType,min:w.min,max:w.max}))},
   units:g.units.map(u=>({id:u.campaignId||u.id,name:u.name,team:u.team,gx:u.gx,gz:u.gz,hp:u.hp,maxhp:u.maxhp,alive:u.alive,downed:!!u.downed})),
   inventory:{...g.inv},diagnostics:window.__COMBAT_DIAGNOSTICS};});}
-async function cellClick(frame,cell){
+async function cellClick(frame,cell,attempt){
   const point=await frame.evaluate(({gx,gz})=>window.__qaHelpers.getCellScreenPosition(gx,gz),cell);
   const box=await page.locator('iframe.combat-frame').boundingBox();
   for(const [dx,dy] of [[0,0],[8,0],[-8,0],[0,8],[0,-8]]){
     const x=point.screenX+dx,y=point.screenY+dy;
     await page.mouse.move(box.x+x,box.y+y);await page.waitForTimeout(30);
-    const hit=await frame.evaluate(({x,y,gx,gz})=>document.elementFromPoint(x,y)?.tagName==='CANVAS'&&window.G.hover?.gx===gx&&window.G.hover?.gz===gz,{x,y,...cell});
+    const observation=await frame.evaluate(({x,y})=>{const hit=document.elementFromPoint(x,y);return{
+      tag:hit?.tagName??null,id:hit?.id??null,classes:hit?.className??null,
+      hover:window.G.hover&&{gx:window.G.hover.gx,gz:window.G.hover.gz},mode:window.G.mode,busy:window.G.busy};},{x,y});
+    const hit=observation.tag==='CANVAS'&&observation.hover?.gx===cell.gx&&observation.hover?.gz===cell.gz;
+    const pointer={cell:{gx:cell.gx,gz:cell.gz},projected:point,iframe:box,local:{x,y},observation,clicked:hit};
+    (report.pointerAttempts??=[]).push(pointer);if(attempt)(attempt.pointerAttempts??=[]).push(pointer);
     if(hit){await page.mouse.click(box.x+x,box.y+y);return true;}
   }return false;
 }
 async function settled(frame){await frame.waitForFunction(()=>window.G.over||!window.G.busy&&window.G.mode==='menu',null,{timeout:30000});}
-async function attack(frame,battle){
+async function attack(frame,battle,{support=false}={}){
   const before=await combatState(frame), button=frame.locator('#menu [data-a="attack"]:not(:disabled)').first();
-  if(!await button.count())return false;
+  const attempt={before,support,buttons:await frame.locator('#menu [data-a="attack"]').evaluateAll(bs=>bs.map(b=>({disabled:b.disabled,text:b.textContent.trim(),weaponIndex:b.dataset.wi})))};
+  (battle.attackAttempts??=[]).push(attempt);
+  if(!await button.count()){attempt.reason='native-attack-disabled';return false;}
   await button.click();
   const charges=frame.locator('#skillmenu [data-ch]:not([data-ch="_back"]):not(:disabled)');
-  if(!await charges.count()){await cancel(frame);return false;}
-  await charges.last().click();
-  const candidates=await frame.evaluate(()=>{const g=window.G;return(g.pending?.centers??[])
-    .filter(c=>{const u=g.grid[c.gx]?.[c.gz]?.occupant;return u?.alive&&u.team!==g.active.team;})
-    .sort((a,b)=>g.grid[a.gx][a.gz].occupant.hp-g.grid[b.gx][b.gz].occupant.hp)
-    .map(c=>({gx:c.gx,gz:c.gz}));});
-  for(const cell of candidates){if(await cellClick(frame,cell)){
+  attempt.charges=await frame.locator('#skillmenu [data-ch]:not([data-ch="_back"])').evaluateAll(bs=>bs.map(b=>({charge:b.dataset.ch,disabled:b.disabled,text:b.textContent.trim()})));
+  if(!await charges.count()){attempt.reason='native-charges-disabled';await cancel(frame);return false;}
+  const charge=support?charges.first():charges.last();attempt.selectedCharge=await charge.getAttribute('data-ch');await charge.click();
+  const native=await frame.evaluate(support=>{const g=window.G,centers=(g.pending?.centers??[]).map(c=>{
+    const u=g.grid[c.gx]?.[c.gz]?.occupant;return{gx:c.gx,gz:c.gz,target:u&&{id:u.campaignId||u.id,team:u.team,alive:u.alive,hp:u.hp,maxhp:u.maxhp}};
+  });return{spec:g.pending?.spec,centers,candidates:centers.filter(c=>c.target?.alive&&(support
+    ?g.pending.spec.weaponType==='crosier'&&c.target.team===g.active.team&&c.target.hp<c.target.maxhp*.95
+    :c.target.team!==g.active.team)).sort((a,b)=>support?a.target.hp/a.target.maxhp-b.target.hp/b.target.maxhp:a.target.hp-b.target.hp)
+    .map(c=>({gx:c.gx,gz:c.gz,targetId:c.target.id}))};},support);
+  Object.assign(attempt,native);
+  for(const cell of native.candidates){if(await cellClick(frame,cell,attempt)){
     await page.waitForTimeout(50);
     const started=await combatState(frame);
-    if(started.mode==='target'&&!started.busy)continue;
+    if(started.mode==='target'&&!started.busy){attempt.reason='native-pointer-did-not-start-action';continue;}
     if(!battle.impactCaptured){await capture(`combat-${battle.index}-actual-impact`);battle.impactCaptured=true;}
     await settled(frame); const after=await combatState(frame);
-    battle.actions.push({kind:'attack',cell,before,after});
+    if(support){const old=before.units.find(u=>u.id===cell.targetId),healed=after.units.find(u=>u.id===cell.targetId);
+      assert.ok(healed.hp>old.hp,'Native crosier input did not heal its selected ally');
+      assert.ok(after.active?.id!==before.active.id||after.active.ap<before.active.ap,'Native crosier action did not spend AP');}
+    battle.actions.push({kind:support?'crosier-heal':'attack',cell,spec:native.spec,before,after});attempt.reason='native-action-resolved';
     return true;
   }}
-  await cancel(frame);return false;
+  attempt.reason??=native.candidates.length?'no-native-pointer-hit':'no-native-eligible-target';await cancel(frame);return false;
 }
 async function heal(frame,battle){
   const before=await combatState(frame);
-  const wounded=before.units.filter(u=>u.team==='player'&&u.alive&&u.hp<u.maxhp*.75);
+  const wounded=before.units.filter(u=>u.team==='player'&&u.alive&&u.hp<u.maxhp*(battle.combatId==='lion_chief'?.75:.5));
   const fallen=before.units.filter(u=>u.team==='player'&&u.downed&&!u.alive);
   if(!wounded.length&&!fallen.length)return false;
   const item=frame.locator('#menu [data-a="item"]:not(:disabled)');if(!await item.count())return false;
@@ -198,19 +213,19 @@ async function skill(frame,battle){
     }await cancel(frame);
   }return false;
 }
-async function move(frame,battle,{support=false}={}){
+async function move(frame,battle,{support=false,supportRange=3}={}){
   const before=await combatState(frame), button=frame.locator('#menu [data-a="move"]:not(:disabled)');
   if(!await button.count())return false;await button.click();
-  const candidates=await frame.evaluate(support=>{const g=window.G,u=g.active,foes=g.units.filter(e=>e.team==='foe'&&e.alive);
+  const candidates=await frame.evaluate(({support,supportRange})=>{const g=window.G,u=g.active,foes=g.units.filter(e=>e.team==='foe'&&e.alive);
     const allies=g.units.filter(e=>e.team===u.team&&e.alive&&e!==u);
     // This is a pilot preference only. Native reach and subsequent pointer
     // activation remain the authority for every move; no outcome is predicted.
     const distance=(a,b)=>Math.abs(a.gx-b.gx)+Math.abs(a.gz-b.gz);
     const rank=c=>{if(support){
       const nearestFoe=Math.min(...foes.map(e=>distance(c,e)));
-      const uncovered=allies.filter(a=>distance(c,a)>3).length;
-      const woundedGap=allies.filter(a=>a.hp<a.maxhp*.95).reduce((sum,a)=>sum+Math.max(0,distance(c,a)-3),0);
-      return (nearestFoe<3?1000:0)+uncovered*100+woundedGap*200+Math.abs(nearestFoe-4)*5;
+      const uncovered=allies.filter(a=>distance(c,a)>supportRange).length;
+      const woundedGap=allies.filter(a=>a.hp<a.maxhp*.95).reduce((sum,a)=>sum+Math.max(0,distance(c,a)-supportRange),0);
+      return (nearestFoe<(supportRange>=3?3:1)?1000:0)+uncovered*100+woundedGap*200+Math.abs(nearestFoe-4)*5;
     }
     let score=Infinity;for(const e of foes)for(const w of u.weapons){
       const d=Math.abs(c.gx-e.gx)+Math.abs(c.gz-e.gz),inRange=w.weaponType==='long_spear'
@@ -218,7 +233,7 @@ async function move(frame,battle,{support=false}={}){
       score=Math.min(score,(inRange?0:100)+d);
     }return score;};
     return(g.reach?.list??[]).filter(c=>(c.gx!==u.gx||c.gz!==u.gz)&&!g.grid[c.gx][c.gz].occupant)
-      .map(c=>({gx:c.gx,gz:c.gz,score:rank(c)})).filter(c=>!support||c.score<rank(u)).sort((a,b)=>a.score-b.score);},support);
+      .map(c=>({gx:c.gx,gz:c.gz,score:rank(c)})).filter(c=>!support||c.score<rank(u)).sort((a,b)=>a.score-b.score);},{support,supportRange});
   for(const cell of candidates){if(await cellClick(frame,cell)){
     await page.waitForTimeout(50); const start=await combatState(frame);
     if(start.mode==='move'&&!start.busy)continue;
@@ -250,7 +265,7 @@ async function battle(){
     if(nativeDefeatWait&&entry.nodeId===defeatNodeId){
       await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait-for-native-defeat',before:current});continue;
     }
-    if(current.active.ap<=0){await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait',before:current});continue;}
+    if(current.active.ap<=0){await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait',reason:'no-native-ap',before:current});continue;}
     // A novice weapon unlocks no skills. Conserve only for a skill that the
     // native combat payload actually exposes, never for an assumed class skill.
     const conserveArcher=current.active.id==='archer'&&current.active.skills.some(id=>['a_precise_shot','ar_calibrated_shot'].includes(id));
@@ -261,6 +276,15 @@ async function battle(){
       if(await move(frame,entry,{support:true}))continue;
       await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait-support-ap',before:current});continue;
     }
+    const noviceSupport=entry.combatId!=='lion_chief'&&current.active.id==='white_mage'&&current.active.weapons[0]?.weaponType==='crosier';
+    if(noviceSupport){
+      if(await skill(frame,entry))continue;
+      if(await attack(frame,entry,{support:true}))continue;
+      if(await heal(frame,entry))continue;
+      const wounded=current.units.some(u=>u.team==='player'&&u.alive&&u.id!==current.active.id&&u.hp<u.maxhp*.95);
+      if(wounded&&await move(frame,entry,{support:true,supportRange:current.active.weapons[0].max}))continue;
+      await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait-novice-support',reason:wounded?'no-native-support-hit-or-better-reachable-cell':'retain-ap-for-ally-support',before:current});continue;
+    }
     if(entry.combatId==='lion_chief'&&conserveArcher&&current.active.ap===1&&current.attacks===0){
       await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait-conserve-ap',before:current});continue;
     }
@@ -269,7 +293,7 @@ async function battle(){
     if(await attack(frame,entry))continue;
     if(await move(frame,entry))continue;
     const before=await combatState(frame);
-    await frame.locator('#menu [data-a="wait"]').click(); entry.actions.push({kind:'wait',before});
+    await frame.locator('#menu [data-a="wait"]').click(); entry.actions.push({kind:'wait',reason:'skill-item-attack-move-attempts-exhausted',before});
   }
   entry.result=await combatState(frame);
   assert.equal(entry.result.over,true,'Battle did not finish before bounded deadline');

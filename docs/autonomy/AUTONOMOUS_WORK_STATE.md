@@ -5,79 +5,73 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 | Field | Value |
 | --- | --- |
 | `status` | IN_PROGRESS |
-| `runStartedAt` | 10/03/2026 02:29:49 |
-| `runEndedAt` | 10/03/2026 03:32:58 |
+| `runStartedAt` | 10/03/2026 03:52:01 |
+| `runEndedAt` |  |
 | `activeTask` | DEMO-QA-POLISH: continuous earned campaign beyond first refuge |
-| `activePhase` | Checkpoint complete; trial scoped accepted,620recovery diagnosis next |
-| `activeSubtask` | Diagnose native marais AP/potion and novice support inputs before620village recovery |
+| `activePhase` | Registered native620recovery; frozen execution |
+| `activeSubtask` | Review precise native input diff, then registered620recovery |
 | `workingBranch` | dev |
 | `lastKnownGoodCommit` | 66608d2fd526d88d866c57e9f29b7b985333c316 |
 | `lastPushedCommit` | 66608d2fd526d88d866c57e9f29b7b985333c316 |
 | `creditStatus` | CODEX_AVAILABLE; this run authorized; automation settings unchanged |
-| `contractComplianceStatus` | PRODUCTION-CONTRACTS-LOCK-1/v1: native trial/ending/V6 continuation scoped PASS;620requested recovery FAILED_NOT_ACCEPTED; full item9 BLOCKED/IN_PROGRESS. No LOCKED rule changed; pre-lock fetch drift disclosed. |
-| `runId` | rpgthreejs-auto-dev-90m-20261003T0228 |
+| `contractComplianceStatus` | PRODUCTION-CONTRACTS-LOCK-1/v1: native telemetry/pilot authority scoped PASS by guardian; recovery pending; full item9 BLOCKED/IN_PROGRESS. No LOCKED rule changed. |
+| `runId` | rpgthreejs-auto-dev-90m-20261003T0350 |
 | `agent` | codex |
 
 ## Live run
 
 ```json
 {
-  "runId": "rpgthreejs-auto-dev-90m-20261003T0228",
+  "runId": "rpgthreejs-auto-dev-90m-20261003T0350",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-03T03:32:58.5026251Z",
-  "status": "CHECKPOINTED",
+  "lastHeartbeat": "2026-10-03T03:57:43.5896388Z",
+  "status": "QA_RUNNING",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0228",
-    "sha": "93c529c3a023e554b4f9c1f501179807149eea9d",
-    "dirtyFiles": [],
-    "status": "RETIRED_AFTER_DEV_PRESERVATION",
-    "lastGreenCheck": "101focused/16receipt/types/syntax/LOCKED/8contracts8slots PASS; trial continuation accepted scoped;620recovery pending"
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0350",
+    "sha": "a45743235cb2a5e4834f8eeca2402932abeee44c",
+    "dirtyFiles": [
+      "tools/demo-continuous-production-qa.mjs",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
+    ],
+    "status": "GREEN",
+    "lastGreenCheck": "101focused/types/contracts/syntax/LOCKED and existing9build hashes PASS"
   },
-  "nextAction": "Resume item9 from successful continuous-1153-fresh-final first-refuge save and its successful results.json only. First add read-only native rejection telemetry for attack/cellClick attempts (button/charge enablement,native centers,projected point,DOM hit/hover), plus active AP/status and skipped-turn reason. Diagnose native novice-crosier ally support/potion priority;0228warrior attacks resume12/15/16/17/18, potions spend last AP7/8 and all3AP11, second attack15requires2AP with only1left. Do not infer obstruction or change balance. Contracts-review the exact telemetry/pilot diff, then register a new25minute620x780normal village recovery job after a supported correction. Freeze source/driver/helper/build while running; require marais victory, actual village defeat, full ownerV6cleanup/focused departure/exact reload. Never use failed0228outputs as seeds; preserve trial acceptance on726bb75original driver. Full demo remains incomplete."
+  "nextAction": "Inspect0350-recovery-crosier terminal receipt/results first, sync owned state preserving31historical QA dispositions, then review native marais victory/requested village defeat/full ownerV6cleanup/focus/reload and selected captures. Freeze source/driver/helper/build until worker11028ends; failures never seed continuation."
 }
 ```
 
 ## completedThisRun
 
-- Read-only preflight and exclusive lock; baseline b9aa73e/dev remote parity verified;29historical QA jobs retained exactly
-- Native Champion victory16rounds/103actions with13verified Salvation casts; lion-seal-trial-truth/exactV6reload/errors[] independently ACCEPTED_SCOPED
-- Original accepted trial pilot/evidence checkpoint726bb75pushed/verified before separate stock-preparation change
-- Native first-refuge rest and four15gold purchases executed: potions4to8,stock10to6,gold70to10,exact prepared autosave/reload
-- 620requested village recovery FAILED before boundary: marais defeat round18/59actions,allheroesKO,Sanglier32HP; no outcome/recovery acceptance or failed-output seed
-- Eight selected captures inspected/promoted; owned workers35608/9992exited;5271/5272no listeners
-- Stock/evidence implementation 66608d2fd526d88d866c57e9f29b7b985333c316 pushed/remote verified; owned WIP payload checked/retired; original passing trial driver preserved726bb75
+- Read-only preflight, exclusive lock and fetch; clean dev/remote e547e31; original trial/recovery receipts inspected
+- Scoped guardian PASS for native input pilot launch
+- Initial reviewed WIP a457432 pushed
+- Registered0350-recovery-crosier25min620normal; worker11028/port5273
 
 ## filesChanged
 
 - tools/demo-continuous-production-qa.mjs
 - docs/autonomy/AUTONOMOUS_WORK_STATE.json
 - docs/autonomy/AUTONOMOUS_WORK_STATE.md
-- docs/autonomy/handoffs/2026-10-03T0228Z-codex-native-support-checkpoint.md
-- docs/reports/INDEX.md
-- docs/reports/native-support-campaign-1.md
-- docs/reports/native-support-campaign-1/proof.json
-- docs/reports/native-support-campaign-1/620-native-potion-stock.png
-- docs/reports/native-support-campaign-1/620-native-potion-stock-resumed.png
-- docs/reports/native-support-campaign-1/620-marais-native-defeat.png
+- docs/autonomy/handoffs/2026-10-03T0350Z-codex-native-rejection-checkpoint.md
 
 ## testsRun
 
-- 101focused tests/5suites PASS: combat skill3,exhaustion2,runSystem16,lionFinale24,management56
-- 16QAreceipt tests PASS; unchanged helper
-- TypeScript --noEmit PASS after final driver stock assertions
-- Syntax,diff-check,LOCKED HEAD/working-tree gates and8contracts/8slots PASS
-- 0228-trial-support SUCCEEDED/ACCEPTED_SCOPED on original726bb75driver:13heals/native victory/ending/exact reload
-- 0228-recovery-stock FAILED_NOT_ACCEPTED; provenance/request/current/result digests match; successful preparation does not certify recovery
-- Existing built-production bundles reused only because src/runtime/build/helper unchanged and receipt binds exact9build hashes
+- 101focused/5suites PASS
+- TypeScript --noEmit PASS
+- 8contracts/8slots PASS
+- Syntax,diff-check,LOCKED gates PASS
+- Original production runtime tree and9build hashes byte-identical; reuse permitted
+- 16QA receipt tests PASS
 
 ## testsPassed
 
-- 101focused tests/5suites PASS: combat skill3,exhaustion2,runSystem16,lionFinale24,management56
-- 16QAreceipt tests PASS; unchanged helper
-- TypeScript --noEmit PASS after final driver stock assertions
-- Syntax,diff-check,LOCKED HEAD/working-tree gates and8contracts/8slots PASS
-- 0228-trial-support SUCCEEDED/ACCEPTED_SCOPED on original726bb75driver:13heals/native victory/ending/exact reload
-- Existing built-production bundles reused only because src/runtime/build/helper unchanged and receipt binds exact9build hashes
+- 101focused/5suites PASS
+- TypeScript --noEmit PASS
+- 8contracts/8slots PASS
+- Syntax,diff-check,LOCKED gates PASS
+- Original production runtime tree and9build hashes byte-identical; reuse permitted
+- 16QA receipt tests PASS
 
 ## testsRemaining
 
@@ -113,11 +107,11 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 
 ## Exact next action
 
-Resume item9 from successful continuous-1153-fresh-final first-refuge save and its successful results.json only. First add read-only native rejection telemetry for attack/cellClick attempts (button/charge enablement,native centers,projected point,DOM hit/hover), plus active AP/status and skipped-turn reason. Diagnose native novice-crosier ally support/potion priority;0228warrior attacks resume12/15/16/17/18, potions spend last AP7/8 and all3AP11, second attack15requires2AP with only1left. Do not infer obstruction or change balance. Contracts-review the exact telemetry/pilot diff, then register a new25minute620x780normal village recovery job after a supported correction. Freeze source/driver/helper/build while running; require marais victory, actual village defeat, full ownerV6cleanup/focused departure/exact reload. Never use failed0228outputs as seeds; preserve trial acceptance on726bb75original driver. Full demo remains incomplete.
+Inspect0350-recovery-crosier terminal receipt/results first, sync owned state preserving31historical QA dispositions, then review native marais victory/requested village defeat/full ownerV6cleanup/focus/reload and selected captures. Freeze source/driver/helper/build until worker11028ends; failures never seed continuation.
 
 ## Current handoff
 
-docs/autonomy/handoffs/2026-10-03T0228Z-codex-native-support-checkpoint.md
+docs/autonomy/handoffs/2026-10-03T0350Z-codex-native-rejection-checkpoint.md
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -153,4 +147,5 @@ docs/autonomy/handoffs/2026-10-03T0228Z-codex-native-support-checkpoint.md
 - 2252-trial-unlocked: FAILED; port 5270; receipt `tmp/demo/2252-trial-unlocked/qa-job.json`; NOT_ACCEPTED
 - 0228-trial-support: SUCCEEDED; port 5271; receipt `tmp/demo/0228-trial-support/qa-job.json`; ACCEPTED_SCOPED
 - 0228-recovery-stock: FAILED; port 5272; receipt `tmp/demo/0228-recovery-stock/qa-job.json`; FAILED_NOT_ACCEPTED
+- 0350-recovery-crosier: PLANNED; port 5273; receipt `tmp/demo/0350-recovery-crosier/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
