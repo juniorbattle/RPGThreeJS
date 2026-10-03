@@ -1,20 +1,21 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-03T02:29:49.8377979Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-03T03:32:58.5026251Z",
   "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
-  "activePhase": "Checkpoint: trial continuation accepted;620recovery still open",
+  "activePhase": "Checkpoint complete; trial scoped accepted,620recovery diagnosis next",
   "activeSubtask": "Diagnose native marais AP/potion and novice support inputs before620village recovery",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "726bb751cf4a90cff088c4fda3af73f8de14702b",
-  "lastPushedCommit": "726bb751cf4a90cff088c4fda3af73f8de14702b",
+  "lastKnownGoodCommit": "66608d2fd526d88d866c57e9f29b7b985333c316",
+  "lastPushedCommit": "66608d2fd526d88d866c57e9f29b7b985333c316",
   "completedThisRun": [
     "Read-only preflight and exclusive lock; baseline b9aa73e/dev remote parity verified;29historical QA jobs retained exactly",
     "Native Champion victory16rounds/103actions with13verified Salvation casts; lion-seal-trial-truth/exactV6reload/errors[] independently ACCEPTED_SCOPED",
     "Original accepted trial pilot/evidence checkpoint726bb75pushed/verified before separate stock-preparation change",
     "Native first-refuge rest and four15gold purchases executed: potions4to8,stock10to6,gold70to10,exact prepared autosave/reload",
     "620requested village recovery FAILED before boundary: marais defeat round18/59actions,allheroesKO,Sanglier32HP; no outcome/recovery acceptance or failed-output seed",
-    "Eight selected captures inspected/promoted; owned workers35608/9992exited;5271/5272no listeners"
+    "Eight selected captures inspected/promoted; owned workers35608/9992exited;5271/5272no listeners",
+    "Stock/evidence implementation 66608d2fd526d88d866c57e9f29b7b985333c316 pushed/remote verified; owned WIP payload checked/retired; original passing trial driver preserved726bb75"
   ],
   "filesChanged": [
     "tools/demo-continuous-production-qa.mjs",
@@ -201,8 +202,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261003T0228",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-03T03:30:33.4504792Z",
-    "status": "CHECKPOINTING",
+    "lastHeartbeat": "2026-10-03T03:32:58.5026251Z",
+    "status": "CHECKPOINTED",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -3708,19 +3709,8 @@
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0228",
       "sha": "93c529c3a023e554b4f9c1f501179807149eea9d",
-      "dirtyFiles": [
-        "tools/demo-continuous-production-qa.mjs",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-03T0228Z-codex-native-support-checkpoint.md",
-        "docs/reports/native-support-campaign-1.md",
-        "docs/reports/native-support-campaign-1/proof.json",
-        "docs/reports/INDEX.md",
-        "docs/reports/native-support-campaign-1/620-native-potion-stock.png",
-        "docs/reports/native-support-campaign-1/620-native-potion-stock-resumed.png",
-        "docs/reports/native-support-campaign-1/620-marais-native-defeat.png"
-      ],
-      "status": "GREEN",
+      "dirtyFiles": [],
+      "status": "RETIRED_AFTER_DEV_PRESERVATION",
       "lastGreenCheck": "101focused/16receipt/types/syntax/LOCKED/8contracts8slots PASS; trial continuation accepted scoped;620recovery pending"
     },
     "nextAction": "Resume item9 from successful continuous-1153-fresh-final first-refuge save and its successful results.json only. First add read-only native rejection telemetry for attack/cellClick attempts (button/charge enablement,native centers,projected point,DOM hit/hover), plus active AP/status and skipped-turn reason. Diagnose native novice-crosier ally support/potion priority;0228warrior attacks resume12/15/16/17/18, potions spend last AP7/8 and all3AP11, second attack15requires2AP with only1left. Do not infer obstruction or change balance. Contracts-review the exact telemetry/pilot diff, then register a new25minute620x780normal village recovery job after a supported correction. Freeze source/driver/helper/build while running; require marais victory, actual village defeat, full ownerV6cleanup/focused departure/exact reload. Never use failed0228outputs as seeds; preserve trial acceptance on726bb75original driver. Full demo remains incomplete.",
@@ -3731,7 +3721,26 @@
       "readOnlyReviewerPasses": 4,
       "unchangedAcceptedProofReruns": 0,
       "failedOutputsUsedAsSeeds": 0,
-      "creditSavings": "Not measured; no quota-gain claim"
+      "creditSavings": "Not measured; no quota-gain claim",
+      "elapsedMinutes": 63.1
+    },
+    "closeout": {
+      "implementationCommit": "66608d2fd526d88d866c57e9f29b7b985333c316",
+      "trialDriverCommit": "726bb751cf4a90cff088c4fda3af73f8de14702b",
+      "finalStateCommit": "HEAD/origin/dev after state-only closeout; exact SHA in automation memory",
+      "wipPayloadPreserved": true,
+      "ownedWipRetired": true,
+      "olderWipsRetained": true,
+      "ownedWorkersExited": [
+        35608,
+        9992
+      ],
+      "portsClosed": [
+        5271,
+        5272
+      ],
+      "demoAcceptance": "IN_PROGRESS",
+      "lockRelease": "After verified final push and memory write"
     }
   },
   "previousInterruptedRun": {

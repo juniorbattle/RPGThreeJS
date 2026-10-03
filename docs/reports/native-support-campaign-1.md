@@ -4,7 +4,7 @@ TASK: DEMO-QA-POLISH / native healer support and affordable preparation pilot
 DOMAIN: Tooling, combat QA, campaign QA
 BASELINE: b9aa73e5bbd598e6d79eae89876831d9c84ce7a6 on dev
 BRANCH: dev
-HEAD: Trial implementation 726bb751cf4a90cff088c4fda3af73f8de14702b; final stock/evidence commit recorded by closeout state
+HEAD: 66608d2fd526d88d866c57e9f29b7b985333c316; original accepted trial driver at726bb751cf4a90cff088c4fda3af73f8de14702b
 STATUS: Review
 MERGED_IN: NONE
 SUPERSEDES: NONE; earlier failed receipts remain historical evidence

@@ -6,13 +6,13 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 | --- | --- |
 | `status` | IN_PROGRESS |
 | `runStartedAt` | 10/03/2026 02:29:49 |
-| `runEndedAt` |  |
+| `runEndedAt` | 10/03/2026 03:32:58 |
 | `activeTask` | DEMO-QA-POLISH: continuous earned campaign beyond first refuge |
-| `activePhase` | Checkpoint: trial continuation accepted;620recovery still open |
+| `activePhase` | Checkpoint complete; trial scoped accepted,620recovery diagnosis next |
 | `activeSubtask` | Diagnose native marais AP/potion and novice support inputs before620village recovery |
 | `workingBranch` | dev |
-| `lastKnownGoodCommit` | 726bb751cf4a90cff088c4fda3af73f8de14702b |
-| `lastPushedCommit` | 726bb751cf4a90cff088c4fda3af73f8de14702b |
+| `lastKnownGoodCommit` | 66608d2fd526d88d866c57e9f29b7b985333c316 |
+| `lastPushedCommit` | 66608d2fd526d88d866c57e9f29b7b985333c316 |
 | `creditStatus` | CODEX_AVAILABLE; this run authorized; automation settings unchanged |
 | `contractComplianceStatus` | PRODUCTION-CONTRACTS-LOCK-1/v1: native trial/ending/V6 continuation scoped PASS;620requested recovery FAILED_NOT_ACCEPTED; full item9 BLOCKED/IN_PROGRESS. No LOCKED rule changed; pre-lock fetch drift disclosed. |
 | `runId` | rpgthreejs-auto-dev-90m-20261003T0228 |
@@ -24,24 +24,13 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 {
   "runId": "rpgthreejs-auto-dev-90m-20261003T0228",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-03T03:30:33.4504792Z",
-  "status": "CHECKPOINTING",
+  "lastHeartbeat": "2026-10-03T03:32:58.5026251Z",
+  "status": "CHECKPOINTED",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0228",
     "sha": "93c529c3a023e554b4f9c1f501179807149eea9d",
-    "dirtyFiles": [
-      "tools/demo-continuous-production-qa.mjs",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-03T0228Z-codex-native-support-checkpoint.md",
-      "docs/reports/native-support-campaign-1.md",
-      "docs/reports/native-support-campaign-1/proof.json",
-      "docs/reports/INDEX.md",
-      "docs/reports/native-support-campaign-1/620-native-potion-stock.png",
-      "docs/reports/native-support-campaign-1/620-native-potion-stock-resumed.png",
-      "docs/reports/native-support-campaign-1/620-marais-native-defeat.png"
-    ],
-    "status": "GREEN",
+    "dirtyFiles": [],
+    "status": "RETIRED_AFTER_DEV_PRESERVATION",
     "lastGreenCheck": "101focused/16receipt/types/syntax/LOCKED/8contracts8slots PASS; trial continuation accepted scoped;620recovery pending"
   },
   "nextAction": "Resume item9 from successful continuous-1153-fresh-final first-refuge save and its successful results.json only. First add read-only native rejection telemetry for attack/cellClick attempts (button/charge enablement,native centers,projected point,DOM hit/hover), plus active AP/status and skipped-turn reason. Diagnose native novice-crosier ally support/potion priority;0228warrior attacks resume12/15/16/17/18, potions spend last AP7/8 and all3AP11, second attack15requires2AP with only1left. Do not infer obstruction or change balance. Contracts-review the exact telemetry/pilot diff, then register a new25minute620x780normal village recovery job after a supported correction. Freeze source/driver/helper/build while running; require marais victory, actual village defeat, full ownerV6cleanup/focused departure/exact reload. Never use failed0228outputs as seeds; preserve trial acceptance on726bb75original driver. Full demo remains incomplete."
@@ -56,6 +45,7 @@ Current authority: docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-0
 - Native first-refuge rest and four15gold purchases executed: potions4to8,stock10to6,gold70to10,exact prepared autosave/reload
 - 620requested village recovery FAILED before boundary: marais defeat round18/59actions,allheroesKO,Sanglier32HP; no outcome/recovery acceptance or failed-output seed
 - Eight selected captures inspected/promoted; owned workers35608/9992exited;5271/5272no listeners
+- Stock/evidence implementation 66608d2fd526d88d866c57e9f29b7b985333c316 pushed/remote verified; owned WIP payload checked/retired; original passing trial driver preserved726bb75
 
 ## filesChanged
 
