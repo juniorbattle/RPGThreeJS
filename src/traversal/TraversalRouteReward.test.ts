@@ -116,15 +116,16 @@ describe('T0 Route Reward', () => {
       initial.elapsedMs, segment.durationMs, 100, 1000, true, forecast);
     const mark = renderer.element.querySelector<HTMLElement>('[data-reward-pickup]')!;
     expect(mark.hidden).toBe(false);
-    const stored = (renderer as unknown as { contactDistances: Map<string, number> }).contactDistances.get(pickup.id);
+    const stored = Number.parseFloat(mark.style.left);
     const slowed = resetRouteSpeed(initial, segment);
     renderer.reforecastUnseen(100, 1000);
-    expect((renderer as unknown as { contactDistances: Map<string, number> }).contactDistances.get(pickup.id)).toBe(stored);
+    expect(Number.parseFloat(mark.style.left)).toBe(stored);
     renderer.update([pickup], createRouteReward(segment.id), .55, 6600, segment.durationMs,
       200, 1000, true, progress => forecastRouteDistance(slowed, segment, progress));
-    expect((renderer as unknown as { contactDistances: Map<string, number> }).contactDistances.get(pickup.id)).toBe(stored);
+    expect(Number.parseFloat(mark.style.left)).toBeCloseTo(stored - 100 * 1000 / 1463);
     renderer.collect(pickup, 7800);
-    expect(mark.hidden).toBe(true);
+    expect(mark.hidden).toBe(false);
+    expect(mark.dataset.collected).toBe('true');
     expect(renderer.element.querySelector('.traversal-route-reward__feedback')?.classList.contains('is-active')).toBe(true);
     renderer.update([pickup], createRouteReward(segment.id), .7, 8000, segment.durationMs,
       200, 1000, false, () => 0);

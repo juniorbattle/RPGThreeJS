@@ -114,17 +114,15 @@ describe('T0 Route risk authoring', () => {
     renderer.update(t0RouteHazards('route-1'), createRouteRisk('route-1'), .2,
       2400, 12000, 0, 1000, true, () => 1200);
     const internals = renderer as unknown as {
-      marks: Map<string, HTMLElement>; contactDistances: Map<string, number>;
+      marks: Map<string, HTMLElement>;
     };
     expect(internals.marks.size).toBe(1);
-    expect(internals.contactDistances.size).toBe(1);
     renderer.impact(t0RouteHazards('route-1')[0]!, 4000);
     expect(vehicle.classList.contains('traversal-vehicle--risk-impact')).toBe(true);
     renderer.reset(t0RouteHazards('route-2'));
     expect(renderer.element.querySelector('[data-risk-hazard="t0:r1:branch-1"]')).toBeNull();
     expect(renderer.element.querySelectorAll('[data-risk-hazard]')).toHaveLength(1);
     expect(internals.marks.size).toBe(1);
-    expect(internals.contactDistances.size).toBe(0);
     expect(vehicle.classList.contains('traversal-vehicle--risk-impact')).toBe(false);
     expect(createRouteRisk('route-2').resolvedHazardIds).toEqual([]);
   });
@@ -149,7 +147,7 @@ describe('T0 Route risk authoring', () => {
     expect(renderer.element.hidden).toBe(true);
   });
 
-  it('holds the struck obstacle only for the existing 520 ms physical impact', () => {
+  it('keeps the struck obstacle after the impact until its trailing edge exits', () => {
     const renderer = new TraversalRouteRiskRenderer();
     const hazard = t0RouteHazards('route-1')[0]!;
     const initial = createRouteRisk('route-1');
@@ -160,7 +158,11 @@ describe('T0 Route risk authoring', () => {
     renderer.update([hazard], collided, .39, 4680, 12000, 0, 1000, true, () => 120);
     expect(renderer.element.querySelector<HTMLElement>('[data-risk-hazard]')?.hidden).toBe(false);
     renderer.update([hazard], collided, .43, 5200, 12000, 0, 1000, true, () => 120);
-    expect(renderer.element.querySelector<HTMLElement>('[data-risk-hazard]')?.hidden).toBe(true);
+    const mark = renderer.element.querySelector<HTMLElement>('[data-risk-hazard]')!;
+    expect(mark.hidden).toBe(false);
+    expect(renderer.element.querySelector('.traversal-route-risk__impact')?.classList.contains('is-active')).toBe(false);
+    renderer.update([hazard], collided, .6, 7200, 12000, 900, 1000, true, () => 120);
+    expect(mark.hidden).toBe(true);
   });
 
   it('has no placeholder paint or legacy obstacle references in risk presentation', () => {

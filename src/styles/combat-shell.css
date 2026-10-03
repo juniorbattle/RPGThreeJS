@@ -1,4 +1,6 @@
 /* Pre-battle and result shell. Active battle HUD rules live in combat-hud.css. */
+.combat-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+#combat-battlefield:focus-visible{outline:3px solid #82dfff;outline-offset:-6px}
 #ui:has(#menu.deploy-roster) #turnbar,
 #ui:has(#menu.deploy-roster) #hud-right-stack,
 #ui:has(#menu.deploy-roster) #help{display:none}

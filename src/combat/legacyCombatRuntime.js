@@ -37,7 +37,7 @@ import { renderCombatResult, renderDeploymentCard, renderDeploymentPreview } fro
 import { resolveCombatStageProfileUniversal, getStageProfileInfo, forceResolveCombatStageProfile } from './stage/combatStageProfiles';
 import { isActionPublished, playActionVfx as playPublishedActionVfx, getPublishedDraft, __devUpdateOverlay, __devClearOverlay, getActiveRegistry } from './vfx/PublishedVfxResolver';
 import { combatHudCameraFov, renderCombatActionDock, renderCombatActionPreview, renderCombatObjective, renderCombatSkillRows, renderCombatStatuses, renderCombatTurnOrder, renderCombatUnitCard, selectedCombatAction } from './combatHudPresentation';
-import { shouldHandleCombatShortcut, shouldPreventCombatWheel } from './combatKeyboard';
+import { nextCombatCursor, shouldHandleCombatShortcut, shouldPreventCombatWheel } from './combatKeyboard';
 
 // ============================= CONFIG & UTILS =============================
 const CFG = {
@@ -2065,7 +2065,7 @@ function pickCell(ev){ ndc.x=(ev.clientX/innerWidth)*2-1; ndc.y=-(ev.clientY/inn
 function pickUnit(ev){ const c=pickCell(ev); return (c&&c.occupant&&c.occupant.alive)?c.occupant:null; }
 
 function drawReach(){ clearHL(); const keys=new Set(G.reach.list.map(t=>cellKey(t.gx,t.gz))); addInvalidTiles(keys,true); for(const t of G.reach.list){ if(t.gx===G.active.gx&&t.gz===G.active.gz)continue; addHL(t.gx,t.gz,CFG.COL.move,COMBAT_PRESENTATION.arena.moveTileOpacity,'move'); } }
-function enterMove(){ if(G.movedThisTurn||G.busy)return; if(G.active.immobile){ toast('Immobile — deplacement impossible'); return; } if(hasS(G.active,'root')){ toast('Entravé — déplacement impossible'); return; } G.mode='move'; G.reach=reachableStand(G.active); unitFocus.focus(G.units,G.active); closeMenus(true); drawReach(); setHint('Déplacement — choisissez une case'); }
+function enterMove(){ if(G.movedThisTurn||G.busy)return; if(G.active.immobile){ toast('Immobile — deplacement impossible'); return; } if(hasS(G.active,'root')){ toast('Entravé — déplacement impossible'); return; } G.mode='move'; G.reach=reachableStand(G.active); unitFocus.focus(G.units,G.active); closeMenus(true); drawReach(); setHint('Déplacement — choisissez une case'); focusBattlefield('move',G.active); }
 function drawRange(){ hideActionPreview(); clearHL(); const sp=G.pending.spec,keys=new Set(G.pending.centers.map(c=>cellKey(c.gx,c.gz))); addInvalidTiles(keys,false); const helpful=Boolean(sp.heal||sp.support||sp.revive||sp.cure); const rangeCol=helpful?0x6aff7a:0xff6a5a; const maxR=sp.range[1]||0; const ux=G.active.size>1?bossCenterGX(G.active):G.active.gx, uz=G.active.size>1?bossCenterGZ(G.active):G.active.gz; for(const c of G.pending.centers){ const md=Math.abs(c.gx-ux)+Math.abs(c.gz-uz); if(maxR>0&&md===maxR){ addHL(c.gx,c.gz,0xffd84a,COMBAT_PRESENTATION.arena.rangeTileOpacity,'range_max'); } else { addHL(c.gx,c.gz,rangeCol,COMBAT_PRESENTATION.arena.rangeTileOpacity,'range'); } }
   for(const c of G.pending.centers){ const occ=cellAt(c.gx,c.gz)?.occupant; if(!occ||!occ.alive||!G.active)continue; const isAlly=occ.team===G.active.team; if(helpful&&!isAlly)continue; if(!helpful&&isAlly)continue;
     const tk=helpful?'target_ally':'target',tc=helpful?0x7edf7a:CFG.COL.foe; addHL(c.gx,c.gz,tc,COMBAT_PRESENTATION.arena.targetTileOpacity,tk);
@@ -2084,25 +2084,51 @@ function enterTarget(spec){ if(G.busy)return;
   const validTargets=[...new Set(centers.flatMap(c=>affectedUnits(G.active,spec,c.gx,c.gz)))];
   unitFocus.focus(G.units,G.active,validTargets);
   if(spec.self) previewAt(G.active.gx,G.active.gz); else drawRange();
-  setHint((spec.self?'Action':(spec.type==='move'?'Déplacement':'Ciblage'))+' — '+spec.name); }
-function cancelToMenu(){ if(G.busy)return; if(G.mode==='move'||G.mode==='target'){ restoreUnitFocus(); hideActionPreview(); G._targetPreviewKey=null; G.pending=null; clearHL(); G.mode='menu'; openActionMenu(); setHint(G.active.name+' — à vous de jouer'); } }
+  setHint((spec.self?'Action':(spec.type==='move'?'Déplacement':'Ciblage'))+' — '+spec.name); focusBattlefield(selectedCombatAction(G.mode,spec.key),spec.self?G.active:centers[0],spec.wi); }
+function cancelToMenu(){ if(G.busy)return; if(G.mode==='move'||G.mode==='target'){ restoreUnitFocus(); hideActionPreview(); G._targetPreviewKey=null; G.pending=null; clearHL(); G.mode='menu'; openActionMenu(); setHint(G.active.name+' — à vous de jouer'); restoreBattlefieldFocus(); } }
 
 async function doExecute(spec,cx,cz){ await executeAction(G.active,spec,cx,cz); afterSub(); }
 function afterSub(){ restoreUnitFocus(); hideActionPreview(); G._targetPreviewKey=null; if(G.over)return; G.mode='menu'; selectUnit(G.active); openActionMenu();
   const u=G.active;
   const nextAtkCost=G.basicAttacksThisTurn+1;
   const canAct = (u.ap>=nextAtkCost) || u.skills.some(s=>getSpec(u,s).ap<=u.ap) || (u.ap>=(G.itemsUsedThisTurn+1) && invCount()>0);
-  if(!canAct && G.movedThisTurn) setHint('Tour terminé — Entrée pour attendre'); else setHint(u.name+' — choisissez une action'); }
+  if(!canAct && G.movedThisTurn) setHint('Tour terminé — Entrée pour attendre'); else setHint(u.name+' — choisissez une action'); restoreBattlefieldFocus(); }
 function undoMove(){ if(G.busy||!G.movedThisTurn||G.movedBeforeAct||G.startGX==null)return; restoreUnitFocus(); const u=G.active; placeUnit(u,G.startGX,G.startGZ,true); G.movedThisTurn=false; clearHL(); G.mode='menu'; selectUnit(u); openActionMenu(); setHint(u.name+' — déplacement annulé'); }
 
 function transientInspect(u){ if(!u)return; const key=u.campaignId||u.id||u.name; if(statsPanelKey!==key){statsPanelKey=key;statsPanelExpanded=false;} G.selected=u; renderPanel(u); }
 function restoreInspection(){ const fallback=(G.pinnedUnit&&G.pinnedUnit.alive?G.pinnedUnit:G.active); if(fallback)transientInspect(fallback); }
-function onPointerMove(ev){ if(G.busy||G.over)return; const c=pickCell(ev); const hoveredUnit=(c&&c.occupant&&c.occupant.alive)?c.occupant:null; G.hover=c; G.hoverUnit=hoveredUnit; if(c)moveCursor(c.gx,c.gz); else if(cursorMesh)cursorMesh.visible=false;
+// Input cursor/focus are transient presentation state, outside G and versioned saves.
+let keyboardInput=false,keyboardCell=null,battlefieldReturnAction=null;
+function focusBattlefield(action,cell,weaponIndex){
+  if(!keyboardInput)return;
+  battlefieldReturnAction={action,weaponIndex}; keyboardCell={gx:cell.gx,gz:cell.gz};
+  renderer.domElement.focus({preventScroll:true}); updateBattlefieldCursor();
+}
+function restoreBattlefieldFocus(){
+  if(!keyboardInput||!battlefieldReturnAction)return;
+  const {action,weaponIndex}=battlefieldReturnAction; battlefieldReturnAction=null;
+  // A player who left the canvas during an action keeps their new focus owner.
+  if(document.activeElement!==renderer.domElement&&document.activeElement!==document.body)return;
+  const button=[...dom.menu.querySelectorAll('button:not(:disabled)')].find(b=>b.dataset.a===action&&(weaponIndex==null||b.dataset.wi===String(weaponIndex)))||dom.menu.querySelector('button:not(:disabled)');
+  button?.focus({preventScroll:true});
+}
+function updateBattlefieldCursor(){
+  if(G.busy||G.over||G.stage)return;
+  const c=cellAt(keyboardCell.gx,keyboardCell.gz); if(!c)return;
+  hoverBattlefieldCell(c);
+  const occupant=c.occupant,selfTarget=G.mode==='target'&&G.pending?.spec.self;
+  const legal=G.mode==='move'?(c.gx!==G.active.gx||c.gz!==G.active.gz)&&G.reach?.list.some(t=>t.gx===c.gx&&t.gz===c.gz):G.mode==='target'?(selfTarget||G.pending?.keys.has(c.gx+','+c.gz)):G.mode==='deploy'?inZone(c.gx,c.gz)&&(!occupant||occupant.team==='player'):null;
+  byId('combat-cell-status').textContent='Case '+(c.gx+1)+', '+(c.gz+1)+(occupant?' — '+occupant.name+' — '+occupant.hp+' / '+occupant.maxhp+' PV':' — vide')+(selfTarget?' — action sur '+G.active.name:legal===null?'':legal?' — disponible':' — indisponible');
+  renderer.domElement.dataset.cursorGx=String(c.gx); renderer.domElement.dataset.cursorGz=String(c.gz);
+}
+function hoverBattlefieldCell(c){ const hoveredUnit=(c&&c.occupant&&c.occupant.alive)?c.occupant:null; G.hover=c; G.hoverUnit=hoveredUnit; if(c)moveCursor(c.gx,c.gz); else if(cursorMesh)cursorMesh.visible=false;
   if(G.mode==='target'){ const sp=G.pending.spec; const targetCell=hoveredUnit?.cell?.()||c,previewKey=sp.key+':'+(targetCell?targetCell.gx+','+targetCell.gz:'none'); if(G._targetPreviewKey===previewKey)return; G._targetPreviewKey=previewKey; if(sp.self)previewAt(G.active.gx,G.active.gz); else if(targetCell&&G.pending.keys.has(targetCell.gx+','+targetCell.gz)){ previewAt(targetCell.gx,targetCell.gz); const target=affectedUnits(G.active,sp,targetCell.gx,targetCell.gz)[0]||hoveredUnit; if(target)transientInspect(target); } else { unitFocus.preview([]); drawRange(); restoreInspection(); } }
   else if((G.mode==='menu'||G.mode==='idle')&&hoveredUnit)transientInspect(hoveredUnit);
   else if((G.mode==='menu'||G.mode==='idle')&&c?.occupant?.alive)transientInspect(c.occupant);
   else if(G.mode==='menu'||G.mode==='idle')restoreInspection(); }
-async function onClick(ev){ if(G.over)return; if(ev.button!==0){ cancelToMenu(); return; } if(G.busy)return; const c=pickCell(ev);
+function onPointerMove(ev){ if(G.busy||G.over)return; const c=pickCell(ev); if(c)keyboardCell={gx:c.gx,gz:c.gz}; hoverBattlefieldCell(c); }
+async function onClick(ev){ if(G.over)return; if(ev.button!==0){ cancelToMenu(); return; } if(G.busy)return; await activateBattlefieldCell(pickCell(ev)); }
+async function activateBattlefieldCell(c){ if(G.over||G.busy||G.stage)return;
   if(G.mode==='deploy'){ if(c&&inZone(c.gx,c.gz)){
     if(c.occupant&&c.occupant.team==='player'){
       const occupant=c.occupant,occupantId=occupant.campaignId||occupant.name;
@@ -2117,15 +2143,19 @@ async function onClick(ev){ if(G.over)return; if(ev.button!==0){ cancelToMenu();
 }
 
 function bindInput(){ const el=renderer.domElement;
+  el.id='combat-battlefield'; el.tabIndex=0; el.setAttribute('role','group'); el.setAttribute('aria-label','Champ de bataille'); el.setAttribute('aria-describedby','combat-keyboard-help combat-cell-status');
+  el.addEventListener('focus',()=>{ if(!keyboardCell)keyboardCell={gx:G.active?.gx??0,gz:G.active?.gz??0}; updateBattlefieldCursor(); });
+  addEventListener('pointerdown',()=>{keyboardInput=false;},true);
   el.addEventListener('pointermove',onPointerMove);
   el.addEventListener('pointerdown',onClick);
   el.addEventListener('contextmenu',e=>{ e.preventDefault(); cancelToMenu(); });
   addEventListener('wheel',e=>{if(shouldPreventCombatWheel(e))e.preventDefault();},{passive:false});
-  addEventListener('keydown',e=>{ if(!shouldHandleCombatShortcut(e))return; const k=e.key.toLowerCase();
+  addEventListener('keydown',e=>{ keyboardInput=true; if(!shouldHandleCombatShortcut(e))return; const k=e.key.toLowerCase();
+    if(document.activeElement===el&&(e.key.startsWith('Arrow')||k==='enter'||k===' ')){ e.preventDefault(); if((e.repeat&&(k==='enter'||k===' '))||G.busy||G.over||G.stage)return; if(e.key.startsWith('Arrow')){ keyboardCell=nextCombatCursor(keyboardCell||{gx:0,gz:0},e.key,CFG.W,CFG.D); updateBattlefieldCursor(); } else { void activateBattlefieldCell(cellAt(keyboardCell?.gx??0,keyboardCell?.gz??0)); } return; }
     if(STAGE_QA_ENABLED&&k==='o'){ e.preventDefault(); void togglePoseQaStage(); }
     else if(STAGE_QA_ENABLED&&combatStage.isActive()&&(k==='['||k===']')){ e.preventDefault(); announcePoseQa(combatStage.selectNextPoseQaUnit(k==='['?-1:1)); }
     else if(STAGE_QA_ENABLED&&combatStage.isActive()&&k==='p'){ e.preventDefault(); void cyclePoseQa(); }
-    else if(k==='escape')cancelToMenu();
+    else if(k==='escape'){ if(G.mode==='move'||G.mode==='target')e.preventDefault(); cancelToMenu(); }
     else if(k==='enter'&&G.mode==='menu'&&!G.busy)endTurn();
     else if(k==='m'&&G.mode==='menu')enterMove();
     else if(k==='u'&&G.mode==='menu')undoMove();
@@ -2191,7 +2221,7 @@ function refreshTurnbar(){ dom.turnbar.classList.remove('hidden'); renderObjecti
 function syncActionDockState(){ const selected=selectedCombatAction(G.mode,G.pending?.spec?.key,dom.skillmenu.dataset.kind);
   dom.menu.querySelectorAll('.ico').forEach(button=>{ const active=button.dataset.a===selected; button.classList.toggle('is-selected',active); button.classList.toggle('is-locked',(G.mode==='move'||G.mode==='target')&&!active); button.setAttribute('aria-pressed',active?'true':'false'); }); }
 function closeMenus(retainDock=false){ if(!retainDock)dom.menu.classList.add('hidden'); dom.skillmenu.classList.add('hidden'); dom.skillmenu.dataset.kind=''; syncActionDockState(); }
-function closeSubmenu(){ dom.skillmenu.classList.add('hidden'); dom.skillmenu.dataset.kind=''; syncActionDockState(); }
+function closeSubmenu(){ const action=dom.skillmenu.dataset.kind,hadFocus=dom.skillmenu.contains(document.activeElement); dom.skillmenu.classList.add('hidden'); dom.skillmenu.dataset.kind=''; syncActionDockState(); if(keyboardInput&&hadFocus){ const button=[...dom.menu.querySelectorAll('button:not(:disabled)')].find(b=>b.dataset.a===action)||dom.menu.querySelector('button:not(:disabled)'); button?.focus({preventScroll:true}); } }
 function tipFor(u,b){ const a=b.dataset.a;
   if(a==='move')return 'Déplacer · MOV '+u.mov;
   if(a==='undo')return 'Annuler le déplacement (U)';
