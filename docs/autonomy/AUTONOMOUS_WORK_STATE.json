@@ -1,51 +1,19 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-03T08:20:01Z",
-  "runEndedAt": "2026-10-03T09:59:16.122Z",
+  "runStartedAt": "2026-10-03T10:04:53.034883Z",
+  "runEndedAt": null,
   "activeTask": "TRAVERSAL-MOTION-POLISH",
-  "activePhase": "Visual convergence accepted and published; motion implementation queued",
-  "activeSubtask": "Inspect departure/reveal momentum and arrival full-exit geometry; preserve canonical timing and handoffs",
+  "activePhase": "Implement continuous checkpoint departure and geometry-gated final exit",
+  "activeSubtask": "Presentation-only motion; preserve route clocks and existing canonical callbacks",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
   "lastPushedCommit": "bdaca0dd934738b6eb593899ffe0333ad9c312ec",
   "completedThisRun": [
-    "Read-only preflight; exclusive owned lock; preserved all six deferred keyboard blobs and exact nextAction",
-    "Shared native ground and world subject policy committed locally at fa4dac612dd8b883759794a837c7d9eed9aa73cc; no canonical route/formation/clan/save/tactical changes",
-    "137 Traversal tests/25 suites, types, production build, 8 contracts/8 video slots and immutable/whitespace gates PASS",
-    "12 fixture-assisted production journeys T0/T1/T3 normal and OS-only reduction at1440/620/390:348 captures;4 focused keyboard/focus/hit-target/missing-art probes:12 captures",
-    "Orchestrator inspected10 promoted captures; reused read-only Traversal and contracts specialists accept scoped presentation only",
-    "Six current QA jobs terminal:3accepted scoped,3unaccepted retained honestly; original33 historical ledger entries preserved exactly",
-    "Automatic approval review rejected remote publication twice; explicit permission pending; local snapshots and coherent source/doc checkpoints retained",
-    "Explicit owning-chat approval ok go resolved publication; guarded atomic dev@bdaca0d/WIP@f5623538 push and live remote verification succeeded; main unchanged"
+    "Read-only preflight; remote parity; six deferred keyboard blobs verified and locally snapshotted; prior remote WIP retained"
   ],
-  "filesChanged": [
-    "src/styles/traversal.css",
-    "src/traversal/TraversalRoadScene.ts",
-    "src/traversal/TraversalWorldRenderer.ts",
-    "src/traversal/TraversalWorldRenderer.test.ts",
-    "src/traversal/TraversalWorldSubject.ts",
-    "src/traversal/TraversalWorldSubject.test.ts",
-    "tools/traversal-visual-convergence-qa.mjs",
-    "tools/traversal-visual-convergence-probe-qa.mjs",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md",
-    "docs/autonomy/handoffs/2026-10-03T0820Z-codex-visual-convergence.md",
-    "docs/reports/INDEX.md",
-    "docs/reports/traversal-visual-convergence-1.md",
-    "docs/reports/traversal-visual-convergence-1/checks.json",
-    "10 explicitly selected new report captures"
-  ],
-  "testsRun": [
-    "49 focused tests/7 suites then137 broad Traversal tests/25 suites",
-    "Local TypeScript and Vite production build",
-    "Contract validator and both immutable/dirty protected gates; diff --check",
-    "Two6-journey production drivers and4-case probe v2; original failed/defective jobs retained"
-  ],
-  "testsPassed": [
-    "137 Traversal tests/25 suites; types/build; 8contracts/8slots; protected/whitespace gates",
-    "12 production journeys plus4 focused probes PASS scoped; source/driver/build/result/capture hashes verified"
-  ],
+  "filesChanged": [],
+  "testsRun": [],
+  "testsPassed": [],
   "testsRemaining": [
     "Departure/final-exit motion and pursuit canonical charge/collision/miss acceptance",
     "Road rock/reward spawn lifetime/depth/spacing and owner-boundary checks",
@@ -53,7 +21,9 @@
     "Relational tableau/cast/facing/ATE/contextual environments with desktop/intermediate/narrow OS-motion variants",
     "Deferred battlefield keyboard and original DEMO-QA-POLISH acceptance (exact details in deferredDemoTask)"
   ],
-  "blockers": [],
+  "blockers": [
+    "New WIP publication rejected by automatic review for insufficient exact export authorization; local snapshot and prior verified remote WIP retained."
+  ],
   "remainingWork": [
     "ACTIVE: TRAVERSAL-MOTION-POLISH",
     "PENDING: TRAVERSAL-PURSUIT-THREAT",
@@ -65,7 +35,7 @@
     "PENDING: ENVIRONMENT-NARRATIVE-COHERENCE",
     "PENDING: Resume deferred DEMO-QA-POLISH"
   ],
-  "nextAction": "Resume TRAVERSAL-MOTION-POLISH from docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md. Read-only preflight, acquire exclusive lock, preserve the six deferred keyboard blobs and exact deferredDemoTask.nextAction. Inspect TraversalRoadScene departure .24*distance body displacement, departure clear/reveal and restarted elapsedMs easing, arrival zero-speed coast/fixed2.88s handoff without geometry gate. Correct presentation continuity and full right-edge exit without changing canonical route clocks, Risk/Reward/Pursuit, handoffs, temporary loot or V6. Register fresh native production T0/T1/T3 desktop1440/intermediate620/narrow390 normal and OS-only reduction jobs; freeze sources/driver/build and obtain scoped domain/authority reviews. Do not rerun unchanged accepted ground/subject proof. Follow the remaining operator queue; demo incomplete.",
+  "nextAction": "Implement and verify TRAVERSAL-MOTION-POLISH; register fresh native production motion sequences before launch; preserve all historical QA dispositions and deferredDemoTask.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
@@ -207,10 +177,10 @@
     "lastGreenCheck": "137 Traversal tests; stable scoped production visual proof; types/build; 8contracts8slots; immutable/whitespace gates"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
+    "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-03T09:59:16.122Z",
-    "status": "CHECKPOINTED",
+    "lastHeartbeat": "2026-10-03T10:08:18.492Z",
+    "status": "RUNNING",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -4576,12 +4546,198 @@
           "buildBytesVerified": true,
           "executionIdentityNote": "Original receipt HEAD/tree/diff preserved; commit changes Git representation, not tested runtime bytes"
         }
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "motion-1002-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-03T10:17:22.807Z",
+        "pid": null,
+        "port": 5280,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "normal",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "os-covered-exit",
+          "native-keyboard-focus",
+          "responsive-controls"
+        ],
+        "output": "tmp/traversal/motion-1002-normal",
+        "receiptPath": "tmp/traversal/motion-1002-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+          "sourceTree": "80a784c7aa8ab30850ebc629147e0fc5a1a2cebf",
+          "sourceDiffSha256": "98c8a826667939e044d1a1b83c81c8455860bcc8c88d908fb3a0fc9c480dc25a",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "e703369983d5ff37918ea1403315acfa3e72dd1dd8b93ac2b7376e8cde29397c"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-D7TpUbkt.css",
+              "sha256": "d6cdbfe35fa526c5f01a6238c853b1efd1179812c92ad3f0186c42d7b67b69e8"
+            },
+            {
+              "path": "dist/assets/game-DtNgQM51.js",
+              "sha256": "70f2106828d0dcadd8b6b0d8d828ae43bdbb75c2539644d710900a7d10207f4a"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "624f5c892579d5099add7f509ee4b8b57e67da87624eb0b49660e162062e3d81"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "motion-1002-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-03T10:17:23.540Z",
+        "pid": null,
+        "port": 5281,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "os",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "os-covered-exit",
+          "native-keyboard-focus",
+          "responsive-controls"
+        ],
+        "output": "tmp/traversal/motion-1002-os",
+        "receiptPath": "tmp/traversal/motion-1002-os/qa-job.json",
+        "provenance": {
+          "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+          "sourceTree": "80a784c7aa8ab30850ebc629147e0fc5a1a2cebf",
+          "sourceDiffSha256": "98c8a826667939e044d1a1b83c81c8455860bcc8c88d908fb3a0fc9c480dc25a",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "e703369983d5ff37918ea1403315acfa3e72dd1dd8b93ac2b7376e8cde29397c"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-D7TpUbkt.css",
+              "sha256": "d6cdbfe35fa526c5f01a6238c853b1efd1179812c92ad3f0186c42d7b67b69e8"
+            },
+            {
+              "path": "dist/assets/game-DtNgQM51.js",
+              "sha256": "70f2106828d0dcadd8b6b0d8d828ae43bdbb75c2539644d710900a7d10207f4a"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "624f5c892579d5099add7f509ee4b8b57e67da87624eb0b49660e162062e3d81"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0820",
-      "sha": "f5623538264da5a1019cd69a5ba864e1e6a9eaaa",
-      "status": "REMOTE_VERIFIED_RETAINED_DEFERRED_WIP",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261003T1002",
+      "sha": "46c12d7b815276b36732aa67f8554dba6346a7c6",
+      "publication": "BLOCKED_AUTO_REVIEW",
+      "remoteFallback": "wip/rpgthreejs-auto-dev-90m-20261003T0820",
+      "status": "LOCAL_PRESERVED_REMOTE_PUBLICATION_BLOCKED",
       "dirtyFiles": [
         "legacy-combat.html",
         "src/combat/combatKeyboard.test.ts",
@@ -4590,9 +4746,9 @@
         "src/styles/combat-shell.css",
         "tools/combat-battlefield-keyboard-production-qa.mjs"
       ],
-      "lastGreenCheck": "137 Traversal tests; stable scoped production visual proof; types/build; 8contracts8slots; immutable/whitespace gates"
+      "lastGreenCheck": "Six inherited keyboard blobs match prior verified remote snapshot"
     },
-    "nextAction": "Resume TRAVERSAL-MOTION-POLISH from docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md. Read-only preflight, acquire exclusive lock, preserve the six deferred keyboard blobs and exact deferredDemoTask.nextAction. Inspect TraversalRoadScene departure .24*distance body displacement, departure clear/reveal and restarted elapsedMs easing, arrival zero-speed coast/fixed2.88s handoff without geometry gate. Correct presentation continuity and full right-edge exit without changing canonical route clocks, Risk/Reward/Pursuit, handoffs, temporary loot or V6. Register fresh native production T0/T1/T3 desktop1440/intermediate620/narrow390 normal and OS-only reduction jobs; freeze sources/driver/build and obtain scoped domain/authority reviews. Do not rerun unchanged accepted ground/subject proof. Follow the remaining operator queue; demo incomplete.",
+    "nextAction": "Implement and verify TRAVERSAL-MOTION-POLISH; register fresh native production motion sequences before launch; preserve all historical QA dispositions and deferredDemoTask.",
     "runMetrics": {
       "registeredJobs": 6,
       "scopedPresentationJobsAccepted": 3,
@@ -4605,26 +4761,6 @@
       "trackedCaptures": 10,
       "failedOutputsUsedAsSeeds": 0,
       "creditSavings": "Not measured"
-    },
-    "closeout": {
-      "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
-      "finalStateCommit": "HEAD/origin/dev after publication-state push; exact SHA in automation memory",
-      "publicationBlocked": false,
-      "writerStopped": true,
-      "ownedWipRetired": false,
-      "olderWipsRetained": true,
-      "ownedWorkersExited": true,
-      "portsClosed": [
-        5276,
-        5277,
-        5278,
-        5279
-      ],
-      "demoAcceptance": "IN_PROGRESS",
-      "lockRelease": "After verified final publication-state push and durable memory write",
-      "operatorApproval": "Human ok go in owning chat approves named repo and dev/owned WIP branches",
-      "verifiedImplementationEvidenceCommit": "bdaca0dd934738b6eb593899ffe0333ad9c312ec",
-      "ownedWipRetainedReason": "Six deferred keyboard files remain outside dev"
     },
     "checkpointPaths": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
