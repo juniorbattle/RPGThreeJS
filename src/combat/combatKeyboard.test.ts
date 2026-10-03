@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 import { describe, expect, it } from 'vitest';
-import { shouldHandleCombatShortcut, shouldPreventCombatWheel } from './combatKeyboard';
+import { nextCombatCursor, shouldHandleCombatShortcut, shouldPreventCombatWheel } from './combatKeyboard';
 
 function routed(key: string, target: EventTarget, defaultPrevented = false): boolean {
   return shouldHandleCombatShortcut({ key, target, defaultPrevented });
@@ -45,6 +45,20 @@ describe('combat shortcut ownership', () => {
       expect(routed(key, canvas)).toBe(true);
       expect(routed(key, document.body)).toBe(true);
     }
+  });
+});
+
+describe('transient battlefield navigation', () => {
+  it('clamps all four edges without wrapping or changing the original cell', () => {
+    const origin = { gx: 0, gz: 0 };
+    expect(nextCombatCursor(origin, 'ArrowLeft', 8, 4)).toEqual(origin);
+    expect(nextCombatCursor(origin, 'ArrowUp', 8, 4)).toEqual(origin);
+    expect(nextCombatCursor({ gx: 7, gz: 3 }, 'ArrowRight', 8, 4)).toEqual({ gx: 7, gz: 3 });
+    expect(nextCombatCursor({ gx: 7, gz: 3 }, 'ArrowDown', 8, 4)).toEqual({ gx: 7, gz: 3 });
+    expect(nextCombatCursor(origin, 'ArrowRight', 8, 4)).toEqual({ gx: 1, gz: 0 });
+    expect(nextCombatCursor(origin, 'ArrowDown', 8, 4)).toEqual({ gx: 0, gz: 1 });
+    expect(origin).toEqual({ gx: 0, gz: 0 });
+    expect(nextCombatCursor(origin, 'Enter', 8, 4)).toEqual(origin);
   });
 });
 

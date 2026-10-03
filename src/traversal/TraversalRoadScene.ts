@@ -1,3 +1,4 @@
+import { setRoadGroundDepth } from './TraversalRoadAnchor';
 import type { LionTraversalLeg } from '../campaign/LionCampaignTravelRelations';
 import type { GameState, RunNode } from '../game/types';
 import type { CampaignStatusHud } from '../ui/CampaignStatusHud';
@@ -976,6 +977,9 @@ export class TraversalRoadScene {
   private updateWorldTransforms(forceWorld = false): void {
     const session = this.controller.session;
     const width = this.element.clientWidth || ROAD_SPACE.referenceWidth;
+    // Read the interpolated lane ground before writes so depth follows the visible caravan.
+    const groundVehicle = this.element.querySelector<HTMLElement>('.traversal-vehicle')!;
+    const renderedGroundY = Number.parseFloat(getComputedStyle(groundVehicle).top);
     // Read both viewport dimensions before any style writes to avoid forced layout.
     const height = this.element.clientHeight || 823;
     if (this.viewMode === 'ROUTE') {
@@ -983,12 +987,10 @@ export class TraversalRoadScene {
     }
     if (this.riskRenderer) {
       const hazards = this.authoring.hazards(this.routeSegment.id);
-      const active = this.viewMode === 'ROUTE' && this.session.phase === 'RUNNING'
-        && !this.transition && !this.departure && this.approachElapsed === null
-        && !this.routeRun.complete && !document.body.classList.contains('scene-transition--locked');
+      const active = this.viewMode === 'ROUTE';
       this.riskRenderer.update(hazards, this.routeRisk, this.routeRun.progress01,
         this.routeRun.elapsedMs, this.routeSegment.durationMs, this.routeRenderer.distance,
-        width, active, progress => forecastRouteDistance(this.routeRun, this.routeSegment, progress));
+        width, active, progress => forecastRouteDistance(this.routeRun, this.routeSegment, progress), height);
       if (this.riskQa) {
         this.element.dataset.riskSegment = this.routeRisk.segmentId;
         this.element.dataset.riskProgress = String(this.routeRun.progress01);
@@ -1006,13 +1008,11 @@ export class TraversalRoadScene {
       }
     }
     if (this.rewardRenderer) {
-      const active = this.viewMode === 'ROUTE' && session.phase === 'RUNNING'
-        && !this.transition && !this.departure && this.approachElapsed === null
-        && !this.routeRun.complete && !document.body.classList.contains('scene-transition--locked');
+      const active = this.viewMode === 'ROUTE';
       const pickups = this.authoring.pickups(this.routeSegment.id);
       this.rewardRenderer.update(pickups, this.routeReward, this.routeRun.progress01,
         this.routeRun.elapsedMs, this.routeSegment.durationMs, this.routeRenderer.distance,
-        width, active, progress => forecastRouteDistance(this.routeRun, this.routeSegment, progress));
+        width, active, progress => forecastRouteDistance(this.routeRun, this.routeSegment, progress), height);
       if (this.riskQa) {
         this.element.dataset.rewardResolved = JSON.stringify(this.routeReward.resolvedPickupIds);
         this.element.dataset.rewardCollected = JSON.stringify(this.routeReward.collectedPickupIds);
@@ -1041,7 +1041,8 @@ export class TraversalRoadScene {
         this.element.dataset.pursuitCatchProgress = String(this.lastPursuitCatchProgress ?? '');
       }
     }
-    const vehicle = this.element.querySelector<HTMLElement>('.traversal-vehicle')!;
+    const vehicle = groundVehicle;
+    setRoadGroundDepth(vehicle, Number.isFinite(renderedGroundY) ? renderedGroundY : height * LANE_TOP_PERCENT[session.currentLane] / 100);
     const exitDistance = session.phase === 'ARRIVING' ? this.arrivalExitDistance : 0;
     const departureDistance = this.viewMode === 'CHECKPOINT'
       && !prefersReducedMotion(this.options.getState().settings.reducedGraphics) ? this.departure?.distance ?? 0 : 0;
