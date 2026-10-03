@@ -1,0 +1,29 @@
+# Traversal visual convergence
+
+CURRENT FACT — scoped runtime acceptance PASS, 2026-10-03. Implementation `fa4dac612dd8b883759794a837c7d9eed9aa73cc` is on local `dev`; publication is blocked by automatic approval review. This is the first runtime remediation under OD-2026-10-03-A / contract set1.1.0, not full-demo acceptance.
+
+## Implemented scope
+
+`TraversalWorldRenderer` overlays the existing native T0 forest ground inside the same 150vh painting geometry in Route, Checkpoint and Return Route. The 48–56% blend retains upper authored landmarks while sharing earth pixels, road scale and foreground band. Existing paintings and media bytes are unchanged.
+
+`TraversalWorldSubject` reads existing full-clan membership, recruitment flags and established narrative-companion identities. Séraphine/Maelor and recruited clan contacts remain represented by the caravan and their existing tableau. Unrecruited Cédric/Garen, refugees, witnesses and authored external subjects remain eligible. Stops without subjects retain their canonical marker/interaction and environment, without manufactured NPC/prop art. Fork signs and the abandoned cart remain persistent props.
+
+Each danger beat renders one existing Shadow pursuer silhouette. Canonical route-beat identities, combat formations, dialogue/tableau casts and handoff eligibility remain unchanged; the road does not display the tactical formation. No campaign/resource/save/combat write path was added.
+
+## Acceptance and provenance
+
+- 137 tests across all 25 Traversal suites PASS; focused subset49, TypeScript, production build, validator8contracts/8slots, whitespace and immutable Git gates PASS.
+- Fresh v2 normal and OS-only production jobs each complete six T0/T1/T3 event/combat journeys,174captures, zero failures/errors, one arrival and existing canonical handoffs per journey. All use game reduction false.
+- Corrected supplementary probe: four cases/12captures; computed decorative OS reduction, native lane keyboard/focus, actual center-hit tests, desktop30px and620/39044px targets, corrupt shadow/ground request+decode evidence, existing combat fixture and same-scene route return.
+- Root and traversal-engineer inspect selected representative ground, empty, external and Shadow frames; contracts-guardian reviews exact source/assertions/receipts. Scoped PASS.
+- Compact selected evidence: [checks](../reports/traversal-visual-convergence-1/checks.json) and [report](../reports/traversal-visual-convergence-1.md). Exact build/driver/helper/source identities and historical failed dispositions are retained. Tests use local Node CLI equivalents because ambient npm/npx points to missing global entrypoints.
+
+The production proof uses V6-origin and combat-result fixtures, native clocks and UI. It is not earned campaign/tactical-balance/save-outcome acceptance. The build includes six preserved, deferred keyboard/combat WIP files; they are excluded from the implementation commit and its acceptance. Historical33QA dispositions and deferredDemoTask remain byte-for-byte JSON-equivalent to the run baseline.
+
+## Remaining ordered work
+
+Motion, Pursuit, rock/lifetime/depth, campfire, dialogue facts, tableau, transition copy, contextual environments and deferred demo acceptance remain open. Upper authored day/night scenery is retained; contextual lighting/time truth is reserved for ENVIRONMENT-NARRATIVE-COHERENCE.
+
+After publication approval and verified `origin/dev`, resume TRAVERSAL-MOTION-POLISH. Current observed source drift in `TraversalRoadScene`: checkpoint departure moves the vehicle with only `.24` of departure distance, clears departure before the reveal, and restarts the new route with `transitionEase(routeRun.elapsedMs / restart)`; final `advanceArrival` eases speed to zero at2.05s and hands off at a fixed2.88s without checking full right-edge exit. Replace those presentation-only paths with continuous coverage/swap/reveal momentum and a geometry-gated full exit. Preserve route clocks, Risk/Reward/Pursuit resolution, canonical agency and V6. Verify native normal/OS-only sequences across T0/T1/T3 and1440/620/390; old motion PASS remains historical.
+
+Remote publication was rejected twice as potentially private source-code egress lacking exact-payload authorization. No workaround push occurred. Local recovery snapshots and the coherent dev checkpoint remain reviewable; explicit approval is pending. The owned lock is retained until the required verified publication closeout.
