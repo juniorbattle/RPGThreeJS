@@ -2,39 +2,59 @@
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-03T13:04:04.9263411Z",
   "runEndedAt": null,
-  "activeTask": "TRAVERSAL-MOTION-POLISH",
-  "activePhase": "Review inherited frozen motion proof; complete game-setting-only production motion",
-  "activeSubtask": "Presentation-only motion; preserve route clocks and existing canonical callbacks",
+  "activeTask": "TRAVERSAL-PURSUIT-THREAT",
+  "activePhase": "Unwired committed charge model verified; independent renderer/harness next",
+  "activeSubtask": "Render authored committed lane/acceleration/genuine-miss full exit without canonical writes; collision integration blocked by missing mappings",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
-  "lastPushedCommit": "bdaca0dd934738b6eb593899ffe0333ad9c312ec",
+  "lastKnownGoodCommit": "b6996366ccb1650f037a5b338af477b4da809b6c",
+  "lastPushedCommit": "21398e4b02f92908a5378403e612b660006f336e",
   "completedThisRun": [
-    "Recovered interrupted1002 after105minute cumulative checks; all8workers dead,three final receipts recovered,16reviewed paths snapshotted71cee262; remote refs unchanged21398e4"
+    "Recovered interrupted1002 after105minute cumulative checks; all8workers dead,three final receipts recovered,16reviewed paths snapshotted71cee262; remote refs unchanged21398e4",
+    "Recovered3exact terminal motion receipts and completed9additional game-setting journeys;27journeys/106captures/10promoted;4jobs accepted scoped presentation",
+    "Committed motionb994912 and unwired modelb699636 separately;7model tests and independent guards review PASS",
+    "Restored47inherited ledger objects after timestamp serialization regression;original39/deferredDemoTask/sixkeyboard blobs exactly preserved"
   ],
-  "filesChanged": [],
+  "filesChanged": [
+    "src/styles/traversal.css",
+    "src/traversal/TraversalForkOverlay.ts",
+    "src/traversal/TraversalPursuitCharge.test.ts",
+    "src/traversal/TraversalPursuitCharge.ts",
+    "src/traversal/TraversalRoadMotion.test.ts",
+    "src/traversal/TraversalRoadScene.ts",
+    "src/traversal/TraversalRunController.test.ts",
+    "src/traversal/TraversalRunController.ts",
+    "tools/traversal-game-motion-production-qa.mjs",
+    "tools/traversal-motion-fallback-qa.mjs",
+    "tools/traversal-motion-production-qa.mjs"
+  ],
   "testsRun": [
     "node node_modules/vitest/vitest.mjs run src/traversal",
     "node --test tools/qa/qa-job.test.mjs",
     "node node_modules/typescript/bin/tsc --noEmit",
     "node tools/contracts/validate-contracts.mjs",
-    "node tmp/traversal/motion-1300/audit.mjs"
+    "node tmp/traversal/motion-1300/audit.mjs",
+    "node node_modules/vitest/vitest.mjs run src/traversal/TraversalPursuitCharge.test.ts",
+    "node node_modules/vite/bin/vite.js build",
+    "registered motion-1300-game:9native production journeys"
   ],
   "testsPassed": [
-    "143Traversal tests/26suites;16receipt tests;types;8contracts/8slots;immutable/dirtyprotected/syntax gates;3receipts current source/driver/helper/build/result hashes exact"
+    "143Traversal tests/26suites;16receipt tests;types;8contracts/8slots;immutable/dirtyprotected/syntax gates;3receipts current source/driver/helper/build/result hashes exact",
+    "7candidate model tests;TypeScript;fresh candidate build byte-identical to9QA files;8MP4 slots",
+    "27native-clock motion journeys normal/OS/game;3fallback/layout cases;4receipts exact hashes/registration/assertions",
+    "LOCKED/dirtyprotected/whitespace gates;2reused read-only reviewers;47inherited ledger precision restored"
   ],
   "testsRemaining": [
-    "Departure/final-exit motion and pursuit canonical charge/collision/miss acceptance",
+    "Pursuit committed-charge/miss visuals and canonical collision mapping/owner handoff;candidate model is not runtime acceptance",
     "Road rock/reward spawn lifetime/depth/spacing and owner-boundary checks",
     "Pre-judgement campfire/save-resume/agency and fact-consistent dialogue",
     "Relational tableau/cast/facing/ATE/contextual environments with desktop/intermediate/narrow OS-motion variants",
     "Deferred battlefield keyboard and original DEMO-QA-POLISH acceptance (exact details in deferredDemoTask)"
   ],
   "blockers": [
-    "New WIP publication rejected by automatic review for insufficient exact export authorization; local snapshot and prior verified remote WIP retained."
+    "Pursuit collision integration: all10variants lack an explicit authored eligible canonical encounter/node binding; independent renderer/miss work remains authorized."
   ],
   "remainingWork": [
-    "ACTIVE: TRAVERSAL-MOTION-POLISH",
-    "PENDING: TRAVERSAL-PURSUIT-THREAT",
+    "ACTIVE: TRAVERSAL-PURSUIT-THREAT (model verified;visuals pending;collision blocked)",
     "PENDING: TRAVERSAL-ROAD-ELEMENTS",
     "PENDING: PRE-JUDGEMENT-CAMPFIRE",
     "PENDING: NARRATIVE-CONTEXT-COHERENCE",
@@ -43,12 +63,12 @@
     "PENDING: ENVIRONMENT-NARRATIVE-COHERENCE",
     "PENDING: Resume deferred DEMO-QA-POLISH"
   ],
-  "nextAction": "Review exact motion source/assertions/captures and complete registered game-setting-only production motion; preserve original39QA ledger/deferredDemoTask/sixkeyboard blobs.",
+  "nextAction": "Normal lock/Git/WIP preflight. Read TRAVERSAL_MOTION_POLISH.md/PURSUIT_THREAT.md and matching skills. Reuse unwired TraversalPursuitCharge modelb699636 (7tests); implement an isolated charge renderer/harness with existing Shadow art, committed lane/acceleration/full genuine-miss right exit, grounded coordinates/resize and normal/OS/game reduction. Split steps at lane/geometry/viewport changes; freeze unresolved CONTACT once. No production collision wiring until explicit eligible authored mapping exists for10windows. Guardian exactdiff/assertions and native isolated browser proof; preserve six deferred keyboard blobs/48ledger entries/deferredDemoTask. Do not rerun unchanged accepted27motion journeys.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
-    "TRAVERSAL-MOTION-POLISH: ACTIVE",
-    "TRAVERSAL-PURSUIT-THREAT: PENDING",
+    "TRAVERSAL-MOTION-POLISH: COMPLETE_SCOPED_PRESENTATION",
+    "TRAVERSAL-PURSUIT-THREAT: ACTIVE_MODEL_ONLY; COLLISION_INTEGRATION_BLOCKED",
     "TRAVERSAL-ROAD-ELEMENTS: PENDING",
     "PRE-JUDGEMENT-CAMPFIRE: PENDING",
     "NARRATIVE-CONTEXT-COHERENCE: PENDING",
@@ -58,8 +78,8 @@
     "Resume deferred DEMO-QA-POLISH: PENDING"
   ],
   "creditStatus": "AVAILABLE; no credit-saving claim",
-  "contractComplianceStatus": "Scoped visual presentation and repository governance PASS; set1.1.0 immutable. Motion/Pursuit/road and remaining demo acceptance open.",
-  "commitReferenceScope": "Verified implementation fa4dac6 and evidence bdaca0d; final publication-state commit is HEAD/origin/dev after guarded push, exact SHA in automation memory to avoid circular self-reference.",
+  "contractComplianceStatus": "set1.1.0 immutable;motion SCOPED_PRESENTATION PASS;unwired Pursuit MODEL_ONLY PASS;collision mapping BLOCKED;visual Pursuit/road/narrative/full demo remain open.",
+  "commitReferenceScope": "Motion implementationb994912;modelb699636;final documentation/state SHA and verified publication recorded in automation memory/handoff.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -187,8 +207,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261003T1300",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-03T13:09:01.353Z",
-    "status": "RUNNING",
+    "lastHeartbeat": "2026-10-03T13:39:56.419Z",
+    "status": "CHECKPOINT_READY",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -5082,9 +5102,9 @@
         "schemaVersion": 1,
         "jobId": "motion-1002-v3-normal",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-03T10:31:02.664Z",
-        "pid": null,
+        "pid": 39472,
         "port": 5280,
         "command": [
           "node",
@@ -5168,15 +5188,83 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
+        "startedAt": "2026-10-03T10:31:09.835Z",
+        "endedAt": "2026-10-03T10:48:29.654Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/motion-1002-v3-normal/results.json",
+        "resultSha256": "db2da3ca1362298a706b86caca189a30f51ef007e70c8a3dac5ecacce3ca0814",
+        "provenanceStable": true,
+        "requestMatches": true,
+        "resultDigestMatches": true,
+        "matchesCurrentExecution": false,
+        "eligibleForReview": false,
+        "acceptanceAtReview": {
+          "recordedAt": "2026-10-03T13:27:12.862Z",
+          "implementationCommit": "b9949123941ec13630ff3c398e4bb2551d68d50f",
+          "originalProvenance": {
+            "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+            "sourceTree": "80a784c7aa8ab30850ebc629147e0fc5a1a2cebf",
+            "sourceDiffSha256": "3ac022b9d6adb915210f0fe50af76cf296c22515cd1577f113472e545d95cd8e",
+            "driver": {
+              "path": "tools/traversal-motion-production-qa.mjs",
+              "sha256": "f248923c3e0a5ab3b687d0c479a726982f8977ae64f08f12ac82d0da747bb151"
+            },
+            "inputs": [],
+            "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+            "build": [
+              {
+                "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+                "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+              },
+              {
+                "path": "dist/assets/combat-DSUtGYdZ.js",
+                "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+              },
+              {
+                "path": "dist/assets/combat-s2FWu0a6.css",
+                "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+              },
+              {
+                "path": "dist/assets/game-BztuXMkj.css",
+                "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+              },
+              {
+                "path": "dist/assets/game-D8fui7sl.js",
+                "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+              },
+              {
+                "path": "dist/assets/three-core-f0ajj1rG.js",
+                "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+              },
+              {
+                "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+                "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+              },
+              {
+                "path": "dist/assets/validation-mSkvzYyn.js",
+                "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+              },
+              {
+                "path": "dist/index.html",
+                "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+              }
+            ]
+          },
+          "sourceBytesVerified": true,
+          "buildBytesVerified": true,
+          "scope": "SCOPED_PRESENTATION:27native-clock event-branch journeys;V6origins/combat outcomes fixtures;not earned campaign,tactical,battlefield keyboard,demo",
+          "review": "Root and reused contracts-guardian/traversal-engineer;game terminal reviewed",
+          "executionIdentityNote": "Original receipt Git representation retained. Postcommit all15rawsource/driver/deferred files and9build hashes verified exact; unwired candidate created only after final QA worker exit."
+        }
       },
       {
         "schemaVersion": 1,
         "jobId": "motion-1002-v3-os",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-03T10:31:03.420Z",
-        "pid": null,
+        "pid": 41896,
         "port": 5281,
         "command": [
           "node",
@@ -5260,15 +5348,83 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
+        "startedAt": "2026-10-03T10:31:08.195Z",
+        "endedAt": "2026-10-03T10:47:24.702Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/motion-1002-v3-os/results.json",
+        "resultSha256": "76a980fd3aadb23cb11f60396a06f522a96cf55b3113924653f6f891b27581e2",
+        "provenanceStable": true,
+        "requestMatches": true,
+        "resultDigestMatches": true,
+        "matchesCurrentExecution": false,
+        "eligibleForReview": false,
+        "acceptanceAtReview": {
+          "recordedAt": "2026-10-03T13:27:12.862Z",
+          "implementationCommit": "b9949123941ec13630ff3c398e4bb2551d68d50f",
+          "originalProvenance": {
+            "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+            "sourceTree": "80a784c7aa8ab30850ebc629147e0fc5a1a2cebf",
+            "sourceDiffSha256": "3ac022b9d6adb915210f0fe50af76cf296c22515cd1577f113472e545d95cd8e",
+            "driver": {
+              "path": "tools/traversal-motion-production-qa.mjs",
+              "sha256": "f248923c3e0a5ab3b687d0c479a726982f8977ae64f08f12ac82d0da747bb151"
+            },
+            "inputs": [],
+            "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+            "build": [
+              {
+                "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+                "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+              },
+              {
+                "path": "dist/assets/combat-DSUtGYdZ.js",
+                "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+              },
+              {
+                "path": "dist/assets/combat-s2FWu0a6.css",
+                "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+              },
+              {
+                "path": "dist/assets/game-BztuXMkj.css",
+                "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+              },
+              {
+                "path": "dist/assets/game-D8fui7sl.js",
+                "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+              },
+              {
+                "path": "dist/assets/three-core-f0ajj1rG.js",
+                "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+              },
+              {
+                "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+                "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+              },
+              {
+                "path": "dist/assets/validation-mSkvzYyn.js",
+                "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+              },
+              {
+                "path": "dist/index.html",
+                "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+              }
+            ]
+          },
+          "sourceBytesVerified": true,
+          "buildBytesVerified": true,
+          "scope": "SCOPED_PRESENTATION:27native-clock event-branch journeys;V6origins/combat outcomes fixtures;not earned campaign,tactical,battlefield keyboard,demo",
+          "review": "Root and reused contracts-guardian/traversal-engineer;game terminal reviewed",
+          "executionIdentityNote": "Original receipt Git representation retained. Postcommit all15rawsource/driver/deferred files and9build hashes verified exact; unwired candidate created only after final QA worker exit."
+        }
       },
       {
         "schemaVersion": 1,
         "jobId": "motion-1002-probe-v2",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-03T10:31:04.205Z",
-        "pid": null,
+        "pid": 54312,
         "port": 5282,
         "command": [
           "node",
@@ -5345,15 +5501,83 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
+        "startedAt": "2026-10-03T10:31:10.139Z",
+        "endedAt": "2026-10-03T10:32:30.399Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/motion-1002-probe-v2/results.json",
+        "resultSha256": "9f0115edbc74f23e8d35c76f390812fb6e829054a72924be64ca06986331562c",
+        "provenanceStable": true,
+        "requestMatches": true,
+        "resultDigestMatches": true,
+        "matchesCurrentExecution": false,
+        "eligibleForReview": false,
+        "acceptanceAtReview": {
+          "recordedAt": "2026-10-03T13:27:12.862Z",
+          "implementationCommit": "b9949123941ec13630ff3c398e4bb2551d68d50f",
+          "originalProvenance": {
+            "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+            "sourceTree": "80a784c7aa8ab30850ebc629147e0fc5a1a2cebf",
+            "sourceDiffSha256": "3ac022b9d6adb915210f0fe50af76cf296c22515cd1577f113472e545d95cd8e",
+            "driver": {
+              "path": "tools/traversal-motion-fallback-qa.mjs",
+              "sha256": "6f7c628c0f5d7f1e8c8ceaae67cc39f1d7f65d9435c727f0eafc6e90ecd4ff26"
+            },
+            "inputs": [],
+            "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+            "build": [
+              {
+                "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+                "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+              },
+              {
+                "path": "dist/assets/combat-DSUtGYdZ.js",
+                "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+              },
+              {
+                "path": "dist/assets/combat-s2FWu0a6.css",
+                "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+              },
+              {
+                "path": "dist/assets/game-BztuXMkj.css",
+                "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+              },
+              {
+                "path": "dist/assets/game-D8fui7sl.js",
+                "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+              },
+              {
+                "path": "dist/assets/three-core-f0ajj1rG.js",
+                "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+              },
+              {
+                "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+                "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+              },
+              {
+                "path": "dist/assets/validation-mSkvzYyn.js",
+                "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+              },
+              {
+                "path": "dist/index.html",
+                "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+              }
+            ]
+          },
+          "sourceBytesVerified": true,
+          "buildBytesVerified": true,
+          "scope": "SCOPED_PRESENTATION:27native-clock event-branch journeys;V6origins/combat outcomes fixtures;not earned campaign,tactical,battlefield keyboard,demo",
+          "review": "Root and reused contracts-guardian/traversal-engineer;game terminal reviewed",
+          "executionIdentityNote": "Original receipt Git representation retained. Postcommit all15rawsource/driver/deferred files and9build hashes verified exact; unwired candidate created only after final QA worker exit."
+        }
       },
       {
         "schemaVersion": 1,
         "jobId": "motion-1300-game",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1300",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-03T13:09:01.903Z",
-        "pid": null,
+        "pid": 12636,
         "port": 5283,
         "command": [
           "node",
@@ -5437,13 +5661,81 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
+        "startedAt": "2026-10-03T13:09:51.788Z",
+        "endedAt": "2026-10-03T13:26:19.775Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/motion-1300-game/results.json",
+        "resultSha256": "e9079573e59248283f52d127fc3492a5fc1030f9a8b46e19714929ceb3c24d6c",
+        "provenanceStable": true,
+        "requestMatches": true,
+        "resultDigestMatches": true,
+        "matchesCurrentExecution": false,
+        "eligibleForReview": false,
+        "acceptanceAtReview": {
+          "recordedAt": "2026-10-03T13:27:12.862Z",
+          "implementationCommit": "b9949123941ec13630ff3c398e4bb2551d68d50f",
+          "originalProvenance": {
+            "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+            "sourceTree": "80a784c7aa8ab30850ebc629147e0fc5a1a2cebf",
+            "sourceDiffSha256": "3ac022b9d6adb915210f0fe50af76cf296c22515cd1577f113472e545d95cd8e",
+            "driver": {
+              "path": "tools/traversal-game-motion-production-qa.mjs",
+              "sha256": "2bb9550e8d929d497829c307a039c3a8fc2724c1737fff6df862bd1baca5a2a7"
+            },
+            "inputs": [],
+            "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+            "build": [
+              {
+                "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+                "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+              },
+              {
+                "path": "dist/assets/combat-DSUtGYdZ.js",
+                "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+              },
+              {
+                "path": "dist/assets/combat-s2FWu0a6.css",
+                "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+              },
+              {
+                "path": "dist/assets/game-BztuXMkj.css",
+                "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+              },
+              {
+                "path": "dist/assets/game-D8fui7sl.js",
+                "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+              },
+              {
+                "path": "dist/assets/three-core-f0ajj1rG.js",
+                "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+              },
+              {
+                "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+                "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+              },
+              {
+                "path": "dist/assets/validation-mSkvzYyn.js",
+                "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+              },
+              {
+                "path": "dist/index.html",
+                "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+              }
+            ]
+          },
+          "sourceBytesVerified": true,
+          "buildBytesVerified": true,
+          "scope": "SCOPED_PRESENTATION:27native-clock event-branch journeys;V6origins/combat outcomes fixtures;not earned campaign,tactical,battlefield keyboard,demo",
+          "review": "Root and reused contracts-guardian/traversal-engineer;game terminal reviewed",
+          "executionIdentityNote": "Original receipt Git representation retained. Postcommit all15rawsource/driver/deferred files and9build hashes verified exact; unwired candidate created only after final QA worker exit."
+        }
       }
     ],
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261003T1300",
-      "sha": "71cee26253ceb27de644f98ec0c66c941e9108a0",
-      "publication": "LOCAL_ONLY",
+      "sha": "292a35f9f01ff2eb9dfcee1689693ebc92a88431",
+      "publication": "REMOTE_VERIFIED",
       "status": "LOCAL_SNAPSHOT",
       "dirtyFiles": [
         "legacy-combat.html",
@@ -5455,18 +5747,20 @@
       ],
       "lastGreenCheck": "143Traversal tests/26suites;16receipt tests;types;8contracts/8slots;immutable/dirtyprotected/syntax gates;3receipts current source/driver/helper/build/result hashes exact"
     },
-    "nextAction": "Review exact motion source/assertions/captures and complete registered game-setting-only production motion; preserve original39QA ledger/deferredDemoTask/sixkeyboard blobs.",
+    "nextAction": "Normal lock/Git/WIP preflight. Read TRAVERSAL_MOTION_POLISH.md/PURSUIT_THREAT.md and matching skills. Reuse unwired TraversalPursuitCharge modelb699636 (7tests); implement an isolated charge renderer/harness with existing Shadow art, committed lane/acceleration/full genuine-miss right exit, grounded coordinates/resize and normal/OS/game reduction. Split steps at lane/geometry/viewport changes; freeze unresolved CONTACT once. No production collision wiring until explicit eligible authored mapping exists for10windows. Guardian exactdiff/assertions and native isolated browser proof; preserve six deferred keyboard blobs/48ledger entries/deferredDemoTask. Do not rerun unchanged accepted27motion journeys.",
     "runMetrics": {
-      "registeredJobs": 6,
-      "scopedPresentationJobsAccepted": 3,
-      "unacceptedJobs": 3,
-      "distinctReadOnlyReviewers": 2,
-      "productionJourneys": 12,
-      "productionCaptures": 348,
-      "focusedProbeCases": 4,
-      "focusedProbeCaptures": 12,
+      "recoveredTerminalReceipts": 3,
+      "newRegisteredJobs": 1,
+      "acceptedScopedMotionJobs": 4,
+      "unacceptedInheritedMotionJobs": 5,
+      "productionMotionJourneys": 27,
+      "gameJourneysThisRun": 9,
+      "fallbackCases": 3,
+      "totalCaptures": 106,
       "trackedCaptures": 10,
+      "distinctReadOnlyReviewers": 2,
       "failedOutputsUsedAsSeeds": 0,
+      "unchangedJourneyReruns": 0,
       "creditSavings": "Not measured"
     },
     "checkpointPaths": [
@@ -5730,5 +6024,8 @@
       ],
       "lastGreenCheck": "137 Traversal tests; stable scoped production visual proof; types/build; 8contracts8slots; immutable/whitespace gates"
     }
-  }
+  },
+  "publicationHistory": [
+    "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization."
+  ]
 }
