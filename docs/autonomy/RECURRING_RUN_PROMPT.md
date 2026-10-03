@@ -4,6 +4,10 @@ PROGRESSION AUTONOME
 
 L’objectif est de terminer la démo avec une qualité de production. Enchaîne les sous-tâches cohérentes et corrige les problèmes observés sans attendre de validation humaine routinière sur dev. L’opérateur est le testeur final et donnera ses retours au moment voulu. Si une sous-tâche est bloquée, documente précisément le blocage et avance sur le travail indépendant autorisé ; ne déclare pas la démo terminée tant que ses critères d’acceptation restent ouverts. Les décisions de canon, de contrat LOCKED et les extensions de scope restent des décisions opérateur. Respecte le budget et le checkpoint de chaque run.
 
+PRIORITÉ PLAYTEST OPÉRATEUR
+
+OD-2026-10-03-A est prioritaire : lis docs/autonomy/MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md et suis sa file de remédiation avant la reprise générique DEMO-QA-POLISH. Conserve le travail clavier/combat différé et sa prochaine action exacte. Un ancien PASS automatisé ne réfute pas le constat visuel manuel. L’amendement dédié PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1 est verrouillé dans le set1.1.0 ; les corrections runtime suivantes respectent cette nouvelle cible et la barrière Git immuable indiquée dans AGENTS.md. Ne rouvre ni les huit vidéos ni le climax Alaric ni l’autorité de l’or temporaire.
+
 AUTORITÉS ET REPRISE
 
 Lis AGENTS.md, docs/autonomy/OPERATOR_DECISIONS.md et ses décisions actives, puis docs/autonomy/MULTI_AGENT_PROTOCOL.md. Lis la constitution, le manifeste et les contrats pertinents comme le prescrit la skill contracts-compliance. Ne modifie aucun contrat LOCKED dans une tâche normale.
@@ -18,7 +22,7 @@ Budget cible : 75 minutes. Après environ 60 minutes, n’ouvre aucun chantier l
 
 Utilise les skills pertinentes toi-même. À chaque checkpoint modifié : git diff --check, barrière LOCKED, contracts:validate, TypeScript et tests ciblés pertinents. Réutilise un résultat seulement si les sources, le driver, le build, les paramètres et les assertions concernés n’ont pas changé. Pour une modification UI/runtime, vérifie le scénario navigateur de production concerné ; applique les critères complets nécessaires avant toute acceptation, notamment clavier, focus, responsive, fallback, reduced motion et reprise. Les jalons importants déclenchent la QA large pertinente. Corrige tes propres régressions.
 
-Les spécialistes handoff-governor, contracts-guardian, qa-evidence-runner, ui-accessibility, cinematics-journey et narrative-tableau sont autorisés en lecture seule lorsque leur intervention répond à une question précise. Ne les lance pas systématiquement à chaque run. Fournis un brief autonome, fork_turns=none, les fichiers ou le diff exact, les affirmations à vérifier, les sections de contrat pertinentes et les preuves minimales nécessaires.
+Les spécialistes handoff-governor, contracts-guardian, qa-evidence-runner, ui-accessibility, cinematics-journey, narrative-tableau et traversal-engineer sont autorisés en lecture seule lorsque leur intervention répond à une question précise. Ne les lance pas systématiquement à chaque run. Fournis un brief autonome, fork_turns=none, les fichiers ou le diff exact, les affirmations à vérifier, les sections de contrat pertinentes et les preuves minimales nécessaires.
 
 Déclenche contracts-guardian à un jalon majeur ou pour une modification sensible de vérité de campagne, sauvegarde/migration V6, résolution de combat, autorité de présentation ou validateur. Cette règle couvre aussi les assertions et les pilotes QA qui certifient ces comportements. Une architecture ambiguë justifie une revue avant implémentation ; autrement, soumets le diff et les preuves prêts à vérifier. Réutilise le même reviewer dans le run ; demande une nouvelle passe si une correction substantielle ou un blocage l’exige. Ne commande pas une relecture globale des rapports ou captures sans question identifiée. Conserve les preuves utiles au contrôle d’honnêteté des conclusions.
 

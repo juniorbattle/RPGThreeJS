@@ -5,7 +5,7 @@ RPGThreeJS is a narrative tactical RPG with an authored campaign (Vite, TypeScri
 ## Authority and reading order
 
 1. Explicit operator decisions: `docs/autonomy/OPERATOR_DECISIONS.md` and the files it links.
-2. `docs/game/GAME_CONSTITUTION.md` and the eight LOCKED contracts (`docs/contracts/README.md`, `contracts.manifest.json`, then every contract relevant to the task). Lock: `PRODUCTION-CONTRACTS-LOCK-1`, commit `b1e8858`.
+2. `docs/game/GAME_CONSTITUTION.md` and the eight LOCKED contracts (`docs/contracts/README.md`, `contracts.manifest.json`, then every contract relevant to the task). Contract set 1.1.0: approved amendment `PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1` / OD-2026-10-03-A, immutable baseline `d7ca28aed5c377ffedb03202f6364b7a947d1096`. Original lock `PRODUCTION-CONTRACTS-LOCK-1` / `b1e8858` remains historical.
 3. Current source: it states what is implemented today.
 4. Canonical docs (`docs/project/`, `docs/traversal/`, `docs/content/`), then dated reports in `docs/reports/`. Reports are historical evidence, never doctrine.
 
@@ -13,7 +13,7 @@ The code adapts to a LOCKED contract, never the reverse. On a conflict: record i
 
 ## Red lines
 
-- Never edit `docs/contracts/**` or `docs/game/GAME_CONSTITUTION.md` in a normal task. Gate (must print nothing): `git diff --exit-code b1e8858 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md`.
+- Never edit `docs/contracts/**` or `docs/game/GAME_CONSTITUTION.md` in a normal task. Gate (must print nothing): `git diff --exit-code d7ca28aed5c377ffedb03202f6364b7a947d1096 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md`.
 - Presentation never creates or changes game truth (route, outcome, resource, save). Truth owners: `RunSystem` and campaign relations, versioned saves, tactical combat. `GameApp` coordinates lifecycle and handoffs only.
 - Exactly eight video slots (`src/cinematics/ApprovedProductionVideos.ts`). No ninth slot, no enemy-reveal or routine video. A prologue or first-refuge video needs a dedicated contract task first.
 - Recurring runs never generate or poll video or keyframes (no MiniMax) and never replace an MP4. Media remaster is an external manual workstream.
@@ -63,7 +63,8 @@ Subagent profiles live in `.agents/agents/` (Devin) and `.codex/agents/` (Codex)
 | `qa-evidence-runner` | `qa-evidence` | focused tests, tsc, build, browser drivers, evidence |
 | `ui-accessibility` | `ui-accessibility` | UI, responsive layout, keyboard, reduced motion |
 | `cinematics-journey` | `cinematics-journey` | eight slots, Journey, skip, fallback, resume |
-| `narrative-tableau` | `narrative-tableau` | tableau staging, dialogue UI, cast ownership |
+| `narrative-tableau` | `narrative-tableau` | relational grouping, stable facing, cast/ATE transitions, dialogue and context |
+| `traversal-engineer` | `traversal-engineer` | T0/T1/T3 ground, route/checkpoint motion, Risk/Reward/Pursuit, depth and spawn lifetime |
 
 Codex starts subagents only when authorized. The recurring instruction authorizes the named roles for the milestone/risk triggers in MULTI_AGENT_PROTOCOL.md; applying a skill does not require spawning its reviewer. Continue coherent dev work autonomously without routine operator approval; the operator performs final demo testing.
 
@@ -73,3 +74,7 @@ Codex starts subagents only when authorized. The recurring instruction authorize
 - The owner's host uses `core.autocrlf=true`: run `git diff --check` and avoid whitespace-only churn.
 - Ordinary QA writes to ignored paths (`tmp/`, `docs/reports/evidence/`, `tools/qa-shots/`). Tracked evidence is promoted explicitly and never overwritten.
 - New task reports follow `docs/reports/README.md`.
+
+## Active manual-playtest priority
+
+Read OD-2026-10-03-A and MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md before resuming a stale nextAction. Its ordered remediation queue takes priority over generic DEMO-QA-POLISH; battlefield keyboard WIP is deferred and preserved. Prior automated PASS cannot invalidate the operator visual finding. The contract amendment is complete at the baseline above; runtime corrections require fresh acceptance. Eight videos, temporary-gold authority, Alaric climax and the four-actor cap remain protected. Only an explicitly dedicated operator-approved task may amend contracts or move the immutable baseline.

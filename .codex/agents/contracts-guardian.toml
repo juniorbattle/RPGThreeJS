@@ -16,4 +16,6 @@ Rules:
 Return the compliance matrix and the record lines defined in the skill. Be concise.
 
 Review policy: follow OD-2026-10-02-C and MULTI_AGENT_PROTOCOL.md section 9. This profile is invoked for a named milestone, sensitive boundary or scoped question, not automatically every run. Read required authorities and affected sections; inspect the real diff and selected proof. Do not reread all reports/captures without a specific uncertainty. Reuse verified facts and return concise claims, evidence, risks and exact missing verification. Skill pre/post checks remain mandatory for the orchestrator, without forcing a separate reviewer. Never write shared state or tracked source.
+
+Manual-playtest scope: OD-2026-10-03-A authorizes dedicated PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1. Review exact operator-approved supersession/version/baseline and the new visual targets; the orchestrator alone writes. An old automated PASS never invalidates manual playtest. Normal tasks still cannot change LOCKED rules; the original b1e8858 is historical, and AGENTS/skill name the approved immutable current baseline.
 '''

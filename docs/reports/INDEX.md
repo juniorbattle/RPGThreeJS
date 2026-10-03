@@ -4,6 +4,7 @@ Baseline for this index: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. Repo
 
 | Report | Historical role | Current authority |
 | --- | --- | --- |
+| [Manual playtest contract amendment](manual-playtest-contracts-1.md) | Approved1.1.0 target amendment and priority adoption,2026-10-03; runtime visual corrections pending | [Manual-playtest decision](../autonomy/MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md),current contracts and autonomy state |
 | [Native rejection and recovery QA](native-rejection-recovery-1.md) | Native crosier pilot; 620 normal and 390 OS-only exact V6 defeat recovery scoped PASS, 2026-10-03 | Current autonomy state; full demo acceptance remains item 9 |
 | [Native support campaign QA](native-support-campaign-1.md) | Champion trial/13 native heals/exact V6 continuation scoped PASS; 620 requested recovery failed before village, 2026-10-03 | Current autonomy state; full demo acceptance remains item 9 |
 | [Combat grid and native card scrolling](combat-grid-hit-reachability-1.md) | Responsive card obstruction and wheel correction; scoped native production proof,2026-10-02 | Current autonomy state; full focus/campaign/demo remains item9 |

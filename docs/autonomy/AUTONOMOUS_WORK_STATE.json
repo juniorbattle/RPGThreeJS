@@ -1,90 +1,116 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-03T03:52:01.5739175Z",
-  "runEndedAt": "2026-10-03T04:32:35.4864482Z",
-  "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
-  "activePhase": "Recovery QA checkpoint complete; full battlefield keyboard next",
-  "activeSubtask": "Add native battlefield keyboard targeting with shared pointer activation and focus ownership",
+  "runStartedAt": "2026-10-03T07:35:50.593674Z",
+  "runEndedAt": "2026-10-03T07:58:05.429Z",
+  "activeTask": "TRAVERSAL-VISUAL-CONVERGENCE",
+  "activePhase": "Ground/checkpoint/cast/shadow remediation under amended set1.1.0",
+  "activeSubtask": "Inventory exact route/checkpoint ground and clan/hostile world actors for T0/T1/T3",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "97082da5014dd98420fc08f91bef822510fcf69a",
-  "lastPushedCommit": "97082da5014dd98420fc08f91bef822510fcf69a",
+  "lastKnownGoodCommit": "d7ca28aed5c377ffedb03202f6364b7a947d1096",
+  "lastPushedCommit": "d7ca28aed5c377ffedb03202f6364b7a947d1096",
   "completedThisRun": [
-    "Read-only preflight, exclusive lock and fetch; clean dev/remote e547e31; original trial/recovery receipts inspected",
-    "Scoped guardian PASS for native input pilot launch",
-    "Initial reviewed WIP a457432 pushed",
-    "Registered0350-recovery-crosier25min620normal; worker11028/port5273",
-    "Pilot770ec70pushed/remote verified; original trial acceptance preserved",
-    "620x780normal native marais victory/village defeat/full ownerV6cleanup/focused departure/exact reload independently ACCEPTED_SCOPED",
-    "390x844OS reduced motion native marais victory/village defeat/full ownerV6cleanup/focused departure/exact reload independently ACCEPTED_SCOPED",
-    "390OS-only recovery independently ACCEPTED_SCOPED;7selected captures inspected/promoted;workers11028/37092exited and5273/5274closed",
-    "Evidence97082da pushed/remote verified;owned WIP3948bb0payload preserved and branch retired;main unchanged"
+    "Read-only stopped-turn/process preflight; abandoned0520lock archived; exclusive takeover after105minutes",
+    "Eight interrupted files preserved in explicit-path snapshot5f89ea4179b36eca001decef92cfa4ff83fc5575 without real-index mutation",
+    "OD-2026-10-03-A recorded; dedicated contract set1.1.0 amendment reviewed PASS and pushed atd7ca28aed5c377ffedb03202f6364b7a947d1096",
+    "New immutable LOCKED baseline and manual-playtest priority routing installed; existing keyboard/combat work deferred, not accepted or removed",
+    "Read-only traversal-engineer profile/skill created; narrative/UI/Journey/guardian responsibilities aligned",
+    "Saved automation prompt verified exactly; all other fields preserved ACTIVE/GPT-6.1Sol/high/90m/local project/environment/preferences",
+    "Operational guardian PASS: immutable baseline,11item priority,33historical QA dispositions and6source blobs preserved; protocol baseline reference completed",
+    "Seven Codex profiles parse; existing model/sandbox fields unchanged; new traversal skill strict-format check PASS"
   ],
   "filesChanged": [
-    "tools/demo-continuous-production-qa.mjs",
+    "docs/autonomy/MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md",
+    "docs/autonomy/OPERATOR_DECISIONS.md",
+    "docs/contracts/TRAVERSAL.md",
+    "docs/contracts/CAMPAIGN_AND_STATE.md",
+    "docs/contracts/PRESENTATION_AND_MEDIA.md",
+    "docs/contracts/WORLD_AND_CHARACTERS.md",
+    "docs/contracts/UI_AND_ACCESSIBILITY.md",
+    "docs/contracts/AUTHORING_AND_QA.md",
+    "docs/contracts/README.md",
+    "docs/contracts/contracts.manifest.json",
+    "docs/traversal/T0_PRODUCTION_CONTRACT.md",
+    "AGENTS.md",
+    ".agents/skills/autonomy-handoff/SKILL.md",
+    ".agents/skills/contracts-compliance/SKILL.md",
+    ".agents/skills/narrative-tableau/SKILL.md",
+    ".agents/skills/ui-accessibility/SKILL.md",
+    ".agents/skills/cinematics-journey/SKILL.md",
+    ".agents/skills/traversal-engineer/SKILL.md",
+    ".agents/agents/contracts-guardian.md",
+    ".codex/agents/contracts-guardian.toml",
+    ".agents/agents/narrative-tableau.md",
+    ".codex/agents/narrative-tableau.toml",
+    ".agents/agents/ui-accessibility.md",
+    ".codex/agents/ui-accessibility.toml",
+    ".agents/agents/cinematics-journey.md",
+    ".codex/agents/cinematics-journey.toml",
+    ".agents/agents/traversal-engineer.md",
+    ".codex/agents/traversal-engineer.toml",
+    "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
+    "docs/autonomy/RECURRING_RUN_PROMPT.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-03T0350Z-codex-native-rejection-checkpoint.md",
-    "docs/reports/INDEX.md",
-    "docs/reports/native-rejection-recovery-1.md",
-    "docs/reports/native-rejection-recovery-1/proof.json",
-    "docs/reports/native-rejection-recovery-1/620-combat-1-result.png",
-    "docs/reports/native-rejection-recovery-1/620-combat-2-native-defeat-return-focus.png",
-    "docs/reports/native-rejection-recovery-1/620-native-defeat-recovered.png",
-    "docs/reports/native-rejection-recovery-1/620-native-defeat-recovered-resumed.png",
-    "docs/reports/native-rejection-recovery-1/390-os-combat-2-native-defeat-return-focus.png",
-    "docs/reports/native-rejection-recovery-1/390-os-native-defeat-recovered.png",
-    "docs/reports/native-rejection-recovery-1/390-os-native-defeat-recovered-resumed.png"
+    "docs/reports/manual-playtest-contracts-1.md",
+    "docs/reports/manual-playtest-contracts-1/checks.json",
+    "docs/autonomy/handoffs/2026-10-03T0735Z-codex-manual-playtest-priority.md",
+    "docs/reports/INDEX.md"
   ],
   "testsRun": [
-    "101focused/5suites PASS",
-    "TypeScript --noEmit PASS",
-    "8contracts/8slots PASS",
-    "Syntax,diff-check,LOCKED gates PASS",
-    "Original production runtime tree and9build hashes byte-identical; reuse permitted",
-    "16QA receipt tests PASS",
-    "0350-recovery-crosier SUCCEEDED/ACCEPTED_SCOPED; current provenance and exact ownerV6 assertions match",
-    "0350-recovery-mobile-os SUCCEEDED/ACCEPTED_SCOPED; current provenance and exact ownerV6 assertions match"
+    "node tools/contracts/validate-contracts.mjs:8contracts/8slots PASS",
+    "Independent contracts-guardian pre-review and real-diff documentary review PASS",
+    "Git diff --check; approved amendment path review; snapshot file hashes/real-index preservation",
+    "Python tomllib:7profiles and exact parsed before/after automation comparison",
+    "Strict new skill frontmatter/name/description/body checks (official quick_validate unavailable: bundled Python lacks PyYAML)",
+    "Python historicalQA/deferredNextAction/snapshot6source preservation assertions",
+    "Independent contracts-guardian operational baseline/priority/WIP review PASS"
   ],
   "testsPassed": [
-    "101focused/5suites PASS",
-    "TypeScript --noEmit PASS",
-    "8contracts/8slots PASS",
-    "Syntax,diff-check,LOCKED gates PASS",
-    "Original production runtime tree and9build hashes byte-identical; reuse permitted",
-    "16QA receipt tests PASS",
-    "0350-recovery-crosier SUCCEEDED/ACCEPTED_SCOPED; current provenance and exact ownerV6 assertions match",
-    "0350-recovery-mobile-os SUCCEEDED/ACCEPTED_SCOPED; current provenance and exact ownerV6 assertions match"
+    "8LOCKED contracts and8video slots",
+    "Independent scoped contract documentary review PASS",
+    "Explicit amendment only; constitution/COMBAT_AND_VFX/AUTONOMOUS_WORK_PROTOCOL unchanged",
+    "Inherited8snapshot blobs match files and real index unchanged",
+    "Automation exact prompt and all other configuration fields PASS",
+    "7Codex TOML profiles, strict new skill format,6source blobs and33QA dispositions PASS",
+    "Current LOCKED baseline gates empty; protocol/AGENTS/skills share approved SHA"
   ],
   "testsRemaining": [
-    "Full battlefield keyboard targeting/Tab entry/visible focus/live cell announcement/cancellation at desktop620390/motion variants",
-    "Sacrifice branch and ending/reload, fallback, settledVFX and combat balance",
-    "One corrected-build earned opening-to-ending campaign; historical seed ancestry retained",
-    "Exact2AP-start Salvation has static coverage only; original trial observed casts start3or5AP"
+    "New T0/T1/T3 ground/checkpoint/clan/shadow visual acceptance",
+    "Departure/final-exit motion and pursuit canonical charge/collision/miss acceptance",
+    "Road rock/reward spawn lifetime/depth/spacing and owner-boundary checks",
+    "Pre-judgement campfire/save-resume/agency and fact-consistent dialogue",
+    "Relational tableau/cast/facing/ATE/contextual environments with desktop/intermediate/narrow OS-motion variants",
+    "Deferred battlefield keyboard and original DEMO-QA-POLISH acceptance (exact details in deferredDemoTask)"
   ],
-  "blockers": [
-    "Full demo acceptance remains open: keyboard battlefield,sacrifice,fallback,settledVFX,balance,single-build campaign",
-    "Historical1323trial ancestry mixed-build; no new opening-to-ending acceptance"
-  ],
+  "blockers": [],
   "remainingWork": [
-    "Item9 IN_PROGRESS: trial continuation and scoped defeat recovery at620normal/390OS accepted; full demo acceptance incomplete",
-    "Artistic videos EXTERNAL_MANUAL_WORKSTREAM; recurring generation/polling/replacement excluded",
-    "Dedicated canon/extra-slot decisions operator-owned; audio DEFERRED"
+    "PENDING: TRAVERSAL-VISUAL-CONVERGENCE",
+    "PENDING: TRAVERSAL-MOTION-POLISH",
+    "PENDING: TRAVERSAL-PURSUIT-THREAT",
+    "PENDING: TRAVERSAL-ROAD-ELEMENTS",
+    "PENDING: PRE-JUDGEMENT-CAMPFIRE",
+    "PENDING: NARRATIVE-CONTEXT-COHERENCE",
+    "PENDING: STATIC-TABLEAU-STAGING-POLISH",
+    "PENDING: SCENE-TRANSITION-COPY",
+    "PENDING: ENVIRONMENT-NARRATIVE-COHERENCE",
+    "PENDING: Resume deferred DEMO-QA-POLISH"
   ],
-  "nextAction": "Resume item9. Inspect accepted0350 recovery proof/receipts first; do not rerun unchanged620normal/390OS recovery or original726bb75trial. Begin full battlefield keyboard targeting: load ui-accessibility/contracts skills, inventory ALL legacyCombatRuntime references before touching production owner, then obtain a precise UI impact brief. First atomic change: share current onClick cell activation with keyboard without duplicating legality, AP, damage or outcomes. Add canvas Tab entry/visible focus, transient arrow cursor and cell announcement, Enter only through native reach/pending centers, Escape cancellation and dock focus restoration; respect native controls/busy/over/stage. Relevant files: legacyCombatRuntime.js(onClick/bindInput/enterMove/enterTarget/cancelToMenu),combatKeyboard.ts/tests,legacyCombat.ts shell/styles. Keep cursor out of V6. Contracts guardian review is required for shared activation and QA assertions; production keyboard-only desktop1366/620/390 with OS motion on/off and pointer regression before acceptance. Changed runtime/build invalidates source-specific reuse. Full sacrifice/fallback/settledVFX/balance/single-build earned campaign and exact2AP-start Salvation remain open; no media/audio work.",
+  "nextAction": "Under owned lock read OD-2026-10-03-A/current1.1.0 contracts and preserved deferredDemoTask; verify its six keyboard source blobs without modifying them. Resume TRAVERSAL-VISUAL-CONVERGENCE: inspect TraversalRoadScene/Presentation, WorldModel/WorldRenderer, T0/T1/T3World and CheckpointRoute/Authoring plus current referenced ground assets; map Route/Checkpoint/Return Route ground palette/scale/perspective/lane geometry. Classify clan membership from existing campaign facts; remove clan sprites only from Traversal world, retaining authored STATIC_TABLEAU cast, valid external subjects and stops without NPC. Reduce hostile world formation to one approved Shadow marker matching Pursuit. Apply the smallest coherent shared-source correction, obtain a scoped traversal-engineer review or use its skill when profile is unavailable, then focused tests/types/build and native production sequence/captures across T0/T1/T3 and motion/viewports. No invented assets/canon. Continue the ordered remediation queue; retain exact deferred battlefield keyboard QA nextAction until item11.",
   "taskQueue": [
-    "PRODUCTION-CONTRACTS-LOCK-1: COMPLETE",
-    "Contract drift audit: COMPLETE",
-    "CINEMATIC-EIGHT-SLOT-ALIGNMENT: COMPLETE",
-    "Retire T2/T4 playable runtime: COMPLETE",
-    "TRAVERSAL-GENERALIZATION: COMPLETE",
-    "TRAVERSAL-T1-PRODUCTION: COMPLETE",
-    "TRAVERSAL-T3-PRODUCTION: COMPLETE",
-    "CINEMATIC-STRUCTURE-READINESS: COMPLETE; artistic remaster incomplete EXTERNAL_MANUAL_WORKSTREAM",
-    "Complete demo QA and polish: ACTIVE; refuge services/durability/earned first and rescue second refuge + Salvation adapter COMPLETE; both branch/endings/mobile/defeat/VFX acceptance continues",
-    "Audio decision after structure lock: DEFERRED"
+    "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
+    "TRAVERSAL-VISUAL-CONVERGENCE: ACTIVE",
+    "TRAVERSAL-MOTION-POLISH: PENDING",
+    "TRAVERSAL-PURSUIT-THREAT: PENDING",
+    "TRAVERSAL-ROAD-ELEMENTS: PENDING",
+    "PRE-JUDGEMENT-CAMPFIRE: PENDING",
+    "NARRATIVE-CONTEXT-COHERENCE: PENDING",
+    "STATIC-TABLEAU-STAGING-POLISH: PENDING",
+    "SCENE-TRANSITION-COPY: PENDING",
+    "ENVIRONMENT-NARRATIVE-COHERENCE: PENDING",
+    "Resume deferred DEMO-QA-POLISH: PENDING"
   ],
-  "creditStatus": "CODEX_AVAILABLE; this run authorized; automation settings unchanged",
-  "contractComplianceStatus": "PRODUCTION-CONTRACTS-LOCK-1/v1: pilot and620normal/390OS full-ownerV6recovery scoped PASS by reused guardian; full item9 acceptance remains BLOCKED/IN_PROGRESS. No LOCKED rule changed.",
+  "creditStatus": "CODEX_AVAILABLE_IN_INTERACTIVE_RUN; prior0520/0650quota failures retained; scheduler ACTIVE/model/high/90m preserved",
+  "contractComplianceStatus": "PRODUCTION-CONTRACTS-LOCK-1/set1.1.0: dedicated approved amendment OD-2026-10-03-A documentary PASS; baselined7ca28aed5c377ffedb03202f6364b7a947d1096; runtime remediation/visual acceptance IN_PROGRESS. No silent LOCKED change.",
   "commitReferenceScope": "Verified implementation/evidence checkpoint; final state-only closeout identified by HEAD/origin/dev and automation memory rather than circular self-reference.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
@@ -193,25 +219,30 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261003T0228",
+  "runId": "codex-manual-playtest-20261003T0735",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-02T23:50:23.248Z",
+  "lastHeartbeat": "2026-10-03T07:58:05.429Z",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261002T2252",
-    "sha": "5033b41bab499bee2ce6f4e715b14206e594771f",
-    "status": "GREEN",
-    "dirtyFiles": [],
-    "lastGreenCheck": "Final159focused/8suites,16unchanged receipt tests,types/contracts/build and8native card cases PASS; two continuous runs FAILED/NOT_ACCEPTED",
-    "retired": true,
-    "retiredAt": "2026-10-02T23:50:23.21Z",
-    "preservedOnDev": "e6f1a03568d14875db7a8c72f8dadc089b021072",
-    "preservationScope": "All source/driver/selected evidence blobs equal owned snapshot; mutable state/report/handoff evolved"
+    "sha": "5f89ea4179b36eca001decef92cfa4ff83fc5575",
+    "dirtyFiles": [
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "legacy-combat.html",
+      "src/combat/combatKeyboard.test.ts",
+      "src/combat/combatKeyboard.ts",
+      "src/combat/legacyCombatRuntime.js",
+      "src/styles/combat-shell.css",
+      "tools/combat-battlefield-keyboard-production-qa.mjs"
+    ],
+    "lastGreenCheck": "Prior0520reported81focused/types/build; full production keyboard acceptance incomplete; preserved without certifying",
+    "status": "UNKNOWN",
+    "branch": "wip/codex-manual-playtest-20261003T0735"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261003T0350",
+    "runId": "codex-manual-playtest-20261003T0735",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-03T04:32:35.4864482Z",
-    "status": "CHECKPOINTED",
+    "lastHeartbeat": "2026-10-03T07:58:05.429Z",
+    "status": "CHECKPOINT",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -3961,13 +3992,22 @@
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0350",
-      "sha": "3948bb08970cdee206789ab2b002dd82bb3cd2f7",
-      "dirtyFiles": [],
-      "status": "RETIRED_AFTER_DEV_PRESERVATION",
-      "lastGreenCheck": "117focused/receipt,types,LOCKED/contracts/syntax PASS;both native recovery jobs accepted scoped"
+      "sha": "5f89ea4179b36eca001decef92cfa4ff83fc5575",
+      "dirtyFiles": [
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "legacy-combat.html",
+        "src/combat/combatKeyboard.test.ts",
+        "src/combat/combatKeyboard.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/styles/combat-shell.css",
+        "tools/combat-battlefield-keyboard-production-qa.mjs"
+      ],
+      "lastGreenCheck": "Prior0520reported81focused/types/build; full production keyboard acceptance incomplete; preserved without certifying",
+      "status": "UNKNOWN",
+      "branch": "wip/codex-manual-playtest-20261003T0735"
     },
-    "nextAction": "Resume item9. Inspect accepted0350 recovery proof/receipts first; do not rerun unchanged620normal/390OS recovery or original726bb75trial. Begin full battlefield keyboard targeting: load ui-accessibility/contracts skills, inventory ALL legacyCombatRuntime references before touching production owner, then obtain a precise UI impact brief. First atomic change: share current onClick cell activation with keyboard without duplicating legality, AP, damage or outcomes. Add canvas Tab entry/visible focus, transient arrow cursor and cell announcement, Enter only through native reach/pending centers, Escape cancellation and dock focus restoration; respect native controls/busy/over/stage. Relevant files: legacyCombatRuntime.js(onClick/bindInput/enterMove/enterTarget/cancelToMenu),combatKeyboard.ts/tests,legacyCombat.ts shell/styles. Keep cursor out of V6. Contracts guardian review is required for shared activation and QA assertions; production keyboard-only desktop1366/620/390 with OS motion on/off and pointer regression before acceptance. Changed runtime/build invalidates source-specific reuse. Full sacrifice/fallback/settledVFX/balance/single-build earned campaign and exact2AP-start Salvation remain open; no media/audio work.",
+    "nextAction": "Under owned lock read OD-2026-10-03-A/current1.1.0 contracts and preserved deferredDemoTask; verify its six keyboard source blobs without modifying them. Resume TRAVERSAL-VISUAL-CONVERGENCE: inspect TraversalRoadScene/Presentation, WorldModel/WorldRenderer, T0/T1/T3World and CheckpointRoute/Authoring plus current referenced ground assets; map Route/Checkpoint/Return Route ground palette/scale/perspective/lane geometry. Classify clan membership from existing campaign facts; remove clan sprites only from Traversal world, retaining authored STATIC_TABLEAU cast, valid external subjects and stops without NPC. Reduce hostile world formation to one approved Shadow marker matching Pursuit. Apply the smallest coherent shared-source correction, obtain a scoped traversal-engineer review or use its skill when profile is unavailable, then focused tests/types/build and native production sequence/captures across T0/T1/T3 and motion/viewports. No invented assets/canon. Continue the ordered remediation queue; retain exact deferred battlefield keyboard QA nextAction until item11.",
     "runMetrics": {
       "registeredNativeJobs": 2,
       "scopedRecoveriesAccepted": 2,
@@ -4031,8 +4071,10 @@
     "targetRunMinutes": 75,
     "model": "gpt-6.1-sol",
     "reasoningEffort": "high",
-    "automationStatus": "PAUSED",
-    "lot2": "DEFERRED; no execpolicy or medium change"
+    "automationStatus": "ACTIVE",
+    "lot2": "DEFERRED; no execpolicy or medium change",
+    "priorityOverrideDecision": "OD-2026-10-03-A",
+    "priorityOverrideSource": "docs/autonomy/MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md"
   },
   "maintenanceTask": {
     "id": "AUTONOMY-EFFICIENCY-LOT-1",
@@ -4057,7 +4099,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-03T0350Z-codex-native-rejection-checkpoint.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-03T0735Z-codex-manual-playtest-priority.md",
   "runMeasurement": {
     "readOnlySpecialists": [
       "contracts-guardian",
@@ -4094,5 +4136,190 @@
       "reviewerWorkUnits": "Unavailable; review counts recorded instead"
     },
     "elapsedMinutesAtCheckpoint": 56.7
+  },
+  "deferredDemoTask": {
+    "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
+    "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
+    "activePhase": "Native battlefield keyboard implementation and production verification",
+    "activeSubtask": "Add native battlefield keyboard targeting with shared pointer activation and focus ownership",
+    "nextAction": "Finish exact battlefield production driver: real Tab entry, cursor bounds/announcement/no truth mutation, invalid/legal movement and native target execution, Escape/Retour focus, native controls and pointer regression in1366/620/390 OS on/off. Build new sources, review exact activation/assertion diff with guardian, register job and freeze tested inputs. Add actual fresh campaign iframe keyboard entry/return if budget permits; incomplete acceptance stays explicit. Preserve historical0350recovery and original726trial proofs. No media/audio work.",
+    "runId": "rpgthreejs-auto-dev-90m-20261003T0520",
+    "runStartedAt": "2026-10-03T05:22:29.9957177Z",
+    "lastHeartbeat": "2026-10-02T23:50:23.248Z",
+    "originalTaskQueue": [
+      "PRODUCTION-CONTRACTS-LOCK-1: COMPLETE",
+      "Contract drift audit: COMPLETE",
+      "CINEMATIC-EIGHT-SLOT-ALIGNMENT: COMPLETE",
+      "Retire T2/T4 playable runtime: COMPLETE",
+      "TRAVERSAL-GENERALIZATION: COMPLETE",
+      "TRAVERSAL-T1-PRODUCTION: COMPLETE",
+      "TRAVERSAL-T3-PRODUCTION: COMPLETE",
+      "CINEMATIC-STRUCTURE-READINESS: COMPLETE; artistic remaster incomplete EXTERNAL_MANUAL_WORKSTREAM",
+      "Complete demo QA and polish: ACTIVE; refuge services/durability/earned first and rescue second refuge + Salvation adapter COMPLETE; both branch/endings/mobile/defeat/VFX acceptance continues",
+      "Audio decision after structure lock: DEFERRED"
+    ],
+    "testsRemaining": [
+      "Full battlefield keyboard targeting/Tab entry/visible focus/live cell announcement/cancellation at desktop620390/motion variants",
+      "Sacrifice branch and ending/reload, fallback, settledVFX and combat balance",
+      "One corrected-build earned opening-to-ending campaign; historical seed ancestry retained",
+      "Exact2AP-start Salvation has static coverage only; original trial observed casts start3or5AP"
+    ],
+    "blockers": [
+      "Full demo acceptance remains open: keyboard battlefield,sacrifice,fallback,settledVFX,balance,single-build campaign",
+      "Historical1323trial ancestry mixed-build; no new opening-to-ending acceptance"
+    ],
+    "remainingWork": [
+      "Item9 IN_PROGRESS: trial continuation and scoped defeat recovery at620normal/390OS accepted; full demo acceptance incomplete",
+      "Artistic videos EXTERNAL_MANUAL_WORKSTREAM; recurring generation/polling/replacement excluded",
+      "Dedicated canon/extra-slot decisions operator-owned; audio DEFERRED"
+    ],
+    "completedThisRun": [
+      "Read-only preflight: no lock/clean dev cad2b603 equals remote; existing Devin terminal Vite5173 left untouched; other Codex chats idle",
+      "0350 recovery proof inspected; scoped prior acceptance preserved",
+      "UI specialist impact brief applied; shared native activation/cursor/focus implementation added",
+      "81focused tests/5suites,TypeScript,syntax,8contracts8slots and LOCKED gate PASS"
+    ],
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-03T0350Z-codex-native-rejection-checkpoint.md",
+    "snapshot": {
+      "sha": "5f89ea4179b36eca001decef92cfa4ff83fc5575",
+      "dirtyFiles": [
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "legacy-combat.html",
+        "src/combat/combatKeyboard.test.ts",
+        "src/combat/combatKeyboard.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/styles/combat-shell.css",
+        "tools/combat-battlefield-keyboard-production-qa.mjs"
+      ],
+      "lastGreenCheck": "Prior0520reported81focused/types/build; full production keyboard acceptance incomplete; preserved without certifying",
+      "status": "UNKNOWN",
+      "branch": "wip/codex-manual-playtest-20261003T0735"
+    },
+    "sourceFiles": [
+      {
+        "path": "legacy-combat.html",
+        "gitBlob": "1a49cd0e44116fd215d34bb448e89943736908c6"
+      },
+      {
+        "path": "src/combat/combatKeyboard.test.ts",
+        "gitBlob": "ea17c82429b377811937c3e226fd8cafcf706922"
+      },
+      {
+        "path": "src/combat/combatKeyboard.ts",
+        "gitBlob": "c8c41388618805fc92baee138aec17d5c94112df"
+      },
+      {
+        "path": "src/combat/legacyCombatRuntime.js",
+        "gitBlob": "e4c8dfe9c1ce0caf2f0f1a9d2cb08d93034707f2"
+      },
+      {
+        "path": "src/styles/combat-shell.css",
+        "gitBlob": "ae9d24d6f1dea23c99dff938235ba6fcca458f16"
+      },
+      {
+        "path": "tools/combat-battlefield-keyboard-production-qa.mjs",
+        "gitBlob": "bfd2cd6a3f81e4d67645dabf29cc7c93ddd50321"
+      }
+    ],
+    "acceptance": "INCOMPLETE; prior0520reports are not current production keyboard acceptance"
+  },
+  "operatorPriority": {
+    "decisionId": "OD-2026-10-03-A",
+    "source": "docs/autonomy/MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md",
+    "priority": "HIGHEST_REMEDIATION_BEFORE_GENERIC_DEMO_QA_POLISH",
+    "tasks": [
+      "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
+      "TRAVERSAL-VISUAL-CONVERGENCE",
+      "TRAVERSAL-MOTION-POLISH",
+      "TRAVERSAL-PURSUIT-THREAT",
+      "TRAVERSAL-ROAD-ELEMENTS",
+      "PRE-JUDGEMENT-CAMPFIRE",
+      "NARRATIVE-CONTEXT-COHERENCE",
+      "STATIC-TABLEAU-STAGING-POLISH",
+      "SCENE-TRANSITION-COPY",
+      "ENVIRONMENT-NARRATIVE-COHERENCE",
+      "Resume deferred DEMO-QA-POLISH"
+    ],
+    "previousAutomatedPassCannotInvalidateManualFinding": true
+  },
+  "reopenedAcceptance": [
+    {
+      "area": "TRAVERSAL T0/T1/T3",
+      "status": "REOPENED",
+      "reason": "Manual ground/cast/hostile/motion/pursuit/road depth/lifetime findings; old proof retained at its baseline"
+    },
+    {
+      "area": "Narrative/pre-judgement/tableau/ATE/environments",
+      "status": "REOPENED",
+      "reason": "Mandatory preparation, fact acknowledgement and relational/contextual readability"
+    }
+  ],
+  "manualPlaytestIntegration": {
+    "status": "COMPLETE",
+    "contractTask": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
+    "contractTaskStatus": "COMPLETE_DOCUMENTARY_ONLY",
+    "contractSetVersion": "1.1.0",
+    "immutableBaseline": "d7ca28aed5c377ffedb03202f6364b7a947d1096",
+    "decisionId": "OD-2026-10-03-A",
+    "runtimeCorrectionsAccepted": false,
+    "completedAt": "2026-10-03T07:58:05.429Z",
+    "automation": {
+      "status": "PASS",
+      "allOtherAutomationFieldsPreserved": true,
+      "statusPreserved": "ACTIVE",
+      "model": "gpt-6.1-sol",
+      "reasoning": "high",
+      "cadenceMinutes": 90,
+      "promptChars": 6596,
+      "promptSha256": "4eefc16fd15e31e8a69bfe3c0fe7749f5de07d701d209ad29ac5b1cd9c7d6866",
+      "codexProfilesParsed": 7,
+      "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
+    }
+  },
+  "uncommittedWork": {
+    "reason": "Six inherited battlefield keyboard implementation/driver files remain deliberately unstaged: interrupted before full production acceptance; operator defers them behind manual-playtest remediation. Dedicated contract/integration commits do not silently ship or discard them. Exact six blobs preserved on remote WIP snapshot; fresh owners must preserve them.",
+    "files": [
+      {
+        "path": "legacy-combat.html",
+        "gitBlob": "1a49cd0e44116fd215d34bb448e89943736908c6"
+      },
+      {
+        "path": "src/combat/combatKeyboard.test.ts",
+        "gitBlob": "ea17c82429b377811937c3e226fd8cafcf706922"
+      },
+      {
+        "path": "src/combat/combatKeyboard.ts",
+        "gitBlob": "c8c41388618805fc92baee138aec17d5c94112df"
+      },
+      {
+        "path": "src/combat/legacyCombatRuntime.js",
+        "gitBlob": "e4c8dfe9c1ce0caf2f0f1a9d2cb08d93034707f2"
+      },
+      {
+        "path": "src/styles/combat-shell.css",
+        "gitBlob": "ae9d24d6f1dea23c99dff938235ba6fcca458f16"
+      },
+      {
+        "path": "tools/combat-battlefield-keyboard-production-qa.mjs",
+        "gitBlob": "bfd2cd6a3f81e4d67645dabf29cc7c93ddd50321"
+      }
+    ],
+    "snapshot": {
+      "sha": "5f89ea4179b36eca001decef92cfa4ff83fc5575",
+      "dirtyFiles": [
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "legacy-combat.html",
+        "src/combat/combatKeyboard.test.ts",
+        "src/combat/combatKeyboard.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/styles/combat-shell.css",
+        "tools/combat-battlefield-keyboard-production-qa.mjs"
+      ],
+      "lastGreenCheck": "Prior0520reported81focused/types/build; full production keyboard acceptance incomplete; preserved without certifying",
+      "status": "UNKNOWN",
+      "branch": "wip/codex-manual-playtest-20261003T0735"
+    }
   }
 }

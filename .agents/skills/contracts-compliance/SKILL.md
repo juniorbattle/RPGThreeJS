@@ -5,7 +5,7 @@ description: "Use before implementing and before declaring any RPGThreeJS task c
 
 # Contracts compliance
 
-Read first: `docs/game/GAME_CONSTITUTION.md`, `docs/contracts/README.md`, `docs/contracts/contracts.manifest.json`, `docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md`, then every contract the task touches. Lock `PRODUCTION-CONTRACTS-LOCK-1`, commit `b1e8858`. These documents are authoritative: cite them, never paraphrase them into new doctrine.
+Read first: `docs/game/GAME_CONSTITUTION.md`, `docs/contracts/README.md`, `docs/contracts/contracts.manifest.json`, `docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md`, then every contract the task touches. Lock `PRODUCTION-CONTRACTS-LOCK-1`, commit `d7ca28aed5c377ffedb03202f6364b7a947d1096`. These documents are authoritative: cite them, never paraphrase them into new doctrine.
 
 ## Orchestration (OD-2026-10-02-C)
 
@@ -14,7 +14,7 @@ The orchestrator applies this skill before implementation and task completion. I
 ## Gates (run them, do not assume)
 
 ```
-git --no-optional-locks diff --exit-code b1e8858 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md   # must print nothing
+git --no-optional-locks diff --exit-code d7ca28aed5c377ffedb03202f6364b7a947d1096 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md   # must print nothing
 git --no-optional-locks status --short -- docs/contracts docs/game/GAME_CONSTITUTION.md                  # must print nothing
 npm run contracts:validate                                                                              # 8 contracts, 8 slots
 ```
@@ -62,3 +62,7 @@ The Alistair emblem or origin; the prologue cinematic; the first-refuge first sc
 Rows: GAME_CONSTITUTION; ART_DIRECTION; CHARACTERS; ENVIRONMENTS; NARRATIVE / CAMPAIGN; NARRATIVE_PRESENTATION; TRAVERSAL; COMBAT; SAVE; UI / ACCESSIBILITY; QA_EVIDENCE; REPOSITORY_GOVERNANCE. Each row is PASS, BLOCKED or N/A with one line of evidence. BLOCKED forbids marking the task complete.
 
 Then record: contracts read, contract set version, LOCKED rules impacted, and an explicit statement that no LOCKED rule changed, backed by the gate output. Use the vocabulary of `docs/contracts/README.md`: LOCKED, implemented, drift, deferred.
+
+## Approved contract amendment boundary
+
+Current set1.1.0 derives from PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1 / OD-2026-10-03-A at the immutable baseline above; b1e8858 is the original historical lock. A dedicated operator-approved amendment records exact changed rules, task/decision and version, independent review, then establishes its committed baseline in a following operational commit. A normal task must not advance that baseline or edit a LOCKED contract. Its gate must remain empty. During an authorized amendment, inspect the exact approved diff rather than claim no rule changed. Read the current manifest version for every matrix. Manual visual findings reopen affected acceptance; an old PASS is historical, not a rebuttal.

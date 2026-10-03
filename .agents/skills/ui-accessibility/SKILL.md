@@ -13,7 +13,7 @@ Contract: UI_AND_ACCESSIBILITY (`docs/contracts/UI_AND_ACCESSIBILITY.md`), plus 
 
 ## Invariants
 
-Digest of the contract as of commit `b1e8858`; the contract text wins on any difference.
+Digest of the contract as of commit `d7ca28aed5c377ffedb03202f6364b7a947d1096`; the contract text wins on any difference.
 
 - Shared palette: deep navy, brass, warm gold, ivory. Keep the UI compact so the world, tableau or battlefield stays dominant.
 - Status text and numbers are read from runtime truth. Never display made-up combat values or resource totals, or an action that is not really enabled.
@@ -25,7 +25,7 @@ Digest of the contract as of commit `b1e8858`; the contract text wins on any dif
 
 Two sources: the game setting (`state.settings.reducedGraphics`, passed as `reducedMotion` by `GameApp`) and the OS `prefers-reduced-motion`. Either one requests less motion, and an explicit game value of `false` must never switch off the OS request. JavaScript reads this through one shared helper in `src/ui/` rather than ad-hoc `matchMedia` calls. CSS keeps `@media (prefers-reduced-motion: reduce)` blocks in `app.css` and `traversal.css`. The QA-lab scenarios in `GameApp` pass an explicit `reducedMotion: false`: account for that when testing OS-only reduction.
 
-Active acceptance (queue item 8): OS-only reduced motion with normal graphics settings, through the eight slots, retained choices and save/resume.
+Historical item8 acceptance remains scoped to its source/proof. Active manual-playtest acceptance includes cast/scene transitions with OS-only reduction and normal game settings; do not certify new transitions using old captures.
 
 ## Verify
 
@@ -46,3 +46,7 @@ Cast and staging: `narrative-tableau`. Video, skip, fallback, resume: `cinematic
 ## Return (impact brief)
 
 Contracts read; files and owners affected; invariants at risk (contract section and why); verification required (exact commands); cross-domain handoffs; verdict OK, OK with conditions, or BLOCKED.
+
+## OD-2026-10-03-A transition review
+
+Inspect cast exit/breath/entry continuity, gentle fade/pause/focus alternative, meaningful transition text, dialogue responsive bounds and retained/restored focus. Test normal and OS-only reduced motion at desktop/intermediate/narrow widths. Coordinate grouping/facing/copy with narrative-tableau; do not decide dialogue facts or reopen the approved cinematic count.

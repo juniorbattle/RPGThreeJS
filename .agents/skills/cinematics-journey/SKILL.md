@@ -45,3 +45,7 @@ Staging and dialogue: `narrative-tableau`. Reduced motion, focus, viewports: `ui
 ## Return (impact brief)
 
 Contracts read; files and owners affected; invariants at risk (contract section and why); verification required (exact commands); cross-domain handoffs; verdict OK, OK with conditions, or BLOCKED.
+
+## OD-2026-10-03-A scoped review
+
+For this remediation workstream review only the pre-judgement campfire preparation boundary, contextual ATE transitions and Journey handoffs/agency/save-resume. The boundary is mandatory, but not a ninth video, new Traversal, automatic management hub or loot-securing rule. Use campaign ownership and preserve existing durable IDs. The eight video positions/count are structurally approved; do not reopen media generation or slot design.

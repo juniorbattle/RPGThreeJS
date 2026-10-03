@@ -84,14 +84,14 @@ If quota or credit is exhausted or temporarily unavailable: do not abandon or na
 
 1. Preflight, read-only (skill `autonomy-handoff`): lock and `pid`, heartbeat age, latest activity of the other agent, state files against `git status`, remote parity, stash, LOCKED-document gate.
 2. Classify: CLEAN; ACTIVE_LOCK (stop); STALE_LOCK with uncommitted work; AMBIGUOUS (stop, `BLOCKED_BY_EXECUTION_LOCK`).
-3. Snapshot any uncommitted work (section 5).
-4. Take the lock, archiving the old one, only if rule 3 of section 2 holds or the operator ordered the takeover.
+3. Take the lock, archiving the old one, only if rule 3 of section 2 holds or the operator ordered the takeover.
+4. Snapshot reviewed uncommitted work under the owned lock (section 5), before implementation.
 5. Continue from the working tree. Never `reset`, `clean` or `checkout` over it.
 6. Close out like any run and delete the `wip/<runId>` branch once the coherent commit is on `dev`.
 
 ## 9. Specialists and orchestration (OD-2026-10-02-C)
 
-Roles and skills: see AGENTS.md. The lock holder applies autonomy-handoff and contracts-compliance at their required boundaries; skill use does not require a separate agent each time. Do not spawn the six specialists routinely. Produce coherent work, verify the affected boundary, and continue the active task without routine human approval. The operator performs final demo testing; this never waives production acceptance or open operator decisions.
+Roles and skills: see AGENTS.md. The lock holder applies autonomy-handoff and contracts-compliance at their required boundaries; skill use does not require a separate agent each time. Do not spawn every specialist routinely. Produce coherent work, verify the affected boundary, and continue the active task without routine human approval. The operator performs final demo testing; this never waives production acceptance or open operator decisions.
 
 Independent contracts-guardian review is triggered by a major milestone or sensitive campaign truth, V6/migration, tactical resolution, presentation-authority or validator change, including the QA assertions that certify those behaviors. Request review before implementation for ambiguous architecture; otherwise provide the actual diff, claims and ready proof together. Reuse the reviewer within the run. Additional passes need a substantive correction, unresolved blocker or new risk. Domain reviewers and the QA runner answer distinct scoped questions; avoid duplicating their exploration.
 
@@ -101,11 +101,17 @@ At changed checkpoints run git diff --check, the LOCKED gates, contracts:validat
 
 Specialists remain read-only for tracked source/state. QA workers may write their own ignored outputs, never the shared state; the single lock holder integrates results. Keep the current orchestrator and guardian high settings in lot1. No execpolicy change.
 
-Waves: 1 is `handoff-governor`, `contracts-guardian`, `qa-evidence-runner`, `ui-accessibility`, `cinematics-journey`, `narrative-tableau`. Planned: 2 is `combat-stage-vfx`, `tactical-combat-authority`, `campaign-state-authority`, `narrative-canon-guard`; 3 is `traversal-engineer`, `world-art-continuity`.
+Waves: 1 is `handoff-governor`, `contracts-guardian`, `qa-evidence-runner`, `ui-accessibility`, `cinematics-journey`, `narrative-tableau`. Planned: 2 is `combat-stage-vfx`, `tactical-combat-authority`, `campaign-state-authority`, `narrative-canon-guard`; 3 originally planned `traversal-engineer`, `world-art-continuity`. OD-2026-10-03-A activates only read-only `traversal-engineer`; world-art-continuity remains deferred.
+
+### Active remediation priority (OD-2026-10-03-A)
+
+[Manual-playtest decision](MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md) takes precedence over a historical nextAction. Use its ordered queue; preserve deferred battlefield keyboard/combat WIP and exact continuation. First lot is the explicit contract amendment; subsequent runtime tasks cannot edit LOCKED rules. Prior automated PASS remains historical and cannot invalidate manual visual findings. Relevant profiles route Traversal, relational tableau, UI motion/focus and campfire/ATE/Journey questions; never launch them all by default. Normal slot/canon/temporary-loot/save/main safeguards remain.
 
 ## 10. Compliance matrix
 
-Before declaring a task complete, record PASS or BLOCKED for each concerned row. Never complete a task with an unresolved contract conflict. Also record: contracts read, contract set version (`PRODUCTION-CONTRACTS-LOCK-1`), LOCKED rules impacted, and confirmation that no LOCKED rule changed.
+Before declaring a task complete, record PASS or BLOCKED for each concerned row. Never complete a task with an unresolved contract conflict. Also record: contracts read, current manifest contractSetVersion (1.1.0 after OD-2026-10-03-A), LOCKED rules impacted, and confirmation that no LOCKED rule changed in a normal task. A dedicated operator-approved amendment records its exact authorized changes and committed immutable baseline.
+
+Current immutable contract/constitution baseline: `d7ca28aed5c377ffedb03202f6364b7a947d1096`, the dedicated OD-2026-10-03-A amendment commit. Original `b1e8858` remains historical. Use the Git gate in AGENTS.md/contracts-compliance; no normal task may move this baseline.
 
 | Row | Contract |
 | --- | --- |
