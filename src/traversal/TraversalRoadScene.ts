@@ -14,6 +14,7 @@ import { resolveTraversalWorldSubject } from './TraversalWorldSubject';
 import type { TraversalRouteBeat, TraversalRoute } from './TraversalRouteModel';
 import { TraversalRunController } from './TraversalRunController';
 import { TRAVERSAL_RHYTHM, transitionEase } from './TraversalTransition';
+import { prefersReducedMotion } from '../ui/ReducedMotion';
 import { traversalRouteProgressBounds } from './TraversalRouteModel';
 import { auditTraversalRouteAuthoring } from './TraversalCheckpointRoute';
 import type { TraversalLane, TraversalRunSession } from './TraversalRunRuntime';
@@ -123,6 +124,8 @@ export class TraversalRoadScene {
   private arrivalElapsed = 0;
   private arrivalVisualSpeed = 0;
   private arrivalExitDistance = 0;
+  private arrivalExitElapsed: number | null = null;
+  private routeLaunchSpeed: number | null = null;
   private confirming = false;
   private speed = 0;
   private focusStartSpeed = 0;
@@ -175,7 +178,11 @@ export class TraversalRoadScene {
       getAvailableNodes: options.getAvailableNodes,
       onBranchSelect: nodeId => new Promise<boolean>(resolve => {
         this.beginCheckpointDeparture('fork', () => {
-          if (!adapter.selectBranch(nodeId)) { resolve(false); return; }
+          if (!adapter.selectBranch(nodeId)) {
+            this.finishCheckpointDeparture();
+            resolve(false);
+            return;
+          }
           const current = options.getState();
           this.route = this.authoring.resolveRoute(options.leg, current);
           const entities = this.element.querySelector<HTMLElement>('.traversal-world__entities')!;
@@ -283,6 +290,8 @@ export class TraversalRoadScene {
     this.element.style.setProperty('--transition-opacity', '0');
     this.startRoute(this.controller.session.stageIndex === this.options.leg.stages.length
       ? this.authoring.routeSegments.length - 1 : this.controller.session.stageIndex);
+    // GameApp mounts this road under its existing opaque return cover.
+    this.routeLaunchSpeed = this.speed = this.routeSegment.vMin;
     this.renderRuntimeState();
   }
 
@@ -492,6 +501,14 @@ export class TraversalRoadScene {
       this.element.style.setProperty('--transition-opacity', '1');
       return;
     }
+    if (this.departure && this.viewMode === 'ROUTE') {
+      // Reveal with engaged momentum, without skipping any authored route-clock windows.
+      const reveal = Math.max(0, transition.elapsed - TRAVERSAL_RHYTHM.hold - TRAVERSAL_RHYTHM.fade);
+      const nextSpeed = this.routeSegment.vMin + ((this.routeLaunchSpeed ?? this.routeSegment.vMin)
+        - this.routeSegment.vMin) * (1 - transitionEase((reveal + seconds) / TRAVERSAL_RHYTHM.fade));
+      this.routeRenderer.advance(seconds * 1000, (this.speed + nextSpeed) / 2);
+      this.speed = nextSpeed;
+    }
     if (transition.blackHoldRemaining > 0) {
       const held = Math.min(seconds, transition.blackHoldRemaining);
       transition.blackHoldRemaining -= held;
@@ -506,10 +523,13 @@ export class TraversalRoadScene {
       this.element.style.setProperty('--transition-opacity', '1');
       const midpoint = transition.midpoint;
       transition.midpoint = undefined;
-      if (this.departure) this.finishCheckpointDeparture();
+      const departureSpeed = this.departure ? this.speed : null;
       const readiness = midpoint();
       // A synchronous node result may already have started its return transition.
       if (this.transition !== transition) return;
+      if (departureSpeed !== null && this.viewMode === 'ROUTE') {
+        this.routeLaunchSpeed = this.speed = Math.max(this.routeSegment.vMin, departureSpeed);
+      }
       transition.elapsed = TRAVERSAL_RHYTHM.hold + half;
       transition.blackHoldRemaining = TRAVERSAL_RHYTHM.hold;
       if (readiness) {
@@ -537,10 +557,13 @@ export class TraversalRoadScene {
     const duration = transition.kind === 'entry' ? half + TRAVERSAL_RHYTHM.restart
       : half * (transition.reveal ? 1 : 2);
     if (time >= duration) {
+      const carriedDeparture = Boolean(this.departure && this.viewMode === 'ROUTE');
+      if (carriedDeparture) this.routeLaunchSpeed = this.speed = this.routeSegment.vMin;
       this.transition = null;
       delete this.element.dataset.transition;
+      if (carriedDeparture) this.finishCheckpointDeparture();
       this.renderRuntimeState();
-      if (this.session.phase !== 'ARRIVING') this.speed = 0;
+      if (this.session.phase !== 'ARRIVING' && !carriedDeparture) this.speed = 0;
     }
   }
 
@@ -568,7 +591,8 @@ export class TraversalRoadScene {
     const previous = this.routeRun;
     this.routeRun = advanceRouteRun(previous, this.routeSegment, deltaSeconds * 1000);
     if (this.routeRun === previous) return;
-    const restart = transitionEase(this.routeRun.elapsedMs / (TRAVERSAL_RHYTHM.restart * 1000));
+    const restart = this.routeLaunchSpeed === null
+      ? transitionEase(this.routeRun.elapsedMs / (TRAVERSAL_RHYTHM.restart * 1000)) : 1;
     this.routeRenderer.advance(this.routeRun.elapsedMs - previous.elapsedMs,
       (previous.speed + this.routeRun.speed) / 2 * restart);
     const activeDriving = !this.routeRun.complete && !this.departure
@@ -639,6 +663,7 @@ export class TraversalRoadScene {
         this.arrivalVisualSpeed = this.speed;
         this.arrivalElapsed = 0;
         this.arrivalExitDistance = 0;
+        this.arrivalExitElapsed = null;
         this.controller.beginArrival(1);
       }
       return;
@@ -771,25 +796,52 @@ export class TraversalRoadScene {
     this.checkpointBeat = null;
     this.checkpointElapsed = 0;
     this.speed = 0;
+    this.routeLaunchSpeed = null;
   }
 
   private advanceArrival(deltaSeconds: number): void {
-    const prior = this.arrivalElapsed;
+    if (!this.arrivalRequested || !this.opened || deltaSeconds <= 0) return;
     this.arrivalElapsed += deltaSeconds;
-    const coast = (time: number): number => time <= .35 ? 1 - .06 * transitionEase(time / .35)
-      : time < 2.05 ? .94 * (1 - transitionEase((time - .35) / 1.7)) : 0;
-    const nextSpeed = this.arrivalVisualSpeed * coast(this.arrivalElapsed);
-    this.routeRenderer.advance(deltaSeconds * 1000, this.arrivalVisualSpeed *
-      (coast(prior) + coast(this.arrivalElapsed)) / 2);
-    this.speed = nextSpeed;
-    this.arrivalExitDistance += deltaSeconds * 1000 * this.arrivalVisualSpeed *
-      (coast(prior) + coast(this.arrivalElapsed)) / 2 * .28 * 1.15;
-    this.element.dataset.presentation = 'final-arrival-coast';
-    this.element.style.setProperty('--arrival-fade', String(transitionEase((this.arrivalElapsed - 2.4) / TRAVERSAL_RHYTHM.fade)));
-    if (this.arrivalElapsed >= 2.4 + TRAVERSAL_RHYTHM.fade + TRAVERSAL_RHYTHM.hold && this.arrivalRequested) {
+    const reduced = prefersReducedMotion(this.options.getState().settings.reducedGraphics);
+    this.speed = Math.max(this.arrivalVisualSpeed, this.routeSegment.vMin);
+    const distance = deltaSeconds * 1000 * this.speed * .28;
+    if (!reduced) {
+      this.routeRenderer.advance(deltaSeconds * 1000, this.speed);
+      this.arrivalExitDistance += distance;
+    } else {
+      // Gentle cover, then equivalent complete exit under opacity; no large visible pan.
+      const opacity = transitionEase(this.arrivalElapsed / TRAVERSAL_RHYTHM.fade);
+      this.element.style.setProperty('--arrival-fade', String(opacity));
+      if (opacity >= 1) this.arrivalExitDistance = Math.max(this.arrivalExitDistance,
+        this.requiredArrivalExitDistance());
+    }
+    this.element.dataset.presentation = reduced ? 'final-arrival-covered-exit' : 'final-arrival-exit';
+    this.updateWorldTransforms();
+    if (this.caravanHasExited()) {
+      this.arrivalExitElapsed ??= this.arrivalElapsed;
+      const afterExit = this.arrivalElapsed - this.arrivalExitElapsed;
+      if (!reduced) this.element.style.setProperty('--arrival-fade', String(transitionEase(afterExit / TRAVERSAL_RHYTHM.fade)));
+      const hold = reduced ? TRAVERSAL_RHYTHM.hold : TRAVERSAL_RHYTHM.fade + TRAVERSAL_RHYTHM.hold;
+      if (afterExit < hold) return;
       this.arrivalRequested = false;
       void this.options.onArrival(this.route.destinationNodeId);
     }
+  }
+
+  private requiredArrivalExitDistance(): number {
+    const width = this.element.clientWidth || window.innerWidth || ROAD_SPACE.referenceWidth;
+    const height = this.element.clientHeight || window.innerHeight;
+    const vehicleHeight = Math.min(height * .24, width * (width <= 1000 ? .16 : .14));
+    const vehicleWidth = vehicleHeight * TRAVERSAL_CARAVAN.bounds.width / TRAVERSAL_CARAVAN.bounds.height;
+    return (.75 * width + vehicleWidth * .65 + 8) * ROAD_SPACE.referenceWidth / width;
+  }
+
+  private caravanHasExited(): boolean {
+    const vehicle = this.element.querySelector<HTMLElement>('.traversal-vehicle')!;
+    const bounds = vehicle.getBoundingClientRect();
+    const viewport = this.element.getBoundingClientRect();
+    return bounds.width > 0 ? bounds.left >= Math.max(viewport.right, window.innerWidth) + bounds.width * .1 + 4
+      : this.arrivalExitDistance >= this.requiredArrivalExitDistance();
   }
 
   private confirmDecision(): void {
@@ -991,7 +1043,8 @@ export class TraversalRoadScene {
     }
     const vehicle = this.element.querySelector<HTMLElement>('.traversal-vehicle')!;
     const exitDistance = session.phase === 'ARRIVING' ? this.arrivalExitDistance : 0;
-    const departureDistance = this.departure?.distance ?? 0;
+    const departureDistance = this.viewMode === 'CHECKPOINT'
+      && !prefersReducedMotion(this.options.getState().settings.reducedGraphics) ? this.departure?.distance ?? 0 : 0;
     const checkpointCamera = this.checkpointBeat
       ? roadCameraX(this.checkpointBeat.progress01) - 650 * (1 - this.checkpointElapsed / 1.15)
       : roadCameraX(session.routeProgress01);
@@ -1011,7 +1064,7 @@ export class TraversalRoadScene {
     }
     const entryDistance = 600 + Number.parseFloat(this.element.style.getPropertyValue('--vehicle-entry-x') || '0');
     const drivenDistance = (this.viewMode === 'ROUTE' ? this.routeRenderer.distance : camera)
-      + exitDistance + departureDistance * .24 + entryDistance * ROAD_SPACE.referenceWidth / width;
+      + exitDistance + departureDistance + entryDistance * ROAD_SPACE.referenceWidth / width;
     // Mirrors --vehicle-height without forcing layout of the composite wheel subtree.
     const vehicleHeight = Math.min(height * .24, width * (width <= 1000 ? .16 : .14));
     vehicle.style.setProperty('--wheel-angle', `${caravanWheelAngle(drivenDistance, vehicleHeight, width)}rad`);
@@ -1021,7 +1074,7 @@ export class TraversalRoadScene {
     vehicle.style.setProperty('--dust-phase', String(dustPhase));
     vehicle.style.setProperty('--dust-opacity', String(Math.max(0,
       (.5 - dustPhase * .5) * Math.min(1, this.speed / this.routeSegment.vMin))));
-    const vehicleOffset = (exitDistance + departureDistance * .24) * width / ROAD_SPACE.referenceWidth;
+    const vehicleOffset = (exitDistance + departureDistance) * width / ROAD_SPACE.referenceWidth;
     vehicle.style.setProperty('--vehicle-exit-x', `${vehicleOffset}px`);
     this.element.dataset.visualSpeed = String(this.speed);
     this.element.dataset.visualWorldDistance = String(this.routeRenderer.distance);
