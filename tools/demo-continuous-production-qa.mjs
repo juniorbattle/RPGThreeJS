@@ -55,7 +55,7 @@ const report = {schemaVersion:1, recordedAt:new Date().toISOString(), method:'FR
 report.qaJobReceipt=qaJob.receiptPath;
 Object.assign(report,{target,routePlan,finalePlan,defeatNodeId,nativeDefeatWait,viewport:{width:viewport[0],height:viewport[1]},
   osReducedMotion:process.env.DEMO_QA_OS_MOTION==='1',observationHook:'Built bootstrap exposes GameApp for read-only snapshots; no owner method invoked',refuges:[],choices:[]});
-report.nativeTacticalPolicy='Champion AP conservation requires an actual unlocked two-AP skill; healer conserves for wounded allies via existing Wait/Souffle';
+report.nativeTacticalPolicy='Champion healer retains AP from the first turn, follows allies using native reachable cells, and prioritizes unlocked Salvation; all actions use existing native controls';
 report.driverSha256=createHash('sha256').update(await readFile('tools/demo-continuous-production-qa.mjs')).digest('hex');
 report.productionBundles=await Promise.all((await readdir('dist/assets')).filter(name=>/^(game|combat)-.*\.js$/.test(name))
   .map(async name=>({path:`dist/assets/${name}`,sha256:createHash('sha256').update(await readFile(`dist/assets/${name}`)).digest('hex')})));
@@ -160,11 +160,11 @@ async function skill(frame,battle){
     if(battle.combatId==='lion_chief')(battle.skillAttempts??=[]).push({round:before.round,active:before.active,nativeMenuEnabled:false});
     return false;
   }
-  const wounded=before.units.filter(u=>u.team==='player'&&u.alive&&u.hp<u.maxhp*.75);
-  const ids=before.active.id==='white_mage'&&wounded.length
-    ?['w_salvation','w_purify']:['n_dark_bolt','a_precise_shot','ar_calibrated_shot','w_break_guard'];
+  const wounded=before.units.filter(u=>u.team==='player'&&u.alive&&u.hp<u.maxhp*.95);
+  const ids=(before.active.id==='white_mage'&&wounded.length
+    ?['w_salvation','w_purify']:['n_dark_bolt','a_precise_shot','ar_calibrated_shot','w_break_guard']
+  ).filter(id=>before.active.skills.includes(id));
   for(const id of ids){
-    if(id==='w_salvation'&&process.env.DEMO_QA_VERIFY_SALVATION==='1'&&before.active.ap<=2)continue;
     await menu.click();const option=frame.locator(`#skillmenu [data-s="${id}"]:not(:disabled)`);
     const attempt={skillId:id,round:before.round,active:before.active,available:await option.count()>0};
     if(battle.combatId==='lion_chief'){
@@ -197,22 +197,32 @@ async function skill(frame,battle){
     }await cancel(frame);
   }return false;
 }
-async function move(frame,battle){
+async function move(frame,battle,{support=false}={}){
   const before=await combatState(frame), button=frame.locator('#menu [data-a="move"]:not(:disabled)');
   if(!await button.count())return false;await button.click();
-  const candidates=await frame.evaluate(()=>{const g=window.G,u=g.active,foes=g.units.filter(e=>e.team==='foe'&&e.alive);
-    const rank=c=>{let score=Infinity;for(const e of foes)for(const w of u.weapons){
+  const candidates=await frame.evaluate(support=>{const g=window.G,u=g.active,foes=g.units.filter(e=>e.team==='foe'&&e.alive);
+    const allies=g.units.filter(e=>e.team===u.team&&e.alive&&e!==u);
+    // This is a pilot preference only. Native reach and subsequent pointer
+    // activation remain the authority for every move; no outcome is predicted.
+    const distance=(a,b)=>Math.abs(a.gx-b.gx)+Math.abs(a.gz-b.gz);
+    const rank=c=>{if(support){
+      const nearestFoe=Math.min(...foes.map(e=>distance(c,e)));
+      const uncovered=allies.filter(a=>distance(c,a)>3).length;
+      const woundedGap=allies.filter(a=>a.hp<a.maxhp*.95).reduce((sum,a)=>sum+Math.max(0,distance(c,a)-3),0);
+      return (nearestFoe<3?1000:0)+uncovered*100+woundedGap*200+Math.abs(nearestFoe-4)*5;
+    }
+    let score=Infinity;for(const e of foes)for(const w of u.weapons){
       const d=Math.abs(c.gx-e.gx)+Math.abs(c.gz-e.gz),inRange=w.weaponType==='long_spear'
         ?Math.max(Math.abs(c.gx-e.gx),Math.abs(c.gz-e.gz))===1:d>=w.min&&d<=w.max;
       score=Math.min(score,(inRange?0:100)+d);
     }return score;};
     return(g.reach?.list??[]).filter(c=>(c.gx!==u.gx||c.gz!==u.gz)&&!g.grid[c.gx][c.gz].occupant)
-      .map(c=>({gx:c.gx,gz:c.gz,score:rank(c)})).sort((a,b)=>a.score-b.score);});
+      .map(c=>({gx:c.gx,gz:c.gz,score:rank(c)})).filter(c=>!support||c.score<rank(u)).sort((a,b)=>a.score-b.score);},support);
   for(const cell of candidates){if(await cellClick(frame,cell)){
     await page.waitForTimeout(50); const start=await combatState(frame);
     if(start.mode==='move'&&!start.busy)continue;
     await settled(frame); const after=await combatState(frame);
-    battle.actions.push({kind:'move',cell,before,after});return true;
+    battle.actions.push({kind:support?'move-support':'move',cell,before,after});return true;
   }}await cancel(frame);return false;
 }
 async function battle(){
@@ -243,8 +253,14 @@ async function battle(){
     // A novice weapon unlocks no skills. Conserve only for a skill that the
     // native combat payload actually exposes, never for an assumed class skill.
     const conserveArcher=current.active.id==='archer'&&current.active.skills.some(id=>['a_precise_shot','ar_calibrated_shot'].includes(id));
-    const conserveHealer=current.active.id==='white_mage'&&current.active.skills.includes('w_salvation')&&current.units.some(u=>u.team==='player'&&u.alive&&u.hp<u.maxhp*.75);
-    if(entry.combatId==='lion_chief'&&(conserveArcher||conserveHealer)&&current.active.ap===1&&current.attacks===0){
+    const supportHealer=entry.combatId==='lion_chief'&&current.active.id==='white_mage'&&current.active.skills.includes('w_salvation');
+    if(supportHealer){
+      if(await skill(frame,entry))continue;
+      if(await heal(frame,entry))continue;
+      if(await move(frame,entry,{support:true}))continue;
+      await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait-support-ap',before:current});continue;
+    }
+    if(entry.combatId==='lion_chief'&&conserveArcher&&current.active.ap===1&&current.attacks===0){
       await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait-conserve-ap',before:current});continue;
     }
     if(await skill(frame,entry))continue;

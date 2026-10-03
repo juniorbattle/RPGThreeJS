@@ -1,0 +1,1219 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-03T03:08:07.681Z",
+  "baseline": "b9aa73e5bbd598e6d79eae89876831d9c84ce7a6",
+  "runId": "rpgthreejs-auto-dev-90m-20261003T0228",
+  "scope": "Registered native campaign continuations; acceptance is scoped to each exact driver receipt",
+  "mixedBuildAncestry": "1323 second-refuge input is earned with mixed-build ancestry; no single corrected opening-to-ending campaign acceptance",
+  "jobs": [
+    {
+      "jobId": "0228-trial-support",
+      "testedDriverGitBlob": "cd384cd606fa5e4e91c7cf55eb0cf0a2f18a448c",
+      "ownerDisposition": "NOT_ACCEPTED",
+      "receipt": {
+        "schemaVersion": 1,
+        "jobId": "0228-trial-support",
+        "runId": "rpgthreejs-auto-dev-90m-20261003T0228",
+        "status": "SUCCEEDED",
+        "startedAt": "2026-10-03T02:35:04.309Z",
+        "endedAt": "2026-10-03T03:07:05.755Z",
+        "pid": 35608,
+        "port": 5271,
+        "output": "tmp/demo/0228-trial-support",
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "ending",
+          "routePlan": "rescue",
+          "timeoutMinutes": 35,
+          "finalePlan": "trial",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/continuous-1323-salvation-baseline/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/continuous-1323-salvation-baseline/results.json",
+          "verifySalvation": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "provenance": {
+          "gitHead": "b9aa73e5bbd598e6d79eae89876831d9c84ce7a6",
+          "sourceTree": "7f7b49e9c657b24e25c105b96f3b8186ebcbef8b",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "acfda8ec859ae62fcc8cd642a208d8e0b92ee7b96a40fd5135b5ca425fa91dae"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/continuous-1323-salvation-baseline/earned-lion-second-refuge-v6.json",
+              "sha256": "224d1796a1a0b92f98dcce27ba0652eb98fa7471b2c84653321c7470c0c83d50"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/continuous-1323-salvation-baseline/results.json",
+              "sha256": "1399e4268dff72b77519fd3e874c7542bcd4a2fc207003b1494e32d2500c5e2a"
+            }
+          ],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-CRVF3Hlw.js",
+              "sha256": "5d4855b52058f35243501afbe6c6c6c8b00b8629a841d5f451e40e43f1369de3"
+            },
+            {
+              "path": "dist/assets/combat-CVSHPmTa.css",
+              "sha256": "9af7a139b176c9980188c4d01d126241144d0b6d5327bf1e202591302cf243b7"
+            },
+            {
+              "path": "dist/assets/game-DNVJsSmX.js",
+              "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+            },
+            {
+              "path": "dist/assets/game-Z5tVqu3k.css",
+              "sha256": "ff17df7f056304ca1c29dbf47e7b8c2821311a645dc30e83a92a564d51a9926e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f7e71881a1d178a7f793a64f477c1c9e899a0077aa962e05f67c2fb2f871c361"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "provenanceStable": true,
+        "exitCode": 0,
+        "resultPath": "tmp/demo/0228-trial-support/results.json",
+        "resultSha256": "51ab857632fa6692bea752b7c5cd7a4b46e0ad3119ce59f86569f5a242d5e1b5"
+      },
+      "resultPath": "tmp/demo/0228-trial-support/results.json",
+      "resultSha256": "51ab857632fa6692bea752b7c5cd7a4b46e0ad3119ce59f86569f5a242d5e1b5",
+      "pass": true,
+      "failure": null,
+      "errors": [],
+      "runtimeMutated": false,
+      "combatOutcomeInjected": false,
+      "motionEvidence": {
+        "osRequested": false,
+        "gameRequested": false
+      },
+      "earnedResume": {
+        "savePath": "tmp/demo/continuous-1323-salvation-baseline/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/continuous-1323-salvation-baseline/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "224d1796a1a0b92f98dcce27ba0652eb98fa7471b2c84653321c7470c0c83d50",
+        "proofSha256": "1399e4268dff72b77519fd3e874c7542bcd4a2fc207003b1494e32d2500c5e2a"
+      },
+      "geometry": [
+        {
+          "name": "lion-second-refuge-earned",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": [
+            {
+              "label": "ClanGérer la compagnie",
+              "x": 40.96875,
+              "y": 640.03125,
+              "right": 279.5,
+              "bottom": 727.03125
+            },
+            {
+              "label": "ShopÉchanger avec le marchand",
+              "x": 290.421875,
+              "y": 640.03125,
+              "right": 528.953125,
+              "bottom": 727.03125
+            },
+            {
+              "label": "AméliorationRenforcer les compétences",
+              "x": 539.875,
+              "y": 640.03125,
+              "right": 778.40625,
+              "bottom": 727.03125
+            },
+            {
+              "label": "Repos3 unités blessées · 45 or",
+              "x": 789.328125,
+              "y": 640.03125,
+              "right": 1027.859375,
+              "bottom": 727.03125
+            },
+            {
+              "label": "Reprendre la routeQuitter le refuge",
+              "x": 1038.78125,
+              "y": 640.03125,
+              "right": 1325.03125,
+              "bottom": 727.03125
+            }
+          ]
+        },
+        {
+          "name": "lion-second-refuge-earned-resumed",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": [
+            {
+              "label": "ClanGérer la compagnie",
+              "x": 40.96875,
+              "y": 640.03125,
+              "right": 279.5,
+              "bottom": 727.03125
+            },
+            {
+              "label": "ShopÉchanger avec le marchand",
+              "x": 290.421875,
+              "y": 640.03125,
+              "right": 528.953125,
+              "bottom": 727.03125
+            },
+            {
+              "label": "AméliorationRenforcer les compétences",
+              "x": 539.875,
+              "y": 640.03125,
+              "right": 778.40625,
+              "bottom": 727.03125
+            },
+            {
+              "label": "Repos3 unités blessées · 45 or",
+              "x": 789.328125,
+              "y": 640.03125,
+              "right": 1027.859375,
+              "bottom": 727.03125
+            },
+            {
+              "label": "Reprendre la routeQuitter le refuge",
+              "x": 1038.78125,
+              "y": 640.03125,
+              "right": 1325.03125,
+              "bottom": 727.03125
+            }
+          ]
+        },
+        {
+          "name": "lion-second-refuge-native-rest",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": [
+            {
+              "label": "ClanGérer la compagnie",
+              "x": 40.96875,
+              "y": 640.03125,
+              "right": 279.5,
+              "bottom": 727.03125
+            },
+            {
+              "label": "ShopÉchanger avec le marchand",
+              "x": 290.421875,
+              "y": 640.03125,
+              "right": 528.953125,
+              "bottom": 727.03125
+            },
+            {
+              "label": "AméliorationRenforcer les compétences",
+              "x": 539.875,
+              "y": 640.03125,
+              "right": 778.40625,
+              "bottom": 727.03125
+            },
+            {
+              "label": "Reprendre la routeQuitter le refuge",
+              "x": 1038.78125,
+              "y": 640.03125,
+              "right": 1325.03125,
+              "bottom": 727.03125
+            }
+          ]
+        },
+        {
+          "name": "lion-second-refuge-native-sacred-crosier",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "combat-3-deployment",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "combat-3-actual-impact",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "combat-3-w_salvation-15",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "combat-3-w_salvation-33",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "combat-3-w_salvation-34",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "combat-3-w_salvation-55",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "combat-3-w_salvation-59",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "combat-3-w_salvation-63",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "combat-3-w_salvation-64",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "combat-3-w_salvation-70",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "combat-3-w_salvation-76",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "combat-3-w_salvation-92",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "combat-3-w_salvation-96",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "combat-3-w_salvation-97",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "combat-3-w_salvation-101",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "combat-3-result",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": []
+        },
+        {
+          "name": "ending-lion-seal-trial-truth",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": [
+            {
+              "label": "Retour au menu",
+              "x": 182,
+              "y": 683,
+              "right": 1184,
+              "bottom": 725
+            }
+          ]
+        },
+        {
+          "name": "ending-lion-seal-trial-truth-resumed",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controls": [
+            {
+              "label": "Retour au menu",
+              "x": 182,
+              "y": 683,
+              "right": 1184,
+              "bottom": 725
+            }
+          ]
+        }
+      ],
+      "battles": [
+        {
+          "nodeId": "lion-final-judgement",
+          "combatId": "lion_chief",
+          "pass": true,
+          "outcome": "victory",
+          "round": 16,
+          "actionCount": 103,
+          "actionKinds": {
+            "move": 6,
+            "wait": 33,
+            "attack": 31,
+            "move-support": 3,
+            "wait-support-ap": 16,
+            "skill": 13,
+            "potion": 1
+          },
+          "finalUnits": [
+            {
+              "id": 1,
+              "name": "Champion du Lion",
+              "team": "foe",
+              "gx": 6,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 520,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "warrior",
+              "name": "Alistair",
+              "team": "player",
+              "gx": 6,
+              "gz": 0,
+              "hp": 94,
+              "maxhp": 140,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "white_mage",
+              "name": "Marian",
+              "team": "player",
+              "gx": 3,
+              "gz": 0,
+              "hp": 113,
+              "maxhp": 113,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "archer",
+              "name": "Kestrel",
+              "team": "player",
+              "gx": 4,
+              "gz": 1,
+              "hp": 90,
+              "maxhp": 90,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "rogue",
+              "name": "Cedric",
+              "team": "player",
+              "gx": 5,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 100,
+              "alive": false,
+              "downed": true
+            }
+          ],
+          "healing": [
+            {
+              "skillId": "w_salvation",
+              "targetId": "white_mage",
+              "spec": {
+                "key": "w_salvation",
+                "name": "Lumière Salvatrice",
+                "icon": "✚",
+                "ap": 2,
+                "type": "heal",
+                "power": 0,
+                "healPercent": 0.4,
+                "range": [
+                  0,
+                  3
+                ],
+                "dest": false,
+                "targetMode": "ally",
+                "support": true,
+                "offensive": false,
+                "self": false,
+                "heal": true,
+                "revive": false
+              },
+              "round": 2,
+              "apBefore": 3,
+              "apAfter": 1,
+              "healerPosition": {
+                "gx": 1,
+                "gz": 2
+              },
+              "targetBefore": {
+                "id": "white_mage",
+                "name": "Marian",
+                "team": "player",
+                "gx": 1,
+                "gz": 2,
+                "hp": 100,
+                "maxhp": 113,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "white_mage",
+                "name": "Marian",
+                "team": "player",
+                "gx": 1,
+                "gz": 2,
+                "hp": 113,
+                "maxhp": 113,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "skillId": "w_salvation",
+              "targetId": "rogue",
+              "spec": {
+                "key": "w_salvation",
+                "name": "Lumière Salvatrice",
+                "icon": "✚",
+                "ap": 2,
+                "type": "heal",
+                "power": 0,
+                "healPercent": 0.4,
+                "range": [
+                  0,
+                  3
+                ],
+                "dest": false,
+                "targetMode": "ally",
+                "support": true,
+                "offensive": false,
+                "self": false,
+                "heal": true,
+                "revive": false
+              },
+              "round": 4,
+              "apBefore": 5,
+              "apAfter": 3,
+              "healerPosition": {
+                "gx": 3,
+                "gz": 2
+              },
+              "targetBefore": {
+                "id": "rogue",
+                "name": "Cedric",
+                "team": "player",
+                "gx": 5,
+                "gz": 1,
+                "hp": 45,
+                "maxhp": 100,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "rogue",
+                "name": "Cedric",
+                "team": "player",
+                "gx": 5,
+                "gz": 1,
+                "hp": 85,
+                "maxhp": 100,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "skillId": "w_salvation",
+              "targetId": "rogue",
+              "spec": {
+                "key": "w_salvation",
+                "name": "Lumière Salvatrice",
+                "icon": "✚",
+                "ap": 2,
+                "type": "heal",
+                "power": 0,
+                "healPercent": 0.4,
+                "range": [
+                  0,
+                  3
+                ],
+                "dest": false,
+                "targetMode": "ally",
+                "support": true,
+                "offensive": false,
+                "self": false,
+                "heal": true,
+                "revive": false
+              },
+              "round": 4,
+              "apBefore": 3,
+              "apAfter": 1,
+              "healerPosition": {
+                "gx": 3,
+                "gz": 2
+              },
+              "targetBefore": {
+                "id": "rogue",
+                "name": "Cedric",
+                "team": "player",
+                "gx": 5,
+                "gz": 1,
+                "hp": 85,
+                "maxhp": 100,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "rogue",
+                "name": "Cedric",
+                "team": "player",
+                "gx": 5,
+                "gz": 1,
+                "hp": 100,
+                "maxhp": 100,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "skillId": "w_salvation",
+              "targetId": "warrior",
+              "spec": {
+                "key": "w_salvation",
+                "name": "Lumière Salvatrice",
+                "icon": "✚",
+                "ap": 2,
+                "type": "heal",
+                "power": 0,
+                "healPercent": 0.4,
+                "range": [
+                  0,
+                  3
+                ],
+                "dest": false,
+                "targetMode": "ally",
+                "support": true,
+                "offensive": false,
+                "self": false,
+                "heal": true,
+                "revive": false
+              },
+              "round": 7,
+              "apBefore": 5,
+              "apAfter": 3,
+              "healerPosition": {
+                "gx": 3,
+                "gz": 0
+              },
+              "targetBefore": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 108,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 140,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "skillId": "w_salvation",
+              "targetId": "warrior",
+              "spec": {
+                "key": "w_salvation",
+                "name": "Lumière Salvatrice",
+                "icon": "✚",
+                "ap": 2,
+                "type": "heal",
+                "power": 0,
+                "healPercent": 0.4,
+                "range": [
+                  0,
+                  3
+                ],
+                "dest": false,
+                "targetMode": "ally",
+                "support": true,
+                "offensive": false,
+                "self": false,
+                "heal": true,
+                "revive": false
+              },
+              "round": 8,
+              "apBefore": 5,
+              "apAfter": 3,
+              "healerPosition": {
+                "gx": 3,
+                "gz": 0
+              },
+              "targetBefore": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 77,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 133,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "skillId": "w_salvation",
+              "targetId": "warrior",
+              "spec": {
+                "key": "w_salvation",
+                "name": "Lumière Salvatrice",
+                "icon": "✚",
+                "ap": 2,
+                "type": "heal",
+                "power": 0,
+                "healPercent": 0.4,
+                "range": [
+                  0,
+                  3
+                ],
+                "dest": false,
+                "targetMode": "ally",
+                "support": true,
+                "offensive": false,
+                "self": false,
+                "heal": true,
+                "revive": false
+              },
+              "round": 9,
+              "apBefore": 5,
+              "apAfter": 3,
+              "healerPosition": {
+                "gx": 3,
+                "gz": 0
+              },
+              "targetBefore": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 74,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 130,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "skillId": "w_salvation",
+              "targetId": "warrior",
+              "spec": {
+                "key": "w_salvation",
+                "name": "Lumière Salvatrice",
+                "icon": "✚",
+                "ap": 2,
+                "type": "heal",
+                "power": 0,
+                "healPercent": 0.4,
+                "range": [
+                  0,
+                  3
+                ],
+                "dest": false,
+                "targetMode": "ally",
+                "support": true,
+                "offensive": false,
+                "self": false,
+                "heal": true,
+                "revive": false
+              },
+              "round": 9,
+              "apBefore": 3,
+              "apAfter": 1,
+              "healerPosition": {
+                "gx": 3,
+                "gz": 0
+              },
+              "targetBefore": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 130,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 140,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "skillId": "w_salvation",
+              "targetId": "warrior",
+              "spec": {
+                "key": "w_salvation",
+                "name": "Lumière Salvatrice",
+                "icon": "✚",
+                "ap": 2,
+                "type": "heal",
+                "power": 0,
+                "healPercent": 0.4,
+                "range": [
+                  0,
+                  3
+                ],
+                "dest": false,
+                "targetMode": "ally",
+                "support": true,
+                "offensive": false,
+                "self": false,
+                "heal": true,
+                "revive": false
+              },
+              "round": 10,
+              "apBefore": 3,
+              "apAfter": 1,
+              "healerPosition": {
+                "gx": 3,
+                "gz": 0
+              },
+              "targetBefore": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 100,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 140,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "skillId": "w_salvation",
+              "targetId": "warrior",
+              "spec": {
+                "key": "w_salvation",
+                "name": "Lumière Salvatrice",
+                "icon": "✚",
+                "ap": 2,
+                "type": "heal",
+                "power": 0,
+                "healPercent": 0.4,
+                "range": [
+                  0,
+                  3
+                ],
+                "dest": false,
+                "targetMode": "ally",
+                "support": true,
+                "offensive": false,
+                "self": false,
+                "heal": true,
+                "revive": false
+              },
+              "round": 11,
+              "apBefore": 3,
+              "apAfter": 1,
+              "healerPosition": {
+                "gx": 3,
+                "gz": 0
+              },
+              "targetBefore": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 100,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 140,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "skillId": "w_salvation",
+              "targetId": "warrior",
+              "spec": {
+                "key": "w_salvation",
+                "name": "Lumière Salvatrice",
+                "icon": "✚",
+                "ap": 2,
+                "type": "heal",
+                "power": 0,
+                "healPercent": 0.4,
+                "range": [
+                  0,
+                  3
+                ],
+                "dest": false,
+                "targetMode": "ally",
+                "support": true,
+                "offensive": false,
+                "self": false,
+                "heal": true,
+                "revive": false
+              },
+              "round": 14,
+              "apBefore": 5,
+              "apAfter": 3,
+              "healerPosition": {
+                "gx": 3,
+                "gz": 0
+              },
+              "targetBefore": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 96,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 140,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "skillId": "w_salvation",
+              "targetId": "warrior",
+              "spec": {
+                "key": "w_salvation",
+                "name": "Lumière Salvatrice",
+                "icon": "✚",
+                "ap": 2,
+                "type": "heal",
+                "power": 0,
+                "healPercent": 0.4,
+                "range": [
+                  0,
+                  3
+                ],
+                "dest": false,
+                "targetMode": "ally",
+                "support": true,
+                "offensive": false,
+                "self": false,
+                "heal": true,
+                "revive": false
+              },
+              "round": 15,
+              "apBefore": 5,
+              "apAfter": 3,
+              "healerPosition": {
+                "gx": 3,
+                "gz": 0
+              },
+              "targetBefore": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 75,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 131,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "skillId": "w_salvation",
+              "targetId": "warrior",
+              "spec": {
+                "key": "w_salvation",
+                "name": "Lumière Salvatrice",
+                "icon": "✚",
+                "ap": 2,
+                "type": "heal",
+                "power": 0,
+                "healPercent": 0.4,
+                "range": [
+                  0,
+                  3
+                ],
+                "dest": false,
+                "targetMode": "ally",
+                "support": true,
+                "offensive": false,
+                "self": false,
+                "heal": true,
+                "revive": false
+              },
+              "round": 15,
+              "apBefore": 3,
+              "apAfter": 1,
+              "healerPosition": {
+                "gx": 3,
+                "gz": 0
+              },
+              "targetBefore": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 131,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 140,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "skillId": "w_salvation",
+              "targetId": "warrior",
+              "spec": {
+                "key": "w_salvation",
+                "name": "Lumière Salvatrice",
+                "icon": "✚",
+                "ap": 2,
+                "type": "heal",
+                "power": 0,
+                "healPercent": 0.4,
+                "range": [
+                  0,
+                  3
+                ],
+                "dest": false,
+                "targetMode": "ally",
+                "support": true,
+                "offensive": false,
+                "self": false,
+                "heal": true,
+                "revive": false
+              },
+              "round": 16,
+              "apBefore": 3,
+              "apAfter": 1,
+              "healerPosition": {
+                "gx": 3,
+                "gz": 0
+              },
+              "targetBefore": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 84,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 6,
+                "gz": 0,
+                "hp": 140,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              }
+            }
+          ]
+        }
+      ],
+      "ending": {
+        "id": "lion-seal-trial-truth",
+        "runStatus": "completed",
+        "exactReloadVerified": true
+      },
+      "preparations": [
+        {
+          "nodeId": "lion-second-refuge",
+          "goldAtEntry": 315,
+          "goldAfterRest": 270
+        }
+      ],
+      "captures": [
+        "lion-second-refuge-earned.png",
+        "lion-second-refuge-earned-resumed.png",
+        "lion-second-refuge-native-rest.png",
+        "lion-second-refuge-native-sacred-crosier.png",
+        "combat-3-deployment.png",
+        "combat-3-actual-impact.png",
+        "combat-3-w_salvation-15.png",
+        "combat-3-w_salvation-33.png",
+        "combat-3-w_salvation-34.png",
+        "combat-3-w_salvation-55.png",
+        "combat-3-w_salvation-59.png",
+        "combat-3-w_salvation-63.png",
+        "combat-3-w_salvation-64.png",
+        "combat-3-w_salvation-70.png",
+        "combat-3-w_salvation-76.png",
+        "combat-3-w_salvation-92.png",
+        "combat-3-w_salvation-96.png",
+        "combat-3-w_salvation-97.png",
+        "combat-3-w_salvation-101.png",
+        "combat-3-result.png",
+        "ending-lion-seal-trial-truth.png",
+        "ending-lion-seal-trial-truth-resumed.png"
+      ]
+    }
+  ],
+  "currentDriver": {
+    "sha256": "acfda8ec859ae62fcc8cd642a208d8e0b92ee7b96a40fd5135b5ca425fa91dae",
+    "gitBlob": "cd384cd606fa5e4e91c7cf55eb0cf0a2f18a448c"
+  },
+  "runtime": {
+    "sha256": "8efed9de5307fe35cf5e43b41552a75465e5b2e1dec06da4655199bc4750acd0",
+    "gitBlob": "0ec58a7695a197b1c48029cf5cece50a8e8d464a",
+    "buildReuse": "No src diff; runtime bytes match prior2252accepted build proof"
+  }
+}

@@ -1,0 +1,17 @@
+# Native healer support pilot continuation
+
+Run `rpgthreejs-auto-dev-90m-20261003T0228`; dev baseline `b9aa73e5bbd598e6d79eae89876831d9c84ce7a6`. Item9 DEMO-QA-POLISH remains IN_PROGRESS; items1–8 preserved. This handoff is live until closeout.
+
+Preflight found no lock, clean dev and verified remote parity; no repository QA/build/Git worker. Exclusive lock acquired at02:29:49Z. Prior2252receipts are terminal FAILED, not continuation seeds. No unchanged accepted card proof rerun.
+
+Trace diagnosis: Marian spent5AP on two basic attacks in round3, then waited at1AP in round4 after Cedric reached17HP; Cedric was KO before her next turn. Native `w_salvation` costs2AP and Wait/Souffle retains AP. The pilot now reserves healer AP from the first Champion turn, attempts only exposed unlocked skills, follows living allies using native reachable cells and prefers separation from foes. All movement/skill activation uses existing native controls. No runtime, campaign, balance, save, asset or contract change. Salvation verification no longer skips an affordable2AP cast. Existing earned lineage/ending/exactV6reload assertions retained.
+
+45focused tests/4suites,16receipt tests,TypeScript,syntax,whitespace/LOCKED gates and8contracts/8slotsPASS. Production build unchanged from dev baseline; receipt hashes will bind actual bundles. One read-only contracts reviewer checks the pilot/receipt boundary; no global evidence review.
+
+Next: register a new solo35minute Champion trial at1366x768 from successful `tmp/demo/continuous-1323-salvation-baseline/earned-lion-second-refuge-v6.json` and its exact successful `results.json`, with Salvation verification enabled. Keep1323mixed-build ancestry explicit: this cannot accept one corrected opening-to-ending build. Inspect actual casts, native movement/AP and final receipt before acceptance. Failed2252outputs remain excluded. Then diagnose affordable620marais preparation from successful1153first-refuge seed130gold (220gold healer upgrade unavailable as-is), and register25minute recovery only after a supported correction. Full keyboard targeting, sacrifice, fallback, settledVFX and balance remain open; demo incomplete.
+
+## Independent620diagnosis while trial runs
+
+CURRENT FACT: successful1153first-refuge seed has130gold, four wounded clan members (one KO),4potions,1revive and Valmir stock10potions. Existing rest costs15gold per wounded member, so rest60 leaves70. Potion base price15 permits four additional potions for60 at neutral pricing; actual UI price/affordability must be read at purchase. The previous620marais failure consumed all4potions and the revive before defeat, leaving41enemyHP across two foes. Affordable stock replenishment through native shop is a supported next pilot experiment; it is not a balance finding or an accepted recovery. No stock, resources or outcomes may be injected. Strong assertions should check actual gold debit, secured inventory increment, stock decrement, unchanged temporary loot and exact reload before departure.
+
+CURRENT FACT: native novice crosier basic attacks can heal living allies (`legacyCombatRuntime.js` resolution branch), but the pilot's basic attack candidate filter only chooses foes. That is another possible future support path; no implementation or acceptance is claimed here. The current trial uses unlocked Salvation. Avoid changing tested driver/source/build while its registered receipt is running.
