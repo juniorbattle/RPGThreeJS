@@ -9,3 +9,7 @@ Tests should target the authority boundary being changed. For visual work, run a
 Ordinary QA reruns write under ignored output paths, such as `docs/reports/evidence/` or `tools/qa-shots/`. Promote tracked evidence only by an explicit selection and never overwrite a previously validated historical proof. Historical reports are dated records; update current canonical docs and link them rather than rewriting history. Before deleting an asset or file, inventory source, tests, tools, manifests, CSS, docs, and evidence dependencies. A name such as `legacy` is not deletion authority.
 
 Only `dev` and temporary branches from `dev` are autonomous write targets. `main` is protected from autonomous push, force push, and merge from `dev`. Every completed task records a compliance check against relevant locked contracts and its test/evidence limits.
+
+## Manual findings and renewed acceptance — OD-2026-10-03-A
+
+Dedicated amendment `PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1`: a prior automated PASS never invalidates an operator's manual visual finding. Retain historical proof with its original driver/source/build/assertions and scope, reopen the affected target, reproduce it and verify the correction in a representative production/browser flow with selected capture inspection. Ground continuity, motion, depth/lifetime, relational staging and narrative environment truth need visual evidence; contract locking or unit tests alone are not runtime acceptance. Protect the approved judgement, temporary-gold loop and eight-slot structure while correcting defects.

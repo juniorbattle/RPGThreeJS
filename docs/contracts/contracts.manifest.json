@@ -2,6 +2,18 @@
   "schemaVersion": 1,
   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
   "lockedAt": "2026-10-01",
+  "contractSetVersion": "1.1.0",
+  "approvedAmendments": [
+    {
+      "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
+      "operatorDecisionId": "OD-2026-10-03-A",
+      "operatorDecisionPath": "docs/autonomy/MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md",
+      "approvedAt": "2026-10-03",
+      "changedContracts": ["TRAVERSAL", "CAMPAIGN_AND_STATE", "PRESENTATION_AND_MEDIA", "WORLD_AND_CHARACTERS", "UI_AND_ACCESSIBILITY", "AUTHORING_AND_QA"],
+      "supersededRule": "CAUGHT resets Route speed only / no road combat",
+      "implementationAcceptance": "REOPENED; decisions locked, runtime correction and visual QA pending"
+    }
+  ],
   "status": "LOCKED",
   "constitution": "docs/game/GAME_CONSTITUTION.md",
   "contracts": [

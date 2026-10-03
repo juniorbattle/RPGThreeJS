@@ -16,3 +16,7 @@
 Authority order for new work: explicit current operator decisions; this constitution and locked contracts; current executable source as the statement of what is implemented; canonical status/architecture docs; historical reports. If source or an older document differs from a locked target, record drift and correct it through an ordinary task without rewriting the contract. Preserve old reports as dated evidence.
 
 Status terms: **LOCKED** means the decision is binding; **implemented** means source and tests currently meet it; **drift** means implementation or canonical docs still need alignment; **deferred** means the contract forbids premature production. Locking the decision is not a claim of implementation or acceptance.
+
+## Approved amendment history
+
+Contract set **1.1.0** retains the original eight contracts and constitution. Dedicated `PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1`, explicitly approved by [OD-2026-10-03-A](../autonomy/MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md), amends TRAVERSAL, CAMPAIGN_AND_STATE, PRESENTATION_AND_MEDIA, WORLD_AND_CHARACTERS, UI_AND_ACCESSIBILITY and AUTHORING_AND_QA. The original `b1e8858` lock remains historical; normal-task Git protection uses the approved amendment commit recorded in AGENTS.md and the contracts-compliance skill. No normal task may advance that baseline or edit a LOCKED rule. COMBAT_AND_VFX, AUTONOMOUS_WORK_PROTOCOL, constitution and the eight video IDs are unchanged. DIALOGUE_STAGING is a section of PRESENTATION_AND_MEDIA, not an additional contract.
