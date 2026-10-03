@@ -7,8 +7,8 @@
 | BASELINE | dev @ c9e16a8f2685435ce6432c5a1dc5980b7c2152a6 |
 | BRANCH | dev |
 | HEAD | fa4dac612dd8b883759794a837c7d9eed9aa73cc |
-| STATUS | Scoped runtime accepted locally; remote publication blocked |
-| MERGED_IN | NONE; direct local dev checkpoint |
+| STATUS | Scoped runtime PASS; implementation and evidence published and verified |
+| MERGED_IN | Direct dev checkpoint bdaca0dd934738b6eb593899ffe0333ad9c312ec |
 | SUPERSEDES | NONE; historical Traversal proofs retain their original target |
 | SUPERSEDED_BY | NONE |
 | PRODUCTION_IMPACT | Common native forest ground; no waiting clan sprites; empty stops; one Shadow per hostile checkpoint |
@@ -42,6 +42,6 @@ Contract set1.1.0; immutable baseline d7ca28aed5c377ffedb03202f6364b7a947d1096. 
 | SAVE | PASS | No serialization/schema/durable ID changes |
 | UI / ACCESSIBILITY | PASS scoped | Relevant native focus/hit/OS/fallback supplement; no full UI claim |
 | QA_EVIDENCE | PASS scoped | Stable v2 receipts, explicit fixtures, selected inspection and reviewers |
-| REPOSITORY_GOVERNANCE | PASS for protection; publication BLOCKED | Main/LOCKED/deferred WIP preserved; denied push not bypassed |
+| REPOSITORY_GOVERNANCE | PASS | Main/LOCKED/deferred WIP preserved; explicit operator approval resolved publication; dev/WIP remote parity verified |
 
-Remote push was rejected twice by automatic approval review as source-code egress requiring exact authorization. The local checkpoint and selected proof are ready; explicit publication approval is pending. Demo acceptance remains incomplete. The next implementation lot after publication is TRAVERSAL-MOTION-POLISH, with exact source drift and verification in the canonical document.
+Remote push was initially rejected twice by automatic approval review as source-code egress requiring exact authorization. Explicit operator approval (`ok go`) resolved it; the guarded atomic push to juniorbattle/RPGThreeJS published and verified dev@bdaca0d and the owned WIP@f5623538. Final publication closeout is recorded in the paired state and publication handoff. Demo acceptance remains incomplete. The next implementation lot is TRAVERSAL-MOTION-POLISH, with exact source drift and verification in the canonical document.

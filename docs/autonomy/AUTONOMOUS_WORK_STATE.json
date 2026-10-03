@@ -1,13 +1,13 @@
 {
-  "status": "BLOCKED_BY_PUBLICATION_APPROVAL",
+  "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-03T08:20:01Z",
-  "runEndedAt": "2026-10-03T09:08:59.280Z",
-  "activeTask": "TRAVERSAL-VISUAL-CONVERGENCE",
-  "activePhase": "Scoped visual runtime accepted locally; coherent checkpoint publication pending",
-  "activeSubtask": "Publish verified local dev and owned WIP after exact GitHub authorization; then release lock and resume motion",
+  "runEndedAt": "2026-10-03T09:59:16.122Z",
+  "activeTask": "TRAVERSAL-MOTION-POLISH",
+  "activePhase": "Visual convergence accepted and published; motion implementation queued",
+  "activeSubtask": "Inspect departure/reveal momentum and arrival full-exit geometry; preserve canonical timing and handoffs",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
-  "lastPushedCommit": "c9e16a8f2685435ce6432c5a1dc5980b7c2152a6",
+  "lastPushedCommit": "bdaca0dd934738b6eb593899ffe0333ad9c312ec",
   "completedThisRun": [
     "Read-only preflight; exclusive owned lock; preserved all six deferred keyboard blobs and exact nextAction",
     "Shared native ground and world subject policy committed locally at fa4dac612dd8b883759794a837c7d9eed9aa73cc; no canonical route/formation/clan/save/tactical changes",
@@ -15,7 +15,8 @@
     "12 fixture-assisted production journeys T0/T1/T3 normal and OS-only reduction at1440/620/390:348 captures;4 focused keyboard/focus/hit-target/missing-art probes:12 captures",
     "Orchestrator inspected10 promoted captures; reused read-only Traversal and contracts specialists accept scoped presentation only",
     "Six current QA jobs terminal:3accepted scoped,3unaccepted retained honestly; original33 historical ledger entries preserved exactly",
-    "Automatic approval review rejected remote publication twice; explicit permission pending; local snapshots and coherent source/doc checkpoints retained"
+    "Automatic approval review rejected remote publication twice; explicit permission pending; local snapshots and coherent source/doc checkpoints retained",
+    "Explicit owning-chat approval ok go resolved publication; guarded atomic dev@bdaca0d/WIP@f5623538 push and live remote verification succeeded; main unchanged"
   ],
   "filesChanged": [
     "src/styles/traversal.css",
@@ -52,12 +53,9 @@
     "Relational tableau/cast/facing/ATE/contextual environments with desktop/intermediate/narrow OS-motion variants",
     "Deferred battlefield keyboard and original DEMO-QA-POLISH acceptance (exact details in deferredDemoTask)"
   ],
-  "blockers": [
-    "Automatic approval review rejected push twice: potentially private source code sent to an unverified external repository without exact sensitive-egress authorization. Permission requested for juniorbattle/RPGThreeJS dev and wip/rpgthreejs-auto-dev-90m-20261003T0820; no reply yet. No push performed. Owned lock retained per MULTI_AGENT_PROTOCOL section2 rule7."
-  ],
+  "blockers": [],
   "remainingWork": [
-    "Publish this local checkpoint after explicit approval, verify origin/dev parity, release owned lock",
-    "PENDING: TRAVERSAL-MOTION-POLISH",
+    "ACTIVE: TRAVERSAL-MOTION-POLISH",
     "PENDING: TRAVERSAL-PURSUIT-THREAT",
     "PENDING: TRAVERSAL-ROAD-ELEMENTS",
     "PENDING: PRE-JUDGEMENT-CAMPFIRE",
@@ -67,11 +65,11 @@
     "PENDING: ENVIRONMENT-NARRATIVE-COHERENCE",
     "PENDING: Resume deferred DEMO-QA-POLISH"
   ],
-  "nextAction": "First resolve publication approval: verify owned lock, preserved six keyboard blobs, local dev checkpoint and local WIP; publish only to https://github.com/juniorbattle/RPGThreeJS on dev and wip/rpgthreejs-auto-dev-90m-20261003T0820 when explicitly authorized, verify parity, then release owned lock. Do not rerun unchanged accepted visual proof. Resume TRAVERSAL-MOTION-POLISH from docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md: inspect departure .24*distance body displacement, departure clear/reveal and restarted elapsedMs easing, arrival zero-speed coast/fixed2.88s handoff without geometry gate. Correct presentation continuity/full right-edge exit without modifying canonical clocks, Risk/Reward/Pursuit or V6. Fresh production native T0/T1/T3 desktop620390 normal/OS proof required. Six deferred keyboard files and deferredDemoTask.nextAction remain exact; demo incomplete.",
+  "nextAction": "Resume TRAVERSAL-MOTION-POLISH from docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md. Read-only preflight, acquire exclusive lock, preserve the six deferred keyboard blobs and exact deferredDemoTask.nextAction. Inspect TraversalRoadScene departure .24*distance body displacement, departure clear/reveal and restarted elapsedMs easing, arrival zero-speed coast/fixed2.88s handoff without geometry gate. Correct presentation continuity and full right-edge exit without changing canonical route clocks, Risk/Reward/Pursuit, handoffs, temporary loot or V6. Register fresh native production T0/T1/T3 desktop1440/intermediate620/narrow390 normal and OS-only reduction jobs; freeze sources/driver/build and obtain scoped domain/authority reviews. Do not rerun unchanged accepted ground/subject proof. Follow the remaining operator queue; demo incomplete.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
-    "TRAVERSAL-VISUAL-CONVERGENCE: SCOPED_PASS_LOCAL_PENDING_PUBLICATION",
-    "TRAVERSAL-MOTION-POLISH: PENDING",
+    "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
+    "TRAVERSAL-MOTION-POLISH: ACTIVE",
     "TRAVERSAL-PURSUIT-THREAT: PENDING",
     "TRAVERSAL-ROAD-ELEMENTS: PENDING",
     "PRE-JUDGEMENT-CAMPFIRE: PENDING",
@@ -82,8 +80,8 @@
     "Resume deferred DEMO-QA-POLISH: PENDING"
   ],
   "creditStatus": "AVAILABLE; no credit-saving claim",
-  "contractComplianceStatus": "Scoped visual presentation PASS; immutable set1.1.0 protected. Publication BLOCKED; motion/remaining demo acceptance open.",
-  "commitReferenceScope": "Local verified implementation fa4dac6; final documentation/state checkpoint is local HEAD, exact SHA recorded in automation memory. origin/dev remains c9e16a8; no publication claimed.",
+  "contractComplianceStatus": "Scoped visual presentation and repository governance PASS; set1.1.0 immutable. Motion/Pursuit/road and remaining demo acceptance open.",
+  "commitReferenceScope": "Verified implementation fa4dac6 and evidence bdaca0d; final publication-state commit is HEAD/origin/dev after guarded push, exact SHA in automation memory to avoid circular self-reference.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -193,33 +191,26 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-03T09:11:28.360Z",
+  "lastHeartbeat": "2026-10-03T09:59:16.122Z",
   "wip": {
-    "sha": "f5623538264da5a1019cd69a5ba864e1e6a9eaaa",
     "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0820",
+    "sha": "f5623538264da5a1019cd69a5ba864e1e6a9eaaa",
+    "status": "REMOTE_VERIFIED_RETAINED_DEFERRED_WIP",
     "dirtyFiles": [
-      "ocs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/reports/INDEX.md",
       "legacy-combat.html",
       "src/combat/combatKeyboard.test.ts",
       "src/combat/combatKeyboard.ts",
       "src/combat/legacyCombatRuntime.js",
       "src/styles/combat-shell.css",
-      "docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md",
-      "docs/autonomy/handoffs/2026-10-03T0820Z-codex-visual-convergence.md",
-      "docs/reports/traversal-visual-convergence-1.md",
-      "docs/reports/traversal-visual-convergence-1/",
       "tools/combat-battlefield-keyboard-production-qa.mjs"
     ],
-    "status": "LOCAL_ONLY_PUBLICATION_BLOCKED",
-    "lastGreenCheck": "137 Traversal tests; types/build; 8 contracts8slots; immutable gates; 12 production journeys plus4 focused probes PASS scoped"
+    "lastGreenCheck": "137 Traversal tests; stable scoped production visual proof; types/build; 8contracts8slots; immutable/whitespace gates"
   },
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-03T09:11:28.360Z",
-    "status": "BLOCKED_BY_PUBLICATION_APPROVAL",
+    "lastHeartbeat": "2026-10-03T09:59:16.122Z",
+    "status": "CHECKPOINTED",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -4588,27 +4579,20 @@
       }
     ],
     "wip": {
-      "sha": "f5623538264da5a1019cd69a5ba864e1e6a9eaaa",
       "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0820",
+      "sha": "f5623538264da5a1019cd69a5ba864e1e6a9eaaa",
+      "status": "REMOTE_VERIFIED_RETAINED_DEFERRED_WIP",
       "dirtyFiles": [
-        "ocs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/reports/INDEX.md",
         "legacy-combat.html",
         "src/combat/combatKeyboard.test.ts",
         "src/combat/combatKeyboard.ts",
         "src/combat/legacyCombatRuntime.js",
         "src/styles/combat-shell.css",
-        "docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md",
-        "docs/autonomy/handoffs/2026-10-03T0820Z-codex-visual-convergence.md",
-        "docs/reports/traversal-visual-convergence-1.md",
-        "docs/reports/traversal-visual-convergence-1/",
         "tools/combat-battlefield-keyboard-production-qa.mjs"
       ],
-      "status": "LOCAL_ONLY_PUBLICATION_BLOCKED",
-      "lastGreenCheck": "137 Traversal tests; types/build; 8 contracts8slots; immutable gates; 12 production journeys plus4 focused probes PASS scoped"
+      "lastGreenCheck": "137 Traversal tests; stable scoped production visual proof; types/build; 8contracts8slots; immutable/whitespace gates"
     },
-    "nextAction": "First resolve publication approval: verify owned lock, preserved six keyboard blobs, local dev checkpoint and local WIP; publish only to https://github.com/juniorbattle/RPGThreeJS on dev and wip/rpgthreejs-auto-dev-90m-20261003T0820 when explicitly authorized, verify parity, then release owned lock. Do not rerun unchanged accepted visual proof. Resume TRAVERSAL-MOTION-POLISH from docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md: inspect departure .24*distance body displacement, departure clear/reveal and restarted elapsedMs easing, arrival zero-speed coast/fixed2.88s handoff without geometry gate. Correct presentation continuity/full right-edge exit without modifying canonical clocks, Risk/Reward/Pursuit or V6. Fresh production native T0/T1/T3 desktop620390 normal/OS proof required. Six deferred keyboard files and deferredDemoTask.nextAction remain exact; demo incomplete.",
+    "nextAction": "Resume TRAVERSAL-MOTION-POLISH from docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md. Read-only preflight, acquire exclusive lock, preserve the six deferred keyboard blobs and exact deferredDemoTask.nextAction. Inspect TraversalRoadScene departure .24*distance body displacement, departure clear/reveal and restarted elapsedMs easing, arrival zero-speed coast/fixed2.88s handoff without geometry gate. Correct presentation continuity and full right-edge exit without changing canonical route clocks, Risk/Reward/Pursuit, handoffs, temporary loot or V6. Register fresh native production T0/T1/T3 desktop1440/intermediate620/narrow390 normal and OS-only reduction jobs; freeze sources/driver/build and obtain scoped domain/authority reviews. Do not rerun unchanged accepted ground/subject proof. Follow the remaining operator queue; demo incomplete.",
     "runMetrics": {
       "registeredJobs": 6,
       "scopedPresentationJobsAccepted": 3,
@@ -4624,8 +4608,8 @@
     },
     "closeout": {
       "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
-      "finalStateCommit": "Local HEAD after documentation/state commit; exact SHA in automation memory",
-      "publicationBlocked": true,
+      "finalStateCommit": "HEAD/origin/dev after publication-state push; exact SHA in automation memory",
+      "publicationBlocked": false,
       "writerStopped": true,
       "ownedWipRetired": false,
       "olderWipsRetained": true,
@@ -4637,7 +4621,10 @@
         5279
       ],
       "demoAcceptance": "IN_PROGRESS",
-      "lockRelease": "PENDING verified origin/dev publication; lock retained under MULTI_AGENT_PROTOCOL section2 rule7"
+      "lockRelease": "After verified final publication-state push and durable memory write",
+      "operatorApproval": "Human ok go in owning chat approves named repo and dev/owned WIP branches",
+      "verifiedImplementationEvidenceCommit": "bdaca0dd934738b6eb593899ffe0333ad9c312ec",
+      "ownedWipRetainedReason": "Six deferred keyboard files remain outside dev"
     },
     "checkpointPaths": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -4702,7 +4689,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-03T0820Z-codex-visual-convergence.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-03T0955Z-codex-publication-closeout.md",
   "runMeasurement": {
     "readOnlySpecialists": [
       "traversal-engineer",
@@ -4859,7 +4846,7 @@
     }
   },
   "uncommittedWork": {
-    "reason": "Six inherited battlefield keyboard implementation/driver files remain deliberately unstaged: interrupted before full production acceptance; operator defers them behind manual-playtest remediation. Dedicated contract/integration commits do not silently ship or discard them. Exact six blobs preserved on remote WIP snapshot; fresh owners must preserve them.",
+    "reason": "Six unchanged deferred keyboard files remain deliberately unstaged and outside dev acceptance; exact blobs preserved in verified remote WIP f5623538; do not discard or silently ship.",
     "files": [
       {
         "path": "legacy-combat.html",
@@ -4887,10 +4874,10 @@
       }
     ],
     "snapshot": {
-      "sha": "5f89ea4179b36eca001decef92cfa4ff83fc5575",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0820",
+      "sha": "f5623538264da5a1019cd69a5ba864e1e6a9eaaa",
+      "status": "REMOTE_VERIFIED_RETAINED_DEFERRED_WIP",
       "dirtyFiles": [
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
         "legacy-combat.html",
         "src/combat/combatKeyboard.test.ts",
         "src/combat/combatKeyboard.ts",
@@ -4898,9 +4885,7 @@
         "src/styles/combat-shell.css",
         "tools/combat-battlefield-keyboard-production-qa.mjs"
       ],
-      "lastGreenCheck": "Prior0520reported81focused/types/build; full production keyboard acceptance incomplete; preserved without certifying",
-      "status": "UNKNOWN",
-      "branch": "wip/codex-manual-playtest-20261003T0735"
+      "lastGreenCheck": "137 Traversal tests; stable scoped production visual proof; types/build; 8contracts8slots; immutable/whitespace gates"
     }
   }
 }

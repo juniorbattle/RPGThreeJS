@@ -4,19 +4,19 @@ OD-2026-10-03-A remains highest priority. Contract set1.1.0 at immutable d7ca28a
 
 | Field | Value |
 | --- | --- |
-| `status` | BLOCKED_BY_PUBLICATION_APPROVAL |
+| `status` | IN_PROGRESS |
 | `runId` | rpgthreejs-auto-dev-90m-20261003T0820 |
 | `agent` | codex |
 | `runStartedAt` | 2026-10-03T08:20:01Z |
-| `runEndedAt` | 2026-10-03T09:08:59.280Z |
-| `activeTask` | TRAVERSAL-VISUAL-CONVERGENCE |
-| `activePhase` | Scoped visual runtime accepted locally; coherent checkpoint publication pending |
-| `activeSubtask` | Publish verified local dev and owned WIP after exact GitHub authorization; then release lock and resume motion |
+| `runEndedAt` | 2026-10-03T09:59:16.122Z |
+| `activeTask` | TRAVERSAL-MOTION-POLISH |
+| `activePhase` | Visual convergence accepted and published; motion implementation queued |
+| `activeSubtask` | Inspect departure/reveal momentum and arrival full-exit geometry; preserve canonical timing and handoffs |
 | `workingBranch` | dev |
 | `lastKnownGoodCommit` | fa4dac612dd8b883759794a837c7d9eed9aa73cc |
-| `lastPushedCommit` | c9e16a8f2685435ce6432c5a1dc5980b7c2152a6 |
+| `lastPushedCommit` | bdaca0dd934738b6eb593899ffe0333ad9c312ec |
 | `creditStatus` | AVAILABLE; no credit-saving claim |
-| `contractComplianceStatus` | Scoped visual presentation PASS; immutable set1.1.0 protected. Publication BLOCKED; motion/remaining demo acceptance open. |
+| `contractComplianceStatus` | Scoped visual presentation and repository governance PASS; set1.1.0 immutable. Motion/Pursuit/road and remaining demo acceptance open. |
 
 ## Live run
 
@@ -24,30 +24,23 @@ OD-2026-10-03-A remains highest priority. Contract set1.1.0 at immutable d7ca28a
 {
   "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-03T09:11:28.360Z",
-  "status": "BLOCKED_BY_PUBLICATION_APPROVAL",
+  "lastHeartbeat": "2026-10-03T09:59:16.122Z",
+  "status": "CHECKPOINTED",
   "wip": {
-    "sha": "f5623538264da5a1019cd69a5ba864e1e6a9eaaa",
     "branch": "wip/rpgthreejs-auto-dev-90m-20261003T0820",
+    "sha": "f5623538264da5a1019cd69a5ba864e1e6a9eaaa",
+    "status": "REMOTE_VERIFIED_RETAINED_DEFERRED_WIP",
     "dirtyFiles": [
-      "ocs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/reports/INDEX.md",
       "legacy-combat.html",
       "src/combat/combatKeyboard.test.ts",
       "src/combat/combatKeyboard.ts",
       "src/combat/legacyCombatRuntime.js",
       "src/styles/combat-shell.css",
-      "docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md",
-      "docs/autonomy/handoffs/2026-10-03T0820Z-codex-visual-convergence.md",
-      "docs/reports/traversal-visual-convergence-1.md",
-      "docs/reports/traversal-visual-convergence-1/",
       "tools/combat-battlefield-keyboard-production-qa.mjs"
     ],
-    "status": "LOCAL_ONLY_PUBLICATION_BLOCKED",
-    "lastGreenCheck": "137 Traversal tests; types/build; 8 contracts8slots; immutable gates; 12 production journeys plus4 focused probes PASS scoped"
+    "lastGreenCheck": "137 Traversal tests; stable scoped production visual proof; types/build; 8contracts8slots; immutable/whitespace gates"
   },
-  "nextAction": "First resolve publication approval: verify owned lock, preserved six keyboard blobs, local dev checkpoint and local WIP; publish only to https://github.com/juniorbattle/RPGThreeJS on dev and wip/rpgthreejs-auto-dev-90m-20261003T0820 when explicitly authorized, verify parity, then release owned lock. Do not rerun unchanged accepted visual proof. Resume TRAVERSAL-MOTION-POLISH from docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md: inspect departure .24*distance body displacement, departure clear/reveal and restarted elapsedMs easing, arrival zero-speed coast/fixed2.88s handoff without geometry gate. Correct presentation continuity/full right-edge exit without modifying canonical clocks, Risk/Reward/Pursuit or V6. Fresh production native T0/T1/T3 desktop620390 normal/OS proof required. Six deferred keyboard files and deferredDemoTask.nextAction remain exact; demo incomplete.",
+  "nextAction": "Resume TRAVERSAL-MOTION-POLISH from docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md. Read-only preflight, acquire exclusive lock, preserve the six deferred keyboard blobs and exact deferredDemoTask.nextAction. Inspect TraversalRoadScene departure .24*distance body displacement, departure clear/reveal and restarted elapsedMs easing, arrival zero-speed coast/fixed2.88s handoff without geometry gate. Correct presentation continuity and full right-edge exit without changing canonical route clocks, Risk/Reward/Pursuit, handoffs, temporary loot or V6. Register fresh native production T0/T1/T3 desktop1440/intermediate620/narrow390 normal and OS-only reduction jobs; freeze sources/driver/build and obtain scoped domain/authority reviews. Do not rerun unchanged accepted ground/subject proof. Follow the remaining operator queue; demo incomplete.",
   "runMetrics": {
     "registeredJobs": 6,
     "scopedPresentationJobsAccepted": 3,
@@ -63,8 +56,8 @@ OD-2026-10-03-A remains highest priority. Contract set1.1.0 at immutable d7ca28a
   },
   "closeout": {
     "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
-    "finalStateCommit": "Local HEAD after documentation/state commit; exact SHA in automation memory",
-    "publicationBlocked": true,
+    "finalStateCommit": "HEAD/origin/dev after publication-state push; exact SHA in automation memory",
+    "publicationBlocked": false,
     "writerStopped": true,
     "ownedWipRetired": false,
     "olderWipsRetained": true,
@@ -76,7 +69,10 @@ OD-2026-10-03-A remains highest priority. Contract set1.1.0 at immutable d7ca28a
       5279
     ],
     "demoAcceptance": "IN_PROGRESS",
-    "lockRelease": "PENDING verified origin/dev publication; lock retained under MULTI_AGENT_PROTOCOL section2 rule7"
+    "lockRelease": "After verified final publication-state push and durable memory write",
+    "operatorApproval": "Human ok go in owning chat approves named repo and dev/owned WIP branches",
+    "verifiedImplementationEvidenceCommit": "bdaca0dd934738b6eb593899ffe0333ad9c312ec",
+    "ownedWipRetainedReason": "Six deferred keyboard files remain outside dev"
   },
   "checkpointPaths": [
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -96,6 +92,7 @@ OD-2026-10-03-A remains highest priority. Contract set1.1.0 at immutable d7ca28a
 - Orchestrator inspected10 promoted captures; reused read-only Traversal and contracts specialists accept scoped presentation only
 - Six current QA jobs terminal:3accepted scoped,3unaccepted retained honestly; original33 historical ledger entries preserved exactly
 - Automatic approval review rejected remote publication twice; explicit permission pending; local snapshots and coherent source/doc checkpoints retained
+- Explicit owning-chat approval ok go resolved publication; guarded atomic dev@bdaca0d/WIP@f5623538 push and live remote verification succeeded; main unchanged
 
 ## filesChanged
 
@@ -138,12 +135,11 @@ OD-2026-10-03-A remains highest priority. Contract set1.1.0 at immutable d7ca28a
 
 ## blockers
 
-- Automatic approval review rejected push twice: potentially private source code sent to an unverified external repository without exact sensitive-egress authorization. Permission requested for juniorbattle/RPGThreeJS dev and wip/rpgthreejs-auto-dev-90m-20261003T0820; no reply yet. No push performed. Owned lock retained per MULTI_AGENT_PROTOCOL section2 rule7.
+
 
 ## remainingWork
 
-- Publish this local checkpoint after explicit approval, verify origin/dev parity, release owned lock
-- PENDING: TRAVERSAL-MOTION-POLISH
+- ACTIVE: TRAVERSAL-MOTION-POLISH
 - PENDING: TRAVERSAL-PURSUIT-THREAT
 - PENDING: TRAVERSAL-ROAD-ELEMENTS
 - PENDING: PRE-JUDGEMENT-CAMPFIRE
@@ -156,8 +152,8 @@ OD-2026-10-03-A remains highest priority. Contract set1.1.0 at immutable d7ca28a
 ## taskQueue
 
 - "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY"
-- "TRAVERSAL-VISUAL-CONVERGENCE: SCOPED_PASS_LOCAL_PENDING_PUBLICATION"
-- "TRAVERSAL-MOTION-POLISH: PENDING"
+- "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION"
+- "TRAVERSAL-MOTION-POLISH: ACTIVE"
 - "TRAVERSAL-PURSUIT-THREAT: PENDING"
 - "TRAVERSAL-ROAD-ELEMENTS: PENDING"
 - "PRE-JUDGEMENT-CAMPFIRE: PENDING"
@@ -169,10 +165,10 @@ OD-2026-10-03-A remains highest priority. Contract set1.1.0 at immutable d7ca28a
 
 ## Next action
 
-First resolve publication approval: verify owned lock, preserved six keyboard blobs, local dev checkpoint and local WIP; publish only to https://github.com/juniorbattle/RPGThreeJS on dev and wip/rpgthreejs-auto-dev-90m-20261003T0820 when explicitly authorized, verify parity, then release owned lock. Do not rerun unchanged accepted visual proof. Resume TRAVERSAL-MOTION-POLISH from docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md: inspect departure .24*distance body displacement, departure clear/reveal and restarted elapsedMs easing, arrival zero-speed coast/fixed2.88s handoff without geometry gate. Correct presentation continuity/full right-edge exit without modifying canonical clocks, Risk/Reward/Pursuit or V6. Fresh production native T0/T1/T3 desktop620390 normal/OS proof required. Six deferred keyboard files and deferredDemoTask.nextAction remain exact; demo incomplete.
+Resume TRAVERSAL-MOTION-POLISH from docs/autonomy/TRAVERSAL_VISUAL_CONVERGENCE.md. Read-only preflight, acquire exclusive lock, preserve the six deferred keyboard blobs and exact deferredDemoTask.nextAction. Inspect TraversalRoadScene departure .24*distance body displacement, departure clear/reveal and restarted elapsedMs easing, arrival zero-speed coast/fixed2.88s handoff without geometry gate. Correct presentation continuity and full right-edge exit without changing canonical route clocks, Risk/Reward/Pursuit, handoffs, temporary loot or V6. Register fresh native production T0/T1/T3 desktop1440/intermediate620/narrow390 normal and OS-only reduction jobs; freeze sources/driver/build and obtain scoped domain/authority reviews. Do not rerun unchanged accepted ground/subject proof. Follow the remaining operator queue; demo incomplete.
 
 ## Deferred battlefield keyboard/combat
 
 Finish exact battlefield production driver: real Tab entry, cursor bounds/announcement/no truth mutation, invalid/legal movement and native target execution, Escape/Retour focus, native controls and pointer regression in1366/620/390 OS on/off. Build new sources, review exact activation/assertion diff with guardian, register job and freeze tested inputs. Add actual fresh campaign iframe keyboard entry/return if budget permits; incomplete acceptance stays explicit. Preserve historical0350recovery and original726trial proofs. No media/audio work.
 
-Six inherited source/driver blobs remain unstaged and unchanged; full original evidence and queue retained in JSON.deferredDemoTask.
+Six inherited source/driver blobs remain unstaged and unchanged, preserved in verified remote owned WIP. Full original evidence and queue retained in JSON.deferredDemoTask.
