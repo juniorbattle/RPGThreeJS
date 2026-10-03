@@ -85,6 +85,20 @@ describe('physical road lifetime', () => {
     expect(anchors.update('future', 200, 1463, 100, () => 2000).x).toBeCloseTo(2365.75);
   });
 
+  it.each([1440, 620, 390])('keeps a shortened unseen forecast beyond the full entry edge after reset (%spx)', width => {
+    const anchors = new TraversalRoadAnchors();
+    anchors.update('future-rock', 0, width, 100, () => 3000);
+    anchors.reforecastUnseen();
+    const replaced = anchors.update('future-rock', 200, width, 100, () => 10);
+    expect(replaced.left).toBeCloseTo(width + 8);
+    expect(replaced.visible).toBe(false);
+    const entered = anchors.update('future-rock', 200 + 30 * 1463 / width, width, 100, () => 10);
+    expect(entered.left).toBeCloseTo(width - 22);
+    expect(entered.visible).toBe(true);
+    anchors.reforecastUnseen();
+    expect(anchors.update('future-rock', 200 + 30 * 1463 / width, width, 100, () => 99999).x).toBe(entered.x);
+  });
+
   it.each([0, 1] as const)('keeps resolved lane %s pouch on the road and the owner awards once', lane => {
     const pickup = { id: 'pouch', segmentId: 'road', lane: 0 as const, progress01: .5, gold: 5 };
     const renderer = new TraversalRouteRewardRenderer();

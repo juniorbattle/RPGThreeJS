@@ -35,7 +35,7 @@ export function anchoredRoadSpeed(previous: TraversalRouteRunState, next: Traver
 
 /** Presentation-only world anchors. Once seen, an object cannot move with a new forecast. */
 export class TraversalRoadAnchors {
-  private readonly anchors = new Map<string, { distance: number; entered: boolean; exited: boolean }>();
+  private readonly anchors = new Map<string, { distance: number; entered: boolean; exited: boolean; reforecast?: boolean }>();
 
   reset(): void { this.anchors.clear(); }
 
@@ -51,6 +51,14 @@ export class TraversalRoadAnchors {
       anchor = { distance: visualDistance + forecastDistance(), entered: false, exited: false };
       this.anchors.set(id, anchor);
     }
+    if (anchor.reforecast && !anchor.entered) {
+      // A slowdown can shorten the forecast enough to put an unseen mark in the
+      // middle of the road. Reintroduce it beyond the full right bound; the shared
+      // camera reconciles its existing authored contact once it actually enters.
+      const edgeDistance = ROAD_SPACE.referenceWidth * (.75 + (halfWidth + 8) / viewportWidth);
+      anchor.distance = visualDistance + Math.max(forecastDistance(), edgeDistance);
+      anchor.reforecast = false;
+    }
     const x = viewportWidth * .25 + (anchor.distance - visualDistance) * viewportWidth / ROAD_SPACE.referenceWidth;
     const left = x - halfWidth, right = x + halfWidth;
     if (right >= 0 && left <= viewportWidth && !anchor.exited) anchor.entered = true;
@@ -59,7 +67,7 @@ export class TraversalRoadAnchors {
   }
 
   reforecastUnseen(): void {
-    for (const [id, anchor] of this.anchors) if (!anchor.entered) this.anchors.delete(id);
+    for (const anchor of this.anchors.values()) if (!anchor.entered) anchor.reforecast = true;
   }
 }
 

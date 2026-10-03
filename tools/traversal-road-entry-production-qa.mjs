@@ -1,4 +1,4 @@
-/** Native built GameApp road sequences; fixture V6 origins/bootstrap and prior combat outcomes. */
+/** Targeted early entry proof including outer scene coverage; companion of frozen lifetime driver. */
 import assert from 'node:assert/strict';
 import { writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -9,12 +9,12 @@ const arg = (name, fallback) => process.argv.find(x => x.startsWith(`--${name}=`
 const motion = arg('motion', 'normal'); assert.ok(['normal', 'os', 'game'].includes(motion));
 const port = Number(arg('port', '5286')), output = arg('output', 'tmp/traversal/road-1600-normal');
 const parameters = { motion, legs: arg('legs', 'T0,T1,T3').split(','), viewports: arg('viewports', '1440x810,620x780,390x844').split(','),
-  roads: arg('roads', 'first').split(','), paths: arg('paths', 'contact-collect,miss-miss').split(','),
+  roads: arg('roads', 'early-reset').split(','), paths: arg('paths', 'contact-collect').split(','),
   earlyPaths: arg('early-paths', 'contact-collect').split(','), scope: 'native real built selected roads; V6 fixture origins/bootstrap/prior combat outcomes; no earned campaign/full road acceptance' };
 const requiredAssertions = ['edge-entry-frozen-anchor', 'contact-collected-retention-full-exit', 'rendered-ground-depth',
   'native-keyboard-responsive-motion', 'single-temporary-pickup-no-secured-write', 'physical-contact-after-reset'];
 const options = { runId: process.env.AUTONOMY_RUN_ID, jobId: process.env.DEMO_QA_JOB_ID, output,
-  driver: 'tools/traversal-road-elements-production-qa.mjs', port, parameters, requiredAssertions };
+  driver: 'tools/traversal-road-entry-production-qa.mjs', port, parameters, requiredAssertions };
 if (process.argv.includes('--register')) { console.log(JSON.stringify({ registered: registerJob(options).jobId })); process.exit(0); }
 const job = beginJob(options), report = { parameters, startedAt: new Date().toISOString(), runs: [], errors: [], assertions: [], captures: [] };
 let models, server, browser;
@@ -60,6 +60,8 @@ try {
         if (root?.dataset.routeSegment === target) {
           const vehicle = root.querySelector('.traversal-vehicle'), v = vehicle.getBoundingClientRect();
           const cover = Number(root.style.getPropertyValue('--transition-opacity') || 0);
+          const outer = [...document.querySelectorAll('.scene-transition')].map(e => Number(getComputedStyle(e).opacity));
+          const screenClear = cover < .01 && outer.every(o => o < .01) && !document.body.classList.contains('scene-transition--locked') && !root.dataset.transition;
           const marks = [...root.querySelectorAll('[data-risk-hazard],[data-reward-pickup]')].map(e => {
             const b = e.getBoundingClientRect(), style = getComputedStyle(e), i = e.querySelector('img');
             return { id: e.dataset.riskHazard ?? e.dataset.rewardPickup, family: e.dataset.riskHazard ? 'rock' : 'gold',
@@ -73,7 +75,7 @@ try {
             progress: s.routeRun.progress01, elapsed: s.routeRun.elapsedMs, duration: s.routeSegment.durationMs,
             reset: s.routeRun.speedResetAtMs, lane: s.routeRun.lane, visualSpeed: s.speed, distanceScale: s.roadDistanceScale,
             collisions: s.routeRisk.collisionCount, lastCollision: s.routeRisk.lastCollisionId,
-            view: root.dataset.view, phase: s.session.phase, cover, vehicle: { left: v.left, right: v.right, top: v.top, bottom: v.bottom,
+            view: root.dataset.view, phase: s.session.phase, cover, outer, screenClear, vehicle: { left: v.left, right: v.right, top: v.top, bottom: v.bottom,
               z: Number(getComputedStyle(vehicle).zIndex), ground: Number(vehicle.dataset.screenGroundY), renderedGround: parseFloat(getComputedStyle(vehicle).top) }, marks,
             resolved: [...s.routeRisk.resolvedHazardIds], collectedIds: [...s.routeReward.collectedPickupIds],
             gold: app.state.gold, temporary: app.state.run.temporaryLoot.gold, game: app.state.settings.reducedGraphics,
@@ -86,8 +88,14 @@ try {
       await app.startTraversalT0Qa(); app.state.settings.reducedGraphics = game; app.activeTraversal.renderRuntimeState(); }, motion === 'game');
     else await page.locator('[data-action="continue"]').click();
     let lanesReady = false, switched = false, captured = new Set(), resized = false, requestedEvent = null;
-    const capture = async label => { if (captured.has(label)) return; captured.add(label);
+    const capture = async label => { if (captured.has(label)) return;
+      const before = await page.evaluate(() => window.__roadSamples.at(-1));
+      if (!before?.screenClear || before.view !== 'route') return;
       const file = `${leg}-${width}-${motion}-${road}-${path}-${label}.png`; await page.screenshot({ path: `${output}/${file}` });
+      const after = await page.evaluate(() => window.__roadSamples.at(-1));
+      if (!after?.screenClear || after.view !== 'route') return;
+      captured.add(label);
+      entry.captureStates ??= []; entry.captureStates.push({ file, before, after });
       entry.captures.push(file); report.captures.push({ file, leg, width, motion, path, label }); };
     const deadline = Date.now() + 180000;
     while (Date.now() < deadline) {
@@ -131,7 +139,7 @@ try {
           await page.keyboard.press(lane === 0 ? 'ArrowUp' : 'ArrowDown'); requestedEvent = nextEvent.id;
         }
         if (s.resolved.length) switched = true;
-        if (s.sample?.cover < .01 && s.sample.marks.some(m => !m.hidden && m.left < width && m.right > width - 80)) await capture('entry');
+        if (s.sample?.screenClear && s.sample.marks.some(m => !m.hidden && m.left < width && m.right > width - 80)) await capture('entry');
         if (road === 'early-reset' && s.progress > hazard.progress01 - .05 && s.progress < hazard.progress01
           && s.sample?.marks.some(m => m.id === pickup.id && !m.hidden)) await capture('visible-gold-before-reset');
         if (s.resolved.length && s.progress < hazard.progress01 + .12) await capture('passed-rock');
@@ -155,7 +163,10 @@ try {
       const frames = entry.samples.filter(s => s.view === 'route').map(s => ({ s, m: s.marks.find(m => m.id === id) }));
       const first = frames.find(f => !f.m.hidden), last = frames.findLast(f => !f.m.hidden);
       assert.ok(first && last, `Visible ${id}`); assert.ok(frames[0].m.predictedLeft >= frames[0].s.width - 30, 'Born outside or at natural right edge');
-      assert.ok(first.m.left > first.s.width - 50, 'Partial edge entry without center pop');
+      // A covered world swap may reveal a mark that has already entered. Only an
+      // uncovered hidden->visible change can establish an arbitrary middle-road pop.
+      for (let i = 1; i < frames.length; i++) if (frames[i-1].s.screenClear && frames[i].s.screenClear && frames[i-1].m.hidden && !frames[i].m.hidden)
+        assert.ok(frames[i].m.left > frames[i].s.width - 50, 'Uncovered mark enters at natural edge');
       // CSSOM serializes style.left with fewer digits than the world projection.
       // Certify the logical anchor from its full-precision bounds, then check the
       // independently serialized/rendered position in screen pixels.
@@ -203,6 +214,7 @@ try {
     assert.ok(driving.every(s => s.temporary - first.temporary === s.collectedIds.length * 5), 'One temporary award per unique pickup');
     assert.ok(driving.some(s => s.marks.some(m => m.id === gold.id && !m.hidden && m.collected === (path === 'contact-collect') && s.progress > m.progress + .05)));
     entry.summary = { frames: driving.length, resized, goldDelta: last.temporary - first.temporary, riskReset: last.reset, secureGold: last.gold };
+    assert.ok(entry.captures.some(p => p.endsWith('-entry.png')), 'A fully uncovered native edge-entry capture is required');
     console.log(`${leg}/${dimensions}/${motion}/${path}: PASS ${driving.length} frames`); await page.close();
   }
   assert.equal(report.errors.length, 0); report.pass = true; report.assertions = requiredAssertions.map(id => ({ id, pass: true }));

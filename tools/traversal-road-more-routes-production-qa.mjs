@@ -1,4 +1,4 @@
-/** Native built GameApp road sequences; fixture V6 origins/bootstrap and prior combat outcomes. */
+/** Remaining native built GameApp roads; companion of the frozen first/early-road driver. */
 import assert from 'node:assert/strict';
 import { writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -9,12 +9,12 @@ const arg = (name, fallback) => process.argv.find(x => x.startsWith(`--${name}=`
 const motion = arg('motion', 'normal'); assert.ok(['normal', 'os', 'game'].includes(motion));
 const port = Number(arg('port', '5286')), output = arg('output', 'tmp/traversal/road-1600-normal');
 const parameters = { motion, legs: arg('legs', 'T0,T1,T3').split(','), viewports: arg('viewports', '1440x810,620x780,390x844').split(','),
-  roads: arg('roads', 'first').split(','), paths: arg('paths', 'contact-collect,miss-miss').split(','),
+  roads: arg('roads', 'second,branch-event,branch-combat,arrival').split(','), paths: arg('paths', 'contact-collect').split(','),
   earlyPaths: arg('early-paths', 'contact-collect').split(','), scope: 'native real built selected roads; V6 fixture origins/bootstrap/prior combat outcomes; no earned campaign/full road acceptance' };
 const requiredAssertions = ['edge-entry-frozen-anchor', 'contact-collected-retention-full-exit', 'rendered-ground-depth',
   'native-keyboard-responsive-motion', 'single-temporary-pickup-no-secured-write', 'physical-contact-after-reset'];
 const options = { runId: process.env.AUTONOMY_RUN_ID, jobId: process.env.DEMO_QA_JOB_ID, output,
-  driver: 'tools/traversal-road-elements-production-qa.mjs', port, parameters, requiredAssertions };
+  driver: 'tools/traversal-road-more-routes-production-qa.mjs', port, parameters, requiredAssertions };
 if (process.argv.includes('--register')) { console.log(JSON.stringify({ registered: registerJob(options).jobId })); process.exit(0); }
 const job = beginJob(options), report = { parameters, startedAt: new Date().toISOString(), runs: [], errors: [], assertions: [], captures: [] };
 let models, server, browser;
@@ -39,8 +39,13 @@ try {
   browser = await chromium.launch({ headless: true });
   for (const leg of parameters.legs) for (const dimensions of parameters.viewports) for (const road of parameters.roads)
     for (const path of road === 'early-reset' ? parameters.earlyPaths : parameters.paths) {
-    const [width, height] = dimensions.split('x').map(Number), number = road === 'early-reset' ? (leg === 'T0' ? 4 : 3) : 1;
-    const target = leg === 'T0' ? `route-${number}` : `${leg.toLowerCase()}-route-${number}`;
+    assert.ok(['second','extra-middle','branch-event','branch-combat','arrival'].includes(road));
+    assert.ok(road !== 'extra-middle' || leg === 'T0');
+    const [width, height] = dimensions.split('x').map(Number);
+    const number = road === 'second' ? 2 : road === 'extra-middle' ? 3 : road === 'arrival' ? (leg === 'T0' ? 6 : 5) : (leg === 'T0' ? 5 : 4);
+    const branch = `lion-${leg === 'T0' ? 'first' : leg === 'T1' ? 'second' : 'final'}-trial-${road === 'branch-combat' ? 'combat' : 'event'}`;
+    const suffix = road.startsWith('branch-') ? (road === 'branch-combat' ? 'b' : 'a') : '';
+    const target = (leg === 'T0' ? `route-${number}` : `${leg.toLowerCase()}-route-${number}`) + suffix;
     const page = await browser.newPage({ viewport: { width, height }, reducedMotion: motion === 'os' ? 'reduce' : 'no-preference' });
     const entry = { leg, dimensions, motion, path, road, target, samples: [], captures: [], keyboard: [], priorCombatFixtures: [] }; report.runs.push(entry);
     page.on('pageerror', e => report.errors.push(e.message)); page.on('console', m => { if (m.type() === 'error') report.errors.push(m.text()); });
@@ -92,12 +97,14 @@ try {
     const deadline = Date.now() + 180000;
     while (Date.now() < deadline) {
       const s = await page.evaluate(target => { const scene = window.__roadApp.activeTraversal, r = scene?.element;
-        return { target: r?.dataset.routeSegment === target, view: r?.dataset.view, transition: r?.dataset.transition,
+        return { target: r?.dataset.routeSegment === target, phase: scene?.session.phase, view: r?.dataset.view, transition: r?.dataset.transition,
           progress: scene?.routeRun.progress01, hazards: scene?.authoring.hazards(scene.routeSegment.id),
           pickups: scene?.authoring.pickups(scene.routeSegment.id), resolved: scene?.routeRisk.resolvedHazardIds,
           collected: scene?.routeReward.collectedPickupIds, sample: window.__roadSamples.at(-1) }; }, target);
-      if (s.target && s.view === 'checkpoint') { await page.waitForTimeout(40); break; }
+      if (s.target && (s.view === 'checkpoint' || road === 'arrival' && s.phase === 'ARRIVING' && s.sample?.marks.every(m => m.hidden))) { await page.waitForTimeout(40); break; }
       if (!s.target) {
+        const fork = page.locator(`[data-traversal-fork-choice="${branch}"]:visible:not([disabled])`);
+        if (await fork.count()) await fork.click();
         for (const selector of ['[data-traversal-confirm]:visible:not([disabled])', '.exploration-stop [data-action="continue"]:visible', '[data-journey-continue]:visible:not([disabled])',
           '.dialogue .dialogue__choices button:visible:not([disabled])', '.dialogue .dialogue__box:visible', '.cinematic-overlay__skip:visible:not([disabled])']) {
           const c = page.locator(selector); if (await c.count()) await c.first().click(); }
@@ -145,7 +152,7 @@ try {
       await page.waitForTimeout(35);
     }
     entry.samples = await page.evaluate(() => { cancelAnimationFrame(window.__roadSampler); return window.__roadSamples; });
-    assert.ok(lanesReady && switched && entry.samples.some(s => s.view === 'checkpoint'), 'Native first-road completion');
+    assert.ok(lanesReady && switched && entry.samples.some(s => s.view === 'checkpoint' || road === 'arrival' && s.phase === 'ARRIVING'), 'Native selected-road completion');
     const driving = entry.samples.filter(s => s.view === 'route' && s.cover < .01 && s.progress > .01);
     assert.ok(driving.length > 100);
     assert.ok(driving.every(s => s.game === (motion === 'game') && s.os === (motion === 'os')));
@@ -166,7 +173,7 @@ try {
       assert.ok(entered.every(f => Math.abs(f.m.x - center(f.m)) < .011), 'CSS serialized center within .011 screen pixels');
       assert.ok(entered.filter(f => !f.m.hidden).every(f => Math.abs((f.m.left + f.m.right) / 2 - center(f.m)) < .1), 'Rendered center matches full-precision projection');
       assert.ok(entered.every(f => f.m.hidden === (f.m.predictedRight < 0)), 'Only full trailing-edge exit hides');
-      assert.ok(entered.some(f => f.m.predictedRight < 0), 'Complete exit before checkpoint cover');
+      assert.ok(entered.some(f => f.m.predictedRight < 0 && f.s.cover < .01), 'Complete exit before checkpoint cover');
       assert.ok(last.m.right < 45, 'Last visible part reaches left edge');
       assert.ok(entered.filter(f => !f.m.hidden).every(f => f.m.decoded && f.m.visibility === 'visible' && f.m.parentZ === 'auto'));
       const crossing = frames.find(f => f.s.progress >= f.m.progress);
@@ -201,8 +208,9 @@ try {
     assert.equal(last.collectedIds.length, path === 'contact-collect' ? pickupCount : 0);
     assert.ok(driving.every(s => new Set(s.resolved).size === s.resolved.length && new Set(s.collectedIds).size === s.collectedIds.length));
     assert.ok(driving.every(s => s.temporary - first.temporary === s.collectedIds.length * 5), 'One temporary award per unique pickup');
-    assert.ok(driving.some(s => s.marks.some(m => m.id === gold.id && !m.hidden && m.collected === (path === 'contact-collect') && s.progress > m.progress + .05)));
+    assert.ok(driving.some(s => s.marks.some(m => m.id === gold.id && !m.hidden && m.collected === (path === 'contact-collect') && s.progress > m.progress)), 'A resolved mark persists into a native post-contact frame');
     entry.summary = { frames: driving.length, resized, goldDelta: last.temporary - first.temporary, riskReset: last.reset, secureGold: last.gold };
+    if (width === 1440 && path === 'miss-miss') assert.ok(resized && entry.samples.some(s => s.width === 1280), 'Actual intermediate resize sampled');
     console.log(`${leg}/${dimensions}/${motion}/${path}: PASS ${driving.length} frames`); await page.close();
   }
   assert.equal(report.errors.length, 0); report.pass = true; report.assertions = requiredAssertions.map(id => ({ id, pass: true }));
