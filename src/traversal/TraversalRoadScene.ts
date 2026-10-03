@@ -1,3 +1,4 @@
+import { anchoredRoadSpeed, roadEntryScale, roadVehicleHeight, setRoadGroundDepth } from './TraversalRoadAnchor';
 import type { LionTraversalLeg } from '../campaign/LionCampaignTravelRelations';
 import type { GameState, RunNode } from '../game/types';
 import type { CampaignStatusHud } from '../ui/CampaignStatusHud';
@@ -120,6 +121,10 @@ export class TraversalRoadScene {
   private frameId: number | null = null;
   private previousFrameMs = 0;
   private opened = false;
+  private roadDistanceScale = 1;
+  private approachStartSpeed = 0;
+  private vehicleGroundPercent = 65;
+  private laneMotion: { from: number; to: number; elapsed: number } | null = null;
   private arrivalRequested = false;
   private arrivalElapsed = 0;
   private arrivalVisualSpeed = 0;
@@ -256,6 +261,7 @@ export class TraversalRoadScene {
     this.opened = true;
     this.options.root.append(this.element);
     window.addEventListener('keydown', this.onKeyDown);
+    window.addEventListener('resize', this.onResize);
     this.element.querySelectorAll<HTMLButtonElement>('[data-traversal-lane]').forEach((button) => {
       button.addEventListener('click', () => this.moveToLane(Number(button.dataset.traversalLane) as TraversalLane));
     });
@@ -291,7 +297,7 @@ export class TraversalRoadScene {
     this.startRoute(this.controller.session.stageIndex === this.options.leg.stages.length
       ? this.authoring.routeSegments.length - 1 : this.controller.session.stageIndex);
     // GameApp mounts this road under its existing opaque return cover.
-    this.routeLaunchSpeed = this.speed = this.routeSegment.vMin;
+    this.routeLaunchSpeed = this.speed = this.routeSegment.vMin * this.roadDistanceScale;
     this.renderRuntimeState();
   }
 
@@ -308,6 +314,7 @@ export class TraversalRoadScene {
     if (this.frameId !== null) window.cancelAnimationFrame(this.frameId);
     this.frameId = null;
     window.removeEventListener('keydown', this.onKeyDown);
+    window.removeEventListener('resize', this.onResize);
     this.controller.dispose();
     this.element.remove();
   }
@@ -450,6 +457,12 @@ export class TraversalRoadScene {
     else if (this.departure && !document.hidden) this.advanceCheckpointDeparture(deltaSeconds);
     else if (this.controller.session.phase === 'RUNNING' && !document.hidden) this.advance(deltaSeconds);
     if (wasArriving && !document.hidden) this.advanceArrival(deltaSeconds);
+    if (!document.hidden && this.laneMotion) {
+      this.laneMotion.elapsed = Math.min(.38, this.laneMotion.elapsed + deltaSeconds);
+      this.vehicleGroundPercent = this.laneMotion.from + (this.laneMotion.to - this.laneMotion.from)
+        * transitionEase(this.laneMotion.elapsed / .38);
+      if (this.laneMotion.elapsed >= .38) this.laneMotion = null;
+    }
     this.inAnimationFrame = false;
     if (this.frameRenderPending) {
       this.frameRenderPending = false;
@@ -504,8 +517,9 @@ export class TraversalRoadScene {
     if (this.departure && this.viewMode === 'ROUTE') {
       // Reveal with engaged momentum, without skipping any authored route-clock windows.
       const reveal = Math.max(0, transition.elapsed - TRAVERSAL_RHYTHM.hold - TRAVERSAL_RHYTHM.fade);
-      const nextSpeed = this.routeSegment.vMin + ((this.routeLaunchSpeed ?? this.routeSegment.vMin)
-        - this.routeSegment.vMin) * (1 - transitionEase((reveal + seconds) / TRAVERSAL_RHYTHM.fade));
+      const minimum = this.routeSegment.vMin * this.roadDistanceScale;
+      const nextSpeed = minimum + ((this.routeLaunchSpeed ?? minimum)
+        - minimum) * (1 - transitionEase((reveal + seconds) / TRAVERSAL_RHYTHM.fade));
       this.routeRenderer.advance(seconds * 1000, (this.speed + nextSpeed) / 2);
       this.speed = nextSpeed;
     }
@@ -528,7 +542,7 @@ export class TraversalRoadScene {
       // A synchronous node result may already have started its return transition.
       if (this.transition !== transition) return;
       if (departureSpeed !== null && this.viewMode === 'ROUTE') {
-        this.routeLaunchSpeed = this.speed = Math.max(this.routeSegment.vMin, departureSpeed);
+        this.routeLaunchSpeed = this.speed = Math.max(this.routeSegment.vMin * this.roadDistanceScale, departureSpeed);
       }
       transition.elapsed = TRAVERSAL_RHYTHM.hold + half;
       transition.blackHoldRemaining = TRAVERSAL_RHYTHM.hold;
@@ -558,7 +572,7 @@ export class TraversalRoadScene {
       : half * (transition.reveal ? 1 : 2);
     if (time >= duration) {
       const carriedDeparture = Boolean(this.departure && this.viewMode === 'ROUTE');
-      if (carriedDeparture) this.routeLaunchSpeed = this.speed = this.routeSegment.vMin;
+      if (carriedDeparture) this.routeLaunchSpeed = this.speed = this.routeSegment.vMin * this.roadDistanceScale;
       this.transition = null;
       delete this.element.dataset.transition;
       if (carriedDeparture) this.finishCheckpointDeparture();
@@ -593,8 +607,12 @@ export class TraversalRoadScene {
     if (this.routeRun === previous) return;
     const restart = this.routeLaunchSpeed === null
       ? transitionEase(this.routeRun.elapsedMs / (TRAVERSAL_RHYTHM.restart * 1000)) : 1;
-    this.routeRenderer.advance(this.routeRun.elapsedMs - previous.elapsedMs,
-      (previous.speed + this.routeRun.speed) / 2 * restart);
+    const contact = [this.riskRenderer?.nextContact(this.authoring.hazards(this.routeSegment.id), previous.progress01),
+      this.rewardRenderer?.nextContact(this.authoring.pickups(this.routeSegment.id), previous.progress01)]
+      .filter(target => target != null).sort((a, b) => a!.progress01 - b!.progress01)[0] ?? null;
+    const presentedSpeed = anchoredRoadSpeed(previous, this.routeRun, this.routeSegment,
+      this.routeRenderer.distance, contact, restart, this.roadDistanceScale);
+    this.routeRenderer.advance(this.routeRun.elapsedMs - previous.elapsedMs, presentedSpeed);
     const activeDriving = !this.routeRun.complete && !this.departure
       && !document.body.classList.contains('scene-transition--locked');
     if (this.rewardEnabled) {
@@ -650,7 +668,7 @@ export class TraversalRoadScene {
         }
       }
     }
-    this.speed = this.routeRun.speed * restart;
+    this.speed = presentedSpeed;
     this.element.dataset.motion = this.routeRun.progress01 > .8 ? 'rushing' : 'cruising';
     this.element.style.setProperty('--route-rush-opacity', String(Math.max(0, (this.routeRun.progress01 - .55) * 1.2)));
     const { start, end } = traversalRouteProgressBounds(this.route, this.routeIndex);
@@ -675,6 +693,7 @@ export class TraversalRoadScene {
     if (!beat) throw new Error(`${this.options.leg.id} checkpoint beat missing: ${checkpointId}`);
     this.checkpointBeat = beat;
     this.approachElapsed = 0;
+    this.approachStartSpeed = this.speed;
     this.element.dataset.presentation = 'checkpoint-approach';
     this.renderRuntimeState();
   }
@@ -684,7 +703,7 @@ export class TraversalRoadScene {
     if (elapsed === null) return;
     const duration = .28;
     const next = Math.min(duration, elapsed + seconds);
-    const speed = this.routeRun.speed * (1 - .42 * transitionEase(next / duration));
+    const speed = this.approachStartSpeed * (1 - .42 * transitionEase(next / duration));
     this.routeRenderer.advance((next - elapsed) * 1000, (this.speed + speed) / 2);
     this.speed = speed;
     this.approachElapsed = next;
@@ -768,6 +787,12 @@ export class TraversalRoadScene {
     this.routeSegment = this.authoring.resolveSegment(index,
       this.options.getState().run.traversalBranches?.[this.options.leg.id]);
     this.routeRun = createRouteRun(this.routeSegment, index, this.session.currentLane);
+    const width = this.element.clientWidth || ROAD_SPACE.referenceWidth, height = this.element.clientHeight || 823;
+    const rockHalfWidth = roadVehicleHeight(width, height) * (width <= 700 ? 1.26 : .98) / 2;
+    const pouchHalfWidth = Math.min(72, Math.max(48, width * .05)) / 2;
+    this.roadDistanceScale = roadEntryScale(this.routeRun, this.routeSegment, width,
+      [...this.authoring.hazards(this.routeSegment.id).map(h => ({ progress01: h.progress01, halfWidth: rockHalfWidth })),
+        ...this.authoring.pickups(this.routeSegment.id).map(p => ({ progress01: p.progress01, halfWidth: pouchHalfWidth }))]);
     this.routeRisk = createRouteRisk(this.routeSegment.id);
     this.routeReward = createRouteReward(this.routeSegment.id);
     this.routePursuit = createRoutePursuit(this.routeSegment.id);
@@ -882,6 +907,10 @@ export class TraversalRoadScene {
     if (lane === current) return;
     this.controller.moveLane(lane < current ? -1 : 1);
     this.routeRun = setRouteLane(this.routeRun, lane);
+    if (prefersReducedMotion(this.options.getState().settings.reducedGraphics)) {
+      this.vehicleGroundPercent = LANE_TOP_PERCENT[lane];
+      this.laneMotion = null;
+    } else this.laneMotion = { from: this.vehicleGroundPercent, to: LANE_TOP_PERCENT[lane], elapsed: 0 };
     this.renderRuntimeState();
   }
 
@@ -899,7 +928,7 @@ export class TraversalRoadScene {
       : this.nextStage?.category === 'ROUTE_CHOICE' ? this.nextStage.campaignNodeIds : [];
     if (forkIds.length) this.worldRenderer.setDirections(this.options.getAvailableNodes()
       .filter(node => forkIds.includes(node.id)));
-    this.element.style.setProperty('--traversal-lane-y', `${LANE_TOP_PERCENT[session.currentLane]}%`);
+    this.element.style.setProperty('--traversal-lane-y', `${this.vehicleGroundPercent}%`);
     this.element.querySelectorAll<HTMLElement>('[data-rail-stop]').forEach(stop => {
       const stopIndex = Number(stop.dataset.railStop);
       stop.dataset.complete = String(stopIndex <= this.routeIndex);
@@ -973,9 +1002,14 @@ export class TraversalRoadScene {
     portrait.classList.toggle('is-mirrored', Boolean(beat.mirrorX));
   }
 
+  private readonly onResize = (): void => {
+    if (this.opened) this.updateWorldTransforms();
+  };
+
   private updateWorldTransforms(forceWorld = false): void {
     const session = this.controller.session;
     const width = this.element.clientWidth || ROAD_SPACE.referenceWidth;
+    const groundVehicle = this.element.querySelector<HTMLElement>('.traversal-vehicle')!;
     // Read both viewport dimensions before any style writes to avoid forced layout.
     const height = this.element.clientHeight || 823;
     if (this.viewMode === 'ROUTE') {
@@ -983,12 +1017,10 @@ export class TraversalRoadScene {
     }
     if (this.riskRenderer) {
       const hazards = this.authoring.hazards(this.routeSegment.id);
-      const active = this.viewMode === 'ROUTE' && this.session.phase === 'RUNNING'
-        && !this.transition && !this.departure && this.approachElapsed === null
-        && !this.routeRun.complete && !document.body.classList.contains('scene-transition--locked');
+      const active = this.viewMode === 'ROUTE';
       this.riskRenderer.update(hazards, this.routeRisk, this.routeRun.progress01,
         this.routeRun.elapsedMs, this.routeSegment.durationMs, this.routeRenderer.distance,
-        width, active, progress => forecastRouteDistance(this.routeRun, this.routeSegment, progress));
+        width, active, progress => forecastRouteDistance(this.routeRun, this.routeSegment, progress) * this.roadDistanceScale, height);
       if (this.riskQa) {
         this.element.dataset.riskSegment = this.routeRisk.segmentId;
         this.element.dataset.riskProgress = String(this.routeRun.progress01);
@@ -1006,13 +1038,11 @@ export class TraversalRoadScene {
       }
     }
     if (this.rewardRenderer) {
-      const active = this.viewMode === 'ROUTE' && session.phase === 'RUNNING'
-        && !this.transition && !this.departure && this.approachElapsed === null
-        && !this.routeRun.complete && !document.body.classList.contains('scene-transition--locked');
+      const active = this.viewMode === 'ROUTE';
       const pickups = this.authoring.pickups(this.routeSegment.id);
       this.rewardRenderer.update(pickups, this.routeReward, this.routeRun.progress01,
         this.routeRun.elapsedMs, this.routeSegment.durationMs, this.routeRenderer.distance,
-        width, active, progress => forecastRouteDistance(this.routeRun, this.routeSegment, progress));
+        width, active, progress => forecastRouteDistance(this.routeRun, this.routeSegment, progress) * this.roadDistanceScale, height);
       if (this.riskQa) {
         this.element.dataset.rewardResolved = JSON.stringify(this.routeReward.resolvedPickupIds);
         this.element.dataset.rewardCollected = JSON.stringify(this.routeReward.collectedPickupIds);
@@ -1041,7 +1071,10 @@ export class TraversalRoadScene {
         this.element.dataset.pursuitCatchProgress = String(this.lastPursuitCatchProgress ?? '');
       }
     }
-    const vehicle = this.element.querySelector<HTMLElement>('.traversal-vehicle')!;
+    const vehicle = groundVehicle;
+    // One presentation clock owns both the rendered foot and its draw order.
+    this.element.style.setProperty('--traversal-lane-y', `${this.vehicleGroundPercent}%`);
+    setRoadGroundDepth(vehicle, height * this.vehicleGroundPercent / 100);
     const exitDistance = session.phase === 'ARRIVING' ? this.arrivalExitDistance : 0;
     const departureDistance = this.viewMode === 'CHECKPOINT'
       && !prefersReducedMotion(this.options.getState().settings.reducedGraphics) ? this.departure?.distance ?? 0 : 0;

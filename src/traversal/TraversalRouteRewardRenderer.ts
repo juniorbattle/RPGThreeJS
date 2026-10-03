@@ -1,7 +1,6 @@
-import { ROAD_SPACE } from './TraversalRoadSpace';
+import { TraversalRoadAnchors, setRoadGroundDepth, type RoadContactAnchor } from './TraversalRoadAnchor';
 import type { TraversalRoutePickup, TraversalRouteRewardState } from './TraversalRouteReward';
 
-const APPROACH_MS = 2400;
 const COLLECTION_MS = 450;
 export const ROUTE_REWARD_POUCH = '/assets/generated/lion-phase/traversal/t0/reward/coin-pouch.png';
 
@@ -9,7 +8,7 @@ export const ROUTE_REWARD_POUCH = '/assets/generated/lion-phase/traversal/t0/rew
 export class TraversalRouteRewardRenderer {
   readonly element = document.createElement('div');
   private readonly marks = new Map<string, HTMLElement>();
-  private readonly contactDistances = new Map<string, number>();
+  private readonly anchors = new TraversalRoadAnchors();
   private feedbackUntilMs = -1;
 
   constructor() {
@@ -21,7 +20,7 @@ export class TraversalRouteRewardRenderer {
   reset(pickups: readonly TraversalRoutePickup[]): void {
     for (const mark of this.marks.values()) mark.remove();
     this.marks.clear();
-    this.contactDistances.clear();
+    this.anchors.reset();
     this.feedbackUntilMs = -1;
     this.element.querySelector('.traversal-route-reward__pulse')?.classList.remove('is-active');
     this.element.querySelector('.traversal-route-reward__feedback')?.classList.remove('is-active');
@@ -39,7 +38,8 @@ export class TraversalRouteRewardRenderer {
   }
 
   collect(pickup: TraversalRoutePickup, elapsedMs: number): void {
-    this.marks.get(pickup.id)?.setAttribute('hidden', '');
+    const mark = this.marks.get(pickup.id);
+    if (mark) mark.dataset.collected = 'true';
     this.feedbackUntilMs = elapsedMs + COLLECTION_MS;
     const pulse = this.element.querySelector<HTMLElement>('.traversal-route-reward__pulse')!;
     pulse.style.top = `${pickup.lane === 0 ? 65 : 81}%`;
@@ -54,18 +54,22 @@ export class TraversalRouteRewardRenderer {
     feedback.classList.add('is-active');
   }
 
-  reforecastUnseen(visualDistance: number, viewportWidth: number): void {
-    for (const [id, contactDistance] of this.contactDistances) {
-      const screenX = viewportWidth * .25 + (contactDistance - visualDistance)
-        * viewportWidth / ROAD_SPACE.referenceWidth;
-      if (screenX > viewportWidth + 28) this.contactDistances.delete(id);
-    }
+  reforecastUnseen(_visualDistance: number, _viewportWidth: number): void {
+    this.anchors.reforecastUnseen();
+  }
+
+  nextContact(pickups: readonly TraversalRoutePickup[], progress01: number): RoadContactAnchor | null {
+    const targets = pickups.flatMap(pickup => {
+      const distance = this.anchors.enteredDistance(pickup.id);
+      return pickup.progress01 > progress01 && distance !== null ? [{ progress01: pickup.progress01, distance }] : [];
+    });
+    return targets.sort((a, b) => a.progress01 - b.progress01)[0] ?? null;
   }
 
   update(pickups: readonly TraversalRoutePickup[], state: TraversalRouteRewardState,
     progress01: number, elapsedMs: number, durationMs: number, visualDistance: number,
     viewportWidth: number, activeDriving: boolean,
-    forecastDistance: (contactProgress01: number) => number): void {
+    forecastDistance: (contactProgress01: number) => number, viewportHeight = 823): void {
     this.element.hidden = !activeDriving;
     if (elapsedMs >= this.feedbackUntilMs) {
       this.element.querySelector('.traversal-route-reward__pulse')?.classList.remove('is-active');
@@ -75,23 +79,20 @@ export class TraversalRouteRewardRenderer {
       for (const mark of this.marks.values()) mark.hidden = true;
       return;
     }
-    const resolved = new Set(state.resolvedPickupIds);
+    const collected = new Set(state.collectedPickupIds);
     for (const pickup of pickups) {
       const mark = this.marks.get(pickup.id);
       if (!mark) continue;
-      const remainingMs = (pickup.progress01 - progress01) * durationMs;
-      if (resolved.has(pickup.id) || remainingMs < 0 || remainingMs > APPROACH_MS) {
-        mark.hidden = true;
-        continue;
-      }
-      if (!this.contactDistances.has(pickup.id)) {
-        this.contactDistances.set(pickup.id, visualDistance + forecastDistance(pickup.progress01));
-      }
-      const screenX = viewportWidth * .25 + (this.contactDistances.get(pickup.id)! - visualDistance)
-        * viewportWidth / ROAD_SPACE.referenceWidth;
-      mark.style.left = `${screenX}px`;
+      const halfWidth = Math.min(72, Math.max(48, viewportWidth * .05)) / 2;
+      const anchor = this.anchors.update(pickup.id, visualDistance, viewportWidth, halfWidth,
+        () => forecastDistance(pickup.progress01));
+      mark.style.left = `${anchor.x}px`;
       mark.style.top = `${pickup.lane === 0 ? 65 : 81}%`;
-      mark.hidden = false;
+      setRoadGroundDepth(mark, viewportHeight * (pickup.lane === 0 ? .65 : .81));
+      mark.dataset.roadLeft = String(anchor.left);
+      mark.dataset.roadRight = String(anchor.right);
+      mark.dataset.collected = String(collected.has(pickup.id));
+      mark.hidden = !anchor.visible;
     }
   }
 }

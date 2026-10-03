@@ -66,11 +66,11 @@
   border-radius: 50%; background: radial-gradient(ellipse, #ffdc7d20, transparent 70%);
   transition: top .38s ease;
 }
-.traversal-world__actors { isolation: isolate; }
-.traversal-route-risk { position: absolute; inset: 0; pointer-events: none; z-index: 23; }
+.traversal-world__actors { isolation: isolate; z-index: 20; }
+.traversal-route-risk { position: absolute; inset: 0; pointer-events: none; z-index: auto; }
 .traversal-route-risk__hazard {
   position: absolute; display: block; width: calc(var(--vehicle-height) * 1.16);
-  transform: translate(-50%, -94%);
+  transform: translate(-50%, -100%);
 }
 .traversal-route-risk__hazard--boulder { width: calc(var(--vehicle-height) * .98); }
 .traversal-route-risk__hazard--roadblock { width: calc(var(--vehicle-height) * 1.08); }
@@ -82,13 +82,13 @@
 .traversal-route-risk__hazard img { display: block; width: 100%; height: auto; max-width: none; }
 .traversal-route-risk__warning { position: absolute; left: 50%; bottom: calc(100% + 7px);
   width: clamp(18px, 1.65vw, 22px); height: clamp(18px, 1.65vw, 22px);
-  display: grid; place-items: center; transform: translateX(calc(-50% - var(--telegraph-shift, 0px))) rotate(45deg);
+  display: grid; place-items: center; transform: translateX(-50%) rotate(45deg);
   background: #302719ee; border: 1px solid #c9a366; border-radius: 3px;
   box-shadow: 0 2px 6px #0b0908a8; }
 .traversal-route-risk__warning i { transform: rotate(-45deg); color: #edcf91;
   font: normal 800 clamp(12px, 1.15vw, 15px) Inter, sans-serif; }
 .traversal-route-risk__hazard:not([data-warning='true']) .traversal-route-risk__warning { visibility: hidden; }
-.traversal-route-risk__impact { position: absolute; left: 25%; width: 1px; height: 1px; opacity: 0; }
+.traversal-route-risk__impact { z-index: 10000; position: absolute; left: 25%; width: 1px; height: 1px; opacity: 0; }
 .traversal-route-risk__impact.is-active { animation: traversal-risk-burst .52s ease-out both; }
 .traversal-route-risk__impact i { position: absolute; width: calc(var(--vehicle-height) * .6);
   height: calc(var(--vehicle-height) * .23); border-radius: 50%;
@@ -106,23 +106,24 @@
   22% { transform: translate(calc(-50% - 8px), calc(-100% + 8px)) rotate(-1.5deg); }
   52% { transform: translate(calc(-50% + 4px), calc(-100% - 3px)) rotate(.7deg); }
 }
-.traversal-t0[data-view='checkpoint'] .traversal-route-risk,
-.traversal-t0[data-phase='ARRIVING'] .traversal-route-risk { visibility: hidden; }
-.traversal-route-reward { position: absolute; inset: 0; pointer-events: none; z-index: 24; }
+.traversal-t0[data-view='checkpoint'] .traversal-route-risk { visibility: hidden; }
+.traversal-route-reward { position: absolute; inset: 0; pointer-events: none; z-index: auto; }
 .traversal-route-reward__pickup {
   position: absolute; display: block; width: clamp(48px, 5vw, 72px);
-  transform: translate(-50%, -95%);
+  transform: translate(-50%, -100%);
 }
+.traversal-route-reward__pickup[data-collected='true'] img { filter: grayscale(1) brightness(.55); }
+.traversal-route-reward__pickup[data-collected='true']::after { content: '✓'; position: absolute; inset: 0; display: grid; place-items: center; color: #f4dfae; font-weight: 800; }
 .traversal-route-reward__pickup[hidden] { display: none; }
 .traversal-route-reward__pickup img { display: block; width: 100%; height: auto; max-width: none; }
-.traversal-route-reward__pulse { position: absolute; left: 25%;
+.traversal-route-reward__pulse { z-index: 10000; position: absolute; left: 25%;
   width: clamp(48px, 5vw, 72px); aspect-ratio: 1; border-radius: 50%; opacity: 0;
   background: radial-gradient(circle, #ffd57080, #e5a74442 40%, transparent 70%);
   transform: translate(-50%, -50%); }
 .traversal-route-reward__pulse.is-active { animation: traversal-reward-pulse .45s ease-out both; }
 @keyframes traversal-reward-pulse { 0% { opacity: 0; scale: .45; }
   25% { opacity: .8; scale: .8; } 100% { opacity: 0; scale: 1.2; } }
-.traversal-route-reward__feedback { position: absolute; left: 25%; opacity: 0;
+.traversal-route-reward__feedback { z-index: 10000; position: absolute; left: 25%; opacity: 0;
   transform: translate(-50%, calc(-1 * var(--vehicle-height) - 8px));
   padding: 3px 9px; border: 1px solid #d3a353; border-radius: 20px;
   color: #ffe4a0; background: #211b13e8; white-space: nowrap;
@@ -131,8 +132,7 @@
 .traversal-route-reward__feedback.is-active { animation: traversal-reward-collect .45s ease-out both; }
 @keyframes traversal-reward-collect { 0% { opacity: 0; translate: 0 4px; scale: .8; }
   25% { opacity: 1; scale: 1; } 100% { opacity: 0; translate: 0 -22px; scale: 1.04; } }
-.traversal-t0[data-view='checkpoint'] .traversal-route-reward,
-.traversal-t0[data-phase='ARRIVING'] .traversal-route-reward { visibility: hidden; }
+.traversal-t0[data-view='checkpoint'] .traversal-route-reward { visibility: hidden; }
 .traversal-route-pursuit { position: absolute; inset: 0; pointer-events: none; z-index: 21; }
 .traversal-route-pursuit__proxy {
   position: absolute; width: var(--vehicle-height); height: calc(var(--vehicle-height) * .48);
@@ -189,7 +189,7 @@
 .traversal-vehicle {
   position: absolute; top: var(--traversal-lane-y); left: calc(25% + var(--vehicle-exit-x, 0px) + var(--vehicle-entry-x, 0px)); z-index: 22;
   height: var(--vehicle-height); aspect-ratio: 818 / 433; margin: 0;
-  transform: translate(-50%, -100%); transition: top .38s cubic-bezier(.2,.72,.2,1);
+  transform: translate(-50%, -100%);
   pointer-events: none;
 }
 .traversal-vehicle__art { position: absolute; max-width: none; z-index: 2; translate: 0 var(--suspension-y, 0px); transition: translate .12s ease-out; }
@@ -328,7 +328,7 @@
 .traversal-entity[data-placement='centered'][data-formation='true'] .traversal-formation-member { bottom: calc((var(--formation-index) - .5) * 6vh); }
 /* Lane changes are essential spatial feedback, even with decorative motion reduced. */
 @media (prefers-reduced-motion: reduce) {
-  .traversal-t0 .traversal-vehicle { transition-duration: .25s !important; }
+  .traversal-t0 .traversal-vehicle { transition: none !important; }
   .traversal-t0 .traversal-world__lane-glow { transition-duration: .25s !important; }
 }
 .traversal-entity--fork .traversal-entity__subject { height: calc(var(--vehicle-height) * .54); }

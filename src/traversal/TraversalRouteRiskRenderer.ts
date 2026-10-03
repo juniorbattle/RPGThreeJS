@@ -1,15 +1,14 @@
-import { ROAD_SPACE } from './TraversalRoadSpace';
+import { TraversalRoadAnchors, roadVehicleHeight, setRoadGroundDepth, type RoadContactAnchor } from './TraversalRoadAnchor';
 import type { TraversalRouteHazard, TraversalRouteRiskState } from './TraversalRouteRisk';
 import { resolveRouteRiskVisual } from './TraversalRouteRiskVisual';
 
-const TELEGRAPH_MS = 2800;
 const IMPACT_MS = 520;
 
 /** Risk obstacle presentation. Road coordinates follow TraversalRouteRenderer's visual distance. */
 export class TraversalRouteRiskRenderer {
   readonly element = document.createElement('div');
   private readonly marks = new Map<string, HTMLElement>();
-  private readonly contactDistances = new Map<string, number>();
+  private readonly anchors = new TraversalRoadAnchors();
   private vehicle: HTMLElement | null = null;
   private impactUntilMs = -1;
   private impactHazardId: string | null = null;
@@ -25,7 +24,7 @@ export class TraversalRouteRiskRenderer {
   reset(hazards: readonly TraversalRouteHazard[]): void {
     for (const mark of this.marks.values()) mark.remove();
     this.marks.clear();
-    this.contactDistances.clear();
+    this.anchors.reset();
     this.clearImpact();
     for (const hazard of hazards) {
       const visual = resolveRouteRiskVisual(hazard);
@@ -56,12 +55,16 @@ export class TraversalRouteRiskRenderer {
   }
 
   /** Reforecast future marks still beyond the viewport after momentum changes. */
-  reforecastUnseen(visualDistance: number, viewportWidth: number): void {
-    for (const [id, contactDistance] of this.contactDistances) {
-      const screenX = viewportWidth * .25 + (contactDistance - visualDistance)
-        * viewportWidth / ROAD_SPACE.referenceWidth;
-      if (screenX > viewportWidth + 28) this.contactDistances.delete(id);
-    }
+  reforecastUnseen(_visualDistance: number, _viewportWidth: number): void {
+    this.anchors.reforecastUnseen();
+  }
+
+  nextContact(hazards: readonly TraversalRouteHazard[], progress01: number): RoadContactAnchor | null {
+    const targets = hazards.flatMap(hazard => {
+      const distance = this.anchors.enteredDistance(hazard.id);
+      return hazard.progress01 > progress01 && distance !== null ? [{ progress01: hazard.progress01, distance }] : [];
+    });
+    return targets.sort((a, b) => a.progress01 - b.progress01)[0] ?? null;
   }
 
   clearImpact(): void {
@@ -74,7 +77,7 @@ export class TraversalRouteRiskRenderer {
   update(hazards: readonly TraversalRouteHazard[], state: TraversalRouteRiskState,
     progress01: number, elapsedMs: number, durationMs: number, visualDistance: number,
     viewportWidth: number, activeDriving: boolean,
-    forecastDistance: (contactProgress01: number) => number): void {
+    forecastDistance: (contactProgress01: number) => number, viewportHeight = 823): void {
     this.element.hidden = !activeDriving;
     if (elapsedMs >= this.impactUntilMs) this.clearImpact();
     if (!activeDriving) {
@@ -85,24 +88,17 @@ export class TraversalRouteRiskRenderer {
     for (const hazard of hazards) {
       const mark = this.marks.get(hazard.id);
       if (!mark) continue;
-      const remainingMs = (hazard.progress01 - progress01) * durationMs;
-      const visibleAtImpact = hazard.id === this.impactHazardId && elapsedMs < this.impactUntilMs;
-      if ((resolved.has(hazard.id) || remainingMs < 0) && !visibleAtImpact || remainingMs > TELEGRAPH_MS) {
-        mark.hidden = true;
-        continue;
-      }
-      if (!this.contactDistances.has(hazard.id)) {
-        this.contactDistances.set(hazard.id, visualDistance + forecastDistance(hazard.progress01));
-      }
-      const contactDistance = this.contactDistances.get(hazard.id)!;
-      const screenX = viewportWidth * .25 + (contactDistance - visualDistance)
-        * viewportWidth / ROAD_SPACE.referenceWidth;
-      mark.style.left = `${screenX}px`;
+      const halfWidth = roadVehicleHeight(viewportWidth, viewportHeight) * (viewportWidth <= 700 ? 1.26 : .98) / 2;
+      const anchor = this.anchors.update(hazard.id, visualDistance, viewportWidth, halfWidth,
+        () => forecastDistance(hazard.progress01));
+      mark.style.left = `${anchor.x}px`;
       mark.style.top = `${hazard.lane === 0 ? 65 : 81}%`;
-      mark.style.setProperty('--telegraph-shift', `${Math.max(0, screenX - (viewportWidth - 28))}px`);
-      mark.dataset.telegraph = String(screenX > viewportWidth - 28);
-      mark.dataset.warning = String(screenX > viewportWidth * .92);
-      mark.hidden = false;
+      setRoadGroundDepth(mark, viewportHeight * (hazard.lane === 0 ? .65 : .81));
+      mark.dataset.roadLeft = String(anchor.left);
+      mark.dataset.roadRight = String(anchor.right);
+      mark.dataset.warning = String(anchor.x > viewportWidth * .92 && !resolved.has(hazard.id));
+      mark.dataset.contact = String(resolved.has(hazard.id));
+      mark.hidden = !anchor.visible;
     }
   }
 }
