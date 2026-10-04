@@ -1,7 +1,7 @@
 import { ROAD_SPACE } from './TraversalRoadSpace';
-import { forecastRouteDistance, type TraversalRouteRunState, type TraversalRouteSegment } from './TraversalRouteRun';
+import { advanceRouteRun, createRouteRun, forecastRouteDistance, type TraversalRouteRunState, type TraversalRouteSegment } from './TraversalRouteRun';
 
-export interface RoadContactAnchor { readonly progress01: number; readonly distance: number }
+export interface RoadContactAnchor { readonly id: string; readonly progress01: number; readonly distance: number }
 
 /** One world-distance scale keeps even the earliest authored mark outside the entry edge. */
 export function roadEntryScale(state: TraversalRouteRunState, segment: TraversalRouteSegment,
@@ -31,6 +31,71 @@ export function anchoredRoadSpeed(previous: TraversalRouteRunState, next: Traver
     return distance / ((next.elapsedMs - previous.elapsedMs) * .28);
   }
   return (previous.speed + next.speed) / 2 * distanceScale * ratio;
+}
+
+/** Retain a validated camera forecast when a late native reset cannot stop a seen road in time. */
+export class TraversalRoadCamera {
+  private plan: { segment: TraversalRouteSegment; target: RoadContactAnchor; scale: number;
+    referenceReset: number; observedReset: number; bridging: boolean; elapsed: number; distance: number } | null = null;
+
+  reset(): void { this.plan = null; }
+
+  speed(previous: TraversalRouteRunState, next: TraversalRouteRunState,
+    segment: TraversalRouteSegment, distance: number, target: RoadContactAnchor | null,
+    launchMultiplier: number, scale = 1): number {
+    const base = anchoredRoadSpeed(previous, next, segment, distance, null, launchMultiplier, scale);
+    const limit = 2 * segment.vMax * scale;
+    const valid = (state: TraversalRouteRunState): boolean => {
+      if (!target || !target.id || !Number.isFinite(target.progress01) || target.progress01 > 1
+        || target.progress01 <= previous.progress01 || !Number.isFinite(distance)) return false;
+      const remaining = target.distance - distance;
+      const forecast = forecastRouteDistance(state, segment, target.progress01) * scale;
+      const ratio = remaining / forecast;
+      return Number.isFinite(ratio) && remaining > 0 && forecast > 0 && ratio >= .5 && ratio <= 2;
+    };
+    const cached = this.plan;
+    if (!target || launchMultiplier !== 1 || next.elapsedMs <= previous.elapsedMs
+      || !Number.isFinite(scale) || scale <= 0) { this.reset(); return base; }
+    if (cached && (previous.elapsedMs < cached.elapsed || distance < cached.distance - 1e-8)) {
+      this.reset(); return base;
+    }
+    if (cached && (cached.segment !== segment || cached.target.id !== target.id
+      || cached.target.distance !== target.distance || cached.target.progress01 !== target.progress01
+      || cached.scale !== scale || previous.elapsedMs < cached.elapsed || distance < cached.distance)) this.reset();
+    if (valid(previous)) {
+      const speed = anchoredRoadSpeed(previous, next, segment, distance, target, launchMultiplier, scale);
+      if (Number.isFinite(speed) && speed > 0 && speed <= limit) {
+        this.plan = next.progress01 >= target.progress01 ? null : {
+          segment, target: { ...target }, scale, referenceReset: previous.speedResetAtMs,
+          observedReset: previous.speedResetAtMs, bridging: false, elapsed: next.elapsedMs,
+          distance: distance + speed * (next.elapsedMs - previous.elapsedMs) * .28 };
+        return speed;
+      }
+    }
+    const plan = this.plan;
+    if (!plan || (!plan.bridging && previous.speedResetAtMs <= plan.observedReset)) {
+      this.reset(); return base;
+    }
+    // This reconstructed state is used only for the previously accepted camera
+    // forecast. The native RouteRun and its resolution/recovery remain untouched.
+    const reference = advanceRouteRun({ ...createRouteRun(segment, previous.segmentIndex, previous.lane),
+      speedResetAtMs: plan.referenceReset }, segment, previous.elapsedMs);
+    if (!valid(reference)) { this.reset(); return base; }
+    const contactMs = target.progress01 * segment.durationMs;
+    const beforeMs = Math.min(next.elapsedMs, contactMs) - previous.elapsedMs;
+    const referenceNext = advanceRouteRun(reference, segment, beforeMs);
+    const beforeSpeed = anchoredRoadSpeed(reference, referenceNext, segment, distance, target, 1, scale);
+    const afterMs = Math.max(0, next.elapsedMs - contactMs);
+    const actualContact = advanceRouteRun(previous, segment, beforeMs);
+    const afterSpeed = (actualContact.speed + next.speed) / 2 * scale;
+    const speed = (beforeSpeed * beforeMs + afterSpeed * afterMs) / (next.elapsedMs - previous.elapsedMs);
+    if (!Number.isFinite(beforeSpeed) || beforeSpeed <= 0 || beforeSpeed > limit
+      || !Number.isFinite(speed) || speed <= 0 || speed > limit) { this.reset(); return base; }
+    this.plan = afterMs > 0 || next.elapsedMs >= contactMs ? null : {
+      ...plan, bridging: true, observedReset: previous.speedResetAtMs, elapsed: next.elapsedMs,
+      distance: distance + speed * (next.elapsedMs - previous.elapsedMs) * .28 };
+    return speed;
+  }
 }
 
 /** Presentation-only world anchors. Once seen, an object cannot move with a new forecast. */

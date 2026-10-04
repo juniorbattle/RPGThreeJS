@@ -76,7 +76,7 @@ try {
           });
           window.__roadSamples.push({ time: performance.now(), width: innerWidth, height: innerHeight, distance: s.routeRenderer.distance,
             progress: s.routeRun.progress01, elapsed: s.routeRun.elapsedMs, duration: s.routeSegment.durationMs,
-            reset: s.routeRun.speedResetAtMs, lane: s.routeRun.lane, visualSpeed: s.speed, distanceScale: s.roadDistanceScale,
+            reset: s.routeRun.speedResetAtMs, lane: s.routeRun.lane, visualSpeed: s.speed, vMax: s.routeSegment.vMax, distanceScale: s.roadDistanceScale,
             collisions: s.routeRisk.collisionCount, lastCollision: s.routeRisk.lastCollisionId,
             view: root.dataset.view, phase: s.session.phase, cover, vehicle: { left: v.left, right: v.right, top: v.top, bottom: v.bottom,
               z: Number(getComputedStyle(vehicle).zIndex), ground: Number(vehicle.dataset.screenGroundY), renderedGround: parseFloat(getComputedStyle(vehicle).top) }, marks,
@@ -157,6 +157,7 @@ try {
     assert.ok(driving.length > 100);
     assert.ok(driving.every(s => s.game === (motion === 'game') && s.os === (motion === 'os')));
     assert.ok(driving.every(s => Number.isFinite(s.visualSpeed) && s.visualSpeed > 0));
+    assert.ok(driving.every(s => s.visualSpeed <= 2 * s.vMax * s.distanceScale), 'Camera stays within the validated speed envelope');
     assert.ok(driving.every((s,i) => i === 0 || s.distance >= driving[i-1].distance), 'Shared world never reverses');
     for (const id of driving[0].marks.map(m => m.id)) {
       const frames = entry.samples.filter(s => s.view === 'route').map(s => ({ s, m: s.marks.find(m => m.id === id) }));

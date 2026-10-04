@@ -23,7 +23,7 @@ describe('physical road lifetime', () => {
   it.each([16, 160, 1000])('aligns an already-visible pouch after collision without changing its clock (%sms frames)', frameMs => {
     const segment = { id: 'authored-road', durationMs: 12000, vMin: 1.05, vMax: 2.45 };
     const initial = createRouteRun(segment, 0, 1);
-    const target = { progress01: .5, distance: forecastRouteDistance(initial, segment, .5) };
+    const target = { id: 'reward:pouch', progress01: .5, distance: forecastRouteDistance(initial, segment, .5) };
     let state = initial, distance = 0, firstRecoverySpeed = 0, beforeResetSpeed = 0;
     while (state.progress01 < .5) {
       const boundary = state.progress01 < .31 ? .31 : .5;
@@ -54,7 +54,7 @@ describe('physical road lifetime', () => {
     const baseline = anchoredRoadSpeed(previous, next, segment, 0, null, .4);
     for (const target of [{ progress01: 0, distance: 20 }, { progress01: .5, distance: -1 },
       { progress01: .5, distance: Infinity }, { progress01: .5, distance: 99999 }]) {
-      expect(anchoredRoadSpeed(previous, next, segment, 0, target, .4)).toBe(baseline);
+      expect(anchoredRoadSpeed(previous, next, segment, 0, { id: 'invalid', ...target }, .4)).toBe(baseline);
     }
   });
   it('enters from the edge, freezes partial bounds through reforecast/resize, then exits completely', () => {

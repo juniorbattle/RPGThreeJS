@@ -9,7 +9,7 @@ import { TraversalRouteRenderer } from '../../src/traversal/TraversalRouteRender
 import { TraversalWorldRenderer } from '../../src/traversal/TraversalWorldRenderer';
 import { TRAVERSAL_T0_WORLD_PRESENTATION } from '../../src/traversal/TraversalT0World';
 import { buildTraversalCaravan } from '../../src/traversal/TraversalCaravan';
-import { anchoredRoadSpeed, setRoadGroundDepth } from '../../src/traversal/TraversalRoadAnchor';
+import { TraversalRoadCamera, setRoadGroundDepth } from '../../src/traversal/TraversalRoadAnchor';
 import { createRouteRun, advanceRouteRun, resetRouteSpeed, forecastRouteDistance, setRouteLane } from '../../src/traversal/TraversalRouteRun';
 import { createRouteRisk, resolveRouteRisk } from '../../src/traversal/TraversalRouteRisk';
 import { createRouteReward, resolveRouteReward } from '../../src/traversal/TraversalRouteReward';
@@ -26,6 +26,7 @@ buildTraversalCaravan(vehicle);vehicle.style.transition='none';
 for(const b of root.querySelectorAll<HTMLElement>('button'))b.style.cssText='min-width:44px;min-height:44px;background:#142c40;color:#fff1d1;border:2px solid #c3a56a';
 const world=new TraversalWorldRenderer(TRAVERSAL_T0_WORLD_PRESENTATION);root.querySelector('.traversal-world')!.append(world.routeElement);
 const risk=new TraversalRouteRiskRenderer(),reward=new TraversalRouteRewardRenderer(),road=new TraversalRouteRenderer();
+const camera=new TraversalRoadCamera();
 risk.reset(hazards);reward.reset(pickups);risk.bindVehicle(vehicle);root.append(road.element,risk.element,reward.element);
 // Deliberately use unit distance scale to exercise an already-visible future anchor.
 // This isolated presentation configuration is not the production roadEntryScale.
@@ -50,7 +51,7 @@ function step(now:number):void{
  if(!started||paused||disposed||document.hidden)return;
  const before=run;run=advanceRouteRun(run,segment,delta);
  const contact=[risk.nextContact(hazards,before.progress01),reward.nextContact(pickups,before.progress01)].filter(x=>x!==null).sort((a,b)=>a!.progress01-b!.progress01)[0]??null;
- road.advance(run.elapsedMs-before.elapsedMs,anchoredRoadSpeed(before,run,segment,road.distance,contact,1));
+ road.advance(run.elapsedMs-before.elapsedMs,camera.speed(before,run,segment,road.distance,contact,1));
  const r=resolveRouteReward(rewardState,pickups,before.progress01,run.progress01,run.lane,true);rewardState=r.state;
  for(const o of r.outcomes)if(o.result==='COLLECTED')reward.collect(o.pickup,run.elapsedMs);
  const h=resolveRouteRisk(riskState,hazards,before.progress01,run.progress01,run.lane,true);riskState=h.state;

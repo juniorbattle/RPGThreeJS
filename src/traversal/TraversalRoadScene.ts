@@ -1,4 +1,4 @@
-import { anchoredRoadSpeed, roadEntryScale, roadVehicleHeight, setRoadGroundDepth } from './TraversalRoadAnchor';
+import { TraversalRoadCamera, roadEntryScale, roadVehicleHeight, setRoadGroundDepth } from './TraversalRoadAnchor';
 import type { LionTraversalLeg } from '../campaign/LionCampaignTravelRelations';
 import type { GameState, RunNode } from '../game/types';
 import type { CampaignStatusHud } from '../ui/CampaignStatusHud';
@@ -101,6 +101,7 @@ export class TraversalRoadScene {
   private readonly markerElements = new Map<string, HTMLElement>();
   private readonly worldRenderer: TraversalWorldRenderer;
   private readonly routeRenderer = new TraversalRouteRenderer();
+  private readonly roadCamera = new TraversalRoadCamera();
   private readonly riskEnabled = resolveTraversalRiskEnabled({
     dev: import.meta.env.DEV, search: window.location.search,
   });
@@ -307,6 +308,7 @@ export class TraversalRoadScene {
   }
 
   dispose(): void {
+    this.roadCamera.reset();
     this.options.statusHud?.hide(this.element);
     if (!this.opened && !this.element.isConnected) return;
     this.opened = false;
@@ -610,7 +612,7 @@ export class TraversalRoadScene {
     const contact = [this.riskRenderer?.nextContact(this.authoring.hazards(this.routeSegment.id), previous.progress01),
       this.rewardRenderer?.nextContact(this.authoring.pickups(this.routeSegment.id), previous.progress01)]
       .filter(target => target != null).sort((a, b) => a!.progress01 - b!.progress01)[0] ?? null;
-    const presentedSpeed = anchoredRoadSpeed(previous, this.routeRun, this.routeSegment,
+    const presentedSpeed = this.roadCamera.speed(previous, this.routeRun, this.routeSegment,
       this.routeRenderer.distance, contact, restart, this.roadDistanceScale);
     this.routeRenderer.advance(this.routeRun.elapsedMs - previous.elapsedMs, presentedSpeed);
     const activeDriving = !this.routeRun.complete && !this.departure
@@ -783,6 +785,7 @@ export class TraversalRoadScene {
   }
 
   private startRoute(index: number): void {
+    this.roadCamera.reset();
     this.routeIndex = index;
     this.routeSegment = this.authoring.resolveSegment(index,
       this.options.getState().run.traversalBranches?.[this.options.leg.id]);

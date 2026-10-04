@@ -62,7 +62,7 @@ export class TraversalRouteRiskRenderer {
   nextContact(hazards: readonly TraversalRouteHazard[], progress01: number): RoadContactAnchor | null {
     const targets = hazards.flatMap(hazard => {
       const distance = this.anchors.enteredDistance(hazard.id);
-      return hazard.progress01 > progress01 && distance !== null ? [{ progress01: hazard.progress01, distance }] : [];
+      return hazard.progress01 > progress01 && distance !== null ? [{ id: `risk:${hazard.id}`, progress01: hazard.progress01, distance }] : [];
     });
     return targets.sort((a, b) => a.progress01 - b.progress01)[0] ?? null;
   }
