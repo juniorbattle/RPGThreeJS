@@ -36,7 +36,7 @@ export function anchoredRoadSpeed(previous: TraversalRouteRunState, next: Traver
 /** Retain a validated camera forecast when a late native reset cannot stop a seen road in time. */
 export class TraversalRoadCamera {
   private plan: { segment: TraversalRouteSegment; target: RoadContactAnchor; scale: number;
-    referenceReset: number; observedReset: number; bridging: boolean; elapsed: number; distance: number } | null = null;
+    referenceReset: number; observedReset: number; resetObserved: boolean; elapsed: number; distance: number } | null = null;
 
   reset(): void { this.plan = null; }
 
@@ -55,25 +55,29 @@ export class TraversalRoadCamera {
     };
     const cached = this.plan;
     if (!target || launchMultiplier !== 1 || next.elapsedMs <= previous.elapsedMs
-      || !Number.isFinite(scale) || scale <= 0) { this.reset(); return base; }
+      || !Number.isFinite(scale) || scale <= 0 || previous.speedResetAtMs > previous.elapsedMs) { this.reset(); return base; }
     if (cached && (previous.elapsedMs < cached.elapsed || distance < cached.distance - 1e-8)) {
       this.reset(); return base;
     }
     if (cached && (cached.segment !== segment || cached.target.id !== target.id
       || cached.target.distance !== target.distance || cached.target.progress01 !== target.progress01
       || cached.scale !== scale || previous.elapsedMs < cached.elapsed || distance < cached.distance)) this.reset();
+    const plan = this.plan;
+    const resetObserved = Boolean(plan && (plan.resetObserved || previous.speedResetAtMs > plan.observedReset));
     if (valid(previous)) {
       const speed = anchoredRoadSpeed(previous, next, segment, distance, target, launchMultiplier, scale);
       if (Number.isFinite(speed) && speed > 0 && speed <= limit) {
         this.plan = next.progress01 >= target.progress01 ? null : {
-          segment, target: { ...target }, scale, referenceReset: previous.speedResetAtMs,
-          observedReset: previous.speedResetAtMs, bridging: false, elapsed: next.elapsedMs,
+          // Keep the pre-reset reference even if the shortened forecast is still
+          // inside the guard now: it can cross that guard just before contact.
+          segment, target: { ...target }, scale,
+          referenceReset: resetObserved ? plan!.referenceReset : previous.speedResetAtMs,
+          observedReset: previous.speedResetAtMs, resetObserved, elapsed: next.elapsedMs,
           distance: distance + speed * (next.elapsedMs - previous.elapsedMs) * .28 };
         return speed;
       }
     }
-    const plan = this.plan;
-    if (!plan || (!plan.bridging && previous.speedResetAtMs <= plan.observedReset)) {
+    if (!plan || !resetObserved) {
       this.reset(); return base;
     }
     // This reconstructed state is used only for the previously accepted camera
@@ -92,7 +96,7 @@ export class TraversalRoadCamera {
     if (!Number.isFinite(beforeSpeed) || beforeSpeed <= 0 || beforeSpeed > limit
       || !Number.isFinite(speed) || speed <= 0 || speed > limit) { this.reset(); return base; }
     this.plan = afterMs > 0 || next.elapsedMs >= contactMs ? null : {
-      ...plan, bridging: true, observedReset: previous.speedResetAtMs, elapsed: next.elapsedMs,
+      ...plan, resetObserved: true, observedReset: previous.speedResetAtMs, elapsed: next.elapsedMs,
       distance: distance + speed * (next.elapsedMs - previous.elapsedMs) * .28 };
     return speed;
   }

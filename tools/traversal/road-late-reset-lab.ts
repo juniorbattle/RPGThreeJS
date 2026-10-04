@@ -39,7 +39,9 @@ function render(): void {
     distance: road.distance, visualSpeed, x: (Number(mark.dataset.roadLeft) + Number(mark.dataset.roadRight)) / 2,
     left: bounds.left, right: bounds.right, hidden: mark.hidden,
     decoded: mark.querySelector('img')!.complete && mark.querySelector('img')!.naturalWidth > 0 };
-  if (started) samples.push(state);
+  // A RAF timestamp can precede the Start handler's performance.now(). Keep that
+  // unchanged start frame out of the moving sequence, without filtering speeds.
+  if (started && run.elapsedMs > 9966.1) samples.push(state);
   proof.textContent = JSON.stringify({ state, samples, resetDone, started, risk: riskState,
     resetMs, contactMs: hazard.progress01 * segment.durationMs, target: hazard.id, scale,
     reduced: root.dataset.reducedMotion, scriptedIsolatedReset: true, noOwnersInstantiated: true });

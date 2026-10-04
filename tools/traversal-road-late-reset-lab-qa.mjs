@@ -40,6 +40,7 @@ try {
     const file=`T0-${c.width}-${c.motion}-late-reset.png`;await page.screenshot({path:output+'/'+file});report.captures.push(file);
     await page.waitForFunction(()=>JSON.parse(document.querySelector('#proof').textContent).state.elapsed>=13000);
     const final=await page.evaluate(()=>JSON.parse(document.querySelector('#proof').textContent)), frames=final.samples;
+    report.diagnostic = { ...c, final };
     assert.ok(final.scriptedIsolatedReset&&final.noOwnersInstantiated);assert.equal(final.reduced,String(c.motion!=='normal'));
     assert.ok(frames.every((s,i)=>i===0||s.distance>=frames[i-1].distance));
     assert.ok(frames.every(s=>Number.isFinite(s.visualSpeed)&&s.visualSpeed>0&&s.visualSpeed<=2*2.5*1.686));
