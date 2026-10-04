@@ -1,0 +1,4503 @@
+{
+  "task": "TRAVERSAL-ROAD-ELEMENTS",
+  "runId": "rpgthreejs-auto-dev-90m-20261004T0007",
+  "source": "62045da221f49e035b509c50be355840eecfd81f",
+  "baseline": "27b40a783f056d631ff29c883f9b6c5fd6c58297",
+  "status": "SCOPED_CHECKPOINT_FULL_ACCEPTANCE_OPEN",
+  "reviewedAt": "2026-10-04T01:08:25.904Z",
+  "frozenInputs": {
+    "source": [
+      {
+        "path": "src/campaign/LionCampaignStructure.test.ts",
+        "sha256": "65de87de92f35b7df62fa9722104344439580fdceec0e7b9846ebfbc25692620"
+      },
+      {
+        "path": "src/campaign/LionCampaignStructure.ts",
+        "sha256": "dede76984fd7892c0f2127921f69c089c5e3c1278aaca1935da42a0a171f7c91"
+      },
+      {
+        "path": "src/campaign/LionCampaignStructureAudit.ts",
+        "sha256": "6cd8a5584cba3419775f6a27689e15974247dc02770dbdbc64170d6e5667c1df"
+      },
+      {
+        "path": "src/campaign/LionCampaignTravelRelations.test.ts",
+        "sha256": "1ed6b19e4b07dbada3db126bc54ccc5be290bc149a2c861a8b3c7f16f7afdfb0"
+      },
+      {
+        "path": "src/campaign/LionCampaignTravelRelations.ts",
+        "sha256": "58bf66d6d7a3110ccbeb0656d658b3d7d9b5ab0fa99a195858c43fc1869fdfb8"
+      },
+      {
+        "path": "src/cinematics/ApprovedProductionVideos.test.ts",
+        "sha256": "d20e2c085a2350265b72649e0d12f27a140a26a51bae7442430aede04364662e"
+      },
+      {
+        "path": "src/cinematics/ApprovedProductionVideos.ts",
+        "sha256": "905122db013b0b4a32196a4ca82cca43c50e58ff13f389bb1a019acf2b72a919"
+      },
+      {
+        "path": "src/cinematics/Cin673SpatialCoherence.test.ts",
+        "sha256": "9344f25e6c9b90719584c7d7e1a72404a492471d7785a677d37feee95879ec3d"
+      },
+      {
+        "path": "src/cinematics/Cin6aPresentation.test.ts",
+        "sha256": "80031bff02696413d9367ed250ef899c602067822806045a2ab81ad8cccbb326"
+      },
+      {
+        "path": "src/cinematics/Cin6aPresentation.ts",
+        "sha256": "41e0dee7f65231bd8e65cee075ac8c6d909302b6de37e7560b0eeeae8a645990"
+      },
+      {
+        "path": "src/cinematics/CinematicDialogueSession.test.ts",
+        "sha256": "75470f89203ab4064f40b8bb5257b0c7c7b2774e9911fb4622868125240dd733"
+      },
+      {
+        "path": "src/cinematics/CinematicDialogueSession.ts",
+        "sha256": "0c10e9c066b295251afcc4786a8336085f63a92deec2c7815e541626ae4951f4"
+      },
+      {
+        "path": "src/cinematics/CinematicOverlay.test.ts",
+        "sha256": "bb06928c99404f07127bab0b402c3f0ab4d1f885fc9f5e27957d910b32521d0b"
+      },
+      {
+        "path": "src/cinematics/CinematicOverlay.ts",
+        "sha256": "32b605510d4edfac52bb17a27899c78bc697971f47e1b5bb330a95d4d739d11f"
+      },
+      {
+        "path": "src/cinematics/CinematicPlayer.test.ts",
+        "sha256": "47fe576230f49fa49cdd3ff5f323167f9b77a988d2ad80eb92e4ec49b904892f"
+      },
+      {
+        "path": "src/cinematics/CinematicPlayer.ts",
+        "sha256": "22eed46ead2a8420c8c2f421975733f6bbb8c35620173b34700e314bbe7b74c9"
+      },
+      {
+        "path": "src/cinematics/CinematicPreloader.test.ts",
+        "sha256": "13d1e1e9e75b989b6c8bdc81658c9b8911b24bd15fea9843459fe67ef60bd73b"
+      },
+      {
+        "path": "src/cinematics/CinematicPreloader.ts",
+        "sha256": "75397f7322c07bfc95e73e7ec4ce56c899a880e9570d2008335a05cdb95465bd"
+      },
+      {
+        "path": "src/cinematics/CinematicReductionPolicy.ts",
+        "sha256": "53beab2c2875430ac61c3bb10663802b1bea2eb328403af18322f4208f2dfd36"
+      },
+      {
+        "path": "src/cinematics/CinematicRegistry.test.ts",
+        "sha256": "b0e4f16ec7a54c898a311b98d3b75812adabe460b070fe59db1f4e88e51082f6"
+      },
+      {
+        "path": "src/cinematics/CinematicRegistry.ts",
+        "sha256": "a18117c7dda007f11b20125398925209ef96cc31154f3d367f9b247b37ec63bb"
+      },
+      {
+        "path": "src/cinematics/CinematicTriggers.test.ts",
+        "sha256": "8d18eaba5b648bfb3d46208919e57cf2c202ee461e17b8af75f4411b8518bca7"
+      },
+      {
+        "path": "src/cinematics/CinematicTriggers.ts",
+        "sha256": "e53e891c352cd13ae6fa07431e6fe6df87d4c2a80b420503131aa424274a4011"
+      },
+      {
+        "path": "src/cinematics/CinematicTypes.ts",
+        "sha256": "4021162638af0b8a83e2a1f801357f7fcbb3ee3102e45cb51ce2a2a432d8941b"
+      },
+      {
+        "path": "src/cinematics/DialoguePresentationSegments.ts",
+        "sha256": "fb157ff7804d064d90c287e94faa56f99ae1a71f288a469f8b1a699e9d8dc30d"
+      },
+      {
+        "path": "src/cinematics/DialogueStagingDirector.test.ts",
+        "sha256": "ef5628b0e851b80bb745dd1177f9b668394f51a9368777615eae81584d0c3f05"
+      },
+      {
+        "path": "src/cinematics/DialogueStagingDirector.ts",
+        "sha256": "3e2917f0efba49590b8b40519a1180a6e5a54bff3b3740615a13ee72373fedce"
+      },
+      {
+        "path": "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "sha256": "a3147367f9543e4a32bf692f53e8d9c338f1d5cdb1e0e3e80709e16537986dbb"
+      },
+      {
+        "path": "src/cinematics/FinalDialoguePresentation.test.ts",
+        "sha256": "72d2e8dc700f22ac506599f569863869630f10e050561a2d999f02042de7d00c"
+      },
+      {
+        "path": "src/cinematics/FinalNarrativeContinuity.test.ts",
+        "sha256": "2d41af880d38eefed2c882f2ec2b7633defe1df8f85954745346ce682f383a08"
+      },
+      {
+        "path": "src/cinematics/FinalPresentationModeAudit.test.ts",
+        "sha256": "e7481659110ce0d0d4227aaf91b3ed298faafa76be47167813fab5f28337f9d3"
+      },
+      {
+        "path": "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "sha256": "e623aa19e5a4664177c4da210d170477084e3bf088d56fc68d22bf4d1b8af8a0"
+      },
+      {
+        "path": "src/cinematics/JourneyBackdrop.test.ts",
+        "sha256": "9b86bf8e041dcb5bb8dac201b178dc1c6755ee5d6e23d4c3bc2718cdb450fdb3"
+      },
+      {
+        "path": "src/cinematics/JourneyBackdrop.ts",
+        "sha256": "cea7db538bb6b131a3a3a9678140e9362a5723afd97cf9c0ac929870e88b8f41"
+      },
+      {
+        "path": "src/cinematics/JourneyOverlay.test.ts",
+        "sha256": "a0a8e14f2521dd57d50da45b3ac96a6ac7c305b4e25084d8c6a0fcd40cae8c3d"
+      },
+      {
+        "path": "src/cinematics/JourneyOverlay.ts",
+        "sha256": "e742104ff5d55daaa674e1e2e3084378a61a8c507370af60bd987e38455b7097"
+      },
+      {
+        "path": "src/cinematics/JourneyQaScenarios.test.ts",
+        "sha256": "725b40a8fab30abd3851eab5665ee9b6b13dcc247ba5a489c0fa84398f8f3137"
+      },
+      {
+        "path": "src/cinematics/JourneyQaScenarios.ts",
+        "sha256": "5cf427814e3e605b9ec97299705c44b43e3a7b1c2aa5b726ff170ee1ed8bfe8a"
+      },
+      {
+        "path": "src/cinematics/JourneySession.test.ts",
+        "sha256": "906cd32fe8e0c32815010811884f73ba843a6b86b5413c1ee539486c46335c21"
+      },
+      {
+        "path": "src/cinematics/JourneySession.ts",
+        "sha256": "14ac12476f4c3a990cba375dac3b0793305197289d9b70504abe6e8b92e0de20"
+      },
+      {
+        "path": "src/cinematics/JourneyTypes.ts",
+        "sha256": "b3ea95a36aa226ab27df8c25b9e6c77ea606d9053e77f95cf9fc3bd7ce03b0af"
+      },
+      {
+        "path": "src/cinematics/NarrativeBeatDirector.test.ts",
+        "sha256": "05ca3cdbc75c06e5bd8e6ed31ed1c8fa392273acf83230106003e598372acf69"
+      },
+      {
+        "path": "src/cinematics/NarrativeBeatDirector.ts",
+        "sha256": "b3458ef58b12d681541edf9225f65e33777876557bfc6565d4b2176c3b9c0df0"
+      },
+      {
+        "path": "src/cinematics/NarrativeDialogueAdapter.test.ts",
+        "sha256": "c2eb1cbe02abd2e57e5d3f4f53018c9740438d38ce699c252efcb96bbb626ade"
+      },
+      {
+        "path": "src/cinematics/NarrativeDialogueAdapter.ts",
+        "sha256": "5fbed2594f992fc71f20de844b06c3cf7c6e54170971ccc5fd62a44a35d3ac3c"
+      },
+      {
+        "path": "src/cinematics/NarrativeMediaPlanning.test.ts",
+        "sha256": "280e1e16dd2faf2c48953f9cc79b3aa77c8162a5f884ab2b64b11033a5568058"
+      },
+      {
+        "path": "src/cinematics/NarrativeMediaTransition.test.ts",
+        "sha256": "b9591c0ecbd5f65a675a78924d328fd6ae719bc9483ba7c2f32d659092f81980"
+      },
+      {
+        "path": "src/cinematics/NarrativePresentationDoctrine.test.ts",
+        "sha256": "2f498e8d9aa35923b7c07f4f44fbb2914f9af266ceefbf2e6f22e6853956d7d0"
+      },
+      {
+        "path": "src/cinematics/NarrativePresentationDoctrine.ts",
+        "sha256": "992d37906fed7430f9706ebaa067ff37572f9ed20150385c4f10bc682f7475cc"
+      },
+      {
+        "path": "src/cinematics/NarrativePresentationMode.ts",
+        "sha256": "bff41de1817307d394e4b74f39dc46f7ae32b9e43ac9f59b1f63a47160ae491e"
+      },
+      {
+        "path": "src/cinematics/NarrativePresentationPlans.ts",
+        "sha256": "d0b4ad649a5e3bcca3b2d6f4c285b272be85be32acdb275bcf3801c071495993"
+      },
+      {
+        "path": "src/cinematics/NarrativePresentationPolicy.test.ts",
+        "sha256": "b83cf0bb844bbb9f7d81c928a39ed321d6d7bf01bb296f24bcb1e8f3e208883b"
+      },
+      {
+        "path": "src/cinematics/NarrativePresentationPolicy.ts",
+        "sha256": "975ecdb5bc0ef9a0d43aad9f1e0775b16bac82d5e1a5f376dbe2c75638c9b17f"
+      },
+      {
+        "path": "src/cinematics/NarrativePresentationResolver.ts",
+        "sha256": "092ce8c44473e1f2b7b3263a91f7e772c3fe2d3418e726c6a41cae182bbda00a"
+      },
+      {
+        "path": "src/cinematics/NarrativePresentationRuntime.test.ts",
+        "sha256": "5a46086bd9205f86b742e2282ea77e6b25036d84dba6341ab2d31a80ac02470c"
+      },
+      {
+        "path": "src/cinematics/NarrativePresentationTransition.ts",
+        "sha256": "1f6e8ef081565d7cf9d7ed9bbff173be0d9ff7086017c048c44a7ea7266667da"
+      },
+      {
+        "path": "src/cinematics/NarrativeSceneSurface.test.ts",
+        "sha256": "936033baa3694c148c464d4236cad6ac35b31ac91630c46d33f78c2899bf1d28"
+      },
+      {
+        "path": "src/cinematics/NarrativeSceneSurface.ts",
+        "sha256": "36db76b6e4a3d6da1e8e516b5923e2e285dc5a4b0d0be55d5acea5728df738c4"
+      },
+      {
+        "path": "src/cinematics/NarrativeStage.test.ts",
+        "sha256": "947bf9c18cac5805781332fe70008d3f7b425df4a00ba28108ecbca1cdc5909a"
+      },
+      {
+        "path": "src/cinematics/NarrativeStage.ts",
+        "sha256": "88e4496fdcf93bd4e56845476ff69396e2e15be4d6b5cf7f31a78e0d3ba3eeed"
+      },
+      {
+        "path": "src/cinematics/NarrativeStagingAudit.test.ts",
+        "sha256": "d5a116b5d5c3087e30656ef134461cd9e67a2f60c83e0333530d50865142925a"
+      },
+      {
+        "path": "src/cinematics/NarrativeStagingAudit.ts",
+        "sha256": "487e6e29e21e473f886604720c0c442ee022bfeec25bdffb253c20149165e522"
+      },
+      {
+        "path": "src/cinematics/NarrativeSurfaceReadiness.ts",
+        "sha256": "fab3ca60c30f6eda307f44c4c67032c92e3c1c7461c73820f69b9b7d0ce6f55a"
+      },
+      {
+        "path": "src/cinematics/NarrativeTableau.test.ts",
+        "sha256": "cd1c8b016e4dcf91613eb57ba586554745b080e80d2da9ac18a9154b96b849d6"
+      },
+      {
+        "path": "src/cinematics/NarrativeTableau.ts",
+        "sha256": "0e2e1c3c9096beff1500bd5fed8f75298aee9c277a59a70b423f33499949bdaa"
+      },
+      {
+        "path": "src/cinematics/NarrativeUtilityDock.test.ts",
+        "sha256": "2d5869728e8a2dadef66aa84625084f9c8d69d3d34d1d96af555a663936510ab"
+      },
+      {
+        "path": "src/cinematics/NarrativeUtilityDock.ts",
+        "sha256": "da4ad5a0baeb3fc046de7c97b536610d24cfef2f659ec6c9109b0e470dc230ac"
+      },
+      {
+        "path": "src/cinematics/RuntimePresentationStepCensus.test.ts",
+        "sha256": "8b596a73fdd0ca87c164a9166fced2d674fc64530b28fe6b086e07e3c4984225"
+      },
+      {
+        "path": "src/cinematics/RuntimePresentationStepCensus.ts",
+        "sha256": "3a4184f78428deea8fe5fd2ec56279c07b61fa9daeb93c926a2c7c78b3f5bed7"
+      },
+      {
+        "path": "src/cinematics/StaticTableauComposition.ts",
+        "sha256": "b9ea5d1a8660dd2d66f6d0e4e314a8a10af7947a0ae960c71328dee0b3edcf82"
+      },
+      {
+        "path": "src/cinematics/TravelStillSurface.ts",
+        "sha256": "0523a2775c330e1c2e902cc6023a66fcdbd6f180a3740b5e174fd0029377a271"
+      },
+      {
+        "path": "src/combat/CombatBridge.ts",
+        "sha256": "ac929429c9f9ed45f24f6a30e0084944293c4354bb5b66783276f36880f9f6ff"
+      },
+      {
+        "path": "src/combat/StrategicCharacterVisual.test.ts",
+        "sha256": "668f355fc0570210a3ce8b515830864f88b1980b9a56bc1399c56b5ac7b526cc"
+      },
+      {
+        "path": "src/combat/UnitFocusController.test.ts",
+        "sha256": "78a08225f53c04f7cc5655f1699637384eddd0f8d91571511cf641257e72dc33"
+      },
+      {
+        "path": "src/combat/UnitFocusController.ts",
+        "sha256": "8164414b93dc58d61ac82df898e63ebc7e2bf37cd34ad2c6a62b3f0149cfbc81"
+      },
+      {
+        "path": "src/combat/UnitMotionWorkbench.ts",
+        "sha256": "944696d531712ac4b5f5e821363df95bf10620cc4285ee4d8e5c68f2d23a0107"
+      },
+      {
+        "path": "src/combat/bossIntentPresentation.test.ts",
+        "sha256": "ffe5350c258bb8cd97900b7677eca94fd16581f95a1fa1e525fa7b3afd7ee903"
+      },
+      {
+        "path": "src/combat/bossIntentPresentation.ts",
+        "sha256": "8a7af649503334c493eb3bac49c99e1dcedf90909f998dbcb596adab959aaad1"
+      },
+      {
+        "path": "src/combat/combatCameraFeedback.test.ts",
+        "sha256": "345ce401400328ce867e7bfa5a3bb6fdb5437de61458cfbbb9d8789e20743c7f"
+      },
+      {
+        "path": "src/combat/combatCameraFeedback.ts",
+        "sha256": "29352e0e91cd511c055feb944bad8dd6009011d6820d94cf88cb1195e4b4f7b6"
+      },
+      {
+        "path": "src/combat/combatExhaustion.test.ts",
+        "sha256": "c59653bd38c67814431be632f35b74a3a3c8df8a3500b449e71456fb6f18d6ba"
+      },
+      {
+        "path": "src/combat/combatExhaustion.ts",
+        "sha256": "30565dbffe61a66152531b84e745ed814709095527b9397544b57dc5b6d73e24"
+      },
+      {
+        "path": "src/combat/combatFeel.test.ts",
+        "sha256": "fe8aca2b3c4916d1ac5793dc0f05a71a256e3916f7799ef005b65c9d8d93b261"
+      },
+      {
+        "path": "src/combat/combatFeel.ts",
+        "sha256": "6408db2f4a57e19b2edeae3840b69cc733c6bbe4c4ca8de0b2deab75b00a7842"
+      },
+      {
+        "path": "src/combat/combatHudPresentation.test.ts",
+        "sha256": "f7260c39c95ce95e012d0c911857e400a8a7ae00b34afedaaa1ed8258a751c9a"
+      },
+      {
+        "path": "src/combat/combatHudPresentation.ts",
+        "sha256": "18fa552b541e25511f7042e9a58acfaec50e2e4986cec30b7d478b51badad169"
+      },
+      {
+        "path": "src/combat/combatKeyboard.test.ts",
+        "sha256": "8f831709404663bffd0d03f9746c94482aa994deef4e0add69d15af076931935"
+      },
+      {
+        "path": "src/combat/combatKeyboard.ts",
+        "sha256": "b7a0694ebf8af469b5c99a83076a2ff2dde1ec1b5ac74db0649ceb7cb0b03eb4"
+      },
+      {
+        "path": "src/combat/combatPresencePresentation.test.ts",
+        "sha256": "987cd8021cd13e589cfd1d5b8e28ac0e0b5604650cc77c44aa8da9d2316c735e"
+      },
+      {
+        "path": "src/combat/combatPresencePresentation.ts",
+        "sha256": "486ce625f33f2a6a21f09186749d2934cedf9d91394af5d6935d72f1d1f39227"
+      },
+      {
+        "path": "src/combat/combatPresentationConfig.js",
+        "sha256": "1f764fee577844e2cdcf4f47ce1813c4f9d2a1c7261dbf08ee183ca1772aa097"
+      },
+      {
+        "path": "src/combat/combatRenderLayers.test.ts",
+        "sha256": "dcff6745a1f66e0bb5cc9fb2651fdbd63a78d75f5f6ea45670f5ecde550654b1"
+      },
+      {
+        "path": "src/combat/combatRenderLayers.ts",
+        "sha256": "039838c1f5e09aff2b95b085056d02abc8b3f6582b7abf6473c428926a93bf3b"
+      },
+      {
+        "path": "src/combat/combatShellPresentation.test.ts",
+        "sha256": "a626dc3411574e64e3f940cbf3f7cab17f587e2d951d2fdf7cc888bfd8b7845a"
+      },
+      {
+        "path": "src/combat/combatShellPresentation.ts",
+        "sha256": "823e6826c0b0dd55bae7247cca88751c437c682b84dd4d0701f0bb3464b81171"
+      },
+      {
+        "path": "src/combat/combatVfxPresentation.test.ts",
+        "sha256": "9f23659831f002169e37ef373611f9e79ebe9e306888ba4615f6ce372c4643d3"
+      },
+      {
+        "path": "src/combat/combatVfxPresentation.ts",
+        "sha256": "31720d7315f3a7ae6f6a3255245b161f2e29939f6240c3ca8930ff0fe5af0f00"
+      },
+      {
+        "path": "src/combat/combatVisualClarity.test.ts",
+        "sha256": "42deb7d0d6050cc905354059effcbca590d097d9a1bf60eafce3bbed479fd521"
+      },
+      {
+        "path": "src/combat/deploymentRules.test.ts",
+        "sha256": "8d48963c9b4d37737c662ab0ed00a8cb8a4ea3bb472a40fbc5268e1358c29f21"
+      },
+      {
+        "path": "src/combat/deploymentRules.ts",
+        "sha256": "d814a6281f3f08c424e8165c6b3c9aa72c7936390b56c5a33b0d457b8c30b8d2"
+      },
+      {
+        "path": "src/combat/legacyCombat.ts",
+        "sha256": "ee8a55755320bd1fe19aeb922a6de7c47b88df4a1f7d2f4321c8522fe4ea39cd"
+      },
+      {
+        "path": "src/combat/legacyCombatRuntime.hotfix.test.ts",
+        "sha256": "48ba7d9fd062ad3bd0db6c35b32e1370c482808b276a44d497faac6df7102a71"
+      },
+      {
+        "path": "src/combat/legacyCombatRuntime.js",
+        "sha256": "7679492a3b3bd18a7dc6abef04964cd45435f2138b422522dc4979c376d584c9"
+      },
+      {
+        "path": "src/combat/legacyCombatSkillSpec.test.ts",
+        "sha256": "9813d8b25cadd60bf005af3436da4cbe5cc7c0467a0dcc8c637e96da5d6ad7f2"
+      },
+      {
+        "path": "src/combat/protocol.test.ts",
+        "sha256": "65d809d05387d08de7914088561f98d525986565dc5893f5cb79acad521ab3af"
+      },
+      {
+        "path": "src/combat/protocol.ts",
+        "sha256": "ca8397ccc69d5094a5e40ea86ca70361f5ef1b1224a3ae3267628ed54a60db57"
+      },
+      {
+        "path": "src/combat/skillPresentation.test.ts",
+        "sha256": "2ffcacaa21510c17e7f0eed283c6300e1c4ee3c3c9af7bc8a7474d2be865121a"
+      },
+      {
+        "path": "src/combat/skillPresentation.ts",
+        "sha256": "cbf33e96b86157341257cf5144961233fa6a45d32190577d037c6512a0023bdd"
+      },
+      {
+        "path": "src/combat/stage/CombatPoseQaWiring.test.ts",
+        "sha256": "4356fab931eb4be73e97f4d04ca06ac32b28f9a831d941486b78c02df2bc3a1a"
+      },
+      {
+        "path": "src/combat/stage/CombatPoseRegistry.test.ts",
+        "sha256": "86c774676bf60d619e6466121c57ed6aa17d9e0e90dc30aee532003dc5fcd74e"
+      },
+      {
+        "path": "src/combat/stage/CombatPoseRegistry.ts",
+        "sha256": "fd2582737771fb282a70a88208ab661658d6b3786c4f3804ddb331ff50d1cf3f"
+      },
+      {
+        "path": "src/combat/stage/CombatPoseVisual.test.ts",
+        "sha256": "85446736bc869239ac93d2e45f118a1ddd27ff3497e2f02597249c61cbfaeb1e"
+      },
+      {
+        "path": "src/combat/stage/CombatPoseVisual.ts",
+        "sha256": "ac6c6a350ffcd42cb3c733a0fbaa81ea97fb0b4dc83231cfcc128274697e2626"
+      },
+      {
+        "path": "src/combat/stage/CombatStage.test.ts",
+        "sha256": "a33f832a350c2a8c05bfbd0ce9f69c38e75831005c5602271db9fedde4e826fb"
+      },
+      {
+        "path": "src/combat/stage/CombatStage.ts",
+        "sha256": "e7b12b69f6299ee526a113e90ae52ee9924d8f8597f51874c048d55baf019e6f"
+      },
+      {
+        "path": "src/combat/stage/CombatStageCasterMotion.test.ts",
+        "sha256": "94d15bd9f3d44509e33581fa076d34f4f395d9276385a160195f2f2ea8e69622"
+      },
+      {
+        "path": "src/combat/stage/CombatStagePose.test.ts",
+        "sha256": "27d65f2dba33293524646319eade469bc48f1ff1669d49b743d19ea00996609f"
+      },
+      {
+        "path": "src/combat/stage/CombatStageUnitMotion.test.ts",
+        "sha256": "eada6bb1e77361c46c2ccb2a30eece30c06a5b871ef59b60549ff9a64599c854"
+      },
+      {
+        "path": "src/combat/stage/combatStageBackgrounds.test.ts",
+        "sha256": "fbb62dd48de5cc4c151bd5f49556e09ca59198ac571c20c95941d259005ba0bd"
+      },
+      {
+        "path": "src/combat/stage/combatStageBackgrounds.ts",
+        "sha256": "a7a9eba0f1e6ee21f31b431fc827ac396345815f3f5c94759125154e22362c17"
+      },
+      {
+        "path": "src/combat/stage/combatStageProfiles.test.ts",
+        "sha256": "ac62be9b6ab943caad1b1c0c0bba64245a28611effb7152c0daa81c01e1f9525"
+      },
+      {
+        "path": "src/combat/stage/combatStageProfiles.ts",
+        "sha256": "28a077cd7a1b305203c9c71370b09cca13ca1ef99e623884c91ea9203ff1b9fc"
+      },
+      {
+        "path": "src/combat/stage/factionAwareStage.test.ts",
+        "sha256": "dc64c9a61b4f092b54738ffb0b275379304d0ff56dd2e502eed4faa7c88016f4"
+      },
+      {
+        "path": "src/combat/stage/r0b2UltimateAftermath.test.ts",
+        "sha256": "404ed097d4a0c689ddb548b718175c3456da546dbdda6d399423d54f0f3d0ad5"
+      },
+      {
+        "path": "src/combat/stage/r0b3DedupKoRevive.test.ts",
+        "sha256": "8f12904a97f3ab0f34876fd64c2fc5a75247b14bbcadeb29e1ed231e27cf7786"
+      },
+      {
+        "path": "src/combat/stage/r0b4KillApRouting.test.ts",
+        "sha256": "c560d2a37141677a641dc30ffb8cf83c0e85d82c8d2b6749d7716172668c9269"
+      },
+      {
+        "path": "src/combat/stage/stageRoutingAudit.test.ts",
+        "sha256": "e95fa7582b03cb5bfe6011b97c423fba0dc377a09b4a0588e756fb769f1b1135"
+      },
+      {
+        "path": "src/combat/statusAnchorPresentation.test.ts",
+        "sha256": "9d9357706f0d4e4dc595ef1dac40571bcb629ab0b14316544b755a9944555f88"
+      },
+      {
+        "path": "src/combat/statusAnchorPresentation.ts",
+        "sha256": "70e01972e0440d0c61102341d1439dc8185fcba5379637b4942f34992b832946"
+      },
+      {
+        "path": "src/combat/statusPresentation.test.ts",
+        "sha256": "81ef92a3e2e6bd38c877127717820b97f56de4dae669100e90ab3fb76ef99817"
+      },
+      {
+        "path": "src/combat/statusPresentation.ts",
+        "sha256": "2be1fa8a2984ed21a6aa2f01b2d470bf4cbbf42194305fb77e79ac215b7df39d"
+      },
+      {
+        "path": "src/combat/unitMotion.test.ts",
+        "sha256": "98038d2303c867c4dd19031aea8d2a3c776b39a891f46bfd5312465e1533014f"
+      },
+      {
+        "path": "src/combat/unitMotion.ts",
+        "sha256": "41aa57b23aec4416efe8ad388b6cf8901e4558d9beda5c53a2e21e32ce3f08a3"
+      },
+      {
+        "path": "src/combat/unitVisualState.test.ts",
+        "sha256": "6ca608ae0d19afee001b4fb6f2027338d058105ee2a488f58a733be0034576a3"
+      },
+      {
+        "path": "src/combat/unitVisualState.ts",
+        "sha256": "1600b31b2517e3b4d89c88822c54a38fff8a75ba8380a0cba783b21e14eebb09"
+      },
+      {
+        "path": "src/combat/vfx/BatchPublishPlan.ts",
+        "sha256": "cc58858916d892dffd47bbe372b9546eedf641bd3445014f88816a62cc1ae2ab"
+      },
+      {
+        "path": "src/combat/vfx/CasterMotion.test.ts",
+        "sha256": "1766f5ab81f59a79ad2a5658fe1e5b36eabc3aa53f823ac7ea112828bc30e414"
+      },
+      {
+        "path": "src/combat/vfx/CasterMotion.ts",
+        "sha256": "cad3458314ad1745d7071ab0a56dabde81c601843c1b2d4631a5203ff6fedb60"
+      },
+      {
+        "path": "src/combat/vfx/CasterMotionBackCompat.test.ts",
+        "sha256": "eb6edf1bbd6af9059673176e6a2f51dae945ff52bf5b9d53fec5e5abcaa8f961"
+      },
+      {
+        "path": "src/combat/vfx/CasterMotionPanel.test.ts",
+        "sha256": "13a48d1c2c88b8a5876aeaf86e51a740c80bdff924bbef7cbc5106461a26fae7"
+      },
+      {
+        "path": "src/combat/vfx/ChoreographyBeats.test.ts",
+        "sha256": "321fc7200d245bce8f6cd6884c58c0aee54f4e3d9e4106cbd070f2b11ff4fff9"
+      },
+      {
+        "path": "src/combat/vfx/ChoreographyBeatsUI.test.ts",
+        "sha256": "07f896b773ddfed5bfe287a45a8bb8e9ee34e40e86657fc032caaf39bcf33742"
+      },
+      {
+        "path": "src/combat/vfx/CombatVfxComposerPanel.test.ts",
+        "sha256": "5bbaf68c9d4f0a261977b010aeb5cf921f723816e2e91d9b9258606ee84c54d6"
+      },
+      {
+        "path": "src/combat/vfx/CombatVfxComposerPanel.ts",
+        "sha256": "7fbed4b64d460c584b4b202c9188768f5cfbe9535b9e128a39ade2ebf514157b"
+      },
+      {
+        "path": "src/combat/vfx/CombatVfxLab.ts",
+        "sha256": "3bdde65b19582737c1ca229779f8cc10c6a715c7094649948625c494e5edd419"
+      },
+      {
+        "path": "src/combat/vfx/ComposerStagePlayback.test.ts",
+        "sha256": "508e4ebaa53e2792cb014228fb4d7f8fd968554940e2da223eeac0246f1f37ad"
+      },
+      {
+        "path": "src/combat/vfx/DemoVfxActionScope.test.ts",
+        "sha256": "3e0f93d04c5bcfe6a465bc97afb8b0f505dc6c7c16a910e714a4511165995049"
+      },
+      {
+        "path": "src/combat/vfx/DemoVfxActionScope.ts",
+        "sha256": "4cd00d1777c439efc0f8c7e6827ff74656e5ec175829b12fc6df61426a690fa9"
+      },
+      {
+        "path": "src/combat/vfx/DemoVfxWorkload.test.ts",
+        "sha256": "d6c281116c71c98cdd1643917647c0df50f63fa4bb1585444bb371bb021b8165"
+      },
+      {
+        "path": "src/combat/vfx/DemoVfxWorkload.ts",
+        "sha256": "481c7b745acb96840fa9820942987bf4194a163cc673ff98ed255932063f04fa"
+      },
+      {
+        "path": "src/combat/vfx/PublishedVfxRegistry.test.ts",
+        "sha256": "d2c9dcd95a26a942b11796d3471348f3e9746544931a4d88474dcbea38bef11d"
+      },
+      {
+        "path": "src/combat/vfx/PublishedVfxRegistry.ts",
+        "sha256": "b33178ef4bbee08077fc912f447299538349e8c308fa2ab3fa94df84be1a3fc7"
+      },
+      {
+        "path": "src/combat/vfx/PublishedVfxResolver.test.ts",
+        "sha256": "1f59aa1b5efe1c581a4c1029e0afcf664cbc9d091963405b6c0ac8ee78142064"
+      },
+      {
+        "path": "src/combat/vfx/PublishedVfxResolver.ts",
+        "sha256": "32e5103177f84a79f801a87be3964ab464dbec8dc84e0d5712b237e06b80a835"
+      },
+      {
+        "path": "src/combat/vfx/UnitMotionPose.test.ts",
+        "sha256": "6d8d0b9f8a2b36f4082f2abe4146d309e97f7f9c89a563ce1920e36565debab1"
+      },
+      {
+        "path": "src/combat/vfx/VfxActionCatalogue.test.ts",
+        "sha256": "a22c5520d926deefe2a606aeee51a49c5ea85d5aa39451e8de080b1556baf647"
+      },
+      {
+        "path": "src/combat/vfx/VfxActionRegistry.test.ts",
+        "sha256": "66815a1e6f5f92aa8d748695c84b7f1a2a45a6e3c45d09db052b2dafb2c03209"
+      },
+      {
+        "path": "src/combat/vfx/VfxActionRegistry.ts",
+        "sha256": "7db6ebd411612b869d106180fa099ff8074b63c8fb4e616730c4c3fb68662b4d"
+      },
+      {
+        "path": "src/combat/vfx/VfxComposerPlayback.ts",
+        "sha256": "b4f56e6c1962596e40bb89b02c0c858abe5fcb2b6603f52a5093168f4c7cd881"
+      },
+      {
+        "path": "src/combat/vfx/VfxPlacementTransform.test.ts",
+        "sha256": "fc2cb12c1e595893a3a35cf18575152453aa5ed8a65108d23ccab7d6eccca1bf"
+      },
+      {
+        "path": "src/combat/vfx/VfxPresetComposer.test.ts",
+        "sha256": "edb9afb53ca8e36a8da9b5935c81f1655879f1a39b6fce604210526869c132d8"
+      },
+      {
+        "path": "src/combat/vfx/VfxPresetComposer.ts",
+        "sha256": "275f65e6a4e3a700ed0f03e255ad5c5c355ee3ff2df8fe5c8e6ce5cb8fbb1be3"
+      },
+      {
+        "path": "src/combat/vfx/VfxPresets.test.ts",
+        "sha256": "3b066a98f7e3307e78fb922bf4482fbaec75f82ac1411dcf3457889b6b55ec27"
+      },
+      {
+        "path": "src/combat/vfx/VfxPresets.ts",
+        "sha256": "bd6c0a5fb1bed5daba0e07e797da898cf6a34914068da7a0faafef13cc9ead6c"
+      },
+      {
+        "path": "src/combat/vfx/VfxPreviewResolver.ts",
+        "sha256": "47b335846d67e6a218d56d48370d7796f6cde3c5873bcbfc2c8ee874144f764f"
+      },
+      {
+        "path": "src/combat/vfx/VfxR3F.test.ts",
+        "sha256": "691dd8d7132287e192322d3d8d327f11424b42062c60185ac1f34925f8e7cc79"
+      },
+      {
+        "path": "src/combat/vfx/VfxResourceManager.test.ts",
+        "sha256": "9b0a51fab48495c8d7fdec6e6140cf8ce4d54b134296350268386587525ea905"
+      },
+      {
+        "path": "src/combat/vfx/VfxResourceManager.ts",
+        "sha256": "74cadac5a583b6b5ec287d6f3ceaf8afe80e23d1093b52dc5d4a2dda44ce4df9"
+      },
+      {
+        "path": "src/combat/vfx/VfxRuntimeParity.test.ts",
+        "sha256": "216ad70af45d01555581f71089d96b13f33ab2b9ca5270f7d313258662a498d9"
+      },
+      {
+        "path": "src/combat/vfx/VfxRuntimeReadiness.test.ts",
+        "sha256": "76adeb4d08e77067dadaa4114736919f099b50cf2e93f07e15b746993b037c42"
+      },
+      {
+        "path": "src/combat/vfx/VfxRuntimeReadiness.ts",
+        "sha256": "a396722e41ab19a2a91e5274ecbd19c4069b960ac0a83c46fa1984f0657a6e31"
+      },
+      {
+        "path": "src/combat/vfx/VfxSourceSuitability.test.ts",
+        "sha256": "b8685053e153fb711913eab90ed652f27c57304fa50f3e8ed60a7940ecd51eac"
+      },
+      {
+        "path": "src/combat/vfx/VfxSourceSuitability.ts",
+        "sha256": "38270aab916472c935d1f4306dc5fbfd6b0bad30dc3a7a786e2639eca66cb822"
+      },
+      {
+        "path": "src/combat/vfx/VfxSpriteSheets.test.ts",
+        "sha256": "b916beb48607ed55f669a53b8dab4ebaf9f8854ae35780388ca3a1797103dce5"
+      },
+      {
+        "path": "src/combat/vfx/VfxSpriteSheets.ts",
+        "sha256": "9c782b526b9801bebf52a4cbe923441eadeb8f7aa349d6f218c3da79f50617cd"
+      },
+      {
+        "path": "src/combat/vfx/VfxSystem.test.ts",
+        "sha256": "8490297cfb4893659de7496711c5268d85c401844439e73923ad2c3c527d31a2"
+      },
+      {
+        "path": "src/combat/vfx/VfxSystem.ts",
+        "sha256": "c8a07247f8da6bc9a7a943e81aecc9eb361ffd1702b633bc7eaf080f81fdfae0"
+      },
+      {
+        "path": "src/combat/vfx/VfxTextures.ts",
+        "sha256": "23a67df2539e86d0c398b04e9c1db2a60427a9dab81506c36d72ce76409d58a9"
+      },
+      {
+        "path": "src/combat/vfx/VfxTypes.ts",
+        "sha256": "0fe28a0fbe757245392fc4179e8e0dbcce1a24c8f7f3e3eb83963c7296c1faf6"
+      },
+      {
+        "path": "src/combat/vfx/VfxV2_6AuthoringPolish.test.ts",
+        "sha256": "c30dde2600f3c7611e3e53ae345074bfa33e072796dcd388944936e67b044632"
+      },
+      {
+        "path": "src/combat/vfx/VfxV2_6_1ScreenShakeReset.test.ts",
+        "sha256": "0df1456768110da9b1ebda7f9f35140d41cd015c782e88e6e3130610839de5e5"
+      },
+      {
+        "path": "src/combat/vfx/VfxV2_6_2BatchPublish.test.ts",
+        "sha256": "c66bbccb5a6a06e264a46333b2d8f237d090af965ad2f6140a1d972acce40970"
+      },
+      {
+        "path": "src/combat/vfx/VfxV2_6_3DemoScope.test.ts",
+        "sha256": "e3947d3a167f13024179bbfc1ca2b60cb9a6dc5c66fca3a4d963e21c616238ea"
+      },
+      {
+        "path": "src/combat/vfx/galleryAnimationFix.test.ts",
+        "sha256": "6fb368c3cf18985755eac76df0bcd6df1b51fed25d1a1ae9b28c049f9d47c9bb"
+      },
+      {
+        "path": "src/combat/vfx/generated/published-vfx-presets.json",
+        "sha256": "4951b2d22f5fce42131bf46aad6d2422aa098b5881bbaccee33291c01eda1e3e"
+      },
+      {
+        "path": "src/combat/vfx/spritesheetPng.test.ts",
+        "sha256": "bd114c4586fd4db736e4eac69152b827dc79c0d7fd23d3cbf8c3948e63abf24b"
+      },
+      {
+        "path": "src/combat/vfx/vfxRuntimeRegistry.test.ts",
+        "sha256": "3b4e0551a3bb7bbbb9758c3d2cf2354d34029dc8a21e4771c1ffe40fe2258428"
+      },
+      {
+        "path": "src/combat/vfx/vfxRuntimeRegistry.ts",
+        "sha256": "44c3012d1ce80440546a296f122a9c7e277ec64923e83942da96471bdfa7bbc8"
+      },
+      {
+        "path": "src/dev/vfxDevHelpers.test.ts",
+        "sha256": "8b3ad1c32fdeafbe2e242121f3712c261151a7434f123c901d43d847d6d35bd5"
+      },
+      {
+        "path": "src/dev/vfxDevHelpers.ts",
+        "sha256": "947d00a40fc980c308313f986f0c15f41b5bee4f907784282d870b2e6a625cde"
+      },
+      {
+        "path": "src/dev/vfxPublishDevServer.ts",
+        "sha256": "2c2c725b05822bac2bbd5883b1bdb018c7c24ff167c8ff91bbfb7b0d6f0f69f5"
+      },
+      {
+        "path": "src/game/GameApp.ts",
+        "sha256": "8a70f8ee34445c46501931274ab7eb076f1020ab58fbeb20deacda0ef1134ede"
+      },
+      {
+        "path": "src/game/GameAppRouteReward.test.ts",
+        "sha256": "999e0b2e847a2ec236969d0d4a625c041571ff1ccc9d009344fd82d177115548"
+      },
+      {
+        "path": "src/game/RuntimeDialogueReachability.ts",
+        "sha256": "cd9a580bf92e18c3ab91ac558ef0075c5035631d5efcdcdcd8c8d7035fe5c345"
+      },
+      {
+        "path": "src/game/TraversalOptionalConsequencePolicy.ts",
+        "sha256": "b41611316a91b54c41eeaa703b3c5f3a68d95c10408a5c6d5b9abf5eb7425964"
+      },
+      {
+        "path": "src/game/campaignGrammarConsolidation.test.ts",
+        "sha256": "2e478385bc79785f1c1e34d752d030d32a43bb20cd362122484ca8033e0b034f"
+      },
+      {
+        "path": "src/game/campaignGrammarContent.ts",
+        "sha256": "d9eb6d8c810634a97dbd5941caf3204bcb69eb48c73eee31fe86d68921a03ff5"
+      },
+      {
+        "path": "src/game/campaignPresentationMigration.test.ts",
+        "sha256": "197e3f2602e000fc5cc1848c3b7caf1bf8298e327e6c282ed5942678db8cb6be"
+      },
+      {
+        "path": "src/game/catalog.ts",
+        "sha256": "151880c8d11e3bcde8c78355ad1a49ab2fae0f57fd636180cb5e19efc366f9b6"
+      },
+      {
+        "path": "src/game/cin2CampaignBridge.test.ts",
+        "sha256": "d9778f18759b721a51a03d5e944b6faba45a74252d7a19fdcb9253e2aa54ff29"
+      },
+      {
+        "path": "src/game/cin65CinematicDialogueIntegration.test.ts",
+        "sha256": "e97d0cfe1b10c3a64aa732ada36851c1c3b52e3f440300b6aa8ccd1acdf97c2f"
+      },
+      {
+        "path": "src/game/cin67NarrativeStageIntegration.test.ts",
+        "sha256": "78267b6ed6db272a1a604ebec710d2e1b0eb5b8fe033ca18bf47a491ffedc14b"
+      },
+      {
+        "path": "src/game/cin6aVerticalIntegration.test.ts",
+        "sha256": "9bf873cb853229ca7926858700c7fa7eb1b184a276dc4c01dcebb78d8b986954"
+      },
+      {
+        "path": "src/game/combatProgress.test.ts",
+        "sha256": "cd65d249058e1f5b5cccbea0862b1995abca0eeffee47c1baf99a510850d0968"
+      },
+      {
+        "path": "src/game/combatProgress.ts",
+        "sha256": "f862f199954eee86f1c285a3e220b666bbdaeb480bbb5a7800cb4a750f803dbd"
+      },
+      {
+        "path": "src/game/content.test.ts",
+        "sha256": "73242a4ed83b1bda74ba68d172c882c185a72ab6f62bbce01c54fd5718a52490"
+      },
+      {
+        "path": "src/game/content.ts",
+        "sha256": "1dc408feb32f7f791af5cc386f490c8917eda2b167f9545003e1773b58c43e68"
+      },
+      {
+        "path": "src/game/contestResolution.test.ts",
+        "sha256": "05a3ce33f541e8c77079ae3ee7aed11237eb18c6c40e48a836425cabddb04f6b"
+      },
+      {
+        "path": "src/game/contestResolution.ts",
+        "sha256": "a69d2cc0ab06d0ef92b3b503e433a8a73f386566ed6aa00d7251d352433e7832"
+      },
+      {
+        "path": "src/game/contextualDialogue.test.ts",
+        "sha256": "7d6ddfb0ccd21be7f6d4fe2c31ce5782b34ac1d94925032d0da03471a5d967ed"
+      },
+      {
+        "path": "src/game/contextualDialogue.ts",
+        "sha256": "6669be09319372808b2c49d75959f30075b7a30af290a9bb492ac22f46a8a38d"
+      },
+      {
+        "path": "src/game/contextualDialogueContent.ts",
+        "sha256": "caa428db0036500dfda108145304b893a98dbded71ce7f5f22b2ee30111dd0f6"
+      },
+      {
+        "path": "src/game/dialoguePresentationShape.ts",
+        "sha256": "5a3a208f0b534bb532971f22a49156cf3fd316a80a44fd09837b70ee9fed70ab"
+      },
+      {
+        "path": "src/game/lionFinale.test.ts",
+        "sha256": "3942ca4697eb4be2aa74f1b5ef536b5ccf204822a653451fbebc8db4e25b5bcb"
+      },
+      {
+        "path": "src/game/lionFinale.ts",
+        "sha256": "3d6cdc02af29607e243524177aa3aeb66715834c61990aea34c991cfa5bb6740"
+      },
+      {
+        "path": "src/game/lionNarrative.test.ts",
+        "sha256": "de1a94c6ede484b1cbd2cc8d75607ff8b0a360501f7b961fae3fad5564d4ccb5"
+      },
+      {
+        "path": "src/game/lionNarrative.ts",
+        "sha256": "bb4e2f2107e2c4fd628cf1d2897df318e0b5c8abb83392518b244da98c11c63e"
+      },
+      {
+        "path": "src/game/lionVerdict.test.ts",
+        "sha256": "fb8d80a042ebd592cb91b2194ceafb59352d0cc145c637304351677125e0ad98"
+      },
+      {
+        "path": "src/game/lionVerdict.ts",
+        "sha256": "08cfee56882c0a3c8c3994535ff76921c95c51c51a8779f77f4ffe3ca506ee7c"
+      },
+      {
+        "path": "src/game/management.test.ts",
+        "sha256": "533c8843754a5835bbc7f8d442293956d880a5b10d650a79f0151256acb83e42"
+      },
+      {
+        "path": "src/game/management.ts",
+        "sha256": "834324be86f801150c73e670ab5d6385c5b04617e83ebb392c47c1bc7452bad7"
+      },
+      {
+        "path": "src/game/prologue.ts",
+        "sha256": "328c2c6c42fd5563f8edc69cc3c1c8f3adb1502140d9f67ed58bc2ba91669d38"
+      },
+      {
+        "path": "src/game/r5NarrativeContent.ts",
+        "sha256": "1b12f2b791625ff86d0ca177437767dc29d1e05757fb73516eb0943937158404"
+      },
+      {
+        "path": "src/game/r5NarrativeExpansion.test.ts",
+        "sha256": "92c319e64ecd8c083b7f53d408b818ee0d1664d4e3008992774698b80b3520f9"
+      },
+      {
+        "path": "src/game/r6FullRouteIntegration.test.ts",
+        "sha256": "93c68cd96078e4274b57221ccf56b12c5ddc13a909b12fc1549e90dbfca72ee0"
+      },
+      {
+        "path": "src/game/refugeHubContinuity.test.ts",
+        "sha256": "e4386897516ddd183d2f512af4aa6f9c822afc17fa1ce3d9f4af2d06b55f1806"
+      },
+      {
+        "path": "src/game/reputation.test.ts",
+        "sha256": "db4743cc07104d36e1d5fa6262285fcdf50628c9ac9858bd5b79c7119b97d4f9"
+      },
+      {
+        "path": "src/game/reputation.ts",
+        "sha256": "71e498d51ec7c2e9fda2779f89666defc3e4715dca985230b78eb1a6e9ac40d0"
+      },
+      {
+        "path": "src/game/reputationEventContent.ts",
+        "sha256": "c311d2b48ee355c4b9a95e12c2051d16beb019ef885a8dfcf784e28b54f26101"
+      },
+      {
+        "path": "src/game/reputationEventDirector.test.ts",
+        "sha256": "9f8a5895f8412894ba3eee85372407eb42da5f9a8d94ec5e185b8be4ba8f7ef2"
+      },
+      {
+        "path": "src/game/reputationEventDirector.ts",
+        "sha256": "3c85d6eb49e9435a7498518bc536517cd6559f031fea291ef0f7bd8a39f7c990"
+      },
+      {
+        "path": "src/game/runSystem.test.ts",
+        "sha256": "d8c4a95a8c2b2e6f4c5c3cc08a22ed9c2f5625db258aa448cce0f851e514c0bc"
+      },
+      {
+        "path": "src/game/runSystem.ts",
+        "sha256": "e63304fc82f0e060f1aed95f0cb988c0951f013a4ce4a09fa5df89e7760f53ea"
+      },
+      {
+        "path": "src/game/skills.ts",
+        "sha256": "0d4a504e8f92343c207ca70056b428e3abc22ba8a5d52e2bde7985f8ec3c2e78"
+      },
+      {
+        "path": "src/game/store.ts",
+        "sha256": "176b9829d897b2cd6f055448c5311faca1e649b025e8f0637159cd032c62d579"
+      },
+      {
+        "path": "src/game/traversalRouteAuthority.test.ts",
+        "sha256": "13c5769c634d2e78ef779a659d691d39a12a702c8b7cd82e4c0ae058d3078bad"
+      },
+      {
+        "path": "src/game/traversalT0ProductionRollout.test.ts",
+        "sha256": "bf024848e72af4702a8187ebc17c9ecb4502db164c778c5ace4b3358dc09af8a"
+      },
+      {
+        "path": "src/game/types.ts",
+        "sha256": "c965ae3999f1319b1b945380d677238cb93db1b8b7ac891816e7b1b4badf42d9"
+      },
+      {
+        "path": "src/journey/JourneyCampaignBoundary.test.ts",
+        "sha256": "c37e919a251e00b9c39c7e0ecee69e5bb22df09bd6cac35eda74e07d9b926714"
+      },
+      {
+        "path": "src/journey/JourneyCampaignBoundary.ts",
+        "sha256": "2f426c01276ef5e112f370dec28ec6708f5b59bd5bbed135b2aedb9b12ef1073"
+      },
+      {
+        "path": "src/journey/JourneyPresentationPolicy.test.ts",
+        "sha256": "9de1e9771646ec5377148c6e3bd142aa85d152111bf9a4bab22faf5f905dbab2"
+      },
+      {
+        "path": "src/journey/JourneyPresentationPolicy.ts",
+        "sha256": "e7628b666618b74d1b7b97ce342252937834bf867f9f45248dd6b3b588bf949c"
+      },
+      {
+        "path": "src/journey/JourneyPresentationResolver.test.ts",
+        "sha256": "d23a1fc82e55eb4b3cb2465e32bcce5fe1deb15e56180e2f0dd144e85b61c1b2"
+      },
+      {
+        "path": "src/journey/JourneyPresentationResolver.ts",
+        "sha256": "c1fa64c340ab7bd34b43622bfe8e414a5c0be83ce23b0ee840cbe6dac669327a"
+      },
+      {
+        "path": "src/journey/JourneyRunNodeAdapter.test.ts",
+        "sha256": "1668af3744c4f3164a07206844e815d89452a1db39d65757c199fb55928f623b"
+      },
+      {
+        "path": "src/journey/JourneyRunNodeAdapter.ts",
+        "sha256": "15c165dbe0ff204a511f8447c4d78a09922c16e8d1072c542ec7ccc4a88ee893"
+      },
+      {
+        "path": "src/journey/RouteCommitGuard.test.ts",
+        "sha256": "4b4427f8c4f498c5f0e080c93011f6a23cf29662f5ab310c64f1df563de64320"
+      },
+      {
+        "path": "src/journey/RouteCommitGuard.ts",
+        "sha256": "4ff6bbccda18ac54d901dc045e524fdd009af83ba33874742c4f365ec69ead10"
+      },
+      {
+        "path": "src/main.ts",
+        "sha256": "6d6eeb620aacbf394a786964006f861977375634fb014195deb25490631c42b6"
+      },
+      {
+        "path": "src/qa/r7FastRegressionSnapshot.json",
+        "sha256": "624cb0ce39e36f393f89beae0cda75fcc96ff859dea7002d606e95b68757a4fd"
+      },
+      {
+        "path": "src/qa/r7LionSimulation.test.ts",
+        "sha256": "0eec03f3e09d50a53ca61cdc63ed2ec77e71728fdaf3e69227e06eb02391b8f3"
+      },
+      {
+        "path": "src/qa/r7LionSimulation.ts",
+        "sha256": "ee642f527af455788174053d843e00cc5e8cec7d0841262ebcc4427d9252c7ce"
+      },
+      {
+        "path": "src/render/BackgroundLayerSystem.ts",
+        "sha256": "e2eb86733948bc3b745280a42aacbb9a691a5905d284ad3fc2f14bbfba9f9f58"
+      },
+      {
+        "path": "src/render/CharacterVisualRegistry.test.ts",
+        "sha256": "ec83793bddfa91d52a40cd8f493b134ebdd45cb2026be6fb6387e57e07efa293"
+      },
+      {
+        "path": "src/render/CharacterVisualRegistry.ts",
+        "sha256": "13a4caa3586f1c5433cf0859e54c6b39ddb7416076fa6cd03142d0a91a8eb3e8"
+      },
+      {
+        "path": "src/render/assetManifest.ts",
+        "sha256": "86e80e121aa3c2951da8779a63b42a072ceafcf8e47293476a4aa77f3f5ba0af"
+      },
+      {
+        "path": "src/render/combatBackgrounds.ts",
+        "sha256": "e2da086e2ac3f561db20852667b4a75d0353cb33d4085b3126dc5d809e9cb1e2"
+      },
+      {
+        "path": "src/render/data/demo-environment-pack-v1.production.json",
+        "sha256": "fcd1c020d9674c35e9665bb10fdcd7d4d898f382ed0117016f4b6c9dce6e00c3"
+      },
+      {
+        "path": "src/render/demoEnvironmentPack.ts",
+        "sha256": "56c4f2057d2ca959d44e240afa1359baa3c591be6028ea83dbb0014391cbf785"
+      },
+      {
+        "path": "src/render/environmentPresets.ts",
+        "sha256": "c9a9e13a73c4cb0b56f20ac15253e5b458b66a336998d3652647d0d9493d0838"
+      },
+      {
+        "path": "src/render/generated/characterSystemV2Manifest.json",
+        "sha256": "f61eeeca782bb73d85b17bb698ee33d4e63ea4b1a72f520b46f309e8c88acb5d"
+      },
+      {
+        "path": "src/render/screenBackgroundRegistry.ts",
+        "sha256": "5164c84c656e8ecdd980cf2226bb8dbb2e833b50129473d03a68a7547a1491e8"
+      },
+      {
+        "path": "src/render/screenEnvironmentTypes.ts",
+        "sha256": "bbe836aad5e706bf1027694dcb0e18ed6483944dab220bb9aaee6cd504baf63b"
+      },
+      {
+        "path": "src/styles/app.css",
+        "sha256": "3a50998fc29f91a50bde1b71564b4a30fff67aa14ff8c476b64d8f655bf2c2ea"
+      },
+      {
+        "path": "src/styles/combat-hud.css",
+        "sha256": "784bcd4f5980d7d4ab90575cb766319d2bd7b51631516a17f6ce3e3da108b60c"
+      },
+      {
+        "path": "src/styles/combat-shell.css",
+        "sha256": "15da29c7e700363b77b6e293357712eddb917f186b7819ae6fa3ef5321d7fbbc"
+      },
+      {
+        "path": "src/styles/combat.css",
+        "sha256": "093b21e3407bf8f070e34c0210724ec76c71b6788e3a9cd7d9188e6a66cae6f3"
+      },
+      {
+        "path": "src/styles/traversal-pursuit-charge.css",
+        "sha256": "cd15fece8ac92970233adb7077e2bb67804847ddd584f34538a4ff6fe76ed82c"
+      },
+      {
+        "path": "src/styles/traversal.css",
+        "sha256": "021c663d97340c29be4bc3830d790de484efa1b3edc15a3d7e9924ccbe7c9487"
+      },
+      {
+        "path": "src/traversal/TraversalCaravan.ts",
+        "sha256": "4219741621d65f0f2127fe8684eb66e12d438e88f4d0d7973aded5a433f976ca"
+      },
+      {
+        "path": "src/traversal/TraversalCheckpointRoute.ts",
+        "sha256": "c74004da512b341b29b88196b8d277ce1e921f42c4ce938e8c170b4ab9a4eef9"
+      },
+      {
+        "path": "src/traversal/TraversalDepth.test.ts",
+        "sha256": "e29fa87166d8f9fb8a280349d5aab877c4fb9a7cfcc3993e7f43eaab2ef1d4aa"
+      },
+      {
+        "path": "src/traversal/TraversalDepth.ts",
+        "sha256": "42c7cf12b7accd9a7ed7c05b6ad67726bf28e0989abf4af8c89b9bd00c97b4f4"
+      },
+      {
+        "path": "src/traversal/TraversalFeaturePolicy.test.ts",
+        "sha256": "ddb2b2d854103d8c5921573c3948ce7219101e1c17651e0eec35d4f38725a19c"
+      },
+      {
+        "path": "src/traversal/TraversalFeaturePolicy.ts",
+        "sha256": "d79cf6f688e83b5a47ac09bf0e0531aff37c40bbb6cf775c548450ab468ca7e7"
+      },
+      {
+        "path": "src/traversal/TraversalForkOverlay.test.ts",
+        "sha256": "bdf3860d2acd464e15ec854501008219189f62b104adfa105627220f7b877a64"
+      },
+      {
+        "path": "src/traversal/TraversalForkOverlay.ts",
+        "sha256": "8a00d22e62d5bcb2b692aa5b7efe509a96d4c773e7b4ab845eaaa66fc9759199"
+      },
+      {
+        "path": "src/traversal/TraversalInteractionGrammar.ts",
+        "sha256": "a128b7a676f2b2ca91065f756819c78ee35e50588f516bb0cd1cbbef8f8d2835"
+      },
+      {
+        "path": "src/traversal/TraversalPresentation.test.ts",
+        "sha256": "bc6b131f5a29daf513441e5f2a36a112b3a9abcea008a0f6e972709279754414"
+      },
+      {
+        "path": "src/traversal/TraversalPresentation.ts",
+        "sha256": "cb8a2e258dd2ebf579bc87f052b3ffc4c62a2319315a25d60808fddfdc8f6157"
+      },
+      {
+        "path": "src/traversal/TraversalPreviewSaves.test.ts",
+        "sha256": "97b0643783126cf9992295491139f332c65af3257de37b760c5e7a416b848e69"
+      },
+      {
+        "path": "src/traversal/TraversalPreviewSaves.ts",
+        "sha256": "f910a9bf7306bc4b61f47894c4571258e938413be7ea7e671238b6ceca2e09b8"
+      },
+      {
+        "path": "src/traversal/TraversalPursuitCharge.test.ts",
+        "sha256": "30f1cf8ba749b53925c99fac2f202de040e6a1c72a2d5b0ee15a1935ea2d3abd"
+      },
+      {
+        "path": "src/traversal/TraversalPursuitCharge.ts",
+        "sha256": "37b32a80728e408a299d4e605c200a82552974fe1776383ce35e6fa9a5dd5fb2"
+      },
+      {
+        "path": "src/traversal/TraversalPursuitChargeRenderer.test.ts",
+        "sha256": "543cb55204b9d5cfb8c21c5204addf84e6ebc0c4f8de26becf9e49d7ba29b7f8"
+      },
+      {
+        "path": "src/traversal/TraversalPursuitChargeRenderer.ts",
+        "sha256": "6680975d63da363924bdde76057f28a509d54ef47549a2741d04082413b4a7e0"
+      },
+      {
+        "path": "src/traversal/TraversalPursuitPresentationPolicy.ts",
+        "sha256": "83c37e5666162d09a1c6cbbb047fca9e9480438e085dee8a58f7778fe33b110b"
+      },
+      {
+        "path": "src/traversal/TraversalRewardPresentationPolicy.test.ts",
+        "sha256": "aa32ed5b97cf0c13c3d21970b40b85ef377dbe4741649b194db7e038db4579b6"
+      },
+      {
+        "path": "src/traversal/TraversalRewardPresentationPolicy.ts",
+        "sha256": "03443f0763fc8ac720e8a9dff922ddcc9c05fdc0fbf9372818a0f3ee6e2580be"
+      },
+      {
+        "path": "src/traversal/TraversalRiskPresentationPolicy.test.ts",
+        "sha256": "1c770c82f64ead46a3d6c9264b2e106749cc64db20b1a1ef4ca0d42aec3e8c12"
+      },
+      {
+        "path": "src/traversal/TraversalRiskPresentationPolicy.ts",
+        "sha256": "1ced3e0f4226ad1a5079d5e01b77bc41e2e98b35ea34dfc1a80b43139cd734e2"
+      },
+      {
+        "path": "src/traversal/TraversalRoadAnchor.test.ts",
+        "sha256": "22147ac7f4f2ae9f6233a23ca8d91f09a2035b755cc799dadb97ee0fbc54e103"
+      },
+      {
+        "path": "src/traversal/TraversalRoadAnchor.ts",
+        "sha256": "3f39b5694fc7ba48f9f416d980ef0bf9db41802fec8ac56670bedaa273b1f46b"
+      },
+      {
+        "path": "src/traversal/TraversalRoadAuthoring.ts",
+        "sha256": "804aec3365469ec3fc17c0d464d23c7785956f24d628cd353255624134b138c1"
+      },
+      {
+        "path": "src/traversal/TraversalRoadCamera.test.ts",
+        "sha256": "32c3b8361a2313b26092b84fa4e726712775bb26c158bd978fe8ad38a4ce0e81"
+      },
+      {
+        "path": "src/traversal/TraversalRoadMotion.test.ts",
+        "sha256": "4f455e60ed4e62a2aa57db68f0a4ba249a5869db9b8398dd0bc92d579f19227b"
+      },
+      {
+        "path": "src/traversal/TraversalRoadScene.test.ts",
+        "sha256": "d53fae3869e8b0f183970a02b79adae18cbfe8d7af3767bb80c2d9bcf140f4b4"
+      },
+      {
+        "path": "src/traversal/TraversalRoadScene.ts",
+        "sha256": "26232bc2e5adeb3b1cc01705717d8a1398453403b3987f476d084ad5da260236"
+      },
+      {
+        "path": "src/traversal/TraversalRoadSpace.ts",
+        "sha256": "e007db5ea45c07b1a06ff0f3ff2532b53c21e40904147af347c518bbafd82a64"
+      },
+      {
+        "path": "src/traversal/TraversalRouteModel.ts",
+        "sha256": "fa8b830206056bcfa7acb4fcfd4fcf500f0198787ea87ec1fd6808b1e190a500"
+      },
+      {
+        "path": "src/traversal/TraversalRoutePursuit.test.ts",
+        "sha256": "ed0c8f31d2feeb34533d118ac93a8ff2b354a5e29ec3074baeaeec1233d71616"
+      },
+      {
+        "path": "src/traversal/TraversalRoutePursuit.ts",
+        "sha256": "2e13a39115252f57063a5c04a6f7108ea39112fe7bd100533ac6338b785ee265"
+      },
+      {
+        "path": "src/traversal/TraversalRoutePursuitArt.test.ts",
+        "sha256": "957b6df3e5e80dec85ceb878b2f66c08cd050ed017db182727a7c5df95e6e663"
+      },
+      {
+        "path": "src/traversal/TraversalRoutePursuitRenderer.ts",
+        "sha256": "b2d11d4840dc52a203f58d849422537c515659d0e527fa70d3d75febf6765870"
+      },
+      {
+        "path": "src/traversal/TraversalRouteRenderer.ts",
+        "sha256": "2c6a3b54e2e50d26d54c4600ba2247e27390af585574d15ed2413257c3ffe18d"
+      },
+      {
+        "path": "src/traversal/TraversalRouteReward.test.ts",
+        "sha256": "41b89ce009f64e33d3686f29227dd3f56a3fd9c5c64810c5cc8b14d9b2e696bc"
+      },
+      {
+        "path": "src/traversal/TraversalRouteReward.ts",
+        "sha256": "cbc14eecf62b1d69feeb77f13f26fbe3d52f454c072f30db7024841176e78259"
+      },
+      {
+        "path": "src/traversal/TraversalRouteRewardRenderer.ts",
+        "sha256": "1aba9f1c3f6be9203a0cd7187a24d52c326a648bbdeac50b3721153fb088d6b1"
+      },
+      {
+        "path": "src/traversal/TraversalRouteRisk.test.ts",
+        "sha256": "6d07f8037aca027780de5150dd4c00012857e90b7337c2a49ba831ac8fc5724b"
+      },
+      {
+        "path": "src/traversal/TraversalRouteRisk.ts",
+        "sha256": "11baa5dfaabd2b6d115cf38299232fe2793014fbacd0bdb438664c87670cb6ba"
+      },
+      {
+        "path": "src/traversal/TraversalRouteRiskRenderer.ts",
+        "sha256": "a6a30cf600fd9f23d630694547a7140a75621ce83c5248a71eb8b26b484caaa1"
+      },
+      {
+        "path": "src/traversal/TraversalRouteRiskVisual.ts",
+        "sha256": "69c1c5371327027db4de3235d09adafdeb692ff889accbba74032552b5fb882d"
+      },
+      {
+        "path": "src/traversal/TraversalRouteRun.test.ts",
+        "sha256": "045fea819c812e756d3374102b0649c8d4311b82b74f97d5d718b6586b6a2f9d"
+      },
+      {
+        "path": "src/traversal/TraversalRouteRun.ts",
+        "sha256": "12053afc24d370d1a8e55f1611294f7745265e76fcc88197a041d70828f69410"
+      },
+      {
+        "path": "src/traversal/TraversalRunController.test.ts",
+        "sha256": "b937e90e3bb1d5abd74a64dd9f556d70a89e7d0ab5e4067a5e9b47147c172642"
+      },
+      {
+        "path": "src/traversal/TraversalRunController.ts",
+        "sha256": "64df8ff94ffe5f8626155ce229c6360258058beb7d7c6eb544fd2b793834fb37"
+      },
+      {
+        "path": "src/traversal/TraversalRunRuntime.test.ts",
+        "sha256": "c0bc4471221385afb1aef673da45dbbe065e0547ae53676e89036e8cb0b01464"
+      },
+      {
+        "path": "src/traversal/TraversalRunRuntime.ts",
+        "sha256": "80dbcc3cc64ad8b69b20f2fc42776e07f9093e08376f3664809ced558b439c2d"
+      },
+      {
+        "path": "src/traversal/TraversalSprite.ts",
+        "sha256": "9db52c11aeb9327daaaeb3e25452687a7f6d60e9bb12fcb39cbb014f59770797"
+      },
+      {
+        "path": "src/traversal/TraversalSpriteBounds.json",
+        "sha256": "3e7e37131df6129f01a6fca89365ccfe7d74397cf35a9914e58333353c3b58c3"
+      },
+      {
+        "path": "src/traversal/TraversalT0Assets.test.ts",
+        "sha256": "6fea41f70df76a67d5453f47868c212bcffb485d3c29d5f3f20d23792b1cfbe3"
+      },
+      {
+        "path": "src/traversal/TraversalT0Assets.ts",
+        "sha256": "2d77857391565b771b9d62179576892bca8b5da1accb236f0229e6a5b69e877c"
+      },
+      {
+        "path": "src/traversal/TraversalT0Authoring.ts",
+        "sha256": "65a1627f896ea012a79e61ffc4d4713abe7193c6665cadc8fc941f6cc8bd4f47"
+      },
+      {
+        "path": "src/traversal/TraversalT0CheckpointRoute.ts",
+        "sha256": "6167f022daf20f0027a0c83ac82a2be07747c46ed2c2c3920085fd8f88eb3d58"
+      },
+      {
+        "path": "src/traversal/TraversalT0Flow.test.ts",
+        "sha256": "e83d8cc4a17699475f4c42eb8e64d9a8e57d94be80ae64caaa31d7887635bca7"
+      },
+      {
+        "path": "src/traversal/TraversalT0Foreground.ts",
+        "sha256": "9752279336e8b21a1200898626ae04c6a2044cf28005041a38059a810451dce6"
+      },
+      {
+        "path": "src/traversal/TraversalT0Pursuit.ts",
+        "sha256": "b77f70919b4db627d8d8fd28217020dc720d0c8c1f8581534bdf0499b262de39"
+      },
+      {
+        "path": "src/traversal/TraversalT0PursuitScene.test.ts",
+        "sha256": "55b9afbfe67aacb67be4542c42a3760400d6a70eeb42dc40fdf0f433ed9251e5"
+      },
+      {
+        "path": "src/traversal/TraversalT0Reward.ts",
+        "sha256": "0888ec4012f9509f1867bbe3986da7d3a6303866a4005e309ff103e3cac6dfdb"
+      },
+      {
+        "path": "src/traversal/TraversalT0Risk.ts",
+        "sha256": "d315348374a6dfd7aa7358d0e0defddebd18ea73755bae6ccbeec8859538d7c6"
+      },
+      {
+        "path": "src/traversal/TraversalT0Route.test.ts",
+        "sha256": "2b96e3814b5a32ace407f3ad64a0f3e56e77da5a1fd2a67732a30f408558215d"
+      },
+      {
+        "path": "src/traversal/TraversalT0Route.ts",
+        "sha256": "384aa0bb906764ff0649f0ae1ac6fdd5bf3df34fd71905d301ae66e3dfc106ab"
+      },
+      {
+        "path": "src/traversal/TraversalT0Scene.test.ts",
+        "sha256": "d488f3bd70dd83a72acf90a12e5d108f4d8b29e7f37b97bda6d3fd4133d0d860"
+      },
+      {
+        "path": "src/traversal/TraversalT0Scene.ts",
+        "sha256": "e0196b683090fb97c33471807bb35044a09a600a474afa6c7273562f67ab079e"
+      },
+      {
+        "path": "src/traversal/TraversalT0World.test.ts",
+        "sha256": "380844ff24efaccebd8ac90ad7e9f244b75925b16284793418832a4a6005e04f"
+      },
+      {
+        "path": "src/traversal/TraversalT0World.ts",
+        "sha256": "525eacf58d90a78489bda9c9f7ccf02c9c51412b0c0b5af0832c0414e89773ae"
+      },
+      {
+        "path": "src/traversal/TraversalT1Authoring.ts",
+        "sha256": "0de9bd7605a80ebf5f668dc865d9b7cd5e240e2edb5fd40786ac395a3d305ece"
+      },
+      {
+        "path": "src/traversal/TraversalT1CheckpointRoute.ts",
+        "sha256": "45b5271d5ca776f47914864e71ea9d185a8d28eab70b7cb3c30f3b76ae78e6f4"
+      },
+      {
+        "path": "src/traversal/TraversalT1Route.ts",
+        "sha256": "1842e9ef4ef15c374f6ebce9ec6b625bf213646012e2b50296d129ea7e998882"
+      },
+      {
+        "path": "src/traversal/TraversalT1Scene.test.ts",
+        "sha256": "458c90f1ca332eb375fe156513590b014f53d6955730b9840a9ea87af2bb08e9"
+      },
+      {
+        "path": "src/traversal/TraversalT1Scene.ts",
+        "sha256": "5beb2757cb99f2cccea73c94573e9627e23776ea233ba08813cf64ccb6e4cff9"
+      },
+      {
+        "path": "src/traversal/TraversalT1World.ts",
+        "sha256": "faad50b613a3d4808b13078ffe2901b231f6624c6fd9845b6cad79fea2a3692f"
+      },
+      {
+        "path": "src/traversal/TraversalT3Authoring.ts",
+        "sha256": "937cd713e642ea647b2e4f647b15ef8c104015d307c36ec7629b822e5b69ecd2"
+      },
+      {
+        "path": "src/traversal/TraversalT3CheckpointRoute.ts",
+        "sha256": "b9535004b4a7f24838bcfefe043147a0ac4d44eb5007385399749c57c2391245"
+      },
+      {
+        "path": "src/traversal/TraversalT3Route.ts",
+        "sha256": "6dd7f72ae95740d24735f2d1534c3cfc99119578bcf101e56e9d0916cf7b1a96"
+      },
+      {
+        "path": "src/traversal/TraversalT3Scene.test.ts",
+        "sha256": "5febe7a3e994cb4391395f42a7a6478279b05bae4daa95c7399d77b49f98b306"
+      },
+      {
+        "path": "src/traversal/TraversalT3Scene.ts",
+        "sha256": "f5d259780ffee542fc35e6d4116c94c2f343cf55a40f358705d072549ac60a04"
+      },
+      {
+        "path": "src/traversal/TraversalT3World.ts",
+        "sha256": "3f19477ec9502676ced433e4cf5e56d6d81d55428967982b16680bc20da59ea0"
+      },
+      {
+        "path": "src/traversal/TraversalTransition.ts",
+        "sha256": "a4771511532027765f338de1bd25536eeae7efa851e7a62d04b093908a08da73"
+      },
+      {
+        "path": "src/traversal/TraversalWorldModel.ts",
+        "sha256": "1db118ef0b7edad129b4a9169d11640f84ca55e5afee88eaa23f15451a5e90c2"
+      },
+      {
+        "path": "src/traversal/TraversalWorldRenderer.test.ts",
+        "sha256": "c74708034b651cf802e0d85827dfc2299eb9714efd10b8cc5877932c4912e3d7"
+      },
+      {
+        "path": "src/traversal/TraversalWorldRenderer.ts",
+        "sha256": "7508cde4a292032743a964168e16dc7e4d2fd4afb86748497a8b7f15baa492d9"
+      },
+      {
+        "path": "src/traversal/TraversalWorldSubject.test.ts",
+        "sha256": "b69cfa3522fccc1df3bcc3bf2bf76b750b64db7ae1de9f78bf10f9071ac6030c"
+      },
+      {
+        "path": "src/traversal/TraversalWorldSubject.ts",
+        "sha256": "35772ccf2768401b1db2ccdd683dbc739193471ceb6be6385e9f397d5799496c"
+      },
+      {
+        "path": "src/types/tools-vfx.d.ts",
+        "sha256": "cd31733ed46ee76e7096226c381c5d469deb4f1e3f7b49f75933df186a0851eb"
+      },
+      {
+        "path": "src/ui/CampaignStatusHud.test.ts",
+        "sha256": "5e2ef5b0269f3fccd414c82fd106daa036a9d1ad0150c0440dc7c16b4a9ca739"
+      },
+      {
+        "path": "src/ui/CampaignStatusHud.ts",
+        "sha256": "232510290ff6e9ed9fed87dcc3a573008a749b928d0d37ece19b870815cc8eb5"
+      },
+      {
+        "path": "src/ui/CharacterUiIntegration.test.ts",
+        "sha256": "fc1c48a20f9492b6804dd773fae05cc64a485f22c55f64e4a854a7b932525431"
+      },
+      {
+        "path": "src/ui/DialoguePortrait.ts",
+        "sha256": "d00945168680487e7e827c5f0d47c90f854b2f6ec843c151d88b3d904e9d924d"
+      },
+      {
+        "path": "src/ui/DialogueView.test.ts",
+        "sha256": "e98a2fc7e4df1e3207ad305cb545ba7d093b9d8bb8cdecb844c18e2001ec0dee"
+      },
+      {
+        "path": "src/ui/DialogueView.ts",
+        "sha256": "ba2b76f3540fd7fe7bef1896a9ae9424f76d47e5de0b9c2a0ce7f49457731a61"
+      },
+      {
+        "path": "src/ui/ExplorationView.test.ts",
+        "sha256": "4a0ee703037346686f715a6c87e68f5e2fb2ad7b81d796e6d86915e91aeb355e"
+      },
+      {
+        "path": "src/ui/ExplorationView.ts",
+        "sha256": "6223c435da6b31e47d40ad12fa24bec6debc117697a7dc76a2f5da5a804d9712"
+      },
+      {
+        "path": "src/ui/ManagementView.test.ts",
+        "sha256": "e3f14a89ccd8ec4205f35b7ba6728512a2b0d0a50afe711f11f6196519f06d15"
+      },
+      {
+        "path": "src/ui/ManagementView.ts",
+        "sha256": "e4470021a6f268aa9abaaee033f54ec5c3d96ea4f77ad0a570ca259fc69dccfe"
+      },
+      {
+        "path": "src/ui/PrologueView.ts",
+        "sha256": "9bb465e2a8c61433810f74f41e17b6e9920b7730af4ea0338339c4ec84aba2f0"
+      },
+      {
+        "path": "src/ui/ReducedMotion.ts",
+        "sha256": "52d5623b1d416b65998f5c945228dcdc5b7fa2083773706cbb3abbb9bcfb3524"
+      },
+      {
+        "path": "src/ui/RefugeBackgroundReadiness.test.ts",
+        "sha256": "e154ced4918e4bfe38bad3af94592e26eff4efd1bd9a29ac043dfec95eb87bdc"
+      },
+      {
+        "path": "src/ui/RefugeBackgroundReadiness.ts",
+        "sha256": "a07c0b0eb9dba6c17862685e0be0fb65693f644b756b2f9f9a31492bcbb783ef"
+      },
+      {
+        "path": "src/ui/RefugePresentation.test.ts",
+        "sha256": "1c25cf557aaf21de3ab0a3dad356001dc763ea4727638e67c8003cdf1c104eb3"
+      },
+      {
+        "path": "src/ui/RefugePresentation.ts",
+        "sha256": "24cd9a1e6da408568605a1afec91a838edce118a248dc0ddbf63af675e6c0e41"
+      },
+      {
+        "path": "src/ui/RunNodePresentation.ts",
+        "sha256": "9b78f2b3dbf777abe71ffae174f0b027ca08acabd46d7727fdeedbe64b4d134a"
+      },
+      {
+        "path": "src/ui/SceneTransition.test.ts",
+        "sha256": "561075cbfe5a5d8d4bc8c182f8315565f5fd0e79d9b3beb98cc2bca59d6b0365"
+      },
+      {
+        "path": "src/ui/SceneTransition.ts",
+        "sha256": "7214e09ffb4fcec5681a22b0123e831f4b4d0973a180dd40b7cccd94b202d891"
+      },
+      {
+        "path": "src/ui/TravelView.ts",
+        "sha256": "c8591d6dd851c36f46119aa029a14db222d5dc0df76782602ce447a4f90f2ea0"
+      },
+      {
+        "path": "src/ui/TraversalTravelReturn.test.ts",
+        "sha256": "6ba001c1a0c59bf28c3068ced68121a219ae3dc2eb7b5fd269cf20eeaa060a44"
+      },
+      {
+        "path": "src/ui/design-system/CampaignUi.test.ts",
+        "sha256": "461fb6b40071b85cf1e3933ff5fec6796b4bca86af1837d690e3141928f07698"
+      },
+      {
+        "path": "src/ui/design-system/CampaignUi.ts",
+        "sha256": "388aebbac235cc92d27f9441ec8f9ea6620b87655888538032b06b9fad5211eb"
+      },
+      {
+        "path": "src/ui/design-system/campaign-ui.css",
+        "sha256": "7df29659e3ed8c77c0486c2c11f9057a262002b575893442f93b982339813574"
+      },
+      {
+        "path": "src/ui/design-system/frame-corner.svg",
+        "sha256": "f84ba04171d234a6f55d2ccbabc49e8fec31bea6686d163a86c130fe8186f324"
+      },
+      {
+        "path": "src/ui/dialogue-alignment.css",
+        "sha256": "781db8ef60049b8a0c7925edf555fdea1aa65b2298a92a92b34203930a61022d"
+      },
+      {
+        "path": "src/ui/theme/components.css",
+        "sha256": "c5c822203048ea372f3b20f0603eb01dfe509a7932fe54c933a6af8c2c61606d"
+      },
+      {
+        "path": "src/ui/theme/environment.css",
+        "sha256": "4bcbe6e86baeb1ce9bc32b6116a59a5d791e1e05c9bd8a6781ff24f9c4ad0cc5"
+      },
+      {
+        "path": "src/ui/theme/index.css",
+        "sha256": "4941252c006b0bd9f39739160212e09e53decd1e5f34cd479d94b35dff580770"
+      },
+      {
+        "path": "src/ui/theme/layout.css",
+        "sha256": "76d693a60c0c808760d0b4755a272642f944db3e4a77e3616ba72985f5de83f9"
+      },
+      {
+        "path": "src/ui/theme/tokens.css",
+        "sha256": "c8731e55c55d233f5722f4909e88331d29ad31de9920dabd0732320030a5d1de"
+      },
+      {
+        "path": "src/ui/theme/tokens.ts",
+        "sha256": "999cb5967992beb82dc2b4e6b9e3b2aa275df9ec5178abed4be2ef7e6a6b4fa4"
+      }
+    ],
+    "tools": [
+      {
+        "path": "tools/traversal-road-more-routes-production-qa.mjs",
+        "sha256": "f5ce041fc8b5589f5ea58c25fa133f4b706fc446cbe11d0bba84a2ed9d8f15ff"
+      },
+      {
+        "path": "tools/traversal-road-elements-production-qa.mjs",
+        "sha256": "1de027db952e7526ded284ebc73834c0b7e339b4e25cf14acd752abef2a66255"
+      },
+      {
+        "path": "tools/traversal-road-late-reset-lab-qa.mjs",
+        "sha256": "cf31a269ee1a723b1d710c93a636c3a131d894d7e5a9290a41df39c2b31e840d"
+      },
+      {
+        "path": "tools/traversal/road-late-reset-lab.ts",
+        "sha256": "48c4ba0db1553afa4706aec87eda6138ffce4e97c03cf5034916bb0098267416"
+      },
+      {
+        "path": "tools/traversal/road-anchor-lab.ts",
+        "sha256": "179f0402b4bda2c7ff8c5c74454e6d2fb06ff1b9375eff228465fb872e6210e0"
+      },
+      {
+        "path": "tools/qa/qa-job.mjs",
+        "sha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f"
+      }
+    ],
+    "build": [
+      {
+        "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+        "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+      },
+      {
+        "path": "dist/assets/combat-DSUtGYdZ.js",
+        "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+      },
+      {
+        "path": "dist/assets/combat-s2FWu0a6.css",
+        "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+      },
+      {
+        "path": "dist/assets/game-C6Qm6kEn.js",
+        "sha256": "9416536936b25d29b5a548b103020bb13a67b6575e723ba73c88a070a26c0e2c"
+      },
+      {
+        "path": "dist/assets/game-DrzQVqcv.css",
+        "sha256": "6fbecdaf5aaf3ce847886b4954c595ec0a0198767982cf2e0d2a492b75477db2"
+      },
+      {
+        "path": "dist/assets/three-core-f0ajj1rG.js",
+        "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+      },
+      {
+        "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+        "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+      },
+      {
+        "path": "dist/assets/validation-mSkvzYyn.js",
+        "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "bc15a9071f50a59207a29154192163f0786ae2f46ebf8206811d57902405ba2d"
+      },
+      {
+        "path": "dist/legacy-combat.html",
+        "sha256": "e49fc37c71c85def29043fab62bb4d91026a0279697cbfd8da0ba2b97491ca7a"
+      }
+    ]
+  },
+  "jobs": [
+    {
+      "id": "road-0007-branch-normal",
+      "status": "FAILED",
+      "receipt": "tmp/traversal/road-0007-branch-normal/qa-job.json",
+      "receiptSha256": "a63ac936671f1eda4874fafdafdf13b1ad328c1a8c7a9d06b2807a619f182da9",
+      "result": "tmp/traversal/road-0007-branch-normal/results.json",
+      "resultSha256": "27ff57188f565acd5992a00bacfc962a6da5a36a541a2c054e10db33ba6593ee",
+      "provenanceStable": true,
+      "provenance": {
+        "gitHead": "58b5ebf14028bd4322939001e072da13be206265",
+        "sourceTree": "92dc5d9b1abbc04cd9e10e808e7e4e74b96f2e38",
+        "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+        "driver": {
+          "path": "tools/traversal-road-more-routes-production-qa.mjs",
+          "sha256": "f5ce041fc8b5589f5ea58c25fa133f4b706fc446cbe11d0bba84a2ed9d8f15ff"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-DixaZjSZ.js",
+            "sha256": "dd6adb9711ca39737274f30f366295c19538aa45defdb001f58796521fdbf7f2"
+          },
+          {
+            "path": "dist/assets/game-DrzQVqcv.css",
+            "sha256": "6fbecdaf5aaf3ce847886b4954c595ec0a0198767982cf2e0d2a492b75477db2"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "bdac5be305d0bc60ee43913f9ca37e6d8937f1e4b1ba40c6a9d0d23be1b1564b"
+          }
+        ]
+      },
+      "parameters": {
+        "motion": "normal",
+        "legs": [
+          "T0",
+          "T1",
+          "T3"
+        ],
+        "viewports": [
+          "1440x810",
+          "620x780",
+          "390x844"
+        ],
+        "roads": [
+          "branch-combat"
+        ],
+        "paths": [
+          "contact-collect"
+        ],
+        "earlyPaths": [
+          "contact-collect"
+        ],
+        "scope": "native real built selected roads; V6 fixture origins/bootstrap/prior combat outcomes; no earned campaign/full road acceptance"
+      },
+      "assertions": [
+        "edge-entry-frozen-anchor",
+        "contact-collected-retention-full-exit",
+        "rendered-ground-depth",
+        "native-keyboard-responsive-motion",
+        "single-temporary-pickup-no-secured-write",
+        "physical-contact-after-reset"
+      ],
+      "acceptance": "NOT_ACCEPTED",
+      "errors": [
+        "AssertionError [ERR_ASSERTION]: Authored crossing bracketed by native frames"
+      ],
+      "cases": 1
+    },
+    {
+      "id": "road-0007-late-lab",
+      "status": "FAILED",
+      "receipt": "tmp/traversal/road-0007-late-lab/qa-job.json",
+      "receiptSha256": "3ac56b6ed7d57d2732fe80a9681cfc21fc55bdbbaf9c82193b961606ff52b5e8",
+      "result": "tmp/traversal/road-0007-late-lab/results.json",
+      "resultSha256": "48e8d17207a4f8ad4c5ff6439b33b5a4bf9ada85121f38f4b5bbacd9ffe56ad1",
+      "provenanceStable": true,
+      "provenance": {
+        "gitHead": "58b5ebf14028bd4322939001e072da13be206265",
+        "sourceTree": "92dc5d9b1abbc04cd9e10e808e7e4e74b96f2e38",
+        "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+        "driver": {
+          "path": "tools/traversal-road-late-reset-lab-qa.mjs",
+          "sha256": "322361d4e95096c1c80e50c5c3ac9db67b7f22f03fcee422c027043f6750e44c"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-DixaZjSZ.js",
+            "sha256": "dd6adb9711ca39737274f30f366295c19538aa45defdb001f58796521fdbf7f2"
+          },
+          {
+            "path": "dist/assets/game-DrzQVqcv.css",
+            "sha256": "6fbecdaf5aaf3ce847886b4954c595ec0a0198767982cf2e0d2a492b75477db2"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "bdac5be305d0bc60ee43913f9ca37e6d8937f1e4b1ba40c6a9d0d23be1b1564b"
+          }
+        ]
+      },
+      "parameters": {
+        "scope": "isolated T0 authored .68 rock, scripted 10082.9ms reset, native RAF/input; no campaign/save/combat/earned gold",
+        "cases": [
+          {
+            "motion": "normal",
+            "width": 1440,
+            "height": 810
+          },
+          {
+            "motion": "normal",
+            "width": 620,
+            "height": 780
+          },
+          {
+            "motion": "normal",
+            "width": 390,
+            "height": 844
+          },
+          {
+            "motion": "os",
+            "width": 1440,
+            "height": 810
+          },
+          {
+            "motion": "os",
+            "width": 620,
+            "height": 780
+          },
+          {
+            "motion": "os",
+            "width": 390,
+            "height": 844
+          },
+          {
+            "motion": "game",
+            "width": 1440,
+            "height": 810
+          },
+          {
+            "motion": "game",
+            "width": 620,
+            "height": 780
+          },
+          {
+            "motion": "game",
+            "width": 390,
+            "height": 844
+          }
+        ]
+      },
+      "assertions": [
+        "late-reset-frozen-visible-anchor",
+        "native-unaligned-contact",
+        "bounded-monotone-camera",
+        "once-only-risk",
+        "retention-full-exit",
+        "no-campaign-owners"
+      ],
+      "acceptance": "NOT_ACCEPTED",
+      "errors": [
+        "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:"
+      ],
+      "cases": 4
+    },
+    {
+      "id": "road-0007-branch-v2-normal",
+      "status": "FAILED",
+      "receipt": "tmp/traversal/road-0007-branch-v2-normal/qa-job.json",
+      "receiptSha256": "3741587b804713a816bcb550ee68fc0368b71a23234cbd56ba05c37fbe8b2345",
+      "result": "tmp/traversal/road-0007-branch-v2-normal/results.json",
+      "resultSha256": "674558f9be4255ee55239e7ecf60d4245715cd64683f55fe06f48ec880500cf2",
+      "provenanceStable": true,
+      "provenance": {
+        "gitHead": "58b5ebf14028bd4322939001e072da13be206265",
+        "sourceTree": "92dc5d9b1abbc04cd9e10e808e7e4e74b96f2e38",
+        "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+        "driver": {
+          "path": "tools/traversal-road-more-routes-production-qa.mjs",
+          "sha256": "f5ce041fc8b5589f5ea58c25fa133f4b706fc446cbe11d0bba84a2ed9d8f15ff"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-DixaZjSZ.js",
+            "sha256": "dd6adb9711ca39737274f30f366295c19538aa45defdb001f58796521fdbf7f2"
+          },
+          {
+            "path": "dist/assets/game-DrzQVqcv.css",
+            "sha256": "6fbecdaf5aaf3ce847886b4954c595ec0a0198767982cf2e0d2a492b75477db2"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "bdac5be305d0bc60ee43913f9ca37e6d8937f1e4b1ba40c6a9d0d23be1b1564b"
+          }
+        ]
+      },
+      "parameters": {
+        "motion": "normal",
+        "legs": [
+          "T0",
+          "T1",
+          "T3"
+        ],
+        "viewports": [
+          "1440x810",
+          "620x780",
+          "390x844"
+        ],
+        "roads": [
+          "branch-combat"
+        ],
+        "paths": [
+          "contact-collect"
+        ],
+        "earlyPaths": [
+          "contact-collect"
+        ],
+        "scope": "native real built selected roads; V6 fixture origins/bootstrap/prior combat outcomes; no earned campaign/full road acceptance"
+      },
+      "assertions": [
+        "edge-entry-frozen-anchor",
+        "contact-collected-retention-full-exit",
+        "rendered-ground-depth",
+        "native-keyboard-responsive-motion",
+        "single-temporary-pickup-no-secured-write",
+        "physical-contact-after-reset"
+      ],
+      "acceptance": "NOT_ACCEPTED",
+      "errors": [
+        "page.evaluate: Target page, context or browser has been closed"
+      ],
+      "cases": 2
+    },
+    {
+      "id": "road-0007-late-lab-v2",
+      "status": "SUCCEEDED",
+      "receipt": "tmp/traversal/road-0007-late-lab-v2/qa-job.json",
+      "receiptSha256": "8dffb9a1775c3aa2905cd44bdf628c54473d7bfc6fa5d13c694e7edd248aa31c",
+      "result": "tmp/traversal/road-0007-late-lab-v2/results.json",
+      "resultSha256": "e9ff393f0aa837094a48285f9f9bd205ff9646607336e46d15d4b34941678903",
+      "provenanceStable": true,
+      "provenance": {
+        "gitHead": "62045da221f49e035b509c50be355840eecfd81f",
+        "sourceTree": "0b66ef5d00e324e47d42126800fcf8f79d592e6d",
+        "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+        "driver": {
+          "path": "tools/traversal-road-late-reset-lab-qa.mjs",
+          "sha256": "cf31a269ee1a723b1d710c93a636c3a131d894d7e5a9290a41df39c2b31e840d"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-C6Qm6kEn.js",
+            "sha256": "9416536936b25d29b5a548b103020bb13a67b6575e723ba73c88a070a26c0e2c"
+          },
+          {
+            "path": "dist/assets/game-DrzQVqcv.css",
+            "sha256": "6fbecdaf5aaf3ce847886b4954c595ec0a0198767982cf2e0d2a492b75477db2"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "bc15a9071f50a59207a29154192163f0786ae2f46ebf8206811d57902405ba2d"
+          }
+        ]
+      },
+      "parameters": {
+        "scope": "isolated T0 authored .68 rock, scripted 10082.9ms reset, native RAF/input; no campaign/save/combat/earned gold",
+        "cases": [
+          {
+            "motion": "normal",
+            "width": 1440,
+            "height": 810
+          },
+          {
+            "motion": "normal",
+            "width": 620,
+            "height": 780
+          },
+          {
+            "motion": "normal",
+            "width": 390,
+            "height": 844
+          },
+          {
+            "motion": "os",
+            "width": 1440,
+            "height": 810
+          },
+          {
+            "motion": "os",
+            "width": 620,
+            "height": 780
+          },
+          {
+            "motion": "os",
+            "width": 390,
+            "height": 844
+          },
+          {
+            "motion": "game",
+            "width": 1440,
+            "height": 810
+          },
+          {
+            "motion": "game",
+            "width": 620,
+            "height": 780
+          },
+          {
+            "motion": "game",
+            "width": 390,
+            "height": 844
+          }
+        ]
+      },
+      "assertions": [
+        "late-reset-frozen-visible-anchor",
+        "native-unaligned-contact",
+        "bounded-monotone-camera",
+        "once-only-risk",
+        "retention-full-exit",
+        "no-campaign-owners"
+      ],
+      "acceptance": "ACCEPTED_SCOPED",
+      "errors": [],
+      "cases": 9,
+      "contacts": [
+        {
+          "width": 1440,
+          "motion": "normal",
+          "before": 10197.19999997616,
+          "after": 10213.89999997616,
+          "x": 361.1813001167349,
+          "expected": 360
+        },
+        {
+          "width": 620,
+          "motion": "normal",
+          "before": 10184.400000095375,
+          "after": 10201.100000095375,
+          "x": 155.22426418164432,
+          "expected": 155
+        },
+        {
+          "width": 390,
+          "motion": "normal",
+          "before": 10191.199999952325,
+          "after": 10207.899999952326,
+          "x": 98.07149938947676,
+          "expected": 97.5
+        },
+        {
+          "width": 1440,
+          "motion": "os",
+          "before": 10193.599999952325,
+          "after": 10210.299999952325,
+          "x": 362.00085387643577,
+          "expected": 360
+        },
+        {
+          "width": 620,
+          "motion": "os",
+          "before": 10196.000000000007,
+          "after": 10212.600000000008,
+          "x": 155.66261650297267,
+          "expected": 155
+        },
+        {
+          "width": 390,
+          "motion": "os",
+          "before": 10196.499999952322,
+          "after": 10213.099999952323,
+          "x": 97.87917735725021,
+          "expected": 97.5
+        },
+        {
+          "width": 1440,
+          "motion": "game",
+          "before": 10197.00000004769,
+          "after": 10213.60000004769,
+          "x": 361.24583196296226,
+          "expected": 360
+        },
+        {
+          "width": 620,
+          "motion": "game",
+          "before": 10188.800000000008,
+          "after": 10205.400000000009,
+          "x": 155.7951707797066,
+          "expected": 155
+        },
+        {
+          "width": 390,
+          "motion": "game",
+          "before": 10185.400000095373,
+          "after": 10202.000000095373,
+          "x": 97.74149524677773,
+          "expected": 97.5
+        }
+      ],
+      "bundleInputs": [
+        {
+          "path": "node_modules/zod/lib/index.mjs",
+          "sha256": "f4587d736f8f981db3f0234b944e70acd8b1eb7b9a5152b533ff9fc1e5cfebd2"
+        },
+        {
+          "path": "src/campaign/LionCampaignStructure.ts",
+          "sha256": "dede76984fd7892c0f2127921f69c089c5e3c1278aaca1935da42a0a171f7c91"
+        },
+        {
+          "path": "src/game/campaignGrammarContent.ts",
+          "sha256": "d9eb6d8c810634a97dbd5941caf3204bcb69eb48c73eee31fe86d68921a03ff5"
+        },
+        {
+          "path": "src/game/content.ts",
+          "sha256": "1dc408feb32f7f791af5cc386f490c8917eda2b167f9545003e1773b58c43e68"
+        },
+        {
+          "path": "src/game/r5NarrativeContent.ts",
+          "sha256": "1b12f2b791625ff86d0ca177437767dc29d1e05757fb73516eb0943937158404"
+        },
+        {
+          "path": "src/game/types.ts",
+          "sha256": "c965ae3999f1319b1b945380d677238cb93db1b8b7ac891816e7b1b4badf42d9"
+        },
+        {
+          "path": "src/render/CharacterVisualRegistry.ts",
+          "sha256": "13a4caa3586f1c5433cf0859e54c6b39ddb7416076fa6cd03142d0a91a8eb3e8"
+        },
+        {
+          "path": "src/render/generated/characterSystemV2Manifest.json",
+          "sha256": "f61eeeca782bb73d85b17bb698ee33d4e63ea4b1a72f520b46f309e8c88acb5d"
+        },
+        {
+          "path": "src/styles/traversal.css",
+          "sha256": "021c663d97340c29be4bc3830d790de484efa1b3edc15a3d7e9924ccbe7c9487"
+        },
+        {
+          "path": "src/traversal/TraversalCaravan.ts",
+          "sha256": "4219741621d65f0f2127fe8684eb66e12d438e88f4d0d7973aded5a433f976ca"
+        },
+        {
+          "path": "src/traversal/TraversalRoadAnchor.ts",
+          "sha256": "3f39b5694fc7ba48f9f416d980ef0bf9db41802fec8ac56670bedaa273b1f46b"
+        },
+        {
+          "path": "src/traversal/TraversalRoadSpace.ts",
+          "sha256": "e007db5ea45c07b1a06ff0f3ff2532b53c21e40904147af347c518bbafd82a64"
+        },
+        {
+          "path": "src/traversal/TraversalRouteModel.ts",
+          "sha256": "fa8b830206056bcfa7acb4fcfd4fcf500f0198787ea87ec1fd6808b1e190a500"
+        },
+        {
+          "path": "src/traversal/TraversalRouteRenderer.ts",
+          "sha256": "2c6a3b54e2e50d26d54c4600ba2247e27390af585574d15ed2413257c3ffe18d"
+        },
+        {
+          "path": "src/traversal/TraversalRouteRisk.ts",
+          "sha256": "11baa5dfaabd2b6d115cf38299232fe2793014fbacd0bdb438664c87670cb6ba"
+        },
+        {
+          "path": "src/traversal/TraversalRouteRiskRenderer.ts",
+          "sha256": "a6a30cf600fd9f23d630694547a7140a75621ce83c5248a71eb8b26b484caaa1"
+        },
+        {
+          "path": "src/traversal/TraversalRouteRiskVisual.ts",
+          "sha256": "69c1c5371327027db4de3235d09adafdeb692ff889accbba74032552b5fb882d"
+        },
+        {
+          "path": "src/traversal/TraversalRouteRun.ts",
+          "sha256": "12053afc24d370d1a8e55f1611294f7745265e76fcc88197a041d70828f69410"
+        },
+        {
+          "path": "src/traversal/TraversalSprite.ts",
+          "sha256": "9db52c11aeb9327daaaeb3e25452687a7f6d60e9bb12fcb39cbb014f59770797"
+        },
+        {
+          "path": "src/traversal/TraversalSpriteBounds.json",
+          "sha256": "3e7e37131df6129f01a6fca89365ccfe7d74397cf35a9914e58333353c3b58c3"
+        },
+        {
+          "path": "src/traversal/TraversalT0Assets.ts",
+          "sha256": "2d77857391565b771b9d62179576892bca8b5da1accb236f0229e6a5b69e877c"
+        },
+        {
+          "path": "src/traversal/TraversalT0Authoring.ts",
+          "sha256": "65a1627f896ea012a79e61ffc4d4713abe7193c6665cadc8fc941f6cc8bd4f47"
+        },
+        {
+          "path": "src/traversal/TraversalT0CheckpointRoute.ts",
+          "sha256": "6167f022daf20f0027a0c83ac82a2be07747c46ed2c2c3920085fd8f88eb3d58"
+        },
+        {
+          "path": "src/traversal/TraversalT0Foreground.ts",
+          "sha256": "9752279336e8b21a1200898626ae04c6a2044cf28005041a38059a810451dce6"
+        },
+        {
+          "path": "src/traversal/TraversalT0Pursuit.ts",
+          "sha256": "b77f70919b4db627d8d8fd28217020dc720d0c8c1f8581534bdf0499b262de39"
+        },
+        {
+          "path": "src/traversal/TraversalT0Reward.ts",
+          "sha256": "0888ec4012f9509f1867bbe3986da7d3a6303866a4005e309ff103e3cac6dfdb"
+        },
+        {
+          "path": "src/traversal/TraversalT0Risk.ts",
+          "sha256": "d315348374a6dfd7aa7358d0e0defddebd18ea73755bae6ccbeec8859538d7c6"
+        },
+        {
+          "path": "src/traversal/TraversalT0Route.ts",
+          "sha256": "384aa0bb906764ff0649f0ae1ac6fdd5bf3df34fd71905d301ae66e3dfc106ab"
+        },
+        {
+          "path": "src/traversal/TraversalT0World.ts",
+          "sha256": "525eacf58d90a78489bda9c9f7ccf02c9c51412b0c0b5af0832c0414e89773ae"
+        },
+        {
+          "path": "src/traversal/TraversalWorldModel.ts",
+          "sha256": "1db118ef0b7edad129b4a9169d11640f84ca55e5afee88eaa23f15451a5e90c2"
+        },
+        {
+          "path": "src/traversal/TraversalWorldRenderer.ts",
+          "sha256": "7508cde4a292032743a964168e16dc7e4d2fd4afb86748497a8b7f15baa492d9"
+        },
+        {
+          "path": "src/ui/ReducedMotion.ts",
+          "sha256": "52d5623b1d416b65998f5c945228dcdc5b7fa2083773706cbb3abbb9bcfb3524"
+        },
+        {
+          "path": "tools/traversal/road-late-reset-lab.ts",
+          "sha256": "48c4ba0db1553afa4706aec87eda6138ffce4e97c03cf5034916bb0098267416"
+        }
+      ],
+      "bundle": [
+        {
+          "path": "lab.js",
+          "sha256": "60cecd34138563135985294343cca17a59a30fadbd4663f5e792bcd0851a07c5"
+        },
+        {
+          "path": "lab.css",
+          "sha256": "8dbe8b7854b081e043527f09450f18a4e1b927786da919dcadc142f4e2e5424e"
+        }
+      ],
+      "ownerAbsence": "Source-reviewed no owner instantiated; bundle has no GameApp/runSystem/store/combat input",
+      "acceptanceScope": "9 isolated native RAF scripted-reset cases; no production owner/spacing/earnedV6 acceptance"
+    },
+    {
+      "id": "road-0007-branch-v3-normal",
+      "status": "FAILED",
+      "receipt": "tmp/traversal/road-0007-branch-v3-normal/qa-job.json",
+      "receiptSha256": "0b03ab9db964339ffa12cfd82512c2d461776d5b833bec76b3d17532123ace94",
+      "result": "tmp/traversal/road-0007-branch-v3-normal/results.json",
+      "resultSha256": "5c0e7c55d0ed24ad7faea35c16d2b910807a7bb0f2a11de23b762f7cc6b64194",
+      "provenanceStable": true,
+      "provenance": {
+        "gitHead": "62045da221f49e035b509c50be355840eecfd81f",
+        "sourceTree": "0b66ef5d00e324e47d42126800fcf8f79d592e6d",
+        "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+        "driver": {
+          "path": "tools/traversal-road-more-routes-production-qa.mjs",
+          "sha256": "f5ce041fc8b5589f5ea58c25fa133f4b706fc446cbe11d0bba84a2ed9d8f15ff"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-C6Qm6kEn.js",
+            "sha256": "9416536936b25d29b5a548b103020bb13a67b6575e723ba73c88a070a26c0e2c"
+          },
+          {
+            "path": "dist/assets/game-DrzQVqcv.css",
+            "sha256": "6fbecdaf5aaf3ce847886b4954c595ec0a0198767982cf2e0d2a492b75477db2"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "bc15a9071f50a59207a29154192163f0786ae2f46ebf8206811d57902405ba2d"
+          }
+        ]
+      },
+      "parameters": {
+        "motion": "normal",
+        "legs": [
+          "T0",
+          "T1",
+          "T3"
+        ],
+        "viewports": [
+          "1440x810",
+          "620x780",
+          "390x844"
+        ],
+        "roads": [
+          "branch-combat"
+        ],
+        "paths": [
+          "contact-collect"
+        ],
+        "earlyPaths": [
+          "contact-collect"
+        ],
+        "scope": "native real built selected roads; V6 fixture origins/bootstrap/prior combat outcomes; no earned campaign/full road acceptance"
+      },
+      "assertions": [
+        "edge-entry-frozen-anchor",
+        "contact-collected-retention-full-exit",
+        "rendered-ground-depth",
+        "native-keyboard-responsive-motion",
+        "single-temporary-pickup-no-secured-write",
+        "physical-contact-after-reset"
+      ],
+      "acceptance": "NOT_ACCEPTED",
+      "errors": [
+        "AssertionError [ERR_ASSERTION]: Authored crossing bracketed by native frames"
+      ],
+      "cases": 7
+    },
+    {
+      "id": "road-0007-branch-v3-os",
+      "status": "SUCCEEDED",
+      "receipt": "tmp/traversal/road-0007-branch-v3-os/qa-job.json",
+      "receiptSha256": "5c93e10ca6992a44f421df3b901c6beb0d0bbfa844f763cbeaee088203c8b10b",
+      "result": "tmp/traversal/road-0007-branch-v3-os/results.json",
+      "resultSha256": "d4dd1b48b819d1535a3b155d794718aaa1a3cd5c9d63092411f77486a413e6c3",
+      "provenanceStable": true,
+      "provenance": {
+        "gitHead": "62045da221f49e035b509c50be355840eecfd81f",
+        "sourceTree": "0b66ef5d00e324e47d42126800fcf8f79d592e6d",
+        "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+        "driver": {
+          "path": "tools/traversal-road-more-routes-production-qa.mjs",
+          "sha256": "f5ce041fc8b5589f5ea58c25fa133f4b706fc446cbe11d0bba84a2ed9d8f15ff"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-C6Qm6kEn.js",
+            "sha256": "9416536936b25d29b5a548b103020bb13a67b6575e723ba73c88a070a26c0e2c"
+          },
+          {
+            "path": "dist/assets/game-DrzQVqcv.css",
+            "sha256": "6fbecdaf5aaf3ce847886b4954c595ec0a0198767982cf2e0d2a492b75477db2"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "bc15a9071f50a59207a29154192163f0786ae2f46ebf8206811d57902405ba2d"
+          }
+        ]
+      },
+      "parameters": {
+        "motion": "os",
+        "legs": [
+          "T0",
+          "T1",
+          "T3"
+        ],
+        "viewports": [
+          "1440x810",
+          "620x780",
+          "390x844"
+        ],
+        "roads": [
+          "branch-combat"
+        ],
+        "paths": [
+          "contact-collect"
+        ],
+        "earlyPaths": [
+          "contact-collect"
+        ],
+        "scope": "native real built selected roads; V6 fixture origins/bootstrap/prior combat outcomes; no earned campaign/full road acceptance"
+      },
+      "assertions": [
+        "edge-entry-frozen-anchor",
+        "contact-collected-retention-full-exit",
+        "rendered-ground-depth",
+        "native-keyboard-responsive-motion",
+        "single-temporary-pickup-no-secured-write",
+        "physical-contact-after-reset"
+      ],
+      "acceptance": "ACCEPTED_SCOPED",
+      "errors": [],
+      "cases": 9,
+      "contacts": [
+        {
+          "leg": "T0",
+          "dimensions": "1440x810",
+          "motion": "os",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 909,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.199999999997,
+            "secureGold": 150
+          },
+          "priorCombatFixtures": [
+            "forest_ambush"
+          ],
+          "contacts": [
+            {
+              "id": "t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.69999999999709,
+              "error": -0.0003413173638477929,
+              "previousReset": -1,
+              "previousElapsed": 4049.800000000003
+            },
+            {
+              "id": "t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.69999999999709,
+              "error": -0.0008383233484323682,
+              "previousReset": 4066.5,
+              "previousElapsed": 7949.600000000006
+            },
+            {
+              "id": "t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.69999999999709,
+              "error": 0.23688023952092863,
+              "previousReset": 10016.199999999997,
+              "previousElapsed": 10199.5
+            },
+            {
+              "id": "t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.59999999999127,
+              "error": -0.010626506019548287,
+              "previousReset": -1,
+              "previousElapsed": 2249.9000000000087
+            },
+            {
+              "id": "t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.60000000000582,
+              "error": -0.001475903614220897,
+              "previousReset": 10216.199999999997,
+              "previousElapsed": 12299.5
+            }
+          ]
+        },
+        {
+          "leg": "T0",
+          "dimensions": "620x780",
+          "motion": "os",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 913,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.199999999997,
+            "secureGold": 150
+          },
+          "priorCombatFixtures": [
+            "forest_ambush"
+          ],
+          "contacts": [
+            {
+              "id": "t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.69999999999709,
+              "error": 0.0003353293419650072,
+              "previousReset": -1,
+              "previousElapsed": 4049.800000000003
+            },
+            {
+              "id": "t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.60000000000582,
+              "error": -0.00004216867574768912,
+              "previousReset": 4066.5,
+              "previousElapsed": 7949.699999999997
+            },
+            {
+              "id": "t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.59999999999127,
+              "error": 0.000012048195230818237,
+              "previousReset": 7966.300000000003,
+              "previousElapsed": 10199.600000000006
+            },
+            {
+              "id": "t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.69999999999709,
+              "error": -0.005263473051854817,
+              "previousReset": -1,
+              "previousElapsed": 2249.9000000000087
+            },
+            {
+              "id": "t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.69999999999709,
+              "error": -0.0006586826306431703,
+              "previousReset": 10216.199999999997,
+              "previousElapsed": 12299.400000000009
+            }
+          ]
+        },
+        {
+          "leg": "T0",
+          "dimensions": "390x844",
+          "motion": "os",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 917,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.300000000003,
+            "secureGold": 150
+          },
+          "priorCombatFixtures": [
+            "forest_ambush"
+          ],
+          "contacts": [
+            {
+              "id": "t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.60000000000582,
+              "error": -0.0000162650613333426,
+              "previousReset": -1,
+              "previousElapsed": 4049.899999999994
+            },
+            {
+              "id": "t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.69999999999709,
+              "error": -0.00010179640791818656,
+              "previousReset": 4066.5,
+              "previousElapsed": 7949.699999999997
+            },
+            {
+              "id": "t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.70000000001164,
+              "error": -0.00024431137966018923,
+              "previousReset": 7966.399999999994,
+              "previousElapsed": 10199.599999999991
+            },
+            {
+              "id": "t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.69999999999709,
+              "error": -0.0031928143721415836,
+              "previousReset": -1,
+              "previousElapsed": 2249.899999999994
+            },
+            {
+              "id": "t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.69999999999709,
+              "error": -0.0004832335329609805,
+              "previousReset": 10216.300000000003,
+              "previousElapsed": 12299.5
+            }
+          ]
+        },
+        {
+          "leg": "T1",
+          "dimensions": "1440x810",
+          "motion": "os",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 856,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.300000000003,
+            "secureGold": 115
+          },
+          "priorCombatFixtures": [
+            "marsh_crossing"
+          ],
+          "contacts": [
+            {
+              "id": "t1:t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.60000000000582,
+              "error": -0.0003373493960907581,
+              "previousReset": -1,
+              "previousElapsed": 4049.800000000003
+            },
+            {
+              "id": "t1:t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.69999999999709,
+              "error": -0.0008383233484323682,
+              "previousReset": 4066.4000000000087,
+              "previousElapsed": 7949.600000000006
+            },
+            {
+              "id": "t1:t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.80000000000291,
+              "error": 0.23610714285717904,
+              "previousReset": 9999.600000000006,
+              "previousElapsed": 10199.5
+            },
+            {
+              "id": "t1:t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.69999999999709,
+              "error": -0.02211377245356516,
+              "previousReset": -1,
+              "previousElapsed": 2249.800000000003
+            },
+            {
+              "id": "t1:t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.69999999999709,
+              "error": -0.001760479032668627,
+              "previousReset": 10216.300000000003,
+              "previousElapsed": 12299.400000000009
+            }
+          ]
+        },
+        {
+          "leg": "T1",
+          "dimensions": "620x780",
+          "motion": "os",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 913,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.300000000003,
+            "secureGold": 115
+          },
+          "priorCombatFixtures": [
+            "marsh_crossing"
+          ],
+          "contacts": [
+            {
+              "id": "t1:t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.80000000000291,
+              "error": 0.0003452380959174661,
+              "previousReset": -1,
+              "previousElapsed": 4049.800000000003
+            },
+            {
+              "id": "t1:t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.60000000000582,
+              "error": -0.00004216867574768912,
+              "previousReset": 4066.600000000006,
+              "previousElapsed": 7949.699999999997
+            },
+            {
+              "id": "t1:t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.69999999999709,
+              "error": 0.000005988026487102616,
+              "previousReset": 7966.300000000003,
+              "previousElapsed": 10199.600000000006
+            },
+            {
+              "id": "t1:t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.70000000001164,
+              "error": -0.005263473055237,
+              "previousReset": -1,
+              "previousElapsed": 2249.899999999994
+            },
+            {
+              "id": "t1:t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.69999999999709,
+              "error": -0.0012155688623352034,
+              "previousReset": 10216.300000000003,
+              "previousElapsed": 12299.5
+            }
+          ]
+        },
+        {
+          "leg": "T1",
+          "dimensions": "390x844",
+          "motion": "os",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 914,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.199999999997,
+            "secureGold": 115
+          },
+          "priorCombatFixtures": [
+            "marsh_crossing"
+          ],
+          "contacts": [
+            {
+              "id": "t1:t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.69999999999709,
+              "error": -0.000032335328924659734,
+              "previousReset": -1,
+              "previousElapsed": 4049.800000000003
+            },
+            {
+              "id": "t1:t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.69999999999709,
+              "error": -0.00009999999859644504,
+              "previousReset": 4066.5,
+              "previousElapsed": 7949.600000000006
+            },
+            {
+              "id": "t1:t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.59999999999127,
+              "error": 0.05531927710924833,
+              "previousReset": 10049.600000000006,
+              "previousElapsed": 10199.600000000006
+            },
+            {
+              "id": "t1:t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.80000000000291,
+              "error": -0.006347619047176067,
+              "previousReset": -1,
+              "previousElapsed": 2249.800000000003
+            },
+            {
+              "id": "t1:t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.69999999999709,
+              "error": -0.0004862275449397657,
+              "previousReset": 10216.199999999997,
+              "previousElapsed": 12299.5
+            }
+          ]
+        },
+        {
+          "leg": "T3",
+          "dimensions": "1440x810",
+          "motion": "os",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 851,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.299999999996,
+            "secureGold": 150
+          },
+          "priorCombatFixtures": [],
+          "contacts": [
+            {
+              "id": "t3:t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.69999999999709,
+              "error": -0.0003413173638477929,
+              "previousReset": -1,
+              "previousElapsed": 4049.800000000003
+            },
+            {
+              "id": "t3:t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.69999999999709,
+              "error": -0.0006287425113100653,
+              "previousReset": 4066.5,
+              "previousElapsed": 7949.700000000004
+            },
+            {
+              "id": "t3:t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.69999999999709,
+              "error": 0.19151497005907459,
+              "previousReset": 10049.599999999999,
+              "previousElapsed": 10199.599999999999
+            },
+            {
+              "id": "t3:t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.69999999999709,
+              "error": -0.010628742514256828,
+              "previousReset": -1,
+              "previousElapsed": 2249.9000000000015
+            },
+            {
+              "id": "t3:t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.60000000000582,
+              "error": -0.0012048192785414358,
+              "previousReset": 10216.299999999996,
+              "previousElapsed": 12299.599999999999
+            }
+          ]
+        },
+        {
+          "leg": "T3",
+          "dimensions": "620x780",
+          "motion": "os",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 911,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.200000000004,
+            "secureGold": 150
+          },
+          "priorCombatFixtures": [],
+          "contacts": [
+            {
+              "id": "t3:t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.599999999998545,
+              "error": 0.00016867469904013888,
+              "previousReset": -1,
+              "previousElapsed": 4049.9000000000015
+            },
+            {
+              "id": "t3:t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.5,
+              "error": -0.0003575757592386708,
+              "previousReset": 4066.5,
+              "previousElapsed": 7949.799999999996
+            },
+            {
+              "id": "t3:t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.60000000000582,
+              "error": 0.08489156626478689,
+              "previousReset": 10049.599999999999,
+              "previousElapsed": 10199.599999999999
+            },
+            {
+              "id": "t3:t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.700000000004366,
+              "error": 0,
+              "previousReset": -1,
+              "previousElapsed": 2233.2999999999956
+            },
+            {
+              "id": "t3:t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.60000000000582,
+              "error": -0.0007831325307563475,
+              "previousReset": 10216.200000000004,
+              "previousElapsed": 12299.599999999999
+            }
+          ]
+        },
+        {
+          "leg": "T3",
+          "dimensions": "390x844",
+          "motion": "os",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 913,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.199999999997,
+            "secureGold": 150
+          },
+          "priorCombatFixtures": [],
+          "contacts": [
+            {
+              "id": "t3:t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.69999999999709,
+              "error": -0.000032335328924659734,
+              "previousReset": -1,
+              "previousElapsed": 4049.800000000003
+            },
+            {
+              "id": "t3:t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.79999999998836,
+              "error": -0.00010238095102010902,
+              "previousReset": 4066.5,
+              "previousElapsed": 7949.600000000006
+            },
+            {
+              "id": "t3:t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.59999999999127,
+              "error": 0.05531927710924833,
+              "previousReset": 10049.5,
+              "previousElapsed": 10199.600000000006
+            },
+            {
+              "id": "t3:t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.69999999999709,
+              "error": -0.003192814371033137,
+              "previousReset": -1,
+              "previousElapsed": 2249.9000000000015
+            },
+            {
+              "id": "t3:t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.69999999999709,
+              "error": -0.0004862275449397657,
+              "previousReset": 10216.199999999997,
+              "previousElapsed": 12299.5
+            }
+          ]
+        }
+      ],
+      "acceptanceScope": "Selected fixture-origin native built branch-combat road contact/lifetime/full exit/depth/native lane/unique temporary award; selected frame brackets only; no earnedV6/full-road/perceptual/global frame-budget acceptance"
+    },
+    {
+      "id": "road-0007-branch-v3-game",
+      "status": "SUCCEEDED",
+      "receipt": "tmp/traversal/road-0007-branch-v3-game/qa-job.json",
+      "receiptSha256": "e5edd114ad19a41a474003dddf824ccd6298e8c6b878fb2423ee5633227eae01",
+      "result": "tmp/traversal/road-0007-branch-v3-game/results.json",
+      "resultSha256": "a646821a71b294fa3e3db884957fbe5b5f707928bed6c081d6e012bcdba09f51",
+      "provenanceStable": true,
+      "provenance": {
+        "gitHead": "62045da221f49e035b509c50be355840eecfd81f",
+        "sourceTree": "0b66ef5d00e324e47d42126800fcf8f79d592e6d",
+        "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+        "driver": {
+          "path": "tools/traversal-road-more-routes-production-qa.mjs",
+          "sha256": "f5ce041fc8b5589f5ea58c25fa133f4b706fc446cbe11d0bba84a2ed9d8f15ff"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-C6Qm6kEn.js",
+            "sha256": "9416536936b25d29b5a548b103020bb13a67b6575e723ba73c88a070a26c0e2c"
+          },
+          {
+            "path": "dist/assets/game-DrzQVqcv.css",
+            "sha256": "6fbecdaf5aaf3ce847886b4954c595ec0a0198767982cf2e0d2a492b75477db2"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "bc15a9071f50a59207a29154192163f0786ae2f46ebf8206811d57902405ba2d"
+          }
+        ]
+      },
+      "parameters": {
+        "motion": "game",
+        "legs": [
+          "T0",
+          "T1",
+          "T3"
+        ],
+        "viewports": [
+          "1440x810",
+          "620x780",
+          "390x844"
+        ],
+        "roads": [
+          "branch-combat"
+        ],
+        "paths": [
+          "contact-collect"
+        ],
+        "earlyPaths": [
+          "contact-collect"
+        ],
+        "scope": "native real built selected roads; V6 fixture origins/bootstrap/prior combat outcomes; no earned campaign/full road acceptance"
+      },
+      "assertions": [
+        "edge-entry-frozen-anchor",
+        "contact-collected-retention-full-exit",
+        "rendered-ground-depth",
+        "native-keyboard-responsive-motion",
+        "single-temporary-pickup-no-secured-write",
+        "physical-contact-after-reset"
+      ],
+      "acceptance": "ACCEPTED_SCOPED",
+      "errors": [],
+      "cases": 9,
+      "contacts": [
+        {
+          "leg": "T0",
+          "dimensions": "1440x810",
+          "motion": "game",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 810,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.200000000012,
+            "secureGold": 150
+          },
+          "priorCombatFixtures": [
+            "forest_ambush"
+          ],
+          "contacts": [
+            {
+              "id": "t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.69999999999709,
+              "error": -0.0003413173638477929,
+              "previousReset": -1,
+              "previousElapsed": 4049.800000000003
+            },
+            {
+              "id": "t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 33.40000000000873,
+              "error": -0.013886227541149765,
+              "previousReset": 4066.5,
+              "previousElapsed": 7933
+            },
+            {
+              "id": "t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.70000000001164,
+              "error": 0.23734730538939175,
+              "previousReset": 10049.5,
+              "previousElapsed": 10199.5
+            },
+            {
+              "id": "t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.69999999999709,
+              "error": -0.010628742510391476,
+              "previousReset": -1,
+              "previousElapsed": 2249.9000000000087
+            },
+            {
+              "id": "t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.60000000000582,
+              "error": -0.001475903614220897,
+              "previousReset": 10216.200000000012,
+              "previousElapsed": 12299.5
+            }
+          ]
+        },
+        {
+          "leg": "T0",
+          "dimensions": "620x780",
+          "motion": "game",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 916,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.199999999997,
+            "secureGold": 150
+          },
+          "priorCombatFixtures": [
+            "forest_ambush"
+          ],
+          "contacts": [
+            {
+              "id": "t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.69999999999709,
+              "error": -0.00047904191706038546,
+              "previousReset": -1,
+              "previousElapsed": 4049.699999999997
+            },
+            {
+              "id": "t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.79999999998836,
+              "error": -0.00039285714299808205,
+              "previousReset": 4066.399999999994,
+              "previousElapsed": 7949.5
+            },
+            {
+              "id": "t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.69999999999709,
+              "error": -0.0007125748503540308,
+              "previousReset": 7966.299999999988,
+              "previousElapsed": 10199.5
+            },
+            {
+              "id": "t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.60000000000582,
+              "error": -0.005265060242322761,
+              "previousReset": -1,
+              "previousElapsed": 2249.899999999994
+            },
+            {
+              "id": "t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 33.39999999999418,
+              "error": -0.019940119763276698,
+              "previousReset": 10216.199999999997,
+              "previousElapsed": 12282.699999999997
+            }
+          ]
+        },
+        {
+          "leg": "T0",
+          "dimensions": "390x844",
+          "motion": "game",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 917,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.200000000012,
+            "secureGold": 150
+          },
+          "priorCombatFixtures": [
+            "forest_ambush"
+          ],
+          "contacts": [
+            {
+              "id": "t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.69999999999709,
+              "error": -0.000032335328924659734,
+              "previousReset": -1,
+              "previousElapsed": 4049.800000000003
+            },
+            {
+              "id": "t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.59999999999127,
+              "error": -0.00009999999717535957,
+              "previousReset": 4066.5,
+              "previousElapsed": 7949.700000000012
+            },
+            {
+              "id": "t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.60000000000582,
+              "error": -0.00024337349226755123,
+              "previousReset": 7966.300000000003,
+              "previousElapsed": 10199.600000000006
+            },
+            {
+              "id": "t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.69999999999709,
+              "error": -0.003192814369938901,
+              "previousReset": -1,
+              "previousElapsed": 2249.9000000000087
+            },
+            {
+              "id": "t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.70000000001164,
+              "error": -0.00048622754481186803,
+              "previousReset": 10216.200000000012,
+              "previousElapsed": 12299.5
+            }
+          ]
+        },
+        {
+          "leg": "T1",
+          "dimensions": "1440x810",
+          "motion": "game",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 775,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.300000000003,
+            "secureGold": 115
+          },
+          "priorCombatFixtures": [
+            "marsh_crossing"
+          ],
+          "contacts": [
+            {
+              "id": "t1:t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 33.30000000000291,
+              "error": -0.010909909911049454,
+              "previousReset": -1,
+              "previousElapsed": 4033.199999999997
+            },
+            {
+              "id": "t1:t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 33.30000000000291,
+              "error": -0.013951951950673447,
+              "previousReset": 4066.5,
+              "previousElapsed": 7933
+            },
+            {
+              "id": "t1:t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.70000000001164,
+              "error": -0.0007125748586531699,
+              "previousReset": 7966.300000000003,
+              "previousElapsed": 10199.599999999991
+            },
+            {
+              "id": "t1:t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 33.40000000000873,
+              "error": -0.01171257485333399,
+              "previousReset": -1,
+              "previousElapsed": 2249.899999999994
+            },
+            {
+              "id": "t1:t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.69999999999709,
+              "error": -0.0014970059880852205,
+              "previousReset": 10216.300000000003,
+              "previousElapsed": 12299.5
+            }
+          ]
+        },
+        {
+          "leg": "T1",
+          "dimensions": "620x780",
+          "motion": "game",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 917,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.300000000003,
+            "secureGold": 115
+          },
+          "priorCombatFixtures": [
+            "marsh_crossing"
+          ],
+          "contacts": [
+            {
+              "id": "t1:t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.59999999999127,
+              "error": 0.00016867470100123683,
+              "previousReset": -1,
+              "previousElapsed": 4049.9000000000087
+            },
+            {
+              "id": "t1:t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.69999999999709,
+              "error": -0.00002994011538248742,
+              "previousReset": 4066.5,
+              "previousElapsed": 7949.700000000012
+            },
+            {
+              "id": "t1:t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.69999999999709,
+              "error": 0.08427544910310303,
+              "previousReset": 10016.300000000003,
+              "previousElapsed": 10199.600000000006
+            },
+            {
+              "id": "t1:t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.69999999999709,
+              "error": -0.005263473051854817,
+              "previousReset": -1,
+              "previousElapsed": 2249.9000000000087
+            },
+            {
+              "id": "t1:t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.70000000001164,
+              "error": -0.0012155688621078298,
+              "previousReset": 10216.300000000003,
+              "previousElapsed": 12299.5
+            }
+          ]
+        },
+        {
+          "leg": "T1",
+          "dimensions": "390x844",
+          "motion": "game",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 917,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.300000000003,
+            "secureGold": 115
+          },
+          "priorCombatFixtures": [
+            "marsh_crossing"
+          ],
+          "contacts": [
+            {
+              "id": "t1:t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.59999999999127,
+              "error": -0.00001626505880381046,
+              "previousReset": -1,
+              "previousElapsed": 4049.9000000000087
+            },
+            {
+              "id": "t1:t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.59999999999127,
+              "error": -0.00009999999717535957,
+              "previousReset": 4066.5,
+              "previousElapsed": 7949.700000000012
+            },
+            {
+              "id": "t1:t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.69999999999709,
+              "error": -0.0002443113755958848,
+              "previousReset": 7966.300000000003,
+              "previousElapsed": 10199.600000000006
+            },
+            {
+              "id": "t1:t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.69999999999709,
+              "error": -0.003192814369938901,
+              "previousReset": -1,
+              "previousElapsed": 2249.9000000000087
+            },
+            {
+              "id": "t1:t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.60000000000582,
+              "error": -0.0004795180722396708,
+              "previousReset": 10216.300000000003,
+              "previousElapsed": 12299.5
+            }
+          ]
+        },
+        {
+          "leg": "T3",
+          "dimensions": "1440x810",
+          "motion": "game",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 821,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.199999999997,
+            "secureGold": 150
+          },
+          "priorCombatFixtures": [],
+          "contacts": [
+            {
+              "id": "t3:t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.59999999999127,
+              "error": -0.00033734939620444493,
+              "previousReset": -1,
+              "previousElapsed": 4049.800000000003
+            },
+            {
+              "id": "t3:t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.70000000001164,
+              "error": -0.0008383233605400164,
+              "previousReset": 4066.399999999994,
+              "previousElapsed": 7949.599999999991
+            },
+            {
+              "id": "t3:t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.60000000000582,
+              "error": -0.0007108433820235405,
+              "previousReset": 7966.300000000003,
+              "previousElapsed": 10199.599999999991
+            },
+            {
+              "id": "t3:t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.60000000000582,
+              "error": -0.010626506027165306,
+              "previousReset": -1,
+              "previousElapsed": 2249.899999999994
+            },
+            {
+              "id": "t3:t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.69999999999709,
+              "error": -0.0014970059880852205,
+              "previousReset": 10216.199999999997,
+              "previousElapsed": 12299.5
+            }
+          ]
+        },
+        {
+          "leg": "T3",
+          "dimensions": "620x780",
+          "motion": "game",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 917,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.299999999996,
+            "secureGold": 150
+          },
+          "priorCombatFixtures": [],
+          "contacts": [
+            {
+              "id": "t3:t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.69999999999709,
+              "error": 0.00017365269485480894,
+              "previousReset": -1,
+              "previousElapsed": 4049.9000000000015
+            },
+            {
+              "id": "t3:t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.60000000000582,
+              "error": -0.00034939759200369735,
+              "previousReset": 4066.5999999999985,
+              "previousElapsed": 7949.799999999996
+            },
+            {
+              "id": "t3:t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.69999999999709,
+              "error": 0.0000059880233038711594,
+              "previousReset": 7966.4000000000015,
+              "previousElapsed": 10199.599999999999
+            },
+            {
+              "id": "t3:t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.700000000004366,
+              "error": 0,
+              "previousReset": -1,
+              "previousElapsed": 2233.2999999999956
+            },
+            {
+              "id": "t3:t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.69999999999709,
+              "error": -0.0007724550905550132,
+              "previousReset": 10216.299999999996,
+              "previousElapsed": 12299.599999999999
+            }
+          ]
+        },
+        {
+          "leg": "T3",
+          "dimensions": "390x844",
+          "motion": "game",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 917,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.300000000003,
+            "secureGold": 150
+          },
+          "priorCombatFixtures": [],
+          "contacts": [
+            {
+              "id": "t3:t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.69999999999709,
+              "error": -0.000016167664497857004,
+              "previousReset": -1,
+              "previousElapsed": 4049.9000000000015
+            },
+            {
+              "id": "t3:t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.69999999999709,
+              "error": -0.00010179640791818656,
+              "previousReset": 4066.5999999999985,
+              "previousElapsed": 7949.699999999997
+            },
+            {
+              "id": "t3:t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.60000000000582,
+              "error": 0.04172108433694177,
+              "previousReset": 10049.600000000006,
+              "previousElapsed": 10199.699999999997
+            },
+            {
+              "id": "t3:t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.799999999995634,
+              "error": -0.003192857142636285,
+              "previousReset": -1,
+              "previousElapsed": 2249.9000000000015
+            },
+            {
+              "id": "t3:t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.69999999999709,
+              "error": -0.0004832335329609805,
+              "previousReset": 10216.300000000003,
+              "previousElapsed": 12299.5
+            }
+          ]
+        }
+      ],
+      "acceptanceScope": "Selected fixture-origin native built branch-combat road contact/lifetime/full exit/depth/native lane/unique temporary award; selected frame brackets only; no earnedV6/full-road/perceptual/global frame-budget acceptance"
+    },
+    {
+      "id": "road-0007-branch-v4-normal-T3",
+      "status": "SUCCEEDED",
+      "receipt": "tmp/traversal/road-0007-branch-v4-normal-T3/qa-job.json",
+      "receiptSha256": "946f83f174461f0b0a0a1ea3424d49de56606f41aa17440f46f340806a46a146",
+      "result": "tmp/traversal/road-0007-branch-v4-normal-T3/results.json",
+      "resultSha256": "bf2a8134a62d605eba575a24ab4882e690b3e1342ac68ba74829133231d372eb",
+      "provenanceStable": true,
+      "provenance": {
+        "gitHead": "62045da221f49e035b509c50be355840eecfd81f",
+        "sourceTree": "0b66ef5d00e324e47d42126800fcf8f79d592e6d",
+        "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+        "driver": {
+          "path": "tools/traversal-road-more-routes-production-qa.mjs",
+          "sha256": "f5ce041fc8b5589f5ea58c25fa133f4b706fc446cbe11d0bba84a2ed9d8f15ff"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-C6Qm6kEn.js",
+            "sha256": "9416536936b25d29b5a548b103020bb13a67b6575e723ba73c88a070a26c0e2c"
+          },
+          {
+            "path": "dist/assets/game-DrzQVqcv.css",
+            "sha256": "6fbecdaf5aaf3ce847886b4954c595ec0a0198767982cf2e0d2a492b75477db2"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "bc15a9071f50a59207a29154192163f0786ae2f46ebf8206811d57902405ba2d"
+          }
+        ]
+      },
+      "parameters": {
+        "motion": "normal",
+        "legs": [
+          "T3"
+        ],
+        "viewports": [
+          "1440x810",
+          "620x780",
+          "390x844"
+        ],
+        "roads": [
+          "branch-combat"
+        ],
+        "paths": [
+          "contact-collect"
+        ],
+        "earlyPaths": [
+          "contact-collect"
+        ],
+        "scope": "native real built selected roads; V6 fixture origins/bootstrap/prior combat outcomes; no earned campaign/full road acceptance"
+      },
+      "assertions": [
+        "edge-entry-frozen-anchor",
+        "contact-collected-retention-full-exit",
+        "rendered-ground-depth",
+        "native-keyboard-responsive-motion",
+        "single-temporary-pickup-no-secured-write",
+        "physical-contact-after-reset"
+      ],
+      "acceptance": "ACCEPTED_SCOPED",
+      "errors": [],
+      "cases": 3,
+      "contacts": [
+        {
+          "leg": "T3",
+          "dimensions": "1440x810",
+          "motion": "normal",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 826,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.200000000004,
+            "secureGold": 150
+          },
+          "priorCombatFixtures": [],
+          "contacts": [
+            {
+              "id": "t3:t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.70000000001164,
+              "error": -0.0003413173681110493,
+              "previousReset": -1,
+              "previousElapsed": 4049.7999999999956
+            },
+            {
+              "id": "t3:t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.69999999999709,
+              "error": -0.0008383233546283009,
+              "previousReset": 4066.5000000000073,
+              "previousElapsed": 7949.5999999999985
+            },
+            {
+              "id": "t3:t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.60000000000582,
+              "error": -0.0007108433748044263,
+              "previousReset": 7966.299999999996,
+              "previousElapsed": 10199.599999999999
+            },
+            {
+              "id": "t3:t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.69999999999709,
+              "error": -0.010628742514256828,
+              "previousReset": -1,
+              "previousElapsed": 2249.9000000000015
+            },
+            {
+              "id": "t3:t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 33.30000000000291,
+              "error": -0.04464864865173013,
+              "previousReset": 10216.200000000004,
+              "previousElapsed": 12282.799999999996
+            }
+          ]
+        },
+        {
+          "leg": "T3",
+          "dimensions": "620x780",
+          "motion": "normal",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 917,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.199999999997,
+            "secureGold": 150
+          },
+          "priorCombatFixtures": [],
+          "contacts": [
+            {
+              "id": "t3:t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.69999999999709,
+              "error": 0.0003353293419650072,
+              "previousReset": -1,
+              "previousElapsed": 4049.800000000003
+            },
+            {
+              "id": "t3:t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.70000000001164,
+              "error": 0.0002694610746800663,
+              "previousReset": 4066.5,
+              "previousElapsed": 7949.599999999991
+            },
+            {
+              "id": "t3:t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.60000000000582,
+              "error": 0.08397590361252583,
+              "previousReset": 9999.599999999991,
+              "previousElapsed": 10199.599999999991
+            },
+            {
+              "id": "t3:t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.700000000004366,
+              "error": -0.005263473055237,
+              "previousReset": -1,
+              "previousElapsed": 2249.899999999994
+            },
+            {
+              "id": "t3:t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.69999999999709,
+              "error": -0.0012155688623352034,
+              "previousReset": 10216.199999999997,
+              "previousElapsed": 12299.5
+            }
+          ]
+        },
+        {
+          "leg": "T3",
+          "dimensions": "390x844",
+          "motion": "normal",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 916,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.299999999996,
+            "secureGold": 150
+          },
+          "priorCombatFixtures": [],
+          "contacts": [
+            {
+              "id": "t3:t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.59999999999127,
+              "error": -0.000016265060082787386,
+              "previousReset": -1,
+              "previousElapsed": 4049.9000000000015
+            },
+            {
+              "id": "t3:t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.59999999999127,
+              "error": -0.00009999999896592726,
+              "previousReset": 4066.4999999999927,
+              "previousElapsed": 7949.700000000004
+            },
+            {
+              "id": "t3:t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.69999999999709,
+              "error": 0.0560814371255276,
+              "previousReset": 10082.999999999993,
+              "previousElapsed": 10199.599999999999
+            },
+            {
+              "id": "t3:t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.69999999999709,
+              "error": -0.003192814371033137,
+              "previousReset": -1,
+              "previousElapsed": 2249.9000000000015
+            },
+            {
+              "id": "t3:t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.70000000001164,
+              "error": -0.00048323353507839784,
+              "previousReset": 10216.299999999996,
+              "previousElapsed": 12299.499999999993
+            }
+          ]
+        }
+      ],
+      "acceptanceScope": "Selected fixture-origin native built branch-combat road contact/lifetime/full exit/depth/native lane/unique temporary award; selected frame brackets only; no earnedV6/full-road/perceptual/global frame-budget acceptance"
+    },
+    {
+      "id": "road-0007-branch-v4-normal-T0",
+      "status": "SUCCEEDED",
+      "receipt": "tmp/traversal/road-0007-branch-v4-normal-T0/qa-job.json",
+      "receiptSha256": "1b8f24d38f741364b0db81572066dc857d1483a7f5a7c6cf34b618e5e2c759f1",
+      "result": "tmp/traversal/road-0007-branch-v4-normal-T0/results.json",
+      "resultSha256": "0f597ff5afc384b04d7c6f05e0d82fd4e54bcf5726ed045530eaddbeafe92da0",
+      "provenanceStable": true,
+      "provenance": {
+        "gitHead": "62045da221f49e035b509c50be355840eecfd81f",
+        "sourceTree": "0b66ef5d00e324e47d42126800fcf8f79d592e6d",
+        "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+        "driver": {
+          "path": "tools/traversal-road-more-routes-production-qa.mjs",
+          "sha256": "f5ce041fc8b5589f5ea58c25fa133f4b706fc446cbe11d0bba84a2ed9d8f15ff"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-C6Qm6kEn.js",
+            "sha256": "9416536936b25d29b5a548b103020bb13a67b6575e723ba73c88a070a26c0e2c"
+          },
+          {
+            "path": "dist/assets/game-DrzQVqcv.css",
+            "sha256": "6fbecdaf5aaf3ce847886b4954c595ec0a0198767982cf2e0d2a492b75477db2"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "bc15a9071f50a59207a29154192163f0786ae2f46ebf8206811d57902405ba2d"
+          }
+        ]
+      },
+      "parameters": {
+        "motion": "normal",
+        "legs": [
+          "T0"
+        ],
+        "viewports": [
+          "1440x810",
+          "620x780",
+          "390x844"
+        ],
+        "roads": [
+          "branch-combat"
+        ],
+        "paths": [
+          "contact-collect"
+        ],
+        "earlyPaths": [
+          "contact-collect"
+        ],
+        "scope": "native real built selected roads; V6 fixture origins/bootstrap/prior combat outcomes; no earned campaign/full road acceptance"
+      },
+      "assertions": [
+        "edge-entry-frozen-anchor",
+        "contact-collected-retention-full-exit",
+        "rendered-ground-depth",
+        "native-keyboard-responsive-motion",
+        "single-temporary-pickup-no-secured-write",
+        "physical-contact-after-reset"
+      ],
+      "acceptance": "ACCEPTED_SCOPED",
+      "errors": [],
+      "cases": 3,
+      "contacts": [
+        {
+          "leg": "T0",
+          "dimensions": "1440x810",
+          "motion": "normal",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 842,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.299999999988,
+            "secureGold": 150
+          },
+          "priorCombatFixtures": [
+            "wolf_pack"
+          ],
+          "contacts": [
+            {
+              "id": "t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.60000000000582,
+              "error": 0.0003253012010304701,
+              "previousReset": -1,
+              "previousElapsed": 4049.899999999994
+            },
+            {
+              "id": "t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.69999999999709,
+              "error": -0.000628742517505998,
+              "previousReset": 4066.5,
+              "previousElapsed": 7949.699999999997
+            },
+            {
+              "id": "t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.69999999999709,
+              "error": 0.19007784430687025,
+              "previousReset": 10016.299999999988,
+              "previousElapsed": 10199.599999999991
+            },
+            {
+              "id": "t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.70000000001164,
+              "error": 0,
+              "previousReset": -1,
+              "previousElapsed": 2233.2999999999884
+            },
+            {
+              "id": "t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.69999999999709,
+              "error": -0.0014970059880852205,
+              "previousReset": 10216.299999999988,
+              "previousElapsed": 12299.5
+            }
+          ]
+        },
+        {
+          "leg": "T0",
+          "dimensions": "620x780",
+          "motion": "normal",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 916,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.200000000012,
+            "secureGold": 150
+          },
+          "priorCombatFixtures": [
+            "wolf_pack"
+          ],
+          "contacts": [
+            {
+              "id": "t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.69999999999709,
+              "error": 0.0003353293419650072,
+              "previousReset": -1,
+              "previousElapsed": 4049.800000000003
+            },
+            {
+              "id": "t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.59999999999127,
+              "error": -0.00004216867037598604,
+              "previousReset": 4066.5,
+              "previousElapsed": 7949.700000000012
+            },
+            {
+              "id": "t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.60000000000582,
+              "error": 0.08426506024230207,
+              "previousReset": 10016.300000000003,
+              "previousElapsed": 10199.600000000006
+            },
+            {
+              "id": "t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.59999999999127,
+              "error": -0.005265060238940578,
+              "previousReset": -1,
+              "previousElapsed": 2249.9000000000087
+            },
+            {
+              "id": "t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.70000000001164,
+              "error": -0.0012155688621078298,
+              "previousReset": 10216.200000000012,
+              "previousElapsed": 12299.5
+            }
+          ]
+        },
+        {
+          "leg": "T0",
+          "dimensions": "390x844",
+          "motion": "normal",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 918,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.399999999994,
+            "secureGold": 150
+          },
+          "priorCombatFixtures": [
+            "wolf_pack"
+          ],
+          "contacts": [
+            {
+              "id": "t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.70000000001164,
+              "error": -0.000016167665762623074,
+              "previousReset": -1,
+              "previousElapsed": 4049.899999999994
+            },
+            {
+              "id": "t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.59999999999127,
+              "error": -0.00010120481859132724,
+              "previousReset": 4066.600000000006,
+              "previousElapsed": 7949.800000000003
+            },
+            {
+              "id": "t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.69999999999709,
+              "error": 0.0413712574845988,
+              "previousReset": 9999.699999999997,
+              "previousElapsed": 10199.699999999997
+            },
+            {
+              "id": "t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.60000000000582,
+              "error": 0,
+              "previousReset": -1,
+              "previousElapsed": 2233.399999999994
+            },
+            {
+              "id": "t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.59999999999127,
+              "error": -0.00040602409464440825,
+              "previousReset": 10216.399999999994,
+              "previousElapsed": 12299.600000000006
+            }
+          ]
+        }
+      ],
+      "acceptanceScope": "Selected fixture-origin native built branch-combat road contact/lifetime/full exit/depth/native lane/unique temporary award; selected frame brackets only; no earnedV6/full-road/perceptual/global frame-budget acceptance"
+    },
+    {
+      "id": "road-0007-branch-v4-normal-T1",
+      "status": "SUCCEEDED",
+      "receipt": "tmp/traversal/road-0007-branch-v4-normal-T1/qa-job.json",
+      "receiptSha256": "15c4668b7d6dfd00a525c894700c80cb67ea1787c07a8757af0ca0a428c79c03",
+      "result": "tmp/traversal/road-0007-branch-v4-normal-T1/results.json",
+      "resultSha256": "fe5c66f1904f563aac557c450541465a3b0624d4b653ec2b55d0d081f4d6c7e3",
+      "provenanceStable": true,
+      "provenance": {
+        "gitHead": "62045da221f49e035b509c50be355840eecfd81f",
+        "sourceTree": "0b66ef5d00e324e47d42126800fcf8f79d592e6d",
+        "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+        "driver": {
+          "path": "tools/traversal-road-more-routes-production-qa.mjs",
+          "sha256": "f5ce041fc8b5589f5ea58c25fa133f4b706fc446cbe11d0bba84a2ed9d8f15ff"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-C6Qm6kEn.js",
+            "sha256": "9416536936b25d29b5a548b103020bb13a67b6575e723ba73c88a070a26c0e2c"
+          },
+          {
+            "path": "dist/assets/game-DrzQVqcv.css",
+            "sha256": "6fbecdaf5aaf3ce847886b4954c595ec0a0198767982cf2e0d2a492b75477db2"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "bc15a9071f50a59207a29154192163f0786ae2f46ebf8206811d57902405ba2d"
+          }
+        ]
+      },
+      "parameters": {
+        "motion": "normal",
+        "legs": [
+          "T1"
+        ],
+        "viewports": [
+          "1440x810",
+          "620x780",
+          "390x844"
+        ],
+        "roads": [
+          "branch-combat"
+        ],
+        "paths": [
+          "contact-collect"
+        ],
+        "earlyPaths": [
+          "contact-collect"
+        ],
+        "scope": "native real built selected roads; V6 fixture origins/bootstrap/prior combat outcomes; no earned campaign/full road acceptance"
+      },
+      "assertions": [
+        "edge-entry-frozen-anchor",
+        "contact-collected-retention-full-exit",
+        "rendered-ground-depth",
+        "native-keyboard-responsive-motion",
+        "single-temporary-pickup-no-secured-write",
+        "physical-contact-after-reset"
+      ],
+      "acceptance": "ACCEPTED_SCOPED",
+      "errors": [],
+      "cases": 3,
+      "contacts": [
+        {
+          "leg": "T1",
+          "dimensions": "1440x810",
+          "motion": "normal",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 809,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.199999999997,
+            "secureGold": 115
+          },
+          "priorCombatFixtures": [
+            "marsh_crossing"
+          ],
+          "contacts": [
+            {
+              "id": "t1:t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.69999999999709,
+              "error": -0.000011976049961504032,
+              "previousReset": -1,
+              "previousElapsed": 4049.699999999997
+            },
+            {
+              "id": "t1:t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.69999999999709,
+              "error": -0.0008383233608242335,
+              "previousReset": 4066.399999999994,
+              "previousElapsed": 7949.599999999991
+            },
+            {
+              "id": "t1:t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.60000000000582,
+              "error": 0.1900602409594967,
+              "previousReset": 10016.199999999997,
+              "previousElapsed": 10199.599999999991
+            },
+            {
+              "id": "t1:t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 33.40000000000873,
+              "error": -0.022359281443186774,
+              "previousReset": -1,
+              "previousElapsed": 2249.7999999999884
+            },
+            {
+              "id": "t1:t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.59999999999127,
+              "error": -0.0014759036147324878,
+              "previousReset": 10216.199999999997,
+              "previousElapsed": 12299.5
+            }
+          ]
+        },
+        {
+          "leg": "T1",
+          "dimensions": "620x780",
+          "motion": "normal",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 916,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.200000000012,
+            "secureGold": 115
+          },
+          "priorCombatFixtures": [
+            "marsh_crossing"
+          ],
+          "contacts": [
+            {
+              "id": "t1:t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.60000000000582,
+              "error": 0.0003373493982792297,
+              "previousReset": -1,
+              "previousElapsed": 4049.800000000003
+            },
+            {
+              "id": "t1:t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.69999999999709,
+              "error": 0.0002694610800233477,
+              "previousReset": 4066.4000000000087,
+              "previousElapsed": 7949.600000000006
+            },
+            {
+              "id": "t1:t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.70000000001164,
+              "error": 0.10647305389227313,
+              "previousReset": 10082.900000000009,
+              "previousElapsed": 10199.5
+            },
+            {
+              "id": "t1:t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.60000000000582,
+              "error": -0.00948192771014078,
+              "previousReset": -1,
+              "previousElapsed": 2249.800000000003
+            },
+            {
+              "id": "t1:t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.59999999999127,
+              "error": -0.0006746987911867564,
+              "previousReset": 10216.200000000012,
+              "previousElapsed": 12299.400000000009
+            }
+          ]
+        },
+        {
+          "leg": "T1",
+          "dimensions": "390x844",
+          "motion": "normal",
+          "road": "branch-combat",
+          "summary": {
+            "frames": 916,
+            "resized": false,
+            "goldDelta": 10,
+            "riskReset": 10216.300000000003,
+            "secureGold": 115
+          },
+          "priorCombatFixtures": [
+            "marsh_crossing"
+          ],
+          "contacts": [
+            {
+              "id": "t1:t0:r5b:block-1",
+              "clock": 4050.0000000000005,
+              "gap": 16.69999999999709,
+              "error": -0.000032335328924659734,
+              "previousReset": -1,
+              "previousElapsed": 4049.800000000003
+            },
+            {
+              "id": "t1:t0:r5b:branch-2",
+              "clock": 7950,
+              "gap": 16.70000000001164,
+              "error": -0.00010179640784713229,
+              "previousReset": 4066.5,
+              "previousElapsed": 7949.699999999997
+            },
+            {
+              "id": "t1:t0:r5b:block-3",
+              "clock": 10200,
+              "gap": 16.69999999999709,
+              "error": 0.0553275449110231,
+              "previousReset": 10049.600000000006,
+              "previousElapsed": 10199.600000000006
+            },
+            {
+              "id": "t1:t0:r5b:reward-1",
+              "clock": 2250,
+              "gap": 16.59999999999127,
+              "error": -0.0031921686733795696,
+              "previousReset": -1,
+              "previousElapsed": 2249.9000000000087
+            },
+            {
+              "id": "t1:t0:r5b:reward-2",
+              "clock": 12300,
+              "gap": 16.69999999999709,
+              "error": -0.0004832335329609805,
+              "previousReset": 10216.300000000003,
+              "previousElapsed": 12299.5
+            }
+          ]
+        }
+      ],
+      "acceptanceScope": "Selected fixture-origin native built branch-combat road contact/lifetime/full exit/depth/native lane/unique temporary award; selected frame brackets only; no earnedV6/full-road/perceptual/global frame-budget acceptance"
+    }
+  ],
+  "captures": [
+    {
+      "path": "docs/reports/traversal-road-late-reset-3-browser/T0-1440-normal-late-reset.png",
+      "source": "tmp/traversal/road-0007-late-lab-v2/T0-1440-normal-late-reset.png",
+      "sha256": "b2102ed232a0467c297b20feeeb90b7d2b17ac926017842a5b986539572515bd",
+      "scope": "Isolated scripted reset; visible frozen lower-lane rock"
+    },
+    {
+      "path": "docs/reports/traversal-road-late-reset-3-browser/T0-390-os-late-reset.png",
+      "source": "tmp/traversal/road-0007-late-lab-v2/T0-390-os-late-reset.png",
+      "sha256": "c7ff93d21f858337ec1cc769c4f014a46e6c0e77ff3e71f1ce8a221e52f73e8e",
+      "scope": "Isolated OS reduction, no production policy claim"
+    },
+    {
+      "path": "docs/reports/traversal-road-late-reset-3-browser/T0-620-game-late-reset.png",
+      "source": "tmp/traversal/road-0007-late-lab-v2/T0-620-game-late-reset.png",
+      "sha256": "ebb7ddc7a1073eaedb6b44be1d6ecebc3dfce735844dcd3171fef670b64cd4d6",
+      "scope": "Isolated game reduction, no earned/production owner claim"
+    },
+    {
+      "path": "docs/reports/traversal-road-late-reset-3-browser/T0-1440-normal-branch-combat-contact-collect-passed-rock.png",
+      "source": "tmp/traversal/road-0007-branch-v4-normal-T0/T0-1440-normal-branch-combat-contact-collect-passed-rock.png",
+      "sha256": "0a9684de08b95d6073a826da1d0c228c4e029716ac14c912b0bd3bc65ad989a9",
+      "scope": "Native built T0; first rock retained after contact"
+    },
+    {
+      "path": "docs/reports/traversal-road-late-reset-3-browser/T1-390-os-branch-combat-contact-collect-passed-rock.png",
+      "source": "tmp/traversal/road-0007-branch-v3-os/T1-390-os-branch-combat-contact-collect-passed-rock.png",
+      "sha256": "c1e96f1e6d46563ace30eacc9f100cca3272ba8a35c6924df4063ff62a16e2a0",
+      "scope": "Native built T1 OS-only; retained rock and ground depth"
+    },
+    {
+      "path": "docs/reports/traversal-road-late-reset-3-browser/T3-620-game-branch-combat-contact-collect-passed-rock.png",
+      "source": "tmp/traversal/road-0007-branch-v3-game/T3-620-game-branch-combat-contact-collect-passed-rock.png",
+      "sha256": "167c146e1cdc84850fe0abda0683dbba7f5f9c8f91f546601e3fd56b4aa2918b",
+      "scope": "Native built T3 game reduction; retained rock and ground depth"
+    }
+  ],
+  "tests": {
+    "traversal": {
+      "files": 30,
+      "tests": 186,
+      "pass": true
+    },
+    "focused": {
+      "files": 4,
+      "tests": 46,
+      "pass": true
+    },
+    "types": true,
+    "contracts": {
+      "version": "1.1.0",
+      "contracts": 8,
+      "slots": 8,
+      "pass": true
+    },
+    "immutableBaseline": "d7ca28aed5c377ffedb03202f6364b7a947d1096",
+    "build": "game-C6Qm6kEn.js/game-DrzQVqcv.css",
+    "checkpointFocused": {
+      "files": 3,
+      "tests": 36,
+      "pass": true
+    }
+  },
+  "limitations": [
+    "GameApp origin/bootstrap/prior combats are fixtures, not earned lineage",
+    "Six deferred keyboard files are in physical build, excluded from dev source and acceptance",
+    "Isolated lab scripts reset; no GameApp/Pursuit/entry/spacing/reward/V6/production-disposal acceptance",
+    "First/early/remaining-road/background/fallback/earned gold V6 full acceptance remains open",
+    "Ten canonical Pursuit collision mapping gaps remain blocked",
+    "Initial failed/stopped diagnostics remain NOT_ACCEPTED"
+  ],
+  "assets": [
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+      "sha256": "1b64195bc4cb92d5e8cd56c42a68fc85b250fe7cd64b1af7a4b4603ea8f13ccf"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/foreground/shared-loop.png",
+      "sha256": "8aee23da28c64f9334cb21ec3c9dc94702d54972be7bb22cb313ff86a0e4bfd6"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/chassis.png",
+      "sha256": "16b17208d6473f977cd14d0d122a91b876e8c3ac508edb227c7e5f0a7c912b46"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/wheel.png",
+      "sha256": "cd7516ff563ad47f67c87697c643149a505a040a3d5f5a6a3d4fe238f8f77a70"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/risk/boulder-a.png",
+      "sha256": "12f455732156a72d875ddd5b4d59d165593e7c73d51e7933eb660982b2e343e8"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/risk/boulder-b.png",
+      "sha256": "ac97b427b421d84a2eb27ef3c8b4afdc690783d65a971541a1ac30e2f0e7ed95"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/reward/coin-pouch.png",
+      "sha256": "a1bd020956384015043eb58c43461441337e7d57b5b7605c07fc38d6bbd92113"
+    }
+  ],
+  "review": {
+    "orchestrator": "Owned-lock explicit selection; six captures inspected",
+    "contracts": "Read-only reviewer independently verified completed OS/game/lab/T3 inputs/digests; PASS scoped source/assertion boundaries; no truth-write regression",
+    "traversal": "Read-only reviewer inspected OS T1-390/T3-620 and game T3-620; PASS scoped; root inspected normal T0-1440",
+    "remaining": "TRAVERSAL/UI/QA expanded acceptance BLOCKED",
+    "contactLimitation": "Endpoint-linear native-frame contact interpolation is a measured proxy, sensitive to crossing frames containing two speed profiles; selected gap<40ms does not prove global frame budget or exact geometric instant"
+  },
+  "nativeContactSummary": {
+    "sampledMarks": 135,
+    "maxInterpolatedErrorPx": 0.23734730538939175,
+    "maxBracketMs": 33.40000000000873
+  }
+}

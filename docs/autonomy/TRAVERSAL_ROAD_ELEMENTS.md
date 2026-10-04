@@ -1,6 +1,6 @@
 # Traversal road elements
 
-CURRENT FACT — TRAVERSAL-ROAD-ELEMENTS remains IN_PROGRESS. Run1430 completed the scoped rock-family correction. Run1815 implements shared physical anchors, retained marks/full-exit lifetime and ground-depth sorting; complete production acceptance and spacing remain open. OD-2026-10-03-A and LOCKED TRAVERSAL remain authority.
+CURRENT FACT — TRAVERSAL-ROAD-ELEMENTS remains IN_PROGRESS. Run0007 implements bounded camera continuity for a seen contact after late native reset; isolated9case and fresh27case fixture-origin production branch proofs pass with bounded scoped acceptance. Complete road/spacing/earned V6 acceptance remains open. Earlier rock-family, anchor/depth and entry checkpoints are retained below. OD-2026-10-03-A and LOCKED TRAVERSAL remain authority.
 
 ## Rock-family checkpoint
 
@@ -25,15 +25,21 @@ CURRENT FACT — TRAVERSAL-ROAD-ELEMENTS remains IN_PROGRESS. Run1430 completed 
 | Authored spacing | Deterministic existing lanes/progress retained | Audit all roads and reaction time without arbitrary randomness or canon changes |
 | Temporary loot / V6 | Owners and schema unchanged; fixture runs observe unique temporary awards/no secured writes | Earned defeat/refuge/V6 continuation required for broader gold acceptance |
 
-## Run1945 current checkpoint
+## Run1945 checkpoint (historical; continued by Run0007)
 
 CURRENT FACT — unseen reforecast now preserves the full entry edge after slowdown; already-visible anchors freeze. [Report](../reports/traversal-road-lifetime-entry-2.md) and [proof](../reports/traversal-road-lifetime-entry-2-browser/checks.json) retain170Traversal tests,54 current OS/game fixture-origin first/early cases,3 screen-clear reveals,9 isolated unit-distance lab cases,19configuration structural audit and all26 terminal receipts. Production build includes preserved unaccepted keyboard WIP; dev checkpoint excludes those files. Historical81cases are older-source diagnostics. Normal v5 failed native50ms>40ms frame guard; all more-v2 jobs fail late-reset physical contact. No full task/demo acceptance.
 
-Native route-5b block3 .68/10200ms after Pursuit reset10082.9ms remains417.512 vs360px at1440,158.711 vs155px game620. Bounded speed guard and authored owners stay intact. Remaining matrix/arrival/background freeze/fallback/production disposal/earned gold V6 remain open. Earlier inventory rows are superseded only for the scoped isolated reset and structural audit proofs described above.
+The historical native route-5b block3 .68/10200ms after Pursuit reset10082.9ms was417.512 vs360px at1440,158.711 vs155px game620. Run0007 corrects the cached camera plan without changing that guard or authored owners. Remaining matrix/arrival/background freeze/fallback/production disposal/earned gold V6 remain open. Earlier inventory rows are superseded only for explicitly selected scoped proofs.
+
+## Run0007 late-reset continuity
+
+`TraversalRoadCamera` retains a namespaced, ratio-validated entered target's pre-reset forecast until contact; valid intermediate frames cannot overwrite that reference. It never changes the frozen anchor or RouteRun. The .5..2 guard, positive finite2*vMax*scale speed envelope, baseline post-contact tail and identity/route/rewind/disposal expiry remain enforced. Native10082.9ms and calibrated7966.4/10049.6ms regressions pass.186Traversal/30files,46focused,types,8contracts8slots and build game-C6Qm6kEn.js / game-DrzQVqcv.css PASS.
+
+Nine isolated scripted-reset and27real built GameApp fixture-origin branch-combat cases pass, explicitly selected by the lock holder after terminal digest/input/capture review. Full-road/perceptual/global frame-budget/earnedV6 acceptance stays BLOCKED. [Report](../reports/traversal-road-late-reset-3.md) records proof scope and initial failed diagnostics. No earned lineage, full-road/fallback/background/V6 or perceptual reaction-time acceptance is inferred. Six deferred keyboard blobs/original97ledger/exact deferred task remain preserved.
 
 ## Exact next action
 
-Normal read-only lock/Git/WIP/receipt preflight. Read traversal-road-lifetime-entry-2.md and frozen checks. Keep TRAVERSAL-ROAD-ELEMENTS active. Reproduce T0 route-5b block3 progress .68 /10200ms: normal native Pursuit reset10082.9ms leaves117.1ms, speed3.506->base1.77, ratio>2 fallback yields417.512px versus authored360px (game620:158.711 vs155). Design bounded presentation compensation for an already-visible anchor under this late reset, with guardian review; preserve authored clocks/owners/lanes and do not relax/remove safety or QA guards to obtain PASS. Add unaligned late-reset regression, then fresh isolated/native branch-combat normal/OS/game1440/620/390. Normal v5 50ms frame-gap rejection remains separate; rerun lower concurrency only if frozen inputs still match. Reuse unchanged scoped OS/game/entry/lab proofs; complete remaining route/visibility/fallback/earned V6 gold acceptance later. Preserve original71ledger, six deferred blobs and exact deferredDemoTask. Ten canonical Pursuit mapping gaps remain BLOCKED; demo incomplete.
+Preserve selected Run0007 branch-combat27 and isolated9 proofs; every failed/stopped diagnostic remains NOT_ACCEPTED. Complete fresh current first/early/remaining road, arrival/background freeze/fallback/production disposal and earned temporary-gold defeat/refuge/V6 acceptance; do not reuse changed-input proofs or weaken guards. Preserve original97ledger, six deferred blobs and exact deferredDemoTask. Ten canonical Pursuit mapping gaps remain BLOCKED; demo incomplete. The paired state carries the exact closeout continuation.
 
 ## Orchestrator compliance matrix
 
