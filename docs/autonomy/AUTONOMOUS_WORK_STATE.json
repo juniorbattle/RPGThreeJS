@@ -1,13 +1,13 @@
 {
   "status": "CHECKPOINTED_IN_PROGRESS",
   "runStartedAt": "2026-10-04T00:09:29.7320166Z",
-  "runEndedAt": "2026-10-04T01:08:48.620Z",
+  "runEndedAt": "2026-10-04T01:12:59.439Z",
   "activeTask": "TRAVERSAL-ROAD-ELEMENTS",
   "activePhase": "Late-reset camera correction and scoped branch production proof checkpointed; full road acceptance open",
   "activeSubtask": "Fresh first/early and remaining road production matrix, background/fallback/disposal, earned gold V6",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "62045da221f49e035b509c50be355840eecfd81f",
-  "lastPushedCommit": "1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf",
+  "lastPushedCommit": "a3d330aa29f2a6b06af801453f016389c05f22c3",
   "completedThisRun": [
     "Owned-lock preflight; preserved original97ledger/deferred task/six blobs",
     "Bounded cached camera reference for immediate and valid-then-invalid late resets; source58b5ebf/62045da",
@@ -194,12 +194,12 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261003T1945",
+  "runId": "rpgthreejs-auto-dev-90m-20261004T0007",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-04T01:08:48.620Z",
+  "lastHeartbeat": "2026-10-04T01:12:59.439Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261004T0007",
-    "sha": "75f9e5de5875381a00017acb2fa1f4ba8e411b53",
+    "sha": "e242c8f4a9a0305c257e9336408b7383ddb80d00",
     "status": "REMOTE_VERIFIED_PRESERVED_DEFERRED_WIP",
     "dirtyFiles": [
       "legacy-combat.html",
@@ -214,7 +214,7 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261004T0007",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-04T01:08:48.620Z",
+    "lastHeartbeat": "2026-10-04T01:12:59.439Z",
     "status": "CHECKPOINTED_IN_PROGRESS",
     "qaJobs": [
       {
@@ -12123,7 +12123,7 @@
     ],
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261004T0007",
-      "sha": "75f9e5de5875381a00017acb2fa1f4ba8e411b53",
+      "sha": "e242c8f4a9a0305c257e9336408b7383ddb80d00",
       "status": "REMOTE_VERIFIED_PRESERVED_DEFERRED_WIP",
       "dirtyFiles": [
         "legacy-combat.html",
@@ -12146,7 +12146,7 @@
       "distinctReadOnlyReviewers": 2,
       "failedOutputsUsedAsSeeds": 0,
       "creditSavings": "Not measured",
-      "timing": "Preflight00:07Z; lock00:09Z; checkpoint 2026-10-04T01:08:48.620Z"
+      "timing": "Preflight00:07:33Z, owned lock00:09:29Z; final checkpoint2026-10-04T01:12:59.439Z; roughly65minutes; full task incomplete"
     },
     "checkpointPaths": [
       "src/traversal/TraversalRoadAnchor.ts",
@@ -12174,13 +12174,13 @@
       "docs/autonomy/handoffs/2026-10-04T0007Z-codex-late-reset-checkpoint.md"
     ],
     "publication": {
-      "verifiedAt": "2026-10-03T23:58:08.335Z",
-      "dev": "1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf",
-      "wip": "5c2a777069e5bf721a3c32a73df53d34be2abb39",
+      "verifiedAt": "2026-10-04T01:12:59.439Z",
+      "dev": "a3d330aa29f2a6b06af801453f016389c05f22c3",
+      "wip": "e242c8f4a9a0305c257e9336408b7383ddb80d00",
       "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "devSource": "62045da221f49e035b509c50be355840eecfd81f",
       "status": "REMOTE_VERIFIED",
-      "devSource": "354b83d3a738540c8ddca6fced73f7602675ceda",
-      "authorization": "Explicit operator authorization of this dev/WIP publication; final state publication parity recorded in automation memory"
+      "authorization": "Recurring instruction explicitly authorizes coherent dev checkpoint and reviewed WIP publication; final state commit parity in automation memory"
     }
   },
   "previousInterruptedRun": {
@@ -12239,7 +12239,7 @@
     "distinctReadOnlyReviewers": 2,
     "failedOutputsUsedAsSeeds": 0,
     "creditSavings": "Not measured",
-    "timing": "Preflight00:07Z; lock00:09Z; checkpoint 2026-10-04T01:08:48.620Z"
+    "timing": "Preflight00:07:33Z, owned lock00:09:29Z; final checkpoint2026-10-04T01:12:59.439Z; roughly65minutes; full task incomplete"
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -12411,7 +12411,7 @@
     ],
     "snapshot": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261004T0007",
-      "sha": "75f9e5de5875381a00017acb2fa1f4ba8e411b53",
+      "sha": "e242c8f4a9a0305c257e9336408b7383ddb80d00",
       "status": "REMOTE_VERIFIED_PRESERVED_DEFERRED_WIP",
       "dirtyFiles": [
         "legacy-combat.html",
@@ -12426,6 +12426,7 @@
   },
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
-    "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection."
+    "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
+    "Run0007 source58b5ebf/62045da and scoped checkpointa3d330aa29f2a6b06af801453f016389c05f22c3 published; owned WIPe242c8f4a9a0305c257e9336408b7383ddb80d00 remote verified; main00b96f1 unchanged. No automatic-review rejection this run. Final state parity in automation memory."
   ]
 }

@@ -7,7 +7,7 @@ CURRENT FACT — TRAVERSAL-ROAD-ELEMENTS and demo incomplete. OD-2026-10-03-A; L
 | status | CHECKPOINTED_IN_PROGRESS |
 | runId | rpgthreejs-auto-dev-90m-20261004T0007 |
 | runStartedAt | 2026-10-04T00:09:29.7320166Z |
-| runEndedAt | 2026-10-04T01:08:48.620Z |
+| runEndedAt | 2026-10-04T01:12:59.439Z |
 | activeTask | TRAVERSAL-ROAD-ELEMENTS |
 | activePhase | Late-reset camera correction and scoped branch production proof checkpointed; full road acceptance open |
 | activeSubtask | Fresh first/early and remaining road production matrix, background/fallback/disposal, earned gold V6 |
@@ -138,3 +138,5 @@ Finish exact battlefield production driver: real Tab entry, cursor bounds/announ
 - road-0007-branch-v4-normal-T0: SUCCEEDED; port 5311; receipt `tmp/traversal/road-0007-branch-v4-normal-T0/qa-job.json`; ACCEPTED_SCOPED
 - road-0007-branch-v4-normal-T1: SUCCEEDED; port 5311; receipt `tmp/traversal/road-0007-branch-v4-normal-T1/qa-job.json`; ACCEPTED_SCOPED
 <!-- QA_JOBS_END -->
+
+Dev checkpoint `a3d330aa29f2a6b06af801453f016389c05f22c3` and owned WIP `e242c8f4a9a0305c257e9336408b7383ddb80d00` remote verified; main unchanged. Final state publication parity is recorded in automation memory. Exact six deferred blobs remain dirty and protected.
