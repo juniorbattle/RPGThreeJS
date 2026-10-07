@@ -2804,6 +2804,11 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .narrative-scene-surface { overflow:hidden; background:#07101c; }
 .narrative-scene-surface__environment { position:absolute; inset:-1.5%; background-color:#07101c; background-position:center; background-repeat:no-repeat; background-size:cover; filter:saturate(.9) contrast(1.05) brightness(.84); transform:scale(1.03); animation:narrative-still-breathe 18s ease-in-out infinite alternate; }
 .narrative-scene-surface__environment::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(2,4,9,.18),transparent 35%,rgba(2,4,9,.56) 90%),radial-gradient(ellipse at center,transparent 42%,rgba(0,0,0,.38)); }
+/* Portrait framing keeps the authored campfire visible beside, rather than behind, the company. */
+@media (max-aspect-ratio: 1/1) {
+  .narrative-scene-surface[data-narrative-scene="FINAL_REFUGE_PREPARATION_TABLEAU"] .narrative-scene-surface__environment { background-position:left center; }
+  .narrative-scene-surface[data-narrative-scene="FINAL_REFUGE_PREPARATION_TABLEAU"] .narrative-scene-surface__cast { left:19.5%; right:-16.5%; }
+}
 .narrative-scene-surface__cast { position:absolute; inset:0 1.5%; z-index:3; pointer-events:none; }
 .narrative-cast__actor { --narrative-actor-scale:1; --narrative-actor-depth:2; position:absolute; bottom:-5vh; left:50%; z-index:var(--narrative-actor-depth); width:min(36vw,66vh,700px); height:120vh; margin:0; opacity:.5; filter:saturate(.65) brightness(.62) contrast(.97) drop-shadow(0 24px 28px rgba(0,0,0,.82)); transform:translateX(-50%) scale(var(--narrative-actor-scale)); transform-origin:50% 100%; transition:filter .28s ease,opacity .28s ease; }
 .narrative-cast__actor img { width:100%; height:100%; object-fit:contain; object-position:center bottom; image-rendering:pixelated; image-rendering:crisp-edges; }

@@ -1,7 +1,7 @@
 import type { RunNode } from '../game/types';
 import { resolveCin6cContentCandidateId } from '../cinematics/Cin6aPresentation';
 import { isApprovedProductionVideo } from '../cinematics/ApprovedProductionVideos';
-import { resolveCinematicPresentation, resolveEdgePresentation } from '../cinematics/NarrativePresentationResolver';
+import { resolveCinematicPresentation, resolveDialoguePresentation, resolveEdgePresentation } from '../cinematics/NarrativePresentationResolver';
 import type { ResolvedPresentationBeat } from '../cinematics/NarrativePresentationMode';
 
 /**
@@ -129,6 +129,12 @@ export function resolveBoundaryPrimaryPresentation(
   context: JourneyBoundaryPresentationContext,
   cinematicId?: string,
 ): ResolvedPresentationBeat | undefined {
+  // Preparation remains at the existing campfire until the canonical judgement action is pressed.
+  // The destination edge is an approach plate; showing it here would prematurely leave the camp.
+  if (context.currentNodeId === 'lion-final-refuge'
+    && context.available.length === 1 && context.available[0]?.id === 'lion-final-judgement') {
+    return resolveDialoguePresentation('final_refuge');
+  }
   const candidates = resolveBoundaryPresentationCandidates(context);
   if (candidates.length) {
     const modes = new Set(candidates.map((beat) => beat.mode));

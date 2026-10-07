@@ -164,7 +164,11 @@ async function systemMotionProof(page) {
     activeVideos: document.querySelectorAll('.cinematic-overlay video').length,
   }));
   const attempted = proof.records.filter((entry) => APPROVED_VIDEO_IDS.includes(entry.id));
-  if (!proof.osReduced || proof.reducedGraphics || proof.activeVideos || !attempted.length
+  // This reviewed preparation scenario has no video attempt: require recorded static surfaces.
+  const staticPreparation = SCENARIO_FILTER === 'final-refuge-story' && proof.records.length > 0
+    && proof.records.every((entry) => /^(dialogue-tableau:|narrative-static:)/.test(entry.id)
+      && !entry.played && entry.osReduced && !entry.reducedGraphics);
+  if (!proof.osReduced || proof.reducedGraphics || proof.activeVideos || (!attempted.length && !staticPreparation)
     || attempted.some((entry) => !entry.osReduced || entry.reducedGraphics || entry.played || entry.reason !== 'reduced-motion')) {
     throw new Error(`OS-only reduced-motion regression: ${JSON.stringify(proof)}`);
   }

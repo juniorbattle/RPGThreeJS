@@ -41,6 +41,33 @@ function click(selector: string): void {
 }
 
 describe('journey campaign boundary', () => {
+  it.each([false, true])('keeps final-refuge preparation and its canonical action on reload/reduction=%s without securing loot', async reducedMotion => {
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-final-refuge');
+    state.run.temporaryLoot.gold = 17;
+    state.resolvedNodeIds.push('lion-final-refuge');
+    const before = structuredClone(state);
+    for (const action of ['SAVE', 'continue']) {
+      // Reconstructing from the same saved node must not require transient presentation state.
+      const boundary = createBoundary();
+      const pending = boundary.present({ currentNodeId: state.currentNodeId,
+        currentContentId: 'final_refuge', available, secondary: SECONDARY, reducedMotion });
+      await flush();
+      expect(document.querySelector<HTMLElement>('.narrative-stage')?.dataset.narrativeTableau)
+        .toBe('FINAL_REFUGE_PREPARATION_TABLEAU');
+      expect(document.querySelectorAll('.narrative-cast__actor')).toHaveLength(3);
+      expect(document.querySelector('.journey-overlay__title')?.textContent).toBe('Avant le jugement');
+      expect(document.querySelector('[data-journey-continue]')?.textContent).toBe('Rejoindre Alaric');
+      expect(document.querySelectorAll('video, .exploration-stop')).toHaveLength(0);
+      click(action === 'continue' ? '[data-journey-continue]' : '[data-journey-secondary="SAVE"]');
+      await expect(pending).resolves.toMatchObject(action === 'continue'
+        ? { kind: 'node', id: 'lion-final-judgement', presentationMode: 'STATIC_TABLEAU' }
+        : { kind: 'secondary', id: 'SAVE', presentationMode: 'STATIC_TABLEAU' });
+      expect(state).toEqual(before);
+      boundary.dispose();
+    }
+  });
+
   it('derives local continuation from planned agency without losing utilities or context', () => {
     const state = createInitialState();
     const available = availableAt(state, 'lion-refugees');

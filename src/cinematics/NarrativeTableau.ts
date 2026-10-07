@@ -218,6 +218,8 @@ export interface NarrativeTableauSpec {
   phases?: readonly NarrativeVisualPhaseSpec[];
   family?: 'AUDIENCE' | 'JOURNEY' | 'EVENT' | 'ATE' | 'PRE_COMBAT' | 'AFTERMATH' | 'FINALE' | 'FALLBACK';
   stillImage?: string;
+  /** Authored boundary copy; route IDs and enabled actions still come from RunSystem's plan. */
+  boundaryAgency?: Readonly<{ eyebrow: string; title: string; continueLabel: string }>;
   exit: 'DIALOGUE_SEQUENCE_COMPLETE' | 'ROUTE_COMMIT' | 'COMBAT_HANDOFF' | 'COMBAT_RESULT' | 'RESOLVED_CAMPAIGN_BOUNDARY';
   next: 'RESOLVED_CAMPAIGN_TABLEAU';
   mediaRemasterNeeded?: boolean;
@@ -802,10 +804,49 @@ export const VALMIR_FORK_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   next: 'RESOLVED_CAMPAIGN_TABLEAU',
 });
 
+/** The existing final-refuge story ends at its campfire, before the player enters the judgement. */
+export const FINAL_REFUGE_PREPARATION_TABLEAU = Object.freeze<NarrativeTableauSpec>({
+  id: 'FINAL_REFUGE_PREPARATION_TABLEAU',
+  castPlacementMode: 'SCENE_INTEGRATED',
+  sceneCastPlacement: {
+    maelor: { xPercent: 34, bottomVh: 28, scale: .72 },
+    alistair: { xPercent: 44, bottomVh: 25, scale: .8 },
+    marian: { xPercent: 54, bottomVh: 27, scale: .74 },
+  },
+  grammar: 'DEPARTURE',
+  presentationKey: 'node:lion-final-refuge:arrival',
+  family: 'JOURNEY',
+  stillImage: demoBoundaryEnvironmentUrl('node:lion-final-refuge:arrival'),
+  boundaryAgency: { eyebrow: 'Préparation', title: 'Avant le jugement', continueLabel: 'Rejoindre Alaric' },
+  media: [],
+  cast: {
+    visualActors: ['maelor', 'alistair', 'marian'],
+    eventActors: ['maelor', 'alistair', 'marian'],
+    playerRepresentatives: ['alistair'],
+    optionalActors: [],
+    justifiedOffscreen: [],
+  },
+  anchors: [{ id: 'judgement-continue', placement: 'LOWER_RIGHT', safeRegion: SAFE_LOW_RIGHT }],
+  beats: [
+    { id: 'campfire-preparation', kind: 'VISUAL', skippable: true },
+    { id: 'judgement-continue', kind: 'CONTEXT_ACTION', anchorId: 'judgement-continue', skippable: false },
+  ],
+  phases: [{
+    id: 'FINAL_REFUGE_PREPARATION', stepIds: [], layoutProfile: 'CHOICE_SINGLE_ROUTE_CONTINUE', layoutPlacement: 'LOWER_RIGHT',
+    staticCast: stageActors(['maelor', 'alistair', 'marian']), mediaSubjects: ['maelor', 'alistair', 'marian'],
+    actorRegions: [SAFE_CENTER_WORLD], dialogueSafeZone: SAFE_LOW_RIGHT, choiceSafeZones: [SAFE_LOW_RIGHT], criticalVisualRegions: [SAFE_CENTER_WORLD],
+    negativeSpaceIntent: 'The company remains beside its campfire; the onward action does not enter the judgement without input.',
+    cameraIntent: 'Keep the existing final-refuge camp and distant destination distinct.',
+  }],
+  exit: 'ROUTE_COMMIT',
+  next: 'RESOLVED_CAMPAIGN_TABLEAU',
+});
+
 const TABLEAUX_BY_PRESENTATION_KEY = new Map([
   [CAMP_DEPARTURE_TABLEAU.presentationKey!, CAMP_DEPARTURE_TABLEAU],
   [AUDIENCE_ROAD_DEPARTURE_TABLEAU.presentationKey!, AUDIENCE_ROAD_DEPARTURE_TABLEAU],
   [VALMIR_FORK_TABLEAU.presentationKey!, VALMIR_FORK_TABLEAU],
+  [FINAL_REFUGE_PREPARATION_TABLEAU.presentationKey!, FINAL_REFUGE_PREPARATION_TABLEAU],
 ]);
 
 const TABLEAUX_BY_DIALOGUE_ID = new Map([

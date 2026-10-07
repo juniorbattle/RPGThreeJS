@@ -224,7 +224,7 @@ export class JourneyCampaignBoundary {
       || (presentationBeat?.mode === 'CINEMATIC_HOLD' && !playId && !fallbackBackdrop);
     const commit = await session.requestAgency(request.presentationOnly
       ? withPresentationOnlyContinuation(plan.presentation, request.presentationOnly)
-      : plan.presentation);
+      : { ...plan.presentation, ...(plan.kind === 'single' ? tableau.boundaryAgency : undefined) });
     if (commit.kind === 'secondary' && session.frozenSurface) this.captureBackdrop(session.frozenSurface);
     const trace = [...session.stateTrace];
     // The departure owner disposes under the next opaque cover, preserving visual continuity.
