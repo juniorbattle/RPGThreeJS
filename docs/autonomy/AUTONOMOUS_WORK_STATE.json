@@ -1,99 +1,107 @@
 {
-  "status": "CHECKPOINTED_IN_PROGRESS",
-  "runStartedAt": "2026-10-04T00:09:29.7320166Z",
-  "runEndedAt": "2026-10-04T01:12:59.439Z",
-  "activeTask": "TRAVERSAL-ROAD-ELEMENTS",
-  "activePhase": "Late-reset camera correction and scoped branch production proof checkpointed; full road acceptance open",
-  "activeSubtask": "Fresh first/early and remaining road production matrix, background/fallback/disposal, earned gold V6",
+  "status": "IN_PROGRESS",
+  "runStartedAt": "2026-10-07T19:07:41Z",
+  "runEndedAt": "2026-10-07T19:29:54.184Z",
+  "activeTask": "NARRATIVE-CONTEXT-COHERENCE",
+  "activePhase": "Council fact-sensitive source checkpoint; production acceptance remains open",
+  "activeSubtask": "Existing council dialogue text corrected and source-reviewed; native displayed-text/fit proof is next",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "62045da221f49e035b509c50be355840eecfd81f",
-  "lastPushedCommit": "a3d330aa29f2a6b06af801453f016389c05f22c3",
+  "lastKnownGoodCommit": "8a2c018014109628e10de2698c1361a064ee72a4",
+  "lastPushedCommit": "8a2c018014109628e10de2698c1361a064ee72a4",
   "completedThisRun": [
-    "Owned-lock preflight; preserved original97ledger/deferred task/six blobs",
-    "Bounded cached camera reference for immediate and valid-then-invalid late resets; source58b5ebf/62045da",
-    "186Traversal30files/46focused/types/8contracts8slots/build PASS",
-    "Scoped isolated9 and native branch27 cases reviewed; four FAILED diagnostics remain unaccepted"
+    "Read-only takeover confirmed idle owner, terminal QA, no associated workers; preserved and published 26 explicitly reviewed inherited paths",
+    "Guardian PASS and native campfire reload/onward proof; published scoped preparation milestone349c2b6",
+    "Preserved and committed inherited production-focus/ROAD records f4f0617",
+    "Council text uses existing witnesses/merits/contradictions; safe source checkpoint8a2c018 reviewed by guardian/narrative; browser acceptance OPEN"
   ],
   "filesChanged": [
-    "src/traversal/TraversalRoadAnchor.ts",
-    "src/traversal/TraversalRoadAnchor.test.ts",
-    "src/traversal/TraversalRoadCamera.test.ts",
-    "src/traversal/TraversalRoadScene.ts",
-    "src/traversal/TraversalRouteRiskRenderer.ts",
-    "src/traversal/TraversalRouteRewardRenderer.ts",
-    "tools/traversal/road-anchor-lab.ts",
-    "tools/traversal/road-late-reset-lab.ts",
-    "tools/traversal-road-late-reset-lab-qa.mjs",
-    "tools/traversal-road-more-routes-production-qa.mjs",
-    "docs/autonomy/TRAVERSAL_ROAD_ELEMENTS.md",
-    "docs/reports/INDEX.md",
-    "docs/reports/traversal-road-late-reset-3.md",
+    "src/game/contextualDialogueContent.ts",
+    "src/game/contextualDialogue.test.ts",
+    "docs/autonomy/PRE_JUDGEMENT_CAMPFIRE.md",
+    "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/reports/traversal-road-late-reset-3-browser/checks.json",
-    "docs/reports/traversal-road-late-reset-3-browser/T0-1440-normal-late-reset.png",
-    "docs/reports/traversal-road-late-reset-3-browser/T0-390-os-late-reset.png",
-    "docs/reports/traversal-road-late-reset-3-browser/T0-620-game-late-reset.png",
-    "docs/reports/traversal-road-late-reset-3-browser/T0-1440-normal-branch-combat-contact-collect-passed-rock.png",
-    "docs/reports/traversal-road-late-reset-3-browser/T1-390-os-branch-combat-contact-collect-passed-rock.png",
-    "docs/reports/traversal-road-late-reset-3-browser/T3-620-game-branch-combat-contact-collect-passed-rock.png",
-    "docs/autonomy/handoffs/2026-10-04T0007Z-codex-late-reset-checkpoint.md"
+    "docs/autonomy/handoffs/2026-10-07T1907Z-codex-campfire-council-checkpoint.md",
+    "docs/reports/pre-judgement-campfire-completion/checks.json",
+    "docs/reports/pre-judgement-campfire-completion/desktop-preparation.png",
+    "docs/reports/pre-judgement-campfire-completion/intermediate-os-preparation.png",
+    "docs/reports/pre-judgement-campfire-completion/mobile-preparation.png",
+    "docs/reports/pre-judgement-campfire-completion/native-judgement-entry.png"
   ],
   "testsRun": [
-    "186 Traversal tests/30files PASS;46focused/4files PASS",
-    "TypeScript and8contracts8slots PASS",
-    "Frozen403 source/tool/build identities match; game-C6Qm6kEn.js/game-DrzQVqcv.css",
-    "10 registered terminal jobs;9isolated+27native branch current cases scoped accepted;4failed diagnostics retained",
-    "Immutable/protected/whitespace gates PASS at closeout",
-    "Checkpoint rerun36camera/anchor/scene tests3files PASS; current403identities unchanged"
+    "49 focused Journey/Tableau tests in4files PASS (campfire milestone)",
+    "90 focused contextual/Lion narrative/verdict/finale tests in4files PASS (final narrative source)",
+    "Final tsc --noEmit and Vite production build PASS: game-DiE92-9U.js / game-DFzR6Ihk.css",
+    "8 locked contracts/8 video slots, staging validator, whitespace and immutable/protected gates PASS",
+    "Six exact-source campfire visual cases reused; one native390x844 OS-only full-state wait/reload/onward smoke PASS"
   ],
   "testsPassed": [
-    "186Traversal/30files",
-    "46focused/4files",
-    "TypeScript",
-    "8contracts/8slots/eightMP4",
-    "Production build and frozen403 identities",
-    "9isolated scripted late-reset cases",
-    "27native fixture-origin branch cases normal/OS/game1440/620/390",
-    "Scoped independent reviews; immutable/protected/whitespace gates",
-    "Checkpoint36camera/anchor/scene tests"
+    "49 focused Journey/Tableau tests in4files PASS (campfire milestone)",
+    "90 focused contextual/Lion narrative/verdict/finale tests in4files PASS (final narrative source)",
+    "Final tsc --noEmit and Vite production build PASS: game-DiE92-9U.js / game-DFzR6Ihk.css",
+    "8 locked contracts/8 video slots, staging validator, whitespace and immutable/protected gates PASS",
+    "Six exact-source campfire visual cases reused; one native390x844 OS-only full-state wait/reload/onward smoke PASS"
   ],
   "testsRemaining": [
-    "Fresh changed-source first/early and second/branch-event/arrival road matrix",
-    "Natural visible future gold/reset, perceptual velocity/reaction and robust frame-budget acceptance",
-    "Native background/document-visibility freeze, fallback and production disposal",
-    "Earned temporary-gold defeat/refuge/V6; deferred keyboard exact task"
+    "Council displayed opening/text fit/native progression production smoke on current narrative build",
+    "Remaining existing fact-sensitive dialogue audit and narrative milestone acceptance",
+    "Later tableau/transition/environment queue milestones and exact deferred demo/keyboard acceptance"
   ],
   "blockers": [
     "Pursuit production collision integration:10windows lack explicitly authored eligible canonical mappings; isolated candidate PASS does not close full task"
   ],
   "remainingWork": [
     "BLOCKED: TRAVERSAL-PURSUIT-THREAT canonical mapping (isolated candidate verified)",
-    "ACTIVE: TRAVERSAL-ROAD-ELEMENTS",
-    "PENDING: PRE-JUDGEMENT-CAMPFIRE",
-    "PENDING: NARRATIVE-CONTEXT-COHERENCE",
+    "COMPLETE_SCOPED: TRAVERSAL-ROAD-ELEMENTS",
+    "COMPLETE_SCOPED: PRE-JUDGEMENT-CAMPFIRE",
+    "ACTIVE: NARRATIVE-CONTEXT-COHERENCE council facts",
     "PENDING: STATIC-TABLEAU-STAGING-POLISH",
     "PENDING: SCENE-TRANSITION-COPY",
     "PENDING: ENVIRONMENT-NARRATIVE-COHERENCE",
     "PENDING: Resume deferred DEMO-QA-POLISH"
   ],
-  "nextAction": "Resume TRAVERSAL-ROAD-ELEMENTS from source62045da and selected late-reset proof. Preserve 97 prior jobs, six deferred keyboard blobs and exact deferredDemoTask. Register fresh current first/early-road normal/OS/game matrix and remaining second/branch-event/arrival roads at1440/620/390 under unchanged contact<3px/frame<40ms guards; review selected uncovered captures. Then native background freeze/fallback/production disposal and earned temporary-gold defeat/refuge/V6 continuation. Do not rerun accepted source-identical branch/lab proof. Full road/demo and ten canonical Pursuit mapping gaps remain open/blocked.",
+  "nextAction": "Read NARRATIVE_CONTEXT_COHERENCE.md and current state. Existing run_cin6d6_route_browser_qa.mjs witnesses-protected flow drives the council but captures only choices/final boundary: add one bounded council-opening text observation/capture, review exact assertion diff with guardian, build current sources and register one unique production smoke at390x844 OS-only on a free strict port. Inspect corrected opening text/fit and retained agency; do not change the exhausted campfire assertion or rerun its accepted matrix. Then audit remaining fact-sensitive dialogue before narrative milestone acceptance. Preserve exact deferred keyboard action/six blobs and Pursuit10mapping inventory.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
     "TRAVERSAL-MOTION-POLISH: COMPLETE_SCOPED_PRESENTATION",
     "TRAVERSAL-PURSUIT-THREAT: BLOCKED_CANONICAL_MAPPING; ISOLATED_CANDIDATE_PASS",
-    "TRAVERSAL-ROAD-ELEMENTS: ACTIVE_LIFETIME_DEPTH; ROCK_FAMILY_SCOPED_PASS",
-    "PRE-JUDGEMENT-CAMPFIRE: PENDING",
-    "NARRATIVE-CONTEXT-COHERENCE: PENDING",
+    "TRAVERSAL-ROAD-ELEMENTS: COMPLETE_SCOPED_PRESENTATION",
+    "PRE-JUDGEMENT-CAMPFIRE: COMPLETE_SCOPED_PRESENTATION",
+    "NARRATIVE-CONTEXT-COHERENCE: ACTIVE_COUNCIL_CHECKPOINT",
     "STATIC-TABLEAU-STAGING-POLISH: PENDING",
     "SCENE-TRANSITION-COPY: PENDING",
     "ENVIRONMENT-NARRATIVE-COHERENCE: PENDING",
     "Resume deferred DEMO-QA-POLISH: PENDING"
   ],
   "creditStatus": "AVAILABLE; no credit-saving claim",
-  "contractComplianceStatus": "PASS_AUTHORITY_BOUNDARIES_AND_LOCKED_GATES; TRAVERSAL_UI_QA_EXPANDED_ACCEPTANCE_BLOCKED",
-  "commitReferenceScope": "Source implementation checkpoint SHA; final state/evidence publication SHA verified in automation memory. This does not certify full ROAD acceptance.",
+  "contractComplianceStatus": {
+    "status": "PASS scoped ROAD/CAMPFIRE complete; PASS narrative source checkpoint, browser/full narrative OPEN",
+    "contractSetVersion": "1.1.0",
+    "lockedRulesChanged": false,
+    "roadMatrix": {
+      "GAME_CONSTITUTION": "PASS",
+      "ART_DIRECTION": "PASS",
+      "CHARACTERS": "PASS",
+      "ENVIRONMENTS": "PASS",
+      "NARRATIVE_CAMPAIGN": "PASS",
+      "NARRATIVE_PRESENTATION": "PASS",
+      "TRAVERSAL": "PASS scoped ROAD criterion",
+      "COMBAT": "PASS unchanged authority",
+      "SAVE": "PASS unchanged schema/owners; no earnedV6 claim",
+      "UI_ACCESSIBILITY": "PASS scoped responsive/motion/depth",
+      "QA_EVIDENCE": "PASS exact provenance and scoped claim",
+      "REPOSITORY_GOVERNANCE": "PASS"
+    },
+    "campfireAuthorityReview": "PASS scoped complete; native390 OS wait/reload/entry and matching6visualcases",
+    "narrativeCheckpoint": {
+      "guardian": "PASS source authority/predicates/unchanged canon and outcomes",
+      "narrativeReviewer": "PASS scoped French copy; unprotected support wording corrected",
+      "browserAcceptance": "OPEN",
+      "lockedRulesChanged": false
+    }
+  },
+  "commitReferenceScope": "lastKnownGoodCommit/lastPushedCommit name the green product source checkpoint; final workflow commit and remote parity are recorded in automation memory/handoff. Product-source green does not close narrative browser acceptance.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -194,28 +202,33 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261004T0007",
+  "runId": "rpgthreejs-auto-dev-90m-20261007T1907",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-04T01:12:59.439Z",
+  "lastHeartbeat": "2026-10-07T19:29:54.184Z",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261004T0007",
-    "sha": "e242c8f4a9a0305c257e9336408b7383ddb80d00",
-    "status": "REMOTE_VERIFIED_PRESERVED_DEFERRED_WIP",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261007T1907",
+    "sha": "d993626173a39c369c37fbcf2de4fa8352548df8",
+    "status": "GREEN_SOURCE_CHECKPOINT_NOT_FULL_ACCEPTANCE",
     "dirtyFiles": [
       "legacy-combat.html",
       "src/combat/combatKeyboard.test.ts",
       "src/combat/combatKeyboard.ts",
       "src/combat/legacyCombatRuntime.js",
       "src/styles/combat-shell.css",
-      "tools/combat-battlefield-keyboard-production-qa.mjs"
+      "tools/combat-battlefield-keyboard-production-qa.mjs",
+      "src/cinematics/NarrativeTableau.ts",
+      "src/journey/JourneyPresentationResolver.ts",
+      "src/journey/JourneyCampaignBoundary.ts",
+      "src/journey/JourneyCampaignBoundary.test.ts"
     ],
-    "lastGreenCheck": "186Traversal/30files; scoped27native+9lab only; full acceptanceOPEN"
+    "lastGreenCheck": "65focused tests;8contracts8slots; immutable LOCKED gate empty; automation exactprompt and otherfields preserved",
+    "lastSnapshotAt": "2026-10-07T19:30:35.545Z"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261004T0007",
+    "runId": "rpgthreejs-auto-dev-90m-20261007T1907",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-04T01:12:59.439Z",
-    "status": "CHECKPOINTED_IN_PROGRESS",
+    "lastHeartbeat": "2026-10-07T19:29:54.184Z",
+    "status": "CHECKPOINT_READY",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -12119,76 +12132,953 @@
         "resultDigestMatches": true,
         "eligibleForReview": true,
         "acceptanceScope": "Selected fixture-origin native built branch-combat road contact/lifetime/full exit/depth/native lane/unique temporary award; selected frame brackets only; no earnedV6/full-road/perceptual/global frame-budget acceptance"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "road-0137-first-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261004T0137",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-04T01:41:27.979Z",
+        "pid": 11668,
+        "port": 5315,
+        "command": [
+          "node",
+          "tools/traversal-road-elements-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "normal",
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ],
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "roads": [
+            "first",
+            "early-reset"
+          ],
+          "paths": [
+            "contact-collect",
+            "miss-miss"
+          ],
+          "earlyPaths": [
+            "contact-collect"
+          ],
+          "scope": "native real built selected roads; V6 fixture origins/bootstrap/prior combat outcomes; no earned campaign/full road acceptance"
+        },
+        "requiredAssertions": [
+          "edge-entry-frozen-anchor",
+          "contact-collected-retention-full-exit",
+          "rendered-ground-depth",
+          "native-keyboard-responsive-motion",
+          "single-temporary-pickup-no-secured-write",
+          "physical-contact-after-reset"
+        ],
+        "output": "tmp/traversal/road-0137-first-normal",
+        "receiptPath": "tmp/traversal/road-0137-first-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "50a5bac150ae775ddf962a95d15598dde0194cf9",
+          "sourceTree": "0b66ef5d00e324e47d42126800fcf8f79d592e6d",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/traversal-road-elements-production-qa.mjs",
+            "sha256": "1de027db952e7526ded284ebc73834c0b7e339b4e25cf14acd752abef2a66255"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-C6Qm6kEn.js",
+              "sha256": "9416536936b25d29b5a548b103020bb13a67b6575e723ba73c88a070a26c0e2c"
+            },
+            {
+              "path": "dist/assets/game-DrzQVqcv.css",
+              "sha256": "6fbecdaf5aaf3ce847886b4954c595ec0a0198767982cf2e0d2a492b75477db2"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "bc15a9071f50a59207a29154192163f0786ae2f46ebf8206811d57902405ba2d"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED",
+        "startedAt": "2026-10-04T01:41:28.723Z",
+        "endedAt": "2026-10-04T01:58:00.262Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/road-0137-first-normal/results.json",
+        "resultSha256": "3fb1ad254ebb7252b15d91e0d50bb8d8b726ef0da16e16f3f785bd46459719ff",
+        "provenanceStable": true,
+        "acceptanceScope": "ROAD presentation/temporary-owner criteria only; fixtures and unchanged-owner limits retained",
+        "acceptanceProof": "docs/reports/traversal-road-elements-completion/checks.json"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "road-0137-first-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261004T0137",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-04T01:59:31.226Z",
+        "pid": 36780,
+        "port": 5316,
+        "command": [
+          "node",
+          "tools/traversal-road-elements-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "os",
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ],
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "roads": [
+            "first",
+            "early-reset"
+          ],
+          "paths": [
+            "contact-collect",
+            "miss-miss"
+          ],
+          "earlyPaths": [
+            "contact-collect"
+          ],
+          "scope": "native real built selected roads; V6 fixture origins/bootstrap/prior combat outcomes; no earned campaign/full road acceptance"
+        },
+        "requiredAssertions": [
+          "edge-entry-frozen-anchor",
+          "contact-collected-retention-full-exit",
+          "rendered-ground-depth",
+          "native-keyboard-responsive-motion",
+          "single-temporary-pickup-no-secured-write",
+          "physical-contact-after-reset"
+        ],
+        "output": "tmp/traversal/road-0137-first-os",
+        "receiptPath": "tmp/traversal/road-0137-first-os/qa-job.json",
+        "provenance": {
+          "gitHead": "50a5bac150ae775ddf962a95d15598dde0194cf9",
+          "sourceTree": "0b66ef5d00e324e47d42126800fcf8f79d592e6d",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/traversal-road-elements-production-qa.mjs",
+            "sha256": "1de027db952e7526ded284ebc73834c0b7e339b4e25cf14acd752abef2a66255"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-C6Qm6kEn.js",
+              "sha256": "9416536936b25d29b5a548b103020bb13a67b6575e723ba73c88a070a26c0e2c"
+            },
+            {
+              "path": "dist/assets/game-DrzQVqcv.css",
+              "sha256": "6fbecdaf5aaf3ce847886b4954c595ec0a0198767982cf2e0d2a492b75477db2"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "bc15a9071f50a59207a29154192163f0786ae2f46ebf8206811d57902405ba2d"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED",
+        "startedAt": "2026-10-04T02:00:37.314Z",
+        "endedAt": "2026-10-04T02:16:17.701Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/road-0137-first-os/results.json",
+        "resultSha256": "e044752d4e9637369079a89524daf0f383075da6d1b7356f5ee75ee9e084c4b9",
+        "provenanceStable": true,
+        "acceptanceScope": "ROAD presentation/temporary-owner criteria only; fixtures and unchanged-owner limits retained",
+        "acceptanceProof": "docs/reports/traversal-road-elements-completion/checks.json"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "road-0137-first-game",
+        "runId": "rpgthreejs-auto-dev-90m-20261004T0137",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-04T01:59:32.017Z",
+        "pid": 16304,
+        "port": 5317,
+        "command": [
+          "node",
+          "tools/traversal-road-elements-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "game",
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ],
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "roads": [
+            "first",
+            "early-reset"
+          ],
+          "paths": [
+            "contact-collect",
+            "miss-miss"
+          ],
+          "earlyPaths": [
+            "contact-collect"
+          ],
+          "scope": "native real built selected roads; V6 fixture origins/bootstrap/prior combat outcomes; no earned campaign/full road acceptance"
+        },
+        "requiredAssertions": [
+          "edge-entry-frozen-anchor",
+          "contact-collected-retention-full-exit",
+          "rendered-ground-depth",
+          "native-keyboard-responsive-motion",
+          "single-temporary-pickup-no-secured-write",
+          "physical-contact-after-reset"
+        ],
+        "output": "tmp/traversal/road-0137-first-game",
+        "receiptPath": "tmp/traversal/road-0137-first-game/qa-job.json",
+        "provenance": {
+          "gitHead": "50a5bac150ae775ddf962a95d15598dde0194cf9",
+          "sourceTree": "0b66ef5d00e324e47d42126800fcf8f79d592e6d",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/traversal-road-elements-production-qa.mjs",
+            "sha256": "1de027db952e7526ded284ebc73834c0b7e339b4e25cf14acd752abef2a66255"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-C6Qm6kEn.js",
+              "sha256": "9416536936b25d29b5a548b103020bb13a67b6575e723ba73c88a070a26c0e2c"
+            },
+            {
+              "path": "dist/assets/game-DrzQVqcv.css",
+              "sha256": "6fbecdaf5aaf3ce847886b4954c595ec0a0198767982cf2e0d2a492b75477db2"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "bc15a9071f50a59207a29154192163f0786ae2f46ebf8206811d57902405ba2d"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED",
+        "startedAt": "2026-10-04T02:00:36.911Z",
+        "endedAt": "2026-10-04T02:17:00.530Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/road-0137-first-game/results.json",
+        "resultSha256": "70b8b24c76c851146b7f950314a239b05b72b8b805ec18d46eb8b517fe2ef494",
+        "provenanceStable": true,
+        "acceptanceScope": "ROAD presentation/temporary-owner criteria only; fixtures and unchanged-owner limits retained",
+        "acceptanceProof": "docs/reports/traversal-road-elements-completion/checks.json"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "road-0137-more-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261004T0137",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-04T02:12:35.536Z",
+        "pid": 46476,
+        "port": 5318,
+        "command": [
+          "node",
+          "tools/traversal-road-more-routes-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "normal",
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ],
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "roads": [
+            "second",
+            "branch-event"
+          ],
+          "paths": [
+            "contact-collect"
+          ],
+          "earlyPaths": [
+            "contact-collect"
+          ],
+          "scope": "native real built selected roads; V6 fixture origins/bootstrap/prior combat outcomes; no earned campaign/full road acceptance"
+        },
+        "requiredAssertions": [
+          "edge-entry-frozen-anchor",
+          "contact-collected-retention-full-exit",
+          "rendered-ground-depth",
+          "native-keyboard-responsive-motion",
+          "single-temporary-pickup-no-secured-write",
+          "physical-contact-after-reset"
+        ],
+        "output": "tmp/traversal/road-0137-more-normal",
+        "receiptPath": "tmp/traversal/road-0137-more-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "cf7e6610b50e6703abf134c3d6e8b7d2619213d3",
+          "sourceTree": "0b66ef5d00e324e47d42126800fcf8f79d592e6d",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/traversal-road-more-routes-production-qa.mjs",
+            "sha256": "f5ce041fc8b5589f5ea58c25fa133f4b706fc446cbe11d0bba84a2ed9d8f15ff"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-C6Qm6kEn.js",
+              "sha256": "9416536936b25d29b5a548b103020bb13a67b6575e723ba73c88a070a26c0e2c"
+            },
+            {
+              "path": "dist/assets/game-DrzQVqcv.css",
+              "sha256": "6fbecdaf5aaf3ce847886b4954c595ec0a0198767982cf2e0d2a492b75477db2"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "bc15a9071f50a59207a29154192163f0786ae2f46ebf8206811d57902405ba2d"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED",
+        "startedAt": "2026-10-04T02:17:07.841Z",
+        "endedAt": "2026-10-04T02:36:52.342Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "resultPath": "tmp/traversal/road-0137-more-normal/results.json",
+        "resultSha256": "0173b622e85bc821daaa9bc29d365aae68055d6f62a27bc47931eeb279393837",
+        "exitCode": 0,
+        "provenanceStable": true,
+        "acceptanceScope": "ROAD presentation/temporary-owner criteria only; fixtures and unchanged-owner limits retained",
+        "acceptanceProof": "docs/reports/traversal-road-elements-completion/checks.json"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "campfire-0511-smoke",
+        "runId": "codex-production-focus-20261004T0511",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-04T05:25:11.381Z",
+        "pid": null,
+        "port": 5319,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "scenario": "final-refuge-story",
+          "viewport": "1440x810",
+          "motion": "normal",
+          "production": true
+        },
+        "requiredAssertions": [],
+        "output": "tmp/cinematics/campfire-0511-smoke",
+        "receiptPath": "tmp/cinematics/campfire-0511-smoke/qa-job.json",
+        "provenance": {
+          "gitHead": "cf7e6610b50e6703abf134c3d6e8b7d2619213d3",
+          "sourceTree": "0b66ef5d00e324e47d42126800fcf8f79d592e6d",
+          "sourceDiffSha256": "1e67b04d3c904bc92592ca77c4d45e46a6cfa1a5448cdc60b5788efc2ca2094b",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "12d8326b6eff49af662cb73db35679b351671e067a7056f889c5d0b8bb00d0cc"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-B88jV6cs.js",
+              "sha256": "0a52d804203deac18c23b185f486f214dc7fbaeddf37b9ae66ddb3086d7292a5"
+            },
+            {
+              "path": "dist/assets/game-DrzQVqcv.css",
+              "sha256": "6fbecdaf5aaf3ce847886b4954c595ec0a0198767982cf2e0d2a492b75477db2"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "7eefa4d386d591cff15d015d561f8895359f59620b49527654c9f3ac30c3587c"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED",
+        "endedAt": "2026-10-04T05:25:37.611Z",
+        "resultPath": "tmp/cinematics/campfire-0511-smoke/results.json",
+        "resultSha256": "59cb7bf661134698f1d76fa9d49444113c5805beacb8585562f9a52632b33d53",
+        "exitCode": 0,
+        "acceptanceScope": "One fixture-origin production smoke: existing final_refuge dialogue resolution, campfire capture inspected, exact resolved-node reload/no replay. Full milestone pending."
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "campfire-0511-milestone",
+        "runId": "codex-production-focus-20261004T0511",
+        "status": "FAILED",
+        "registeredAt": "2026-10-04T05:28:03.253Z",
+        "pid": null,
+        "port": 5320,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "scenario": "final-refuge-story",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "motions": [
+            "normal",
+            "os"
+          ],
+          "production": true,
+          "reuseSmoke": "campfire-0511-smoke",
+          "scope": "Existing campfire story/Journey/resolved resume fixture-origin milestone; no earnedcampaign or judgement outcome claim"
+        },
+        "requiredAssertions": [],
+        "output": "tmp/cinematics/campfire-0511-milestone",
+        "receiptPath": "tmp/cinematics/campfire-0511-milestone/qa-job.json",
+        "provenance": {
+          "gitHead": "cf7e6610b50e6703abf134c3d6e8b7d2619213d3",
+          "sourceTree": "0b66ef5d00e324e47d42126800fcf8f79d592e6d",
+          "sourceDiffSha256": "1e67b04d3c904bc92592ca77c4d45e46a6cfa1a5448cdc60b5788efc2ca2094b",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "12d8326b6eff49af662cb73db35679b351671e067a7056f889c5d0b8bb00d0cc"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-B88jV6cs.js",
+              "sha256": "0a52d804203deac18c23b185f486f214dc7fbaeddf37b9ae66ddb3086d7292a5"
+            },
+            {
+              "path": "dist/assets/game-DrzQVqcv.css",
+              "sha256": "6fbecdaf5aaf3ce847886b4954c595ec0a0198767982cf2e0d2a492b75477db2"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "7eefa4d386d591cff15d015d561f8895359f59620b49527654c9f3ac30c3587c"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "endedAt": "2026-10-04T05:29:40.152Z",
+        "resultPath": "tmp/cinematics/campfire-0511-milestone/results.json",
+        "resultSha256": "4ae1c58caaa04ab4b54f53ebc6179cd32d9349ecbe78870a2a4a47a41bd6e625",
+        "exitCode": 1,
+        "failureClassification": "Harness assertion required a video attempt for approved static-only final_refuge preparation; exactly one minimal assertion correction, no product defect observed"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "campfire-0511-milestone-fixed",
+        "runId": "codex-production-focus-20261004T0511",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-04T05:30:20.095Z",
+        "pid": null,
+        "port": 5320,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "scenario": "final-refuge-story",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "motions": [
+            "normal",
+            "os"
+          ],
+          "production": true,
+          "reuseSmoke": null,
+          "scope": "Existing campfire story/Journey/resolved resume fixture-origin milestone; no earnedcampaign or judgement outcome claim"
+        },
+        "requiredAssertions": [],
+        "output": "tmp/cinematics/campfire-0511-milestone-fixed",
+        "receiptPath": "tmp/cinematics/campfire-0511-milestone-fixed/qa-job.json",
+        "provenance": {
+          "gitHead": "cf7e6610b50e6703abf134c3d6e8b7d2619213d3",
+          "sourceTree": "0b66ef5d00e324e47d42126800fcf8f79d592e6d",
+          "sourceDiffSha256": "1e67b04d3c904bc92592ca77c4d45e46a6cfa1a5448cdc60b5788efc2ca2094b",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "3c6258fee153023abc658e53ce3aca81514b9fead0842e91c99edcbbb7045fc2"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-B88jV6cs.js",
+              "sha256": "0a52d804203deac18c23b185f486f214dc7fbaeddf37b9ae66ddb3086d7292a5"
+            },
+            {
+              "path": "dist/assets/game-DrzQVqcv.css",
+              "sha256": "6fbecdaf5aaf3ce847886b4954c595ec0a0198767982cf2e0d2a492b75477db2"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "7eefa4d386d591cff15d015d561f8895359f59620b49527654c9f3ac30c3587c"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "endedAt": "2026-10-04T05:32:49.056Z",
+        "resultPath": "tmp/cinematics/campfire-0511-milestone-fixed/results.json",
+        "resultSha256": "73e85046d4370835fa69c4c396606357c08571947e287ca4d7b23c8207e76f6f",
+        "exitCode": 0,
+        "acceptanceScope": "Six functional cases pass; inspected portrait captures crop out campfire, product CSS fixed afterward; earlier build retained as historical diagnostic"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "campfire-0511-reframed",
+        "runId": "codex-production-focus-20261004T0511",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-04T05:36:08.549Z",
+        "pid": 53500,
+        "port": 5320,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "scenario": "final-refuge-story",
+          "viewports": [
+            "1440x810",
+            "620x780",
+            "390x844"
+          ],
+          "motions": [
+            "normal",
+            "os"
+          ],
+          "production": true,
+          "reuseSmoke": null,
+          "scope": "Existing campfire story/Journey/resolved resume fixture-origin milestone; portrait fire framing fixed; no earnedcampaign or judgement outcome claim"
+        },
+        "requiredAssertions": [],
+        "output": "tmp/cinematics/campfire-0511-reframed",
+        "receiptPath": "tmp/cinematics/campfire-0511-reframed/qa-job.json",
+        "provenance": {
+          "gitHead": "cf7e6610b50e6703abf134c3d6e8b7d2619213d3",
+          "sourceTree": "0b66ef5d00e324e47d42126800fcf8f79d592e6d",
+          "sourceDiffSha256": "a67e567d5e3190f590acaf2e20c8a301e5a084acd728dcb97d4312e7cd633dee",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "3c6258fee153023abc658e53ce3aca81514b9fead0842e91c99edcbbb7045fc2"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-DFzR6Ihk.css",
+              "sha256": "52dae39e562b6e08a3c7ea2c7543fe114e9ee89f535a7cf84f7fd3d6a6782049"
+            },
+            {
+              "path": "dist/assets/game-PN0Q0xUJ.js",
+              "sha256": "0a52d804203deac18c23b185f486f214dc7fbaeddf37b9ae66ddb3086d7292a5"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "d1eb660f2b666a5dd2611682dd4ab994f9c5abcbf13e953e865c6e80ac160113"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED",
+        "acceptanceScope": "Matching six-case source/driver/build/results verified before commits; campfire visuals with separate native continuation proof",
+        "startedAt": "2026-10-04T05:36:13.609Z",
+        "endedAt": "2026-10-04T05:38:03.874Z",
+        "provenanceStable": true,
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/campfire-0511-reframed/results.json",
+        "resultSha256": "4e9a56eaffd8b42c683dcc06dbe6028f65d926977933efb044ebe513ad9c5774",
+        "provenanceRepresentation": "Frozen accepted physical source snapshot fe3139903c0eda3719ba0a69de3e5db0efda7935; final narrative build differs, no current-build relabel"
+      },
+      {
+        "jobId": "campfire-20261007-native",
+        "runId": "rpgthreejs-auto-dev-90m-20261007T1907",
+        "status": "SUCCEEDED",
+        "command": [
+          "node",
+          "tmp/autonomy/campfire-native-smoke.mjs"
+        ],
+        "parameters": {
+          "viewport": "390x844",
+          "motion": "os-only",
+          "origin": "resolved final-refuge V6 fixture"
+        },
+        "port": 5321,
+        "pid": null,
+        "output": "tmp/cinematics/campfire-20261007-native",
+        "resultPath": "tmp/cinematics/campfire-20261007-native/results.json",
+        "requiredAssertions": [
+          "full state unchanged while waiting and reload",
+          "restored preparation focused ready action",
+          "native Enter reaches authored judgement once",
+          "17 temporary gold retained; secured gold unchanged"
+        ],
+        "acceptance": "ACCEPTED_SCOPED",
+        "registeredAt": "2026-10-07T19:18:40.302Z",
+        "endedAt": "2026-10-07T19:20:10.371Z",
+        "manualScriptSha256": "98a6a1ed225391bd32fbe329b839decfe97dd4d5604b5a6a8ec69b1ff98812c8",
+        "provenance": {
+          "gitHead": "cf7e6610b50e6703abf134c3d6e8b7d2619213d3",
+          "sourceTree": "0b66ef5d00e324e47d42126800fcf8f79d592e6d",
+          "sourceDiffSha256": "a67e567d5e3190f590acaf2e20c8a301e5a084acd728dcb97d4312e7cd633dee",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "3c6258fee153023abc658e53ce3aca81514b9fead0842e91c99edcbbb7045fc2"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-DFzR6Ihk.css",
+              "sha256": "52dae39e562b6e08a3c7ea2c7543fe114e9ee89f535a7cf84f7fd3d6a6782049"
+            },
+            {
+              "path": "dist/assets/game-PN0Q0xUJ.js",
+              "sha256": "0a52d804203deac18c23b185f486f214dc7fbaeddf37b9ae66ddb3086d7292a5"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "d1eb660f2b666a5dd2611682dd4ab994f9c5abcbf13e953e865c6e80ac160113"
+            }
+          ]
+        },
+        "resultSha256": "e0b6ab43aa763f0e32303682aa28d59661fe488836c92ef19fea5cce50f98c6c",
+        "acceptanceScope": "Resolved fixture wait/fullstate reload/native entry into unresolved judgement; not earnedcampaign"
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261004T0007",
-      "sha": "e242c8f4a9a0305c257e9336408b7383ddb80d00",
-      "status": "REMOTE_VERIFIED_PRESERVED_DEFERRED_WIP",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261007T1907",
+      "sha": "d993626173a39c369c37fbcf2de4fa8352548df8",
+      "status": "GREEN_SOURCE_CHECKPOINT_NOT_FULL_ACCEPTANCE",
       "dirtyFiles": [
         "legacy-combat.html",
         "src/combat/combatKeyboard.test.ts",
         "src/combat/combatKeyboard.ts",
         "src/combat/legacyCombatRuntime.js",
         "src/styles/combat-shell.css",
-        "tools/combat-battlefield-keyboard-production-qa.mjs"
+        "tools/combat-battlefield-keyboard-production-qa.mjs",
+        "src/cinematics/NarrativeTableau.ts",
+        "src/journey/JourneyPresentationResolver.ts",
+        "src/journey/JourneyCampaignBoundary.ts",
+        "src/journey/JourneyCampaignBoundary.test.ts"
       ],
-      "lastGreenCheck": "186Traversal/30files; scoped27native+9lab only; full acceptanceOPEN"
+      "lastGreenCheck": "65focused tests;8contracts8slots; immutable LOCKED gate empty; automation exactprompt and otherfields preserved",
+      "lastSnapshotAt": "2026-10-07T19:30:35.545Z"
     },
-    "nextAction": "Resume TRAVERSAL-ROAD-ELEMENTS from source62045da and selected late-reset proof. Preserve 97 prior jobs, six deferred keyboard blobs and exact deferredDemoTask. Register fresh current first/early-road normal/OS/game matrix and remaining second/branch-event/arrival roads at1440/620/390 under unchanged contact<3px/frame<40ms guards; review selected uncovered captures. Then native background freeze/fallback/production disposal and earned temporary-gold defeat/refuge/V6 continuation. Do not rerun accepted source-identical branch/lab proof. Full road/demo and ten canonical Pursuit mapping gaps remain open/blocked.",
+    "nextAction": "Read NARRATIVE_CONTEXT_COHERENCE.md and current state. Existing run_cin6d6_route_browser_qa.mjs witnesses-protected flow drives the council but captures only choices/final boundary: add one bounded council-opening text observation/capture, review exact assertion diff with guardian, build current sources and register one unique production smoke at390x844 OS-only on a free strict port. Inspect corrected opening text/fit and retained agency; do not change the exhausted campfire assertion or rerun its accepted matrix. Then audit remaining fact-sensitive dialogue before narrative milestone acceptance. Preserve exact deferred keyboard action/six blobs and Pursuit10mapping inventory.",
     "runMetrics": {
-      "newRegisteredJobs": 10,
-      "terminalJobs": 10,
-      "acceptedScopedJobs": 6,
-      "currentProductionBranchCases": 27,
-      "isolatedLabCases": 9,
-      "failedDiagnostics": 4,
+      "sourceFilesModified": 1,
+      "sourcePaths": [
+        "src/game/contextualDialogueContent.ts"
+      ],
+      "testFilesModified": 1,
+      "testPaths": [
+        "src/game/contextualDialogue.test.ts"
+      ],
+      "qaToolsAdded": 0,
+      "proofFilesAdded": 5,
+      "proofPaths": [
+        "docs/reports/pre-judgement-campfire-completion/checks.json",
+        "docs/reports/pre-judgement-campfire-completion/desktop-preparation.png",
+        "docs/reports/pre-judgement-campfire-completion/intermediate-os-preparation.png",
+        "docs/reports/pre-judgement-campfire-completion/mobile-preparation.png",
+        "docs/reports/pre-judgement-campfire-completion/native-judgement-entry.png"
+      ],
+      "workflowFiles": 5,
+      "workflowPaths": [
+        "docs/autonomy/PRE_JUDGEMENT_CAMPFIRE.md",
+        "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/handoffs/2026-10-07T1907Z-codex-campfire-council-checkpoint.md"
+      ],
+      "inheritedPaths": 26,
+      "inheritedDeferredFiles": 6,
+      "ignoredManualSmokeScriptsAdded": 1,
+      "ignoredManualSmokeReason": "Existing route runner never activates final-refuge onward and already used its single assertion correction; one ignored manual Playwright smoke supplements the matching six-case receipts without changing any QA driver.",
       "distinctReadOnlyReviewers": 2,
-      "failedOutputsUsedAsSeeds": 0,
-      "creditSavings": "Not measured",
-      "timing": "Preflight00:07:33Z, owned lock00:09:29Z; final checkpoint2026-10-04T01:12:59.439Z; roughly65minutes; full task incomplete"
+      "reusedVisualCases": 6,
+      "newBrowserScenarios": 1,
+      "elapsedMinutes": 22.219733333333334,
+      "quotaSavings": "Not measured",
+      "newRegisteredJobs": 1,
+      "terminalJobs": 1,
+      "failedOutputsUsedAsSeeds": 0
     },
     "checkpointPaths": [
-      "src/traversal/TraversalRoadAnchor.ts",
-      "src/traversal/TraversalRoadAnchor.test.ts",
-      "src/traversal/TraversalRoadCamera.test.ts",
-      "src/traversal/TraversalRoadScene.ts",
-      "src/traversal/TraversalRouteRiskRenderer.ts",
-      "src/traversal/TraversalRouteRewardRenderer.ts",
-      "tools/traversal/road-anchor-lab.ts",
-      "tools/traversal/road-late-reset-lab.ts",
-      "tools/traversal-road-late-reset-lab-qa.mjs",
-      "tools/traversal-road-more-routes-production-qa.mjs",
-      "docs/autonomy/TRAVERSAL_ROAD_ELEMENTS.md",
-      "docs/reports/INDEX.md",
-      "docs/reports/traversal-road-late-reset-3.md",
+      "src/game/contextualDialogueContent.ts",
+      "src/game/contextualDialogue.test.ts",
+      "docs/autonomy/PRE_JUDGEMENT_CAMPFIRE.md",
+      "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/reports/traversal-road-late-reset-3-browser/checks.json",
-      "docs/reports/traversal-road-late-reset-3-browser/T0-1440-normal-late-reset.png",
-      "docs/reports/traversal-road-late-reset-3-browser/T0-390-os-late-reset.png",
-      "docs/reports/traversal-road-late-reset-3-browser/T0-620-game-late-reset.png",
-      "docs/reports/traversal-road-late-reset-3-browser/T0-1440-normal-branch-combat-contact-collect-passed-rock.png",
-      "docs/reports/traversal-road-late-reset-3-browser/T1-390-os-branch-combat-contact-collect-passed-rock.png",
-      "docs/reports/traversal-road-late-reset-3-browser/T3-620-game-branch-combat-contact-collect-passed-rock.png",
-      "docs/autonomy/handoffs/2026-10-04T0007Z-codex-late-reset-checkpoint.md"
+      "docs/autonomy/handoffs/2026-10-07T1907Z-codex-campfire-council-checkpoint.md",
+      "docs/reports/pre-judgement-campfire-completion/checks.json",
+      "docs/reports/pre-judgement-campfire-completion/desktop-preparation.png",
+      "docs/reports/pre-judgement-campfire-completion/intermediate-os-preparation.png",
+      "docs/reports/pre-judgement-campfire-completion/mobile-preparation.png",
+      "docs/reports/pre-judgement-campfire-completion/native-judgement-entry.png"
     ],
     "publication": {
-      "verifiedAt": "2026-10-04T01:12:59.439Z",
-      "dev": "a3d330aa29f2a6b06af801453f016389c05f22c3",
-      "wip": "e242c8f4a9a0305c257e9336408b7383ddb80d00",
-      "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "devSource": "62045da221f49e035b509c50be355840eecfd81f",
-      "status": "REMOTE_VERIFIED",
-      "authorization": "Recurring instruction explicitly authorizes coherent dev checkpoint and reviewed WIP publication; final state commit parity in automation memory"
+      "status": "READY_TO_PUSH_COHERENT_WORKFLOW",
+      "productCheckpoint": "8a2c018014109628e10de2698c1361a064ee72a4",
+      "target": "origin/dev",
+      "mainProtected": true
     }
   },
   "previousInterruptedRun": {
-    "runId": "rpgthreejs-auto-dev-90m-20261003T1600",
-    "terminal": "usage limit",
-    "heartbeat": "2026-10-03T16:18:46.330Z",
-    "qaJob": "road-1600-probe SUCCEEDED/NOT_ACCEPTED",
-    "takeoverChecks": "Heartbeat >105 minutes, idle failed owning chat, PID61456 dead, no associated Git/build/QA; unrelated dev service preserved"
+    "runId": "codex-production-focus-20261004T0511",
+    "activeTask": "PRE-JUDGEMENT-CAMPFIRE",
+    "nextAction": "Inspect terminal campfire0511reframed6cases and selected campfire-visible captures; guardian finalscope, close campfire and advance NARRATIVE-CONTEXT-COHERENCE. Exactly one harness correction already used; no further instrumentation edits.",
+    "lockArchived": ".git/codex-autonomy.abandoned-20261007T1913.json"
   },
   "autonomousExecutionPolicy": {
     "decisionSource": "docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-02.md",
@@ -12228,18 +13118,42 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-04T0007Z-codex-late-reset-checkpoint.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-07T1907Z-codex-campfire-council-checkpoint.md",
   "runMeasurement": {
-    "newRegisteredJobs": 10,
-    "terminalJobs": 10,
-    "acceptedScopedJobs": 6,
-    "currentProductionBranchCases": 27,
-    "isolatedLabCases": 9,
-    "failedDiagnostics": 4,
+    "sourceFilesModified": 1,
+    "sourcePaths": [
+      "src/game/contextualDialogueContent.ts"
+    ],
+    "testFilesModified": 1,
+    "testPaths": [
+      "src/game/contextualDialogue.test.ts"
+    ],
+    "qaToolsAdded": 0,
+    "proofFilesAdded": 5,
+    "proofPaths": [
+      "docs/reports/pre-judgement-campfire-completion/checks.json",
+      "docs/reports/pre-judgement-campfire-completion/desktop-preparation.png",
+      "docs/reports/pre-judgement-campfire-completion/intermediate-os-preparation.png",
+      "docs/reports/pre-judgement-campfire-completion/mobile-preparation.png",
+      "docs/reports/pre-judgement-campfire-completion/native-judgement-entry.png"
+    ],
+    "workflowFiles": 5,
+    "workflowPaths": [
+      "docs/autonomy/PRE_JUDGEMENT_CAMPFIRE.md",
+      "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/handoffs/2026-10-07T1907Z-codex-campfire-council-checkpoint.md"
+    ],
+    "inheritedPaths": 26,
+    "inheritedDeferredFiles": 6,
+    "ignoredManualSmokeScriptsAdded": 1,
+    "ignoredManualSmokeReason": "Existing route runner never activates final-refuge onward and already used its single assertion correction; one ignored manual Playwright smoke supplements the matching six-case receipts without changing any QA driver.",
     "distinctReadOnlyReviewers": 2,
-    "failedOutputsUsedAsSeeds": 0,
-    "creditSavings": "Not measured",
-    "timing": "Preflight00:07:33Z, owned lock00:09:29Z; final checkpoint2026-10-04T01:12:59.439Z; roughly65minutes; full task incomplete"
+    "reusedVisualCases": 6,
+    "newBrowserScenarios": 1,
+    "elapsedMinutes": 22.219733333333334,
+    "quotaSavings": "Not measured"
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -12410,23 +13324,79 @@
       }
     ],
     "snapshot": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261004T0007",
-      "sha": "e242c8f4a9a0305c257e9336408b7383ddb80d00",
-      "status": "REMOTE_VERIFIED_PRESERVED_DEFERRED_WIP",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261007T1907",
+      "sha": "d993626173a39c369c37fbcf2de4fa8352548df8",
+      "status": "GREEN_SOURCE_CHECKPOINT_NOT_FULL_ACCEPTANCE",
       "dirtyFiles": [
         "legacy-combat.html",
         "src/combat/combatKeyboard.test.ts",
         "src/combat/combatKeyboard.ts",
         "src/combat/legacyCombatRuntime.js",
         "src/styles/combat-shell.css",
-        "tools/combat-battlefield-keyboard-production-qa.mjs"
+        "tools/combat-battlefield-keyboard-production-qa.mjs",
+        "src/cinematics/NarrativeTableau.ts",
+        "src/journey/JourneyPresentationResolver.ts",
+        "src/journey/JourneyCampaignBoundary.ts",
+        "src/journey/JourneyCampaignBoundary.test.ts"
       ],
-      "lastGreenCheck": "186Traversal/30files; scoped27native+9lab only; full acceptanceOPEN"
+      "lastGreenCheck": "65focused tests;8contracts8slots; immutable LOCKED gate empty; automation exactprompt and otherfields preserved",
+      "lastSnapshotAt": "2026-10-07T19:30:35.545Z"
     }
   },
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
     "Run0007 source58b5ebf/62045da and scoped checkpointa3d330aa29f2a6b06af801453f016389c05f22c3 published; owned WIPe242c8f4a9a0305c257e9336408b7383ddb80d00 remote verified; main00b96f1 unchanged. No automatic-review rejection this run. Final state parity in automation memory."
-  ]
+  ],
+  "productionFocus": {
+    "decisionId": "OD-2026-10-04-A",
+    "sourceFilesModified": [
+      "src/cinematics/NarrativeTableau.ts",
+      "src/journey/JourneyPresentationResolver.ts",
+      "src/journey/JourneyCampaignBoundary.ts",
+      "src/styles/app.css"
+    ],
+    "qaFilesAdded": [],
+    "proofFilesAdded": [
+      "docs/reports/traversal-road-elements-completion/checks.json",
+      "docs/reports/traversal-road-elements-completion/selected-1.png",
+      "docs/reports/traversal-road-elements-completion/selected-2.png",
+      "docs/reports/traversal-road-elements-completion/selected-3.png"
+    ],
+    "workflowFilesChanged": [
+      "AGENTS.md",
+      ".agents/skills/autonomy-handoff/SKILL.md",
+      ".agents/skills/qa-evidence/SKILL.md",
+      "docs/autonomy/OPERATOR_DECISIONS.md",
+      "docs/autonomy/PRODUCTION_FOCUS_OPERATOR_DECISION_2026-10-04.md",
+      "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
+      "docs/autonomy/RECURRING_RUN_PROMPT.md",
+      "docs/autonomy/TRAVERSAL_ROAD_ELEMENTS.md"
+    ],
+    "inheritedDeferredFiles": [
+      "legacy-combat.html",
+      "src/combat/combatKeyboard.test.ts",
+      "src/combat/combatKeyboard.ts",
+      "src/combat/legacyCombatRuntime.js",
+      "src/styles/combat-shell.css",
+      "tools/combat-battlefield-keyboard-production-qa.mjs"
+    ],
+    "qaToolJustification": null,
+    "oneSmokePerRun": true,
+    "broadQAOnlyAtMilestones": true,
+    "snapshotMaxMinutes": 15,
+    "externalPursuitBlocker": "Ten windows without eligible authored canonical mappings; operator owns decision; no new runs for this blocker",
+    "receiptAudit": "tmp/traversal/production-focus-0511-audit/audit.json",
+    "sourceTestFilesModified": [
+      "src/journey/JourneyCampaignBoundary.test.ts"
+    ],
+    "acceptedRoadQaSet": "road-completion-0137",
+    "metricsScope": "This run only; inherited six keyboard files excluded; runtime source separate from focused test",
+    "qaFilesModified": [
+      "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+    ],
+    "harnessCorrections": 1,
+    "harnessCorrection": "Allow video-attempt absence only for final-refuge-story when nonempty recorded surfaces all static, not played, OS reduced true/game false; active-video and all video assertions retained",
+    "nativeSmokeJustification": "Existing route runner never activates final-refuge onward and already used its single assertion correction; one ignored manual Playwright smoke supplements the matching six-case receipts without changing any QA driver."
+  }
 }

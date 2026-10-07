@@ -1,31 +1,50 @@
 # Autonomous work state
 
-CURRENT FACT — TRAVERSAL-ROAD-ELEMENTS and demo incomplete. OD-2026-10-03-A; LOCKED set1.1.0 / immutable d7ca28a unchanged.
+CURRENT FACT — scoped ROAD and PRE-JUDGEMENT-CAMPFIRE complete; NARRATIVE-CONTEXT-COHERENCE active. Full demo incomplete. OD-2026-10-04-A applies; LOCKED set1.1.0 unchanged.
 
 | Field | Value |
 | --- | --- |
-| status | CHECKPOINTED_IN_PROGRESS |
-| runId | rpgthreejs-auto-dev-90m-20261004T0007 |
-| runStartedAt | 2026-10-04T00:09:29.7320166Z |
-| runEndedAt | 2026-10-04T01:12:59.439Z |
-| activeTask | TRAVERSAL-ROAD-ELEMENTS |
-| activePhase | Late-reset camera correction and scoped branch production proof checkpointed; full road acceptance open |
-| activeSubtask | Fresh first/early and remaining road production matrix, background/fallback/disposal, earned gold V6 |
+| status | IN_PROGRESS |
+| runId | rpgthreejs-auto-dev-90m-20261007T1907 |
+| runStartedAt | 2026-10-07T19:07:41Z |
+| runEndedAt | 2026-10-07T19:29:54.184Z |
+| activeTask | NARRATIVE-CONTEXT-COHERENCE |
+| activePhase | Council fact-sensitive source checkpoint; production acceptance remains open |
+| activeSubtask | Existing council dialogue text corrected and source-reviewed; native displayed-text/fit proof is next |
 | workingBranch | dev |
-
-186Traversal/30files,46focused,types,8contracts8slots/build PASS. Scoped27native fixture branch cases and9isolated scripted-reset cases reviewed. Four failed/stopped diagnostics NOT_ACCEPTED. Original97ledger/deferred task/six keyboard blobs unchanged. Exact physical build includes deferred unaccepted keyboard WIP; source58b5ebf/62045da excludes it.
+| green product checkpoint | 8a2c018014109628e10de2698c1361a064ee72a4 |
 
 ## Exact next action
 
-Resume TRAVERSAL-ROAD-ELEMENTS from source62045da and selected late-reset proof. Preserve 97 prior jobs, six deferred keyboard blobs and exact deferredDemoTask. Register fresh current first/early-road normal/OS/game matrix and remaining second/branch-event/arrival roads at1440/620/390 under unchanged contact<3px/frame<40ms guards; review selected uncovered captures. Then native background freeze/fallback/production disposal and earned temporary-gold defeat/refuge/V6 continuation. Do not rerun accepted source-identical branch/lab proof. Full road/demo and ten canonical Pursuit mapping gaps remain open/blocked.
+Read NARRATIVE_CONTEXT_COHERENCE.md and current state. Existing run_cin6d6_route_browser_qa.mjs witnesses-protected flow drives the council but captures only choices/final boundary: add one bounded council-opening text observation/capture, review exact assertion diff with guardian, build current sources and register one unique production smoke at390x844 OS-only on a free strict port. Inspect corrected opening text/fit and retained agency; do not change the exhausted campfire assertion or rerun its accepted matrix. Then audit remaining fact-sensitive dialogue before narrative milestone acceptance. Preserve exact deferred keyboard action/six blobs and Pursuit10mapping inventory.
+
+## Accepted and open scope
+
+[Campfire record](PRE_JUDGEMENT_CAMPFIRE.md), [selected evidence](../reports/pre-judgement-campfire-completion/checks.json):6matching visual cases plus1native390OS smoke, inspected captures and guardian PASS. Waiting/reloading retains preparation and state; native Enter reaches unresolved judgement once with17temporarygold intact. Fixture-origin only, no earned campaign or judgement outcome claim.
+
+[Narrative checkpoint](NARRATIVE_CONTEXT_COHERENCE.md): one runtime source file and one test file changed. Existing council facts replace generic dismissal/speculative theft; all6branches preserve flow/staging/effects/state.90focused tests/types/build/staging/contracts PASS. Guardian/narrative source reviews PASS; displayed text and fit remain OPEN.49earlier focused Journey/Tableau tests support campfire closure. Exactly8MP4s and8slots remain.
+
+ROAD remains COMPLETE_SCOPED_PRESENTATION at its accepted source/build; no earnedV6/globaldemo claim. Pursuit collision remains BLOCKED externally on10canonical mappings; inventory retained in JSON and TRAVERSAL_PURSUIT_THREAT.md. Do not spend runs on the external blocker.
 
 ## Deferred battlefield keyboard/combat
 
 Finish exact battlefield production driver: real Tab entry, cursor bounds/announcement/no truth mutation, invalid/legal movement and native target execution, Escape/Retour focus, native controls and pointer regression in1366/620/390 OS on/off. Build new sources, review exact activation/assertion diff with guardian, register job and freeze tested inputs. Add actual fresh campaign iframe keyboard entry/return if budget permits; incomplete acceptance stays explicit. Preserve historical0350recovery and original726trial proofs. No media/audio work.
 
-## Proof and handoff
+All six original deferred files retain exact Git blobs and physical bytes. Original deferredDemoTask is byte-for-byte structurally unchanged from initial snapshot. They remain outside product commits, retained on wip/rpgthreejs-auto-dev-90m-20261007T1907@d993626173a39c369c37fbcf2de4fa8352548df8. The physical build includes this unaccepted WIP; never call it keyboard acceptance.
 
-[Report](../reports/traversal-road-late-reset-3.md); [selected proof](../reports/traversal-road-late-reset-3-browser/checks.json); [handoff](handoffs/2026-10-04T0007Z-codex-late-reset-checkpoint.md). Full ROAD, perceptual/frame-budget and earned V6 acceptance remains open.
+## Verification and run counts
+
+- 49 focused Journey/Tableau tests in4files PASS (campfire milestone)
+- 90 focused contextual/Lion narrative/verdict/finale tests in4files PASS (final narrative source)
+- Final tsc --noEmit and Vite production build PASS: game-DiE92-9U.js / game-DFzR6Ihk.css
+- 8 locked contracts/8 video slots, staging validator, whitespace and immutable/protected gates PASS
+- Six exact-source campfire visual cases reused; one native390x844 OS-only full-state wait/reload/onward smoke PASS
+
+This run:1runtime source modified,1test modified,0persistent QA tools added,5proof files added,5workflow documents created/updated. Excludes26inherited paths, including prior campfire code/workflow/ROAD proof; six deferred files remain unchanged. One ignored manual browser smoke was justified because the existing runner lacks onward/reload readiness assertions and its correction allowance is exhausted. Two distinct reviewers reused; no quota-saving claim.
+
+## Handoff and publication
+
+[Current handoff](handoffs/2026-10-07T1907Z-codex-campfire-council-checkpoint.md). Final remote parity and final workflow SHA are recorded in automation memory. No main publication, LOCKED/canon/media/audio/save-schema change. All spawned workers terminal; smoke port5321closed; preexisting5173preserved. A normal non-fast-forward WIP push was rejected and fixed by preserving snapshot ancestry, without force-push. No automatic approval rejection is pending.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -137,6 +156,13 @@ Finish exact battlefield production driver: real Tab entry, cursor bounds/announ
 - road-0007-branch-v4-normal-T3: SUCCEEDED; port 5311; receipt `tmp/traversal/road-0007-branch-v4-normal-T3/qa-job.json`; ACCEPTED_SCOPED
 - road-0007-branch-v4-normal-T0: SUCCEEDED; port 5311; receipt `tmp/traversal/road-0007-branch-v4-normal-T0/qa-job.json`; ACCEPTED_SCOPED
 - road-0007-branch-v4-normal-T1: SUCCEEDED; port 5311; receipt `tmp/traversal/road-0007-branch-v4-normal-T1/qa-job.json`; ACCEPTED_SCOPED
+- road-0137-first-normal: SUCCEEDED; port 5315; receipt `tmp/traversal/road-0137-first-normal/qa-job.json`; ACCEPTED_SCOPED
+- road-0137-first-os: SUCCEEDED; port 5316; receipt `tmp/traversal/road-0137-first-os/qa-job.json`; ACCEPTED_SCOPED
+- road-0137-first-game: SUCCEEDED; port 5317; receipt `tmp/traversal/road-0137-first-game/qa-job.json`; ACCEPTED_SCOPED
+- road-0137-more-normal: SUCCEEDED; port 5318; receipt `tmp/traversal/road-0137-more-normal/qa-job.json`; ACCEPTED_SCOPED
+- campfire-0511-smoke: SUCCEEDED; port 5319; receipt `tmp/cinematics/campfire-0511-smoke/qa-job.json`; ACCEPTED_SCOPED
+- campfire-0511-milestone: FAILED; port 5320; receipt `tmp/cinematics/campfire-0511-milestone/qa-job.json`; NOT_ACCEPTED
+- campfire-0511-milestone-fixed: SUCCEEDED; port 5320; receipt `tmp/cinematics/campfire-0511-milestone-fixed/qa-job.json`; NOT_ACCEPTED
+- campfire-0511-reframed: SUCCEEDED; port 5320; receipt `tmp/cinematics/campfire-0511-reframed/qa-job.json`; ACCEPTED_SCOPED
+- campfire-20261007-native: SUCCEEDED; port 5321; receipt `tmp/cinematics/campfire-20261007-native/results.json`; ACCEPTED_SCOPED
 <!-- QA_JOBS_END -->
-
-Dev checkpoint `a3d330aa29f2a6b06af801453f016389c05f22c3` and owned WIP `e242c8f4a9a0305c257e9336408b7383ddb80d00` remote verified; main unchanged. Final state publication parity is recorded in automation memory. Exact six deferred blobs remain dirty and protected.

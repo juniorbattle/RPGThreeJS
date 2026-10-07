@@ -1,0 +1,13 @@
+# Campfire and council checkpoint — 2026-10-07T19:29:54.184Z
+
+CURRENT FACT: PRE-JUDGEMENT-CAMPFIRE COMPLETE_SCOPED_PRESENTATION in349c2b6; NARRATIVE-CONTEXT-COHERENCE source checkpoint 8a2c018014109628e10de2698c1361a064ee72a4, acceptance OPEN. dev; main untouched.
+
+Read paired state and the campfire/narrative canonical records. Read NARRATIVE_CONTEXT_COHERENCE.md and current state. Existing run_cin6d6_route_browser_qa.mjs witnesses-protected flow drives the council but captures only choices/final boundary: add one bounded council-opening text observation/capture, review exact assertion diff with guardian, build current sources and register one unique production smoke at390x844 OS-only on a free strict port. Inspect corrected opening text/fit and retained agency; do not change the exhausted campfire assertion or rerun its accepted matrix. Then audit remaining fact-sensitive dialogue before narrative milestone acceptance. Preserve exact deferred keyboard action/six blobs and Pursuit10mapping inventory.
+
+Takeover archived the4October05:32UTC lock only after owner idle/terminal turn, no associated QA/Git worker, stopped campfire receipt and verified remote parity. Unrelated5173service preserved. Reviewed26inherited paths captured under owned lock; inherited workflow/ROAD proof committed f4f0617, campfire349c2b6, council8a2c018. Exact deferredDemoTask and6Git blobs/physical bytes unchanged.
+
+Verification:49focused campfire plus90final narrative tests; types/build/staging/contracts/whitespace/LOCKED gates PASS. Build game-DiE92-9U.js/game-DFzR6Ihk.css contains deferred keyboard WIP excluded from source commits. Campfire accepts6prior exact-byte cases and1new native390OS wait/full-state reload/onward proof; no earnedcampaign/judgement outcome/full-demo acceptance. One manual ignored browser script independently hashed its own executable and fixture; existing runner was not edited this run. Five selected compact proof files promoted. Failed/superseded older jobs remain unaccepted; no failed seed.
+
+Counts excluding inherited work:1runtime source,1test modified;0persistent QA tools added;5proof files;5workflow files. Two distinct read-only reviewers reused. No measured quota savings. WIP push ancestry was repaired after normal non-fast-forward rejection, without force or content loss. No automatic approval rejection or unresolved permission prompt.
+
+Final owned WIP/parity/lock release are recorded in automation memory. Retain WIP branch for six uncommitted deferred files. No new heavy task was started after the source checkpoint: one browser smoke has been consumed, council acceptance requires its own observed production opening next run.
