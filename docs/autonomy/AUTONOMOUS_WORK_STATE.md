@@ -1,50 +1,38 @@
 # Autonomous work state
 
-CURRENT FACT — scoped ROAD and PRE-JUDGEMENT-CAMPFIRE complete; NARRATIVE-CONTEXT-COHERENCE active. Full demo incomplete. OD-2026-10-04-A applies; LOCKED set1.1.0 unchanged.
+CURRENT FACT — scoped ROAD and CAMPFIRE complete. Narrative source audit complete, browser gate OPEN. STATIC-TABLEAU-STAGING-POLISH active with one reviewed relational source correction. Full demo incomplete; immutable set1.1.0 unchanged.
 
 | Field | Value |
 | --- | --- |
 | status | IN_PROGRESS |
-| runId | rpgthreejs-auto-dev-90m-20261007T1907 |
-| runStartedAt | 2026-10-07T19:07:41Z |
-| runEndedAt | 2026-10-07T19:31:23.058Z |
-| activeTask | NARRATIVE-CONTEXT-COHERENCE |
-| activePhase | Council fact-sensitive source checkpoint; production acceptance remains open |
-| activeSubtask | Existing council dialogue text corrected and source-reviewed; native displayed-text/fit proof is next |
+| runId | rpgthreejs-auto-dev-90m-20261007T1933 |
+| runStartedAt | 2026-10-07T19:36:09.5104199Z |
+| runEndedAt | 2026-10-07T20:06:33.562Z |
+| activeTask | STATIC-TABLEAU-STAGING-POLISH |
+| activePhase | Independent exact-shape relational correction after documented narrative browser blockage |
+| activeSubtask | Alaric and Seraphine allied against Serpent in3speaker runtime plan; source reviewed, production geometry/facing proof OPEN |
 | workingBranch | dev |
-| green product checkpoint | 8a2c018014109628e10de2698c1361a064ee72a4 |
+| published scoped source checkpoint | 9f822743bc3cb5ba15131dd3477c1777e5779212 |
 
 ## Exact next action
 
-Read NARRATIVE_CONTEXT_COHERENCE.md and current state. Existing run_cin6d6_route_browser_qa.mjs witnesses-protected flow drives the council but captures only choices/final boundary: add one bounded council-opening text observation/capture, review exact assertion diff with guardian, build current sources and register one unique production smoke at390x844 OS-only on a free strict port. Inspect corrected opening text/fit and retained agency; do not change the exhausted campfire assertion or rerun its accepted matrix. Then audit remaining fact-sensitive dialogue before narrative milestone acceptance. Preserve exact deferred keyboard action/six blobs and Pursuit10mapping inventory.
+Read STATIC_TABLEAU_STAGING_POLISH.md and pendingNarrativeTask. Existing route runner serpent-ending reaches3speaker pre-combat: add one bounded cast/position/facing observation before native advance, guardian exact assertion review, build/register one normal production smoke on unique ignored output/free strict port; inspect allied silhouettes at390. Keep fixture scope, six deferred keyboard bytes and exact action. Narrative council normal-motion and two refugee acknowledgement proofs remain open; do not edit exhausted OS/static assertion or rerun accepted campfire/ROAD matrices.
 
-## Accepted and open scope
+## Source checkpoints and open acceptance
 
-[Campfire record](PRE_JUDGEMENT_CAMPFIRE.md), [selected evidence](../reports/pre-judgement-campfire-completion/checks.json):6matching visual cases plus1native390OS smoke, inspected captures and guardian PASS. Waiting/reloading retains preparation and state; native Enter reaches unresolved judgement once with17temporarygold intact. Fixture-origin only, no earned campaign or judgement outcome claim.
+[Narrative record](NARRATIVE_CONTEXT_COHERENCE.md): two refugee transaction acknowledgements corrected;114focused tests/types/build/staging pass. Base source audit complete, protected Alaric transforms untouched. Council390OS capture readable; both smoke attempts FAILED/NOT_ACCEPTED. First persisted-flag guard was premature; one minimal correction reads live owner facts. Retry hit unchanged static-only OS video-attempt assertion. No further correction/rerun, no fullV6/resume/OS acceptance. Raw outputs ignored; no tracked proof promoted.
 
-[Narrative checkpoint](NARRATIVE_CONTEXT_COHERENCE.md): one runtime source file and one test file changed. Existing council facts replace generic dismissal/speculative theft; all6branches preserve flow/staging/effects/state.90focused tests/types/build/staging/contracts PASS. Guardian/narrative source reviews PASS; displayed text and fit remain OPEN.49earlier focused Journey/Tableau tests support campfire closure. Exactly8MP4s and8slots remain.
+[Tableau record](STATIC_TABLEAU_STAGING_POLISH.md): exact3speaker Serpent runtime overlay groups Alaric/Seraphine against General, stable facing/cast3, generated files unchanged.43focused stage/regression checks and types pass. One director expectation about forest mediaRemasterLater fails identically onHEAD and remains unfixed outside this scope. Production responsive/focus/OS acceptance OPEN. No second browser scenario.
 
-ROAD remains COMPLETE_SCOPED_PRESENTATION at its accepted source/build; no earnedV6/globaldemo claim. Pursuit collision remains BLOCKED externally on10canonical mappings; inventory retained in JSON and TRAVERSAL_PURSUIT_THREAT.md. Do not spend runs on the external blocker.
+Final build game-CEfIwr9I.js/game-DFzR6Ihk.css includes six unchanged deferred keyboard files, excluded from product commit. Earlier failed smoke tested game-CPmDBwuG.js; never relabel it as final-build proof. Final staging75dialogues257steps282runtime steps,8contracts8slots/eightMP4 and immutable/generated/whitespace gates pass. Guardian/narrative source reviews PASS; UI/QA milestone BLOCKED until current browser proof.
 
-## Deferred battlefield keyboard/combat
+## Preserved boundaries
 
-Finish exact battlefield production driver: real Tab entry, cursor bounds/announcement/no truth mutation, invalid/legal movement and native target execution, Escape/Retour focus, native controls and pointer regression in1366/620/390 OS on/off. Build new sources, review exact activation/assertion diff with guardian, register job and freeze tested inputs. Add actual fresh campaign iframe keyboard entry/return if budget permits; incomplete acceptance stays explicit. Preserve historical0350recovery and original726trial proofs. No media/audio work.
+Pursuit10canonical mappings remain external BLOCKED. Exact deferredDemoTask and all six deferred Git blobs/physical bytes unchanged;118ledger jobs with prior116structurally unchanged. Neither state nor presentation owns combat/save/reward truth. Exactly8video slots, audio DEFERRED, main untouched. No measured quota savings.
 
-All six original deferred files retain exact Git blobs and physical bytes. Original deferredDemoTask is byte-for-byte structurally unchanged from initial snapshot. They remain outside product commits, retained on wip/rpgthreejs-auto-dev-90m-20261007T1907@d993626173a39c369c37fbcf2de4fa8352548df8. The physical build includes this unaccepted WIP; never call it keyboard acceptance.
+## Counts and recovery
 
-## Verification and run counts
-
-- 49 focused Journey/Tableau tests in4files PASS (campfire milestone)
-- 90 focused contextual/Lion narrative/verdict/finale tests in4files PASS (final narrative source)
-- Final tsc --noEmit and Vite production build PASS: game-DiE92-9U.js / game-DFzR6Ihk.css
-- 8 locked contracts/8 video slots, staging validator, whitespace and immutable/protected gates PASS
-- Six exact-source campfire visual cases reused; one native390x844 OS-only full-state wait/reload/onward smoke PASS
-
-This run:1runtime source modified,1test modified,0persistent QA tools added,5proof files added,5workflow documents created/updated. Excludes26inherited paths, including prior campfire code/workflow/ROAD proof; six deferred files remain unchanged. One ignored manual browser smoke was justified because the existing runner lacks onward/reload readiness assertions and its correction allowance is exhausted. Two distinct reviewers reused; no quota-saving claim.
-
-## Handoff and publication
-
-[Current handoff](handoffs/2026-10-07T1907Z-codex-campfire-council-checkpoint.md). Final remote parity and final workflow SHA are recorded in automation memory. No main publication, LOCKED/canon/media/audio/save-schema change. All spawned workers terminal; smoke port5321closed; preexisting5173preserved. A normal non-fast-forward WIP push was rejected and fixed by preserving snapshot ancestry, without force-push. No automatic approval rejection is pending.
+This run excluding inherited WIP:3runtime source files,2test files,1existing QA tool modified,0QA tools added,0tracked proof files,5workflow files.2distinct read-only reviewers reused.1browser scenario/2attempts, both unaccepted;0failed seeds. Owned WIP retained for6deferred files. Source checkpoint 9f822743bc3cb5ba15131dd3477c1777e5779212; final workflow/parity/lock release in automation memory.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -165,4 +153,6 @@ This run:1runtime source modified,1test modified,0persistent QA tools added,5pro
 - campfire-0511-milestone-fixed: SUCCEEDED; port 5320; receipt `tmp/cinematics/campfire-0511-milestone-fixed/qa-job.json`; NOT_ACCEPTED
 - campfire-0511-reframed: SUCCEEDED; port 5320; receipt `tmp/cinematics/campfire-0511-reframed/qa-job.json`; ACCEPTED_SCOPED
 - campfire-20261007-native: SUCCEEDED; port 5321; receipt `tmp/cinematics/campfire-20261007-native/results.json`; ACCEPTED_SCOPED
+- council-1933-os: FAILED; port 5322; receipt `tmp/cinematics/council-1933-os/qa-job.json`; NOT_ACCEPTED
+- council-1933-os-fixed: FAILED; port 5322; receipt `tmp/cinematics/council-1933-os-fixed/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->

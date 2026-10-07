@@ -1,66 +1,75 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-07T19:07:41Z",
-  "runEndedAt": "2026-10-07T19:31:23.058Z",
-  "activeTask": "NARRATIVE-CONTEXT-COHERENCE",
-  "activePhase": "Council fact-sensitive source checkpoint; production acceptance remains open",
-  "activeSubtask": "Existing council dialogue text corrected and source-reviewed; native displayed-text/fit proof is next",
+  "runStartedAt": "2026-10-07T19:36:09.5104199Z",
+  "runEndedAt": "2026-10-07T20:06:33.562Z",
+  "activeTask": "STATIC-TABLEAU-STAGING-POLISH",
+  "activePhase": "Independent exact-shape relational correction after documented narrative browser blockage",
+  "activeSubtask": "Alaric and Seraphine allied against Serpent in3speaker runtime plan; source reviewed, production geometry/facing proof OPEN",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "8a2c018014109628e10de2698c1361a064ee72a4",
-  "lastPushedCommit": "8a2c018014109628e10de2698c1361a064ee72a4",
+  "lastKnownGoodCommit": "9f822743bc3cb5ba15131dd3477c1777e5779212",
+  "lastPushedCommit": "9f822743bc3cb5ba15131dd3477c1777e5779212",
   "completedThisRun": [
-    "Read-only takeover confirmed idle owner, terminal QA, no associated workers; preserved and published 26 explicitly reviewed inherited paths",
-    "Guardian PASS and native campfire reload/onward proof; published scoped preparation milestone349c2b6",
-    "Preserved and committed inherited production-focus/ROAD records f4f0617",
-    "Council text uses existing witnesses/merits/contradictions; safe source checkpoint8a2c018 reviewed by guardian/narrative; browser acceptance OPEN"
+    "Preflight: absent lock, dev/remote parity, no associated QA/Git worker; six deferred blobs unchanged",
+    "Two existing refugee transaction phrases corrected without effects or eligibility changes;114 focused tests green",
+    "Exhaustive base dialogue source audit found no further definite contradiction; protected finale transforms untouched",
+    "Council opening captured/readable at390OS; both smoke attempts FAILED/NOT_ACCEPTED; one minimal assertion correction exhausted",
+    "Independent3speaker Serpent relational source correction;43 focused stage/regression tests and types PASS; inherited director remaster expectation reproduced atHEAD"
   ],
   "filesChanged": [
     "src/game/contextualDialogueContent.ts",
+    "src/game/reputationEventContent.ts",
+    "src/cinematics/NarrativePresentationPlans.ts",
     "src/game/contextualDialogue.test.ts",
-    "docs/autonomy/PRE_JUDGEMENT_CAMPFIRE.md",
-    "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    "src/cinematics/DialogueStagingDirector.test.ts",
+    "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/handoffs/2026-10-07T1907Z-codex-campfire-council-checkpoint.md",
-    "docs/reports/pre-judgement-campfire-completion/checks.json",
-    "docs/reports/pre-judgement-campfire-completion/desktop-preparation.png",
-    "docs/reports/pre-judgement-campfire-completion/intermediate-os-preparation.png",
-    "docs/reports/pre-judgement-campfire-completion/mobile-preparation.png",
-    "docs/reports/pre-judgement-campfire-completion/native-judgement-entry.png"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
+    "docs/autonomy/STATIC_TABLEAU_STAGING_POLISH.md",
+    "docs/autonomy/handoffs/2026-10-07T1933Z-codex-narrative-tableau-checkpoint.md"
   ],
   "testsRun": [
-    "49 focused Journey/Tableau tests in4files PASS (campfire milestone)",
-    "90 focused contextual/Lion narrative/verdict/finale tests in4files PASS (final narrative source)",
-    "Final tsc --noEmit and Vite production build PASS: game-DiE92-9U.js / game-DFzR6Ihk.css",
-    "8 locked contracts/8 video slots, staging validator, whitespace and immutable/protected gates PASS",
-    "Six exact-source campfire visual cases reused; one native390x844 OS-only full-state wait/reload/onward smoke PASS"
+    "114 focused narrative tests5files PASS",
+    "tsc --noEmit PASS",
+    "Vite build game-CPmDBwuG.js/game-DFzR6Ihk.css PASS",
+    "8contracts8slots PASS; LOCKED gates empty; diff --check PASS",
+    "Staging75dialogues257steps282runtime steps PASS after environment escalation",
+    "Stage exact-runtime regression1PASS; spatial/tableau/stage/census42PASS",
+    "Director whole suite22PASS1inheritedFAIL; baseline originalHEAD facade reproduces same forest mediaRemasterLater expectation",
+    "Stage tsc --noEmit PASS",
+    "Final tsc/build PASS game-CEfIwr9I.js/game-DFzR6Ihk.css; staging75dialogues257steps282runtime steps PASS; 8contracts8slots/eightMP4/LOCKED/generated/whitespace gates PASS"
   ],
   "testsPassed": [
-    "49 focused Journey/Tableau tests in4files PASS (campfire milestone)",
-    "90 focused contextual/Lion narrative/verdict/finale tests in4files PASS (final narrative source)",
-    "Final tsc --noEmit and Vite production build PASS: game-DiE92-9U.js / game-DFzR6Ihk.css",
-    "8 locked contracts/8 video slots, staging validator, whitespace and immutable/protected gates PASS",
-    "Six exact-source campfire visual cases reused; one native390x844 OS-only full-state wait/reload/onward smoke PASS"
+    "114 focused narrative tests5files PASS",
+    "tsc --noEmit PASS",
+    "Vite build game-CPmDBwuG.js/game-DFzR6Ihk.css PASS",
+    "8contracts8slots PASS; LOCKED gates empty; diff --check PASS",
+    "Staging75dialogues257steps282runtime steps PASS after environment escalation",
+    "Stage exact-runtime regression1PASS; spatial/tableau/stage/census42PASS",
+    "Stage tsc --noEmit PASS",
+    "Final tsc/build PASS game-CEfIwr9I.js/game-DFzR6Ihk.css; staging75dialogues257steps282runtime steps PASS; 8contracts8slots/eightMP4/LOCKED/generated/whitespace gates PASS"
   ],
   "testsRemaining": [
-    "Council displayed opening/text fit/native progression production smoke on current narrative build",
-    "Remaining existing fact-sensitive dialogue audit and narrative milestone acceptance",
-    "Later tableau/transition/environment queue milestones and exact deferred demo/keyboard acceptance"
+    "Relational pre-combat normal production capture/actual bounds",
+    "Wider tableau grouping/cast-transition/focus/normalOS responsive milestone",
+    "Pending narrative normal council and corrected refugee acknowledgement production proof",
+    "Full demo and exact deferred keyboard acceptance"
   ],
   "blockers": [
-    "Pursuit production collision integration:10windows lack explicitly authored eligible canonical mappings; isolated candidate PASS does not close full task"
+    "Pursuit production collision integration:10windows lack explicitly authored eligible canonical mappings; isolated candidate PASS does not close full task",
+    "Narrative OS smoke: static-only council rejected by unchanged approved-video-attempt assertion; one correction exhausted, both outputs NOT_ACCEPTED. Normal council and static-only OS milestone proof remain open."
   ],
   "remainingWork": [
     "BLOCKED: TRAVERSAL-PURSUIT-THREAT canonical mapping (isolated candidate verified)",
     "COMPLETE_SCOPED: TRAVERSAL-ROAD-ELEMENTS",
     "COMPLETE_SCOPED: PRE-JUDGEMENT-CAMPFIRE",
-    "ACTIVE: NARRATIVE-CONTEXT-COHERENCE council facts",
-    "PENDING: STATIC-TABLEAU-STAGING-POLISH",
+    "OPEN: NARRATIVE source audit complete; council/refugee/browser milestone pending",
+    "ACTIVE: STATIC-TABLEAU relational source correction; production/focus/reduced-motion milestone pending",
     "PENDING: SCENE-TRANSITION-COPY",
     "PENDING: ENVIRONMENT-NARRATIVE-COHERENCE",
     "PENDING: Resume deferred DEMO-QA-POLISH"
   ],
-  "nextAction": "Read NARRATIVE_CONTEXT_COHERENCE.md and current state. Existing run_cin6d6_route_browser_qa.mjs witnesses-protected flow drives the council but captures only choices/final boundary: add one bounded council-opening text observation/capture, review exact assertion diff with guardian, build current sources and register one unique production smoke at390x844 OS-only on a free strict port. Inspect corrected opening text/fit and retained agency; do not change the exhausted campfire assertion or rerun its accepted matrix. Then audit remaining fact-sensitive dialogue before narrative milestone acceptance. Preserve exact deferred keyboard action/six blobs and Pursuit10mapping inventory.",
+  "nextAction": "Read STATIC_TABLEAU_STAGING_POLISH.md and pendingNarrativeTask. Existing route runner serpent-ending reaches3speaker pre-combat: add one bounded cast/position/facing observation before native advance, guardian exact assertion review, build/register one normal production smoke on unique ignored output/free strict port; inspect allied silhouettes at390. Keep fixture scope, six deferred keyboard bytes and exact action. Narrative council normal-motion and two refugee acknowledgement proofs remain open; do not edit exhausted OS/static assertion or rerun accepted campfire/ROAD matrices.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
@@ -68,15 +77,15 @@
     "TRAVERSAL-PURSUIT-THREAT: BLOCKED_CANONICAL_MAPPING; ISOLATED_CANDIDATE_PASS",
     "TRAVERSAL-ROAD-ELEMENTS: COMPLETE_SCOPED_PRESENTATION",
     "PRE-JUDGEMENT-CAMPFIRE: COMPLETE_SCOPED_PRESENTATION",
-    "NARRATIVE-CONTEXT-COHERENCE: ACTIVE_COUNCIL_CHECKPOINT",
-    "STATIC-TABLEAU-STAGING-POLISH: PENDING",
+    "NARRATIVE-CONTEXT-COHERENCE: SOURCE_CHECKPOINT; BROWSER_GATE_OPEN_STATIC_OS_HARNESS",
+    "STATIC-TABLEAU-STAGING-POLISH: IN_PROGRESS; RELATIONAL_SOURCE_CHECKPOINT",
     "SCENE-TRANSITION-COPY: PENDING",
     "ENVIRONMENT-NARRATIVE-COHERENCE: PENDING",
     "Resume deferred DEMO-QA-POLISH: PENDING"
   ],
   "creditStatus": "AVAILABLE; no credit-saving claim",
   "contractComplianceStatus": {
-    "status": "PASS scoped ROAD/CAMPFIRE complete; PASS narrative source checkpoint, browser/full narrative OPEN",
+    "status": "PASS scoped source checkpoints; BLOCKED narrative/tableau browser milestone acceptance",
     "contractSetVersion": "1.1.0",
     "lockedRulesChanged": false,
     "roadMatrix": {
@@ -95,13 +104,33 @@
     },
     "campfireAuthorityReview": "PASS scoped complete; native390 OS wait/reload/entry and matching6visualcases",
     "narrativeCheckpoint": {
-      "guardian": "PASS source authority/predicates/unchanged canon and outcomes",
-      "narrativeReviewer": "PASS scoped French copy; unprotected support wording corrected",
-      "browserAcceptance": "OPEN",
-      "lockedRulesChanged": false
+      "source": "PASS two text-only transactions, exhaustive base audit,114focused tests",
+      "guardian": "PASS scoped source and assertion design",
+      "browser": "FAILED/NOT_ACCEPTED; readable diagnostic council capture only; no fullV6/resume/OS acceptance",
+      "harnessCorrectionsUsed": 1
+    },
+    "tableauCheckpoint": {
+      "source": "PASS exact3speaker relationship overlay; generated sources unchanged",
+      "reviewers": "Narrative and guardian PASS scoped source",
+      "tests": "42stage/spatial/tableau/census plus1targeted regression PASS; inherited directorline71 reproduced onHEAD",
+      "browser": "OPEN; no new scenario launched"
+    },
+    "currentMatrix": {
+      "GAME_CONSTITUTION": "PASS no truth writes",
+      "ART_DIRECTION": "N/A",
+      "CHARACTERS": "N/A",
+      "ENVIRONMENTS": "N/A",
+      "NARRATIVE_CAMPAIGN": "PASS text/IDs/choices/effects preserved",
+      "NARRATIVE_PRESENTATION": "PASS scoped relational source; runtime OPEN",
+      "TRAVERSAL": "N/A",
+      "COMBAT": "N/A owners unchanged",
+      "SAVE": "PASS schema/owners unchanged; observed equality not accepted",
+      "UI_ACCESSIBILITY": "BLOCKED pending current geometry/OS/focus proof",
+      "QA_EVIDENCE": "BLOCKED both smoke attempts failed; stage browser OPEN",
+      "REPOSITORY_GOVERNANCE": "PASS explicit snapshots/paths/dev publication; main and LOCKED unchanged"
     }
   },
-  "commitReferenceScope": "lastKnownGoodCommit/lastPushedCommit name the green product source checkpoint; final workflow commit and remote parity are recorded in automation memory/handoff. Product-source green does not close narrative browser acceptance.",
+  "commitReferenceScope": "Published scoped source checkpoint only; one reproduced inherited test expectation and browser gates remain open. Final workflow commit/parity recorded in automation memory.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -202,33 +231,29 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261007T1907",
+  "runId": "rpgthreejs-auto-dev-90m-20261007T1933",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-07T19:29:54.184Z",
+  "lastHeartbeat": "2026-10-07T20:06:34.034Z",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261007T1907",
-    "sha": "d993626173a39c369c37fbcf2de4fa8352548df8",
-    "status": "GREEN_SOURCE_CHECKPOINT_NOT_FULL_ACCEPTANCE",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261007T1933",
+    "sha": "5d0a12baa2da319a705dce8361203adbbb88447c",
+    "status": "SCOPED_SOURCE_CHECKPOINT_ACCEPTANCE_OPEN_WITH_INHERITED_EXPECTATION",
     "dirtyFiles": [
       "legacy-combat.html",
       "src/combat/combatKeyboard.test.ts",
       "src/combat/combatKeyboard.ts",
       "src/combat/legacyCombatRuntime.js",
       "src/styles/combat-shell.css",
-      "tools/combat-battlefield-keyboard-production-qa.mjs",
-      "src/cinematics/NarrativeTableau.ts",
-      "src/journey/JourneyPresentationResolver.ts",
-      "src/journey/JourneyCampaignBoundary.ts",
-      "src/journey/JourneyCampaignBoundary.test.ts"
+      "tools/combat-battlefield-keyboard-production-qa.mjs"
     ],
-    "lastGreenCheck": "65focused tests;8contracts8slots; immutable LOCKED gate empty; automation exactprompt and otherfields preserved",
-    "lastSnapshotAt": "2026-10-07T19:30:35.545Z"
+    "lastGreenCheck": "114narrative tests;43stage focused checks; types/finalbuild/staging/contracts gates pass;1director expectation independently reproduced atHEAD; browser OPEN",
+    "lastSnapshotAt": "2026-10-07T20:06:34.034Z"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261007T1907",
+    "runId": "rpgthreejs-auto-dev-90m-20261007T1933",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-07T19:29:54.184Z",
-    "status": "CHECKPOINT_COMPLETE",
+    "lastHeartbeat": "2026-10-07T20:06:34.034Z",
+    "status": "CHECKPOINT_READY_BROWSER_OPEN",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -12992,87 +13017,256 @@
         },
         "resultSha256": "e0b6ab43aa763f0e32303682aa28d59661fe488836c92ef19fea5cce50f98c6c",
         "acceptanceScope": "Resolved fixture wait/fullstate reload/native entry into unresolved judgement; not earnedcampaign"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "council-1933-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261007T1933",
+        "status": "FAILED",
+        "registeredAt": "2026-10-07T19:45:33.354Z",
+        "pid": null,
+        "port": 5322,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "scenario": "witnesses-protected",
+          "viewport": "390x844",
+          "production": true,
+          "osReducedMotion": true,
+          "gameReducedMotion": false,
+          "method": "fixture-origin real GameApp; zero combat expected"
+        },
+        "requiredAssertions": [
+          "protected witnesses select supportive council opening",
+          "settled displayed opening text fits viewport and enabled dialogue box",
+          "full V6 autosave unchanged during observation",
+          "native choice Enter progresses to council and resolved-node resume",
+          "OS reduce requested with game false"
+        ],
+        "output": "tmp/cinematics/council-1933-os",
+        "receiptPath": "tmp/cinematics/council-1933-os/qa-job.json",
+        "provenance": {
+          "gitHead": "3eb01d1e6048d08653571ebeef4adcf3555866db",
+          "sourceTree": "53fb5fe20bb57783fb5050518dba1dd0bcb1bee9",
+          "sourceDiffSha256": "71488e5b8362c5c3d98fbeb0a9926c017469b0dca6ecdda4e7652a9fbc56fd12",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "a861d0a8b3a83deb23e18d95c0e9bee53468775521dab01a3aae6dab5276561e"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-CPmDBwuG.js",
+              "sha256": "8e7e35e12c0be0da7a75ce35bc8c5662a393c3563c375eaab792d144b2248a0d"
+            },
+            {
+              "path": "dist/assets/game-DFzR6Ihk.css",
+              "sha256": "52dae39e562b6e08a3c7ea2c7543fe114e9ee89f535a7cf84f7fd3d6a6782049"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "06a511f1cb0c073f59f56e684efd8c6d3b802a11b88a731518cd2b65c489ccac"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "exitCode": 1,
+        "endedAt": "2026-10-07T19:53:25.731Z",
+        "resultPath": "tmp/cinematics/council-1933-os/results.json",
+        "resultSha256": "266697080109697c30963ea4212329d7b043b0166039cd9ecb28ade54416b446",
+        "manualExecutionRecord": true,
+        "failureClassification": "Premature persisted witness guard before ATE save; single minimal native-live-fact correction. No product regression established.",
+        "receiptWriter": "OWNER_TERMINAL_RECONCILIATION_NOT_WORKER",
+        "provenanceStable": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "council-1933-os-fixed",
+        "runId": "rpgthreejs-auto-dev-90m-20261007T1933",
+        "status": "FAILED",
+        "registeredAt": "2026-10-07T19:49:19.670Z",
+        "pid": null,
+        "port": 5322,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "scenario": "witnesses-protected",
+          "viewport": "390x844",
+          "production": true,
+          "osReducedMotion": true,
+          "gameReducedMotion": false,
+          "method": "fixture-origin real GameApp; zero combat expected",
+          "harnessCorrection": "native live witness flags before post-node save; full persistedV6 observation equality"
+        },
+        "requiredAssertions": [
+          "native live protected witnesses select supportive council opening",
+          "settled displayed opening text fits viewport and enabled dialogue box",
+          "full V6 autosave unchanged during observation",
+          "native choice Enter progresses to council and resolved-node resume",
+          "OS reduce requested with game false"
+        ],
+        "output": "tmp/cinematics/council-1933-os-fixed",
+        "receiptPath": "tmp/cinematics/council-1933-os-fixed/qa-job.json",
+        "provenance": {
+          "gitHead": "3eb01d1e6048d08653571ebeef4adcf3555866db",
+          "sourceTree": "53fb5fe20bb57783fb5050518dba1dd0bcb1bee9",
+          "sourceDiffSha256": "71488e5b8362c5c3d98fbeb0a9926c017469b0dca6ecdda4e7652a9fbc56fd12",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "7bee7749740bee1a2cad87d469406ddd2b3e4d5be7351de5f0c1279cf531c1ad"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-CPmDBwuG.js",
+              "sha256": "8e7e35e12c0be0da7a75ce35bc8c5662a393c3563c375eaab792d144b2248a0d"
+            },
+            {
+              "path": "dist/assets/game-DFzR6Ihk.css",
+              "sha256": "52dae39e562b6e08a3c7ea2c7543fe114e9ee89f535a7cf84f7fd3d6a6782049"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "06a511f1cb0c073f59f56e684efd8c6d3b802a11b88a731518cd2b65c489ccac"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "exitCode": 1,
+        "endedAt": "2026-10-07T19:53:25.930Z",
+        "resultPath": "tmp/cinematics/council-1933-os-fixed/results.json",
+        "resultSha256": "72f2306b8d757d94ba67fb3f8bee9ed18f63b89ffec389523261c06a027f9ce0",
+        "manualExecutionRecord": true,
+        "receiptWriter": "OWNER_TERMINAL_RECONCILIATION_NOT_WORKER",
+        "provenanceStable": true,
+        "failureClassification": "Unchanged OS assertion requires approved video attempt; static-only council unsupported. Single correction exhausted; no further rerun; no product regression established."
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261007T1907",
-      "sha": "d993626173a39c369c37fbcf2de4fa8352548df8",
-      "status": "GREEN_SOURCE_CHECKPOINT_NOT_FULL_ACCEPTANCE",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261007T1933",
+      "sha": "5d0a12baa2da319a705dce8361203adbbb88447c",
+      "status": "SCOPED_SOURCE_CHECKPOINT_ACCEPTANCE_OPEN_WITH_INHERITED_EXPECTATION",
       "dirtyFiles": [
         "legacy-combat.html",
         "src/combat/combatKeyboard.test.ts",
         "src/combat/combatKeyboard.ts",
         "src/combat/legacyCombatRuntime.js",
         "src/styles/combat-shell.css",
-        "tools/combat-battlefield-keyboard-production-qa.mjs",
-        "src/cinematics/NarrativeTableau.ts",
-        "src/journey/JourneyPresentationResolver.ts",
-        "src/journey/JourneyCampaignBoundary.ts",
-        "src/journey/JourneyCampaignBoundary.test.ts"
+        "tools/combat-battlefield-keyboard-production-qa.mjs"
       ],
-      "lastGreenCheck": "65focused tests;8contracts8slots; immutable LOCKED gate empty; automation exactprompt and otherfields preserved",
-      "lastSnapshotAt": "2026-10-07T19:30:35.545Z"
+      "lastGreenCheck": "114narrative tests;43stage focused checks; types/finalbuild/staging/contracts gates pass;1director expectation independently reproduced atHEAD; browser OPEN",
+      "lastSnapshotAt": "2026-10-07T20:06:34.034Z"
     },
-    "nextAction": "Read NARRATIVE_CONTEXT_COHERENCE.md and current state. Existing run_cin6d6_route_browser_qa.mjs witnesses-protected flow drives the council but captures only choices/final boundary: add one bounded council-opening text observation/capture, review exact assertion diff with guardian, build current sources and register one unique production smoke at390x844 OS-only on a free strict port. Inspect corrected opening text/fit and retained agency; do not change the exhausted campfire assertion or rerun its accepted matrix. Then audit remaining fact-sensitive dialogue before narrative milestone acceptance. Preserve exact deferred keyboard action/six blobs and Pursuit10mapping inventory.",
+    "nextAction": "Read STATIC_TABLEAU_STAGING_POLISH.md and pendingNarrativeTask. Existing route runner serpent-ending reaches3speaker pre-combat: add one bounded cast/position/facing observation before native advance, guardian exact assertion review, build/register one normal production smoke on unique ignored output/free strict port; inspect allied silhouettes at390. Keep fixture scope, six deferred keyboard bytes and exact action. Narrative council normal-motion and two refugee acknowledgement proofs remain open; do not edit exhausted OS/static assertion or rerun accepted campfire/ROAD matrices.",
     "runMetrics": {
-      "sourceFilesModified": 1,
+      "sourceFilesModified": 3,
       "sourcePaths": [
-        "src/game/contextualDialogueContent.ts"
+        "src/game/contextualDialogueContent.ts",
+        "src/game/reputationEventContent.ts",
+        "src/cinematics/NarrativePresentationPlans.ts"
       ],
-      "testFilesModified": 1,
+      "testFilesModified": 2,
       "testPaths": [
-        "src/game/contextualDialogue.test.ts"
+        "src/game/contextualDialogue.test.ts",
+        "src/cinematics/DialogueStagingDirector.test.ts"
+      ],
+      "qaToolsModified": 1,
+      "qaPaths": [
+        "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
       ],
       "qaToolsAdded": 0,
-      "proofFilesAdded": 5,
-      "proofPaths": [
-        "docs/reports/pre-judgement-campfire-completion/checks.json",
-        "docs/reports/pre-judgement-campfire-completion/desktop-preparation.png",
-        "docs/reports/pre-judgement-campfire-completion/intermediate-os-preparation.png",
-        "docs/reports/pre-judgement-campfire-completion/mobile-preparation.png",
-        "docs/reports/pre-judgement-campfire-completion/native-judgement-entry.png"
-      ],
+      "proofFilesAdded": 0,
       "workflowFiles": 5,
       "workflowPaths": [
-        "docs/autonomy/PRE_JUDGEMENT_CAMPFIRE.md",
-        "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/handoffs/2026-10-07T1907Z-codex-campfire-council-checkpoint.md"
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
+        "docs/autonomy/STATIC_TABLEAU_STAGING_POLISH.md",
+        "docs/autonomy/handoffs/2026-10-07T1933Z-codex-narrative-tableau-checkpoint.md"
       ],
-      "inheritedPaths": 26,
       "inheritedDeferredFiles": 6,
-      "ignoredManualSmokeScriptsAdded": 1,
-      "ignoredManualSmokeReason": "Existing route runner never activates final-refuge onward and already used its single assertion correction; one ignored manual Playwright smoke supplements the matching six-case receipts without changing any QA driver.",
       "distinctReadOnlyReviewers": 2,
-      "reusedVisualCases": 6,
       "newBrowserScenarios": 1,
-      "elapsedMinutes": 23.700966666666666,
+      "browserAttempts": 2,
+      "failedOutputsUsedAsSeeds": 0,
+      "harnessCorrectionsAfterFailure": 1,
+      "elapsedMinutes": 30.400866666666666,
       "quotaSavings": "Not measured",
-      "newRegisteredJobs": 1,
-      "terminalJobs": 1,
-      "failedOutputsUsedAsSeeds": 0
+      "newRegisteredJobs": 2,
+      "terminalJobs": 2
     },
     "checkpointPaths": [
       "src/game/contextualDialogueContent.ts",
+      "src/game/reputationEventContent.ts",
+      "src/cinematics/NarrativePresentationPlans.ts",
       "src/game/contextualDialogue.test.ts",
-      "docs/autonomy/PRE_JUDGEMENT_CAMPFIRE.md",
-      "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "src/cinematics/DialogueStagingDirector.test.ts",
+      "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/handoffs/2026-10-07T1907Z-codex-campfire-council-checkpoint.md",
-      "docs/reports/pre-judgement-campfire-completion/checks.json",
-      "docs/reports/pre-judgement-campfire-completion/desktop-preparation.png",
-      "docs/reports/pre-judgement-campfire-completion/intermediate-os-preparation.png",
-      "docs/reports/pre-judgement-campfire-completion/mobile-preparation.png",
-      "docs/reports/pre-judgement-campfire-completion/native-judgement-entry.png"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
+      "docs/autonomy/STATIC_TABLEAU_STAGING_POLISH.md",
+      "docs/autonomy/handoffs/2026-10-07T1933Z-codex-narrative-tableau-checkpoint.md"
     ],
     "publication": {
       "status": "PUBLISHED_SOURCE_CHECKPOINT_VERIFIED",
-      "productCheckpoint": "8a2c018014109628e10de2698c1361a064ee72a4",
+      "productCheckpoint": "9f822743bc3cb5ba15131dd3477c1777e5779212",
       "target": "origin/dev",
       "mainProtected": true,
-      "verifiedSource": "8a2c018014109628e10de2698c1361a064ee72a4",
       "finalWorkflowShaRecordedInAutomationMemory": true
     }
   },
@@ -13120,41 +13314,40 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-07T1907Z-codex-campfire-council-checkpoint.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-07T1933Z-codex-narrative-tableau-checkpoint.md",
   "runMeasurement": {
-    "sourceFilesModified": 1,
+    "sourceFilesModified": 3,
     "sourcePaths": [
-      "src/game/contextualDialogueContent.ts"
+      "src/game/contextualDialogueContent.ts",
+      "src/game/reputationEventContent.ts",
+      "src/cinematics/NarrativePresentationPlans.ts"
     ],
-    "testFilesModified": 1,
+    "testFilesModified": 2,
     "testPaths": [
-      "src/game/contextualDialogue.test.ts"
+      "src/game/contextualDialogue.test.ts",
+      "src/cinematics/DialogueStagingDirector.test.ts"
+    ],
+    "qaToolsModified": 1,
+    "qaPaths": [
+      "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
     ],
     "qaToolsAdded": 0,
-    "proofFilesAdded": 5,
-    "proofPaths": [
-      "docs/reports/pre-judgement-campfire-completion/checks.json",
-      "docs/reports/pre-judgement-campfire-completion/desktop-preparation.png",
-      "docs/reports/pre-judgement-campfire-completion/intermediate-os-preparation.png",
-      "docs/reports/pre-judgement-campfire-completion/mobile-preparation.png",
-      "docs/reports/pre-judgement-campfire-completion/native-judgement-entry.png"
-    ],
+    "proofFilesAdded": 0,
     "workflowFiles": 5,
     "workflowPaths": [
-      "docs/autonomy/PRE_JUDGEMENT_CAMPFIRE.md",
-      "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/handoffs/2026-10-07T1907Z-codex-campfire-council-checkpoint.md"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
+      "docs/autonomy/STATIC_TABLEAU_STAGING_POLISH.md",
+      "docs/autonomy/handoffs/2026-10-07T1933Z-codex-narrative-tableau-checkpoint.md"
     ],
-    "inheritedPaths": 26,
     "inheritedDeferredFiles": 6,
-    "ignoredManualSmokeScriptsAdded": 1,
-    "ignoredManualSmokeReason": "Existing route runner never activates final-refuge onward and already used its single assertion correction; one ignored manual Playwright smoke supplements the matching six-case receipts without changing any QA driver.",
     "distinctReadOnlyReviewers": 2,
-    "reusedVisualCases": 6,
     "newBrowserScenarios": 1,
-    "elapsedMinutes": 23.700966666666666,
+    "browserAttempts": 2,
+    "failedOutputsUsedAsSeeds": 0,
+    "harnessCorrectionsAfterFailure": 1,
+    "elapsedMinutes": 30.400866666666666,
     "quotaSavings": "Not measured"
   },
   "deferredDemoTask": {
@@ -13326,23 +13519,19 @@
       }
     ],
     "snapshot": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261007T1907",
-      "sha": "d993626173a39c369c37fbcf2de4fa8352548df8",
-      "status": "GREEN_SOURCE_CHECKPOINT_NOT_FULL_ACCEPTANCE",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261007T1933",
+      "sha": "5d0a12baa2da319a705dce8361203adbbb88447c",
+      "status": "REMOTE_PUBLISHED_RECOVERY_FOR_SIX_UNCHANGED_DEFERRED_BLOBS",
       "dirtyFiles": [
         "legacy-combat.html",
         "src/combat/combatKeyboard.test.ts",
         "src/combat/combatKeyboard.ts",
         "src/combat/legacyCombatRuntime.js",
         "src/styles/combat-shell.css",
-        "tools/combat-battlefield-keyboard-production-qa.mjs",
-        "src/cinematics/NarrativeTableau.ts",
-        "src/journey/JourneyPresentationResolver.ts",
-        "src/journey/JourneyCampaignBoundary.ts",
-        "src/journey/JourneyCampaignBoundary.test.ts"
+        "tools/combat-battlefield-keyboard-production-qa.mjs"
       ],
-      "lastGreenCheck": "65focused tests;8contracts8slots; immutable LOCKED gate empty; automation exactprompt and otherfields preserved",
-      "lastSnapshotAt": "2026-10-07T19:30:35.545Z"
+      "lastGreenCheck": "114narrative tests;43stage focused checks; types/finalbuild/staging/contracts gates pass;1director expectation independently reproduced atHEAD; browser OPEN",
+      "lastSnapshotAt": "2026-10-07T20:06:34.034Z"
     }
   },
   "publicationHistory": [
@@ -13399,6 +13588,19 @@
     ],
     "harnessCorrections": 1,
     "harnessCorrection": "Allow video-attempt absence only for final-refuge-story when nonempty recorded surfaces all static, not played, OS reduced true/game false; active-video and all video assertions retained",
-    "nativeSmokeJustification": "Existing route runner never activates final-refuge onward and already used its single assertion correction; one ignored manual Playwright smoke supplements the matching six-case receipts without changing any QA driver."
+    "nativeSmokeJustification": "Existing route runner never activates final-refuge onward and already used its single assertion correction; one ignored manual Playwright smoke supplements the matching six-case receipts without changing any QA driver.",
+    "councilHarnessCorrectionsUsed": 1
+  },
+  "previousRun": {
+    "runId": "rpgthreejs-auto-dev-90m-20261007T1907",
+    "nextAction": "Read NARRATIVE_CONTEXT_COHERENCE.md and current state. Existing run_cin6d6_route_browser_qa.mjs witnesses-protected flow drives the council but captures only choices/final boundary: add one bounded council-opening text observation/capture, review exact assertion diff with guardian, build current sources and register one unique production smoke at390x844 OS-only on a free strict port. Inspect corrected opening text/fit and retained agency; do not change the exhausted campfire assertion or rerun its accepted matrix. Then audit remaining fact-sensitive dialogue before narrative milestone acceptance. Preserve exact deferred keyboard action/six blobs and Pursuit10mapping inventory.",
+    "head": "3eb01d1e6048d08653571ebeef4adcf3555866db"
+  },
+  "pendingNarrativeTask": {
+    "task": "NARRATIVE-CONTEXT-COHERENCE",
+    "status": "SOURCE_REVIEW_PASS_BROWSER_GATE_OPEN",
+    "record": "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
+    "blocker": "One correction exhausted; static-only OS scenario fails unchanged approved-video-attempt assertion",
+    "nextAction": "Run existing witnesses-protected normal-motion production opening proof; independently observe refugee transaction acknowledgements and wider static-only OS acceptance before task milestone"
   }
 }
