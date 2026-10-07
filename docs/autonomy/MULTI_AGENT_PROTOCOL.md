@@ -66,7 +66,7 @@ Non-owners (an agent that does not hold the lock) leave notes in [handoffs/](han
 
 ## 5. WIP snapshots (**NEW**)
 
-Cadence: after each green atomic subtask and at least every 10 minutes, the heartbeat rhythm. Coherent work is also committed on `dev`, as the LOCKED protocol requires.
+Cadence (OD-2026-10-04-A): after each green atomic subtask and at most about every 15 minutes. The lock heartbeat remains about every 10 minutes and before/after long operations. Refresh the paired live state with the snapshot. Coherent work is also committed on `dev`, as the LOCKED protocol requires.
 
 A snapshot is a commit built by plumbing from a temporary index. The checked-out branch, the real index and the working tree are untouched, and untracked files are included (`git stash create` would miss them). Destination: the temporary branch `wip/<runId>`, created from `dev` (allowed by the LOCKED protocol) and pushed to `origin`; delete it once the coherent commit has landed on `dev`. Exact commands: `.agents/skills/autonomy-handoff/SKILL.md`. A snapshot is a recovery net, never a checkpoint or an acceptance.
 
@@ -97,7 +97,7 @@ Independent contracts-guardian review is triggered by a major milestone or sensi
 
 Briefs use fork_turns=none and name the question, paths/diff, relevant contract sections, expected result and selected proof. The reviewer reads required authorities and affected sections, then requests additional context only for an identified uncertainty. Reports and captures are allowed when they prove the claim; do not request global report/capture rereads. The orchestrator records the compliance matrix; independent reviewers verify relevant claims rather than repeating the whole matrix at every checkpoint.
 
-At changed checkpoints run git diff --check, the LOCKED gates, contracts:validate, TypeScript and relevant focused tests. Reuse verified outcomes only while relevant sources/driver/build/parameters/assertions are unchanged. UI/runtime changes need the relevant built-production scenario; sensitive save/combat changes need full boundary proof, not merely a smoke. Broad QA belongs at major acceptance milestones or a concrete regression risk. Correct introduced regressions before advancing.
+Production focus (OD-2026-10-04-A): advance the product code first. Per run, run git diff --check, the LOCKED gates, contracts:validate, TypeScript and relevant focused tests, plus one built-browser smoke scenario tied to the change. Broad viewport/motion/route QA and compact evidence promotion belong at queue-item milestones; the sensitive guardian triggers above remain mandatory. Reuse compatible terminal receipts before relaunching. Reuse existing runners; justify any new QA tool in the paired state. A harness defect permits one minimal assertion correction, then continue production; unresolved proof stays unaccepted. Never enter an instrumentation rewrite loop. At closeout count source files modified versus QA/proof files added, separately from inherited WIP and workflow docs. Externally blocked work receives a precise blocker and no repeated runs; continue the independent queue. Do not shrink scope for quota. Correct introduced product regressions before advancing.
 
 Specialists remain read-only for tracked source/state. QA workers may write their own ignored outputs, never the shared state; the single lock holder integrates results. Keep the current orchestrator and guardian high settings in lot1. No execpolicy change.
 

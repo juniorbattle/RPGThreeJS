@@ -60,6 +60,8 @@ Next action: <precise>
 
 Plumbing only: the checked-out branch, the real index and the working tree are not touched, and untracked files are included.
 
+Cadence OD-2026-10-04-A: snapshot after each green atomic subtask and at most about every15min; heartbeat stays about10min. Refresh the paired live state with the exact next action and snapshot time. At closeout record source files modified versus QA/proof files added, excluding inherited WIP and counting workflow docs separately.
+
 Use an explicit reviewed path list, including intended deletions; never git add -A or an entire evidence directory. Deny secrets and paths outside the repository. Acquire/verify the execution lock before generating a snapshot. Temporary-index staging leaves the real index unchanged.
 
 ```powershell

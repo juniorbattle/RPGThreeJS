@@ -1,6 +1,6 @@
 # Traversal road elements
 
-CURRENT FACT — TRAVERSAL-ROAD-ELEMENTS remains IN_PROGRESS. Run0007 implements bounded camera continuity for a seen contact after late native reset; isolated9case and fresh27case fixture-origin production branch proofs pass with bounded scoped acceptance. Complete road/spacing/earned V6 acceptance remains open. Earlier rock-family, anchor/depth and entry checkpoints are retained below. OD-2026-10-03-A and LOCKED TRAVERSAL remain authority.
+CURRENT FACT — COMPLETE_SCOPED_PRESENTATION for ROAD criteria after OD-2026-10-04-A completion review.99compatible native fixture-origin cases,403physical inputs, authored19configuration spacing and three inspected captures accepted. Global earnedV6/demo proof remains open; Pursuit mapping blocker is independent.
 
 ## Rock-family checkpoint
 
@@ -39,7 +39,7 @@ Nine isolated scripted-reset and27real built GameApp fixture-origin branch-comba
 
 ## Exact next action
 
-Preserve selected Run0007 branch-combat27 and isolated9 proofs; every failed/stopped diagnostic remains NOT_ACCEPTED. Complete fresh current first/early/remaining road, arrival/background freeze/fallback/production disposal and earned temporary-gold defeat/refuge/V6 acceptance; do not reuse changed-input proofs or weaken guards. Preserve original97ledger, six deferred blobs and exact deferredDemoTask. Ten canonical Pursuit mapping gaps remain BLOCKED; demo incomplete. The paired state carries the exact closeout continuation.
+ROAD is closed for the authorized presentation and unchanged temporary-owner boundary. Continue PRE-JUDGEMENT-CAMPFIRE. The expansive historical acceptance inventory above describes previous checkpoints; it does not reopen ROAD or demand new QA tools. Full-demo earnedV6/defeat/refuge checks stay in deferred DEMO-QA-POLISH; Pursuit10canonical mappings remain operator-owned BLOCKED.
 
 ## Orchestrator compliance matrix
 
@@ -59,3 +59,7 @@ Preserve selected Run0007 branch-combat27 and isolated9 proofs; every failed/sto
 | REPOSITORY_GOVERNANCE | PASS gates | Owned lock, reviewed explicit staging, WIP/ledger preserved |
 
 Contracts read: all eight current contracts, constitution, index/manifest and T0 source baseline; matching autonomy/Traversal/UI/QA skills. Set1.1.0. Relevant rule: TRAVERSAL Road elements and depth; no LOCKED rule changed, immutable d7ca28a/protected gates empty. The task and full demo are incomplete.
+
+## Completion — OD-2026-10-04-A
+
+[Compact completion proof](../reports/traversal-road-elements-completion/checks.json) records one QA set reusing four terminal registered receipts:99cases, six assertions,403unchanged physical inputs, non-vacuous near/far depth, all full exits, unchanged authored spacing19configurations/min1560ms. Three captures inspected. Existing temporary reward callback only; no secured-gold/schema/owner change. Independent guardian PASS targeted. The older BLOCKED expanded-acceptance matrix is historical and superseded for these ROAD criteria by the completion matrix in checks.json. No earned lineage, global frame-budget, tactical balance or full-demo claim. Set1.1.0; immutable gate unchanged.

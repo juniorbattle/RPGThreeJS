@@ -37,7 +37,7 @@ Viewports used by accepted evidence: desktop 1440x810 or 1920x1080 (1366x768 for
 
 Follow docs/autonomy/QA_JOB_CONTINUITY.md. Register live.qaJobs before launching long QA. The campaign driver writes qa-job.json with PID/port, parameters and driver/helper/source/build hashes, then a final result hash/status after cleanup. Workers never edit shared MD/JSON. The lock holder runs sync at heartbeat/checkpoint and inspects receipts at restart before rerunning. Legacy results with unknown driver identity or old assertions are not current acceptance. A terminal quota event does not prove child processes stopped.
 
-QA broadens at major milestones or concrete regression risks. Reuse results only while relevant provenance and expected assertions match. Sensitive save/combat work needs boundary proof; do not substitute a smoke for required acceptance.
+OD-2026-10-04-A: product code first. Per run, mechanical gates and one built-browser smoke tied to the change. Wider viewport/motion/route QA belongs only at queue-item milestones; sensitive guardian review remains mandatory under OD-2026-10-02-C. Reuse terminal compatible receipts and existing runners. A new QA tool requires one sentence of justification in the paired state. For a harness defect, make one minimal assertion correction, then continue production; no instrumentation rewrite loop and no false acceptance. Promote only a few inspected captures at the milestone, never raw diagnostics.
 
 ## Ports and processes
 
@@ -46,7 +46,7 @@ The recurring Codex run and a Devin session may run QA at the same time. Pick a 
 ## Evidence policy
 
 - Ordinary reruns write to ignored paths: `tmp/`, `docs/reports/evidence/`, `tools/qa-shots/`. Never point a rerun at a tracked or historical folder.
-- Promote tracked evidence only on explicit selection: one small machine-readable result, about 5 to 10 screenshots, and the report. Never overwrite a validated historical proof.
+- Promote tracked evidence only on explicit selection: one small machine-readable result and a few inspected screenshots at a milestone; prefer the existing task record over a new report. Never overwrite a validated historical proof.
 - New task reports carry the metadata listed in `docs/reports/README.md`.
 - Record machine-readable viewport and state results and inspect the actual captures, not only pass flags. Check real bounds, clipping, overflow and hit targets.
 - When affected, also exercise failed asset loads, console errors, transitions, resume points and reduced motion.
