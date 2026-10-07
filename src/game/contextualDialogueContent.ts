@@ -198,7 +198,7 @@ export const CONTEXTUAL_DIALOGUE_DEFINITIONS: Readonly<Record<string, Contextual
         when: flag('exploitedRefugees'),
         stepPatches: [{
           stepId: '1',
-          patch: { text: 'Les feux sont bas. Une famille arrivée après nous raconte que notre compagnie a pris son information et son or avant de la laisser sur la route. Le refuge écoute cette version avec une attention que notre bannière ne peut pas commander.' },
+          patch: { text: 'Les feux sont bas. Une famille arrivée après nous raconte que notre compagnie lui a vendu le chemin du refuge contre ses quarante dernières pièces. Le refuge écoute cette version avec une attention que notre bannière ne peut pas commander.' },
         }],
       },
       {

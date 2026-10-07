@@ -339,7 +339,7 @@ export const REPUTATION_EVENT_DIALOGUE_DEFINITIONS: Readonly<Record<string, Cont
         when: flag('exploitedRefugees'),
         stepPatches: [{
           stepId: '1',
-          patch: { text: 'Vous avez pris l’information et l’or de familles qui n’avaient déjà presque rien. Je ne demande pas que vous réécriviez la route. Je demande ce que vous faites maintenant pour leur prochain convoi.' },
+          patch: { text: 'Vous avez vendu l’itinéraire contre les quarante dernières pièces de familles qui n’avaient déjà presque rien. Je ne demande pas que vous réécriviez la route. Je demande ce que vous faites maintenant pour leur prochain convoi.' },
         }],
       },
       {

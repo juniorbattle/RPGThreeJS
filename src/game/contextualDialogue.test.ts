@@ -319,6 +319,27 @@ describe('R3 pilot dialogue profiles', () => {
     expect(textOf('ate_serpent_scout_report', absent, '1')).toContain('Sans guide');
   });
 
+  it.each([10, 90])('keeps the refugee itinerary transaction factual at reputation %s without altering consequences', reputation => {
+    const state = createInitialState();
+    state.reputation = reputation;
+    state.flags.exploitedRefugees = true;
+    const before = structuredClone(state);
+    const sale = dialogues.get('refugee_trial')!.steps.find(step => step.id === '1')!.choices![1]!;
+    expect(sale.effects).toContainEqual({ type: 'setFlag', key: 'exploitedRefugees', value: true });
+    expect(sale.effects).toContainEqual({ type: 'addGold', amount: 40 });
+    for (const id of ['ate_first_refuge_watch', 'rep_event_displaced_family_demand']) {
+      const resolved = resolveGameDialogue(id, state)!;
+      const opening = resolved.sequence.steps.find(step => step.id === '1')!.text;
+      expect(opening).toContain('vendu');
+      expect(opening).toContain('quarante dernières pièces');
+      expect(opening).not.toContain('pris l’information');
+      expect(opening).not.toContain('pris son information');
+      const withoutText = ({ text: _text, ...step }: DialogueSequence['steps'][number]) => step;
+      expect(resolved.sequence.steps.map(withoutText)).toEqual(dialogues.get(id)!.steps.map(withoutText));
+    }
+    expect(state).toEqual(before);
+  });
+
   it('passes existing dialogue content without metadata through unchanged', () => {
     const base = dialogues.get('acte_ouverture')!;
     const resolved = resolveGameDialogue('acte_ouverture', createInitialState())!;

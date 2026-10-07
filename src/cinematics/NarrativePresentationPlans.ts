@@ -1,13 +1,42 @@
 import {
   FINAL_DIALOGUE_PRESENTATION_PLANS as reviewed,
   FINAL_DIALOGUE_CANONICAL_PRESENTATION_SHAPES as reviewedShapes,
+  FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS as reviewedRuntime,
 } from './FinalDialoguePresentation.generated';
 import { CAMPAIGN_GRAMMAR_DIALOGUES } from '../game/campaignGrammarContent';
 import { dialoguePresentationShapeSignature } from '../game/dialoguePresentationShape';
 import { stageActors } from './NarrativeTableau';
 import type { FinalDialoguePresentationPlan } from './DialoguePresentationSegments';
 
-export { FINAL_DIALOGUE_PACING_BASELINE, FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS } from './FinalDialoguePresentation.generated';
+export { FINAL_DIALOGUE_PACING_BASELINE } from './FinalDialoguePresentation.generated';
+
+const runtimePlans = reviewedRuntime as unknown as Readonly<Record<string, Readonly<Record<string, FinalDialoguePresentationPlan>>>>;
+const serpentConfrontationShape = '1@alaric@0|2@serpent_general_boss@0|3@sage_seraphine@0';
+const serpentConfrontation = runtimePlans.serpent_pursuit_pre_combat![serpentConfrontationShape]!;
+
+/** Authored relational correction for this runtime shape; generated historical plans stay intact. */
+const alliedSerpentConfrontation: FinalDialoguePresentationPlan = {
+  ...serpentConfrontation,
+  segments: serpentConfrontation.segments.map(segment => ({
+    ...segment,
+    actors: segment.actors.map(actor => actor.actorId === 'alaric'
+      ? { ...actor, screenPosition: 'LEFT', dramaticSide: 'LEFT', facing: 'RIGHT' }
+      : actor.actorId === 'sage_seraphine'
+        ? { ...actor, screenPosition: 'CENTER_LEFT', facing: 'RIGHT', lookTarget: 'serpent_general_boss' }
+        : actor),
+    stepDirections: segment.stepDirections.map(direction => direction.stepId === '1'
+      ? { ...direction, facing: 'RIGHT', resolution: 'AUTHORED_CONVERSATION_TARGET' }
+      : direction),
+  })),
+};
+
+export const FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS = Object.freeze({
+  ...runtimePlans,
+  serpent_pursuit_pre_combat: Object.freeze({
+    ...runtimePlans.serpent_pursuit_pre_combat,
+    [serpentConfrontationShape]: alliedSerpentConfrontation,
+  }),
+});
 
 /** Additive authored static plans; the reviewed cinematic lock remains byte-for-byte intact. */
 export const CAMPAIGN_GRAMMAR_PLANS: Readonly<Record<string, FinalDialoguePresentationPlan>> = Object.freeze(

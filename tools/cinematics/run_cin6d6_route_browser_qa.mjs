@@ -223,6 +223,43 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
   for (let index = 0; index < 100; index += 1) {
     if (!await dialogue.count()) return;
     trace?.dialogues.add(sequenceId);
+    if (PRODUCTION && sequenceId === 'ate_lion_council_doubt' && trace?.capturePrefix === 'witnesses-protected'
+      && !trace.councilOpening && await dialogue.getAttribute('data-dialogue-step') === '1') {
+      const expectedText = 'Les survivants de Bois-Clair ont choisi de parler librement. Leur témoignage compte, mais il ne suffit pas à leur remettre le Sceau.';
+      const before = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6')));
+      // The owner persists this node after its ATE; inspect native live facts without writing them.
+      const witnessFlags = await page.evaluate(() => ({ protected: window.__cin8App.state.flags.protectedWitnesses,
+        silenced: window.__cin8App.state.flags.silencedWitnesses }));
+      if (witnessFlags.protected !== true || witnessFlags.silenced === true) {
+        throw new Error('Council opening requires freely protected witnesses.');
+      }
+      await page.waitForFunction((expected) => {
+        const text = document.querySelector('.dialogue[data-dialogue-sequence="ate_lion_council_doubt"] .dialogue__text');
+        return text?.querySelector('.dialogue__text-reveal')?.textContent === expected;
+      }, expectedText, { timeout: 10_000 });
+      const observation = await dialogue.evaluate((element) => {
+        const text = element.querySelector('.dialogue__text');
+        const box = element.querySelector('.dialogue__box');
+        const rect = text.getBoundingClientRect(), boxRect = box.getBoundingClientRect();
+        return { stepId: element.dataset.dialogueStep, segment: element.dataset.dialogueSegment,
+          text: text.querySelector('.dialogue__text-reveal').textContent,
+          withinViewport: rect.left >= -1 && rect.top >= -1 && rect.right <= innerWidth + 1 && rect.bottom <= innerHeight + 1,
+          fitsBox: rect.left >= boxRect.left - 1 && rect.right <= boxRect.right + 1 && rect.bottom <= boxRect.bottom + 1,
+          boxEnabled: !box.disabled, bounds: { x: rect.x, y: rect.y, width: rect.width, height: rect.height } };
+      });
+      if (!observation.withinViewport || !observation.fitsBox || !observation.boxEnabled) {
+        throw new Error(`Council opening text/agency does not fit: ${JSON.stringify(observation)}`);
+      }
+      const presentation = await readPresentation(page);
+      assertDialogueTableau(presentation, 'council opening');
+      const capture = `${trace.capturePrefix}-council-opening.png`;
+      await page.screenshot({ path: resolve(OUTPUT_DIR, capture), fullPage: false });
+      const after = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6')));
+      if (JSON.stringify(before) !== JSON.stringify(after)) {
+        throw new Error('Observing council opening changed saved truth.');
+      }
+      trace.councilOpening = { ...observation, witnessFlags, presentation, capture, savedTruthUnchanged: true };
+    }
     const video = page.locator('.narrative-stage video').first();
     if (await video.count()) {
       const src = await video.evaluate((element) => element.currentSrc);
@@ -419,6 +456,9 @@ async function runNodeScenario(context, scenario) {
       settled = await waitForBoundaryOrCombat(page, trace);
     }
     const truth = await loadSavedTruth(page);
+    if (PRODUCTION && scenario.id === 'witnesses-protected' && !trace.councilOpening) {
+      throw new Error('Protected witnesses never displayed the council opening.');
+    }
     const assertion = scenario.assertTruth(truth);
     if (!assertion) throw new Error(`${scenario.id}: saved truth assertion failed.`);
     const capture = `${scenario.id}.png`;
@@ -457,6 +497,7 @@ async function runNodeScenario(context, scenario) {
       media: [...trace.media],
       combats: trace.combats,
       choiceBounds: trace.choiceBounds,
+      councilOpening: trace.councilOpening ?? null,
       initialPresentation,
       truth: scenario.pickTruth(truth),
       capture,

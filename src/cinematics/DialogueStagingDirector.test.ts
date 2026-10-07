@@ -105,4 +105,30 @@ describe('DialogueStagingDirector', () => {
     const plan = new DialogueStagingDirector(resolved.sequence, tableau, { mediaMode: 'STILL' }).plan;
     expect(plan.decisions.map((decision) => decision.stepId)).toEqual(resolved.sequence.steps.map((step) => step.id));
   });
+
+  it('keeps Alaric with the company against Serpent through the actual three-speaker runtime shape', () => {
+    const state = createInitialState();
+    state.flags.missionSuccess = true;
+    const before = structuredClone(state);
+    const sequence = resolveGameDialogue('serpent_pursuit_pre_combat', state)!.sequence;
+    const canonical = structuredClone(sequence);
+    const tableau = applyFinalDialoguePresentationPlan(sequence);
+    const actors = tableau.phases![0]!.staticCast;
+    expect(actors.map(actor => actor.actorId).sort()).toEqual(['alaric', 'sage_seraphine', 'serpent_general_boss']);
+    expect(actors.find(actor => actor.actorId === 'alaric')).toMatchObject({
+      group: 'LION_COURT', screenPosition: 'LEFT', dramaticSide: 'LEFT', facing: 'RIGHT',
+    });
+    expect(actors.find(actor => actor.actorId === 'sage_seraphine')).toMatchObject({
+      group: 'PLAYER_COMPANY', screenPosition: 'CENTER_LEFT', dramaticSide: 'LEFT', facing: 'RIGHT', lookTarget: 'serpent_general_boss',
+    });
+    expect(actors.find(actor => actor.actorId === 'serpent_general_boss')).toMatchObject({
+      group: 'ANTAGONIST', screenPosition: 'FAR_RIGHT', dramaticSide: 'RIGHT', facing: 'LEFT',
+    });
+    const director = new DialogueStagingDirector(sequence, tableau, { mediaMode: 'STILL' });
+    expect(director.plan.decisions.map(decision => decision.speakerFacing)).toEqual(['RIGHT', 'LEFT', 'RIGHT']);
+    expect(director.plan.decisions[0]).toMatchObject({ addressedTo: 'sage_seraphine', addressResolution: 'AUTHORED_CONVERSATION_TARGET' });
+    expect(director.plan.decisions.every(decision => decision.visibleStaticCast.length <= 4)).toBe(true);
+    expect(sequence).toEqual(canonical);
+    expect(state).toEqual(before);
+  });
 });
