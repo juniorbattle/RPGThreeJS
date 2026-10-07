@@ -7,7 +7,7 @@ CURRENT FACT — scoped ROAD and PRE-JUDGEMENT-CAMPFIRE complete; NARRATIVE-CONT
 | status | IN_PROGRESS |
 | runId | rpgthreejs-auto-dev-90m-20261007T1907 |
 | runStartedAt | 2026-10-07T19:07:41Z |
-| runEndedAt | 2026-10-07T19:29:54.184Z |
+| runEndedAt | 2026-10-07T19:31:23.058Z |
 | activeTask | NARRATIVE-CONTEXT-COHERENCE |
 | activePhase | Council fact-sensitive source checkpoint; production acceptance remains open |
 | activeSubtask | Existing council dialogue text corrected and source-reviewed; native displayed-text/fit proof is next |
