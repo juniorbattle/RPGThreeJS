@@ -232,6 +232,65 @@ describe('R3 pilot dialogue profiles', () => {
     expect(textOf('ate_lion_council_doubt', silenced, '2')).toContain('se taisent sous la contrainte');
   });
 
+  it.each([
+    { flags: { protectedWitnesses: true }, variant: 'witnesses-supportive', acknowledgement: 'témoignage compte' },
+    { flags: { missionGreed: true }, variant: 'witnesses-unprotected', acknowledgement: 'sans la protection' },
+    { flags: {}, variant: 'witnesses-none', acknowledgement: 'Aucun témoignage décisif' },
+    { flags: { silencedWitnesses: true, protectedWitnesses: true }, variant: 'witnesses-silenced', acknowledgement: 'sous la contrainte' },
+    { flags: { missionSuccess: true, missionGreed: true }, variant: 'bois-clair-contradictory-legacy', acknowledgement: 'deux traces contradictoires' },
+    { flags: { missionSuccess: true, helpedRefugees: true, helpedMerchant: true, preservedShrine: true },
+      variant: 'established-merits-without-testimony', acknowledgement: 'aidé les réfugiés et le marchand' },
+  ])('grounds the council opening in existing facts instead of reputation: $variant', ({ flags, variant, acknowledgement }) => {
+    for (const reputation of [10, 90]) {
+      const state = createInitialState();
+      Object.assign(state.flags, flags);
+      state.reputation = reputation;
+      const before = structuredClone(state);
+      const resolved = resolveGameDialogue('ate_lion_council_doubt', state)!;
+      expect(resolved.variantId).toBe(variant);
+      expect(resolved.sequence.steps[0]!.text).toContain(acknowledgement);
+      expect(resolved.sequence.steps.map(step => step.text).join(' ')).not.toContain('prennent l’or et fuient');
+      // A factual wording correction must not alter staging, step flow or consequence authority.
+      const withoutText = ({ text: _text, ...step }: DialogueSequence['steps'][number]) => step;
+      expect(resolved.sequence.steps.map(withoutText))
+        .toEqual(dialogues.get('ate_lion_council_doubt')!.steps.map(withoutText));
+      expect(state).toEqual(before);
+    }
+  });
+
+  it('acknowledges established aid without treating it as testimony or an awarded Seal', () => {
+    const state = createInitialState();
+    Object.assign(state.flags, { missionSuccess: true, helpedRefugees: true, helpedMerchant: true, preservedShrine: true });
+    const resolved = resolveGameDialogue('ate_lion_council_doubt', state)!;
+    expect(resolved.variantId).toBe('established-merits-without-testimony');
+    expect(textOf('ate_lion_council_doubt', state, '1')).toContain('aidé les réfugiés et le marchand');
+    expect(textOf('ate_lion_council_doubt', state, '2')).toContain('aucun témoignage décisif');
+    expect(textOf('ate_lion_council_doubt', state, '3')).toContain('sans décider à eux seuls');
+    state.flags.preservedShrine = false;
+    state.flags.shrineRested = true;
+    expect(resolveGameDialogue('ate_lion_council_doubt', state)!.variantId).toBe('established-merits-without-testimony');
+  });
+
+  it.each(['missionSuccess', 'helpedRefugees', 'helpedMerchant', 'preservedShrine'])
+    ('never acknowledges an absent merit: %s', absent => {
+      const state = createInitialState();
+      Object.assign(state.flags, { missionSuccess: true, helpedRefugees: true, helpedMerchant: true, preservedShrine: true });
+      state.flags[absent] = false;
+      expect(resolveGameDialogue('ate_lion_council_doubt', state)!.variantId).toBe('witnesses-none');
+      expect(textOf('ate_lion_council_doubt', state, '1')).not.toContain('préservé le sanctuaire');
+    });
+
+  it('keeps contradictory village records and coerced testimony ahead of positive acknowledgement', () => {
+    const state = createInitialState();
+    Object.assign(state.flags, { missionSuccess: true, missionGreed: true, protectedWitnesses: true,
+      helpedRefugees: true, helpedMerchant: true, preservedShrine: true });
+    expect(resolveGameDialogue('ate_lion_council_doubt', state)!.variantId).toBe('bois-clair-contradictory-legacy');
+    expect(textOf('ate_lion_council_doubt', state, '1')).toContain('habitants sauvés et les réserves choisies');
+    state.flags.silencedWitnesses = true;
+    expect(resolveGameDialogue('ate_lion_council_doubt', state)!.variantId).toBe('witnesses-silenced');
+    expect(textOf('ate_lion_council_doubt', state, '1')).toContain('sous la contrainte');
+  });
+
   it('distinguishes definitive Shadow evidence revealed from concealed after R2 resolution', () => {
     const revealed = createInitialState();
     Object.assign(revealed.flags, { missionSuccess: true, shadowEvidence: true, shadowRevealed: true });

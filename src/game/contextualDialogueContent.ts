@@ -350,8 +350,19 @@ export const CONTEXTUAL_DIALOGUE_DEFINITIONS: Readonly<Record<string, Contextual
         priority: 400,
         when: witness('silenced'),
         stepPatches: [
+          { stepId: '1', patch: { text: 'Les survivants de Bois-Clair se taisent sous la contrainte. Nous ne pouvons pas prendre ce silence pour une preuve de confiance.' } },
           { stepId: '2', patch: { text: 'Bois-Clair a vu ce qu’ils ont fait, mais ses survivants se taisent sous la contrainte. Ce silence est déjà une réponse, et le Lion ne le prendra pas pour un acquittement.' } },
           { stepId: '3', patch: { text: 'Alors leur dossier porte une voix étouffée. Qu’ils viennent quand même : le Sceau ne sera pas remis à ceux qui achètent le silence.' } },
+        ],
+      },
+      {
+        id: 'bois-clair-contradictory-legacy',
+        priority: 350,
+        when: all(verdictReason('saved_bois_clair'), verdictReason('sacrificed_bois_clair')),
+        stepPatches: [
+          { stepId: '1', patch: { text: 'Le dossier porte deux traces contradictoires : les habitants sauvés et les réserves choisies à leur place. Aucune ne doit effacer l’autre.' } },
+          { stepId: '2', patch: { text: 'Je garderai ces deux traces dans le dossier. Ni leur renommée ni un témoignage favorable ne nous autorisent à choisir seulement la version qui les arrange.' } },
+          { stepId: '3', patch: { text: 'Alors examinons cette contradiction avant de décider du Sceau. Leur jugement reste à rendre.' } },
         ],
       },
       {
@@ -359,6 +370,7 @@ export const CONTEXTUAL_DIALOGUE_DEFINITIONS: Readonly<Record<string, Contextual
         priority: 300,
         when: witness('supportive'),
         stepPatches: [
+          { stepId: '1', patch: { text: 'Les survivants de Bois-Clair ont choisi de parler librement. Leur témoignage compte, mais il ne suffit pas à leur remettre le Sceau.' } },
           { stepId: '2', patch: { text: 'Les survivants de Bois-Clair ont choisi de parler librement. Ils ne demandent ni faveur ni vengeance : ils apportent des faits. Le Lion les entendra.' } },
           { stepId: '3', patch: { text: 'Des témoins libres, alors. Leur parole n’offre pas le Sceau, mais elle interdit que nous jugions ces étrangers sur de simples rumeurs.' } },
         ],
@@ -368,7 +380,20 @@ export const CONTEXTUAL_DIALOGUE_DEFINITIONS: Readonly<Record<string, Contextual
         priority: 200,
         when: witness('unprotected'),
         stepPatches: [
+          { stepId: '1', patch: { text: 'Les survivants de Bois-Clair ont pris la route sans la protection de cette compagnie. Voilà une raison concrète de rester prudent avant de leur confier le Sceau.' } },
           { stepId: '2', patch: { text: 'Les survivants de Bois-Clair ont pris la route sans leur protection. Leurs mots viendront peut-être, mais la compagnie ne pourra pas les compter comme un soutien acquis.' } },
+          { stepId: '3', patch: { text: 'Alors examinons leurs actes sans tenir le soutien de ces survivants pour acquis. Le jugement reste à rendre.' } },
+        ],
+      },
+      {
+        id: 'established-merits-without-testimony',
+        priority: 150,
+        when: all(witness('none'), verdictReason('saved_bois_clair'), verdictReason('helped_refugees'),
+          verdictReason('helped_merchant'), verdictReason('preserved_shrine')),
+        stepPatches: [
+          { stepId: '1', patch: { text: 'Ils ont sauvé les habitants de Bois-Clair, aidé les réfugiés et le marchand, et préservé le sanctuaire. Nous ne pouvons pas réduire leur route à quelques pillards abattus.' } },
+          { stepId: '2', patch: { text: 'Ces actes comptent. Mais aucun témoignage décisif ne nous est encore parvenu ; je jugerai leur dossier entier, sans effacer ces faits.' } },
+          { stepId: '3', patch: { text: 'Alors gardons ces actes dans le dossier. Ils comptent, sans décider à eux seuls de l’attribution du Sceau.' } },
         ],
       },
       {
@@ -376,7 +401,9 @@ export const CONTEXTUAL_DIALOGUE_DEFINITIONS: Readonly<Record<string, Contextual
         priority: 100,
         when: witness('none'),
         stepPatches: [
+          { stepId: '1', patch: { text: 'Aucun témoignage décisif ne nous est encore parvenu. Avant de leur confier le Sceau, il faut examiner les actes de cette compagnie.' } },
           { stepId: '2', patch: { text: 'Bois-Clair a vu ce qu’ils ont fait, mais aucun témoignage décisif ne nous est encore parvenu. Je jugerai les traces de la route, pas une voix que nous n’avons pas.' } },
+          { stepId: '3', patch: { text: 'L’absence de témoignage ne tranche pas leur dossier. Examinons les traces de leur route avant de décider du Sceau.' } },
         ],
       },
     ],
