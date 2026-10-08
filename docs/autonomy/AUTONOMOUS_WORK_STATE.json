@@ -1,67 +1,93 @@
 {
-  "status": "BLOCKED_BY_PUBLICATION_APPROVAL",
-  "runStartedAt": "2026-10-08T01:17:26.835Z",
-  "runEndedAt": "2026-10-08T01:42:38.951Z",
-  "activeTask": "STATIC-TABLEAU-STAGING-POLISH",
-  "activePhase": "Runtime tableau milestone accepted locally; exact dev/WIP publication blocked",
-  "activeSubtask": "Publish verified local checkpoint and recovery snapshot after explicit approval, then SCENE-TRANSITION-COPY",
+  "status": "IN_PROGRESS",
+  "runStartedAt": "2026-10-08T05:16:14.2563835Z",
+  "runEndedAt": "2026-10-08T06:19:25.085Z",
+  "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
+  "activePhase": "Scoped native standalone keyboard milestone accepted; campaign/full-demo gates open",
+  "activeSubtask": "Finish inherited battlefield campaign integration and native campaign acceptance",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "e92dbffcb38457b027081fe8948acc9234c13060",
-  "lastPushedCommit": "70265e0e46e00c6020a76d24b1815936db6a5b45",
+  "lastKnownGoodCommit": "613bf364679ba03d5126254306772fc69a138612",
+  "lastPushedCommit": "613bf364679ba03d5126254306772fc69a138612",
   "completedThisRun": [
-    "Absent-lock preflight; remote70265e0 parity; previous chats idle; unrelated5173server preserved",
-    "Found actual390Maelor occlusion despite v2machinePASS; corrected only exact4actor village request composition",
-    "94tests5files/types/contracts/staging/finalbuild PASS; six final width/motion cases and18scenarios accepted scoped",
-    "Two reviewers reused; source/assertions/selected captures/final guardian READY_TO_CLOSE_SCOPED",
-    "Selected four inspected captures plus compact checks; exact source/driver/build/result hashes verified",
-    "Local source commit and recovery snapshots retained; no push after automatic-review rejection"
+    "Read-only preflight: old writer idle/completed, no associated QA/Git process, old heartbeat >105min; unrelated5173 preserved",
+    "Live remote exact dev6bcc566/WIP94c3330/main00b96f1 verified; old publication effect already present, no retry; archived stale lock and acquired exclusive run0514 lock; six deferred blobs exact",
+    "Product correction: narrative-stage inherited cinematic display:none for all authored ATE captions; selective CSS restores them, wraps long titles and keeps held/subtitle modes excluded. No copy/canon/truth mutation.",
+    "COPY six final responsive/motion cases /15scenarios scoped PASS and inspected selected evidence; source guardian PASS, full task BLOCKED static OS-shadow. Bounded environment audit confirmed night/sunset asset deficit; independent deferred keyboard resumed without deleting its exact archived state.",
+    "Fresh39keyboard-focused tests; guardian nativeactivation/AP/save review PASS; six-case standalone production keyboard+separate fresh pointer acceptance and inspected captures. Reached fresh campaign iframe diagnostic reviewed; full campaign deadline FAILED and no seed/relabel. Inherited four runtime files plus one test and existing runner committed only after scoped production acceptance."
   ],
   "filesChanged": [
-    "src/cinematics/StaticTableauComposition.ts",
-    "src/cinematics/NarrativeSceneSurface.test.ts",
+    "src/styles/app.css",
     "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+    "tools/demo-continuous-production-qa.mjs",
+    "legacy-combat.html",
+    "src/combat/combatKeyboard.test.ts",
+    "src/combat/combatKeyboard.ts",
+    "src/combat/legacyCombatRuntime.js",
+    "src/styles/combat-shell.css",
+    "tools/combat-battlefield-keyboard-production-qa.mjs",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/STATIC_TABLEAU_STAGING_POLISH.md",
-    "docs/autonomy/handoffs/2026-10-08T0115Z-codex-tableau-milestone-publication-blocked.md",
-    "docs/reports/static-tableau-staging-polish-0115/checks.json",
-    "docs/reports/static-tableau-staging-polish-0115/village-390-normal.png",
-    "docs/reports/static-tableau-staging-polish-0115/village-choice-390-os.png",
-    "docs/reports/static-tableau-staging-polish-0115/serpent-620-normal.png",
-    "docs/reports/static-tableau-staging-polish-0115/opening-390-os.png"
+    "docs/autonomy/SCENE_TRANSITION_COPY.md",
+    "docs/autonomy/ENVIRONMENT_NARRATIVE_COHERENCE.md",
+    "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
+    "docs/autonomy/handoffs/2026-10-08T0514Z-codex-copy-keyboard-checkpoint.md",
+    "docs/reports/scene-transition-copy-0514/checks.json",
+    "docs/reports/scene-transition-copy-0514/ailleurs-390-normal.png",
+    "docs/reports/scene-transition-copy-0514/ailleurs-390-os.png",
+    "docs/reports/scene-transition-copy-0514/serpent-620-normal.png",
+    "docs/reports/scene-transition-copy-0514/pendant-1440-normal.png",
+    "docs/reports/battlefield-keyboard-0514/checks.json",
+    "docs/reports/battlefield-keyboard-0514/desktop-inspection.png",
+    "docs/reports/battlefield-keyboard-0514/620-move-cursor.png",
+    "docs/reports/battlefield-keyboard-0514/390-os-inspection.png",
+    "docs/reports/battlefield-keyboard-0514/390-os-target.png",
+    "docs/reports/battlefield-keyboard-0514/campaign-desktop-keyboard-return.png"
   ],
   "testsRun": [
-    "Direct vitest94tests5files; tsc --noEmit PASS",
-    "Direct contracts validator8contracts8slots and staging75dialogues257steps282runtime PASS",
-    "Finalbuild game-CfgYCJPb.js/game-BZH7FiGl.css/eightMP4 PASS",
-    "Immutable/protected status/whitespace PASS",
-    "Final six registered owner-supervised production cases1440/620/390 normal/OS:18opening/village/Serpent scenario passes"
+    "49focused SceneTransition8/DialogueView10/contextualDialogue31 PASS",
+    "39focused combatKeyboard19/deploymentRules3/protocol17 PASS",
+    "Direct tsc --noEmit PASS",
+    "8LOCKED contracts/8video slots validator PASS; protected gates empty",
+    "Production Vite build PASS: game-JS_oFiz8.js/game-3pkMo-Ir.css,combat-DSUtGYdZ.js,8MP4",
+    "git diff --check and immutable exact baseline gate PASS",
+    "COPY6finalcases15scenarios ACCEPTED_SCOPED_COPY",
+    "Standalone keyboard6cases ACCEPTED_SCOPED_STANDALONE; native pointer uses own fresh battle",
+    "Fresh campaign15min FAILED_NOT_ACCEPTED after19nativeactions; reached iframe keyboard diagnostic verified separately"
   ],
   "testsPassed": [
-    "Direct vitest94tests5files; tsc --noEmit PASS",
-    "Direct contracts validator8contracts8slots and staging75dialogues257steps282runtime PASS",
-    "Finalbuild game-CfgYCJPb.js/game-BZH7FiGl.css/eightMP4 PASS",
-    "Immutable/protected status/whitespace PASS",
-    "Final six registered owner-supervised production cases1440/620/390 normal/OS:18opening/village/Serpent scenario passes"
+    "49focused SceneTransition8/DialogueView10/contextualDialogue31 PASS",
+    "39focused combatKeyboard19/deploymentRules3/protocol17 PASS",
+    "Direct tsc --noEmit PASS",
+    "8LOCKED contracts/8video slots validator PASS; protected gates empty",
+    "Production Vite build PASS: game-JS_oFiz8.js/game-3pkMo-Ir.css,combat-DSUtGYdZ.js,8MP4",
+    "git diff --check and immutable exact baseline gate PASS",
+    "COPY6finalcases15scenarios ACCEPTED_SCOPED_COPY",
+    "Standalone keyboard6cases ACCEPTED_SCOPED_STANDALONE; native pointer uses own fresh battle"
   ],
   "testsRemaining": [
-    "Publication/remote parity and ownedlock release",
-    "SCENE-TRANSITION-COPY and ENVIRONMENT-NARRATIVE-COHERENCE queue items",
-    "Independent council/refugee browser gate and exhausted static-only OS assertion remain OPEN",
-    "Full demo/operator testing; exact deferred keyboard task"
+    "Earned native campaign/first-refuge with corrected source checkpoint; failed15min job is no acceptance or seed",
+    "Actual submenu/Retour touch bounds, spokenAT and campaign iframe wider focus coverage",
+    "Effective OS-only tactical-animation reduction; current matrix certifies keyboard operability only",
+    "Sacrifice/ending/reload/fallback/settledVFX/balance/single-build campaign and Salvation exact2AP",
+    "COPY static-only OS-shadow and council/refugee proof; environment broader inventory and approved Bois-Clair night plate",
+    "Operator final demo testing"
   ],
   "blockers": [
     "Pursuit production collision integration:10windows lack explicitly authored eligible canonical mappings; isolated candidate PASS does not close full task",
     "Narrative OS smoke: static-only council rejected by unchanged approved-video-attempt assertion; one correction exhausted, both outputs NOT_ACCEPTED. Normal council and static-only OS milestone proof remain open.",
-    "Automatic review rejected publishing reviewed private-source/state snapshot to origin/wip/run0115: destination trust and exact payload authorization insufficient. No retry; explicit approval required for named dev/WIP checkpoints."
+    "SCENE-TRANSITION-COPY: authored ATE captions source and six-case scoped proof PASS; full static-only OS-shadow proof remains blocked by existing video-attempt assertion; no repeat or weakening.",
+    "ENVIRONMENT-NARRATIVE-COHERENCE BLOCKED_ASSET: Bois-Clair night-watch says night, approved burning plate is bright sunset; no approved same-location night replacement. Preserve text/masters.",
+    "Fresh campaign-0514-first-refuge FAILED at15min battle deadline after19nativeactions; no earnedfirstrefuge/fullV6 acceptance; reached iframe keyboard assertions diagnostic only",
+    "Broad keyboard accessibility remains open: submenu/Retour44px not measured, spokenAT not tested, effective OS tactical motion not established"
   ],
   "remainingWork": [
-    "Tableau local runtime milestone ACCEPTED_SCOPED; publication prerequisite remains blocked",
-    "SCENE-TRANSITION-COPY next after publication",
-    "ENVIRONMENT-NARRATIVE-COHERENCE pending; council/refugee browser gate OPEN",
-    "Pursuit ten canonical mappings external BLOCKED; exact deferred keyboard task preserved"
+    "COPY full static-only OS shadow acceptance",
+    "ENV approved Bois-Clair night tableau plus broader context inventory",
+    "Exact deferred keyboard production matrix and fresh campaign iframe entry/return",
+    "Council/refugee browser acceptance and ten Pursuit canonical mappings",
+    "Earned campaign/endings/Salvation2AP/VFX/balance remain open"
   ],
-  "nextAction": "Explicitly approve publication of final local dev checkpoint (SHA in automation memory) and wip/rpgthreejs-auto-dev-90m-20261008T0115 to juniorbattle/RPGThreeJS. Verify owned run0115 lock, finalHEAD, six deferred hashes, named remote dev/WIP and main parity; publish only those refs normally, verify, update state and release owned lock. Do not bypass automatic-review or take young lock. Then mark tableau COMPLETE_SCOPED and resume SCENE-TRANSITION-COPY: audit SceneTransition/GameApp label callers and ATE transition title owners, remove only observed placeholders or use existing authored/no copy; inspect actual production copy with existing runners. Preserve independent council/refugee/exhaustedOS gate, ten Pursuit mappings and exactdeferredDemoTask. No ROAD/CAMPFIRE or compatible tableau rerun.",
+  "nextAction": "Read-only preflight and owned lock; inspect BATTLEFIELD_KEYBOARD.md and exact terminal receipts before rerun. Preserve scoped COPY sixcases15scenarios and standalone keyboard6cases accepted evidence; compare final physical freeze after source commits instead of treating changed Git fingerprints as identical. Keep failed campaign-0514-first-refuge NOT_ACCEPTED: reached desktop-normal iframe Tab/cursor/Escape owner/autosave-equality diagnostic only, no earnedrefuge;19actions exhausted15min. Continue product work by measuring submenu/Retour bounds and addressing verified compact-target/focus or OS tactical-motion gaps before fresh campaign QA with existing driver/appropriate bounded target. Retain original deferredDemoTask nextAction and0350/726lineage; no failedoutput seed, further standalone harness rewrite, repeated compatible matrices, canon/media/audio/main or mapping invention. COPY static-only OS-shadow, council/refugee proof, approved Bois-Clair night plate and ten Pursuit mappings remain precise independent blockers; demo incomplete.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
@@ -70,14 +96,14 @@
     "TRAVERSAL-ROAD-ELEMENTS: COMPLETE_SCOPED_PRESENTATION",
     "PRE-JUDGEMENT-CAMPFIRE: COMPLETE_SCOPED_PRESENTATION",
     "NARRATIVE-CONTEXT-COHERENCE: SOURCE_CHECKPOINT; BROWSER_GATE_OPEN_STATIC_OS_HARNESS",
-    "STATIC-TABLEAU-STAGING-POLISH: ACCEPTED_SCOPED_RUNTIME; READY_TO_CLOSE_AFTER_PUBLICATION",
-    "SCENE-TRANSITION-COPY: PENDING",
-    "ENVIRONMENT-NARRATIVE-COHERENCE: PENDING",
-    "Resume deferred DEMO-QA-POLISH: PENDING"
+    "STATIC-TABLEAU-STAGING-POLISH: COMPLETE_SCOPED_RUNTIME; exact old checkpoint and recovery snapshot live remote verified run0514",
+    "SCENE-TRANSITION-COPY: SCOPED_RUNTIME_PASS; BLOCKED_STATIC_OS_SHADOW",
+    "ENVIRONMENT-NARRATIVE-COHERENCE: BLOCKED_ASSET_BOIS_CLAIR_NIGHT; bounded audit complete",
+    "Resume deferred DEMO-QA-POLISH: ACTIVE; keyboard standalone verification; campaign iframe gate open"
   ],
   "creditStatus": "AVAILABLE; no quota-saving claim; safe checkpoint at completed milestone/external publication boundary",
   "contractComplianceStatus": {
-    "status": "PASS scoped tableau runtime; external publication BLOCKED",
+    "status": "PASS scoped COPY and standalone keyboard source/runtime; full COPY/ENV/campaign/whole-demo acceptance BLOCKED",
     "contractSetVersion": "1.1.0",
     "lockedRulesChanged": false,
     "roadMatrix": {
@@ -111,17 +137,17 @@
     },
     "currentMatrix": {
       "GAME_CONSTITUTION": "PASS presentation authority",
-      "ART_DIRECTION": "N/A",
-      "CHARACTERS": "N/A",
-      "ENVIRONMENTS": "N/A",
-      "NARRATIVE_CAMPAIGN": "PASS no canon/choices/truth changes",
-      "NARRATIVE_PRESENTATION": "PASS4actor relational grouping/native4-2-4/facing/retained nodes",
-      "TRAVERSAL": "N/A",
-      "COMBAT": "N/A fixture scope only",
-      "SAVE": "PASS observation V6 equality/resolved resume scoped; no schema change",
-      "UI_ACCESSIBILITY": "PASS threeviewports normal/OS native opening focus and readable choice/text",
-      "QA_EVIDENCE": "PASS exact hashes/owner-supervised receipts/inspected selected captures; honest limits",
-      "REPOSITORY_GOVERNANCE": "BLOCKED external publication; immutable gates PASS; no bypass"
+      "ART_DIRECTION": "PASS source styling only",
+      "CHARACTERS": "PASS unchanged cast",
+      "ENVIRONMENTS": "BLOCKED Bois-Clair night plate deficit; no source/media change",
+      "NARRATIVE_CAMPAIGN": "PASS unchanged canonical text/choices/IDs",
+      "NARRATIVE_PRESENTATION": "PASS caption source and scoped six-case runtime",
+      "TRAVERSAL": "N/A unchanged",
+      "COMBAT": "PASS native shared activation/legality/AP/resolution authority and six-case standalone proof",
+      "SAVE": "PASS unchanged schema/owner; reached fresh iframe owner/autosave equality diagnostic; no earnedrefuge/fullV6 claim",
+      "UI_ACCESSIBILITY": "PASS scoped keyboard/caption captures and nativefocus/dock bounds; BLOCKED broad submenu/AT/effective OS tactical-motion acceptance",
+      "QA_EVIDENCE": "PASS exact frozen hashes/source-driver-build and selected COPY/keyboard scope; BLOCKED full staticOSshadow and earnedcampaign/refuge",
+      "REPOSITORY_GOVERNANCE": "PASS ownedlock/snapshots/explicitpaths/immutable; source publication verified, final workflow publication pending"
     },
     "contractsRead": [
       "GAME_CONSTITUTION",
@@ -131,10 +157,32 @@
       "CAMPAIGN_AND_STATE",
       "WORLD_AND_CHARACTERS",
       "UI_AND_ACCESSIBILITY",
-      "AUTHORING_AND_QA"
-    ]
+      "AUTHORING_AND_QA",
+      "COMBAT_AND_VFX"
+    ],
+    "copyCheckpoint": {
+      "source": "PASS authored captions restored by CSS only",
+      "browser": "ACCEPTED_SCOPED_COPY; six cases /15scenarios",
+      "proof": "docs/reports/scene-transition-copy-0514/checks.json",
+      "guardian": "PASS scoped; full task BLOCKED static-only OS-shadow",
+      "limits": "Node-save/result fixture, no earnedcampaign/fullV6/wholeDemo/allATE acceptance"
+    },
+    "keyboardCheckpoint": {
+      "source": "Guardian PASS native activation/AP/save owners; UI architecture OK conditional",
+      "initialBrowser": "FAILED_NOT_ACCEPTED; first1366normal native keyboard checks all reached, pointer assumed nonexistent second AP",
+      "harnessCorrectionsUsed": 1,
+      "correction": "Fresh native auto/start/move/one pointer attack, no refill or truth mutation; reviewed",
+      "campaignDriver": "Guardian prelaunch PASS, fresh-only actual Tab and unchanged truth/autosave; production pending",
+      "limits": "No spokenAT/submenu44px/all-motion/earnedending/fullV6 acceptance",
+      "sourceCheckpoint": "613bf364679ba03d5126254306772fc69a138612",
+      "browser": "ACCEPTED_SCOPED_STANDALONE six cases",
+      "proof": "docs/reports/battlefield-keyboard-0514/checks.json",
+      "guardian": "PASS_SCOPED_STANDALONE",
+      "ui": "OK_SCOPED_KEYBOARD_CAPTURES; actor framing/submenu/AT/motion/fullcampaign limits retained",
+      "campaign": "FAILED_NOT_ACCEPTED; reached fresh iframe boundary diagnostic only"
+    }
   },
-  "commitReferenceScope": "lastKnownGoodCommit is source checkpoint; final publication commit recorded in automation memory, not recursively encoded",
+  "commitReferenceScope": "Source checkpoint SHAs identify tested physical source. Final workflow publication HEAD is recorded in automation memory to avoid self-referential tracked SHA. Frozen bytes and accepted-at-freeze identities remain authoritative after source commits change Git representation.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -237,27 +285,39 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261008T0032",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-08T00:26:58.688Z",
+  "lastHeartbeat": "2026-10-08T06:19:25.085Z",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0012",
-    "sha": "cf2b7c89d0a5f5ff16bb177e7ed4caf6e1f38813",
-    "status": "REMOTE_PUBLISHED_RECOVERY_FOR_SIX_UNCHANGED_DEFERRED_BLOBS",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0514",
+    "sha": "6edf2749c924ad6912432ba1e8e0d064d78fbb59",
+    "status": "GREEN_SCOPED_NOT_DEMO_COMPLETE",
     "dirtyFiles": [
-      "legacy-combat.html",
-      "src/combat/combatKeyboard.test.ts",
-      "src/combat/combatKeyboard.ts",
-      "src/combat/legacyCombatRuntime.js",
-      "src/styles/combat-shell.css",
-      "tools/combat-battlefield-keyboard-production-qa.mjs"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/SCENE_TRANSITION_COPY.md",
+      "docs/autonomy/ENVIRONMENT_NARRATIVE_COHERENCE.md",
+      "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
+      "docs/autonomy/handoffs/2026-10-08T0514Z-codex-copy-keyboard-checkpoint.md",
+      "docs/reports/scene-transition-copy-0514/checks.json",
+      "docs/reports/scene-transition-copy-0514/ailleurs-390-normal.png",
+      "docs/reports/scene-transition-copy-0514/ailleurs-390-os.png",
+      "docs/reports/scene-transition-copy-0514/serpent-620-normal.png",
+      "docs/reports/scene-transition-copy-0514/pendant-1440-normal.png",
+      "docs/reports/battlefield-keyboard-0514/checks.json",
+      "docs/reports/battlefield-keyboard-0514/desktop-inspection.png",
+      "docs/reports/battlefield-keyboard-0514/620-move-cursor.png",
+      "docs/reports/battlefield-keyboard-0514/390-os-inspection.png",
+      "docs/reports/battlefield-keyboard-0514/390-os-target.png",
+      "docs/reports/battlefield-keyboard-0514/campaign-desktop-keyboard-return.png"
     ],
-    "lastGreenCheck": "81focused tests/types/contracts/staging/build PASS; transition browser OPEN",
-    "lastSnapshotAt": "2026-10-08T00:26:12.162Z"
+    "lastSnapshotAt": "2026-10-08T06:08:50.2808343Z",
+    "lastGreenCheck": "88focused/types/contracts/build/immutable; COPY6+keyboard6 scoped; campaignFAILED retained",
+    "snapshotAt": "2026-10-08T06:08:50.2808343Z"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+    "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-08T01:42:38.951Z",
-    "status": "SOURCE_CHECKPOINT_PUBLISHED_SCOPED_ACCEPTANCE",
+    "lastHeartbeat": "2026-10-08T06:19:25.085Z",
+    "status": "COHERENT_CHECKPOINT_PREPARED",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -15071,80 +15131,1139 @@
         "provenanceStable": true,
         "matchesCurrentExecution": true,
         "resultDigestMatches": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "copy-0514-390-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T05:27:01.044Z",
+        "pid": 32276,
+        "port": 5332,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "viewport": "390x844",
+          "osReducedMotion": false,
+          "gameReducedMotion": false,
+          "production": true,
+          "transitionCopy": true,
+          "scenarios": "bois-clair-saved,bois-clair-sacrificed,shadow-evidence"
+        },
+        "requiredAssertions": [
+          "MOUNTED_LABEL_NO_ELLIPSIS_PLACEHOLDER",
+          "ATE_TITLE_POSITIVE_VIEWPORT_RECT",
+          "ATE_NEXT_ENABLED",
+          "EXISTING_SCENARIO_ASSERTIONS_UNCHANGED",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/copy-0514-390-normal",
+        "receiptPath": "tmp/cinematics/copy-0514-390-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+          "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+          "sourceDiffSha256": "f8d46b24602c1ea80a618b1b895f6acf8f1133e57c48a7059315480dc843b625",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "c65447693b025a7cf529727dbb9c8ba467e97fa8c6daf78dd0ea41425fa57792"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-3pkMo-Ir.css",
+              "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+            },
+            {
+              "path": "dist/assets/game-JS_oFiz8.js",
+              "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f895fee0579a12a0418dfbb741b610ad6bd8340f992be06e96279a2a75d16d6b"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-08T05:27:01.254Z",
+        "endedAt": "2026-10-08T05:28:06.739Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/copy-0514-390-normal/results.json",
+        "resultSha256": "7acbb91719b11db410ebec52cd49f80f7bed06faf0119bd0ac085b5d450daab9",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "executedCommand": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "provenanceStable": true,
+        "resultDigestMatches": true,
+        "matchesCurrentExecution": false,
+        "requestMatches": true,
+        "provenanceMatches": true,
+        "eligibleForReview": false,
+        "matchedAtPrecommitFreeze": false,
+        "freezePath": "tmp/autonomy/final-physical-0514.json",
+        "currentPhysicalInputsMatchFreeze": true,
+        "gitFingerprintRepresentationChangedBySourceCommit": true,
+        "eligibleForReviewAtPrecommitFreeze": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "copy-0514-v2-390-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T05:29:36.938Z",
+        "pid": 47616,
+        "port": 5332,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "viewport": "390x844",
+          "osReducedMotion": false,
+          "gameReducedMotion": false,
+          "production": true,
+          "transitionCopy": true,
+          "scenarios": "bois-clair-saved,bois-clair-sacrificed,shadow-evidence"
+        },
+        "requiredAssertions": [
+          "MOUNTED_LABEL_NO_ELLIPSIS_PLACEHOLDER",
+          "ATE_TITLE_POSITIVE_VIEWPORT_RECT",
+          "ATE_NEXT_ENABLED",
+          "EXISTING_SCENARIO_ASSERTIONS_UNCHANGED",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/copy-0514-v2-390-normal",
+        "receiptPath": "tmp/cinematics/copy-0514-v2-390-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+          "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+          "sourceDiffSha256": "f8d46b24602c1ea80a618b1b895f6acf8f1133e57c48a7059315480dc843b625",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "ec44494c1f959ee20b87ad43b415b31fa4df27392415517a299749714732d1b9"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-3pkMo-Ir.css",
+              "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+            },
+            {
+              "path": "dist/assets/game-JS_oFiz8.js",
+              "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f895fee0579a12a0418dfbb741b610ad6bd8340f992be06e96279a2a75d16d6b"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_COPY",
+        "startedAt": "2026-10-08T05:29:37.127Z",
+        "endedAt": "2026-10-08T05:30:49.019Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/copy-0514-v2-390-normal/results.json",
+        "resultSha256": "53862022b1f2323de4e8e54a455ac84c35565bedb1add3a8b8235a94bdf02acf",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "executedCommand": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "provenanceStable": true,
+        "resultDigestMatches": true,
+        "matchesCurrentExecution": false,
+        "requestMatches": true,
+        "provenanceMatches": true,
+        "eligibleForReview": false,
+        "matchedAtPrecommitFreeze": true,
+        "freezePath": "tmp/autonomy/final-physical-0514.json",
+        "currentPhysicalInputsMatchFreeze": true,
+        "gitFingerprintRepresentationChangedBySourceCommit": true,
+        "eligibleForReviewAtPrecommitFreeze": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "copy-0514-v2-390-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T05:31:29.318Z",
+        "pid": 57320,
+        "port": 5333,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "viewport": "390x844",
+          "osReducedMotion": true,
+          "gameReducedMotion": false,
+          "production": true,
+          "transitionCopy": true,
+          "scenarios": "bois-clair-saved,bois-clair-sacrificed"
+        },
+        "requiredAssertions": [
+          "MOUNTED_LABEL_NO_ELLIPSIS_PLACEHOLDER",
+          "ATE_TITLE_POSITIVE_VIEWPORT_RECT",
+          "ATE_NEXT_ENABLED",
+          "EXISTING_SCENARIO_ASSERTIONS_UNCHANGED",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/copy-0514-v2-390-os",
+        "receiptPath": "tmp/cinematics/copy-0514-v2-390-os/qa-job.json",
+        "provenance": {
+          "gitHead": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+          "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+          "sourceDiffSha256": "f8d46b24602c1ea80a618b1b895f6acf8f1133e57c48a7059315480dc843b625",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "ec44494c1f959ee20b87ad43b415b31fa4df27392415517a299749714732d1b9"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-3pkMo-Ir.css",
+              "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+            },
+            {
+              "path": "dist/assets/game-JS_oFiz8.js",
+              "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f895fee0579a12a0418dfbb741b610ad6bd8340f992be06e96279a2a75d16d6b"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_COPY",
+        "startedAt": "2026-10-08T05:31:30.234Z",
+        "endedAt": "2026-10-08T05:32:21.956Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/copy-0514-v2-390-os/results.json",
+        "resultSha256": "4e9ece8ee717f011da01fbdd5cc748467f169516e9d10768ab60ae576c4815d2",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "executedCommand": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "provenanceStable": true,
+        "resultDigestMatches": true,
+        "matchesCurrentExecution": false,
+        "requestMatches": true,
+        "provenanceMatches": true,
+        "eligibleForReview": false,
+        "matchedAtPrecommitFreeze": true,
+        "freezePath": "tmp/autonomy/final-physical-0514.json",
+        "currentPhysicalInputsMatchFreeze": true,
+        "gitFingerprintRepresentationChangedBySourceCommit": true,
+        "eligibleForReviewAtPrecommitFreeze": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "copy-0514-v2-620-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T05:31:29.524Z",
+        "pid": 38196,
+        "port": 5334,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "viewport": "620x780",
+          "osReducedMotion": false,
+          "gameReducedMotion": false,
+          "production": true,
+          "transitionCopy": true,
+          "scenarios": "bois-clair-saved,bois-clair-sacrificed,shadow-evidence"
+        },
+        "requiredAssertions": [
+          "MOUNTED_LABEL_NO_ELLIPSIS_PLACEHOLDER",
+          "ATE_TITLE_POSITIVE_VIEWPORT_RECT",
+          "ATE_NEXT_ENABLED",
+          "EXISTING_SCENARIO_ASSERTIONS_UNCHANGED",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/copy-0514-v2-620-normal",
+        "receiptPath": "tmp/cinematics/copy-0514-v2-620-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+          "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+          "sourceDiffSha256": "f8d46b24602c1ea80a618b1b895f6acf8f1133e57c48a7059315480dc843b625",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "ec44494c1f959ee20b87ad43b415b31fa4df27392415517a299749714732d1b9"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-3pkMo-Ir.css",
+              "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+            },
+            {
+              "path": "dist/assets/game-JS_oFiz8.js",
+              "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f895fee0579a12a0418dfbb741b610ad6bd8340f992be06e96279a2a75d16d6b"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_COPY",
+        "startedAt": "2026-10-08T05:31:30.251Z",
+        "endedAt": "2026-10-08T05:32:45.549Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/copy-0514-v2-620-normal/results.json",
+        "resultSha256": "60100a05d367bf8eb228f23d515e729105a5113dc14817a77464c2b59dd97731",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "executedCommand": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "provenanceStable": true,
+        "resultDigestMatches": true,
+        "matchesCurrentExecution": false,
+        "requestMatches": true,
+        "provenanceMatches": true,
+        "eligibleForReview": false,
+        "matchedAtPrecommitFreeze": true,
+        "freezePath": "tmp/autonomy/final-physical-0514.json",
+        "currentPhysicalInputsMatchFreeze": true,
+        "gitFingerprintRepresentationChangedBySourceCommit": true,
+        "eligibleForReviewAtPrecommitFreeze": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "copy-0514-v2-620-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T05:31:29.712Z",
+        "pid": 50144,
+        "port": 5335,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "viewport": "620x780",
+          "osReducedMotion": true,
+          "gameReducedMotion": false,
+          "production": true,
+          "transitionCopy": true,
+          "scenarios": "bois-clair-saved,bois-clair-sacrificed"
+        },
+        "requiredAssertions": [
+          "MOUNTED_LABEL_NO_ELLIPSIS_PLACEHOLDER",
+          "ATE_TITLE_POSITIVE_VIEWPORT_RECT",
+          "ATE_NEXT_ENABLED",
+          "EXISTING_SCENARIO_ASSERTIONS_UNCHANGED",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/copy-0514-v2-620-os",
+        "receiptPath": "tmp/cinematics/copy-0514-v2-620-os/qa-job.json",
+        "provenance": {
+          "gitHead": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+          "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+          "sourceDiffSha256": "f8d46b24602c1ea80a618b1b895f6acf8f1133e57c48a7059315480dc843b625",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "ec44494c1f959ee20b87ad43b415b31fa4df27392415517a299749714732d1b9"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-3pkMo-Ir.css",
+              "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+            },
+            {
+              "path": "dist/assets/game-JS_oFiz8.js",
+              "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f895fee0579a12a0418dfbb741b610ad6bd8340f992be06e96279a2a75d16d6b"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_COPY",
+        "startedAt": "2026-10-08T05:32:45.552Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "executedCommand": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "endedAt": "2026-10-08T05:33:39.034Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/copy-0514-v2-620-os/results.json",
+        "resultSha256": "cf21056a23b02ba767b2a4ef7e0e245370b6f032cb52d8a64869947dd1c88d23",
+        "provenanceStable": true,
+        "resultDigestMatches": true,
+        "matchesCurrentExecution": false,
+        "requestMatches": true,
+        "provenanceMatches": true,
+        "eligibleForReview": false,
+        "matchedAtPrecommitFreeze": true,
+        "freezePath": "tmp/autonomy/final-physical-0514.json",
+        "currentPhysicalInputsMatchFreeze": true,
+        "gitFingerprintRepresentationChangedBySourceCommit": true,
+        "eligibleForReviewAtPrecommitFreeze": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "copy-0514-v2-1440-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T05:31:29.884Z",
+        "pid": 42596,
+        "port": 5336,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "viewport": "1440x810",
+          "osReducedMotion": false,
+          "gameReducedMotion": false,
+          "production": true,
+          "transitionCopy": true,
+          "scenarios": "bois-clair-saved,bois-clair-sacrificed,shadow-evidence"
+        },
+        "requiredAssertions": [
+          "MOUNTED_LABEL_NO_ELLIPSIS_PLACEHOLDER",
+          "ATE_TITLE_POSITIVE_VIEWPORT_RECT",
+          "ATE_NEXT_ENABLED",
+          "EXISTING_SCENARIO_ASSERTIONS_UNCHANGED",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/copy-0514-v2-1440-normal",
+        "receiptPath": "tmp/cinematics/copy-0514-v2-1440-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+          "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+          "sourceDiffSha256": "f8d46b24602c1ea80a618b1b895f6acf8f1133e57c48a7059315480dc843b625",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "ec44494c1f959ee20b87ad43b415b31fa4df27392415517a299749714732d1b9"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-3pkMo-Ir.css",
+              "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+            },
+            {
+              "path": "dist/assets/game-JS_oFiz8.js",
+              "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f895fee0579a12a0418dfbb741b610ad6bd8340f992be06e96279a2a75d16d6b"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_COPY",
+        "startedAt": "2026-10-08T05:32:45.570Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "executedCommand": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "endedAt": "2026-10-08T05:34:12.288Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/copy-0514-v2-1440-normal/results.json",
+        "resultSha256": "c670acc9babd16fac06ebd1b44f5c6945d16b9e36d5e8e9298c9b02843d873bb",
+        "provenanceStable": true,
+        "resultDigestMatches": true,
+        "matchesCurrentExecution": false,
+        "requestMatches": true,
+        "provenanceMatches": true,
+        "eligibleForReview": false,
+        "matchedAtPrecommitFreeze": true,
+        "freezePath": "tmp/autonomy/final-physical-0514.json",
+        "currentPhysicalInputsMatchFreeze": true,
+        "gitFingerprintRepresentationChangedBySourceCommit": true,
+        "eligibleForReviewAtPrecommitFreeze": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "copy-0514-v2-1440-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T05:31:30.053Z",
+        "pid": 18244,
+        "port": 5337,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "viewport": "1440x810",
+          "osReducedMotion": true,
+          "gameReducedMotion": false,
+          "production": true,
+          "transitionCopy": true,
+          "scenarios": "bois-clair-saved,bois-clair-sacrificed"
+        },
+        "requiredAssertions": [
+          "MOUNTED_LABEL_NO_ELLIPSIS_PLACEHOLDER",
+          "ATE_TITLE_POSITIVE_VIEWPORT_RECT",
+          "ATE_NEXT_ENABLED",
+          "EXISTING_SCENARIO_ASSERTIONS_UNCHANGED",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/copy-0514-v2-1440-os",
+        "receiptPath": "tmp/cinematics/copy-0514-v2-1440-os/qa-job.json",
+        "provenance": {
+          "gitHead": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+          "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+          "sourceDiffSha256": "f8d46b24602c1ea80a618b1b895f6acf8f1133e57c48a7059315480dc843b625",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "ec44494c1f959ee20b87ad43b415b31fa4df27392415517a299749714732d1b9"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-3pkMo-Ir.css",
+              "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+            },
+            {
+              "path": "dist/assets/game-JS_oFiz8.js",
+              "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f895fee0579a12a0418dfbb741b610ad6bd8340f992be06e96279a2a75d16d6b"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_COPY",
+        "startedAt": "2026-10-08T05:34:12.292Z",
+        "endedAt": "2026-10-08T05:35:07.915Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/copy-0514-v2-1440-os/results.json",
+        "resultSha256": "2a95f495e32e12069e4e6defd723fdeeffef1215c0f2ea08a58927fcd29155d7",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "executedCommand": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "provenanceStable": true,
+        "resultDigestMatches": true,
+        "matchesCurrentExecution": false,
+        "requestMatches": true,
+        "provenanceMatches": true,
+        "eligibleForReview": false,
+        "matchedAtPrecommitFreeze": true,
+        "freezePath": "tmp/autonomy/final-physical-0514.json",
+        "currentPhysicalInputsMatchFreeze": true,
+        "gitFingerprintRepresentationChangedBySourceCommit": true,
+        "eligibleForReviewAtPrecommitFreeze": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "battlefield-0514-native",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
+        "status": "FAILED",
+        "registeredAt": "2026-10-08T05:45:50.523Z",
+        "pid": 7708,
+        "port": 5340,
+        "command": [
+          "node",
+          "tools/combat-battlefield-keyboard-production-qa.mjs"
+        ],
+        "parameters": {
+          "viewports": [
+            [
+              1366,
+              768
+            ],
+            [
+              620,
+              780
+            ],
+            [
+              390,
+              844
+            ]
+          ],
+          "motionModes": [
+            "no-preference",
+            "reduce"
+          ]
+        },
+        "requiredAssertions": [
+          "ACTUAL_TAB_BATTLEFIELD",
+          "TRANSIENT_CURSOR_ONLY",
+          "NATIVE_INVALID_AND_LEGAL_MOVE",
+          "NATIVE_TARGET_EXECUTION",
+          "CANCEL_AND_RETURN_FOCUS",
+          "NATIVE_CONTROLS",
+          "POINTER_REGRESSION"
+        ],
+        "output": "tmp/demo/battlefield-0514-native",
+        "receiptPath": "tmp/demo/battlefield-0514-native/qa-job.json",
+        "provenance": {
+          "gitHead": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+          "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+          "sourceDiffSha256": "f8d46b24602c1ea80a618b1b895f6acf8f1133e57c48a7059315480dc843b625",
+          "driver": {
+            "path": "tools/combat-battlefield-keyboard-production-qa.mjs",
+            "sha256": "74be93840d9fafdb1baf70cf05aa6a8621777871de121fcfd4e26d2eb04c98d0"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-3pkMo-Ir.css",
+              "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+            },
+            {
+              "path": "dist/assets/game-JS_oFiz8.js",
+              "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f895fee0579a12a0418dfbb741b610ad6bd8340f992be06e96279a2a75d16d6b"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-08T05:45:59.019Z",
+        "endedAt": "2026-10-08T05:50:56.449Z",
+        "requestMatches": true,
+        "provenanceMatches": true,
+        "matchesCurrentExecution": false,
+        "eligibleForReview": false,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/battlefield-0514-native/results.json",
+        "resultSha256": "2ff46d0c4f11df678f61bbe2f5e5b50c1f413051b7dcd874b6b3cd442907f622",
+        "provenanceStable": true,
+        "resultDigestMatches": true,
+        "matchedAtPrecommitFreeze": false,
+        "freezePath": "tmp/autonomy/final-physical-0514.json",
+        "currentPhysicalInputsMatchFreeze": true,
+        "gitFingerprintRepresentationChangedBySourceCommit": true,
+        "eligibleForReviewAtPrecommitFreeze": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "battlefield-0514-native-v2",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T05:53:21.029Z",
+        "pid": 58600,
+        "port": 5340,
+        "command": [
+          "node",
+          "tools/combat-battlefield-keyboard-production-qa.mjs"
+        ],
+        "parameters": {
+          "viewports": [
+            [
+              1366,
+              768
+            ],
+            [
+              620,
+              780
+            ],
+            [
+              390,
+              844
+            ]
+          ],
+          "motionModes": [
+            "no-preference",
+            "reduce"
+          ]
+        },
+        "requiredAssertions": [
+          "ACTUAL_TAB_BATTLEFIELD",
+          "TRANSIENT_CURSOR_ONLY",
+          "NATIVE_INVALID_AND_LEGAL_MOVE",
+          "NATIVE_TARGET_EXECUTION",
+          "CANCEL_AND_RETURN_FOCUS",
+          "NATIVE_CONTROLS",
+          "POINTER_REGRESSION"
+        ],
+        "output": "tmp/demo/battlefield-0514-native-v2",
+        "receiptPath": "tmp/demo/battlefield-0514-native-v2/qa-job.json",
+        "provenance": {
+          "gitHead": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+          "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+          "sourceDiffSha256": "f8d46b24602c1ea80a618b1b895f6acf8f1133e57c48a7059315480dc843b625",
+          "driver": {
+            "path": "tools/combat-battlefield-keyboard-production-qa.mjs",
+            "sha256": "f728d400be0d5b61fcad1f04983e58883f1cf8381b34c023132d55f4b2a395d6"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-3pkMo-Ir.css",
+              "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+            },
+            {
+              "path": "dist/assets/game-JS_oFiz8.js",
+              "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f895fee0579a12a0418dfbb741b610ad6bd8340f992be06e96279a2a75d16d6b"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_STANDALONE",
+        "startedAt": "2026-10-08T05:53:41.517Z",
+        "endedAt": "2026-10-08T06:14:20.747Z",
+        "requestMatches": true,
+        "provenanceMatches": true,
+        "matchesCurrentExecution": false,
+        "eligibleForReview": false,
+        "exitCode": 0,
+        "resultPath": "tmp/demo/battlefield-0514-native-v2/results.json",
+        "resultSha256": "9b1b853ec3601a2653ca1cd1375215116b1d98b5a14c958acf9e0aa0d58b5d5a",
+        "provenanceStable": true,
+        "resultDigestMatches": true,
+        "matchedAtPrecommitFreeze": true,
+        "freezePath": "tmp/autonomy/final-physical-0514.json",
+        "currentPhysicalInputsMatchFreeze": true,
+        "gitFingerprintRepresentationChangedBySourceCommit": true,
+        "eligibleForReviewAtPrecommitFreeze": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "campaign-0514-first-refuge",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
+        "status": "FAILED",
+        "registeredAt": "2026-10-08T05:53:21.344Z",
+        "pid": 53880,
+        "port": 5341,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "first-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 15,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": null,
+          "priorProofPath": null,
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/campaign-0514-first-refuge",
+        "receiptPath": "tmp/demo/campaign-0514-first-refuge/qa-job.json",
+        "provenance": {
+          "gitHead": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+          "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+          "sourceDiffSha256": "f8d46b24602c1ea80a618b1b895f6acf8f1133e57c48a7059315480dc843b625",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "68e7466e21202dc346b6763ef9bd545718e5aadc73449912ddf10b39e1576ed0"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-3pkMo-Ir.css",
+              "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+            },
+            {
+              "path": "dist/assets/game-JS_oFiz8.js",
+              "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f895fee0579a12a0418dfbb741b610ad6bd8340f992be06e96279a2a75d16d6b"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED; reached iframe diagnostic only",
+        "startedAt": "2026-10-08T05:53:42.534Z",
+        "endedAt": "2026-10-08T06:08:50.720Z",
+        "requestMatches": true,
+        "provenanceMatches": true,
+        "matchesCurrentExecution": false,
+        "eligibleForReview": false,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/campaign-0514-first-refuge/results.json",
+        "resultSha256": "dc7f3e61376d56989d532d86a0a2aec376a23edac8462bf5167057a3b103bd0b",
+        "provenanceStable": true,
+        "resultDigestMatches": true,
+        "matchedAtPrecommitFreeze": true,
+        "freezePath": "tmp/autonomy/final-physical-0514.json",
+        "currentPhysicalInputsMatchFreeze": true,
+        "gitFingerprintRepresentationChangedBySourceCommit": true,
+        "eligibleForReviewAtPrecommitFreeze": false
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0115",
-      "sha": "e68014bc82bf461ae39486e1fae4b1af5d267fdb",
-      "status": "GREEN_LOCAL_PUBLICATION_BLOCKED",
-      "lastSnapshotAt": "2026-10-08T01:14:27.110Z",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0514",
+      "sha": "6edf2749c924ad6912432ba1e8e0d064d78fbb59",
+      "status": "GREEN_SCOPED_NOT_DEMO_COMPLETE",
       "dirtyFiles": [
-        "six preserved deferred files",
-        "pairedstate"
-      ],
-      "lastGreenCheck": "94tests/types/contracts/staging/finalbuild/sixcases/guardianPASS",
-      "finalSnapshotScope": "Final recoverySHA stored in ownedlock and automation memory to avoid recursive snapshot embedding"
-    },
-    "nextAction": "Explicitly approve publication of final local dev checkpoint (SHA in automation memory) and wip/rpgthreejs-auto-dev-90m-20261008T0115 to juniorbattle/RPGThreeJS. Verify owned run0115 lock, finalHEAD, six deferred hashes, named remote dev/WIP and main parity; publish only those refs normally, verify, update state and release owned lock. Do not bypass automatic-review or take young lock. Then mark tableau COMPLETE_SCOPED and resume SCENE-TRANSITION-COPY: audit SceneTransition/GameApp label callers and ATE transition title owners, remove only observed placeholders or use existing authored/no copy; inspect actual production copy with existing runners. Preserve independent council/refugee/exhaustedOS gate, ten Pursuit mappings and exactdeferredDemoTask. No ROAD/CAMPFIRE or compatible tableau rerun.",
-    "runMetrics": {
-      "sourceFilesModified": 2,
-      "sourcePaths": [
-        "src/cinematics/NarrativeSceneSurface.ts",
-        "src/cinematics/NarrativeStage.ts"
-      ],
-      "testFilesModified": 2,
-      "testPaths": [
-        "src/cinematics/NarrativeSceneSurface.test.ts",
-        "src/cinematics/NarrativeStage.test.ts"
-      ],
-      "qaToolsModified": 1,
-      "qaPaths": [
-        "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
-      ],
-      "qaToolsAdded": 0,
-      "proofFilesAdded": 0,
-      "workflowFiles": 4,
-      "workflowPaths": [
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/STATIC_TABLEAU_STAGING_POLISH.md",
-        "docs/autonomy/handoffs/2026-10-08T0032Z-codex-readiness-publication-blocked.md"
+        "docs/autonomy/SCENE_TRANSITION_COPY.md",
+        "docs/autonomy/ENVIRONMENT_NARRATIVE_COHERENCE.md",
+        "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
+        "docs/autonomy/handoffs/2026-10-08T0514Z-codex-copy-keyboard-checkpoint.md",
+        "docs/reports/scene-transition-copy-0514/checks.json",
+        "docs/reports/scene-transition-copy-0514/ailleurs-390-normal.png",
+        "docs/reports/scene-transition-copy-0514/ailleurs-390-os.png",
+        "docs/reports/scene-transition-copy-0514/serpent-620-normal.png",
+        "docs/reports/scene-transition-copy-0514/pendant-1440-normal.png",
+        "docs/reports/battlefield-keyboard-0514/checks.json",
+        "docs/reports/battlefield-keyboard-0514/desktop-inspection.png",
+        "docs/reports/battlefield-keyboard-0514/620-move-cursor.png",
+        "docs/reports/battlefield-keyboard-0514/390-os-inspection.png",
+        "docs/reports/battlefield-keyboard-0514/390-os-target.png",
+        "docs/reports/battlefield-keyboard-0514/campaign-desktop-keyboard-return.png"
       ],
+      "lastSnapshotAt": "2026-10-08T06:08:50.2808343Z",
+      "lastGreenCheck": "88focused/types/contracts/build/immutable; COPY6+keyboard6 scoped; campaignFAILED retained",
+      "snapshotAt": "2026-10-08T06:08:50.2808343Z"
+    },
+    "nextAction": "Read-only preflight and owned lock; inspect BATTLEFIELD_KEYBOARD.md and exact terminal receipts before rerun. Preserve scoped COPY sixcases15scenarios and standalone keyboard6cases accepted evidence; compare final physical freeze after source commits instead of treating changed Git fingerprints as identical. Keep failed campaign-0514-first-refuge NOT_ACCEPTED: reached desktop-normal iframe Tab/cursor/Escape owner/autosave-equality diagnostic only, no earnedrefuge;19actions exhausted15min. Continue product work by measuring submenu/Retour bounds and addressing verified compact-target/focus or OS tactical-motion gaps before fresh campaign QA with existing driver/appropriate bounded target. Retain original deferredDemoTask nextAction and0350/726lineage; no failedoutput seed, further standalone harness rewrite, repeated compatible matrices, canon/media/audio/main or mapping invention. COPY static-only OS-shadow, council/refugee proof, approved Bois-Clair night plate and ten Pursuit mappings remain precise independent blockers; demo incomplete.",
+    "runMetrics": {
+      "sourceFilesModified": 1,
+      "sourcePaths": [
+        "src/styles/app.css"
+      ],
+      "testFilesModified": 0,
+      "existingQAToolsModified": 2,
+      "qaPaths": [
+        "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+        "tools/demo-continuous-production-qa.mjs"
+      ],
+      "inheritedQADriverModified": 1,
+      "qaToolsAdded": 0,
+      "proofFilesAdded": 11,
+      "workflowFiles": 6,
       "inheritedDeferredFiles": 6,
-      "distinctReadOnlyReviewers": 2,
-      "newBrowserScenarios": 1,
-      "browserAttempts": 1,
-      "newRegisteredJobs": 1,
-      "terminalJobs": 1,
-      "failedOutputsUsedAsSeeds": 0,
-      "harnessCorrectionsAfterFailure": 0,
-      "elapsedMinutes": 10.808133333333334,
-      "quotaSavings": "Not measured"
+      "inheritedRuntimeFilesAccepted": 4,
+      "inheritedTestFilesAccepted": 1,
+      "inheritedQARunnerAccepted": 1,
+      "distinctReadOnlyReviewers": 3,
+      "registeredInvocations": 10,
+      "acceptedCopyInvocations": 6,
+      "acceptedCopyScenarios": 15,
+      "acceptedStandaloneKeyboardCases": 6,
+      "campaignFailedInvocations": 1,
+      "harnessCorrections": {
+        "copyCaptureSettle": 1,
+        "standaloneFreshPointer": 1,
+        "campaignPostfailure": 0
+      },
+      "prelaunchGuardianAssertionRepairs": "Actual DEV-helper names and render-metric projection/cursor movement, before execution",
+      "failedSeedsUsed": 0,
+      "reviewCost": "Three distinct read-only reviewers; guardian reused for scoped source/assertions/results/diagnostic boundary. No quota/work-unit savings measured.",
+      "elapsedMinutes": 63.18051666666667
     },
     "checkpointPaths": [
-      "src/cinematics/NarrativeSceneSurface.ts",
-      "src/cinematics/NarrativeStage.ts",
-      "src/cinematics/NarrativeSceneSurface.test.ts",
-      "src/cinematics/NarrativeStage.test.ts",
-      "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/STATIC_TABLEAU_STAGING_POLISH.md",
-      "docs/autonomy/handoffs/2026-10-08T0032Z-codex-readiness-publication-blocked.md"
+      "docs/autonomy/SCENE_TRANSITION_COPY.md",
+      "docs/autonomy/ENVIRONMENT_NARRATIVE_COHERENCE.md",
+      "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
+      "docs/autonomy/handoffs/2026-10-08T0514Z-codex-copy-keyboard-checkpoint.md",
+      "docs/reports/scene-transition-copy-0514/checks.json",
+      "docs/reports/scene-transition-copy-0514/ailleurs-390-normal.png",
+      "docs/reports/scene-transition-copy-0514/ailleurs-390-os.png",
+      "docs/reports/scene-transition-copy-0514/serpent-620-normal.png",
+      "docs/reports/scene-transition-copy-0514/pendant-1440-normal.png",
+      "docs/reports/battlefield-keyboard-0514/checks.json",
+      "docs/reports/battlefield-keyboard-0514/desktop-inspection.png",
+      "docs/reports/battlefield-keyboard-0514/620-move-cursor.png",
+      "docs/reports/battlefield-keyboard-0514/390-os-inspection.png",
+      "docs/reports/battlefield-keyboard-0514/390-os-target.png",
+      "docs/reports/battlefield-keyboard-0514/campaign-desktop-keyboard-return.png"
     ],
     "publication": {
-      "status": "OPERATOR_APPROVED_PUBLISHED_VERIFIED",
-      "productCheckpoint": "02b5b0b89f4e4a4a2839bd60d00252af0b2c37dc",
-      "approvedCheckpoint": "acf5a3441cf798a255a4be41201068ffc888c053",
-      "target": "origin/dev",
-      "wipTarget": "origin/wip/rpgthreejs-auto-dev-90m-20261008T0032",
-      "approvedAt": "2026-10-08T01:14:27.110Z",
-      "approval": "Human oui in originating thread after exact dev/WIP request; prior automatic-review rejections resolved",
-      "mainProtected": true,
-      "finalWorkflowShaRecordedInAutomationMemory": true
+      "status": "SOURCE_CHECKPOINT_LIVE_VERIFIED_FINAL_WORKFLOW_PENDING",
+      "dev": "613bf364679ba03d5126254306772fc69a138612",
+      "wip": {
+        "sha": "6edf2749c924ad6912432ba1e8e0d064d78fbb59",
+        "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0514",
+        "snapshotAt": "2026-10-08T06:08:50.2808343Z"
+      },
+      "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "verifiedAt": "2026-10-08T06:19:24.783Z"
     },
-    "runStartedAt": "2026-10-08T00:32:52.6172396Z",
-    "runEndedAt": "2026-10-08T01:14:27.110Z"
+    "runStartedAt": "2026-10-08T05:16:14.2563835Z",
+    "runEndedAt": "2026-10-08T06:19:25.085Z"
   },
   "previousInterruptedRun": {
     "runId": "rpgthreejs-auto-dev-90m-20261007T2039",
@@ -15191,51 +16310,41 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-08T0012Z-codex-cast-continuity-checkpoint.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-08T0514Z-codex-copy-keyboard-checkpoint.md",
   "runMeasurement": {
     "sourceFilesModified": 1,
-    "testFilesModified": 1,
-    "qaToolsAdded": 0,
-    "qaToolsModifiedExcludingInherited": 0,
-    "proofFilesAdded": 0,
-    "workflowFiles": 4,
-    "inheritedProductFilesCommitted": [
-      "src/cinematics/NarrativePresentationPlans.ts",
-      "src/cinematics/DialogueStagingDirector.test.ts",
-      "src/ui/dialogue-alignment.css",
-      "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+    "sourcePaths": [
+      "src/styles/app.css"
     ],
-    "inheritedDeferredFiles": [
-      "legacy-combat.html",
-      "src/combat/combatKeyboard.test.ts",
-      "src/combat/combatKeyboard.ts",
-      "src/combat/legacyCombatRuntime.js",
-      "src/styles/combat-shell.css",
-      "tools/combat-battlefield-keyboard-production-qa.mjs"
-    ],
-    "inheritedPaths": [
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "legacy-combat.html",
-      "src/cinematics/DialogueStagingDirector.test.ts",
-      "src/cinematics/NarrativePresentationPlans.ts",
-      "src/combat/combatKeyboard.test.ts",
-      "src/combat/combatKeyboard.ts",
-      "src/combat/legacyCombatRuntime.js",
-      "src/styles/combat-shell.css",
-      "src/ui/dialogue-alignment.css",
+    "testFilesModified": 0,
+    "existingQAToolsModified": 2,
+    "qaPaths": [
       "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
-      "tools/combat-battlefield-keyboard-production-qa.mjs"
+      "tools/demo-continuous-production-qa.mjs"
     ],
-    "distinctReviewers": 2,
-    "browserScenarios": 1,
-    "browserAttempts": 1,
-    "harnessCorrections": 0,
+    "inheritedQADriverModified": 1,
+    "qaToolsAdded": 0,
+    "proofFilesAdded": 11,
+    "workflowFiles": 6,
+    "inheritedDeferredFiles": 6,
+    "inheritedRuntimeFilesAccepted": 4,
+    "inheritedTestFilesAccepted": 1,
+    "inheritedQARunnerAccepted": 1,
+    "distinctReadOnlyReviewers": 3,
+    "registeredInvocations": 10,
+    "acceptedCopyInvocations": 6,
+    "acceptedCopyScenarios": 15,
+    "acceptedStandaloneKeyboardCases": 6,
+    "campaignFailedInvocations": 1,
+    "harnessCorrections": {
+      "copyCaptureSettle": 1,
+      "standaloneFreshPointer": 1,
+      "campaignPostfailure": 0
+    },
+    "prelaunchGuardianAssertionRepairs": "Actual DEV-helper names and render-metric projection/cursor movement, before execution",
     "failedSeedsUsed": 0,
-    "trackedProofPromoted": 0,
-    "reviewCost": "Two distinct reviewers, reused for exact design/diff/captures/decode correction; work-unit/quota savings not measured",
-    "endedAt": "2026-10-08T00:26:57.803Z",
-    "elapsedMinutes": 13.59595
+    "reviewCost": "Three distinct read-only reviewers; guardian reused for scoped source/assertions/results/diagnostic boundary. No quota/work-unit savings measured.",
+    "elapsedMinutes": 63.18051666666667
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -15378,57 +16487,10 @@
     }
   },
   "uncommittedWork": {
-    "reason": "Exactly six inherited deferred battlefield files remain unstaged after checkpoint; hashes/exact deferred action retained.",
-    "files": [
-      {
-        "path": "legacy-combat.html",
-        "gitBlob": "1a49cd0e44116fd215d34bb448e89943736908c6"
-      },
-      {
-        "path": "src/combat/combatKeyboard.test.ts",
-        "gitBlob": "ea17c82429b377811937c3e226fd8cafcf706922"
-      },
-      {
-        "path": "src/combat/combatKeyboard.ts",
-        "gitBlob": "c8c41388618805fc92baee138aec17d5c94112df"
-      },
-      {
-        "path": "src/combat/legacyCombatRuntime.js",
-        "gitBlob": "e4c8dfe9c1ce0caf2f0f1a9d2cb08d93034707f2"
-      },
-      {
-        "path": "src/styles/combat-shell.css",
-        "gitBlob": "ae9d24d6f1dea23c99dff938235ba6fcca458f16"
-      },
-      {
-        "path": "tools/combat-battlefield-keyboard-production-qa.mjs",
-        "gitBlob": "bfd2cd6a3f81e4d67645dabf29cc7c93ddd50321"
-      }
-    ],
-    "snapshot": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0012",
-      "sha": "cf2b7c89d0a5f5ff16bb177e7ed4caf6e1f38813",
-      "status": "REMOTE_PUBLISHED_RECOVERY_FOR_SIX_UNCHANGED_DEFERRED_BLOBS",
-      "dirtyFiles": [
-        "legacy-combat.html",
-        "src/combat/combatKeyboard.test.ts",
-        "src/combat/combatKeyboard.ts",
-        "src/combat/legacyCombatRuntime.js",
-        "src/styles/combat-shell.css",
-        "tools/combat-battlefield-keyboard-production-qa.mjs"
-      ],
-      "lastGreenCheck": "81focused tests/types/contracts/staging/build PASS; transition browser OPEN",
-      "lastSnapshotAt": "2026-10-08T00:26:12.162Z"
-    },
-    "currentFiles": [
-      "legacy-combat.html",
-      "src/combat/combatKeyboard.test.ts",
-      "src/combat/combatKeyboard.ts",
-      "src/combat/legacyCombatRuntime.js",
-      "src/styles/combat-shell.css",
-      "tools/combat-battlefield-keyboard-production-qa.mjs"
-    ],
-    "preservation": "Exact six original physical hashes/Git blobs and deferredDemoTask verified against tmp/autonomy/baseline-0012.json"
+    "reason": "Six inherited paths accepted at standalone scope and committed; broader campaign/accessibility gates remain open without deleting exact archived deferred task",
+    "files": [],
+    "preservation": "Original deferredDemoTask and139jobs exact; source five blobs unchanged, inherited QA driver has reviewed actual-helper and one fresh native pointer correction",
+    "sourceCheckpoint": "613bf364679ba03d5126254306772fc69a138612"
   },
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
@@ -15449,27 +16511,11 @@
   "productionFocus": {
     "decisionId": "OD-2026-10-04-A",
     "sourceFilesModified": [
-      "src/cinematics/NarrativeTableau.ts",
-      "src/journey/JourneyPresentationResolver.ts",
-      "src/journey/JourneyCampaignBoundary.ts",
       "src/styles/app.css"
     ],
-    "qaFilesAdded": [],
-    "proofFilesAdded": [
-      "docs/reports/traversal-road-elements-completion/checks.json",
-      "docs/reports/traversal-road-elements-completion/selected-1.png",
-      "docs/reports/traversal-road-elements-completion/selected-2.png",
-      "docs/reports/traversal-road-elements-completion/selected-3.png"
-    ],
-    "workflowFilesChanged": [
-      "AGENTS.md",
-      ".agents/skills/autonomy-handoff/SKILL.md",
-      ".agents/skills/qa-evidence/SKILL.md",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/PRODUCTION_FOCUS_OPERATOR_DECISION_2026-10-04.md",
-      "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
-      "docs/autonomy/RECURRING_RUN_PROMPT.md",
-      "docs/autonomy/TRAVERSAL_ROAD_ELEMENTS.md"
+    "qaFilesModified": [
+      "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+      "tools/demo-continuous-production-qa.mjs"
     ],
     "inheritedDeferredFiles": [
       "legacy-combat.html",
@@ -15479,24 +16525,33 @@
       "src/styles/combat-shell.css",
       "tools/combat-battlefield-keyboard-production-qa.mjs"
     ],
-    "qaToolJustification": null,
-    "oneSmokePerRun": true,
+    "qaFilesAdded": [],
+    "proofFilesAdded": [
+      "docs/reports/scene-transition-copy-0514/checks.json",
+      "docs/reports/scene-transition-copy-0514/ailleurs-390-normal.png",
+      "docs/reports/scene-transition-copy-0514/ailleurs-390-os.png",
+      "docs/reports/scene-transition-copy-0514/serpent-620-normal.png",
+      "docs/reports/scene-transition-copy-0514/pendant-1440-normal.png",
+      "docs/reports/battlefield-keyboard-0514/checks.json",
+      "docs/reports/battlefield-keyboard-0514/desktop-inspection.png",
+      "docs/reports/battlefield-keyboard-0514/620-move-cursor.png",
+      "docs/reports/battlefield-keyboard-0514/390-os-inspection.png",
+      "docs/reports/battlefield-keyboard-0514/390-os-target.png",
+      "docs/reports/battlefield-keyboard-0514/campaign-desktop-keyboard-return.png"
+    ],
+    "workflowFilesChanged": [
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/SCENE_TRANSITION_COPY.md",
+      "docs/autonomy/ENVIRONMENT_NARRATIVE_COHERENCE.md",
+      "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
+      "docs/autonomy/handoffs/2026-10-08T0514Z-codex-copy-keyboard-checkpoint.md"
+    ],
+    "qaToolJustification": "No new persistent QA tool. Existing inherited battlefield runner receives one prelaunch actual DEV-helper-name fix and one postfailure fresh native pointer-scenario correction; archer1AP must not be refilled. Existing earned campaign runner adds native Tab/cursor/Escape observation only first genuinely fresh battle; it preserves complete gameplay (render diagnostics excluded), ownerV6 and autosave equality. Existing registration/receipts/provenance reused.",
     "broadQAOnlyAtMilestones": true,
+    "oneSmokePerRun": "COPY smoke then completion matrix; resumed keyboard item initial smoke/correction then milestone matrix; sensitive fresh campaign boundary attempted once",
     "snapshotMaxMinutes": 15,
-    "externalPursuitBlocker": "Ten windows without eligible authored canonical mappings; operator owns decision; no new runs for this blocker",
-    "receiptAudit": "tmp/traversal/production-focus-0511-audit/audit.json",
-    "sourceTestFilesModified": [
-      "src/journey/JourneyCampaignBoundary.test.ts"
-    ],
-    "acceptedRoadQaSet": "road-completion-0137",
-    "metricsScope": "This run only; inherited six keyboard files excluded; runtime source separate from focused test",
-    "qaFilesModified": [
-      "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
-    ],
-    "harnessCorrections": 1,
-    "harnessCorrection": "Allow video-attempt absence only for final-refuge-story when nonempty recorded surfaces all static, not played, OS reduced true/game false; active-video and all video assertions retained",
-    "nativeSmokeJustification": "Existing route runner never activates final-refuge onward and already used its single assertion correction; one ignored manual Playwright smoke supplements the matching six-case receipts without changing any QA driver.",
-    "councilHarnessCorrectionsUsed": 1
+    "externalPursuitBlocker": "Ten authored canonical mappings missing; not retried"
   },
   "previousRun": {
     "runId": "rpgthreejs-auto-dev-90m-20261007T1907",
@@ -15511,20 +16566,39 @@
     "nextAction": "Run existing witnesses-protected normal-motion production opening proof; independently observe refugee transaction acknowledgements and wider static-only OS acceptance before task milestone"
   },
   "runStatistics": {
-    "runtimeFilesModified": 1,
-    "testFilesModified": 1,
-    "existingQAToolsModified": 1,
-    "newPersistentQATools": 0,
-    "promotedProofFiles": 5,
-    "workflowFiles": 4,
+    "sourceFilesModified": 1,
+    "sourcePaths": [
+      "src/styles/app.css"
+    ],
+    "testFilesModified": 0,
+    "existingQAToolsModified": 2,
+    "qaPaths": [
+      "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+      "tools/demo-continuous-production-qa.mjs"
+    ],
+    "inheritedQADriverModified": 1,
+    "qaToolsAdded": 0,
+    "proofFilesAdded": 11,
+    "workflowFiles": 6,
     "inheritedDeferredFiles": 6,
-    "distinctReviewers": 2,
-    "registeredInvocations": 18,
-    "finalAcceptedInvocations": 6,
-    "finalAcceptedScenarios": 18,
-    "environmentCorrections": 1,
-    "assertionCorrections": 0,
-    "failedSeedsUsed": 0
+    "inheritedRuntimeFilesAccepted": 4,
+    "inheritedTestFilesAccepted": 1,
+    "inheritedQARunnerAccepted": 1,
+    "distinctReadOnlyReviewers": 3,
+    "registeredInvocations": 10,
+    "acceptedCopyInvocations": 6,
+    "acceptedCopyScenarios": 15,
+    "acceptedStandaloneKeyboardCases": 6,
+    "campaignFailedInvocations": 1,
+    "harnessCorrections": {
+      "copyCaptureSettle": 1,
+      "standaloneFreshPointer": 1,
+      "campaignPostfailure": 0
+    },
+    "prelaunchGuardianAssertionRepairs": "Actual DEV-helper names and render-metric projection/cursor movement, before execution",
+    "failedSeedsUsed": 0,
+    "reviewCost": "Three distinct read-only reviewers; guardian reused for scoped source/assertions/results/diagnostic boundary. No quota/work-unit savings measured.",
+    "elapsedMinutes": 63.18051666666667
   },
-  "qaToolingJustification": "Existing route runner verifies all scenarios but has no own terminal receipt. Ignored owner supervisor only registers existing-runner jobs and records reliable child PID/start/exit/digests; no new scenario/assertion tool and no driver-worker receipt claim. Original register/sync helpers reused for provenance; inherited121jobs untouched."
+  "qaToolingJustification": "No new persistent QA tool. Existing inherited battlefield runner receives one prelaunch actual DEV-helper-name fix and one postfailure fresh native pointer-scenario correction; archer1AP must not be refilled. Existing earned campaign runner adds native Tab/cursor/Escape observation only first genuinely fresh battle; it preserves complete gameplay (render diagnostics excluded), ownerV6 and autosave equality. Existing registration/receipts/provenance reused."
 }

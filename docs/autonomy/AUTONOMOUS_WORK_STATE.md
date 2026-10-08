@@ -1,38 +1,42 @@
 # Autonomous work state
 
-CURRENT FACT — Tableau runtime milestone ACCEPTED_SCOPED locally; status BLOCKED_BY_PUBLICATION_APPROVAL. Demo incomplete.
+CURRENT FACT — COPY captions and native standalone keyboard scoped PASS; full COPY/ENV/campaign/demo gates remain open. Run rpgthreejs-auto-dev-90m-20261008T0514, source caption 39217b94b9d00e0b8f7fffc4c99e8a9a9170f573, keyboard 613bf364679ba03d5126254306772fc69a138612; dev.
 
-| Field | Value |
-| --- | --- |
-| runId | rpgthreejs-auto-dev-90m-20261008T0115 |
-| runStartedAt | 2026-10-08T01:17:26.835Z |
-| runEndedAt | 2026-10-08T01:42:38.951Z |
-| activeTask | STATIC-TABLEAU-STAGING-POLISH |
-| activePhase | Runtime tableau milestone accepted locally; exact dev/WIP publication blocked |
-| activeSubtask | Publish verified local checkpoint and recovery snapshot after explicit approval, then SCENE-TRANSITION-COPY |
-| workingBranch | dev |
-| verified source | e92dbffcb38457b027081fe8948acc9234c13060 |
-| last verified remote dev | 70265e0e46e00c6020a76d24b1815936db6a5b45 |
+Active task: DEMO-QA-POLISH: continuous earned campaign beyond first refuge. Active subtask: Finish inherited battlefield campaign integration and native campaign acceptance.
 
 ## Exact next action
 
-Explicitly approve publication of final local dev checkpoint (SHA in automation memory) and wip/rpgthreejs-auto-dev-90m-20261008T0115 to juniorbattle/RPGThreeJS. Verify owned run0115 lock, finalHEAD, six deferred hashes, named remote dev/WIP and main parity; publish only those refs normally, verify, update state and release owned lock. Do not bypass automatic-review or take young lock. Then mark tableau COMPLETE_SCOPED and resume SCENE-TRANSITION-COPY: audit SceneTransition/GameApp label callers and ATE transition title owners, remove only observed placeholders or use existing authored/no copy; inspect actual production copy with existing runners. Preserve independent council/refugee/exhaustedOS gate, ten Pursuit mappings and exactdeferredDemoTask. No ROAD/CAMPFIRE or compatible tableau rerun.
+Read-only preflight and owned lock; inspect BATTLEFIELD_KEYBOARD.md and exact terminal receipts before rerun. Preserve scoped COPY sixcases15scenarios and standalone keyboard6cases accepted evidence; compare final physical freeze after source commits instead of treating changed Git fingerprints as identical. Keep failed campaign-0514-first-refuge NOT_ACCEPTED: reached desktop-normal iframe Tab/cursor/Escape owner/autosave-equality diagnostic only, no earnedrefuge;19actions exhausted15min. Continue product work by measuring submenu/Retour bounds and addressing verified compact-target/focus or OS tactical-motion gaps before fresh campaign QA with existing driver/appropriate bounded target. Retain original deferredDemoTask nextAction and0350/726lineage; no failedoutput seed, further standalone harness rewrite, repeated compatible matrices, canon/media/audio/main or mapping invention. COPY static-only OS-shadow, council/refugee proof, approved Bois-Clair night plate and ten Pursuit mappings remain precise independent blockers; demo incomplete.
 
-## Accepted scope and limits
+## Takeover and preservation
 
-94focused5files/types/8contracts8slots/staging75dialogues257steps282runtime/finalbuild game-CfgYCJPb.js/game-BZH7FiGl.css/eightMP4/whitespace/immutable PASS. Six final cases1440/620/390 normal and OS-only:18scenario passes. Native opening4/2/4 retains actors/facing and restores nextfocus; village firsttableau/restage/nativechoice civilian separation; Serpent stablealliance/settledtext/programmaticfocus. Root inspected final captures at all widths; guardian READY_TO_CLOSE_SCOPED. Maelor390 defect corrected despite v2machinePASS. Four inspected images plus [compact proof](../reports/static-tableau-staging-polish-0115/checks.json) selected.
+Old0115lock safely taken over after105min/idlewriter/no associatedQA; archived stale lock. Old exact dev6bcc566/WIP94c3330 were already remote; no publication retried or future authority inferred. Unrelated5173servers preserved. Exact deferredDemoTask/pendingNarrativeTask/original139jobs unchanged. Five inherited runtime/test blobs unchanged; sixth inherited driver receives reviewed helper-name and one native fresh pointer correction. No canon/LOCKED/save schema/media/audio/main change.
 
-Fixture village/Serpent outcomes are not earnedcampaign/balance/fullV6/demo proof. OS alternative has no sampled actor animations; no OSfade claim. Physical build includes six unchanged unaccepted deferred keyboard files excluded from sourcecommit. Direct CLI fallback used because npm wrapper missing/esbuild sandbox blocked. Initial6jobs invalidURL beforegame; one environment correction only. V2sixjobs remain unaccepted pre-correction; final6accepted with exact hashes.
+## Verification and boundaries
 
-## Preservation and publication
+49focused SceneTransition8/DialogueView10/contextualDialogue31 PASS
 
-121priorjobs, exactdeferredDemoTask and pendingNarrativeTask unchanged; 139total. Six deferred physical hashes exact. Council/refugee/exhaustedOS gate and tenPursuit mappings preserved. Unrelated5173untouched; owned5326–5331ports closed/no QAprocess. No canon/LOCKED/generated/media/audio/V6truth/main changes.
+39focused combatKeyboard19/deploymentRules3/protocol17 PASS
 
-Automatic-review rejected WIPpush because remote trust/exact payload authorization insufficient. No workaround or publication retry. Local source/snapshots retained; final dev/WIP SHA in automation memory. Lock retained until explicitly approved publication/parity.
+Direct tsc --noEmit PASS
 
-Counts excluding inherited:1runtime+1test+1existingQAmodified,0newpersistentQA,5proof,4workflow;2reviewers reused. Existing route runner verifies all scenarios but has no own terminal receipt. Ignored owner supervisor only registers existing-runner jobs and records reliable child PID/start/exit/digests; no new scenario/assertion tool and no driver-worker receipt claim. Original register/sync helpers reused for provenance; inherited121jobs untouched. No quota-saving claim.
+8LOCKED contracts/8video slots validator PASS; protected gates empty
 
-[Task record](STATIC_TABLEAU_STAGING_POLISH.md). [Handoff](handoffs/2026-10-08T0115Z-codex-tableau-milestone-publication-blocked.md).
+Production Vite build PASS: game-JS_oFiz8.js/game-3pkMo-Ir.css,combat-DSUtGYdZ.js,8MP4
+
+git diff --check and immutable exact baseline gate PASS
+
+COPY6finalcases15scenarios ACCEPTED_SCOPED_COPY
+
+Standalone keyboard6cases ACCEPTED_SCOPED_STANDALONE; native pointer uses own fresh battle
+
+Fresh campaign15min FAILED_NOT_ACCEPTED after19nativeactions; reached iframe keyboard diagnostic verified separately
+
+Three read-only reviewers, reused guardian; selected captures inspected. Four caption PNGs and four keyboard PNGs plus one fresh iframe diagnostic are selected with compact checks. Frozen physical inputs remain exact after source commits; changed Git fingerprints are not relabelled as identical. No failed seed or new persistent QA tool.
+
+Counts excluding inherited:1runtime,0tests,2existing QA tools modified plus1inherited driver corrected,11proof files,6workflow files;6inherited paths separately accepted at standalone scope. Demo incomplete.
+
+Handoff: docs/autonomy/handoffs/2026-10-08T0514Z-codex-copy-keyboard-checkpoint.md. Source refs identify source checkpoint; final workflow HEAD/parity in automation memory.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -176,4 +180,14 @@ Counts excluding inherited:1runtime+1test+1existingQAmodified,0newpersistentQA,5
 - tableau-0115-v3-620-os: SUCCEEDED; port 5329; receipt `tmp/cinematics/tableau-0115-v3-620-os/qa-job.json`; ACCEPTED_SCOPED_TABLEAU_MILESTONE
 - tableau-0115-v3-1440-normal: SUCCEEDED; port 5330; receipt `tmp/cinematics/tableau-0115-v3-1440-normal/qa-job.json`; ACCEPTED_SCOPED_TABLEAU_MILESTONE
 - tableau-0115-v3-1440-os: SUCCEEDED; port 5331; receipt `tmp/cinematics/tableau-0115-v3-1440-os/qa-job.json`; ACCEPTED_SCOPED_TABLEAU_MILESTONE
+- copy-0514-390-normal: SUCCEEDED; port 5332; receipt `tmp/cinematics/copy-0514-390-normal/qa-job.json`; NOT_ACCEPTED
+- copy-0514-v2-390-normal: SUCCEEDED; port 5332; receipt `tmp/cinematics/copy-0514-v2-390-normal/qa-job.json`; ACCEPTED_SCOPED_COPY
+- copy-0514-v2-390-os: SUCCEEDED; port 5333; receipt `tmp/cinematics/copy-0514-v2-390-os/qa-job.json`; ACCEPTED_SCOPED_COPY
+- copy-0514-v2-620-normal: SUCCEEDED; port 5334; receipt `tmp/cinematics/copy-0514-v2-620-normal/qa-job.json`; ACCEPTED_SCOPED_COPY
+- copy-0514-v2-620-os: SUCCEEDED; port 5335; receipt `tmp/cinematics/copy-0514-v2-620-os/qa-job.json`; ACCEPTED_SCOPED_COPY
+- copy-0514-v2-1440-normal: SUCCEEDED; port 5336; receipt `tmp/cinematics/copy-0514-v2-1440-normal/qa-job.json`; ACCEPTED_SCOPED_COPY
+- copy-0514-v2-1440-os: SUCCEEDED; port 5337; receipt `tmp/cinematics/copy-0514-v2-1440-os/qa-job.json`; ACCEPTED_SCOPED_COPY
+- battlefield-0514-native: FAILED; port 5340; receipt `tmp/demo/battlefield-0514-native/qa-job.json`; NOT_ACCEPTED
+- battlefield-0514-native-v2: SUCCEEDED; port 5340; receipt `tmp/demo/battlefield-0514-native-v2/qa-job.json`; ACCEPTED_SCOPED_STANDALONE
+- campaign-0514-first-refuge: FAILED; port 5341; receipt `tmp/demo/campaign-0514-first-refuge/qa-job.json`; NOT_ACCEPTED; reached iframe diagnostic only
 <!-- QA_JOBS_END -->

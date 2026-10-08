@@ -1,0 +1,3209 @@
+{
+  "schemaVersion": 1,
+  "task": "NATIVE_BATTLEFIELD_KEYBOARD",
+  "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
+  "recordedAt": "2026-10-08T06:15:15.099Z",
+  "baseline": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+  "status": "ACCEPTED_SCOPED_STANDALONE",
+  "runtimeAuthorityChanged": false,
+  "canonChanged": false,
+  "saveSchemaChanged": false,
+  "campaignAcceptance": false,
+  "mechanical": "88focused6files/types/8contracts8slots/build/whitespace/immutablePASS",
+  "standalone": {
+    "jobId": "battlefield-0514-native-v2",
+    "receipt": {
+      "schemaVersion": 1,
+      "jobId": "battlefield-0514-native-v2",
+      "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
+      "status": "SUCCEEDED",
+      "startedAt": "2026-10-08T05:53:41.517Z",
+      "endedAt": "2026-10-08T06:14:20.747Z",
+      "pid": 58600,
+      "port": 5340,
+      "output": "tmp/demo/battlefield-0514-native-v2",
+      "command": [
+        "node",
+        "tools/combat-battlefield-keyboard-production-qa.mjs"
+      ],
+      "parameters": {
+        "viewports": [
+          [
+            1366,
+            768
+          ],
+          [
+            620,
+            780
+          ],
+          [
+            390,
+            844
+          ]
+        ],
+        "motionModes": [
+          "no-preference",
+          "reduce"
+        ]
+      },
+      "requiredAssertions": [
+        "ACTUAL_TAB_BATTLEFIELD",
+        "TRANSIENT_CURSOR_ONLY",
+        "NATIVE_INVALID_AND_LEGAL_MOVE",
+        "NATIVE_TARGET_EXECUTION",
+        "CANCEL_AND_RETURN_FOCUS",
+        "NATIVE_CONTROLS",
+        "POINTER_REGRESSION"
+      ],
+      "provenance": {
+        "gitHead": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+        "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+        "sourceDiffSha256": "f8d46b24602c1ea80a618b1b895f6acf8f1133e57c48a7059315480dc843b625",
+        "driver": {
+          "path": "tools/combat-battlefield-keyboard-production-qa.mjs",
+          "sha256": "f728d400be0d5b61fcad1f04983e58883f1cf8381b34c023132d55f4b2a395d6"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-3pkMo-Ir.css",
+            "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+          },
+          {
+            "path": "dist/assets/game-JS_oFiz8.js",
+            "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "f895fee0579a12a0418dfbb741b610ad6bd8340f992be06e96279a2a75d16d6b"
+          }
+        ]
+      },
+      "acceptance": "NOT_ACCEPTED",
+      "provenanceStable": true,
+      "exitCode": 0,
+      "resultPath": "tmp/demo/battlefield-0514-native-v2/results.json",
+      "resultSha256": "9b1b853ec3601a2653ca1cd1375215116b1d98b5a14c958acf9e0aa0d58b5d5a"
+    },
+    "resultSha256": "9b1b853ec3601a2653ca1cd1375215116b1d98b5a14c958acf9e0aa0d58b5d5a",
+    "errors": [],
+    "cases": [
+      {
+        "width": 1366,
+        "height": 768,
+        "reducedMotion": "no-preference",
+        "motion": {
+          "os": false,
+          "game": false
+        },
+        "checks": [
+          "Native manual keyboard deployment/removal",
+          "Actual Tab/Shift+Tab canvas entry/exit with visible focus",
+          "Grid edges/arrows preserve all tactical truth",
+          "Canvas inspection Enter/Space never ends a turn",
+          "Origin-cell Enter cannot move or spend AP",
+          "Escape restores enabled dock focus",
+          "Legal native move restores dock focus",
+          "Exactly one native reachable move",
+          "Native attack Enter opens submenu only",
+          "Retour restores dock focus",
+          "Native attack Space opens submenu only",
+          "Retour restores dock focus",
+          "Invalid target Enter does not resolve/spend AP",
+          "Target Escape restores native attack focus",
+          "Native target execution restores enabled dock",
+          "Native legal foe target resolves once",
+          "Pointer target resolves through shared native activation",
+          "Native Wait advances one turn"
+        ],
+        "inputCount": 133,
+        "target": {
+          "cell": {
+            "gx": 6,
+            "gz": 0
+          },
+          "spec": {
+            "key": "attack",
+            "ap": 1
+          },
+          "before": {
+            "mode": "target",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 0,
+            "active": {
+              "id": 9,
+              "gx": 4,
+              "gz": 2,
+              "ap": 1,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 9,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 1,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "combat-battlefield"
+          },
+          "after": {
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 1,
+            "active": {
+              "id": 9,
+              "gx": 4,
+              "gz": 2,
+              "ap": 0,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 64,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 9,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "skill"
+          }
+        },
+        "pointerMethod": "FRESH_STANDALONE_NATIVE_AUTO_START_MOVE_ATTACK",
+        "pointer": {
+          "before": {
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 0,
+            "active": {
+              "id": 8,
+              "gx": 4,
+              "gz": 2,
+              "ap": 1,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 5,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 1,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "combat-battlefield"
+          },
+          "after": {
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 1,
+            "active": {
+              "id": 8,
+              "gx": 4,
+              "gz": 2,
+              "ap": 0,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 62,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 5,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "combat-battlefield"
+          },
+          "cost": 1,
+          "cell": {
+            "gx": 6,
+            "gz": 0
+          }
+        },
+        "pass": true
+      },
+      {
+        "width": 1366,
+        "height": 768,
+        "reducedMotion": "reduce",
+        "motion": {
+          "os": true,
+          "game": false
+        },
+        "checks": [
+          "Native manual keyboard deployment/removal",
+          "Actual Tab/Shift+Tab canvas entry/exit with visible focus",
+          "Grid edges/arrows preserve all tactical truth",
+          "Canvas inspection Enter/Space never ends a turn",
+          "Origin-cell Enter cannot move or spend AP",
+          "Escape restores enabled dock focus",
+          "Legal native move restores dock focus",
+          "Exactly one native reachable move",
+          "Native attack Enter opens submenu only",
+          "Retour restores dock focus",
+          "Native attack Space opens submenu only",
+          "Retour restores dock focus",
+          "Invalid target Enter does not resolve/spend AP",
+          "Target Escape restores native attack focus",
+          "Native target execution restores enabled dock",
+          "Native legal foe target resolves once",
+          "Pointer target resolves through shared native activation",
+          "Native Wait advances one turn"
+        ],
+        "inputCount": 133,
+        "target": {
+          "cell": {
+            "gx": 6,
+            "gz": 0
+          },
+          "spec": {
+            "key": "attack",
+            "ap": 1
+          },
+          "before": {
+            "mode": "target",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 0,
+            "active": {
+              "id": 9,
+              "gx": 4,
+              "gz": 2,
+              "ap": 1,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 9,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 1,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "combat-battlefield"
+          },
+          "after": {
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 1,
+            "active": {
+              "id": 9,
+              "gx": 4,
+              "gz": 2,
+              "ap": 0,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 55,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 9,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "skill"
+          }
+        },
+        "pointerMethod": "FRESH_STANDALONE_NATIVE_AUTO_START_MOVE_ATTACK",
+        "pointer": {
+          "before": {
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 0,
+            "active": {
+              "id": 8,
+              "gx": 4,
+              "gz": 2,
+              "ap": 1,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 5,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 1,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "combat-battlefield"
+          },
+          "after": {
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 1,
+            "active": {
+              "id": 8,
+              "gx": 4,
+              "gz": 2,
+              "ap": 0,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 62,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 5,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "combat-battlefield"
+          },
+          "cost": 1,
+          "cell": {
+            "gx": 6,
+            "gz": 0
+          }
+        },
+        "pass": true
+      },
+      {
+        "width": 620,
+        "height": 780,
+        "reducedMotion": "no-preference",
+        "motion": {
+          "os": false,
+          "game": false
+        },
+        "checks": [
+          "Native manual keyboard deployment/removal",
+          "Actual Tab/Shift+Tab canvas entry/exit with visible focus",
+          "Grid edges/arrows preserve all tactical truth",
+          "Canvas inspection Enter/Space never ends a turn",
+          "Origin-cell Enter cannot move or spend AP",
+          "Escape restores enabled dock focus",
+          "Legal native move restores dock focus",
+          "Exactly one native reachable move",
+          "Native attack Enter opens submenu only",
+          "Retour restores dock focus",
+          "Native attack Space opens submenu only",
+          "Retour restores dock focus",
+          "Invalid target Enter does not resolve/spend AP",
+          "Target Escape restores native attack focus",
+          "Native target execution restores enabled dock",
+          "Native legal foe target resolves once",
+          "Pointer target resolves through shared native activation",
+          "Native Wait advances one turn"
+        ],
+        "inputCount": 133,
+        "target": {
+          "cell": {
+            "gx": 6,
+            "gz": 0
+          },
+          "spec": {
+            "key": "attack",
+            "ap": 1
+          },
+          "before": {
+            "mode": "target",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 0,
+            "active": {
+              "id": 9,
+              "gx": 4,
+              "gz": 2,
+              "ap": 1,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 9,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 1,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "combat-battlefield"
+          },
+          "after": {
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 1,
+            "active": {
+              "id": 9,
+              "gx": 4,
+              "gz": 2,
+              "ap": 0,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 64,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 9,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "skill"
+          }
+        },
+        "pointerMethod": "FRESH_STANDALONE_NATIVE_AUTO_START_MOVE_ATTACK",
+        "pointer": {
+          "before": {
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 0,
+            "active": {
+              "id": 8,
+              "gx": 4,
+              "gz": 2,
+              "ap": 1,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 5,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 1,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "combat-battlefield"
+          },
+          "after": {
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 1,
+            "active": {
+              "id": 8,
+              "gx": 4,
+              "gz": 2,
+              "ap": 0,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 62,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 5,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "combat-battlefield"
+          },
+          "cost": 1,
+          "cell": {
+            "gx": 6,
+            "gz": 0
+          }
+        },
+        "pass": true
+      },
+      {
+        "width": 620,
+        "height": 780,
+        "reducedMotion": "reduce",
+        "motion": {
+          "os": true,
+          "game": false
+        },
+        "checks": [
+          "Native manual keyboard deployment/removal",
+          "Actual Tab/Shift+Tab canvas entry/exit with visible focus",
+          "Grid edges/arrows preserve all tactical truth",
+          "Canvas inspection Enter/Space never ends a turn",
+          "Origin-cell Enter cannot move or spend AP",
+          "Escape restores enabled dock focus",
+          "Legal native move restores dock focus",
+          "Exactly one native reachable move",
+          "Native attack Enter opens submenu only",
+          "Retour restores dock focus",
+          "Native attack Space opens submenu only",
+          "Retour restores dock focus",
+          "Invalid target Enter does not resolve/spend AP",
+          "Target Escape restores native attack focus",
+          "Native target execution restores enabled dock",
+          "Native legal foe target resolves once",
+          "Pointer target resolves through shared native activation",
+          "Native Wait advances one turn"
+        ],
+        "inputCount": 133,
+        "target": {
+          "cell": {
+            "gx": 6,
+            "gz": 0
+          },
+          "spec": {
+            "key": "attack",
+            "ap": 1
+          },
+          "before": {
+            "mode": "target",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 0,
+            "active": {
+              "id": 9,
+              "gx": 4,
+              "gz": 2,
+              "ap": 1,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 9,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 1,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "combat-battlefield"
+          },
+          "after": {
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 1,
+            "active": {
+              "id": 9,
+              "gx": 4,
+              "gz": 2,
+              "ap": 0,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 63,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 9,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "skill"
+          }
+        },
+        "pointerMethod": "FRESH_STANDALONE_NATIVE_AUTO_START_MOVE_ATTACK",
+        "pointer": {
+          "before": {
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 0,
+            "active": {
+              "id": 8,
+              "gx": 4,
+              "gz": 2,
+              "ap": 1,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 5,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 1,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "combat-battlefield"
+          },
+          "after": {
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 1,
+            "active": {
+              "id": 8,
+              "gx": 4,
+              "gz": 2,
+              "ap": 0,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 62,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 5,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "combat-battlefield"
+          },
+          "cost": 1,
+          "cell": {
+            "gx": 6,
+            "gz": 0
+          }
+        },
+        "pass": true
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "reducedMotion": "no-preference",
+        "motion": {
+          "os": false,
+          "game": false
+        },
+        "checks": [
+          "Native manual keyboard deployment/removal",
+          "Actual Tab/Shift+Tab canvas entry/exit with visible focus",
+          "Grid edges/arrows preserve all tactical truth",
+          "Canvas inspection Enter/Space never ends a turn",
+          "Origin-cell Enter cannot move or spend AP",
+          "Escape restores enabled dock focus",
+          "Legal native move restores dock focus",
+          "Exactly one native reachable move",
+          "Native attack Enter opens submenu only",
+          "Retour restores dock focus",
+          "Native attack Space opens submenu only",
+          "Retour restores dock focus",
+          "Invalid target Enter does not resolve/spend AP",
+          "Target Escape restores native attack focus",
+          "Native target execution restores enabled dock",
+          "Native legal foe target resolves once",
+          "Pointer target resolves through shared native activation",
+          "Native Wait advances one turn"
+        ],
+        "inputCount": 135,
+        "target": {
+          "cell": {
+            "gx": 6,
+            "gz": 0
+          },
+          "spec": {
+            "key": "attack",
+            "ap": 1
+          },
+          "before": {
+            "mode": "target",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 0,
+            "active": {
+              "id": 9,
+              "gx": 4,
+              "gz": 2,
+              "ap": 1,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 9,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 1,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "combat-battlefield"
+          },
+          "after": {
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 1,
+            "active": {
+              "id": 9,
+              "gx": 4,
+              "gz": 2,
+              "ap": 0,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 62,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 9,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "skill"
+          }
+        },
+        "pointerMethod": "FRESH_STANDALONE_NATIVE_AUTO_START_MOVE_ATTACK",
+        "pointer": {
+          "before": {
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 0,
+            "active": {
+              "id": 8,
+              "gx": 4,
+              "gz": 2,
+              "ap": 1,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 5,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 1,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "combat-battlefield"
+          },
+          "after": {
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 1,
+            "active": {
+              "id": 8,
+              "gx": 4,
+              "gz": 2,
+              "ap": 0,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 5,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "combat-battlefield"
+          },
+          "cost": 1,
+          "cell": {
+            "gx": 6,
+            "gz": 0
+          }
+        },
+        "pass": true
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "reducedMotion": "reduce",
+        "motion": {
+          "os": true,
+          "game": false
+        },
+        "checks": [
+          "Native manual keyboard deployment/removal",
+          "Actual Tab/Shift+Tab canvas entry/exit with visible focus",
+          "Grid edges/arrows preserve all tactical truth",
+          "Canvas inspection Enter/Space never ends a turn",
+          "Origin-cell Enter cannot move or spend AP",
+          "Escape restores enabled dock focus",
+          "Legal native move restores dock focus",
+          "Exactly one native reachable move",
+          "Native attack Enter opens submenu only",
+          "Retour restores dock focus",
+          "Native attack Space opens submenu only",
+          "Retour restores dock focus",
+          "Invalid target Enter does not resolve/spend AP",
+          "Target Escape restores native attack focus",
+          "Native target execution restores enabled dock",
+          "Native legal foe target resolves once",
+          "Pointer target resolves through shared native activation",
+          "Native Wait advances one turn"
+        ],
+        "inputCount": 135,
+        "target": {
+          "cell": {
+            "gx": 6,
+            "gz": 0
+          },
+          "spec": {
+            "key": "attack",
+            "ap": 1
+          },
+          "before": {
+            "mode": "target",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 0,
+            "active": {
+              "id": 9,
+              "gx": 4,
+              "gz": 2,
+              "ap": 1,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 9,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 1,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "combat-battlefield"
+          },
+          "after": {
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 1,
+            "active": {
+              "id": 9,
+              "gx": 4,
+              "gz": 2,
+              "ap": 0,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 62,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 9,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "skill"
+          }
+        },
+        "pointerMethod": "FRESH_STANDALONE_NATIVE_AUTO_START_MOVE_ATTACK",
+        "pointer": {
+          "before": {
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 0,
+            "active": {
+              "id": 8,
+              "gx": 4,
+              "gz": 2,
+              "ap": 1,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 5,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 1,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "combat-battlefield"
+          },
+          "after": {
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "round": 1,
+            "turnIdx": 0,
+            "moved": true,
+            "basicAttacks": 1,
+            "active": {
+              "id": 8,
+              "gx": 4,
+              "gz": 2,
+              "ap": 0,
+              "team": "player"
+            },
+            "units": [
+              {
+                "id": 1,
+                "gx": 6,
+                "gz": 0,
+                "hp": 50,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 2,
+                "gx": 6,
+                "gz": 3,
+                "hp": 85,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 3,
+                "gx": 7,
+                "gz": 1,
+                "hp": 130,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 4,
+                "gx": 7,
+                "gz": 2,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 5,
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 6,
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 7,
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              },
+              {
+                "id": 8,
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "ap": 0,
+                "alive": true,
+                "statuses": {}
+              }
+            ],
+            "inventory": {
+              "potion": 3,
+              "ether": 1,
+              "antidote": 2,
+              "bomb": 2
+            },
+            "focus": "combat-battlefield"
+          },
+          "cost": 1,
+          "cell": {
+            "gx": 6,
+            "gz": 0
+          }
+        },
+        "pass": true
+      }
+    ]
+  },
+  "freshCampaign": {
+    "jobId": "campaign-0514-first-refuge",
+    "status": "FAILED",
+    "receipt": {
+      "schemaVersion": 1,
+      "jobId": "campaign-0514-first-refuge",
+      "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
+      "status": "FAILED",
+      "startedAt": "2026-10-08T05:53:42.534Z",
+      "endedAt": "2026-10-08T06:08:50.720Z",
+      "pid": 53880,
+      "port": 5341,
+      "output": "tmp/demo/campaign-0514-first-refuge",
+      "command": [
+        "node",
+        "tools/demo-continuous-production-qa.mjs"
+      ],
+      "parameters": {
+        "target": "first-refuge",
+        "routePlan": "rescue",
+        "timeoutMinutes": 15,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": null,
+        "priorProofPath": null,
+        "verifySalvation": false
+      },
+      "requiredAssertions": [
+        "EARNED_LINEAGE",
+        "NATIVE_INPUTS",
+        "EXACT_RELOAD"
+      ],
+      "provenance": {
+        "gitHead": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+        "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+        "sourceDiffSha256": "f8d46b24602c1ea80a618b1b895f6acf8f1133e57c48a7059315480dc843b625",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "68e7466e21202dc346b6763ef9bd545718e5aadc73449912ddf10b39e1576ed0"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-3pkMo-Ir.css",
+            "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+          },
+          {
+            "path": "dist/assets/game-JS_oFiz8.js",
+            "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "f895fee0579a12a0418dfbb741b610ad6bd8340f992be06e96279a2a75d16d6b"
+          }
+        ]
+      },
+      "acceptance": "NOT_ACCEPTED",
+      "provenanceStable": true,
+      "exitCode": 1,
+      "resultPath": "tmp/demo/campaign-0514-first-refuge/results.json",
+      "resultSha256": "dc7f3e61376d56989d532d86a0a2aec376a23edac8462bf5167057a3b103bd0b"
+    },
+    "resultSha256": "dc7f3e61376d56989d532d86a0a2aec376a23edac8462bf5167057a3b103bd0b",
+    "accepted": false,
+    "scope": "FAILED_NOT_ACCEPTED campaign/refuge; reached diagnostic keyboard-boundary assertions only, independently reviewed",
+    "pass": false,
+    "failure": "AssertionError [ERR_ASSERTION]: Battle did not finish before bounded deadline\n\nfalse !== true\n\n    at battle (file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:337:10)\n    at async file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:531:59",
+    "errors": [],
+    "method": "FRESH_PRODUCTION_CHRONICLE_NORMAL_PLAYER_INPUTS_REAL_COMBAT",
+    "fixtureStateWritten": false,
+    "runtimeMutated": false,
+    "combatOutcomeInjected": false,
+    "nodes": [
+      "lion-camp",
+      "lion-audience",
+      "lion-opening-ambush"
+    ],
+    "battles": [
+      {
+        "nodeId": "lion-opening-ambush",
+        "combatId": "forest_ambush",
+        "pass": false,
+        "outcome": null,
+        "actionCount": 19,
+        "battlefieldKeyboard": {
+          "method": "ACTUAL_TAB_FRESH_CAMPAIGN_IFRAME",
+          "inputs": [
+            "Tab",
+            "Tab",
+            "Tab",
+            "Tab",
+            "Tab",
+            "Tab",
+            "Shift+Tab",
+            "Tab",
+            "ArrowRight",
+            "m",
+            "Escape"
+          ],
+          "focus": {
+            "visible": true,
+            "outline": "solid",
+            "width": "3px"
+          },
+          "cursorBefore": {
+            "gx": 1,
+            "gz": 2
+          },
+          "cursor": {
+            "gx": 2,
+            "gz": 2
+          },
+          "restored": {
+            "dock": true,
+            "x": 476,
+            "y": 677.90625,
+            "right": 554,
+            "bottom": 748,
+            "width": 78,
+            "height": 70.09375
+          },
+          "before": {
+            "round": 1,
+            "turnIdx": 0,
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "moved": false,
+            "attacks": 0,
+            "active": {
+              "id": "archer",
+              "name": "Kestrel",
+              "team": "player",
+              "gx": 1,
+              "gz": 2,
+              "hp": 90,
+              "maxhp": 90,
+              "ap": 1,
+              "skills": [],
+              "statuses": {},
+              "weapons": [
+                {
+                  "name": "Arc novice",
+                  "weaponType": "longbow",
+                  "min": 2,
+                  "max": 4
+                }
+              ]
+            },
+            "units": [
+              {
+                "id": 1,
+                "name": "Loup",
+                "team": "foe",
+                "gx": 6,
+                "gz": 0,
+                "hp": 80,
+                "maxhp": 80,
+                "alive": true,
+                "downed": false
+              },
+              {
+                "id": 2,
+                "name": "Rat geant",
+                "team": "foe",
+                "gx": 7,
+                "gz": 1,
+                "hp": 65,
+                "maxhp": 65,
+                "alive": true,
+                "downed": false
+              },
+              {
+                "id": 3,
+                "name": "Araignee forestiere",
+                "team": "foe",
+                "gx": 6,
+                "gz": 3,
+                "hp": 68,
+                "maxhp": 68,
+                "alive": true,
+                "downed": false
+              },
+              {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              },
+              {
+                "id": "white_mage",
+                "name": "Marian",
+                "team": "player",
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "maxhp": 100,
+                "alive": true,
+                "downed": false
+              },
+              {
+                "id": "dark_mage",
+                "name": "Elara",
+                "team": "player",
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "maxhp": 75,
+                "alive": true,
+                "downed": false
+              },
+              {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 1,
+                "gz": 2,
+                "hp": 90,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              }
+            ],
+            "inventory": {
+              "potion": 4,
+              "revive_vial": 1,
+              "antidote": 2
+            },
+            "diagnostics": {
+              "drawCalls": 1,
+              "triangles": 1,
+              "geometries": 54,
+              "textures": 30,
+              "reducedGraphics": false,
+              "units": 7,
+              "activeTweens": 0,
+              "activeVfxObjects": 0,
+              "grid": {
+                "width": 8,
+                "depth": 4,
+                "walkable": 32,
+                "blocked": 0
+              }
+            }
+          },
+          "after": {
+            "round": 1,
+            "turnIdx": 0,
+            "mode": "menu",
+            "busy": false,
+            "over": false,
+            "moved": false,
+            "attacks": 0,
+            "active": {
+              "id": "archer",
+              "name": "Kestrel",
+              "team": "player",
+              "gx": 1,
+              "gz": 2,
+              "hp": 90,
+              "maxhp": 90,
+              "ap": 1,
+              "skills": [],
+              "statuses": {},
+              "weapons": [
+                {
+                  "name": "Arc novice",
+                  "weaponType": "longbow",
+                  "min": 2,
+                  "max": 4
+                }
+              ]
+            },
+            "units": [
+              {
+                "id": 1,
+                "name": "Loup",
+                "team": "foe",
+                "gx": 6,
+                "gz": 0,
+                "hp": 80,
+                "maxhp": 80,
+                "alive": true,
+                "downed": false
+              },
+              {
+                "id": 2,
+                "name": "Rat geant",
+                "team": "foe",
+                "gx": 7,
+                "gz": 1,
+                "hp": 65,
+                "maxhp": 65,
+                "alive": true,
+                "downed": false
+              },
+              {
+                "id": 3,
+                "name": "Araignee forestiere",
+                "team": "foe",
+                "gx": 6,
+                "gz": 3,
+                "hp": 68,
+                "maxhp": 68,
+                "alive": true,
+                "downed": false
+              },
+              {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "maxhp": 140,
+                "alive": true,
+                "downed": false
+              },
+              {
+                "id": "white_mage",
+                "name": "Marian",
+                "team": "player",
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "maxhp": 100,
+                "alive": true,
+                "downed": false
+              },
+              {
+                "id": "dark_mage",
+                "name": "Elara",
+                "team": "player",
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "maxhp": 75,
+                "alive": true,
+                "downed": false
+              },
+              {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 1,
+                "gz": 2,
+                "hp": 90,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              }
+            ],
+            "inventory": {
+              "potion": 4,
+              "revive_vial": 1,
+              "antidote": 2
+            },
+            "diagnostics": {
+              "drawCalls": 1,
+              "triangles": 1,
+              "geometries": 56,
+              "textures": 30,
+              "reducedGraphics": false,
+              "units": 7,
+              "activeTweens": 0,
+              "activeVfxObjects": 0,
+              "grid": {
+                "width": 8,
+                "depth": 4,
+                "walkable": 32,
+                "blocked": 0
+              }
+            }
+          },
+          "renderDiagnosticsExcludedFromTruth": true,
+          "ownerUnchanged": true,
+          "autosaveUnchanged": true,
+          "pass": true
+        }
+      }
+    ],
+    "refuges": []
+  },
+  "physicalInventory": {
+    "path": "tmp/autonomy/final-physical-0514.json",
+    "sha256": "78ae07e955b300dfd3ac4d47a41421d99b52db489960ac8837013458b7e9e3e1",
+    "purpose": "Precommit execution identity; later verified source commits alter Git representation, not these frozen bytes"
+  },
+  "selected": [
+    {
+      "path": "docs/reports/battlefield-keyboard-0514/desktop-inspection.png",
+      "source": "tmp/demo/battlefield-0514-native-v2/1366-no-preference-inspection-focus.png",
+      "sha256": "eb3697ca532768f7dcda2d379817e1f1ef7168969ef32fb3a57ef5c1f424c69e",
+      "rootInspected": true
+    },
+    {
+      "path": "docs/reports/battlefield-keyboard-0514/620-move-cursor.png",
+      "source": "tmp/demo/battlefield-0514-native-v2/620-no-preference-move-cursor.png",
+      "sha256": "d0d8f15303883fdfa4e01b64ea6fd7dc0aaead0989a5d344a055ef51d8b7196f",
+      "rootInspected": true
+    },
+    {
+      "path": "docs/reports/battlefield-keyboard-0514/390-os-inspection.png",
+      "source": "tmp/demo/battlefield-0514-native-v2/390-reduce-inspection-focus.png",
+      "sha256": "85d637f2b61ba70787d03cd135827574078c35160b805efe86b9dde1c2f89f01",
+      "rootInspected": true
+    },
+    {
+      "path": "docs/reports/battlefield-keyboard-0514/390-os-target.png",
+      "source": "tmp/demo/battlefield-0514-native-v2/390-reduce-target-preview.png",
+      "sha256": "7f6a0a419ac772af7d27f01fd935a73cf867f401eff24d03c69e539fab2fa57b",
+      "rootInspected": true
+    },
+    {
+      "path": "docs/reports/battlefield-keyboard-0514/campaign-desktop-keyboard-return.png",
+      "source": "tmp/demo/campaign-0514-first-refuge/combat-0-native-keyboard-return.png",
+      "sha256": "e11ee7fd762640390efd1215256c050c9390d7876c8cf48031528be178cf6c1d",
+      "rootInspected": true,
+      "status": "DIAGNOSTIC_REACHED_IFRAME_ASSERTIONS_NOT_ACCEPTED_EARNED_CAMPAIGN"
+    }
+  ],
+  "limits": [
+    "Standalone native keyboard/pointer six cases; pointer uses separate native fresh battle, not nonexistent same-turn AP",
+    "OS preference proves keyboard operability, not effective tactical animation reduction",
+    "No spoken AT/submenu44px/campaign iframe all viewports/endings/Salvation2AP/balance/settledVFX/fullV6/whole-demo claim",
+    "Original failed standalone invocation NOT_ACCEPTED; one postfailure correction only; no failedseed",
+    "390 inspection has partially cropped actors/rings at left edge; no every-cell visual framing acceptance"
+  ],
+  "reviewerStatus": {
+    "guardian": "PASS_SCOPED_STANDALONE",
+    "ui": "OK_SCOPED_KEYBOARD_CAPTURES; actor framing/submenu/AT/motion/fullcampaign limits retained",
+    "root": "Four standalone captures and one campaign diagnostic inspected; no control clipping in selected states"
+  }
+}
