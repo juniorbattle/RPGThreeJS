@@ -3,11 +3,11 @@
   "runStartedAt": "2026-10-08T19:00:22.0843319Z",
   "runEndedAt": "2026-10-08T19:49:42.382Z",
   "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
-  "activePhase": "LOCAL_CHECKPOINT_PUBLICATION_BLOCKED",
-  "activeSubtask": "Ordinary movement scoped flat acceptance complete; earned second-refuge checkpoint accepted; local publication payload ready for review",
+  "activePhase": "SOURCE_PUBLISHED_METADATA_CLOSEOUT_BLOCKED",
+  "activeSubtask": "Ordinary movement and earned second-refuge checkpoint published; native earned campaign ending continuation pending",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "9a4acdead9081282f5a624a575c6346adbb0860e",
-  "lastPushedCommit": "577ab03ad70debe6fb9ea9462348bcbc5837f094",
+  "lastPushedCommit": "da33bf8148430b2d12a87e66df79484fe1ab45cd",
   "completedThisRun": [
     "Read-only preflight complete; absent lock, clean dev and remote577ab03 parity. Exclusive1859 lock acquired; inherited Vite5173 preserved.",
     "393 frozen source/driver/helper files plus2HTML and prior build/result hashes match accepted1214 proof.",
@@ -54,7 +54,7 @@
     "ENVIRONMENT-NARRATIVE-COHERENCE BLOCKED_ASSET: Bois-Clair night-watch says night, approved burning plate is bright sunset; no approved same-location night replacement. Preserve text/masters.",
     "Fresh campaign-0514-first-refuge FAILED at15min battle deadline after19nativeactions; no earnedfirstrefuge/fullV6 acceptance; reached iframe keyboard assertions diagnostic only",
     "Broad keyboard accessibility remains open: submenu/Retour44px not measured, spokenAT not tested, effective OS tactical motion not established",
-    "Run1859 automatic review rejected public WIP49d34f84 publication of the two reviewed state paths: exact trusted public disclosure authorization considered insufficient. No push executed, retry or workaround; finish local concrete checkpoint and request approval."
+    "Publication-closeout2044: source checkpoint da33bf8 verified on origin/dev; new three-file metadata public push rejected by automatic approval review. Local concrete closure awaits exact approval."
   ],
   "remainingWork": [
     "COPY full static-only OS shadow acceptance",
@@ -63,7 +63,7 @@
     "Council/refugee browser acceptance and ten Pursuit canonical mappings",
     "Earned campaign/endings/Salvation2AP/VFX/balance remain open"
   ],
-  "nextAction": "First obtain exact-payload public dev publication approval for run1859 local checkpoint; automatic review rejected the public WIP state push and no workaround is authorized. Inspect clean Git/local commits, owned writerStopped lock and preserved receipts. After approved normal push/remote parity and lock resolution, continue DEMO-QA-POLISH with existing tools/demo-continuous-production-qa.mjs from earnedSavePath tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json (SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b) and priorProofPath tmp/demo/campaign-second-refuge-1859/results.json (SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3). Rescue/serpent/ending1366normal, native rest75 first (3KO/5wounded,300gold), existing native shop/equip preparation, register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID, unique ignored output/free strict port and bounded deadline. Verify current physical source/driver/build identities; do not relabel old frozen577 campaign proof as new build acceptance. Inspect terminal receipt, genuine combats/T1/T3/temporaryloot/exactV6/ending/Salvation2AP and selected captures. Do not repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices; keep live leap/attack/Stage, live-slope smoothness,390framing/broadaccessibility/balance/settledVFX/fullending gates open. Preserve152historicaljobs/exact deferredDemoTask and pendingNarrativeTask.",
+  "nextAction": "Resolve automatic-review rejection for exact three-file publication-closeout2044 metadata; approved source da33bf8 already public. Verify clean local metadata commit, stopped retained lock, normal metadata push and remote parity before lock release. Then Read-only preflight and exclusive lock acquisition, then continue DEMO-QA-POLISH with existing tools/demo-continuous-production-qa.mjs from earnedSavePath tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json (SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b) and priorProofPath tmp/demo/campaign-second-refuge-1859/results.json (SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3). Rescue/serpent/ending1366normal, native rest75 first (3KO/5wounded,300gold), existing native shop/equip preparation, register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID, unique ignored output/free strict port and bounded deadline. Verify current physical source/driver/build identities; do not relabel old frozen577 campaign proof as new build acceptance. Inspect terminal receipt, genuine combats/T1/T3/temporaryloot/exactV6/ending/Salvation2AP and selected captures. Do not repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices; keep live leap/attack/Stage, live-slope smoothness,390framing/broadaccessibility/balance/settledVFX/fullending gates open. Preserve152historicaljobs/exact deferredDemoTask and pendingNarrativeTask.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
@@ -123,7 +123,7 @@
       "SAVE": "PASS durable schema unchanged",
       "UI_ACCESSIBILITY": "PASS ordinary flat6cases; broad scope open",
       "QA_EVIDENCE": "PASS one correction/rawsamples/provenance",
-      "REPOSITORY_GOVERNANCE": "PASS local; publicpublication BLOCKED"
+      "REPOSITORY_GOVERNANCE": "PASS approved normal dev publication verified; main unchanged"
     },
     "contractsRead": [
       "GAME_CONSTITUTION",
@@ -16954,7 +16954,7 @@
       "publication": "LOCAL_ONLY_AUTOMATIC_REVIEW_BLOCK",
       "remoteVerified": false
     },
-    "nextAction": "First obtain exact-payload public dev publication approval for run1859 local checkpoint; automatic review rejected the public WIP state push and no workaround is authorized. Inspect clean Git/local commits, owned writerStopped lock and preserved receipts. After approved normal push/remote parity and lock resolution, continue DEMO-QA-POLISH with existing tools/demo-continuous-production-qa.mjs from earnedSavePath tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json (SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b) and priorProofPath tmp/demo/campaign-second-refuge-1859/results.json (SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3). Rescue/serpent/ending1366normal, native rest75 first (3KO/5wounded,300gold), existing native shop/equip preparation, register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID, unique ignored output/free strict port and bounded deadline. Verify current physical source/driver/build identities; do not relabel old frozen577 campaign proof as new build acceptance. Inspect terminal receipt, genuine combats/T1/T3/temporaryloot/exactV6/ending/Salvation2AP and selected captures. Do not repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices; keep live leap/attack/Stage, live-slope smoothness,390framing/broadaccessibility/balance/settledVFX/fullending gates open. Preserve152historicaljobs/exact deferredDemoTask and pendingNarrativeTask.",
+    "nextAction": "Resolve automatic-review rejection for exact three-file publication-closeout2044 metadata; approved source da33bf8 already public. Verify clean local metadata commit, stopped retained lock, normal metadata push and remote parity before lock release. Then Read-only preflight and exclusive lock acquisition, then continue DEMO-QA-POLISH with existing tools/demo-continuous-production-qa.mjs from earnedSavePath tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json (SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b) and priorProofPath tmp/demo/campaign-second-refuge-1859/results.json (SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3). Rescue/serpent/ending1366normal, native rest75 first (3KO/5wounded,300gold), existing native shop/equip preparation, register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID, unique ignored output/free strict port and bounded deadline. Verify current physical source/driver/build identities; do not relabel old frozen577 campaign proof as new build acceptance. Inspect terminal receipt, genuine combats/T1/T3/temporaryloot/exactV6/ending/Salvation2AP and selected captures. Do not repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices; keep live leap/attack/Stage, live-slope smoothness,390framing/broadaccessibility/balance/settledVFX/fullending gates open. Preserve152historicaljobs/exact deferredDemoTask and pendingNarrativeTask.",
     "runMetrics": {
       "sourceFilesModified": 1,
       "testFilesModified": 1,
@@ -16992,21 +16992,20 @@
       "docs/reports/ordinary-movement-1859/390-reduce-move-reduced-settled.png"
     ],
     "publication": {
-      "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
+      "status": "VERIFIED_PUBLISHED",
       "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
       "branches": [
-        "dev",
-        "wip/rpgthreejs-auto-dev-90m-20261008T1859"
+        "dev"
       ],
       "rejectedSnapshot": "49d34f84b5747235d6a077a21706f86b223cef4e",
       "rejectedPaths": [
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
       ],
-      "executed": false,
+      "executed": true,
       "rejectionsThisRun": 1,
       "noRetryOrWorkaround": true,
-      "reason": "Automatic review found insufficient trusted exact authorization to disclose internal state on public GitHub WIP branch; local concrete checkpoint in preparation",
+      "reason": "Prior rejection resolved by direct operator reaffirmation; normal approved dev push verified",
       "sourceCommit": "9a4acdead9081282f5a624a575c6346adbb0860e",
       "selectedPaths": [
         "src/combat/legacyCombatRuntime.js",
@@ -17024,17 +17023,30 @@
       ],
       "standingDecision": "OD-2026-10-08-B",
       "reviewedDestination": "https://github.com/juniorbattle/RPGThreeJS.git",
-      "devRemoteVerified": "577ab03ad70debe6fb9ea9462348bcbc5837f094",
+      "devRemoteVerified": "da33bf8148430b2d12a87e66df79484fe1ab45cd",
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "remoteVerifiedAt": "2026-10-08T19:48:43Z",
-      "finalCheckpoint": "Read local Git HEAD and owned lock/automation memory; self-hash is external"
+      "remoteVerifiedAt": "2026-10-08T20:47:06.856Z",
+      "finalCheckpoint": "Read local Git HEAD and owned lock/automation memory; self-hash is external",
+      "branch": "dev",
+      "checkpoint": "da33bf8148430b2d12a87e66df79484fe1ab45cd",
+      "verifiedAt": "2026-10-08T20:47:06.856Z",
+      "approvedBy": "Human in this chat: Approve toujours je t'ai dit",
+      "finalMetadataParity": "Final metadata commit, remote parity and lock absence recorded in automation memory"
     },
     "runStartedAt": "2026-10-08T19:00:22.0843319Z",
     "runEndedAt": "2026-10-08T19:49:42.382Z",
     "writerStopped": true,
     "metadataPublication": {
       "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
-      "payload": "Exact12 reviewed paths",
+      "standingDecision": "OD-2026-10-08-B",
+      "selectedPaths": [
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/handoffs/2026-10-08T1859Z-codex-ordinary-motion-second-refuge-checkpoint.md"
+      ],
+      "executed": false,
+      "rejectionsThisRun": 1,
+      "reason": "Automatic review rejected public disclosure of exact newly modified three state/handoff files despite direct human standing authorization reaffirmation",
       "noRetryOrWorkaround": true
     },
     "publication1752History": {
@@ -17065,7 +17077,7 @@
       "finalMetadataParity": "Final commit and remote parity recorded in automation memory"
     },
     "publication1859": {
-      "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
+      "status": "RESOLVED_BY_OPERATOR_APPROVAL",
       "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
       "branches": [
         "dev",
@@ -17079,7 +17091,9 @@
       "executed": false,
       "rejectionsThisRun": 1,
       "noRetryOrWorkaround": true,
-      "reason": "Automatic review found insufficient trusted exact authorization to disclose internal state on public GitHub WIP branch; local concrete checkpoint in preparation"
+      "reason": "Automatic review found insufficient trusted exact authorization to disclose internal state on public GitHub WIP branch; local concrete checkpoint in preparation",
+      "resolvedAt": "2026-10-08T20:47:06.856Z",
+      "publishedCheckpoint": "da33bf8148430b2d12a87e66df79484fe1ab45cd"
     },
     "publication1804History": {
       "status": "APPROVED_METADATA_VERIFIED_STANDING_DECISION_CLOSEOUT_PENDING",
@@ -17124,6 +17138,62 @@
         "approvalRequired": "Exact new three-workflow-file closeout content to public origin/dev and owned1752 lock release after verification"
       },
       "resolvedAt": "2026-10-08T18:08:05.442Z"
+    },
+    "publication1859History": {
+      "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
+      "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
+      "branches": [
+        "dev",
+        "wip/rpgthreejs-auto-dev-90m-20261008T1859"
+      ],
+      "rejectedSnapshot": "49d34f84b5747235d6a077a21706f86b223cef4e",
+      "rejectedPaths": [
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
+      ],
+      "executed": false,
+      "rejectionsThisRun": 1,
+      "noRetryOrWorkaround": true,
+      "reason": "Automatic review found insufficient trusted exact authorization to disclose internal state on public GitHub WIP branch; local concrete checkpoint in preparation"
+    },
+    "publicationCloseout": {
+      "runId": "rpgthreejs-publication-closeout-20261008T2044",
+      "verifiedAt": "2026-10-08T20:47:06.856Z",
+      "previousWriterStopped": true,
+      "priorThreadStatus": "idle/completed",
+      "associatedJobsStopped": true,
+      "checkpoint": "da33bf8148430b2d12a87e66df79484fe1ab45cd",
+      "sourceFilesModified": 0,
+      "testsModified": 0,
+      "qaToolsAdded": 0,
+      "proofFilesAdded": 0,
+      "workflowFilesModified": 3,
+      "lockRelease": "Retained stopped writer lock pending exact new metadata approval and publication",
+      "authorization": "Approve toujours je t'ai dit",
+      "contractsRead": [
+        "GAME_CONSTITUTION",
+        "README",
+        "manifest1.1.0",
+        "AUTONOMOUS_WORK_PROTOCOL",
+        "AUTHORING_AND_QA"
+      ],
+      "lockedRulesChanged": false,
+      "matrix": {
+        "GAME_CONSTITUTION": "PASS unchanged",
+        "ART_DIRECTION": "N/A",
+        "CHARACTERS": "N/A",
+        "ENVIRONMENTS": "N/A",
+        "NARRATIVE_CAMPAIGN": "N/A",
+        "NARRATIVE_PRESENTATION": "N/A",
+        "TRAVERSAL": "N/A",
+        "COMBAT": "N/A",
+        "SAVE": "N/A",
+        "UI_ACCESSIBILITY": "N/A",
+        "QA_EVIDENCE": "PASS historical receipts preserved; no new acceptance",
+        "REPOSITORY_GOVERNANCE": "PASS approved normal dev push; main unchanged"
+      },
+      "writerStopped": true,
+      "endedAt": "2026-10-08T20:48:28.071Z"
     }
   },
   "previousInterruptedRun": {

@@ -40,3 +40,13 @@ Automatic approval review rejected the public push of local WIP `49d34f84b574723
 Counts excluding inherited WIP (none):1runtime modified/1existingtest modified/1existingQA modified/0newQA/5proof additions/4workflow docs. Three registered invocations (one campaign continuation/two smoke attempts), one harness correction, two distinct reused read-only reviewers,69new native campaign combat actions, two scoped accepted jobs, six root-inspected/four promoted captures. No quota saving measured.
 
 Owned worker60196/17244/36224 and ports5344/5345 confirmed absent after terminal receipts. Inherited5173servers preserved. Local checkpoint retained; owned lock closes as writerStopped/publicationBlocked until approved publication/parity.
+
+
+## Publication1859 resolved — 2026-10-08T20:47:06.856Z
+
+Operator in current chat: “Approve toujours je t'ai dit”. Standing OD-2026-10-08-B covers coherent dev checkpoints and workflow closure without routine confirmation. Owner1859 is idle/completed; jobs60196/17244/36224 and ports5344/5345 absent. Its stopped retained lock was archived under this approved publication closeout, with an exclusive2044lock. Checkpoint da33bf8148430b2d12a87e66df79484fe1ab45cd pushed normally and verified on origin/dev; main00b96f1 unchanged. Prior rejection retained as history, no bypass. No QA rerun or changed acceptance. All155QA entries, deferredDemoTask, pendingNarrativeTask and queue byte-equivalent in JSON. This closure changes0source/0test/0QA/0proof and3workflow files. Immutable gate, whitespace and validator8contracts/8slots PASS. Final metadata commit and verified lock release recorded in automation memory. Native rest75 and exact earnedsecondrefuge continuation remain next.
+
+
+## Metadata closure rejected — 2026-10-08T20:48:28.071Z
+
+Source da33bf8 is verified published. Automatic review rejected the combined commit/public push of the newly modified paired state and this handoff: exact new internal contents were considered outside the standing approval. No rejected command executed and no retry/workaround. Local metadata checkpoint prepared; exclusive2044lock retained writerStopped/publicationBlocked until exact three-file approval, normal metadata push and parity. Direct standing authorization reaffirmation is recorded; this is an approval-review constraint. Final local commit SHA is recorded in Git, lock and automation memory.
