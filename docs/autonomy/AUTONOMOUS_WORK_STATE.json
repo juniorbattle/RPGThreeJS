@@ -1,52 +1,28 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-08T12:16:09.8536924Z",
-  "runEndedAt": "2026-10-08T12:49:26.568Z",
+  "runStartedAt": "2026-10-08T17:55:03.4681421+00:00",
+  "runEndedAt": "2026-10-08T17:58:58.245Z",
   "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
-  "activePhase": "CHECKPOINT_PUBLICATION",
+  "activePhase": "CHECKPOINT_METADATA_PUBLICATION",
   "activeSubtask": "Native refuge revival/preparation and earned second-refuge continuation",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "8e2e0d1a7676fcc762ed6c7ff32486973ffc2b23",
-  "lastPushedCommit": "693b2398e3670b6f77a4c2e26c45f11a5d2d03ce",
+  "lastPushedCommit": "0c5568ac496d0ad41419cf5bcfc96e553b050c53",
   "completedThisRun": [
-    "Read-only stale0636 preflight: failed writer, heartbeat>105min, failed terminal QA, no associated Git/build/QA process; unrelated5173 preserved",
-    "Archived stale lock and acquired1214 atomically; fetch confirms dev693b239/main00b96f1",
-    "Preserved all10 inherited WIP paths in local snapshot3f3641c77c8c09d6856db8acb5c4377974650006 before implementation",
-    "Separated13 global tactical hit/crit/proc/status/AI draws from VFX random consumption; actual owner tests preserve thresholds/formulas/short circuits",
-    "Guardian prelaunch PASS_SCOPED_OWNER_RNG; outcomes/draw sequence change, no balance/replay/campaign acceptance",
-    "One registered built390OS compact smoke PASS/accepted scoped; result1f75e4eb3bea6326498143ef8f73ec1b2cb549fc4562d8df2a8d296fb68ec535; guardian/root inspected2Retour captures",
-    "Fresh campaign1214 SUCCEEDED/ACCEPTED_SCOPED_FRESH_FIRST_REFUGE_1366_NORMAL; 34 native actions; exact result c82b21818668943b172dd7409f6febd146eaebbfdb3d62e04da81476e476c2b2"
+    "Explicit human approval received for exact twelve-path checkpoint; dev0c5568a and WIPf03253c published and verified; WIP retired after content parity. Native earned campaign continuation restored without modifying accepted QA or deferred tasks."
   ],
   "filesChanged": [
-    "src/combat/legacyCombatRuntime.js",
-    "src/combat/combatRandom.ts",
-    "src/combat/combatRandom.test.ts",
-    "src/ui/ReducedMotion.ts",
-    "src/ui/reducedMotion.test.ts",
-    "src/styles/combat-hud.css",
-    "src/styles/combat-shell.css",
-    "tools/combat-keyboard-production-qa.mjs",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
     "docs/autonomy/handoffs/2026-10-08T1214Z-codex-compact-motion-rng-checkpoint.md"
   ],
   "testsRun": [
-    "66focused7files PASS",
-    "TypeScript PASS",
-    "Direct contracts validator8contracts8slots PASS",
-    "Immutable gate and whitespace PASS",
-    "Production210module build PASS combat-D7CRRhwk.js,8MP4",
-    "Registered compact390OS PASS/accepted scoped; campaign1366normal SUCCEEDED/ACCEPTED_SCOPED_FRESH_FIRST_REFUGE_1366_NORMAL"
+    "Immutable LOCKED and whitespace gates; exact393physical inputs plus2HTML/build/result/save digests and completed receipts verified; no tests/build/browser rerun",
+    "Direct contract validator PASS:8LOCKED contracts/8video slots; inherited TypeScript/tests/build proof reused after physical identity checks"
   ],
   "testsPassed": [
-    "66focused7files PASS",
-    "TypeScript PASS",
-    "Direct contracts validator8contracts8slots PASS",
-    "Immutable gate and whitespace PASS",
-    "Production210module build PASS combat-D7CRRhwk.js,8MP4",
-    "Compact390OS scoped production acceptance",
-    "Fresh first-refuge1366normal scoped production acceptance"
+    "Immutable LOCKED and whitespace gates; exact393physical inputs plus2HTML/build/result/save digests and completed receipts verified; no tests/build/browser rerun",
+    "Direct contract validator PASS:8LOCKED contracts/8video slots; inherited TypeScript/tests/build proof reused after physical identity checks"
   ],
   "testsRemaining": [
     "Earned native campaign/first-refuge with corrected source checkpoint; failed15min job is no acceptance or seed",
@@ -63,8 +39,7 @@
     "ENVIRONMENT-NARRATIVE-COHERENCE BLOCKED_ASSET: Bois-Clair night-watch says night, approved burning plate is bright sunset; no approved same-location night replacement. Preserve text/masters.",
     "Fresh campaign-0514-first-refuge FAILED at15min battle deadline after19nativeactions; no earnedfirstrefuge/fullV6 acceptance; reached iframe keyboard assertions diagnostic only",
     "Broad keyboard accessibility remains open: submenu/Retour44px not measured, spokenAT not tested, effective OS tactical motion not established",
-    "Run0636 automatic approval review rejected exact WIP snapshot public push: transcript lacks explicit authorization exporting this exact payload/destination. No publication retry or indirect workaround; complete local verification/checkpoint before requesting operator approval.",
-    "Run1214 automatic review rejected public dev/WIP push of exact12paths; commands did not execute, no retry/workaround. Human exact-payload publication approval required. Local verified source/checkpoint retained, lock writerStopped and held until verified publication."
+    "Run1752 metadata publication blocked by automatic review: initial product checkpoint0c5568a published, but new three-workflow-file closeout requires explicit approval. Local metadata checkpoint and owned writerStopped lock retained."
   ],
   "remainingWork": [
     "COPY full static-only OS shadow acceptance",
@@ -73,7 +48,7 @@
     "Council/refugee browser acceptance and ten Pursuit canonical mappings",
     "Earned campaign/endings/Salvation2AP/VFX/balance remain open"
   ],
-  "nextAction": "Explicit operator approval required for exact reviewed12path source/QA/workflow payload on local dev and owned WIP1214 to public juniorbattle/RPGThreeJS. After approval verify same lock/run, final HEAD/WIP, clean tree, physical inputs/accepted receipts, unchanged150historicaljobs/deferred task and remote parity; normal non-force named dev/WIP push, verify then release lock. After release: Read BATTLEFIELD_KEYBOARD.md and1214handoff. Compare393physical sources/driver/helper and build with accepted1214proof, then register existing tools/demo-continuous-production-qa.mjs earned continuation: targetsecond-refuge/rescue/1366normal, exact earnedSavePath tmp/demo/campaign-first-refuge-1214/earned-first-refuge-v6.json and priorProofPath tmp/demo/campaign-first-refuge-1214/results.json, unique ignored output/free strict port and bounded deadline. Native refuge rest/revival/preparation must precede next combats (3alliesKO,130gold,rest60). Inspect terminal receipt/actual victories/T1 handoffs/temp gold/exact V6 reload before accepting. If observed product defect, fix it and use one related existing-runner smoke; do not blindly rerun failures or rewrite harness. Keep all-action OS motion/live changes, enabled skills/automatic focus return,390actor framing, balance/VFX/Salvation2AP/endings open. Preserve150historicaljobs/exactdeferredtask; no repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices.",
+  "nextAction": "Publish the exact reviewed three-workflow-file local closeout after explicit human approval of its new metadata content: paired AUTONOMOUS_WORK_STATE.md/.json and existing1214handoff, to public origin/dev only. Confirm owned1752lock/localHEAD/clean tree/remote checkpoint0c5568a, push normally, verify remote parity, then release1752lock. Initial twelve-path product checkpoint already published; WIP1214 already retired. Afterwards resume: Read BATTLEFIELD_KEYBOARD.md and1214handoff. Compare393physical sources/driver/helper and build with accepted1214proof, then register existing tools/demo-continuous-production-qa.mjs earned continuation: targetsecond-refuge/rescue/1366normal, exact earnedSavePath tmp/demo/campaign-first-refuge-1214/earned-first-refuge-v6.json and priorProofPath tmp/demo/campaign-first-refuge-1214/results.json, unique ignored output/free strict port and bounded deadline. Native refuge rest/revival/preparation must precede next combats (3alliesKO,130gold,rest60). Inspect terminal receipt/actual victories/T1 handoffs/temp gold/exact V6 reload before accepting. If observed product defect, fix it and use one related existing-runner smoke; do not blindly rerun failures or rewrite harness. Keep all-action OS motion/live changes, enabled skills/automatic focus return,390actor framing, balance/VFX/Salvation2AP/endings open. Preserve150historicaljobs/exactdeferredtask; no repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
@@ -283,7 +258,7 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261008T1214",
+  "runId": "rpgthreejs-auto-dev-90m-20261008T1752",
   "agent": "codex",
   "lastHeartbeat": "2026-10-08T06:27:46.192Z",
   "wip": {
@@ -300,10 +275,10 @@
     }
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261008T1214",
+    "runId": "rpgthreejs-auto-dev-90m-20261008T1752",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-08T12:49:28.5276853Z",
-    "status": "BLOCKED_BY_PUBLICATION_APPROVAL",
+    "lastHeartbeat": "2026-10-08T17:58:58.245Z",
+    "status": "BLOCKED_BY_METADATA_PUBLICATION_APPROVAL",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -16613,61 +16588,32 @@
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261008T1214",
-      "sha": "f03253cc68a8f1d5fcd66d7bb6a598b68ebd7314",
-      "status": "GREEN_VERIFIED_LOCAL_PUBLICATION_BLOCKED",
-      "dirtyFiles": [
-        "src/combat/legacyCombatRuntime.js",
-        "src/combat/combatRandom.ts",
-        "src/combat/combatRandom.test.ts",
-        "src/ui/ReducedMotion.ts",
-        "src/ui/reducedMotion.test.ts",
-        "src/styles/combat-hud.css",
-        "src/styles/combat-shell.css",
-        "tools/combat-keyboard-production-qa.mjs",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
-        "docs/autonomy/handoffs/2026-10-08T1214Z-codex-compact-motion-rng-checkpoint.md"
-      ],
-      "lastGreenCheck": "66tests/types/contracts/build/390OScompactscopedPASS",
-      "snapshotAt": "2026-10-08T12:49:28.5276853Z"
+      "branch": null,
+      "sha": null,
+      "status": "NONE_CONTENT_PUBLISHED",
+      "dirtyFiles": [],
+      "retiredBranch": "wip/rpgthreejs-auto-dev-90m-20261008T1214",
+      "retiredSha": "f03253cc68a8f1d5fcd66d7bb6a598b68ebd7314",
+      "retiredAt": "2026-10-08T17:56:45.379Z"
     },
-    "nextAction": "Explicit operator approval required for exact reviewed12path source/QA/workflow payload on local dev and owned WIP1214 to public juniorbattle/RPGThreeJS. After approval verify same lock/run, final HEAD/WIP, clean tree, physical inputs/accepted receipts, unchanged150historicaljobs/deferred task and remote parity; normal non-force named dev/WIP push, verify then release lock. After release: Read BATTLEFIELD_KEYBOARD.md and1214handoff. Compare393physical sources/driver/helper and build with accepted1214proof, then register existing tools/demo-continuous-production-qa.mjs earned continuation: targetsecond-refuge/rescue/1366normal, exact earnedSavePath tmp/demo/campaign-first-refuge-1214/earned-first-refuge-v6.json and priorProofPath tmp/demo/campaign-first-refuge-1214/results.json, unique ignored output/free strict port and bounded deadline. Native refuge rest/revival/preparation must precede next combats (3alliesKO,130gold,rest60). Inspect terminal receipt/actual victories/T1 handoffs/temp gold/exact V6 reload before accepting. If observed product defect, fix it and use one related existing-runner smoke; do not blindly rerun failures or rewrite harness. Keep all-action OS motion/live changes, enabled skills/automatic focus return,390actor framing, balance/VFX/Salvation2AP/endings open. Preserve150historicaljobs/exactdeferredtask; no repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices.",
+    "nextAction": "Publish the exact reviewed three-workflow-file local closeout after explicit human approval of its new metadata content: paired AUTONOMOUS_WORK_STATE.md/.json and existing1214handoff, to public origin/dev only. Confirm owned1752lock/localHEAD/clean tree/remote checkpoint0c5568a, push normally, verify remote parity, then release1752lock. Initial twelve-path product checkpoint already published; WIP1214 already retired. Afterwards resume: Read BATTLEFIELD_KEYBOARD.md and1214handoff. Compare393physical sources/driver/helper and build with accepted1214proof, then register existing tools/demo-continuous-production-qa.mjs earned continuation: targetsecond-refuge/rescue/1366normal, exact earnedSavePath tmp/demo/campaign-first-refuge-1214/earned-first-refuge-v6.json and priorProofPath tmp/demo/campaign-first-refuge-1214/results.json, unique ignored output/free strict port and bounded deadline. Native refuge rest/revival/preparation must precede next combats (3alliesKO,130gold,rest60). Inspect terminal receipt/actual victories/T1 handoffs/temp gold/exact V6 reload before accepting. If observed product defect, fix it and use one related existing-runner smoke; do not blindly rerun failures or rewrite harness. Keep all-action OS motion/live changes, enabled skills/automatic focus return,390actor framing, balance/VFX/Salvation2AP/endings open. Preserve150historicaljobs/exactdeferredtask; no repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices.",
     "runMetrics": {
-      "sourceFilesModified": 2,
-      "sourcePaths": [
-        "src/combat/legacyCombatRuntime.js",
-        "src/combat/combatRandom.ts"
-      ],
-      "testFilesModified": 1,
-      "testPaths": [
-        "src/combat/combatRandom.test.ts"
-      ],
+      "sourceFilesModified": 0,
+      "testFilesModified": 0,
       "existingQAToolsModified": 0,
       "qaToolsAdded": 0,
       "proofFilesAdded": 0,
-      "workflowFiles": 4,
-      "inheritedWIPPaths": 10,
-      "inheritedSourceTestPaths": 7,
-      "inheritedQARunnerPaths": 1,
-      "inheritedWorkflowPaths": 2,
-      "distinctReadOnlyReviewers": 1,
-      "registeredInvocations": 2,
-      "smokeInvocations": 1,
-      "harnessCorrectionsThisRun": 0,
-      "inheritedFocusCorrection": 1,
-      "failedSeedsUsed": 0,
-      "reviewCost": "One read-only guardian reused for prelaunch RNG boundary and compact source/assertion/receipt/capture review; no quota savings measured",
-      "elapsedMinutes": 33.27858333333333,
-      "acceptedScopedJobs": 2,
-      "campaignNativeActions": 34,
-      "campaignRounds": 11,
-      "selectedCapturesInspected": 4,
-      "inheritedRuntimeFilesAccepted": 5,
-      "inheritedTestFilesAccepted": 2,
-      "inheritedQARunnerAccepted": 1,
-      "endedAt": "2026-10-08T12:49:26.568Z"
+      "workflowFiles": 3,
+      "workflowPaths": [
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/handoffs/2026-10-08T1214Z-codex-compact-motion-rng-checkpoint.md"
+      ],
+      "registeredInvocations": 0,
+      "distinctReadOnlyReviewers": 0,
+      "inheritedCheckpointPublished": "0c5568ac496d0ad41419cf5bcfc96e553b050c53",
+      "elapsedMinutes": 1.6985166666666667,
+      "endedAt": "2026-10-08T17:58:58.245Z"
     },
     "checkpointPaths": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -16689,15 +16635,10 @@
       "docs/reports/battlefield-keyboard-0514/campaign-desktop-keyboard-return.png"
     ],
     "publication": {
-      "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
-      "reviewedCheckpoint": "b73f0bedf1b5c6b6ec909ed6918a35362e08339a",
-      "source": "8e2e0d1a7676fcc762ed6c7ff32486973ffc2b23",
-      "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
-      "branches": [
-        "dev",
-        "wip/rpgthreejs-auto-dev-90m-20261008T1214"
-      ],
-      "selectedPaths": [
+      "status": "VERIFIED_PUBLISHED",
+      "runId": "rpgthreejs-auto-dev-90m-20261008T1752",
+      "approvedBy": "Human confirmation in this chat: oui toujours autorisée",
+      "approvedPayloadPaths": [
         "src/combat/legacyCombatRuntime.js",
         "src/combat/combatRandom.ts",
         "src/combat/combatRandom.test.ts",
@@ -16711,15 +16652,30 @@
         "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
         "docs/autonomy/handoffs/2026-10-08T1214Z-codex-compact-motion-rng-checkpoint.md"
       ],
-      "rejectionsThisRun": 1,
-      "executed": false,
-      "reason": "Automatic review requires explicit human authorization exposing exact12path code/QA/internal-state payload to public GitHub; general dev push authorization considered insufficient",
-      "standingDecision": "OD-2026-10-08-A",
-      "noRetryOrWorkaround": true
+      "checkpoint": "0c5568ac496d0ad41419cf5bcfc96e553b050c53",
+      "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
+      "devRemoteVerified": "0c5568ac496d0ad41419cf5bcfc96e553b050c53",
+      "wipPublished": "f03253cc68a8f1d5fcd66d7bb6a598b68ebd7314",
+      "wipRetired": true,
+      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "verifiedAt": "2026-10-08T17:56:45.379Z",
+      "finalMetadataParity": "Final commit and remote parity recorded in automation memory"
     },
-    "runStartedAt": "2026-10-08T12:16:09.8536924Z",
-    "runEndedAt": "2026-10-08T12:49:26.568Z",
-    "writerStopped": true
+    "runStartedAt": "2026-10-08T17:55:03.4681421+00:00",
+    "runEndedAt": "2026-10-08T17:58:58.245Z",
+    "writerStopped": true,
+    "metadataPublication": {
+      "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
+      "selectedPaths": [
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/handoffs/2026-10-08T1214Z-codex-compact-motion-rng-checkpoint.md"
+      ],
+      "executed": false,
+      "rejectionsThisRun": 1,
+      "reason": "Automatic review treated new content of three workflow/state files and lock release as outside exact originally approved checkpoint payload. Initial twelve-path publication succeeded. No retry/workaround.",
+      "approvalRequired": "Exact new three-workflow-file closeout content to public origin/dev and owned1752 lock release after verification"
+    }
   },
   "previousInterruptedRun": {
     "runId": "rpgthreejs-auto-dev-90m-20261007T2039",
@@ -16768,39 +16724,22 @@
   },
   "currentHandoff": "docs/autonomy/handoffs/2026-10-08T1214Z-codex-compact-motion-rng-checkpoint.md",
   "runMeasurement": {
-    "sourceFilesModified": 2,
-    "sourcePaths": [
-      "src/combat/legacyCombatRuntime.js",
-      "src/combat/combatRandom.ts"
-    ],
-    "testFilesModified": 1,
-    "testPaths": [
-      "src/combat/combatRandom.test.ts"
-    ],
+    "sourceFilesModified": 0,
+    "testFilesModified": 0,
     "existingQAToolsModified": 0,
     "qaToolsAdded": 0,
     "proofFilesAdded": 0,
-    "workflowFiles": 4,
-    "inheritedWIPPaths": 10,
-    "inheritedSourceTestPaths": 7,
-    "inheritedQARunnerPaths": 1,
-    "inheritedWorkflowPaths": 2,
-    "distinctReadOnlyReviewers": 1,
-    "registeredInvocations": 2,
-    "smokeInvocations": 1,
-    "harnessCorrectionsThisRun": 0,
-    "inheritedFocusCorrection": 1,
-    "failedSeedsUsed": 0,
-    "reviewCost": "One read-only guardian reused for prelaunch RNG boundary and compact source/assertion/receipt/capture review; no quota savings measured",
-    "elapsedMinutes": 33.27858333333333,
-    "acceptedScopedJobs": 2,
-    "campaignNativeActions": 34,
-    "campaignRounds": 11,
-    "selectedCapturesInspected": 4,
-    "inheritedRuntimeFilesAccepted": 5,
-    "inheritedTestFilesAccepted": 2,
-    "inheritedQARunnerAccepted": 1,
-    "endedAt": "2026-10-08T12:49:26.568Z"
+    "workflowFiles": 3,
+    "workflowPaths": [
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/handoffs/2026-10-08T1214Z-codex-compact-motion-rng-checkpoint.md"
+    ],
+    "registeredInvocations": 0,
+    "distinctReadOnlyReviewers": 0,
+    "inheritedCheckpointPublished": "0c5568ac496d0ad41419cf5bcfc96e553b050c53",
+    "elapsedMinutes": 1.6985166666666667,
+    "endedAt": "2026-10-08T17:58:58.245Z"
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -16943,14 +16882,8 @@
     }
   },
   "uncommittedWork": {
-    "reason": "Verified1214 workflow checkpoint pending commit/publication; inherited10paths preserved and source8paths now committed",
-    "files": [
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
-      "docs/autonomy/handoffs/2026-10-08T1214Z-codex-compact-motion-rng-checkpoint.md"
-    ],
-    "sourceCheckpoint": "8e2e0d1a7676fcc762ed6c7ff32486973ffc2b23"
+    "reason": "Local closeout metadata committed at approval boundary; exact final local HEAD in automation memory; no product/QA WIP",
+    "files": []
   },
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
@@ -17041,39 +16974,22 @@
     "nextAction": "Run existing witnesses-protected normal-motion production opening proof; independently observe refugee transaction acknowledgements and wider static-only OS acceptance before task milestone"
   },
   "runStatistics": {
-    "sourceFilesModified": 2,
-    "sourcePaths": [
-      "src/combat/legacyCombatRuntime.js",
-      "src/combat/combatRandom.ts"
-    ],
-    "testFilesModified": 1,
-    "testPaths": [
-      "src/combat/combatRandom.test.ts"
-    ],
+    "sourceFilesModified": 0,
+    "testFilesModified": 0,
     "existingQAToolsModified": 0,
     "qaToolsAdded": 0,
     "proofFilesAdded": 0,
-    "workflowFiles": 4,
-    "inheritedWIPPaths": 10,
-    "inheritedSourceTestPaths": 7,
-    "inheritedQARunnerPaths": 1,
-    "inheritedWorkflowPaths": 2,
-    "distinctReadOnlyReviewers": 1,
-    "registeredInvocations": 2,
-    "smokeInvocations": 1,
-    "harnessCorrectionsThisRun": 0,
-    "inheritedFocusCorrection": 1,
-    "failedSeedsUsed": 0,
-    "reviewCost": "One read-only guardian reused for prelaunch RNG boundary and compact source/assertion/receipt/capture review; no quota savings measured",
-    "elapsedMinutes": 33.27858333333333,
-    "acceptedScopedJobs": 2,
-    "campaignNativeActions": 34,
-    "campaignRounds": 11,
-    "selectedCapturesInspected": 4,
-    "inheritedRuntimeFilesAccepted": 5,
-    "inheritedTestFilesAccepted": 2,
-    "inheritedQARunnerAccepted": 1,
-    "endedAt": "2026-10-08T12:49:26.568Z"
+    "workflowFiles": 3,
+    "workflowPaths": [
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/handoffs/2026-10-08T1214Z-codex-compact-motion-rng-checkpoint.md"
+    ],
+    "registeredInvocations": 0,
+    "distinctReadOnlyReviewers": 0,
+    "inheritedCheckpointPublished": "0c5568ac496d0ad41419cf5bcfc96e553b050c53",
+    "elapsedMinutes": 1.6985166666666667,
+    "endedAt": "2026-10-08T17:58:58.245Z"
   },
   "qaToolingJustification": "No new persistent QA tool. Existing inherited battlefield runner receives one prelaunch actual DEV-helper-name fix and one postfailure fresh native pointer-scenario correction; archer1AP must not be refilled. Existing earned campaign runner adds native Tab/cursor/Escape observation only first genuinely fresh battle; it preserves complete gameplay (render diagnostics excluded), ownerV6 and autosave equality. Existing registration/receipts/provenance reused.",
   "retainedRunArtifacts": {
@@ -17099,5 +17015,76 @@
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
   "implementationCommit": "8e2e0d1a7676fcc762ed6c7ff32486973ffc2b23",
-  "authorizedWorkContinuation": "Read BATTLEFIELD_KEYBOARD.md and1214handoff. Compare393physical sources/driver/helper and build with accepted1214proof, then register existing tools/demo-continuous-production-qa.mjs earned continuation: targetsecond-refuge/rescue/1366normal, exact earnedSavePath tmp/demo/campaign-first-refuge-1214/earned-first-refuge-v6.json and priorProofPath tmp/demo/campaign-first-refuge-1214/results.json, unique ignored output/free strict port and bounded deadline. Native refuge rest/revival/preparation must precede next combats (3alliesKO,130gold,rest60). Inspect terminal receipt/actual victories/T1 handoffs/temp gold/exact V6 reload before accepting. If observed product defect, fix it and use one related existing-runner smoke; do not blindly rerun failures or rewrite harness. Keep all-action OS motion/live changes, enabled skills/automatic focus return,390actor framing, balance/VFX/Salvation2AP/endings open. Preserve150historicaljobs/exactdeferredtask; no repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices."
+  "authorizedWorkContinuation": "Read BATTLEFIELD_KEYBOARD.md and1214handoff. Compare393physical sources/driver/helper and build with accepted1214proof, then register existing tools/demo-continuous-production-qa.mjs earned continuation: targetsecond-refuge/rescue/1366normal, exact earnedSavePath tmp/demo/campaign-first-refuge-1214/earned-first-refuge-v6.json and priorProofPath tmp/demo/campaign-first-refuge-1214/results.json, unique ignored output/free strict port and bounded deadline. Native refuge rest/revival/preparation must precede next combats (3alliesKO,130gold,rest60). Inspect terminal receipt/actual victories/T1 handoffs/temp gold/exact V6 reload before accepting. If observed product defect, fix it and use one related existing-runner smoke; do not blindly rerun failures or rewrite harness. Keep all-action OS motion/live changes, enabled skills/automatic focus return,390actor framing, balance/VFX/Salvation2AP/endings open. Preserve150historicaljobs/exactdeferredtask; no repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices.",
+  "publication1214History": {
+    "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
+    "reviewedCheckpoint": "b73f0bedf1b5c6b6ec909ed6918a35362e08339a",
+    "source": "8e2e0d1a7676fcc762ed6c7ff32486973ffc2b23",
+    "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
+    "branches": [
+      "dev",
+      "wip/rpgthreejs-auto-dev-90m-20261008T1214"
+    ],
+    "selectedPaths": [
+      "src/combat/legacyCombatRuntime.js",
+      "src/combat/combatRandom.ts",
+      "src/combat/combatRandom.test.ts",
+      "src/ui/ReducedMotion.ts",
+      "src/ui/reducedMotion.test.ts",
+      "src/styles/combat-hud.css",
+      "src/styles/combat-shell.css",
+      "tools/combat-keyboard-production-qa.mjs",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
+      "docs/autonomy/handoffs/2026-10-08T1214Z-codex-compact-motion-rng-checkpoint.md"
+    ],
+    "rejectionsThisRun": 1,
+    "executed": false,
+    "reason": "Automatic review requires explicit human authorization exposing exact12path code/QA/internal-state payload to public GitHub; general dev push authorization considered insufficient",
+    "standingDecision": "OD-2026-10-08-A",
+    "noRetryOrWorkaround": true,
+    "resolvedBy": "rpgthreejs-auto-dev-90m-20261008T1752",
+    "resolvedAt": "2026-10-08T17:56:45.379Z",
+    "checkpointPublished": "0c5568ac496d0ad41419cf5bcfc96e553b050c53",
+    "priorRunMetrics": {
+      "sourceFilesModified": 2,
+      "sourcePaths": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/combatRandom.ts"
+      ],
+      "testFilesModified": 1,
+      "testPaths": [
+        "src/combat/combatRandom.test.ts"
+      ],
+      "existingQAToolsModified": 0,
+      "qaToolsAdded": 0,
+      "proofFilesAdded": 0,
+      "workflowFiles": 4,
+      "inheritedWIPPaths": 10,
+      "inheritedSourceTestPaths": 7,
+      "inheritedQARunnerPaths": 1,
+      "inheritedWorkflowPaths": 2,
+      "distinctReadOnlyReviewers": 1,
+      "registeredInvocations": 2,
+      "smokeInvocations": 1,
+      "harnessCorrectionsThisRun": 0,
+      "inheritedFocusCorrection": 1,
+      "failedSeedsUsed": 0,
+      "reviewCost": "One read-only guardian reused for prelaunch RNG boundary and compact source/assertion/receipt/capture review; no quota savings measured",
+      "elapsedMinutes": 33.27858333333333,
+      "acceptedScopedJobs": 2,
+      "campaignNativeActions": 34,
+      "campaignRounds": 11,
+      "selectedCapturesInspected": 4,
+      "inheritedRuntimeFilesAccepted": 5,
+      "inheritedTestFilesAccepted": 2,
+      "inheritedQARunnerAccepted": 1,
+      "endedAt": "2026-10-08T12:49:26.568Z"
+    }
+  },
+  "resolvedPublicationBlockers": [
+    "Run0636 automatic approval review rejected exact WIP snapshot public push: transcript lacks explicit authorization exporting this exact payload/destination. No publication retry or indirect workaround; complete local verification/checkpoint before requesting operator approval.",
+    "Run1214 automatic review rejected public dev/WIP push of exact12paths; commands did not execute, no retry/workaround. Human exact-payload publication approval required. Local verified source/checkpoint retained, lock writerStopped and held until verified publication."
+  ]
 }
