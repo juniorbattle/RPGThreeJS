@@ -5,8 +5,9 @@ import {resolve} from 'node:path';
 import {preview} from 'vite';
 import {chromium} from 'playwright';
 import {beginJob} from './qa/qa-job.mjs';
-export const parameters={viewports:[[1366,768],[620,780],[390,844]],motionModes:['no-preference','reduce']};
-export const requiredAssertions=['ACTUAL_TAB_BATTLEFIELD','TRANSIENT_CURSOR_ONLY','NATIVE_INVALID_AND_LEGAL_MOVE','NATIVE_TARGET_EXECUTION','CANCEL_AND_RETURN_FOCUS','NATIVE_CONTROLS','POINTER_REGRESSION'];
+const movementMotion=process.env.BATTLEFIELD_QA_MOVEMENT==='1';
+export const parameters={viewports:[[1366,768],[620,780],[390,844]],motionModes:['no-preference','reduce'],movementMotion};
+export const requiredAssertions=['ACTUAL_TAB_BATTLEFIELD','TRANSIENT_CURSOR_ONLY','NATIVE_INVALID_AND_LEGAL_MOVE','NATIVE_TARGET_EXECUTION','CANCEL_AND_RETURN_FOCUS','NATIVE_CONTROLS','POINTER_REGRESSION',...(movementMotion?['ORDINARY_MOVE_LIVE_OS_REDUCTION','UNCHANGED_MOVEMENT_COMPLETION']:[])];
 const output=process.env.BATTLEFIELD_QA_OUTPUT??'tmp/demo/battlefield-keyboard-production';
 const port=Number(process.env.BATTLEFIELD_QA_PORT??5275);
 const job=beginJob({driver:'tools/combat-battlefield-keyboard-production-qa.mjs',output,port,parameters,requiredAssertions,jobId:process.env.BATTLEFIELD_QA_JOB_ID});
@@ -56,10 +57,60 @@ try{
       await page.evaluate(()=>document.fonts.ready);
       const file=`${width}-${reducedMotion}-${name}.png`;await page.screenshot({path:resolve(output,file)});entry.captures.push(file);
     }
+    async function startMovementProbe(destination) {
+      await page.evaluate(destination => {
+        const u=G.active, samples=[], baseline={spriteX:Math.abs(u.spr.scale.x),spriteY:u.spr.scale.y,outlineX:Math.abs(u.outline.scale.x),outlineY:u.outline.scale.y};
+        const path=[],origin={gx:u.gx,gz:u.gz};let cursor=destination;
+        for(let guard=0;guard<200;guard++){
+          const c=G.grid[cursor.gx][cursor.gz];path.unshift({gx:c.gx,gz:c.gz,x:c.mesh.position.x,y:c.topY,z:c.mesh.position.z});
+          if(cursor.gx===origin.gx&&cursor.gz===origin.gz)break;
+          const prev=G.reach.prev[cursor.gx+','+cursor.gz];if(!prev)throw Error('Native move path missing');cursor={gx:prev[0],gz:prev[1]};
+        }
+        const probe=window.__ordinaryMovementProbe={samples,baseline,path,started:false,done:false};
+        function terrainAt(x,z){
+          let nearest={distance:Infinity,y:0};
+          for(let i=1;i<path.length;i++){
+            const a=path[i-1],b=path[i],dx=b.x-a.x,dz=b.z-a.z,t=Math.max(0,Math.min(1,((x-a.x)*dx+(z-a.z)*dz)/(dx*dx+dz*dz)));
+            const distance=Math.hypot(x-(a.x+t*dx),z-(a.z+t*dz));if(distance<nearest.distance)nearest={distance,y:a.y+t*(b.y-a.y)};
+          }
+          return nearest;
+        }
+        function observe() {
+          if(G.busy)probe.started=true;
+          if(probe.started&&!G.busy){probe.done=true;return;}
+          if(probe.started)samples.push({time:performance.now(),effective:document.body.classList.contains('reduced-graphics'),os:matchMedia('(prefers-reduced-motion: reduce)').matches,requested:window.__COMBAT_DIAGNOSTICS.requestedReducedGraphics,
+            terrain:terrainAt(u.grp.position.x,u.grp.position.z),x:u.grp.position.x,y:u.grp.position.y,z:u.grp.position.z,tilt:u.spr.rotation.z,scaleX:Math.abs(u.spr.scale.x),scaleY:u.spr.scale.y,outlineTilt:u.outline.rotation.z,outlineX:Math.abs(u.outline.scale.x),outlineY:u.outline.scale.y});
+          requestAnimationFrame(observe);
+        }
+        requestAnimationFrame(observe);
+      },destination);
+    }
+    async function finishMovementProbe() {
+      await page.waitForFunction(()=>window.__ordinaryMovementProbe.done);
+      const probe=await page.evaluate(()=>window.__ordinaryMovementProbe);
+      entry.ordinaryMovement=probe;
+      assert.ok(probe.samples.length>=3,'Native move needs multiple rendered samples');
+      assert.ok(probe.samples.some(s=>s.effective)&&probe.samples.some(s=>!s.effective),'Live OS change must reach both movement modes');
+      assert.ok(probe.samples.every(s=>s.requested===false),'Game preference must remain normal throughout movement');
+      const initialReduced=reducedMotion==='reduce',first=probe.samples[0],last=probe.samples.at(-1);
+      assert.equal(first.os,initialReduced);assert.equal(first.effective,initialReduced);
+      assert.equal(last.os,!initialReduced);assert.equal(last.effective,!initialReduced);
+      const reduced=probe.samples.filter((s,i)=>s.effective&&s.os&&(i===0||(probe.samples[i-1].effective&&probe.samples[i-1].os)));
+      assert.ok(reduced.length>=2,'Reduced motion needs successive rendered movement samples');
+      for(const s of reduced){
+        assert.ok(s.terrain.distance<1e-6&&Math.abs(s.y-s.terrain.y)<1e-6,'Reduced movement leaves native path terrain line');
+        assert.ok(Math.abs(s.tilt)<1e-6&&Math.abs(s.outlineTilt)<1e-6,'Reduced movement retains decorative tilt');
+        assert.ok(Math.abs(s.scaleX-probe.baseline.spriteX)<1e-6&&Math.abs(s.scaleY-probe.baseline.spriteY)<1e-6,'Reduced movement retains sprite squash');
+        assert.ok(Math.abs(s.outlineX-probe.baseline.outlineX)<1e-6&&Math.abs(s.outlineY-probe.baseline.outlineY)<1e-6,'Reduced movement retains outline squash');
+      }
+      assert.ok(probe.samples.some(s=>!s.effective&&!s.os&&(Math.abs(s.tilt)>1e-4||Math.abs(s.scaleY-probe.baseline.spriteY)>1e-4)),'Normal movement decoration was lost');
+      await page.emulateMedia({reducedMotion});
+    }
+
     await page.goto(`http://127.0.0.1:${port}/legacy-combat.html`,{waitUntil:'networkidle'});
     await page.waitForFunction(()=>window.__BOOTED);
-    entry.motion=await page.evaluate(()=>({os:matchMedia('(prefers-reduced-motion: reduce)').matches,game:document.body.classList.contains('reduced-graphics')}));
-    assert.equal(entry.motion.os,reducedMotion==='reduce');assert.equal(entry.motion.game,false,'OS-only case needs normal game graphics');
+    entry.motion=await page.evaluate(()=>({os:matchMedia('(prefers-reduced-motion: reduce)').matches,requested:window.__COMBAT_DIAGNOSTICS.requestedReducedGraphics,effective:document.body.classList.contains('reduced-graphics')}));
+    assert.equal(entry.motion.os,reducedMotion==='reduce');assert.equal(entry.motion.requested,false,'OS-only case needs normal requested game graphics');assert.equal(entry.motion.effective,entry.motion.os||entry.motion.requested);
     assert.equal(await page.evaluate(()=>typeof window.__qaHelpers.teleportActiveUnitNextToEnemy),'undefined','Production mutation helper exposed');
     if(await page.locator('#tutorial:not(.hidden) [data-action="skip"]').isVisible())await activate('#tutorial [data-action="skip"]');
     await activate('#menu [data-unit]');
@@ -89,10 +140,24 @@ try{
     const destination=await page.evaluate(()=>G.reach.list.filter(c=>c.gx!==G.active.gx||c.gz!==G.active.gz).sort((a,b)=>{
       const distance=c=>Math.min(...G.units.filter(u=>u.alive&&u.team==='foe').map(u=>Math.abs(c.gx-u.gx)+Math.abs(c.gz-u.gz)));return distance(a)-distance(b);
     })[0]);assert.ok(destination,'No native reachable destination');
-    await nav(destination);await capture('move-cursor');await key('Enter');
+    await nav(destination);await capture('move-cursor');
+    if(movementMotion){
+      assert.ok(Math.abs(destination.gx-inspectionBefore.active.gx)+Math.abs(destination.gz-inspectionBefore.active.gz)>=3,'Live movement proof needs a multi-step native path');
+      await startMovementProbe(destination);
+    }
+    await key('Enter');
+    if(movementMotion){
+      await page.waitForFunction(()=>G.busy&&window.__ordinaryMovementProbe.samples.length>=2);
+      await page.emulateMedia({reducedMotion:reducedMotion==='reduce'?'no-preference':'reduce'});
+    }
     await page.waitForFunction(()=>G.mode==='menu'&&!G.busy);const moved=await read();
     assert.equal(moved.active.gx,destination.gx);assert.equal(moved.active.gz,destination.gz);assert.equal(moved.active.ap,inspectionBefore.active.ap);assert.equal(moved.moved,true);
     await focusDock('Legal native move restores dock focus');entry.checks.push('Exactly one native reachable move');
+    if(movementMotion){
+      const occupancy=await page.evaluate(({origin,destination})=>({origin:G.grid[origin.gx][origin.gz].occupant?.id??null,destination:G.grid[destination.gx][destination.gz].occupant?.id}),{origin:inspectionBefore.active,destination});
+      assert.equal(occupancy.origin,null);assert.equal(occupancy.destination,moved.active.id);assert.equal(moved.busy,false);
+      await finishMovementProbe();await capture('move-reduced-settled');entry.checks.push('Live OS movement decoration changes without altering native completion');
+    }
     const attackBefore=await read();
     for(const input of ['Enter','Space']){
       await activate('#menu [data-a="attack"]:not(:disabled)',input);await unchanged(attackBefore,'Native attack '+input+' opens submenu only');

@@ -131,13 +131,16 @@ function tween(obj,to,dur,ease,onDone){
   const o={obj,to,from,dur:dur||0.3,ease:ease||easeOutCubic,t:0,onDone,onCancel:null,settled:false};
   tweens.push(o); return o;
 }
-function tweenP(obj,to,dur,ease){ return new Promise(resolve=>{ const handle=tween(obj,to,dur,ease,()=>resolve({cancelled:false})); handle.onCancel=()=>resolve({cancelled:true}); }); }
+function tweenP(obj,to,dur,ease,reducedMotion){ return new Promise(resolve=>{ const handle=tween(obj,to,dur,ease,()=>resolve({cancelled:false})); handle.reducedMotion=reducedMotion; handle.onCancel=()=>resolve({cancelled:true}); }); }
 function wait(s){ return new Promise(r=>setTimeout(r,s*1000)); }
 function hitStop(dur){ return wait(dur); }
 function updateTweens(dt){
   for(let i=tweens.length-1;i>=0;i--){
     const o=tweens[i]; o.t+=dt; const p=clamp(o.t/o.dur,0,1), e=o.ease(p);
-    for(const k in o.to) o.obj[k]=lerp(o.from[k],o.to[k],e);
+    // Only tagged ordinary-movement decoration follows live motion preferences.
+    // Completion, elapsed time and tactical path channels keep their existing owners.
+    const reduced=REDUCED_GRAPHICS&&o.reducedMotion;
+    for(const k in o.to) o.obj[k]=lerp(reduced?.from?.[k]??o.from[k],reduced?.to?.[k]??o.to[k],e);
     if(p>=1){ tweens.splice(i,1); if(!o.settled){ o.settled=true; o.onDone&&o.onDone(); } }
   }
 }
@@ -1111,19 +1114,22 @@ async function moveAlong(u,path){
       const c=cellAt(gx,gz),from=u.grp.position.clone(),sign=spriteScaleSign(u.spr),scale=largeUnitSpriteScale(u),outlineScale=scale*1.1;
       setFacing(u,gx,gz);
       const nextSign=spriteScaleSign(u.spr),mid={x:(from.x+wX(gx))/2,y:Math.max(from.y,c.topY)+(motion.lift||0.08),z:(from.z+wZ(gz))/2};
-      const launch=[tweenP(u.grp.position,mid,motion.stepHalf,easeOutCubic),tweenP(u.spr.rotation,{z:-nextSign*(motion.tilt||0.045)},motion.stepHalf,easeOutCubic),tweenP(u.spr.scale,{x:nextSign*scale*(1+(motion.squash||0.035)*0.35),y:scale*(1-(motion.squash||0.035))},motion.stepHalf,easeOutCubic)];
-      if(u.outline){ const os=spriteScaleSign(u.outline); launch.push(tweenP(u.outline.rotation,{z:-os*(motion.tilt||0.045)},motion.stepHalf,easeOutCubic),tweenP(u.outline.scale,{x:os*outlineScale*(1+(motion.squash||0.035)*0.35),y:outlineScale*(1-(motion.squash||0.035))},motion.stepHalf,easeOutCubic)); }
+      const groundMidY=(from.y+c.topY)/2;
+      const stillRotation={from:{z:0},to:{z:0}},stillScale={from:{x:nextSign*scale,y:scale},to:{x:nextSign*scale,y:scale}};
+      const launch=[tweenP(u.grp.position,mid,motion.stepHalf,easeOutCubic,{from:{y:from.y},to:{y:groundMidY}}),tweenP(u.spr.rotation,{z:-nextSign*(motion.tilt||0.045)},motion.stepHalf,easeOutCubic,stillRotation),tweenP(u.spr.scale,{x:nextSign*scale*(1+(motion.squash||0.035)*0.35),y:scale*(1-(motion.squash||0.035))},motion.stepHalf,easeOutCubic,stillScale)];
+      if(u.outline){ const os=spriteScaleSign(u.outline),stillOutline={from:{x:os*outlineScale,y:outlineScale},to:{x:os*outlineScale,y:outlineScale}}; launch.push(tweenP(u.outline.rotation,{z:-os*(motion.tilt||0.045)},motion.stepHalf,easeOutCubic,stillRotation),tweenP(u.outline.scale,{x:os*outlineScale*(1+(motion.squash||0.035)*0.35),y:outlineScale*(1-(motion.squash||0.035))},motion.stepHalf,easeOutCubic,stillOutline)); }
       await Promise.all(launch); if(!isUnitMotionCurrent(u,epoch))return;
-      const land=[tweenP(u.grp.position,{x:wX(gx),y:c.topY,z:wZ(gz)},motion.stepHalf,easeInOut),tweenP(u.spr.rotation,{z:0},motion.stepHalf,easeInOut),tweenP(u.spr.scale,{x:nextSign*scale,y:scale},motion.stepHalf,easeInOut)];
-      if(u.outline){ const os=spriteScaleSign(u.outline); land.push(tweenP(u.outline.rotation,{z:0},motion.stepHalf,easeInOut),tweenP(u.outline.scale,{x:os*outlineScale,y:outlineScale},motion.stepHalf,easeInOut)); }
+      const land=[tweenP(u.grp.position,{x:wX(gx),y:c.topY,z:wZ(gz)},motion.stepHalf,easeInOut,{from:{y:groundMidY},to:{y:c.topY}}),tweenP(u.spr.rotation,{z:0},motion.stepHalf,easeInOut,stillRotation),tweenP(u.spr.scale,{x:nextSign*scale,y:scale},motion.stepHalf,easeInOut,stillScale)];
+      if(u.outline){ const os=spriteScaleSign(u.outline),stillOutline={from:{x:os*outlineScale,y:outlineScale},to:{x:os*outlineScale,y:outlineScale}}; land.push(tweenP(u.outline.rotation,{z:0},motion.stepHalf,easeInOut,stillRotation),tweenP(u.outline.scale,{x:os*outlineScale,y:outlineScale},motion.stepHalf,easeInOut,stillOutline)); }
       await Promise.all(land);
       if(sign!==nextSign)u.visualFacingX=u.facing.dx||u.visualFacingX;
     }
     if(!isUnitMotionCurrent(u,epoch))return;
     const last=path[path.length-1]; placeUnit(u,last[0],last[1]);
     const settleHalf=(motion.settle||.06)/2,settleAmount=REDUCED_GRAPHICS?.012:.022,scale=largeUnitSpriteScale(u),sign=spriteScaleSign(u.spr),outlineScale=scale*1.1;
-    const compress=[tweenP(u.spr.scale,{x:sign*scale*(1+settleAmount*.4),y:scale*(1-settleAmount)},settleHalf,easeOutCubic)]; if(u.outline){ const os=spriteScaleSign(u.outline); compress.push(tweenP(u.outline.scale,{x:os*outlineScale*(1+settleAmount*.4),y:outlineScale*(1-settleAmount)},settleHalf,easeOutCubic)); } await Promise.all(compress); if(!isUnitMotionCurrent(u,epoch))return;
-    const settle=[tweenP(u.spr.scale,{x:sign*scale,y:scale},settleHalf,easeInOut)]; if(u.outline){ const os=spriteScaleSign(u.outline); settle.push(tweenP(u.outline.scale,{x:os*outlineScale,y:outlineScale},settleHalf,easeInOut)); } await Promise.all(settle);
+    const stillScale={from:{x:sign*scale,y:scale},to:{x:sign*scale,y:scale}};
+    const compress=[tweenP(u.spr.scale,{x:sign*scale*(1+settleAmount*.4),y:scale*(1-settleAmount)},settleHalf,easeOutCubic,stillScale)]; if(u.outline){ const os=spriteScaleSign(u.outline),stillOutline={from:{x:os*outlineScale,y:outlineScale},to:{x:os*outlineScale,y:outlineScale}}; compress.push(tweenP(u.outline.scale,{x:os*outlineScale*(1+settleAmount*.4),y:outlineScale*(1-settleAmount)},settleHalf,easeOutCubic,stillOutline)); } await Promise.all(compress); if(!isUnitMotionCurrent(u,epoch))return;
+    const settle=[tweenP(u.spr.scale,{x:sign*scale,y:scale},settleHalf,easeInOut,stillScale)]; if(u.outline){ const os=spriteScaleSign(u.outline),stillOutline={from:{x:os*outlineScale,y:outlineScale},to:{x:os*outlineScale,y:outlineScale}}; settle.push(tweenP(u.outline.scale,{x:os*outlineScale,y:outlineScale},settleHalf,easeInOut,stillOutline)); } await Promise.all(settle);
   } finally {
     if(isUnitMotionCurrent(u,epoch))restoreUnitVisualBaseline(u);
     G.busy=false;
