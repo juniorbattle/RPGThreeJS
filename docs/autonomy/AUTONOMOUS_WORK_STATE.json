@@ -1,50 +1,43 @@
 {
-  "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
-  "runStartedAt": "2026-10-08T19:00:22.0843319Z",
-  "runEndedAt": "2026-10-08T19:49:42.382Z",
+  "status": "PAUSED_FOR_CREDITS",
+  "runStartedAt": "2026-10-08T21:07:21.390Z",
+  "runEndedAt": "2026-10-08T23:05:27.264Z",
   "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
-  "activePhase": "SOURCE_PUBLISHED_METADATA_CLOSEOUT_BLOCKED",
-  "activeSubtask": "Ordinary movement and earned second-refuge checkpoint published; native earned campaign ending continuation pending",
+  "activePhase": "INTERRUPTED_EARNED_ENDING_SAFE_CHECKPOINT",
+  "activeSubtask": "Earned second-refuge rescue/serpent ending interrupted; terminal acceptance pending",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "9a4acdead9081282f5a624a575c6346adbb0860e",
-  "lastPushedCommit": "da33bf8148430b2d12a87e66df79484fe1ab45cd",
+  "lastKnownGoodCommit": "632b9bc9a9219adf5636c3866e8377413481f5aa",
+  "lastPushedCommit": "632b9bc9a9219adf5636c3866e8377413481f5aa",
   "completedThisRun": [
-    "Read-only preflight complete; absent lock, clean dev and remote577ab03 parity. Exclusive1859 lock acquired; inherited Vite5173 preserved.",
-    "393 frozen source/driver/helper files plus2HTML and prior build/result hashes match accepted1214 proof.",
-    "Ignored ordinary-movement candidate prepared while registered campaign source/build remains frozen; reviewer architecture conditional PASS. No acceptance before actual source diff/native proof.",
-    "Earned second-refuge continuation accepted scoped on frozen577ab03: native rest60; Valmir42actions9rounds, village27actions6rounds; wallet300/temp0, exactV6. Root3captures/guardian/cleanup verified.",
-    "Applied ordinary move tagged reduced interpolation only; fixed timings/epochs/callbacks/native destination retained.123focused6files/types/contracts/gates/fresh210module8MP4 build PASS; browser proof pending.",
-    "Ordinary movement flat production milestone accepted:6nativecases1366/620/390 normal/reduce,85samples38stable reduced, exactnative completion; guardian/UI/root review; failedinitialsmoke remainsNOT_ACCEPTED afterexactly1boundedassertioncorrection."
+    "Read-only preflight: absent lock, clean dev=origin/dev632b9bc, main00b96f1 unchanged; metadata2044 publication resolution verified live",
+    "Unchanged existing ending runner registered35min/rescue/serpent1366normal on5346 from exact accepted1859lineage; no final acceptance after cutoff",
+    "55tests4files/types/validator8contracts8slots/fresh210module8MP4build/gates PASS;393physicalinputs9buildhashes2lineageinputs unchanged at closeout",
+    "UI specialist hit usage_limit_exceeded before review; no product implementation or QA assertion change. Own worker/port positively absent; cutoff cause unknown"
   ],
   "filesChanged": [
-    "src/combat/legacyCombatRuntime.js",
-    "src/combat/unitMotion.test.ts",
-    "tools/combat-battlefield-keyboard-production-qa.mjs",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
-    "docs/autonomy/handoffs/2026-10-08T1859Z-codex-ordinary-motion-second-refuge-checkpoint.md",
-    "docs/reports/ordinary-movement-1859/checks.json",
-    "docs/reports/ordinary-movement-1859/lion-first-refuge-native-rest.png",
-    "docs/reports/ordinary-movement-1859/lion-second-refuge-earned-resumed.png",
-    "docs/reports/ordinary-movement-1859/1366-no-preference-move-reduced-settled.png",
-    "docs/reports/ordinary-movement-1859/390-reduce-move-reduced-settled.png"
+    "docs/autonomy/handoffs/2026-10-08T2104Z-codex-interrupted-earned-ending-checkpoint.md"
   ],
   "testsRun": [
-    "114 focused tests in5files; TypeScript; direct contracts validator; immutable/working-tree/whitespace gates; registered existing production continuation35min1366normal.",
-    "123focused6files; directtsc; validator8/8; immutable/protected/whitespace gates; freshbuild210modules/8MP4; existing native movement smoke plus exactlyone guardian-approved assertion correction"
+    "55 focused tests4files PASS",
+    "TypeScript PASS",
+    "direct contract validator8/8 PASS",
+    "fresh production build210modules8MP4 PASS"
   ],
   "testsPassed": [
-    "114tests5files PASS; TypeScript PASS; contracts8/slots8 PASS; LOCKED diff empty; build reused after exact9bundle/index + legacyHTML SHA256 verification.",
-    "123focused6files/types/contracts/LOCKED/build PASS; earnedsecondrefuge native/V6 scoped PASS; movement acceptance pending terminal v2",
-    "Fresh ordinary movement6cases85samples PASS and guardian/UI accepted flat scope; exact396physicalfiles+9buildhashes+driver/receipt/result identity verified;3ownedworkers/2ports absent"
+    "55 focused tests4files PASS",
+    "TypeScript PASS",
+    "direct contract validator8/8 PASS",
+    "fresh production build210modules8MP4 PASS",
+    "LOCKED/protected/whitespace gates PASS"
   ],
   "testsRemaining": [
-    "Earned native campaign/first-refuge with corrected source checkpoint; failed15min job is no acceptance or seed",
-    "Actual submenu/Retour touch bounds, spokenAT and campaign iframe wider focus coverage",
-    "Effective OS-only tactical-animation reduction; current matrix certifies keyboard operability only",
-    "Sacrifice/ending/reload/fallback/settledVFX/balance/single-build campaign and Salvation exact2AP",
-    "COPY static-only OS-shadow and council/refugee proof; environment broader inventory and approved Bois-Clair night plate",
+    "Earned rescue/serpent ending and exact ending V6 on current build;2104 interrupted output cannot seed continuation",
+    "Exact2AP-start Salvation and actual2APcost/raw native before-after; screenshot or40percent assertion alone insufficient",
+    "Broad accessibility,390actor framing,enabledskills/automaticfocusreturn/spokenAT and live cast/leap/attack/Stage reduction",
+    "Sacrifice/trial/fallback/settledVFX/balance/single-build campaign acceptance",
+    "COPY/static-only OS-shadow and council/refugee acceptance; approved Bois-Clair night plate; ten canonical Pursuit mappings",
     "Operator final demo testing"
   ],
   "blockers": [
@@ -53,8 +46,8 @@
     "SCENE-TRANSITION-COPY: authored ATE captions source and six-case scoped proof PASS; full static-only OS-shadow proof remains blocked by existing video-attempt assertion; no repeat or weakening.",
     "ENVIRONMENT-NARRATIVE-COHERENCE BLOCKED_ASSET: Bois-Clair night-watch says night, approved burning plate is bright sunset; no approved same-location night replacement. Preserve text/masters.",
     "Fresh campaign-0514-first-refuge FAILED at15min battle deadline after19nativeactions; no earnedfirstrefuge/fullV6 acceptance; reached iframe keyboard assertions diagnostic only",
-    "Broad keyboard accessibility remains open: submenu/Retour44px not measured, spokenAT not tested, effective OS tactical motion not established",
-    "Publication-closeout2044: source checkpoint da33bf8 verified on origin/dev; new three-file metadata public push rejected by automatic approval review. Local concrete closure awaits exact approval."
+    "Broad accessibility remains open: compact44px/ordinary-flat-motion have scoped accepted evidence, but spokenAT/enabledskills/automaticfocusrestore/390framing/allactionmotion remain unverified",
+    "Run2104 PAUSED_FOR_CREDITS: UI reviewer usage_limit_exceeded; earned ending worker has no final result after cutoff and is NOT_ACCEPTED; no completion/AP/ending/reload certification"
   ],
   "remainingWork": [
     "COPY full static-only OS shadow acceptance",
@@ -63,7 +56,7 @@
     "Council/refugee browser acceptance and ten Pursuit canonical mappings",
     "Earned campaign/endings/Salvation2AP/VFX/balance remain open"
   ],
-  "nextAction": "Resolve automatic-review rejection for exact three-file publication-closeout2044 metadata; approved source da33bf8 already public. Verify clean local metadata commit, stopped retained lock, normal metadata push and remote parity before lock release. Then Read-only preflight and exclusive lock acquisition, then continue DEMO-QA-POLISH with existing tools/demo-continuous-production-qa.mjs from earnedSavePath tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json (SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b) and priorProofPath tmp/demo/campaign-second-refuge-1859/results.json (SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3). Rescue/serpent/ending1366normal, native rest75 first (3KO/5wounded,300gold), existing native shop/equip preparation, register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID, unique ignored output/free strict port and bounded deadline. Verify current physical source/driver/build identities; do not relabel old frozen577 campaign proof as new build acceptance. Inspect terminal receipt, genuine combats/T1/T3/temporaryloot/exactV6/ending/Salvation2AP and selected captures. Do not repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices; keep live leap/attack/Stage, live-slope smoothness,390framing/broadaccessibility/balance/settledVFX/fullending gates open. Preserve152historicaljobs/exact deferredDemoTask and pendingNarrativeTask.",
+  "nextAction": "Check credits/tool availability first and read2104handoff. Normal readonly preflight/owned lock; inspect campaign-ending-2104 receipt/progress before any relaunch: worker45248 and port5346 absent at23:03UTC, no results.json, NOT_ACCEPTED. Do not use this interrupted output as an earned seed. Preserve155historicaljobs and exact deferredDemoTask/pendingNarrativeTask/queue. Continue the same DEMO-QA-POLISH native earned rescue/serpent ending criterion from accepted1859 second-refuge save tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b and successful priorProof results.json SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3. Reuse unchanged continuous driver, register a unique bounded job/free port, native rest75 and sacred_crosier shop/equip; freeze source/driver/build and inspect actual ending/exactV6 and raw Salvation2APcost versus exact2AP-start separately. No compatiblematrix repeats or assertion weakening. Cast lift/squash liveOS gap was source-audited only: reviewer quota failed and no implementation began; handle narrowly after terminal campaign QA with ui-accessibility skill and sensitive guardian review. Keep full demo open.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
@@ -77,9 +70,9 @@
     "ENVIRONMENT-NARRATIVE-COHERENCE: BLOCKED_ASSET_BOIS_CLAIR_NIGHT; bounded audit complete",
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
-  "creditStatus": "AVAILABLE; no quota-saving claim; safe checkpoint at completed milestone/external publication boundary",
+  "creditStatus": "UNAVAILABLE_REVIEWER_USAGE_LIMIT_EXCEEDED_ROOT_RESUMED_FOR_SAFE_CLOSEOUT",
   "contractComplianceStatus": {
-    "status": "PASS scoped ordinary movement liveOS/flat6cases; earnedsecondrefuge frozen577 accepted; full demo open",
+    "status": "PASS unchanged authority/LOCKED gates; BLOCKED earned ending acceptance after interrupted QA",
     "contractSetVersion": "1.1.0",
     "lockedRulesChanged": false,
     "roadMatrix": {
@@ -112,29 +105,29 @@
       "limits": "No earnedcampaign/fullV6/balance/wholeSuite/demo acceptance; Serpent focus programmatic only"
     },
     "currentMatrix": {
-      "GAME_CONSTITUTION": "PASS tactical owner retained",
+      "GAME_CONSTITUTION": "PASS unchanged owner boundaries",
       "ART_DIRECTION": "N/A",
       "CHARACTERS": "N/A",
       "ENVIRONMENTS": "N/A",
-      "NARRATIVE_CAMPAIGN": "PASS no new owner write",
+      "NARRATIVE_CAMPAIGN": "PASS unchanged source/authored native actions; ending acceptance open",
       "NARRATIVE_PRESENTATION": "N/A",
       "TRAVERSAL": "N/A",
-      "COMBAT": "PASS completion/destination/epoch/busy",
-      "SAVE": "PASS durable schema unchanged",
-      "UI_ACCESSIBILITY": "PASS ordinary flat6cases; broad scope open",
-      "QA_EVIDENCE": "PASS one correction/rawsamples/provenance",
-      "REPOSITORY_GOVERNANCE": "PASS approved normal dev publication verified; main unchanged"
+      "COMBAT": "PASS unchanged authority; native outcome unverified",
+      "SAVE": "PASS unchanged V6schema/accepted input lineage; ending reload unverified",
+      "UI_ACCESSIBILITY": "BLOCKED cast review quota; no new UI acceptance",
+      "QA_EVIDENCE": "BLOCKED interrupted job/no final result; historical155jobs intact",
+      "REPOSITORY_GOVERNANCE": "PASS standing authorized dev checkpoint; remote parity/lockrelease pending"
     },
     "contractsRead": [
       "GAME_CONSTITUTION",
       "README/manifest1.1.0",
       "AUTONOMOUS_WORK_PROTOCOL",
-      "PRESENTATION_AND_MEDIA",
       "CAMPAIGN_AND_STATE",
-      "WORLD_AND_CHARACTERS",
+      "PRESENTATION_AND_MEDIA",
+      "TRAVERSAL",
+      "COMBAT_AND_VFX",
       "UI_AND_ACCESSIBILITY",
-      "AUTHORING_AND_QA",
-      "COMBAT_AND_VFX"
+      "AUTHORING_AND_QA"
     ],
     "copyCheckpoint": {
       "source": "PASS authored captions restored by CSS only",
@@ -273,7 +266,7 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261008T1859",
+  "runId": "rpgthreejs-auto-dev-90m-20261008T2104",
   "agent": "codex",
   "lastHeartbeat": "2026-10-08T06:27:46.192Z",
   "wip": {
@@ -290,9 +283,9 @@
     }
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261008T1859",
+    "runId": "rpgthreejs-auto-dev-90m-20261008T2104",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-08T19:49:42.382Z",
+    "lastHeartbeat": "2026-10-08T23:06:15.1319760Z",
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
     "qaJobs": [
       {
@@ -16943,39 +16936,152 @@
         "matchesExecutionAtReview": true,
         "eligibleForReviewAtReview": true,
         "limitation": "Flat ordinary move only; standalone native inputs at1366/620/390 both live OS directions; no synchronous-delivery/all-action/liveStage/campaign or live-slope smoothness claim"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "campaign-ending-2104",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T2104",
+        "status": "INTERRUPTED_NO_FINAL_RECEIPT",
+        "registeredAt": "2026-10-08T21:08:51.682Z",
+        "pid": 45248,
+        "port": 5346,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "ending",
+          "routePlan": "rescue",
+          "timeoutMinutes": 35,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/campaign-second-refuge-1859/results.json",
+          "verifySalvation": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/campaign-ending-2104",
+        "receiptPath": "tmp/demo/campaign-ending-2104/qa-job.json",
+        "provenance": {
+          "gitHead": "632b9bc9a9219adf5636c3866e8377413481f5aa",
+          "sourceTree": "420d6e1cbdb6ee7692659f98666a6da6e19ad57d",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "68e7466e21202dc346b6763ef9bd545718e5aadc73449912ddf10b39e1576ed0"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+              "sha256": "67d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/campaign-second-refuge-1859/results.json",
+              "sha256": "1eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3"
+            }
+          ],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CgtHztqA.js",
+              "sha256": "b1f8cbeab4c54a8c7eea48e6eeda9ac635b0fbdcb41115b9d375e98233fa0802"
+            },
+            {
+              "path": "dist/assets/combat-CG8vRd5H.js",
+              "sha256": "c1d9157621ad8c59e45f29b0d145fdf313058a98958efafc519d19dc07238474"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-3pkMo-Ir.css",
+              "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+            },
+            {
+              "path": "dist/assets/game-CfeGt3vL.js",
+              "sha256": "b059922fb1efd0bdc9944e07e83a4f75e1d1a9fd74b4db6eae90456ba2d365b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "eb6086357447b6e5b34da2c0ffdfa1956d9e0d98472ab195b513fa1c19c32abb"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-08T21:08:56.031Z",
+        "endedAt": null,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": false,
+        "eligibleForReview": false,
+        "receiptObservedStatus": "RUNNING",
+        "pidAbsentVerifiedAt": "2026-10-08T23:05:27.264Z",
+        "portAbsentVerifiedAt": "2026-10-08T23:05:27.264Z",
+        "orchestratorClassifiedAt": "2026-10-08T23:05:27.264Z",
+        "reason": "Worker45248 and port5346 positively absent after cutoff; no final results.json or terminal receipt. Exact termination cause unknown; do not infer success or a35minute tactical timeout."
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261008T1859",
-      "sha": "9a072672edb2e1a3d68b072e57dd32b4a5bdd506",
-      "snapshotAt": "2026-10-08T15:47:45-04:00",
-      "status": "SCOPED_GREEN_LOCAL_ONLY",
-      "lastGreenCheck": "123tests/types/contracts/gates/build; ordinaryflat6cases/campaignfrozen577 accepted; no full demo claim",
-      "publication": "LOCAL_ONLY_AUTOMATIC_REVIEW_BLOCK",
-      "remoteVerified": false
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261008T2104",
+      "sha": "986c8dd303582086d04a29720c8db1a162afc643",
+      "status": "GREEN_CONTINUATION_STATE_LOCAL",
+      "lastGreenCheck": "Preflight and TypeScript/contracts PASS",
+      "snapshotAt": "2026-10-08T23:06:15.1319760Z",
+      "dirtyFiles": [
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
+      ]
     },
-    "nextAction": "Resolve automatic-review rejection for exact three-file publication-closeout2044 metadata; approved source da33bf8 already public. Verify clean local metadata commit, stopped retained lock, normal metadata push and remote parity before lock release. Then Read-only preflight and exclusive lock acquisition, then continue DEMO-QA-POLISH with existing tools/demo-continuous-production-qa.mjs from earnedSavePath tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json (SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b) and priorProofPath tmp/demo/campaign-second-refuge-1859/results.json (SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3). Rescue/serpent/ending1366normal, native rest75 first (3KO/5wounded,300gold), existing native shop/equip preparation, register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID, unique ignored output/free strict port and bounded deadline. Verify current physical source/driver/build identities; do not relabel old frozen577 campaign proof as new build acceptance. Inspect terminal receipt, genuine combats/T1/T3/temporaryloot/exactV6/ending/Salvation2AP and selected captures. Do not repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices; keep live leap/attack/Stage, live-slope smoothness,390framing/broadaccessibility/balance/settledVFX/fullending gates open. Preserve152historicaljobs/exact deferredDemoTask and pendingNarrativeTask.",
+    "nextAction": "Check credits/tool availability first and read2104handoff. Normal readonly preflight/owned lock; inspect campaign-ending-2104 receipt/progress before any relaunch: worker45248 and port5346 absent at23:03UTC, no results.json, NOT_ACCEPTED. Do not use this interrupted output as an earned seed. Preserve155historicaljobs and exact deferredDemoTask/pendingNarrativeTask/queue. Continue the same DEMO-QA-POLISH native earned rescue/serpent ending criterion from accepted1859 second-refuge save tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b and successful priorProof results.json SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3. Reuse unchanged continuous driver, register a unique bounded job/free port, native rest75 and sacred_crosier shop/equip; freeze source/driver/build and inspect actual ending/exactV6 and raw Salvation2APcost versus exact2AP-start separately. No compatiblematrix repeats or assertion weakening. Cast lift/squash liveOS gap was source-audited only: reviewer quota failed and no implementation began; handle narrowly after terminal campaign QA with ui-accessibility skill and sensitive guardian review. Keep full demo open.",
     "runMetrics": {
-      "sourceFilesModified": 1,
-      "testFilesModified": 1,
-      "existingQAToolsModified": 1,
+      "sourceFilesModified": 0,
+      "testFilesModified": 0,
+      "existingQAToolsModified": 0,
       "qaToolsAdded": 0,
-      "proofFilesAdded": 5,
-      "workflowFiles": 4,
+      "proofFilesAdded": 0,
+      "workflowFiles": 3,
       "inheritedWIPPaths": 0,
       "distinctReadOnlyReviewers": 2,
-      "registeredInvocations": 3,
-      "campaignContinuations": 1,
-      "smokeInvocations": 2,
-      "harnessCorrectionsThisRun": 1,
+      "completedReviewers": 1,
+      "reviewerQuotaFailures": 1,
+      "registeredInvocations": 1,
+      "acceptedScopedJobs": 0,
+      "harnessCorrectionsThisRun": 0,
       "failedSeedsUsed": 0,
-      "newCampaignNativeCombatActions": 69,
-      "acceptedScopedJobs": 2,
-      "selectedCapturesInspected": 6,
-      "selectedCapturesPromoted": 4,
-      "reviewCost": "Two readonly reviewers reused for narrow architecture, source and scoped receipt/capture reviews; no quota-savings claim",
-      "endedAt": "2026-10-08T19:49:42.382Z",
-      "elapsedMinutes": 49.3383
+      "newNativeCampaignActionsObserved": 55,
+      "selectedCapturesInspected": 4,
+      "selectedCapturesPromoted": 0,
+      "reviewCost": "Guardian prelaunch PASS; UI reviewer failed quota. No quota savings claim.",
+      "interruptedLastProgressAt": "2026-10-08T21:23:33.987Z",
+      "endedAt": "2026-10-08T23:05:27.264Z",
+      "wallElapsedMinutes": 118.0979,
+      "elapsedIncludesCutoffGap": true
     },
     "checkpointPaths": [
       "src/combat/legacyCombatRuntime.js",
@@ -16992,62 +17098,38 @@
       "docs/reports/ordinary-movement-1859/390-reduce-move-reduced-settled.png"
     ],
     "publication": {
-      "status": "VERIFIED_PUBLISHED",
+      "status": "LOCAL_COHERENT_CHECKPOINT_READY_FOR_NORMAL_DEV_PUBLICATION",
+      "standingDecision": "OD-2026-10-08-B",
       "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
-      "branches": [
-        "dev"
-      ],
-      "rejectedSnapshot": "49d34f84b5747235d6a077a21706f86b223cef4e",
-      "rejectedPaths": [
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
-      ],
-      "executed": true,
-      "rejectionsThisRun": 1,
-      "noRetryOrWorkaround": true,
-      "reason": "Prior rejection resolved by direct operator reaffirmation; normal approved dev push verified",
-      "sourceCommit": "9a4acdead9081282f5a624a575c6346adbb0860e",
+      "branch": "dev",
+      "baseline": "632b9bc9a9219adf5636c3866e8377413481f5aa",
+      "rejectionsThisRun": 0,
       "selectedPaths": [
-        "src/combat/legacyCombatRuntime.js",
-        "src/combat/unitMotion.test.ts",
-        "tools/combat-battlefield-keyboard-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
-        "docs/autonomy/handoffs/2026-10-08T1859Z-codex-ordinary-motion-second-refuge-checkpoint.md",
-        "docs/reports/ordinary-movement-1859/checks.json",
-        "docs/reports/ordinary-movement-1859/lion-first-refuge-native-rest.png",
-        "docs/reports/ordinary-movement-1859/lion-second-refuge-earned-resumed.png",
-        "docs/reports/ordinary-movement-1859/1366-no-preference-move-reduced-settled.png",
-        "docs/reports/ordinary-movement-1859/390-reduce-move-reduced-settled.png"
-      ],
-      "standingDecision": "OD-2026-10-08-B",
-      "reviewedDestination": "https://github.com/juniorbattle/RPGThreeJS.git",
-      "devRemoteVerified": "da33bf8148430b2d12a87e66df79484fe1ab45cd",
-      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "remoteVerifiedAt": "2026-10-08T20:47:06.856Z",
-      "finalCheckpoint": "Read local Git HEAD and owned lock/automation memory; self-hash is external",
-      "branch": "dev",
-      "checkpoint": "da33bf8148430b2d12a87e66df79484fe1ab45cd",
-      "verifiedAt": "2026-10-08T20:47:06.856Z",
-      "approvedBy": "Human in this chat: Approve toujours je t'ai dit",
-      "finalMetadataParity": "Final metadata commit, remote parity and lock absence recorded in automation memory"
+        "docs/autonomy/handoffs/2026-10-08T2104Z-codex-interrupted-earned-ending-checkpoint.md"
+      ]
     },
-    "runStartedAt": "2026-10-08T19:00:22.0843319Z",
-    "runEndedAt": "2026-10-08T19:49:42.382Z",
+    "runStartedAt": "2026-10-08T21:07:21.390Z",
+    "runEndedAt": "2026-10-08T23:05:27.264Z",
     "writerStopped": true,
     "metadataPublication": {
-      "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
+      "status": "RESOLVED_BY_OPERATOR_APPROVAL",
       "standingDecision": "OD-2026-10-08-B",
       "selectedPaths": [
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
         "docs/autonomy/handoffs/2026-10-08T1859Z-codex-ordinary-motion-second-refuge-checkpoint.md"
       ],
-      "executed": false,
+      "executed": true,
       "rejectionsThisRun": 1,
       "reason": "Automatic review rejected public disclosure of exact newly modified three state/handoff files despite direct human standing authorization reaffirmation",
-      "noRetryOrWorkaround": true
+      "noRetryOrWorkaround": true,
+      "publishedCheckpoint": "632b9bc9a9219adf5636c3866e8377413481f5aa",
+      "devRemoteVerified": "632b9bc9a9219adf5636c3866e8377413481f5aa",
+      "verifiedAt": "2026-10-08T21:07:21.390Z",
+      "lockReleased": true,
+      "resolution": "Direct approval and actual normal dev publication/lock release recorded automation memory20:54 and reverified live21:05; previous rejection remains historical"
     },
     "publication1752History": {
       "status": "VERIFIED_PUBLISHED",
@@ -17168,7 +17250,7 @@
       "qaToolsAdded": 0,
       "proofFilesAdded": 0,
       "workflowFilesModified": 3,
-      "lockRelease": "Retained stopped writer lock pending exact new metadata approval and publication",
+      "lockRelease": "Verified absent at2104preflight",
       "authorization": "Approve toujours je t'ai dit",
       "contractsRead": [
         "GAME_CONSTITUTION",
@@ -17194,6 +17276,77 @@
       },
       "writerStopped": true,
       "endedAt": "2026-10-08T20:48:28.071Z"
+    },
+    "run1859History": {
+      "runId": "rpgthreejs-auto-dev-90m-20261008T1859",
+      "runMetrics": {
+        "sourceFilesModified": 1,
+        "testFilesModified": 1,
+        "existingQAToolsModified": 1,
+        "qaToolsAdded": 0,
+        "proofFilesAdded": 5,
+        "workflowFiles": 4,
+        "inheritedWIPPaths": 0,
+        "distinctReadOnlyReviewers": 2,
+        "registeredInvocations": 3,
+        "campaignContinuations": 1,
+        "smokeInvocations": 2,
+        "harnessCorrectionsThisRun": 1,
+        "failedSeedsUsed": 0,
+        "newCampaignNativeCombatActions": 69,
+        "acceptedScopedJobs": 2,
+        "selectedCapturesInspected": 6,
+        "selectedCapturesPromoted": 4,
+        "reviewCost": "Two readonly reviewers reused for narrow architecture, source and scoped receipt/capture reviews; no quota-savings claim",
+        "endedAt": "2026-10-08T19:49:42.382Z",
+        "elapsedMinutes": 49.3383
+      },
+      "wip": {
+        "branch": "wip/rpgthreejs-auto-dev-90m-20261008T1859",
+        "sha": "9a072672edb2e1a3d68b072e57dd32b4a5bdd506",
+        "snapshotAt": "2026-10-08T15:47:45-04:00",
+        "status": "SCOPED_GREEN_LOCAL_ONLY",
+        "lastGreenCheck": "123tests/types/contracts/gates/build; ordinaryflat6cases/campaignfrozen577 accepted; no full demo claim",
+        "publication": "LOCAL_ONLY_AUTOMATIC_REVIEW_BLOCK",
+        "remoteVerified": false
+      }
+    },
+    "metadataPublication2044History": {
+      "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
+      "standingDecision": "OD-2026-10-08-B",
+      "selectedPaths": [
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/handoffs/2026-10-08T1859Z-codex-ordinary-motion-second-refuge-checkpoint.md"
+      ],
+      "executed": false,
+      "rejectionsThisRun": 1,
+      "reason": "Automatic review rejected public disclosure of exact newly modified three state/handoff files despite direct human standing authorization reaffirmation",
+      "noRetryOrWorkaround": true
+    },
+    "campaign2104": {
+      "prelaunch": "contracts-guardian PASS authority; terminal acceptance pending",
+      "physicalFreeze": "tmp/autonomy/physical-freeze-2104.json",
+      "physicalFiles": 393,
+      "buildFiles": 9,
+      "limitations": "Native40percent Salvation healing assertion alone does not verify2AP; raw AP/spec and exact75rest debit to inspect at terminal",
+      "acceptance": "NOT_ACCEPTED_INTERRUPTED_NO_FINAL_RESULT",
+      "lastObserved": {
+        "actions": 55,
+        "round": 10,
+        "bossHealth": 225
+      },
+      "actualWorkerTerminationCause": "UNKNOWN",
+      "noOutputSeed": true
+    },
+    "castAudit2104": {
+      "status": "SOURCE_GAP_ONLY_NOT_IMPLEMENTED",
+      "files": [
+        "src/combat/legacyCombatRuntime.js"
+      ],
+      "gap": "Cast lift and squash tweens are untagged for liveOS reduction; broader action gaps remain open",
+      "reviewer": "ui-accessibility failed usage_limit_exceeded",
+      "noRuntimeOrDriverChange": true
     }
   },
   "previousInterruptedRun": {
