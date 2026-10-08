@@ -1,18 +1,19 @@
 {
-  "status": "BLOCKED_BY_PUBLICATION_APPROVAL",
+  "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-08T00:32:52.6172396Z",
-  "runEndedAt": "2026-10-08T00:43:41.105Z",
+  "runEndedAt": "2026-10-08T01:14:27.110Z",
   "activeTask": "STATIC-TABLEAU-STAGING-POLISH",
   "activePhase": "Initial readiness and390OS native transition accepted scoped; wider tableau milestone OPEN",
-  "activeSubtask": "Publish reviewed local readiness checkpoint after approval; preserve exact tableau milestone continuation",
+  "activeSubtask": "Initial readiness and native390OS opening accepted scoped; wider and civilian tableau milestone OPEN",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "02b5b0b89f4e4a4a2839bd60d00252af0b2c37dc",
-  "lastPushedCommit": "433612fa45e2aab49f9a21ac85c3802910a496a3",
+  "lastPushedCommit": "acf5a3441cf798a255a4be41201068ffc888c053",
   "completedThisRun": [
     "Absent-lock read-only preflight/local-remote parity; six deferred files retained",
     "Bound initial decode and cancellation/stale Stage continuation; no truth write",
     "86focused/types/contracts/staging/build PASS; native390OS opening scoped accepted after two reviewer capture checks",
-    "Local source checkpoint and temporary-index WIP retained; publication withheld after automatic-review rejections"
+    "Local source checkpoint and temporary-index WIP retained; publication withheld after automatic-review rejections",
+    "Operator explicitly approved publication; devacf5a344 and WIPbbcdd889 pushed and remote parity verified; publication blocker resolved"
   ],
   "filesChanged": [
     "src/cinematics/NarrativeSceneSurface.ts",
@@ -47,17 +48,15 @@
   ],
   "blockers": [
     "Pursuit production collision integration:10windows lack explicitly authored eligible canonical mappings; isolated candidate PASS does not close full task",
-    "Narrative OS smoke: static-only council rejected by unchanged approved-video-attempt assertion; one correction exhausted, both outputs NOT_ACCEPTED. Normal council and static-only OS milestone proof remain open.",
-    "Publication: automatic review rejected WIP push twice; full snapshot/remote trust insufficient. No workaround; explicit approval needed for exact origin/dev and wip/rpgthreejs-auto-dev-90m-20261008T0032 publication."
+    "Narrative OS smoke: static-only council rejected by unchanged approved-video-attempt assertion; one correction exhausted, both outputs NOT_ACCEPTED. Normal council and static-only OS milestone proof remain open."
   ],
   "remainingWork": [
     "ACTIVE: tableau readiness/390OS transition ACCEPTED_SCOPED; wide/civilian milestone OPEN",
-    "BLOCKED: publication checkpoint; approve exact dev/WIP then verify parity/release lock",
     "BLOCKED external: ten canonical Pursuit mappings",
     "OPEN: independent narrative council/refugee production proof",
     "PENDING: SCENE-TRANSITION-COPY; ENVIRONMENT-NARRATIVE-COHERENCE; deferredDEMO-QA-POLISH"
   ],
-  "nextAction": "Approval required to publish exact local dev checkpoint and wip/rpgthreejs-auto-dev-90m-20261008T0032 to verified juniorbattle/RPGThreeJS. Do not bypass automatic-review rejection or take a young lock. After approval verify ownedlock/currentHEAD/deferred6blobs/localWIP/remote parity, normalpush origin/dev and WIP, verify then release. Next owned run: tableau milestone existing opening-camp-audience+serpent-ending1440/620/390 normal/OS plus village_choice firsttableau/restage/nativechoice (bois-clair-saved); reuse compatible390OS opening-0032 receipt after physical identity check. No new runner needed; no repeat accepted ROAD/CAMPFIRE, no exhausted councilOS edit.",
+  "nextAction": "Normal read-only preflight/owned lock; STATIC-TABLEAU-STAGING-POLISH milestone: reuse existing opening-camp-audience and serpent-ending runners at1440/620/390 normal/OS plus village_choice firsttableau/restage/nativechoice civilian/hero distinction (existing bois-clair-saved). Reuse opening-0032-os390 proof only after identical physical source/driver/build/assertions check; Git fingerprint representation changed after equivalent commit. Preserve six deferred bytes/exact deferredDemoTask, exhausted councilOS assertion, independent council/refugee gate and ten external Pursuit mappings. No new runner needed; no repeat accepted ROAD/CAMPFIRE matrices.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
@@ -73,7 +72,7 @@
   ],
   "creditStatus": "AVAILABLE; no quota-saving claim",
   "contractComplianceStatus": {
-    "status": "PASS scoped readiness/390OS transition; BLOCKED full tableau milestone and publication",
+    "status": "PASS scoped readiness/390OS transition; wider tableau milestone OPEN",
     "contractSetVersion": "1.1.0",
     "lockedRulesChanged": false,
     "roadMatrix": {
@@ -115,7 +114,7 @@
       "SAVE": "PASS storedV6 equality/resolved reload scoped; no schema change",
       "UI_ACCESSIBILITY": "PASS scoped390OS nativefocus/textbbox; broad OPEN",
       "QA_EVIDENCE": "PASS scoped exact assertions/physical hashes/captures/manual-owner label",
-      "REPOSITORY_GOVERNANCE": "BLOCKED publication approval; local checkpoint/LOCKED gates PASS"
+      "REPOSITORY_GOVERNANCE": "PASS approved explicit dev/WIP publication verified; no main/LOCKED changes"
     },
     "contractsRead": [
       "GAME_CONSTITUTION",
@@ -250,8 +249,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261008T0032",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-08T00:44:13.751Z",
-    "status": "BLOCKED_BY_PUBLICATION_APPROVAL",
+    "lastHeartbeat": "2026-10-08T01:14:27.110Z",
+    "status": "SOURCE_CHECKPOINT_PUBLISHED_SCOPED_ACCEPTANCE",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -13467,9 +13466,9 @@
     ],
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0032",
-      "sha": "bbcdd88901ea97510ca14a67cb9529157a2e0fbe",
-      "status": "LOCAL_ONLY_PUBLICATION_BLOCKED",
-      "lastSnapshotAt": "2026-10-08T00:44:13.751Z",
+      "sha": "de39f7f7e561c720f5d296efa48b26b0a3116df0",
+      "status": "PUBLISHED_RECOVERY_FOR_SIX_UNCHANGED_DEFERRED_BLOBS",
+      "lastSnapshotAt": "2026-10-08T01:14:27.110Z",
       "dirtyFiles": [
         "legacy-combat.html",
         "src/combat/combatKeyboard.test.ts",
@@ -13480,7 +13479,7 @@
       ],
       "lastGreenCheck": "86 focused tests/types/contracts/staging/build PASS;390OS opening accepted scoped"
     },
-    "nextAction": "Approval required to publish exact local dev checkpoint and wip/rpgthreejs-auto-dev-90m-20261008T0032 to verified juniorbattle/RPGThreeJS. Do not bypass automatic-review rejection or take a young lock. After approval verify ownedlock/currentHEAD/deferred6blobs/localWIP/remote parity, normalpush origin/dev and WIP, verify then release. Next owned run: tableau milestone existing opening-camp-audience+serpent-ending1440/620/390 normal/OS plus village_choice firsttableau/restage/nativechoice (bois-clair-saved); reuse compatible390OS opening-0032 receipt after physical identity check. No new runner needed; no repeat accepted ROAD/CAMPFIRE, no exhausted councilOS edit.",
+    "nextAction": "Normal read-only preflight/owned lock; STATIC-TABLEAU-STAGING-POLISH milestone: reuse existing opening-camp-audience and serpent-ending runners at1440/620/390 normal/OS plus village_choice firsttableau/restage/nativechoice civilian/hero distinction (existing bois-clair-saved). Reuse opening-0032-os390 proof only after identical physical source/driver/build/assertions check; Git fingerprint representation changed after equivalent commit. Preserve six deferred bytes/exact deferredDemoTask, exhausted councilOS assertion, independent council/refugee gate and ten external Pursuit mappings. No new runner needed; no repeat accepted ROAD/CAMPFIRE matrices.",
     "runMetrics": {
       "sourceFilesModified": 2,
       "sourcePaths": [
@@ -13528,16 +13527,18 @@
       "docs/autonomy/handoffs/2026-10-08T0032Z-codex-readiness-publication-blocked.md"
     ],
     "publication": {
-      "status": "BLOCKED_BY_AUTOMATIC_REVIEW",
+      "status": "OPERATOR_APPROVED_PUBLISHED_VERIFIED",
       "productCheckpoint": "02b5b0b89f4e4a4a2839bd60d00252af0b2c37dc",
+      "approvedCheckpoint": "acf5a3441cf798a255a4be41201068ffc888c053",
       "target": "origin/dev",
       "wipTarget": "origin/wip/rpgthreejs-auto-dev-90m-20261008T0032",
+      "approvedAt": "2026-10-08T01:14:27.110Z",
+      "approval": "Human oui in originating thread after exact dev/WIP request; prior automatic-review rejections resolved",
       "mainProtected": true,
-      "attempts": 2,
-      "reason": "Unverified remote/full pushed payload not sufficiently audited; no bypass; explicit approval required"
+      "finalWorkflowShaRecordedInAutomationMemory": true
     },
     "runStartedAt": "2026-10-08T00:32:52.6172396Z",
-    "runEndedAt": "2026-10-08T00:43:41.105Z"
+    "runEndedAt": "2026-10-08T01:14:27.110Z"
   },
   "previousInterruptedRun": {
     "runId": "rpgthreejs-auto-dev-90m-20261007T2039",

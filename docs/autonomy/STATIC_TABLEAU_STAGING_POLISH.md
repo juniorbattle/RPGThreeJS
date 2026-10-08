@@ -1,6 +1,6 @@
 # Static tableau staging polish
 
-CURRENT FACT: IN_PROGRESS. Initial readiness is bounded at local source02b5b0b; native opening replacement/focus is ACCEPTED_SCOPED at390 OS-only. Serpent narrow geometry remains accepted at67462c2. Wider tableau and civilian/hero production acceptance remain OPEN; neither task nor demo is complete. Publication of0032 is BLOCKED_BY_PUBLICATION_APPROVAL.
+CURRENT FACT: IN_PROGRESS. Initial readiness is bounded at local source02b5b0b; native opening replacement/focus is ACCEPTED_SCOPED at390 OS-only. Serpent narrow geometry remains accepted at67462c2. Wider tableau and civilian/hero production acceptance remain OPEN; neither task nor demo is complete. Publication of0032 approved and verified ondev/WIP.
 
 Authority: OD-2026-10-03-A and PRESENTATION_AND_MEDIA / DIALOGUE_STAGING, immutable set1.1.0. Scope: existing authored grouping, stable facing, bounded cast transitions, reduced motion/focus and responsive layouts. Canon, dialogue, outcomes and the four-visible-actor cap remain protected.
 
@@ -49,3 +49,7 @@ Two read-only reviewers reused, source/authority/assertion/capture PASS. Scoped 
 Remaining milestone: existing opening-camp-audience and serpent-ending cases1440/620/390 normal/OS, plus village_choice first tableau/framed restage/native choice proving civilian/hero separation. Reuse compatible evidence only, especially current390OS opening; existing bois-clair-saved runner can supply the civilian case. Do not invent another relational correction: facade/Director audit found no definite remaining defect. Retain independent council/refugee gates and ten external Pursuit mappings.
 
 Publication is withheld after two automatic-review rejections of the explicitly authorized WIP push: reviewer considered the remote unverified and the complete payload insufficiently audited. No workaround or further publication attempt. Local checkpoint/snapshot are preserved; exact dev/WIP publication and lock release require approval. Counts excluding inherited:2runtime,2tests,1existingQAmodified,0newQA,0proof,4workflow;1smoke/1attempt,0post-failure harness corrections,0failedseeds. No quota-saving claim.
+
+## Publication approval resolved — 2026-10-08T01:14:27.110Z
+
+Operator replied oui to the exact dev/WIP publication request. Approved acf5a344 and bbcdd889 published normally and remote verified; no main change. Final workflow/recovery SHA recorded in automation memory after final parity. Publication blocker removed; tableau milestone remainsOPEN with next action in pairedstate. Prior rejections remain historical; no bypass.

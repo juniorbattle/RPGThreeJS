@@ -1,23 +1,23 @@
 # Autonomous work state
 
-CURRENT FACT — STATIC-TABLEAU-STAGING-POLISH remains IN_PROGRESS. Initial readiness and native390OS transition accepted scoped. Wider/civilian milestone and full demo OPEN. Publication BLOCKED_BY_PUBLICATION_APPROVAL.
+CURRENT FACT — STATIC-TABLEAU-STAGING-POLISH remains IN_PROGRESS. Initial readiness and native390OS transition accepted scoped. Wider/civilian milestone and full demo OPEN. Publication approved and verified ondev/WIP.
 
 | Field | Value |
 | --- | --- |
-| status | BLOCKED_BY_PUBLICATION_APPROVAL |
+| status | IN_PROGRESS |
 | runId | rpgthreejs-auto-dev-90m-20261008T0032 |
 | runStartedAt | 2026-10-08T00:32:52.6172396Z |
-| runEndedAt | 2026-10-08T00:43:41.105Z |
+| runEndedAt | 2026-10-08T01:14:27.110Z |
 | activeTask | STATIC-TABLEAU-STAGING-POLISH |
 | activePhase | Initial readiness and390OS native transition accepted scoped; wider tableau milestone OPEN |
-| activeSubtask | Publish reviewed local readiness checkpoint after approval; preserve exact tableau milestone continuation |
+| activeSubtask | Initial readiness and native390OS opening accepted scoped; wider and civilian tableau milestone OPEN |
 | workingBranch | dev |
 | verified local source | 02b5b0b89f4e4a4a2839bd60d00252af0b2c37dc |
-| last verified pushed commit | 433612fa45e2aab49f9a21ac85c3802910a496a3 |
+| last verified pushed commit | acf5a3441cf798a255a4be41201068ffc888c053 |
 
 ## Exact next action
 
-Approval required to publish exact local dev checkpoint and wip/rpgthreejs-auto-dev-90m-20261008T0032 to verified juniorbattle/RPGThreeJS. Do not bypass automatic-review rejection or take a young lock. After approval verify ownedlock/currentHEAD/deferred6blobs/localWIP/remote parity, normalpush origin/dev and WIP, verify then release. Next owned run: tableau milestone existing opening-camp-audience+serpent-ending1440/620/390 normal/OS plus village_choice firsttableau/restage/nativechoice (bois-clair-saved); reuse compatible390OS opening-0032 receipt after physical identity check. No new runner needed; no repeat accepted ROAD/CAMPFIRE, no exhausted councilOS edit.
+Normal read-only preflight/owned lock; STATIC-TABLEAU-STAGING-POLISH milestone: reuse existing opening-camp-audience and serpent-ending runners at1440/620/390 normal/OS plus village_choice firsttableau/restage/nativechoice civilian/hero distinction (existing bois-clair-saved). Reuse opening-0032-os390 proof only after identical physical source/driver/build/assertions check; Git fingerprint representation changed after equivalent commit. Preserve six deferred bytes/exact deferredDemoTask, exhausted councilOS assertion, independent council/refugee gate and ten external Pursuit mappings. No new runner needed; no repeat accepted ROAD/CAMPFIRE matrices.
 
 ## Accepted scope and limits
 
@@ -25,13 +25,13 @@ Initial image batch has750ms deadline after phase preparation; disposal and stal
 
 opening-0032-os: native new-game390x844,OStrue/gamefalse,ordered4/2/4 transition418.6ms,retained nodes/authored facing,settled display-segment bounding-box fit,focused/enabled nativeEnter,nonnull storedV6 equality,native audience choice/resolved reload,zero diagnostics. Root/guardian/tableau inspected2captures. ACCEPTED_SCOPED_OPENING_TRANSITION_390_OS only; no broad spacing/internalclipping/earnedcampaign/demo claim. Frozen result digest fdf0018169e17504719f228126a053b02df5c161e40a9a34fc59dd78a080657e.390physical hashes frozen. Owner terminal reconciliation is not a worker receipt; estimated start withdrawn/exactworker times unavailable. Committing identical physical files changes Git fingerprint representation, no sameExecution relabel.
 
-Two reused read-only reviewers PASS source/assertions/captures. Contract set1.1.0,no LOCKED changes. Scoped constitution/narrative/presentation/save/UI/QA PASS;art/characters/environments/Traversal/combat N/A;governance BLOCKED publication.
+Two reused read-only reviewers PASS source/assertions/captures. Contract set1.1.0,no LOCKED changes. Scoped constitution/narrative/presentation/save/UI/QA PASS;art/characters/environments/Traversal/combat N/A;governance PASS approved publication.
 
 ## Preservation and publication
 
 120prior jobs and exactdeferredDemoTask structurally unchanged;121total. Six deferred physical hashes equal original. ROAD/CAMPFIRE scoped acceptance retained. Council/refugee gate and ten external Pursuit mappings remainOPEN/BLOCKED. No canon/generated/media/audio/V6truth/main changes.
 
-Automatic review rejected authorized WIP push twice: unverified remote and insufficient complete-payload audit. No workaround or further publication attempt. Local source+workflow checkpoints and WIP retained; ownedlock remains writerStopped/publicationblocked until approval and verifiedpush. No QA process remains;port5325closed,unrelated5173untouched.
+Historical automatic review rejected WIP push twice. Operator then explicitly approved the exact dev/WIP publication; approved checkpoints published and verified. Ownedlock release follows final workflow parity and preservation checks. No QA process remains;port5325closed,unrelated5173untouched.
 
 Counts excluding inherited:2runtime+2tests+1existingQAmodified,0newQA,0proof,4workflow;2reviewers,1smoke/1attempt,0postfailurecorrections,0failedseeds. No quota-saving claim.
 
@@ -163,4 +163,5 @@ Counts excluding inherited:2runtime+2tests+1existingQAmodified,0newQA,0proof,4wo
 - opening-0032-os: SUCCEEDED; port 5325; receipt `tmp/cinematics/opening-0032-os/qa-job.json`; ACCEPTED_SCOPED_OPENING_TRANSITION_390_OS
 <!-- QA_JOBS_END -->
 
-Final local recovery snapshot bbcdd88901ea97510ca14a67cb9529157a2e0fbe onwip/rpgthreejs-auto-dev-90m-20261008T0032; publicationBLOCKED.
+
+Final recovery snapshot de39f7f7e561c720f5d296efa48b26b0a3116df0; approved normalpush pending final parity.
