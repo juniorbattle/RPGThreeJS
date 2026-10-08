@@ -1,38 +1,41 @@
 # Autonomous work state
 
-CURRENT FACT — STATIC-TABLEAU-STAGING-POLISH remains IN_PROGRESS. Serpent narrow geometry accepted; sequential cast replacement source checkpoint verified. Production transition/focus/OS milestone and full demo remain OPEN. Contract set1.1.0 unchanged.
+CURRENT FACT — STATIC-TABLEAU-STAGING-POLISH remains IN_PROGRESS. Initial readiness and native390OS transition accepted scoped. Wider/civilian milestone and full demo OPEN. Publication BLOCKED_BY_PUBLICATION_APPROVAL.
 
 | Field | Value |
 | --- | --- |
-| status | IN_PROGRESS |
-| runId | rpgthreejs-auto-dev-90m-20261008T0012 |
-| runStartedAt | 2026-10-08T00:13:22.0463300Z |
-| runEndedAt | 2026-10-08T00:26:57.803Z |
+| status | BLOCKED_BY_PUBLICATION_APPROVAL |
+| runId | rpgthreejs-auto-dev-90m-20261008T0032 |
+| runStartedAt | 2026-10-08T00:32:52.6172396Z |
+| runEndedAt | 2026-10-08T00:43:41.105Z |
 | activeTask | STATIC-TABLEAU-STAGING-POLISH |
-| activePhase | Narrow geometry accepted; cast replacement source checkpoint |
-| activeSubtask | Initial readiness and production transition/focus acceptance OPEN |
+| activePhase | Initial readiness and390OS native transition accepted scoped; wider tableau milestone OPEN |
+| activeSubtask | Publish reviewed local readiness checkpoint after approval; preserve exact tableau milestone continuation |
 | workingBranch | dev |
-| verified source checkpoint | aeb306f89d16e3e2e08b8c3d6641ca4715af2ed7 |
+| verified local source | 02b5b0b89f4e4a4a2839bd60d00252af0b2c37dc |
+| last verified pushed commit | 433612fa45e2aab49f9a21ac85c3802910a496a3 |
 
 ## Exact next action
 
-Normal read-only preflight/owned lock; read STATIC_TABLEAU_STAGING_POLISH.md and source aeb306f. Address existing whenRenderable initial-image decode wait with a bounded native deadline and local lifecycle guard, preserving Stage fallback/readiness owner. Then minimally expose the existing opening-camp-audience scenario filter in tools/cinematics/run_cin6d6_route_browser_qa.mjs and observe one native acte_ouverture four-to-four replacement: EXIT/BREATH/ENTRY counts <=4, retained actors/facing, settled next text and focus after preparation. Guardian reviews exact source/assertion diff; build/register one unique390 OS-only production opening smoke with game reducedGraphics false. No combat-result injection needed in opening. Do not rerun accepted Serpent geometry as final-build proof or edit exhausted static-only council OS assertion. Wider1440/620/390 normalOS acceptance belongs at the tableau milestone; preserve six deferred bytes and exact deferredDemoTask.
+Approval required to publish exact local dev checkpoint and wip/rpgthreejs-auto-dev-90m-20261008T0032 to verified juniorbattle/RPGThreeJS. Do not bypass automatic-review rejection or take a young lock. After approval verify ownedlock/currentHEAD/deferred6blobs/localWIP/remote parity, normalpush origin/dev and WIP, verify then release. Next owned run: tableau milestone existing opening-camp-audience+serpent-ending1440/620/390 normal/OS plus village_choice firsttableau/restage/nativechoice (bois-clair-saved); reuse compatible390OS opening-0032 receipt after physical identity check. No new runner needed; no repeat accepted ROAD/CAMPFIRE, no exhausted councilOS edit.
 
-## Accepted geometry and current source
+## Accepted scope and limits
 
-Inherited FAR_LEFT/42vw correction and existing runner committed67462c2. One fresh390x844normal production smoke serpent-0012-normal passed; root/guardian inspected all3speaker captures:5.321926px allied-envelope gap, full horizontal visibility, stable facing,three actors,one surface and bounded storedV6 equality. ACCEPTED_SCOPED_NARROW_GEOMETRY only. Captions still typewriting; no settled-text/focus/OS/full milestone claim. Ending/resume uses existing result fixture, never earned campaign proof. Sources/driver/build/results frozen in ignored receipt/physical inventory. Final transition source/build differs; do not relabel old smoke.
+Initial image batch has750ms deadline after phase preparation; disposal and stale Stage continuations guarded.86focused4files/types/8contracts8slots/staging/build/eightMP4/whitespace/immutable PASS. Current physical build game-sh3puHnY.js/game-BZH7FiGl.css includes6unchanged unaccepted deferred keyboard files excluded from local source commit.
 
-Source aeb306f89d16e3e2e08b8c3d6641ca4715af2ed7: cast exits finish before a short breathing interval and detached-prepared entrants; no simultaneous old/new union, retained nodes preserved, speaker-only update adds no delay. Revision/dispose guards prevent stale remount. Replacement image decoding races a750ms deadline;configured normal choreography180/60/180ms,reduced180/40/180ms. Deadline clears on race settlement, may persist until750ms after cancellation; existing whenRenderable initial decode remains separately unbounded and OPEN. OS CSS disables actor animation; pause/focus alternative, no OS-fade claim. Surface test confirms no focus theft; full DialogueView focus restoration awaits production.
+opening-0032-os: native new-game390x844,OStrue/gamefalse,ordered4/2/4 transition418.6ms,retained nodes/authored facing,settled display-segment bounding-box fit,focused/enabled nativeEnter,nonnull storedV6 equality,native audience choice/resolved reload,zero diagnostics. Root/guardian/tableau inspected2captures. ACCEPTED_SCOPED_OPENING_TRANSITION_390_OS only; no broad spacing/internalclipping/earnedcampaign/demo claim. Frozen result digest fdf0018169e17504719f228126a053b02df5c161e40a9a34fc59dd78a080657e.390physical hashes frozen. Owner terminal reconciliation is not a worker receipt; estimated start withdrawn/exactworker times unavailable. Committing identical physical files changes Git fingerprint representation, no sameExecution relabel.
 
-Final81tests/4files,TypeScript,8contracts/8slots,staging75dialogues257steps282runtime,production game-BgoC89-e.js/game-BZH7FiGl.css/eightMP4s and whitespace/LOCKED gates PASS. Two reused read-only reviewers accept source checkpoint. No second browser scenario. Full Director suite not rerun; inherited forest mediaRemasterLater line71 failure retained from prior reproduced baseline.
+Two reused read-only reviewers PASS source/assertions/captures. Contract set1.1.0,no LOCKED changes. Scoped constitution/narrative/presentation/save/UI/QA PASS;art/characters/environments/Traversal/combat N/A;governance BLOCKED publication.
 
-## Preservation and counts
+## Preservation and publication
 
-All119prior jobs structurally unchanged;120total. Six original deferred files retain exact Git blobs/physical bytes;deferredDemoTask structurally exact. ROAD/CAMPFIRE scoped acceptance retained. Narrative source audit complete but council/refugee browser gate OPEN; exhausted static-only OS assertion untouched. Pursuit10canonical mappings external BLOCKED. Eight video slots;no generated/media/audio/canon/V6truth/main changes.
+120prior jobs and exactdeferredDemoTask structurally unchanged;121total. Six deferred physical hashes equal original. ROAD/CAMPFIRE scoped acceptance retained. Council/refugee gate and ten external Pursuit mappings remainOPEN/BLOCKED. No canon/generated/media/audio/V6truth/main changes.
 
-Excluding inherited WIP:1runtime source modified,1test modified,0new QA tools,0existing QA modified,0proof promoted,4workflow docs. Recovered inherited product4files committed separately.2distinct reviewers reused;1smoke/1attempt,0harness corrections,0failed seeds. No measured quota savings.
+Automatic review rejected authorized WIP push twice: unverified remote and insufficient complete-payload audit. No workaround or further publication attempt. Local source+workflow checkpoints and WIP retained; ownedlock remains writerStopped/publicationblocked until approval and verifiedpush. No QA process remains;port5325closed,unrelated5173untouched.
 
-[Current task record](STATIC_TABLEAU_STAGING_POLISH.md). [Current handoff](handoffs/2026-10-08T0012Z-codex-cast-continuity-checkpoint.md). Final dev/WIP parity and lock release recorded in automation memory.
+Counts excluding inherited:2runtime+2tests+1existingQAmodified,0newQA,0proof,4workflow;2reviewers,1smoke/1attempt,0postfailurecorrections,0failedseeds. No quota-saving claim.
+
+[Task record](STATIC_TABLEAU_STAGING_POLISH.md). [Current handoff](handoffs/2026-10-08T0032Z-codex-readiness-publication-blocked.md). Exact final SHA/snapshot hashes in automation memory.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -157,10 +160,7 @@ Excluding inherited WIP:1runtime source modified,1test modified,0new QA tools,0e
 - council-1933-os-fixed: FAILED; port 5322; receipt `tmp/cinematics/council-1933-os-fixed/qa-job.json`; NOT_ACCEPTED
 - serpent-2039-normal: SUCCEEDED; port 5323; receipt `tmp/cinematics/serpent-2039-normal/qa-job.json`; NOT_ACCEPTED_VISUAL_OVERLAP
 - serpent-0012-normal: SUCCEEDED; port 5324; receipt `tmp/cinematics/serpent-0012-normal/qa-job.json`; ACCEPTED_SCOPED_NARROW_GEOMETRY
+- opening-0032-os: SUCCEEDED; port 5325; receipt `tmp/cinematics/opening-0032-os/qa-job.json`; ACCEPTED_SCOPED_OPENING_TRANSITION_390_OS
 <!-- QA_JOBS_END -->
 
-Owned reviewed WIP snapshot wip/rpgthreejs-auto-dev-90m-20261008T0012@e33d09d75cb4f429690fb9000deb0a037bde8215 at 2026-10-08T00:25:14.938Z; acceptance remains scoped/open.
-
-Owned reviewed WIP snapshot wip/rpgthreejs-auto-dev-90m-20261008T0012@cf2b7c89d0a5f5ff16bb177e7ed4caf6e1f38813 at 2026-10-08T00:26:12.162Z; acceptance remains scoped/open.
-
-Source devaeb306f89d16e3e2e08b8c3d6641ca4715af2ed7 remotely verified; recoverywip/rpgthreejs-auto-dev-90m-20261008T0012@cf2b7c89d0a5f5ff16bb177e7ed4caf6e1f38813 retains exactly six deferred blobs. Real index empty, smoke5324closed, unrelated5173preserved. Final workflow SHA and lock release in automation memory.
+Final local recovery snapshot bbcdd88901ea97510ca14a67cb9529157a2e0fbe onwip/rpgthreejs-auto-dev-90m-20261008T0032; publicationBLOCKED.
