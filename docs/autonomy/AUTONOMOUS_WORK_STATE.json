@@ -1,7 +1,7 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-08T05:16:14.2563835Z",
-  "runEndedAt": "2026-10-08T06:25:09.465Z",
+  "runEndedAt": "2026-10-08T06:27:46.192Z",
   "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
   "activePhase": "Scoped native standalone keyboard milestone accepted; campaign/full-demo gates open",
   "activeSubtask": "Finish inherited battlefield campaign integration and native campaign acceptance",
@@ -148,7 +148,7 @@
       "SAVE": "PASS unchanged schema/owner; reached fresh iframe owner/autosave equality diagnostic; no earnedrefuge/fullV6 claim",
       "UI_ACCESSIBILITY": "PASS scoped keyboard/caption captures and nativefocus/dock bounds; BLOCKED broad submenu/AT/effective OS tactical-motion acceptance",
       "QA_EVIDENCE": "PASS exact frozen hashes/source-driver-build and selected COPY/keyboard scope; BLOCKED full staticOSshadow and earnedcampaign/refuge",
-      "REPOSITORY_GOVERNANCE": "PASS protected/whitespace/owned lock/snapshot/explicit paths; source and proof checkpoint published and exact remote parity verified; final metadata cleanup next"
+      "REPOSITORY_GOVERNANCE": "PASS protected/whitespace/exclusive lock/explicit paths; source/proof/metadata remote verified, own WIP cleaned, final metadata SHA and lock absence in automation memory"
     },
     "contractsRead": [
       "GAME_CONSTITUTION",
@@ -286,22 +286,25 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-08T06:25:09.465Z",
+  "lastHeartbeat": "2026-10-08T06:27:46.192Z",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0514",
-    "sha": "d02961485a11be6f7b5b8ceb85d99d85f4978685",
-    "status": "CONTENT_COMMITTED_ON_DEV_PENDING_OWNED_BRANCH_CLEANUP",
+    "status": "CLEARED_ALL_CONTENT_COMMITTED_ON_DEV",
+    "branch": null,
+    "sha": null,
     "dirtyFiles": [],
-    "lastSnapshotAt": "2026-10-08T06:20:22.1562656Z",
     "lastGreenCheck": "88focused/types/contracts/build/immutable; COPY6+keyboard6 scoped; campaignFAILED retained",
-    "snapshotAt": "2026-10-08T06:20:22.1562656Z",
-    "cleanup": "Delete only this owned branch after final metadata publication/parity; exact final effect in automation memory"
+    "retiredRecovery": {
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0514",
+      "sha": "d02961485a11be6f7b5b8ceb85d99d85f4978685",
+      "deletedAt": "2026-10-08T06:27:46.192Z",
+      "reason": "All content on dev; only two closeout-state files differed"
+    }
   },
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-08T06:25:09.465Z",
-    "status": "CHECKPOINT_PUBLISHED_CLOSEOUT_METADATA",
+    "lastHeartbeat": "2026-10-08T06:27:46.192Z",
+    "status": "CHECKPOINT_PUBLISHED",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -16154,14 +16157,17 @@
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0514",
-      "sha": "d02961485a11be6f7b5b8ceb85d99d85f4978685",
-      "status": "CONTENT_COMMITTED_ON_DEV_PENDING_OWNED_BRANCH_CLEANUP",
+      "status": "CLEARED_ALL_CONTENT_COMMITTED_ON_DEV",
+      "branch": null,
+      "sha": null,
       "dirtyFiles": [],
-      "lastSnapshotAt": "2026-10-08T06:20:22.1562656Z",
       "lastGreenCheck": "88focused/types/contracts/build/immutable; COPY6+keyboard6 scoped; campaignFAILED retained",
-      "snapshotAt": "2026-10-08T06:20:22.1562656Z",
-      "cleanup": "Delete only this owned branch after final metadata publication/parity; exact final effect in automation memory"
+      "retiredRecovery": {
+        "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0514",
+        "sha": "d02961485a11be6f7b5b8ceb85d99d85f4978685",
+        "deletedAt": "2026-10-08T06:27:46.192Z",
+        "reason": "All content on dev; only two closeout-state files differed"
+      }
     },
     "nextAction": "Read-only preflight and owned lock; inspect BATTLEFIELD_KEYBOARD.md and exact terminal receipts before rerun. Preserve scoped COPY sixcases15scenarios and standalone keyboard6cases accepted evidence; compare final physical freeze after source commits instead of treating changed Git fingerprints as identical. Keep failed campaign-0514-first-refuge NOT_ACCEPTED: reached desktop-normal iframe Tab/cursor/Escape owner/autosave-equality diagnostic only, no earnedrefuge;19actions exhausted15min. Continue product work by measuring submenu/Retour bounds and addressing verified compact-target/focus or OS tactical-motion gaps before fresh campaign QA with existing driver/appropriate bounded target. Retain original deferredDemoTask nextAction and0350/726lineage; no failedoutput seed, further standalone harness rewrite, repeated compatible matrices, canon/media/audio/main or mapping invention. COPY static-only OS-shadow, council/refugee proof, approved Bois-Clair night plate and ten Pursuit mappings remain precise independent blockers; demo incomplete.",
     "runMetrics": {
@@ -16197,8 +16203,8 @@
       "prelaunchGuardianAssertionRepairs": "Actual DEV-helper names and render-metric projection/cursor movement, before execution",
       "failedSeedsUsed": 0,
       "reviewCost": "Three distinct read-only reviewers; guardian reused for scoped source/assertions/results/diagnostic boundary. No quota/work-unit savings measured.",
-      "elapsedMinutes": 68.92016666666666,
-      "endedAt": "2026-10-08T06:25:09.465Z"
+      "elapsedMinutes": 71.53228333333334,
+      "endedAt": "2026-10-08T06:27:46.192Z"
     },
     "checkpointPaths": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -16220,19 +16226,27 @@
       "docs/reports/battlefield-keyboard-0514/campaign-desktop-keyboard-return.png"
     ],
     "publication": {
-      "status": "SOURCE_AND_PROOF_CHECKPOINT_LIVE_VERIFIED_FINAL_METADATA_PENDING",
-      "dev": "d7da3dfd13595032dcfc04c5bc2d692b9cfc6645",
+      "status": "SOURCE_PROOF_AND_METADATA_PUBLISHED_OWNED_WIP_CLEANED",
+      "dev": "48dcbd89605e1f82fd1d9193938b9ab7fb783ed8",
       "source": "613bf364679ba03d5126254306772fc69a138612",
       "wip": {
-        "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0514",
-        "snapshotAt": "2026-10-08T06:20:22.1562656Z",
-        "sha": "d02961485a11be6f7b5b8ceb85d99d85f4978685"
+        "status": "CLEARED_ALL_CONTENT_COMMITTED_ON_DEV",
+        "branch": null,
+        "sha": null,
+        "dirtyFiles": [],
+        "lastGreenCheck": "88focused/types/contracts/build/immutable; COPY6+keyboard6 scoped; campaignFAILED retained",
+        "retiredRecovery": {
+          "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0514",
+          "sha": "d02961485a11be6f7b5b8ceb85d99d85f4978685",
+          "deletedAt": "2026-10-08T06:27:46.192Z",
+          "reason": "All content on dev; only two closeout-state files differed"
+        }
       },
       "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "verifiedAt": "2026-10-08T06:25:09.465Z"
+      "verifiedAt": "2026-10-08T06:27:46.192Z"
     },
     "runStartedAt": "2026-10-08T05:16:14.2563835Z",
-    "runEndedAt": "2026-10-08T06:25:09.465Z"
+    "runEndedAt": "2026-10-08T06:27:46.192Z"
   },
   "previousInterruptedRun": {
     "runId": "rpgthreejs-auto-dev-90m-20261007T2039",
@@ -16313,8 +16327,8 @@
     "prelaunchGuardianAssertionRepairs": "Actual DEV-helper names and render-metric projection/cursor movement, before execution",
     "failedSeedsUsed": 0,
     "reviewCost": "Three distinct read-only reviewers; guardian reused for scoped source/assertions/results/diagnostic boundary. No quota/work-unit savings measured.",
-    "elapsedMinutes": 68.92016666666666,
-    "endedAt": "2026-10-08T06:25:09.465Z"
+    "elapsedMinutes": 71.53228333333334,
+    "endedAt": "2026-10-08T06:27:46.192Z"
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -16583,8 +16597,8 @@
     "prelaunchGuardianAssertionRepairs": "Actual DEV-helper names and render-metric projection/cursor movement, before execution",
     "failedSeedsUsed": 0,
     "reviewCost": "Three distinct read-only reviewers; guardian reused for scoped source/assertions/results/diagnostic boundary. No quota/work-unit savings measured.",
-    "elapsedMinutes": 68.92016666666666,
-    "endedAt": "2026-10-08T06:25:09.465Z"
+    "elapsedMinutes": 71.53228333333334,
+    "endedAt": "2026-10-08T06:27:46.192Z"
   },
   "qaToolingJustification": "No new persistent QA tool. Existing inherited battlefield runner receives one prelaunch actual DEV-helper-name fix and one postfailure fresh native pointer-scenario correction; archer1AP must not be refilled. Existing earned campaign runner adds native Tab/cursor/Escape observation only first genuinely fresh battle; it preserves complete gameplay (render diagnostics excluded), ownerV6 and autosave equality. Existing registration/receipts/provenance reused.",
   "retainedRunArtifacts": {
