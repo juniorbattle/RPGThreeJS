@@ -103,6 +103,43 @@ async function combatState(frame){return frame.evaluate(()=>{const g=window.G;re
     statuses:{...g.active.statuses},weapons:g.active.weapons.map(w=>({name:w.name,weaponType:w.weaponType,min:w.min,max:w.max}))},
   units:g.units.map(u=>({id:u.campaignId||u.id,name:u.name,team:u.team,gx:u.gx,gz:u.gz,hp:u.hp,maxhp:u.maxhp,alive:u.alive,downed:!!u.downed})),
   inventory:{...g.inv},diagnostics:window.__COMBAT_DIAGNOSTICS};});}
+async function campaignBattlefieldKeyboard(frame,entry){
+  await frame.waitForFunction(()=>G.mode==='menu'&&!G.busy&&G.active?.team==='player');
+  const ownerBefore=await state(),before=await combatState(frame);
+  const autosaveBefore=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  const inputs=[];
+  const key=async value=>{await page.keyboard.press(value);inputs.push(value);report.inputs.push({action:'native campaign battlefield key',key:value,nodeId:entry.nodeId});};
+  const canvas=frame.locator('#combat-battlefield');
+  for(let step=0;step<70;step++){
+    if(await canvas.evaluate(e=>e===document.activeElement))break;
+    await key('Tab');
+  }
+  assert.equal(await canvas.evaluate(e=>e===document.activeElement),true,'Actual Tab must enter campaign battlefield');
+  assert.equal(await page.evaluate(()=>document.activeElement?.matches('iframe.combat-frame')),true,'Campaign iframe must own native focus');
+  const focus=await canvas.evaluate(e=>({visible:e.matches(':focus-visible'),outline:getComputedStyle(e).outlineStyle,width:getComputedStyle(e).outlineWidth}));
+  assert.ok(focus.visible&&focus.outline!=='none'&&focus.width==='3px','Campaign battlefield focus invisible');
+  await key('Shift+Tab');assert.equal(await canvas.evaluate(e=>e===document.activeElement),false,'Native Shift+Tab must leave canvas');
+  await key('Tab');assert.equal(await canvas.evaluate(e=>e===document.activeElement),true,'Native Tab must return to canvas');
+  const cursorBefore=await canvas.evaluate(e=>({gx:Number(e.dataset.cursorGx),gz:Number(e.dataset.cursorGz)}));
+  await key('ArrowRight');
+  const cursor=await canvas.evaluate(e=>({gx:Number(e.dataset.cursorGx),gz:Number(e.dataset.cursorGz)}));
+  assert.ok(cursor.gx>=0&&cursor.gx<8&&cursor.gz>=0&&cursor.gz<4,'Campaign inspection cursor outside native grid');
+  assert.deepEqual(cursor,{gx:Math.min(7,cursorBefore.gx+1),gz:cursorBefore.gz},'Campaign ArrowRight must move or clamp at the grid edge');
+  assert.ok((await frame.locator('#combat-cell-status').textContent()).trim(),'Campaign cursor status empty');
+  await key('m');assert.equal((await combatState(frame)).mode,'move');
+  await key('Escape');
+  const restored=await frame.evaluate(()=>{const e=document.activeElement,r=e.getBoundingClientRect();return{dock:e.matches('#menu button:not(:disabled)'),x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};});
+  assert.equal(restored.dock,true,'Campaign Escape must restore enabled dock focus');
+  assert.ok(restored.x>=0&&restored.y>=0&&restored.right<=viewport[0]+1&&restored.bottom<=viewport[1]+1,'Campaign returned focus clipped');
+  if(viewport[0]<=620)assert.ok(restored.width>=44&&restored.height>=44,'Campaign returned dock touch target too small');
+  const after=await combatState(frame),ownerAfter=await state();
+  const gameplay=snapshot=>{const {diagnostics,...truth}=snapshot;return truth;};
+  assert.deepEqual(gameplay(after),gameplay(before),'Campaign keyboard inspection/cancel changed tactical truth');
+  assert.deepEqual(ownerAfter,ownerBefore,'Campaign keyboard inspection/cancel changed owner V6 truth');
+  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),autosaveBefore,'Campaign keyboard inspection/cancel wrote autosave');
+  await capture(`combat-${entry.index}-native-keyboard-return`);
+  entry.battlefieldKeyboard={method:'ACTUAL_TAB_FRESH_CAMPAIGN_IFRAME',inputs,focus,cursorBefore,cursor,restored,before,after,renderDiagnosticsExcludedFromTruth:true,ownerUnchanged:true,autosaveUnchanged:true,pass:true};
+}
 async function cellClick(frame,cell,attempt){
   const point=await frame.evaluate(({gx,gz})=>window.__qaHelpers.getCellScreenPosition(gx,gz),cell);
   const box=await page.locator('iframe.combat-frame').boundingBox();
@@ -247,7 +284,7 @@ async function battle(){
   await frame.waitForFunction(()=>window.__BOOTED===true,null,{timeout:60000});
   const entry={index:report.battles.length,nodeId:(await state()).currentNodeId,
     combatId:await page.evaluate(()=>window.__demoQaApp.combat.session?.config.id),actions:[],pass:false}; report.battles.push(entry);
-  assert.equal(await frame.evaluate(()=>typeof window.__qaHelpers.teleportActiveUnit),'undefined','Production mutation helper present');
+  assert.equal(await frame.evaluate(()=>typeof window.__qaHelpers.teleportActiveUnitNextToEnemy),'undefined','Production mutation helper present');
   for(const selector of ['#tutorial:not(.hidden) [data-action="skip"]','#boss-tutorial:not(.hidden) [data-action="start"]']){
     if(await frame.locator(selector).isVisible().catch(()=>false))await frame.locator(selector).click();
   }
@@ -257,6 +294,7 @@ async function battle(){
   entry.autosaveBefore=JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')));
   await capture(`combat-${entry.index}-deployment`);
   await frame.locator('#menu [data-d="start"]').click();
+  if(entry.index===0&&!priorProof)await campaignBattlefieldKeyboard(frame,entry);
   for(let index=0;index<300&&Date.now()<deadline;index++){
     if(index%5===0){console.log(`BATTLE ${entry.nodeId} iteration ${index}, actions ${entry.actions.length}`);
       await writeFile(resolve(output,'progress.json'),JSON.stringify({at:new Date().toISOString(),nodeId:entry.nodeId,combat:await combatState(frame),actions:entry.actions.map(a=>a.kind)},null,2)+'\n');}

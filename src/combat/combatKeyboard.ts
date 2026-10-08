@@ -12,3 +12,10 @@ export function shouldHandleCombatShortcut(event: Pick<KeyboardEvent, 'key' | 't
 export function shouldPreventCombatWheel(event: Pick<WheelEvent, 'target'>): boolean {
   return !(event.target instanceof Element && event.target.closest('#panel'));
 }
+
+/** Visual grid navigation only; activation/legality stay with tactical combat. */
+export function nextCombatCursor(cell: { gx: number; gz: number }, key: string, width: number, depth: number): { gx: number; gz: number } {
+  const dx = key === 'ArrowLeft' ? -1 : key === 'ArrowRight' ? 1 : 0;
+  const dz = key === 'ArrowUp' ? -1 : key === 'ArrowDown' ? 1 : 0;
+  return { gx: Math.max(0, Math.min(width - 1, cell.gx + dx)), gz: Math.max(0, Math.min(depth - 1, cell.gz + dz)) };
+}
