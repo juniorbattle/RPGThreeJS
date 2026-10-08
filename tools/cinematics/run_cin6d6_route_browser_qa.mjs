@@ -223,6 +223,70 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
   for (let index = 0; index < 100; index += 1) {
     if (!await dialogue.count()) return;
     trace?.dialogues.add(sequenceId);
+    if (PRODUCTION && sequenceId === 'serpent_pursuit_pre_combat' && trace?.capturePrefix === 'serpent-ending') {
+      const stepId = await dialogue.getAttribute('data-dialogue-step');
+      trace.serpentTableau ??= [];
+      if (!trace.serpentTableau.some(entry => entry.stepId === stepId)) {
+        const before = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6')));
+        await page.waitForFunction(() => {
+          const actors = [...document.querySelectorAll('.narrative-stage .narrative-cast__actor')];
+          return actors.length === 3 && actors.every(actor => {
+            const image = actor.querySelector('img');
+            return image?.complete && image.naturalWidth > 0 && !actor.classList.contains('is-entering');
+          });
+        }, undefined, { timeout: 10_000 });
+        const observation = await dialogue.evaluate(element => {
+          const actors = [...document.querySelectorAll('.narrative-stage .narrative-cast__actor')].map(actor => {
+            const image = actor.querySelector('img'), rect = image.getBoundingClientRect();
+            // Measure the opaque artwork within object-fit:contain, rather than its tall transparent frame.
+            const canvas = document.createElement('canvas');
+            canvas.height = 160; canvas.width = Math.ceil(160 * image.naturalWidth / image.naturalHeight);
+            const context = canvas.getContext('2d', { willReadFrequently: true });
+            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+            const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
+            let left = canvas.width, right = -1, top = canvas.height, bottom = -1;
+            for (let y = 0; y < canvas.height; y++) for (let x = 0; x < canvas.width; x++) {
+              if (pixels[(y * canvas.width + x) * 4 + 3] <= 32) continue;
+              left = Math.min(left, x); right = Math.max(right, x); top = Math.min(top, y); bottom = Math.max(bottom, y);
+            }
+            const scale = Math.min(rect.width / image.naturalWidth, rect.height / image.naturalHeight);
+            const width = image.naturalWidth * scale, height = image.naturalHeight * scale;
+            const flipped = getComputedStyle(image).transform.startsWith('matrix(-1,');
+            const x = rect.x + (rect.width - width) / 2 + width * (flipped ? 1 - (right + 1) / canvas.width : left / canvas.width);
+            const y = rect.bottom - height + height * top / canvas.height;
+            const bounds = { x, y, width: width * (right - left + 1) / canvas.width, height: height * (bottom - top + 1) / canvas.height };
+            return { id: actor.dataset.actorId, position: actor.dataset.screenPosition, facing: actor.dataset.facing,
+              group: actor.dataset.actorGroup, speaking: actor.classList.contains('is-speaking'), flipped, bounds,
+              visibleWidthRatio: Math.max(0, Math.min(innerWidth, x + bounds.width) - Math.max(0, x)) / bounds.width };
+          });
+          const box = element.querySelector('.dialogue__box');
+          return { stepId: element.dataset.dialogueStep, actors, boxEnabled: !box.disabled,
+            viewport: { width: innerWidth, height: innerHeight } };
+        });
+        const byId = Object.fromEntries(observation.actors.map(actor => [actor.id, actor]));
+        const alaric = byId.alaric, sage = byId.sage_seraphine, serpent = byId.serpent_general_boss;
+        observation.alliedEnvelopeGap = sage && alaric ? sage.bounds.x - (alaric.bounds.x + alaric.bounds.width) : null;
+        const capture = `${trace.capturePrefix}-confrontation-${stepId}.png`;
+        await page.screenshot({ path: resolve(OUTPUT_DIR, capture), fullPage: false });
+        if (!alaric || !sage || !serpent || !observation.boxEnabled
+          || alaric.position !== 'FAR_LEFT' || sage.position !== 'CENTER_LEFT' || serpent.position !== 'FAR_RIGHT'
+          || alaric.facing !== 'RIGHT' || sage.facing !== 'RIGHT' || serpent.facing !== 'LEFT'
+          || alaric.flipped || sage.flipped || !serpent.flipped
+          || !(alaric.bounds.x + alaric.bounds.width / 2 < sage.bounds.x + sage.bounds.width / 2
+            && sage.bounds.x + sage.bounds.width / 2 < serpent.bounds.x + serpent.bounds.width / 2)
+          || observation.actors.some(actor => !Number.isFinite(actor.visibleWidthRatio) || actor.visibleWidthRatio < .6)) {
+          throw new Error(`Serpent relational tableau is unreadable: ${JSON.stringify(observation)}`);
+        }
+        if (observation.viewport.width <= 450 && observation.alliedEnvelopeGap < 0) {
+          throw new Error(`Narrow allied silhouettes overlap: ${JSON.stringify(observation)}`);
+        }
+        const presentation = await readPresentation(page);
+        assertDialogueTableau(presentation, 'Serpent confrontation');
+        const after = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6')));
+        if (JSON.stringify(before) !== JSON.stringify(after)) throw new Error('Observing Serpent tableau changed saved truth.');
+        trace.serpentTableau.push({ ...observation, presentation, capture, savedTruthUnchanged: true });
+      }
+    }
     if (PRODUCTION && sequenceId === 'ate_lion_council_doubt' && trace?.capturePrefix === 'witnesses-protected'
       && !trace.councilOpening && await dialogue.getAttribute('data-dialogue-step') === '1') {
       const expectedText = 'Les survivants de Bois-Clair ont choisi de parler librement. Leur témoignage compte, mais il ne suffit pas à leur remettre le Sceau.';
@@ -541,6 +605,10 @@ async function runFinaleScenario(context, scenario) {
       if (settled === 'combat') throw new Error(`${scenario.id}: unexpected second combat.`);
     }
     const truth = await loadSavedTruth(page);
+    if (PRODUCTION && scenario.id === 'serpent-ending'
+      && (trace.serpentTableau?.length !== 3 || !['1', '2', '3'].every(id => trace.serpentTableau.some(entry => entry.stepId === id)))) {
+      throw new Error('Serpent confrontation did not expose every authored speaker step.');
+    }
     if (!scenario.assertTruth(truth) || !trace.dialogues.has('epilogue')) {
       throw new Error(`${scenario.id}: finale truth or epilogue assertion failed: ${JSON.stringify({ trace: [...trace.dialogues], truth })}`);
     }
@@ -560,6 +628,7 @@ async function runFinaleScenario(context, scenario) {
       combats: trace.combats,
       choiceBounds: trace.choiceBounds,
       judgementPresentation,
+      serpentTableau: trace.serpentTableau ?? null,
       truth: scenario.pickTruth(truth),
       capture,
       resume,

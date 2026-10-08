@@ -116,7 +116,7 @@ describe('DialogueStagingDirector', () => {
     const actors = tableau.phases![0]!.staticCast;
     expect(actors.map(actor => actor.actorId).sort()).toEqual(['alaric', 'sage_seraphine', 'serpent_general_boss']);
     expect(actors.find(actor => actor.actorId === 'alaric')).toMatchObject({
-      group: 'LION_COURT', screenPosition: 'LEFT', dramaticSide: 'LEFT', facing: 'RIGHT',
+      group: 'LION_COURT', screenPosition: 'FAR_LEFT', dramaticSide: 'LEFT', facing: 'RIGHT',
     });
     expect(actors.find(actor => actor.actorId === 'sage_seraphine')).toMatchObject({
       group: 'PLAYER_COMPANY', screenPosition: 'CENTER_LEFT', dramaticSide: 'LEFT', facing: 'RIGHT', lookTarget: 'serpent_general_boss',

@@ -20,7 +20,7 @@ const alliedSerpentConfrontation: FinalDialoguePresentationPlan = {
   segments: serpentConfrontation.segments.map(segment => ({
     ...segment,
     actors: segment.actors.map(actor => actor.actorId === 'alaric'
-      ? { ...actor, screenPosition: 'LEFT', dramaticSide: 'LEFT', facing: 'RIGHT' }
+      ? { ...actor, screenPosition: 'FAR_LEFT', dramaticSide: 'LEFT', facing: 'RIGHT' }
       : actor.actorId === 'sage_seraphine'
         ? { ...actor, screenPosition: 'CENTER_LEFT', facing: 'RIGHT', lookTarget: 'serpent_general_boss' }
         : actor),

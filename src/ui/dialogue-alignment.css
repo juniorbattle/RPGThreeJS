@@ -202,6 +202,10 @@
 @media (max-width: 450px) {
   .dialogue.dialogue--choice-active .dialogue__box { bottom: calc(min(22dvh, 165px) + 36px) !important; }
   .narrative-scene-surface .narrative-cast__actor { bottom: 20vh; width: min(78vw, 49vh); }
+  /* Separate the allied silhouettes in this authored three-speaker confrontation. */
+  .narrative-scene-surface[data-narrative-scene="SERPENT_PURSUIT_PRE_COMBAT_TABLEAU"][data-cast-placement-mode="THEATRICAL_FOREGROUND"]:has([data-actor-id="alaric"][data-screen-position="FAR_LEFT"]):has([data-actor-id="sage_seraphine"][data-screen-position="CENTER_LEFT"]) .narrative-cast__actor {
+    width: min(42vw, 49vh);
+  }
   body:has(.dialogue--choice-active) .narrative-scene-surface .narrative-cast__actor { bottom: 29vh; }
 }
 
