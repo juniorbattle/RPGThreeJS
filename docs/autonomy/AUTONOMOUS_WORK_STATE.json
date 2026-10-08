@@ -1,62 +1,67 @@
 {
-  "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-08T00:32:52.6172396Z",
-  "runEndedAt": "2026-10-08T01:14:27.110Z",
+  "status": "BLOCKED_BY_PUBLICATION_APPROVAL",
+  "runStartedAt": "2026-10-08T01:17:26.835Z",
+  "runEndedAt": "2026-10-08T01:42:38.951Z",
   "activeTask": "STATIC-TABLEAU-STAGING-POLISH",
-  "activePhase": "Initial readiness and390OS native transition accepted scoped; wider tableau milestone OPEN",
-  "activeSubtask": "Initial readiness and native390OS opening accepted scoped; wider and civilian tableau milestone OPEN",
+  "activePhase": "Runtime tableau milestone accepted locally; exact dev/WIP publication blocked",
+  "activeSubtask": "Publish verified local checkpoint and recovery snapshot after explicit approval, then SCENE-TRANSITION-COPY",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "02b5b0b89f4e4a4a2839bd60d00252af0b2c37dc",
-  "lastPushedCommit": "acf5a3441cf798a255a4be41201068ffc888c053",
+  "lastKnownGoodCommit": "e92dbffcb38457b027081fe8948acc9234c13060",
+  "lastPushedCommit": "70265e0e46e00c6020a76d24b1815936db6a5b45",
   "completedThisRun": [
-    "Absent-lock read-only preflight/local-remote parity; six deferred files retained",
-    "Bound initial decode and cancellation/stale Stage continuation; no truth write",
-    "86focused/types/contracts/staging/build PASS; native390OS opening scoped accepted after two reviewer capture checks",
-    "Local source checkpoint and temporary-index WIP retained; publication withheld after automatic-review rejections",
-    "Operator explicitly approved publication; devacf5a344 and WIPbbcdd889 pushed and remote parity verified; publication blocker resolved"
+    "Absent-lock preflight; remote70265e0 parity; previous chats idle; unrelated5173server preserved",
+    "Found actual390Maelor occlusion despite v2machinePASS; corrected only exact4actor village request composition",
+    "94tests5files/types/contracts/staging/finalbuild PASS; six final width/motion cases and18scenarios accepted scoped",
+    "Two reviewers reused; source/assertions/selected captures/final guardian READY_TO_CLOSE_SCOPED",
+    "Selected four inspected captures plus compact checks; exact source/driver/build/result hashes verified",
+    "Local source commit and recovery snapshots retained; no push after automatic-review rejection"
   ],
   "filesChanged": [
-    "src/cinematics/NarrativeSceneSurface.ts",
-    "src/cinematics/NarrativeStage.ts",
+    "src/cinematics/StaticTableauComposition.ts",
     "src/cinematics/NarrativeSceneSurface.test.ts",
-    "src/cinematics/NarrativeStage.test.ts",
     "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
     "docs/autonomy/STATIC_TABLEAU_STAGING_POLISH.md",
-    "docs/autonomy/handoffs/2026-10-08T0032Z-codex-readiness-publication-blocked.md"
+    "docs/autonomy/handoffs/2026-10-08T0115Z-codex-tableau-milestone-publication-blocked.md",
+    "docs/reports/static-tableau-staging-polish-0115/checks.json",
+    "docs/reports/static-tableau-staging-polish-0115/village-390-normal.png",
+    "docs/reports/static-tableau-staging-polish-0115/village-choice-390-os.png",
+    "docs/reports/static-tableau-staging-polish-0115/serpent-620-normal.png",
+    "docs/reports/static-tableau-staging-polish-0115/opening-390-os.png"
   ],
   "testsRun": [
-    "Direct vitest Surface23/Stage21/DialogueView10/Runtime32 =86tests4files",
-    "tsc --noEmit; contracts validator8contracts8slots; staging75dialogues257steps282runtime",
-    "Vite production build game-sh3puHnY.js/game-BZH7FiGl.css/eightMP4",
-    "Whitespace and immutable/working-tree LOCKED gates",
-    "One registered opening-0032-os390x844 production smoke; native new-game/Enter/audience choice/resolved reload"
+    "Direct vitest94tests5files; tsc --noEmit PASS",
+    "Direct contracts validator8contracts8slots and staging75dialogues257steps282runtime PASS",
+    "Finalbuild game-CfgYCJPb.js/game-BZH7FiGl.css/eightMP4 PASS",
+    "Immutable/protected status/whitespace PASS",
+    "Final six registered owner-supervised production cases1440/620/390 normal/OS:18opening/village/Serpent scenario passes"
   ],
   "testsPassed": [
-    "Direct vitest Surface23/Stage21/DialogueView10/Runtime32 =86tests4files",
-    "tsc --noEmit; contracts validator8contracts8slots; staging75dialogues257steps282runtime",
-    "Vite production build game-sh3puHnY.js/game-BZH7FiGl.css/eightMP4",
-    "Whitespace and immutable/working-tree LOCKED gates",
-    "One registered opening-0032-os390x844 production smoke; native new-game/Enter/audience choice/resolved reload"
+    "Direct vitest94tests5files; tsc --noEmit PASS",
+    "Direct contracts validator8contracts8slots and staging75dialogues257steps282runtime PASS",
+    "Finalbuild game-CfgYCJPb.js/game-BZH7FiGl.css/eightMP4 PASS",
+    "Immutable/protected status/whitespace PASS",
+    "Final six registered owner-supervised production cases1440/620/390 normal/OS:18opening/village/Serpent scenario passes"
   ],
   "testsRemaining": [
-    "Tableau milestone opening+Serpent1440/620/390 normal/OS on same final source; reuse compatible390OS opening",
-    "Civilian/hero village_choice firsttableau/restage/nativechoice; existing bois-clair-saved runner",
-    "Independent council/refugee browser gate; exhausted council OS assertion remains unaccepted",
-    "Full demo/operator testing and exact deferred keyboard task"
+    "Publication/remote parity and ownedlock release",
+    "SCENE-TRANSITION-COPY and ENVIRONMENT-NARRATIVE-COHERENCE queue items",
+    "Independent council/refugee browser gate and exhausted static-only OS assertion remain OPEN",
+    "Full demo/operator testing; exact deferred keyboard task"
   ],
   "blockers": [
     "Pursuit production collision integration:10windows lack explicitly authored eligible canonical mappings; isolated candidate PASS does not close full task",
-    "Narrative OS smoke: static-only council rejected by unchanged approved-video-attempt assertion; one correction exhausted, both outputs NOT_ACCEPTED. Normal council and static-only OS milestone proof remain open."
+    "Narrative OS smoke: static-only council rejected by unchanged approved-video-attempt assertion; one correction exhausted, both outputs NOT_ACCEPTED. Normal council and static-only OS milestone proof remain open.",
+    "Automatic review rejected publishing reviewed private-source/state snapshot to origin/wip/run0115: destination trust and exact payload authorization insufficient. No retry; explicit approval required for named dev/WIP checkpoints."
   ],
   "remainingWork": [
-    "ACTIVE: tableau readiness/390OS transition ACCEPTED_SCOPED; wide/civilian milestone OPEN",
-    "BLOCKED external: ten canonical Pursuit mappings",
-    "OPEN: independent narrative council/refugee production proof",
-    "PENDING: SCENE-TRANSITION-COPY; ENVIRONMENT-NARRATIVE-COHERENCE; deferredDEMO-QA-POLISH"
+    "Tableau local runtime milestone ACCEPTED_SCOPED; publication prerequisite remains blocked",
+    "SCENE-TRANSITION-COPY next after publication",
+    "ENVIRONMENT-NARRATIVE-COHERENCE pending; council/refugee browser gate OPEN",
+    "Pursuit ten canonical mappings external BLOCKED; exact deferred keyboard task preserved"
   ],
-  "nextAction": "Normal read-only preflight/owned lock; STATIC-TABLEAU-STAGING-POLISH milestone: reuse existing opening-camp-audience and serpent-ending runners at1440/620/390 normal/OS plus village_choice firsttableau/restage/nativechoice civilian/hero distinction (existing bois-clair-saved). Reuse opening-0032-os390 proof only after identical physical source/driver/build/assertions check; Git fingerprint representation changed after equivalent commit. Preserve six deferred bytes/exact deferredDemoTask, exhausted councilOS assertion, independent council/refugee gate and ten external Pursuit mappings. No new runner needed; no repeat accepted ROAD/CAMPFIRE matrices.",
+  "nextAction": "Explicitly approve publication of final local dev checkpoint (SHA in automation memory) and wip/rpgthreejs-auto-dev-90m-20261008T0115 to juniorbattle/RPGThreeJS. Verify owned run0115 lock, finalHEAD, six deferred hashes, named remote dev/WIP and main parity; publish only those refs normally, verify, update state and release owned lock. Do not bypass automatic-review or take young lock. Then mark tableau COMPLETE_SCOPED and resume SCENE-TRANSITION-COPY: audit SceneTransition/GameApp label callers and ATE transition title owners, remove only observed placeholders or use existing authored/no copy; inspect actual production copy with existing runners. Preserve independent council/refugee/exhaustedOS gate, ten Pursuit mappings and exactdeferredDemoTask. No ROAD/CAMPFIRE or compatible tableau rerun.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
@@ -65,14 +70,14 @@
     "TRAVERSAL-ROAD-ELEMENTS: COMPLETE_SCOPED_PRESENTATION",
     "PRE-JUDGEMENT-CAMPFIRE: COMPLETE_SCOPED_PRESENTATION",
     "NARRATIVE-CONTEXT-COHERENCE: SOURCE_CHECKPOINT; BROWSER_GATE_OPEN_STATIC_OS_HARNESS",
-    "STATIC-TABLEAU-STAGING-POLISH: IN_PROGRESS; INITIAL_READINESS_AND_390_OS_TRANSITION_ACCEPTED_SCOPED; WIDE_CIVILIAN_MILESTONE_OPEN",
+    "STATIC-TABLEAU-STAGING-POLISH: ACCEPTED_SCOPED_RUNTIME; READY_TO_CLOSE_AFTER_PUBLICATION",
     "SCENE-TRANSITION-COPY: PENDING",
     "ENVIRONMENT-NARRATIVE-COHERENCE: PENDING",
     "Resume deferred DEMO-QA-POLISH: PENDING"
   ],
-  "creditStatus": "AVAILABLE; no quota-saving claim",
+  "creditStatus": "AVAILABLE; no quota-saving claim; safe checkpoint at completed milestone/external publication boundary",
   "contractComplianceStatus": {
-    "status": "PASS scoped readiness/390OS transition; wider tableau milestone OPEN",
+    "status": "PASS scoped tableau runtime; external publication BLOCKED",
     "contractSetVersion": "1.1.0",
     "lockedRulesChanged": false,
     "roadMatrix": {
@@ -97,24 +102,26 @@
       "harnessCorrectionsUsed": 1
     },
     "tableauCheckpoint": {
-      "source": "02b5b0b89f4e4a4a2839bd60d00252af0b2c37dc",
-      "reviewers": "Two read-only reviewers reused; source/guardian assertions/captures PASS",
-      "tests": "86focused4files/types/contracts/staging/build PASS; inherited Directorline71 outside fullsuite",
-      "browser": "ACCEPTED_SCOPED_OPENING_TRANSITION_390_OS; broad/civilian milestone OPEN"
+      "source": "e92dbffcb38457b027081fe8948acc9234c13060",
+      "tests": "94focused5files/types/contracts/staging/finalbuild PASS",
+      "browser": "Six finalcases/18scenarios ACCEPTED_SCOPED_TABLEAU_MILESTONE",
+      "proof": "docs/reports/static-tableau-staging-polish-0115/checks.json",
+      "reviewers": "Two distinct reused read-only reviewers; guardian READY_TO_CLOSE_SCOPED; tableau390/620/1440 PASS",
+      "limits": "No earnedcampaign/fullV6/balance/wholeSuite/demo acceptance; Serpent focus programmatic only"
     },
     "currentMatrix": {
       "GAME_CONSTITUTION": "PASS presentation authority",
       "ART_DIRECTION": "N/A",
       "CHARACTERS": "N/A",
       "ENVIRONMENTS": "N/A",
-      "NARRATIVE_CAMPAIGN": "PASS no canon/effects/IDs changed",
-      "NARRATIVE_PRESENTATION": "PASS scoped readiness and ordered4/2/4",
+      "NARRATIVE_CAMPAIGN": "PASS no canon/choices/truth changes",
+      "NARRATIVE_PRESENTATION": "PASS4actor relational grouping/native4-2-4/facing/retained nodes",
       "TRAVERSAL": "N/A",
-      "COMBAT": "N/A",
-      "SAVE": "PASS storedV6 equality/resolved reload scoped; no schema change",
-      "UI_ACCESSIBILITY": "PASS scoped390OS nativefocus/textbbox; broad OPEN",
-      "QA_EVIDENCE": "PASS scoped exact assertions/physical hashes/captures/manual-owner label",
-      "REPOSITORY_GOVERNANCE": "PASS approved explicit dev/WIP publication verified; no main/LOCKED changes"
+      "COMBAT": "N/A fixture scope only",
+      "SAVE": "PASS observation V6 equality/resolved resume scoped; no schema change",
+      "UI_ACCESSIBILITY": "PASS threeviewports normal/OS native opening focus and readable choice/text",
+      "QA_EVIDENCE": "PASS exact hashes/owner-supervised receipts/inspected selected captures; honest limits",
+      "REPOSITORY_GOVERNANCE": "BLOCKED external publication; immutable gates PASS; no bypass"
     },
     "contractsRead": [
       "GAME_CONSTITUTION",
@@ -247,9 +254,9 @@
     "lastSnapshotAt": "2026-10-08T00:26:12.162Z"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261008T0032",
+    "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-08T01:14:27.110Z",
+    "lastHeartbeat": "2026-10-08T01:42:38.951Z",
     "status": "SOURCE_CHECKPOINT_PUBLISHED_SCOPED_ACCEPTANCE",
     "qaJobs": [
       {
@@ -13462,24 +13469,1623 @@
         "observedRunningAt": "2026-10-08T00:38:53Z",
         "timingNote": "Registered before launch by sequential tool order. Original manually estimated startedAt was earlier than registration and is withdrawn; exact worker start/end timestamps unavailable. endedAt is owner terminal-reconciliation observation time.",
         "acceptanceScope": "Native new-game opening step4-to5; ordered bounded4/2/4 retained cast, authored facing, OStrue/gamefalse, settled display segment bounds/native focused enabled Enter, stored V6 equal, native audience choice/resolved reload. Root/guardian/tableau inspected two captures; no global geometry/earned campaign/demo acceptance."
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "tableau-0115-1440-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+        "status": "FAILED",
+        "registeredAt": "2026-10-08T01:21:23.062Z",
+        "pid": 69260,
+        "port": 5326,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "viewport": "1440x810",
+          "osReducedMotion": false,
+          "gameReducedMotion": false,
+          "production": true,
+          "scenarios": "opening-camp-audience,bois-clair-saved,serpent-ending"
+        },
+        "requiredAssertions": [
+          "TABLEAU_4ACTOR_RELATION",
+          "OPENING_EXIT_BREATH_ENTRY_NATIVE_FOCUS",
+          "SETTLED_TEXT_VIEWPORT",
+          "OBSERVATION_STORED_V6_EQUAL",
+          "NATIVE_CHOICE_RESOLVED_RELOAD",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/tableau-0115-1440-normal",
+        "receiptPath": "tmp/cinematics/tableau-0115-1440-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "70265e0e46e00c6020a76d24b1815936db6a5b45",
+          "sourceTree": "5532153d663ecf1604d470cd25754262ce8e845e",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-sh3puHnY.js",
+              "sha256": "502d4b6c1e6c08b36a3e8e863f89b0b4235275d7a116fa97f3378a1e1a6b5e72"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "0428f97b8194a615d1184bb521e902f7303676c2a1e4f71a1c54c593df25d799"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED_INVALID_URL_BEFORE_GAME",
+        "startedAt": "2026-10-08T01:21:24.148Z",
+        "endedAt": "2026-10-08T01:21:40.593Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "resultPath": "tmp/cinematics/tableau-0115-1440-normal/results.json",
+        "resultSha256": "deaa09a5f8f4a05886d0f53eb62a29a9e26678bda83cdbb5078b571ecdc27e38",
+        "provenanceStable": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "tableau-0115-1440-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+        "status": "FAILED",
+        "registeredAt": "2026-10-08T01:21:23.243Z",
+        "pid": 50060,
+        "port": 5327,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "viewport": "1440x810",
+          "osReducedMotion": true,
+          "gameReducedMotion": false,
+          "production": true,
+          "scenarios": "opening-camp-audience,bois-clair-saved,serpent-ending"
+        },
+        "requiredAssertions": [
+          "TABLEAU_4ACTOR_RELATION",
+          "OPENING_EXIT_BREATH_ENTRY_NATIVE_FOCUS",
+          "SETTLED_TEXT_VIEWPORT",
+          "OBSERVATION_STORED_V6_EQUAL",
+          "NATIVE_CHOICE_RESOLVED_RELOAD",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/tableau-0115-1440-os",
+        "receiptPath": "tmp/cinematics/tableau-0115-1440-os/qa-job.json",
+        "provenance": {
+          "gitHead": "70265e0e46e00c6020a76d24b1815936db6a5b45",
+          "sourceTree": "5532153d663ecf1604d470cd25754262ce8e845e",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-sh3puHnY.js",
+              "sha256": "502d4b6c1e6c08b36a3e8e863f89b0b4235275d7a116fa97f3378a1e1a6b5e72"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "0428f97b8194a615d1184bb521e902f7303676c2a1e4f71a1c54c593df25d799"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED_INVALID_URL_BEFORE_GAME",
+        "startedAt": "2026-10-08T01:21:24.164Z",
+        "endedAt": "2026-10-08T01:21:40.315Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "resultPath": "tmp/cinematics/tableau-0115-1440-os/results.json",
+        "resultSha256": "6574a156a3b90cfe1e45015b1c212fc7b695e740c40d8a8cc7f5866b305bbcea",
+        "provenanceStable": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "tableau-0115-620-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+        "status": "FAILED",
+        "registeredAt": "2026-10-08T01:21:23.420Z",
+        "pid": 17304,
+        "port": 5328,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "viewport": "620x780",
+          "osReducedMotion": false,
+          "gameReducedMotion": false,
+          "production": true,
+          "scenarios": "opening-camp-audience,bois-clair-saved,serpent-ending"
+        },
+        "requiredAssertions": [
+          "TABLEAU_4ACTOR_RELATION",
+          "OPENING_EXIT_BREATH_ENTRY_NATIVE_FOCUS",
+          "SETTLED_TEXT_VIEWPORT",
+          "OBSERVATION_STORED_V6_EQUAL",
+          "NATIVE_CHOICE_RESOLVED_RELOAD",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/tableau-0115-620-normal",
+        "receiptPath": "tmp/cinematics/tableau-0115-620-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "70265e0e46e00c6020a76d24b1815936db6a5b45",
+          "sourceTree": "5532153d663ecf1604d470cd25754262ce8e845e",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-sh3puHnY.js",
+              "sha256": "502d4b6c1e6c08b36a3e8e863f89b0b4235275d7a116fa97f3378a1e1a6b5e72"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "0428f97b8194a615d1184bb521e902f7303676c2a1e4f71a1c54c593df25d799"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED_INVALID_URL_BEFORE_GAME",
+        "startedAt": "2026-10-08T01:21:40.595Z",
+        "endedAt": "2026-10-08T01:21:54.761Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "resultPath": "tmp/cinematics/tableau-0115-620-normal/results.json",
+        "resultSha256": "9f8781c9f5cd68af1124e3d7a98a502385e70d63f0e60e3e280e4d67765c59b5",
+        "provenanceStable": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "tableau-0115-620-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+        "status": "FAILED",
+        "registeredAt": "2026-10-08T01:21:23.597Z",
+        "pid": 11204,
+        "port": 5329,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "viewport": "620x780",
+          "osReducedMotion": true,
+          "gameReducedMotion": false,
+          "production": true,
+          "scenarios": "opening-camp-audience,bois-clair-saved,serpent-ending"
+        },
+        "requiredAssertions": [
+          "TABLEAU_4ACTOR_RELATION",
+          "OPENING_EXIT_BREATH_ENTRY_NATIVE_FOCUS",
+          "SETTLED_TEXT_VIEWPORT",
+          "OBSERVATION_STORED_V6_EQUAL",
+          "NATIVE_CHOICE_RESOLVED_RELOAD",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/tableau-0115-620-os",
+        "receiptPath": "tmp/cinematics/tableau-0115-620-os/qa-job.json",
+        "provenance": {
+          "gitHead": "70265e0e46e00c6020a76d24b1815936db6a5b45",
+          "sourceTree": "5532153d663ecf1604d470cd25754262ce8e845e",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-sh3puHnY.js",
+              "sha256": "502d4b6c1e6c08b36a3e8e863f89b0b4235275d7a116fa97f3378a1e1a6b5e72"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "0428f97b8194a615d1184bb521e902f7303676c2a1e4f71a1c54c593df25d799"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED_INVALID_URL_BEFORE_GAME",
+        "startedAt": "2026-10-08T01:21:40.614Z",
+        "endedAt": "2026-10-08T01:21:54.583Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "resultPath": "tmp/cinematics/tableau-0115-620-os/results.json",
+        "resultSha256": "a1828b6fc00a7b21f3551b5af5850f03c5cf179fbb11be6d7ead348fda3d78c2",
+        "provenanceStable": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "tableau-0115-390-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+        "status": "FAILED",
+        "registeredAt": "2026-10-08T01:21:23.785Z",
+        "pid": 58664,
+        "port": 5330,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "viewport": "390x844",
+          "osReducedMotion": false,
+          "gameReducedMotion": false,
+          "production": true,
+          "scenarios": "opening-camp-audience,bois-clair-saved,serpent-ending"
+        },
+        "requiredAssertions": [
+          "TABLEAU_4ACTOR_RELATION",
+          "OPENING_EXIT_BREATH_ENTRY_NATIVE_FOCUS",
+          "SETTLED_TEXT_VIEWPORT",
+          "OBSERVATION_STORED_V6_EQUAL",
+          "NATIVE_CHOICE_RESOLVED_RELOAD",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/tableau-0115-390-normal",
+        "receiptPath": "tmp/cinematics/tableau-0115-390-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "70265e0e46e00c6020a76d24b1815936db6a5b45",
+          "sourceTree": "5532153d663ecf1604d470cd25754262ce8e845e",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-sh3puHnY.js",
+              "sha256": "502d4b6c1e6c08b36a3e8e863f89b0b4235275d7a116fa97f3378a1e1a6b5e72"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "0428f97b8194a615d1184bb521e902f7303676c2a1e4f71a1c54c593df25d799"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED_INVALID_URL_BEFORE_GAME",
+        "startedAt": "2026-10-08T01:21:54.764Z",
+        "endedAt": "2026-10-08T01:22:09.339Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "resultPath": "tmp/cinematics/tableau-0115-390-normal/results.json",
+        "resultSha256": "c1c9248018b777fad9d1776968da3de4491b805f345b5ab214239cf306af2318",
+        "provenanceStable": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "tableau-0115-390-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+        "status": "FAILED",
+        "registeredAt": "2026-10-08T01:21:23.971Z",
+        "pid": 10104,
+        "port": 5331,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "viewport": "390x844",
+          "osReducedMotion": true,
+          "gameReducedMotion": false,
+          "production": true,
+          "scenarios": "opening-camp-audience,bois-clair-saved,serpent-ending"
+        },
+        "requiredAssertions": [
+          "TABLEAU_4ACTOR_RELATION",
+          "OPENING_EXIT_BREATH_ENTRY_NATIVE_FOCUS",
+          "SETTLED_TEXT_VIEWPORT",
+          "OBSERVATION_STORED_V6_EQUAL",
+          "NATIVE_CHOICE_RESOLVED_RELOAD",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/tableau-0115-390-os",
+        "receiptPath": "tmp/cinematics/tableau-0115-390-os/qa-job.json",
+        "provenance": {
+          "gitHead": "70265e0e46e00c6020a76d24b1815936db6a5b45",
+          "sourceTree": "5532153d663ecf1604d470cd25754262ce8e845e",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-sh3puHnY.js",
+              "sha256": "502d4b6c1e6c08b36a3e8e863f89b0b4235275d7a116fa97f3378a1e1a6b5e72"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "0428f97b8194a615d1184bb521e902f7303676c2a1e4f71a1c54c593df25d799"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED_INVALID_URL_BEFORE_GAME",
+        "startedAt": "2026-10-08T01:21:54.782Z",
+        "endedAt": "2026-10-08T01:22:09.149Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "resultPath": "tmp/cinematics/tableau-0115-390-os/results.json",
+        "resultSha256": "f8b17c94e2501d15c266158a65ea585cbd4a2416db97d9934f52a9ac0f142824",
+        "provenanceStable": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "tableau-0115-v2-1440-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T01:22:54.916Z",
+        "pid": 64480,
+        "port": 5326,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "viewport": "1440x810",
+          "osReducedMotion": false,
+          "gameReducedMotion": false,
+          "production": true,
+          "scenarios": "opening-camp-audience,bois-clair-saved,serpent-ending"
+        },
+        "requiredAssertions": [
+          "TABLEAU_4ACTOR_RELATION",
+          "OPENING_EXIT_BREATH_ENTRY_NATIVE_FOCUS",
+          "SETTLED_TEXT_VIEWPORT",
+          "OBSERVATION_STORED_V6_EQUAL",
+          "NATIVE_CHOICE_RESOLVED_RELOAD",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/tableau-0115-v2-1440-normal",
+        "receiptPath": "tmp/cinematics/tableau-0115-v2-1440-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "70265e0e46e00c6020a76d24b1815936db6a5b45",
+          "sourceTree": "5532153d663ecf1604d470cd25754262ce8e845e",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-sh3puHnY.js",
+              "sha256": "502d4b6c1e6c08b36a3e8e863f89b0b4235275d7a116fa97f3378a1e1a6b5e72"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "0428f97b8194a615d1184bb521e902f7303676c2a1e4f71a1c54c593df25d799"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED_PRE_CORRECTION_VISUAL_DEFECT",
+        "startedAt": "2026-10-08T01:22:55.954Z",
+        "endedAt": "2026-10-08T01:24:26.177Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "resultPath": "tmp/cinematics/tableau-0115-v2-1440-normal/results.json",
+        "resultSha256": "a4afc2cfafa75e607fbcb00308d7dd0ca46affcd0c13809010076eb8e84c5322",
+        "provenanceStable": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "tableau-0115-v2-1440-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T01:22:55.094Z",
+        "pid": 62200,
+        "port": 5327,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "viewport": "1440x810",
+          "osReducedMotion": true,
+          "gameReducedMotion": false,
+          "production": true,
+          "scenarios": "opening-camp-audience,bois-clair-saved,serpent-ending"
+        },
+        "requiredAssertions": [
+          "TABLEAU_4ACTOR_RELATION",
+          "OPENING_EXIT_BREATH_ENTRY_NATIVE_FOCUS",
+          "SETTLED_TEXT_VIEWPORT",
+          "OBSERVATION_STORED_V6_EQUAL",
+          "NATIVE_CHOICE_RESOLVED_RELOAD",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/tableau-0115-v2-1440-os",
+        "receiptPath": "tmp/cinematics/tableau-0115-v2-1440-os/qa-job.json",
+        "provenance": {
+          "gitHead": "70265e0e46e00c6020a76d24b1815936db6a5b45",
+          "sourceTree": "5532153d663ecf1604d470cd25754262ce8e845e",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-sh3puHnY.js",
+              "sha256": "502d4b6c1e6c08b36a3e8e863f89b0b4235275d7a116fa97f3378a1e1a6b5e72"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "0428f97b8194a615d1184bb521e902f7303676c2a1e4f71a1c54c593df25d799"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED_PRE_CORRECTION_VISUAL_DEFECT",
+        "startedAt": "2026-10-08T01:22:55.972Z",
+        "endedAt": "2026-10-08T01:24:08.780Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "resultPath": "tmp/cinematics/tableau-0115-v2-1440-os/results.json",
+        "resultSha256": "648a0752d4543583d722c09b96f89c3b64cad72df175b9cbcb8ed6e18d567685",
+        "provenanceStable": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "tableau-0115-v2-620-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T01:22:55.270Z",
+        "pid": 48432,
+        "port": 5328,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "viewport": "620x780",
+          "osReducedMotion": false,
+          "gameReducedMotion": false,
+          "production": true,
+          "scenarios": "opening-camp-audience,bois-clair-saved,serpent-ending"
+        },
+        "requiredAssertions": [
+          "TABLEAU_4ACTOR_RELATION",
+          "OPENING_EXIT_BREATH_ENTRY_NATIVE_FOCUS",
+          "SETTLED_TEXT_VIEWPORT",
+          "OBSERVATION_STORED_V6_EQUAL",
+          "NATIVE_CHOICE_RESOLVED_RELOAD",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/tableau-0115-v2-620-normal",
+        "receiptPath": "tmp/cinematics/tableau-0115-v2-620-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "70265e0e46e00c6020a76d24b1815936db6a5b45",
+          "sourceTree": "5532153d663ecf1604d470cd25754262ce8e845e",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-sh3puHnY.js",
+              "sha256": "502d4b6c1e6c08b36a3e8e863f89b0b4235275d7a116fa97f3378a1e1a6b5e72"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "0428f97b8194a615d1184bb521e902f7303676c2a1e4f71a1c54c593df25d799"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED_PRE_CORRECTION_VISUAL_DEFECT",
+        "startedAt": "2026-10-08T01:24:26.180Z",
+        "endedAt": "2026-10-08T01:25:47.109Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "resultPath": "tmp/cinematics/tableau-0115-v2-620-normal/results.json",
+        "resultSha256": "454e6fd791164d39b29aac35a056b5224fc7be2bc4f57a065c8223d6c48bca0e",
+        "provenanceStable": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "tableau-0115-v2-620-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T01:22:55.450Z",
+        "pid": 39972,
+        "port": 5329,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "viewport": "620x780",
+          "osReducedMotion": true,
+          "gameReducedMotion": false,
+          "production": true,
+          "scenarios": "opening-camp-audience,bois-clair-saved,serpent-ending"
+        },
+        "requiredAssertions": [
+          "TABLEAU_4ACTOR_RELATION",
+          "OPENING_EXIT_BREATH_ENTRY_NATIVE_FOCUS",
+          "SETTLED_TEXT_VIEWPORT",
+          "OBSERVATION_STORED_V6_EQUAL",
+          "NATIVE_CHOICE_RESOLVED_RELOAD",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/tableau-0115-v2-620-os",
+        "receiptPath": "tmp/cinematics/tableau-0115-v2-620-os/qa-job.json",
+        "provenance": {
+          "gitHead": "70265e0e46e00c6020a76d24b1815936db6a5b45",
+          "sourceTree": "5532153d663ecf1604d470cd25754262ce8e845e",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-sh3puHnY.js",
+              "sha256": "502d4b6c1e6c08b36a3e8e863f89b0b4235275d7a116fa97f3378a1e1a6b5e72"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "0428f97b8194a615d1184bb521e902f7303676c2a1e4f71a1c54c593df25d799"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED_PRE_CORRECTION_VISUAL_DEFECT",
+        "startedAt": "2026-10-08T01:24:26.200Z",
+        "endedAt": "2026-10-08T01:25:31.789Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "resultPath": "tmp/cinematics/tableau-0115-v2-620-os/results.json",
+        "resultSha256": "fe37fcf2377c34da204ee6d383fafb1bc244c18c93ef85b91e4d942a09f9c2c0",
+        "provenanceStable": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "tableau-0115-v2-390-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T01:22:55.624Z",
+        "pid": 59748,
+        "port": 5330,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "viewport": "390x844",
+          "osReducedMotion": false,
+          "gameReducedMotion": false,
+          "production": true,
+          "scenarios": "opening-camp-audience,bois-clair-saved,serpent-ending"
+        },
+        "requiredAssertions": [
+          "TABLEAU_4ACTOR_RELATION",
+          "OPENING_EXIT_BREATH_ENTRY_NATIVE_FOCUS",
+          "SETTLED_TEXT_VIEWPORT",
+          "OBSERVATION_STORED_V6_EQUAL",
+          "NATIVE_CHOICE_RESOLVED_RELOAD",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/tableau-0115-v2-390-normal",
+        "receiptPath": "tmp/cinematics/tableau-0115-v2-390-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "70265e0e46e00c6020a76d24b1815936db6a5b45",
+          "sourceTree": "5532153d663ecf1604d470cd25754262ce8e845e",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-sh3puHnY.js",
+              "sha256": "502d4b6c1e6c08b36a3e8e863f89b0b4235275d7a116fa97f3378a1e1a6b5e72"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "0428f97b8194a615d1184bb521e902f7303676c2a1e4f71a1c54c593df25d799"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED_PRE_CORRECTION_VISUAL_DEFECT",
+        "startedAt": "2026-10-08T01:25:47.113Z",
+        "endedAt": "2026-10-08T01:27:05.297Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "resultPath": "tmp/cinematics/tableau-0115-v2-390-normal/results.json",
+        "resultSha256": "8015b87e6b6051032c31b0f063bfd1a2949e59569d56fb0d8c83093156a4aba0",
+        "provenanceStable": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "tableau-0115-v2-390-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T01:22:55.787Z",
+        "pid": 64984,
+        "port": 5331,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "viewport": "390x844",
+          "osReducedMotion": true,
+          "gameReducedMotion": false,
+          "production": true,
+          "scenarios": "opening-camp-audience,bois-clair-saved,serpent-ending"
+        },
+        "requiredAssertions": [
+          "TABLEAU_4ACTOR_RELATION",
+          "OPENING_EXIT_BREATH_ENTRY_NATIVE_FOCUS",
+          "SETTLED_TEXT_VIEWPORT",
+          "OBSERVATION_STORED_V6_EQUAL",
+          "NATIVE_CHOICE_RESOLVED_RELOAD",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/tableau-0115-v2-390-os",
+        "receiptPath": "tmp/cinematics/tableau-0115-v2-390-os/qa-job.json",
+        "provenance": {
+          "gitHead": "70265e0e46e00c6020a76d24b1815936db6a5b45",
+          "sourceTree": "5532153d663ecf1604d470cd25754262ce8e845e",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-sh3puHnY.js",
+              "sha256": "502d4b6c1e6c08b36a3e8e863f89b0b4235275d7a116fa97f3378a1e1a6b5e72"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "0428f97b8194a615d1184bb521e902f7303676c2a1e4f71a1c54c593df25d799"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED_PRE_CORRECTION_VISUAL_DEFECT",
+        "startedAt": "2026-10-08T01:25:47.133Z",
+        "endedAt": "2026-10-08T01:26:50.731Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "resultPath": "tmp/cinematics/tableau-0115-v2-390-os/results.json",
+        "resultSha256": "9c2a2d10c70afe93df4608be1f0622a90d009616c3c7b7f40a4e92d27ec2f480",
+        "provenanceStable": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "tableau-0115-v3-390-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T01:29:44.526Z",
+        "pid": 36452,
+        "port": 5326,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "viewport": "390x844",
+          "osReducedMotion": false,
+          "gameReducedMotion": false,
+          "production": true,
+          "scenarios": "opening-camp-audience,bois-clair-saved,serpent-ending"
+        },
+        "requiredAssertions": [
+          "TABLEAU_4ACTOR_RELATION",
+          "OPENING_EXIT_BREATH_ENTRY_NATIVE_FOCUS",
+          "SETTLED_TEXT_VIEWPORT",
+          "OBSERVATION_STORED_V6_EQUAL",
+          "NATIVE_CHOICE_RESOLVED_RELOAD",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/tableau-0115-v3-390-normal",
+        "receiptPath": "tmp/cinematics/tableau-0115-v3-390-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "e92dbffcb38457b027081fe8948acc9234c13060",
+          "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-CfgYCJPb.js",
+              "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "c0e686526b1e97a229c55ae0c88a73fa0ff921eaa6ac0770397f1f8031be58fc"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_TABLEAU_MILESTONE",
+        "startedAt": "2026-10-08T01:29:45.682Z",
+        "endedAt": "2026-10-08T01:31:05.951Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "resultPath": "tmp/cinematics/tableau-0115-v3-390-normal/results.json",
+        "resultSha256": "5c994814852602b8f5df4092c1062546de3fb18bd655853bc94d4b7fa88e852c",
+        "provenanceStable": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "tableau-0115-v3-390-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T01:29:44.710Z",
+        "pid": 18812,
+        "port": 5327,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "viewport": "390x844",
+          "osReducedMotion": true,
+          "gameReducedMotion": false,
+          "production": true,
+          "scenarios": "opening-camp-audience,bois-clair-saved,serpent-ending"
+        },
+        "requiredAssertions": [
+          "TABLEAU_4ACTOR_RELATION",
+          "OPENING_EXIT_BREATH_ENTRY_NATIVE_FOCUS",
+          "SETTLED_TEXT_VIEWPORT",
+          "OBSERVATION_STORED_V6_EQUAL",
+          "NATIVE_CHOICE_RESOLVED_RELOAD",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/tableau-0115-v3-390-os",
+        "receiptPath": "tmp/cinematics/tableau-0115-v3-390-os/qa-job.json",
+        "provenance": {
+          "gitHead": "e92dbffcb38457b027081fe8948acc9234c13060",
+          "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-CfgYCJPb.js",
+              "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "c0e686526b1e97a229c55ae0c88a73fa0ff921eaa6ac0770397f1f8031be58fc"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_TABLEAU_MILESTONE",
+        "startedAt": "2026-10-08T01:29:45.706Z",
+        "endedAt": "2026-10-08T01:30:50.332Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "resultPath": "tmp/cinematics/tableau-0115-v3-390-os/results.json",
+        "resultSha256": "eb61f14c79ca77218a52cc7bb2f667d8cb8e2eebb92da33fcb36c86445056182",
+        "provenanceStable": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "tableau-0115-v3-620-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T01:29:44.885Z",
+        "pid": 39808,
+        "port": 5328,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "viewport": "620x780",
+          "osReducedMotion": false,
+          "gameReducedMotion": false,
+          "production": true,
+          "scenarios": "opening-camp-audience,bois-clair-saved,serpent-ending"
+        },
+        "requiredAssertions": [
+          "TABLEAU_4ACTOR_RELATION",
+          "OPENING_EXIT_BREATH_ENTRY_NATIVE_FOCUS",
+          "SETTLED_TEXT_VIEWPORT",
+          "OBSERVATION_STORED_V6_EQUAL",
+          "NATIVE_CHOICE_RESOLVED_RELOAD",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/tableau-0115-v3-620-normal",
+        "receiptPath": "tmp/cinematics/tableau-0115-v3-620-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "e92dbffcb38457b027081fe8948acc9234c13060",
+          "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-CfgYCJPb.js",
+              "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "c0e686526b1e97a229c55ae0c88a73fa0ff921eaa6ac0770397f1f8031be58fc"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_TABLEAU_MILESTONE",
+        "startedAt": "2026-10-08T01:31:05.955Z",
+        "endedAt": "2026-10-08T01:32:25.612Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "resultPath": "tmp/cinematics/tableau-0115-v3-620-normal/results.json",
+        "resultSha256": "174ec43895bfa84d813564dd87d95452baf560bfbb42d0c3ed023f495cd38402",
+        "provenanceStable": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "tableau-0115-v3-620-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T01:29:45.102Z",
+        "pid": 59304,
+        "port": 5329,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "viewport": "620x780",
+          "osReducedMotion": true,
+          "gameReducedMotion": false,
+          "production": true,
+          "scenarios": "opening-camp-audience,bois-clair-saved,serpent-ending"
+        },
+        "requiredAssertions": [
+          "TABLEAU_4ACTOR_RELATION",
+          "OPENING_EXIT_BREATH_ENTRY_NATIVE_FOCUS",
+          "SETTLED_TEXT_VIEWPORT",
+          "OBSERVATION_STORED_V6_EQUAL",
+          "NATIVE_CHOICE_RESOLVED_RELOAD",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/tableau-0115-v3-620-os",
+        "receiptPath": "tmp/cinematics/tableau-0115-v3-620-os/qa-job.json",
+        "provenance": {
+          "gitHead": "e92dbffcb38457b027081fe8948acc9234c13060",
+          "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-CfgYCJPb.js",
+              "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "c0e686526b1e97a229c55ae0c88a73fa0ff921eaa6ac0770397f1f8031be58fc"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_TABLEAU_MILESTONE",
+        "startedAt": "2026-10-08T01:31:05.977Z",
+        "endedAt": "2026-10-08T01:32:09.798Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "resultPath": "tmp/cinematics/tableau-0115-v3-620-os/results.json",
+        "resultSha256": "e0ddbf9d6879c4b3ac858136237806eb4292d71e3787d7f6155b88c16b06258e",
+        "provenanceStable": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "tableau-0115-v3-1440-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T01:29:45.301Z",
+        "pid": 65160,
+        "port": 5330,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "viewport": "1440x810",
+          "osReducedMotion": false,
+          "gameReducedMotion": false,
+          "production": true,
+          "scenarios": "opening-camp-audience,bois-clair-saved,serpent-ending"
+        },
+        "requiredAssertions": [
+          "TABLEAU_4ACTOR_RELATION",
+          "OPENING_EXIT_BREATH_ENTRY_NATIVE_FOCUS",
+          "SETTLED_TEXT_VIEWPORT",
+          "OBSERVATION_STORED_V6_EQUAL",
+          "NATIVE_CHOICE_RESOLVED_RELOAD",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/tableau-0115-v3-1440-normal",
+        "receiptPath": "tmp/cinematics/tableau-0115-v3-1440-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "e92dbffcb38457b027081fe8948acc9234c13060",
+          "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-CfgYCJPb.js",
+              "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "c0e686526b1e97a229c55ae0c88a73fa0ff921eaa6ac0770397f1f8031be58fc"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_TABLEAU_MILESTONE",
+        "startedAt": "2026-10-08T01:32:25.614Z",
+        "endedAt": "2026-10-08T01:33:45.822Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "resultPath": "tmp/cinematics/tableau-0115-v3-1440-normal/results.json",
+        "resultSha256": "8af388704f59452e775896f1f6db1018afa30f4b503d65942dab789f3d5e4d05",
+        "provenanceStable": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "tableau-0115-v3-1440-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T01:29:45.492Z",
+        "pid": 68928,
+        "port": 5331,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "viewport": "1440x810",
+          "osReducedMotion": true,
+          "gameReducedMotion": false,
+          "production": true,
+          "scenarios": "opening-camp-audience,bois-clair-saved,serpent-ending"
+        },
+        "requiredAssertions": [
+          "TABLEAU_4ACTOR_RELATION",
+          "OPENING_EXIT_BREATH_ENTRY_NATIVE_FOCUS",
+          "SETTLED_TEXT_VIEWPORT",
+          "OBSERVATION_STORED_V6_EQUAL",
+          "NATIVE_CHOICE_RESOLVED_RELOAD",
+          "CLEAN_DIAGNOSTICS"
+        ],
+        "output": "tmp/cinematics/tableau-0115-v3-1440-os",
+        "receiptPath": "tmp/cinematics/tableau-0115-v3-1440-os/qa-job.json",
+        "provenance": {
+          "gitHead": "e92dbffcb38457b027081fe8948acc9234c13060",
+          "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-CfgYCJPb.js",
+              "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "c0e686526b1e97a229c55ae0c88a73fa0ff921eaa6ac0770397f1f8031be58fc"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_TABLEAU_MILESTONE",
+        "startedAt": "2026-10-08T01:32:25.627Z",
+        "endedAt": "2026-10-08T01:33:27.724Z",
+        "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+        "resultPath": "tmp/cinematics/tableau-0115-v3-1440-os/results.json",
+        "resultSha256": "cc59ad206f1400885d56b63eeaf7bad55a89ebf4d6cd41863239e308b2ed4106",
+        "provenanceStable": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0032",
-      "sha": "de39f7f7e561c720f5d296efa48b26b0a3116df0",
-      "status": "PUBLISHED_RECOVERY_FOR_SIX_UNCHANGED_DEFERRED_BLOBS",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0115",
+      "sha": "e68014bc82bf461ae39486e1fae4b1af5d267fdb",
+      "status": "GREEN_LOCAL_PUBLICATION_BLOCKED",
       "lastSnapshotAt": "2026-10-08T01:14:27.110Z",
       "dirtyFiles": [
-        "legacy-combat.html",
-        "src/combat/combatKeyboard.test.ts",
-        "src/combat/combatKeyboard.ts",
-        "src/combat/legacyCombatRuntime.js",
-        "src/styles/combat-shell.css",
-        "tools/combat-battlefield-keyboard-production-qa.mjs"
+        "six preserved deferred files",
+        "pairedstate"
       ],
-      "lastGreenCheck": "86 focused tests/types/contracts/staging/build PASS;390OS opening accepted scoped"
+      "lastGreenCheck": "94tests/types/contracts/staging/finalbuild/sixcases/guardianPASS",
+      "finalSnapshotScope": "Final recoverySHA stored in ownedlock and automation memory to avoid recursive snapshot embedding"
     },
-    "nextAction": "Normal read-only preflight/owned lock; STATIC-TABLEAU-STAGING-POLISH milestone: reuse existing opening-camp-audience and serpent-ending runners at1440/620/390 normal/OS plus village_choice firsttableau/restage/nativechoice civilian/hero distinction (existing bois-clair-saved). Reuse opening-0032-os390 proof only after identical physical source/driver/build/assertions check; Git fingerprint representation changed after equivalent commit. Preserve six deferred bytes/exact deferredDemoTask, exhausted councilOS assertion, independent council/refugee gate and ten external Pursuit mappings. No new runner needed; no repeat accepted ROAD/CAMPFIRE matrices.",
+    "nextAction": "Explicitly approve publication of final local dev checkpoint (SHA in automation memory) and wip/rpgthreejs-auto-dev-90m-20261008T0115 to juniorbattle/RPGThreeJS. Verify owned run0115 lock, finalHEAD, six deferred hashes, named remote dev/WIP and main parity; publish only those refs normally, verify, update state and release owned lock. Do not bypass automatic-review or take young lock. Then mark tableau COMPLETE_SCOPED and resume SCENE-TRANSITION-COPY: audit SceneTransition/GameApp label callers and ATE transition title owners, remove only observed placeholders or use existing authored/no copy; inspect actual production copy with existing runners. Preserve independent council/refugee/exhaustedOS gate, ten Pursuit mappings and exactdeferredDemoTask. No ROAD/CAMPFIRE or compatible tableau rerun.",
     "runMetrics": {
       "sourceFilesModified": 2,
       "sourcePaths": [
@@ -13903,5 +15509,22 @@
     "record": "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
     "blocker": "One correction exhausted; static-only OS scenario fails unchanged approved-video-attempt assertion",
     "nextAction": "Run existing witnesses-protected normal-motion production opening proof; independently observe refugee transaction acknowledgements and wider static-only OS acceptance before task milestone"
-  }
+  },
+  "runStatistics": {
+    "runtimeFilesModified": 1,
+    "testFilesModified": 1,
+    "existingQAToolsModified": 1,
+    "newPersistentQATools": 0,
+    "promotedProofFiles": 5,
+    "workflowFiles": 4,
+    "inheritedDeferredFiles": 6,
+    "distinctReviewers": 2,
+    "registeredInvocations": 18,
+    "finalAcceptedInvocations": 6,
+    "finalAcceptedScenarios": 18,
+    "environmentCorrections": 1,
+    "assertionCorrections": 0,
+    "failedSeedsUsed": 0
+  },
+  "qaToolingJustification": "Existing route runner verifies all scenarios but has no own terminal receipt. Ignored owner supervisor only registers existing-runner jobs and records reliable child PID/start/exit/digests; no new scenario/assertion tool and no driver-worker receipt claim. Original register/sync helpers reused for provenance; inherited121jobs untouched."
 }

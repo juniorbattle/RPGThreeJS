@@ -1,6 +1,6 @@
 # Static tableau staging polish
 
-CURRENT FACT: IN_PROGRESS. Initial readiness is bounded at local source02b5b0b; native opening replacement/focus is ACCEPTED_SCOPED at390 OS-only. Serpent narrow geometry remains accepted at67462c2. Wider tableau and civilian/hero production acceptance remain OPEN; neither task nor demo is complete. Publication of0032 approved and verified ondev/WIP.
+CURRENT FACT: ACCEPTED_SCOPED_RUNTIME at e92dbffcb38457b027081fe8948acc9234c13060; READY_TO_CLOSE_AFTER_PUBLICATION. External exact dev/WIP push blocked; demo incomplete.
 
 Authority: OD-2026-10-03-A and PRESENTATION_AND_MEDIA / DIALOGUE_STAGING, immutable set1.1.0. Scope: existing authored grouping, stable facing, bounded cast transitions, reduced motion/focus and responsive layouts. Canon, dialogue, outcomes and the four-visible-actor cap remain protected.
 
@@ -53,3 +53,17 @@ Publication is withheld after two automatic-review rejections of the explicitly 
 ## Publication approval resolved — 2026-10-08T01:14:27.110Z
 
 Operator replied oui to the exact dev/WIP publication request. Approved acf5a344 and bbcdd889 published normally and remote verified; no main change. Final workflow/recovery SHA recorded in automation memory after final parity. Publication blocker removed; tableau milestone remainsOPEN with next action in pairedstate. Prior rejections remain historical; no bypass.
+
+## Final tableau milestone — run0115 2026-10-08T01:42:38.951Z
+
+BASELINE 70265e0e46e00c6020a76d24b1815936db6a5b45; BRANCH dev; SOURCE e92dbffcb38457b027081fe8948acc9234c13060; STATUS localverified/publicationblocked; MERGED_IN NONE. Productionimpact: exact fouractor village request spacing, preserving authored slots/facing/cast and civilian separation.
+
+Initial registered matrix failed beforegame on emptyURL; one environment correction. V2sixcases machinePASS but390Maelor almost hidden: root/tableau rejectedvisualacceptance. Correction restricts VILLAGE_REQUEST to village_choice:segment-2 and exactfourIDs, spaces heroes16/34/52percent and civilian84percent, retaining scales/baselines/nodes.94tests5files/types/contracts/staging/finalbuild PASS.
+
+Final six registered owner-supervised cases/18scenarios1440/620/390 normal/OS on same e92dbff physical source, driver and game-CfgYCJPb.js/game-BZH7FiGl.css. Exactdigest/currentprovenance checks PASS. Native opening ordered4/2/4, retainedactors/authoredfacing/settledsegment/nextfocus/V6observation equality. Village steps1/3/5 and nativechoices/resolvedresume; Serpent steps1/2/3 alliance/opaquegeometry/settledtext/programmaticfocus. Root finalcaptures inspectedallwidths; tableau closes390/620/1440 readability; guardian READY_TO_CLOSE_SCOPED after exact6results/hashes/selectedcaptures.
+
+Evidence explicitly selected in ../reports/static-tableau-staging-polish-0115/checks.json plus four inspectedcaptures. Raw failed/v2/final results remain ignored and unchanged. Owner-supervised child receipts are not driver-generatedworker receipts. Village/Serpent use existingnode-save/combat-result fixtures; no earnedcampaign/fullV6/balance/wholeSuite/demo acceptance. OSsamples prove pause/focus/no actoranimation; no fade claim. Sage outercloak slight390leftedge crop retains head/body/identity and is not material.
+
+Scoped constitution/narrative/presentation/save/UI/QA PASS; art/characters/environments/Traversal/combat N/A. Guardian localgovernance gatesPASS; externalpublicationBLOCKED by automaticreview, no bypass/retry. Set1.1.0, no LOCKED change. Counts1runtime+1test+1existingtool,0newpersistentQA,5proof,4workflow,6inheritedpreserved. Two reviewers reused;18invocations including6setupfailure+6rejectedprior+6finalaccepted;1environmentcorrection/0assertioncorrections/0failedseeds. Noquota-saving claim.
+
+Next: explicit nameddev/WIP publication approval/parity/ownedlock release, then SCENE-TRANSITION-COPY. Independent council/refugee gate, exhaustedOS assertion, tenPursuit mappings and exactdeferredkeyboard action remain preserved.

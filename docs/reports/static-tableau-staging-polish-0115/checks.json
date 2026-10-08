@@ -1,0 +1,2571 @@
+{
+  "task": "STATIC-TABLEAU-STAGING-POLISH",
+  "status": "ACCEPTED_SCOPED_TABLEAU_MILESTONE",
+  "runId": "rpgthreejs-auto-dev-90m-20261008T0115",
+  "source": "e92dbffcb38457b027081fe8948acc9234c13060",
+  "base": "70265e0e46e00c6020a76d24b1815936db6a5b45",
+  "builtAtScope": "physical build includes six unchanged unaccepted deferred keyboard files",
+  "cases": [
+    {
+      "jobId": "tableau-0115-v3-390-normal",
+      "resultPath": "tmp/cinematics/tableau-0115-v3-390-normal/results.json",
+      "resultSha256": "5c994814852602b8f5df4092c1062546de3fb18bd655853bc94d4b7fa88e852c",
+      "receiptPath": "tmp/cinematics/tableau-0115-v3-390-normal/qa-job.json",
+      "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "osReducedMotion": false,
+      "gameReducedMotion": false,
+      "provenance": {
+        "gitHead": "e92dbffcb38457b027081fe8948acc9234c13060",
+        "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+        "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+        "driver": {
+          "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-BZH7FiGl.css",
+            "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+          },
+          {
+            "path": "dist/assets/game-CfgYCJPb.js",
+            "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "c0e686526b1e97a229c55ae0c88a73fa0ff921eaa6ac0770397f1f8031be58fc"
+          }
+        ]
+      },
+      "opening": {
+        "phases": [
+          {
+            "phase": "SETTLED",
+            "elapsedMs": 0,
+            "count": 4
+          },
+          {
+            "phase": "EXIT",
+            "elapsedMs": 10.799999952316284,
+            "count": 4
+          },
+          {
+            "phase": "BREATH",
+            "elapsedMs": 192.09999990463257,
+            "count": 2
+          },
+          {
+            "phase": "ENTRY",
+            "elapsedMs": 253.39999985694885,
+            "count": 4
+          },
+          {
+            "phase": "SETTLED",
+            "elapsedMs": 438.2999999523163,
+            "count": 4
+          }
+        ],
+        "nativeFocused": true,
+        "enabled": true,
+        "textFits": true,
+        "storedV6Equal": true,
+        "resume": {
+          "truthUnchanged": true,
+          "currentNodeId": "lion-audience",
+          "endingId": null,
+          "replayedVideos": [],
+          "combatFrames": 0,
+          "overlays": 0
+        }
+      },
+      "village": {
+        "steps": [
+          {
+            "step": "1",
+            "actors": [
+              {
+                "id": "marian",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "FAR_LEFT",
+                "centerX": 66.359375
+              },
+              {
+                "id": "kestrel",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "CENTER_LEFT",
+                "centerX": 153.375
+              },
+              {
+                "id": "villageoise",
+                "group": "LOCAL_CIVILIAN",
+                "facing": "LEFT",
+                "position": "CENTER_RIGHT",
+                "centerX": 247.953125
+              },
+              {
+                "id": "serpent_raider",
+                "group": "ANTAGONIST",
+                "facing": "LEFT",
+                "position": "FAR_RIGHT",
+                "centerX": 331.1875
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true
+          },
+          {
+            "step": "3",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "FAR_LEFT",
+                "centerX": 66.359375
+              },
+              {
+                "id": "maelor",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "LEFT",
+                "centerX": 134.46875
+              },
+              {
+                "id": "alistair",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "CENTER_LEFT",
+                "centerX": 202.5625
+              },
+              {
+                "id": "villageoise",
+                "group": "LOCAL_CIVILIAN",
+                "facing": "LEFT",
+                "position": "RIGHT",
+                "centerX": 323.625
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true
+          },
+          {
+            "step": "5",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "FAR_LEFT",
+                "centerX": 66.359375
+              },
+              {
+                "id": "maelor",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "LEFT",
+                "centerX": 134.46875
+              },
+              {
+                "id": "alistair",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "CENTER_LEFT",
+                "centerX": 202.5625
+              },
+              {
+                "id": "villageoise",
+                "group": "LOCAL_CIVILIAN",
+                "facing": "LEFT",
+                "position": "RIGHT",
+                "centerX": 323.625
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true
+          }
+        ],
+        "choice": [
+          {
+            "sequenceId": "village_choice",
+            "stepId": "5",
+            "bounds": [
+              {
+                "label": "Prendre le vieux pont et extraire les captifs.◇Captifs prioritaires◇Réserves et puits laissés au sud",
+                "x": 18,
+                "y": 637.1880493164062,
+                "width": 354,
+                "height": 95.5,
+                "withinViewport": true
+              },
+              {
+                "label": "Prendre la porte basse et sécuriser réserves et puits.◇Réserves et puits sécurisés◇Captifs laissés au nord",
+                "x": 18,
+                "y": 738.6880493164062,
+                "width": 354,
+                "height": 95.5,
+                "withinViewport": true
+              }
+            ],
+            "keyboardActivation": true,
+            "capture": "bois-clair-saved-village_choice-5-choices.png"
+          }
+        ],
+        "resume": {
+          "truthUnchanged": true,
+          "currentNodeId": "lion-second-refuge",
+          "endingId": null,
+          "replayedVideos": [],
+          "combatFrames": 0,
+          "overlays": 0
+        }
+      },
+      "serpent": {
+        "steps": [
+          {
+            "step": "1",
+            "alliedEnvelopeGap": 5.321926116943345,
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "position": "CENTER_LEFT",
+                "facing": "RIGHT",
+                "group": "PLAYER_COMPANY",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 130.00288887023925,
+                  "y": 528.154467010498,
+                  "width": 78.19254035949707,
+                  "height": 127.20875968933106
+                },
+                "visibleWidthRatio": 0.9999999999999998
+              },
+              {
+                "id": "alaric",
+                "position": "FAR_LEFT",
+                "facing": "RIGHT",
+                "group": "LION_COURT",
+                "speaking": true,
+                "flipped": false,
+                "bounds": {
+                  "x": 37.15199966430664,
+                  "y": 529.3215198516846,
+                  "width": 87.52896308898926,
+                  "height": 126.04170684814453
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "serpent_general_boss",
+                "position": "FAR_RIGHT",
+                "facing": "LEFT",
+                "group": "ANTAGONIST",
+                "speaking": false,
+                "flipped": true,
+                "bounds": {
+                  "x": 263.80958251953126,
+                  "y": 508.3145959854126,
+                  "width": 110.87000179290771,
+                  "height": 147.04863395690919
+                },
+                "visibleWidthRatio": 1
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true,
+            "programmaticFocus": true
+          },
+          {
+            "step": "2",
+            "alliedEnvelopeGap": 5.321926116943345,
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "position": "CENTER_LEFT",
+                "facing": "RIGHT",
+                "group": "PLAYER_COMPANY",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 130.00288887023925,
+                  "y": 528.154467010498,
+                  "width": 78.19254035949707,
+                  "height": 127.20875968933106
+                },
+                "visibleWidthRatio": 0.9999999999999998
+              },
+              {
+                "id": "alaric",
+                "position": "FAR_LEFT",
+                "facing": "RIGHT",
+                "group": "LION_COURT",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 37.15199966430664,
+                  "y": 529.3215198516846,
+                  "width": 87.52896308898926,
+                  "height": 126.04170684814453
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "serpent_general_boss",
+                "position": "FAR_RIGHT",
+                "facing": "LEFT",
+                "group": "ANTAGONIST",
+                "speaking": true,
+                "flipped": true,
+                "bounds": {
+                  "x": 263.80958251953126,
+                  "y": 508.3145959854126,
+                  "width": 110.87000179290771,
+                  "height": 147.04863395690919
+                },
+                "visibleWidthRatio": 1
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true,
+            "programmaticFocus": true
+          },
+          {
+            "step": "3",
+            "alliedEnvelopeGap": 5.321926116943345,
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "position": "CENTER_LEFT",
+                "facing": "RIGHT",
+                "group": "PLAYER_COMPANY",
+                "speaking": true,
+                "flipped": false,
+                "bounds": {
+                  "x": 130.00288887023925,
+                  "y": 528.154467010498,
+                  "width": 78.19254035949707,
+                  "height": 127.20875968933106
+                },
+                "visibleWidthRatio": 0.9999999999999998
+              },
+              {
+                "id": "alaric",
+                "position": "FAR_LEFT",
+                "facing": "RIGHT",
+                "group": "LION_COURT",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 37.15199966430664,
+                  "y": 529.3215198516846,
+                  "width": 87.52896308898926,
+                  "height": 126.04170684814453
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "serpent_general_boss",
+                "position": "FAR_RIGHT",
+                "facing": "LEFT",
+                "group": "ANTAGONIST",
+                "speaking": false,
+                "flipped": true,
+                "bounds": {
+                  "x": 263.80958251953126,
+                  "y": 508.3145959854126,
+                  "width": 110.87000179290771,
+                  "height": 147.04863395690919
+                },
+                "visibleWidthRatio": 1
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true,
+            "programmaticFocus": true
+          }
+        ],
+        "resume": {
+          "truthUnchanged": true,
+          "currentNodeId": "lion-final-judgement",
+          "endingId": "lion-seal-serpent-truth",
+          "replayedVideos": [],
+          "combatFrames": 0,
+          "overlays": 0
+        }
+      },
+      "cleanDiagnostics": true
+    },
+    {
+      "jobId": "tableau-0115-v3-390-os",
+      "resultPath": "tmp/cinematics/tableau-0115-v3-390-os/results.json",
+      "resultSha256": "eb61f14c79ca77218a52cc7bb2f667d8cb8e2eebb92da33fcb36c86445056182",
+      "receiptPath": "tmp/cinematics/tableau-0115-v3-390-os/qa-job.json",
+      "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "osReducedMotion": true,
+      "gameReducedMotion": false,
+      "provenance": {
+        "gitHead": "e92dbffcb38457b027081fe8948acc9234c13060",
+        "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+        "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+        "driver": {
+          "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-BZH7FiGl.css",
+            "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+          },
+          {
+            "path": "dist/assets/game-CfgYCJPb.js",
+            "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "c0e686526b1e97a229c55ae0c88a73fa0ff921eaa6ac0770397f1f8031be58fc"
+          }
+        ]
+      },
+      "opening": {
+        "phases": [
+          {
+            "phase": "SETTLED",
+            "elapsedMs": 0.10000014305114746,
+            "count": 4
+          },
+          {
+            "phase": "EXIT",
+            "elapsedMs": 10.100000143051147,
+            "count": 4
+          },
+          {
+            "phase": "BREATH",
+            "elapsedMs": 193.10000014305115,
+            "count": 2
+          },
+          {
+            "phase": "ENTRY",
+            "elapsedMs": 237.90000009536743,
+            "count": 4
+          },
+          {
+            "phase": "SETTLED",
+            "elapsedMs": 426.60000014305115,
+            "count": 4
+          }
+        ],
+        "nativeFocused": true,
+        "enabled": true,
+        "textFits": true,
+        "storedV6Equal": true,
+        "resume": {
+          "truthUnchanged": true,
+          "currentNodeId": "lion-audience",
+          "endingId": null,
+          "replayedVideos": [],
+          "combatFrames": 0,
+          "overlays": 0
+        }
+      },
+      "village": {
+        "steps": [
+          {
+            "step": "1",
+            "actors": [
+              {
+                "id": "marian",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "FAR_LEFT",
+                "centerX": 66.359375
+              },
+              {
+                "id": "kestrel",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "CENTER_LEFT",
+                "centerX": 153.375
+              },
+              {
+                "id": "villageoise",
+                "group": "LOCAL_CIVILIAN",
+                "facing": "LEFT",
+                "position": "CENTER_RIGHT",
+                "centerX": 247.953125
+              },
+              {
+                "id": "serpent_raider",
+                "group": "ANTAGONIST",
+                "facing": "LEFT",
+                "position": "FAR_RIGHT",
+                "centerX": 331.1875
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true
+          },
+          {
+            "step": "3",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "FAR_LEFT",
+                "centerX": 66.359375
+              },
+              {
+                "id": "maelor",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "LEFT",
+                "centerX": 134.46875
+              },
+              {
+                "id": "alistair",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "CENTER_LEFT",
+                "centerX": 202.5625
+              },
+              {
+                "id": "villageoise",
+                "group": "LOCAL_CIVILIAN",
+                "facing": "LEFT",
+                "position": "RIGHT",
+                "centerX": 323.625
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true
+          },
+          {
+            "step": "5",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "FAR_LEFT",
+                "centerX": 66.359375
+              },
+              {
+                "id": "maelor",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "LEFT",
+                "centerX": 134.46875
+              },
+              {
+                "id": "alistair",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "CENTER_LEFT",
+                "centerX": 202.5625
+              },
+              {
+                "id": "villageoise",
+                "group": "LOCAL_CIVILIAN",
+                "facing": "LEFT",
+                "position": "RIGHT",
+                "centerX": 323.625
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true
+          }
+        ],
+        "choice": [
+          {
+            "sequenceId": "village_choice",
+            "stepId": "5",
+            "bounds": [
+              {
+                "label": "Prendre le vieux pont et extraire les captifs.◇Captifs prioritaires◇Réserves et puits laissés au sud",
+                "x": 18,
+                "y": 635,
+                "width": 354,
+                "height": 95.5,
+                "withinViewport": true
+              },
+              {
+                "label": "Prendre la porte basse et sécuriser réserves et puits.◇Réserves et puits sécurisés◇Captifs laissés au nord",
+                "x": 18,
+                "y": 736.5,
+                "width": 354,
+                "height": 95.5,
+                "withinViewport": true
+              }
+            ],
+            "keyboardActivation": true,
+            "capture": "bois-clair-saved-village_choice-5-choices.png"
+          }
+        ],
+        "resume": {
+          "truthUnchanged": true,
+          "currentNodeId": "lion-second-refuge",
+          "endingId": null,
+          "replayedVideos": [],
+          "combatFrames": 0,
+          "overlays": 0
+        }
+      },
+      "serpent": {
+        "steps": [
+          {
+            "step": "1",
+            "alliedEnvelopeGap": 5.321926116943345,
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "position": "CENTER_LEFT",
+                "facing": "RIGHT",
+                "group": "PLAYER_COMPANY",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 130.00288887023925,
+                  "y": 528.154467010498,
+                  "width": 78.19254035949707,
+                  "height": 127.20875968933106
+                },
+                "visibleWidthRatio": 0.9999999999999998
+              },
+              {
+                "id": "alaric",
+                "position": "FAR_LEFT",
+                "facing": "RIGHT",
+                "group": "LION_COURT",
+                "speaking": true,
+                "flipped": false,
+                "bounds": {
+                  "x": 37.15199966430664,
+                  "y": 529.3215198516846,
+                  "width": 87.52896308898926,
+                  "height": 126.04170684814453
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "serpent_general_boss",
+                "position": "FAR_RIGHT",
+                "facing": "LEFT",
+                "group": "ANTAGONIST",
+                "speaking": false,
+                "flipped": true,
+                "bounds": {
+                  "x": 263.80958251953126,
+                  "y": 508.3145959854126,
+                  "width": 110.87000179290771,
+                  "height": 147.04863395690919
+                },
+                "visibleWidthRatio": 1
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true,
+            "programmaticFocus": true
+          },
+          {
+            "step": "2",
+            "alliedEnvelopeGap": 5.321926116943345,
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "position": "CENTER_LEFT",
+                "facing": "RIGHT",
+                "group": "PLAYER_COMPANY",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 130.00288887023925,
+                  "y": 528.154467010498,
+                  "width": 78.19254035949707,
+                  "height": 127.20875968933106
+                },
+                "visibleWidthRatio": 0.9999999999999998
+              },
+              {
+                "id": "alaric",
+                "position": "FAR_LEFT",
+                "facing": "RIGHT",
+                "group": "LION_COURT",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 37.15199966430664,
+                  "y": 529.3215198516846,
+                  "width": 87.52896308898926,
+                  "height": 126.04170684814453
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "serpent_general_boss",
+                "position": "FAR_RIGHT",
+                "facing": "LEFT",
+                "group": "ANTAGONIST",
+                "speaking": true,
+                "flipped": true,
+                "bounds": {
+                  "x": 263.80958251953126,
+                  "y": 508.3145959854126,
+                  "width": 110.87000179290771,
+                  "height": 147.04863395690919
+                },
+                "visibleWidthRatio": 1
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true,
+            "programmaticFocus": true
+          },
+          {
+            "step": "3",
+            "alliedEnvelopeGap": 5.321926116943345,
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "position": "CENTER_LEFT",
+                "facing": "RIGHT",
+                "group": "PLAYER_COMPANY",
+                "speaking": true,
+                "flipped": false,
+                "bounds": {
+                  "x": 130.00288887023925,
+                  "y": 528.154467010498,
+                  "width": 78.19254035949707,
+                  "height": 127.20875968933106
+                },
+                "visibleWidthRatio": 0.9999999999999998
+              },
+              {
+                "id": "alaric",
+                "position": "FAR_LEFT",
+                "facing": "RIGHT",
+                "group": "LION_COURT",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 37.15199966430664,
+                  "y": 529.3215198516846,
+                  "width": 87.52896308898926,
+                  "height": 126.04170684814453
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "serpent_general_boss",
+                "position": "FAR_RIGHT",
+                "facing": "LEFT",
+                "group": "ANTAGONIST",
+                "speaking": false,
+                "flipped": true,
+                "bounds": {
+                  "x": 263.80958251953126,
+                  "y": 508.3145959854126,
+                  "width": 110.87000179290771,
+                  "height": 147.04863395690919
+                },
+                "visibleWidthRatio": 1
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true,
+            "programmaticFocus": true
+          }
+        ],
+        "resume": {
+          "truthUnchanged": true,
+          "currentNodeId": "lion-final-judgement",
+          "endingId": "lion-seal-serpent-truth",
+          "replayedVideos": [],
+          "combatFrames": 0,
+          "overlays": 0
+        }
+      },
+      "cleanDiagnostics": true
+    },
+    {
+      "jobId": "tableau-0115-v3-620-normal",
+      "resultPath": "tmp/cinematics/tableau-0115-v3-620-normal/results.json",
+      "resultSha256": "174ec43895bfa84d813564dd87d95452baf560bfbb42d0c3ed023f495cd38402",
+      "receiptPath": "tmp/cinematics/tableau-0115-v3-620-normal/qa-job.json",
+      "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "osReducedMotion": false,
+      "gameReducedMotion": false,
+      "provenance": {
+        "gitHead": "e92dbffcb38457b027081fe8948acc9234c13060",
+        "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+        "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+        "driver": {
+          "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-BZH7FiGl.css",
+            "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+          },
+          {
+            "path": "dist/assets/game-CfgYCJPb.js",
+            "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "c0e686526b1e97a229c55ae0c88a73fa0ff921eaa6ac0770397f1f8031be58fc"
+          }
+        ]
+      },
+      "opening": {
+        "phases": [
+          {
+            "phase": "SETTLED",
+            "elapsedMs": 0.09999990463256836,
+            "count": 4
+          },
+          {
+            "phase": "EXIT",
+            "elapsedMs": 9.699999809265137,
+            "count": 4
+          },
+          {
+            "phase": "BREATH",
+            "elapsedMs": 191.29999995231628,
+            "count": 2
+          },
+          {
+            "phase": "ENTRY",
+            "elapsedMs": 262,
+            "count": 4
+          },
+          {
+            "phase": "SETTLED",
+            "elapsedMs": 448,
+            "count": 4
+          }
+        ],
+        "nativeFocused": true,
+        "enabled": true,
+        "textFits": true,
+        "storedV6Equal": true,
+        "resume": {
+          "truthUnchanged": true,
+          "currentNodeId": "lion-audience",
+          "endingId": null,
+          "replayedVideos": [],
+          "combatFrames": 0,
+          "overlays": 0
+        }
+      },
+      "village": {
+        "steps": [
+          {
+            "step": "1",
+            "actors": [
+              {
+                "id": "marian",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "FAR_LEFT",
+                "centerX": 105.51564025878906
+              },
+              {
+                "id": "kestrel",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "CENTER_LEFT",
+                "centerX": 243.84376525878906
+              },
+              {
+                "id": "villageoise",
+                "group": "LOCAL_CIVILIAN",
+                "facing": "LEFT",
+                "position": "CENTER_RIGHT",
+                "centerX": 394.18751525878906
+              },
+              {
+                "id": "serpent_raider",
+                "group": "ANTAGONIST",
+                "facing": "LEFT",
+                "position": "FAR_RIGHT",
+                "centerX": 526.4999694824219
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true
+          },
+          {
+            "step": "3",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "FAR_LEFT",
+                "centerX": 105.51564025878906
+              },
+              {
+                "id": "maelor",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "LEFT",
+                "centerX": 213.76564025878906
+              },
+              {
+                "id": "alistair",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "CENTER_LEFT",
+                "centerX": 322.01564025878906
+              },
+              {
+                "id": "villageoise",
+                "group": "LOCAL_CIVILIAN",
+                "facing": "LEFT",
+                "position": "RIGHT",
+                "centerX": 514.4687194824219
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true
+          },
+          {
+            "step": "5",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "FAR_LEFT",
+                "centerX": 105.51564025878906
+              },
+              {
+                "id": "maelor",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "LEFT",
+                "centerX": 213.76564025878906
+              },
+              {
+                "id": "alistair",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "CENTER_LEFT",
+                "centerX": 322.01564025878906
+              },
+              {
+                "id": "villageoise",
+                "group": "LOCAL_CIVILIAN",
+                "facing": "LEFT",
+                "position": "RIGHT",
+                "centerX": 514.4687194824219
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true
+          }
+        ],
+        "choice": [
+          {
+            "sequenceId": "village_choice",
+            "stepId": "5",
+            "bounds": [
+              {
+                "label": "Prendre le vieux pont et extraire les captifs.◇Captifs prioritaires◇Réserves et puits laissés au sud",
+                "x": 18,
+                "y": 656.5484008789062,
+                "width": 584,
+                "height": 53.25,
+                "withinViewport": true
+              },
+              {
+                "label": "Prendre la porte basse et sécuriser réserves et puits.◇Réserves et puits sécurisés◇Captifs laissés au nord",
+                "x": 18,
+                "y": 715.7984008789062,
+                "width": 584,
+                "height": 53.25,
+                "withinViewport": true
+              }
+            ],
+            "keyboardActivation": true,
+            "capture": "bois-clair-saved-village_choice-5-choices.png"
+          }
+        ],
+        "resume": {
+          "truthUnchanged": true,
+          "currentNodeId": "lion-second-refuge",
+          "endingId": null,
+          "replayedVideos": [],
+          "combatFrames": 0,
+          "overlays": 0
+        }
+      },
+      "serpent": {
+        "steps": [
+          {
+            "step": "1",
+            "alliedEnvelopeGap": -32.852272033691406,
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "position": "CENTER_LEFT",
+                "facing": "RIGHT",
+                "group": "PLAYER_COMPANY",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 187.19867630004882,
+                  "y": 347.10653533935545,
+                  "width": 163.8291389465332,
+                  "height": 266.528002166748
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "alaric",
+                "position": "FAR_LEFT",
+                "facing": "RIGHT",
+                "group": "LION_COURT",
+                "speaking": true,
+                "flipped": false,
+                "bounds": {
+                  "x": 36.66012115478516,
+                  "y": 349.5517463684082,
+                  "width": 183.39082717895508,
+                  "height": 264.0827911376953
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "serpent_general_boss",
+                "position": "FAR_RIGHT",
+                "facing": "LEFT",
+                "group": "ANTAGONIST",
+                "speaking": false,
+                "flipped": true,
+                "bounds": {
+                  "x": 391.0829833984375,
+                  "y": 305.53800239562986,
+                  "width": 232.29501152038574,
+                  "height": 308.096541595459
+                },
+                "visibleWidthRatio": 0.9854581684870716
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true,
+            "programmaticFocus": true
+          },
+          {
+            "step": "2",
+            "alliedEnvelopeGap": -32.852272033691406,
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "position": "CENTER_LEFT",
+                "facing": "RIGHT",
+                "group": "PLAYER_COMPANY",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 187.19867630004882,
+                  "y": 347.10653533935545,
+                  "width": 163.8291389465332,
+                  "height": 266.528002166748
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "alaric",
+                "position": "FAR_LEFT",
+                "facing": "RIGHT",
+                "group": "LION_COURT",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 36.66012115478516,
+                  "y": 349.5517463684082,
+                  "width": 183.39082717895508,
+                  "height": 264.0827911376953
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "serpent_general_boss",
+                "position": "FAR_RIGHT",
+                "facing": "LEFT",
+                "group": "ANTAGONIST",
+                "speaking": true,
+                "flipped": true,
+                "bounds": {
+                  "x": 391.0829833984375,
+                  "y": 305.53800239562986,
+                  "width": 232.29501152038574,
+                  "height": 308.096541595459
+                },
+                "visibleWidthRatio": 0.9854581684870716
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true,
+            "programmaticFocus": true
+          },
+          {
+            "step": "3",
+            "alliedEnvelopeGap": -32.852272033691406,
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "position": "CENTER_LEFT",
+                "facing": "RIGHT",
+                "group": "PLAYER_COMPANY",
+                "speaking": true,
+                "flipped": false,
+                "bounds": {
+                  "x": 187.19867630004882,
+                  "y": 347.10653533935545,
+                  "width": 163.8291389465332,
+                  "height": 266.528002166748
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "alaric",
+                "position": "FAR_LEFT",
+                "facing": "RIGHT",
+                "group": "LION_COURT",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 36.66012115478516,
+                  "y": 349.5517463684082,
+                  "width": 183.39082717895508,
+                  "height": 264.0827911376953
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "serpent_general_boss",
+                "position": "FAR_RIGHT",
+                "facing": "LEFT",
+                "group": "ANTAGONIST",
+                "speaking": false,
+                "flipped": true,
+                "bounds": {
+                  "x": 391.0829833984375,
+                  "y": 305.53800239562986,
+                  "width": 232.29501152038574,
+                  "height": 308.096541595459
+                },
+                "visibleWidthRatio": 0.9854581684870716
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true,
+            "programmaticFocus": true
+          }
+        ],
+        "resume": {
+          "truthUnchanged": true,
+          "currentNodeId": "lion-final-judgement",
+          "endingId": "lion-seal-serpent-truth",
+          "replayedVideos": [],
+          "combatFrames": 0,
+          "overlays": 0
+        }
+      },
+      "cleanDiagnostics": true
+    },
+    {
+      "jobId": "tableau-0115-v3-620-os",
+      "resultPath": "tmp/cinematics/tableau-0115-v3-620-os/results.json",
+      "resultSha256": "e0ddbf9d6879c4b3ac858136237806eb4292d71e3787d7f6155b88c16b06258e",
+      "receiptPath": "tmp/cinematics/tableau-0115-v3-620-os/qa-job.json",
+      "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "osReducedMotion": true,
+      "gameReducedMotion": false,
+      "provenance": {
+        "gitHead": "e92dbffcb38457b027081fe8948acc9234c13060",
+        "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+        "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+        "driver": {
+          "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-BZH7FiGl.css",
+            "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+          },
+          {
+            "path": "dist/assets/game-CfgYCJPb.js",
+            "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "c0e686526b1e97a229c55ae0c88a73fa0ff921eaa6ac0770397f1f8031be58fc"
+          }
+        ]
+      },
+      "opening": {
+        "phases": [
+          {
+            "phase": "SETTLED",
+            "elapsedMs": 0.09999990463256836,
+            "count": 4
+          },
+          {
+            "phase": "EXIT",
+            "elapsedMs": 12.899999856948853,
+            "count": 4
+          },
+          {
+            "phase": "BREATH",
+            "elapsedMs": 198.70000004768372,
+            "count": 2
+          },
+          {
+            "phase": "ENTRY",
+            "elapsedMs": 244.5,
+            "count": 4
+          },
+          {
+            "phase": "SETTLED",
+            "elapsedMs": 431.09999990463257,
+            "count": 4
+          }
+        ],
+        "nativeFocused": true,
+        "enabled": true,
+        "textFits": true,
+        "storedV6Equal": true,
+        "resume": {
+          "truthUnchanged": true,
+          "currentNodeId": "lion-audience",
+          "endingId": null,
+          "replayedVideos": [],
+          "combatFrames": 0,
+          "overlays": 0
+        }
+      },
+      "village": {
+        "steps": [
+          {
+            "step": "1",
+            "actors": [
+              {
+                "id": "marian",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "FAR_LEFT",
+                "centerX": 105.51564025878906
+              },
+              {
+                "id": "kestrel",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "CENTER_LEFT",
+                "centerX": 243.84376525878906
+              },
+              {
+                "id": "villageoise",
+                "group": "LOCAL_CIVILIAN",
+                "facing": "LEFT",
+                "position": "CENTER_RIGHT",
+                "centerX": 394.18751525878906
+              },
+              {
+                "id": "serpent_raider",
+                "group": "ANTAGONIST",
+                "facing": "LEFT",
+                "position": "FAR_RIGHT",
+                "centerX": 526.4999694824219
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true
+          },
+          {
+            "step": "3",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "FAR_LEFT",
+                "centerX": 105.51564025878906
+              },
+              {
+                "id": "maelor",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "LEFT",
+                "centerX": 213.76564025878906
+              },
+              {
+                "id": "alistair",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "CENTER_LEFT",
+                "centerX": 322.01564025878906
+              },
+              {
+                "id": "villageoise",
+                "group": "LOCAL_CIVILIAN",
+                "facing": "LEFT",
+                "position": "RIGHT",
+                "centerX": 514.4687194824219
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true
+          },
+          {
+            "step": "5",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "FAR_LEFT",
+                "centerX": 105.51564025878906
+              },
+              {
+                "id": "maelor",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "LEFT",
+                "centerX": 213.76564025878906
+              },
+              {
+                "id": "alistair",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "CENTER_LEFT",
+                "centerX": 322.01564025878906
+              },
+              {
+                "id": "villageoise",
+                "group": "LOCAL_CIVILIAN",
+                "facing": "LEFT",
+                "position": "RIGHT",
+                "centerX": 514.4687194824219
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true
+          }
+        ],
+        "choice": [
+          {
+            "sequenceId": "village_choice",
+            "stepId": "5",
+            "bounds": [
+              {
+                "label": "Prendre le vieux pont et extraire les captifs.◇Captifs prioritaires◇Réserves et puits laissés au sud",
+                "x": 18,
+                "y": 655.5,
+                "width": 584,
+                "height": 53.25,
+                "withinViewport": true
+              },
+              {
+                "label": "Prendre la porte basse et sécuriser réserves et puits.◇Réserves et puits sécurisés◇Captifs laissés au nord",
+                "x": 18,
+                "y": 714.75,
+                "width": 584,
+                "height": 53.25,
+                "withinViewport": true
+              }
+            ],
+            "keyboardActivation": true,
+            "capture": "bois-clair-saved-village_choice-5-choices.png"
+          }
+        ],
+        "resume": {
+          "truthUnchanged": true,
+          "currentNodeId": "lion-second-refuge",
+          "endingId": null,
+          "replayedVideos": [],
+          "combatFrames": 0,
+          "overlays": 0
+        }
+      },
+      "serpent": {
+        "steps": [
+          {
+            "step": "1",
+            "alliedEnvelopeGap": -32.852272033691406,
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "position": "CENTER_LEFT",
+                "facing": "RIGHT",
+                "group": "PLAYER_COMPANY",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 187.19867630004882,
+                  "y": 347.10653533935545,
+                  "width": 163.8291389465332,
+                  "height": 266.528002166748
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "alaric",
+                "position": "FAR_LEFT",
+                "facing": "RIGHT",
+                "group": "LION_COURT",
+                "speaking": true,
+                "flipped": false,
+                "bounds": {
+                  "x": 36.66012115478516,
+                  "y": 349.5517463684082,
+                  "width": 183.39082717895508,
+                  "height": 264.0827911376953
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "serpent_general_boss",
+                "position": "FAR_RIGHT",
+                "facing": "LEFT",
+                "group": "ANTAGONIST",
+                "speaking": false,
+                "flipped": true,
+                "bounds": {
+                  "x": 391.0829833984375,
+                  "y": 305.53800239562986,
+                  "width": 232.29501152038574,
+                  "height": 308.096541595459
+                },
+                "visibleWidthRatio": 0.9854581684870716
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true,
+            "programmaticFocus": true
+          },
+          {
+            "step": "2",
+            "alliedEnvelopeGap": -32.852272033691406,
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "position": "CENTER_LEFT",
+                "facing": "RIGHT",
+                "group": "PLAYER_COMPANY",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 187.19867630004882,
+                  "y": 347.10653533935545,
+                  "width": 163.8291389465332,
+                  "height": 266.528002166748
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "alaric",
+                "position": "FAR_LEFT",
+                "facing": "RIGHT",
+                "group": "LION_COURT",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 36.66012115478516,
+                  "y": 349.5517463684082,
+                  "width": 183.39082717895508,
+                  "height": 264.0827911376953
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "serpent_general_boss",
+                "position": "FAR_RIGHT",
+                "facing": "LEFT",
+                "group": "ANTAGONIST",
+                "speaking": true,
+                "flipped": true,
+                "bounds": {
+                  "x": 391.0829833984375,
+                  "y": 305.53800239562986,
+                  "width": 232.29501152038574,
+                  "height": 308.096541595459
+                },
+                "visibleWidthRatio": 0.9854581684870716
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true,
+            "programmaticFocus": true
+          },
+          {
+            "step": "3",
+            "alliedEnvelopeGap": -32.852272033691406,
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "position": "CENTER_LEFT",
+                "facing": "RIGHT",
+                "group": "PLAYER_COMPANY",
+                "speaking": true,
+                "flipped": false,
+                "bounds": {
+                  "x": 187.19867630004882,
+                  "y": 347.10653533935545,
+                  "width": 163.8291389465332,
+                  "height": 266.528002166748
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "alaric",
+                "position": "FAR_LEFT",
+                "facing": "RIGHT",
+                "group": "LION_COURT",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 36.66012115478516,
+                  "y": 349.5517463684082,
+                  "width": 183.39082717895508,
+                  "height": 264.0827911376953
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "serpent_general_boss",
+                "position": "FAR_RIGHT",
+                "facing": "LEFT",
+                "group": "ANTAGONIST",
+                "speaking": false,
+                "flipped": true,
+                "bounds": {
+                  "x": 391.0829833984375,
+                  "y": 305.53800239562986,
+                  "width": 232.29501152038574,
+                  "height": 308.096541595459
+                },
+                "visibleWidthRatio": 0.9854581684870716
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true,
+            "programmaticFocus": true
+          }
+        ],
+        "resume": {
+          "truthUnchanged": true,
+          "currentNodeId": "lion-final-judgement",
+          "endingId": "lion-seal-serpent-truth",
+          "replayedVideos": [],
+          "combatFrames": 0,
+          "overlays": 0
+        }
+      },
+      "cleanDiagnostics": true
+    },
+    {
+      "jobId": "tableau-0115-v3-1440-normal",
+      "resultPath": "tmp/cinematics/tableau-0115-v3-1440-normal/results.json",
+      "resultSha256": "8af388704f59452e775896f1f6db1018afa30f4b503d65942dab789f3d5e4d05",
+      "receiptPath": "tmp/cinematics/tableau-0115-v3-1440-normal/qa-job.json",
+      "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "osReducedMotion": false,
+      "gameReducedMotion": false,
+      "provenance": {
+        "gitHead": "e92dbffcb38457b027081fe8948acc9234c13060",
+        "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+        "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+        "driver": {
+          "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-BZH7FiGl.css",
+            "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+          },
+          {
+            "path": "dist/assets/game-CfgYCJPb.js",
+            "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "c0e686526b1e97a229c55ae0c88a73fa0ff921eaa6ac0770397f1f8031be58fc"
+          }
+        ]
+      },
+      "opening": {
+        "phases": [
+          {
+            "phase": "SETTLED",
+            "elapsedMs": 0.10000014305114746,
+            "count": 4
+          },
+          {
+            "phase": "EXIT",
+            "elapsedMs": 7.900000095367432,
+            "count": 4
+          },
+          {
+            "phase": "BREATH",
+            "elapsedMs": 191.90000009536743,
+            "count": 2
+          },
+          {
+            "phase": "ENTRY",
+            "elapsedMs": 253.80000019073486,
+            "count": 4
+          },
+          {
+            "phase": "SETTLED",
+            "elapsedMs": 438.7000000476837,
+            "count": 4
+          }
+        ],
+        "nativeFocused": true,
+        "enabled": true,
+        "textFits": true,
+        "storedV6Equal": true,
+        "resume": {
+          "truthUnchanged": true,
+          "currentNodeId": "lion-audience",
+          "endingId": null,
+          "replayedVideos": [],
+          "combatFrames": 0,
+          "overlays": 0
+        }
+      },
+      "village": {
+        "steps": [
+          {
+            "step": "1",
+            "actors": [
+              {
+                "id": "marian",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "FAR_LEFT",
+                "centerX": 245.078125
+              },
+              {
+                "id": "kestrel",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "CENTER_LEFT",
+                "centerX": 566.34375
+              },
+              {
+                "id": "villageoise",
+                "group": "LOCAL_CIVILIAN",
+                "facing": "LEFT",
+                "position": "CENTER_RIGHT",
+                "centerX": 915.546875
+              },
+              {
+                "id": "serpent_raider",
+                "group": "ANTAGONIST",
+                "facing": "LEFT",
+                "position": "FAR_RIGHT",
+                "centerX": 1222.84375
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true
+          },
+          {
+            "step": "3",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "FAR_LEFT",
+                "centerX": 245.078125
+              },
+              {
+                "id": "maelor",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "LEFT",
+                "centerX": 496.5
+              },
+              {
+                "id": "alistair",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "CENTER_LEFT",
+                "centerX": 747.921875
+              },
+              {
+                "id": "villageoise",
+                "group": "LOCAL_CIVILIAN",
+                "facing": "LEFT",
+                "position": "RIGHT",
+                "centerX": 1194.90625
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true
+          },
+          {
+            "step": "5",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "FAR_LEFT",
+                "centerX": 245.078125
+              },
+              {
+                "id": "maelor",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "LEFT",
+                "centerX": 496.5
+              },
+              {
+                "id": "alistair",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "CENTER_LEFT",
+                "centerX": 747.921875
+              },
+              {
+                "id": "villageoise",
+                "group": "LOCAL_CIVILIAN",
+                "facing": "LEFT",
+                "position": "RIGHT",
+                "centerX": 1194.90625
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true
+          }
+        ],
+        "choice": [
+          {
+            "sequenceId": "village_choice",
+            "stepId": "5",
+            "bounds": [
+              {
+                "label": "Prendre le vieux pont et extraire les captifs.◇Captifs prioritaires◇Réserves et puits laissés au sud",
+                "x": 495,
+                "y": 682.00048828125,
+                "width": 450,
+                "height": 53.25,
+                "withinViewport": true
+              },
+              {
+                "label": "Prendre la porte basse et sécuriser réserves et puits.◇Réserves et puits sécurisés◇Captifs laissés au nord",
+                "x": 495,
+                "y": 741.25048828125,
+                "width": 450,
+                "height": 53.25,
+                "withinViewport": true
+              }
+            ],
+            "keyboardActivation": true,
+            "capture": "bois-clair-saved-village_choice-5-choices.png"
+          }
+        ],
+        "resume": {
+          "truthUnchanged": true,
+          "currentNodeId": "lion-second-refuge",
+          "endingId": null,
+          "replayedVideos": [],
+          "combatFrames": 0,
+          "overlays": 0
+        }
+      },
+      "serpent": {
+        "steps": [
+          {
+            "step": "1",
+            "alliedEnvelopeGap": 62.718292236328125,
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "position": "CENTER_LEFT",
+                "facing": "RIGHT",
+                "group": "PLAYER_COMPANY",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 500.3321502685547,
+                  "y": 320.31792602539065,
+                  "width": 247.46673278808595,
+                  "height": 402.5951324462891
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "alaric",
+                "position": "FAR_LEFT",
+                "facing": "RIGHT",
+                "group": "LION_COURT",
+                "speaking": true,
+                "flipped": false,
+                "bounds": {
+                  "x": 160.59885864257814,
+                  "y": 324.01145935058594,
+                  "width": 277.01499938964844,
+                  "height": 398.90159912109374
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "serpent_general_boss",
+                "position": "FAR_RIGHT",
+                "facing": "LEFT",
+                "group": "ANTAGONIST",
+                "speaking": false,
+                "flipped": true,
+                "bounds": {
+                  "x": 1003.647900390625,
+                  "y": 257.5278594970703,
+                  "width": 350.8856658935547,
+                  "height": 465.38519897460935
+                },
+                "visibleWidthRatio": 1
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true,
+            "programmaticFocus": true
+          },
+          {
+            "step": "2",
+            "alliedEnvelopeGap": 62.718292236328125,
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "position": "CENTER_LEFT",
+                "facing": "RIGHT",
+                "group": "PLAYER_COMPANY",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 500.3321502685547,
+                  "y": 320.31792602539065,
+                  "width": 247.46673278808595,
+                  "height": 402.5951324462891
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "alaric",
+                "position": "FAR_LEFT",
+                "facing": "RIGHT",
+                "group": "LION_COURT",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 160.59885864257814,
+                  "y": 324.01145935058594,
+                  "width": 277.01499938964844,
+                  "height": 398.90159912109374
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "serpent_general_boss",
+                "position": "FAR_RIGHT",
+                "facing": "LEFT",
+                "group": "ANTAGONIST",
+                "speaking": true,
+                "flipped": true,
+                "bounds": {
+                  "x": 1003.647900390625,
+                  "y": 257.5278594970703,
+                  "width": 350.8856658935547,
+                  "height": 465.38519897460935
+                },
+                "visibleWidthRatio": 1
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true,
+            "programmaticFocus": true
+          },
+          {
+            "step": "3",
+            "alliedEnvelopeGap": 62.718292236328125,
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "position": "CENTER_LEFT",
+                "facing": "RIGHT",
+                "group": "PLAYER_COMPANY",
+                "speaking": true,
+                "flipped": false,
+                "bounds": {
+                  "x": 500.3321502685547,
+                  "y": 320.31792602539065,
+                  "width": 247.46673278808595,
+                  "height": 402.5951324462891
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "alaric",
+                "position": "FAR_LEFT",
+                "facing": "RIGHT",
+                "group": "LION_COURT",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 160.59885864257814,
+                  "y": 324.01145935058594,
+                  "width": 277.01499938964844,
+                  "height": 398.90159912109374
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "serpent_general_boss",
+                "position": "FAR_RIGHT",
+                "facing": "LEFT",
+                "group": "ANTAGONIST",
+                "speaking": false,
+                "flipped": true,
+                "bounds": {
+                  "x": 1003.647900390625,
+                  "y": 257.5278594970703,
+                  "width": 350.8856658935547,
+                  "height": 465.38519897460935
+                },
+                "visibleWidthRatio": 1
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true,
+            "programmaticFocus": true
+          }
+        ],
+        "resume": {
+          "truthUnchanged": true,
+          "currentNodeId": "lion-final-judgement",
+          "endingId": "lion-seal-serpent-truth",
+          "replayedVideos": [],
+          "combatFrames": 0,
+          "overlays": 0
+        }
+      },
+      "cleanDiagnostics": true
+    },
+    {
+      "jobId": "tableau-0115-v3-1440-os",
+      "resultPath": "tmp/cinematics/tableau-0115-v3-1440-os/results.json",
+      "resultSha256": "cc59ad206f1400885d56b63eeaf7bad55a89ebf4d6cd41863239e308b2ed4106",
+      "receiptPath": "tmp/cinematics/tableau-0115-v3-1440-os/qa-job.json",
+      "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "osReducedMotion": true,
+      "gameReducedMotion": false,
+      "provenance": {
+        "gitHead": "e92dbffcb38457b027081fe8948acc9234c13060",
+        "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+        "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+        "driver": {
+          "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "sha256": "4c608aced9cb7d5a2f9ba6b8c13f0f6dceb479b7999bbb79db9e8afb94e21dda"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-BZH7FiGl.css",
+            "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+          },
+          {
+            "path": "dist/assets/game-CfgYCJPb.js",
+            "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "c0e686526b1e97a229c55ae0c88a73fa0ff921eaa6ac0770397f1f8031be58fc"
+          }
+        ]
+      },
+      "opening": {
+        "phases": [
+          {
+            "phase": "SETTLED",
+            "elapsedMs": 0,
+            "count": 4
+          },
+          {
+            "phase": "EXIT",
+            "elapsedMs": 7.5,
+            "count": 4
+          },
+          {
+            "phase": "BREATH",
+            "elapsedMs": 190.5,
+            "count": 2
+          },
+          {
+            "phase": "ENTRY",
+            "elapsedMs": 231.10000014305115,
+            "count": 4
+          },
+          {
+            "phase": "SETTLED",
+            "elapsedMs": 414.2999999523163,
+            "count": 4
+          }
+        ],
+        "nativeFocused": true,
+        "enabled": true,
+        "textFits": true,
+        "storedV6Equal": true,
+        "resume": {
+          "truthUnchanged": true,
+          "currentNodeId": "lion-audience",
+          "endingId": null,
+          "replayedVideos": [],
+          "combatFrames": 0,
+          "overlays": 0
+        }
+      },
+      "village": {
+        "steps": [
+          {
+            "step": "1",
+            "actors": [
+              {
+                "id": "marian",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "FAR_LEFT",
+                "centerX": 245.078125
+              },
+              {
+                "id": "kestrel",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "CENTER_LEFT",
+                "centerX": 566.34375
+              },
+              {
+                "id": "villageoise",
+                "group": "LOCAL_CIVILIAN",
+                "facing": "LEFT",
+                "position": "CENTER_RIGHT",
+                "centerX": 915.546875
+              },
+              {
+                "id": "serpent_raider",
+                "group": "ANTAGONIST",
+                "facing": "LEFT",
+                "position": "FAR_RIGHT",
+                "centerX": 1222.84375
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true
+          },
+          {
+            "step": "3",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "FAR_LEFT",
+                "centerX": 245.078125
+              },
+              {
+                "id": "maelor",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "LEFT",
+                "centerX": 496.5
+              },
+              {
+                "id": "alistair",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "CENTER_LEFT",
+                "centerX": 747.921875
+              },
+              {
+                "id": "villageoise",
+                "group": "LOCAL_CIVILIAN",
+                "facing": "LEFT",
+                "position": "RIGHT",
+                "centerX": 1194.90625
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true
+          },
+          {
+            "step": "5",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "FAR_LEFT",
+                "centerX": 245.078125
+              },
+              {
+                "id": "maelor",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "LEFT",
+                "centerX": 496.5
+              },
+              {
+                "id": "alistair",
+                "group": "PLAYER_COMPANY",
+                "facing": "RIGHT",
+                "position": "CENTER_LEFT",
+                "centerX": 747.921875
+              },
+              {
+                "id": "villageoise",
+                "group": "LOCAL_CIVILIAN",
+                "facing": "LEFT",
+                "position": "RIGHT",
+                "centerX": 1194.90625
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true
+          }
+        ],
+        "choice": [
+          {
+            "sequenceId": "village_choice",
+            "stepId": "5",
+            "bounds": [
+              {
+                "label": "Prendre le vieux pont et extraire les captifs.◇Captifs prioritaires◇Réserves et puits laissés au sud",
+                "x": 495,
+                "y": 680.5,
+                "width": 450,
+                "height": 53.25,
+                "withinViewport": true
+              },
+              {
+                "label": "Prendre la porte basse et sécuriser réserves et puits.◇Réserves et puits sécurisés◇Captifs laissés au nord",
+                "x": 495,
+                "y": 739.75,
+                "width": 450,
+                "height": 53.25,
+                "withinViewport": true
+              }
+            ],
+            "keyboardActivation": true,
+            "capture": "bois-clair-saved-village_choice-5-choices.png"
+          }
+        ],
+        "resume": {
+          "truthUnchanged": true,
+          "currentNodeId": "lion-second-refuge",
+          "endingId": null,
+          "replayedVideos": [],
+          "combatFrames": 0,
+          "overlays": 0
+        }
+      },
+      "serpent": {
+        "steps": [
+          {
+            "step": "1",
+            "alliedEnvelopeGap": 62.718292236328125,
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "position": "CENTER_LEFT",
+                "facing": "RIGHT",
+                "group": "PLAYER_COMPANY",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 500.3321502685547,
+                  "y": 320.31792602539065,
+                  "width": 247.46673278808595,
+                  "height": 402.5951324462891
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "alaric",
+                "position": "FAR_LEFT",
+                "facing": "RIGHT",
+                "group": "LION_COURT",
+                "speaking": true,
+                "flipped": false,
+                "bounds": {
+                  "x": 160.59885864257814,
+                  "y": 324.01145935058594,
+                  "width": 277.01499938964844,
+                  "height": 398.90159912109374
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "serpent_general_boss",
+                "position": "FAR_RIGHT",
+                "facing": "LEFT",
+                "group": "ANTAGONIST",
+                "speaking": false,
+                "flipped": true,
+                "bounds": {
+                  "x": 1003.647900390625,
+                  "y": 257.5278594970703,
+                  "width": 350.8856658935547,
+                  "height": 465.38519897460935
+                },
+                "visibleWidthRatio": 1
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true,
+            "programmaticFocus": true
+          },
+          {
+            "step": "2",
+            "alliedEnvelopeGap": 62.718292236328125,
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "position": "CENTER_LEFT",
+                "facing": "RIGHT",
+                "group": "PLAYER_COMPANY",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 500.3321502685547,
+                  "y": 320.31792602539065,
+                  "width": 247.46673278808595,
+                  "height": 402.5951324462891
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "alaric",
+                "position": "FAR_LEFT",
+                "facing": "RIGHT",
+                "group": "LION_COURT",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 160.59885864257814,
+                  "y": 324.01145935058594,
+                  "width": 277.01499938964844,
+                  "height": 398.90159912109374
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "serpent_general_boss",
+                "position": "FAR_RIGHT",
+                "facing": "LEFT",
+                "group": "ANTAGONIST",
+                "speaking": true,
+                "flipped": true,
+                "bounds": {
+                  "x": 1003.647900390625,
+                  "y": 257.5278594970703,
+                  "width": 350.8856658935547,
+                  "height": 465.38519897460935
+                },
+                "visibleWidthRatio": 1
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true,
+            "programmaticFocus": true
+          },
+          {
+            "step": "3",
+            "alliedEnvelopeGap": 62.718292236328125,
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "position": "CENTER_LEFT",
+                "facing": "RIGHT",
+                "group": "PLAYER_COMPANY",
+                "speaking": true,
+                "flipped": false,
+                "bounds": {
+                  "x": 500.3321502685547,
+                  "y": 320.31792602539065,
+                  "width": 247.46673278808595,
+                  "height": 402.5951324462891
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "alaric",
+                "position": "FAR_LEFT",
+                "facing": "RIGHT",
+                "group": "LION_COURT",
+                "speaking": false,
+                "flipped": false,
+                "bounds": {
+                  "x": 160.59885864257814,
+                  "y": 324.01145935058594,
+                  "width": 277.01499938964844,
+                  "height": 398.90159912109374
+                },
+                "visibleWidthRatio": 1
+              },
+              {
+                "id": "serpent_general_boss",
+                "position": "FAR_RIGHT",
+                "facing": "LEFT",
+                "group": "ANTAGONIST",
+                "speaking": false,
+                "flipped": true,
+                "bounds": {
+                  "x": 1003.647900390625,
+                  "y": 257.5278594970703,
+                  "width": 350.8856658935547,
+                  "height": 465.38519897460935
+                },
+                "visibleWidthRatio": 1
+              }
+            ],
+            "storedV6Equal": true,
+            "textFits": true,
+            "programmaticFocus": true
+          }
+        ],
+        "resume": {
+          "truthUnchanged": true,
+          "currentNodeId": "lion-final-judgement",
+          "endingId": "lion-seal-serpent-truth",
+          "replayedVideos": [],
+          "combatFrames": 0,
+          "overlays": 0
+        }
+      },
+      "cleanDiagnostics": true
+    }
+  ],
+  "selectedCaptures": [
+    {
+      "path": "docs/reports/static-tableau-staging-polish-0115/village-390-normal.png",
+      "sha256": "00902ef9969ab103767a862a9950deb1d90f027c11de20605b1ed68b5bf8b003",
+      "source": "tmp/cinematics/tableau-0115-v3-390-normal/bois-clair-saved-tableau-3.png",
+      "inspection": "root inspected; village390 also guardian/tableau inspected"
+    },
+    {
+      "path": "docs/reports/static-tableau-staging-polish-0115/village-choice-390-os.png",
+      "sha256": "c460fafe16bd882d17799ec7ed1f842c69901e981fd1ade3cd95637956f9bd54",
+      "source": "tmp/cinematics/tableau-0115-v3-390-os/bois-clair-saved-village_choice-5-choices.png",
+      "inspection": "root inspected; village390 also guardian/tableau inspected"
+    },
+    {
+      "path": "docs/reports/static-tableau-staging-polish-0115/serpent-620-normal.png",
+      "sha256": "177f4223ba588d616de5c5b356b212025f9e0d609108a7534ff0c9b3a8f74bfa",
+      "source": "tmp/cinematics/tableau-0115-v3-620-normal/serpent-ending-confrontation-2.png",
+      "inspection": "root inspected; village390 also guardian/tableau inspected"
+    },
+    {
+      "path": "docs/reports/static-tableau-staging-polish-0115/opening-390-os.png",
+      "sha256": "25a77c138988433029e9cb8da15a413506241e1e921fcca7a995543dcab43ac9",
+      "source": "tmp/cinematics/tableau-0115-v3-390-os/opening-cast-after.png",
+      "inspection": "root inspected; village390 also guardian/tableau inspected"
+    }
+  ],
+  "limits": [
+    "Village/Serpent node-save and combat-result fixtures; no earned campaign/balance/full demo claim",
+    "Stored V6 equality covers observation interval and resolved reload; no whole schema compatibility claim",
+    "Opening native focus after replacement; Serpent programmatic focusability only",
+    "Text containers and inspected display segments; no universal internal-clipping proof",
+    "OS-only alternative measured; no OS fade claim",
+    "Owner-supervised child receipts; driver itself is uninstrumented",
+    "Initial six invalidURL jobs and six v2 pre-correction jobs remain unaccepted"
+  ]
+}

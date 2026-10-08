@@ -1,41 +1,38 @@
 # Autonomous work state
 
-CURRENT FACT — STATIC-TABLEAU-STAGING-POLISH remains IN_PROGRESS. Initial readiness and native390OS transition accepted scoped. Wider/civilian milestone and full demo OPEN. Publication approved and verified ondev/WIP.
+CURRENT FACT — Tableau runtime milestone ACCEPTED_SCOPED locally; status BLOCKED_BY_PUBLICATION_APPROVAL. Demo incomplete.
 
 | Field | Value |
 | --- | --- |
-| status | IN_PROGRESS |
-| runId | rpgthreejs-auto-dev-90m-20261008T0032 |
-| runStartedAt | 2026-10-08T00:32:52.6172396Z |
-| runEndedAt | 2026-10-08T01:14:27.110Z |
+| runId | rpgthreejs-auto-dev-90m-20261008T0115 |
+| runStartedAt | 2026-10-08T01:17:26.835Z |
+| runEndedAt | 2026-10-08T01:42:38.951Z |
 | activeTask | STATIC-TABLEAU-STAGING-POLISH |
-| activePhase | Initial readiness and390OS native transition accepted scoped; wider tableau milestone OPEN |
-| activeSubtask | Initial readiness and native390OS opening accepted scoped; wider and civilian tableau milestone OPEN |
+| activePhase | Runtime tableau milestone accepted locally; exact dev/WIP publication blocked |
+| activeSubtask | Publish verified local checkpoint and recovery snapshot after explicit approval, then SCENE-TRANSITION-COPY |
 | workingBranch | dev |
-| verified local source | 02b5b0b89f4e4a4a2839bd60d00252af0b2c37dc |
-| last verified pushed commit | acf5a3441cf798a255a4be41201068ffc888c053 |
+| verified source | e92dbffcb38457b027081fe8948acc9234c13060 |
+| last verified remote dev | 70265e0e46e00c6020a76d24b1815936db6a5b45 |
 
 ## Exact next action
 
-Normal read-only preflight/owned lock; STATIC-TABLEAU-STAGING-POLISH milestone: reuse existing opening-camp-audience and serpent-ending runners at1440/620/390 normal/OS plus village_choice firsttableau/restage/nativechoice civilian/hero distinction (existing bois-clair-saved). Reuse opening-0032-os390 proof only after identical physical source/driver/build/assertions check; Git fingerprint representation changed after equivalent commit. Preserve six deferred bytes/exact deferredDemoTask, exhausted councilOS assertion, independent council/refugee gate and ten external Pursuit mappings. No new runner needed; no repeat accepted ROAD/CAMPFIRE matrices.
+Explicitly approve publication of final local dev checkpoint (SHA in automation memory) and wip/rpgthreejs-auto-dev-90m-20261008T0115 to juniorbattle/RPGThreeJS. Verify owned run0115 lock, finalHEAD, six deferred hashes, named remote dev/WIP and main parity; publish only those refs normally, verify, update state and release owned lock. Do not bypass automatic-review or take young lock. Then mark tableau COMPLETE_SCOPED and resume SCENE-TRANSITION-COPY: audit SceneTransition/GameApp label callers and ATE transition title owners, remove only observed placeholders or use existing authored/no copy; inspect actual production copy with existing runners. Preserve independent council/refugee/exhaustedOS gate, ten Pursuit mappings and exactdeferredDemoTask. No ROAD/CAMPFIRE or compatible tableau rerun.
 
 ## Accepted scope and limits
 
-Initial image batch has750ms deadline after phase preparation; disposal and stale Stage continuations guarded.86focused4files/types/8contracts8slots/staging/build/eightMP4/whitespace/immutable PASS. Current physical build game-sh3puHnY.js/game-BZH7FiGl.css includes6unchanged unaccepted deferred keyboard files excluded from local source commit.
+94focused5files/types/8contracts8slots/staging75dialogues257steps282runtime/finalbuild game-CfgYCJPb.js/game-BZH7FiGl.css/eightMP4/whitespace/immutable PASS. Six final cases1440/620/390 normal and OS-only:18scenario passes. Native opening4/2/4 retains actors/facing and restores nextfocus; village firsttableau/restage/nativechoice civilian separation; Serpent stablealliance/settledtext/programmaticfocus. Root inspected final captures at all widths; guardian READY_TO_CLOSE_SCOPED. Maelor390 defect corrected despite v2machinePASS. Four inspected images plus [compact proof](../reports/static-tableau-staging-polish-0115/checks.json) selected.
 
-opening-0032-os: native new-game390x844,OStrue/gamefalse,ordered4/2/4 transition418.6ms,retained nodes/authored facing,settled display-segment bounding-box fit,focused/enabled nativeEnter,nonnull storedV6 equality,native audience choice/resolved reload,zero diagnostics. Root/guardian/tableau inspected2captures. ACCEPTED_SCOPED_OPENING_TRANSITION_390_OS only; no broad spacing/internalclipping/earnedcampaign/demo claim. Frozen result digest fdf0018169e17504719f228126a053b02df5c161e40a9a34fc59dd78a080657e.390physical hashes frozen. Owner terminal reconciliation is not a worker receipt; estimated start withdrawn/exactworker times unavailable. Committing identical physical files changes Git fingerprint representation, no sameExecution relabel.
-
-Two reused read-only reviewers PASS source/assertions/captures. Contract set1.1.0,no LOCKED changes. Scoped constitution/narrative/presentation/save/UI/QA PASS;art/characters/environments/Traversal/combat N/A;governance PASS approved publication.
+Fixture village/Serpent outcomes are not earnedcampaign/balance/fullV6/demo proof. OS alternative has no sampled actor animations; no OSfade claim. Physical build includes six unchanged unaccepted deferred keyboard files excluded from sourcecommit. Direct CLI fallback used because npm wrapper missing/esbuild sandbox blocked. Initial6jobs invalidURL beforegame; one environment correction only. V2sixjobs remain unaccepted pre-correction; final6accepted with exact hashes.
 
 ## Preservation and publication
 
-120prior jobs and exactdeferredDemoTask structurally unchanged;121total. Six deferred physical hashes equal original. ROAD/CAMPFIRE scoped acceptance retained. Council/refugee gate and ten external Pursuit mappings remainOPEN/BLOCKED. No canon/generated/media/audio/V6truth/main changes.
+121priorjobs, exactdeferredDemoTask and pendingNarrativeTask unchanged; 139total. Six deferred physical hashes exact. Council/refugee/exhaustedOS gate and tenPursuit mappings preserved. Unrelated5173untouched; owned5326–5331ports closed/no QAprocess. No canon/LOCKED/generated/media/audio/V6truth/main changes.
 
-Historical automatic review rejected WIP push twice. Operator then explicitly approved the exact dev/WIP publication; approved checkpoints published and verified. Ownedlock release follows final workflow parity and preservation checks. No QA process remains;port5325closed,unrelated5173untouched.
+Automatic-review rejected WIPpush because remote trust/exact payload authorization insufficient. No workaround or publication retry. Local source/snapshots retained; final dev/WIP SHA in automation memory. Lock retained until explicitly approved publication/parity.
 
-Counts excluding inherited:2runtime+2tests+1existingQAmodified,0newQA,0proof,4workflow;2reviewers,1smoke/1attempt,0postfailurecorrections,0failedseeds. No quota-saving claim.
+Counts excluding inherited:1runtime+1test+1existingQAmodified,0newpersistentQA,5proof,4workflow;2reviewers reused. Existing route runner verifies all scenarios but has no own terminal receipt. Ignored owner supervisor only registers existing-runner jobs and records reliable child PID/start/exit/digests; no new scenario/assertion tool and no driver-worker receipt claim. Original register/sync helpers reused for provenance; inherited121jobs untouched. No quota-saving claim.
 
-[Task record](STATIC_TABLEAU_STAGING_POLISH.md). [Current handoff](handoffs/2026-10-08T0032Z-codex-readiness-publication-blocked.md). Exact final SHA/snapshot hashes in automation memory.
+[Task record](STATIC_TABLEAU_STAGING_POLISH.md). [Handoff](handoffs/2026-10-08T0115Z-codex-tableau-milestone-publication-blocked.md).
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -161,7 +158,22 @@ Counts excluding inherited:2runtime+2tests+1existingQAmodified,0newQA,0proof,4wo
 - serpent-2039-normal: SUCCEEDED; port 5323; receipt `tmp/cinematics/serpent-2039-normal/qa-job.json`; NOT_ACCEPTED_VISUAL_OVERLAP
 - serpent-0012-normal: SUCCEEDED; port 5324; receipt `tmp/cinematics/serpent-0012-normal/qa-job.json`; ACCEPTED_SCOPED_NARROW_GEOMETRY
 - opening-0032-os: SUCCEEDED; port 5325; receipt `tmp/cinematics/opening-0032-os/qa-job.json`; ACCEPTED_SCOPED_OPENING_TRANSITION_390_OS
+- tableau-0115-1440-normal: FAILED; port 5326; receipt `tmp/cinematics/tableau-0115-1440-normal/qa-job.json`; NOT_ACCEPTED_INVALID_URL_BEFORE_GAME
+- tableau-0115-1440-os: FAILED; port 5327; receipt `tmp/cinematics/tableau-0115-1440-os/qa-job.json`; NOT_ACCEPTED_INVALID_URL_BEFORE_GAME
+- tableau-0115-620-normal: FAILED; port 5328; receipt `tmp/cinematics/tableau-0115-620-normal/qa-job.json`; NOT_ACCEPTED_INVALID_URL_BEFORE_GAME
+- tableau-0115-620-os: FAILED; port 5329; receipt `tmp/cinematics/tableau-0115-620-os/qa-job.json`; NOT_ACCEPTED_INVALID_URL_BEFORE_GAME
+- tableau-0115-390-normal: FAILED; port 5330; receipt `tmp/cinematics/tableau-0115-390-normal/qa-job.json`; NOT_ACCEPTED_INVALID_URL_BEFORE_GAME
+- tableau-0115-390-os: FAILED; port 5331; receipt `tmp/cinematics/tableau-0115-390-os/qa-job.json`; NOT_ACCEPTED_INVALID_URL_BEFORE_GAME
+- tableau-0115-v2-1440-normal: SUCCEEDED; port 5326; receipt `tmp/cinematics/tableau-0115-v2-1440-normal/qa-job.json`; NOT_ACCEPTED_PRE_CORRECTION_VISUAL_DEFECT
+- tableau-0115-v2-1440-os: SUCCEEDED; port 5327; receipt `tmp/cinematics/tableau-0115-v2-1440-os/qa-job.json`; NOT_ACCEPTED_PRE_CORRECTION_VISUAL_DEFECT
+- tableau-0115-v2-620-normal: SUCCEEDED; port 5328; receipt `tmp/cinematics/tableau-0115-v2-620-normal/qa-job.json`; NOT_ACCEPTED_PRE_CORRECTION_VISUAL_DEFECT
+- tableau-0115-v2-620-os: SUCCEEDED; port 5329; receipt `tmp/cinematics/tableau-0115-v2-620-os/qa-job.json`; NOT_ACCEPTED_PRE_CORRECTION_VISUAL_DEFECT
+- tableau-0115-v2-390-normal: SUCCEEDED; port 5330; receipt `tmp/cinematics/tableau-0115-v2-390-normal/qa-job.json`; NOT_ACCEPTED_PRE_CORRECTION_VISUAL_DEFECT
+- tableau-0115-v2-390-os: SUCCEEDED; port 5331; receipt `tmp/cinematics/tableau-0115-v2-390-os/qa-job.json`; NOT_ACCEPTED_PRE_CORRECTION_VISUAL_DEFECT
+- tableau-0115-v3-390-normal: SUCCEEDED; port 5326; receipt `tmp/cinematics/tableau-0115-v3-390-normal/qa-job.json`; ACCEPTED_SCOPED_TABLEAU_MILESTONE
+- tableau-0115-v3-390-os: SUCCEEDED; port 5327; receipt `tmp/cinematics/tableau-0115-v3-390-os/qa-job.json`; ACCEPTED_SCOPED_TABLEAU_MILESTONE
+- tableau-0115-v3-620-normal: SUCCEEDED; port 5328; receipt `tmp/cinematics/tableau-0115-v3-620-normal/qa-job.json`; ACCEPTED_SCOPED_TABLEAU_MILESTONE
+- tableau-0115-v3-620-os: SUCCEEDED; port 5329; receipt `tmp/cinematics/tableau-0115-v3-620-os/qa-job.json`; ACCEPTED_SCOPED_TABLEAU_MILESTONE
+- tableau-0115-v3-1440-normal: SUCCEEDED; port 5330; receipt `tmp/cinematics/tableau-0115-v3-1440-normal/qa-job.json`; ACCEPTED_SCOPED_TABLEAU_MILESTONE
+- tableau-0115-v3-1440-os: SUCCEEDED; port 5331; receipt `tmp/cinematics/tableau-0115-v3-1440-os/qa-job.json`; ACCEPTED_SCOPED_TABLEAU_MILESTONE
 <!-- QA_JOBS_END -->
-
-
-Final recovery snapshot de39f7f7e561c720f5d296efa48b26b0a3116df0; approved normalpush pending final parity.
