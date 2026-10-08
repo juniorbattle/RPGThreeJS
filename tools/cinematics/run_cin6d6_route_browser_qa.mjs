@@ -10,6 +10,7 @@ const OUTPUT_DIR = resolve(process.env.CIN6D6_ROUTE_OUTPUT_DIR ?? resolve(proces
 const [viewportWidth, viewportHeight] = (process.env.CIN6D6_VIEWPORT ?? '1920x1080').split('x').map(Number);
 const VIEWPORT = { width: viewportWidth, height: viewportHeight };
 const SCENARIO_FILTER = process.env.CIN6D6_ROUTE_SCENARIO ?? '';
+const REVIEW_TRANSITION_COPY = process.env.CIN6D6_TRANSITION_COPY === '1';
 const CIN8_GROUP = process.env.CIN6D6_ROUTE_GROUP === 'cin8';
 const REDUCED_MOTION = process.env.CIN6D6_REDUCED_MOTION === '1';
 // OS-only coverage keeps the saved graphics setting false to detect explicit-false overrides.
@@ -30,6 +31,16 @@ if (PRODUCTION) {
 }
 
 async function installHooks(page) {
+  if (REVIEW_TRANSITION_COPY) await page.addInitScript(() => {
+    const labels = [];
+    window.__transitionCopyLabels = labels;
+    new MutationObserver(() => {
+      for (const label of document.querySelectorAll('.scene-transition__label')) {
+        if (labels.some(entry => entry.node === label)) continue;
+        labels.push({ node: label, text: label.textContent });
+      }
+    }).observe(document, { childList: true, subtree: true });
+  });
   if (PRODUCTION) await page.route('**/assets/game-*.js', async (route) => {
     const response = await route.fetch(), source = await response.text();
     const pattern = /const ([A-Za-z_$][\w$]*)=new [A-Za-z_$][\w$]*\([^;]+?\);window\.addEventListener\("pagehide",\(\)=>\1\.dispose/;
@@ -219,6 +230,32 @@ async function readPresentation(page) {
 
 async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefined) {
   const dialogue = await waitForDialogueSequence(page, sequenceId, trace);
+  if (REVIEW_TRANSITION_COPY && sequenceId.startsWith('ate_') && trace
+    && !trace.ateCopy?.some(entry => entry.sequenceId === sequenceId)) {
+    await page.waitForFunction(id => {
+      const dialogue = document.querySelector(`.dialogue[data-dialogue-sequence="${id}"]`);
+      const text = dialogue?.querySelector('.dialogue__text');
+      return dialogue && !dialogue.classList.contains('dialogue--preparing-step')
+        && getComputedStyle(dialogue).opacity === '1'
+        && dialogue.getAnimations().every(animation => animation.playState === 'finished')
+        && text?.dataset.finalText && text.querySelector('.dialogue__text-reveal')?.textContent === text.dataset.finalText;
+    }, sequenceId);
+    const copy = await dialogue.evaluate(element => {
+      const brand = element.querySelector('.dialogue__brand span');
+      const rect = brand.getBoundingClientRect();
+      return { sequenceId: element.dataset.dialogueSequence, title: brand.textContent,
+        bounds: { x: rect.x, y: rect.y, width: rect.width, height: rect.height },
+        fitsViewport: rect.width > 0 && rect.height > 0
+          && rect.left >= -1 && rect.top >= -1 && rect.right <= innerWidth + 1 && rect.bottom <= innerHeight + 1,
+        nextEnabled: !element.querySelector('.dialogue__box').disabled };
+    });
+    if (!copy.title?.trim() || /^(?:\.{3}|…)$/.test(copy.title.trim()) || !copy.fitsViewport || !copy.nextEnabled) {
+      throw new Error(`ATE title/viewport/next-control assertion failed: ${JSON.stringify(copy)}`);
+    }
+    const capture = `${trace.capturePrefix}-${sequenceId}-copy.png`;
+    await page.screenshot({ path: resolve(OUTPUT_DIR, capture) });
+    (trace.ateCopy ??= []).push({ ...copy, capture });
+  }
   let usedChoice = false;
   for (let index = 0; index < 100; index += 1) {
     if (!await dialogue.count()) return;
@@ -656,6 +693,11 @@ async function runNodeScenario(context, scenario) {
       settled = await waitForBoundaryOrCombat(page, trace);
     }
     const truth = await loadSavedTruth(page);
+    const transitionLabels = REVIEW_TRANSITION_COPY ? await page.evaluate(() =>
+      (window.__transitionCopyLabels ?? []).map(entry => entry.text)) : undefined;
+    if (transitionLabels?.some(text => /^(?:\.{3}|…)$/.test(text?.trim() ?? ''))) {
+      throw new Error(`Mounted transition placeholder: ${JSON.stringify(transitionLabels)}`);
+    }
     if (PRODUCTION && scenario.id === 'witnesses-protected' && !trace.councilOpening) {
       throw new Error('Protected witnesses never displayed the council opening.');
     }
@@ -702,6 +744,8 @@ async function runNodeScenario(context, scenario) {
       choiceBounds: trace.choiceBounds,
       councilOpening: trace.councilOpening ?? null,
       villageTableau: trace.villageTableau ?? null,
+      ateCopy: trace.ateCopy ?? null,
+      transitionLabels,
       initialPresentation,
       truth: scenario.pickTruth(truth),
       capture,
