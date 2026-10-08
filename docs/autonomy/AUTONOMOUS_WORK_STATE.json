@@ -1,69 +1,52 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-08T05:16:14.2563835Z",
-  "runEndedAt": "2026-10-08T06:27:46.192Z",
+  "runStartedAt": "2026-10-08T12:16:09.8536924Z",
+  "runEndedAt": null,
   "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
-  "activePhase": "Scoped native standalone keyboard milestone accepted; campaign/full-demo gates open",
-  "activeSubtask": "Finish inherited battlefield campaign integration and native campaign acceptance",
+  "activePhase": "PRODUCTION_ACCEPTANCE",
+  "activeSubtask": "Native refuge revival/preparation and earned second-refuge continuation",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "613bf364679ba03d5126254306772fc69a138612",
-  "lastPushedCommit": "d7da3dfd13595032dcfc04c5bc2d692b9cfc6645",
+  "lastKnownGoodCommit": "8e2e0d1a7676fcc762ed6c7ff32486973ffc2b23",
+  "lastPushedCommit": "693b2398e3670b6f77a4c2e26c45f11a5d2d03ce",
   "completedThisRun": [
-    "Read-only preflight: old writer idle/completed, no associated QA/Git process, old heartbeat >105min; unrelated5173 preserved",
-    "Live remote exact dev6bcc566/WIP94c3330/main00b96f1 verified; old publication effect already present, no retry; archived stale lock and acquired exclusive run0514 lock; six deferred blobs exact",
-    "Product correction: narrative-stage inherited cinematic display:none for all authored ATE captions; selective CSS restores them, wraps long titles and keeps held/subtitle modes excluded. No copy/canon/truth mutation.",
-    "COPY six final responsive/motion cases /15scenarios scoped PASS and inspected selected evidence; source guardian PASS, full task BLOCKED static OS-shadow. Bounded environment audit confirmed night/sunset asset deficit; independent deferred keyboard resumed without deleting its exact archived state.",
-    "Fresh39keyboard-focused tests; guardian nativeactivation/AP/save review PASS; six-case standalone production keyboard+separate fresh pointer acceptance and inspected captures. Reached fresh campaign iframe diagnostic reviewed; full campaign deadline FAILED and no seed/relabel. Inherited four runtime files plus one test and existing runner committed only after scoped production acceptance.",
-    "Closeout consistency: stale top-level runId rpgthreejs-auto-dev-90m-20261008T0032 was caught by an ownership guard; restored from matching owned lock/live run0514 before release. No source/driver/build change or acceptance relabel."
+    "Read-only stale0636 preflight: failed writer, heartbeat>105min, failed terminal QA, no associated Git/build/QA process; unrelated5173 preserved",
+    "Archived stale lock and acquired1214 atomically; fetch confirms dev693b239/main00b96f1",
+    "Preserved all10 inherited WIP paths in local snapshot3f3641c77c8c09d6856db8acb5c4377974650006 before implementation",
+    "Separated13 global tactical hit/crit/proc/status/AI draws from VFX random consumption; actual owner tests preserve thresholds/formulas/short circuits",
+    "Guardian prelaunch PASS_SCOPED_OWNER_RNG; outcomes/draw sequence change, no balance/replay/campaign acceptance",
+    "One registered built390OS compact smoke PASS/accepted scoped; result1f75e4eb3bea6326498143ef8f73ec1b2cb549fc4562d8df2a8d296fb68ec535; guardian/root inspected2Retour captures",
+    "Fresh campaign1214 SUCCEEDED/ACCEPTED_SCOPED_FRESH_FIRST_REFUGE_1366_NORMAL; 34 native actions; exact result c82b21818668943b172dd7409f6febd146eaebbfdb3d62e04da81476e476c2b2"
   ],
   "filesChanged": [
-    "src/styles/app.css",
-    "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
-    "tools/demo-continuous-production-qa.mjs",
-    "legacy-combat.html",
-    "src/combat/combatKeyboard.test.ts",
-    "src/combat/combatKeyboard.ts",
     "src/combat/legacyCombatRuntime.js",
+    "src/combat/combatRandom.ts",
+    "src/combat/combatRandom.test.ts",
+    "src/ui/ReducedMotion.ts",
+    "src/ui/reducedMotion.test.ts",
+    "src/styles/combat-hud.css",
     "src/styles/combat-shell.css",
-    "tools/combat-battlefield-keyboard-production-qa.mjs",
+    "tools/combat-keyboard-production-qa.mjs",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/SCENE_TRANSITION_COPY.md",
-    "docs/autonomy/ENVIRONMENT_NARRATIVE_COHERENCE.md",
     "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
-    "docs/autonomy/handoffs/2026-10-08T0514Z-codex-copy-keyboard-checkpoint.md",
-    "docs/reports/scene-transition-copy-0514/checks.json",
-    "docs/reports/scene-transition-copy-0514/ailleurs-390-normal.png",
-    "docs/reports/scene-transition-copy-0514/ailleurs-390-os.png",
-    "docs/reports/scene-transition-copy-0514/serpent-620-normal.png",
-    "docs/reports/scene-transition-copy-0514/pendant-1440-normal.png",
-    "docs/reports/battlefield-keyboard-0514/checks.json",
-    "docs/reports/battlefield-keyboard-0514/desktop-inspection.png",
-    "docs/reports/battlefield-keyboard-0514/620-move-cursor.png",
-    "docs/reports/battlefield-keyboard-0514/390-os-inspection.png",
-    "docs/reports/battlefield-keyboard-0514/390-os-target.png",
-    "docs/reports/battlefield-keyboard-0514/campaign-desktop-keyboard-return.png"
+    "docs/autonomy/handoffs/2026-10-08T1214Z-codex-compact-motion-rng-checkpoint.md"
   ],
   "testsRun": [
-    "49focused SceneTransition8/DialogueView10/contextualDialogue31 PASS",
-    "39focused combatKeyboard19/deploymentRules3/protocol17 PASS",
-    "Direct tsc --noEmit PASS",
-    "8LOCKED contracts/8video slots validator PASS; protected gates empty",
-    "Production Vite build PASS: game-JS_oFiz8.js/game-3pkMo-Ir.css,combat-DSUtGYdZ.js,8MP4",
-    "git diff --check and immutable exact baseline gate PASS",
-    "COPY6finalcases15scenarios ACCEPTED_SCOPED_COPY",
-    "Standalone keyboard6cases ACCEPTED_SCOPED_STANDALONE; native pointer uses own fresh battle",
-    "Fresh campaign15min FAILED_NOT_ACCEPTED after19nativeactions; reached iframe keyboard diagnostic verified separately"
+    "66focused7files PASS",
+    "TypeScript PASS",
+    "Direct contracts validator8contracts8slots PASS",
+    "Immutable gate and whitespace PASS",
+    "Production210module build PASS combat-D7CRRhwk.js,8MP4",
+    "Registered compact390OS PASS/accepted scoped; campaign1366normal SUCCEEDED/ACCEPTED_SCOPED_FRESH_FIRST_REFUGE_1366_NORMAL"
   ],
   "testsPassed": [
-    "49focused SceneTransition8/DialogueView10/contextualDialogue31 PASS",
-    "39focused combatKeyboard19/deploymentRules3/protocol17 PASS",
-    "Direct tsc --noEmit PASS",
-    "8LOCKED contracts/8video slots validator PASS; protected gates empty",
-    "Production Vite build PASS: game-JS_oFiz8.js/game-3pkMo-Ir.css,combat-DSUtGYdZ.js,8MP4",
-    "git diff --check and immutable exact baseline gate PASS",
-    "COPY6finalcases15scenarios ACCEPTED_SCOPED_COPY",
-    "Standalone keyboard6cases ACCEPTED_SCOPED_STANDALONE; native pointer uses own fresh battle"
+    "66focused7files PASS",
+    "TypeScript PASS",
+    "Direct contracts validator8contracts8slots PASS",
+    "Immutable gate and whitespace PASS",
+    "Production210module build PASS combat-D7CRRhwk.js,8MP4",
+    "Compact390OS scoped production acceptance",
+    "Fresh first-refuge1366normal scoped production acceptance"
   ],
   "testsRemaining": [
     "Earned native campaign/first-refuge with corrected source checkpoint; failed15min job is no acceptance or seed",
@@ -79,7 +62,8 @@
     "SCENE-TRANSITION-COPY: authored ATE captions source and six-case scoped proof PASS; full static-only OS-shadow proof remains blocked by existing video-attempt assertion; no repeat or weakening.",
     "ENVIRONMENT-NARRATIVE-COHERENCE BLOCKED_ASSET: Bois-Clair night-watch says night, approved burning plate is bright sunset; no approved same-location night replacement. Preserve text/masters.",
     "Fresh campaign-0514-first-refuge FAILED at15min battle deadline after19nativeactions; no earnedfirstrefuge/fullV6 acceptance; reached iframe keyboard assertions diagnostic only",
-    "Broad keyboard accessibility remains open: submenu/Retour44px not measured, spokenAT not tested, effective OS tactical motion not established"
+    "Broad keyboard accessibility remains open: submenu/Retour44px not measured, spokenAT not tested, effective OS tactical motion not established",
+    "Run0636 automatic approval review rejected exact WIP snapshot public push: transcript lacks explicit authorization exporting this exact payload/destination. No publication retry or indirect workaround; complete local verification/checkpoint before requesting operator approval."
   ],
   "remainingWork": [
     "COPY full static-only OS shadow acceptance",
@@ -88,7 +72,7 @@
     "Council/refugee browser acceptance and ten Pursuit canonical mappings",
     "Earned campaign/endings/Salvation2AP/VFX/balance remain open"
   ],
-  "nextAction": "Read-only preflight and owned lock; inspect BATTLEFIELD_KEYBOARD.md and exact terminal receipts before rerun. Preserve scoped COPY sixcases15scenarios and standalone keyboard6cases accepted evidence; compare final physical freeze after source commits instead of treating changed Git fingerprints as identical. Keep failed campaign-0514-first-refuge NOT_ACCEPTED: reached desktop-normal iframe Tab/cursor/Escape owner/autosave-equality diagnostic only, no earnedrefuge;19actions exhausted15min. Continue product work by measuring submenu/Retour bounds and addressing verified compact-target/focus or OS tactical-motion gaps before fresh campaign QA with existing driver/appropriate bounded target. Retain original deferredDemoTask nextAction and0350/726lineage; no failedoutput seed, further standalone harness rewrite, repeated compatible matrices, canon/media/audio/main or mapping invention. COPY static-only OS-shadow, council/refugee proof, approved Bois-Clair night plate and ten Pursuit mappings remain precise independent blockers; demo incomplete.",
+  "nextAction": "Read BATTLEFIELD_KEYBOARD.md and1214handoff. Compare393physical sources/driver/helper and build with accepted1214proof, then register existing tools/demo-continuous-production-qa.mjs earned continuation: targetsecond-refuge/rescue/1366normal, exact earnedSavePath tmp/demo/campaign-first-refuge-1214/earned-first-refuge-v6.json and priorProofPath tmp/demo/campaign-first-refuge-1214/results.json, unique ignored output/free strict port and bounded deadline. Native refuge rest/revival/preparation must precede next combats (3alliesKO,130gold,rest60). Inspect terminal receipt/actual victories/T1 handoffs/temp gold/exact V6 reload before accepting. If observed product defect, fix it and use one related existing-runner smoke; do not blindly rerun failures or rewrite harness. Keep all-action OS motion/live changes, enabled skills/automatic focus return,390actor framing, balance/VFX/Salvation2AP/endings open. Preserve150historicaljobs/exactdeferredtask; no repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
@@ -104,7 +88,7 @@
   ],
   "creditStatus": "AVAILABLE; no quota-saving claim; safe checkpoint at completed milestone/external publication boundary",
   "contractComplianceStatus": {
-    "status": "PASS scoped COPY and standalone keyboard source/runtime; full COPY/ENV/campaign/whole-demo acceptance BLOCKED",
+    "status": "PASS scoped compact390/liveOS and owner-RNG correction; campaign ACCEPTED_SCOPED_FRESH_FIRST_REFUGE_1366_NORMAL; full demo open",
     "contractSetVersion": "1.1.0",
     "lockedRulesChanged": false,
     "roadMatrix": {
@@ -137,18 +121,18 @@
       "limits": "No earnedcampaign/fullV6/balance/wholeSuite/demo acceptance; Serpent focus programmatic only"
     },
     "currentMatrix": {
-      "GAME_CONSTITUTION": "PASS presentation authority",
-      "ART_DIRECTION": "PASS source styling only",
-      "CHARACTERS": "PASS unchanged cast",
-      "ENVIRONMENTS": "BLOCKED Bois-Clair night plate deficit; no source/media change",
-      "NARRATIVE_CAMPAIGN": "PASS unchanged canonical text/choices/IDs",
-      "NARRATIVE_PRESENTATION": "PASS caption source and scoped six-case runtime",
-      "TRAVERSAL": "N/A unchanged",
-      "COMBAT": "PASS native shared activation/legality/AP/resolution authority and six-case standalone proof",
-      "SAVE": "PASS unchanged schema/owner; reached fresh iframe owner/autosave equality diagnostic; no earnedrefuge/fullV6 claim",
-      "UI_ACCESSIBILITY": "PASS scoped keyboard/caption captures and nativefocus/dock bounds; BLOCKED broad submenu/AT/effective OS tactical-motion acceptance",
-      "QA_EVIDENCE": "PASS exact frozen hashes/source-driver-build and selected COPY/keyboard scope; BLOCKED full staticOSshadow and earnedcampaign/refuge",
-      "REPOSITORY_GOVERNANCE": "PASS protected/whitespace/exclusive lock/explicit paths; source/proof/metadata remote verified, own WIP cleaned, final metadata SHA and lock absence in automation memory"
+      "GAME_CONSTITUTION": "PASS tactical owner retained",
+      "ART_DIRECTION": "N/A",
+      "CHARACTERS": "N/A",
+      "ENVIRONMENTS": "N/A current correction; independent night plate blocker retained",
+      "NARRATIVE_CAMPAIGN": "PASS unchanged content/IDs/handoffs",
+      "NARRATIVE_PRESENTATION": "N/A",
+      "TRAVERSAL": "N/A",
+      "COMBAT": "PASS RNG ownership isolated, same formulas/chances, realization changed",
+      "SAVE": "PASS exact earned first-refuge V6 reload; no schema/RNG serialization change",
+      "UI_ACCESSIBILITY": "PASS scoped390compact/liveOS",
+      "QA_EVIDENCE": "PASS matching scoped compact and ACCEPTED_SCOPED_FRESH_FIRST_REFUGE_1366_NORMAL",
+      "REPOSITORY_GOVERNANCE": "PASS protected gates, ownedlock; publication pending"
     },
     "contractsRead": [
       "GAME_CONSTITUTION",
@@ -181,6 +165,20 @@
       "guardian": "PASS_SCOPED_STANDALONE",
       "ui": "OK_SCOPED_KEYBOARD_CAPTURES; actor framing/submenu/AT/motion/fullcampaign limits retained",
       "campaign": "FAILED_NOT_ACCEPTED; reached fresh iframe boundary diagnostic only"
+    },
+    "compact1214": {
+      "tests": "66focused7files/types/directvalidator8/8/LOCKED/build PASS",
+      "source": "13owner Math.random->tacticalRnd replacements exact relative inherited snapshot; damage stream separation retained",
+      "smoke": "ACCEPTED_SCOPED_390_COMPACT_MENUS_LIVE_MOTION",
+      "guardian": "PASS scoped source/assertions/receipt/captures",
+      "limits": "No enabledskill/automaticfocusrestore/allactionmotion/broadviewport/balance/replay/V6 RNG reproducibility/fullcampaign claim"
+    },
+    "campaign1214": {
+      "status": "ACCEPTED_SCOPED_FRESH_FIRST_REFUGE_1366_NORMAL",
+      "resultSha256": "c82b21818668943b172dd7409f6febd146eaebbfdb3d62e04da81476e476c2b2",
+      "scope": "Fresh1366normal/rescue opening through native opening combat and first refuge",
+      "review": "GUARDIAN_PASS_SCOPED_FIRST_REFUGE",
+      "failure": null
     }
   },
   "commitReferenceScope": "lastKnownGoodCommit identifies tested source613bf36; lastPushedCommit identifies already verified coherent source/proof checkpoint. Final closeout metadata SHA and cleanup/lock-release parity are in automation memory, avoiding self-reference.",
@@ -284,7 +282,7 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
+  "runId": "rpgthreejs-auto-dev-90m-20261008T1214",
   "agent": "codex",
   "lastHeartbeat": "2026-10-08T06:27:46.192Z",
   "wip": {
@@ -301,10 +299,10 @@
     }
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
+    "runId": "rpgthreejs-auto-dev-90m-20261008T1214",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-08T06:27:46.192Z",
-    "status": "CHECKPOINT_PUBLISHED",
+    "lastHeartbeat": "2026-10-08T12:46:11.1217764Z",
+    "status": "VERIFIED_LOCAL_CHECKPOINT",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -406,7 +404,7 @@
         "schemaVersion": 1,
         "jobId": "1952-desktop",
         "runId": "rpgthreejs-auto-dev-90m-20261002T1952",
-        "status": "ABORTED_HARNESS_DEFECT",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T19:57:51.764Z",
         "pid": 50700,
         "port": 5258,
@@ -626,7 +624,7 @@
         "schemaVersion": 1,
         "jobId": "1952-trial",
         "runId": "rpgthreejs-auto-dev-90m-20261002T1952",
-        "status": "ABORTED_HARNESS_DEFECT",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T19:57:53.79Z",
         "pid": 54404,
         "port": 5261,
@@ -736,7 +734,7 @@
         "schemaVersion": 1,
         "jobId": "1952-intermediate",
         "runId": "rpgthreejs-auto-dev-90m-20261002T1952",
-        "status": "ABORTED_HARNESS_DEFECT",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T20:03:03.233Z",
         "pid": 25412,
         "port": 5260,
@@ -930,9 +928,9 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-02T20:23:26.064Z",
-        "endedAt": "2026-10-02T20:34:46.49Z",
+        "endedAt": "2026-10-02T20:34:46.490Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": false,
@@ -1047,7 +1045,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-02T20:25:43.258Z",
         "endedAt": "2026-10-02T20:57:00.318Z",
         "provenanceMatches": true,
@@ -1164,7 +1162,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-02T20:25:45.067Z",
         "endedAt": "2026-10-02T20:45:02.091Z",
         "provenanceMatches": true,
@@ -1414,7 +1412,7 @@
         "schemaVersion": 1,
         "jobId": "2122-grid-final",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "ABORTED_HARNESS_DEFECT",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T21:34:18.903Z",
         "pid": 42288,
         "port": 5264,
@@ -1549,7 +1547,7 @@
         "schemaVersion": 1,
         "jobId": "2122-trial-final",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "ABORTED_SOURCE_CORRECTION",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T21:35:24.027Z",
         "pid": 48956,
         "port": 5265,
@@ -1641,7 +1639,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T21:35:25.15Z",
+        "startedAt": "2026-10-02T21:35:25.150Z",
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
@@ -1762,7 +1760,7 @@
         "schemaVersion": 1,
         "jobId": "2122-grid-bounded",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "ABORTED_HARNESS_COST",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T21:40:25.115Z",
         "pid": 26404,
         "port": 5264,
@@ -1897,7 +1895,7 @@
         "schemaVersion": 1,
         "jobId": "2122-grid-sampled",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "ABORTED_SOURCE_CORRECTION",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T21:47:08.793Z",
         "pid": 46904,
         "port": 5264,
@@ -2025,7 +2023,7 @@
         "schemaVersion": 1,
         "jobId": "2122-grid-fixed",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "ABORTED_SOURCE_CORRECTION",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T21:57:42.013Z",
         "pid": 19668,
         "port": 5264,
@@ -2140,7 +2138,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T21:57:42.75Z",
+        "startedAt": "2026-10-02T21:57:42.750Z",
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
@@ -2153,7 +2151,7 @@
         "schemaVersion": 1,
         "jobId": "2122-intermediate-fixed",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "ABORTED_SOURCE_CORRECTION",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T21:59:10.912Z",
         "pid": 58780,
         "port": 5266,
@@ -2258,7 +2256,7 @@
         "schemaVersion": 1,
         "jobId": "2122-trial-conserve",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
-        "status": "ABORTED_SOURCE_CORRECTION",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T21:59:25.788Z",
         "pid": 4192,
         "port": 5265,
@@ -2583,14 +2581,14 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-02T22:13:42.318Z",
         "endedAt": "2026-10-02T22:31:47.778Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "exitCode": 0,
         "resultPath": "tmp/demo/2122-grid-final-wheel/results.json",
         "resultSha256": "4e95082353997a37f7d8cb2bbdf7bd1c9f9b74df193d72dd647f2ad17e8dd0b4",
@@ -2696,7 +2694,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-02T22:13:56.941Z",
         "endedAt": "2026-10-02T22:14:33.067Z",
         "exitCode": 0,
@@ -2705,9 +2703,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "eligibleForReviewAtReview": true,
         "acceptedScope": "Native card scroll4cases,refocused toggle visibility;focusRetentionAccepted=false;campaignAcceptance=false",
         "contractsReview": "Scoped source/proof independently reviewed",
@@ -2816,7 +2814,7 @@
         "endedAt": "2026-10-02T22:31:30.216Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "exitCode": 1,
@@ -2926,7 +2924,7 @@
         "endedAt": "2026-10-02T22:31:54.521Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "exitCode": 1,
@@ -3188,7 +3186,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-02T23:01:08.332Z",
         "endedAt": "2026-10-02T23:04:09.345Z",
         "provenanceMatches": true,
@@ -3307,7 +3305,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T23:01:40.22Z",
+        "startedAt": "2026-10-02T23:01:40.220Z",
         "endedAt": "2026-10-02T23:09:17.242Z",
         "provenanceMatches": true,
         "requestMatches": true,
@@ -3332,7 +3330,7 @@
         "schemaVersion": 1,
         "jobId": "2252-trial-native-skills",
         "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
-        "status": "ABORTED_PILOT_POLICY_DEFECT",
+        "status": "RUNNING",
         "registeredAt": "2026-10-02T23:10:28.062Z",
         "pid": 25540,
         "port": 5270,
@@ -3665,7 +3663,7 @@
         "resultPath": "tmp/demo/0228-trial-support/results.json",
         "resultSha256": "51ab857632fa6692bea752b7c5cd7a4b46e0ad3119ce59f86569f5a242d5e1b5",
         "provenanceStable": true,
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "ownerReview": {
           "at": "2026-10-03T03:11:10.5631806Z",
           "reviewer": "contracts-guardian",
@@ -3778,12 +3776,12 @@
             }
           ]
         },
-        "acceptance": "FAILED_NOT_ACCEPTED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T03:12:10.577Z",
         "endedAt": "2026-10-03T03:24:09.072Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "exitCode": 1,
@@ -3901,14 +3899,14 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T03:58:19.322Z",
-        "endedAt": "2026-10-03T04:12:44.91Z",
+        "endedAt": "2026-10-03T04:12:44.910Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "exitCode": 0,
         "resultPath": "tmp/demo/0350-recovery-crosier/results.json",
         "resultSha256": "78e51a9e707cda929bc36fd658ab578ebc0ec0982e1846e0cf8d0ce9717b9600",
@@ -4024,14 +4022,14 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T04:14:54.197Z",
         "endedAt": "2026-10-03T04:24:29.368Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "exitCode": 0,
         "resultPath": "tmp/demo/0350-recovery-mobile-os/results.json",
         "resultSha256": "c4bf812331b219612c40ac8b3246f1d204d78085d067a749b6dd245fe1c5f208",
@@ -4135,7 +4133,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T08:35:15.236Z",
-        "endedAt": "2026-10-03T08:39:36.25Z",
+        "endedAt": "2026-10-03T08:39:36.250Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/visual-0820-normal/results.json",
         "resultSha256": "8f436d53e689a95ff86b7ba21dc5ff36cdd15f0b2e1aab994d3177aad7c24f6a",
@@ -4444,7 +4442,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T08:43:58.217Z",
         "endedAt": "2026-10-03T08:56:28.373Z",
         "exitCode": 0,
@@ -4453,9 +4451,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "acceptanceAtReview": {
           "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
           "recordedAt": "2026-10-03T09:11:28.36Z",
@@ -4546,7 +4544,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T08:43:58.615Z",
         "endedAt": "2026-10-03T08:55:54.967Z",
         "exitCode": 0,
@@ -4555,9 +4553,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "acceptanceAtReview": {
           "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
           "recordedAt": "2026-10-03T09:11:28.36Z",
@@ -4650,7 +4648,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T08:47:06.479Z",
         "endedAt": "2026-10-03T08:48:45.202Z",
         "exitCode": 0,
@@ -4659,9 +4657,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "acceptanceAtReview": {
           "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
           "recordedAt": "2026-10-03T09:11:28.36Z",
@@ -4675,7 +4673,7 @@
         "schemaVersion": 1,
         "jobId": "motion-1002-normal",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
-        "status": "ABORTED_SOURCE_CORRECTION",
+        "status": "RUNNING",
         "registeredAt": "2026-10-03T10:17:22.807Z",
         "pid": 13260,
         "port": 5280,
@@ -4768,20 +4766,25 @@
           "tools/traversal-motion-production-qa.mjs"
         ],
         "reason": "Independent review found rejected-fork retry edge case; owned workers stopped before correction",
-        "endedAt": "2026-10-03T10:20:31.111Z",
+        "endedAt": null,
         "executionCommand": [
           "node",
           "tools/traversal-motion-production-qa.mjs",
           "--motion=normal",
           "--port=5280",
           "--output=tmp/traversal/motion-1002-normal"
-        ]
+        ],
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": false,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
         "jobId": "motion-1002-os",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
-        "status": "ABORTED_SOURCE_CORRECTION",
+        "status": "RUNNING",
         "registeredAt": "2026-10-03T10:17:23.54Z",
         "pid": 47316,
         "port": 5281,
@@ -4868,20 +4871,25 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T10:17:45.17Z",
+        "startedAt": "2026-10-03T10:17:45.170Z",
         "workerReceiptCommand": [
           "node",
           "tools/traversal-motion-production-qa.mjs"
         ],
         "reason": "Independent review found rejected-fork retry edge case; owned workers stopped before correction",
-        "endedAt": "2026-10-03T10:20:31.112Z",
+        "endedAt": null,
         "executionCommand": [
           "node",
           "tools/traversal-motion-production-qa.mjs",
           "--motion=os",
           "--port=5281",
           "--output=tmp/traversal/motion-1002-os"
-        ]
+        ],
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": false,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -4987,7 +4995,12 @@
         "resultPath": "tmp/traversal/motion-1002-v2-normal/results.json",
         "resultSha256": "0ad0676a7824d3dc501b2235669a93462c2ab6535a77c358f50ff2bdc483c3de",
         "provenanceStable": true,
-        "reason": "Inherited 32px checkpoint action found by fresh 620px native QA; two desktop scenarios passed but job failed"
+        "reason": "Inherited 32px checkpoint action found by fresh 620px native QA; two desktop scenarios passed but job failed",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -5093,7 +5106,12 @@
         "resultPath": "tmp/traversal/motion-1002-v2-os/results.json",
         "resultSha256": "04d4535aa19415a69e899fffa35d5828ddd77592e16fd981f5dea88b4b9c2ecb",
         "provenanceStable": true,
-        "reason": "Inherited 32px checkpoint action found by fresh 620px native QA; two desktop scenarios passed but job failed"
+        "reason": "Inherited 32px checkpoint action found by fresh 620px native QA; two desktop scenarios passed but job failed",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -5192,7 +5210,12 @@
         "resultPath": "tmp/traversal/motion-1002-probe/results.json",
         "resultSha256": "5c47fd44d30e02309af98db0798c966d8b32183eb0f8ccb417641b0c1e9511fb",
         "provenanceStable": true,
-        "reason": "Succeeded on prior build; CSS correction now requires matching proof"
+        "reason": "Succeeded on prior build; CSS correction now requires matching proof",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -5284,7 +5307,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T10:31:09.835Z",
         "endedAt": "2026-10-03T10:48:29.654Z",
         "exitCode": 0,
@@ -5352,7 +5375,8 @@
           "scope": "SCOPED_PRESENTATION:27native-clock event-branch journeys;V6origins/combat outcomes fixtures;not earned campaign,tactical,battlefield keyboard,demo",
           "review": "Root and reused contracts-guardian/traversal-engineer;game terminal reviewed",
           "executionIdentityNote": "Original receipt Git representation retained. Postcommit all15rawsource/driver/deferred files and9build hashes verified exact; unwired candidate created only after final QA worker exit."
-        }
+        },
+        "provenanceMatches": true
       },
       {
         "schemaVersion": 1,
@@ -5444,7 +5468,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T10:31:08.195Z",
         "endedAt": "2026-10-03T10:47:24.702Z",
         "exitCode": 0,
@@ -5512,7 +5536,8 @@
           "scope": "SCOPED_PRESENTATION:27native-clock event-branch journeys;V6origins/combat outcomes fixtures;not earned campaign,tactical,battlefield keyboard,demo",
           "review": "Root and reused contracts-guardian/traversal-engineer;game terminal reviewed",
           "executionIdentityNote": "Original receipt Git representation retained. Postcommit all15rawsource/driver/deferred files and9build hashes verified exact; unwired candidate created only after final QA worker exit."
-        }
+        },
+        "provenanceMatches": true
       },
       {
         "schemaVersion": 1,
@@ -5597,7 +5622,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T10:31:10.139Z",
         "endedAt": "2026-10-03T10:32:30.399Z",
         "exitCode": 0,
@@ -5665,7 +5690,8 @@
           "scope": "SCOPED_PRESENTATION:27native-clock event-branch journeys;V6origins/combat outcomes fixtures;not earned campaign,tactical,battlefield keyboard,demo",
           "review": "Root and reused contracts-guardian/traversal-engineer;game terminal reviewed",
           "executionIdentityNote": "Original receipt Git representation retained. Postcommit all15rawsource/driver/deferred files and9build hashes verified exact; unwired candidate created only after final QA worker exit."
-        }
+        },
+        "provenanceMatches": true
       },
       {
         "schemaVersion": 1,
@@ -5757,7 +5783,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_PRESENTATION",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T13:09:51.788Z",
         "endedAt": "2026-10-03T13:26:19.775Z",
         "exitCode": 0,
@@ -5825,7 +5851,8 @@
           "scope": "SCOPED_PRESENTATION:27native-clock event-branch journeys;V6origins/combat outcomes fixtures;not earned campaign,tactical,battlefield keyboard,demo",
           "review": "Root and reused contracts-guardian/traversal-engineer;game terminal reviewed",
           "executionIdentityNote": "Original receipt Git representation retained. Postcommit all15rawsource/driver/deferred files and9build hashes verified exact; unwired candidate created only after final QA worker exit."
-        }
+        },
+        "provenanceMatches": true
       },
       {
         "schemaVersion": 1,
@@ -6022,7 +6049,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T14:42:25.416Z",
-        "endedAt": "2026-10-03T14:42:27.89Z",
+        "endedAt": "2026-10-03T14:42:27.890Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/pursuit-1430-v2/results.json",
         "resultSha256": "5cea3ff60c2b2e598b79446c03f128bfcdb4be7e15a03c10dc0df692ce7e4e65",
@@ -6334,7 +6361,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T14:47:29.015Z",
-        "endedAt": "2026-10-03T14:49:01.16Z",
+        "endedAt": "2026-10-03T14:49:01.160Z",
         "exitCode": 0,
         "resultPath": "tmp/traversal/pursuit-1430-v5/results.json",
         "resultSha256": "56bfd9fe624ca76365a22fa8e9f68e5babe8099939a76f6b4657f3db27d74a7d",
@@ -6436,7 +6463,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_ISOLATED_CANDIDATE",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T14:50:46.609Z",
         "endedAt": "2026-10-03T14:52:18.732Z",
         "exitCode": 0,
@@ -6445,9 +6472,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "acceptanceAtReview": {
           "reviewedAt": "2026-10-03T14:57:52.77Z",
           "checksPath": "docs/reports/traversal-pursuit-charge-candidate-1-browser/checks.json",
@@ -6542,7 +6569,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_ROCK_FAMILY",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T15:05:45.873Z",
         "endedAt": "2026-10-03T15:08:07.832Z",
         "exitCode": 0,
@@ -6551,9 +6578,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "acceptanceAtReview": {
           "reviewedAt": "2026-10-03T15:12:58.371Z",
           "checksPath": "docs/reports/traversal-rock-family-1-browser/checks.json",
@@ -7147,8 +7174,8 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T18:46:54.24Z",
-        "endedAt": "2026-10-03T18:48:11.36Z",
+        "startedAt": "2026-10-03T18:46:54.240Z",
+        "endedAt": "2026-10-03T18:48:11.360Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/road-1815-reset-probe-v5/results.json",
         "resultSha256": "57486890ac446d43fc67d17d4b501cc6d7394a0173ba7df0803f43b05cf1cea2",
@@ -7248,7 +7275,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T18:52:11.702Z",
-        "endedAt": "2026-10-03T18:53:28.59Z",
+        "endedAt": "2026-10-03T18:53:28.590Z",
         "exitCode": 0,
         "resultPath": "tmp/traversal/road-1815-early-probe-v6/results.json",
         "resultSha256": "66cba3835856879cd39e06a600a4a36e3c1dab38fb143b461c1e69eead3e69c5",
@@ -8119,7 +8146,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T19:09:25.73Z",
+        "startedAt": "2026-10-03T19:09:25.730Z",
         "endedAt": "2026-10-03T19:20:01.341Z",
         "provenanceMatches": true,
         "requestMatches": true,
@@ -8228,7 +8255,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T19:09:38.74Z",
+        "startedAt": "2026-10-03T19:09:38.740Z",
         "endedAt": "2026-10-03T19:25:44.264Z",
         "provenanceMatches": true,
         "requestMatches": true,
@@ -8447,7 +8474,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T19:50:45.79Z",
+        "startedAt": "2026-10-03T19:50:45.790Z",
         "endedAt": "2026-10-03T19:50:45.957Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/road-1945-v4-os/results.json",
@@ -8558,7 +8585,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T19:50:46.117Z",
-        "endedAt": "2026-10-03T19:50:46.29Z",
+        "endedAt": "2026-10-03T19:50:46.290Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/road-1945-v4-game/results.json",
         "resultSha256": "9a1acbf9786a25cf9bbaff2e8af9781650000fae0b3bf724d474b65bc5e88411",
@@ -10086,7 +10113,7 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "limitation": "FAILED or superseded assertion scope; retained without relabeling or seed reuse"
@@ -10195,7 +10222,7 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "limitation": "FAILED or superseded assertion scope; retained without relabeling or seed reuse"
@@ -10296,7 +10323,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T20:20:14.324Z",
         "endedAt": "2026-10-03T20:35:38.178Z",
         "exitCode": 0,
@@ -10305,9 +10332,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "acceptanceScope": "27 fixture-origin real built GameApp first/early-road cases, T0/T1/T3 x1440/620/390 OS-only; native contact interpolation, retention/full exit, responsive keyboard/depth",
         "acceptedAt": "2026-10-03T23:51:28.212Z",
         "matchesExecutionAtReview": true,
@@ -10418,7 +10445,7 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "limitation": "FAILED or superseded assertion scope; retained without relabeling or seed reuse"
@@ -10519,7 +10546,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T20:20:14.694Z",
         "endedAt": "2026-10-03T20:36:23.656Z",
         "exitCode": 0,
@@ -10528,9 +10555,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "acceptanceScope": "27 fixture-origin real built GameApp first/early-road cases, T0/T1/T3 x1440/620/390 game reduction; same bounded assertions",
         "acceptedAt": "2026-10-03T23:51:28.541Z",
         "matchesExecutionAtReview": true,
@@ -10641,7 +10668,7 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "limitation": "FAILED or superseded assertion scope; retained without relabeling or seed reuse"
@@ -10741,7 +10768,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T20:22:11.591Z",
         "endedAt": "2026-10-03T20:23:30.425Z",
         "exitCode": 0,
@@ -10750,9 +10777,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "acceptanceScope": "9 isolated minified native-clock anchor cases; existing authored .31/.50 pair at unit distance scale; pause/resize/unaligned crossing/collection/full exit; no GameApp/save/combat/earned gold/production disposal",
         "acceptedAt": "2026-10-03T23:51:28.626Z",
         "matchesExecutionAtReview": true,
@@ -10849,18 +10876,18 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T20:22:18.271Z",
-        "endedAt": "2026-10-03T20:24:00.32Z",
+        "endedAt": "2026-10-03T20:24:00.320Z",
         "exitCode": 0,
         "resultPath": "tmp/traversal/road-1945-entry-v2-normal/results.json",
         "resultSha256": "9c60543725f9997931e2be79b967fd11c9c8b86303d3861d1f166e595e571159",
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "acceptanceScope": "1 T0/1440 normal screen-clear early reveal; uncovered subsequent natural entries; covered first-pouch entry explicitly excluded from uncovered-entry claim",
         "acceptedAt": "2026-10-03T23:51:28.638Z",
         "matchesExecutionAtReview": true,
@@ -10957,7 +10984,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T20:24:25.078Z",
         "endedAt": "2026-10-03T20:25:36.881Z",
         "exitCode": 0,
@@ -10966,9 +10993,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "acceptanceScope": "1 T1/390 OS-only screen-clear early reveal; same limitation",
         "acceptedAt": "2026-10-03T23:51:28.65Z",
         "matchesExecutionAtReview": true,
@@ -11065,7 +11092,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T20:24:24.042Z",
         "endedAt": "2026-10-03T20:25:36.879Z",
         "exitCode": 0,
@@ -11074,9 +11101,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "acceptanceScope": "1 T3/620 game-reduced screen-clear early reveal; same limitation",
         "acceptedAt": "2026-10-03T23:51:28.663Z",
         "matchesExecutionAtReview": true,
@@ -11313,7 +11340,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-04T00:22:43.913Z",
-        "endedAt": "2026-10-04T00:23:04.44Z",
+        "endedAt": "2026-10-04T00:23:04.440Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/road-0007-late-lab/results.json",
         "resultSha256": "48e8d17207a4f8ad4c5ff6439b33b5a4bf9ada85121f38f4b5bbacd9ffe56ad1",
@@ -11552,7 +11579,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-04T00:31:21.961Z",
         "endedAt": "2026-10-04T00:31:55.811Z",
         "exitCode": 0,
@@ -11561,9 +11588,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "acceptanceScope": "9 isolated native RAF scripted-reset cases; no production owner/spacing/earnedV6 acceptance"
       },
       {
@@ -11665,7 +11692,7 @@
         "endedAt": "2026-10-04T00:43:06.886Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "exitCode": 1,
@@ -11767,10 +11794,10 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-04T00:35:37.716Z",
         "endedAt": "2026-10-04T00:48:27.029Z",
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "resultPath": "tmp/traversal/road-0007-branch-v3-os/results.json",
         "resultSha256": "d4dd1b48b819d1535a3b155d794718aaa1a3cd5c9d63092411f77486a413e6c3",
         "provenanceStable": true,
@@ -11780,7 +11807,7 @@
         "exitCode": 0,
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true
       },
       {
@@ -11877,17 +11904,17 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-04T00:45:07.652Z",
         "endedAt": "2026-10-04T00:58:28.079Z",
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "resultPath": "tmp/traversal/road-0007-branch-v3-game/results.json",
         "resultSha256": "a646821a71b294fa3e3db884957fbe5b5f707928bed6c081d6e012bcdba09f51",
         "provenanceStable": true,
         "exitCode": 0,
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "acceptanceScope": "Selected fixture-origin native built branch-combat road contact/lifetime/full exit/depth/native lane/unique temporary award; selected frame brackets only; no earnedV6/full-road/perceptual/global frame-budget acceptance"
       },
@@ -11983,7 +12010,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-04T00:50:35.289Z",
         "endedAt": "2026-10-04T00:54:49.156Z",
         "resultPath": "tmp/traversal/road-0007-branch-v4-normal-T3/results.json",
@@ -11992,9 +12019,9 @@
         "exitCode": 0,
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "acceptanceScope": "Selected fixture-origin native built branch-combat road contact/lifetime/full exit/depth/native lane/unique temporary award; selected frame brackets only; no earnedV6/full-road/perceptual/global frame-budget acceptance"
       },
       {
@@ -12089,7 +12116,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-04T00:58:04.885Z",
         "endedAt": "2026-10-04T01:03:22.185Z",
         "exitCode": 0,
@@ -12098,9 +12125,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "acceptanceScope": "Selected fixture-origin native built branch-combat road contact/lifetime/full exit/depth/native lane/unique temporary award; selected frame brackets only; no earnedV6/full-road/perceptual/global frame-budget acceptance"
       },
       {
@@ -12195,7 +12222,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-04T01:03:40.974Z",
         "endedAt": "2026-10-04T01:08:07.522Z",
         "exitCode": 0,
@@ -12204,9 +12231,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "acceptanceScope": "Selected fixture-origin native built branch-combat road contact/lifetime/full exit/depth/native lane/unique temporary award; selected frame brackets only; no earnedV6/full-road/perceptual/global frame-budget acceptance"
       },
       {
@@ -12305,14 +12332,14 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-04T01:41:28.723Z",
         "endedAt": "2026-10-04T01:58:00.262Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "exitCode": 0,
         "resultPath": "tmp/traversal/road-0137-first-normal/results.json",
         "resultSha256": "3fb1ad254ebb7252b15d91e0d50bb8d8b726ef0da16e16f3f785bd46459719ff",
@@ -12416,14 +12443,14 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-04T02:00:37.314Z",
         "endedAt": "2026-10-04T02:16:17.701Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "exitCode": 0,
         "resultPath": "tmp/traversal/road-0137-first-os/results.json",
         "resultSha256": "e044752d4e9637369079a89524daf0f383075da6d1b7356f5ee75ee9e084c4b9",
@@ -12527,14 +12554,14 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-04T02:00:36.911Z",
-        "endedAt": "2026-10-04T02:17:00.53Z",
+        "endedAt": "2026-10-04T02:17:00.530Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "exitCode": 0,
         "resultPath": "tmp/traversal/road-0137-first-game/results.json",
         "resultSha256": "70b8b24c76c851146b7f950314a239b05b72b8b805ec18d46eb8b517fe2ef494",
@@ -12637,14 +12664,14 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-04T02:17:07.841Z",
         "endedAt": "2026-10-04T02:36:52.342Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "resultPath": "tmp/traversal/road-0137-more-normal/results.json",
         "resultSha256": "0173b622e85bc821daaa9bc29d365aae68055d6f62a27bc47931eeb279393837",
         "exitCode": 0,
@@ -12658,7 +12685,7 @@
         "runId": "codex-production-focus-20261004T0511",
         "status": "SUCCEEDED",
         "registeredAt": "2026-10-04T05:25:11.381Z",
-        "pid": null,
+        "pid": 58572,
         "port": 5319,
         "command": [
           "node",
@@ -12722,12 +12749,19 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "endedAt": "2026-10-04T05:25:37.611Z",
         "resultPath": "tmp/cinematics/campfire-0511-smoke/results.json",
         "resultSha256": "59cb7bf661134698f1d76fa9d49444113c5805beacb8585562f9a52632b33d53",
         "exitCode": 0,
-        "acceptanceScope": "One fixture-origin production smoke: existing final_refuge dialogue resolution, campfire capture inspected, exact resolved-node reload/no replay. Full milestone pending."
+        "acceptanceScope": "One fixture-origin production smoke: existing final_refuge dialogue resolution, campfire capture inspected, exact resolved-node reload/no replay. Full milestone pending.",
+        "startedAt": "2026-10-04T05:25:15.710Z",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -12735,7 +12769,7 @@
         "runId": "codex-production-focus-20261004T0511",
         "status": "FAILED",
         "registeredAt": "2026-10-04T05:28:03.253Z",
-        "pid": null,
+        "pid": 51008,
         "port": 5320,
         "command": [
           "node",
@@ -12813,7 +12847,14 @@
         "resultPath": "tmp/cinematics/campfire-0511-milestone/results.json",
         "resultSha256": "4ae1c58caaa04ab4b54f53ebc6179cd32d9349ecbe78870a2a4a47a41bd6e625",
         "exitCode": 1,
-        "failureClassification": "Harness assertion required a video attempt for approved static-only final_refuge preparation; exactly one minimal assertion correction, no product defect observed"
+        "failureClassification": "Harness assertion required a video attempt for approved static-only final_refuge preparation; exactly one minimal assertion correction, no product defect observed",
+        "startedAt": "2026-10-04T05:28:07.642Z",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -12821,7 +12862,7 @@
         "runId": "codex-production-focus-20261004T0511",
         "status": "SUCCEEDED",
         "registeredAt": "2026-10-04T05:30:20.095Z",
-        "pid": null,
+        "pid": 10228,
         "port": 5320,
         "command": [
           "node",
@@ -12899,7 +12940,14 @@
         "resultPath": "tmp/cinematics/campfire-0511-milestone-fixed/results.json",
         "resultSha256": "73e85046d4370835fa69c4c396606357c08571947e287ca4d7b23c8207e76f6f",
         "exitCode": 0,
-        "acceptanceScope": "Six functional cases pass; inspected portrait captures crop out campfire, product CSS fixed afterward; earlier build retained as historical diagnostic"
+        "acceptanceScope": "Six functional cases pass; inspected portrait captures crop out campfire, product CSS fixed afterward; earlier build retained as historical diagnostic",
+        "startedAt": "2026-10-04T05:30:57.047Z",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -12980,7 +13028,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED",
+        "acceptance": "NOT_ACCEPTED",
         "acceptanceScope": "Matching six-case source/driver/build/results verified before commits; campfire visuals with separate native continuation proof",
         "startedAt": "2026-10-04T05:36:13.609Z",
         "endedAt": "2026-10-04T05:38:03.874Z",
@@ -12988,7 +13036,12 @@
         "exitCode": 0,
         "resultPath": "tmp/cinematics/campfire-0511-reframed/results.json",
         "resultSha256": "4e9a56eaffd8b42c683dcc06dbe6028f65d926977933efb044ebe513ad9c5774",
-        "provenanceRepresentation": "Frozen accepted physical source snapshot fe3139903c0eda3719ba0a69de3e5db0efda7935; final narrative build differs, no current-build relabel"
+        "provenanceRepresentation": "Frozen accepted physical source snapshot fe3139903c0eda3719ba0a69de3e5db0efda7935; final narrative build differs, no current-build relabel",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "jobId": "campfire-20261007-native",
@@ -13155,7 +13208,12 @@
         "manualExecutionRecord": true,
         "failureClassification": "Premature persisted witness guard before ATE save; single minimal native-live-fact correction. No product regression established.",
         "receiptWriter": "OWNER_TERMINAL_RECONCILIATION_NOT_WORKER",
-        "provenanceStable": false
+        "provenanceStable": false,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -13238,13 +13296,18 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "exitCode": 1,
-        "endedAt": "2026-10-07T19:53:25.93Z",
+        "endedAt": "2026-10-07T19:53:25.930Z",
         "resultPath": "tmp/cinematics/council-1933-os-fixed/results.json",
         "resultSha256": "72f2306b8d757d94ba67fb3f8bee9ed18f63b89ffec389523261c06a027f9ce0",
         "manualExecutionRecord": true,
         "receiptWriter": "OWNER_TERMINAL_RECONCILIATION_NOT_WORKER",
         "provenanceStable": true,
-        "failureClassification": "Unchanged OS assertion requires approved video attempt; static-only council unsupported. Single correction exhausted; no further rerun; no product regression established."
+        "failureClassification": "Unchanged OS assertion requires approved video attempt; static-only council unsupported. Single correction exhausted; no further rerun; no product regression established.",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -13324,7 +13387,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED_VISUAL_OVERLAP",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-07T20:45:48.3258600Z",
         "sessionId": 97317,
         "endedAt": "2026-10-07T20:47:09.122Z",
@@ -13334,7 +13397,12 @@
         "provenanceStable": true,
         "manualExecutionRecord": true,
         "receiptWriter": "OWNER_TERMINAL_RECONCILIATION_NOT_WORKER",
-        "failureClassification": "Machine pass; inspected allied silhouettes overlap and mask listening torso at390. Product geometry correction required; not an earned seed."
+        "failureClassification": "Machine pass; inspected allied silhouettes overlap and mask listening torso at390. Product geometry correction required; not an earned seed.",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -13414,7 +13482,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_NARROW_GEOMETRY",
+        "acceptance": "NOT_ACCEPTED",
         "exitCode": 0,
         "endedAt": "2026-10-08T00:16:34.784Z",
         "resultPath": "tmp/cinematics/serpent-0012-normal/results.json",
@@ -13423,7 +13491,12 @@
         "manualExecutionRecord": true,
         "receiptWriter": "OWNER_TERMINAL_RECONCILIATION_NOT_WORKER",
         "acceptanceScope": "390x844 normal; three speaker steps, separate opaque allied silhouettes, stable facing, bounded stored truth; root and guardian inspected all three PNGs. Captions typewriting; no full dialogue/focus/OS/earned acceptance.",
-        "provenanceRepresentation": "Frozen pre-transition physical inventory tmp/autonomy/physical-0012.json / snapshot e77a49d30baed92a3fb219eb38bb08068cabb5af, accepted geometry commit67462c2. Current aeb306f and final game-BgoC89-e.js differ; no current-build relabel."
+        "provenanceRepresentation": "Frozen pre-transition physical inventory tmp/autonomy/physical-0012.json / snapshot e77a49d30baed92a3fb219eb38bb08068cabb5af, accepted geometry commit67462c2. Current aeb306f and final game-BgoC89-e.js differ; no current-build relabel.",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -13503,7 +13576,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_OPENING_TRANSITION_390_OS",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": null,
         "sessionId": 27012,
         "exitCode": 0,
@@ -13515,7 +13588,12 @@
         "receiptWriter": "OWNER_TERMINAL_RECONCILIATION_NOT_WORKER",
         "observedRunningAt": "2026-10-08T00:38:53Z",
         "timingNote": "Registered before launch by sequential tool order. Original manually estimated startedAt was earlier than registration and is withdrawn; exact worker start/end timestamps unavailable. endedAt is owner terminal-reconciliation observation time.",
-        "acceptanceScope": "Native new-game opening step4-to5; ordered bounded4/2/4 retained cast, authored facing, OStrue/gamefalse, settled display segment bounds/native focused enabled Enter, stored V6 equal, native audience choice/resolved reload. Root/guardian/tableau inspected two captures; no global geometry/earned campaign/demo acceptance."
+        "acceptanceScope": "Native new-game opening step4-to5; ordered bounded4/2/4 retained cast, authored facing, OStrue/gamefalse, settled display segment bounds/native focused enabled Enter, stored V6 equal, native audience choice/resolved reload. Root/guardian/tableau inspected two captures; no global geometry/earned campaign/demo acceptance.",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -13596,7 +13674,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED_INVALID_URL_BEFORE_GAME",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:21:24.148Z",
         "endedAt": "2026-10-08T01:21:40.593Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
@@ -13604,7 +13682,11 @@
         "resultSha256": "deaa09a5f8f4a05886d0f53eb62a29a9e26678bda83cdbb5078b571ecdc27e38",
         "provenanceStable": true,
         "matchesCurrentExecution": false,
-        "resultDigestMatches": true
+        "resultDigestMatches": true,
+        "exitCode": 1,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -13685,7 +13767,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED_INVALID_URL_BEFORE_GAME",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:21:24.164Z",
         "endedAt": "2026-10-08T01:21:40.315Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
@@ -13693,7 +13775,11 @@
         "resultSha256": "6574a156a3b90cfe1e45015b1c212fc7b695e740c40d8a8cc7f5866b305bbcea",
         "provenanceStable": true,
         "matchesCurrentExecution": false,
-        "resultDigestMatches": true
+        "resultDigestMatches": true,
+        "exitCode": 1,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -13774,7 +13860,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED_INVALID_URL_BEFORE_GAME",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:21:40.595Z",
         "endedAt": "2026-10-08T01:21:54.761Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
@@ -13782,7 +13868,11 @@
         "resultSha256": "9f8781c9f5cd68af1124e3d7a98a502385e70d63f0e60e3e280e4d67765c59b5",
         "provenanceStable": true,
         "matchesCurrentExecution": false,
-        "resultDigestMatches": true
+        "resultDigestMatches": true,
+        "exitCode": 1,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -13863,7 +13953,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED_INVALID_URL_BEFORE_GAME",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:21:40.614Z",
         "endedAt": "2026-10-08T01:21:54.583Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
@@ -13871,7 +13961,11 @@
         "resultSha256": "a1828b6fc00a7b21f3551b5af5850f03c5cf179fbb11be6d7ead348fda3d78c2",
         "provenanceStable": true,
         "matchesCurrentExecution": false,
-        "resultDigestMatches": true
+        "resultDigestMatches": true,
+        "exitCode": 1,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -13952,7 +14046,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED_INVALID_URL_BEFORE_GAME",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:21:54.764Z",
         "endedAt": "2026-10-08T01:22:09.339Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
@@ -13960,7 +14054,11 @@
         "resultSha256": "c1c9248018b777fad9d1776968da3de4491b805f345b5ab214239cf306af2318",
         "provenanceStable": true,
         "matchesCurrentExecution": false,
-        "resultDigestMatches": true
+        "resultDigestMatches": true,
+        "exitCode": 1,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -14041,7 +14139,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED_INVALID_URL_BEFORE_GAME",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:21:54.782Z",
         "endedAt": "2026-10-08T01:22:09.149Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
@@ -14049,7 +14147,11 @@
         "resultSha256": "f8b17c94e2501d15c266158a65ea585cbd4a2416db97d9934f52a9ac0f142824",
         "provenanceStable": true,
         "matchesCurrentExecution": false,
-        "resultDigestMatches": true
+        "resultDigestMatches": true,
+        "exitCode": 1,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -14130,7 +14232,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED_PRE_CORRECTION_VISUAL_DEFECT",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:22:55.954Z",
         "endedAt": "2026-10-08T01:24:26.177Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
@@ -14138,7 +14240,11 @@
         "resultSha256": "a4afc2cfafa75e607fbcb00308d7dd0ca46affcd0c13809010076eb8e84c5322",
         "provenanceStable": true,
         "matchesCurrentExecution": false,
-        "resultDigestMatches": true
+        "resultDigestMatches": true,
+        "exitCode": 0,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -14219,7 +14325,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED_PRE_CORRECTION_VISUAL_DEFECT",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:22:55.972Z",
         "endedAt": "2026-10-08T01:24:08.780Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
@@ -14227,7 +14333,11 @@
         "resultSha256": "648a0752d4543583d722c09b96f89c3b64cad72df175b9cbcb8ed6e18d567685",
         "provenanceStable": true,
         "matchesCurrentExecution": false,
-        "resultDigestMatches": true
+        "resultDigestMatches": true,
+        "exitCode": 0,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -14308,7 +14418,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED_PRE_CORRECTION_VISUAL_DEFECT",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:24:26.180Z",
         "endedAt": "2026-10-08T01:25:47.109Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
@@ -14316,7 +14426,11 @@
         "resultSha256": "454e6fd791164d39b29aac35a056b5224fc7be2bc4f57a065c8223d6c48bca0e",
         "provenanceStable": true,
         "matchesCurrentExecution": false,
-        "resultDigestMatches": true
+        "resultDigestMatches": true,
+        "exitCode": 0,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -14397,7 +14511,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED_PRE_CORRECTION_VISUAL_DEFECT",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:24:26.200Z",
         "endedAt": "2026-10-08T01:25:31.789Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
@@ -14405,7 +14519,11 @@
         "resultSha256": "fe37fcf2377c34da204ee6d383fafb1bc244c18c93ef85b91e4d942a09f9c2c0",
         "provenanceStable": true,
         "matchesCurrentExecution": false,
-        "resultDigestMatches": true
+        "resultDigestMatches": true,
+        "exitCode": 0,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -14486,7 +14604,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED_PRE_CORRECTION_VISUAL_DEFECT",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:25:47.113Z",
         "endedAt": "2026-10-08T01:27:05.297Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
@@ -14494,7 +14612,11 @@
         "resultSha256": "8015b87e6b6051032c31b0f063bfd1a2949e59569d56fb0d8c83093156a4aba0",
         "provenanceStable": true,
         "matchesCurrentExecution": false,
-        "resultDigestMatches": true
+        "resultDigestMatches": true,
+        "exitCode": 0,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -14575,7 +14697,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED_PRE_CORRECTION_VISUAL_DEFECT",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:25:47.133Z",
         "endedAt": "2026-10-08T01:26:50.731Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
@@ -14583,7 +14705,11 @@
         "resultSha256": "9c2a2d10c70afe93df4608be1f0622a90d009616c3c7b7f40a4e92d27ec2f480",
         "provenanceStable": true,
         "matchesCurrentExecution": false,
-        "resultDigestMatches": true
+        "resultDigestMatches": true,
+        "exitCode": 0,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -14664,15 +14790,19 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_TABLEAU_MILESTONE",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:29:45.682Z",
         "endedAt": "2026-10-08T01:31:05.951Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
         "resultPath": "tmp/cinematics/tableau-0115-v3-390-normal/results.json",
         "resultSha256": "5c994814852602b8f5df4092c1062546de3fb18bd655853bc94d4b7fa88e852c",
         "provenanceStable": true,
-        "matchesCurrentExecution": true,
-        "resultDigestMatches": true
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "exitCode": 0,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -14753,15 +14883,19 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_TABLEAU_MILESTONE",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:29:45.706Z",
         "endedAt": "2026-10-08T01:30:50.332Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
         "resultPath": "tmp/cinematics/tableau-0115-v3-390-os/results.json",
         "resultSha256": "eb61f14c79ca77218a52cc7bb2f667d8cb8e2eebb92da33fcb36c86445056182",
         "provenanceStable": true,
-        "matchesCurrentExecution": true,
-        "resultDigestMatches": true
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "exitCode": 0,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -14842,15 +14976,19 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_TABLEAU_MILESTONE",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:31:05.955Z",
         "endedAt": "2026-10-08T01:32:25.612Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
         "resultPath": "tmp/cinematics/tableau-0115-v3-620-normal/results.json",
         "resultSha256": "174ec43895bfa84d813564dd87d95452baf560bfbb42d0c3ed023f495cd38402",
         "provenanceStable": true,
-        "matchesCurrentExecution": true,
-        "resultDigestMatches": true
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "exitCode": 0,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -14931,15 +15069,19 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_TABLEAU_MILESTONE",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:31:05.977Z",
         "endedAt": "2026-10-08T01:32:09.798Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
         "resultPath": "tmp/cinematics/tableau-0115-v3-620-os/results.json",
         "resultSha256": "e0ddbf9d6879c4b3ac858136237806eb4292d71e3787d7f6155b88c16b06258e",
         "provenanceStable": true,
-        "matchesCurrentExecution": true,
-        "resultDigestMatches": true
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "exitCode": 0,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -15020,15 +15162,19 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_TABLEAU_MILESTONE",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:32:25.614Z",
         "endedAt": "2026-10-08T01:33:45.822Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
         "resultPath": "tmp/cinematics/tableau-0115-v3-1440-normal/results.json",
         "resultSha256": "8af388704f59452e775896f1f6db1018afa30f4b503d65942dab789f3d5e4d05",
         "provenanceStable": true,
-        "matchesCurrentExecution": true,
-        "resultDigestMatches": true
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "exitCode": 0,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -15109,15 +15255,19 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_TABLEAU_MILESTONE",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:32:25.627Z",
         "endedAt": "2026-10-08T01:33:27.724Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
         "resultPath": "tmp/cinematics/tableau-0115-v3-1440-os/results.json",
         "resultSha256": "cc59ad206f1400885d56b63eeaf7bad55a89ebf4d6cd41863239e308b2ed4106",
         "provenanceStable": true,
-        "matchesCurrentExecution": true,
-        "resultDigestMatches": true
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "exitCode": 0,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -15299,7 +15449,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_COPY",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T05:29:37.127Z",
         "endedAt": "2026-10-08T05:30:49.019Z",
         "exitCode": 0,
@@ -15401,7 +15551,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_COPY",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T05:31:30.234Z",
         "endedAt": "2026-10-08T05:32:21.956Z",
         "exitCode": 0,
@@ -15503,7 +15653,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_COPY",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T05:31:30.251Z",
         "endedAt": "2026-10-08T05:32:45.549Z",
         "exitCode": 0,
@@ -15605,7 +15755,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_COPY",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T05:32:45.552Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
         "executedCommand": [
@@ -15707,7 +15857,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_COPY",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T05:32:45.570Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
         "executedCommand": [
@@ -15809,7 +15959,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_COPY",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T05:34:12.292Z",
         "endedAt": "2026-10-08T05:35:07.915Z",
         "exitCode": 0,
@@ -16035,7 +16185,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_STANDALONE",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T05:53:41.517Z",
         "endedAt": "2026-10-08T06:14:20.747Z",
         "requestMatches": true,
@@ -16137,7 +16287,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED; reached iframe diagnostic only",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T05:53:42.534Z",
         "endedAt": "2026-10-08T06:08:50.720Z",
         "requestMatches": true,
@@ -16154,57 +16304,369 @@
         "currentPhysicalInputsMatchFreeze": true,
         "gitFingerprintRepresentationChangedBySourceCommit": true,
         "eligibleForReviewAtPrecommitFreeze": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "compact-0636-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0636",
+        "status": "FAILED",
+        "registeredAt": "2026-10-08T06:46:51.123Z",
+        "pid": 43592,
+        "port": 5342,
+        "command": [
+          "node",
+          "tools/combat-keyboard-production-qa.mjs"
+        ],
+        "parameters": {
+          "viewports": [
+            [
+              390,
+              844
+            ]
+          ],
+          "motionModes": [
+            "reduce"
+          ],
+          "scenario": "compact-menus"
+        },
+        "requiredAssertions": [
+          "FOCUSED_NATIVE_ACTIVATION",
+          "NO_PARASITIC_END_TURN",
+          "BATTLEFIELD_SHORTCUTS",
+          "SUBMENU_TARGET_BOUNDS_AND_SCROLL",
+          "OS_OR_GAME_EFFECTIVE_REDUCTION",
+          "LIVE_OS_CHANGE_WITHOUT_TACTICAL_MUTATION"
+        ],
+        "output": "tmp/demo/compact-0636-os",
+        "receiptPath": "tmp/demo/compact-0636-os/qa-job.json",
+        "provenance": {
+          "gitHead": "693b2398e3670b6f77a4c2e26c45f11a5d2d03ce",
+          "sourceTree": "49ef75f39d62136d9e846749bf798c58af693074",
+          "sourceDiffSha256": "fefa1fb12ca2227b394d480af80c515dcfd49be26537d3c044bbe411d2d2fbeb",
+          "driver": {
+            "path": "tools/combat-keyboard-production-qa.mjs",
+            "sha256": "e76fd78a69b3c6731acf9b4bca25f040cccb9ddc09cbf6386688d0f8aae18e67"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CgtHztqA.js",
+              "sha256": "b1f8cbeab4c54a8c7eea48e6eeda9ac635b0fbdcb41115b9d375e98233fa0802"
+            },
+            {
+              "path": "dist/assets/combat-CZoO_LYE.js",
+              "sha256": "73047a827f2b1b47463f4c02007b774b07768dddd521e0faebfaa48928b45bff"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-3pkMo-Ir.css",
+              "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+            },
+            {
+              "path": "dist/assets/game-CfeGt3vL.js",
+              "sha256": "b059922fb1efd0bdc9944e07e83a4f75e1d1a9fd74b4db6eae90456ba2d365b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "eb6086357447b6e5b34da2c0ffdfa1956d9e0d98472ab195b513fa1c19c32abb"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-08T06:46:52.068Z",
+        "endedAt": "2026-10-08T06:47:53.744Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/compact-0636-os/results.json",
+        "resultSha256": "a61e8be8bd285d66993c5c076ccc424f4bfc85964422d0c252ca4aedc1ffdf33",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "compact-1214-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T1214",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T12:21:09.953Z",
+        "pid": 36912,
+        "port": 5342,
+        "command": [
+          "node",
+          "tools/combat-keyboard-production-qa.mjs"
+        ],
+        "parameters": {
+          "viewports": [
+            [
+              390,
+              844
+            ]
+          ],
+          "motionModes": [
+            "reduce"
+          ],
+          "scenario": "compact-menus"
+        },
+        "requiredAssertions": [
+          "FOCUSED_NATIVE_ACTIVATION",
+          "NO_PARASITIC_END_TURN",
+          "BATTLEFIELD_SHORTCUTS",
+          "SUBMENU_TARGET_BOUNDS_AND_SCROLL",
+          "OS_OR_GAME_EFFECTIVE_REDUCTION",
+          "LIVE_OS_CHANGE_WITHOUT_TACTICAL_MUTATION"
+        ],
+        "output": "tmp/demo/compact-1214-os",
+        "receiptPath": "tmp/demo/compact-1214-os/qa-job.json",
+        "provenance": {
+          "gitHead": "693b2398e3670b6f77a4c2e26c45f11a5d2d03ce",
+          "sourceTree": "49ef75f39d62136d9e846749bf798c58af693074",
+          "sourceDiffSha256": "9c8121afafed9739f6b54ac86083c8940510024cda98905e4feaf6e278a6c59d",
+          "driver": {
+            "path": "tools/combat-keyboard-production-qa.mjs",
+            "sha256": "f8804a1028fbc7c00ef74ce2d8cb5a809d8b8d8c0a5824d47d264f66ab0f89d1"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CgtHztqA.js",
+              "sha256": "b1f8cbeab4c54a8c7eea48e6eeda9ac635b0fbdcb41115b9d375e98233fa0802"
+            },
+            {
+              "path": "dist/assets/combat-D7CRRhwk.js",
+              "sha256": "bb3020abc4900882616c9175fccdf2a1229c9e1a9b056f7e8d5c0db3b9d80e9e"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-3pkMo-Ir.css",
+              "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+            },
+            {
+              "path": "dist/assets/game-CfeGt3vL.js",
+              "sha256": "b059922fb1efd0bdc9944e07e83a4f75e1d1a9fd74b4db6eae90456ba2d365b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "eb6086357447b6e5b34da2c0ffdfa1956d9e0d98472ab195b513fa1c19c32abb"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_390_COMPACT_MENUS_LIVE_MOTION",
+        "startedAt": "2026-10-08T12:21:11.004Z",
+        "endedAt": "2026-10-08T12:21:47.690Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/compact-1214-os/results.json",
+        "resultSha256": "1f75e4eb3bea6326498143ef8f73ec1b2cb549fc4562d8df2a8d296fb68ec535",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "reviewedAt": "2026-10-08T12:24:45.810Z",
+        "reviewers": [
+          "root",
+          "contracts-guardian"
+        ],
+        "limitation": "Standalone390 only; sampled idle motion/settings, menu bounds/native controls/scroll/shortcut dispatch. No enabled skill resolution, automatic focus restoration, action motion, balance, campaign or replay/V6 RNG proof.",
+        "matchesExecutionAtReview": true,
+        "eligibleForReviewAtReview": true,
+        "physicalInputsMatchAfterSourceCommit": true,
+        "provenanceRepresentation": "Source commit changed HEAD:src/diff representation; original receipt/build/driver/result retained, frozen physical bytes equal. No sameExecution relabelling."
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "campaign-first-refuge-1214",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T1214",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T12:24:47.030Z",
+        "pid": 31064,
+        "port": 5343,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "first-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 25,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": null,
+          "priorProofPath": null,
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/campaign-first-refuge-1214",
+        "receiptPath": "tmp/demo/campaign-first-refuge-1214/qa-job.json",
+        "provenance": {
+          "gitHead": "693b2398e3670b6f77a4c2e26c45f11a5d2d03ce",
+          "sourceTree": "49ef75f39d62136d9e846749bf798c58af693074",
+          "sourceDiffSha256": "9c8121afafed9739f6b54ac86083c8940510024cda98905e4feaf6e278a6c59d",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "68e7466e21202dc346b6763ef9bd545718e5aadc73449912ddf10b39e1576ed0"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CgtHztqA.js",
+              "sha256": "b1f8cbeab4c54a8c7eea48e6eeda9ac635b0fbdcb41115b9d375e98233fa0802"
+            },
+            {
+              "path": "dist/assets/combat-D7CRRhwk.js",
+              "sha256": "bb3020abc4900882616c9175fccdf2a1229c9e1a9b056f7e8d5c0db3b9d80e9e"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-3pkMo-Ir.css",
+              "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+            },
+            {
+              "path": "dist/assets/game-CfeGt3vL.js",
+              "sha256": "b059922fb1efd0bdc9944e07e83a4f75e1d1a9fd74b4db6eae90456ba2d365b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "eb6086357447b6e5b34da2c0ffdfa1956d9e0d98472ab195b513fa1c19c32abb"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_FRESH_FIRST_REFUGE_1366_NORMAL",
+        "startedAt": "2026-10-08T12:24:47.943Z",
+        "endedAt": "2026-10-08T12:41:17.184Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/campaign-first-refuge-1214/results.json",
+        "resultSha256": "c82b21818668943b172dd7409f6febd146eaebbfdb3d62e04da81476e476c2b2",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "reviewedAt": "2026-10-08T12:45:09.221Z",
+        "limitation": "Fresh opening-to-first-refuge only, no whole-demo/balance/ending/replay/RNG save guarantee",
+        "matchesExecutionAtReview": true,
+        "eligibleForReviewAtReview": true,
+        "physicalInputsMatchAfterSourceCommit": true,
+        "provenanceRepresentation": "Source commit changed HEAD:src/diff representation; original receipt/build/driver/result retained, frozen physical bytes equal. No sameExecution relabelling."
       }
     ],
     "wip": {
-      "status": "CLEARED_ALL_CONTENT_COMMITTED_ON_DEV",
-      "branch": null,
-      "sha": null,
-      "dirtyFiles": [],
-      "lastGreenCheck": "88focused/types/contracts/build/immutable; COPY6+keyboard6 scoped; campaignFAILED retained",
-      "retiredRecovery": {
-        "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0514",
-        "sha": "d02961485a11be6f7b5b8ceb85d99d85f4978685",
-        "deletedAt": "2026-10-08T06:27:46.192Z",
-        "reason": "All content on dev; only two closeout-state files differed"
-      }
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261008T1214",
+      "sha": "ec6f6c7e50020d838bf06ad24ca2db9dd1b8499a",
+      "status": "GREEN_SOURCE_AND_SCOPED_SMOKE_LOCAL",
+      "dirtyFiles": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/combatRandom.ts",
+        "src/combat/combatRandom.test.ts",
+        "src/ui/ReducedMotion.ts",
+        "src/ui/reducedMotion.test.ts",
+        "src/styles/combat-hud.css",
+        "src/styles/combat-shell.css",
+        "tools/combat-keyboard-production-qa.mjs",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
+        "docs/autonomy/handoffs/2026-10-08T1214Z-codex-compact-motion-rng-checkpoint.md"
+      ],
+      "lastGreenCheck": "66tests/types/contracts/build/390OScompactscopedPASS",
+      "snapshotAt": "2026-10-08T12:46:11.1217764Z"
     },
-    "nextAction": "Read-only preflight and owned lock; inspect BATTLEFIELD_KEYBOARD.md and exact terminal receipts before rerun. Preserve scoped COPY sixcases15scenarios and standalone keyboard6cases accepted evidence; compare final physical freeze after source commits instead of treating changed Git fingerprints as identical. Keep failed campaign-0514-first-refuge NOT_ACCEPTED: reached desktop-normal iframe Tab/cursor/Escape owner/autosave-equality diagnostic only, no earnedrefuge;19actions exhausted15min. Continue product work by measuring submenu/Retour bounds and addressing verified compact-target/focus or OS tactical-motion gaps before fresh campaign QA with existing driver/appropriate bounded target. Retain original deferredDemoTask nextAction and0350/726lineage; no failedoutput seed, further standalone harness rewrite, repeated compatible matrices, canon/media/audio/main or mapping invention. COPY static-only OS-shadow, council/refugee proof, approved Bois-Clair night plate and ten Pursuit mappings remain precise independent blockers; demo incomplete.",
+    "nextAction": "Read BATTLEFIELD_KEYBOARD.md and1214handoff. Compare393physical sources/driver/helper and build with accepted1214proof, then register existing tools/demo-continuous-production-qa.mjs earned continuation: targetsecond-refuge/rescue/1366normal, exact earnedSavePath tmp/demo/campaign-first-refuge-1214/earned-first-refuge-v6.json and priorProofPath tmp/demo/campaign-first-refuge-1214/results.json, unique ignored output/free strict port and bounded deadline. Native refuge rest/revival/preparation must precede next combats (3alliesKO,130gold,rest60). Inspect terminal receipt/actual victories/T1 handoffs/temp gold/exact V6 reload before accepting. If observed product defect, fix it and use one related existing-runner smoke; do not blindly rerun failures or rewrite harness. Keep all-action OS motion/live changes, enabled skills/automatic focus return,390actor framing, balance/VFX/Salvation2AP/endings open. Preserve150historicaljobs/exactdeferredtask; no repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices.",
     "runMetrics": {
-      "sourceFilesModified": 1,
+      "sourceFilesModified": 2,
       "sourcePaths": [
-        "src/styles/app.css"
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/combatRandom.ts"
       ],
-      "testFilesModified": 0,
-      "existingQAToolsModified": 2,
-      "qaPaths": [
-        "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
-        "tools/demo-continuous-production-qa.mjs"
+      "testFilesModified": 1,
+      "testPaths": [
+        "src/combat/combatRandom.test.ts"
       ],
-      "inheritedQADriverModified": 1,
+      "existingQAToolsModified": 0,
       "qaToolsAdded": 0,
-      "proofFilesAdded": 11,
-      "workflowFiles": 6,
-      "inheritedDeferredFiles": 6,
-      "inheritedRuntimeFilesAccepted": 4,
-      "inheritedTestFilesAccepted": 1,
-      "inheritedQARunnerAccepted": 1,
-      "distinctReadOnlyReviewers": 3,
-      "registeredInvocations": 10,
-      "acceptedCopyInvocations": 6,
-      "acceptedCopyScenarios": 15,
-      "acceptedStandaloneKeyboardCases": 6,
-      "campaignFailedInvocations": 1,
-      "harnessCorrections": {
-        "copyCaptureSettle": 1,
-        "standaloneFreshPointer": 1,
-        "campaignPostfailure": 0
-      },
-      "prelaunchGuardianAssertionRepairs": "Actual DEV-helper names and render-metric projection/cursor movement, before execution",
+      "proofFilesAdded": 0,
+      "workflowFiles": 4,
+      "inheritedWIPPaths": 10,
+      "inheritedSourceTestPaths": 7,
+      "inheritedQARunnerPaths": 1,
+      "inheritedWorkflowPaths": 2,
+      "distinctReadOnlyReviewers": 1,
+      "registeredInvocations": 2,
+      "smokeInvocations": 1,
+      "harnessCorrectionsThisRun": 0,
+      "inheritedFocusCorrection": 1,
       "failedSeedsUsed": 0,
-      "reviewCost": "Three distinct read-only reviewers; guardian reused for scoped source/assertions/results/diagnostic boundary. No quota/work-unit savings measured.",
-      "elapsedMinutes": 71.53228333333334,
-      "endedAt": "2026-10-08T06:27:46.192Z"
+      "reviewCost": "One read-only guardian reused for prelaunch RNG boundary and compact source/assertion/receipt/capture review; no quota savings measured",
+      "elapsedMinutes": 28.989483333333332,
+      "acceptedScopedJobs": 2,
+      "campaignNativeActions": 34,
+      "campaignRounds": 11,
+      "selectedCapturesInspected": 4,
+      "inheritedRuntimeFilesAccepted": 5,
+      "inheritedTestFilesAccepted": 2,
+      "inheritedQARunnerAccepted": 1,
+      "endedAt": null
     },
     "checkpointPaths": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -16226,27 +16688,27 @@
       "docs/reports/battlefield-keyboard-0514/campaign-desktop-keyboard-return.png"
     ],
     "publication": {
-      "status": "SOURCE_PROOF_AND_METADATA_PUBLISHED_OWNED_WIP_CLEANED",
-      "dev": "48dcbd89605e1f82fd1d9193938b9ab7fb783ed8",
-      "source": "613bf364679ba03d5126254306772fc69a138612",
-      "wip": {
-        "status": "CLEARED_ALL_CONTENT_COMMITTED_ON_DEV",
-        "branch": null,
-        "sha": null,
-        "dirtyFiles": [],
-        "lastGreenCheck": "88focused/types/contracts/build/immutable; COPY6+keyboard6 scoped; campaignFAILED retained",
-        "retiredRecovery": {
-          "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0514",
-          "sha": "d02961485a11be6f7b5b8ceb85d99d85f4978685",
-          "deletedAt": "2026-10-08T06:27:46.192Z",
-          "reason": "All content on dev; only two closeout-state files differed"
-        }
-      },
-      "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "verifiedAt": "2026-10-08T06:27:46.192Z"
+      "status": "VERIFIED_LOCAL_PENDING_PUBLICATION",
+      "source": "8e2e0d1a7676fcc762ed6c7ff32486973ffc2b23",
+      "decision": "OD-2026-10-08-A",
+      "reviewedPaths": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/combatRandom.ts",
+        "src/combat/combatRandom.test.ts",
+        "src/ui/ReducedMotion.ts",
+        "src/ui/reducedMotion.test.ts",
+        "src/styles/combat-hud.css",
+        "src/styles/combat-shell.css",
+        "tools/combat-keyboard-production-qa.mjs",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
+        "docs/autonomy/handoffs/2026-10-08T1214Z-codex-compact-motion-rng-checkpoint.md"
+      ],
+      "prior0636RejectedSnapshotRetained": true
     },
-    "runStartedAt": "2026-10-08T05:16:14.2563835Z",
-    "runEndedAt": "2026-10-08T06:27:46.192Z"
+    "runStartedAt": "2026-10-08T12:16:09.8536924Z",
+    "runEndedAt": null
   },
   "previousInterruptedRun": {
     "runId": "rpgthreejs-auto-dev-90m-20261007T2039",
@@ -16293,42 +16755,37 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-08T0514Z-codex-copy-keyboard-checkpoint.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-08T1214Z-codex-compact-motion-rng-checkpoint.md",
   "runMeasurement": {
-    "sourceFilesModified": 1,
+    "sourceFilesModified": 2,
     "sourcePaths": [
-      "src/styles/app.css"
+      "src/combat/legacyCombatRuntime.js",
+      "src/combat/combatRandom.ts"
     ],
-    "testFilesModified": 0,
-    "existingQAToolsModified": 2,
-    "qaPaths": [
-      "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
-      "tools/demo-continuous-production-qa.mjs"
+    "testFilesModified": 1,
+    "testPaths": [
+      "src/combat/combatRandom.test.ts"
     ],
-    "inheritedQADriverModified": 1,
+    "existingQAToolsModified": 0,
     "qaToolsAdded": 0,
-    "proofFilesAdded": 11,
-    "workflowFiles": 6,
-    "inheritedDeferredFiles": 6,
-    "inheritedRuntimeFilesAccepted": 4,
-    "inheritedTestFilesAccepted": 1,
-    "inheritedQARunnerAccepted": 1,
-    "distinctReadOnlyReviewers": 3,
-    "registeredInvocations": 10,
-    "acceptedCopyInvocations": 6,
-    "acceptedCopyScenarios": 15,
-    "acceptedStandaloneKeyboardCases": 6,
-    "campaignFailedInvocations": 1,
-    "harnessCorrections": {
-      "copyCaptureSettle": 1,
-      "standaloneFreshPointer": 1,
-      "campaignPostfailure": 0
-    },
-    "prelaunchGuardianAssertionRepairs": "Actual DEV-helper names and render-metric projection/cursor movement, before execution",
+    "proofFilesAdded": 0,
+    "workflowFiles": 4,
+    "inheritedWIPPaths": 10,
+    "inheritedSourceTestPaths": 7,
+    "inheritedQARunnerPaths": 1,
+    "inheritedWorkflowPaths": 2,
+    "distinctReadOnlyReviewers": 1,
+    "registeredInvocations": 2,
+    "smokeInvocations": 1,
+    "harnessCorrectionsThisRun": 0,
+    "inheritedFocusCorrection": 1,
     "failedSeedsUsed": 0,
-    "reviewCost": "Three distinct read-only reviewers; guardian reused for scoped source/assertions/results/diagnostic boundary. No quota/work-unit savings measured.",
-    "elapsedMinutes": 71.53228333333334,
-    "endedAt": "2026-10-08T06:27:46.192Z"
+    "reviewCost": "One read-only guardian reused for prelaunch RNG boundary and compact source/assertion/receipt/capture review; no quota savings measured",
+    "elapsedMinutes": 28.989483333333332,
+    "acceptedScopedJobs": 2,
+    "campaignNativeActions": 34,
+    "campaignRounds": 11,
+    "selectedCapturesInspected": 4
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -16471,10 +16928,14 @@
     }
   },
   "uncommittedWork": {
-    "reason": "Six inherited paths accepted at standalone scope and committed; broader campaign/accessibility gates remain open without deleting exact archived deferred task",
-    "files": [],
-    "preservation": "Original deferredDemoTask and139jobs exact; source five blobs unchanged, inherited QA driver has reviewed actual-helper and one fresh native pointer correction",
-    "sourceCheckpoint": "613bf364679ba03d5126254306772fc69a138612"
+    "reason": "Verified1214 workflow checkpoint pending commit/publication; inherited10paths preserved and source8paths now committed",
+    "files": [
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
+      "docs/autonomy/handoffs/2026-10-08T1214Z-codex-compact-motion-rng-checkpoint.md"
+    ],
+    "sourceCheckpoint": "8e2e0d1a7676fcc762ed6c7ff32486973ffc2b23"
   },
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
@@ -16565,40 +17026,35 @@
     "nextAction": "Run existing witnesses-protected normal-motion production opening proof; independently observe refugee transaction acknowledgements and wider static-only OS acceptance before task milestone"
   },
   "runStatistics": {
-    "sourceFilesModified": 1,
+    "sourceFilesModified": 2,
     "sourcePaths": [
-      "src/styles/app.css"
+      "src/combat/legacyCombatRuntime.js",
+      "src/combat/combatRandom.ts"
     ],
-    "testFilesModified": 0,
-    "existingQAToolsModified": 2,
-    "qaPaths": [
-      "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
-      "tools/demo-continuous-production-qa.mjs"
+    "testFilesModified": 1,
+    "testPaths": [
+      "src/combat/combatRandom.test.ts"
     ],
-    "inheritedQADriverModified": 1,
+    "existingQAToolsModified": 0,
     "qaToolsAdded": 0,
-    "proofFilesAdded": 11,
-    "workflowFiles": 6,
-    "inheritedDeferredFiles": 6,
-    "inheritedRuntimeFilesAccepted": 4,
-    "inheritedTestFilesAccepted": 1,
-    "inheritedQARunnerAccepted": 1,
-    "distinctReadOnlyReviewers": 3,
-    "registeredInvocations": 10,
-    "acceptedCopyInvocations": 6,
-    "acceptedCopyScenarios": 15,
-    "acceptedStandaloneKeyboardCases": 6,
-    "campaignFailedInvocations": 1,
-    "harnessCorrections": {
-      "copyCaptureSettle": 1,
-      "standaloneFreshPointer": 1,
-      "campaignPostfailure": 0
-    },
-    "prelaunchGuardianAssertionRepairs": "Actual DEV-helper names and render-metric projection/cursor movement, before execution",
+    "proofFilesAdded": 0,
+    "workflowFiles": 4,
+    "inheritedWIPPaths": 10,
+    "inheritedSourceTestPaths": 7,
+    "inheritedQARunnerPaths": 1,
+    "inheritedWorkflowPaths": 2,
+    "distinctReadOnlyReviewers": 1,
+    "registeredInvocations": 2,
+    "smokeInvocations": 1,
+    "harnessCorrectionsThisRun": 0,
+    "inheritedFocusCorrection": 1,
     "failedSeedsUsed": 0,
-    "reviewCost": "Three distinct read-only reviewers; guardian reused for scoped source/assertions/results/diagnostic boundary. No quota/work-unit savings measured.",
-    "elapsedMinutes": 71.53228333333334,
-    "endedAt": "2026-10-08T06:27:46.192Z"
+    "reviewCost": "One read-only guardian reused for prelaunch RNG boundary and compact source/assertion/receipt/capture review; no quota savings measured",
+    "elapsedMinutes": 28.989483333333332,
+    "acceptedScopedJobs": 2,
+    "campaignNativeActions": 34,
+    "campaignRounds": 11,
+    "selectedCapturesInspected": 4
   },
   "qaToolingJustification": "No new persistent QA tool. Existing inherited battlefield runner receives one prelaunch actual DEV-helper-name fix and one postfailure fresh native pointer-scenario correction; archer1AP must not be refilled. Existing earned campaign runner adds native Tab/cursor/Escape observation only first genuinely fresh battle; it preserves complete gameplay (render diagnostics excluded), ownerV6 and autosave equality. Existing registration/receipts/provenance reused.",
   "retainedRunArtifacts": {
@@ -16610,5 +17066,18 @@
     "acceptedKeyboard": "tmp/demo/battlefield-0514-native-v2",
     "campaignFailed": "tmp/demo/campaign-0514-first-refuge",
     "failedSeedUse": false
-  }
+  },
+  "campaign1214Review": "GUARDIAN_PASS_SCOPED_FIRST_REFUGE",
+  "campaign1214Earned": {
+    "save": "tmp/demo/campaign-first-refuge-1214/earned-first-refuge-v6.json",
+    "proof": "tmp/demo/campaign-first-refuge-1214/results.json",
+    "saveSha256": "3f5a7391e4641bad288455df175441e8a8629dc5c4e192f5d2641fb0c737d7db",
+    "resultSha256": "c82b21818668943b172dd7409f6febd146eaebbfdb3d62e04da81476e476c2b2",
+    "seed": 460927237,
+    "node": "lion-first-refuge",
+    "initialAlliesKO": 3,
+    "preparation": "Native rest/revival before further combat;130gold/rest60",
+    "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
+  },
+  "implementationCommit": "8e2e0d1a7676fcc762ed6c7ff32486973ffc2b23"
 }
