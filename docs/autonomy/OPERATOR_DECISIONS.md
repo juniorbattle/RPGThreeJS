@@ -11,6 +11,7 @@ Append-only index of the explicit operator decisions that bind autonomous work. 
 | OD-2026-10-02-C | 2026-10-02 | Adopt efficiency lot 1: milestone/risk reviews, short prompt, QA receipts and safe snapshots; continue autonomously to demo completion with operator final testing | [Autonomous efficiency decision](AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-02.md) | ACTIVE; models/cadence/budget retained, automation remains paused |
 | OD-2026-10-03-A | 2026-10-03 | Manual playtest production correction; highest remediation priority before generic DEMO-QA-POLISH continuation; dedicated contract amendment first | [Manual playtest decision](MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md) | ACTIVE; affected historical QA does not invalidate manual findings; keyboard/combat work deferred and preserved |
 | OD-2026-10-04-A | 2026-10-04 | Production first; one smoke per run, broad acceptance at milestones, minimal harness correction, external-blocker isolation and WIP snapshots within15min | [Production focus](PRODUCTION_FOCUS_OPERATOR_DECISION_2026-10-04.md) | ACTIVE; supersedes expansive operational QA guidance, preserves LOCKED targets and sensitive guardian triggers |
+| OD-2026-10-08-A | 2026-10-08 | Subsequent authorized publications use normal non-force pushes of dev and owned wip branches to the operator's public origin, with reviewed selected paths and no secrets, ignored outputs or main | [Publication decision](PUBLICATION_OPERATOR_DECISION_2026-10-08.md) | ACTIVE |
 
 ## OD-2026-10-02-A details
 
