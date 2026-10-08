@@ -1,13 +1,17 @@
 # Autonomous work state
 
-CURRENT FACT: run rpgthreejs-auto-dev-90m-20261008T1804; 2026-10-08T18:08:05.442Z; dev metadata checkpoint a903b6ec72cb7f3721f2827047c924c6d7e0485d published and remotely verified. IN_PROGRESS; standing dev publication authorization OD-2026-10-08-B recorded.
+CURRENT FACT: run1859 locally checkpointed; source9a4acde. Ordinary flat movement6cases and earnedsecondrefuge frozen577 accepted. BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW; writer stopped, owned recovery lock retained. No publicpush; full demo open.
 
 Active task: DEMO-QA-POLISH: continuous earned campaign beyond first refuge.
-Active subtask: Native refuge revival/preparation and earned second-refuge continuation.
+Active subtask: Ordinary movement scoped flat acceptance complete; earned second-refuge checkpoint accepted; local publication payload ready for review.
+
+## Run1859 closeout
+
+1runtime/1existingtest/1existingQA modified;0newQA/5proof additions/4workflow docs; no inherited WIP.123tests6files/types/contracts8slots/build PASS, ordinaryflat6cases85samples38stable reduced and earnedsecondrefuge accepted. Two reused readonly reviewers; six root-inspected/four promoted captures. Three ownedworkers and ports5344/5345 absent; inherited5173preserved. Source9a4acde, sourcebytes396 unchanged after commit; changed Git fingerprints correctly marked nonidentical execution.152historicaljobs/exact deferredDemoTask and pendingNarrativeTask retained. Remote dev577ab03/main00b96f1 verified; no push after actual rejection. Final local checkpoint SHA in Git/lock/automation memory.
 
 ## Exact next action
 
-Read BATTLEFIELD_KEYBOARD.md and1214handoff. Compare393physical sources/driver/helper and build with accepted1214proof, then register existing tools/demo-continuous-production-qa.mjs earned continuation: targetsecond-refuge/rescue/1366normal, exact earnedSavePath tmp/demo/campaign-first-refuge-1214/earned-first-refuge-v6.json and priorProofPath tmp/demo/campaign-first-refuge-1214/results.json, unique ignored output/free strict port and bounded deadline. Native refuge rest/revival/preparation must precede next combats (3alliesKO,130gold,rest60). Inspect terminal receipt/actual victories/T1 handoffs/temp gold/exact V6 reload before accepting. If observed product defect, fix it and use one related existing-runner smoke; do not blindly rerun failures or rewrite harness. Keep all-action OS motion/live changes, enabled skills/automatic focus return,390actor framing, balance/VFX/Salvation2AP/endings open. Preserve150historicaljobs/exactdeferredtask; no repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices.
+First obtain exact-payload public dev publication approval for run1859 local checkpoint; automatic review rejected the public WIP state push and no workaround is authorized. Inspect clean Git/local commits, owned writerStopped lock and preserved receipts. After approved normal push/remote parity and lock resolution, continue DEMO-QA-POLISH with existing tools/demo-continuous-production-qa.mjs from earnedSavePath tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json (SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b) and priorProofPath tmp/demo/campaign-second-refuge-1859/results.json (SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3). Rescue/serpent/ending1366normal, native rest75 first (3KO/5wounded,300gold), existing native shop/equip preparation, register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID, unique ignored output/free strict port and bounded deadline. Verify current physical source/driver/build identities; do not relabel old frozen577 campaign proof as new build acceptance. Inspect terminal receipt, genuine combats/T1/T3/temporaryloot/exactV6/ending/Salvation2AP and selected captures. Do not repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices; keep live leap/attack/Stage, live-slope smoothness,390framing/broadaccessibility/balance/settledVFX/fullending gates open. Preserve152historicaljobs/exact deferredDemoTask and pendingNarrativeTask.
 
 ## Preflight and scope — interrupted0636 history
 
@@ -170,6 +174,9 @@ Read-only existing-build390 OS measurement: attack/item buttons37px, skills Reto
 - compact-0636-os: FAILED; port 5342; receipt `tmp/demo/compact-0636-os/qa-job.json`; NOT_ACCEPTED
 - compact-1214-os: SUCCEEDED; port 5342; receipt `tmp/demo/compact-1214-os/qa-job.json`; ACCEPTED_SCOPED_390_COMPACT_MENUS_LIVE_MOTION
 - campaign-first-refuge-1214: SUCCEEDED; port 5343; receipt `tmp/demo/campaign-first-refuge-1214/qa-job.json`; ACCEPTED_SCOPED_FRESH_FIRST_REFUGE_1366_NORMAL
+- campaign-second-refuge-1859: SUCCEEDED; port 5344; receipt `tmp/demo/campaign-second-refuge-1859/qa-job.json`; ACCEPTED_SCOPED_EARNED_SECOND_REFUGE_1366_NORMAL
+- ordinary-movement-1859: FAILED; port 5345; receipt `tmp/demo/ordinary-movement-1859/qa-job.json`; NOT_ACCEPTED
+- ordinary-movement-1859-v2: SUCCEEDED; port 5345; receipt `tmp/demo/ordinary-movement-1859-v2/qa-job.json`; ACCEPTED_SCOPED_ORDINARY_MOVEMENT_LIVE_OS_6_CASES
 <!-- QA_JOBS_END -->
 
 ## Verified publication and closeout
