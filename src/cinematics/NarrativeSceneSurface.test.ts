@@ -9,7 +9,11 @@ import { NarrativeSceneSurface, SCENE_INTEGRATED_ACTOR_BASE_SCALE, THEATRICAL_AC
 import { resolveStaticTableauActorTuning, resolveStaticTableauComposition } from './StaticTableauComposition';
 
 describe('NarrativeSceneSurface', () => {
-  afterEach(() => document.body.replaceChildren());
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.restoreAllMocks();
+    document.body.replaceChildren();
+  });
 
   it('composes environment, cast, atmosphere and speaker focus from one tableau', () => {
     const root = document.createElement('div');
@@ -231,6 +235,11 @@ describe('NarrativeSceneSurface', () => {
     expect(root.querySelector('[data-actor-id="alistair"]')?.getAttribute('data-exit-effect')).toBe('SLIDE_OUT_LEFT');
     expect(root.querySelector('[data-actor-id="alaric"]')?.getAttribute('data-exit-kind')).toBe('NARRATIVE_EXIT');
     expect(root.querySelector('[data-actor-id="alaric"]')?.getAttribute('data-exit-effect')).toBe('SLIDE_OUT_RIGHT');
+    expect(root.querySelector('[data-actor-id="maelor"]')).toBeNull();
+    await vi.advanceTimersByTimeAsync(180);
+    expect(surface.element.dataset.castTransition).toBe('BREATH');
+    expect(root.querySelectorAll('.narrative-cast__actor')).toHaveLength(0);
+    await vi.advanceTimersByTimeAsync(60);
     expect(root.querySelector('[data-actor-id="maelor"]')?.getAttribute('data-entry-effect')).toBe('FADE_IN');
     await vi.advanceTimersByTimeAsync(180);
     await exit;
@@ -238,18 +247,151 @@ describe('NarrativeSceneSurface', () => {
   });
 
   it('reduces slide choreography to fades without changing final facing or cast', async () => {
+    vi.useFakeTimers();
     const sequence = dialogues.get('acte_ouverture')!;
     const tableau = applyFinalDialoguePresentationPlan(sequence, createGenericNarrativeTableau(sequence));
     const root = document.createElement('div');
     document.body.append(root);
     const surface = new NarrativeSceneSurface(root, tableau, { reducedMotion: true });
     root.append(surface.element);
-    await surface.setPhase(tableau.phases![0]!.id, 'sage_seraphine');
+    const first = surface.setPhase(tableau.phases![0]!.id, 'sage_seraphine');
+    await vi.runAllTimersAsync();
+    await first;
     const next = surface.setPhase(tableau.phases![1]!.id, 'kestrel');
     expect(root.querySelector('[data-actor-id="alistair"]')?.getAttribute('data-exit-effect')).toBe('FADE_OUT');
+    expect(root.querySelector('[data-actor-id="kestrel"]')).toBeNull();
+    await vi.advanceTimersByTimeAsync(180);
+    expect(surface.element.dataset.castTransition).toBe('BREATH');
+    await vi.advanceTimersByTimeAsync(40);
     expect(root.querySelector('[data-actor-id="kestrel"]')?.getAttribute('data-entry-effect')).toBe('FADE_IN');
+    await vi.advanceTimersByTimeAsync(180);
     await next;
     expect(root.querySelector('[data-actor-id="kestrel"]')?.getAttribute('data-facing')).toBe('RIGHT');
     expect(root.querySelectorAll('.narrative-cast__actor')).toHaveLength(4);
+  });
+
+  it.each([false, true])('keeps four actors maximum through exit, breath and entry (reduced=%s)', async (reducedMotion) => {
+    vi.useFakeTimers();
+    const sequence = dialogues.get('acte_ouverture')!;
+    const tableau = applyFinalDialoguePresentationPlan(sequence, createGenericNarrativeTableau(sequence));
+    const root = document.createElement('div');
+    const button = document.createElement('button');
+    document.body.append(root, button);
+    button.focus();
+    const surface = new NarrativeSceneSurface(root, tableau, { reducedMotion });
+    root.append(surface.element);
+    const firstPhase = tableau.phases![0]!, secondPhase = tableau.phases![1]!;
+    const first = surface.setPhase(firstPhase.id, 'alistair');
+    await vi.runAllTimersAsync(); await first;
+    const sage = root.querySelector<HTMLElement>('[data-actor-id="sage_seraphine"]')!;
+    const facing = sage.dataset.facing;
+    await surface.setPhase(firstPhase.id, 'sage_seraphine');
+    expect(vi.getTimerCount()).toBe(0);
+    expect(root.querySelector('[data-actor-id="sage_seraphine"]')).toBe(sage);
+    expect(sage.dataset.facing).toBe(facing);
+    const transition = surface.setPhase(secondPhase.id, 'kestrel');
+    expect(surface.element.dataset.castTransition).toBe('EXIT');
+    expect(root.querySelectorAll('.narrative-cast__actor')).toHaveLength(4);
+    expect(root.querySelector('[data-actor-id="kestrel"]')).toBeNull();
+    await vi.advanceTimersByTimeAsync(180);
+    expect(surface.element.dataset.castTransition).toBe('BREATH');
+    expect(root.querySelectorAll('.narrative-cast__actor')).toHaveLength(2);
+    expect(root.querySelector('[data-actor-id="sage_seraphine"]')).toBe(sage);
+    await vi.advanceTimersByTimeAsync(reducedMotion ? 40 : 60);
+    expect(surface.element.dataset.castTransition).toBe('ENTRY');
+    expect(root.querySelectorAll('.narrative-cast__actor')).toHaveLength(4);
+    expect(root.querySelector('[data-actor-id="alistair"]')).toBeNull();
+    expect(surface.castLayer.dataset.castCount).toBe('4');
+    await vi.advanceTimersByTimeAsync(180); await transition;
+    expect(surface.element.dataset.castTransition).toBeUndefined();
+    expect(root.querySelector('[data-actor-id="sage_seraphine"]')).toBe(sage);
+    expect(document.activeElement).toBe(button);
+  });
+
+  it('prepares even an unanimated newcomer before revealing the replacement', async () => {
+    vi.useFakeTimers();
+    const base = ALARIC_AUDIENCE_TABLEAU.phases![0]!;
+    const firstActor = { ...base.staticCast[0]!, entryEffect: 'NONE' as const };
+    const nextActor = { ...base.staticCast[1]!, entryEffect: 'NONE' as const };
+    const tableau = { ...ALARIC_AUDIENCE_TABLEAU, phases: [
+      { ...base, id: 'FIRST', staticCast: [firstActor] },
+      { ...base, id: 'NEXT', staticCast: [nextActor] },
+    ] };
+    const decode = vi.spyOn(HTMLImageElement.prototype, 'decode').mockResolvedValue(undefined);
+    const surface = new NarrativeSceneSurface(document.createElement('div'), tableau);
+    await surface.setPhase('FIRST');
+    let ready!: () => void;
+    decode.mockImplementationOnce(() => new Promise<void>(resolve => { ready = resolve; }));
+    let settled = false;
+    const replacement = surface.setPhase('NEXT').then(() => { settled = true; });
+    await vi.advanceTimersByTimeAsync(240);
+    expect(settled).toBe(false);
+    expect(surface.castLayer.querySelector(`[data-actor-id="${nextActor.actorId}"]`)).toBeNull();
+    ready(); await replacement;
+    expect(surface.castLayer.querySelector(`[data-actor-id="${nextActor.actorId}"]`)).not.toBeNull();
+    expect(surface.castLayer.childElementCount).toBe(1);
+  });
+
+  it('releases step preparation when a replacement image decode never settles', async () => {
+    vi.useFakeTimers();
+    const base = ALARIC_AUDIENCE_TABLEAU.phases![0]!;
+    const tableau = { ...ALARIC_AUDIENCE_TABLEAU, phases: [
+      { ...base, id: 'FIRST', staticCast: [{ ...base.staticCast[0]!, entryEffect: 'NONE' as const }] },
+      { ...base, id: 'NEXT', staticCast: [{ ...base.staticCast[1]!, entryEffect: 'FADE_IN' as const }] },
+    ] };
+    const decode = vi.spyOn(HTMLImageElement.prototype, 'decode').mockResolvedValue(undefined);
+    const surface = new NarrativeSceneSurface(document.createElement('div'), tableau);
+    await surface.setPhase('FIRST');
+    decode.mockImplementationOnce(() => new Promise<void>(() => {}));
+    let settled = false;
+    const replacement = surface.setPhase('NEXT').then(() => { settled = true; });
+    await vi.advanceTimersByTimeAsync(749);
+    expect(settled).toBe(false);
+    expect(surface.castLayer.childElementCount).toBe(0);
+    await vi.advanceTimersByTimeAsync(1);
+    expect(surface.element.dataset.castTransition).toBe('ENTRY');
+    expect(surface.castLayer.childElementCount).toBe(1);
+    await vi.advanceTimersByTimeAsync(180); await replacement;
+    expect(settled).toBe(true);
+    expect(vi.getTimerCount()).toBe(0);
+  });
+
+  it.each([0, 180, 240])('does not revive a disposed cast after a %sms transition wait', async (elapsed) => {
+    vi.useFakeTimers();
+    const sequence = dialogues.get('acte_ouverture')!;
+    const tableau = applyFinalDialoguePresentationPlan(sequence, createGenericNarrativeTableau(sequence));
+    const root = document.createElement('div');
+    const surface = new NarrativeSceneSurface(root, tableau);
+    root.append(surface.element);
+    const first = surface.setPhase(tableau.phases![0]!.id);
+    await vi.runAllTimersAsync(); await first;
+    const transition = surface.setPhase(tableau.phases![1]!.id);
+    await vi.advanceTimersByTimeAsync(elapsed);
+    surface.dispose();
+    await vi.runAllTimersAsync(); await transition;
+    expect(surface.castLayer.childElementCount).toBe(0);
+    expect(root.childElementCount).toBe(0);
+    await surface.setPhase(tableau.phases![0]!.id);
+    expect(surface.castLayer.childElementCount).toBe(0);
+  });
+
+  it.each([0, 180, 240])('keeps the latest phase when a %sms replacement is superseded', async (elapsed) => {
+    vi.useFakeTimers();
+    const sequence = dialogues.get('acte_ouverture')!;
+    const tableau = applyFinalDialoguePresentationPlan(sequence, createGenericNarrativeTableau(sequence));
+    const root = document.createElement('div');
+    const surface = new NarrativeSceneSurface(root, tableau);
+    root.append(surface.element);
+    const original = tableau.phases![0]!;
+    const first = surface.setPhase(original.id);
+    await vi.runAllTimersAsync(); await first;
+    const transition = surface.setPhase(tableau.phases![1]!.id);
+    await vi.advanceTimersByTimeAsync(elapsed);
+    const latest = surface.setPhase(original.id, 'sage_seraphine');
+    await vi.runAllTimersAsync(); await Promise.all([transition, latest]);
+    expect([...surface.castLayer.children].map(actor => (actor as HTMLElement).dataset.actorId).sort())
+      .toEqual(original.staticCast.map(actor => actor.actorId).sort());
+    expect(surface.castLayer.querySelector('.is-exiting, .is-entering')).toBeNull();
+    expect(surface.focusLayer.dataset.speaker).toBe('sage_seraphine');
   });
 });

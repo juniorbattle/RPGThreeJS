@@ -99,6 +99,8 @@ export class NarrativeSceneSurface {
   private preparedImage: string | undefined;
   private activePhaseId: string | undefined;
   private phasePreparation: Promise<void> = Promise.resolve();
+  private phaseRevision = 0;
+  private disposed = false;
   private readonly reducedMotion: boolean;
   private readonly actorImages: Readonly<Record<string, string>>;
 
@@ -165,7 +167,10 @@ export class NarrativeSceneSurface {
     addressResolution?: NarrativeAddressResolution,
   ): Promise<void> {
     const phase = this.phases.find((candidate) => candidate.id === phaseId);
-    if (!phase) return;
+    if (!phase || this.disposed) return;
+    const revision = ++this.phaseRevision;
+    const current = () => !this.disposed && this.phaseRevision === revision;
+    const pause = (ms: number) => new Promise<void>((resolve) => window.setTimeout(resolve, ms));
     this.element.dataset.visualPhase = phase.id;
     this.element.dataset.layoutProfile = phase.layoutProfile;
     this.element.dataset.layoutPlacement = layoutPlacement ?? phase.layoutPlacement;
@@ -184,6 +189,11 @@ export class NarrativeSceneSurface {
     if (sceneIntegrated) delete this.element.dataset.compositionProfile;
     else this.element.dataset.compositionProfile = compositionProfile;
     const exiting = [...existing.values()].filter((actor) => !nextIds.has(actor.dataset.actorId ?? ''));
+    for (const actor of existing.values()) {
+      actor.classList.remove('is-entering', 'is-exiting');
+      delete actor.dataset.exitEffect;
+      delete actor.dataset.exitKind;
+    }
     const exitByActor = new Map((previousPhase?.exits ?? []).map((exit) => [exit.actorId, exit]));
     for (const actor of exiting) {
       const exit = exitByActor.get(actor.dataset.actorId ?? '');
@@ -197,33 +207,67 @@ export class NarrativeSceneSurface {
       if (sceneIntegrated && !scenePlacement) throw new Error(`Missing scene placement for ${this.tableau.id}:${spec.actorId}`);
       const alreadyStaged = existing.get(spec.actorId);
       const actor = alreadyStaged ?? actorElement(spec, speakerId, this.actorImages, compositionProfile, scenePlacement);
-      applyActorState(actor, spec, speakerId, { facing: speakerFacing, lookTarget: speakerLookTarget }, compositionProfile, scenePlacement);
-      const effect = this.reducedMotion ? reducedEntryEffect(spec.entryEffect) : spec.entryEffect ?? 'NONE';
-      actor.dataset.entryEffect = alreadyStaged ? 'NONE' : effect;
-      actor.classList.toggle('is-entering', !alreadyStaged && effect !== 'NONE');
       return actor;
     });
-    this.castLayer.dataset.castCount = `${actors.length}`;
-    this.castLayer.replaceChildren(...actors, ...exiting);
-    this.focusLayer.dataset.speaker = speakerId ?? '';
-    const stagedSpeaker = phase.staticCast.find((actor) => actor.actorId === speakerId);
-    this.element.dataset.speakerPosition = stagedSpeaker?.screenPosition ?? '';
-    this.activePhaseId = phase.id;
-    const newImages = actors
-      .filter((actor) => actor.classList.contains('is-entering'))
-      .flatMap((actor) => Array.from(actor.querySelectorAll<HTMLImageElement>('img')));
-    await Promise.allSettled(newImages.map(async (image) => {
-      if (typeof image.decode === 'function') await image.decode();
-    }));
-    const hasTransition = exiting.length > 0 || actors.some((actor) => actor.classList.contains('is-entering'));
-    if (hasTransition && !this.reducedMotion) {
-      await new Promise<void>((resolve) => window.setTimeout(resolve, 180));
+    const newcomers = actors.filter((actor) => !existing.has(actor.dataset.actorId ?? ''));
+    const decoding = Promise.allSettled(newcomers
+      .flatMap((actor) => Array.from(actor.querySelectorAll<HTMLImageElement>('img')))
+      .map(async (image) => {
+        if (typeof image.decode === 'function') await image.decode();
+      }));
+    // A stalled decode must not keep the dialogue's preparation owner locked indefinitely.
+    let decodeTimer: number | undefined;
+    const imagesReady = newcomers.length ? Promise.race([
+      decoding,
+      new Promise<void>((resolve) => { decodeTimer = window.setTimeout(resolve, 750); }),
+    ]).finally(() => window.clearTimeout(decodeTimer)) : decoding;
+    if (exiting.length) {
+      // Keep the previous composition until departures finish: never mount both casts together.
+      this.element.dataset.castTransition = 'EXIT';
+      this.castLayer.dataset.castCount = `${existing.size}`;
+      await pause(180);
+      if (!current()) return;
+      const retained = actors.filter((actor) => existing.has(actor.dataset.actorId ?? ''));
+      this.castLayer.replaceChildren(...retained);
+      this.castLayer.dataset.castCount = `${retained.length}`;
+      if (newcomers.length) {
+        this.element.dataset.castTransition = 'BREATH';
+        await pause(this.reducedMotion ? 40 : 60);
+        if (!current()) return;
+      }
+    }
+    // Initial entries stay synchronously mounted; replacements decode while detached.
+    const mountActors = () => {
+      actors.forEach((actor, index) => {
+        const spec = phase.staticCast[index]!;
+        const scenePlacement = sceneIntegrated ? this.tableau.sceneCastPlacement?.[spec.actorId] : undefined;
+        applyActorState(actor, spec, speakerId, { facing: speakerFacing, lookTarget: speakerLookTarget }, compositionProfile, scenePlacement);
+        const effect = this.reducedMotion ? reducedEntryEffect(spec.entryEffect) : spec.entryEffect ?? 'NONE';
+        actor.dataset.entryEffect = newcomers.includes(actor) ? effect : 'NONE';
+        actor.classList.toggle('is-entering', newcomers.includes(actor) && effect !== 'NONE');
+      });
+      this.castLayer.replaceChildren(...actors);
+      this.castLayer.dataset.castCount = `${actors.length}`;
+      this.focusLayer.dataset.speaker = speakerId ?? '';
+      this.element.dataset.speakerPosition = phase.staticCast.find((actor) => actor.actorId === speakerId)?.screenPosition ?? '';
+      this.activePhaseId = phase.id;
+    };
+    if (!exiting.length) mountActors();
+    await imagesReady;
+    if (!current()) return;
+    if (exiting.length) mountActors();
+    if (actors.some((actor) => actor.classList.contains('is-entering'))) {
+      this.element.dataset.castTransition = 'ENTRY';
+      await pause(180);
+      if (!current()) return;
     }
     for (const actor of actors) actor.classList.remove('is-entering');
-    this.castLayer.replaceChildren(...actors);
+    delete this.element.dataset.castTransition;
   }
 
   dispose(): void {
+    this.disposed = true;
+    this.phaseRevision++;
     this.castLayer.replaceChildren();
     this.element.remove();
   }
