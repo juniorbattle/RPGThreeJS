@@ -223,6 +223,46 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
   for (let index = 0; index < 100; index += 1) {
     if (!await dialogue.count()) return;
     trace?.dialogues.add(sequenceId);
+    if (PRODUCTION && sequenceId === 'village_choice' && trace?.capturePrefix === 'bois-clair-saved') {
+      const stepId = await dialogue.getAttribute('data-dialogue-step');
+      trace.villageTableau ??= [];
+      if (['1', '3', '5'].includes(stepId) && !trace.villageTableau.some(entry => entry.stepId === stepId)) {
+        const savedBefore = await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6'));
+        await page.waitForFunction(() => {
+          const dialogue = document.querySelector('.dialogue[data-dialogue-sequence="village_choice"]');
+          const text = dialogue?.querySelector('.dialogue__text');
+          const actors = [...document.querySelectorAll('.narrative-stage .narrative-cast__actor')];
+          return !dialogue?.classList.contains('dialogue--preparing-step') && actors.length === 4
+            && actors.every(actor => actor.querySelector('img')?.naturalWidth > 0 && !actor.classList.contains('is-entering'))
+            && text?.dataset.finalText && text.querySelector('.dialogue__text-reveal')?.textContent === text.dataset.finalText;
+        }, null, { timeout: 10_000 });
+        const observation = await dialogue.evaluate(element => {
+          const actors = [...document.querySelectorAll('.narrative-stage .narrative-cast__actor')].map(actor => {
+            const rect = actor.querySelector('img').getBoundingClientRect();
+            return { id: actor.dataset.actorId, group: actor.dataset.actorGroup, facing: actor.dataset.facing,
+              position: actor.dataset.screenPosition, centerX: rect.x + rect.width / 2 };
+          });
+          const text = element.querySelector('.dialogue__text'), rect = text.getBoundingClientRect();
+          return { stepId: element.dataset.dialogueStep, actors, text: text.dataset.finalText,
+            textFitsViewport: rect.left >= -1 && rect.top >= -1 && rect.right <= innerWidth + 1 && rect.bottom <= innerHeight + 1,
+            enabled: !element.querySelector('.dialogue__box').disabled };
+        });
+        const civilian = observation.actors.find(actor => actor.id === 'villageoise');
+        const heroes = observation.actors.filter(actor => actor.group === 'PLAYER_COMPANY');
+        if (!civilian || civilian.group !== 'LOCAL_CIVILIAN' || civilian.facing !== 'LEFT'
+          || heroes.length !== (stepId === '1' ? 2 : 3) || heroes.some(actor => actor.centerX >= civilian.centerX)
+          || !observation.textFitsViewport || !observation.enabled) {
+          throw new Error(`Village civilian/hero geography failed: ${JSON.stringify(observation)}`);
+        }
+        const presentation = await readPresentation(page); assertDialogueTableau(presentation, 'Village relational tableau');
+        const capture = `${trace.capturePrefix}-tableau-${stepId}.png`;
+        await page.screenshot({ path: resolve(OUTPUT_DIR, capture) });
+        if (!savedBefore || savedBefore !== await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6'))) {
+          throw new Error('Observing village tableau changed stored V6 truth.');
+        }
+        trace.villageTableau.push({ ...observation, presentation, capture, savedTruthUnchanged: true });
+      }
+    }
     if (PRODUCTION && sequenceId === 'acte_ouverture' && trace?.capturePrefix === 'opening-camp-audience'
       && !trace.openingCastTransition && await dialogue.getAttribute('data-dialogue-step') === '4') {
       const segment = (await dialogue.getAttribute('data-dialogue-segment') ?? '1/1').split('/');
@@ -238,11 +278,15 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
         const before = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6')));
         await page.waitForFunction(() => {
           const actors = [...document.querySelectorAll('.narrative-stage .narrative-cast__actor')];
+          const dialogue = document.querySelector('.dialogue[data-dialogue-sequence="serpent_pursuit_pre_combat"]');
+          const text = dialogue?.querySelector('.dialogue__text');
           return actors.length === 3 && actors.every(actor => {
             const image = actor.querySelector('img');
             return image?.complete && image.naturalWidth > 0 && !actor.classList.contains('is-entering');
-          });
+          }) && !dialogue?.classList.contains('dialogue--preparing-step') && text?.dataset.finalText
+            && text.querySelector('.dialogue__text-reveal')?.textContent === text.dataset.finalText;
         }, undefined, { timeout: 10_000 });
+        await dialogue.locator('.dialogue__box').focus();
         const observation = await dialogue.evaluate(element => {
           const actors = [...document.querySelectorAll('.narrative-stage .narrative-cast__actor')].map(actor => {
             const image = actor.querySelector('img'), rect = image.getBoundingClientRect();
@@ -268,7 +312,10 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
               visibleWidthRatio: Math.max(0, Math.min(innerWidth, x + bounds.width) - Math.max(0, x)) / bounds.width };
           });
           const box = element.querySelector('.dialogue__box');
+          const text = element.querySelector('.dialogue__text'), textRect = text.getBoundingClientRect();
           return { stepId: element.dataset.dialogueStep, actors, boxEnabled: !box.disabled,
+            focused: document.activeElement === box, text: text.dataset.finalText,
+            textFitsViewport: textRect.left >= -1 && textRect.top >= -1 && textRect.right <= innerWidth + 1 && textRect.bottom <= innerHeight + 1,
             viewport: { width: innerWidth, height: innerHeight } };
         });
         const byId = Object.fromEntries(observation.actors.map(actor => [actor.id, actor]));
@@ -276,7 +323,7 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
         observation.alliedEnvelopeGap = sage && alaric ? sage.bounds.x - (alaric.bounds.x + alaric.bounds.width) : null;
         const capture = `${trace.capturePrefix}-confrontation-${stepId}.png`;
         await page.screenshot({ path: resolve(OUTPUT_DIR, capture), fullPage: false });
-        if (!alaric || !sage || !serpent || !observation.boxEnabled
+        if (!alaric || !sage || !serpent || !observation.boxEnabled || !observation.focused || !observation.textFitsViewport
           || alaric.position !== 'FAR_LEFT' || sage.position !== 'CENTER_LEFT' || serpent.position !== 'FAR_RIGHT'
           || alaric.facing !== 'RIGHT' || sage.facing !== 'RIGHT' || serpent.facing !== 'LEFT'
           || alaric.flipped || sage.flipped || !serpent.flipped
@@ -612,6 +659,9 @@ async function runNodeScenario(context, scenario) {
     if (PRODUCTION && scenario.id === 'witnesses-protected' && !trace.councilOpening) {
       throw new Error('Protected witnesses never displayed the council opening.');
     }
+    if (PRODUCTION && scenario.id === 'bois-clair-saved' && trace.villageTableau?.length !== 3) {
+      throw new Error('Village first tableau/restage/choice observations missing.');
+    }
     const assertion = scenario.assertTruth(truth);
     if (!assertion) throw new Error(`${scenario.id}: saved truth assertion failed.`);
     const capture = `${scenario.id}.png`;
@@ -651,6 +701,7 @@ async function runNodeScenario(context, scenario) {
       combats: trace.combats,
       choiceBounds: trace.choiceBounds,
       councilOpening: trace.councilOpening ?? null,
+      villageTableau: trace.villageTableau ?? null,
       initialPresentation,
       truth: scenario.pickTruth(truth),
       capture,

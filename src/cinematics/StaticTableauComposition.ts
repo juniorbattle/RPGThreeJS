@@ -7,6 +7,7 @@ export type StaticTableauCompositionProfile =
   | 'COMPANY_EXCHANGE'
   | 'OPPOSING_GROUPS'
   | 'EVENT_SUBJECT_FOCUS'
+  | 'VILLAGE_REQUEST'
   | 'PRE_COMBAT_CONFRONTATION'
   | 'AFTERMATH_GROUP'
   | 'FINALE_FOCUS';
@@ -23,6 +24,7 @@ const X: Readonly<Record<StaticTableauCompositionProfile, Readonly<Record<Narrat
   COMPANY_EXCHANGE: { FAR_LEFT: 19, LEFT: 32, CENTER_LEFT: 43, CENTER: 52, CENTER_RIGHT: 61, RIGHT: 72, FAR_RIGHT: 82 },
   OPPOSING_GROUPS: { FAR_LEFT: 16, LEFT: 29, CENTER_LEFT: 39, CENTER: 52, CENTER_RIGHT: 64, RIGHT: 76, FAR_RIGHT: 86 },
   EVENT_SUBJECT_FOCUS: { FAR_LEFT: 20, LEFT: 32, CENTER_LEFT: 43, CENTER: 55, CENTER_RIGHT: 64, RIGHT: 74, FAR_RIGHT: 83 },
+  VILLAGE_REQUEST: { FAR_LEFT: 16, LEFT: 34, CENTER_LEFT: 52, CENTER: 60, CENTER_RIGHT: 70, RIGHT: 84, FAR_RIGHT: 92 },
   PRE_COMBAT_CONFRONTATION: { FAR_LEFT: 18, LEFT: 31, CENTER_LEFT: 41, CENTER: 52, CENTER_RIGHT: 63, RIGHT: 75, FAR_RIGHT: 85 },
   AFTERMATH_GROUP: { FAR_LEFT: 22, LEFT: 34, CENTER_LEFT: 44, CENTER: 52, CENTER_RIGHT: 61, RIGHT: 70, FAR_RIGHT: 80 },
   FINALE_FOCUS: { FAR_LEFT: 20, LEFT: 33, CENTER_LEFT: 43, CENTER: 52, CENTER_RIGHT: 63, RIGHT: 74, FAR_RIGHT: 83 },
@@ -39,6 +41,12 @@ export function resolveStaticTableauComposition(
   tableau: NarrativeTableauSpec,
   phase: NarrativeVisualPhaseSpec,
 ): StaticTableauCompositionProfile {
+  // This framed village request needs room for all three allied silhouettes, even on mobile.
+  // Preserve authored slots and identity; other civilian scenes keep their existing composition.
+  if (phase.id === 'village_choice:segment-2' && phase.staticCast.length === 4
+    && ['sage_seraphine', 'maelor', 'alistair', 'villageoise'].every(id => phase.staticCast.some(actor => actor.actorId === id))) {
+    return 'VILLAGE_REQUEST';
+  }
   if (tableau.family === 'AUDIENCE') return 'AUTHORITY_AUDIENCE';
   if (tableau.family === 'PRE_COMBAT') return 'PRE_COMBAT_CONFRONTATION';
   if (tableau.family === 'AFTERMATH') return 'AFTERMATH_GROUP';

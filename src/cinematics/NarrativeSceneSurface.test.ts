@@ -121,6 +121,29 @@ describe('NarrativeSceneSurface', () => {
     expect(position.screenPosition).toBe('CENTER_LEFT');
   });
 
+  it('keeps the village request distinct through speaker changes without changing other civilian scenes', async () => {
+    const sequence = dialogues.get('village_choice')!;
+    const tableau = applyFinalDialoguePresentationPlan(sequence, createGenericNarrativeTableau(sequence));
+    const phase = tableau.phases!.find(phase => phase.stepIds.includes('3'))!;
+    const root = document.createElement('div'); document.body.append(root);
+    const surface = new NarrativeSceneSurface(root, tableau, { reducedMotion: true });
+    surface.mount('/village.webp', phase.id);
+    await surface.setPhase(phase.id, 'sage_seraphine');
+    const actors = [...surface.castLayer.querySelectorAll<HTMLElement>('[data-actor-id]')];
+    const geometry = actors.map(actor => [actor.dataset.actorId, actor.style.left]);
+    await surface.setPhase(phase.id, 'villageoise');
+    expect([...surface.castLayer.children]).toEqual(actors);
+    expect(actors.map(actor => [actor.dataset.actorId, actor.style.left])).toEqual(geometry);
+    expect(actors).toHaveLength(4);
+    const heroes = actors.filter(actor => actor.dataset.actorGroup === 'PLAYER_COMPANY');
+    const civilian = actors.find(actor => actor.dataset.actorId === 'villageoise')!;
+    expect(heroes.every(actor => parseFloat(actor.style.left) < parseFloat(civilian.style.left))).toBe(true);
+    expect(resolveStaticTableauComposition(tableau, tableau.phases![0]!)).toBe('OPPOSING_GROUPS');
+    const other = { ...phase, id: 'another-civilian-scene' };
+    expect(resolveStaticTableauComposition(tableau, other)).toBe('EVENT_SUBJECT_FOCUS');
+    surface.dispose();
+  });
+
   it('balances elite and apparition silhouettes without moving authored slots or baselines', () => {
     const base = ALARIC_AUDIENCE_TABLEAU.phases![0]!.staticCast[0]!;
     const tuning = (actorId: string) => resolveStaticTableauActorTuning('COMPANY_EXCHANGE', { ...base, actorId });
