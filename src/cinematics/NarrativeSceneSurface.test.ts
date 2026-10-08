@@ -15,6 +15,58 @@ describe('NarrativeSceneSurface', () => {
     document.body.replaceChildren();
   });
 
+  it('bounds initial environment decoding without removing the authored surface', async () => {
+    vi.useFakeTimers();
+    const decode = vi.spyOn(HTMLImageElement.prototype, 'decode').mockResolvedValue(undefined);
+    const root = document.createElement('div');
+    const surface = new NarrativeSceneSurface(root, ALARIC_AUDIENCE_TABLEAU);
+    surface.mount('/audience.webp');
+    await vi.runAllTimersAsync();
+    decode.mockImplementation(() => new Promise<void>(() => {}));
+    let settled = false;
+    const ready = surface.whenRenderable().then(() => { settled = true; });
+    await vi.advanceTimersByTimeAsync(749);
+    expect(settled).toBe(false);
+    await vi.advanceTimersByTimeAsync(1); await ready;
+    expect(settled).toBe(true);
+    expect(root.firstElementChild).toBe(surface.element);
+    expect(surface.castLayer.childElementCount).toBe(4);
+    expect(vi.getTimerCount()).toBe(0);
+  });
+
+  it('cancels hung readiness on disposal and never restarts image preparation', async () => {
+    vi.useFakeTimers();
+    const decode = vi.spyOn(HTMLImageElement.prototype, 'decode').mockResolvedValue(undefined);
+    const root = document.createElement('div');
+    const surface = new NarrativeSceneSurface(root, ALARIC_AUDIENCE_TABLEAU);
+    surface.mount('/audience.webp');
+    await vi.runAllTimersAsync();
+    decode.mockImplementation(() => new Promise<void>(() => {}));
+    const ready = surface.whenRenderable();
+    await vi.advanceTimersByTimeAsync(0);
+    surface.dispose(); await ready;
+    expect(vi.getTimerCount()).toBe(0);
+    const calls = decode.mock.calls.length;
+    await surface.whenRenderable();
+    expect(decode.mock.calls.length).toBe(calls);
+    expect(root.childElementCount).toBe(0);
+  });
+
+  it('settles disposal during phase preparation without starting later image work', async () => {
+    vi.useFakeTimers();
+    const decode = vi.spyOn(HTMLImageElement.prototype, 'decode').mockImplementation(() => new Promise<void>(() => {}));
+    const root = document.createElement('div');
+    const surface = new NarrativeSceneSurface(root, ALARIC_AUDIENCE_TABLEAU);
+    surface.mount('/audience.webp');
+    const ready = surface.whenRenderable();
+    const calls = decode.mock.calls.length;
+    surface.dispose(); await ready;
+    await vi.runAllTimersAsync();
+    expect(decode.mock.calls.length).toBe(calls);
+    expect(vi.getTimerCount()).toBe(0);
+    expect(root.childElementCount).toBe(0);
+  });
+
   it('composes environment, cast, atmosphere and speaker focus from one tableau', () => {
     const root = document.createElement('div');
     document.body.append(root);

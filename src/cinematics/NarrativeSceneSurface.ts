@@ -101,6 +101,7 @@ export class NarrativeSceneSurface {
   private phasePreparation: Promise<void> = Promise.resolve();
   private phaseRevision = 0;
   private disposed = false;
+  private readonly renderableWaits = new Set<() => void>();
   private readonly reducedMotion: boolean;
   private readonly actorImages: Readonly<Record<string, string>>;
 
@@ -145,16 +146,34 @@ export class NarrativeSceneSurface {
   }
 
   async whenRenderable(): Promise<void> {
-    await this.phasePreparation;
-    const sources = [
-      this.preparedImage,
-      ...Array.from(this.castLayer.querySelectorAll<HTMLImageElement>('img')).map((image) => image.src),
-    ].filter((source): source is string => Boolean(source));
-    await Promise.allSettled(sources.map(async (source) => {
-      const image = new Image();
-      image.src = source;
-      if (typeof image.decode === 'function') await image.decode();
-    }));
+    if (this.disposed) return;
+    const revision = this.phaseRevision;
+    let cancel!: () => void;
+    let timer: number | undefined;
+    const cancelled = new Promise<void>((resolve) => { cancel = resolve; });
+    this.renderableWaits.add(cancel);
+    const preparation = (async () => {
+      await this.phasePreparation;
+      if (this.disposed || revision !== this.phaseRevision) return;
+      const sources = [
+        this.preparedImage,
+        ...Array.from(this.castLayer.querySelectorAll<HTMLImageElement>('img')).map((image) => image.src),
+      ].filter((source): source is string => Boolean(source));
+      const decoded = Promise.allSettled(sources.map(async (source) => {
+        const image = new Image();
+        image.src = source;
+        if (typeof image.decode === 'function') await image.decode();
+      }));
+      // Readiness belongs to NarrativeStage; an unavailable image cannot hold its agency forever.
+      await Promise.race([decoded, new Promise<void>((resolve) => {
+        timer = window.setTimeout(resolve, 750);
+      }), cancelled]);
+    })();
+    try { await Promise.race([preparation, cancelled]); }
+    finally {
+      window.clearTimeout(timer);
+      this.renderableWaits.delete(cancel);
+    }
   }
 
   async setPhase(
@@ -268,6 +287,8 @@ export class NarrativeSceneSurface {
   dispose(): void {
     this.disposed = true;
     this.phaseRevision++;
+    for (const cancel of this.renderableWaits) cancel();
+    this.renderableWaits.clear();
     this.castLayer.replaceChildren();
     this.element.remove();
   }

@@ -10,6 +10,7 @@ import { CinematicPlayer } from './CinematicPlayer';
 import { CinematicRegistry } from './CinematicRegistry';
 import { applyFinalDialoguePresentationPlan } from './DialoguePresentationSegments';
 import { NarrativeStage } from './NarrativeStage';
+import { NarrativeSceneSurface } from './NarrativeSceneSurface';
 import { getResolvedPresentationBeat } from './NarrativePresentationResolver';
 import { ALARIC_AUDIENCE_TABLEAU, CAMP_DEPARTURE_TABLEAU, type NarrativeTableauSpec } from './NarrativeTableau';
 
@@ -41,6 +42,23 @@ function prepareDecodedFrame(width = 1920, height = 1080): HTMLVideoElement {
 }
 
 describe('NarrativeStage', () => {
+  it.each(['dispose', 'replace'])('does not present a stale still after readiness is cancelled by %s', async (action) => {
+    const { stage } = createStage();
+    let release!: () => void;
+    const ready = vi.spyOn(NarrativeSceneSurface.prototype, 'whenRenderable')
+      .mockImplementationOnce(() => new Promise<void>((resolve) => { release = resolve; }));
+    const first = stage.presentStill('/old.webp', 'old');
+    if (action === 'dispose') stage.dispose();
+    else await stage.presentStill('/current.webp', 'current');
+    release();
+    expect(await first).toEqual({ id: 'old', reason: 'aborted', played: false });
+    expect(stage.element.querySelector('[style*="old.webp"]')).toBeNull();
+    if (action === 'replace') {
+      expect(stage.element.querySelector('[style*="current.webp"]')).not.toBeNull();
+      stage.dispose();
+    }
+    ready.mockRestore();
+  });
   it('shows the shared HUD at static agency, hides during playback/dialogue, and restores on held agency', async () => {
     const state = createInitialState();
     const hud = new CampaignStatusHud(() => selectCampaignStatus(state));

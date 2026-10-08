@@ -223,6 +223,14 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
   for (let index = 0; index < 100; index += 1) {
     if (!await dialogue.count()) return;
     trace?.dialogues.add(sequenceId);
+    if (PRODUCTION && sequenceId === 'acte_ouverture' && trace?.capturePrefix === 'opening-camp-audience'
+      && !trace.openingCastTransition && await dialogue.getAttribute('data-dialogue-step') === '4') {
+      const segment = (await dialogue.getAttribute('data-dialogue-segment') ?? '1/1').split('/');
+      if (segment[0] === segment[1]) {
+        trace.openingCastTransition = await observeOpeningCastTransition(page);
+        continue;
+      }
+    }
     if (PRODUCTION && sequenceId === 'serpent_pursuit_pre_combat' && trace?.capturePrefix === 'serpent-ending') {
       const stepId = await dialogue.getAttribute('data-dialogue-step');
       trace.serpentTableau ??= [];
@@ -358,6 +366,87 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
     await page.waitForTimeout(55);
   }
   throw new Error(`${sequenceId}: dialogue did not complete.`);
+}
+
+async function observeOpeningCastTransition(page) {
+  await page.waitForFunction(() => {
+    const dialogue = document.querySelector('.dialogue[data-dialogue-sequence="acte_ouverture"]');
+    const text = dialogue?.querySelector('.dialogue__text');
+    return !dialogue?.classList.contains('dialogue--preparing-step')
+      && text?.dataset.finalText && text.querySelector('.dialogue__text-reveal')?.textContent === text.dataset.finalText;
+  });
+  const savedBefore = await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6'));
+  if (!savedBefore || JSON.parse(savedBefore).version !== 6) throw new Error('Opening requires a stored V6 autosave.');
+  await page.screenshot({ path: resolve(OUTPUT_DIR, 'opening-cast-before.png') });
+  await page.evaluate(() => {
+    const surface = document.querySelector('.narrative-stage .narrative-scene-surface');
+    const retained = ['maelor', 'sage_seraphine'].map(id => surface.querySelector(`[data-actor-id="${id}"]`));
+    const started = performance.now(), samples = [];
+    const sample = () => {
+      const actors = [...surface.querySelectorAll('.narrative-cast__actor')];
+      samples.push({ elapsedMs: performance.now() - started, phase: surface.dataset.castTransition ?? 'SETTLED',
+        actors: actors.map(actor => ({ id: actor.dataset.actorId, facing: actor.dataset.facing,
+          animation: getComputedStyle(actor).animationName })),
+        retained: retained.every(actor => surface.contains(actor)),
+        preparing: document.querySelector('.dialogue')?.classList.contains('dialogue--preparing-step') });
+    };
+    sample();
+    const observer = new MutationObserver(sample);
+    observer.observe(surface, { subtree: true, childList: true, attributes: true });
+    let frame;
+    const tick = () => { sample(); frame = requestAnimationFrame(tick); };
+    frame = requestAnimationFrame(tick);
+    window.__openingCastObservation = { finish: () => {
+      sample(); observer.disconnect(); cancelAnimationFrame(frame);
+      return { samples, durationMs: performance.now() - started };
+    } };
+  });
+  const box = page.locator('.dialogue[data-dialogue-sequence="acte_ouverture"] .dialogue__box');
+  await box.focus(); await page.keyboard.press('Enter');
+  await page.waitForFunction(() => {
+    const dialogue = document.querySelector('.dialogue[data-dialogue-sequence="acte_ouverture"]');
+    const surface = document.querySelector('.narrative-scene-surface');
+    const text = dialogue?.querySelector('.dialogue__text');
+    return dialogue?.dataset.dialogueStep === '5' && !dialogue.classList.contains('dialogue--preparing-step')
+      && !surface?.dataset.castTransition && text?.dataset.finalText
+      && text.querySelector('.dialogue__text-reveal')?.textContent === text.dataset.finalText;
+  }, null, { timeout: 10_000 });
+  const observation = await page.evaluate(() => {
+    const proof = window.__openingCastObservation.finish();
+    const dialogue = document.querySelector('.dialogue');
+    const box = dialogue.querySelector('.dialogue__box'), text = dialogue.querySelector('.dialogue__text');
+    const bounds = text.getBoundingClientRect(), boxBounds = box.getBoundingClientRect();
+    return { ...proof, stepId: dialogue.dataset.dialogueStep, text: text.dataset.finalText,
+      focused: document.activeElement === box, enabled: !box.disabled,
+      fits: bounds.left >= 0 && bounds.right <= innerWidth && bounds.bottom <= innerHeight
+        && bounds.left >= boxBounds.left - 1 && bounds.right <= boxBounds.right + 1 && bounds.bottom <= boxBounds.bottom + 1,
+      osReduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
+      gameReduced: window.__cin8App.state.settings.reducedGraphics };
+  });
+  const phase = name => observation.samples.filter(sample => sample.phase === name);
+  const ordered = observation.samples.filter((sample, index, samples) => index === 0 || sample.phase !== samples[index - 1].phase);
+  if (JSON.stringify(ordered.map(sample => sample.phase)) !== JSON.stringify(['SETTLED', 'EXIT', 'BREATH', 'ENTRY', 'SETTLED'])
+    || ordered.at(-1).elapsedMs - ordered[1].elapsedMs > 2000
+    || !phase('EXIT').some(sample => sample.actors.length === 4)
+    || !phase('BREATH').some(sample => sample.actors.length === 2)
+    || !phase('ENTRY').some(sample => sample.actors.length === 4)
+    || observation.samples.some(sample => sample.actors.length > 4 || !sample.retained)
+    || observation.samples.filter(sample => sample.phase !== 'SETTLED').some(sample => !sample.preparing)
+    || !observation.focused || !observation.enabled || !observation.fits
+    || (OS_REDUCED_MOTION && (!observation.osReduced || observation.gameReduced
+      || observation.samples.some(sample => sample.actors.some(actor => actor.animation !== 'none'))))) {
+    throw new Error(`Opening cast continuity/agency failed: ${JSON.stringify(observation)}`);
+  }
+  const finalCast = observation.samples.at(-1).actors;
+  if (JSON.stringify(finalCast.map(actor => [actor.id, actor.facing])) !== JSON.stringify([
+    ['kestrel', 'RIGHT'], ['elara', 'RIGHT'], ['maelor', 'LEFT'], ['sage_seraphine', 'LEFT'],
+  ])) throw new Error(`Opening authored facing differs: ${JSON.stringify(finalCast)}`);
+  const savedAfter = await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6'));
+  if (savedBefore !== savedAfter) throw new Error('Effect-free opening cast replacement changed stored V6 truth.');
+  const presentation = await readPresentation(page); assertDialogueTableau(presentation, 'opening replacement');
+  await page.screenshot({ path: resolve(OUTPUT_DIR, 'opening-cast-after.png') });
+  return { ...observation, presentation, savedTruthUnchanged: true,
+    captures: ['opening-cast-before.png', 'opening-cast-after.png'] };
 }
 
 async function finishCurrentDialogue(page, trace) {
@@ -645,7 +734,7 @@ async function runFinaleScenario(context, scenario) {
 
 async function runOpeningScenario(context) {
   const page = await context.newPage(); await installHooks(page);
-  const diagnostics = diagnosticsFor(page), trace = { dialogues: new Set(), media: new Set(), combats: 0, choiceBounds: [] };
+  const diagnostics = diagnosticsFor(page), trace = { dialogues: new Set(), media: new Set(), combats: 0, choiceBounds: [], capturePrefix: 'opening-camp-audience' };
   try {
     await page.goto(`${BASE_URL}/?presentation=narrative&media=video`, { waitUntil: 'domcontentloaded' });
     await observeSystemMotion(page);
@@ -670,7 +759,8 @@ async function runOpeningScenario(context) {
     const resume = await checkResolvedResume(page);
     const unexpected = diagnostics.requestFailures.filter((failure) => !isExpectedMediaFailure(failure));
     if (diagnostics.consoleErrors.length || diagnostics.pageErrors.length || unexpected.length) throw new Error(`Opening diagnostics: ${JSON.stringify(diagnostics)}`);
-    return { id: 'opening-camp-audience', camp, audience, dialogues: [...trace.dialogues], media: [...trace.media],
+    if (!trace.openingCastTransition) throw new Error('Opening cast replacement was not observed.');
+    return { id: 'opening-camp-audience', camp, audience, openingCastTransition: trace.openingCastTransition, dialogues: [...trace.dialogues], media: [...trace.media],
       truth: { lionMissionAccepted: true }, resume, choiceBounds: trace.choiceBounds, systemMotion: await systemMotionProof(page),
       diagnostics: { ...diagnostics, requestFailures: unexpected }, pass: true };
   } finally { await page.close(); }
@@ -764,7 +854,7 @@ for (const [sourceId, id] of [['serpent-ending', 'serpent-ending-concealed'], ['
 const selected = (entry) => SCENARIO_FILTER ? SCENARIO_FILTER.split(',').includes(entry.id)
   : !CIN8_GROUP || finaleScenarios.includes(entry) || ['bois-clair-saved', 'bois-clair-sacrificed'].includes(entry.id);
 
-if (SCENARIO_FILTER && SCENARIO_FILTER.split(',').some((id) => ![...nodeScenarios, ...finaleScenarios].some((entry) => entry.id === id))) {
+if (SCENARIO_FILTER && SCENARIO_FILTER.split(',').some((id) => ![{ id: 'opening-camp-audience' }, ...nodeScenarios, ...finaleScenarios].some((entry) => entry.id === id))) {
   throw new Error(`Unknown CIN6D6_ROUTE_SCENARIO: ${SCENARIO_FILTER}`);
 }
 await mkdir(OUTPUT_DIR, { recursive: true });
@@ -776,7 +866,7 @@ const result = { schemaVersion: 1, viewport: VIEWPORT, reducedMotion: REDUCED_MO
   method: PRODUCTION ? 'BUILT_PRODUCTION_REAL_GAMEAPP_V6_COMBAT_RESULT_FIXTURE_ONLY' : 'DEV_REAL_GAMEAPP_V6_QA_VICTORY', opening: [], nodes: [], finales: [], pass: false };
 let failed = false;
 try {
-  if (PRODUCTION && CIN8_GROUP && !SCENARIO_FILTER) {
+  if (PRODUCTION && ((CIN8_GROUP && !SCENARIO_FILTER) || SCENARIO_FILTER.split(',').includes('opening-camp-audience'))) {
     try { result.opening.push(await runOpeningScenario(context)); }
     catch (error) { failed = true; result.opening.push({ id: 'opening-camp-audience', pass: false, error: error.stack }); }
   }

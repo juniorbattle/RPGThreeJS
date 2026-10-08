@@ -405,6 +405,9 @@ export class NarrativeStage {
     if (this.boundDialogue) surface.bindDialogue(this.boundDialogue);
     surface.mount(image ?? tableau.stillImage, phaseId);
     await surface.whenRenderable();
+    if (this.disposed || this.sceneSurface !== surface || this.readiness !== readiness) {
+      return { id, reason: 'aborted', played: false };
+    }
     const result = await this.session.presentCinematic(id, { reducedMotion: false, passive: true }, surface.element);
     this.setMediaSurfaceKind(kind === 'STATIC_TABLEAU' || this.resolvedBeat?.mode === 'STATIC_TABLEAU' ? 'STATIC_TABLEAU' : kind);
     this.element.dataset.narrativeCastOwnership = surface.castLayer.childElementCount ? 'STAGE_OWNS_CAST' : 'ENVIRONMENT_ONLY';
