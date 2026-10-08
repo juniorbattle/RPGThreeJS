@@ -1,10 +1,10 @@
 # Static tableau staging polish
 
-CURRENT FACT: IN_PROGRESS; one authored relational source correction is implemented and reviewed. Production/browser acceptance is OPEN. Independent continuation is authorized while the narrative OS-static runner gate is blocked; neither task is declared complete.
+CURRENT FACT: IN_PROGRESS. Serpent narrow geometry is accepted at67462c2; sequential cast replacement source checkpoint aeb306f is verified. Initial media readiness and production transition/focus/OS/responsive acceptance remain OPEN. The narrative OS-static runner gate remains documented; neither task nor demo is complete.
 
 Authority: OD-2026-10-03-A and PRESENTATION_AND_MEDIA / DIALOGUE_STAGING, immutable set1.1.0. Scope: existing authored grouping, stable facing, bounded cast transitions, reduced motion/focus and responsive layouts. Canon, dialogue, outcomes and the four-visible-actor cap remain protected.
 
-## Implemented source checkpoint
+## Initial source checkpoint — 9f822743
 
 The active three-speaker `serpent_pursuit_pre_combat` shape placed Alaric and the General on the right, opposite Séraphine, and labelled Alaric's address to Séraphine as opposing-group speech. The plan facade now overlays only `1@alaric@0|2@serpent_general_boss@0|3@sage_seraphine@0`: Alaric LEFT and Séraphine CENTER_LEFT face right; Serpent remains FAR_RIGHT facing left. Alaric still addresses Séraphine in step1, with an authored conversation target. Other step directions remain unchanged, so speaker changes do not flip the actors.
 
@@ -12,10 +12,24 @@ Groups, roles, three-actor cast, scale, depth, entry effects, steps, transitions
 
 The complete director suite has one inherited failure at line71 expecting `mediaRemasterLater=true` for the forest mismatch. It fails identically with the original HEAD plan facade, independently substituted and then restored byte-for-byte under the lock. This expectation is outside the changed Serpent shape; no test was weakened and no full-suite PASS is claimed. Raw baseline evidence: `tmp/autonomy/staging-baseline-1933.log`.
 
-## Exact continuation
+## Historical continuation before the recovered narrow proof
 
 After normal preflight, review both paired state and `NARRATIVE_CONTEXT_COHERENCE.md`. Inspect the existing `run_cin6d6_route_browser_qa.mjs` `serpent-ending` path: it naturally reaches the exact three-speaker pre-combat dialogue but currently records choices/final boundaries, so add only the bounded observation needed for its cast positions/facing before native advancement, with a guardian review of the precise assertion. Keep combat results explicitly fixture-scoped, or stop the observation before combat; no earned-campaign proof.
 
 Build the physical source (including the six unchanged deferred keyboard blobs), register one unique production normal-motion smoke and inspect the actual three actors at their effective pixel bounds. Check the two allied figures remain visually distinct at narrow width, not merely that their slot names match. Reuse compatible receipts; wider desktop/620/390 normal and OS-only static-tableau/focus/cast-transition proof belongs to the queue milestone. Existing static-only OS assertion is exhausted this run and must not be rewritten to manufacture a PASS. Do not run historical drivers with tracked default output paths or certify DEV-only fixtures as production.
 
 Remaining task scope: the other relational groupings, stable facing and short exit/breath/entry transitions; reduced-motion/focus/responsive acceptance. Source review found the Bois-Clair civilian separately grouped with at most four visible actors, so do not invent a second correction. Narrative council normal-motion proof and both refugee acknowledgements remain independently open. Preserve the ten canonical Pursuit mapping blockers and exact deferred keyboard task/action.
+
+## Narrow silhouette correction — 2026-10-08
+
+Inherited2039WIP moves Alaric to FAR_LEFT and limits this exact confrontation to42vw below450px. Fresh serpent-0012-normal production at390x844 passed all3speaker observations; root and guardian inspected all3captures. Allied opaque-envelope gap5.321926px,full horizontal visibility,stable facing,three actors,one primary surface and stored autosave equality. ACCEPTED_SCOPED_NARROW_GEOMETRY only: captions still typewriting; settled text,focus,cast continuity,OS/game motion and wider viewport acceptance remain OPEN. Frozen build game-CdBQ4_J8.js/game-BZH7FiGl.css and result digest recorded in ignored receipt; ending/resume uses existing combat-result fixture, never earned campaign proof. No proof promoted before the queue milestone.
+
+Source audit found NarrativeSceneSurface mounts entrants alongside exiting actors, exceeding four during some replacements and omitting the required breathing interval. This is the next product correction; unchanged-cast speaker updates must retain nodes/facing with no delay.
+
+## Cast replacement source checkpoint — 2026-10-08T00:25:14.505Z
+
+Commit aeb306f89d16e3e2e08b8c3d6641ca4715af2ed7 separates departures, breathing and entries, preserving retained actor nodes and deferring their restaging until entry. No speaker-only delay, no simultaneous cast union. Detached newcomers including entryEffect NONE decode concurrently; a750ms replacement deadline prevents a stalled image from holding the next step. Revision/disposal checks prevent stale remounting. Normal180/60/180ms and reduced180/40/180ms are configured choreography; initial whenRenderable readiness remains separately unbounded and OPEN. OS disables actor animations, so no OS-fade claim.
+
+Final81tests cover intermediate4/2/4counts, retained identity/facing, unchanged focus, supersession/disposal during exit/breath/entry and delayed/hung image decode. Existing DialogueView preparation/focus tests pass; no fullbrowserfocus claim. TypeScript/contracts/staging/finalbuild game-BgoC89-e.js/game-BZH7FiGl.css pass. Guardian/narrative accept source-only checkpoint; current transition browser/fallback/OS/wider acceptance OPEN. Earlier geometry smoke build differs and proves only67462c2physical geometry.
+
+Next: Normal read-only preflight/owned lock; read STATIC_TABLEAU_STAGING_POLISH.md and source aeb306f. Address existing whenRenderable initial-image decode wait with a bounded native deadline and local lifecycle guard, preserving Stage fallback/readiness owner. Then minimally expose the existing opening-camp-audience scenario filter in tools/cinematics/run_cin6d6_route_browser_qa.mjs and observe one native acte_ouverture four-to-four replacement: EXIT/BREATH/ENTRY counts <=4, retained actors/facing, settled next text and focus after preparation. Guardian reviews exact source/assertion diff; build/register one unique390 OS-only production opening smoke with game reducedGraphics false. No combat-result injection needed in opening. Do not rerun accepted Serpent geometry as final-build proof or edit exhausted static-only council OS assertion. Wider1440/620/390 normalOS acceptance belongs at the tableau milestone; preserve six deferred bytes and exact deferredDemoTask.

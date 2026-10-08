@@ -1,0 +1,13 @@
+# Cast continuity checkpoint — 2026-10-08T00:25:14.505Z
+
+Run rpgthreejs-auto-dev-90m-20261008T0012; dev sourceaeb306f89d16e3e2e08b8c3d6641ca4715af2ed7, geometry67462c2; final publication recorded in automation memory. Task STATIC-TABLEAU-STAGING-POLISH remains IN_PROGRESS.
+
+Takeover: expired2039lock archived only after >105min, idle stopped chats, terminal Serpent receipt, no associatedQA/Git/build, remote parity. Unrelated5173server preserved. All12inherited paths reviewed/snapshotted; six deferred bytes/action unchanged. Old overlap receipt remains NOT_ACCEPTED_VISUAL_OVERLAP.
+
+Accepted: one fresh390normal geometry smoke,stable frozen source/driver/build,result digest,3inspectedcaptures,gap5.321926px. Scope excludes typing text/focus/OS/milestone/earnedcombat. Replacement source now exits->breathes->enters with <=4 staged actors, retained nodes and guarded stale continuations.750ms replacement decode deadline; separately unbounded initial readiness remains OPEN.81tests/types/contracts/staging/finalbuild PASS;2reused source reviewers PASS. Current build includes unchanged unaccepted keyboard WIP and differs from accepted geometry smoke.
+
+Next action: Normal read-only preflight/owned lock; read STATIC_TABLEAU_STAGING_POLISH.md and source aeb306f. Address existing whenRenderable initial-image decode wait with a bounded native deadline and local lifecycle guard, preserving Stage fallback/readiness owner. Then minimally expose the existing opening-camp-audience scenario filter in tools/cinematics/run_cin6d6_route_browser_qa.mjs and observe one native acte_ouverture four-to-four replacement: EXIT/BREATH/ENTRY counts <=4, retained actors/facing, settled next text and focus after preparation. Guardian reviews exact source/assertion diff; build/register one unique390 OS-only production opening smoke with game reducedGraphics false. No combat-result injection needed in opening. Do not rerun accepted Serpent geometry as final-build proof or edit exhausted static-only council OS assertion. Wider1440/620/390 normalOS acceptance belongs at the tableau milestone; preserve six deferred bytes and exact deferredDemoTask.
+
+All119prior ledger jobs and deferredDemoTask structurally unchanged;120total. Excluding inherited:1runtime+1test,0newQA,0proof,4workflow.0failedseeds. No new canon/LOCKED/save schema/main/media/audio change; demo incomplete. Finalguard/publication/snapshot/lock release follow in memory.
+
+Verified source devaeb306f89d16e3e2e08b8c3d6641ca4715af2ed7 and final recovery wip/rpgthreejs-auto-dev-90m-20261008T0012@cf2b7c89d0a5f5ff16bb177e7ed4caf6e1f38813 at 2026-10-08T00:26:57.803Z. Real index empty; final workflow/publication SHA in memory.

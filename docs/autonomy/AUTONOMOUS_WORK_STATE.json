@@ -1,59 +1,49 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-07T19:36:09.5104199Z",
-  "runEndedAt": "2026-10-07T20:06:33.562Z",
+  "runStartedAt": "2026-10-08T00:13:22.0463300Z",
+  "runEndedAt": "2026-10-08T00:26:57.803Z",
   "activeTask": "STATIC-TABLEAU-STAGING-POLISH",
-  "activePhase": "Independent exact-shape relational correction after documented narrative browser blockage",
-  "activeSubtask": "Alaric and Seraphine allied against Serpent in3speaker runtime plan; source reviewed, production geometry/facing proof OPEN",
+  "activePhase": "Narrow Serpent geometry accepted; sequential cast replacement source checkpoint; browser milestone OPEN",
+  "activeSubtask": "Exit/breath/entry, four-actor cap, supersession/disposal and bounded replacement decode implemented; initial readiness and production transition/focus acceptance OPEN",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "9f822743bc3cb5ba15131dd3477c1777e5779212",
-  "lastPushedCommit": "9f822743bc3cb5ba15131dd3477c1777e5779212",
+  "lastKnownGoodCommit": "aeb306f89d16e3e2e08b8c3d6641ca4715af2ed7",
+  "lastPushedCommit": "aeb306f89d16e3e2e08b8c3d6641ca4715af2ed7",
   "completedThisRun": [
-    "Preflight: absent lock, dev/remote parity, no associated QA/Git worker; six deferred blobs unchanged",
-    "Two existing refugee transaction phrases corrected without effects or eligibility changes;114 focused tests green",
-    "Exhaustive base dialogue source audit found no further definite contradiction; protected finale transforms untouched",
-    "Council opening captured/readable at390OS; both smoke attempts FAILED/NOT_ACCEPTED; one minimal assertion correction exhausted",
-    "Independent3speaker Serpent relational source correction;43 focused stage/regression tests and types PASS; inherited director remaster expectation reproduced atHEAD"
+    "Stale lock recovered after >105min, idle chats, terminal receipt, no associated QA/Git processes and remote parity",
+    "Recovered inherited Serpent FAR_LEFT/42vw correction accepted for narrow geometry with fresh production smoke and guardian capture review",
+    "Sequential replacement avoids simultaneous casts; retained nodes persist; replacement decode deadline and stale continuations covered by81focused tests and two reused source reviewers"
   ],
   "filesChanged": [
-    "src/game/contextualDialogueContent.ts",
-    "src/game/reputationEventContent.ts",
-    "src/cinematics/NarrativePresentationPlans.ts",
-    "src/game/contextualDialogue.test.ts",
-    "src/cinematics/DialogueStagingDirector.test.ts",
-    "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "src/cinematics/NarrativeSceneSurface.ts",
+    "src/cinematics/NarrativeSceneSurface.test.ts",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/STATIC_TABLEAU_STAGING_POLISH.md",
-    "docs/autonomy/handoffs/2026-10-07T1933Z-codex-narrative-tableau-checkpoint.md"
+    "docs/autonomy/handoffs/2026-10-08T0012Z-codex-cast-continuity-checkpoint.md"
   ],
   "testsRun": [
-    "114 focused narrative tests5files PASS",
-    "tsc --noEmit PASS",
-    "Vite build game-CPmDBwuG.js/game-DFzR6Ihk.css PASS",
-    "8contracts8slots PASS; LOCKED gates empty; diff --check PASS",
-    "Staging75dialogues257steps282runtime steps PASS after environment escalation",
-    "Stage exact-runtime regression1PASS; spatial/tableau/stage/census42PASS",
-    "Director whole suite22PASS1inheritedFAIL; baseline originalHEAD facade reproduces same forest mediaRemasterLater expectation",
-    "Stage tsc --noEmit PASS",
-    "Final tsc/build PASS game-CEfIwr9I.js/game-DFzR6Ihk.css; staging75dialogues257steps282runtime steps PASS; 8contracts8slots/eightMP4/LOCKED/generated/whitespace gates PASS"
+    "41geometry tests passed before smoke:19Stage/21spatial-tableau-audit/1Director; initial allied-name filter skipped and not counted",
+    "81final transition tests:20Surface/19Stage/32Runtime/10DialogueView; rechecked after decode-deadline correction",
+    "Direct TypeScript, contracts8/slots8, staging75dialogues257steps282runtime, production build, eight MP4s",
+    "git diff --check and both immutable/working-tree LOCKED gates",
+    "One registered390normal serpent-ending smoke; no second scenario"
   ],
   "testsPassed": [
-    "114 focused narrative tests5files PASS",
-    "tsc --noEmit PASS",
-    "Vite build game-CPmDBwuG.js/game-DFzR6Ihk.css PASS",
-    "8contracts8slots PASS; LOCKED gates empty; diff --check PASS",
-    "Staging75dialogues257steps282runtime steps PASS after environment escalation",
-    "Stage exact-runtime regression1PASS; spatial/tableau/stage/census42PASS",
-    "Stage tsc --noEmit PASS",
-    "Final tsc/build PASS game-CEfIwr9I.js/game-DFzR6Ihk.css; staging75dialogues257steps282runtime steps PASS; 8contracts8slots/eightMP4/LOCKED/generated/whitespace gates PASS"
+    "41focused tests:19NarrativeStage,21spatial/tableau/audit,1three-speaker Director",
+    "tsc --noEmit",
+    "8contracts/8slots",
+    "Staging75dialogues257steps282runtime",
+    "Production game-CdBQ4_J8.js/game-BZH7FiGl.css; eight MP4s",
+    "390normal serpent-ending smoke pass; stable provenance; 3inspected captures",
+    "81final transition tests PASS",
+    "Final TypeScript/contracts/staging/build game-BgoC89-e.js/game-BZH7FiGl.css PASS"
   ],
   "testsRemaining": [
-    "Relational pre-combat normal production capture/actual bounds",
-    "Wider tableau grouping/cast-transition/focus/normalOS responsive milestone",
-    "Pending narrative normal council and corrected refugee acknowledgement production proof",
-    "Full demo and exact deferred keyboard acceptance"
+    "Native opening replacement/focus/settled-text proof on current final source",
+    "Initial whenRenderable image deadline/fallback lifecycle correction and verification",
+    "Tableau milestone desktop1440/intermediate620/narrow390 normal and OS-only motion; representative choices/focus",
+    "Pending narrative council/refugee production proof; exhausted static-only OS guard remains unaccepted",
+    "Full demo and exact deferred keyboard task"
   ],
   "blockers": [
     "Pursuit production collision integration:10windows lack explicitly authored eligible canonical mappings; isolated candidate PASS does not close full task",
@@ -64,12 +54,12 @@
     "COMPLETE_SCOPED: TRAVERSAL-ROAD-ELEMENTS",
     "COMPLETE_SCOPED: PRE-JUDGEMENT-CAMPFIRE",
     "OPEN: NARRATIVE source audit complete; council/refugee/browser milestone pending",
-    "ACTIVE: STATIC-TABLEAU relational source correction; production/focus/reduced-motion milestone pending",
+    "ACTIVE: STATIC-TABLEAU narrow geometry accepted; replacement source checkpoint; initial readiness and production motion/focus/responsive milestone OPEN",
     "PENDING: SCENE-TRANSITION-COPY",
     "PENDING: ENVIRONMENT-NARRATIVE-COHERENCE",
     "PENDING: Resume deferred DEMO-QA-POLISH"
   ],
-  "nextAction": "Read STATIC_TABLEAU_STAGING_POLISH.md and pendingNarrativeTask. Existing route runner serpent-ending reaches3speaker pre-combat: add one bounded cast/position/facing observation before native advance, guardian exact assertion review, build/register one normal production smoke on unique ignored output/free strict port; inspect allied silhouettes at390. Keep fixture scope, six deferred keyboard bytes and exact action. Narrative council normal-motion and two refugee acknowledgement proofs remain open; do not edit exhausted OS/static assertion or rerun accepted campfire/ROAD matrices.",
+  "nextAction": "Normal read-only preflight/owned lock; read STATIC_TABLEAU_STAGING_POLISH.md and source aeb306f. Address existing whenRenderable initial-image decode wait with a bounded native deadline and local lifecycle guard, preserving Stage fallback/readiness owner. Then minimally expose the existing opening-camp-audience scenario filter in tools/cinematics/run_cin6d6_route_browser_qa.mjs and observe one native acte_ouverture four-to-four replacement: EXIT/BREATH/ENTRY counts <=4, retained actors/facing, settled next text and focus after preparation. Guardian reviews exact source/assertion diff; build/register one unique390 OS-only production opening smoke with game reducedGraphics false. No combat-result injection needed in opening. Do not rerun accepted Serpent geometry as final-build proof or edit exhausted static-only council OS assertion. Wider1440/620/390 normalOS acceptance belongs at the tableau milestone; preserve six deferred bytes and exact deferredDemoTask.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
@@ -78,14 +68,14 @@
     "TRAVERSAL-ROAD-ELEMENTS: COMPLETE_SCOPED_PRESENTATION",
     "PRE-JUDGEMENT-CAMPFIRE: COMPLETE_SCOPED_PRESENTATION",
     "NARRATIVE-CONTEXT-COHERENCE: SOURCE_CHECKPOINT; BROWSER_GATE_OPEN_STATIC_OS_HARNESS",
-    "STATIC-TABLEAU-STAGING-POLISH: IN_PROGRESS; RELATIONAL_SOURCE_CHECKPOINT",
+    "STATIC-TABLEAU-STAGING-POLISH: IN_PROGRESS; NARROW_GEOMETRY_ACCEPTED; CAST_REPLACEMENT_SOURCE_CHECKPOINT",
     "SCENE-TRANSITION-COPY: PENDING",
     "ENVIRONMENT-NARRATIVE-COHERENCE: PENDING",
     "Resume deferred DEMO-QA-POLISH: PENDING"
   ],
-  "creditStatus": "AVAILABLE; no credit-saving claim",
+  "creditStatus": "AVAILABLE; no quota-saving claim",
   "contractComplianceStatus": {
-    "status": "PASS scoped source checkpoints; BLOCKED narrative/tableau browser milestone acceptance",
+    "status": "PASS scoped narrow geometry and replacement source; BLOCKED full tableau production acceptance",
     "contractSetVersion": "1.1.0",
     "lockedRulesChanged": false,
     "roadMatrix": {
@@ -110,27 +100,37 @@
       "harnessCorrectionsUsed": 1
     },
     "tableauCheckpoint": {
-      "source": "PASS exact3speaker relationship overlay; generated sources unchanged",
-      "reviewers": "Narrative and guardian PASS scoped source",
-      "tests": "42stage/spatial/tableau/census plus1targeted regression PASS; inherited directorline71 reproduced onHEAD",
-      "browser": "OPEN; no new scenario launched"
+      "source": "aeb306f source-only exit/breath/entry/cap/lifecycle/deadline checkpoint;67462c2 narrow geometry",
+      "reviewers": "Two distinct read-only reviewers reused:guardian and narrative; actual diff/selected3captures reviewed",
+      "tests": "81final transition +41earlier geometry tests;19Stage overlapping; inherited Directorline71 failure preserved, full suite not run",
+      "browser": "ACCEPTED_SCOPED_NARROW_GEOMETRY frozen pre-transition build only; current transition/OS/focus OPEN"
     },
     "currentMatrix": {
-      "GAME_CONSTITUTION": "PASS no truth writes",
-      "ART_DIRECTION": "N/A",
+      "GAME_CONSTITUTION": "PASS presentation-only",
+      "ART_DIRECTION": "N/A no assets changed",
       "CHARACTERS": "N/A",
       "ENVIRONMENTS": "N/A",
-      "NARRATIVE_CAMPAIGN": "PASS text/IDs/choices/effects preserved",
-      "NARRATIVE_PRESENTATION": "PASS scoped relational source; runtime OPEN",
+      "NARRATIVE_CAMPAIGN": "PASS canonical text/IDs/choices/outcomes unchanged",
+      "NARRATIVE_PRESENTATION": "PASS replacement source/cap/lifecycle; browser OPEN",
       "TRAVERSAL": "N/A",
-      "COMBAT": "N/A owners unchanged",
-      "SAVE": "PASS schema/owners unchanged; observed equality not accepted",
-      "UI_ACCESSIBILITY": "BLOCKED pending current geometry/OS/focus proof",
-      "QA_EVIDENCE": "BLOCKED both smoke attempts failed; stage browser OPEN",
-      "REPOSITORY_GOVERNANCE": "PASS explicit snapshots/paths/dev publication; main and LOCKED unchanged"
-    }
+      "COMBAT": "N/A existing owners and fixture unchanged",
+      "SAVE": "PASS no durable fields/writes; bounded old geometry stored equality only",
+      "UI_ACCESSIBILITY": "BLOCKED full normalOS/viewport/focus acceptance; narrow geometry scoped PASS",
+      "QA_EVIDENCE": "BLOCKED current transition browser;81tests/types/contracts/staging/build PASS; frozen geometry accepted",
+      "REPOSITORY_GOVERNANCE": "PASS reviewed explicit snapshots/dev only; main/LOCKED unchanged"
+    },
+    "contractsRead": [
+      "GAME_CONSTITUTION",
+      "README/manifest1.1.0",
+      "AUTONOMOUS_WORK_PROTOCOL",
+      "PRESENTATION_AND_MEDIA",
+      "CAMPAIGN_AND_STATE",
+      "WORLD_AND_CHARACTERS",
+      "UI_AND_ACCESSIBILITY",
+      "AUTHORING_AND_QA"
+    ]
   },
-  "commitReferenceScope": "Published scoped source checkpoint only; one reproduced inherited test expectation and browser gates remain open. Final workflow commit/parity recorded in automation memory.",
+  "commitReferenceScope": "lastKnownGoodCommit is source checkpoint; final publication commit recorded in automation memory, not recursively encoded",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -231,13 +231,13 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261007T1933",
+  "runId": "rpgthreejs-auto-dev-90m-20261008T0012",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-07T20:06:34.034Z",
+  "lastHeartbeat": "2026-10-08T00:26:58.688Z",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261007T1933",
-    "sha": "5d0a12baa2da319a705dce8361203adbbb88447c",
-    "status": "SCOPED_SOURCE_CHECKPOINT_ACCEPTANCE_OPEN_WITH_INHERITED_EXPECTATION",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0012",
+    "sha": "cf2b7c89d0a5f5ff16bb177e7ed4caf6e1f38813",
+    "status": "REMOTE_PUBLISHED_RECOVERY_FOR_SIX_UNCHANGED_DEFERRED_BLOBS",
     "dirtyFiles": [
       "legacy-combat.html",
       "src/combat/combatKeyboard.test.ts",
@@ -246,14 +246,14 @@
       "src/styles/combat-shell.css",
       "tools/combat-battlefield-keyboard-production-qa.mjs"
     ],
-    "lastGreenCheck": "114narrative tests;43stage focused checks; types/finalbuild/staging/contracts gates pass;1director expectation independently reproduced atHEAD; browser OPEN",
-    "lastSnapshotAt": "2026-10-07T20:06:34.034Z"
+    "lastGreenCheck": "81focused tests/types/contracts/staging/build PASS; transition browser OPEN",
+    "lastSnapshotAt": "2026-10-08T00:26:12.162Z"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261007T1933",
+    "runId": "rpgthreejs-auto-dev-90m-20261008T0012",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-07T20:06:34.034Z",
-    "status": "CHECKPOINT_READY_BROWSER_OPEN",
+    "lastHeartbeat": "2026-10-08T00:26:58.688Z",
+    "status": "SOURCE_CHECKPOINT_BROWSER_OPEN",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -3852,7 +3852,7 @@
         },
         "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-03T03:58:19.322Z",
-        "endedAt": "2026-10-03T04:12:44.910Z",
+        "endedAt": "2026-10-03T04:12:44.91Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": true,
@@ -3986,7 +3986,7 @@
         "resultSha256": "c4bf812331b219612c40ac8b3246f1d204d78085d067a749b6dd245fe1c5f208",
         "provenanceStable": true,
         "ownerReview": {
-          "at": "2026-10-03T04:29:51.230Z",
+          "at": "2026-10-03T04:29:51.23Z",
           "reviewer": "orchestrator and reused contracts-guardian",
           "scope": "390x844OS reduced motion native marais victory/village defeat/full ownerV6cleanup/focused departure/exact reload",
           "driverSha256": "510c54422335f72e9234525d0c1ba8c04e7d24c7a8f328ffe50780b38b05f069",
@@ -4084,7 +4084,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T08:35:15.236Z",
-        "endedAt": "2026-10-03T08:39:36.250Z",
+        "endedAt": "2026-10-03T08:39:36.25Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/visual-0820-normal/results.json",
         "resultSha256": "8f436d53e689a95ff86b7ba21dc5ff36cdd15f0b2e1aab994d3177aad7c24f6a",
@@ -4096,7 +4096,7 @@
         "eligibleForReview": false,
         "acceptanceAtReview": {
           "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
-          "recordedAt": "2026-10-03T09:11:28.360Z",
+          "recordedAt": "2026-10-03T09:11:28.36Z",
           "scope": "Presentation only; fixture-assisted origins/results, not earned campaign or tactical acceptance",
           "sourceBytesVerified": true,
           "buildBytesVerified": true,
@@ -4199,7 +4199,7 @@
         "provenanceStable": false,
         "acceptanceAtReview": {
           "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
-          "recordedAt": "2026-10-03T09:11:28.360Z",
+          "recordedAt": "2026-10-03T09:11:28.36Z",
           "scope": "Presentation only; fixture-assisted origins/results, not earned campaign or tactical acceptance",
           "sourceBytesVerified": true,
           "buildBytesVerified": true,
@@ -4304,7 +4304,7 @@
         "eligibleForReview": false,
         "acceptanceAtReview": {
           "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
-          "recordedAt": "2026-10-03T09:11:28.360Z",
+          "recordedAt": "2026-10-03T09:11:28.36Z",
           "scope": "Presentation only; fixture-assisted origins/results, not earned campaign or tactical acceptance",
           "sourceBytesVerified": true,
           "buildBytesVerified": true,
@@ -4317,7 +4317,7 @@
         "jobId": "visual-0820-v2-normal",
         "runId": "rpgthreejs-auto-dev-90m-20261003T0820",
         "status": "SUCCEEDED",
-        "registeredAt": "2026-10-03T08:43:48.530Z",
+        "registeredAt": "2026-10-03T08:43:48.53Z",
         "pid": 41876,
         "port": 5276,
         "command": [
@@ -4407,7 +4407,7 @@
         "eligibleForReview": true,
         "acceptanceAtReview": {
           "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
-          "recordedAt": "2026-10-03T09:11:28.360Z",
+          "recordedAt": "2026-10-03T09:11:28.36Z",
           "scope": "Presentation only; fixture-assisted origins/results, not earned campaign or tactical acceptance",
           "sourceBytesVerified": true,
           "buildBytesVerified": true,
@@ -4509,7 +4509,7 @@
         "eligibleForReview": true,
         "acceptanceAtReview": {
           "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
-          "recordedAt": "2026-10-03T09:11:28.360Z",
+          "recordedAt": "2026-10-03T09:11:28.36Z",
           "scope": "Presentation only; fixture-assisted origins/results, not earned campaign or tactical acceptance",
           "sourceBytesVerified": true,
           "buildBytesVerified": true,
@@ -4613,7 +4613,7 @@
         "eligibleForReview": true,
         "acceptanceAtReview": {
           "implementationCommit": "fa4dac612dd8b883759794a837c7d9eed9aa73cc",
-          "recordedAt": "2026-10-03T09:11:28.360Z",
+          "recordedAt": "2026-10-03T09:11:28.36Z",
           "scope": "Presentation only; fixture-assisted origins/results, not earned campaign or tactical acceptance",
           "sourceBytesVerified": true,
           "buildBytesVerified": true,
@@ -4731,7 +4731,7 @@
         "jobId": "motion-1002-os",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
         "status": "ABORTED_SOURCE_CORRECTION",
-        "registeredAt": "2026-10-03T10:17:23.540Z",
+        "registeredAt": "2026-10-03T10:17:23.54Z",
         "pid": 47316,
         "port": 5281,
         "command": [
@@ -4817,7 +4817,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T10:17:45.170Z",
+        "startedAt": "2026-10-03T10:17:45.17Z",
         "workerReceiptCommand": [
           "node",
           "tools/traversal-motion-production-qa.mjs"
@@ -5308,7 +5308,7 @@
         "jobId": "motion-1002-v3-os",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
         "status": "SUCCEEDED",
-        "registeredAt": "2026-10-03T10:31:03.420Z",
+        "registeredAt": "2026-10-03T10:31:03.42Z",
         "pid": 41896,
         "port": 5281,
         "command": [
@@ -5971,7 +5971,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T14:42:25.416Z",
-        "endedAt": "2026-10-03T14:42:27.890Z",
+        "endedAt": "2026-10-03T14:42:27.89Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/pursuit-1430-v2/results.json",
         "resultSha256": "5cea3ff60c2b2e598b79446c03f128bfcdb4be7e15a03c10dc0df692ce7e4e65",
@@ -5987,7 +5987,7 @@
         "jobId": "pursuit-1430-v3",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1430",
         "status": "FAILED",
-        "registeredAt": "2026-10-03T14:43:32.940Z",
+        "registeredAt": "2026-10-03T14:43:32.94Z",
         "pid": 24088,
         "port": 5284,
         "command": [
@@ -6091,7 +6091,7 @@
         "jobId": "pursuit-1430-v4",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1430",
         "status": "FAILED",
-        "registeredAt": "2026-10-03T14:45:01.890Z",
+        "registeredAt": "2026-10-03T14:45:01.89Z",
         "pid": 45892,
         "port": 5284,
         "command": [
@@ -6283,7 +6283,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T14:47:29.015Z",
-        "endedAt": "2026-10-03T14:49:01.160Z",
+        "endedAt": "2026-10-03T14:49:01.16Z",
         "exitCode": 0,
         "resultPath": "tmp/traversal/pursuit-1430-v5/results.json",
         "resultSha256": "56bfd9fe624ca76365a22fa8e9f68e5babe8099939a76f6b4657f3db27d74a7d",
@@ -6398,7 +6398,7 @@
         "resultDigestMatches": true,
         "eligibleForReview": true,
         "acceptanceAtReview": {
-          "reviewedAt": "2026-10-03T14:57:52.770Z",
+          "reviewedAt": "2026-10-03T14:57:52.77Z",
           "checksPath": "docs/reports/traversal-pursuit-charge-candidate-1-browser/checks.json",
           "checksSha256": "65d0421024e6b165ee9235376889eb4cc286ff97df811b8f51c8d827b344b3e6",
           "scope": "isolated minified candidate with native RAF and controls; no campaign owner/save/combat",
@@ -7096,8 +7096,8 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T18:46:54.240Z",
-        "endedAt": "2026-10-03T18:48:11.360Z",
+        "startedAt": "2026-10-03T18:46:54.24Z",
+        "endedAt": "2026-10-03T18:48:11.36Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/road-1815-reset-probe-v5/results.json",
         "resultSha256": "57486890ac446d43fc67d17d4b501cc6d7394a0173ba7df0803f43b05cf1cea2",
@@ -7197,7 +7197,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T18:52:11.702Z",
-        "endedAt": "2026-10-03T18:53:28.590Z",
+        "endedAt": "2026-10-03T18:53:28.59Z",
         "exitCode": 0,
         "resultPath": "tmp/traversal/road-1815-early-probe-v6/results.json",
         "resultSha256": "66cba3835856879cd39e06a600a4a36e3c1dab38fb143b461c1e69eead3e69c5",
@@ -8068,7 +8068,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T19:09:25.730Z",
+        "startedAt": "2026-10-03T19:09:25.73Z",
         "endedAt": "2026-10-03T19:20:01.341Z",
         "provenanceMatches": true,
         "requestMatches": true,
@@ -8085,7 +8085,7 @@
         "jobId": "road-1815-v3-game",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1815",
         "status": "FAILED",
-        "registeredAt": "2026-10-03T19:08:44.780Z",
+        "registeredAt": "2026-10-03T19:08:44.78Z",
         "pid": 38844,
         "port": 5296,
         "command": [
@@ -8177,7 +8177,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T19:09:38.740Z",
+        "startedAt": "2026-10-03T19:09:38.74Z",
         "endedAt": "2026-10-03T19:25:44.264Z",
         "provenanceMatches": true,
         "requestMatches": true,
@@ -8396,7 +8396,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T19:50:45.790Z",
+        "startedAt": "2026-10-03T19:50:45.79Z",
         "endedAt": "2026-10-03T19:50:45.957Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/road-1945-v4-os/results.json",
@@ -8507,7 +8507,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T19:50:46.117Z",
-        "endedAt": "2026-10-03T19:50:46.290Z",
+        "endedAt": "2026-10-03T19:50:46.29Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/road-1945-v4-game/results.json",
         "resultSha256": "9a1acbf9786a25cf9bbaff2e8af9781650000fae0b3bf724d474b65bc5e88411",
@@ -8524,7 +8524,7 @@
         "jobId": "road-1945-v4e-normal",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1945",
         "status": "SUCCEEDED",
-        "registeredAt": "2026-10-03T19:51:15.380Z",
+        "registeredAt": "2026-10-03T19:51:15.38Z",
         "pid": 25472,
         "port": 5297,
         "command": [
@@ -9072,7 +9072,7 @@
         "jobId": "road-1945-visible-lab-v3",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1945",
         "status": "SUCCEEDED",
-        "registeredAt": "2026-10-03T20:00:10.340Z",
+        "registeredAt": "2026-10-03T20:00:10.34Z",
         "pid": 34296,
         "port": 5300,
         "command": [
@@ -10045,7 +10045,7 @@
         "jobId": "road-1945-more-v2-normal",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1945",
         "status": "FAILED",
-        "registeredAt": "2026-10-03T20:20:06.150Z",
+        "registeredAt": "2026-10-03T20:20:06.15Z",
         "pid": 53660,
         "port": 5301,
         "command": [
@@ -10491,7 +10491,7 @@
         "jobId": "road-1945-more-v2-game",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1945",
         "status": "FAILED",
-        "registeredAt": "2026-10-03T20:20:08.880Z",
+        "registeredAt": "2026-10-03T20:20:08.88Z",
         "pid": 58496,
         "port": 5303,
         "command": [
@@ -10600,7 +10600,7 @@
         "jobId": "road-1945-visible-lab-v5",
         "runId": "rpgthreejs-auto-dev-90m-20261003T1945",
         "status": "SUCCEEDED",
-        "registeredAt": "2026-10-03T20:22:05.240Z",
+        "registeredAt": "2026-10-03T20:22:05.24Z",
         "pid": 53544,
         "port": 5300,
         "command": [
@@ -10800,7 +10800,7 @@
         },
         "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-03T20:22:18.271Z",
-        "endedAt": "2026-10-03T20:24:00.320Z",
+        "endedAt": "2026-10-03T20:24:00.32Z",
         "exitCode": 0,
         "resultPath": "tmp/traversal/road-1945-entry-v2-normal/results.json",
         "resultSha256": "9c60543725f9997931e2be79b967fd11c9c8b86303d3861d1f166e595e571159",
@@ -10919,7 +10919,7 @@
         "resultDigestMatches": true,
         "eligibleForReview": true,
         "acceptanceScope": "1 T1/390 OS-only screen-clear early reveal; same limitation",
-        "acceptedAt": "2026-10-03T23:51:28.650Z",
+        "acceptedAt": "2026-10-03T23:51:28.65Z",
         "matchesExecutionAtReview": true,
         "eligibleForReviewAtReview": true,
         "provenanceRepresentation": "Reviewed against frozen physical source/tool/build inventory before unchanged-byte commits; raw receipt identities retained"
@@ -11262,7 +11262,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-04T00:22:43.913Z",
-        "endedAt": "2026-10-04T00:23:04.440Z",
+        "endedAt": "2026-10-04T00:23:04.44Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/road-0007-late-lab/results.json",
         "resultSha256": "48e8d17207a4f8ad4c5ff6439b33b5a4bf9ada85121f38f4b5bbacd9ffe56ad1",
@@ -11723,7 +11723,7 @@
         "resultPath": "tmp/traversal/road-0007-branch-v3-os/results.json",
         "resultSha256": "d4dd1b48b819d1535a3b155d794718aaa1a3cd5c9d63092411f77486a413e6c3",
         "provenanceStable": true,
-        "acceptedAt": "2026-10-04T00:54:54.820Z",
+        "acceptedAt": "2026-10-04T00:54:54.82Z",
         "acceptanceScope": "Selected fixture-origin native built branch-combat road contact/lifetime/full exit/depth/native lane/unique temporary award; selected frame brackets only; no earnedV6/full-road/perceptual/global frame-budget acceptance",
         "review": "Root digest/source/driver/build plus traversal reviewer selected T1-390/T3-620 OS frames",
         "exitCode": 0,
@@ -11845,7 +11845,7 @@
         "jobId": "road-0007-branch-v4-normal-T3",
         "runId": "rpgthreejs-auto-dev-90m-20261004T0007",
         "status": "SUCCEEDED",
-        "registeredAt": "2026-10-04T00:50:30.970Z",
+        "registeredAt": "2026-10-04T00:50:30.97Z",
         "pid": 25744,
         "port": 5311,
         "command": [
@@ -12478,7 +12478,7 @@
         },
         "acceptance": "ACCEPTED_SCOPED",
         "startedAt": "2026-10-04T02:00:36.911Z",
-        "endedAt": "2026-10-04T02:17:00.530Z",
+        "endedAt": "2026-10-04T02:17:00.53Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": true,
@@ -13111,7 +13111,7 @@
         "jobId": "council-1933-os-fixed",
         "runId": "rpgthreejs-auto-dev-90m-20261007T1933",
         "status": "FAILED",
-        "registeredAt": "2026-10-07T19:49:19.670Z",
+        "registeredAt": "2026-10-07T19:49:19.67Z",
         "pid": null,
         "port": 5322,
         "command": [
@@ -13187,19 +13187,198 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "exitCode": 1,
-        "endedAt": "2026-10-07T19:53:25.930Z",
+        "endedAt": "2026-10-07T19:53:25.93Z",
         "resultPath": "tmp/cinematics/council-1933-os-fixed/results.json",
         "resultSha256": "72f2306b8d757d94ba67fb3f8bee9ed18f63b89ffec389523261c06a027f9ce0",
         "manualExecutionRecord": true,
         "receiptWriter": "OWNER_TERMINAL_RECONCILIATION_NOT_WORKER",
         "provenanceStable": true,
         "failureClassification": "Unchanged OS assertion requires approved video attempt; static-only council unsupported. Single correction exhausted; no further rerun; no product regression established."
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "serpent-2039-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261007T2039",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-07T20:45:18.672Z",
+        "pid": null,
+        "port": 5323,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "scenario": "serpent-ending",
+          "viewport": "390x844",
+          "production": true,
+          "osReducedMotion": false,
+          "gameReducedMotion": false,
+          "method": "fixture-origin built GameApp; confrontation before combat result injection"
+        },
+        "requiredAssertions": [
+          "three authored speaker steps retain allied geography and facing",
+          "opaque artwork envelopes ordered and horizontally visible",
+          "complete autosave equality across each bounded observation",
+          "one primary tableau and enabled dialogue",
+          "fixture-scoped ending and resolved resume only"
+        ],
+        "output": "tmp/cinematics/serpent-2039-normal",
+        "receiptPath": "tmp/cinematics/serpent-2039-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "1bfad661452cd8194a45c04762a776e1b18f2657",
+          "sourceTree": "410df400fbec88e476ea0c34f77e939ae41267c9",
+          "sourceDiffSha256": "6ed46ffe9a7092ad3d0b04dfd5e83ae0ad81cb5e0f0bc8d1333402a2079aa61f",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "2a62f39b3a11b479141e046044367b785d4bfd60299c8f85df49e78030e99e46"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-CEfIwr9I.js",
+              "sha256": "febef35a7dd255c678a78906a323bbe2006dfe049e66920a93e61d89758da000"
+            },
+            {
+              "path": "dist/assets/game-DFzR6Ihk.css",
+              "sha256": "52dae39e562b6e08a3c7ea2c7543fe114e9ee89f535a7cf84f7fd3d6a6782049"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "83b3570194739284a7e95a18bde3cfc3a99ed25fbf6219ad768db4e975caf3f6"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED_VISUAL_OVERLAP",
+        "startedAt": "2026-10-07T20:45:48.3258600Z",
+        "sessionId": 97317,
+        "endedAt": "2026-10-07T20:47:09.122Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/serpent-2039-normal/results.json",
+        "resultSha256": "16975c7a19ff4f87b95ecefb20edb8f35caf3bb174fd0632b17e0760a8d761e0",
+        "provenanceStable": true,
+        "manualExecutionRecord": true,
+        "receiptWriter": "OWNER_TERMINAL_RECONCILIATION_NOT_WORKER",
+        "failureClassification": "Machine pass; inspected allied silhouettes overlap and mask listening torso at390. Product geometry correction required; not an earned seed."
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "serpent-0012-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261008T0012",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-08T00:15:46.394Z",
+        "pid": null,
+        "port": 5324,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "scenario": "serpent-ending",
+          "viewport": "390x844",
+          "production": true,
+          "osReducedMotion": false,
+          "gameReducedMotion": false,
+          "method": "fixture-origin built GameApp; observations before combat-result fixture"
+        },
+        "requiredAssertions": [
+          "Three authored speaker steps preserve grouping and facing",
+          "Narrow opaque allied envelopes do not overlap; horizontally visible",
+          "Full V6 autosave equal across each bounded observation",
+          "One primary tableau and enabled dialogue",
+          "Fixture-scoped ending/resolved resume; no earned campaign acceptance"
+        ],
+        "output": "tmp/cinematics/serpent-0012-normal",
+        "receiptPath": "tmp/cinematics/serpent-0012-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "1bfad661452cd8194a45c04762a776e1b18f2657",
+          "sourceTree": "410df400fbec88e476ea0c34f77e939ae41267c9",
+          "sourceDiffSha256": "1f5601ed36c7860aba040b12b5bbcdf989808ccd184a12b41067ebf674f8fbea",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "d1509920f5d123e4d8f5bc40be987e8b05faf4a52528dbc26dddce146a5c0ac6"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+              "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+            },
+            {
+              "path": "dist/assets/combat-DSUtGYdZ.js",
+              "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+            },
+            {
+              "path": "dist/assets/combat-s2FWu0a6.css",
+              "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+            },
+            {
+              "path": "dist/assets/game-BZH7FiGl.css",
+              "sha256": "05083452c69cc0e58d6fb05374e3d8c7830906dbe8677f5a2b01857a3bfbd536"
+            },
+            {
+              "path": "dist/assets/game-CdBQ4_J8.js",
+              "sha256": "f23c6aa07b4658d2d91972b307ae58a9d1d2e8d2977834a30846d0fd0f066996"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1548e698f7db2afaf8e8b3ec336e2bf9d240874e52eb917ba0840f7f45c917a4"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_NARROW_GEOMETRY",
+        "exitCode": 0,
+        "endedAt": "2026-10-08T00:16:34.784Z",
+        "resultPath": "tmp/cinematics/serpent-0012-normal/results.json",
+        "resultSha256": "7f5456b8ec6469ff383bac96ffb0f68b0f7da8f11735552b4c3316bead104bf8",
+        "provenanceStable": true,
+        "manualExecutionRecord": true,
+        "receiptWriter": "OWNER_TERMINAL_RECONCILIATION_NOT_WORKER",
+        "acceptanceScope": "390x844 normal; three speaker steps, separate opaque allied silhouettes, stable facing, bounded stored truth; root and guardian inspected all three PNGs. Captions typewriting; no full dialogue/focus/OS/earned acceptance.",
+        "provenanceRepresentation": "Frozen pre-transition physical inventory tmp/autonomy/physical-0012.json / snapshot e77a49d30baed92a3fb219eb38bb08068cabb5af, accepted geometry commit67462c2. Current aeb306f and final game-BgoC89-e.js differ; no current-build relabel."
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261007T1933",
-      "sha": "5d0a12baa2da319a705dce8361203adbbb88447c",
-      "status": "SCOPED_SOURCE_CHECKPOINT_ACCEPTANCE_OPEN_WITH_INHERITED_EXPECTATION",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0012",
+      "sha": "cf2b7c89d0a5f5ff16bb177e7ed4caf6e1f38813",
+      "status": "REMOTE_PUBLISHED_RECOVERY_FOR_SIX_UNCHANGED_DEFERRED_BLOBS",
       "dirtyFiles": [
         "legacy-combat.html",
         "src/combat/combatKeyboard.test.ts",
@@ -13208,10 +13387,10 @@
         "src/styles/combat-shell.css",
         "tools/combat-battlefield-keyboard-production-qa.mjs"
       ],
-      "lastGreenCheck": "114narrative tests;43stage focused checks; types/finalbuild/staging/contracts gates pass;1director expectation independently reproduced atHEAD; browser OPEN",
-      "lastSnapshotAt": "2026-10-07T20:06:34.034Z"
+      "lastGreenCheck": "81focused tests/types/contracts/staging/build PASS; transition browser OPEN",
+      "lastSnapshotAt": "2026-10-08T00:26:12.162Z"
     },
-    "nextAction": "Read STATIC_TABLEAU_STAGING_POLISH.md and pendingNarrativeTask. Existing route runner serpent-ending reaches3speaker pre-combat: add one bounded cast/position/facing observation before native advance, guardian exact assertion review, build/register one normal production smoke on unique ignored output/free strict port; inspect allied silhouettes at390. Keep fixture scope, six deferred keyboard bytes and exact action. Narrative council normal-motion and two refugee acknowledgement proofs remain open; do not edit exhausted OS/static assertion or rerun accepted campfire/ROAD matrices.",
+    "nextAction": "Normal read-only preflight/owned lock; read STATIC_TABLEAU_STAGING_POLISH.md and source aeb306f. Address existing whenRenderable initial-image decode wait with a bounded native deadline and local lifecycle guard, preserving Stage fallback/readiness owner. Then minimally expose the existing opening-camp-audience scenario filter in tools/cinematics/run_cin6d6_route_browser_qa.mjs and observe one native acte_ouverture four-to-four replacement: EXIT/BREATH/ENTRY counts <=4, retained actors/facing, settled next text and focus after preparation. Guardian reviews exact source/assertion diff; build/register one unique390 OS-only production opening smoke with game reducedGraphics false. No combat-result injection needed in opening. Do not rerun accepted Serpent geometry as final-build proof or edit exhausted static-only council OS assertion. Wider1440/620/390 normalOS acceptance belongs at the tableau milestone; preserve six deferred bytes and exact deferredDemoTask.",
     "runMetrics": {
       "sourceFilesModified": 3,
       "sourcePaths": [
@@ -13271,10 +13450,11 @@
     }
   },
   "previousInterruptedRun": {
-    "runId": "codex-production-focus-20261004T0511",
-    "activeTask": "PRE-JUDGEMENT-CAMPFIRE",
-    "nextAction": "Inspect terminal campfire0511reframed6cases and selected campfire-visible captures; guardian finalscope, close campfire and advance NARRATIVE-CONTEXT-COHERENCE. Exactly one harness correction already used; no further instrumentation edits.",
-    "lockArchived": ".git/codex-autonomy.abandoned-20261007T1913.json"
+    "runId": "rpgthreejs-auto-dev-90m-20261007T2039",
+    "nextAction": "Correct exact-shape narrow allied silhouette overlap; reviewers inspect placement; build and rerun same smoke scenario with frozen new provenance.",
+    "head": "1bfad661452cd8194a45c04762a776e1b18f2657",
+    "receipt": "tmp/cinematics/serpent-2039-normal/qa-job.json",
+    "acceptance": "NOT_ACCEPTED_VISUAL_OVERLAP"
   },
   "autonomousExecutionPolicy": {
     "decisionSource": "docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-02.md",
@@ -13314,41 +13494,51 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-07T1933Z-codex-narrative-tableau-checkpoint.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-08T0012Z-codex-cast-continuity-checkpoint.md",
   "runMeasurement": {
-    "sourceFilesModified": 3,
-    "sourcePaths": [
-      "src/game/contextualDialogueContent.ts",
-      "src/game/reputationEventContent.ts",
-      "src/cinematics/NarrativePresentationPlans.ts"
-    ],
-    "testFilesModified": 2,
-    "testPaths": [
-      "src/game/contextualDialogue.test.ts",
-      "src/cinematics/DialogueStagingDirector.test.ts"
-    ],
-    "qaToolsModified": 1,
-    "qaPaths": [
+    "sourceFilesModified": 1,
+    "testFilesModified": 1,
+    "qaToolsAdded": 0,
+    "qaToolsModifiedExcludingInherited": 0,
+    "proofFilesAdded": 0,
+    "workflowFiles": 4,
+    "inheritedProductFilesCommitted": [
+      "src/cinematics/NarrativePresentationPlans.ts",
+      "src/cinematics/DialogueStagingDirector.test.ts",
+      "src/ui/dialogue-alignment.css",
       "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
     ],
-    "qaToolsAdded": 0,
-    "proofFilesAdded": 0,
-    "workflowFiles": 5,
-    "workflowPaths": [
+    "inheritedDeferredFiles": [
+      "legacy-combat.html",
+      "src/combat/combatKeyboard.test.ts",
+      "src/combat/combatKeyboard.ts",
+      "src/combat/legacyCombatRuntime.js",
+      "src/styles/combat-shell.css",
+      "tools/combat-battlefield-keyboard-production-qa.mjs"
+    ],
+    "inheritedPaths": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
-      "docs/autonomy/STATIC_TABLEAU_STAGING_POLISH.md",
-      "docs/autonomy/handoffs/2026-10-07T1933Z-codex-narrative-tableau-checkpoint.md"
+      "legacy-combat.html",
+      "src/cinematics/DialogueStagingDirector.test.ts",
+      "src/cinematics/NarrativePresentationPlans.ts",
+      "src/combat/combatKeyboard.test.ts",
+      "src/combat/combatKeyboard.ts",
+      "src/combat/legacyCombatRuntime.js",
+      "src/styles/combat-shell.css",
+      "src/ui/dialogue-alignment.css",
+      "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+      "tools/combat-battlefield-keyboard-production-qa.mjs"
     ],
-    "inheritedDeferredFiles": 6,
-    "distinctReadOnlyReviewers": 2,
-    "newBrowserScenarios": 1,
-    "browserAttempts": 2,
-    "failedOutputsUsedAsSeeds": 0,
-    "harnessCorrectionsAfterFailure": 1,
-    "elapsedMinutes": 30.400866666666666,
-    "quotaSavings": "Not measured"
+    "distinctReviewers": 2,
+    "browserScenarios": 1,
+    "browserAttempts": 1,
+    "harnessCorrections": 0,
+    "failedSeedsUsed": 0,
+    "trackedProofPromoted": 0,
+    "reviewCost": "Two distinct reviewers, reused for exact design/diff/captures/decode correction; work-unit/quota savings not measured",
+    "endedAt": "2026-10-08T00:26:57.803Z",
+    "elapsedMinutes": 13.59595
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -13519,8 +13709,8 @@
       }
     ],
     "snapshot": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261007T1933",
-      "sha": "5d0a12baa2da319a705dce8361203adbbb88447c",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0012",
+      "sha": "cf2b7c89d0a5f5ff16bb177e7ed4caf6e1f38813",
       "status": "REMOTE_PUBLISHED_RECOVERY_FOR_SIX_UNCHANGED_DEFERRED_BLOBS",
       "dirtyFiles": [
         "legacy-combat.html",
@@ -13530,14 +13720,34 @@
         "src/styles/combat-shell.css",
         "tools/combat-battlefield-keyboard-production-qa.mjs"
       ],
-      "lastGreenCheck": "114narrative tests;43stage focused checks; types/finalbuild/staging/contracts gates pass;1director expectation independently reproduced atHEAD; browser OPEN",
-      "lastSnapshotAt": "2026-10-07T20:06:34.034Z"
-    }
+      "lastGreenCheck": "81focused tests/types/contracts/staging/build PASS; transition browser OPEN",
+      "lastSnapshotAt": "2026-10-08T00:26:12.162Z"
+    },
+    "currentFiles": [
+      "legacy-combat.html",
+      "src/combat/combatKeyboard.test.ts",
+      "src/combat/combatKeyboard.ts",
+      "src/combat/legacyCombatRuntime.js",
+      "src/styles/combat-shell.css",
+      "tools/combat-battlefield-keyboard-production-qa.mjs"
+    ],
+    "preservation": "Exact six original physical hashes/Git blobs and deferredDemoTask verified against tmp/autonomy/baseline-0012.json"
   },
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
-    "Run0007 source58b5ebf/62045da and scoped checkpointa3d330aa29f2a6b06af801453f016389c05f22c3 published; owned WIPe242c8f4a9a0305c257e9336408b7383ddb80d00 remote verified; main00b96f1 unchanged. No automatic-review rejection this run. Final state parity in automation memory."
+    "Run0007 source58b5ebf/62045da and scoped checkpointa3d330aa29f2a6b06af801453f016389c05f22c3 published; owned WIPe242c8f4a9a0305c257e9336408b7383ddb80d00 remote verified; main00b96f1 unchanged. No automatic-review rejection this run. Final state parity in automation memory.",
+    {
+      "runId": "rpgthreejs-auto-dev-90m-20261008T0012",
+      "source": "aeb306f89d16e3e2e08b8c3d6641ca4715af2ed7",
+      "wip": {
+        "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0012",
+        "sha": "cf2b7c89d0a5f5ff16bb177e7ed4caf6e1f38813"
+      },
+      "verifiedAt": "2026-10-08T00:26:57.803Z",
+      "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "status": "SOURCE_AND_RECOVERY_PUBLISHED_FINAL_WORKFLOW_COMMIT_PENDING"
+    }
   ],
   "productionFocus": {
     "decisionId": "OD-2026-10-04-A",
