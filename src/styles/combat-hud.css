@@ -100,6 +100,11 @@
 #skillmenu .combat-menu-back{align-self:flex-end;min-height:28px;padding:5px 9px;font-size:10px}
 #skillmenu .btn:not(.combat-skill){border-radius:3px;font-size:12px}
 
+@media(max-width:700px){
+  #skillmenu .btn,#skillmenu .ttl{flex-shrink:0}
+  #skillmenu .btn:not(.combat-skill){min-width:44px;min-height:44px}
+}
+
 #action-preview{top:110px;left:50%;width:max-content;max-width:min(520px,calc(100vw - 280px));display:grid;gap:3px;justify-items:center;padding:8px 13px;border-color:var(--campaign-gold);border-radius:4px;background:linear-gradient(130deg,rgba(10,25,36,.95),rgba(3,12,23,.97))}
 .action-preview__route{display:flex;gap:7px;align-items:center;justify-content:center;max-width:100%;min-width:0;white-space:nowrap;font:600 11px var(--campaign-data-font);color:var(--campaign-ivory)}
 .action-preview__route span,.action-preview__route strong{max-width:145px;overflow:hidden;text-overflow:ellipsis}.action-preview__route strong{font:700 12px var(--campaign-title-font);color:var(--campaign-gold-light)}
