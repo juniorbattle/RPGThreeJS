@@ -191,3 +191,7 @@ Handoff: docs/autonomy/handoffs/2026-10-08T0514Z-codex-copy-keyboard-checkpoint.
 - battlefield-0514-native-v2: SUCCEEDED; port 5340; receipt `tmp/demo/battlefield-0514-native-v2/qa-job.json`; ACCEPTED_SCOPED_STANDALONE
 - campaign-0514-first-refuge: FAILED; port 5341; receipt `tmp/demo/campaign-0514-first-refuge/qa-job.json`; NOT_ACCEPTED; reached iframe diagnostic only
 <!-- QA_JOBS_END -->
+
+## Verified publication and closeout
+
+At 2026-10-08T06:25:09.465Z, source613bf36 and coherent proof checkpointd7da3dfd13595032dcfc04c5bc2d692b9cfc6645 are live on origin/dev; main00b96f1 unchanged. Recoveryd02961485a11be6f7b5b8ceb85d99d85f4978685 exact remote verified. All own QA receipts terminal, own PIDs/ports positively absent. Top-level and live runId now match the owned lock; original139jobs/deferredDemoTask/pendingNarrativeTask remain exact. Final closeout metadata SHA, owned WIP cleanup and lock absence will be recorded in automation memory. Demo acceptance remains open.

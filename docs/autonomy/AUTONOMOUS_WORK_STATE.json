@@ -1,19 +1,20 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-08T05:16:14.2563835Z",
-  "runEndedAt": "2026-10-08T06:19:25.085Z",
+  "runEndedAt": "2026-10-08T06:25:09.465Z",
   "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
   "activePhase": "Scoped native standalone keyboard milestone accepted; campaign/full-demo gates open",
   "activeSubtask": "Finish inherited battlefield campaign integration and native campaign acceptance",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "613bf364679ba03d5126254306772fc69a138612",
-  "lastPushedCommit": "613bf364679ba03d5126254306772fc69a138612",
+  "lastPushedCommit": "d7da3dfd13595032dcfc04c5bc2d692b9cfc6645",
   "completedThisRun": [
     "Read-only preflight: old writer idle/completed, no associated QA/Git process, old heartbeat >105min; unrelated5173 preserved",
     "Live remote exact dev6bcc566/WIP94c3330/main00b96f1 verified; old publication effect already present, no retry; archived stale lock and acquired exclusive run0514 lock; six deferred blobs exact",
     "Product correction: narrative-stage inherited cinematic display:none for all authored ATE captions; selective CSS restores them, wraps long titles and keeps held/subtitle modes excluded. No copy/canon/truth mutation.",
     "COPY six final responsive/motion cases /15scenarios scoped PASS and inspected selected evidence; source guardian PASS, full task BLOCKED static OS-shadow. Bounded environment audit confirmed night/sunset asset deficit; independent deferred keyboard resumed without deleting its exact archived state.",
-    "Fresh39keyboard-focused tests; guardian nativeactivation/AP/save review PASS; six-case standalone production keyboard+separate fresh pointer acceptance and inspected captures. Reached fresh campaign iframe diagnostic reviewed; full campaign deadline FAILED and no seed/relabel. Inherited four runtime files plus one test and existing runner committed only after scoped production acceptance."
+    "Fresh39keyboard-focused tests; guardian nativeactivation/AP/save review PASS; six-case standalone production keyboard+separate fresh pointer acceptance and inspected captures. Reached fresh campaign iframe diagnostic reviewed; full campaign deadline FAILED and no seed/relabel. Inherited four runtime files plus one test and existing runner committed only after scoped production acceptance.",
+    "Closeout consistency: stale top-level runId rpgthreejs-auto-dev-90m-20261008T0032 was caught by an ownership guard; restored from matching owned lock/live run0514 before release. No source/driver/build change or acceptance relabel."
   ],
   "filesChanged": [
     "src/styles/app.css",
@@ -99,7 +100,7 @@
     "STATIC-TABLEAU-STAGING-POLISH: COMPLETE_SCOPED_RUNTIME; exact old checkpoint and recovery snapshot live remote verified run0514",
     "SCENE-TRANSITION-COPY: SCOPED_RUNTIME_PASS; BLOCKED_STATIC_OS_SHADOW",
     "ENVIRONMENT-NARRATIVE-COHERENCE: BLOCKED_ASSET_BOIS_CLAIR_NIGHT; bounded audit complete",
-    "Resume deferred DEMO-QA-POLISH: ACTIVE; keyboard standalone verification; campaign iframe gate open"
+    "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
   "creditStatus": "AVAILABLE; no quota-saving claim; safe checkpoint at completed milestone/external publication boundary",
   "contractComplianceStatus": {
@@ -147,7 +148,7 @@
       "SAVE": "PASS unchanged schema/owner; reached fresh iframe owner/autosave equality diagnostic; no earnedrefuge/fullV6 claim",
       "UI_ACCESSIBILITY": "PASS scoped keyboard/caption captures and nativefocus/dock bounds; BLOCKED broad submenu/AT/effective OS tactical-motion acceptance",
       "QA_EVIDENCE": "PASS exact frozen hashes/source-driver-build and selected COPY/keyboard scope; BLOCKED full staticOSshadow and earnedcampaign/refuge",
-      "REPOSITORY_GOVERNANCE": "PASS ownedlock/snapshots/explicitpaths/immutable; source publication verified, final workflow publication pending"
+      "REPOSITORY_GOVERNANCE": "PASS protected/whitespace/owned lock/snapshot/explicit paths; source and proof checkpoint published and exact remote parity verified; final metadata cleanup next"
     },
     "contractsRead": [
       "GAME_CONSTITUTION",
@@ -182,7 +183,7 @@
       "campaign": "FAILED_NOT_ACCEPTED; reached fresh iframe boundary diagnostic only"
     }
   },
-  "commitReferenceScope": "Source checkpoint SHAs identify tested physical source. Final workflow publication HEAD is recorded in automation memory to avoid self-referential tracked SHA. Frozen bytes and accepted-at-freeze identities remain authoritative after source commits change Git representation.",
+  "commitReferenceScope": "lastKnownGoodCommit identifies tested source613bf36; lastPushedCommit identifies already verified coherent source/proof checkpoint. Final closeout metadata SHA and cleanup/lock-release parity are in automation memory, avoiding self-reference.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -283,41 +284,24 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261008T0032",
+  "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-08T06:19:25.085Z",
+  "lastHeartbeat": "2026-10-08T06:25:09.465Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0514",
-    "sha": "6edf2749c924ad6912432ba1e8e0d064d78fbb59",
-    "status": "GREEN_SCOPED_NOT_DEMO_COMPLETE",
-    "dirtyFiles": [
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/SCENE_TRANSITION_COPY.md",
-      "docs/autonomy/ENVIRONMENT_NARRATIVE_COHERENCE.md",
-      "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
-      "docs/autonomy/handoffs/2026-10-08T0514Z-codex-copy-keyboard-checkpoint.md",
-      "docs/reports/scene-transition-copy-0514/checks.json",
-      "docs/reports/scene-transition-copy-0514/ailleurs-390-normal.png",
-      "docs/reports/scene-transition-copy-0514/ailleurs-390-os.png",
-      "docs/reports/scene-transition-copy-0514/serpent-620-normal.png",
-      "docs/reports/scene-transition-copy-0514/pendant-1440-normal.png",
-      "docs/reports/battlefield-keyboard-0514/checks.json",
-      "docs/reports/battlefield-keyboard-0514/desktop-inspection.png",
-      "docs/reports/battlefield-keyboard-0514/620-move-cursor.png",
-      "docs/reports/battlefield-keyboard-0514/390-os-inspection.png",
-      "docs/reports/battlefield-keyboard-0514/390-os-target.png",
-      "docs/reports/battlefield-keyboard-0514/campaign-desktop-keyboard-return.png"
-    ],
-    "lastSnapshotAt": "2026-10-08T06:08:50.2808343Z",
+    "sha": "d02961485a11be6f7b5b8ceb85d99d85f4978685",
+    "status": "CONTENT_COMMITTED_ON_DEV_PENDING_OWNED_BRANCH_CLEANUP",
+    "dirtyFiles": [],
+    "lastSnapshotAt": "2026-10-08T06:20:22.1562656Z",
     "lastGreenCheck": "88focused/types/contracts/build/immutable; COPY6+keyboard6 scoped; campaignFAILED retained",
-    "snapshotAt": "2026-10-08T06:08:50.2808343Z"
+    "snapshotAt": "2026-10-08T06:20:22.1562656Z",
+    "cleanup": "Delete only this owned branch after final metadata publication/parity; exact final effect in automation memory"
   },
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-08T06:19:25.085Z",
-    "status": "COHERENT_CHECKPOINT_PREPARED",
+    "lastHeartbeat": "2026-10-08T06:25:09.465Z",
+    "status": "CHECKPOINT_PUBLISHED_CLOSEOUT_METADATA",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -16171,30 +16155,13 @@
     ],
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0514",
-      "sha": "6edf2749c924ad6912432ba1e8e0d064d78fbb59",
-      "status": "GREEN_SCOPED_NOT_DEMO_COMPLETE",
-      "dirtyFiles": [
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/SCENE_TRANSITION_COPY.md",
-        "docs/autonomy/ENVIRONMENT_NARRATIVE_COHERENCE.md",
-        "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
-        "docs/autonomy/handoffs/2026-10-08T0514Z-codex-copy-keyboard-checkpoint.md",
-        "docs/reports/scene-transition-copy-0514/checks.json",
-        "docs/reports/scene-transition-copy-0514/ailleurs-390-normal.png",
-        "docs/reports/scene-transition-copy-0514/ailleurs-390-os.png",
-        "docs/reports/scene-transition-copy-0514/serpent-620-normal.png",
-        "docs/reports/scene-transition-copy-0514/pendant-1440-normal.png",
-        "docs/reports/battlefield-keyboard-0514/checks.json",
-        "docs/reports/battlefield-keyboard-0514/desktop-inspection.png",
-        "docs/reports/battlefield-keyboard-0514/620-move-cursor.png",
-        "docs/reports/battlefield-keyboard-0514/390-os-inspection.png",
-        "docs/reports/battlefield-keyboard-0514/390-os-target.png",
-        "docs/reports/battlefield-keyboard-0514/campaign-desktop-keyboard-return.png"
-      ],
-      "lastSnapshotAt": "2026-10-08T06:08:50.2808343Z",
+      "sha": "d02961485a11be6f7b5b8ceb85d99d85f4978685",
+      "status": "CONTENT_COMMITTED_ON_DEV_PENDING_OWNED_BRANCH_CLEANUP",
+      "dirtyFiles": [],
+      "lastSnapshotAt": "2026-10-08T06:20:22.1562656Z",
       "lastGreenCheck": "88focused/types/contracts/build/immutable; COPY6+keyboard6 scoped; campaignFAILED retained",
-      "snapshotAt": "2026-10-08T06:08:50.2808343Z"
+      "snapshotAt": "2026-10-08T06:20:22.1562656Z",
+      "cleanup": "Delete only this owned branch after final metadata publication/parity; exact final effect in automation memory"
     },
     "nextAction": "Read-only preflight and owned lock; inspect BATTLEFIELD_KEYBOARD.md and exact terminal receipts before rerun. Preserve scoped COPY sixcases15scenarios and standalone keyboard6cases accepted evidence; compare final physical freeze after source commits instead of treating changed Git fingerprints as identical. Keep failed campaign-0514-first-refuge NOT_ACCEPTED: reached desktop-normal iframe Tab/cursor/Escape owner/autosave-equality diagnostic only, no earnedrefuge;19actions exhausted15min. Continue product work by measuring submenu/Retour bounds and addressing verified compact-target/focus or OS tactical-motion gaps before fresh campaign QA with existing driver/appropriate bounded target. Retain original deferredDemoTask nextAction and0350/726lineage; no failedoutput seed, further standalone harness rewrite, repeated compatible matrices, canon/media/audio/main or mapping invention. COPY static-only OS-shadow, council/refugee proof, approved Bois-Clair night plate and ten Pursuit mappings remain precise independent blockers; demo incomplete.",
     "runMetrics": {
@@ -16230,7 +16197,8 @@
       "prelaunchGuardianAssertionRepairs": "Actual DEV-helper names and render-metric projection/cursor movement, before execution",
       "failedSeedsUsed": 0,
       "reviewCost": "Three distinct read-only reviewers; guardian reused for scoped source/assertions/results/diagnostic boundary. No quota/work-unit savings measured.",
-      "elapsedMinutes": 63.18051666666667
+      "elapsedMinutes": 68.92016666666666,
+      "endedAt": "2026-10-08T06:25:09.465Z"
     },
     "checkpointPaths": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -16252,18 +16220,19 @@
       "docs/reports/battlefield-keyboard-0514/campaign-desktop-keyboard-return.png"
     ],
     "publication": {
-      "status": "SOURCE_CHECKPOINT_LIVE_VERIFIED_FINAL_WORKFLOW_PENDING",
-      "dev": "613bf364679ba03d5126254306772fc69a138612",
+      "status": "SOURCE_AND_PROOF_CHECKPOINT_LIVE_VERIFIED_FINAL_METADATA_PENDING",
+      "dev": "d7da3dfd13595032dcfc04c5bc2d692b9cfc6645",
+      "source": "613bf364679ba03d5126254306772fc69a138612",
       "wip": {
-        "sha": "6edf2749c924ad6912432ba1e8e0d064d78fbb59",
         "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0514",
-        "snapshotAt": "2026-10-08T06:08:50.2808343Z"
+        "snapshotAt": "2026-10-08T06:20:22.1562656Z",
+        "sha": "d02961485a11be6f7b5b8ceb85d99d85f4978685"
       },
       "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "verifiedAt": "2026-10-08T06:19:24.783Z"
+      "verifiedAt": "2026-10-08T06:25:09.465Z"
     },
     "runStartedAt": "2026-10-08T05:16:14.2563835Z",
-    "runEndedAt": "2026-10-08T06:19:25.085Z"
+    "runEndedAt": "2026-10-08T06:25:09.465Z"
   },
   "previousInterruptedRun": {
     "runId": "rpgthreejs-auto-dev-90m-20261007T2039",
@@ -16344,7 +16313,8 @@
     "prelaunchGuardianAssertionRepairs": "Actual DEV-helper names and render-metric projection/cursor movement, before execution",
     "failedSeedsUsed": 0,
     "reviewCost": "Three distinct read-only reviewers; guardian reused for scoped source/assertions/results/diagnostic boundary. No quota/work-unit savings measured.",
-    "elapsedMinutes": 63.18051666666667
+    "elapsedMinutes": 68.92016666666666,
+    "endedAt": "2026-10-08T06:25:09.465Z"
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -16506,6 +16476,21 @@
       "verifiedAt": "2026-10-08T00:26:57.803Z",
       "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
       "status": "SOURCE_AND_RECOVERY_PUBLISHED_FINAL_WORKFLOW_COMMIT_PENDING"
+    },
+    {
+      "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
+      "sourceCaption": "39217b94b9d00e0b8f7fffc4c99e8a9a9170f573",
+      "sourceKeyboard": "613bf364679ba03d5126254306772fc69a138612",
+      "checkpoint": "d7da3dfd13595032dcfc04c5bc2d692b9cfc6645",
+      "wip": {
+        "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0514",
+        "snapshotAt": "2026-10-08T06:20:22.1562656Z",
+        "sha": "d02961485a11be6f7b5b8ceb85d99d85f4978685"
+      },
+      "verifiedAt": "2026-10-08T06:25:09.465Z",
+      "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "status": "SOURCE_AND_PROOF_PUBLISHED_FINAL_METADATA_PENDING",
+      "automaticApprovalRejections": 0
     }
   ],
   "productionFocus": {
@@ -16598,7 +16583,18 @@
     "prelaunchGuardianAssertionRepairs": "Actual DEV-helper names and render-metric projection/cursor movement, before execution",
     "failedSeedsUsed": 0,
     "reviewCost": "Three distinct read-only reviewers; guardian reused for scoped source/assertions/results/diagnostic boundary. No quota/work-unit savings measured.",
-    "elapsedMinutes": 63.18051666666667
+    "elapsedMinutes": 68.92016666666666,
+    "endedAt": "2026-10-08T06:25:09.465Z"
   },
-  "qaToolingJustification": "No new persistent QA tool. Existing inherited battlefield runner receives one prelaunch actual DEV-helper-name fix and one postfailure fresh native pointer-scenario correction; archer1AP must not be refilled. Existing earned campaign runner adds native Tab/cursor/Escape observation only first genuinely fresh battle; it preserves complete gameplay (render diagnostics excluded), ownerV6 and autosave equality. Existing registration/receipts/provenance reused."
+  "qaToolingJustification": "No new persistent QA tool. Existing inherited battlefield runner receives one prelaunch actual DEV-helper-name fix and one postfailure fresh native pointer-scenario correction; archer1AP must not be refilled. Existing earned campaign runner adds native Tab/cursor/Escape observation only first genuinely fresh battle; it preserves complete gameplay (render diagnostics excluded), ownerV6 and autosave equality. Existing registration/receipts/provenance reused.",
+  "retainedRunArtifacts": {
+    "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
+    "physicalFreeze": "tmp/autonomy/final-physical-0514.json",
+    "freezeSha256": "78ae07e955b300dfd3ac4d47a41421d99b52db489960ac8837013458b7e9e3e1",
+    "rawCopyOutputs": "tmp/cinematics/copy-0514-*",
+    "initialKeyboardFailed": "tmp/demo/battlefield-0514-native",
+    "acceptedKeyboard": "tmp/demo/battlefield-0514-native-v2",
+    "campaignFailed": "tmp/demo/campaign-0514-first-refuge",
+    "failedSeedUse": false
+  }
 }
