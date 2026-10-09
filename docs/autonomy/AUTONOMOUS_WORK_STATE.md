@@ -1,3 +1,12 @@
+## Current reduced charge checkpoint — 2026-10-09
+
+Run: rpgthreejs-auto-dev-90m-20261009T2255; status: IN_PROGRESS
+
+Active task: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat
+Active subtask: Reduced charge opacity fixed; scoped desktop OS/game missed-charge visibility accepted, native/broader Pursuit open
+
+Exact next action: Read-only preflight/exclusive lock; inspect pursuit-reduced-charge-2255-v2 receipt and docs/reports/pursuit-reduced-charge-20261009/checks.json before any rerun. Reuse scoped desktop reduced-miss visibility only with matching physical source/driver/build/parameters/assertions. Reduced contact and reduced terminal exit remain browser-open (unit coverage only); other ten authored context bindings, native Pursuit victory/defeat temporary-loot/persistedV6 and cancel/re-entry/focus-visible remain open. Use existing tools/demo-continuous-production-qa.mjs battle() native pilot as authority for native combat; existing motion runner still injects outcomes and has no persisted autosave in T0 fixture. Preserve reducedCharge2255.previous, pursuitGait2223.previous, operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue desktop checkpoint braking/full-tail approach/ground-contact/settled parentfocus, sixhero skills/campaign/narrative gaps; mobile finalization LAST. Ten mappings/category already resolved1856; eightvideos/Alaric/audioDEFERRED/LOCKED unchanged; operator final manual artistic/literary/balance review pending.
+
 ## Current Pursuit gait checkpoint — 2026-10-09
 
 Run: rpgthreejs-auto-dev-90m-20261009T2223; status: IN_PROGRESS
@@ -259,6 +268,8 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - pursuit-gait-2223: FAILED; port 5358; receipt `tmp/traversal/pursuit-gait-2223/qa-job.json`; NOT_ACCEPTED
 - pursuit-gait-2223-v2: SUCCEEDED; port 5358; receipt `tmp/traversal/pursuit-gait-2223-v2/qa-job.json`; NOT_ACCEPTED
 - pursuit-gait-2223-v3: SUCCEEDED; port 5358; receipt `tmp/traversal/pursuit-gait-2223-v3/qa-job.json`; NOT_ACCEPTED
+- pursuit-reduced-charge-2255: FAILED; port 5359; receipt `tmp/traversal/pursuit-reduced-charge-2255/qa-job.json`; NOT_ACCEPTED
+- pursuit-reduced-charge-2255-v2: SUCCEEDED; port 5359; receipt `tmp/traversal/pursuit-reduced-charge-2255-v2/qa-job.json`; NOT_ACCEPTED
 
 <!-- QA_JOBS_END -->
 

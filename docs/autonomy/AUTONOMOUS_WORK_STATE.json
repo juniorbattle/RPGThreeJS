@@ -1,65 +1,54 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-09T22:25:19.3006143Z",
-  "runEndedAt": "2026-10-09T22:53:06.726Z",
+  "runStartedAt": "2026-10-09T22:56:41.5631524Z",
+  "runEndedAt": null,
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-  "activePhase": "DESKTOP_PURSUIT_ACCEPTANCE",
-  "activeSubtask": "Articulated Shadow gait implemented; scoped desktop functional proof accepted, broader Pursuit/manual QA open",
+  "activePhase": "DESKTOP_PURSUIT_CONTINUATION",
+  "activeSubtask": "Reduced charge opacity fixed; scoped desktop OS/game missed-charge visibility accepted, native/broader Pursuit open",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "3dc36811e2885fdf6ac631418f530b8f9edada14",
   "lastPushedCommit": "3dc36811e2885fdf6ac631418f530b8f9edada14",
   "completedThisRun": [
-    "Read-only preflight: absent lock, clean dev/live origin4617593; main00b96f1 unchanged, no RPG QA/Git process; exclusive lock acquired and fetch complete; inspected1856 scoped receipt and limits",
-    "Generated/cleaned six real articulated Shadow poses from existing identity; original preserved",
-    "Integrated shared pose reader into approach/charge; fixed failed-sheet background retention; road clocks/pause/contact/OS OR game respected",
-    "Scoped v3 desktop18 assertions and three promoted captures reviewed by root/traversal/contracts; baseline two inherited reset-only failures independently reproduced"
+    "Preflight: absent lock, clean dev375157d/live parity, main00b96f1 unchanged, no RPG QA/Git jobs; owned exclusive lock/fetch; inspected prior2223 terminal receipt/proof and limits",
+    "Corrected premature reduced charge disappearance and contact opacity jump in presentation only",
+    "20current focusedtests/types/build/8contracts8slots/immutablegatePASS",
+    "One designated T0 production smoke: firstFAIL due contacttarget; one minimal triggercorrection; v2SUCCEEDED18, two captures inspected/selected, scopedUI/guardianPASS"
   ],
   "filesChanged": [
-    "src/traversal/TraversalPursuerSprite.ts",
-    "src/traversal/TraversalPursuerSprite.test.ts",
     "src/traversal/TraversalPursuitChargeRenderer.ts",
-    "src/traversal/TraversalRoutePursuitRenderer.ts",
-    "src/traversal/TraversalRoadScene.ts",
-    "src/traversal/TraversalRoutePursuitArt.test.ts",
-    "src/styles/traversal-pursuit-charge.css",
-    "src/styles/traversal.css",
-    "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json",
-    "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.png",
-    "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.json",
+    "src/traversal/TraversalPursuitChargeRenderer.test.ts",
     "tools/traversal-motion-production-qa.mjs",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/TRAVERSAL_PURSUIT_THREAT.md",
-    "docs/autonomy/handoffs/2026-10-09T2223Z-codex-pursuit-gait.md",
-    "docs/reports/pursuit-gait-20261009/README.md",
-    "docs/reports/pursuit-gait-20261009/checks.json",
-    "docs/reports/pursuit-gait-20261009/T0-1440-gallop-charge.png",
-    "docs/reports/pursuit-gait-20261009/T0-1440-gallop-os-static.png",
-    "docs/reports/pursuit-gait-20261009/T0-1440-gallop-sheet-fallback.png"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    "docs/autonomy/handoffs/2026-10-09T2255Z-codex-reduced-charge.md",
+    "docs/reports/pursuit-reduced-charge-20261009/checks.json",
+    "docs/reports/pursuit-reduced-charge-20261009/README.md",
+    "docs/reports/pursuit-reduced-charge-20261009/T0-1440-charge-os-visible.png",
+    "docs/reports/pursuit-reduced-charge-20261009/T0-1440-charge-game-visible.png"
   ],
   "testsRun": [
-    "36 unique focused tests in6 files (tmp archives excluded)",
-    "TypeScript --noEmit",
-    "Contract validator + immutable LOCKED gate + diff --check",
-    "Production build214modules/8MP4 slots",
-    "Designated T0 1440x810 gait smoke: one environment failure, functional v2 PASS, one capture correction v3 PASS18"
+    "Focused vitest current4files20unique PASS;14 tmp historical duplicates excluded",
+    "tsc --noEmit PASS",
+    "contracts validator8contracts8slots PASS",
+    "production build214modules8MP4 PASS",
+    "node --check driver PASS",
+    "whitespace/immutable/dirtyLOCKED gates EMPTY/PASS"
   ],
   "testsPassed": [
-    "36 focused tests",
+    "20 current focused tests",
     "TypeScript",
-    "8contracts/8slots; immutable gate empty",
-    "build214modules",
-    "v3 scoped18 assertions; source/driver/build stable"
+    "8contracts8slots",
+    "Production build214modules8MP4",
+    "Syntax/whitespace/protected gates"
   ],
   "testsRemaining": [
-    "Native forest_ambush variant and overall beginner balance; KestrelKO in tested wolf_pack",
-    "Salvation from exactly2AP and40%HP verification; current casts3to1AP/salvationVerifiedfalse",
-    "Parent focus settled visible proof: immediate capture during fade, numeric focus/owner/autosave only",
-    "Checkpoint braking/glissement perceptual sequence; selected T0 ground frame only",
-    "Shadow articulated gait implemented and scoped desktop verified; full-tail/reduced-charge visuals, other mapped contexts, native tactical victory/defeat/temporary-loot recovery, persisted V6 and cancellation/re-entry/focus-visible acceptance remain open",
-    "Other campaign branches/endings, Stage/VFX/AT/desktop accessibility",
-    "Council/refugees/static-only OS narrative acceptance and approved Bois-Clair night plate",
-    "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
+    "One T0/1440x810 authored missed charge only; other mapped contexts and broad viewport acceptance open",
+    "OS-only/game-only static visibility beyond.6s accepted; browser restores normal before EXITED",
+    "Reduced EXITED and COLLISION_PENDING persistence unit-only; no reduced-contact browser claim",
+    "Combat outcomes injected; null autosave equality is absence, not persisted V6 or earned native proof",
+    "Full-tail approach, ground-contact/checkpoint perception, settled parentfocus, native tactical/balance/narrative/operator demo review open",
+    "Historical two reset-only T0 scene failures remain untouched/open; no baseline reclassification",
+    "Final mobile acceptance deferred until desktop stabilization"
   ],
   "blockers": [
     "Narrative OS smoke: static-only council rejected by unchanged approved-video-attempt assertion; one correction exhausted, both outputs NOT_ACCEPTED. Normal council and static-only OS milestone proof remain open.",
@@ -83,7 +72,7 @@
     "Council/refugees/static-only OS narrative acceptance and approved Bois-Clair night plate",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Read-only preflight/exclusive lock; inspect pursuit-gait-2223-v3 terminal receipt and docs/reports/pursuit-gait-20261009/checks.json first. Reuse scoped 36-test and T0 1440x810 gait/contact/miss/exact-road-return evidence only when source/driver/build/parameters/assertions match. Preserve pursuitGait2223.previous, operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue the same desktop consolidation with existing-runner OS/game-reduced charge and other mapped contexts, native tactical victory/defeat temporary-loot recovery, persisted V6 and cancel/re-enter/focus-visible proof. Null autosave equality is absence, not persisted V6 proof. Review full-tail approach/ground-contact and checkpoint braking/glissement perception; resolve settled parentfocus, skills/campaign/narrative gaps in the existing queue. Operator artistic/literary/balance playtest remains final; mobile finalization last. Category/ten mappings blocker resolved; eight videos/Alaric/audio/LOCKED unchanged.",
+  "nextAction": "Read-only preflight/exclusive lock; inspect pursuit-reduced-charge-2255-v2 receipt and docs/reports/pursuit-reduced-charge-20261009/checks.json before any rerun. Reuse scoped desktop reduced-miss visibility only with matching physical source/driver/build/parameters/assertions. Reduced contact and reduced terminal exit remain browser-open (unit coverage only); other ten authored context bindings, native Pursuit victory/defeat temporary-loot/persistedV6 and cancel/re-entry/focus-visible remain open. Use existing tools/demo-continuous-production-qa.mjs battle() native pilot as authority for native combat; existing motion runner still injects outcomes and has no persisted autosave in T0 fixture. Preserve reducedCharge2255.previous, pursuitGait2223.previous, operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue desktop checkpoint braking/full-tail approach/ground-contact/settled parentfocus, sixhero skills/campaign/narrative gaps; mobile finalization LAST. Ten mappings/category already resolved1856; eightvideos/Alaric/audioDEFERRED/LOCKED unchanged; operator final manual artistic/literary/balance review pending.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -99,7 +88,7 @@
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
   "creditStatus": "Work proceeded within authorized scope; no quota-based reduction or savings claim",
-  "contractComplianceStatus": "PASS_SCOPED_GAIT_SET1.1.0; full Pursuit/demo acceptance OPEN",
+  "contractComplianceStatus": "PASS_SCOPED_REDUCED_CHARGE_VISIBILITY; FULL_DEMO_OPEN",
   "commitReferenceScope": "Scoped gait implementation and physical source/driver/build/proof match 3dc36811e2885fdf6ac631418f530b8f9edada14; final metadata-only commit and live parity are recorded externally in automation memory. Prior earned/campaign/mobile scopes retain their own provenance; whole Pursuit/demo remain OPEN.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
@@ -201,42 +190,31 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261009T2223",
+  "runId": "rpgthreejs-auto-dev-90m-20261009T2255",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-09T22:53:06.726Z",
+  "lastHeartbeat": "2026-10-09T23:09:17.311Z",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261009T2223",
-    "sha": "a980c0ce32c94a345e0d3cd3ae4fba70070a8877",
-    "snapshotAt": "2026-10-09T22:51:38.750Z",
-    "status": "CONTENT_INTEGRATED; SAFE_RETIREMENT_PENDING_VERIFIED_CLOSEOUT",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261009T2255",
+    "sha": "c85de3adac0ff76f3e5d312e89e46b003211f2ed",
+    "snapshotAt": "2026-10-09T23:09:17.311Z",
+    "status": "WIP_NOT_ACCEPTED",
     "paths": [
-      "src/traversal/TraversalPursuerSprite.ts",
-      "src/traversal/TraversalPursuerSprite.test.ts",
       "src/traversal/TraversalPursuitChargeRenderer.ts",
-      "src/traversal/TraversalRoutePursuitRenderer.ts",
-      "src/traversal/TraversalRoadScene.ts",
-      "src/traversal/TraversalRoutePursuitArt.test.ts",
-      "src/styles/traversal-pursuit-charge.css",
-      "src/styles/traversal.css",
-      "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json",
-      "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.png",
-      "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.json",
+      "src/traversal/TraversalPursuitChargeRenderer.test.ts",
       "tools/traversal-motion-production-qa.mjs",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/TRAVERSAL_PURSUIT_THREAT.md",
-      "docs/autonomy/handoffs/2026-10-09T2223Z-codex-pursuit-gait.md",
-      "docs/reports/pursuit-gait-20261009/README.md",
-      "docs/reports/pursuit-gait-20261009/checks.json",
-      "docs/reports/pursuit-gait-20261009/T0-1440-gallop-charge.png",
-      "docs/reports/pursuit-gait-20261009/T0-1440-gallop-os-static.png",
-      "docs/reports/pursuit-gait-20261009/T0-1440-gallop-sheet-fallback.png"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/handoffs/2026-10-09T2255Z-codex-reduced-charge.md",
+      "docs/reports/pursuit-reduced-charge-20261009/checks.json",
+      "docs/reports/pursuit-reduced-charge-20261009/README.md",
+      "docs/reports/pursuit-reduced-charge-20261009/T0-1440-charge-os-visible.png",
+      "docs/reports/pursuit-reduced-charge-20261009/T0-1440-charge-game-visible.png"
     ]
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261009T2223",
+    "runId": "rpgthreejs-auto-dev-90m-20261009T2255",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-09T22:53:06.726Z",
+    "lastHeartbeat": "2026-10-09T23:09:17.311Z",
     "status": "IN_PROGRESS",
     "qaJobs": [
       {
@@ -18602,55 +18580,268 @@
         "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "pursuit-reduced-charge-2255",
+        "runId": "rpgthreejs-auto-dev-90m-20261009T2255",
+        "status": "FAILED",
+        "registeredAt": "2026-10-09T23:00:17.738Z",
+        "pid": 61308,
+        "port": 5359,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "normal",
+          "viewports": [
+            "1440x810"
+          ],
+          "legs": [
+            "T0"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "pursuitCheck": true,
+          "gaitCheck": false,
+          "reducedChargeCheck": true,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "native-keyboard-focus",
+          "responsive-controls",
+          "forward-exit-and-resize",
+          "accelerating-arrival",
+          "pursuit-contact-single",
+          "pursuit-ordinary-pool",
+          "pursuit-exact-road-resume",
+          "pursuit-miss-full-exit",
+          "pursuit-no-node-resolution",
+          "pursuit-reduced-charge-visible",
+          "pursuit-reduced-charge-os-or-game-static",
+          "pursuit-reduced-charge-terminal-exit"
+        ],
+        "output": "tmp/traversal/pursuit-reduced-charge-2255",
+        "receiptPath": "tmp/traversal/pursuit-reduced-charge-2255/qa-job.json",
+        "provenance": {
+          "gitHead": "375157d90e63a1085edf2c164d61055973e97a03",
+          "sourceTree": "3d14021b1878b7e91dc2000bfbde357ff9b59bd4",
+          "sourceDiffSha256": "9074f921e938c52e2587abf554ce26a93b2ab9c29656b2ad8513e9d24003c352",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "21351e3c6f5c5b5ff0bd0c95a6baa12a2e93eee8dc6f988c84ef10f2f87793eb"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CRQrKdvY.js",
+              "sha256": "3c5380530189f8d079e222e438c5017bad2d28af56a9f3e4747d0c11f424648e"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "3a027a23c96e9bfceb8fe6c3dcaef0a9c1bf1924748f0257949c7e827fd7ff0d"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-09T23:00:18.725Z",
+        "physicalFreeze": "tmp/autonomy/physical-freeze-2255.json",
+        "endedAt": "2026-10-09T23:01:27.161Z",
+        "exitCode": 1,
+        "resultPath": "tmp/traversal/pursuit-reduced-charge-2255/results.json",
+        "resultSha256": "4291a9c2d127e8bf1524f91479d1f8871045e0d060c4f618a0a660e7308de5fd",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "fullCommand": "node tools/traversal-motion-production-qa.mjs --motion=normal --viewports=1440x810 --legs=T0 --pursuit-check=1 --reduced-charge-check=1 --port=5359 --output=tmp/traversal/pursuit-reduced-charge-2255"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "pursuit-reduced-charge-2255-v2",
+        "runId": "rpgthreejs-auto-dev-90m-20261009T2255",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-09T23:02:50.514Z",
+        "pid": 23324,
+        "port": 5359,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "normal",
+          "viewports": [
+            "1440x810"
+          ],
+          "legs": [
+            "T0"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "pursuitCheck": true,
+          "gaitCheck": false,
+          "reducedChargeCheck": true,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "native-keyboard-focus",
+          "responsive-controls",
+          "forward-exit-and-resize",
+          "accelerating-arrival",
+          "pursuit-contact-single",
+          "pursuit-ordinary-pool",
+          "pursuit-exact-road-resume",
+          "pursuit-miss-full-exit",
+          "pursuit-no-node-resolution",
+          "pursuit-reduced-charge-visible",
+          "pursuit-reduced-charge-os-or-game-static",
+          "pursuit-reduced-charge-terminal-exit"
+        ],
+        "output": "tmp/traversal/pursuit-reduced-charge-2255-v2",
+        "receiptPath": "tmp/traversal/pursuit-reduced-charge-2255-v2/qa-job.json",
+        "provenance": {
+          "gitHead": "375157d90e63a1085edf2c164d61055973e97a03",
+          "sourceTree": "3d14021b1878b7e91dc2000bfbde357ff9b59bd4",
+          "sourceDiffSha256": "9074f921e938c52e2587abf554ce26a93b2ab9c29656b2ad8513e9d24003c352",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "eda57ee112f9d37678b823856bef4c9ddda0cf4e9c671a843c18499a85ee4a30"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CRQrKdvY.js",
+              "sha256": "3c5380530189f8d079e222e438c5017bad2d28af56a9f3e4747d0c11f424648e"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "3a027a23c96e9bfceb8fe6c3dcaef0a9c1bf1924748f0257949c7e827fd7ff0d"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-09T23:02:51.550Z",
+        "physicalFreeze": "tmp/autonomy/physical-freeze-2255-v2-final.json",
+        "endedAt": "2026-10-09T23:05:04.087Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/pursuit-reduced-charge-2255-v2/results.json",
+        "resultSha256": "aef585b840e0e48313311b7bad2618e4c65c3a2a1e68e474225325407f42d812",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "fullCommand": "node tools/traversal-motion-production-qa.mjs --motion=normal --viewports=1440x810 --legs=T0 --pursuit-check=1 --reduced-charge-check=1 --port=5359 --output=tmp/traversal/pursuit-reduced-charge-2255-v2"
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261009T2223",
-      "sha": "a980c0ce32c94a345e0d3cd3ae4fba70070a8877",
-      "snapshotAt": "2026-10-09T22:51:38.750Z",
-      "status": "CONTENT_INTEGRATED; SAFE_RETIREMENT_PENDING_VERIFIED_CLOSEOUT",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261009T2255",
+      "sha": "c85de3adac0ff76f3e5d312e89e46b003211f2ed",
+      "snapshotAt": "2026-10-09T23:09:17.311Z",
+      "status": "WIP_NOT_ACCEPTED",
       "paths": [
-        "src/traversal/TraversalPursuerSprite.ts",
-        "src/traversal/TraversalPursuerSprite.test.ts",
         "src/traversal/TraversalPursuitChargeRenderer.ts",
-        "src/traversal/TraversalRoutePursuitRenderer.ts",
-        "src/traversal/TraversalRoadScene.ts",
-        "src/traversal/TraversalRoutePursuitArt.test.ts",
-        "src/styles/traversal-pursuit-charge.css",
-        "src/styles/traversal.css",
-        "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json",
-        "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.png",
-        "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.json",
+        "src/traversal/TraversalPursuitChargeRenderer.test.ts",
         "tools/traversal-motion-production-qa.mjs",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/TRAVERSAL_PURSUIT_THREAT.md",
-        "docs/autonomy/handoffs/2026-10-09T2223Z-codex-pursuit-gait.md",
-        "docs/reports/pursuit-gait-20261009/README.md",
-        "docs/reports/pursuit-gait-20261009/checks.json",
-        "docs/reports/pursuit-gait-20261009/T0-1440-gallop-charge.png",
-        "docs/reports/pursuit-gait-20261009/T0-1440-gallop-os-static.png",
-        "docs/reports/pursuit-gait-20261009/T0-1440-gallop-sheet-fallback.png"
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/handoffs/2026-10-09T2255Z-codex-reduced-charge.md",
+        "docs/reports/pursuit-reduced-charge-20261009/checks.json",
+        "docs/reports/pursuit-reduced-charge-20261009/README.md",
+        "docs/reports/pursuit-reduced-charge-20261009/T0-1440-charge-os-visible.png",
+        "docs/reports/pursuit-reduced-charge-20261009/T0-1440-charge-game-visible.png"
       ]
     },
-    "nextAction": "Read-only preflight/exclusive lock; inspect pursuit-gait-2223-v3 terminal receipt and docs/reports/pursuit-gait-20261009/checks.json first. Reuse scoped 36-test and T0 1440x810 gait/contact/miss/exact-road-return evidence only when source/driver/build/parameters/assertions match. Preserve pursuitGait2223.previous, operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue the same desktop consolidation with existing-runner OS/game-reduced charge and other mapped contexts, native tactical victory/defeat temporary-loot recovery, persisted V6 and cancel/re-enter/focus-visible proof. Null autosave equality is absence, not persisted V6 proof. Review full-tail approach/ground-contact and checkpoint braking/glissement perception; resolve settled parentfocus, skills/campaign/narrative gaps in the existing queue. Operator artistic/literary/balance playtest remains final; mobile finalization last. Category/ten mappings blocker resolved; eight videos/Alaric/audio/LOCKED unchanged.",
+    "nextAction": "Read-only preflight/exclusive lock; inspect pursuit-reduced-charge-2255-v2 receipt and docs/reports/pursuit-reduced-charge-20261009/checks.json before any rerun. Reuse scoped desktop reduced-miss visibility only with matching physical source/driver/build/parameters/assertions. Reduced contact and reduced terminal exit remain browser-open (unit coverage only); other ten authored context bindings, native Pursuit victory/defeat temporary-loot/persistedV6 and cancel/re-entry/focus-visible remain open. Use existing tools/demo-continuous-production-qa.mjs battle() native pilot as authority for native combat; existing motion runner still injects outcomes and has no persisted autosave in T0 fixture. Preserve reducedCharge2255.previous, pursuitGait2223.previous, operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue desktop checkpoint braking/full-tail approach/ground-contact/settled parentfocus, sixhero skills/campaign/narrative gaps; mobile finalization LAST. Ten mappings/category already resolved1856; eightvideos/Alaric/audioDEFERRED/LOCKED unchanged; operator final manual artistic/literary/balance review pending.",
     "runMetrics": {
-      "productSourceFilesChanged": 6,
-      "testFilesChanged": 2,
-      "existingQAToolsModified": 1,
-      "qaToolsAdded": 0,
-      "assetsChanged": 3,
-      "proofFilesAdded": 5,
+      "sourceFilesModified": 1,
+      "testFilesModified": 1,
+      "existingQaFilesModified": 1,
+      "newQaFilesAdded": 0,
+      "proofFilesAdded": 3,
       "workflowFilesChanged": 4,
-      "inheritedWIPPaths": 0,
-      "distinctReadOnlyReviewers": 2,
-      "registeredInvocations": 3,
-      "executedScenarios": 2,
-      "acceptedScopedJobs": 1,
-      "harnessCorrectionsThisRun": 1,
-      "selectedCapturesInspected": 4,
-      "selectedCapturesPromoted": 3,
-      "elapsedMinutes": 27.790433333333333
+      "inheritedWIP": 0,
+      "reviewers": 2,
+      "guardianPasses": 3,
+      "uiPasses": 3,
+      "designatedBrowserScenarios": 1,
+      "executedAttempts": 2,
+      "harnessCorrections": 1,
+      "quotaSavingsClaimed": false
     },
     "checkpointPaths": [
       "src/traversal/TraversalPursuerSprite.ts",
@@ -18711,9 +18902,9 @@
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
       "verifiedAt": "2026-10-09T22:53:06.726Z"
     },
-    "runStartedAt": "2026-10-09T22:25:19.3006143Z",
-    "runEndedAt": "2026-10-09T22:53:06.726Z",
-    "writerStopped": true,
+    "runStartedAt": "2026-10-09T22:56:41.5631524Z",
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "status": "RESOLVED_BY_OPERATOR_APPROVAL",
       "standingDecision": "OD-2026-10-08-B",
@@ -19543,7 +19734,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-    "activeSubtask": "Articulated Shadow gait implemented; scoped desktop functional proof accepted, broader Pursuit/manual QA open",
+    "activeSubtask": "Reduced charge opacity fixed; scoped desktop OS/game missed-charge visibility accepted, native/broader Pursuit open",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -19602,7 +19793,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-09T2223Z-codex-pursuit-gait.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-09T2255Z-codex-reduced-charge.md",
   "runMeasurement": {
     "sourceModified": [
       "src/traversal/TraversalPursuerSprite.ts",
@@ -19887,25 +20078,22 @@
     "nextAction": "Run existing witnesses-protected normal-motion production opening proof; independently observe refugee transaction acknowledgements and wider static-only OS acceptance before task milestone"
   },
   "runStatistics": {
-    "productSourceFilesChanged": 6,
-    "testFilesChanged": 2,
-    "existingQAToolsModified": 1,
-    "qaToolsAdded": 0,
-    "assetsChanged": 3,
-    "proofFilesAdded": 5,
+    "sourceFilesModified": 1,
+    "testFilesModified": 1,
+    "existingQaFilesModified": 1,
+    "newQaFilesAdded": 0,
+    "proofFilesAdded": 3,
     "workflowFilesChanged": 4,
-    "inheritedWIPPaths": 0,
-    "distinctReadOnlyReviewers": 2,
-    "registeredInvocations": 3,
-    "executedScenarios": 2,
-    "acceptedScopedJobs": 1,
-    "harnessCorrectionsThisRun": 1,
-    "selectedCapturesInspected": 4,
-    "selectedCapturesPromoted": 3,
-    "endedAt": "2026-10-09T22:53:06.726Z",
-    "elapsedMinutes": 27.790433333333333
+    "inheritedWIP": 0,
+    "reviewers": 2,
+    "guardianPasses": 3,
+    "uiPasses": 3,
+    "designatedBrowserScenarios": 1,
+    "executedAttempts": 2,
+    "harnessCorrections": 1,
+    "quotaSavingsClaimed": false
   },
-  "qaToolingJustification": "No new persistent QA tool. Existing Salvation runner gains optional read-only rendered cast sampling/liveOS toggles because HP/AP-only checks do not verify ongoing suppressed lift/squash. Existing native HP/AP assertions and receipt guards retained; campaign pilot subsequently gains six-line native lone-survivor fallback; assertions unchanged and future browser validation required.",
+  "qaToolingJustification": "Existing traversal-motion-production-qa.mjs approach-pose assertions never sampled charge opacity after.6s. Added optional charge-only observation to the same runner; no new QA tool.",
   "retainedRunArtifacts": {
     "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
     "physicalFreeze": "tmp/autonomy/final-physical-0514.json",
@@ -20242,5 +20430,47 @@
       "qaAndCaptureDigestRecordsMatch": true,
       "status": "CONTENT_INTEGRATED; retire only after final dev parity/worker check"
     }
+  },
+  "reducedCharge2255": {
+    "previous": {
+      "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
+      "activeSubtask": "Articulated Shadow gait implemented; scoped desktop functional proof accepted, broader Pursuit/manual QA open",
+      "nextAction": "Read-only preflight/exclusive lock; inspect pursuit-gait-2223-v3 terminal receipt and docs/reports/pursuit-gait-20261009/checks.json first. Reuse scoped 36-test and T0 1440x810 gait/contact/miss/exact-road-return evidence only when source/driver/build/parameters/assertions match. Preserve pursuitGait2223.previous, operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue the same desktop consolidation with existing-runner OS/game-reduced charge and other mapped contexts, native tactical victory/defeat temporary-loot recovery, persisted V6 and cancel/re-enter/focus-visible proof. Null autosave equality is absence, not persisted V6 proof. Review full-tail approach/ground-contact and checkpoint braking/glissement perception; resolve settled parentfocus, skills/campaign/narrative gaps in the existing queue. Operator artistic/literary/balance playtest remains final; mobile finalization last. Category/ten mappings blocker resolved; eight videos/Alaric/audio/LOCKED unchanged."
+    },
+    "baseline": "375157d90e63a1085edf2c164d61055973e97a03",
+    "status": "ACCEPTED_SCOPED_DESKTOP_REDUCED_MISS_VISIBILITY_1440_OS_GAME",
+    "priorProof": "docs/reports/pursuit-gait-20261009/checks.json",
+    "newQaTool": false,
+    "scope": "Reduced charge silhouette remains static and visible until model exit/contact; desktop fixture lifecycle only",
+    "checks": {
+      "focusedUnique": 20,
+      "currentFiles": 4,
+      "historicalDuplicatesExcluded": 14,
+      "types": "PASS",
+      "contracts": 8,
+      "slots": 8,
+      "buildModules": 214,
+      "immutableGate": "EMPTY",
+      "diffCheck": "PASS",
+      "physicalFreeze": "tmp/autonomy/physical-freeze-2255-v2-final.json"
+    },
+    "unitScope": "OS/game charge visible after1.4s; paused/contact same opacity; EXITEDhidden. Reduced contact and terminalhide are unit-only, browser toggles during miss and restores normal before EXITED.",
+    "inheritedFailure": "Two reset-only TraversalT0PursuitScene tests already verified failing on exact4617593 baseline in run2223; untouched/open, not rerun or relabeled.",
+    "harnessCorrections": 1,
+    "firstAttempt": "FAILED: route3 realcontact freezes at.100s, so no longcharge; no browsererrors, no roadcapture acceptance; stable before the single route5a trigger correction. Original receipt retained.",
+    "ledgerRepair": "Restored registered command array; expanded exact CLI stays in fullCommand. No receipt/parameters/assertions changed. Sync must independently confirm request match.",
+    "proof": "docs/reports/pursuit-reduced-charge-20261009/checks.json",
+    "receipt": "tmp/traversal/pursuit-reduced-charge-2255-v2/qa-job.json",
+    "resultSha256": "aef585b840e0e48313311b7bad2618e4c65c3a2a1e68e474225325407f42d812",
+    "limits": [
+      "One T0/1440x810 authored missed charge only; other mapped contexts and broad viewport acceptance open",
+      "OS-only/game-only static visibility beyond.6s accepted; browser restores normal before EXITED",
+      "Reduced EXITED and COLLISION_PENDING persistence unit-only; no reduced-contact browser claim",
+      "Combat outcomes injected; null autosave equality is absence, not persisted V6 or earned native proof",
+      "Full-tail approach, ground-contact/checkpoint perception, settled parentfocus, native tactical/balance/narrative/operator demo review open",
+      "Historical two reset-only T0 scene failures remain untouched/open; no baseline reclassification",
+      "Final mobile acceptance deferred until desktop stabilization"
+    ],
+    "reviewedDisposition": "ACCEPTED_SCOPED_DESKTOP_REDUCED_MISS_VISIBILITY_1440_OS_GAME"
   }
 }

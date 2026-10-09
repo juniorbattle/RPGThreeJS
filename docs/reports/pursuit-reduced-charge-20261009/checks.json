@@ -1,0 +1,258 @@
+{
+  "TASK": "OPERATOR-FEEDBACK / REDUCED-CHARGE-READABILITY",
+  "DOMAIN": "Traversal presentation / UI accessibility",
+  "BASELINE": "375157d90e63a1085edf2c164d61055973e97a03",
+  "BRANCH": "dev",
+  "HEAD": "PENDING_IMPLEMENTATION_PUBLICATION",
+  "STATUS": "REVIEWED_SCOPED",
+  "MERGED_IN": "NONE",
+  "SUPERSEDES": "NONE; historical2223 gait proof retains original scope",
+  "SUPERSEDED_BY": "NONE",
+  "PRODUCTION_IMPACT": "Reduced Shadow charge remains stationary and visible until model exit/reset; no premature opacity0/contactflash",
+  "CANONICAL_DOCS_UPDATED": "Autonomy paired state and handoff; no gameplay doctrine change",
+  "EVIDENCE": {
+    "receipt": "tmp/traversal/pursuit-reduced-charge-2255-v2/qa-job.json",
+    "result": "tmp/traversal/pursuit-reduced-charge-2255-v2/results.json",
+    "resultSha256": "aef585b840e0e48313311b7bad2618e4c65c3a2a1e68e474225325407f42d812",
+    "receiptAcceptance": "NOT_ACCEPTED",
+    "reviewedDisposition": "ACCEPTED_SCOPED_DESKTOP_REDUCED_MISS_VISIBILITY_1440_OS_GAME",
+    "parameters": {
+      "motion": "normal",
+      "viewports": [
+        "1440x810"
+      ],
+      "legs": [
+        "T0"
+      ],
+      "branch": "event",
+      "gameReducedMotion": false,
+      "pursuitCheck": true,
+      "gaitCheck": false,
+      "reducedChargeCheck": true,
+      "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+    },
+    "assertions": {
+      "continuous-departure": true,
+      "opaque-swap": true,
+      "reveal-momentum": true,
+      "clock-zero-during-reveal": true,
+      "full-exit-before-arrival": true,
+      "single-canonical-arrival": true,
+      "native-keyboard-focus": true,
+      "responsive-controls": true,
+      "forward-exit-and-resize": true,
+      "accelerating-arrival": true,
+      "pursuit-contact-single": true,
+      "pursuit-ordinary-pool": true,
+      "pursuit-exact-road-resume": true,
+      "pursuit-miss-full-exit": true,
+      "pursuit-no-node-resolution": true,
+      "pursuit-reduced-charge-visible": true,
+      "pursuit-reduced-charge-os-or-game-static": true,
+      "pursuit-reduced-charge-terminal-exit": true
+    },
+    "physicalStable": true,
+    "physicalFiles": 401,
+    "buildFiles": 10,
+    "physicalFreeze": "tmp/autonomy/physical-freeze-2255-v2-final.json",
+    "files": [
+      {
+        "path": "src/traversal/TraversalPursuerSprite.ts",
+        "sha256": "bf60d2c063833f6e5936a72b0e71fb22c26e1138d5b0cbac5395f73b42ec0cd7"
+      },
+      {
+        "path": "src/traversal/TraversalPursuitChargeRenderer.test.ts",
+        "sha256": "fc3a867431a9e818c7ad7871a3fa4d0bd79955decaf7893ea4a12bcba97612c5"
+      },
+      {
+        "path": "src/traversal/TraversalPursuitChargeRenderer.ts",
+        "sha256": "90976b5a2053a0f1540eba0271c6e0a0dc67f38cc0cbbfa149157ce42c6eadfa"
+      },
+      {
+        "path": "tools/traversal-motion-production-qa.mjs",
+        "sha256": "eda57ee112f9d37678b823856bef4c9ddda0cf4e9c671a843c18499a85ee4a30"
+      },
+      {
+        "path": "tools/qa/qa-job.mjs",
+        "sha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f"
+      }
+    ],
+    "build": [
+      {
+        "path": "dist/assets/combat-B0LaJhFj.js",
+        "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+      },
+      {
+        "path": "dist/assets/combat-DGLEfKFr.css",
+        "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+      },
+      {
+        "path": "dist/assets/game-CdUsLhii.css",
+        "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+      },
+      {
+        "path": "dist/assets/game-CRQrKdvY.js",
+        "sha256": "3c5380530189f8d079e222e438c5017bad2d28af56a9f3e4747d0c11f424648e"
+      },
+      {
+        "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+        "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+      },
+      {
+        "path": "dist/assets/three-core-f0ajj1rG.js",
+        "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+      },
+      {
+        "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+        "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+      },
+      {
+        "path": "dist/assets/validation-mSkvzYyn.js",
+        "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "3a027a23c96e9bfceb8fe6c3dcaef0a9c1bf1924748f0257949c7e827fd7ff0d"
+      },
+      {
+        "path": "dist/legacy-combat.html",
+        "sha256": "412e5417a1d0e9ceb5a87589cd76e0015cfbf09561455fd2d47b9d49227b9501"
+      }
+    ],
+    "charge": {
+      "os": {
+        "samples": 49,
+        "elapsed": [
+          0.0495,
+          0.849399999999995
+        ],
+        "logicalLeft": [
+          -6.140404817708332,
+          435.4303919322863
+        ],
+        "frames": [
+          "0"
+        ],
+        "opacity": [
+          1
+        ],
+        "left": [
+          86.390625,
+          86.390625
+        ],
+        "lanes": [
+          "1"
+        ],
+        "os": [
+          true
+        ],
+        "game": [
+          false
+        ]
+      },
+      "game": {
+        "samples": 12,
+        "elapsed": [
+          1.0993999999999953,
+          1.2828000000000033
+        ],
+        "logicalLeft": [
+          684.9903919322852,
+          901.8489709322957
+        ],
+        "frames": [
+          "0"
+        ],
+        "opacity": [
+          1
+        ],
+        "left": [
+          86.390625,
+          86.390625
+        ],
+        "lanes": [
+          "1"
+        ],
+        "os": [
+          false
+        ],
+        "game": [
+          true
+        ]
+      },
+      "exit": {
+        "phase": "EXITED",
+        "hidden": true,
+        "display": "none"
+      }
+    },
+    "captures": [
+      {
+        "path": "docs/reports/pursuit-reduced-charge-20261009/T0-1440-charge-os-visible.png",
+        "sha256": "fe8b94513649a312e51e3812d4c0a739ad48e28dcd86b726708d6eefd53e66a1",
+        "review": "Root + UI + guardian inspected; complete stationary lowerlane threat, nearbyfoliage no materialclip"
+      },
+      {
+        "path": "docs/reports/pursuit-reduced-charge-20261009/T0-1440-charge-game-visible.png",
+        "sha256": "07df73ab3734eae59076e2eebb5b2ace05f209ff66a23c30b6f439b031ce8dd3",
+        "review": "Root + UI + guardian inspected; complete stationary lowerlane threat, nearbyfoliage no materialclip"
+      }
+    ]
+  },
+  "checks": {
+    "focusedUnique": 20,
+    "currentFiles": 4,
+    "historicalDuplicatesExcluded": 14,
+    "types": "PASS",
+    "contracts": 8,
+    "slots": 8,
+    "buildModules": 214,
+    "immutableGate": "EMPTY",
+    "diffCheck": "PASS",
+    "physicalFreeze": "tmp/autonomy/physical-freeze-2255-v2-final.json"
+  },
+  "attempts": [
+    {
+      "jobId": "pursuit-reduced-charge-2255",
+      "status": "FAILED",
+      "scope": "route3contact frozen.100s; no longcharge/captureacceptance; preserved originalreceipt"
+    },
+    {
+      "jobId": "pursuit-reduced-charge-2255-v2",
+      "status": "SUCCEEDED",
+      "scope": "Same designated smoke after one trigger correction to actual route5a miss; no weakened assertion/source/build change"
+    }
+  ],
+  "harnessCorrections": 1,
+  "newQaTools": 0,
+  "reviewers": [
+    "ui-accessibility scopedPASS",
+    "contracts-guardian set1.1.0 scopedPASS"
+  ],
+  "compliance": {
+    "GAME_CONSTITUTION": "PASS presentation only",
+    "ART_DIRECTION": "N/A unchanged",
+    "CHARACTERS": "N/A unchanged",
+    "ENVIRONMENTS": "N/A unchanged",
+    "NARRATIVE_CAMPAIGN": "PASS no canonical facts changed",
+    "NARRATIVE_PRESENTATION": "N/A",
+    "TRAVERSAL": "PASS scoped charge presentation; model/contact unchanged",
+    "COMBAT": "PASS truth unchanged; fixture disclosed",
+    "SAVE": "PASS schema/IDs unchanged; persistedV6 not claimed",
+    "UI_ACCESSIBILITY": "PASS scoped OS/game stationary readable threat",
+    "QA_EVIDENCE": "PASS exact terminal18/digest/physical freeze and two inspectedcaptures; limitations recorded",
+    "REPOSITORY_GOVERNANCE": "PASS dev/owned lock/empty immutablegate/8contracts8slots"
+  },
+  "contractSet": "1.1.0",
+  "immutableBaseline": "d7ca28aed5c377ffedb03202f6364b7a947d1096",
+  "lockedChanges": "NONE; committed and dirty gates EMPTY",
+  "limits": [
+    "One T0/1440x810 authored missed charge only; other mapped contexts and broad viewport acceptance open",
+    "OS-only/game-only static visibility beyond.6s accepted; browser restores normal before EXITED",
+    "Reduced EXITED and COLLISION_PENDING persistence unit-only; no reduced-contact browser claim",
+    "Combat outcomes injected; null autosave equality is absence, not persisted V6 or earned native proof",
+    "Full-tail approach, ground-contact/checkpoint perception, settled parentfocus, native tactical/balance/narrative/operator demo review open",
+    "Historical two reset-only T0 scene failures remain untouched/open; no baseline reclassification",
+    "Final mobile acceptance deferred until desktop stabilization"
+  ]
+}

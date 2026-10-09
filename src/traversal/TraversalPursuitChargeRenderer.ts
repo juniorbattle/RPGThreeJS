@@ -6,7 +6,7 @@ import { setRoadGroundDepth } from './TraversalRoadAnchor';
 
 /** The model supplies all motion and terminal state.
  * This actor is a sibling of the caravan, so physical lane depth determines stacking.
- * Reduced motion retains logical charge/contact/exit boundaries with a stationary fade.
+ * Reduced motion keeps a stationary threat visible through charge/contact until exit.
  */
 export class TraversalPursuitChargeRenderer {
   readonly element = document.createElement('div');
@@ -41,8 +41,9 @@ export class TraversalPursuitChargeRenderer {
     if (viewportHeight !== undefined) setRoadGroundDepth(this.element, viewportHeight * (state.lane === 0 ? .65 : .81));
     else this.element.style.zIndex = state.lane === 0 ? '21' : '23';
     this.element.style.left = `${reduced ? viewportWidth * .06 : state.left * viewportWidth / ROAD_SPACE.referenceWidth}px`;
-    this.element.style.opacity = reduced && state.phase === 'CHARGING'
-      ? String(Math.max(0, 1 - state.elapsedSeconds / .6)) : '1';
+    // A missed charge can last beyond .6s. Do not erase its lane cue before it exits,
+    // or flash it back into view when contact freezes the model.
+    this.element.style.opacity = '1';
   }
 
   reset(): void { this.element.hidden = true; }

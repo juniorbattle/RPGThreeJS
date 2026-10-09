@@ -14,15 +14,18 @@ const viewports=arg('viewports','1440x810,620x780,390x844').split(',');
 const legs=arg('legs','T0,T1,T3').split(',');assert.ok(legs.every(leg=>['T0','T1','T3'].includes(leg)));
 const pursuitCheck=arg('pursuit-check','0')==='1';
 const gaitCheck=arg('gait-check','0')==='1';
+const reducedChargeCheck=arg('reduced-charge-check','0')==='1';
 assert.ok(!gaitCheck||(pursuitCheck&&motion==='normal'&&legs.length===1&&legs[0]==='T0'),'Gait smoke requires one normal T0 Pursuit scenario');
+assert.ok(!reducedChargeCheck||(pursuitCheck&&motion==='normal'&&legs.length===1&&legs[0]==='T0'),'Reduced charge smoke requires one normal T0 Pursuit scenario');
 assert.ok(viewports.every(value=>/^\d+x\d+$/.test(value)&&value.split('x').every(n=>Number(n)>0)),'Invalid viewports');
 const parameters={motion,viewports,legs,branch:'event',gameReducedMotion:false,pursuitCheck,
-  gaitCheck,
+  gaitCheck,reducedChargeCheck,
   scope:'native production motion with V6-origin/combat-result fixtures; not earned campaign'};
 const requiredAssertions=['continuous-departure','opaque-swap','reveal-momentum','clock-zero-during-reveal','full-exit-before-arrival','single-canonical-arrival','native-keyboard-focus','responsive-controls',
   ...(motion==='os'?['os-covered-exit']:['forward-exit-and-resize','accelerating-arrival'])];
 if(pursuitCheck)requiredAssertions.push('pursuit-contact-single','pursuit-ordinary-pool','pursuit-exact-road-resume','pursuit-miss-full-exit','pursuit-no-node-resolution');
 if(gaitCheck)requiredAssertions.push('pursuit-six-clocked-poses','pursuit-os-or-game-static-pose','pursuit-sheet-failure-static-fallback');
+if(reducedChargeCheck)requiredAssertions.push('pursuit-reduced-charge-visible','pursuit-reduced-charge-os-or-game-static','pursuit-reduced-charge-terminal-exit');
 if(process.argv.includes('--register')){
   const registered=registerJob({runId:process.env.AUTONOMY_RUN_ID,jobId:process.env.DEMO_QA_JOB_ID,output,
     driver:'tools/traversal-motion-production-qa.mjs',port,parameters,requiredAssertions});
@@ -172,7 +175,35 @@ try{
       entry.gait.restored=await poseSamples(180);
       assert.ok(new Set(entry.gait.restored.map(s=>s.frame)).size>=2,'Normal pose cadence resumes');
     }
-    const deadline=Date.now()+240000;let lanesChecked=false,skipped=false,resized=false,lastScene='',gaitChecked=false;
+    async function chargeSamples(duration){
+      return page.evaluate(duration=>new Promise(resolve=>{
+        const samples=[],start=performance.now();
+        const sample=()=>{const scene=window.__motionApp.activeTraversal,actor=scene?.element.querySelector('.traversal-pursuit-charge'),sprite=actor?.querySelector('.traversal-pursuer-sprite');
+          if(actor&&sprite&&scene.pursuitCharge){const r=actor.getBoundingClientRect(),style=getComputedStyle(actor);
+            samples.push({elapsed:scene.pursuitCharge.elapsedSeconds,logicalLeft:scene.pursuitCharge.left,phase:actor.dataset.phase,lane:actor.dataset.lane,hidden:actor.hidden,opacity:Number(style.opacity),left:r.left,top:r.top,width:r.width,height:r.height,frame:sprite.dataset.frame,reduced:actor.dataset.reducedMotion,os:matchMedia('(prefers-reduced-motion: reduce)').matches,game:window.__motionApp.state.settings.reducedGraphics});}
+          if(performance.now()-start>=duration)resolve(samples);else requestAnimationFrame(sample);
+        };requestAnimationFrame(sample);
+      }),duration);
+    }
+    async function verifyReducedCharge(){
+      await page.emulateMedia({reducedMotion:'reduce'});
+      entry.reducedCharge={os:await chargeSamples(800)};
+      await capture('charge-os-visible');
+      await page.emulateMedia({reducedMotion:'no-preference'});
+      await page.evaluate(()=>{window.__motionApp.state.settings.reducedGraphics=true;});
+      entry.reducedCharge.game=await chargeSamples(180);
+      await capture('charge-game-visible');
+      for(const [mode,samples] of Object.entries(entry.reducedCharge)){
+        const settled=samples.slice(2);
+        assert.ok(settled.length>=3&&settled.some(s=>s.elapsed>.6),'Long reduced charge sampled beyond former fade deadline');
+        assert.ok(settled.every(s=>s.phase==='CHARGING'&&!s.hidden&&s.opacity===1&&s.frame==='0'&&s.reduced==='true'&&s.os===(mode==='os')&&s.game===(mode==='game')),'Visible static charge with independent OS/game preference');
+        assert.ok(settled.every(s=>Math.abs(s.left-settled[0].left)<.1&&Math.abs(s.top-settled[0].top)<.1),'Stationary reduced actor');
+        assert.ok(settled[0].left>=0&&settled[0].left+settled[0].width<=width,'Whole reduced charge silhouette in viewport');
+        assert.ok(settled.at(-1).logicalLeft>settled[0].logicalLeft,'Logical charge continues while visual actor stays still');
+      }
+      await page.evaluate(()=>{window.__motionApp.state.settings.reducedGraphics=false;});
+    }
+    const deadline=Date.now()+240000;let lanesChecked=false,skipped=false,resized=false,lastScene='',gaitChecked=false,reducedChargeChecked=false;
     while(Date.now()<deadline){
       const s=await page.evaluate(()=>{const app=window.__motionApp,scene=app.activeTraversal,root=scene?.element;return {segment:root?.dataset.routeSegment,view:root?.dataset.view,phase:scene?.session.phase,departure:!!scene?.departure,transition:root?.dataset.transition,opacity:Number(root?.style.getPropertyValue('--transition-opacity')),progress:scene?.routeRun.progress01,lane:scene?.session.currentLane,speed:scene?.speed,min:scene?.routeSegment.vMin,fade:Number(root?.style.getPropertyValue('--arrival-fade')||0),left:root?.querySelector('.traversal-vehicle').getBoundingClientRect().left,chargePhase:scene?.pursuitCharge?.phase,chargeLeft:root?.querySelector('.traversal-pursuit-charge:not([hidden])')?.getBoundingClientRect().left,arrivals:window.__motionProof.arrivals.length};});
       if(s.arrivals===1){entry.complete=true;break;}
@@ -197,6 +228,12 @@ try{
           gaitChecked=true;await verifyGait();
         }
         if(gaitCheck&&s.chargePhase==='CHARGING'&&s.chargeLeft>width*.45&&s.chargeLeft<width*.75)await capture('gallop-charge');
+        if(reducedChargeCheck&&!reducedChargeChecked&&s.segment==='route-5a'&&s.chargePhase==='CHARGING'){
+          reducedChargeChecked=true;await verifyReducedCharge();
+          await page.waitForFunction(()=>window.__motionApp.activeTraversal?.pursuitCharge?.phase==='EXITED',{},{timeout:5000});
+          entry.reducedCharge.exit=await page.locator('.traversal-pursuit-charge').evaluate(actor=>({phase:actor.dataset.phase,hidden:actor.hidden,display:getComputedStyle(actor).display}));
+          assert.deepEqual(entry.reducedCharge.exit,{phase:'EXITED',hidden:true,display:'none'},'Terminal exit clears charge actor');
+        }
       }
       if(!lanesChecked&&s.view==='route'&&!s.transition&&s.progress>.1&&s.progress<.5){
         await activate('[data-traversal-lane="1"]:visible:not([disabled])','lower lane');
@@ -224,6 +261,7 @@ try{
     const proof=await page.evaluate(()=>{cancelAnimationFrame(window.__motionSampler);const app=window.__motionApp;return {...window.__motionProof,branch:app.state.run.traversalBranches,gameReduced:app.state.settings.reducedGraphics,osReduced:matchMedia('(prefers-reduced-motion: reduce)').matches};});
     Object.assign(entry,proof);
     if(gaitCheck)assert.ok(gaitChecked,'Live articulated-pose checks executed');
+    if(reducedChargeCheck)assert.ok(reducedChargeChecked,'Live reduced-charge checks executed');
     if(pursuitCheck){
       assert.equal(proof.roadBattles.length,1,'Exactly one physical collision handoff');const battle=proof.roadBattles[0];
       assert.ok(['forest_patrol','forest_ambush','wolf_pack'].includes(battle.config.id));assert.equal(battle.config.rank,'normal');

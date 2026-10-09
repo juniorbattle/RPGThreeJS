@@ -4,7 +4,7 @@ import { TraversalPursuitChargeRenderer } from './TraversalPursuitChargeRenderer
 import { createPursuitCharge, advancePursuitCharge } from './TraversalPursuitCharge';
 
 const charge = (lane: 0 | 1) => createPursuitCharge({ windowId: 'authored', lane, left: 40, speed: 200, acceleration: 800 });
-describe('unwired grounded charge renderer', () => {
+describe('grounded charge renderer', () => {
   it('projects the committed lane and respects physical sibling depth', () => {
     const renderer = new TraversalPursuitChargeRenderer();
     renderer.update(charge(0), 1463, 160, true);
@@ -35,7 +35,27 @@ describe('unwired grounded charge renderer', () => {
     renderer.update({ ...charge(0), left: 1200, elapsedSeconds: .5 }, 1000, 80, true, false);
     expect(renderer.element.dataset.reducedMotion).toBe('true');
     expect(renderer.element.style.left).toBe('60px');
-    expect(Number(renderer.element.style.opacity)).toBeCloseTo(1 / 6);
+    expect(Number(renderer.element.style.opacity)).toBe(1);
+    vi.restoreAllMocks();
+  });
+  it.each([false, true])('retains the reduced lane cue throughout a long miss and frozen contact (game=%s)', game => {
+    vi.spyOn(window, 'matchMedia').mockReturnValue({ matches: !game } as MediaQueryList);
+    const renderer = new TraversalPursuitChargeRenderer();
+    const moving = { ...charge(1), left: 1200, elapsedSeconds: 1.4 };
+    renderer.update(moving, 1440, 190, true, game);
+    expect(renderer.element.hidden).toBe(false);
+    expect(renderer.element.style.opacity).toBe('1');
+    expect(Number.parseFloat(renderer.element.style.left)).toBeCloseTo(86.4);
+    expect(renderer.element.style.top).toBe('81%');
+    expect(renderer.element.querySelector('.traversal-pursuer-sprite')?.getAttribute('data-frame')).toBe('0');
+    renderer.update(moving, 1440, 190, false, game);
+    expect(renderer.element.style.opacity).toBe('1');
+    renderer.update({ ...moving, phase: 'COLLISION_PENDING' }, 1440, 190, false, game);
+    expect(renderer.element.hidden).toBe(false);
+    expect(renderer.element.style.opacity).toBe('1');
+    renderer.update({ ...moving, phase: 'EXITED', left: 1463 }, 1440, 190, false, game);
+    expect(renderer.element.hidden).toBe(true);
+    renderer.dispose();
     vi.restoreAllMocks();
   });
 });
