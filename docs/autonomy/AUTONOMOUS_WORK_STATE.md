@@ -7,6 +7,10 @@ Active subtask: Reduced charge opacity fixed; scoped desktop OS/game missed-char
 
 Exact next action: Read-only preflight/exclusive lock; inspect pursuit-reduced-charge-2255-v2 receipt and docs/reports/pursuit-reduced-charge-20261009/checks.json before any rerun. Reuse scoped desktop reduced-miss visibility only with matching physical source/driver/build/parameters/assertions. Reduced contact and reduced terminal exit remain browser-open (unit coverage only); other ten authored context bindings, native Pursuit victory/defeat temporary-loot/persistedV6 and cancel/re-entry/focus-visible remain open. Use existing tools/demo-continuous-production-qa.mjs battle() native pilot as authority for native combat; existing motion runner still injects outcomes and has no persisted autosave in T0 fixture. Preserve reducedCharge2255.previous, pursuitGait2223.previous, operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue desktop checkpoint braking/full-tail approach/ground-contact/settled parentfocus, sixhero skills/campaign/narrative gaps; mobile finalization LAST. Ten mappings/category already resolved1856; eightvideos/Alaric/audioDEFERRED/LOCKED unchanged; operator final manual artistic/literary/balance review pending.
 
+Scoped product proof: docs/reports/pursuit-reduced-charge-20261009/checks.json;20currenttests/types/contracts8slots8/build214/eightMP4/immutablegatesPASS. One scenario, firstFAILEDcontacttarget preserved; one correction, v2SUCCEEDED18 and two inspectedcaptures. Native outcomes/persistedV6/fullPursuit/mobile/demo unclaimed.
+
+Published implementation: 2cf650906f73bd5a6ffc517eddbdbd7acf7ccb0d = origin/dev; run ended 2026-10-09T23:10:57.994Z. Final metadataSHA/parity/WIPretirement/lockrelease recorded externally in automation memory.
+
 ## Current Pursuit gait checkpoint — 2026-10-09
 
 Run: rpgthreejs-auto-dev-90m-20261009T2223; status: IN_PROGRESS

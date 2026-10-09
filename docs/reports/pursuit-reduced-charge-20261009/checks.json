@@ -3,8 +3,8 @@
   "DOMAIN": "Traversal presentation / UI accessibility",
   "BASELINE": "375157d90e63a1085edf2c164d61055973e97a03",
   "BRANCH": "dev",
-  "HEAD": "PENDING_IMPLEMENTATION_PUBLICATION",
-  "STATUS": "REVIEWED_SCOPED",
+  "HEAD": "2cf650906f73bd5a6ffc517eddbdbd7acf7ccb0d",
+  "STATUS": "PUBLISHED_SCOPED",
   "MERGED_IN": "NONE",
   "SUPERSEDES": "NONE; historical2223 gait proof retains original scope",
   "SUPERSEDED_BY": "NONE",
@@ -254,5 +254,10 @@
     "Full-tail approach, ground-contact/checkpoint perception, settled parentfocus, native tactical/balance/narrative/operator demo review open",
     "Historical two reset-only T0 scene failures remain untouched/open; no baseline reclassification",
     "Final mobile acceptance deferred until desktop stabilization"
-  ]
+  ],
+  "publication": {
+    "implementationCommit": "2cf650906f73bd5a6ffc517eddbdbd7acf7ccb0d",
+    "devRemoteVerified": "2cf650906f73bd5a6ffc517eddbdbd7acf7ccb0d",
+    "finalMetadataSha": "Recorded externally in automation memory after publication"
+  }
 }

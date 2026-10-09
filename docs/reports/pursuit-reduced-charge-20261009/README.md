@@ -1,7 +1,7 @@
 # Reduced Pursuit charge readability
 
 TASK: OPERATOR-FEEDBACK / REDUCED-CHARGE-READABILITY; DOMAIN: Traversal / accessibility.
-BASELINE: 375157d90e63a1085edf2c164d61055973e97a03; BRANCH: dev; HEAD: PENDING_IMPLEMENTATION_PUBLICATION; STATUS: REVIEWED_SCOPED; MERGED_IN: NONE.
+BASELINE: 375157d90e63a1085edf2c164d61055973e97a03; BRANCH: dev; HEAD: 2cf650906f73bd5a6ffc517eddbdbd7acf7ccb0d; STATUS: PUBLISHED_SCOPED; MERGED_IN: NONE.
 SUPERSEDES/SUPERSEDED_BY: NONE. Historical2223 retains its original scope.
 PRODUCTION_IMPACT: stationary reduced threat remains visible through charge/contact until model exit/reset. Canonical docs: paired autonomy state/handoff only; no doctrine change.
 
@@ -14,3 +14,5 @@ EVIDENCE: checks.json and two selected OS/game PNGs.20 unique current tests, Typ
 - Full-tail approach, ground-contact/checkpoint perception, settled parentfocus, native tactical/balance/narrative/operator demo review open
 - Historical two reset-only T0 scene failures remain untouched/open; no baseline reclassification
 - Final mobile acceptance deferred until desktop stabilization
+
+Verified implementation 2cf650906f73bd5a6ffc517eddbdbd7acf7ccb0d = origin/dev. Metadata-only closure and final SHA/lockrelease recorded externally after publication.
