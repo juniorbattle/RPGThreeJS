@@ -1,19 +1,20 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-09T06:15:49.8780757Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-09T06:56:55.147Z",
   "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
   "activePhase": "KEYBOARD_STANDALONE_MODIFIERS_ACCEPTED_CAMPAIGN_ACCESSIBILITY_OPEN",
   "activeSubtask": "Standalone modifier/native keyboard accepted; fresh campaign iframe and accessibility acceptance remains",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "06e6a565db47f0a3320005cfa556a38ff6f4b57b",
-  "lastPushedCommit": "06e6a565db47f0a3320005cfa556a38ff6f4b57b",
+  "lastKnownGoodCommit": "babc01bf3571247b73516a740c501a88b1deb7dd",
+  "lastPushedCommit": "babc01bf3571247b73516a740c501a88b1deb7dd",
   "completedThisRun": [
     "Read-only preflight: clean dev14358d8 equals live origin/dev; no lock/QA worker/listener; other Vite belongs to HD-2D left untouched; acquired exclusive lock",
     "Guardian approved passive delivered modifier assertion design after one pre-execution normalized pending-spec/centers/keys correction; no runtime edit",
     "Existing production keyboard runner extended with passive modifier delivery and native pending-spec/targets non-interference assertions; no source or gameplay edits",
     "Registered keyboard-0613 terminalSUCCEEDED: six1366/620/390 normal+OS-only cases,840exactdelivered chords, native keyboard/pointer one attack with expectedAP;395files/10build stable",
-    "Guardian finalPASS and UI conditions closed; eight captures inspected, three selected plus compactproof promoted; standalone scoped acceptance only"
+    "Guardian finalPASS and UI conditions closed; eight captures inspected, three selected plus compactproof promoted; standalone scoped acceptance only",
+    "Published accepted8-path checkpointbabc01b normally to origin/dev; ownWIP9ddc00d retired only after seven exact blobs and normalized-state metadata coverage, historicalWIP retained"
   ],
   "filesChanged": [
     "tools/combat-battlefield-keyboard-production-qa.mjs",
@@ -186,7 +187,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261009T0613",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-09T06:51:47.423Z",
+  "lastHeartbeat": "2026-10-09T06:56:55.147Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261009T0613",
     "sha": "9ddc00d633288eaac349bfb494276c74714ad07b",
@@ -201,14 +202,16 @@
       "docs/reports/demo-keyboard-modifiers-0613-browser/620-no-preference-inspection-focus.png",
       "docs/reports/demo-keyboard-modifiers-0613-browser/390-reduce-target-resolved.png"
     ],
-    "status": "GREEN",
-    "lastGreenCheck": "ACCEPTED_SCOPED_STANDALONE_NATIVE_KEYBOARD_MODIFIERS_1366_620_390_NORMAL_OS"
+    "status": "RETIRED_AFTER_VERIFIED_DEV_COVERAGE",
+    "lastGreenCheck": "ACCEPTED_SCOPED_STANDALONE_NATIVE_KEYBOARD_MODIFIERS_1366_620_390_NORMAL_OS",
+    "retiredAt": "2026-10-09T06:53:50.389Z",
+    "retirementReceipt": "tmp/autonomy/wip-retirement-0613.json"
   },
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261009T0613",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-09T06:51:47.423Z",
-    "status": "IN_PROGRESS",
+    "lastHeartbeat": "2026-10-09T06:56:55.147Z",
+    "status": "CHECKPOINT_PUBLISHED_STANDALONE_ACCEPTED_CAMPAIGN_OPEN",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -17606,8 +17609,10 @@
         "docs/reports/demo-keyboard-modifiers-0613-browser/620-no-preference-inspection-focus.png",
         "docs/reports/demo-keyboard-modifiers-0613-browser/390-reduce-target-resolved.png"
       ],
-      "status": "GREEN",
-      "lastGreenCheck": "ACCEPTED_SCOPED_STANDALONE_NATIVE_KEYBOARD_MODIFIERS_1366_620_390_NORMAL_OS"
+      "status": "RETIRED_AFTER_VERIFIED_DEV_COVERAGE",
+      "lastGreenCheck": "ACCEPTED_SCOPED_STANDALONE_NATIVE_KEYBOARD_MODIFIERS_1366_620_390_NORMAL_OS",
+      "retiredAt": "2026-10-09T06:53:50.389Z",
+      "retirementReceipt": "tmp/autonomy/wip-retirement-0613.json"
     },
     "nextAction": "Normal preflight/exclusive lock; resume SAME DEMO-QA-POLISH campaign keyboard boundary. Reuse accepted keyboard-0613 standalone six-case proof, do not rerun it or accepted0443ending/0011cast. Inspect existing campaignBattlefieldKeyboard() and parent focus-return coverage in tools/demo-continuous-production-qa.mjs; preserve deferredDemoTask.nextAction VERBATIM. Advance one registered fresh390x844 OS-only first-refuge scenario on current source/build using existing runner (DEMO_QA_TARGET=first-refuge, ROUTE=rescue, OS_MOTION=1, gamefalse, no seed), including actual Tab/ShiftTab iframe entry/cancel/dock focus, unchanged owner/autosaveV6, and native parent focus after combat. Correct only demonstrated product defect or minimally missing certifying assertion; guardian review for sensitive assertion diff before register-demo. Unique35min job/freeport/physicalfreeze, inspect actual captures. Campaign/AT/actorframing/exact2AP-start/otherendings/StageVFX/balance/full-demo remain open; preserve external blockers and original deferred task.",
     "runMetrics": {
@@ -17655,8 +17660,8 @@
       ]
     },
     "runStartedAt": "2026-10-09T06:15:49.8780757Z",
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-09T06:56:55.147Z",
+    "writerStopped": true,
     "metadataPublication": {
       "status": "RESOLVED_BY_OPERATOR_APPROVAL",
       "standingDecision": "OD-2026-10-08-B",
@@ -18429,6 +18434,24 @@
       },
       "workerAbsent": 60012,
       "portAbsent": 5352
+    },
+    "publishedCheckpoint": "babc01bf3571247b73516a740c501a88b1deb7dd",
+    "closeout0613": {
+      "checkpoint": "babc01bf3571247b73516a740c501a88b1deb7dd",
+      "runEndedAt": "2026-10-09T06:56:55.147Z",
+      "workerAbsent": 60012,
+      "portAbsent": 5352,
+      "wipDisposition": "RETIRED_AFTER_VERIFIED_DEV_COVERAGE",
+      "reviewers": 2,
+      "guardianPasses": 3,
+      "uiPasses": 2,
+      "sourceFilesModified": 0,
+      "existingQaFilesModified": 1,
+      "newQaFiles": 0,
+      "proofFilesAdded": 4,
+      "workflowFilesModified": 3,
+      "metadataPublication": "This three-file closure is published after writing; finalSHA/lockrelease in automation memory",
+      "mainUntouched": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     }
   },
   "previousInterruptedRun": {
