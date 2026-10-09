@@ -8,10 +8,62 @@ import type { TraversalRoadAuthoring } from './TraversalRoadAuthoring';
 import type { TraversalRouteBeat } from './TraversalRouteModel';
 import { T0_ROAD_AUTHORING } from './TraversalT0Authoring';
 import { hasAuthoredTraversalPresentation } from './TraversalPresentation';
+import { createPursuitCharge } from './TraversalPursuitCharge';
 
 afterEach(() => { document.body.replaceChildren(); vi.restoreAllMocks(); });
 
 describe('shared road scene authoring boundary', () => {
+  it('contacts once, freezes road clocks, and resumes the same mounted road without consuming a campaign stage', () => {
+    vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
+    vi.spyOn(window, 'cancelAnimationFrame').mockImplementation(() => undefined);
+    vi.spyOn(HTMLImageElement.prototype, 'decode').mockResolvedValue();
+    const state = createInitialState(), original = structuredClone(state), handoff = vi.fn();
+    const leg = LION_TRAVERSAL_LEGS.find(l => l.id === 'T0')!;
+    const scene = new TraversalRoadScene({ root: document.body, leg, getState: () => state,
+      getAvailableNodes: () => [], onNodeHandoff: vi.fn(), onArrival: vi.fn(), onMenu: vi.fn(), onPursuitContact: handoff },
+      T0_ROAD_AUTHORING, { selectBranch: vi.fn(), optionalDecision: () => undefined });
+    scene.open();
+    const clock = scene as unknown as { transition: unknown; pursuitCharge: ReturnType<typeof createPursuitCharge> | null;
+      routeRun: { elapsedMs: number; progress01: number }; routeRenderer: { distance: number };
+      advance(seconds: number): void };
+    clock.transition = null;
+    clock.pursuitCharge = createPursuitCharge({ windowId: 't0:r3:pursuit-1', lane: 0, left: 100, speed: 170, acceleration: 850 });
+    clock.advance(1);
+    expect(handoff).toHaveBeenCalledOnce(); expect(scene.session.phase).toBe('DECISION');
+    const held = { elapsed: clock.routeRun.elapsedMs, distance: clock.routeRenderer.distance, stage: scene.session.stageIndex, progress: scene.session.routeProgress01 };
+    clock.advance(10);
+    expect(clock.routeRun.elapsedMs).toBe(held.elapsed); expect(clock.routeRenderer.distance).toBe(held.distance);
+    expect(scene.resumeRoadCombat('wrong')).toBe(false);
+    expect(scene.resumeRoadCombat('t0:r3:pursuit-1')).toBe(true);
+    expect(scene.session.stageIndex).toBe(held.stage); expect(scene.session.routeProgress01).toBe(held.progress);
+    expect(clock.routeRun.elapsedMs).toBe(held.elapsed); expect(clock.routeRenderer.distance).toBe(held.distance);
+    clock.advance(.1); expect(clock.routeRun.elapsedMs).toBeGreaterThan(held.elapsed);
+    expect(handoff).toHaveBeenCalledOnce(); expect(state).toEqual(original);
+    scene.dispose();
+  });
+  it('finishes a partially completed lane switch inside a delayed frame and freezes under global cover', () => {
+    vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
+    vi.spyOn(window, 'cancelAnimationFrame').mockImplementation(() => undefined);
+    vi.spyOn(HTMLImageElement.prototype, 'decode').mockResolvedValue();
+    const state = createInitialState(), handoff = vi.fn(), leg = LION_TRAVERSAL_LEGS.find(l => l.id === 'T0')!;
+    const scene = new TraversalRoadScene({ root: document.body, leg, getState: () => state,
+      getAvailableNodes: () => [], onNodeHandoff: vi.fn(), onArrival: vi.fn(), onMenu: vi.fn(), onPursuitContact: handoff },
+      T0_ROAD_AUTHORING, { selectBranch: vi.fn(), optionalDecision: () => undefined });
+    scene.open();
+    const clock = scene as unknown as { transition: unknown; pursuitCharge: ReturnType<typeof createPursuitCharge>;
+      laneMotion: { from: number; to: number; elapsed: number }; routeRun: { lane: number; elapsedMs: number };
+      advance(seconds: number): void };
+    clock.transition = null;
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+    clock.laneMotion = { from: 65, to: 81, elapsed: .30 };
+    clock.pursuitCharge = createPursuitCharge({ windowId: 't0:r3:pursuit-1', lane: 1, left: -20, speed: 170, acceleration: 850 });
+    document.body.classList.add('scene-transition--locked'); clock.advance(1);
+    expect(clock.routeRun.elapsedMs).toBe(0); expect(clock.pursuitCharge.elapsedSeconds).toBe(0);
+    document.body.classList.remove('scene-transition--locked'); clock.advance(1);
+    expect(handoff).toHaveBeenCalledOnce(); expect(clock.pursuitCharge.phase).toBe('COLLISION_PENDING');
+    expect(clock.pursuitCharge.elapsedSeconds).toBeGreaterThan(.08);
+    scene.dispose();
+  });
   it.each([false, true])('keeps interpolated lane ground and depth together without changing owner clocks (reduced=%s)', async reduced => {
     vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
     vi.spyOn(window, 'cancelAnimationFrame').mockImplementation(() => undefined);

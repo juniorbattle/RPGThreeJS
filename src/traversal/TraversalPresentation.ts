@@ -18,6 +18,7 @@ export interface TraversalPresentationScene {
   canResumeNode(nodeId: string): boolean;
   beginNodeResolution(nodeId: string): void;
   resumeNode(nodeId: string): void;
+  resumeRoadCombat(windowId: string): boolean;
   completeArrival(): void;
   dispose(): void;
 }

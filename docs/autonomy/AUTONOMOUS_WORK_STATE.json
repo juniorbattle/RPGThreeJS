@@ -1,69 +1,69 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-09T17:49:40.5972273Z",
-  "runEndedAt": "2026-10-09T18:31:51.303Z",
-  "activeTask": "OPERATOR-FEEDBACK: desktop opening and Traversal",
-  "activePhase": "DESKTOP_OPENING_AND_EXIT_SCOPED_CHECKPOINT",
-  "activeSubtask": "Desktop opening and final exits accepted in stated scopes; checkpoint perception and parent settled focus open",
+  "runStartedAt": "2026-10-09T19:00:31.2695699Z",
+  "runEndedAt": null,
+  "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
+  "activePhase": "CONSOLIDATED_SCOPED_RUNTIME_CHECKPOINT",
+  "activeSubtask": "Six demo hero skills and ordinary random Pursuit contact/miss/return scoped verified; articulated gait/manual QA open",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "20b082984088a05b4b7aa3b562724229bd35e41a",
   "lastPushedCommit": "20b082984088a05b4b7aa3b562724229bd35e41a",
   "completedThisRun": [
-    "Clean dev/live origin parity and absent lock confirmed; exclusive lock acquired; exact prior campaign continuation and historical QA retained",
-    "Operator desktop-first directive recorded; architecture and narrow narrative/Traversal reviews completed",
-    "Implemented opening2enemies/existing4firstskills/management2PA labels and16authorized intro texts, higher progression/IDs/V6 unchanged",
-    "Corrected checkpoint camera braking integral, opaque forest road and exact accelerated full forward exit",
-    "One native desktop smoke and six-case desktop Traversal milestone matrix SUCCEEDED/stable; selected6captures+compactproof, no blanket completion"
+    "Operator clarification recorded: all six demo heroes including rogue/lancer first existing skill at2AP withT0 gear",
+    "Ten campaign-owned bindings to ordinary Serpent/monster pool, bosses/elites excluded; no node/branch/dialogue invention",
+    "Committed physical charge/contact once and two genuine full-right misses; exact mounted road clocks/stage/truth restored in production T0desktop fixture",
+    "Corrected checkpoint advancement, delayed-frame lane completion, global-cover freeze and mount cancellation lifecycle before final smoke",
+    "113focusedtests/TypeScript/contracts8slots8/build213/gatesPASS; one executed registered smokeSUCCEEDED stable; earlier plannedjob never launched"
   ],
   "filesChanged": [
     "src/game/catalog.ts",
-    "src/game/content.ts",
-    "src/ui/ManagementView.ts",
-    "src/styles/traversal.css",
-    "src/traversal/TraversalRoadScene.ts",
     "src/game/management.test.ts",
-    "src/ui/ManagementView.test.ts",
-    "tools/demo-continuous-production-qa.mjs",
+    "src/game/runSystem.ts",
+    "src/game/runSystem.test.ts",
+    "src/game/GameApp.ts",
+    "src/campaign/LionTraversalPursuitEncounters.ts",
+    "src/traversal/TraversalPresentation.ts",
+    "src/traversal/TraversalPursuitCharge.ts",
+    "src/traversal/TraversalPursuitChargeRenderer.ts",
+    "src/traversal/TraversalRoadScene.ts",
+    "src/traversal/TraversalRoadScene.test.ts",
+    "src/traversal/TraversalRoutePursuit.ts",
+    "src/traversal/TraversalRoutePursuit.test.ts",
+    "src/styles/app.css",
     "tools/traversal-motion-production-qa.mjs",
-    "docs/reports/desktop-opening-traversal-20261009/intro-marian.png",
-    "docs/reports/desktop-opening-traversal-20261009/opening-two-wolves.png",
-    "docs/reports/desktop-opening-traversal-20261009/earned-refuge-resumed.png",
-    "docs/reports/desktop-opening-traversal-20261009/ambush-ground.png",
-    "docs/reports/desktop-opening-traversal-20261009/arrival-visible.png",
-    "docs/reports/desktop-opening-traversal-20261009/arrival-exited.png",
-    "docs/reports/desktop-opening-traversal-20261009/checks.json",
-    "docs/autonomy/OPERATOR_DECISIONS.md",
-    "docs/autonomy/DESKTOP_OPENING_OPERATOR_DECISION_2026-10-09.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-09T1748Z-codex-desktop-feedback.md"
+    "docs/autonomy/DESKTOP_OPENING_OPERATOR_DECISION_2026-10-09.md",
+    "docs/autonomy/TRAVERSAL_PURSUIT_THREAT.md",
+    "docs/autonomy/handoffs/2026-10-09T1856Z-codex-consolidation.md",
+    "docs/reports/demo-consolidation-20261009/checks.json"
   ],
   "testsRun": [
-    "167currentfocusedPASS: management56/content97/roadscene5/world1/UI8 (repeats excluded)",
-    "TypeScript PASS; validator8contracts8slots; staging257steps75dialogues; production210modules8MP4 PASS",
-    "Immutable/protected-path/whitespace/syntax gates PASS",
-    "Native1366normal freshwolf_pack/rescue/firstrefuge exactV6 PASS; scoped numeric battlefield/parent focus only",
-    "Desktop1440normal/OS T0/T1/T3 eventfixtures six physical exit cases PASS; selected T0ground frame inspected"
+    "vitest6focusedfiles",
+    "tsc --noEmit",
+    "contracts:validate direct",
+    "vite production build",
+    "git diff --check and immutable/protected gates",
+    "one existing motion production runner T0 1440normal pursuit-check"
   ],
   "testsPassed": [
-    "167currentfocusedPASS: management56/content97/roadscene5/world1/UI8 (repeats excluded)",
-    "TypeScript PASS; validator8contracts8slots; staging257steps75dialogues; production210modules8MP4 PASS",
-    "Immutable/protected-path/whitespace/syntax gates PASS",
-    "Native1366normal freshwolf_pack/rescue/firstrefuge exactV6 PASS; scoped numeric battlefield/parent focus only",
-    "Desktop1440normal/OS T0/T1/T3 eventfixtures six physical exit cases PASS; selected T0ground frame inspected"
+    "113unique focused PASS",
+    "TypeScript PASS",
+    "8contracts8slots PASS",
+    "build213modules8MP4 PASS",
+    "one registered1440normal T0 production fixture smoke15assertions PASS; no console/page errors"
   ],
   "testsRemaining": [
     "Native forest_ambush variant and overall beginner balance; KestrelKO in tested wolf_pack",
     "Salvation from exactly2AP and40%HP verification; current casts3to1AP/salvationVerifiedfalse",
     "Parent focus settled visible proof: immediate capture during fade, numeric focus/owner/autosave only",
     "Checkpoint braking/glissement perceptual sequence; selected T0 ground frame only",
-    "Production Pursuit articulated run, charge/right miss exit and10canonical collision mappings",
+    "Articulated Shadow running gait; OS/game reduction, other nine mapping contexts in browser, native tactical victory/defeat/temporary-loot recovery, persisted V6 and cancellation/re-entry/focus-visible acceptance",
     "Other campaign branches/endings, Stage/VFX/AT/desktop accessibility",
     "Council/refugees/static-only OS narrative acceptance and approved Bois-Clair night plate",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
   "blockers": [
-    "Pursuit production collision integration:10windows lack explicitly authored eligible canonical mappings; isolated candidate PASS does not close full task",
     "Narrative OS smoke: static-only council rejected by unchanged approved-video-attempt assertion; one correction exhausted, both outputs NOT_ACCEPTED. Normal council and static-only OS milestone proof remain open.",
     "SCENE-TRANSITION-COPY: authored ATE captions source and six-case scoped proof PASS; full static-only OS-shadow proof remains blocked by existing video-attempt assertion; no repeat or weakening.",
     "ENVIRONMENT-NARRATIVE-COHERENCE BLOCKED_ASSET: Bois-Clair night-watch says night, approved burning plate is bright sunset; no approved same-location night replacement. Preserve text/masters.",
@@ -73,25 +73,25 @@
     "Ending2311 FAILED_NOT_ACCEPTED: bounded131actions, three damage alliesKO, Marian alone; support-only crosier pilot excludes native foe actions. Review pilot fallback before new QA; no balance or terminalV6 conclusion. Prior2104 interrupted output remains historical NOT_ACCEPTED.",
     "Ending2311 FAILED_NOT_ACCEPTED: bounded131actions, three damage alliesKO, Marian alone; support-only crosier pilot excludes native foe actions. Six-line lone-survivor native fallback is source-reviewed checkpoint only, verify in new registered QA; no balance or terminalV6 conclusion. Prior2104 interrupted output remains historical NOT_ACCEPTED.",
     "campaign-keyboard-1655: native opening defeat blocks intended parent-return/first-refuge proof; pilot strategy versus gameplay reliability unresolved, not established product regression",
-    "1748: checkpoint motion perception and parent settled focus visuals OPEN; Pursuit animation/10eligiblemapping integration OPEN; mobile broad acceptance explicitly final"
+    "1748/1856: checkpoint perception and parent settled-focus visuals OPEN; Pursuit mappings implemented/scoped T0 fixture verified, articulated gait and broader browser acceptance OPEN; mobile final"
   ],
   "remainingWork": [
     "Native forest_ambush variant and overall beginner balance; KestrelKO in tested wolf_pack",
     "Salvation from exactly2AP and40%HP verification; current casts3to1AP/salvationVerifiedfalse",
     "Parent focus settled visible proof: immediate capture during fade, numeric focus/owner/autosave only",
     "Checkpoint braking/glissement perceptual sequence; selected T0 ground frame only",
-    "Production Pursuit articulated run, charge/right miss exit and10canonical collision mappings",
+    "Articulated Shadow running gait; OS/game reduction, other nine mapping contexts in browser, native tactical victory/defeat/temporary-loot recovery, persisted V6 and cancellation/re-entry/focus-visible acceptance",
     "Other campaign branches/endings, Stage/VFX/AT/desktop accessibility",
     "Council/refugees/static-only OS narrative acceptance and approved Bois-Clair night plate",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Read-only preflight/exclusive lock; resume OD-2026-10-09-A desktop-first feedback. Reuse the three completed1748 receipts/physical freeze and compact proof; do not repeat the six accepted desktop exit cases. Inspect the remaining checkpoint braking/glissement perception and settled automatic parent-focus capture (current parent PNG still fades) with existing runner and one focused desktop scenario; only fix demonstrated product issues or one minimal assertion/capture defect. Preserve operatorFeedback1748.previous.nextAction and deferredDemoTask.nextAction VERBATIM; old390OS campaign boundary is deferred until final mobile pass. Then continue current native earned first-refuge V6 lineage through desktop combat/campaign branches/endings and exact2AP-start Salvation/VFX/accessibility. Tested wolf_pack won3rounds23actions with KestrelKO: not general balance acceptance; forest_ambush native variant open. Continue narrative context/staticOS/council work, retain approved-night-plate blocker. Pursuit production still needs articulated running asset and10explicit canonical eligible combat mappings; do not invent formations/rewards/outcomes, loop isolated QA or consume runs on external mapping blocker. Mobile broad polish last after desktop gameplay/visual stability; full demo remains IN_PROGRESS.",
+  "nextAction": "Read-only preflight/exclusive lock; inspect1856 v2 terminal receipt and compactchecks first, reuse113tests+scopedT0desktop contact/miss/exactroadreturn evidence if same source/driver/build. Preserve operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue same desktop consolidation: implement articulated Shadow running animation (current still/bob is not gait), then existing-runner OS/game-reduced and other mapped contexts, browser native tactical victory/defeat temporary-loot recovery, persistedV6 and cancel/re-enter/focus-visible checks. Do not reinterpret null autosave equality as persistedV6 proof. Finish checkpoint glissement perception/settled parentfocus/narrative/campaign gaps; operator manual visual/literary/balance QA later, mobile finalization last. No new mapping operator decision needed; mappings/category blocker resolved. Eight videos/Alaric/audio/LOCKED unchanged.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
     "TRAVERSAL-MOTION-POLISH: COMPLETE_SCOPED_PRESENTATION",
-    "TRAVERSAL-PURSUIT-THREAT: BLOCKED_CANONICAL_MAPPING; ISOLATED_CANDIDATE_PASS",
+    "TRAVERSAL-PURSUIT-THREAT: TEN_MAPPINGS_IMPLEMENTED; T0_DESKTOP_FIXTURE_CONTACT_MISS_RETURN_PASS; ARTICULATED_GAIT_AND_FULL_ACCEPTANCE_OPEN",
     "TRAVERSAL-ROAD-ELEMENTS: COMPLETE_SCOPED_PRESENTATION",
     "PRE-JUDGEMENT-CAMPFIRE: COMPLETE_SCOPED_PRESENTATION",
     "NARRATIVE-CONTEXT-COHERENCE: SOURCE_CHECKPOINT; BROWSER_GATE_OPEN_STATIC_OS_HARNESS",
@@ -101,7 +101,7 @@
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
   "creditStatus": "Work proceeded within authorized scope; no quota-based reduction or savings claim",
-  "contractComplianceStatus": "PASS_LOCKED_AUTHORITY_COMPLIANCE; SCOPED_NATIVE_AND_EXIT_ACCEPTANCE; OPEN_CRITERIA_NOT_CLOSED",
+  "contractComplianceStatus": "PASS_SCOPED_BOUNDARIES_SET1.1.0; full acceptance remains OPEN",
   "commitReferenceScope": "Source/unit/build/selected browser checkpoint1748 physically matches 20b082984088a05b4b7aa3b562724229bd35e41a; final metadata closure SHA is recorded in automation memory. Prior ending/OS/mobile proofs retain their original scopes.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
@@ -203,43 +203,43 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "codex-operator-feedback-20261009T1748",
+  "runId": "codex-demo-consolidation-20261009T1856",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-09T18:31:51.303Z",
+  "lastHeartbeat": "2026-10-09T22:19:07.826Z",
   "wip": {
-    "branch": "wip/codex-operator-feedback-20261009T1748",
-    "sha": "ce0159f397c671d33e36e64eb68446266620f58a",
-    "snapshotAt": "2026-10-09T18:29:57.932Z",
+    "branch": "wip/codex-demo-consolidation-20261009T1856",
+    "sha": "852047971509b9781e3862785fab54f678ecf843",
+    "snapshotAt": "2026-10-09T22:19:07.826Z",
     "status": "WIP_NOT_ACCEPTED",
     "paths": [
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/DESKTOP_OPENING_OPERATOR_DECISION_2026-10-09.md",
       "src/game/catalog.ts",
-      "src/game/content.ts",
+      "src/game/management.test.ts",
+      "src/game/runSystem.ts",
+      "src/game/runSystem.test.ts",
+      "src/game/GameApp.ts",
+      "src/campaign/LionTraversalPursuitEncounters.ts",
+      "src/traversal/TraversalPresentation.ts",
+      "src/traversal/TraversalPursuitCharge.ts",
+      "src/traversal/TraversalPursuitChargeRenderer.ts",
+      "src/traversal/TraversalRoadScene.ts",
+      "src/traversal/TraversalRoadScene.test.ts",
+      "src/traversal/TraversalRoutePursuit.ts",
+      "src/traversal/TraversalRoutePursuit.test.ts",
+      "src/styles/app.css",
+      "tools/traversal-motion-production-qa.mjs",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "src/game/management.test.ts",
-      "src/ui/ManagementView.ts",
-      "src/ui/ManagementView.test.ts",
-      "src/traversal/TraversalRoadScene.ts",
-      "src/styles/traversal.css",
-      "tools/traversal-motion-production-qa.mjs",
-      "tools/demo-continuous-production-qa.mjs",
-      "docs/autonomy/handoffs/2026-10-09T1748Z-codex-desktop-feedback.md",
-      "docs/reports/desktop-opening-traversal-20261009/intro-marian.png",
-      "docs/reports/desktop-opening-traversal-20261009/opening-two-wolves.png",
-      "docs/reports/desktop-opening-traversal-20261009/earned-refuge-resumed.png",
-      "docs/reports/desktop-opening-traversal-20261009/ambush-ground.png",
-      "docs/reports/desktop-opening-traversal-20261009/arrival-visible.png",
-      "docs/reports/desktop-opening-traversal-20261009/arrival-exited.png",
-      "docs/reports/desktop-opening-traversal-20261009/checks.json"
+      "docs/autonomy/DESKTOP_OPENING_OPERATOR_DECISION_2026-10-09.md",
+      "docs/autonomy/TRAVERSAL_PURSUIT_THREAT.md",
+      "docs/autonomy/handoffs/2026-10-09T1856Z-codex-consolidation.md",
+      "docs/reports/demo-consolidation-20261009/checks.json"
     ]
   },
   "live": {
-    "runId": "codex-operator-feedback-20261009T1748",
+    "runId": "codex-demo-consolidation-20261009T1856",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-09T18:31:51.303Z",
-    "status": "CLOSED_PUBLISHED_SCOPED_DESKTOP_CHECKPOINT",
+    "lastHeartbeat": "2026-10-09T22:19:07.826Z",
+    "status": "IN_PROGRESS",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -18070,38 +18070,242 @@
             "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
           ]
         }
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "pursuit-consolidation-1856",
+        "runId": "codex-demo-consolidation-20261009T1856",
+        "status": "CANCELLED_BEFORE_START",
+        "registeredAt": "2026-10-09T22:12:32.536Z",
+        "pid": null,
+        "port": 5357,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "normal",
+          "viewports": [
+            "1440x810"
+          ],
+          "legs": [
+            "T0"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "pursuitCheck": true,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "native-keyboard-focus",
+          "responsive-controls",
+          "forward-exit-and-resize",
+          "accelerating-arrival",
+          "pursuit-contact-single",
+          "pursuit-ordinary-pool",
+          "pursuit-exact-road-resume",
+          "pursuit-miss-full-exit",
+          "pursuit-no-node-resolution"
+        ],
+        "output": "tmp/traversal/pursuit-consolidation-1856",
+        "receiptPath": "tmp/traversal/pursuit-consolidation-1856/qa-job.json",
+        "provenance": {
+          "gitHead": "fc9588157b6cebf0fa148ab3ebf08dfab80e9c06",
+          "sourceTree": "057d9a590e8b16c2943815404da721effa7510aa",
+          "sourceDiffSha256": "fcea11306ba5c8c6d7a0d2b699ca0ecd5e65ac36a4546846664c529a7d7cc23e",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "e4e7c1dace44bf1d7f54d433c9fdf947a6fd5fc0396daa4df8e5c7c51b1b9c52"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CIlP0BES.js",
+              "sha256": "122b3ca3b43beefaccbe2ab492f787b2b112c482d4da389d41f703acf833178f"
+            },
+            {
+              "path": "dist/assets/game-mV23P-KD.css",
+              "sha256": "093d564c1b6524471d09aea8c5dd4ee211b81e2eee3e1f5e0c0a8be9b638c2f8"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "c990a3025ecd46b04ea20a15fee009eeac474b864582ee3eb374b7cc2ba7370f"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "disposition": "Never launched; lifecycle correction before final v2 registration, no QA acceptance"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "pursuit-consolidation-1856-v2",
+        "runId": "codex-demo-consolidation-20261009T1856",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-09T22:13:53.107Z",
+        "pid": 60084,
+        "port": 5357,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "normal",
+          "viewports": [
+            "1440x810"
+          ],
+          "legs": [
+            "T0"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "pursuitCheck": true,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "native-keyboard-focus",
+          "responsive-controls",
+          "forward-exit-and-resize",
+          "accelerating-arrival",
+          "pursuit-contact-single",
+          "pursuit-ordinary-pool",
+          "pursuit-exact-road-resume",
+          "pursuit-miss-full-exit",
+          "pursuit-no-node-resolution"
+        ],
+        "output": "tmp/traversal/pursuit-consolidation-1856-v2",
+        "receiptPath": "tmp/traversal/pursuit-consolidation-1856-v2/qa-job.json",
+        "provenance": {
+          "gitHead": "fc9588157b6cebf0fa148ab3ebf08dfab80e9c06",
+          "sourceTree": "057d9a590e8b16c2943815404da721effa7510aa",
+          "sourceDiffSha256": "3b6129e8177a35ec2fbab5d74f9e1edbdb79a8809dc835a32793723679b7fbe7",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "16543f8597ce4113624ffe1fd7943e570980dd5d43aaef2293cedb02d2984e96"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CTI-upoP.js",
+              "sha256": "59c9ef0597682d36354566b2cc03f185acfe228d21318321570ceb672c64c932"
+            },
+            {
+              "path": "dist/assets/game-mV23P-KD.css",
+              "sha256": "093d564c1b6524471d09aea8c5dd4ee211b81e2eee3e1f5e0c0a8be9b638c2f8"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "92ec491f1d07ca3d4903f116b7299b272405bc1d383b335931c18834d1b9a133"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-09T22:13:58.103Z",
+        "endedAt": "2026-10-09T22:16:21.408Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/pursuit-consolidation-1856-v2/results.json",
+        "resultSha256": "2cbb0ddb8cdc6bd435978b77c172b419157e6001d3caf32c3fb21779adea5f45",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "reviewedDisposition": "ACCEPTED_SCOPED_T0_1440_NORMAL_PURSUIT_CONTACT_MISS_RETURN_FIXTURE",
+        "reviewedLimits": "Origin/combat-result fixtures; no earned tactical victory/balance, articulated gait, browser V6 persistence/defeat/cancellation/reduced/fullwindow/mobile/manual acceptance"
       }
     ],
     "wip": {
-      "branch": "wip/codex-operator-feedback-20261009T1748",
-      "sha": "ce0159f397c671d33e36e64eb68446266620f58a",
-      "snapshotAt": "2026-10-09T18:29:57.932Z",
+      "branch": "wip/codex-demo-consolidation-20261009T1856",
+      "sha": "852047971509b9781e3862785fab54f678ecf843",
+      "snapshotAt": "2026-10-09T22:19:07.826Z",
       "status": "WIP_NOT_ACCEPTED",
       "paths": [
-        "docs/autonomy/OPERATOR_DECISIONS.md",
-        "docs/autonomy/DESKTOP_OPENING_OPERATOR_DECISION_2026-10-09.md",
         "src/game/catalog.ts",
-        "src/game/content.ts",
+        "src/game/management.test.ts",
+        "src/game/runSystem.ts",
+        "src/game/runSystem.test.ts",
+        "src/game/GameApp.ts",
+        "src/campaign/LionTraversalPursuitEncounters.ts",
+        "src/traversal/TraversalPresentation.ts",
+        "src/traversal/TraversalPursuitCharge.ts",
+        "src/traversal/TraversalPursuitChargeRenderer.ts",
+        "src/traversal/TraversalRoadScene.ts",
+        "src/traversal/TraversalRoadScene.test.ts",
+        "src/traversal/TraversalRoutePursuit.ts",
+        "src/traversal/TraversalRoutePursuit.test.ts",
+        "src/styles/app.css",
+        "tools/traversal-motion-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "src/game/management.test.ts",
-        "src/ui/ManagementView.ts",
-        "src/ui/ManagementView.test.ts",
-        "src/traversal/TraversalRoadScene.ts",
-        "src/styles/traversal.css",
-        "tools/traversal-motion-production-qa.mjs",
-        "tools/demo-continuous-production-qa.mjs",
-        "docs/autonomy/handoffs/2026-10-09T1748Z-codex-desktop-feedback.md",
-        "docs/reports/desktop-opening-traversal-20261009/intro-marian.png",
-        "docs/reports/desktop-opening-traversal-20261009/opening-two-wolves.png",
-        "docs/reports/desktop-opening-traversal-20261009/earned-refuge-resumed.png",
-        "docs/reports/desktop-opening-traversal-20261009/ambush-ground.png",
-        "docs/reports/desktop-opening-traversal-20261009/arrival-visible.png",
-        "docs/reports/desktop-opening-traversal-20261009/arrival-exited.png",
-        "docs/reports/desktop-opening-traversal-20261009/checks.json"
+        "docs/autonomy/DESKTOP_OPENING_OPERATOR_DECISION_2026-10-09.md",
+        "docs/autonomy/TRAVERSAL_PURSUIT_THREAT.md",
+        "docs/autonomy/handoffs/2026-10-09T1856Z-codex-consolidation.md",
+        "docs/reports/demo-consolidation-20261009/checks.json"
       ]
     },
-    "nextAction": "Read-only preflight/exclusive lock; resume OD-2026-10-09-A desktop-first feedback. Reuse the three completed1748 receipts/physical freeze and compact proof; do not repeat the six accepted desktop exit cases. Inspect the remaining checkpoint braking/glissement perception and settled automatic parent-focus capture (current parent PNG still fades) with existing runner and one focused desktop scenario; only fix demonstrated product issues or one minimal assertion/capture defect. Preserve operatorFeedback1748.previous.nextAction and deferredDemoTask.nextAction VERBATIM; old390OS campaign boundary is deferred until final mobile pass. Then continue current native earned first-refuge V6 lineage through desktop combat/campaign branches/endings and exact2AP-start Salvation/VFX/accessibility. Tested wolf_pack won3rounds23actions with KestrelKO: not general balance acceptance; forest_ambush native variant open. Continue narrative context/staticOS/council work, retain approved-night-plate blocker. Pursuit production still needs articulated running asset and10explicit canonical eligible combat mappings; do not invent formations/rewards/outcomes, loop isolated QA or consume runs on external mapping blocker. Mobile broad polish last after desktop gameplay/visual stability; full demo remains IN_PROGRESS.",
+    "nextAction": "Read-only preflight/exclusive lock; inspect1856 v2 terminal receipt and compactchecks first, reuse113tests+scopedT0desktop contact/miss/exactroadreturn evidence if same source/driver/build. Preserve operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue same desktop consolidation: implement articulated Shadow running animation (current still/bob is not gait), then existing-runner OS/game-reduced and other mapped contexts, browser native tactical victory/defeat temporary-loot recovery, persistedV6 and cancel/re-enter/focus-visible checks. Do not reinterpret null autosave equality as persistedV6 proof. Finish checkpoint glissement perception/settled parentfocus/narrative/campaign gaps; operator manual visual/literary/balance QA later, mobile finalization last. No new mapping operator decision needed; mappings/category blocker resolved. Eight videos/Alaric/audio/LOCKED unchanged.",
     "runMetrics": {
       "sourceFilesModified": 0,
       "testFilesModified": 0,
@@ -18146,9 +18350,9 @@
         "docs/autonomy/handoffs/2026-10-08T2311Z-codex-earned-ending-checkpoint.md"
       ]
     },
-    "runStartedAt": "2026-10-09T17:49:40.5972273Z",
-    "runEndedAt": "2026-10-09T18:31:51.303Z",
-    "writerStopped": true,
+    "runStartedAt": "2026-10-09T19:00:31.2695699Z",
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "status": "RESOLVED_BY_OPERATOR_APPROVAL",
       "standingDecision": "OD-2026-10-08-B",
@@ -19480,5 +19684,31 @@
     "endedAt": "2026-10-09T18:28:19.144Z",
     "publishedSource": "20b082984088a05b4b7aa3b562724229bd35e41a",
     "closedAt": "2026-10-09T18:31:51.303Z"
+  },
+  "operatorConsolidation1856": {
+    "previous": {
+      "activeTask": "OPERATOR-FEEDBACK: desktop opening and Traversal",
+      "activeSubtask": "Desktop opening and final exits accepted in stated scopes; checkpoint perception and parent settled focus open",
+      "nextAction": "Read-only preflight/exclusive lock; resume OD-2026-10-09-A desktop-first feedback. Reuse the three completed1748 receipts/physical freeze and compact proof; do not repeat the six accepted desktop exit cases. Inspect the remaining checkpoint braking/glissement perception and settled automatic parent-focus capture (current parent PNG still fades) with existing runner and one focused desktop scenario; only fix demonstrated product issues or one minimal assertion/capture defect. Preserve operatorFeedback1748.previous.nextAction and deferredDemoTask.nextAction VERBATIM; old390OS campaign boundary is deferred until final mobile pass. Then continue current native earned first-refuge V6 lineage through desktop combat/campaign branches/endings and exact2AP-start Salvation/VFX/accessibility. Tested wolf_pack won3rounds23actions with KestrelKO: not general balance acceptance; forest_ambush native variant open. Continue narrative context/staticOS/council work, retain approved-night-plate blocker. Pursuit production still needs articulated running asset and10explicit canonical eligible combat mappings; do not invent formations/rewards/outcomes, loop isolated QA or consume runs on external mapping blocker. Mobile broad polish last after desktop gameplay/visual stability; full demo remains IN_PROGRESS."
+    },
+    "baseline": "fc9588157b6cebf0fa148ab3ebf08dfab80e9c06",
+    "operatorRequest": "First existing skill for all six demo heroes including rogue/lancer; random ordinary Serpent or monsters on Shadow collision, no boss/elite; consolidate, operator manual QA later",
+    "mobile": "LAST_AFTER_DESKTOP",
+    "manualQa": "PENDING_OPERATOR",
+    "status": "SCOPED_RUNTIME_CONSOLIDATED",
+    "proof": "docs/reports/demo-consolidation-20261009/checks.json",
+    "counts": {
+      "sourceModified": 10,
+      "sourceAddedWithinTotal": 1,
+      "testModified": 4,
+      "existingQaModified": 1,
+      "newQaTools": 0,
+      "proofAdded": 1,
+      "workflow": 5,
+      "inheritedWip": 0
+    },
+    "sourceCommit": "PENDING_PUBLICATION",
+    "openGait": true,
+    "clockGap": "Observed19:02to22:07; only existing atomic operation/checks finished after return"
   }
 }

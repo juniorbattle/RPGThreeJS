@@ -6,6 +6,7 @@ import { applyCombatProgress } from './combatProgress';
 import {
   addTemporaryLoot, enterRunNode, failRunToCheckpoint,
   getAvailableRunNodes, getRunNode, secureRunLoot, bypassTraversalNode,
+  requestTraversalPursuitEncounter, resolveTraversalPursuitVictory, type TraversalPursuitContact,
 } from './runSystem';
 import { changeReputation, getReputationRule } from './reputation';
 import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
@@ -137,6 +138,7 @@ export class GameApp {
   private readonly cinematicRegistry = new CinematicRegistry();
   private readonly cinematicPlayer = new CinematicPlayer(this.cinematicRegistry);
   private pendingCombatId: string | null = null;
+  private traversalPursuitAbort: AbortController | null = null;
   private pendingChapterBeatId: string | null = null;
   // Journey/NarrativeStage is the default; TravelView is recovery or an explicit DEV override.
   private readonly campaignPresentation = resolveCampaignPresentation({
@@ -339,6 +341,7 @@ export class GameApp {
           statusHud: this.statusHud,
           onRouteRewardPickup: reward => this.acceptTraversalRouteReward(reward),
           onOptionalIgnore: nodeId => this.ignoreTraversalOptionalNode(nodeId),
+          onPursuitContact: contact => this.startTraversalPursuitCombat(contact),
           onNodeHandoff: async (node) => { await this.commitRunNodeChoice(node.id); },
           onArrival: async (destinationNodeId) => { await this.completeTraversalArrival(destinationNodeId); },
           onMenu: () => this.renderTitle(),
@@ -381,6 +384,62 @@ export class GameApp {
     return true;
   }
 
+  /** Incidental road combat reuses tactical authority without resolving a campaign node. */
+  private async startTraversalPursuitCombat(contact: TraversalPursuitContact): Promise<void> {
+    const traversal = this.activeTraversal;
+    if (!traversal || this.traversalPursuitAbort || this.mode !== 'NARRATIVE'
+      || traversal.session.phase !== 'DECISION' || traversal.session.pendingBeatId !== contact.windowId
+      || traversal.session.legId !== contact.legId) return;
+    const request = requestTraversalPursuitEncounter(this.state, contact);
+    if (!request) {
+      console.error('[Traversal] Ineligible Pursuit collision mapping.', contact);
+      return; // A rejected contact remains pending, never becomes a fabricated miss.
+    }
+    const owner = new AbortController();
+    this.traversalPursuitAbort = owner;
+    try {
+      let session!: ReturnType<CombatBridge['start']>;
+      await sceneTransition.run({ variant: 'traversal', label: request.config.encounterLabel, task: async () => {
+        if (this.activeTraversal !== traversal) return;
+        this.disposeJourney(); this.disposeNarrativeStage(); this.travel.close();
+        this.setMode('COMBAT'); this.chrome.replaceChildren();
+        session = this.combat.start({ config: request.config,
+          clan: this.state.clan.members.filter(unit => unit.currentHealth > 0).map(unit => toCombatant(unit)),
+          inventory: this.state.inventory.consumables, preferredUnitIds: this.state.deployment.unitIds,
+          reducedGraphics: this.state.settings.reducedGraphics,
+          devQa: this.cin6aGoldenQaEnabled || this.traversalT0QaEnabled });
+        await session.ready;
+      } });
+      if (!session || this.activeTraversal !== traversal) return;
+      const result = await Promise.race([session.result, new Promise<null>(resolve => {
+        if (owner.signal.aborted) resolve(null);
+        else owner.signal.addEventListener('abort', () => resolve(null), { once: true });
+      })]);
+      if (!result || this.activeTraversal !== traversal) return;
+      if (!result.victory) {
+        this.disposeTraversal();
+        this.state = this.saves.loadAuto() ?? this.state;
+        failRunToCheckpoint(this.state); this.saves.saveAuto(this.state);
+        await sceneTransition.run({ variant: 'result', label: 'Défaite', task: async () => {} });
+        await this.enterCampaignPresentation();
+        return;
+      }
+      if (!resolveTraversalPursuitVictory(this.state, request, result)) throw new Error('Stale Pursuit combat result.');
+      // Existing canonical autosave cadence remains intact. Reload abandons the ephemeral
+      // battle/road and resumes that saved boundary, never a serialized physical Pursuit.
+      await sceneTransition.run({ variant: 'traversal', task: async () => {
+        if (this.activeTraversal !== traversal) return;
+        this.combat.close(); this.setMode('NARRATIVE');
+        document.body.dataset.campaignSurface = 'traversal'; this.chrome.replaceChildren();
+        if (!traversal.resumeRoadCombat(contact.windowId)) throw new Error('Pursuit road return mismatch.');
+        this.statusHud.refresh();
+      } });
+    } catch (error) {
+      console.error('[Traversal] Pursuit combat handoff failed.', error);
+      if (this.activeTraversal === traversal) await this.failJourneyToTravel(error);
+    } finally { if (this.traversalPursuitAbort === owner) this.traversalPursuitAbort = null; }
+  }
+
   private async completeTraversalArrival(destinationNodeId: string): Promise<void> {
     const traversal = this.activeTraversal;
     if (!traversal || traversal.session.phase !== 'ARRIVING'
@@ -396,6 +455,8 @@ export class GameApp {
   }
 
   private disposeTraversal(): void {
+    this.traversalPursuitAbort?.abort();
+    this.traversalPursuitAbort = null;
     this.activeTraversal?.dispose();
     this.activeTraversal = null;
     if (document.body.dataset.campaignSurface === 'traversal') {

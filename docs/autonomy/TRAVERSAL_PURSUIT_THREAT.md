@@ -1,5 +1,11 @@
 # Traversal Pursuit threat
 
+CURRENT FACT — consolidation1856, 2026-10-09: operator clarification in OD-2026-10-09-A authorizes random ordinary Serpent/monster encounters, excluding boss/elite. The ten explicit bindings now live in `src/campaign/LionTraversalPursuitEncounters.ts`; campaign/RunSystem validate context and choose existing `forest_patrol`, `forest_ambush`, `wolf_pack` formations. Production RoadScene now connects window-end committed charge, single physical contact and full-right miss; GameApp uses a dedicated tactical handoff returning to the same mounted road. Victory applies existing HP/inventory/temporary rewards/reputation only, without resolving a node or changing a fork. Existing canonical autosave cadence remains; reload abandons physical Pursuit and restarts its saved boundary. Exact-once is per mount, not across reload.
+
+The former external category/mapping blocker is resolved in source, not full visual acceptance. Fresh targeted production receipt and final reviewer disposition are recorded in the1856 handoff/checks. Articulated running animation is still OPEN: the reused Shadow PNG/bob is not a gait. OS/game reduction, all-window production coverage, browser defeat and cancellation/re-entry, perceptual checkpoint motion and operator manual QA remain open. Mobile finalization remains last.
+
+The following isolated candidate/audit checkpoints and mapping-gap tables are historical, superseded for current mapping availability by the source above. Keep their exact evidence scopes; do not rerun their broad matrices as proof of this integration.
+
 CURRENT FACT — Run1430 adds an **unwired isolated charge renderer/lab**, verified by fresh minified native-clock browser job `pursuit-1430-v6`. Candidate presentation scope PASS; production Pursuit/canonical collision integration remains BLOCKED for the ten mappings below. The preceding model checkpoint remains historical evidence for its own scope.
 
 ## Isolated renderer checkpoint — 2026-10-03

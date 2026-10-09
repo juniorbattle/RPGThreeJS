@@ -23,6 +23,16 @@ const step = (state = createRoutePursuit('route-3'), from = .19, to = .3,
   resolveRoutePursuit(state, sample, from, to, lane, ms, collisions, active);
 
 describe('T0 Route Pursuit authoring and policy', () => {
+  it('production pressure waits for a committed lane charge at window end, even at saturation', () => {
+    const approaching = resolveRoutePursuit(createRoutePursuit('route-3'), sample, .19, .7, 0, 10000, 5, true, true);
+    expect(approaching.state.pressure01).toBe(1);
+    expect(approaching.outcomes.map(outcome => outcome.result)).toEqual(['STARTED']);
+    const charged = resolveRoutePursuit(approaching.state, sample, .7, .8, 1, 1000, 0, true, true);
+    expect(charged.outcomes.map(outcome => outcome.result)).toEqual(['COMMITTED_CHARGE']);
+    expect(charged.state.caughtCount).toBe(0);
+    expect(charged.state.escapedWindowIds).toEqual([]);
+    expect(resolveRoutePursuit(charged.state, sample, .8, .9, 1, 1000, 0, true, true).outcomes).toEqual([]);
+  });
   it('keeps the pure resolver independent of campaign, combat, Risk, Reward and saves', () => {
     const source = readFileSync('src/traversal/TraversalRoutePursuit.ts', 'utf8');
     expect(source).not.toMatch(/from ['"].*(?:GameState|RunState|GameApp|RunSystem|CombatBridge|SaveRepository|TraversalRouteRisk|TraversalRouteReward)/);

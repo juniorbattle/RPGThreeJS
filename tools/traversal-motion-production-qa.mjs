@@ -11,11 +11,14 @@ const motion=arg('motion','normal');assert.ok(['normal','os'].includes(motion));
 const port=Number(arg('port',motion==='os'?'5281':'5280'));
 const output=arg('output',`tmp/traversal/motion-1002-${motion}`);
 const viewports=arg('viewports','1440x810,620x780,390x844').split(',');
+const legs=arg('legs','T0,T1,T3').split(',');assert.ok(legs.every(leg=>['T0','T1','T3'].includes(leg)));
+const pursuitCheck=arg('pursuit-check','0')==='1';
 assert.ok(viewports.every(value=>/^\d+x\d+$/.test(value)&&value.split('x').every(n=>Number(n)>0)),'Invalid viewports');
-const parameters={motion,viewports,legs:['T0','T1','T3'],branch:'event',gameReducedMotion:false,
+const parameters={motion,viewports,legs,branch:'event',gameReducedMotion:false,pursuitCheck,
   scope:'native production motion with V6-origin/combat-result fixtures; not earned campaign'};
 const requiredAssertions=['continuous-departure','opaque-swap','reveal-momentum','clock-zero-during-reveal','full-exit-before-arrival','single-canonical-arrival','native-keyboard-focus','responsive-controls',
   ...(motion==='os'?['os-covered-exit']:['forward-exit-and-resize','accelerating-arrival'])];
+if(pursuitCheck)requiredAssertions.push('pursuit-contact-single','pursuit-ordinary-pool','pursuit-exact-road-resume','pursuit-miss-full-exit','pursuit-no-node-resolution');
 if(process.argv.includes('--register')){
   const registered=registerJob({runId:process.env.AUTONOMY_RUN_ID,jobId:process.env.DEMO_QA_JOB_ID,output,
     driver:'tools/traversal-motion-production-qa.mjs',port,parameters,requiredAssertions});
@@ -65,10 +68,23 @@ try{
       await page.addInitScript(seed=>localStorage.setItem('rpg-threejs:autosave:v6',JSON.stringify(seed)),seed);
     }
     await page.goto(`http://127.0.0.1:${port}/?qa=1`);await page.waitForFunction(()=>!!window.__motionApp);
-    if(leg==='T0')await page.evaluate(async()=>{const app=window.__motionApp;app.qaEnabled=true;app.traversalT0QaEnabled=true;await app.startTraversalT0Qa();app.state.settings.reducedGraphics=false;});
+    if(leg==='T0')await page.evaluate(async()=>{const app=window.__motionApp;app.qaEnabled=true;app.traversalT0QaEnabled=true;await app.startTraversalT0Qa();app.state.settings.reducedGraphics=false;
+      // Explicit origin fixture: production eligibility requires the audience already resolved.
+      if(!app.state.resolvedNodeIds.includes('lion-audience'))app.state.resolvedNodeIds.push('lion-audience');
+    });
     else await page.locator('[data-action="continue"]').click();
     await page.evaluate(()=>{
-      const app=window.__motionApp,proof=window.__motionProof={samples:[],handoffs:[],arrivals:[],returns:[],combats:[]};
+      const app=window.__motionApp,proof=window.__motionProof={samples:[],handoffs:[],arrivals:[],returns:[],combats:[],pursuit:[],roadBattles:[]};
+      const roadCombat=app.startTraversalPursuitCombat.bind(app);
+      app.startTraversalPursuitCombat=async contact=>{
+        const scene=app.activeTraversal;
+        const truth=()=>JSON.stringify({current:app.state.currentNodeId,runCurrent:app.state.run.currentNodeId,visited:app.state.run.visitedNodeIds,resolved:app.state.resolvedNodeIds,branches:app.state.run.traversalBranches,flags:app.state.flags});
+        const road=()=>({elapsed:scene.routeRun.elapsedMs,distance:scene.routeRenderer.distance,stage:scene.session.stageIndex,progress:scene.session.routeProgress01});
+        const entry={contact,before:road(),truthBefore:truth(),savedBefore:localStorage.getItem('rpg-threejs:autosave:v6')};proof.roadBattles.push(entry);
+        await roadCombat(contact);
+        entry.sameMount=app.activeTraversal===scene;entry.after=road();entry.truthAfter=truth();entry.savedAfter=localStorage.getItem('rpg-threejs:autosave:v6');
+        entry.focusedLane=document.activeElement?.dataset.traversalLane;
+      };
       const original=app.commitRunNodeChoice.bind(app);app.commitRunNodeChoice=(...args)=>{proof.handoffs.push(args[0]);return original(...args);};
       const arrival=app.completeTraversalArrival.bind(app);app.completeTraversalArrival=(...args)=>{
         const scene=app.activeTraversal,root=scene.element,r=root.querySelector('.traversal-vehicle').getBoundingClientRect();
@@ -81,6 +97,7 @@ try{
         const scene=app.activeTraversal;
         if(scene){
           const root=scene.element,segment=root.dataset.routeSegment;
+          if(scene.pursuitCharge)proof.pursuit.push({window:scene.pursuitCharge.windowId,phase:scene.pursuitCharge.phase,left:scene.pursuitCharge.left,speed:scene.pursuitCharge.speed,lane:scene.pursuitCharge.lane,time:performance.now()});
           if(scene.departure&&scene.departure!==departure){departure=scene.departure;serial++;}
           const active=Boolean(scene.departure),arriving=scene.session.phase==='ARRIVING';
           if(active)afterDeparture=12;else afterDeparture=Math.max(0,afterDeparture-1);
@@ -116,7 +133,7 @@ try{
     }
     const deadline=Date.now()+240000;let lanesChecked=false,skipped=false,resized=false,lastScene='';
     while(Date.now()<deadline){
-      const s=await page.evaluate(()=>{const app=window.__motionApp,scene=app.activeTraversal,root=scene?.element;return {segment:root?.dataset.routeSegment,view:root?.dataset.view,phase:scene?.session.phase,departure:!!scene?.departure,transition:root?.dataset.transition,opacity:Number(root?.style.getPropertyValue('--transition-opacity')),progress:scene?.routeRun.progress01,speed:scene?.speed,min:scene?.routeSegment.vMin,fade:Number(root?.style.getPropertyValue('--arrival-fade')||0),left:root?.querySelector('.traversal-vehicle').getBoundingClientRect().left,arrivals:window.__motionProof.arrivals.length};});
+      const s=await page.evaluate(()=>{const app=window.__motionApp,scene=app.activeTraversal,root=scene?.element;return {segment:root?.dataset.routeSegment,view:root?.dataset.view,phase:scene?.session.phase,departure:!!scene?.departure,transition:root?.dataset.transition,opacity:Number(root?.style.getPropertyValue('--transition-opacity')),progress:scene?.routeRun.progress01,lane:scene?.session.currentLane,speed:scene?.speed,min:scene?.routeSegment.vMin,fade:Number(root?.style.getPropertyValue('--arrival-fade')||0),left:root?.querySelector('.traversal-vehicle').getBoundingClientRect().left,arrivals:window.__motionProof.arrivals.length};});
       if(s.arrivals===1){entry.complete=true;break;}
       const sceneKey=`${s.segment}/${s.view}/${s.phase}`;if(sceneKey!==lastScene){lastScene=sceneKey;console.log(`${motion}/${leg}/${dimensions}: ${sceneKey}`);}
       if(motion==='normal'&&!resized&&s.phase==='ARRIVING'&&s.left>width*.65&&s.left<width){
@@ -131,6 +148,11 @@ try{
       if(s.view==='checkpoint'&&s.opacity<.02&&!s.transition)await capture(`checkpoint-${s.segment}`);
       if(s.phase==='ARRIVING'&&s.fade===0&&s.left<width)await capture('arrival-visible');
       if(s.phase==='ARRIVING'&&s.left>=width)await capture('arrival-exited');
+      if(pursuitCheck&&s.phase==='RUNNING'&&s.view==='route'&&!s.transition){
+        const desired=s.segment==='route-3'||s.segment==='route-6'?1:0;
+        if(s.lane!==desired)await page.keyboard.press(desired?'ArrowDown':'ArrowUp');
+        if(s.segment==='route-3'&&s.progress>.73&&s.progress<.78)await capture('pursuit-approach');
+      }
       if(!lanesChecked&&s.view==='route'&&!s.transition&&s.progress>.1&&s.progress<.5){
         await activate('[data-traversal-lane="1"]:visible:not([disabled])','lower lane');
         await page.keyboard.press('ArrowUp');
@@ -147,12 +169,26 @@ try{
       const frame=page.frames().find(f=>f.url().includes('legacy-combat'));
       if(frame)await frame.evaluate(()=>{if(window.__motionSent||!window.__BOOTED)return;const session=window.parent.__motionApp.combat.session;if(!session)return;
         window.__motionSent=true;window.parent.__motionProof.combats.push(session.config.id);
+        if(window.parent.__motionProof.roadBattles.at(-1)&&!window.parent.__motionProof.roadBattles.at(-1).after){
+          const entry=window.parent.__motionProof.roadBattles.at(-1);entry.config={id:session.config.id,rank:session.config.encounterRank,enemies:session.config.enemyVisualIds};
+        }
         window.parent.postMessage({type:'rpg-threejs:combat-result',victory:true,combatId:session.config.id,inventory:session.inventory,participants:session.preferredUnitIds,unitHealth:Object.fromEntries(session.clan.map(unit=>[unit.id,unit.currentHealth]))},location.origin);
       }).catch(()=>{});
       await page.waitForTimeout(35);
     }
     const proof=await page.evaluate(()=>{cancelAnimationFrame(window.__motionSampler);const app=window.__motionApp;return {...window.__motionProof,branch:app.state.run.traversalBranches,gameReduced:app.state.settings.reducedGraphics,osReduced:matchMedia('(prefers-reduced-motion: reduce)').matches};});
     Object.assign(entry,proof);
+    if(pursuitCheck){
+      assert.equal(proof.roadBattles.length,1,'Exactly one physical collision handoff');const battle=proof.roadBattles[0];
+      assert.ok(['forest_patrol','forest_ambush','wolf_pack'].includes(battle.config.id));assert.equal(battle.config.rank,'normal');
+      assert.ok(battle.config.enemies.every(id=>['serpent_raider','serpent_brute','wolf','cave_rat'].includes(id)),'No boss/elite');
+      assert.equal(battle.sameMount,true);assert.deepEqual(battle.after,battle.before,'Exact mounted road clocks/progress restored');
+      assert.equal(battle.truthAfter,battle.truthBefore,'No canonical node/branch/flag changes');assert.equal(battle.savedAfter,battle.savedBefore,'Existing autosave cadence');
+      assert.ok(['0','1'].includes(battle.focusedLane),'Focus returns to a lane control');
+      const misses=[...new Set(proof.pursuit.filter(s=>s.phase==='EXITED').map(s=>s.window))];assert.ok(misses.length>=1,'A genuine missed charge finishes');
+      for(const window of misses){const samples=proof.pursuit.filter(s=>s.window===window);assert.ok(samples.some(s=>s.phase==='EXITED'&&s.left>=1463),'Full right exit');
+        assert.equal(new Set(samples.map(s=>s.lane)).size,1,'Committed lane');assert.ok(samples.at(-1).speed>samples[0].speed,'Accelerating overtake');}
+    }
     assert.ok(entry.complete,`${leg}/${width}: native arrival reached`);assert.ok(lanesChecked,'Keyboard lanes exercised');
     assert.equal(proof.gameReduced,false);assert.equal(proof.osReduced,motion==='os');assert.equal(proof.branch[leg],branch);
     assert.equal(proof.arrivals.length,1);const arrival=proof.arrivals[0];

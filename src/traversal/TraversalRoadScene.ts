@@ -33,6 +33,9 @@ import { createRoutePursuit, pursuerLaneAt, resolveRoutePursuit,
   type TraversalRoutePursuitState, type TraversalRoutePursuitOutcome } from './TraversalRoutePursuit';
 import { TraversalRoutePursuitRenderer } from './TraversalRoutePursuitRenderer';
 import { resolveTraversalPursuitEnabled } from './TraversalPursuitPresentationPolicy';
+import { advancePursuitCharge, createPursuitCharge, type TraversalPursuitCharge } from './TraversalPursuitCharge';
+import { TraversalPursuitChargeRenderer } from './TraversalPursuitChargeRenderer';
+import type { TraversalPursuitContact } from '../game/runSystem';
 
 const LANE_TOP_PERCENT: Record<TraversalLane, number> = { 0: 65, 1: 81 };
 const MANDATORY_TOP_PERCENT = 73;
@@ -47,6 +50,7 @@ export interface TraversalRoadSceneOptions {
   readonly statusHud?: CampaignStatusHud;
   readonly onRouteRewardPickup?: (reward: { readonly id: string; readonly gold: number }) => boolean;
   readonly onOptionalIgnore?: (nodeId: string) => { accepted: boolean; feedback?: string };
+  readonly onPursuitContact?: (contact: TraversalPursuitContact) => void | Promise<void>;
   readonly onMenu: () => void;
 }
 
@@ -116,6 +120,9 @@ export class TraversalRoadScene {
     dev: import.meta.env.DEV, search: window.location.search,
   });
   private readonly pursuitRenderer = this.pursuitEnabled ? new TraversalRoutePursuitRenderer() : null;
+  private readonly chargeRenderer = this.pursuitEnabled ? new TraversalPursuitChargeRenderer() : null;
+  private pursuitCharge: TraversalPursuitCharge | null = null;
+  private roadCombatWindow: string | null = null;
   private readonly pursuitQaEvents: TraversalRoutePursuitOutcome[] = [];
   private readonly foregroundRenderer: TraversalForegroundRenderer;
   private readonly stageBeats: readonly TraversalRouteBeat[];
@@ -302,6 +309,21 @@ export class TraversalRoadScene {
     this.renderRuntimeState();
   }
 
+  /** An incidental battle returns to the exact mounted road, never to the next stage. */
+  resumeRoadCombat(windowId: string): boolean {
+    if (!this.opened || this.roadCombatWindow !== windowId) return false;
+    this.roadCombatWindow = null;
+    this.pursuitCharge = null;
+    this.chargeRenderer?.reset();
+    this.element.classList.remove('traversal-t0--interrupted');
+    delete this.element.dataset.interruption;
+    this.controller.releaseDecision();
+    this.previousFrameMs = 0;
+    this.renderRuntimeState();
+    this.element.querySelector<HTMLButtonElement>(`[data-traversal-lane="${this.session.currentLane}"]`)?.focus({ preventScroll: true });
+    return true;
+  }
+
   completeArrival(): void {
     this.controller.completeArrival();
     this.renderRuntimeState();
@@ -318,6 +340,7 @@ export class TraversalRoadScene {
     window.removeEventListener('keydown', this.onKeyDown);
     window.removeEventListener('resize', this.onResize);
     this.controller.dispose();
+    this.chargeRenderer?.dispose();
     this.element.remove();
   }
 
@@ -371,6 +394,7 @@ export class TraversalRoadScene {
     if (this.riskRenderer) this.element.querySelector('.traversal-world__actors')!.append(this.riskRenderer.element);
     if (this.rewardRenderer) this.element.querySelector('.traversal-world__actors')!.append(this.rewardRenderer.element);
     if (this.pursuitRenderer) this.element.querySelector('.traversal-world__actors')!.append(this.pursuitRenderer.element);
+    if (this.chargeRenderer) this.element.querySelector('.traversal-world__actors')!.append(this.chargeRenderer.element);
     this.element.querySelector('.traversal-world')!.append(this.foregroundRenderer.element);
     for (const [selector, plane] of [
       ['.traversal-world__road', 'road-world'], ['.traversal-world__actors', 'road-actors'],
@@ -459,12 +483,6 @@ export class TraversalRoadScene {
     else if (this.departure && !document.hidden) this.advanceCheckpointDeparture(deltaSeconds);
     else if (this.controller.session.phase === 'RUNNING' && !document.hidden) this.advance(deltaSeconds);
     if (wasArriving && !document.hidden) this.advanceArrival(deltaSeconds);
-    if (!document.hidden && this.laneMotion) {
-      this.laneMotion.elapsed = Math.min(.38, this.laneMotion.elapsed + deltaSeconds);
-      this.vehicleGroundPercent = this.laneMotion.from + (this.laneMotion.to - this.laneMotion.from)
-        * transitionEase(this.laneMotion.elapsed / .38);
-      if (this.laneMotion.elapsed >= .38) this.laneMotion = null;
-    }
     this.inAnimationFrame = false;
     if (this.frameRenderPending) {
       this.frameRenderPending = false;
@@ -590,7 +608,29 @@ export class TraversalRoadScene {
     this.inAnimationFrame = true;
     try {
       if (deltaSeconds > 0 && this.departure && !this.transition) this.advanceCheckpointDeparture(deltaSeconds);
-      else if (deltaSeconds > 0 && this.session.phase === 'RUNNING' && !this.transition) this.advanceRoadStep(deltaSeconds);
+      else if (deltaSeconds > 0 && this.session.phase === 'RUNNING' && !this.transition
+        && !document.body.classList.contains('scene-transition--locked')) {
+        if (this.approachElapsed !== null || this.viewMode === 'CHECKPOINT') {
+          this.advanceRoadStep(deltaSeconds);
+          return;
+        }
+        let remaining = deltaSeconds;
+        while (remaining > 1e-8 && this.session.phase === 'RUNNING' && !this.transition && this.approachElapsed === null) {
+          const window = this.authoring.pursuitWindow(this.routeSegment.id);
+          const untilCharge = window && !this.pursuitCharge && this.routeRun.progress01 < window.endProgress01
+            ? (window.endProgress01 * this.routeSegment.durationMs - this.routeRun.elapsedMs) / 1000 : Infinity;
+          const step = Math.min(remaining, 1 / 60, untilCharge > 1e-8 ? untilCharge : 1 / 60,
+            this.laneMotion ? Math.max(1e-8, .38 - this.laneMotion.elapsed) : Infinity);
+          this.advanceRoadStep(step); remaining -= step;
+          if (this.session.phase === 'RUNNING' && this.laneMotion) {
+            this.laneMotion.elapsed = Math.min(.38, this.laneMotion.elapsed + step);
+            this.vehicleGroundPercent = this.laneMotion.from + (this.laneMotion.to - this.laneMotion.from)
+              * transitionEase(this.laneMotion.elapsed / .38);
+            if (this.laneMotion.elapsed >= .38 - 1e-8) this.laneMotion = null;
+          }
+          if (this.approachElapsed !== null) break;
+        }
+      }
     } finally {
       this.inAnimationFrame = alreadyInFrame;
       if (!alreadyInFrame && this.frameRenderPending) {
@@ -604,9 +644,33 @@ export class TraversalRoadScene {
     if (this.session.phase !== 'RUNNING' || this.transition) return;
     if (this.approachElapsed !== null) { this.advanceRouteApproach(deltaSeconds); return; }
     if (this.viewMode === 'CHECKPOINT') { this.advanceCheckpointStep(deltaSeconds); return; }
+    let contactWindow: string | null = null;
+    if (this.pursuitCharge?.phase === 'CHARGING') {
+      const width = this.element.clientWidth || ROAD_SPACE.referenceWidth;
+      const height = this.element.clientHeight || 823;
+      const scale = ROAD_SPACE.referenceWidth / width;
+      const vehicleHeight = Math.min(height * .24, width * (width <= 1000 ? .16 : .14));
+      const halfVehicle = vehicleHeight * TRAVERSAL_CARAVAN.bounds.width / TRAVERSAL_CARAVAN.bounds.height / 2;
+      const before = this.pursuitCharge;
+      const advanced = advancePursuitCharge(before, deltaSeconds, {
+        caravanLane: this.routeRun.lane, caravanLeft: (width * .25 - halfVehicle) * scale,
+        caravanRight: (width * .25 + halfVehicle) * scale, pursuerWidth: vehicleHeight * scale,
+        viewportRight: ROAD_SPACE.referenceWidth, contactEnabled: !this.laneMotion,
+      });
+      this.pursuitCharge = advanced.state;
+      deltaSeconds = advanced.state.elapsedSeconds - before.elapsedSeconds;
+      if (advanced.observations[0]?.kind === 'CONTACT') contactWindow = before.windowId;
+      if (advanced.observations[0]?.kind === 'MISS_EXITED') this.element.dataset.pursuitResult = 'MISS_EXITED';
+    }
     const previous = this.routeRun;
     this.routeRun = advanceRouteRun(previous, this.routeSegment, deltaSeconds * 1000);
-    if (this.routeRun === previous) return;
+    if (this.routeRun === previous) {
+      if (contactWindow) { this.handoffRoadCombat(contactWindow); return; }
+      if (this.pursuitCharge?.phase === 'CHARGING') {
+        this.routeRenderer.advance(deltaSeconds * 1000, this.speed);
+        return;
+      }
+    }
     const restart = this.routeLaunchSpeed === null
       ? transitionEase(this.routeRun.elapsedMs / (TRAVERSAL_RHYTHM.restart * 1000)) : 1;
     const contact = [this.riskRenderer?.nextContact(this.authoring.hazards(this.routeSegment.id), previous.progress01),
@@ -648,25 +712,23 @@ export class TraversalRoadScene {
       const window = this.authoring.pursuitWindow(this.routeSegment.id);
       const resolved = resolveRoutePursuit(this.routePursuit, window,
         previous.progress01, this.routeRun.progress01, this.routeRun.lane,
-        this.routeRun.elapsedMs - previous.elapsedMs, collisionsThisStep, activeDriving);
+        this.routeRun.elapsedMs - previous.elapsedMs, collisionsThisStep, activeDriving, true);
       this.routePursuit = resolved.state;
       for (const outcome of resolved.outcomes) {
         if (this.riskQa) this.pursuitQaEvents.push(outcome);
-        if (outcome.result === 'CAUGHT') {
-          const lane = window ? pursuerLaneAt(window, this.routeRun.progress01) : this.routeRun.lane;
-          this.lastPursuitSpeedBefore = collisionsThisStep ? this.lastRiskSpeedBefore : this.routeRun.speed;
-          if (!collisionsThisStep) {
-            this.routeRun = resetRouteSpeed(this.routeRun, this.routeSegment);
-            this.riskRenderer?.reforecastUnseen(this.routeRenderer.distance, this.element.clientWidth || ROAD_SPACE.referenceWidth);
-            this.rewardRenderer?.reforecastUnseen(this.routeRenderer.distance, this.element.clientWidth || ROAD_SPACE.referenceWidth);
-          }
-          this.lastPursuitSpeedAfter = this.routeRun.speed;
-          this.lastPursuitCatchElapsed = this.routeRun.elapsedMs;
-          this.lastPursuitCatchProgress = this.routeRun.progress01;
-          this.pursuitRenderer?.caught(lane, this.routeRun.elapsedMs);
-        } else if (outcome.result === 'ESCAPED' && window) {
-          this.pursuitRenderer?.escaped(pursuerLaneAt(window, window.endProgress01),
-            outcome.pressure01, this.routeRun.elapsedMs);
+        if (outcome.result === 'COMMITTED_CHARGE' && window) {
+          const width = this.element.clientWidth || ROAD_SPACE.referenceWidth;
+          const height = this.element.clientHeight || 823;
+          const vehicleHeight = Math.min(height * .24, width * (width <= 1000 ? .16 : .14));
+          const proxy = this.pursuitRenderer?.element.querySelector<HTMLElement>('.traversal-route-pursuit__proxy');
+          const bounds = proxy?.getBoundingClientRect();
+          const left = bounds && bounds.width > 0 ? bounds.left - this.element.getBoundingClientRect().left
+            : width * .25 - vehicleHeight * (1.32 + .5);
+          this.pursuitCharge = createPursuitCharge({ windowId: window.id,
+            lane: pursuerLaneAt(window, window.endProgress01), left: left * ROAD_SPACE.referenceWidth / width,
+            speed: 170, acceleration: 850 });
+          this.pursuitRenderer?.reset();
+          this.element.dataset.pursuitResult = 'CHARGING';
         }
       }
     }
@@ -675,6 +737,8 @@ export class TraversalRoadScene {
     this.element.style.setProperty('--route-rush-opacity', String(Math.max(0, (this.routeRun.progress01 - .55) * 1.2)));
     const { start, end } = traversalRouteProgressBounds(this.route, this.routeIndex);
     this.controller.advanceTo(start + (end - start) * this.routeRun.progress01);
+    if (contactWindow) { this.handoffRoadCombat(contactWindow); return; }
+    if (this.pursuitCharge?.phase === 'CHARGING') return;
     if (!this.routeRun.complete) return;
     if (this.routeSegment.checkpointKind === 'ARRIVAL') {
       if (!this.arrivalRequested) {
@@ -698,6 +762,17 @@ export class TraversalRoadScene {
     this.approachStartSpeed = this.speed;
     this.element.dataset.presentation = 'checkpoint-approach';
     this.renderRuntimeState();
+  }
+
+  private handoffRoadCombat(windowId: string): void {
+    if (this.roadCombatWindow || this.session.phase !== 'RUNNING') return;
+    this.roadCombatWindow = windowId; // Consume before the async owner callback.
+    this.controller.pauseForDecision(windowId);
+    this.element.dataset.pursuitResult = 'CONTACT';
+    this.element.classList.add('traversal-t0--interrupted');
+    this.element.dataset.interruption = windowId;
+    this.renderRuntimeState();
+    void this.options.onPursuitContact?.({ legId: this.options.leg.id, segmentId: this.routeSegment.id, windowId });
   }
 
   private advanceRouteApproach(seconds: number): void {
@@ -799,6 +874,8 @@ export class TraversalRoadScene {
     this.routeRisk = createRouteRisk(this.routeSegment.id);
     this.routeReward = createRouteReward(this.routeSegment.id);
     this.routePursuit = createRoutePursuit(this.routeSegment.id);
+    this.pursuitCharge = null;
+    this.chargeRenderer?.reset();
     this.lastRiskSpeedBefore = null;
     this.lastRiskSpeedAfter = null;
     this.lastPursuitSpeedBefore = null;
@@ -1066,6 +1143,14 @@ export class TraversalRoadScene {
       const window = this.authoring.pursuitWindow(this.routeSegment.id);
       this.pursuitRenderer.update(window, this.routePursuit, this.routeRun.progress01,
         this.routeRun.elapsedMs, width, vehicleHeight, active);
+      if (this.pursuitCharge) {
+        this.pursuitRenderer.reset();
+        const chargeActive = this.viewMode === 'ROUTE' && session.phase === 'RUNNING'
+          && !this.transition && !this.departure && !document.hidden
+          && !document.body.classList.contains('scene-transition--locked');
+        this.chargeRenderer?.update(this.pursuitCharge, width, vehicleHeight, chargeActive,
+          this.options.getState().settings.reducedGraphics, height);
+      }
       if (this.riskQa) {
         this.element.dataset.pursuitWindow = this.routePursuit.activeWindowId ?? '';
         this.element.dataset.pursuitPressure = String(this.routePursuit.pressure01);

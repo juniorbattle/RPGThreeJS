@@ -388,10 +388,10 @@ export function getResolvedSkills(unit: { definitionId: string; equipment: Equip
 }
 
 const ULTIMATE_AP = 5;
-const STARTING_HERO_IDS = new Set(['warrior', 'white_mage', 'dark_mage', 'archer']);
+const DEMO_HERO_IDS = new Set(['warrior', 'white_mage', 'dark_mage', 'archer', 'rogue', 'lancer']);
 
-function isStartingHeroSkill(unit: { definitionId?: string }, skillId: string): boolean {
-  return Boolean(unit.definitionId && STARTING_HERO_IDS.has(unit.definitionId)
+function isInitialDemoHeroSkill(unit: { definitionId?: string }, skillId: string): boolean {
+  return Boolean(unit.definitionId && DEMO_HERO_IDS.has(unit.definitionId)
     && unitById.get(unit.definitionId)?.skillIds[0] === skillId);
 }
 
@@ -416,7 +416,7 @@ export function isSkillUnlockedForHero(unit: { definitionId?: string; equipment:
   const skill = skillById.get(skillId);
   if (!skill) return false;
   if (skill.ap >= ULTIMATE_AP) return isUltimateUnlockedForHero(unit as UnitInstance);
-  if (isStartingHeroSkill(unit, skillId)) return true;
+  if (isInitialDemoHeroSkill(unit, skillId)) return true;
   return skill.ap <= getMaxUnlockedSkillAp(getEquippedWeaponTier(unit));
 }
 
@@ -428,7 +428,7 @@ export function getLockedSkillReason(unit: { definitionId?: string; equipment: E
   const skill = skillById.get(skillId);
   if (!skill) return 'Compétence inconnue';
   if (skill.ap >= ULTIMATE_AP) return 'Ultimate — éveil spécial requis';
-  if (isStartingHeroSkill(unit, skillId)) return '';
+  if (isInitialDemoHeroSkill(unit, skillId)) return '';
   const maxAp = getMaxUnlockedSkillAp(getEquippedWeaponTier(unit));
   if (skill.ap <= maxAp) return '';
   if (skill.ap === 2) return 'Débloquée avec arme T1';
@@ -438,7 +438,7 @@ export function getLockedSkillReason(unit: { definitionId?: string; equipment: E
 }
 
 export function getWeaponSkillUnlockLabel(weapon: WeaponDefinition): string {
-  if (weapon.tier <= 0) return [...STARTING_HERO_IDS].some(id => unitById.get(id)?.allowedWeaponIds.includes(weapon.id))
+  if (weapon.tier <= 0) return [...DEMO_HERO_IDS].some(id => unitById.get(id)?.allowedWeaponIds.includes(weapon.id))
     ? 'Compétence initiale disponible' : 'Aucune compétence active';
   if (weapon.tier === 1) return 'Compétence 2 PA disponible';
   if (weapon.tier === 2) return 'Débloque : compétence 3 PA';

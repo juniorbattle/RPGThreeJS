@@ -1,6 +1,6 @@
 import type { TraversalLane } from './TraversalRunRuntime';
 
-/** Unwired presentation candidate. All positions use the same logical ground coordinates.
+/** Presentation-only charge. All positions use the same logical ground coordinates.
  * CONTACT observes geometry only; it cannot resolve a battle or substitute for an authored mapping.
  * Inputs are constant within a step: split steps at lane, caravan-geometry or viewport changes.
  * The active caravan remains inside the viewport; unsupported geometry/arithmetic fails closed.
@@ -21,6 +21,8 @@ export interface TraversalChargeGeometry {
   readonly caravanRight: number;
   readonly pursuerWidth: number;
   readonly viewportRight: number;
+  /** No discrete-lane collision while the caravan is visibly between lanes. */
+  readonly contactEnabled?: boolean;
 }
 
 export interface TraversalChargeObservation {
@@ -67,7 +69,7 @@ export function advancePursuitCharge(state: TraversalPursuitCharge, seconds: num
 
   const exitLeft = Math.max(state.left, geometry.viewportRight);
   const exitAt = crossingSeconds(exitLeft - state.left, state.speed, state.acceleration);
-  const canContact = state.lane === geometry.caravanLane && state.left <= geometry.caravanRight;
+  const canContact = geometry.contactEnabled !== false && state.lane === geometry.caravanLane && state.left <= geometry.caravanRight;
   const contactLeft = Math.max(state.left, geometry.caravanLeft - geometry.pursuerWidth);
   const contactAt = canContact
     ? crossingSeconds(contactLeft - state.left, state.speed, state.acceleration) : Infinity;

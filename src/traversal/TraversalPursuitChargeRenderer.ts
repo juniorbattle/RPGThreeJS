@@ -2,8 +2,9 @@ import type { TraversalPursuitCharge } from './TraversalPursuitCharge';
 import { ROAD_SPACE } from './TraversalRoadSpace';
 import { TRAVERSAL_PURSUER_IMAGE } from './TraversalRoutePursuitRenderer';
 import { prefersReducedMotion } from '../ui/ReducedMotion';
+import { setRoadGroundDepth } from './TraversalRoadAnchor';
 
-/** Unwired presentation candidate. The model supplies all motion and terminal state.
+/** The model supplies all motion and terminal state.
  * This actor is a sibling of the caravan, so physical lane depth determines stacking.
  * Reduced motion retains logical charge/contact/exit boundaries with a stationary fade.
  */
@@ -24,7 +25,7 @@ export class TraversalPursuitChargeRenderer {
   }
 
   update(state: TraversalPursuitCharge, viewportWidth: number, vehicleHeight: number,
-    active: boolean, reducedMotion = false): void {
+    active: boolean, reducedMotion = false, viewportHeight?: number): void {
     if (this.disposed) return;
     if (!Number.isFinite(viewportWidth) || viewportWidth <= 0
       || !Number.isFinite(vehicleHeight) || vehicleHeight <= 0) {
@@ -40,11 +41,14 @@ export class TraversalPursuitChargeRenderer {
     this.element.style.width = `${vehicleHeight}px`;
     this.element.style.height = `${vehicleHeight * .48}px`;
     this.element.style.top = `${state.lane === 0 ? 65 : 81}%`;
-    this.element.style.zIndex = state.lane === 0 ? '21' : '23';
+    if (viewportHeight !== undefined) setRoadGroundDepth(this.element, viewportHeight * (state.lane === 0 ? .65 : .81));
+    else this.element.style.zIndex = state.lane === 0 ? '21' : '23';
     this.element.style.left = `${reduced ? viewportWidth * .06 : state.left * viewportWidth / ROAD_SPACE.referenceWidth}px`;
     this.element.style.opacity = reduced && state.phase === 'CHARGING'
       ? String(Math.max(0, 1 - state.elapsedSeconds / .6)) : '1';
   }
+
+  reset(): void { this.element.hidden = true; }
 
   dispose(): void { this.disposed = true; this.element.remove(); }
 }

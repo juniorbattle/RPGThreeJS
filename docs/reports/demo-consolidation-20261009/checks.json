@@ -1,0 +1,191 @@
+{
+  "TASK": "OPERATOR-FEEDBACK-DEMO-CONSOLIDATION",
+  "DOMAIN": "Campaign/Combat/Traversal",
+  "BASELINE": "fc9588157b6cebf0fa148ab3ebf08dfab80e9c06",
+  "BRANCH": "dev",
+  "HEAD": "PENDING_PUBLICATION",
+  "STATUS": "SCOPED_RUNTIME_CHECKPOINT",
+  "MERGED_IN": "NONE",
+  "SUPERSEDES": "NONE",
+  "SUPERSEDED_BY": "NONE",
+  "PRODUCTION_IMPACT": "Six first demo hero skills; ten campaign-owned ordinary random encounter bindings; physical charge/contact/right miss; same-road tactical return",
+  "CANONICAL_DOCS_UPDATED": [
+    "docs/autonomy/DESKTOP_OPENING_OPERATOR_DECISION_2026-10-09.md",
+    "docs/autonomy/TRAVERSAL_PURSUIT_THREAT.md"
+  ],
+  "EVIDENCE": {
+    "result": "tmp/traversal/pursuit-consolidation-1856-v2/results.json",
+    "receipt": "tmp/traversal/pursuit-consolidation-1856-v2/qa-job.json",
+    "scope": "ACCEPTED_SCOPED_T0_1440_NORMAL_PURSUIT_CONTACT_MISS_RETURN_FIXTURE",
+    "limits": "Origin/combat-result fixtures; no earned tactical victory/balance, articulated gait, browser V6 persistence/defeat/cancellation/reduced/fullwindow/mobile/manual acceptance"
+  },
+  "runId": "codex-demo-consolidation-20261009T1856",
+  "recordedAt": "2026-10-09T22:18:30.639Z",
+  "checks": {
+    "tests": 113,
+    "types": "PASS",
+    "contracts": 8,
+    "videoSlots": 8,
+    "buildModules": 213,
+    "immutableGate": "EMPTY",
+    "diffCheck": "PASS"
+  },
+  "qa": {
+    "parameters": {
+      "motion": "normal",
+      "viewports": [
+        "1440x810"
+      ],
+      "legs": [
+        "T0"
+      ],
+      "branch": "event",
+      "gameReducedMotion": false,
+      "pursuitCheck": true,
+      "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+    },
+    "assertions": {
+      "continuous-departure": true,
+      "opaque-swap": true,
+      "reveal-momentum": true,
+      "clock-zero-during-reveal": true,
+      "full-exit-before-arrival": true,
+      "single-canonical-arrival": true,
+      "native-keyboard-focus": true,
+      "responsive-controls": true,
+      "forward-exit-and-resize": true,
+      "accelerating-arrival": true,
+      "pursuit-contact-single": true,
+      "pursuit-ordinary-pool": true,
+      "pursuit-exact-road-resume": true,
+      "pursuit-miss-full-exit": true,
+      "pursuit-no-node-resolution": true
+    },
+    "resultSha256": "2cbb0ddb8cdc6bd435978b77c172b419157e6001d3caf32c3fb21779adea5f45",
+    "receiptSha256": "9f3b90538cb77889a294754e3876f624c02c3a4c239514a67fb530b6d5cd3db4",
+    "provenance": {
+      "gitHead": "fc9588157b6cebf0fa148ab3ebf08dfab80e9c06",
+      "sourceTree": "057d9a590e8b16c2943815404da721effa7510aa",
+      "sourceDiffSha256": "3b6129e8177a35ec2fbab5d74f9e1edbdb79a8809dc835a32793723679b7fbe7",
+      "driver": {
+        "path": "tools/traversal-motion-production-qa.mjs",
+        "sha256": "16543f8597ce4113624ffe1fd7943e570980dd5d43aaef2293cedb02d2984e96"
+      },
+      "inputs": [],
+      "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+      "build": [
+        {
+          "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+          "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+        },
+        {
+          "path": "dist/assets/combat-B0LaJhFj.js",
+          "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+        },
+        {
+          "path": "dist/assets/combat-DGLEfKFr.css",
+          "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+        },
+        {
+          "path": "dist/assets/game-CTI-upoP.js",
+          "sha256": "59c9ef0597682d36354566b2cc03f185acfe228d21318321570ceb672c64c932"
+        },
+        {
+          "path": "dist/assets/game-mV23P-KD.css",
+          "sha256": "093d564c1b6524471d09aea8c5dd4ee211b81e2eee3e1f5e0c0a8be9b638c2f8"
+        },
+        {
+          "path": "dist/assets/three-core-f0ajj1rG.js",
+          "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+        },
+        {
+          "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+          "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+        },
+        {
+          "path": "dist/assets/validation-mSkvzYyn.js",
+          "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "92ec491f1d07ca3d4903f116b7299b272405bc1d383b335931c18834d1b9a133"
+        }
+      ]
+    },
+    "provenanceStable": true,
+    "battle": [
+      {
+        "contact": {
+          "legId": "T0",
+          "segmentId": "route-3",
+          "windowId": "t0:r3:pursuit-1"
+        },
+        "before": {
+          "elapsed": 11800.039416445294,
+          "distance": 20699.330038083808,
+          "stage": 2,
+          "progress": 0.5573338588859372
+        },
+        "truthBefore": "{\"current\":\"lion-nomad-crossroads\",\"runCurrent\":\"lion-nomad-crossroads\",\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true}}",
+        "savedBefore": null,
+        "config": {
+          "id": "forest_patrol",
+          "rank": "normal",
+          "enemies": [
+            "serpent_raider",
+            "serpent_raider",
+            "serpent_brute"
+          ]
+        },
+        "sameMount": true,
+        "after": {
+          "elapsed": 11800.039416445294,
+          "distance": 20699.330038083808,
+          "stage": 2,
+          "progress": 0.5573338588859372
+        },
+        "truthAfter": "{\"current\":\"lion-nomad-crossroads\",\"runCurrent\":\"lion-nomad-crossroads\",\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true}}",
+        "savedAfter": null,
+        "focusedLane": "1"
+      }
+    ],
+    "misses": [
+      {
+        "window": "t0:r5a:pursuit-1",
+        "phase": "EXITED",
+        "left": 1463,
+        "speed": 1594.526416781832,
+        "lane": 1,
+        "time": 99594.79999995232
+      },
+      {
+        "window": "t0:r6:pursuit-1",
+        "phase": "EXITED",
+        "left": 1463,
+        "speed": 1600.8521414132972,
+        "lane": 0,
+        "time": 125053
+      }
+    ],
+    "errors": [],
+    "inspectedIgnoredCaptures": [
+      "tmp/traversal/pursuit-consolidation-1856-v2/T0-1440-pursuit-approach.png"
+    ],
+    "noPersistedSaveClaim": "savedBefore/savedAfter null in fixture; equality proves absence only"
+  },
+  "physicalFreeze": "tmp/autonomy/physical-freeze-1856-v2.json",
+  "reviews": {
+    "guardian": "PASS_SCOPED_FUNCTIONAL_AUTHORITY_CONTACT_MISS_EXACT_RETURN_FIXTURE; broader acceptance open",
+    "traversal": "PASS corrected lane substeps/cover/charge activity; full gait/motion acceptance open"
+  },
+  "counts": {
+    "sourceModified": 10,
+    "sourceAddedWithinTotal": 1,
+    "testModified": 4,
+    "existingQaModified": 1,
+    "newQaTools": 0,
+    "proofAdded": 1,
+    "workflow": 5,
+    "inheritedWip": 0
+  }
+}

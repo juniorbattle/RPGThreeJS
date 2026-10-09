@@ -26,7 +26,7 @@ export interface TraversalRoutePursuitState {
 
 export interface TraversalRoutePursuitOutcome {
   readonly windowId: string;
-  readonly result: 'STARTED' | 'CAUGHT' | 'ESCAPED';
+  readonly result: 'STARTED' | 'CAUGHT' | 'ESCAPED' | 'COMMITTED_CHARGE';
   readonly pressure01: number;
 }
 
@@ -56,7 +56,7 @@ export function pursuerLaneAt(window: TraversalRoutePursuitWindow,
 export function resolveRoutePursuit(state: TraversalRoutePursuitState,
   window: TraversalRoutePursuitWindow | undefined, previousProgress01: number,
   nextProgress01: number, caravanLane: TraversalLane, deltaMs: number,
-  collisionCountDelta: number, activeDriving: boolean): {
+  collisionCountDelta: number, activeDriving: boolean, chargeAtWindowEnd = false): {
     readonly state: TraversalRoutePursuitState;
     readonly outcomes: readonly TraversalRoutePursuitOutcome[];
   } {
@@ -89,14 +89,15 @@ export function resolveRoutePursuit(state: TraversalRoutePursuitState,
     if (pressure >= 1) break;
   }
   pressure = clamp01(pressure + collisionCountDelta * PURSUIT_COLLISION_PRESSURE);
-  const caught = pressure >= 1;
-  const escaped = !caught && nextProgress01 >= end;
-  if (caught || escaped) outcomes.push(Object.freeze({ windowId: window.id,
-    result: caught ? 'CAUGHT' : 'ESCAPED', pressure01: pressure }));
-  const resolvedWindowIds = caught || escaped
+  const charge = chargeAtWindowEnd && nextProgress01 >= end;
+  const caught = !chargeAtWindowEnd && pressure >= 1;
+  const escaped = !chargeAtWindowEnd && !caught && nextProgress01 >= end;
+  if (caught || escaped || charge) outcomes.push(Object.freeze({ windowId: window.id,
+    result: charge ? 'COMMITTED_CHARGE' : caught ? 'CAUGHT' : 'ESCAPED', pressure01: pressure }));
+  const resolvedWindowIds = caught || escaped || charge
     ? Object.freeze([...state.resolvedWindowIds, window.id]) : state.resolvedWindowIds;
   return { state: Object.freeze({ segmentId: state.segmentId,
-    activeWindowId: caught || escaped ? null : window.id,
+    activeWindowId: caught || escaped || charge ? null : window.id,
     pressure01: pressure, resolvedWindowIds,
     caughtWindowIds: caught ? Object.freeze([...state.caughtWindowIds, window.id]) : state.caughtWindowIds,
     escapedWindowIds: escaped ? Object.freeze([...state.escapedWindowIds, window.id]) : state.escapedWindowIds,

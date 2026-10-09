@@ -217,6 +217,24 @@ describe('weapon progression', () => {
     expect(getUnlockedSkillsForHero(createUnitInstance('paladin'))).toEqual([]);
   });
 
+  it('rogue and lancer retain their first skill after recruitment and V6 reload while higher skills stay gated', () => {
+    const state = createInitialState();
+    for (const definitionId of ['rogue', 'lancer']) state.clan.members.push(createUnitInstance(definitionId));
+    const saved = JSON.stringify(state);
+    const reloaded = migrateState(JSON.parse(saved));
+    for (const hero of reloaded.clan.members) {
+      const skills = unitById.get(hero.definitionId)!.skillIds;
+      expect(getEquippedWeaponTier(hero)).toBe(0);
+      expect(toCombatant(hero).skills).toEqual([skills[0]]);
+      expect(getLockedSkillReason(hero, skills[0]!)).toBe('');
+      for (const skill of skills.slice(1)) expect(isSkillUnlockedForHero(hero, skill)).toBe(false);
+      expect(isUltimateUnlockedForHero(hero)).toBe(false);
+    }
+    expect(JSON.stringify(state)).toBe(saved);
+    expect(getWeaponSkillUnlockLabel(weaponById.get('novice_dagger')!)).toBe('Compétence initiale disponible');
+    expect(getWeaponSkillUnlockLabel(weaponById.get('novice_spear')!)).toBe('Compétence initiale disponible');
+  });
+
   it('T1 hero unlocks only the 2AP skill', () => {
     const state = createInitialState();
     const warrior = state.clan.members[0]!;

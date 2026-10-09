@@ -4,7 +4,9 @@ import { createInitialState, migrateState } from './store';
 import {
   addTemporaryLoot, createRunState, failRunToCheckpoint, generateRunGraph, getAvailableRunNodes,
   getLionConductScore, getLionConductTier, secureRunLoot,
+  enterRunNode, selectTraversalBranch, requestTraversalPursuitEncounter, resolveTraversalPursuitVictory,
 } from './runSystem';
+import { LION_PURSUIT_ENCOUNTER_BINDINGS } from '../campaign/LionTraversalPursuitEncounters';
 import type { GameState } from './types';
 
 function choicesAt(state: GameState, nodeId: string) {
@@ -12,6 +14,74 @@ function choicesAt(state: GameState, nodeId: string) {
   state.currentNodeId = nodeId;
   return getAvailableRunNodes(state);
 }
+
+function pursuitState(binding: typeof LION_PURSUIT_ENCOUNTER_BINDINGS[number]) {
+  const state = createInitialState();
+  const forkParent = binding.legId === 'T0' ? 'lion-refugees' : binding.legId === 'T1' ? 'lion-valmir-road' : 'lion-witnesses';
+  const target = binding.phase === 'BEFORE_REFUGEES' ? 'lion-nomad-crossroads' : forkParent;
+  const path: string[] = [];
+  const visit = (id: string): boolean => {
+    path.push(id);
+    if (id === target) return true;
+    for (const next of state.run.graph.nodes.find(node => node.id === id)!.links) if (visit(next)) return true;
+    path.pop(); return false;
+  };
+  visit(state.run.currentNodeId);
+  for (const id of path.slice(1)) {
+    state.resolvedNodeIds.push(state.run.currentNodeId);
+    expect(enterRunNode(state.run, id)).not.toBeNull(); state.currentNodeId = id;
+  }
+  state.resolvedNodeIds.push(target);
+  if (binding.phase !== 'BEFORE_REFUGEES') {
+    const branch = binding.branchNodeId ?? (binding.legId === 'T0' ? 'lion-first-trial-event'
+      : binding.legId === 'T1' ? 'lion-second-trial-event' : 'lion-final-trial-event');
+    expect(selectTraversalBranch(state.run, binding.legId, branch)).toBe(true);
+    if (binding.phase === 'AFTER_BRANCH') {
+      expect(enterRunNode(state.run, branch)).not.toBeNull(); state.currentNodeId = branch;
+      state.resolvedNodeIds.push(branch);
+    }
+  }
+  return state;
+}
+
+describe('campaign-owned incidental Pursuit combat', () => {
+  it.each(LION_PURSUIT_ENCOUNTER_BINDINGS)('validates $windowId and selects only authored ordinary formations without changing graph truth', binding => {
+    const state = pursuitState(binding), before = structuredClone(state);
+    const selected = [0, .34, .99].map(draw => requestTraversalPursuitEncounter(state, binding, () => draw)!);
+    expect(selected.map(request => request.config.id)).toEqual(['forest_patrol', 'forest_ambush', 'wolf_pack']);
+    expect(selected.every(request => request.config.encounterRank === 'normal' && !request.config.bossVisualId && !request.config.isBoss)).toBe(true);
+    expect(state).toEqual(before);
+    expect(requestTraversalPursuitEncounter(state, { ...binding, segmentId: 'wrong' })).toBeNull();
+    expect(requestTraversalPursuitEncounter(state, binding, () => 1)).toBeNull();
+    state.currentNodeId = 'lion-final-judgement';
+    expect(requestTraversalPursuitEncounter(state, binding)).toBeNull();
+  });
+
+  it('applies one tactical victory to existing temporary loot/HP without resolving nodes or changing forks; V6 stays compatible', () => {
+    const binding = LION_PURSUIT_ENCOUNTER_BINDINGS[1]!, state = pursuitState(binding);
+    const before = structuredClone(state), request = requestTraversalPursuitEncounter(state, binding, () => .99)!;
+    const hero = state.clan.members[0]!;
+    const result = { victory: true, combatId: request.config.id, participants: [hero.id], unitHealth: { [hero.id]: 73 }, consumables: { potion: 1 } };
+    expect(resolveTraversalPursuitVictory(state, request, { ...result, combatId: 'lion_chief' })).toBe(false);
+    expect(resolveTraversalPursuitVictory(state, request, result)).toBe(true);
+    expect(state.gold).toBe(before.gold);
+    expect(state.run.currentNodeId).toBe(before.run.currentNodeId);
+    expect(state.resolvedNodeIds).toEqual(before.resolvedNodeIds);
+    expect(state.run.visitedNodeIds).toEqual(before.run.visitedNodeIds);
+    expect(state.run.traversalBranches).toEqual(before.run.traversalBranches);
+    expect(state.flags).toEqual(before.flags);
+    expect(state.run.temporaryLoot.gold).toBe(before.run.temporaryLoot.gold + request.config.rewards.gold);
+    expect(hero.currentHealth).toBe(73);
+    const won = structuredClone(state);
+    expect(resolveTraversalPursuitVictory(state, request, result)).toBe(false);
+    expect(state).toEqual(won);
+    expect(migrateState(JSON.parse(JSON.stringify(state)))).toEqual(state);
+    expect(JSON.stringify(state)).not.toContain('pursuit');
+    failRunToCheckpoint(state);
+    expect(state.run.temporaryLoot.gold).toBe(0);
+    expect(state.gold).toBe(before.gold);
+  });
+});
 
 describe('hybrid run system', () => {
   it('reproduces route structure while varying only equivalent creature encounters by seed', () => {

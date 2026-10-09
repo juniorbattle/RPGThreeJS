@@ -1,8 +1,12 @@
 import type {
-  CampaignNode, GameState, InventoryState, RunGraph, RunLoot, RunNode, RunNodeType, RunState,
+  CampaignNode, CombatConfig, CombatResult, GameState, InventoryState, RunGraph, RunLoot, RunNode, RunNodeType, RunState,
 } from './types';
 import { getLionConductTier, type LionConductTier } from './lionNarrative';
 import { LION_TRAVERSAL_LEGS } from '../campaign/LionCampaignTravelRelations';
+import { LION_PURSUIT_ENCOUNTER_BINDINGS, type LionPursuitEncounterBinding } from '../campaign/LionTraversalPursuitEncounters';
+import { combatConfigs } from './content';
+import { applyCombatProgress } from './combatProgress';
+import { changeReputation } from './reputation';
 
 export { getLionConductScore, getLionConductTier } from './lionNarrative';
 export type { LionConductTier } from './lionNarrative';
@@ -717,4 +721,75 @@ export function failRunToCheckpoint(state: GameState): void {
   state.run.temporaryLoot = { gold: 0, inventory: EMPTY_INVENTORY() };
   state.currentNodeId = state.run.checkpointNodeId;
   state.run.status = 'active';
+}
+
+export interface TraversalPursuitContact {
+  readonly legId: string;
+  readonly segmentId: string;
+  readonly windowId: string;
+}
+
+export interface TraversalPursuitEncounterRequest extends TraversalPursuitContact {
+  readonly currentNodeId: string;
+  readonly branchNodeId: string | null;
+  readonly config: CombatConfig;
+}
+
+// Requests and duplicate-result guards belong to this mount only, never V6.
+const pendingPursuitRequests = new WeakMap<TraversalPursuitEncounterRequest, GameState>();
+
+function pursuitContextEligible(state: GameState, binding: LionPursuitEncounterBinding): boolean {
+  const leg = LION_TRAVERSAL_LEGS.find(candidate => candidate.id === binding.legId)!;
+  const run = state.run;
+  if (run.status !== 'active' || state.currentNodeId !== run.currentNodeId
+    || !run.visitedNodeIds.includes(leg.originNodeId) || !state.resolvedNodeIds.includes(leg.originNodeId)
+    || state.resolvedNodeIds.includes(leg.destinationNodeId) || run.visitedNodeIds.includes(leg.destinationNodeId)) return false;
+  const available = getAvailableRunNodes(run).map(node => node.id);
+  if (binding.phase === 'BEFORE_REFUGEES') return run.currentNodeId === 'lion-nomad-crossroads'
+    && state.resolvedNodeIds.includes(run.currentNodeId) && available.includes('lion-refugees');
+  const selected = run.traversalBranches?.[leg.id];
+  if (!selected || !leg.stages.at(-1)!.nodeIds.includes(selected)) return false;
+  if (binding.phase === 'BEFORE_BRANCH') return selected === binding.branchNodeId
+    && state.resolvedNodeIds.includes(run.currentNodeId) && available.includes(selected)
+    && !state.resolvedNodeIds.includes(selected) && !run.visitedNodeIds.includes(selected)
+    && !run.bypassedRouteNodeIds?.includes(selected);
+  return (state.resolvedNodeIds.includes(selected) || Boolean(run.bypassedRouteNodeIds?.includes(selected)))
+    && available.includes(leg.destinationNodeId)
+    && (run.currentNodeId === selected || Boolean(run.bypassedRouteNodeIds?.includes(selected)));
+}
+
+/** Campaign-owned selection from explicitly authored ordinary formations. No graph mutation. */
+export function requestTraversalPursuitEncounter(state: GameState, contact: TraversalPursuitContact,
+  random: () => number = Math.random): TraversalPursuitEncounterRequest | null {
+  const binding = LION_PURSUIT_ENCOUNTER_BINDINGS.find(candidate => candidate.legId === contact.legId
+    && candidate.segmentId === contact.segmentId && candidate.windowId === contact.windowId);
+  if (!binding || !pursuitContextEligible(state, binding)) return null;
+  const eligible = binding.combatIds.map(id => combatConfigs.get(id)).filter((config): config is CombatConfig =>
+    Boolean(config && config.encounterRank === 'normal' && !config.isBoss && !config.bossVisualId
+      && config.sceneId === 'forest_route' && config.enemyVisualIds.length > 0
+      && config.enemyVisualIds.every(id => ['serpent_raider', 'serpent_brute', 'wolf', 'cave_rat'].includes(id))));
+  if (!eligible.length) return null;
+  const draw = random();
+  if (!Number.isFinite(draw) || draw < 0 || draw >= 1) return null;
+  const request = Object.freeze({ ...contact, currentNodeId: state.run.currentNodeId,
+    branchNodeId: state.run.traversalBranches?.[binding.legId] ?? null, config: eligible[Math.floor(draw * eligible.length)]! });
+  pendingPursuitRequests.set(request, state);
+  return request;
+}
+
+/** Tactical victory affects existing HP/inventory/temporary rewards only, never the route graph. */
+export function resolveTraversalPursuitVictory(state: GameState, request: TraversalPursuitEncounterRequest,
+  result: CombatResult): boolean {
+  if (pendingPursuitRequests.get(request) !== state || !result.victory || result.combatId !== request.config.id
+    || state.run.currentNodeId !== request.currentNodeId) return false;
+  const binding = LION_PURSUIT_ENCOUNTER_BINDINGS.find(candidate => candidate.windowId === request.windowId)!;
+  if ((state.run.traversalBranches?.[binding.legId] ?? null) !== request.branchNodeId
+    || !pursuitContextEligible(state, binding)) return false;
+  pendingPursuitRequests.delete(request); // Consume before any consequence, never a second reward.
+  applyCombatProgress(state, result, request.config.maxPlayerUnits);
+  addTemporaryLoot(state.run, { gold: request.config.rewards.gold });
+  for (const [itemId, quantity] of Object.entries(request.config.rewards.materials))
+    addTemporaryLoot(state.run, { category: 'materials', itemId, quantity });
+  changeReputation(state, request.config.rewards.reputation, `combat:${request.config.id}`);
+  return true;
 }

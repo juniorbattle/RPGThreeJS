@@ -1,3 +1,14 @@
+## Current consolidation — 2026-10-09
+
+Run: codex-demo-consolidation-20261009T1856; status: IN_PROGRESS
+
+Active task: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat
+Active subtask: Six demo hero skills and ordinary random Pursuit contact/miss/return scoped verified; articulated gait/manual QA open
+
+Exact next action: Read-only preflight/exclusive lock; inspect1856 v2 terminal receipt and compactchecks first, reuse113tests+scopedT0desktop contact/miss/exactroadreturn evidence if same source/driver/build. Preserve operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue same desktop consolidation: implement articulated Shadow running animation (current still/bob is not gait), then existing-runner OS/game-reduced and other mapped contexts, browser native tactical victory/defeat temporary-loot recovery, persistedV6 and cancel/re-enter/focus-visible checks. Do not reinterpret null autosave equality as persistedV6 proof. Finish checkpoint glissement perception/settled parentfocus/narrative/campaign gaps; operator manual visual/literary/balance QA later, mobile finalization last. No new mapping operator decision needed; mappings/category blocker resolved. Eight videos/Alaric/audio/LOCKED unchanged.
+
+Final manual QA is reserved for the operator. All historical continuations/receipts preserved verbatim in JSON.
+
 ## Current operator desktop feedback — 2026-10-09
 
 Run: codex-operator-feedback-20261009T1748; status: IN_PROGRESS
@@ -223,6 +234,9 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - campaign-desktop-opening-1748: SUCCEEDED; port 5354; receipt `tmp/demo/campaign-desktop-opening-1748/qa-job.json`; NOT_ACCEPTED
 - motion-desktop-1748-normal: SUCCEEDED; port 5355; receipt `tmp/traversal/motion-desktop-1748-normal/qa-job.json`; NOT_ACCEPTED
 - motion-desktop-1748-os: SUCCEEDED; port 5356; receipt `tmp/traversal/motion-desktop-1748-os/qa-job.json`; NOT_ACCEPTED
+- pursuit-consolidation-1856: CANCELLED_BEFORE_START; port 5357; receipt `tmp/traversal/pursuit-consolidation-1856/qa-job.json`; NOT_ACCEPTED
+- pursuit-consolidation-1856-v2: SUCCEEDED; port 5357; receipt `tmp/traversal/pursuit-consolidation-1856-v2/qa-job.json`; NOT_ACCEPTED
+
 <!-- QA_JOBS_END -->
 
 

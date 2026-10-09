@@ -21,3 +21,11 @@ Source: direct operator feedback on 2026-10-09 in Codex chat `01a12197-5d67-74d0
 ## Continuity
 
 This order supersedes the narrow mobile-first campaign smoke as the immediate next action. Preserve its exact previous continuation, the original deferred battlefield keyboard task, existing narrative work, historical QA jobs and external blockers. Proceed through coherent desktop product changes, existing focused tests and production smoke, then resume campaign acceptance; perform the final mobile pass after desktop stabilization. Record what was actually implemented and verified separately from these approved targets.
+
+## Operator clarification — 2026-10-09, consolidation1856
+
+The operator extends the first existing competence rule to **all six demo heroes**, including Cedric (`rogue`) and Garen (`lancer`). It is available with initial equipment when the hero joins; recruitment timing remains authored. The six archive/non-demo classes are outside this request. Higher-tier competences, AP costs and ultimate restrictions remain unchanged.
+
+On a Shadow collision, the encounter is **random**, drawn from existing ordinary Serpent groups or monster formations. **Elites and bosses are excluded.** This authorizes the eligible category and use of existing ordinary encounters for all ten authored windows; it supersedes the category-selection blocker above. Campaign/RunSystem must author and validate window/context/pool bindings, retain existing encounter rewards and tactical consequences, preserve selected branches and resolved nodes, and resume the same road after victory. No story dialogue or branch consequence is borrowed from an unrelated encounter.
+
+Consolidate the implementation now. The operator performs final manual QA later; visual, literary and balance criteria remain pending until that review. Desktop remains first and mobile finalization last. The approved eight videos, Alaric judgement, temporary-loot authority, durable IDs/V6 and LOCKED baseline remain protected.
