@@ -324,6 +324,12 @@ async function battle(){
   entry.autosaveBefore=JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')));
   await capture(`combat-${entry.index}-deployment`);
   await frame.locator('#menu [data-d="start"]').click();
+  if(entry.index===0&&!priorProof&&['forest_ambush','wolf_pack'].includes(entry.combatId)){
+    entry.initialRoster=await frame.evaluate(()=>G.units.map(u=>({id:u.campaignId||u.id,team:u.team,skills:[...u.skills]})));
+    assert.equal(entry.initialRoster.filter(u=>u.team==='foe').length,2,'Opening enemy count');
+    for(const [id,skill] of Object.entries({warrior:'w_break_guard',white_mage:'w_salvation',dark_mage:'n_dark_bolt',archer:'a_precise_shot'}))
+      assert.deepEqual(entry.initialRoster.find(u=>u.id===id)?.skills,[skill],`Initial native skill: ${id}`);
+  }
   if(entry.index===0&&!priorProof)await campaignBattlefieldKeyboard(frame,entry);
   for(let index=0;index<300&&Date.now()<deadline;index++){
     if(index%5===0){console.log(`BATTLE ${entry.nodeId} iteration ${index}, actions ${entry.actions.length}`);
@@ -334,8 +340,7 @@ async function battle(){
       await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait-for-native-defeat',before:current});continue;
     }
     if(current.active.ap<=0){await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait',reason:'no-native-ap',before:current});continue;}
-    // A novice weapon unlocks no skills. Conserve only for a skill that the
-    // native combat payload actually exposes, never for an assumed class skill.
+    // Conserve only for a skill exposed by the native payload.
     const conserveArcher=current.active.id==='archer'&&current.active.skills.some(id=>['a_precise_shot','ar_calibrated_shot'].includes(id));
     const supportHealer=entry.combatId==='lion_chief'&&current.active.id==='white_mage'&&current.active.skills.includes('w_salvation');
     if(supportHealer){
@@ -477,6 +482,16 @@ try{
   if(report.osReducedMotion)assert.equal(report.motionEvidence.gameRequested,false,'OS-only motion proof requires normal game graphics');
   for(let index=0;index<12000&&Date.now()<deadline;index++){
     const live=await state();if(report.nodes.at(-1)!==live.currentNodeId){report.nodes.push(live.currentNodeId);console.log(`NODE ${live.currentNodeId}`);}
+    const introduction=await page.locator('.dialogue:visible').evaluateAll(elements=>elements.map(e=>({sequence:e.dataset.dialogueSequence,step:e.dataset.dialogueStep}))) ;
+    const introductory=introduction.find(e=>['acte_ouverture','camp_departure'].includes(e.sequence));
+    report.introductions??=[];
+    if(introductory&&!report.introductions.some(e=>e.sequence===introductory.sequence&&e.step===introductory.step)){
+      await page.waitForTimeout(5500);
+      const text=await page.locator('.dialogue:visible').innerText();
+      report.introductions.push({...introductory,text});
+      if(introductory.sequence==='acte_ouverture'&&['3','4','6'].includes(introductory.step)||introductory.sequence==='camp_departure'&&introductory.step==='3')
+        await capture(`intro-${introductory.sequence}-${introductory.step}`);
+    }
     const hub=page.locator('.exploration-stop:visible:not([inert])');
     if(await hub.count()){
       const nodeId=await hub.getAttribute('data-refuge-node');

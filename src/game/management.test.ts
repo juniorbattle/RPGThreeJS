@@ -202,11 +202,19 @@ describe('clan management', () => {
 });
 
 describe('weapon progression', () => {
-  it('T0 hero has no unlocked active skills', () => {
+  it('initial heroes carry their first skill into combat and V6 reload without buying equipment', () => {
     const state = createInitialState();
-    const warrior = state.clan.members[0]!;
-    expect(getEquippedWeaponTier(warrior)).toBe(0);
-    expect(getUnlockedSkillsForHero(warrior)).toHaveLength(0);
+    const saved = JSON.stringify(state);
+    const expected = ['w_break_guard', 'w_salvation', 'n_dark_bolt', 'a_precise_shot'];
+    for (const [index, hero] of state.clan.members.entries()) {
+      expect(getEquippedWeaponTier(hero)).toBe(0);
+      expect(toCombatant(hero).skills).toEqual([expected[index]]);
+      expect(isUltimateUnlockedForHero(hero)).toBe(false);
+    }
+    expect(JSON.stringify(state)).toBe(saved);
+    const loaded = migrateState(JSON.parse(saved));
+    expect(loaded.clan.members.map(hero => toCombatant(hero).skills)).toEqual(expected.map(id => [id]));
+    expect(getUnlockedSkillsForHero(createUnitInstance('paladin'))).toEqual([]);
   });
 
   it('T1 hero unlocks only the 2AP skill', () => {
@@ -252,7 +260,7 @@ describe('weapon progression', () => {
   it('locked skill reason text is correct', () => {
     const state = createInitialState();
     const warrior = state.clan.members[0]!;
-    expect(getLockedSkillReason(warrior, 'w_break_guard')).toBe('Débloquée avec arme T1');
+    expect(getLockedSkillReason(warrior, 'w_break_guard')).toBe('');
     expect(getLockedSkillReason(warrior, 'w_charge')).toBe('Débloquée avec arme T2');
     expect(getLockedSkillReason(warrior, 'w_whirl')).toBe('Débloquée avec arme T3');
     expect(getLockedSkillReason(warrior, 'w_lion_surge')).toBe('Ultimate — éveil spécial requis');
@@ -263,8 +271,9 @@ describe('weapon progression', () => {
   });
 
   it('weapon skill unlock label is correct', () => {
-    expect(getWeaponSkillUnlockLabel(weaponById.get('novice_greatsword')!)).toBe('Aucune compétence active');
-    expect(getWeaponSkillUnlockLabel(weaponById.get('steel_greatsword')!)).toBe('Débloque : compétence 2 PA');
+    expect(getWeaponSkillUnlockLabel(weaponById.get('novice_greatsword')!)).toBe('Compétence initiale disponible');
+    expect(getWeaponSkillUnlockLabel(weaponById.get('novice_mace')!)).toBe('Aucune compétence active');
+    expect(getWeaponSkillUnlockLabel(weaponById.get('steel_greatsword')!)).toBe('Compétence 2 PA disponible');
     expect(getWeaponSkillUnlockLabel(weaponById.get('lion_guard_greatsword')!)).toBe('Débloque : compétence 3 PA');
   });
 
@@ -277,7 +286,7 @@ describe('weapon progression', () => {
   it('toCombatant only includes unlocked skills', () => {
     const state = createInitialState();
     const warrior = state.clan.members[0]!;
-    expect(toCombatant(warrior).skills).toHaveLength(0);
+    expect(toCombatant(warrior).skills).toEqual(['w_break_guard']);
     state.inventory.weapons.steel_greatsword = 1;
     equipWeapon(state, warrior.id, 'steel_greatsword');
     const payload = toCombatant(warrior);
@@ -289,7 +298,8 @@ describe('weapon progression', () => {
     const state = createInitialState();
     state.inventory.materials.red_gem = 3;
     const warrior = state.clan.members[0]!;
-    expect(upgradeSkill(state, warrior.id, 'w_break_guard')).toBe(false);
+    expect(upgradeSkill(state, warrior.id, 'w_charge')).toBe(false);
+    expect(upgradeSkill(state, warrior.id, 'w_break_guard')).toBe(true);
     state.inventory.weapons.steel_greatsword = 1;
     equipWeapon(state, warrior.id, 'steel_greatsword');
     expect(upgradeSkill(state, warrior.id, 'w_break_guard')).toBe(true);

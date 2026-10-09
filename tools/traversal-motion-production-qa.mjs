@@ -10,10 +10,12 @@ const arg=(name,fallback)=>process.argv.find(x=>x.startsWith(`--${name}=`))?.sli
 const motion=arg('motion','normal');assert.ok(['normal','os'].includes(motion));
 const port=Number(arg('port',motion==='os'?'5281':'5280'));
 const output=arg('output',`tmp/traversal/motion-1002-${motion}`);
-const parameters={motion,viewports:['1440x810','620x780','390x844'],legs:['T0','T1','T3'],branch:'event',gameReducedMotion:false,
+const viewports=arg('viewports','1440x810,620x780,390x844').split(',');
+assert.ok(viewports.every(value=>/^\d+x\d+$/.test(value)&&value.split('x').every(n=>Number(n)>0)),'Invalid viewports');
+const parameters={motion,viewports,legs:['T0','T1','T3'],branch:'event',gameReducedMotion:false,
   scope:'native production motion with V6-origin/combat-result fixtures; not earned campaign'};
 const requiredAssertions=['continuous-departure','opaque-swap','reveal-momentum','clock-zero-during-reveal','full-exit-before-arrival','single-canonical-arrival','native-keyboard-focus','responsive-controls',
-  motion==='os'?'os-covered-exit':'forward-exit-and-resize'];
+  ...(motion==='os'?['os-covered-exit']:['forward-exit-and-resize','accelerating-arrival'])];
 if(process.argv.includes('--register')){
   const registered=registerJob({runId:process.env.AUTONOMY_RUN_ID,jobId:process.env.DEMO_QA_JOB_ID,output,
     driver:'tools/traversal-motion-production-qa.mjs',port,parameters,requiredAssertions});
@@ -126,6 +128,7 @@ try{
       }
       if(s.departure&&s.view==='checkpoint'&&s.opacity<.5)await capture('departure-visible');
       if(s.departure&&s.view==='route'&&s.opacity<.8&&s.opacity>.02)await capture('reveal-moving');
+      if(s.view==='checkpoint'&&s.opacity<.02&&!s.transition)await capture(`checkpoint-${s.segment}`);
       if(s.phase==='ARRIVING'&&s.fade===0&&s.left<width)await capture('arrival-visible');
       if(s.phase==='ARRIVING'&&s.left>=width)await capture('arrival-exited');
       if(!lanesChecked&&s.view==='route'&&!s.transition&&s.progress>.1&&s.progress<.5){
@@ -173,6 +176,7 @@ try{
       const visible=exit.filter(s=>s.left<s.viewport);assert.ok(visible.length>=3,'Visible exit sequence');
       assert.ok(visible.every(s=>s.fade===0),'Fade begins only after complete exit');
       assert.ok(visible.at(-1).left>visible[0].left+width*.5,'Crosses viewport');
+      assert.ok(visible.at(-1).speed>visible[0].speed,'Caravan accelerates before leaving view');
       assert.ok(resized,'Actual native arrival resize exercised');
     }else{
       assert.ok(exit.some(s=>s.fade>0&&s.fade<1),'Gentle reduction fade');

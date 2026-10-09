@@ -829,12 +829,18 @@ export class TraversalRoadScene {
 
   private advanceArrival(deltaSeconds: number): void {
     if (!this.arrivalRequested || !this.opened || deltaSeconds <= 0) return;
+    const previousElapsed = this.arrivalElapsed;
     this.arrivalElapsed += deltaSeconds;
     const reduced = prefersReducedMotion(this.options.getState().settings.reducedGraphics);
-    this.speed = Math.max(this.arrivalVisualSpeed, this.routeSegment.vMin);
-    const distance = deltaSeconds * 1000 * this.speed * .28;
+    const initialSpeed = Math.max(this.arrivalVisualSpeed, this.routeSegment.vMin);
+    // Accelerate to twice entry speed in 1.5s; integrate exactly across the cap.
+    const distanceAt = (elapsed: number) => initialSpeed * (elapsed
+      + Math.min(elapsed, 1.5) ** 2 / 3 + Math.max(0, elapsed - 1.5));
+    this.speed = initialSpeed * (1 + Math.min(this.arrivalElapsed, 1.5) / 1.5);
+    const travelled = distanceAt(this.arrivalElapsed) - distanceAt(previousElapsed);
+    const distance = travelled * 1000 * .28;
     if (!reduced) {
-      this.routeRenderer.advance(deltaSeconds * 1000, this.speed);
+      this.routeRenderer.advance(deltaSeconds * 1000, travelled / deltaSeconds);
       this.arrivalExitDistance += distance;
     } else {
       // Gentle cover, then equivalent complete exit under opacity; no large visible pan.
@@ -1082,7 +1088,9 @@ export class TraversalRoadScene {
     const departureDistance = this.viewMode === 'CHECKPOINT'
       && !prefersReducedMotion(this.options.getState().settings.reducedGraphics) ? this.departure?.distance ?? 0 : 0;
     const checkpointCamera = this.checkpointBeat
-      ? roadCameraX(this.checkpointBeat.progress01) - 650 * (1 - this.checkpointElapsed / 1.15)
+      // Remaining braking distance shares the displayed speed instead of a fixed 650px slide.
+      ? roadCameraX(this.checkpointBeat.progress01)
+        - this.routeSegment.vMin * 1000 * .28 * (1.15 - this.checkpointElapsed) ** 2 / (2 * 1.15)
       : roadCameraX(session.routeProgress01);
     const camera = checkpointCamera + departureDistance;
     if (this.viewMode === 'CHECKPOINT' || forceWorld) {

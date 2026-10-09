@@ -54,7 +54,8 @@
 }
 .traversal-world-section__painting > .traversal-world-section__ground {
   position: absolute; inset: 0;
-  mask-image: linear-gradient(transparent 48%, #000 56%);
+  /* One opaque road owner: blending two painted roads caused doubled geometry. */
+  clip-path: inset(48% 0 0);
 }
 .traversal-entity[data-world-subject='shadow'] { --entity-height: calc(var(--vehicle-height) * .48); }
 .traversal-entity__shadow {

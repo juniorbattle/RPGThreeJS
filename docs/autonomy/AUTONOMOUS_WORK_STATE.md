@@ -1,36 +1,58 @@
+## Current operator desktop feedback — 2026-10-09
+
+Run: codex-operator-feedback-20261009T1748; status: IN_PROGRESS
+
+Active task: OPERATOR-FEEDBACK: desktop opening and Traversal
+Active subtask: Desktop opening and final exits accepted in stated scopes; checkpoint perception and parent settled focus open
+
+Exact next action: Read-only preflight/exclusive lock; resume OD-2026-10-09-A desktop-first feedback. Reuse the three completed1748 receipts/physical freeze and compact proof; do not repeat the six accepted desktop exit cases. Inspect the remaining checkpoint braking/glissement perception and settled automatic parent-focus capture (current parent PNG still fades) with existing runner and one focused desktop scenario; only fix demonstrated product issues or one minimal assertion/capture defect. Preserve operatorFeedback1748.previous.nextAction and deferredDemoTask.nextAction VERBATIM; old390OS campaign boundary is deferred until final mobile pass. Then continue current native earned first-refuge V6 lineage through desktop combat/campaign branches/endings and exact2AP-start Salvation/VFX/accessibility. Tested wolf_pack won3rounds23actions with KestrelKO: not general balance acceptance; forest_ambush native variant open. Continue narrative context/staticOS/council work, retain approved-night-plate blocker. Pursuit production still needs articulated running asset and10explicit canonical eligible combat mappings; do not invent formations/rewards/outcomes, loop isolated QA or consume runs on external mapping blocker. Mobile broad polish last after desktop gameplay/visual stability; full demo remains IN_PROGRESS.
+
+Mobile broad acceptance is deferred until desktop gameplay/visual structure is final. Earlier campaign continuation is preserved verbatim in JSON operatorFeedback1748.previous, along with deferredDemoTask and historical receipts.
+
 # Autonomous work state
 
-CURRENT FACT1655: campaign FAILED native opening defeat; only battlefield navigation OBSERVED, parent/refuge unverified. Full demo IN_PROGRESS.
+CURRENT FACT1748: Desktop opening and final exits accepted in stated scopes; checkpoint perception and parent settled focus open. Full demo IN_PROGRESS. Mobile finalization deferred until desktop gameplay/visual structure final.
 
-Active task: DEMO-QA-POLISH: continuous earned campaign beyond first refuge
-Active subtask: Native campaign battlefield observed; opening defeat blocks parent/refuge proof
+Active task: OPERATOR-FEEDBACK: desktop opening and Traversal
 
 ## Exact next action
 
-Normal autonomy-handoff preflight/exclusive lock; resume SAME DEMO-QA-POLISH campaign keyboard boundary. Inspect campaign-keyboard-1655 terminal FAILED actual opening defeat (round10/30nativeactions; wolf untouched80HP, spider22HP, ratKO, all4alliesKO) and existing deployment/movement/support decisions before any retry. Runtime unchanged and browser errors empty: do not infer a product/balance regression or blindly rerun. Make only a demonstrated product correction or bounded existing native-pilot correction, no tactical outcome/AP/HP injection or balance change. Preserve exact deferredDemoTask.nextAction VERBATIM. New opening-aftermath automatic-parent-focus helper is statically reviewed but unexecuted; future successful fresh390x844 OS-only/gamefalse/rescue/first-refuge35min run must reach native victory, observe post_opening_trail ready focus/Tab round-trip/owner+autosave unchanged, earnedrefuge/exactV6 reload, with unique registered provenance/freeport/physicalfreeze and captures. Never seed from failed1655outputs. Prior standalone0613 and earned0443ending proofs retain original scopes; no accepted matrix rerun. AT/actorframing/balance/exact2AP-start/otherendings/StageVFX/staticOS/council/nightplate/tenPursuitmappings/full-demo remain open.
+Read-only preflight/exclusive lock; resume OD-2026-10-09-A desktop-first feedback. Reuse the three completed1748 receipts/physical freeze and compact proof; do not repeat the six accepted desktop exit cases. Inspect the remaining checkpoint braking/glissement perception and settled automatic parent-focus capture (current parent PNG still fades) with existing runner and one focused desktop scenario; only fix demonstrated product issues or one minimal assertion/capture defect. Preserve operatorFeedback1748.previous.nextAction and deferredDemoTask.nextAction VERBATIM; old390OS campaign boundary is deferred until final mobile pass. Then continue current native earned first-refuge V6 lineage through desktop combat/campaign branches/endings and exact2AP-start Salvation/VFX/accessibility. Tested wolf_pack won3rounds23actions with KestrelKO: not general balance acceptance; forest_ambush native variant open. Continue narrative context/staticOS/council work, retain approved-night-plate blocker. Pursuit production still needs articulated running asset and10explicit canonical eligible combat mappings; do not invent formations/rewards/outcomes, loop isolated QA or consume runs on external mapping blocker. Mobile broad polish last after desktop gameplay/visual stability; full demo remains IN_PROGRESS.
 
-## Scoped result and checks
+## Current checkpoint
 
-CURRENT FACT: campaign-keyboard-1655 FAILED_NATIVE_OPENING_DEFEAT; full demo IN_PROGRESS.
+CURRENT FACT: native wolf_pack/earnedfirstrefuge1366normalV6 and six desktop final-exit fixture cases accepted only in selected scopes. Full demo IN_PROGRESS.
 
-Run rpgthreejs-auto-dev-90m-20261009T1655; baseline dev6e783cfe8d88f8809dcb0abd6153de13d0d7376e. QA-only change in existing continuous driver: native result Enter and automatic ready post_opening_trail focus, viewport/outline and nonactivating Tab/ShiftTab owner/autosave checks. Guardian staticPASS; no runtime/truth/save/canon/media changes.
+Run codex-operator-feedback-20261009T1748; baseline ebfa8d2faf52cc680a4cfdca9f98f4a7719d7576; decisionOD-2026-10-09-A. Two enemies in both initial configs, first4existinghero skills availableT0 at2AP, higher tiers/ultimates/equipment/IDs/V6 unchanged; Management labels consistent. Sixteen opening/departure texts rewritten without new canon/choices/effects or cause of fall. Alaric unchanged. Checkpoint camera now speed-derived braking integral; forestground opaque; finalarrival ramp2x/1.5s shares exact road/wheels/distance, fullbounds exit before single handoff.
 
-One registered fresh390x844 OS-only/gamefalse rescue first-refuge/no seed35min job worker47600/strict5353 ended 2026-10-09T17:05:29.106Z. Actual defeat round10/30nativeactions/all4alliesKO. RatKO, wolf80HP, spider22HP. No browser errors, injected outcome or owner mutation. Result SHA256 269fa948ecd9600b00a0c1e6aaac6446cda5eba4b70f5a74302cd7470accd7c3; receipt tmp/demo/campaign-keyboard-1655/qa-job.json; physical393files10build stable via tmp/autonomy/physical-freeze-1655.json. Failed save/output is NEVER an earned seed.
+- 167currentfocusedPASS: management56/content97/roadscene5/world1/UI8 (repeats excluded)
+- TypeScript PASS; validator8contracts8slots; staging257steps75dialogues; production210modules8MP4 PASS
+- Immutable/protected-path/whitespace/syntax gates PASS
+- Native1366normal freshwolf_pack/rescue/firstrefuge exactV6 PASS; scoped numeric battlefield/parent focus only
+- Desktop1440normal/OS T0/T1/T3 eventfixtures six physical exit cases PASS; selected T0ground frame inspected
 
-Observed ONLY: first campaign iframe actual Tab/ShiftTab/cursor/menu cancel restores visible3px focus to69.59x60px Déplacer inside390x844; tactical truth/owner/autosave unchanged. Root/UI inspected combat-0-native-keyboard-return.png. Root inspected failure-state.png. OveralljobNOT_ACCEPTED; parent helper never executed, no refuge/reload proof. ATTAQUE title in immediate defeat screenshot precedes stage finalization and does not establish settled UI defect. No proof promoted.
+Accepted proof: docs/reports/desktop-opening-traversal-20261009/checks.json and six explicitly inspected captures. Native firstcombat23actions/round3/2wolves/4firstskillarrays, three alliesalive/KestrelKO; no easy/balanced claim. DarkBolt2to0AP; Salvation3to1AP only and salvationVerifiedfalse. Exactrefuge/reload structural equality and native lineage verified. Numeric parent automatic focus/owner/autosave passes; PNGcaught fade, NOTpromoted or accepted as settled visual.16introsteps observed with pagination; operator judges final literary quality.
 
-Checks: current59focusedtestsPASS (24keyboard/25motion/6RNG/4reduced);19accidentally-discovered tmp historical tests excluded from currentcount. Types/directvalidator8contracts8slots/210module8MP4build/driver syntax/whitespace/immutable+protected gatesPASS. Contractset1.1.0; no LOCKED change. Constitution/campaign/combat/save/UI/staticQA/governancePASS; campaignQA acceptanceBLOCKED. Art/characters/environment/TraversalN/A. Guardian andUI precise reviews retained; no broad review or newQA tool.
+Motion3legs1440normal/OS,eventbranchfixtures: accelerationvisible2.7to4.83 then5.4, full exit before one callback/unresolveddestination, actual1800resize noearlycallback. OSstationaryvisible thencoveredexit; no largevisiblepan. T0ambushimage no doubledroad/hardseam. Checkpoint sliding perception stillOPEN; no rerun compatible exit cases.
 
-Preserved original deferredDemoTask/pendingNarrativeTask/taskQueue and162historicaljobs plus1own job. Prior standalone0613/earned0443ending scopes unchanged. No blindrepeat/balance change/harnessrewrite. Counts:0source/0tests modified,1existingQAmodified,0newQA,0proofadded,3workflow;0inheritedWIP;2reviewers/1job/2rootcaptures.
+Provenance: physical393/10 campaign and394/10 motion inputs stable; receipts SUCCEEDED/stable/request/digest/eligible matches. Ignored results: tmp/demo/campaign-desktop-opening-1748 and tmp/traversal/motion-desktop-1748-{normal,os}. Workers46224/68120/12756 terminal, ports5354/5355/5356 released. No toolrewrites/retries/newQAtools; one campaign smoke plus Traversal end-of-item six-case desktop matrix (mobile deferred). RawSSR parallel websocket24678 warning did not affect terminal reports; browser errors empty.163historicaljobs/deferred original continuations preserved VERBATIM.
 
-Exact nextAction: Normal autonomy-handoff preflight/exclusive lock; resume SAME DEMO-QA-POLISH campaign keyboard boundary. Inspect campaign-keyboard-1655 terminal FAILED actual opening defeat (round10/30nativeactions; wolf untouched80HP, spider22HP, ratKO, all4alliesKO) and existing deployment/movement/support decisions before any retry. Runtime unchanged and browser errors empty: do not infer a product/balance regression or blindly rerun. Make only a demonstrated product correction or bounded existing native-pilot correction, no tactical outcome/AP/HP injection or balance change. Preserve exact deferredDemoTask.nextAction VERBATIM. New opening-aftermath automatic-parent-focus helper is statically reviewed but unexecuted; future successful fresh390x844 OS-only/gamefalse/rescue/first-refuge35min run must reach native victory, observe post_opening_trail ready focus/Tab round-trip/owner+autosave unchanged, earnedrefuge/exactV6 reload, with unique registered provenance/freeport/physicalfreeze and captures. Never seed from failed1655outputs. Prior standalone0613 and earned0443ending proofs retain original scopes; no accepted matrix rerun. AT/actorframing/balance/exact2AP-start/otherendings/StageVFX/staticOS/council/nightplate/tenPursuitmappings/full-demo remain open.
+Contractsset1.1.0; noLOCKEDchange. GuardianfinalscopedPASS compliance; ENV/TRAVERSAL/UI acceptance rows stillBLOCKED by precise visual/Pursuit gaps, not contract conflicts. Narrative/Traversal/UI narrow reviewers used; no broad evidence reread.
 
-Publication: reviewed normal dev checkpoint/ownedWIP coverage and stopped-worker/port release verified at closeout; finalSHA in automationmemory. Main unchanged00b96f1b502539618790b1c0d8d642f86d3dcf7f. Standing OD-2026-10-08-B; no routine approval needed.
+Remaining:
 
+- Native forest_ambush variant and overall beginner balance; KestrelKO in tested wolf_pack
+- Salvation from exactly2AP and40%HP verification; current casts3to1AP/salvationVerifiedfalse
+- Parent focus settled visible proof: immediate capture during fade, numeric focus/owner/autosave only
+- Checkpoint braking/glissement perceptual sequence; selected T0 ground frame only
+- Production Pursuit articulated run, charge/right miss exit and10canonical collision mappings
+- Other campaign branches/endings, Stage/VFX/AT/desktop accessibility
+- Council/refugees/static-only OS narrative acceptance and approved Bois-Clair night plate
+- Mobile finalization after desktop gameplay/visual structure; operator final demo playtest
 
-## Verified publication
+Exact next action: Read-only preflight/exclusive lock; resume OD-2026-10-09-A desktop-first feedback. Reuse the three completed1748 receipts/physical freeze and compact proof; do not repeat the six accepted desktop exit cases. Inspect the remaining checkpoint braking/glissement perception and settled automatic parent-focus capture (current parent PNG still fades) with existing runner and one focused desktop scenario; only fix demonstrated product issues or one minimal assertion/capture defect. Preserve operatorFeedback1748.previous.nextAction and deferredDemoTask.nextAction VERBATIM; old390OS campaign boundary is deferred until final mobile pass. Then continue current native earned first-refuge V6 lineage through desktop combat/campaign branches/endings and exact2AP-start Salvation/VFX/accessibility. Tested wolf_pack won3rounds23actions with KestrelKO: not general balance acceptance; forest_ambush native variant open. Continue narrative context/staticOS/council work, retain approved-night-plate blocker. Pursuit production still needs articulated running asset and10explicit canonical eligible combat mappings; do not invent formations/rewards/outcomes, loop isolated QA or consume runs on external mapping blocker. Mobile broad polish last after desktop gameplay/visual stability; full demo remains IN_PROGRESS.
 
-Checkpoint e34959f801fcf4812a7a976142f2235bde81411e published normally and equals liveorigin/dev. OwnedWIP localac43d2c3b4dfd9133b81ac1ad4d1f790490209e7 and remote5a142eb39d56785a10ad35f394265c62fe8e6b25 retired after exact driver/MD/handoff coverage and JSON metadata-only guard. Worker47600/port5353 absent. Initial automatic approval review timed out before execution; one expressly allowed retry succeeded. No automatic-review rejection. Closure time 2026-10-09T17:25:27.033Z; metadata publication/finalSHA/lockrelease in automationmemory. Original deferredtask/162historicaljobs and twohistoricalWIP untouched.
+Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proofadded(6PNG+compactJSON),5workflow separately,0inheritedWIP;4reviewers/12passes/3jobs(1smoke+6milestonecases). StandingdevpublicationOD-2026-10-08-B; no main/media/audio/LOCKED changes. Finalsource/publishedclosureSHAs recorded at safeclose and automationmemory.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -198,4 +220,7 @@ Checkpoint e34959f801fcf4812a7a976142f2235bde81411e published normally and equal
 - campaign-ending-0443: SUCCEEDED; port 5351; receipt `tmp/demo/campaign-ending-0443/qa-job.json`; NOT_ACCEPTED
 - keyboard-0613: SUCCEEDED; port 5352; receipt `tmp/demo/keyboard-0613/qa-job.json`; NOT_ACCEPTED
 - campaign-keyboard-1655: FAILED; port 5353; receipt `tmp/demo/campaign-keyboard-1655/qa-job.json`; NOT_ACCEPTED
+- campaign-desktop-opening-1748: SUCCEEDED; port 5354; receipt `tmp/demo/campaign-desktop-opening-1748/qa-job.json`; NOT_ACCEPTED
+- motion-desktop-1748-normal: SUCCEEDED; port 5355; receipt `tmp/traversal/motion-desktop-1748-normal/qa-job.json`; NOT_ACCEPTED
+- motion-desktop-1748-os: SUCCEEDED; port 5356; receipt `tmp/traversal/motion-desktop-1748-os/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->

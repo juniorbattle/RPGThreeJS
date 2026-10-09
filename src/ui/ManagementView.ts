@@ -400,7 +400,12 @@ export class ManagementView {
 
   private getWeaponSkillName(weapon: WeaponDefinition, unit: UnitInstance): string | null {
     const tier = weapon.tier ?? 0;
-    if (tier <= 0) return null;
+    if (tier <= 0) {
+      const initialId = unitById.get(unit.definitionId)?.skillIds[0];
+      const unequipped = { ...unit, equipment: { ...unit.equipment, weaponIds: [] } };
+      return initialId && isSkillUnlockedForHero(unequipped, initialId)
+        ? skillPresentation[initialId]?.name ?? null : null;
+    }
     const targetAp = tier + 1;
     const skillIds = getResolvedSkills(unit);
     for (const id of skillIds) {
@@ -411,12 +416,13 @@ export class ManagementView {
   }
 
   private getWeaponProgressionLabel(weapon: WeaponDefinition, unit?: UnitInstance): string {
-    if (weapon.tier <= 0) return 'Aucune compétence active débloquée';
     if (unit) {
       const skillName = this.getWeaponSkillName(weapon, unit);
       if (skillName) {
-        const ap = (weapon.tier ?? 0) + 1;
-        return `Débloque : ${skillName} — ${ap} PA`;
+        const ap = Math.max(2, (weapon.tier ?? 0) + 1);
+        const availableInitially = weapon.tier <= 1
+          && this.getWeaponSkillName({ ...weapon, tier: 0 }, unit) === skillName;
+        return `${availableInitially ? 'Disponible' : 'Débloque'} : ${skillName} — ${ap} PA`;
       }
     }
     return getWeaponSkillUnlockLabel(weapon);
@@ -429,7 +435,7 @@ export class ManagementView {
       const tierLabel = `T${weapon.tier ?? 0}`;
       const profileLabel = getWeaponProfileLabel(weapon);
       const skillName = this.getWeaponSkillName(weapon, unit);
-      const skillShort = skillName ? `${skillName} ${(weapon.tier ?? 0) + 1} PA` : (weapon.tier ?? 0) <= 0 ? 'Aucune compétence' : '';
+      const skillShort = skillName ? `${skillName} ${Math.max(2, (weapon.tier ?? 0) + 1)} PA` : getWeaponSkillUnlockLabel(weapon);
       const metaParts: string[] = [`${tierLabel} · ${profileLabel}`];
       if (skillShort) metaParts.push(skillShort);
       if (currentWeapon) {

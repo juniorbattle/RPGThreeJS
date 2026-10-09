@@ -1,0 +1,697 @@
+{
+  "TASK": "OD-2026-10-09-A-DESKTOP-OPENING-TRAVERSAL",
+  "DOMAIN": "Campaign/Combat/Narrative/UI/Traversal",
+  "BASELINE": "ebfa8d2faf52cc680a4cfdca9f98f4a7719d7576",
+  "BRANCH": "dev",
+  "HEAD": "Pending source checkpoint; recorded in paired state and automation memory at publication",
+  "STATUS": "SCOPED_CHECKPOINT",
+  "MERGED_IN": "NONE",
+  "SUPERSEDES": "NONE; prior proof scopes retained",
+  "SUPERSEDED_BY": "NONE",
+  "PRODUCTION_IMPACT": "Two-enemy opening; four first skills; sixteen intro texts; checkpoint braking/ground and accelerating full final exit",
+  "CANONICAL_DOCS_UPDATED": "docs/autonomy/DESKTOP_OPENING_OPERATOR_DECISION_2026-10-09.md",
+  "EVIDENCE": "Selected native1366normal/refugeV6 and desktop1440normalOS fixture exits; six inspected captures; gaps explicit",
+  "task": "OD-2026-10-09-A-DESKTOP-OPENING-TRAVERSAL",
+  "recordedAt": "2026-10-09T18:28:19.144Z",
+  "baseline": "ebfa8d2faf52cc680a4cfdca9f98f4a7719d7576",
+  "branch": "dev",
+  "contractSet": "1.1.0",
+  "lockedChanged": false,
+  "checks": {
+    "tests": 167,
+    "management": 56,
+    "content": 97,
+    "roadScene": 5,
+    "worldRenderer": 1,
+    "ui": 8,
+    "typescript": true,
+    "contracts": 8,
+    "videoSlots": 8,
+    "stagingSteps": 257,
+    "productionModules": 210
+  },
+  "accepted": {
+    "native": {
+      "scope": "ACCEPTED_SCOPED_DESKTOP_OPENING_WOLF_PACK_FIRST_REFUGE_V6",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "motion": "normal/gamefalse",
+      "method": "FRESH_PRODUCTION_CHRONICLE_NORMAL_PLAYER_INPUTS_REAL_COMBAT",
+      "fixture": false,
+      "outcomeInjected": false,
+      "nodes": [
+        "lion-camp",
+        "lion-audience",
+        "lion-opening-ambush",
+        "lion-nomad-crossroads",
+        "lion-refugees",
+        "lion-first-trial-event",
+        "lion-first-refuge"
+      ],
+      "initialRoster": [
+        {
+          "id": 1,
+          "team": "foe",
+          "skills": []
+        },
+        {
+          "id": 2,
+          "team": "foe",
+          "skills": []
+        },
+        {
+          "id": "warrior",
+          "team": "player",
+          "skills": [
+            "w_break_guard"
+          ]
+        },
+        {
+          "id": "white_mage",
+          "team": "player",
+          "skills": [
+            "w_salvation"
+          ]
+        },
+        {
+          "id": "dark_mage",
+          "team": "player",
+          "skills": [
+            "n_dark_bolt"
+          ]
+        },
+        {
+          "id": "archer",
+          "team": "player",
+          "skills": [
+            "a_precise_shot"
+          ]
+        }
+      ],
+      "rounds": 3,
+      "actions": 23,
+      "health": [
+        {
+          "id": 1,
+          "team": "foe",
+          "hp": 0,
+          "alive": false
+        },
+        {
+          "id": 2,
+          "team": "foe",
+          "hp": 0,
+          "alive": false
+        },
+        {
+          "id": "warrior",
+          "team": "player",
+          "hp": 140,
+          "alive": true
+        },
+        {
+          "id": "white_mage",
+          "team": "player",
+          "hp": 100,
+          "alive": true
+        },
+        {
+          "id": "dark_mage",
+          "team": "player",
+          "hp": 57,
+          "alive": true
+        },
+        {
+          "id": "archer",
+          "team": "player",
+          "hp": 0,
+          "alive": false
+        }
+      ],
+      "exactV6Reload": true,
+      "parentFocus": "NUMERIC_ONLY_SETTLED_VISUAL_OPEN",
+      "skillCasts": [
+        {
+          "id": "n_dark_bolt",
+          "apBefore": 2,
+          "apAfter": 0
+        },
+        {
+          "id": "w_salvation",
+          "apBefore": 3,
+          "apAfter": 1
+        },
+        {
+          "id": "w_break_guard",
+          "apBefore": 3,
+          "apAfter": 1
+        },
+        {
+          "id": "w_salvation",
+          "apBefore": 3,
+          "apAfter": 1
+        },
+        {
+          "id": "w_break_guard",
+          "apBefore": 3,
+          "apAfter": 4
+        }
+      ],
+      "salvationVerified": false
+    },
+    "motion": {
+      "scope": "ACCEPTED_SCOPED_DESKTOP_T0_T1_T3_FINAL_EXIT_NORMAL_OS_FIXTURE",
+      "viewport": "1440x810",
+      "branch": "event",
+      "method": "V6-origin/combat-result fixtures; not earned tactical campaign",
+      "runs": [
+        {
+          "mode": "normal",
+          "leg": "T0",
+          "samples": 270,
+          "arrivals": [
+            {
+              "destination": "lion-first-refuge",
+              "left": 2196.578125,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 5.3999999928001925,
+              "fade": 1,
+              "node": "lion-first-trial-event",
+              "resolved": false
+            }
+          ],
+          "resize": {
+            "from": 1440,
+            "to": 1800,
+            "left": 1286.9765625,
+            "viewport": 1800,
+            "arrivals": 0
+          },
+          "assertions": {
+            "continuous-departure": true,
+            "opaque-swap": true,
+            "reveal-momentum": true,
+            "clock-zero-during-reveal": true,
+            "full-exit-before-arrival": true,
+            "single-canonical-arrival": true,
+            "native-keyboard-focus": true,
+            "responsive-controls": true,
+            "forward-exit-and-resize": true,
+            "accelerating-arrival": true
+          }
+        },
+        {
+          "mode": "normal",
+          "leg": "T1",
+          "samples": 187,
+          "arrivals": [
+            {
+              "destination": "lion-village-choice",
+              "left": 2196.71875,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 5.399999990887774,
+              "fade": 1,
+              "node": "lion-second-trial-event",
+              "resolved": false
+            }
+          ],
+          "resize": {
+            "from": 1440,
+            "to": 1800,
+            "left": 1360.4609375,
+            "viewport": 1800,
+            "arrivals": 0
+          },
+          "assertions": {
+            "continuous-departure": true,
+            "opaque-swap": true,
+            "reveal-momentum": true,
+            "clock-zero-during-reveal": true,
+            "full-exit-before-arrival": true,
+            "single-canonical-arrival": true,
+            "native-keyboard-focus": true,
+            "responsive-controls": true,
+            "forward-exit-and-resize": true,
+            "accelerating-arrival": true
+          }
+        },
+        {
+          "mode": "normal",
+          "leg": "T3",
+          "samples": 188,
+          "arrivals": [
+            {
+              "destination": "lion-shadow-signs",
+              "left": 2196.71875,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 5.3999999928001925,
+              "fade": 1,
+              "node": "lion-final-trial-event",
+              "resolved": false
+            }
+          ],
+          "resize": {
+            "from": 1440,
+            "to": 1800,
+            "left": 1360.4609375,
+            "viewport": 1800,
+            "arrivals": 0
+          },
+          "assertions": {
+            "continuous-departure": true,
+            "opaque-swap": true,
+            "reveal-momentum": true,
+            "clock-zero-during-reveal": true,
+            "full-exit-before-arrival": true,
+            "single-canonical-arrival": true,
+            "native-keyboard-focus": true,
+            "responsive-controls": true,
+            "forward-exit-and-resize": true,
+            "accelerating-arrival": true
+          }
+        },
+        {
+          "mode": "os",
+          "leg": "T0",
+          "samples": 108,
+          "arrivals": [
+            {
+              "destination": "lion-first-refuge",
+              "left": 1495.96875,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 3.599999995200129,
+              "fade": 1,
+              "node": "lion-first-trial-event",
+              "resolved": false
+            }
+          ],
+          "assertions": {
+            "continuous-departure": true,
+            "opaque-swap": true,
+            "reveal-momentum": true,
+            "clock-zero-during-reveal": true,
+            "full-exit-before-arrival": true,
+            "single-canonical-arrival": true,
+            "native-keyboard-focus": true,
+            "responsive-controls": true,
+            "os-covered-exit": true
+          }
+        },
+        {
+          "mode": "os",
+          "leg": "T1",
+          "samples": 114,
+          "arrivals": [
+            {
+              "destination": "lion-village-choice",
+              "left": 1495.96875,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 3.5999977044648444,
+              "fade": 1,
+              "node": "lion-second-trial-event",
+              "resolved": false
+            }
+          ],
+          "assertions": {
+            "continuous-departure": true,
+            "opaque-swap": true,
+            "reveal-momentum": true,
+            "clock-zero-during-reveal": true,
+            "full-exit-before-arrival": true,
+            "single-canonical-arrival": true,
+            "native-keyboard-focus": true,
+            "responsive-controls": true,
+            "os-covered-exit": true
+          }
+        },
+        {
+          "mode": "os",
+          "leg": "T3",
+          "samples": 110,
+          "arrivals": [
+            {
+              "destination": "lion-shadow-signs",
+              "left": 1495.96875,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 3.599819995200358,
+              "fade": 1,
+              "node": "lion-final-trial-event",
+              "resolved": false
+            }
+          ],
+          "assertions": {
+            "continuous-departure": true,
+            "opaque-swap": true,
+            "reveal-momentum": true,
+            "clock-zero-during-reveal": true,
+            "full-exit-before-arrival": true,
+            "single-canonical-arrival": true,
+            "native-keyboard-focus": true,
+            "responsive-controls": true,
+            "os-covered-exit": true
+          }
+        }
+      ],
+      "ground": "T0ambush frame accepted; checkpoint motion perception still open"
+    }
+  },
+  "jobs": [
+    {
+      "jobId": "campaign-desktop-opening-1748",
+      "status": "SUCCEEDED",
+      "parameters": {
+        "target": "first-refuge",
+        "routePlan": "rescue",
+        "timeoutMinutes": 25,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": null,
+        "priorProofPath": null,
+        "verifySalvation": false
+      },
+      "requiredAssertions": [
+        "EARNED_LINEAGE",
+        "NATIVE_INPUTS",
+        "EXACT_RELOAD"
+      ],
+      "resultPath": "tmp/demo/campaign-desktop-opening-1748/results.json",
+      "resultSha256": "4c4d07abc396735e88f7b7564835f9b0e159944ff7a2f81da725c32ba0825da1",
+      "provenance": {
+        "gitHead": "ebfa8d2faf52cc680a4cfdca9f98f4a7719d7576",
+        "sourceTree": "d7cd1fe743138c5e860af098a371d27164cdf59c",
+        "sourceDiffSha256": "aaf07c125f1c358d80e2a21c86b035bb43616a8a25e7a36f0f4e97ee42a1fca7",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "a341a1d5b37992ac67dd47669f17a3c3a3028df3dfd6b589c555ce81c09cac4f"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-B6G5vn7a.js",
+            "sha256": "0c6f4d157cd42cc524d5f2da203d2a2ff0554bacb6046bdb6f57ab080dac9544"
+          },
+          {
+            "path": "dist/assets/combat-CJu4JG7a.js",
+            "sha256": "2abdb459b993e38442145e535b9337e24b8c4f9b3904a5ae68543df5d6bb336e"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-BnQIWtY6.js",
+            "sha256": "c8e6ea16f6a90965027303d64ccf4212f1bde4ebf91c576cbd1cc389ec4ca4a1"
+          },
+          {
+            "path": "dist/assets/game-DkxrgPjE.css",
+            "sha256": "26f8d392432dc2dcc02ad71eb65ea904dd3214aa67f13848c5810ab8ca8d7c5d"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "ed21a590279482560cc00def060f680737569de096c197a840ceba9307cd638b"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "receipt": "tmp/demo/campaign-desktop-opening-1748/qa-job.json",
+      "requestMatches": true,
+      "digestMatches": true
+    },
+    {
+      "jobId": "motion-desktop-1748-normal",
+      "status": "SUCCEEDED",
+      "parameters": {
+        "motion": "normal",
+        "viewports": [
+          "1440x810"
+        ],
+        "legs": [
+          "T0",
+          "T1",
+          "T3"
+        ],
+        "branch": "event",
+        "gameReducedMotion": false,
+        "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+      },
+      "requiredAssertions": [
+        "continuous-departure",
+        "opaque-swap",
+        "reveal-momentum",
+        "clock-zero-during-reveal",
+        "full-exit-before-arrival",
+        "single-canonical-arrival",
+        "native-keyboard-focus",
+        "responsive-controls",
+        "forward-exit-and-resize",
+        "accelerating-arrival"
+      ],
+      "resultPath": "tmp/traversal/motion-desktop-1748-normal/results.json",
+      "resultSha256": "24ffb751cef659317779e2b118e650fc7051455b44ad0d8f1509f278db5e8d55",
+      "provenance": {
+        "gitHead": "ebfa8d2faf52cc680a4cfdca9f98f4a7719d7576",
+        "sourceTree": "d7cd1fe743138c5e860af098a371d27164cdf59c",
+        "sourceDiffSha256": "aaf07c125f1c358d80e2a21c86b035bb43616a8a25e7a36f0f4e97ee42a1fca7",
+        "driver": {
+          "path": "tools/traversal-motion-production-qa.mjs",
+          "sha256": "1be8859713bea27ae52e007c1ac895ad680260a17f2620f40a620b9813b9a93b"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-B6G5vn7a.js",
+            "sha256": "0c6f4d157cd42cc524d5f2da203d2a2ff0554bacb6046bdb6f57ab080dac9544"
+          },
+          {
+            "path": "dist/assets/combat-CJu4JG7a.js",
+            "sha256": "2abdb459b993e38442145e535b9337e24b8c4f9b3904a5ae68543df5d6bb336e"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-BnQIWtY6.js",
+            "sha256": "c8e6ea16f6a90965027303d64ccf4212f1bde4ebf91c576cbd1cc389ec4ca4a1"
+          },
+          {
+            "path": "dist/assets/game-DkxrgPjE.css",
+            "sha256": "26f8d392432dc2dcc02ad71eb65ea904dd3214aa67f13848c5810ab8ca8d7c5d"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "ed21a590279482560cc00def060f680737569de096c197a840ceba9307cd638b"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "receipt": "tmp/traversal/motion-desktop-1748-normal/qa-job.json",
+      "requestMatches": true,
+      "digestMatches": true
+    },
+    {
+      "jobId": "motion-desktop-1748-os",
+      "status": "SUCCEEDED",
+      "parameters": {
+        "motion": "os",
+        "viewports": [
+          "1440x810"
+        ],
+        "legs": [
+          "T0",
+          "T1",
+          "T3"
+        ],
+        "branch": "event",
+        "gameReducedMotion": false,
+        "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+      },
+      "requiredAssertions": [
+        "continuous-departure",
+        "opaque-swap",
+        "reveal-momentum",
+        "clock-zero-during-reveal",
+        "full-exit-before-arrival",
+        "single-canonical-arrival",
+        "native-keyboard-focus",
+        "responsive-controls",
+        "os-covered-exit"
+      ],
+      "resultPath": "tmp/traversal/motion-desktop-1748-os/results.json",
+      "resultSha256": "bf615a461b7d06a6518fce07ee1111044752b21e5160cf6b25ecfb3641658399",
+      "provenance": {
+        "gitHead": "ebfa8d2faf52cc680a4cfdca9f98f4a7719d7576",
+        "sourceTree": "d7cd1fe743138c5e860af098a371d27164cdf59c",
+        "sourceDiffSha256": "aaf07c125f1c358d80e2a21c86b035bb43616a8a25e7a36f0f4e97ee42a1fca7",
+        "driver": {
+          "path": "tools/traversal-motion-production-qa.mjs",
+          "sha256": "1be8859713bea27ae52e007c1ac895ad680260a17f2620f40a620b9813b9a93b"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-B6G5vn7a.js",
+            "sha256": "0c6f4d157cd42cc524d5f2da203d2a2ff0554bacb6046bdb6f57ab080dac9544"
+          },
+          {
+            "path": "dist/assets/combat-CJu4JG7a.js",
+            "sha256": "2abdb459b993e38442145e535b9337e24b8c4f9b3904a5ae68543df5d6bb336e"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-BnQIWtY6.js",
+            "sha256": "c8e6ea16f6a90965027303d64ccf4212f1bde4ebf91c576cbd1cc389ec4ca4a1"
+          },
+          {
+            "path": "dist/assets/game-DkxrgPjE.css",
+            "sha256": "26f8d392432dc2dcc02ad71eb65ea904dd3214aa67f13848c5810ab8ca8d7c5d"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "ed21a590279482560cc00def060f680737569de096c197a840ceba9307cd638b"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "receipt": "tmp/traversal/motion-desktop-1748-os/qa-job.json",
+      "requestMatches": true,
+      "digestMatches": true
+    }
+  ],
+  "captures": [
+    {
+      "path": "docs/reports/desktop-opening-traversal-20261009/intro-marian.png",
+      "origin": "tmp/demo/campaign-desktop-opening-1748/intro-acte_ouverture-4.png",
+      "sha256": "18d8c4fd5bf32a43312e2243ec67691450a7946a816575d87ec41e6b1c90787d",
+      "inspectedBy": "root",
+      "reviewedAt": "2026-10-09T18:28:19.144Z",
+      "scope": "Paginated first page; speaker/cast and readable text only"
+    },
+    {
+      "path": "docs/reports/desktop-opening-traversal-20261009/opening-two-wolves.png",
+      "origin": "tmp/demo/campaign-desktop-opening-1748/combat-0-deployment.png",
+      "sha256": "04a93b7f482eeb5e0520842d20200c5d249240f2378b33be459639b429bdf6b2",
+      "inspectedBy": "root",
+      "reviewedAt": "2026-10-09T18:28:19.144Z",
+      "scope": "Four native deployed heroes and two existing wolves"
+    },
+    {
+      "path": "docs/reports/desktop-opening-traversal-20261009/earned-refuge-resumed.png",
+      "origin": "tmp/demo/campaign-desktop-opening-1748/lion-first-refuge-earned-resumed.png",
+      "sha256": "ce66ffa163608fd6e69c2b6d7e24c2de0f70b2d7b22eb0d555a36970c52103a6",
+      "inspectedBy": "root",
+      "reviewedAt": "2026-10-09T18:28:19.144Z",
+      "scope": "Actual native earned refuge UI after exact V6 reload"
+    },
+    {
+      "path": "docs/reports/desktop-opening-traversal-20261009/ambush-ground.png",
+      "origin": "tmp/traversal/motion-desktop-1748-normal/T0-1440-checkpoint-route-1.png",
+      "sha256": "bb76395b771b759766133621a9fed2cbf032db64f9377751eec60d220c9b969a",
+      "inspectedBy": "root",
+      "reviewedAt": "2026-10-09T18:28:19.144Z",
+      "scope": "T0 desktop ambush frame; no visible doubled road/seam"
+    },
+    {
+      "path": "docs/reports/desktop-opening-traversal-20261009/arrival-visible.png",
+      "origin": "tmp/traversal/motion-desktop-1748-normal/T0-1440-arrival-visible.png",
+      "sha256": "09644a3f27dfe2ea17b382267b15639eb6b4ab0281353921ee5c2b2c0d8ed6dd",
+      "inspectedBy": "root",
+      "reviewedAt": "2026-10-09T18:28:19.144Z",
+      "scope": "Caravan present before normal forward exit"
+    },
+    {
+      "path": "docs/reports/desktop-opening-traversal-20261009/arrival-exited.png",
+      "origin": "tmp/traversal/motion-desktop-1748-normal/T0-1440-arrival-exited.png",
+      "sha256": "acffed946dfeb8d0c89d73200a70d45c0ef342207ef8732831a4dd29293ad182",
+      "inspectedBy": "root",
+      "reviewedAt": "2026-10-09T18:28:19.144Z",
+      "scope": "Caravan completely absent before fade/handoff"
+    }
+  ],
+  "gaps": [
+    "Native forest_ambush variant and overall beginner balance; KestrelKO in tested wolf_pack",
+    "Salvation from exactly2AP and40%HP verification; current casts3to1AP/salvationVerifiedfalse",
+    "Parent focus settled visible proof: immediate capture during fade, numeric focus/owner/autosave only",
+    "Checkpoint braking/glissement perceptual sequence; selected T0 ground frame only",
+    "Production Pursuit articulated run, charge/right miss exit and10canonical collision mappings",
+    "Other campaign branches/endings, Stage/VFX/AT/desktop accessibility",
+    "Council/refugees/static-only OS narrative acceptance and approved Bois-Clair night plate",
+    "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
+  ],
+  "reviews": {
+    "guardian": "PASS compliance, scoped native/exit acceptance; ENV/TRAVERSAL/UI criteria still BLOCKED, no contract conflict",
+    "narrative": "PASS static sixteen texts; literary quality operator judgement",
+    "traversal": "PASS scoped6desktop exits and T0ground frame; checkpoint perception open",
+    "ui": "PASS static firstskills2PA labels, focused modal regression PASS"
+  },
+  "counts": {
+    "sourceModified": 5,
+    "testModified": 2,
+    "existingQaModified": 2,
+    "newQa": 0,
+    "proofAdded": 7,
+    "workflowModified": 5,
+    "inheritedWip": 0
+  },
+  "physicalFreeze": [
+    "tmp/autonomy/physical-freeze-1748.json",
+    "tmp/autonomy/physical-motion-1748.json"
+  ],
+  "limitations": "Historical receipts retain their exact earlier scopes. Current source/build/driver physical inputs unchanged since registration; final committed source must match this freeze. Parent fade capture excluded. No full demo/balance/mobile/Pursuit/literary completion claim."
+}

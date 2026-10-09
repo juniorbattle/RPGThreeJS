@@ -40,6 +40,8 @@ it('contains Tab in the current dialog and returns from equipment details to the
   const slot = root.querySelector<HTMLButtonElement>('[data-equip-slot="weapon"]')!;
   slot.focus(); slot.click();
   expect(document.activeElement?.closest('.item-modal')).not.toBeNull();
+  expect(root.querySelector('.item-modal')?.textContent).toContain('Disponible : Brise-Garde — 2 PA');
+  expect(root.querySelector('.item-modal')?.textContent).not.toContain('Aucune compétence active débloquée');
   expect(root.querySelector<HTMLElement>('.management__shell')!.inert).toBe(true);
   key('Tab', true); expect(document.activeElement?.closest('.item-modal')).not.toBeNull();
   key('Escape');
