@@ -4,7 +4,7 @@ TASK: PURSUIT-ARTICULATED-GAIT-2223
 DOMAIN: Traversal presentation
 BASELINE: 4617593e2ab0f573518b7940f5c0fe6878e73c73 on dev
 BRANCH: dev
-HEAD: Resolve this package introduction commit with Git; no self-referential SHA
+HEAD: 3dc36811e2885fdf6ac631418f530b8f9edada14 (implementation/proof introduction; metadata closure follows)
 STATUS: review; implementation and desktop functional scope accepted, operator artistic acceptance open
 MERGED_IN: NONE (direct authorized dev checkpoint)
 SUPERSEDES: NONE
