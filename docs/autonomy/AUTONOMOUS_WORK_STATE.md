@@ -224,3 +224,6 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - motion-desktop-1748-normal: SUCCEEDED; port 5355; receipt `tmp/traversal/motion-desktop-1748-normal/qa-job.json`; NOT_ACCEPTED
 - motion-desktop-1748-os: SUCCEEDED; port 5356; receipt `tmp/traversal/motion-desktop-1748-os/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
+
+
+Publication verified 2026-10-09T18:31:51.303Z: source checkpoint 20b082984088a05b4b7aa3b562724229bd35e41a on origin/dev; physical frozen source/driver/build unchanged. Main remains 00b96f1b502539618790b1c0d8d642f86d3dcf7f. All three owned workers/listeners stopped; lock released after final closure transport. Original two historical WIP branches retained.
