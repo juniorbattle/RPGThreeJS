@@ -3,23 +3,30 @@
   "runStartedAt": "2026-10-09T04:43:36Z",
   "runEndedAt": null,
   "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
-  "activePhase": "EARNED_SERPENT_ENDING_ACCEPTED_NEXT_KEYBOARD_REVIEW",
-  "activeSubtask": "Earned rescue/serpent ending: validate native lone-survivor fallback; scoped cast OS smoke",
+  "activePhase": "KEYBOARD_MODIFIER_SOURCE_CHECKPOINT_BROWSER_OPEN",
+  "activeSubtask": "Combat keyboard modifier ownership: source correction verified; native browser matrix pending",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "c95ab12e3da13474d59d8870d73f14d6c9c3b647",
-  "lastPushedCommit": "c95ab12e3da13474d59d8870d73f14d6c9c3b647",
+  "lastKnownGoodCommit": "52ecf923f36a628e576d449b21879233fea940ed",
+  "lastPushedCommit": "52ecf923f36a628e576d449b21879233fea940ed",
   "completedThisRun": [
     "Recovered and preserved five inherited WIP paths",
-    "Accepted scoped native earned rescue/Serpent ending1366normal/exactV6 after guardian and six inspected captures"
+    "Accepted scoped native earned rescue/Serpent ending1366normal/exactV6 after guardian and six inspected captures",
+    "Corrected Ctrl/Alt/Meta combat shortcut eligibility; Shift/simple Escape/native controls preserved; five regression cases added; source/unit/build checkpoint only"
   ],
-  "filesChanged": [],
+  "filesChanged": [
+    "src/combat/combatKeyboard.ts",
+    "src/combat/combatKeyboard.test.ts"
+  ],
   "testsRun": [
-    "115tests: unitMotion25/reducedMotion4/combatRandom6/management56/lionFinale24; types/directvalidator8contracts8slots/build210modules PASS; scripts syntax and immutable/whitespace gates PASS"
+    "115tests: unitMotion25/reducedMotion4/combatRandom6/management56/lionFinale24; types/directvalidator8contracts8slots/build210modules PASS; scripts syntax and immutable/whitespace gates PASS",
+    "After keyboard correction:59tests (keyboard24/motion25/RNG6/reduced4),types,direct8contracts8slots,fresh210module build/8MP4,immutable+whitespace gates PASS"
   ],
   "testsPassed": [
-    "115tests: unitMotion25/reducedMotion4/combatRandom6/management56/lionFinale24; types/directvalidator8contracts8slots/build210modules PASS; scripts syntax and immutable/whitespace gates PASS"
+    "115tests: unitMotion25/reducedMotion4/combatRandom6/management56/lionFinale24; types/directvalidator8contracts8slots/build210modules PASS; scripts syntax and immutable/whitespace gates PASS",
+    "After keyboard correction:59tests (keyboard24/motion25/RNG6/reduced4),types,direct8contracts8slots,fresh210module build/8MP4,immutable+whitespace gates PASS"
   ],
   "testsRemaining": [
+    "Keyboard Ctrl/Alt/Meta source guard: native browser/AT validation OPEN; delivered chords and exact deferred battlefield matrix required",
     "Exact2AP-start Salvation remains open; native2APcost/debit confirmed only from higherAP",
     "Broad accessibility,390actor framing,enabledskills/automaticfocusreturn/spokenAT and leap/attack/Stage/VFX motion remain open; four-cast local timing tests and 1366Salvation effectiveOS numeric scope accepted0011, broader visual acceptance open",
     "Sacrifice/trial/fallback/settledVFX/balance/single-build campaign acceptance",
@@ -44,7 +51,7 @@
     "Council/refugee browser acceptance and ten Pursuit canonical mappings",
     "Earned rescue/Serpent ending1366normal accepted; other endings/exact2AP-start/VFX/balance remain open"
   ],
-  "nextAction": "Preserve accepted0443ending scope and exact deferred keyboard nextAction. Review demonstrated Ctrl/Alt/Meta shortcut collision in combatKeyboard.ts; narrow modifier routing correction only, focused tests and fresh build. Keyboard browser acceptance remains open for next run existing battlefield driver; no second browser smoke this run.",
+  "nextAction": "Normal preflight/exclusive lock; resume SAME DEMO-QA-POLISH keyboard subtask. Use existing tools/combat-battlefield-keyboard-production-qa.mjs with a minimal delivered Ctrl/Alt/Meta/combined-chord non-interference check against actual native mode/cursor/action/focus truth; have guardian review exact certifying-driver diff before running. Preserve original deferredDemoTask.nextAction verbatim: actual Tab/ShiftTab, cursor bounds/announcement/no truth mutation, invalid/legal move and native targeting, Escape/Retour focus, native controls/pointer regression in1366/620/390 normal andOS-only. Register one unique job/freeport/currentsource+driver+build, freeze physical inputs and inspect captures. Do not repeat accepted0443ending or0011cast proof as current keyboard acceptance. Exact2AP-start/otherendings/StageVFX/balance/demo remain open.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
@@ -58,101 +65,8 @@
     "ENVIRONMENT-NARRATIVE-COHERENCE: BLOCKED_ASSET_BOIS_CLAIR_NIGHT; bounded audit complete",
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
-  "creditStatus": "AVAILABLE_ORDINARY_USAGE",
-  "contractComplianceStatus": {
-    "status": "PASS scoped cast source/authority/local tests; BLOCKED browser and earned ending acceptance",
-    "contractSetVersion": "1.1.0",
-    "lockedRulesChanged": false,
-    "roadMatrix": {
-      "GAME_CONSTITUTION": "PASS",
-      "ART_DIRECTION": "PASS",
-      "CHARACTERS": "PASS",
-      "ENVIRONMENTS": "PASS",
-      "NARRATIVE_CAMPAIGN": "PASS",
-      "NARRATIVE_PRESENTATION": "PASS",
-      "TRAVERSAL": "PASS scoped ROAD criterion",
-      "COMBAT": "PASS unchanged authority",
-      "SAVE": "PASS unchanged schema/owners; no earnedV6 claim",
-      "UI_ACCESSIBILITY": "PASS scoped responsive/motion/depth",
-      "QA_EVIDENCE": "PASS exact provenance and scoped claim",
-      "REPOSITORY_GOVERNANCE": "PASS"
-    },
-    "campfireAuthorityReview": "PASS scoped complete; native390 OS wait/reload/entry and matching6visualcases",
-    "narrativeCheckpoint": {
-      "source": "PASS two text-only transactions, exhaustive base audit,114focused tests",
-      "guardian": "PASS scoped source and assertion design",
-      "browser": "FAILED/NOT_ACCEPTED; readable diagnostic council capture only; no fullV6/resume/OS acceptance",
-      "harnessCorrectionsUsed": 1
-    },
-    "tableauCheckpoint": {
-      "source": "e92dbffcb38457b027081fe8948acc9234c13060",
-      "tests": "94focused5files/types/contracts/staging/finalbuild PASS",
-      "browser": "Six finalcases/18scenarios ACCEPTED_SCOPED_TABLEAU_MILESTONE",
-      "proof": "docs/reports/static-tableau-staging-polish-0115/checks.json",
-      "reviewers": "Two distinct reused read-only reviewers; guardian READY_TO_CLOSE_SCOPED; tableau390/620/1440 PASS",
-      "limits": "No earnedcampaign/fullV6/balance/wholeSuite/demo acceptance; Serpent focus programmatic only"
-    },
-    "currentMatrix": {
-      "GAME_CONSTITUTION": "PASS",
-      "ART_DIRECTION": "N/A",
-      "CHARACTERS": "N/A",
-      "ENVIRONMENTS": "N/A",
-      "NARRATIVE_CAMPAIGN": "N/A for cast; earned ending OPEN",
-      "NARRATIVE_PRESENTATION": "N/A",
-      "TRAVERSAL": "N/A",
-      "COMBAT": "PASS presentation-only four cast poses; no tactical/RNG changes",
-      "SAVE": "PASS untouched; terminal ending V6 BLOCKED",
-      "UI_ACCESSIBILITY": "PASS scoped architecture/local tests; browser BLOCKED",
-      "QA_EVIDENCE": "BLOCKED failed smoke and ending; provenance honesty PASS",
-      "REPOSITORY_GOVERNANCE": "PASS owned selected normal-dev checkpoint"
-    },
-    "contractsRead": [
-      "GAME_CONSTITUTION",
-      "README/manifest1.1.0",
-      "AUTONOMOUS_WORK_PROTOCOL",
-      "CAMPAIGN_AND_STATE",
-      "PRESENTATION_AND_MEDIA",
-      "TRAVERSAL",
-      "COMBAT_AND_VFX",
-      "UI_AND_ACCESSIBILITY",
-      "AUTHORING_AND_QA"
-    ],
-    "copyCheckpoint": {
-      "source": "PASS authored captions restored by CSS only",
-      "browser": "ACCEPTED_SCOPED_COPY; six cases /15scenarios",
-      "proof": "docs/reports/scene-transition-copy-0514/checks.json",
-      "guardian": "PASS scoped; full task BLOCKED static-only OS-shadow",
-      "limits": "Node-save/result fixture, no earnedcampaign/fullV6/wholeDemo/allATE acceptance"
-    },
-    "keyboardCheckpoint": {
-      "source": "Guardian PASS native activation/AP/save owners; UI architecture OK conditional",
-      "initialBrowser": "FAILED_NOT_ACCEPTED; first1366normal native keyboard checks all reached, pointer assumed nonexistent second AP",
-      "harnessCorrectionsUsed": 1,
-      "correction": "Fresh native auto/start/move/one pointer attack, no refill or truth mutation; reviewed",
-      "campaignDriver": "Guardian prelaunch PASS, fresh-only actual Tab and unchanged truth/autosave; production pending",
-      "limits": "No spokenAT/submenu44px/all-motion/earnedending/fullV6 acceptance",
-      "sourceCheckpoint": "613bf364679ba03d5126254306772fc69a138612",
-      "browser": "ACCEPTED_SCOPED_STANDALONE six cases",
-      "proof": "docs/reports/battlefield-keyboard-0514/checks.json",
-      "guardian": "PASS_SCOPED_STANDALONE",
-      "ui": "OK_SCOPED_KEYBOARD_CAPTURES; actor framing/submenu/AT/motion/fullcampaign limits retained",
-      "campaign": "FAILED_NOT_ACCEPTED; reached fresh iframe boundary diagnostic only"
-    },
-    "compact1214": {
-      "tests": "66focused7files/types/directvalidator8/8/LOCKED/build PASS",
-      "source": "13owner Math.random->tacticalRnd replacements exact relative inherited snapshot; damage stream separation retained",
-      "smoke": "ACCEPTED_SCOPED_390_COMPACT_MENUS_LIVE_MOTION",
-      "guardian": "PASS scoped source/assertions/receipt/captures",
-      "limits": "No enabledskill/automaticfocusrestore/allactionmotion/broadviewport/balance/replay/V6 RNG reproducibility/fullcampaign claim"
-    },
-    "campaign1214": {
-      "status": "ACCEPTED_SCOPED_FRESH_FIRST_REFUGE_1366_NORMAL",
-      "resultSha256": "c82b21818668943b172dd7409f6febd146eaebbfdb3d62e04da81476e476c2b2",
-      "scope": "Fresh1366normal/rescue opening through native opening combat and first refuge",
-      "review": "GUARDIAN_PASS_SCOPED_FIRST_REFUGE",
-      "failure": null
-    }
-  },
+  "creditStatus": "Ordinary usage available at preflight; no quota-based scope reduction",
+  "contractComplianceStatus": "PASS accepted ending scope; PASS keyboard source authority; BLOCKED keyboard browser/AT acceptance, full demo open. Set1.1.0/immutable gate unchanged.",
   "commitReferenceScope": "Starting dev baseline only; final self-referential commit/remote/release verified externally in automation memory.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
@@ -256,11 +170,11 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261009T0443",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-09T05:25:41.659Z",
+  "lastHeartbeat": "2026-10-09T05:32:50.618Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261009T0443",
-    "sha": "7f080215032fcbd394f2e96a96c8a8f8471a9233",
-    "snapshotAt": "2026-10-09T05:25:41.659Z",
+    "sha": "955facb8ed4c5560e0a733a05ab958d2cf1db61b",
+    "snapshotAt": "2026-10-09T05:32:50.618Z",
     "status": "IN_PROGRESS",
     "dirtyFiles": [
       "tools/combat-salvation-production-qa.mjs",
@@ -272,13 +186,15 @@
       "docs/reports/demo-earned-serpent-ending-0443-browser/compact-proof.json",
       "docs/reports/demo-earned-serpent-ending-0443-browser/combat-3-result.png",
       "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth.png",
-      "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth-resumed.png"
+      "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth-resumed.png",
+      "src/combat/combatKeyboard.ts",
+      "src/combat/combatKeyboard.test.ts"
     ]
   },
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261009T0443",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-09T05:25:41.659Z",
+    "lastHeartbeat": "2026-10-09T05:32:50.618Z",
     "status": "IN_PROGRESS",
     "qaJobs": [
       {
@@ -17429,9 +17345,9 @@
         "endedAt": "2026-10-09T00:20:52.107Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "exitCode": 0,
         "resultPath": "tmp/demo/cast-salvation-0011/results.json",
         "resultSha256": "f5d9fa14dffbb16146d2b4d08208c9f0e02490b2c9fafd5891f86bf9bc9d6d8a",
@@ -17532,14 +17448,14 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_EARNED_RESCUE_SERPENT_ENDING_1366_NORMAL_V6",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-09T04:49:04.336Z",
         "endedAt": "2026-10-09T05:20:18.648Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "exitCode": 0,
         "resultPath": "tmp/demo/campaign-ending-0443/results.json",
         "resultSha256": "95a48f75e68fda6d54488639184d03bc04cdb6bbb67d77a655dbf9e5c5416772",
@@ -17550,8 +17466,8 @@
     ],
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261009T0443",
-      "sha": "7f080215032fcbd394f2e96a96c8a8f8471a9233",
-      "snapshotAt": "2026-10-09T05:25:41.659Z",
+      "sha": "955facb8ed4c5560e0a733a05ab958d2cf1db61b",
+      "snapshotAt": "2026-10-09T05:32:50.618Z",
       "status": "IN_PROGRESS",
       "dirtyFiles": [
         "tools/combat-salvation-production-qa.mjs",
@@ -17563,10 +17479,12 @@
         "docs/reports/demo-earned-serpent-ending-0443-browser/compact-proof.json",
         "docs/reports/demo-earned-serpent-ending-0443-browser/combat-3-result.png",
         "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth.png",
-        "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth-resumed.png"
+        "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth-resumed.png",
+        "src/combat/combatKeyboard.ts",
+        "src/combat/combatKeyboard.test.ts"
       ]
     },
-    "nextAction": "Preserve accepted0443ending scope and exact deferred keyboard nextAction. Review demonstrated Ctrl/Alt/Meta shortcut collision in combatKeyboard.ts; narrow modifier routing correction only, focused tests and fresh build. Keyboard browser acceptance remains open for next run existing battlefield driver; no second browser smoke this run.",
+    "nextAction": "Normal preflight/exclusive lock; resume SAME DEMO-QA-POLISH keyboard subtask. Use existing tools/combat-battlefield-keyboard-production-qa.mjs with a minimal delivered Ctrl/Alt/Meta/combined-chord non-interference check against actual native mode/cursor/action/focus truth; have guardian review exact certifying-driver diff before running. Preserve original deferredDemoTask.nextAction verbatim: actual Tab/ShiftTab, cursor bounds/announcement/no truth mutation, invalid/legal move and native targeting, Escape/Retour focus, native controls/pointer regression in1366/620/390 normal andOS-only. Register one unique job/freeport/currentsource+driver+build, freeze physical inputs and inspect captures. Do not repeat accepted0443ending or0011cast proof as current keyboard acceptance. Exact2AP-start/otherendings/StageVFX/balance/demo remain open.",
     "runMetrics": {
       "sourceFilesModified": 0,
       "testFilesModified": 0,
@@ -17590,7 +17508,9 @@
       "docs/reports/demo-earned-serpent-ending-0443-browser/compact-proof.json",
       "docs/reports/demo-earned-serpent-ending-0443-browser/combat-3-result.png",
       "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth.png",
-      "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth-resumed.png"
+      "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth-resumed.png",
+      "src/combat/combatKeyboard.ts",
+      "src/combat/combatKeyboard.test.ts"
     ],
     "publication": {
       "status": "LOCAL_COHERENT_CHECKPOINT_READY_FOR_NORMAL_DEV_PUBLICATION",
@@ -18121,7 +18041,20 @@
         "combat-3-result.png",
         "ending-lion-seal-serpent-truth.png",
         "ending-lion-seal-serpent-truth-resumed.png"
-      ]
+      ],
+      "sourceAcceptanceCommit": "52ecf923f36a628e576d449b21879233fea940ed",
+      "historicalBuildArchive": "tmp/autonomy/accepted-ending-0443-build/manifest.json",
+      "historicalSourceExceptions": "tmp/autonomy/accepted-ending-0443-build/source-exceptions.json",
+      "currentKeyboardCoverage": false,
+      "acceptanceScopeNote": "Accepted original execution only; later two-file keyboard correction/new build require separate browser verification. All original source/build physical hashes retained or reconstructibly verified.",
+      "receiptLedgerAfterKeyboard": {
+        "status": "SUCCEEDED",
+        "acceptance": "NOT_ACCEPTED",
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "requestMatches": true,
+        "scope": "The helper sync resets acceptance toNOT_ACCEPTED; canonical reviewed disposition retained separately in live.campaign0443 and immutable compact proof at execution52ecf923. No current keyboard browser coverage."
+      }
     },
     "guardian0443": {
       "sourceReview": "PASS",
@@ -18130,6 +18063,59 @@
       "lockedGate": "EMPTY",
       "validator": "8contracts8slots PASS",
       "terminalReview": "PASS: ACCEPTED_SCOPED_EARNED_RESCUE_SERPENT_ENDING_1366_NORMAL_V6"
+    },
+    "keyboard0443": {
+      "status": "SOURCE_UNIT_BUILD_CHECKPOINT_BROWSER_NOT_ACCEPTED",
+      "sourcePaths": [
+        "src/combat/combatKeyboard.ts",
+        "src/combat/combatKeyboard.test.ts"
+      ],
+      "guard": "Ctrl/Meta/Alt return before game routing; optional flags preserve legacy structural callers",
+      "uiReview": "OK_WITH_CONDITIONS",
+      "guardianReview": "SOURCE_AUTHORITY_PASS_BROWSER_OPEN",
+      "tests": 59,
+      "keyboardTests": 24,
+      "addedRegressionCases": 5,
+      "types": "PASS",
+      "contracts": "8contracts8slots PASS",
+      "build": "210modules/combat-CR5R5JG5.js/8MP4 PASS",
+      "physicalCheckpoint": "tmp/autonomy/physical-checkpoint-0443-keyboard.json",
+      "browser": "NOT_RUN: one native ending production smoke already completed",
+      "limits": [
+        "keyboardInput transient flag still set before eligibility",
+        "Shift+arrows retain existing routing",
+        "Actual AltGraph/AT/layout/nativefocus/browser delivery not certified"
+      ]
+    },
+    "compliance0443": {
+      "contractSet": "1.1.0",
+      "baseline": "d7ca28aed5c377ffedb03202f6364b7a947d1096",
+      "lockedRulesChanged": false,
+      "rows": {
+        "GAME_CONSTITUTION": "PASS: native owners preserved",
+        "ART_DIRECTION": "N/A",
+        "CHARACTERS": "N/A",
+        "ENVIRONMENTS": "N/A",
+        "NARRATIVE_CAMPAIGN": "PASS: historical earnedending execution52ecf923",
+        "NARRATIVE_PRESENTATION": "N/A",
+        "TRAVERSAL": "N/A",
+        "COMBAT": "PASS: native legality and source inputguard",
+        "SAVE": "PASS: historical exactendingV6, no subsequent schema changes",
+        "UI_ACCESSIBILITY": "BLOCKED: new keyboard nativebrowser/AT criterion OPEN; source reviewPASS",
+        "QA_EVIDENCE": "PASS: accepted original ending provenance and new59unit/types/build source checkpoint separately scoped",
+        "REPOSITORY_GOVERNANCE": "PASS: lock/snapshots/reviewednormaldevpublication"
+      }
+    },
+    "publication0443": {
+      "status": "KEYBOARD_CHECKPOINT_READY",
+      "acceptedEndingCommit": "52ecf923f36a628e576d449b21879233fea940ed",
+      "mode": "NORMAL_NON_FORCE_DEV",
+      "authority": "OD-2026-10-08-B",
+      "sourcePaths": [
+        "src/combat/combatKeyboard.ts",
+        "src/combat/combatKeyboard.test.ts"
+      ],
+      "mainExcluded": true
     }
   },
   "previousInterruptedRun": {
@@ -18179,13 +18165,40 @@
   },
   "currentHandoff": "docs/autonomy/handoffs/2026-10-09T0443Z-codex-earned-ending-checkpoint.md",
   "runMeasurement": {
-    "inheritedWip": 5,
-    "sourceModified": 0,
-    "testModified": 0,
-    "existingQaModified": 0,
-    "newQa": 0,
-    "proofAdded": 0,
-    "workflowModified": 2
+    "inheritedWipPaths": 5,
+    "inheritedQaModified": [
+      "tools/combat-salvation-production-qa.mjs",
+      "tools/demo-continuous-production-qa.mjs"
+    ],
+    "sourceModified": [
+      "src/combat/combatKeyboard.ts"
+    ],
+    "testModified": [
+      "src/combat/combatKeyboard.test.ts"
+    ],
+    "existingQaModified": [],
+    "newQa": [],
+    "proofAdded": [
+      "docs/reports/demo-earned-serpent-ending-0443-browser/compact-proof.json",
+      "docs/reports/demo-earned-serpent-ending-0443-browser/combat-3-result.png",
+      "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth.png",
+      "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth-resumed.png"
+    ],
+    "workflowModified": [
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/handoffs/2026-10-09T0443Z-codex-earned-ending-checkpoint.md"
+    ],
+    "browserJobsLaunched": 1,
+    "browserJobsAcceptedScoped": 1,
+    "capturesInspected": 6,
+    "capturesPromoted": 3,
+    "reviewers": 2,
+    "reviewPasses": {
+      "guardian": 3,
+      "ui": 2
+    },
+    "quotaSavingsClaimed": false
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",

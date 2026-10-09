@@ -1,17 +1,21 @@
 # Autonomous work state
 
-CURRENT FACT0443: earned rescue/Serpent ending accepted in1366normal with exact terminalV6. Full demo incomplete.
+CURRENT FACT0443: earned rescue/Serpent ending accepted in1366normal/exactV6 on52ecf923 execution. Later keyboard modifier correction is source/unit/build verified; browser acceptance OPEN. Full demo incomplete.
 
 Active task: DEMO-QA-POLISH: continuous earned campaign beyond first refuge
-Active subtask: Earned rescue/serpent ending: validate native lone-survivor fallback; scoped cast OS smoke
+Active subtask: Combat keyboard modifier ownership: source correction verified; native browser matrix pending
 
 ## Exact next action
 
-Preserve accepted0443ending scope and exact deferred keyboard nextAction. Review demonstrated Ctrl/Alt/Meta shortcut collision in combatKeyboard.ts; narrow modifier routing correction only, focused tests and fresh build. Keyboard browser acceptance remains open for next run existing battlefield driver; no second browser smoke this run.
+Normal preflight/exclusive lock; resume SAME DEMO-QA-POLISH keyboard subtask. Use existing tools/combat-battlefield-keyboard-production-qa.mjs with a minimal delivered Ctrl/Alt/Meta/combined-chord non-interference check against actual native mode/cursor/action/focus truth; have guardian review exact certifying-driver diff before running. Preserve original deferredDemoTask.nextAction verbatim: actual Tab/ShiftTab, cursor bounds/announcement/no truth mutation, invalid/legal move and native targeting, Escape/Retour focus, native controls/pointer regression in1366/620/390 normal andOS-only. Register one unique job/freeport/currentsource+driver+build, freeze physical inputs and inspect captures. Do not repeat accepted0443ending or0011cast proof as current keyboard acceptance. Exact2AP-start/otherendings/StageVFX/balance/demo remain open.
 
 ## Accepted scope
 
 ACCEPTED_SCOPED_EARNED_RESCUE_SERPENT_ENDING_1366_NORMAL_V6. Native victory25rounds110actions; Alistair140/Marian113 survive, Cedric/ElaraKO.16native AP-conserve waits,20new40percent Salvation casts,15AP3->1/fiveAP5->3, zeroexact2AP-start. Currentdriver/source/build/1859lineage/receipt/result digests stable; ending=resumed=earnedV6. GuardianPASS; sixcaptures inspected, three explicitly promoted plus compactproof docs/reports/demo-earned-serpent-ending-0443-browser/compact-proof.json. Victory capture retains ATTACK banner; settledVFX/balance/fresh single-build fullcampaign/allotherbroadercriteria remain open.
+
+## Keyboard source checkpoint
+
+Ctrl/Alt/Meta chords no longer enter game shortcut routing; Shift/simplecancel/nativecontrols retained.24keyboard/59focusedtests,types,validator/new210module8MP4 build PASS; UI+guardian source review PASS. No second browser smoke. KeyboardInput bookkeeping/Shiftarrows/nativebrowser/AT remain open. Historical ending build9 and original two sourcefiles archived with exact hashes; prior proof does not certify later keyboard source.
 
 ## Governance
 

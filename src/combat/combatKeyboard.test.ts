@@ -46,6 +46,32 @@ describe('combat shortcut ownership', () => {
       expect(routed(key, document.body)).toBe(true);
     }
   });
+
+  it.each(['ctrlKey', 'metaKey', 'altKey'] as const)('leaves %s chords outside combat routing', modifier => {
+    const canvas = document.createElement('canvas');
+    canvas.tabIndex = 0;
+    for (const key of ['a', 'm', 'u', 'ArrowRight', 'Enter', ' ', 'Escape']) {
+      expect(shouldHandleCombatShortcut({ key, target: canvas, defaultPrevented: false, [modifier]: true })).toBe(false);
+    }
+    expect(shouldHandleCombatShortcut({ key: 'Escape', target: document.createElement('button'), defaultPrevented: false, [modifier]: true })).toBe(false);
+  });
+
+  it('leaves combined modifiers and AltGraph-style chords outside combat routing', () => {
+    for (const key of ['a', 'ArrowRight', 'Enter', 'Escape']) {
+      expect(shouldHandleCombatShortcut({ key, target: document.body, defaultPrevented: false, ctrlKey: true, altKey: true })).toBe(false);
+      expect(shouldHandleCombatShortcut({ key, target: document.body, defaultPrevented: false, metaKey: true, shiftKey: true })).toBe(false);
+    }
+  });
+
+  it('retains Shift shortcuts and native Shift+Tab ownership', () => {
+    const canvas = document.createElement('canvas');
+    for (const key of ['A', 'M', 'ArrowRight', 'Enter', 'Escape']) {
+      expect(shouldHandleCombatShortcut({ key, target: canvas, defaultPrevented: false, shiftKey: true })).toBe(true);
+    }
+    const button = document.createElement('button');
+    expect(shouldHandleCombatShortcut({ key: 'Escape', target: button, defaultPrevented: false, shiftKey: true })).toBe(true);
+    expect(shouldHandleCombatShortcut({ key: 'Tab', target: button, defaultPrevented: false, shiftKey: true })).toBe(false);
+  });
 });
 
 describe('transient battlefield navigation', () => {

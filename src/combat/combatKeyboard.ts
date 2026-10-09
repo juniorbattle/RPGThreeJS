@@ -1,6 +1,7 @@
 /** Native controls own their activation; battlefield shortcuts handle unclaimed keys. */
-export function shouldHandleCombatShortcut(event: Pick<KeyboardEvent, 'key' | 'target' | 'defaultPrevented'>): boolean {
-  if (event.defaultPrevented) return false;
+export function shouldHandleCombatShortcut(event: Pick<KeyboardEvent, 'key' | 'target' | 'defaultPrevented'> &
+  Partial<Pick<KeyboardEvent, 'ctrlKey' | 'metaKey' | 'altKey' | 'shiftKey'>>): boolean {
+  if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return false;
   if (event.key.toLowerCase() === 'escape') return true;
   const target = event.target instanceof Element ? event.target : null;
   if (!target) return true;
