@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-09T16:57:03.7652745Z",
-  "runEndedAt": "2026-10-09T17:09:08.191Z",
+  "runEndedAt": "2026-10-09T17:25:27.033Z",
   "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
   "activePhase": "CAMPAIGN_KEYBOARD_NATIVE_DEFEAT_CHECKPOINT",
   "activeSubtask": "Native campaign battlefield observed; opening defeat blocks parent/refuge proof",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "babc01bf3571247b73516a740c501a88b1deb7dd",
-  "lastPushedCommit": "babc01bf3571247b73516a740c501a88b1deb7dd",
+  "lastPushedCommit": "e34959f801fcf4812a7a976142f2235bde81411e",
   "completedThisRun": [
     "Read-only preflight clean dev6e783cf/live origin parity; lock absent; other HD-2D Vite untouched; exclusive lock acquired and fetch-prune/main ancestry verified",
     "Added bounded existing campaign-driver native result Enter/automatic ready opening aftermath focus/Tab round-trip/settled owner+autosave equality assertions, guardian staticPASS; no runtime edit",
@@ -180,7 +180,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261009T1655",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-09T17:24:16.494Z",
+  "lastHeartbeat": "2026-10-09T17:25:27.033Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261009T1655",
     "sha": "ac43d2c3b4dfd9133b81ac1ad4d1f790490209e7",
@@ -191,14 +191,16 @@
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
       "docs/autonomy/handoffs/2026-10-09T1655Z-codex-campaign-keyboard-checkpoint.md"
     ],
-    "status": "GREEN",
-    "lastGreenCheck": "FAILED_NATIVE_DEFEAT_NO_CAMPAIGN_ACCEPTANCE"
+    "status": "RETIRED_AFTER_VERIFIED_DEV_COVERAGE",
+    "lastGreenCheck": "FAILED_NATIVE_DEFEAT_NO_CAMPAIGN_ACCEPTANCE",
+    "retiredAt": "2026-10-09T17:25:27.033Z",
+    "retirementReceipt": "tmp/autonomy/wip-retirement-1655.json"
   },
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261009T1655",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-09T17:24:16.494Z",
-    "status": "CHECKPOINT_READY_CAMPAIGN_FAILED_PARENT_OPEN",
+    "lastHeartbeat": "2026-10-09T17:25:27.033Z",
+    "status": "CHECKPOINT_PUBLISHED_CAMPAIGN_NOT_ACCEPTED_PARENT_OPEN",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -17696,8 +17698,10 @@
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
         "docs/autonomy/handoffs/2026-10-09T1655Z-codex-campaign-keyboard-checkpoint.md"
       ],
-      "status": "GREEN",
-      "lastGreenCheck": "FAILED_NATIVE_DEFEAT_NO_CAMPAIGN_ACCEPTANCE"
+      "status": "RETIRED_AFTER_VERIFIED_DEV_COVERAGE",
+      "lastGreenCheck": "FAILED_NATIVE_DEFEAT_NO_CAMPAIGN_ACCEPTANCE",
+      "retiredAt": "2026-10-09T17:25:27.033Z",
+      "retirementReceipt": "tmp/autonomy/wip-retirement-1655.json"
     },
     "nextAction": "Normal autonomy-handoff preflight/exclusive lock; resume SAME DEMO-QA-POLISH campaign keyboard boundary. Inspect campaign-keyboard-1655 terminal FAILED actual opening defeat (round10/30nativeactions; wolf untouched80HP, spider22HP, ratKO, all4alliesKO) and existing deployment/movement/support decisions before any retry. Runtime unchanged and browser errors empty: do not infer a product/balance regression or blindly rerun. Make only a demonstrated product correction or bounded existing native-pilot correction, no tactical outcome/AP/HP injection or balance change. Preserve exact deferredDemoTask.nextAction VERBATIM. New opening-aftermath automatic-parent-focus helper is statically reviewed but unexecuted; future successful fresh390x844 OS-only/gamefalse/rescue/first-refuge35min run must reach native victory, observe post_opening_trail ready focus/Tab round-trip/owner+autosave unchanged, earnedrefuge/exactV6 reload, with unique registered provenance/freeport/physicalfreeze and captures. Never seed from failed1655outputs. Prior standalone0613 and earned0443ending proofs retain original scopes; no accepted matrix rerun. AT/actorframing/balance/exact2AP-start/otherendings/StageVFX/staticOS/council/nightplate/tenPursuitmappings/full-demo remain open.",
     "runMetrics": {
@@ -17745,7 +17749,7 @@
       ]
     },
     "runStartedAt": "2026-10-09T16:57:03.7652745Z",
-    "runEndedAt": "2026-10-09T17:09:08.191Z",
+    "runEndedAt": "2026-10-09T17:25:27.033Z",
     "writerStopped": true,
     "metadataPublication": {
       "status": "RESOLVED_BY_OPERATOR_APPROVAL",
@@ -18520,7 +18524,7 @@
       "workerAbsent": 60012,
       "portAbsent": 5352
     },
-    "publishedCheckpoint": "babc01bf3571247b73516a740c501a88b1deb7dd",
+    "publishedCheckpoint": "e34959f801fcf4812a7a976142f2235bde81411e",
     "closeout0613": {
       "checkpoint": "babc01bf3571247b73516a740c501a88b1deb7dd",
       "runEndedAt": "2026-10-09T06:56:55.147Z",
@@ -18565,6 +18569,15 @@
       "harnessCorrections": 0,
       "newBrowserJobs": 1,
       "newProofFiles": 0
+    },
+    "closeout1655": {
+      "publishedCheckpoint": "e34959f801fcf4812a7a976142f2235bde81411e",
+      "workerAbsent": 47600,
+      "portAbsent": 5353,
+      "wip": "RETIRED_AFTER_VERIFIED_DEV_COVERAGE",
+      "runEndedAt": "2026-10-09T17:25:27.033Z",
+      "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
+      "finalMetadataSha": "Recorded externally in automation memory after publication"
     }
   },
   "previousInterruptedRun": {

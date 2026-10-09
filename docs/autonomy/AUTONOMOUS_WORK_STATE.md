@@ -27,6 +27,11 @@ Exact nextAction: Normal autonomy-handoff preflight/exclusive lock; resume SAME 
 
 Publication: reviewed normal dev checkpoint/ownedWIP coverage and stopped-worker/port release verified at closeout; finalSHA in automationmemory. Main unchanged00b96f1b502539618790b1c0d8d642f86d3dcf7f. Standing OD-2026-10-08-B; no routine approval needed.
 
+
+## Verified publication
+
+Checkpoint e34959f801fcf4812a7a976142f2235bde81411e published normally and equals liveorigin/dev. OwnedWIP localac43d2c3b4dfd9133b81ac1ad4d1f790490209e7 and remote5a142eb39d56785a10ad35f394265c62fe8e6b25 retired after exact driver/MD/handoff coverage and JSON metadata-only guard. Worker47600/port5353 absent. Initial automatic approval review timed out before execution; one expressly allowed retry succeeded. No automatic-review rejection. Closure time 2026-10-09T17:25:27.033Z; metadata publication/finalSHA/lockrelease in automationmemory. Original deferredtask/162historicaljobs and twohistoricalWIP untouched.
+
 <!-- QA_JOBS_START -->
 ## Live QA jobs
 
