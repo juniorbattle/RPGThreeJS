@@ -1,19 +1,30 @@
 # Autonomous work state
 
-CURRENT FACT2104: PAUSED_FOR_CREDITS after reviewer usage_limit_exceeded and cutoff. dev baseline632b9bc; metadata2044 publication resolved and lock absence/remote parity verified at preflight. Earned ending worker stopped with no final result; NOT_ACCEPTED. Full demo remains open.
+CURRENT FACT2311: IN_PROGRESS safe source checkpoint; cast browser and earned ending open.
 
 Active task: DEMO-QA-POLISH: continuous earned campaign beyond first refuge.
-Active subtask: Earned second-refuge rescue/serpent ending interrupted; terminal acceptance pending.
+Active subtask: Earned rescue/serpent ending: review native lone-survivor pilot fallback after bounded failure.
+Handoff: docs/autonomy/handoffs/2026-10-08T2311Z-codex-earned-ending-checkpoint.md.
 
 ## Exact next action
 
-Check credits/tool availability first and read2104handoff. Normal readonly preflight/owned lock; inspect campaign-ending-2104 receipt/progress before any relaunch: worker45248 and port5346 absent at23:03UTC, no results.json, NOT_ACCEPTED. Do not use this interrupted output as an earned seed. Preserve155historicaljobs and exact deferredDemoTask/pendingNarrativeTask/queue. Continue the same DEMO-QA-POLISH native earned rescue/serpent ending criterion from accepted1859 second-refuge save tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b and successful priorProof results.json SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3. Reuse unchanged continuous driver, register a unique bounded job/free port, native rest75 and sacred_crosier shop/equip; freeze source/driver/build and inspect actual ending/exactV6 and raw Salvation2APcost versus exact2AP-start separately. No compatiblematrix repeats or assertion weakening. Cast lift/squash liveOS gap was source-audited only: reviewer quota failed and no implementation began; handle narrowly after terminal campaign QA with ui-accessibility skill and sensitive guardian review. Keep full demo open.
+Read this2311 handoff and normal preflight. Continue the same DEMO-QA-POLISH earned rescue/serpent ending: review the six-line lone-survivor fallback checkpoint in tools/demo-continuous-production-qa.mjs (existing native attack/move, only no other living ally, after support/skill/heal attempts). Guardian source PASS; no browser validation yet. Register one unique bounded ending QA on a free port with exact source/driver/build/input hashes; preserve every current native legality/outcome/lineage/assertion boundary. Seed only accepted1859 second-refuge save SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b and priorProof SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3. Do not blindly repeat failed2104/2311 pilot or use failed outputs as seeds. Separate exact2AP-start Salvation from observed cost2AP. Cast browser remains blocked: before any new smoke, persist partial samples/phase timestamps on failure, require a currently moving raised first sample, and remove extra marker round trips while retaining three moving samples per reduced interval and all native assertions. No repeat before that bounded review. Broader Stage/VFX/actions/widths and full demo remain open.
 
-## Current evidence and checkpoint
+## Product and scoped verification
 
-55tests4files,TypeScript,directvalidator8contracts8slots,fresh210module/eightMP4build,immutable/protected/whitespace gates PASS.393physicalsource/HTML/driver/helper files,9buildhashes and2lineage inputs unchanged at23:03closeout. All155historicalQA entries and exact deferredDemoTask/pendingNarrativeTask/taskQueue retained. No runtime/test/existingQA/newQA/proof changes;3workflowfiles. Native progress55actions/round10/Serpent225HP at21:23:33UTC is diagnostic only; no raw terminalaction/ending/V6result. PID45248/port5346 positively absent at23:03UTC; receipt stillRUNNING preserved verbatim. No35min timeout conclusion or new accepted seed.
+Four cast decorations only. Disposable epoch-owned baselines settle groundY and signed sprite/outline scales on every frame and preference change, including no-active-tween impact waits. Existing impact callbacks/timing, tactical AP/HP/coordinates, RNG and V6 unchanged. Teleport/other motions outside scope. Normal re-enable while impact is held can remain grounded until another tween.
 
-Guardian prelaunch PASS owner boundaries; UI source-audit review failed credits. Four captures inspected,none promoted; dark equipment transition is not settled UI acceptance. Zero harness correction/retry or failedseed. No canon/LOCKED/V6schema/video/audio/main changes. Owned local WIP7b2fea0 kept through safe closeout; final commit/remoteparity/lockrelease recorded in automation memory.
+38post-change tests (25motion/4preference/3skills/6RNG), types,8contracts/8slots,210module production build, immutable/protected/whitespace gates PASS. Earlier89campaign-owner tests precede presentation-only change. Native standalone1366 Salvation liveOS smoke FAILED with stable request/source/driver/build/result digest; two diagnostic captures inspected, none promoted. One standalone1366liveOS smoke FAILED at final moving reduced-phase sample wait; preceding normal-return await advanced, raw probe not persisted. Neither screenshot shows active reduced cast. Native HP/AP assertions after probe not reached; no smoke native heal/AP acceptance. Source-sliced local tests prove four cast timing/empty-tween hold/cancellation cleanup. InitialOS browser/otherpresets/phaseidentified/StageVFX/390/campaign/start2AP/general motion remain open.
+
+## Earned ending limitation
+
+Unchanged earned ending campaign2311 FAILED at bounded35min deadline:131actions, over=false, Serpent156HP, Marian sole alive109/113HP. Sourcepilot support branch excludes native foe damage/move.25new40percent heals:9start3AP->1,16start5AP->3, allspec2/sameactor. Cost observation is not exact2AP-start proof; none starts2AP. No ending/reload/seed or tactical balance acceptance. Failed raw results/captures remain ignored diagnostics.
+
+## Governance and measurements
+
+Set1.1.0 immutable d7ca28aed5c377ffedb03202f6364b7a947d1096 unchanged; no LOCKED rules changed. All156inheritedQAentries and exact deferredDemoTask/pendingNarrativeTask/taskQueue preserved;158total jobs. Existing historical receipts retain their prior scope. Standing OD-2026-10-08-B authorizes reviewed normal origin/dev publication. Final SHA/remote/main/release verification goes in automation memory.
+
+Counts:1runtime source,1test modified,2existingQAmodified,0newQA,0selected proof files,3workflow files;0inheritedWIP.2registered jobs (endingFAILED+one production smokeFAILED),0accepted jobs,0harnesscorrections,0failedseeds,2read-only reviewers reused. No full demo acceptance.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -168,14 +179,12 @@ Guardian prelaunch PASS owner boundaries; UI source-audit review failed credits.
 - battlefield-0514-native-v2: SUCCEEDED; port 5340; receipt `tmp/demo/battlefield-0514-native-v2/qa-job.json`; NOT_ACCEPTED
 - campaign-0514-first-refuge: FAILED; port 5341; receipt `tmp/demo/campaign-0514-first-refuge/qa-job.json`; NOT_ACCEPTED
 - compact-0636-os: FAILED; port 5342; receipt `tmp/demo/compact-0636-os/qa-job.json`; NOT_ACCEPTED
-- compact-1214-os: SUCCEEDED; port 5342; receipt `tmp/demo/compact-1214-os/qa-job.json`; ACCEPTED_SCOPED_390_COMPACT_MENUS_LIVE_MOTION
-- campaign-first-refuge-1214: SUCCEEDED; port 5343; receipt `tmp/demo/campaign-first-refuge-1214/qa-job.json`; ACCEPTED_SCOPED_FRESH_FIRST_REFUGE_1366_NORMAL
-- campaign-second-refuge-1859: SUCCEEDED; port 5344; receipt `tmp/demo/campaign-second-refuge-1859/qa-job.json`; ACCEPTED_SCOPED_EARNED_SECOND_REFUGE_1366_NORMAL
+- compact-1214-os: SUCCEEDED; port 5342; receipt `tmp/demo/compact-1214-os/qa-job.json`; NOT_ACCEPTED
+- campaign-first-refuge-1214: SUCCEEDED; port 5343; receipt `tmp/demo/campaign-first-refuge-1214/qa-job.json`; NOT_ACCEPTED
+- campaign-second-refuge-1859: SUCCEEDED; port 5344; receipt `tmp/demo/campaign-second-refuge-1859/qa-job.json`; NOT_ACCEPTED
 - ordinary-movement-1859: FAILED; port 5345; receipt `tmp/demo/ordinary-movement-1859/qa-job.json`; NOT_ACCEPTED
-- ordinary-movement-1859-v2: SUCCEEDED; port 5345; receipt `tmp/demo/ordinary-movement-1859-v2/qa-job.json`; ACCEPTED_SCOPED_ORDINARY_MOVEMENT_LIVE_OS_6_CASES
-- campaign-ending-2104: INTERRUPTED_NO_FINAL_RECEIPT; port 5346; receipt `tmp/demo/campaign-ending-2104/qa-job.json`; NOT_ACCEPTED
+- ordinary-movement-1859-v2: SUCCEEDED; port 5345; receipt `tmp/demo/ordinary-movement-1859-v2/qa-job.json`; NOT_ACCEPTED
+- campaign-ending-2104: RUNNING; port 5346; receipt `tmp/demo/campaign-ending-2104/qa-job.json`; NOT_ACCEPTED
+- campaign-ending-2311: FAILED; port 5347; receipt `tmp/demo/campaign-ending-2311/qa-job.json`; NOT_ACCEPTED
+- cast-salvation-2311: FAILED; port 5348; receipt `tmp/demo/cast-salvation-2311/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
-
-## Run2104 live checkpoint
-
-Owned lock heartbeat 2026-10-08T23:06:15.1319760Z; local wip/rpgthreejs-auto-dev-90m-20261008T2104@986c8dd303582086d04a29720c8db1a162afc643. Exact next action: Check credits/tool availability first and read2104handoff. Normal readonly preflight/owned lock; inspect campaign-ending-2104 receipt/progress before any relaunch: worker45248 and port5346 absent at23:03UTC, no results.json, NOT_ACCEPTED. Do not use this interrupted output as an earned seed. Preserve155historicaljobs and exact deferredDemoTask/pendingNarrativeTask/queue. Continue the same DEMO-QA-POLISH native earned rescue/serpent ending criterion from accepted1859 second-refuge save tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b and successful priorProof results.json SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3. Reuse unchanged continuous driver, register a unique bounded job/free port, native rest75 and sacred_crosier shop/equip; freeze source/driver/build and inspect actual ending/exactV6 and raw Salvation2APcost versus exact2AP-start separately. No compatiblematrix repeats or assertion weakening. Cast lift/squash liveOS gap was source-audited only: reviewer quota failed and no implementation began; handle narrowly after terminal campaign QA with ui-accessibility skill and sensitive guardian review. Keep full demo open.

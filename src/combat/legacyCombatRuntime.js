@@ -126,6 +126,17 @@ function restoreUnitFocus(){
 
 // ============================= TWEENS =============================
 const tweens=[];
+// Disposable cast poses also cover impact holds with no active transform tween.
+const castMotionBaselines=new Map();
+function settleReducedCastMotion(){
+  if(!REDUCED_GRAPHICS)return;
+  for(const [u,{epoch,baseline}] of castMotionBaselines){
+    if(!isUnitMotionCurrent(u,epoch)){ castMotionBaselines.delete(u); continue; }
+    u.grp.position.y=baseline.group.y;
+    u.spr.scale.x=baseline.spriteScale.x; u.spr.scale.y=baseline.spriteScale.y;
+    if(u.outline&&baseline.outlineScale){ u.outline.scale.x=baseline.outlineScale.x; u.outline.scale.y=baseline.outlineScale.y; }
+  }
+}
 function tween(obj,to,dur,ease,onDone){
   const from={}; for(const k in to) from[k]=obj[k];
   const o={obj,to,from,dur:dur||0.3,ease:ease||easeOutCubic,t:0,onDone,onCancel:null,settled:false};
@@ -143,6 +154,7 @@ function updateTweens(dt){
     for(const k in o.to) o.obj[k]=lerp(reduced?.from?.[k]??o.from[k],reduced?.to?.[k]??o.to[k],e);
     if(p>=1){ tweens.splice(i,1); if(!o.settled){ o.settled=true; o.onDone&&o.onDone(); } }
   }
+  settleReducedCastMotion();
 }
 
 // ============================= RENDERER / SCENE / CAMERA =============================
@@ -1255,7 +1267,7 @@ function motionBaseline(u){
   const cx=u.size>1?bossCenterGX(u):u.gx,cz=u.size>1?bossCenterGZ(u):u.gz,cell=cellAt(u.gx,u.gz),scale=largeUnitSpriteScale(u),sign=u.spriteFacing*(u.visualFacingX<0?-1:1),outlineScale=scale*1.1,outlineSign=sign;
   return createCanonicalUnitMotionBaseline({group:{x:wX(cx),y:cell?cell.topY:u.grp.position.y,z:wZ(cz)},baseY:u.baseY,spriteScaleX:sign*scale,spriteScaleY:scale,...(u.outline?{outlineScaleX:outlineSign*outlineScale,outlineScaleY:outlineScale}:{})});
 }
-function killSpriteMotion(u){ if(!u)return; cancelUnitMotion(u); for(const obj of [u.grp&&u.grp.position,u.spr&&u.spr.position,u.spr&&u.spr.scale,u.spr&&u.spr.rotation,u.outline&&u.outline.position,u.outline&&u.outline.scale,u.outline&&u.outline.rotation,u.mat,u.blob&&u.blob.material,u.teamRing&&u.teamRing.material])if(obj)killTweens(obj); u._motionPlaying=false; }
+function killSpriteMotion(u){ if(!u)return; castMotionBaselines.delete(u); cancelUnitMotion(u); for(const obj of [u.grp&&u.grp.position,u.spr&&u.spr.position,u.spr&&u.spr.scale,u.spr&&u.spr.rotation,u.outline&&u.outline.position,u.outline&&u.outline.scale,u.outline&&u.outline.rotation,u.mat,u.blob&&u.blob.material,u.teamRing&&u.teamRing.material])if(obj)killTweens(obj); u._motionPlaying=false; }
 function spriteReturnBaseline(u,baseline){ if(!u||!baseline)return; killSpriteMotion(u); u.grp.position.copy(baseline.group); u.spr.position.copy(baseline.spritePosition); u.spr.scale.copy(baseline.spriteScale); u.spr.rotation.z=baseline.spriteRotationZ; if(u.outline&&baseline.outlinePosition&&baseline.outlineScale){ u.outline.position.copy(baseline.outlinePosition); u.outline.scale.copy(baseline.outlineScale); u.outline.rotation.z=baseline.outlineRotationZ||0; } u._motionPlaying=false; }
 function motionDirection(u,context={},away=false){
   let target=context.target||null,tx,tz;
@@ -1292,6 +1304,7 @@ async function playSpriteMotion(u,presetId,context={}){
   if(!u||!u.grp||!u.spr){ await impact(); return; }
   const preset=scaledSpriteMotionPreset(SPRITE_MOTION_PRESETS[presetId]||SPRITE_MOTION_PRESETS.melee_light,context),baseline=motionBaseline(u);
   killSpriteMotion(u); const epoch=beginUnitMotion(u); u._motionPlaying=true;
+  if(['magic_cast','heal_cast','buff_cast','debuff_cast'].includes(presetId))castMotionBaselines.set(u,{epoch,baseline});
   const direction=motionDirection(u,context,false),current=()=>isUnitMotionCurrent(u,epoch),impactIfCurrent=async()=>{ if(current())await impact(); };
   try{
     if(presetId==='melee_light'||presetId==='melee_heavy'){
@@ -2185,7 +2198,7 @@ function renderObjective(){ if(!dom.objective)return; dom.objective.classList.re
   const wasOpen=dom.objective.querySelector('details')?.open;
   dom.objective.innerHTML=renderCombatObjective({title:COMBAT_LABEL||'Combat tactique',condition:COMBAT_OBJECTIVE,round:roundLabel,foesDone:foeDone,foesTotal:foes.length,squadLabel,squadValue,expanded:wasOpen??deploying}); }
 // ---- Settings (gear) : purely visual toggles, no rules touched ----
-function applyGraphics(){ REDUCED_GRAPHICS=prefersReducedMotion(REQUESTED_REDUCED_GRAPHICS); document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); if(typeof bloom!=='undefined'&&bloom)bloom.enabled=!REDUCED_GRAPHICS; if(typeof tiltPass!=='undefined'&&tiltPass)tiltPass.enabled=!REDUCED_GRAPHICS; }
+function applyGraphics(){ REDUCED_GRAPHICS=prefersReducedMotion(REQUESTED_REDUCED_GRAPHICS); settleReducedCastMotion(); document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); if(typeof bloom!=='undefined'&&bloom)bloom.enabled=!REDUCED_GRAPHICS; if(typeof tiltPass!=='undefined'&&tiltPass)tiltPass.enabled=!REDUCED_GRAPHICS; }
 function renderSettings(){ if(!dom.settings)return;
   dom.settings.innerHTML='<div class="settings__ttl">Réglages</div>'+
     '<button class="settings__row" type="button" data-s="fxhd" role="menuitemcheckbox" aria-checked="'+(!REQUESTED_REDUCED_GRAPHICS)+'"><span>Effets HD</span><i class="settings__sw'+(!REQUESTED_REDUCED_GRAPHICS?' on':'')+'"></i></button>'+

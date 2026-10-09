@@ -319,6 +319,12 @@ async function battle(){
       if(await skill(frame,entry))continue;
       if(await attack(frame,entry,{support:true}))continue;
       if(await heal(frame,entry))continue;
+      // Native crosiers can damage foes. A lone survivor must not wait only for ally support.
+      const loneSurvivor=!current.units.some(u=>u.team==='player'&&u.alive&&u.id!==current.active.id);
+      if(loneSurvivor){
+        if(await attack(frame,entry))continue;
+        if(await move(frame,entry))continue;
+      }
       const wounded=current.units.some(u=>u.team==='player'&&u.alive&&u.id!==current.active.id&&u.hp<u.maxhp*.95);
       if(wounded&&await move(frame,entry,{support:true,supportRange:current.active.weapons[0].max}))continue;
       await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait-novice-support',reason:wounded?'no-native-support-hit-or-better-reachable-cell':'retain-ap-for-ally-support',before:current});continue;
