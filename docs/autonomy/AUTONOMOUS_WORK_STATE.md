@@ -190,3 +190,7 @@ Five inherited WIP paths preserved and verified.115tests/types/direct8contracts8
 - cast-salvation-0011: SUCCEEDED; port 5350; receipt `tmp/demo/cast-salvation-0011/qa-job.json`; NOT_ACCEPTED
 - campaign-ending-0443: SUCCEEDED; port 5351; receipt `tmp/demo/campaign-ending-0443/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
+
+## Actual retirement disposition
+
+Automatic review rejected remote/local own0443 WIP deletion before command execution as insufficiently authorized; no branch or lock deletion occurred. Preserve own0443 and inherited0011 WIP. Complete safe owned-lock release only after this metadata disposition is published. Product/QA/nextAction unchanged.
