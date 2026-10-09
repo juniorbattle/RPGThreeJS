@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-09T19:00:31.2695699Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-09T22:19:47.540Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "CONSOLIDATED_SCOPED_RUNTIME_CHECKPOINT",
   "activeSubtask": "Six demo hero skills and ordinary random Pursuit contact/miss/return scoped verified; articulated gait/manual QA open",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "20b082984088a05b4b7aa3b562724229bd35e41a",
-  "lastPushedCommit": "20b082984088a05b4b7aa3b562724229bd35e41a",
+  "lastKnownGoodCommit": "a549fd06a3cf0dccca25833a55a3bba4d72b5b16",
+  "lastPushedCommit": "a549fd06a3cf0dccca25833a55a3bba4d72b5b16",
   "completedThisRun": [
     "Operator clarification recorded: all six demo heroes including rogue/lancer first existing skill at2AP withT0 gear",
     "Ten campaign-owned bindings to ordinary Serpent/monster pool, bosses/elites excluded; no node/branch/dialogue invention",
@@ -210,7 +210,7 @@
     "branch": "wip/codex-demo-consolidation-20261009T1856",
     "sha": "852047971509b9781e3862785fab54f678ecf843",
     "snapshotAt": "2026-10-09T22:19:07.826Z",
-    "status": "WIP_NOT_ACCEPTED",
+    "status": "LANDED_ON_DEV",
     "paths": [
       "src/game/catalog.ts",
       "src/game/management.test.ts",
@@ -233,13 +233,14 @@
       "docs/autonomy/TRAVERSAL_PURSUIT_THREAT.md",
       "docs/autonomy/handoffs/2026-10-09T1856Z-codex-consolidation.md",
       "docs/reports/demo-consolidation-20261009/checks.json"
-    ]
+    ],
+    "landedCommit": "a549fd06a3cf0dccca25833a55a3bba4d72b5b16"
   },
   "live": {
     "runId": "codex-demo-consolidation-20261009T1856",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-09T22:19:07.826Z",
-    "status": "IN_PROGRESS",
+    "lastHeartbeat": "2026-10-09T22:19:47.540Z",
+    "status": "CHECKPOINT_COMMITTED",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -18280,7 +18281,7 @@
       "branch": "wip/codex-demo-consolidation-20261009T1856",
       "sha": "852047971509b9781e3862785fab54f678ecf843",
       "snapshotAt": "2026-10-09T22:19:07.826Z",
-      "status": "WIP_NOT_ACCEPTED",
+      "status": "LANDED_ON_DEV",
       "paths": [
         "src/game/catalog.ts",
         "src/game/management.test.ts",
@@ -18303,7 +18304,8 @@
         "docs/autonomy/TRAVERSAL_PURSUIT_THREAT.md",
         "docs/autonomy/handoffs/2026-10-09T1856Z-codex-consolidation.md",
         "docs/reports/demo-consolidation-20261009/checks.json"
-      ]
+      ],
+      "landedCommit": "a549fd06a3cf0dccca25833a55a3bba4d72b5b16"
     },
     "nextAction": "Read-only preflight/exclusive lock; inspect1856 v2 terminal receipt and compactchecks first, reuse113tests+scopedT0desktop contact/miss/exactroadreturn evidence if same source/driver/build. Preserve operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue same desktop consolidation: implement articulated Shadow running animation (current still/bob is not gait), then existing-runner OS/game-reduced and other mapped contexts, browser native tactical victory/defeat temporary-loot recovery, persistedV6 and cancel/re-enter/focus-visible checks. Do not reinterpret null autosave equality as persistedV6 proof. Finish checkpoint glissement perception/settled parentfocus/narrative/campaign gaps; operator manual visual/literary/balance QA later, mobile finalization last. No new mapping operator decision needed; mappings/category blocker resolved. Eight videos/Alaric/audio/LOCKED unchanged.",
     "runMetrics": {
@@ -18351,8 +18353,8 @@
       ]
     },
     "runStartedAt": "2026-10-09T19:00:31.2695699Z",
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-09T22:19:47.540Z",
+    "writerStopped": true,
     "metadataPublication": {
       "status": "RESOLVED_BY_OPERATOR_APPROVAL",
       "standingDecision": "OD-2026-10-08-B",
@@ -19707,8 +19709,9 @@
       "workflow": 5,
       "inheritedWip": 0
     },
-    "sourceCommit": "PENDING_PUBLICATION",
+    "sourceCommit": "a549fd06a3cf0dccca25833a55a3bba4d72b5b16",
     "openGait": true,
-    "clockGap": "Observed19:02to22:07; only existing atomic operation/checks finished after return"
+    "clockGap": "Observed19:02to22:07; only existing atomic operation/checks finished after return",
+    "publishedAt": "2026-10-09T22:19:47.540Z"
   }
 }
