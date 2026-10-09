@@ -140,6 +140,36 @@ async function campaignBattlefieldKeyboard(frame,entry){
   await capture(`combat-${entry.index}-native-keyboard-return`);
   entry.battlefieldKeyboard={method:'ACTUAL_TAB_FRESH_CAMPAIGN_IFRAME',inputs,focus,cursorBefore,cursor,restored,before,after,renderDiagnosticsExcludedFromTruth:true,ownerUnchanged:true,autosaveUnchanged:true,pass:true};
 }
+async function campaignParentKeyboardReturn(entry){
+  assert.equal(entry.nodeId,'lion-opening-ambush','Parent keyboard proof is scoped to fresh opening aftermath');
+  const selector='.dialogue--narrative[data-dialogue-sequence="post_opening_trail"]:not(.dialogue--preparing-step) .dialogue__box:not(:disabled)';
+  await page.waitForFunction(selector=>{
+    const e=document.querySelector(selector);
+    const stage=document.querySelector('[data-narrative-surface-readiness="VISIBLE"][data-narrative-interaction="ACTIVE"]');
+    return e&&stage&&e===document.activeElement&&e.getClientRects().length&&!e.closest('[inert]');
+  },selector,{timeout:30000});
+  const control=page.locator(selector);
+  const ownerBefore=await state(),autosaveBefore=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  assert.ok(ownerBefore.resolvedNodeIds.includes(entry.nodeId),'Parent focus precedes resolved opening truth');
+  const focus=await control.evaluate(e=>{const r=e.getBoundingClientRect(),style=getComputedStyle(e);return{
+    active:e===document.activeElement,visible:e.matches(':focus-visible'),outline:style.outlineStyle,outlineWidth:style.outlineWidth,
+    x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height,
+    sequence:e.closest('.dialogue').dataset.dialogueSequence,step:e.closest('.dialogue').dataset.dialogueStep};});
+  assert.ok(focus.active&&focus.visible&&focus.outline!=='none'&&parseFloat(focus.outlineWidth)>0,'Native parent dialogue focus invisible');
+  assert.ok(focus.x>=0&&focus.y>=0&&focus.right<=viewport[0]+1&&focus.bottom<=viewport[1]+1,'Native parent focus clipped');
+  await page.keyboard.press('Tab');
+  const tabAway=await control.evaluate(e=>e!==document.activeElement);
+  assert.equal(tabAway,true,'Parent Tab must leave dialogue control');
+  await page.keyboard.press('Shift+Tab');
+  assert.equal(await control.evaluate(e=>e.isConnected&&e===document.activeElement),true,'Parent Shift+Tab must return to same dialogue control');
+  const ownerAfter=await state(),autosaveAfter=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  assert.deepEqual(ownerAfter,ownerBefore,'Parent Tab navigation changed settled campaign truth');
+  assert.equal(autosaveAfter,autosaveBefore,'Parent Tab navigation wrote autosave');
+  assert.equal(await page.locator('iframe.combat-frame').count(),0);
+  report.inputs.push({action:'native parent Tab/Shift+Tab after result Enter',nodeId:entry.nodeId});
+  entry.parentKeyboardReturn={method:'NATIVE_RESULT_ENTER_AUTOMATIC_PARENT_FOCUS',focus,tabAway,ownerBefore,ownerAfter,autosaveUnchanged:true,pass:true};
+  await capture(`combat-${entry.index}-native-parent-keyboard-return`);
+}
 async function cellClick(frame,cell,attempt){
   const point=await frame.evaluate(({gx,gz})=>window.__qaHelpers.getCellScreenPosition(gx,gz),cell);
   const box=await page.locator('iframe.combat-frame').boundingBox();
@@ -414,7 +444,15 @@ async function battle(){
   assert.equal(entry.result.units.filter(u=>u.team==='foe'&&u.alive).length,0);
   assert.ok(entry.actions.some(a=>a.kind==='attack'));entry.pass=true;
   entry.outcome='victory';
-  await frame.locator('#combat-result-action').click();await element.waitFor({state:'detached',timeout:30000});
+  if(entry.index===0&&!priorProof){
+    await frame.locator('#combat-result-action').focus();
+    await page.keyboard.press('Enter');
+    report.inputs.push({action:'native combat result Enter',nodeId:entry.nodeId});
+    await element.waitFor({state:'detached',timeout:30000});
+    await campaignParentKeyboardReturn(entry);
+  }else{
+    await frame.locator('#combat-result-action').click();await element.waitFor({state:'detached',timeout:30000});
+  }
   entry.ownerAfter=await state();
   assert.ok(entry.ownerAfter.resolvedNodeIds.includes(entry.nodeId));
   console.log(JSON.stringify({battle:entry.nodeId,realVictory:true,rounds:entry.result.round,actions:entry.actions.length}));
