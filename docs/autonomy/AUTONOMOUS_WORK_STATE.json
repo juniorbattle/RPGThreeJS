@@ -1,64 +1,62 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-09T19:00:31.2695699Z",
-  "runEndedAt": "2026-10-09T22:19:47.540Z",
+  "runStartedAt": "2026-10-09T22:25:19.3006143Z",
+  "runEndedAt": null,
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-  "activePhase": "CONSOLIDATED_SCOPED_RUNTIME_CHECKPOINT",
-  "activeSubtask": "Six demo hero skills and ordinary random Pursuit contact/miss/return scoped verified; articulated gait/manual QA open",
+  "activePhase": "DESKTOP_PURSUIT_ACCEPTANCE",
+  "activeSubtask": "Articulated Shadow gait implemented; scoped desktop functional proof accepted, broader Pursuit/manual QA open",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "a549fd06a3cf0dccca25833a55a3bba4d72b5b16",
   "lastPushedCommit": "a549fd06a3cf0dccca25833a55a3bba4d72b5b16",
   "completedThisRun": [
-    "Operator clarification recorded: all six demo heroes including rogue/lancer first existing skill at2AP withT0 gear",
-    "Ten campaign-owned bindings to ordinary Serpent/monster pool, bosses/elites excluded; no node/branch/dialogue invention",
-    "Committed physical charge/contact once and two genuine full-right misses; exact mounted road clocks/stage/truth restored in production T0desktop fixture",
-    "Corrected checkpoint advancement, delayed-frame lane completion, global-cover freeze and mount cancellation lifecycle before final smoke",
-    "113focusedtests/TypeScript/contracts8slots8/build213/gatesPASS; one executed registered smokeSUCCEEDED stable; earlier plannedjob never launched"
+    "Read-only preflight: absent lock, clean dev/live origin4617593; main00b96f1 unchanged, no RPG QA/Git process; exclusive lock acquired and fetch complete; inspected1856 scoped receipt and limits",
+    "Generated/cleaned six real articulated Shadow poses from existing identity; original preserved",
+    "Integrated shared pose reader into approach/charge; fixed failed-sheet background retention; road clocks/pause/contact/OS OR game respected",
+    "Scoped v3 desktop18 assertions and three promoted captures reviewed by root/traversal/contracts; baseline two inherited reset-only failures independently reproduced"
   ],
   "filesChanged": [
-    "src/game/catalog.ts",
-    "src/game/management.test.ts",
-    "src/game/runSystem.ts",
-    "src/game/runSystem.test.ts",
-    "src/game/GameApp.ts",
-    "src/campaign/LionTraversalPursuitEncounters.ts",
-    "src/traversal/TraversalPresentation.ts",
-    "src/traversal/TraversalPursuitCharge.ts",
+    "src/traversal/TraversalPursuerSprite.ts",
+    "src/traversal/TraversalPursuerSprite.test.ts",
     "src/traversal/TraversalPursuitChargeRenderer.ts",
+    "src/traversal/TraversalRoutePursuitRenderer.ts",
     "src/traversal/TraversalRoadScene.ts",
-    "src/traversal/TraversalRoadScene.test.ts",
-    "src/traversal/TraversalRoutePursuit.ts",
-    "src/traversal/TraversalRoutePursuit.test.ts",
-    "src/styles/app.css",
+    "src/traversal/TraversalRoutePursuitArt.test.ts",
+    "src/styles/traversal-pursuit-charge.css",
+    "src/styles/traversal.css",
+    "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json",
+    "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.png",
+    "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.json",
     "tools/traversal-motion-production-qa.mjs",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/DESKTOP_OPENING_OPERATOR_DECISION_2026-10-09.md",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/TRAVERSAL_PURSUIT_THREAT.md",
-    "docs/autonomy/handoffs/2026-10-09T1856Z-codex-consolidation.md",
-    "docs/reports/demo-consolidation-20261009/checks.json"
+    "docs/autonomy/handoffs/2026-10-09T2223Z-codex-pursuit-gait.md",
+    "docs/reports/pursuit-gait-20261009/README.md",
+    "docs/reports/pursuit-gait-20261009/checks.json",
+    "docs/reports/pursuit-gait-20261009/T0-1440-gallop-charge.png",
+    "docs/reports/pursuit-gait-20261009/T0-1440-gallop-os-static.png",
+    "docs/reports/pursuit-gait-20261009/T0-1440-gallop-sheet-fallback.png"
   ],
   "testsRun": [
-    "vitest6focusedfiles",
-    "tsc --noEmit",
-    "contracts:validate direct",
-    "vite production build",
-    "git diff --check and immutable/protected gates",
-    "one existing motion production runner T0 1440normal pursuit-check"
+    "36 unique focused tests in6 files (tmp archives excluded)",
+    "TypeScript --noEmit",
+    "Contract validator + immutable LOCKED gate + diff --check",
+    "Production build214modules/8MP4 slots",
+    "Designated T0 1440x810 gait smoke: one environment failure, functional v2 PASS, one capture correction v3 PASS18"
   ],
   "testsPassed": [
-    "113unique focused PASS",
-    "TypeScript PASS",
-    "8contracts8slots PASS",
-    "build213modules8MP4 PASS",
-    "one registered1440normal T0 production fixture smoke15assertions PASS; no console/page errors"
+    "36 focused tests",
+    "TypeScript",
+    "8contracts/8slots; immutable gate empty",
+    "build214modules",
+    "v3 scoped18 assertions; source/driver/build stable"
   ],
   "testsRemaining": [
     "Native forest_ambush variant and overall beginner balance; KestrelKO in tested wolf_pack",
     "Salvation from exactly2AP and40%HP verification; current casts3to1AP/salvationVerifiedfalse",
     "Parent focus settled visible proof: immediate capture during fade, numeric focus/owner/autosave only",
     "Checkpoint braking/glissement perceptual sequence; selected T0 ground frame only",
-    "Articulated Shadow running gait; OS/game reduction, other nine mapping contexts in browser, native tactical victory/defeat/temporary-loot recovery, persisted V6 and cancellation/re-entry/focus-visible acceptance",
+    "Shadow articulated gait implemented and scoped desktop verified; full-tail/reduced-charge visuals, other mapped contexts, native tactical victory/defeat/temporary-loot recovery, persisted V6 and cancellation/re-entry/focus-visible acceptance remain open",
     "Other campaign branches/endings, Stage/VFX/AT/desktop accessibility",
     "Council/refugees/static-only OS narrative acceptance and approved Bois-Clair night plate",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
@@ -80,12 +78,12 @@
     "Salvation from exactly2AP and40%HP verification; current casts3to1AP/salvationVerifiedfalse",
     "Parent focus settled visible proof: immediate capture during fade, numeric focus/owner/autosave only",
     "Checkpoint braking/glissement perceptual sequence; selected T0 ground frame only",
-    "Articulated Shadow running gait; OS/game reduction, other nine mapping contexts in browser, native tactical victory/defeat/temporary-loot recovery, persisted V6 and cancellation/re-entry/focus-visible acceptance",
+    "Shadow articulated gait implemented and scoped desktop verified; full-tail/reduced-charge visuals, other mapped contexts, native tactical victory/defeat/temporary-loot recovery, persisted V6 and cancellation/re-entry/focus-visible acceptance remain open",
     "Other campaign branches/endings, Stage/VFX/AT/desktop accessibility",
     "Council/refugees/static-only OS narrative acceptance and approved Bois-Clair night plate",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Read-only preflight/exclusive lock; inspect1856 v2 terminal receipt and compactchecks first, reuse113tests+scopedT0desktop contact/miss/exactroadreturn evidence if same source/driver/build. Preserve operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue same desktop consolidation: implement articulated Shadow running animation (current still/bob is not gait), then existing-runner OS/game-reduced and other mapped contexts, browser native tactical victory/defeat temporary-loot recovery, persistedV6 and cancel/re-enter/focus-visible checks. Do not reinterpret null autosave equality as persistedV6 proof. Finish checkpoint glissement perception/settled parentfocus/narrative/campaign gaps; operator manual visual/literary/balance QA later, mobile finalization last. No new mapping operator decision needed; mappings/category blocker resolved. Eight videos/Alaric/audio/LOCKED unchanged.",
+  "nextAction": "Read-only preflight/exclusive lock; inspect pursuit-gait-2223-v3 terminal receipt and docs/reports/pursuit-gait-20261009/checks.json first. Reuse scoped 36-test and T0 1440x810 gait/contact/miss/exact-road-return evidence only when source/driver/build/parameters/assertions match. Preserve pursuitGait2223.previous, operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue the same desktop consolidation with existing-runner OS/game-reduced charge and other mapped contexts, native tactical victory/defeat temporary-loot recovery, persisted V6 and cancel/re-enter/focus-visible proof. Null autosave equality is absence, not persisted V6 proof. Review full-tail approach/ground-contact and checkpoint braking/glissement perception; resolve settled parentfocus, skills/campaign/narrative gaps in the existing queue. Operator artistic/literary/balance playtest remains final; mobile finalization last. Category/ten mappings blocker resolved; eight videos/Alaric/audio/LOCKED unchanged.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -101,8 +99,8 @@
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
   "creditStatus": "Work proceeded within authorized scope; no quota-based reduction or savings claim",
-  "contractComplianceStatus": "PASS_SCOPED_BOUNDARIES_SET1.1.0; full acceptance remains OPEN",
-  "commitReferenceScope": "Source/unit/build/selected browser checkpoint1748 physically matches 20b082984088a05b4b7aa3b562724229bd35e41a; final metadata closure SHA is recorded in automation memory. Prior ending/OS/mobile proofs retain their original scopes.",
+  "contractComplianceStatus": "PASS_SCOPED_GAIT_SET1.1.0; full Pursuit/demo acceptance OPEN",
+  "commitReferenceScope": "Current gait source/test/driver/assets exactly match the v3 physical freeze recorded in docs/reports/pursuit-gait-20261009/checks.json; receipt Git baseline4617593 plus source diff,9 bundles/HTML plus sheet asset. Whole Pursuit/demo not accepted; final commit/parity is recorded externally after publication.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -203,44 +201,43 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "codex-demo-consolidation-20261009T1856",
+  "runId": "rpgthreejs-auto-dev-90m-20261009T2223",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-09T22:19:07.826Z",
+  "lastHeartbeat": "2026-10-09T22:51:38.750Z",
   "wip": {
-    "branch": "wip/codex-demo-consolidation-20261009T1856",
-    "sha": "852047971509b9781e3862785fab54f678ecf843",
-    "snapshotAt": "2026-10-09T22:19:07.826Z",
-    "status": "LANDED_ON_DEV",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261009T2223",
+    "sha": "a980c0ce32c94a345e0d3cd3ae4fba70070a8877",
+    "snapshotAt": "2026-10-09T22:51:38.750Z",
+    "status": "WIP_NOT_ACCEPTED",
     "paths": [
-      "src/game/catalog.ts",
-      "src/game/management.test.ts",
-      "src/game/runSystem.ts",
-      "src/game/runSystem.test.ts",
-      "src/game/GameApp.ts",
-      "src/campaign/LionTraversalPursuitEncounters.ts",
-      "src/traversal/TraversalPresentation.ts",
-      "src/traversal/TraversalPursuitCharge.ts",
+      "src/traversal/TraversalPursuerSprite.ts",
+      "src/traversal/TraversalPursuerSprite.test.ts",
       "src/traversal/TraversalPursuitChargeRenderer.ts",
+      "src/traversal/TraversalRoutePursuitRenderer.ts",
       "src/traversal/TraversalRoadScene.ts",
-      "src/traversal/TraversalRoadScene.test.ts",
-      "src/traversal/TraversalRoutePursuit.ts",
-      "src/traversal/TraversalRoutePursuit.test.ts",
-      "src/styles/app.css",
+      "src/traversal/TraversalRoutePursuitArt.test.ts",
+      "src/styles/traversal-pursuit-charge.css",
+      "src/styles/traversal.css",
+      "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json",
+      "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.png",
+      "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.json",
       "tools/traversal-motion-production-qa.mjs",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/DESKTOP_OPENING_OPERATOR_DECISION_2026-10-09.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/TRAVERSAL_PURSUIT_THREAT.md",
-      "docs/autonomy/handoffs/2026-10-09T1856Z-codex-consolidation.md",
-      "docs/reports/demo-consolidation-20261009/checks.json"
-    ],
-    "landedCommit": "a549fd06a3cf0dccca25833a55a3bba4d72b5b16"
+      "docs/autonomy/handoffs/2026-10-09T2223Z-codex-pursuit-gait.md",
+      "docs/reports/pursuit-gait-20261009/README.md",
+      "docs/reports/pursuit-gait-20261009/checks.json",
+      "docs/reports/pursuit-gait-20261009/T0-1440-gallop-charge.png",
+      "docs/reports/pursuit-gait-20261009/T0-1440-gallop-os-static.png",
+      "docs/reports/pursuit-gait-20261009/T0-1440-gallop-sheet-fallback.png"
+    ]
   },
   "live": {
-    "runId": "codex-demo-consolidation-20261009T1856",
+    "runId": "rpgthreejs-auto-dev-90m-20261009T2223",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-09T22:19:47.540Z",
-    "status": "CHECKPOINT_COMMITTED",
+    "lastHeartbeat": "2026-10-09T22:51:38.750Z",
+    "status": "IN_PROGRESS",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -18275,86 +18272,443 @@
         "eligibleForReview": true,
         "reviewedDisposition": "ACCEPTED_SCOPED_T0_1440_NORMAL_PURSUIT_CONTACT_MISS_RETURN_FIXTURE",
         "reviewedLimits": "Origin/combat-result fixtures; no earned tactical victory/balance, articulated gait, browser V6 persistence/defeat/cancellation/reduced/fullwindow/mobile/manual acceptance"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "pursuit-gait-2223",
+        "runId": "rpgthreejs-auto-dev-90m-20261009T2223",
+        "status": "FAILED",
+        "registeredAt": "2026-10-09T22:36:03.351Z",
+        "pid": 67296,
+        "port": 5358,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "normal",
+          "viewports": [
+            "1440x810"
+          ],
+          "legs": [
+            "T0"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "pursuitCheck": true,
+          "gaitCheck": true,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "native-keyboard-focus",
+          "responsive-controls",
+          "forward-exit-and-resize",
+          "accelerating-arrival",
+          "pursuit-contact-single",
+          "pursuit-ordinary-pool",
+          "pursuit-exact-road-resume",
+          "pursuit-miss-full-exit",
+          "pursuit-no-node-resolution",
+          "pursuit-six-clocked-poses",
+          "pursuit-os-or-game-static-pose",
+          "pursuit-sheet-failure-static-fallback"
+        ],
+        "output": "tmp/traversal/pursuit-gait-2223",
+        "receiptPath": "tmp/traversal/pursuit-gait-2223/qa-job.json",
+        "provenance": {
+          "gitHead": "4617593e2ab0f573518b7940f5c0fe6878e73c73",
+          "sourceTree": "3c056f663c30f5c0fca7b9534d119f04676144d4",
+          "sourceDiffSha256": "dc6a923c51bda1b7fb97664601b3491ca92ef35570b0e70e8e3df676c29b5d62",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "3ad00b6d944f32392b4a433dee726af07851361dd8fbf9c02ddbbda399ee1244"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-B2Rv7uKR.js",
+              "sha256": "4cb975692048ee94c85389aa0f76f5d56e8b49a7114757ce3c628446b76abe98"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f19738cd344ad7e647aaa845b8212e433d7988046775eb9245938c9d0213d5a5"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-09T22:36:09.907Z",
+        "endedAt": "2026-10-09T22:36:33.792Z",
+        "exitCode": 1,
+        "resultPath": "tmp/traversal/pursuit-gait-2223/results.json",
+        "resultSha256": "44f7a499e109d8cc73d9258ce47958632c543b5f634f5881fe3c2fd2956c2587",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "pursuit-gait-2223-v2",
+        "runId": "rpgthreejs-auto-dev-90m-20261009T2223",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-09T22:37:41.860Z",
+        "pid": 44568,
+        "port": 5358,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "normal",
+          "viewports": [
+            "1440x810"
+          ],
+          "legs": [
+            "T0"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "pursuitCheck": true,
+          "gaitCheck": true,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "native-keyboard-focus",
+          "responsive-controls",
+          "forward-exit-and-resize",
+          "accelerating-arrival",
+          "pursuit-contact-single",
+          "pursuit-ordinary-pool",
+          "pursuit-exact-road-resume",
+          "pursuit-miss-full-exit",
+          "pursuit-no-node-resolution",
+          "pursuit-six-clocked-poses",
+          "pursuit-os-or-game-static-pose",
+          "pursuit-sheet-failure-static-fallback"
+        ],
+        "output": "tmp/traversal/pursuit-gait-2223-v2",
+        "receiptPath": "tmp/traversal/pursuit-gait-2223-v2/qa-job.json",
+        "provenance": {
+          "gitHead": "4617593e2ab0f573518b7940f5c0fe6878e73c73",
+          "sourceTree": "3c056f663c30f5c0fca7b9534d119f04676144d4",
+          "sourceDiffSha256": "dc6a923c51bda1b7fb97664601b3491ca92ef35570b0e70e8e3df676c29b5d62",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "3ad00b6d944f32392b4a433dee726af07851361dd8fbf9c02ddbbda399ee1244"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-B2Rv7uKR.js",
+              "sha256": "4cb975692048ee94c85389aa0f76f5d56e8b49a7114757ce3c628446b76abe98"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f19738cd344ad7e647aaa845b8212e433d7988046775eb9245938c9d0213d5a5"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-09T22:38:01.584Z",
+        "endedAt": "2026-10-09T22:40:20.035Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/pursuit-gait-2223-v2/results.json",
+        "resultSha256": "87c5e31042265beee5c9598e9b1b5b4411d975c907a362c4d85ef02a9f88c7e3",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "pursuit-gait-2223-v3",
+        "runId": "rpgthreejs-auto-dev-90m-20261009T2223",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-09T22:42:26.464Z",
+        "pid": 48420,
+        "port": 5358,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "normal",
+          "viewports": [
+            "1440x810"
+          ],
+          "legs": [
+            "T0"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "pursuitCheck": true,
+          "gaitCheck": true,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "native-keyboard-focus",
+          "responsive-controls",
+          "forward-exit-and-resize",
+          "accelerating-arrival",
+          "pursuit-contact-single",
+          "pursuit-ordinary-pool",
+          "pursuit-exact-road-resume",
+          "pursuit-miss-full-exit",
+          "pursuit-no-node-resolution",
+          "pursuit-six-clocked-poses",
+          "pursuit-os-or-game-static-pose",
+          "pursuit-sheet-failure-static-fallback"
+        ],
+        "output": "tmp/traversal/pursuit-gait-2223-v3",
+        "receiptPath": "tmp/traversal/pursuit-gait-2223-v3/qa-job.json",
+        "provenance": {
+          "gitHead": "4617593e2ab0f573518b7940f5c0fe6878e73c73",
+          "sourceTree": "3c056f663c30f5c0fca7b9534d119f04676144d4",
+          "sourceDiffSha256": "dc6a923c51bda1b7fb97664601b3491ca92ef35570b0e70e8e3df676c29b5d62",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "03ebcf3311b1a285be28dbb64bad056f10b49e629042c42e2d6aa690ee9e716d"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-B2Rv7uKR.js",
+              "sha256": "4cb975692048ee94c85389aa0f76f5d56e8b49a7114757ce3c628446b76abe98"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f19738cd344ad7e647aaa845b8212e433d7988046775eb9245938c9d0213d5a5"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-09T22:42:46.774Z",
+        "endedAt": "2026-10-09T22:45:05.832Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/pursuit-gait-2223-v3/results.json",
+        "resultSha256": "baf80289e3bd028e47fb657568e8a5bc0c79612e10aaaedc3fb580a30908453d",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
       }
     ],
     "wip": {
-      "branch": "wip/codex-demo-consolidation-20261009T1856",
-      "sha": "852047971509b9781e3862785fab54f678ecf843",
-      "snapshotAt": "2026-10-09T22:19:07.826Z",
-      "status": "LANDED_ON_DEV",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261009T2223",
+      "sha": "a980c0ce32c94a345e0d3cd3ae4fba70070a8877",
+      "snapshotAt": "2026-10-09T22:51:38.750Z",
+      "status": "WIP_NOT_ACCEPTED",
       "paths": [
-        "src/game/catalog.ts",
-        "src/game/management.test.ts",
-        "src/game/runSystem.ts",
-        "src/game/runSystem.test.ts",
-        "src/game/GameApp.ts",
-        "src/campaign/LionTraversalPursuitEncounters.ts",
-        "src/traversal/TraversalPresentation.ts",
-        "src/traversal/TraversalPursuitCharge.ts",
+        "src/traversal/TraversalPursuerSprite.ts",
+        "src/traversal/TraversalPursuerSprite.test.ts",
         "src/traversal/TraversalPursuitChargeRenderer.ts",
+        "src/traversal/TraversalRoutePursuitRenderer.ts",
         "src/traversal/TraversalRoadScene.ts",
-        "src/traversal/TraversalRoadScene.test.ts",
-        "src/traversal/TraversalRoutePursuit.ts",
-        "src/traversal/TraversalRoutePursuit.test.ts",
-        "src/styles/app.css",
+        "src/traversal/TraversalRoutePursuitArt.test.ts",
+        "src/styles/traversal-pursuit-charge.css",
+        "src/styles/traversal.css",
+        "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json",
+        "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.png",
+        "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.json",
         "tools/traversal-motion-production-qa.mjs",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/DESKTOP_OPENING_OPERATOR_DECISION_2026-10-09.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/TRAVERSAL_PURSUIT_THREAT.md",
-        "docs/autonomy/handoffs/2026-10-09T1856Z-codex-consolidation.md",
-        "docs/reports/demo-consolidation-20261009/checks.json"
-      ],
-      "landedCommit": "a549fd06a3cf0dccca25833a55a3bba4d72b5b16"
+        "docs/autonomy/handoffs/2026-10-09T2223Z-codex-pursuit-gait.md",
+        "docs/reports/pursuit-gait-20261009/README.md",
+        "docs/reports/pursuit-gait-20261009/checks.json",
+        "docs/reports/pursuit-gait-20261009/T0-1440-gallop-charge.png",
+        "docs/reports/pursuit-gait-20261009/T0-1440-gallop-os-static.png",
+        "docs/reports/pursuit-gait-20261009/T0-1440-gallop-sheet-fallback.png"
+      ]
     },
-    "nextAction": "Read-only preflight/exclusive lock; inspect1856 v2 terminal receipt and compactchecks first, reuse113tests+scopedT0desktop contact/miss/exactroadreturn evidence if same source/driver/build. Preserve operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue same desktop consolidation: implement articulated Shadow running animation (current still/bob is not gait), then existing-runner OS/game-reduced and other mapped contexts, browser native tactical victory/defeat temporary-loot recovery, persistedV6 and cancel/re-enter/focus-visible checks. Do not reinterpret null autosave equality as persistedV6 proof. Finish checkpoint glissement perception/settled parentfocus/narrative/campaign gaps; operator manual visual/literary/balance QA later, mobile finalization last. No new mapping operator decision needed; mappings/category blocker resolved. Eight videos/Alaric/audio/LOCKED unchanged.",
+    "nextAction": "Read-only preflight/exclusive lock; inspect pursuit-gait-2223-v3 terminal receipt and docs/reports/pursuit-gait-20261009/checks.json first. Reuse scoped 36-test and T0 1440x810 gait/contact/miss/exact-road-return evidence only when source/driver/build/parameters/assertions match. Preserve pursuitGait2223.previous, operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue the same desktop consolidation with existing-runner OS/game-reduced charge and other mapped contexts, native tactical victory/defeat temporary-loot recovery, persisted V6 and cancel/re-enter/focus-visible proof. Null autosave equality is absence, not persisted V6 proof. Review full-tail approach/ground-contact and checkpoint braking/glissement perception; resolve settled parentfocus, skills/campaign/narrative gaps in the existing queue. Operator artistic/literary/balance playtest remains final; mobile finalization last. Category/ten mappings blocker resolved; eight videos/Alaric/audio/LOCKED unchanged.",
     "runMetrics": {
-      "sourceFilesModified": 0,
-      "testFilesModified": 0,
+      "productSourceFilesChanged": 6,
+      "testFilesChanged": 2,
       "existingQAToolsModified": 1,
       "qaToolsAdded": 0,
-      "proofFilesAdded": 0,
-      "workflowFiles": 3,
+      "assetsChanged": 3,
+      "proofFilesAdded": 5,
+      "workflowFilesChanged": 4,
       "inheritedWIPPaths": 0,
+      "distinctReadOnlyReviewers": 2,
+      "registeredInvocations": 3,
+      "executedScenarios": 2,
+      "acceptedScopedJobs": 1,
       "harnessCorrectionsThisRun": 1,
-      "distinctReadOnlyReviewers": 1,
       "selectedCapturesInspected": 4,
-      "acceptedScopedJobs": 1
+      "selectedCapturesPromoted": 3
     },
     "checkpointPaths": [
-      "tools/combat-salvation-production-qa.mjs",
-      "tools/demo-continuous-production-qa.mjs",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "src/traversal/TraversalPursuerSprite.ts",
+      "src/traversal/TraversalPursuerSprite.test.ts",
+      "src/traversal/TraversalPursuitChargeRenderer.ts",
+      "src/traversal/TraversalRoutePursuitRenderer.ts",
+      "src/traversal/TraversalRoadScene.ts",
+      "src/traversal/TraversalRoutePursuitArt.test.ts",
+      "src/styles/traversal-pursuit-charge.css",
+      "src/styles/traversal.css",
+      "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json",
+      "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.png",
+      "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.json",
+      "tools/traversal-motion-production-qa.mjs",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-09T0011Z-codex-salvation-ending-checkpoint.md",
-      "docs/autonomy/handoffs/2026-10-09T0443Z-codex-earned-ending-checkpoint.md",
-      "docs/reports/demo-earned-serpent-ending-0443-browser/compact-proof.json",
-      "docs/reports/demo-earned-serpent-ending-0443-browser/combat-3-result.png",
-      "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth.png",
-      "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth-resumed.png",
-      "src/combat/combatKeyboard.ts",
-      "src/combat/combatKeyboard.test.ts"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/TRAVERSAL_PURSUIT_THREAT.md",
+      "docs/autonomy/handoffs/2026-10-09T2223Z-codex-pursuit-gait.md",
+      "docs/reports/pursuit-gait-20261009/README.md",
+      "docs/reports/pursuit-gait-20261009/checks.json",
+      "docs/reports/pursuit-gait-20261009/T0-1440-gallop-charge.png",
+      "docs/reports/pursuit-gait-20261009/T0-1440-gallop-os-static.png",
+      "docs/reports/pursuit-gait-20261009/T0-1440-gallop-sheet-fallback.png"
     ],
     "publication": {
-      "status": "LOCAL_COHERENT_CHECKPOINT_READY_FOR_NORMAL_DEV_PUBLICATION",
+      "runId": "rpgthreejs-auto-dev-90m-20261009T2223",
+      "status": "COHERENT_EXPLICIT_PAYLOAD_READY_FOR_NORMAL_DEV_PUBLICATION",
       "standingDecision": "OD-2026-10-08-B",
       "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
       "branch": "dev",
-      "baseline": "7cb9bd72848d45bbc12a19cf21a301ce2a1e39fb",
-      "rejectionsThisRun": 0,
+      "baseline": "4617593e2ab0f573518b7940f5c0fe6878e73c73",
       "selectedPaths": [
-        "src/combat/legacyCombatRuntime.js",
-        "src/combat/unitMotion.test.ts",
-        "tools/combat-salvation-production-qa.mjs",
-        "tools/demo-continuous-production-qa.mjs",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "src/traversal/TraversalPursuerSprite.ts",
+        "src/traversal/TraversalPursuerSprite.test.ts",
+        "src/traversal/TraversalPursuitChargeRenderer.ts",
+        "src/traversal/TraversalRoutePursuitRenderer.ts",
+        "src/traversal/TraversalRoadScene.ts",
+        "src/traversal/TraversalRoutePursuitArt.test.ts",
+        "src/styles/traversal-pursuit-charge.css",
+        "src/styles/traversal.css",
+        "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json",
+        "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.png",
+        "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.json",
+        "tools/traversal-motion-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-08T2311Z-codex-earned-ending-checkpoint.md"
-      ]
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/TRAVERSAL_PURSUIT_THREAT.md",
+        "docs/autonomy/handoffs/2026-10-09T2223Z-codex-pursuit-gait.md",
+        "docs/reports/pursuit-gait-20261009/README.md",
+        "docs/reports/pursuit-gait-20261009/checks.json",
+        "docs/reports/pursuit-gait-20261009/T0-1440-gallop-charge.png",
+        "docs/reports/pursuit-gait-20261009/T0-1440-gallop-os-static.png",
+        "docs/reports/pursuit-gait-20261009/T0-1440-gallop-sheet-fallback.png"
+      ],
+      "rejectionsThisRun": 0
     },
-    "runStartedAt": "2026-10-09T19:00:31.2695699Z",
-    "runEndedAt": "2026-10-09T22:19:47.540Z",
-    "writerStopped": true,
+    "runStartedAt": "2026-10-09T22:25:19.3006143Z",
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "status": "RESOLVED_BY_OPERATOR_APPROVAL",
       "standingDecision": "OD-2026-10-08-B",
@@ -19182,7 +19536,9 @@
       "runEndedAt": "2026-10-09T17:25:27.033Z",
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
-    }
+    },
+    "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
+    "activeSubtask": "Articulated Shadow gait implemented; scoped desktop functional proof accepted, broader Pursuit/manual QA open"
   },
   "previousInterruptedRun": {
     "runId": "rpgthreejs-auto-dev-90m-20261009T0011",
@@ -19229,52 +19585,51 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-09T0613Z-codex-keyboard-modifier-checkpoint.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-09T2223Z-codex-pursuit-gait.md",
   "runMeasurement": {
     "sourceModified": [
-      "src/game/catalog.ts",
-      "src/game/content.ts",
-      "src/ui/ManagementView.ts",
-      "src/styles/traversal.css",
-      "src/traversal/TraversalRoadScene.ts"
+      "src/traversal/TraversalPursuerSprite.ts",
+      "src/traversal/TraversalPursuitChargeRenderer.ts",
+      "src/traversal/TraversalRoutePursuitRenderer.ts",
+      "src/traversal/TraversalRoadScene.ts",
+      "src/styles/traversal-pursuit-charge.css",
+      "src/styles/traversal.css"
     ],
-    "testModified": [
-      "src/game/management.test.ts",
-      "src/ui/ManagementView.test.ts"
+    "testsChanged": [
+      "src/traversal/TraversalPursuerSprite.test.ts",
+      "src/traversal/TraversalRoutePursuitArt.test.ts"
     ],
     "existingQaModified": [
-      "tools/demo-continuous-production-qa.mjs",
       "tools/traversal-motion-production-qa.mjs"
     ],
     "newQa": [],
+    "assetsChanged": [
+      "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json",
+      "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.png",
+      "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.json"
+    ],
     "proofAdded": [
-      "docs/reports/desktop-opening-traversal-20261009/intro-marian.png",
-      "docs/reports/desktop-opening-traversal-20261009/opening-two-wolves.png",
-      "docs/reports/desktop-opening-traversal-20261009/earned-refuge-resumed.png",
-      "docs/reports/desktop-opening-traversal-20261009/ambush-ground.png",
-      "docs/reports/desktop-opening-traversal-20261009/arrival-visible.png",
-      "docs/reports/desktop-opening-traversal-20261009/arrival-exited.png",
-      "docs/reports/desktop-opening-traversal-20261009/checks.json"
+      "docs/reports/pursuit-gait-20261009/README.md",
+      "docs/reports/pursuit-gait-20261009/checks.json",
+      "docs/reports/pursuit-gait-20261009/T0-1440-gallop-charge.png",
+      "docs/reports/pursuit-gait-20261009/T0-1440-gallop-os-static.png",
+      "docs/reports/pursuit-gait-20261009/T0-1440-gallop-sheet-fallback.png"
     ],
     "workflowModified": [
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/DESKTOP_OPENING_OPERATOR_DECISION_2026-10-09.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-09T1748Z-codex-desktop-feedback.md"
+      "docs/autonomy/TRAVERSAL_PURSUIT_THREAT.md",
+      "docs/autonomy/handoffs/2026-10-09T2223Z-codex-pursuit-gait.md"
     ],
     "inheritedWip": 0,
-    "reviewers": 4,
-    "reviewPasses": {
-      "guardian": 4,
-      "narrative": 3,
-      "traversal": 4,
-      "ui": 1
-    },
-    "browserJobs": 3,
-    "singleSmoke": 1,
-    "milestoneCases": 6,
-    "capturesPromoted": 6
+    "readOnlyReviewers": 2,
+    "registeredInvocations": 3,
+    "singleSmokeScenario": 1,
+    "executedScenarios": 2,
+    "harnessCaptureCorrections": 1,
+    "capturesInspected": 4,
+    "capturesPromoted": 3,
+    "reviewCost": "Two precise read-only specialists reused for draft/fallback correction and terminal proof; no quota savings claim"
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -19417,13 +19772,31 @@
     }
   },
   "uncommittedWork": {
-    "status": "RETIREMENT_DISPOSITION_METADATA_ONLY",
+    "status": "REVIEWED_CURRENT_RUN_PAYLOAD",
     "paths": [
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "src/traversal/TraversalPursuerSprite.ts",
+      "src/traversal/TraversalPursuerSprite.test.ts",
+      "src/traversal/TraversalPursuitChargeRenderer.ts",
+      "src/traversal/TraversalRoutePursuitRenderer.ts",
+      "src/traversal/TraversalRoadScene.ts",
+      "src/traversal/TraversalRoutePursuitArt.test.ts",
+      "src/styles/traversal-pursuit-charge.css",
+      "src/styles/traversal.css",
+      "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json",
+      "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.png",
+      "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.json",
+      "tools/traversal-motion-production-qa.mjs",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-09T0443Z-codex-earned-ending-checkpoint.md"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/TRAVERSAL_PURSUIT_THREAT.md",
+      "docs/autonomy/handoffs/2026-10-09T2223Z-codex-pursuit-gait.md",
+      "docs/reports/pursuit-gait-20261009/README.md",
+      "docs/reports/pursuit-gait-20261009/checks.json",
+      "docs/reports/pursuit-gait-20261009/T0-1440-gallop-charge.png",
+      "docs/reports/pursuit-gait-20261009/T0-1440-gallop-os-static.png",
+      "docs/reports/pursuit-gait-20261009/T0-1440-gallop-sheet-fallback.png"
     ],
-    "inheritedWip": "Integrated and preserved; original0011 snapshot retained"
+    "inheritedWIP": 0
   },
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
@@ -19514,26 +19887,21 @@
     "nextAction": "Run existing witnesses-protected normal-motion production opening proof; independently observe refugee transaction acknowledgements and wider static-only OS acceptance before task milestone"
   },
   "runStatistics": {
-    "sourceFilesModified": 1,
-    "testFilesModified": 1,
-    "existingQAToolsModified": 2,
+    "productSourceFilesChanged": 6,
+    "testFilesChanged": 2,
+    "existingQAToolsModified": 1,
     "qaToolsAdded": 0,
-    "proofFilesAdded": 0,
-    "workflowFiles": 3,
+    "assetsChanged": 3,
+    "proofFilesAdded": 5,
+    "workflowFilesChanged": 4,
     "inheritedWIPPaths": 0,
     "distinctReadOnlyReviewers": 2,
-    "registeredInvocations": 2,
-    "acceptedScopedJobs": 0,
-    "harnessCorrectionsThisRun": 0,
-    "failedSeedsUsed": 0,
-    "campaignNativeActionsObserved": 131,
-    "reviewCost": "Two read-only reviewers reused for precise cast architecture/draft/diff and terminal pilot diagnosis; no quota savings claim.",
-    "selectedCapturesInspected": 6,
-    "selectedCapturesPromoted": 0,
-    "completedReviewers": 2,
-    "reviewerQuotaFailures": 0,
-    "endedAt": "2026-10-09T00:00:35.779Z",
-    "elapsedMinutes": 49.51298333333333
+    "registeredInvocations": 3,
+    "executedScenarios": 2,
+    "acceptedScopedJobs": 1,
+    "harnessCorrectionsThisRun": 1,
+    "selectedCapturesInspected": 4,
+    "selectedCapturesPromoted": 3
   },
   "qaToolingJustification": "No new persistent QA tool. Existing Salvation runner gains optional read-only rendered cast sampling/liveOS toggles because HP/AP-only checks do not verify ongoing suppressed lift/squash. Existing native HP/AP assertions and receipt guards retained; campaign pilot subsequently gains six-line native lone-survivor fallback; assertions unchanged and future browser validation required.",
   "retainedRunArtifacts": {
@@ -19713,5 +20081,151 @@
     "openGait": true,
     "clockGap": "Observed19:02to22:07; only existing atomic operation/checks finished after return",
     "publishedAt": "2026-10-09T22:19:47.540Z"
+  },
+  "pursuitGait2223": {
+    "previous": {
+      "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
+      "activeSubtask": "Six demo hero skills and ordinary random Pursuit contact/miss/return scoped verified; articulated gait/manual QA open",
+      "nextAction": "Read-only preflight/exclusive lock; inspect1856 v2 terminal receipt and compactchecks first, reuse113tests+scopedT0desktop contact/miss/exactroadreturn evidence if same source/driver/build. Preserve operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue same desktop consolidation: implement articulated Shadow running animation (current still/bob is not gait), then existing-runner OS/game-reduced and other mapped contexts, browser native tactical victory/defeat temporary-loot recovery, persistedV6 and cancel/re-enter/focus-visible checks. Do not reinterpret null autosave equality as persistedV6 proof. Finish checkpoint glissement perception/settled parentfocus/narrative/campaign gaps; operator manual visual/literary/balance QA later, mobile finalization last. No new mapping operator decision needed; mappings/category blocker resolved. Eight videos/Alaric/audio/LOCKED unchanged."
+    },
+    "baseline": "4617593e2ab0f573518b7940f5c0fe6878e73c73",
+    "status": "ACCEPTED_SCOPED_DESKTOP_GAIT; broader task IN_PROGRESS",
+    "priorProof": "docs/reports/demo-consolidation-20261009/checks.json",
+    "newQaTool": false,
+    "scope": "Articulated existing Shadow run only; desktop first; fixture lifecycle is not earned tactical/V6 acceptance",
+    "checks": {
+      "focusedUnique": 36,
+      "files": 6,
+      "types": "PASS",
+      "contracts": 8,
+      "slots": 8,
+      "buildModules": 214,
+      "immutableGate": "EMPTY",
+      "diffCheck": "PASS"
+    },
+    "baselineFailures": {
+      "file": "src/traversal/TraversalT0PursuitScene.test.ts",
+      "tests": [
+        "catches once in isolation, resets speed only, and freezes during a global cover",
+        "uses the Risk reset when collision and catch occur in the same step"
+      ],
+      "baseline": "4617593e2ab0f573518b7940f5c0fe6878e73c73",
+      "verified": "Exact HEAD src archived under ignored tmp/autonomy/baseline-2223; same two failures as current. Old reset-only target is superseded by existing1856 charge integration. Tests untouched in this run; debt remains OPEN."
+    },
+    "asset": {
+      "path": "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.png",
+      "provenance": "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.json",
+      "generator": "Built-in image_gen, existing Shadow reference; six real articulated poses; deterministic generate2dsprite chroma/scale/feet cleanup; original preserved"
+    },
+    "qaToolReason": "Reused existing traversal-motion-production-qa.mjs; optional gait-check samples the new pose reader, real OS/game preference changes and malformed sheet fallback, which its existing motion-only assertions did not observe. No new QA driver.",
+    "physicalFreeze": "tmp/autonomy/physical-freeze-2223-v3.json",
+    "selectedJob": "pursuit-gait-2223-v3",
+    "proof": "docs/reports/pursuit-gait-20261009/checks.json",
+    "reviewers": [
+      "traversal-engineer: scoped implementation/desktop functional PASS",
+      "contracts-guardian: set1.1.0 scoped compliance PASS"
+    ],
+    "compliance": {
+      "GAME_CONSTITUTION": "PASS presentation clock only",
+      "ART_DIRECTION": "PASS scoped identity; operator artistic acceptance open",
+      "CHARACTERS": "PASS existing Shadow; original preserved",
+      "ENVIRONMENTS": "N/A",
+      "NARRATIVE_CAMPAIGN": "PASS no truth content changed",
+      "NARRATIVE_PRESENTATION": "N/A",
+      "TRAVERSAL": "PASS scoped clock/geometry/handoff; full Pursuit open",
+      "COMBAT": "PASS owner unchanged; injected outcome disclosed",
+      "SAVE": "PASS schema/IDs unchanged; persisted V6 unclaimed",
+      "UI_ACCESSIBILITY": "PASS OS OR game static pose/fallback; broad acceptance open",
+      "QA_EVIDENCE": "PASS scoped18/stable; partial approach images disclosed",
+      "REPOSITORY_GOVERNANCE": "PASS dev, immutable gate empty,8contracts8slots"
+    },
+    "unverified": [
+      "Full-tail approach and reduced-charge visual sequence; foreground obscures some charge paw tips",
+      "Other mapped leg/window contexts and OS/game charge production matrix",
+      "Native earned tactical victory/defeat, temporary-loot recovery and persisted V6; current fixture lifecycle does not certify these",
+      "Cancellation/re-entry/focus-visible acceptance",
+      "Operator animation/visual/balance review and deferred compact/mobile acceptance"
+    ],
+    "selectedCaptures": [
+      {
+        "path": "docs/reports/pursuit-gait-20261009/T0-1440-gallop-charge.png",
+        "sha256": "72ada51cb3297d744977e6ba10d7aea4ece38fbfa6bb5e8371038e2c471debff",
+        "review": "Root + traversal-engineer + contracts-guardian inspected",
+        "limit": "Whole silhouette at road scale; foreground overlaps some paw tips"
+      },
+      {
+        "path": "docs/reports/pursuit-gait-20261009/T0-1440-gallop-os-static.png",
+        "sha256": "900ae87813ff650877b964f526466ce4abb4e508eeb7693a75b0f6fc6ab7b0fa",
+        "review": "Root + traversal-engineer + contracts-guardian inspected",
+        "limit": "Approach tail partly outside left edge; functional static/fallback proof only"
+      },
+      {
+        "path": "docs/reports/pursuit-gait-20261009/T0-1440-gallop-sheet-fallback.png",
+        "sha256": "da9f6ffe085d978c37c7c6fc46ee25e6175f68ba6a3c1bcce090bde30df07c31",
+        "review": "Root + traversal-engineer + contracts-guardian inspected",
+        "limit": "Approach tail partly outside left edge; functional static/fallback proof only"
+      }
+    ],
+    "checkpointAt": "2026-10-09T22:50:15.225Z",
+    "previousPrimaryMetadata": {
+      "lastKnownGoodCommit": "a549fd06a3cf0dccca25833a55a3bba4d72b5b16",
+      "lastPushedCommit": "a549fd06a3cf0dccca25833a55a3bba4d72b5b16",
+      "implementationCommit": "9a4acdead9081282f5a624a575c6346adbb0860e",
+      "commitReferenceScope": "Source/unit/build/selected browser checkpoint1748 physically matches 20b082984088a05b4b7aa3b562724229bd35e41a; final metadata closure SHA is recorded in automation memory. Prior ending/OS/mobile proofs retain their original scopes.",
+      "currentHandoff": "docs/autonomy/handoffs/2026-10-09T0613Z-codex-keyboard-modifier-checkpoint.md",
+      "uncommittedWork": {
+        "status": "RETIREMENT_DISPOSITION_METADATA_ONLY",
+        "paths": [
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+          "docs/autonomy/handoffs/2026-10-09T0443Z-codex-earned-ending-checkpoint.md"
+        ],
+        "inheritedWip": "Integrated and preserved; original0011 snapshot retained"
+      },
+      "livePublication": {
+        "status": "LOCAL_COHERENT_CHECKPOINT_READY_FOR_NORMAL_DEV_PUBLICATION",
+        "standingDecision": "OD-2026-10-08-B",
+        "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
+        "branch": "dev",
+        "baseline": "7cb9bd72848d45bbc12a19cf21a301ce2a1e39fb",
+        "rejectionsThisRun": 0,
+        "selectedPaths": [
+          "src/combat/legacyCombatRuntime.js",
+          "src/combat/unitMotion.test.ts",
+          "tools/combat-salvation-production-qa.mjs",
+          "tools/demo-continuous-production-qa.mjs",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+          "docs/autonomy/handoffs/2026-10-08T2311Z-codex-earned-ending-checkpoint.md"
+        ]
+      },
+      "liveRunMetrics": {
+        "sourceFilesModified": 0,
+        "testFilesModified": 0,
+        "existingQAToolsModified": 1,
+        "qaToolsAdded": 0,
+        "proofFilesAdded": 0,
+        "workflowFiles": 3,
+        "inheritedWIPPaths": 0,
+        "harnessCorrectionsThisRun": 1,
+        "distinctReadOnlyReviewers": 1,
+        "selectedCapturesInspected": 4,
+        "acceptedScopedJobs": 1
+      },
+      "liveCheckpointPaths": [
+        "tools/combat-salvation-production-qa.mjs",
+        "tools/demo-continuous-production-qa.mjs",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/handoffs/2026-10-09T0011Z-codex-salvation-ending-checkpoint.md",
+        "docs/autonomy/handoffs/2026-10-09T0443Z-codex-earned-ending-checkpoint.md",
+        "docs/reports/demo-earned-serpent-ending-0443-browser/compact-proof.json",
+        "docs/reports/demo-earned-serpent-ending-0443-browser/combat-3-result.png",
+        "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth.png",
+        "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth-resumed.png",
+        "src/combat/combatKeyboard.ts",
+        "src/combat/combatKeyboard.test.ts"
+      ]
+    }
   }
 }

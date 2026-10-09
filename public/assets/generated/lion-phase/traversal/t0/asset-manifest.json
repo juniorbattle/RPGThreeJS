@@ -187,6 +187,18 @@
       "width": 1536,
       "height": 1024,
       "sha256": "a25162191ee1de2c406bdc62600e22f311eb1994a0ca2ad22c3e0fb83f68cb88"
+    },
+    {
+      "id": "pursuit-shadow-pursuer-run-v1",
+      "path": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.png",
+      "role": "pursuit-animation",
+      "width": 1536,
+      "height": 492,
+      "sha256": "184a87b829fa1ab4d5d3573c59aaae15d42ba0a7f8d8b17a52c8d06913558b2d",
+      "columns": 3,
+      "rows": 2,
+      "frameMs": 85,
+      "provenance": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.json"
     }
   ]
 }

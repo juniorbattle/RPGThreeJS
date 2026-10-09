@@ -341,6 +341,7 @@ export class TraversalRoadScene {
     window.removeEventListener('resize', this.onResize);
     this.controller.dispose();
     this.chargeRenderer?.dispose();
+    this.pursuitRenderer?.dispose();
     this.element.remove();
   }
 
@@ -1142,7 +1143,7 @@ export class TraversalRoadScene {
       const vehicleHeight = Math.min(height * .24, width * (width <= 1000 ? .16 : .14));
       const window = this.authoring.pursuitWindow(this.routeSegment.id);
       this.pursuitRenderer.update(window, this.routePursuit, this.routeRun.progress01,
-        this.routeRun.elapsedMs, width, vehicleHeight, active);
+        this.routeRun.elapsedMs, width, vehicleHeight, active, this.options.getState().settings.reducedGraphics);
       if (this.pursuitCharge) {
         this.pursuitRenderer.reset();
         const chargeActive = this.viewMode === 'ROUTE' && session.phase === 'RUNNING'

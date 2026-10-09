@@ -1,3 +1,21 @@
+## Current Pursuit gait checkpoint — 2026-10-09
+
+Run: rpgthreejs-auto-dev-90m-20261009T2223; status: IN_PROGRESS
+
+Active task: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat
+Active subtask: Articulated Shadow gait implemented; scoped desktop functional proof accepted, broader Pursuit/manual QA open
+
+Exact next action: Read-only preflight/exclusive lock; inspect pursuit-gait-2223-v3 terminal receipt and docs/reports/pursuit-gait-20261009/checks.json first. Reuse scoped 36-test and T0 1440x810 gait/contact/miss/exact-road-return evidence only when source/driver/build/parameters/assertions match. Preserve pursuitGait2223.previous, operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue the same desktop consolidation with existing-runner OS/game-reduced charge and other mapped contexts, native tactical victory/defeat temporary-loot recovery, persisted V6 and cancel/re-enter/focus-visible proof. Null autosave equality is absence, not persisted V6 proof. Review full-tail approach/ground-contact and checkpoint braking/glissement perception; resolve settled parentfocus, skills/campaign/narrative gaps in the existing queue. Operator artistic/literary/balance playtest remains final; mobile finalization last. Category/ten mappings blocker resolved; eight videos/Alaric/audio/LOCKED unchanged.
+
+Accepted only: articulated Shadow implementation and functional T0 desktop gait/reduction/fallback/contact/miss/return. 36 unique tests/types/contracts/build pass; two inherited reset-only T0 scene failures reproduced at starting HEAD and untouched. v3 SUCCEEDED18/noerrors with matching digest and stable401physical+10build hashes; receipt NOT_ACCEPTED retained, scoped review stored separately. One environment launch failure and one capture timing correction are retained. Three selected captures promoted,4 inspected; OS/fallback tail remains partially offleft and foreground overlaps some charge paw tips. Native earned outcomes/persistedV6/all-context/reduced-charge/manual/mobile remain open. Original168 QA entries and exact deferred task/operator histories preserved.
+
+Compliance: root + reused traversal-engineer/contracts-guardian PASS scoped set1.1.0; immutable gate empty,8contracts/8slots. No canon/save/combat/LOCKED/video/audio change.
+
+Run counts:6product source,2tests,1existing QA driver,0new QA tool,3assets,5proof files,4workflow files; inheritedWIP0;2read-only reviewers.
+
+Handoff: docs/autonomy/handoffs/2026-10-09T2223Z-codex-pursuit-gait.md
+Proof: docs/reports/pursuit-gait-20261009/checks.json
+
 ## Current consolidation — 2026-10-09
 
 Run: codex-demo-consolidation-20261009T1856; status: IN_PROGRESS
@@ -236,6 +254,9 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - motion-desktop-1748-os: SUCCEEDED; port 5356; receipt `tmp/traversal/motion-desktop-1748-os/qa-job.json`; NOT_ACCEPTED
 - pursuit-consolidation-1856: CANCELLED_BEFORE_START; port 5357; receipt `tmp/traversal/pursuit-consolidation-1856/qa-job.json`; NOT_ACCEPTED
 - pursuit-consolidation-1856-v2: SUCCEEDED; port 5357; receipt `tmp/traversal/pursuit-consolidation-1856-v2/qa-job.json`; NOT_ACCEPTED
+- pursuit-gait-2223: FAILED; port 5358; receipt `tmp/traversal/pursuit-gait-2223/qa-job.json`; NOT_ACCEPTED
+- pursuit-gait-2223-v2: SUCCEEDED; port 5358; receipt `tmp/traversal/pursuit-gait-2223-v2/qa-job.json`; NOT_ACCEPTED
+- pursuit-gait-2223-v3: SUCCEEDED; port 5358; receipt `tmp/traversal/pursuit-gait-2223-v3/qa-job.json`; NOT_ACCEPTED
 
 <!-- QA_JOBS_END -->
 

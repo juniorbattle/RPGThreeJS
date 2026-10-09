@@ -1,15 +1,18 @@
 import type { TraversalLane } from './TraversalRunRuntime';
 import type { TraversalRoutePursuitState, TraversalRoutePursuitWindow } from './TraversalRoutePursuit';
 import { pursuerLaneAt } from './TraversalRoutePursuit';
+import { TraversalPursuerSprite } from './TraversalPursuerSprite';
+
+export { TRAVERSAL_PURSUER_IMAGE } from './TraversalPursuerSprite';
 
 const FEEDBACK_MS = 650;
-export const TRAVERSAL_PURSUER_IMAGE = '/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png';
 
 /** T0 pursuer art in screen space, behind the caravan. No world distance or campaign ownership. */
 export class TraversalRoutePursuitRenderer {
   readonly element = document.createElement('div');
   private readonly proxy = document.createElement('span');
   private readonly feedback = document.createElement('span');
+  private readonly sprite = new TraversalPursuerSprite();
   private feedbackUntilMs = -1;
   private feedbackKind: 'caught' | 'escaped' | null = null;
   private feedbackLane: TraversalLane = 0;
@@ -19,12 +22,8 @@ export class TraversalRoutePursuitRenderer {
     this.element.className = 'traversal-route-pursuit';
     this.element.setAttribute('aria-hidden', 'true');
     this.proxy.className = 'traversal-route-pursuit__proxy';
-    const image = document.createElement('img');
-    image.className = 'traversal-route-pursuit__image';
-    image.src = TRAVERSAL_PURSUER_IMAGE;
-    image.alt = '';
-    image.draggable = false;
-    this.proxy.append(image);
+    this.sprite.element.classList.add('traversal-route-pursuit__image');
+    this.proxy.append(this.sprite.element);
     this.proxy.hidden = true;
     this.feedback.className = 'traversal-route-pursuit__feedback';
     this.feedback.hidden = true;
@@ -67,9 +66,10 @@ export class TraversalRoutePursuitRenderer {
 
   update(window: TraversalRoutePursuitWindow | undefined, state: TraversalRoutePursuitState,
     progress01: number, elapsedMs: number, viewportWidth: number, vehicleHeight: number,
-    activeDriving: boolean): void {
+    activeDriving: boolean, reducedMotion = false): void {
     const active = activeDriving && !!window && state.activeWindowId === window.id;
     const feedbackActive = activeDriving && !!this.feedbackKind && elapsedMs < this.feedbackUntilMs;
+    this.sprite.update(elapsedMs, active, reducedMotion);
     if (!active && !feedbackActive) {
       this.proxy.hidden = true;
       this.feedback.hidden = true;
@@ -98,4 +98,6 @@ export class TraversalRoutePursuitRenderer {
     this.feedback.style.top = `${lane === 0 ? 65 : 81}%`;
     this.feedback.hidden = !feedbackActive;
   }
+
+  dispose(): void { this.sprite.dispose(); this.element.remove(); }
 }

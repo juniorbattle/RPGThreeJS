@@ -1,6 +1,6 @@
 import type { TraversalPursuitCharge } from './TraversalPursuitCharge';
 import { ROAD_SPACE } from './TraversalRoadSpace';
-import { TRAVERSAL_PURSUER_IMAGE } from './TraversalRoutePursuitRenderer';
+import { TraversalPursuerSprite } from './TraversalPursuerSprite';
 import { prefersReducedMotion } from '../ui/ReducedMotion';
 import { setRoadGroundDepth } from './TraversalRoadAnchor';
 
@@ -10,18 +10,14 @@ import { setRoadGroundDepth } from './TraversalRoadAnchor';
  */
 export class TraversalPursuitChargeRenderer {
   readonly element = document.createElement('div');
-  private readonly image = document.createElement('img');
+  private readonly sprite = new TraversalPursuerSprite();
   private disposed = false;
 
   constructor() {
     this.element.className = 'traversal-pursuit-charge';
     this.element.setAttribute('aria-hidden', 'true');
-    this.image.src = TRAVERSAL_PURSUER_IMAGE;
-    this.image.alt = '';
-    this.image.draggable = false;
-    this.element.append(this.image);
+    this.element.append(this.sprite.element);
     this.element.hidden = true;
-    this.image.addEventListener('error', () => { this.element.dataset.assetFailed = 'true'; });
   }
 
   update(state: TraversalPursuitCharge, viewportWidth: number, vehicleHeight: number,
@@ -38,6 +34,7 @@ export class TraversalPursuitChargeRenderer {
     this.element.dataset.window = state.windowId;
     this.element.dataset.reducedMotion = String(reduced);
     this.element.dataset.active = String(active && state.phase === 'CHARGING');
+    this.sprite.update(state.elapsedSeconds * 1000, active && state.phase === 'CHARGING', reduced);
     this.element.style.width = `${vehicleHeight}px`;
     this.element.style.height = `${vehicleHeight * .48}px`;
     this.element.style.top = `${state.lane === 0 ? 65 : 81}%`;
@@ -50,5 +47,5 @@ export class TraversalPursuitChargeRenderer {
 
   reset(): void { this.element.hidden = true; }
 
-  dispose(): void { this.disposed = true; this.element.remove(); }
+  dispose(): void { this.disposed = true; this.sprite.dispose(); this.element.remove(); }
 }

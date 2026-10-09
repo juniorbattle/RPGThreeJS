@@ -13,12 +13,16 @@ const output=arg('output',`tmp/traversal/motion-1002-${motion}`);
 const viewports=arg('viewports','1440x810,620x780,390x844').split(',');
 const legs=arg('legs','T0,T1,T3').split(',');assert.ok(legs.every(leg=>['T0','T1','T3'].includes(leg)));
 const pursuitCheck=arg('pursuit-check','0')==='1';
+const gaitCheck=arg('gait-check','0')==='1';
+assert.ok(!gaitCheck||(pursuitCheck&&motion==='normal'&&legs.length===1&&legs[0]==='T0'),'Gait smoke requires one normal T0 Pursuit scenario');
 assert.ok(viewports.every(value=>/^\d+x\d+$/.test(value)&&value.split('x').every(n=>Number(n)>0)),'Invalid viewports');
 const parameters={motion,viewports,legs,branch:'event',gameReducedMotion:false,pursuitCheck,
+  gaitCheck,
   scope:'native production motion with V6-origin/combat-result fixtures; not earned campaign'};
 const requiredAssertions=['continuous-departure','opaque-swap','reveal-momentum','clock-zero-during-reveal','full-exit-before-arrival','single-canonical-arrival','native-keyboard-focus','responsive-controls',
   ...(motion==='os'?['os-covered-exit']:['forward-exit-and-resize','accelerating-arrival'])];
 if(pursuitCheck)requiredAssertions.push('pursuit-contact-single','pursuit-ordinary-pool','pursuit-exact-road-resume','pursuit-miss-full-exit','pursuit-no-node-resolution');
+if(gaitCheck)requiredAssertions.push('pursuit-six-clocked-poses','pursuit-os-or-game-static-pose','pursuit-sheet-failure-static-fallback');
 if(process.argv.includes('--register')){
   const registered=registerJob({runId:process.env.AUTONOMY_RUN_ID,jobId:process.env.DEMO_QA_JOB_ID,output,
     driver:'tools/traversal-motion-production-qa.mjs',port,parameters,requiredAssertions});
@@ -131,9 +135,46 @@ try{
       if(width<1000)assert.ok(focused.width>=43&&focused.height>=43,'Touch-sized action');
       entry.keyboard.push({label,...focused});await page.keyboard.press('Enter');return true;
     }
-    const deadline=Date.now()+240000;let lanesChecked=false,skipped=false,resized=false,lastScene='';
+    async function poseSamples(duration){
+      return page.evaluate(duration=>new Promise(resolve=>{
+        const samples=[],start=performance.now();
+        const sample=()=>{const root=window.__motionApp.activeTraversal?.element;
+          const sprite=root?.querySelector('.traversal-route-pursuit__proxy:not([hidden]) .traversal-pursuer-sprite, .traversal-pursuit-charge:not([hidden]) .traversal-pursuer-sprite');
+          if(sprite){const r=sprite.getBoundingClientRect(),style=getComputedStyle(sprite);samples.push({time:performance.now(),frame:sprite.dataset.frame,asset:sprite.dataset.asset,reduced:sprite.dataset.reducedMotion,background:style.backgroundPosition,backgroundImage:style.backgroundImage,animation:style.animationName,left:r.left,top:r.top,width:r.width,height:r.height,os:matchMedia('(prefers-reduced-motion: reduce)').matches,game:window.__motionApp.state.settings.reducedGraphics});}
+          if(performance.now()-start>=duration)resolve(samples);else requestAnimationFrame(sample);
+        };requestAnimationFrame(sample);
+      }),duration);
+    }
+    async function verifyGait(){
+      entry.gait={normal:await poseSamples(650)};
+      assert.equal(new Set(entry.gait.normal.map(s=>s.frame)).size,6,'Six distinct clock-selected poses');
+      assert.ok(entry.gait.normal.every(s=>s.asset==='sheet'&&s.animation==='none'&&s.reduced==='false'));
+      await capture('gallop-normal');
+      await page.emulateMedia({reducedMotion:'reduce'});
+      entry.gait.os=await poseSamples(180);
+      assert.ok(entry.gait.os.length>=3&&entry.gait.os.slice(2).every(s=>s.os&&!s.game&&s.reduced==='true'&&s.frame==='0'),'OS-only selects a static pose');
+      await capture('gallop-os-static');
+      await page.emulateMedia({reducedMotion:'no-preference'});
+      await page.evaluate(()=>{window.__motionApp.state.settings.reducedGraphics=true;});
+      entry.gait.game=await poseSamples(180);
+      assert.ok(entry.gait.game.length>=3&&entry.gait.game.slice(2).every(s=>!s.os&&s.game&&s.reduced==='true'&&s.frame==='0'),'Game-only selects a static pose');
+      await page.evaluate(()=>{window.__motionApp.state.settings.reducedGraphics=false;});
+      await page.route('**/shadow-pursuer-run-v1.png?qaMissing=1',route=>route.fulfill({status:200,contentType:'image/png',body:'invalid image'}));
+      await page.locator('.traversal-pursuer-sprite__loader').evaluateAll(images=>images.forEach(image=>{image.src+="?qaMissing=1";}));
+      await page.waitForFunction(()=>[...document.querySelectorAll('.traversal-pursuer-sprite')].every(sprite=>sprite.dataset.asset==='fallback'));
+      entry.gait.fallback=await poseSamples(180);
+      assert.ok(entry.gait.fallback.length>=3&&entry.gait.fallback.every(s=>s.asset==='fallback'&&s.backgroundImage==='none'),'Failed sheet retains only static art');
+      entry.gait.fallbackImage=await page.locator('.traversal-route-pursuit__proxy:not([hidden]) .traversal-pursuer-sprite__fallback').evaluate(image=>({complete:image.complete,width:image.naturalWidth,height:image.naturalHeight,display:getComputedStyle(image).display}));
+      assert.deepEqual(entry.gait.fallbackImage,{complete:true,width:640,height:336,display:'block'});
+      await capture('gallop-sheet-fallback');
+      await page.locator('.traversal-pursuer-sprite__loader').evaluateAll(images=>images.forEach(image=>{image.src=image.src.split('?')[0];}));
+      await page.waitForFunction(()=>[...document.querySelectorAll('.traversal-pursuer-sprite')].every(sprite=>sprite.dataset.asset==='sheet'));
+      entry.gait.restored=await poseSamples(180);
+      assert.ok(new Set(entry.gait.restored.map(s=>s.frame)).size>=2,'Normal pose cadence resumes');
+    }
+    const deadline=Date.now()+240000;let lanesChecked=false,skipped=false,resized=false,lastScene='',gaitChecked=false;
     while(Date.now()<deadline){
-      const s=await page.evaluate(()=>{const app=window.__motionApp,scene=app.activeTraversal,root=scene?.element;return {segment:root?.dataset.routeSegment,view:root?.dataset.view,phase:scene?.session.phase,departure:!!scene?.departure,transition:root?.dataset.transition,opacity:Number(root?.style.getPropertyValue('--transition-opacity')),progress:scene?.routeRun.progress01,lane:scene?.session.currentLane,speed:scene?.speed,min:scene?.routeSegment.vMin,fade:Number(root?.style.getPropertyValue('--arrival-fade')||0),left:root?.querySelector('.traversal-vehicle').getBoundingClientRect().left,arrivals:window.__motionProof.arrivals.length};});
+      const s=await page.evaluate(()=>{const app=window.__motionApp,scene=app.activeTraversal,root=scene?.element;return {segment:root?.dataset.routeSegment,view:root?.dataset.view,phase:scene?.session.phase,departure:!!scene?.departure,transition:root?.dataset.transition,opacity:Number(root?.style.getPropertyValue('--transition-opacity')),progress:scene?.routeRun.progress01,lane:scene?.session.currentLane,speed:scene?.speed,min:scene?.routeSegment.vMin,fade:Number(root?.style.getPropertyValue('--arrival-fade')||0),left:root?.querySelector('.traversal-vehicle').getBoundingClientRect().left,chargePhase:scene?.pursuitCharge?.phase,chargeLeft:root?.querySelector('.traversal-pursuit-charge:not([hidden])')?.getBoundingClientRect().left,arrivals:window.__motionProof.arrivals.length};});
       if(s.arrivals===1){entry.complete=true;break;}
       const sceneKey=`${s.segment}/${s.view}/${s.phase}`;if(sceneKey!==lastScene){lastScene=sceneKey;console.log(`${motion}/${leg}/${dimensions}: ${sceneKey}`);}
       if(motion==='normal'&&!resized&&s.phase==='ARRIVING'&&s.left>width*.65&&s.left<width){
@@ -152,6 +193,10 @@ try{
         const desired=s.segment==='route-3'||s.segment==='route-6'?1:0;
         if(s.lane!==desired)await page.keyboard.press(desired?'ArrowDown':'ArrowUp');
         if(s.segment==='route-3'&&s.progress>.73&&s.progress<.78)await capture('pursuit-approach');
+        if(gaitCheck&&!gaitChecked&&s.segment==='route-3'&&s.progress>.60&&await page.locator('.traversal-route-pursuit__proxy:not([hidden]) .traversal-pursuer-sprite[data-asset="sheet"]').count()){
+          gaitChecked=true;await verifyGait();
+        }
+        if(gaitCheck&&s.chargePhase==='CHARGING'&&s.chargeLeft>width*.45&&s.chargeLeft<width*.75)await capture('gallop-charge');
       }
       if(!lanesChecked&&s.view==='route'&&!s.transition&&s.progress>.1&&s.progress<.5){
         await activate('[data-traversal-lane="1"]:visible:not([disabled])','lower lane');
@@ -178,6 +223,7 @@ try{
     }
     const proof=await page.evaluate(()=>{cancelAnimationFrame(window.__motionSampler);const app=window.__motionApp;return {...window.__motionProof,branch:app.state.run.traversalBranches,gameReduced:app.state.settings.reducedGraphics,osReduced:matchMedia('(prefers-reduced-motion: reduce)').matches};});
     Object.assign(entry,proof);
+    if(gaitCheck)assert.ok(gaitChecked,'Live articulated-pose checks executed');
     if(pursuitCheck){
       assert.equal(proof.roadBattles.length,1,'Exactly one physical collision handoff');const battle=proof.roadBattles[0];
       assert.ok(['forest_patrol','forest_ambush','wolf_pack'].includes(battle.config.id));assert.equal(battle.config.rank,'normal');

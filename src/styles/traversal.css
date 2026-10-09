@@ -141,9 +141,7 @@
   filter: drop-shadow(0 3px 3px #10080ac0) drop-shadow(0 0 3px #903d3870);
 }
 .traversal-route-pursuit__image { display: block; width: 100%; height: 100%; max-width: none;
-  pointer-events: none; filter: brightness(1.2) saturate(1.12);
-  animation: traversal-pursuit-run .38s ease-in-out infinite alternate; }
-@keyframes traversal-pursuit-run { to { translate: 0 -2px; } }
+  pointer-events: none; filter: brightness(1.2) saturate(1.12); }
 @media (max-width: 700px) {
   .traversal-route-pursuit__proxy { width: calc(var(--vehicle-height) * 1.12);
     height: calc(var(--vehicle-height) * .52); }
