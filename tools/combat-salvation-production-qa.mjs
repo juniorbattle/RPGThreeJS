@@ -25,24 +25,23 @@ const state=()=>page.evaluate(()=>{const g=window.G;return{mode:g.mode,busy:g.bu
 async function startCastProbe(){
   await page.evaluate(()=>{
     if(window.__castMotionProbe)window.__castMotionProbe.done=true;
-    const u=G.active,probe=window.__castMotionProbe={samples:[],baseline:{y:G.grid[u.gx][u.gz].topY,spriteX:Math.abs(u.spr.scale.x),spriteY:u.spr.scale.y,outlineX:Math.abs(u.outline.scale.x),outlineY:u.outline.scale.y},started:false,done:false};
+    const u=G.active,probe=window.__castMotionProbe={samples:[],phaseHistory:[],baseline:{y:G.grid[u.gx][u.gz].topY,spriteX:Math.abs(u.spr.scale.x),spriteY:u.spr.scale.y,outlineX:Math.abs(u.outline.scale.x),outlineY:u.outline.scale.y},started:false,done:false};
     function observe(){
       if(probe.done)return;
       if(u._motionPlaying&&!probe.started){probe.started=true;const sign=u.spriteFacing*(u.visualFacingX<0?-1:1);probe.baseline.spriteX=sign*probe.baseline.spriteX;probe.baseline.outlineX=sign*probe.baseline.outlineX;}
       if(probe.started&&!G.busy){probe.done=true;return;}
-      if(probe.started)probe.samples.push({moving:!!u._motionPlaying,effective:document.body.classList.contains('reduced-graphics'),os:matchMedia('(prefers-reduced-motion: reduce)').matches,requested:window.__COMBAT_DIAGNOSTICS.requestedReducedGraphics,y:u.grp.position.y,spriteX:u.spr.scale.x,spriteY:u.spr.scale.y,outlineX:u.outline.scale.x,outlineY:u.outline.scale.y});
+      if(probe.started){const sample={at:performance.now(),moving:!!u._motionPlaying,effective:document.body.classList.contains('reduced-graphics'),os:matchMedia('(prefers-reduced-motion: reduce)').matches,requested:window.__COMBAT_DIAGNOSTICS.requestedReducedGraphics,y:u.grp.position.y,spriteX:u.spr.scale.x,spriteY:u.spr.scale.y,outlineX:u.outline.scale.x,outlineY:u.outline.scale.y};
+        const previous=probe.samples.at(-1);if(!previous||previous.os!==sample.os||previous.effective!==sample.effective)probe.phaseHistory.push({at:sample.at,index:probe.samples.length,os:sample.os,effective:sample.effective});probe.samples.push(sample);}
       requestAnimationFrame(observe);
     }requestAnimationFrame(observe);
   });
 }
 async function toggleCastProbe(){
-  await page.waitForFunction(()=>window.__castMotionProbe.samples.some(s=>s.moving&&s.y>window.__castMotionProbe.baseline.y+1e-4),null,{timeout:10000});
+  await page.waitForFunction(()=>{const p=window.__castMotionProbe,s=p.samples.at(-1);if(!p.done&&s?.moving&&!s.effective&&!s.os&&s.y>p.baseline.y+1e-4){p.firstReducedFrom=p.samples.length;return true;}return false;},null,{timeout:10000});
   await page.emulateMedia({reducedMotion:'reduce'});
-  await page.waitForFunction(()=>window.__castMotionProbe.samples.filter(s=>s.moving&&s.effective&&s.os).length>=3,null,{timeout:4000});
-  await page.evaluate(()=>{window.__castMotionProbe.normalAgainFrom=window.__castMotionProbe.samples.length;});
+  await page.waitForFunction(()=>{const p=window.__castMotionProbe;if(p.samples.slice(p.firstReducedFrom).filter(s=>s.moving&&s.effective&&s.os).length>=3){p.normalAgainFrom=p.samples.length;return true;}return false;},null,{timeout:4000});
   await page.emulateMedia({reducedMotion:'no-preference'});
-  await page.waitForFunction(()=>{const p=window.__castMotionProbe;return p.samples.slice(p.normalAgainFrom).some(s=>s.moving&&!s.effective&&!s.os);},null,{timeout:4000});
-  await page.evaluate(()=>{window.__castMotionProbe.finalReducedFrom=window.__castMotionProbe.samples.length;});
+  await page.waitForFunction(()=>{const p=window.__castMotionProbe;if(p.samples.slice(p.normalAgainFrom).some(s=>s.moving&&!s.effective&&!s.os)){p.finalReducedFrom=p.samples.length;return true;}return false;},null,{timeout:4000});
   await page.emulateMedia({reducedMotion:'reduce'});
   await page.waitForFunction(()=>{const p=window.__castMotionProbe;return p.samples.slice(p.finalReducedFrom).filter(s=>s.moving&&s.effective&&s.os).length>=3;},null,{timeout:4000});
   report.castCaptureObservation=await page.evaluate(()=>({moving:!!G.active?._motionPlaying,busy:G.busy,effective:document.body.classList.contains('reduced-graphics'),os:matchMedia('(prefers-reduced-motion: reduce)').matches}));
@@ -109,4 +108,4 @@ try{
     await page.locator('#menu [data-a="wait"]').click();report.actions.push({kind:'wait',before});
   }assert.equal(report.pass,true,'No real Salvation cast before bounded deadline');
 }catch(e){report.failure=e.stack;report.lastState=await state().catch(()=>null);await page.screenshot({path:output+'/failure.png'}).catch(()=>{});process.exitCode=1;}
-finally{if(castMotion)await page.evaluate(()=>{if(window.__castMotionProbe)window.__castMotionProbe.done=true;}).catch(()=>{});await browser.close();await new Promise(r=>server.httpServer.close(r));report.endedAt=new Date().toISOString();await writeFile(output+'/results.json',JSON.stringify(report,null,2)+'\n');if(job&&job.finish(report).status!=='SUCCEEDED')process.exitCode=1;console.log(JSON.stringify({pass:report.pass,salvation:report.salvation,failure:report.failure}));}
+finally{if(castMotion)report.castMotion=await page.evaluate(()=>{const p=window.__castMotionProbe;if(p)p.done=true;return p??null;}).catch(()=>report.castMotion??null);await browser.close();await new Promise(r=>server.httpServer.close(r));report.endedAt=new Date().toISOString();await writeFile(output+'/results.json',JSON.stringify(report,null,2)+'\n');if(job&&job.finish(report).status!=='SUCCEEDED')process.exitCode=1;console.log(JSON.stringify({pass:report.pass,salvation:report.salvation,failure:report.failure}));}

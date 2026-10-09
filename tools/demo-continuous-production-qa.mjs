@@ -317,6 +317,10 @@ async function battle(){
     const noviceSupport=entry.combatId!=='lion_chief'&&current.active.id==='white_mage'&&current.active.weapons[0]?.weaponType==='crosier';
     if(noviceSupport){
       if(await skill(frame,entry))continue;
+      // Preserve native Souffle/regen instead of exhausting Salvation's next-turn AP on a weak heal.
+      if(current.active.ap===1&&current.active.skills.includes('w_salvation')&&current.units.some(u=>u.team==='player'&&u.alive&&u.id!==current.active.id)){
+        await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait-conserve-salvation-ap',reason:'retain-ap-for-runtime-exposed-salvation',before:current});continue;
+      }
       if(await attack(frame,entry,{support:true}))continue;
       if(await heal(frame,entry))continue;
       // Native crosiers can damage foes. A lone survivor must not wait only for ally support.

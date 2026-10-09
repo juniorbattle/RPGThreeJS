@@ -1,44 +1,27 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-08T23:11:05Z",
-  "runEndedAt": "2026-10-09T00:00:35.779Z",
+  "runStartedAt": "2026-10-09T04:43:36Z",
+  "runEndedAt": null,
   "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
-  "activePhase": "SAFE_SOURCE_CHECKPOINT_CAST_BROWSER_AND_ENDING_OPEN",
-  "activeSubtask": "Earned rescue/serpent ending: review native lone-survivor pilot fallback after bounded failure",
+  "activePhase": "EARNED_SERPENT_ENDING_ACCEPTED_NEXT_KEYBOARD_REVIEW",
+  "activeSubtask": "Earned rescue/serpent ending: validate native lone-survivor fallback; scoped cast OS smoke",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "7cb9bd72848d45bbc12a19cf21a301ce2a1e39fb",
-  "lastPushedCommit": "7cb9bd72848d45bbc12a19cf21a301ce2a1e39fb",
+  "lastKnownGoodCommit": "c95ab12e3da13474d59d8870d73f14d6c9c3b647",
+  "lastPushedCommit": "c95ab12e3da13474d59d8870d73f14d6c9c3b647",
   "completedThisRun": [
-    "Readonly preflight: absent lock, clean dev7cb9bd7=live origin/dev; main unchanged; prior2104 owner idle/completed and QA worker45248/port5346 absent. Interrupted receipt remains not accepted. Ordinary usage allowed.",
-    "Bounded unchanged earned ending QA FAILED with131actions; source diagnosis identifies support-only pilot limitation, no balance/ending/V6/seed acceptance.25native40percent heals observe2APdebit from3/5AP, none starts2AP.",
-    "Four cast decorations source now settles canonical signed baseline in effective reduced motion, including liveOS changes and empty-tween impact holds. Timing/callback/tactical/save/RNG owners unchanged.",
-    "38post-change focusedtests/types/contracts8/slots8/build210/gates PASS; one native standalone1366 Salvation liveOS smoke FAILED at final reduced-moving sample assertion, stable provenance and two inspected diagnostic captures; no browser acceptance.",
-    "Six-line campaign pilot fallback permits existing native foe attack/move only for lone support survivor after support attempts; guardian source PASS, browser unverified."
+    "Recovered and preserved five inherited WIP paths",
+    "Accepted scoped native earned rescue/Serpent ending1366normal/exactV6 after guardian and six inspected captures"
   ],
-  "filesChanged": [
-    "src/combat/legacyCombatRuntime.js",
-    "src/combat/unitMotion.test.ts",
-    "tools/combat-salvation-production-qa.mjs",
-    "tools/demo-continuous-production-qa.mjs",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-08T2311Z-codex-earned-ending-checkpoint.md"
-  ],
+  "filesChanged": [],
   "testsRun": [
-    "node node_modules/vitest/vitest.mjs run src/game/management.test.ts src/game/lionFinale.test.ts src/combat/legacyCombatSkillSpec.test.ts src/combat/combatRandom.test.ts: 89 tests4files PASS (esbuild sandbox denial then unchanged escalated retry)",
-    "node node_modules/typescript/bin/tsc --noEmit PASS",
-    "node tools/contracts/validate-contracts.mjs PASS8contracts8slots",
-    "node node_modules/vite/bin/vite.js build PASS210modules8MP4; existing chunk advisory",
-    "git diff --check and immutable LOCKED/protected-path gates PASS",
-    "Post-cast focused tests38 / TypeScript / direct validator8contracts8slots / fresh210module build / gates PASS",
-    "cast-salvation-2311: FAILED final3moving OSreduced samples timeout; stable matching provenance/request/result digest. Native assertions after probe not reached; NOT_ACCEPTED. No repeat or assertion weakening.",
-    "node --check tools/demo-continuous-production-qa.mjs PASS; six-line nativepilot diff reviewed, no assertion changes"
+    "115tests: unitMotion25/reducedMotion4/combatRandom6/management56/lionFinale24; types/directvalidator8contracts8slots/build210modules PASS; scripts syntax and immutable/whitespace gates PASS"
   ],
-  "testsPassed": false,
+  "testsPassed": [
+    "115tests: unitMotion25/reducedMotion4/combatRandom6/management56/lionFinale24; types/directvalidator8contracts8slots/build210modules PASS; scripts syntax and immutable/whitespace gates PASS"
+  ],
   "testsRemaining": [
-    "Earned rescue/serpent ending and exact ending V6 on current build;2104 interrupted output cannot seed continuation",
     "Exact2AP-start Salvation remains open; native2APcost/debit confirmed only from higherAP",
-    "Broad accessibility,390actor framing,enabledskills/automaticfocusreturn/spokenAT and leap/attack/Stage/VFX motion remain open; four-cast local timing tests and 1366heal liveOS browser acceptance remains BLOCKED",
+    "Broad accessibility,390actor framing,enabledskills/automaticfocusreturn/spokenAT and leap/attack/Stage/VFX motion remain open; four-cast local timing tests and 1366Salvation effectiveOS numeric scope accepted0011, broader visual acceptance open",
     "Sacrifice/trial/fallback/settledVFX/balance/single-build campaign acceptance",
     "COPY/static-only OS-shadow and council/refugee acceptance; approved Bois-Clair night plate; ten canonical Pursuit mappings",
     "Operator final demo testing"
@@ -59,9 +42,9 @@
     "ENV approved Bois-Clair night tableau plus broader context inventory",
     "Exact deferred keyboard production matrix and fresh campaign iframe entry/return",
     "Council/refugee browser acceptance and ten Pursuit canonical mappings",
-    "Earned campaign/endings/Salvation2AP/VFX/balance remain open"
+    "Earned rescue/Serpent ending1366normal accepted; other endings/exact2AP-start/VFX/balance remain open"
   ],
-  "nextAction": "Read this2311 handoff and normal preflight. Continue the same DEMO-QA-POLISH earned rescue/serpent ending: review the six-line lone-survivor fallback checkpoint in tools/demo-continuous-production-qa.mjs (existing native attack/move, only no other living ally, after support/skill/heal attempts). Guardian source PASS; no browser validation yet. Register one unique bounded ending QA on a free port with exact source/driver/build/input hashes; preserve every current native legality/outcome/lineage/assertion boundary. Seed only accepted1859 second-refuge save SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b and priorProof SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3. Do not blindly repeat failed2104/2311 pilot or use failed outputs as seeds. Separate exact2AP-start Salvation from observed cost2AP. Cast browser remains blocked: before any new smoke, persist partial samples/phase timestamps on failure, require a currently moving raised first sample, and remove extra marker round trips while retaining three moving samples per reduced interval and all native assertions. No repeat before that bounded review. Broader Stage/VFX/actions/widths and full demo remain open.",
+  "nextAction": "Preserve accepted0443ending scope and exact deferred keyboard nextAction. Review demonstrated Ctrl/Alt/Meta shortcut collision in combatKeyboard.ts; narrow modifier routing correction only, focused tests and fresh build. Keyboard browser acceptance remains open for next run existing battlefield driver; no second browser smoke this run.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
@@ -75,7 +58,7 @@
     "ENVIRONMENT-NARRATIVE-COHERENCE: BLOCKED_ASSET_BOIS_CLAIR_NIGHT; bounded audit complete",
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
-  "creditStatus": "AVAILABLE_ORDINARY_USAGE_CONFIRMED",
+  "creditStatus": "AVAILABLE_ORDINARY_USAGE",
   "contractComplianceStatus": {
     "status": "PASS scoped cast source/authority/local tests; BLOCKED browser and earned ending acceptance",
     "contractSetVersion": "1.1.0",
@@ -271,36 +254,32 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261008T2104",
+  "runId": "rpgthreejs-auto-dev-90m-20261009T0443",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-09T00:00:35.779Z",
+  "lastHeartbeat": "2026-10-09T05:25:41.659Z",
   "wip": {
-    "status": "UNKNOWN",
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261008T2311",
-    "sha": "bcfd7ead73e8a946733f62e3ad866482e915536b",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261009T0443",
+    "sha": "7f080215032fcbd394f2e96a96c8a8f8471a9233",
+    "snapshotAt": "2026-10-09T05:25:41.659Z",
+    "status": "IN_PROGRESS",
     "dirtyFiles": [
-      "src/combat/legacyCombatRuntime.js",
-      "src/combat/unitMotion.test.ts",
       "tools/combat-salvation-production-qa.mjs",
       "tools/demo-continuous-production-qa.mjs",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-08T2311Z-codex-earned-ending-checkpoint.md"
-    ],
-    "lastGreenCheck": "88focused/types/contracts/build/immutable; COPY6+keyboard6 scoped; campaignFAILED retained",
-    "retiredRecovery": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261008T0514",
-      "sha": "d02961485a11be6f7b5b8ceb85d99d85f4978685",
-      "deletedAt": "2026-10-08T06:27:46.192Z",
-      "reason": "All content on dev; only two closeout-state files differed"
-    },
-    "snapshotAt": "2026-10-08T23:54:20.4926799+00:00"
+      "docs/autonomy/handoffs/2026-10-09T0011Z-codex-salvation-ending-checkpoint.md",
+      "docs/autonomy/handoffs/2026-10-09T0443Z-codex-earned-ending-checkpoint.md",
+      "docs/reports/demo-earned-serpent-ending-0443-browser/compact-proof.json",
+      "docs/reports/demo-earned-serpent-ending-0443-browser/combat-3-result.png",
+      "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth.png",
+      "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth-resumed.png"
+    ]
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261008T2311",
+    "runId": "rpgthreejs-auto-dev-90m-20261009T0443",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-09T00:00:40.8001770+00:00",
-    "status": "IN_PROGRESS_SAFE_CHECKPOINT",
+    "lastHeartbeat": "2026-10-09T05:25:41.659Z",
+    "status": "IN_PROGRESS",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -17254,54 +17233,364 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "reviewedAt": "2026-10-09T00:00:35.779Z",
         "reviewScope": "One standalone1366liveOS smoke FAILED at final moving reduced-phase sample wait; preceding normal-return await advanced, raw probe not persisted. Neither screenshot shows active reduced cast. Native HP/AP assertions after probe not reached; no smoke native heal/AP acceptance. Source-sliced local tests prove four cast timing/empty-tween hold/cancellation cleanup. InitialOS browser/otherpresets/phaseidentified/StageVFX/390/campaign/start2AP/general motion remain open."
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "campaign-ending-0011",
+        "runId": "rpgthreejs-auto-dev-90m-20261009T0011",
+        "status": "FAILED",
+        "registeredAt": "2026-10-09T00:15:09.913Z",
+        "pid": 55036,
+        "port": 5349,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "ending",
+          "routePlan": "rescue",
+          "timeoutMinutes": 35,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/campaign-second-refuge-1859/results.json",
+          "verifySalvation": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/campaign-ending-0011",
+        "receiptPath": "tmp/demo/campaign-ending-0011/qa-job.json",
+        "provenance": {
+          "gitHead": "c95ab12e3da13474d59d8870d73f14d6c9c3b647",
+          "sourceTree": "7bc0cb6c7e0806d42ccccdab3b69c4787181b660",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "709f5ec1fc45314eea4b2f398735c8ceedb307687019908eda1a98e794d1e6d6"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+              "sha256": "67d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/campaign-second-refuge-1859/results.json",
+              "sha256": "1eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3"
+            }
+          ],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CgtHztqA.js",
+              "sha256": "b1f8cbeab4c54a8c7eea48e6eeda9ac635b0fbdcb41115b9d375e98233fa0802"
+            },
+            {
+              "path": "dist/assets/combat-BZzDTMkt.js",
+              "sha256": "e0a1beb1005d299ab23d17af5d035ab21878e17a0bca9b1bb143f8b338f1f8b3"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-3pkMo-Ir.css",
+              "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+            },
+            {
+              "path": "dist/assets/game-CfeGt3vL.js",
+              "sha256": "b059922fb1efd0bdc9944e07e83a4f75e1d1a9fd74b4db6eae90456ba2d365b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "eb6086357447b6e5b34da2c0ffdfa1956d9e0d98472ab195b513fa1c19c32abb"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-09T00:15:10.819Z",
+        "endedAt": "2026-10-09T00:49:19.988Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/campaign-ending-0011/results.json",
+        "resultSha256": "f7fe364f63b5da5fa6c3225f0033e1a5a7487d53c2e8886d0108feeb9e2da779",
+        "provenanceStable": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "cast-salvation-0011",
+        "runId": "rpgthreejs-auto-dev-90m-20261009T0011",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-09T00:15:22.168Z",
+        "pid": 30380,
+        "port": 5350,
+        "command": [
+          "node",
+          "tools/combat-salvation-production-qa.mjs"
+        ],
+        "parameters": {
+          "viewport": [
+            1366,
+            768
+          ],
+          "timeoutMinutes": 8,
+          "castMotion": true
+        },
+        "requiredAssertions": [
+          "NATIVE_SALVATION_40_PERCENT",
+          "NATIVE_SALVATION_2_AP_COST",
+          "LIVE_OS_CAST_BASELINE",
+          "NATIVE_CAST_COMPLETION_AFTER_TOGGLES"
+        ],
+        "output": "tmp/demo/cast-salvation-0011",
+        "receiptPath": "tmp/demo/cast-salvation-0011/qa-job.json",
+        "provenance": {
+          "gitHead": "c95ab12e3da13474d59d8870d73f14d6c9c3b647",
+          "sourceTree": "7bc0cb6c7e0806d42ccccdab3b69c4787181b660",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/combat-salvation-production-qa.mjs",
+            "sha256": "53375de009e65fdee1043a1650b0cf85b1376a352ca78cb2bf4c528f8840f016"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CgtHztqA.js",
+              "sha256": "b1f8cbeab4c54a8c7eea48e6eeda9ac635b0fbdcb41115b9d375e98233fa0802"
+            },
+            {
+              "path": "dist/assets/combat-BZzDTMkt.js",
+              "sha256": "e0a1beb1005d299ab23d17af5d035ab21878e17a0bca9b1bb143f8b338f1f8b3"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-3pkMo-Ir.css",
+              "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+            },
+            {
+              "path": "dist/assets/game-CfeGt3vL.js",
+              "sha256": "b059922fb1efd0bdc9944e07e83a4f75e1d1a9fd74b4db6eae90456ba2d365b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "eb6086357447b6e5b34da2c0ffdfa1956d9e0d98472ab195b513fa1c19c32abb"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-09T00:15:23.099Z",
+        "endedAt": "2026-10-09T00:20:52.107Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "exitCode": 0,
+        "resultPath": "tmp/demo/cast-salvation-0011/results.json",
+        "resultSha256": "f5d9fa14dffbb16146d2b4d08208c9f0e02490b2c9fafd5891f86bf9bc9d6d8a",
+        "provenanceStable": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "campaign-ending-0443",
+        "runId": "rpgthreejs-auto-dev-90m-20261009T0443",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-09T04:49:02.309Z",
+        "pid": 12512,
+        "port": 5351,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "ending",
+          "routePlan": "rescue",
+          "timeoutMinutes": 35,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/campaign-second-refuge-1859/results.json",
+          "verifySalvation": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/campaign-ending-0443",
+        "receiptPath": "tmp/demo/campaign-ending-0443/qa-job.json",
+        "provenance": {
+          "gitHead": "c95ab12e3da13474d59d8870d73f14d6c9c3b647",
+          "sourceTree": "7bc0cb6c7e0806d42ccccdab3b69c4787181b660",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "aac0382558d98048f90b5a0f08360821c688fc16f5a26b3ae49c43077da35524"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+              "sha256": "67d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/campaign-second-refuge-1859/results.json",
+              "sha256": "1eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3"
+            }
+          ],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CgtHztqA.js",
+              "sha256": "b1f8cbeab4c54a8c7eea48e6eeda9ac635b0fbdcb41115b9d375e98233fa0802"
+            },
+            {
+              "path": "dist/assets/combat-BZzDTMkt.js",
+              "sha256": "e0a1beb1005d299ab23d17af5d035ab21878e17a0bca9b1bb143f8b338f1f8b3"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-3pkMo-Ir.css",
+              "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+            },
+            {
+              "path": "dist/assets/game-CfeGt3vL.js",
+              "sha256": "b059922fb1efd0bdc9944e07e83a4f75e1d1a9fd74b4db6eae90456ba2d365b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "eb6086357447b6e5b34da2c0ffdfa1956d9e0d98472ab195b513fa1c19c32abb"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_EARNED_RESCUE_SERPENT_ENDING_1366_NORMAL_V6",
+        "startedAt": "2026-10-09T04:49:04.336Z",
+        "endedAt": "2026-10-09T05:20:18.648Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "exitCode": 0,
+        "resultPath": "tmp/demo/campaign-ending-0443/results.json",
+        "resultSha256": "95a48f75e68fda6d54488639184d03bc04cdb6bbb67d77a655dbf9e5c5416772",
+        "provenanceStable": true,
+        "reviewedAt": "2026-10-09T05:25:07.000Z",
+        "reviewScope": "Native earned1859 continuation, Serpent victory25rounds110actions,20native40percent/2AP casts, exact endingV6;1366normal. Exact2AP-start/balance/full demo/settledVFX excluded."
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261008T2311",
-      "sha": "594b47238e0c10b9fe8a1889f840b3c966b05d5f",
-      "status": "UNKNOWN",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261009T0443",
+      "sha": "7f080215032fcbd394f2e96a96c8a8f8471a9233",
+      "snapshotAt": "2026-10-09T05:25:41.659Z",
+      "status": "IN_PROGRESS",
       "dirtyFiles": [
+        "tools/combat-salvation-production-qa.mjs",
+        "tools/demo-continuous-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
-      ],
-      "snapshotAt": "2026-10-09T00:00:40.8001770+00:00"
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/handoffs/2026-10-09T0011Z-codex-salvation-ending-checkpoint.md",
+        "docs/autonomy/handoffs/2026-10-09T0443Z-codex-earned-ending-checkpoint.md",
+        "docs/reports/demo-earned-serpent-ending-0443-browser/compact-proof.json",
+        "docs/reports/demo-earned-serpent-ending-0443-browser/combat-3-result.png",
+        "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth.png",
+        "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth-resumed.png"
+      ]
     },
-    "nextAction": "Read this2311 handoff and normal preflight. Continue the same DEMO-QA-POLISH earned rescue/serpent ending: review the six-line lone-survivor fallback checkpoint in tools/demo-continuous-production-qa.mjs (existing native attack/move, only no other living ally, after support/skill/heal attempts). Guardian source PASS; no browser validation yet. Register one unique bounded ending QA on a free port with exact source/driver/build/input hashes; preserve every current native legality/outcome/lineage/assertion boundary. Seed only accepted1859 second-refuge save SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b and priorProof SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3. Do not blindly repeat failed2104/2311 pilot or use failed outputs as seeds. Separate exact2AP-start Salvation from observed cost2AP. Cast browser remains blocked: before any new smoke, persist partial samples/phase timestamps on failure, require a currently moving raised first sample, and remove extra marker round trips while retaining three moving samples per reduced interval and all native assertions. No repeat before that bounded review. Broader Stage/VFX/actions/widths and full demo remain open.",
+    "nextAction": "Preserve accepted0443ending scope and exact deferred keyboard nextAction. Review demonstrated Ctrl/Alt/Meta shortcut collision in combatKeyboard.ts; narrow modifier routing correction only, focused tests and fresh build. Keyboard browser acceptance remains open for next run existing battlefield driver; no second browser smoke this run.",
     "runMetrics": {
-      "sourceFilesModified": 1,
-      "testFilesModified": 1,
-      "existingQAToolsModified": 2,
+      "sourceFilesModified": 0,
+      "testFilesModified": 0,
+      "existingQAToolsModified": 1,
       "qaToolsAdded": 0,
       "proofFilesAdded": 0,
       "workflowFiles": 3,
       "inheritedWIPPaths": 0,
-      "distinctReadOnlyReviewers": 2,
-      "registeredInvocations": 2,
-      "acceptedScopedJobs": 0,
-      "harnessCorrectionsThisRun": 0,
-      "failedSeedsUsed": 0,
-      "campaignNativeActionsObserved": 131,
-      "reviewCost": "Two read-only reviewers reused for precise cast architecture/draft/diff and terminal pilot diagnosis; no quota savings claim.",
-      "selectedCapturesInspected": 6,
-      "selectedCapturesPromoted": 0,
-      "completedReviewers": 2,
-      "reviewerQuotaFailures": 0,
-      "endedAt": "2026-10-09T00:00:35.779Z",
-      "elapsedMinutes": 49.51298333333333
+      "harnessCorrectionsThisRun": 1,
+      "distinctReadOnlyReviewers": 1,
+      "selectedCapturesInspected": 4,
+      "acceptedScopedJobs": 1
     },
     "checkpointPaths": [
-      "src/combat/legacyCombatRuntime.js",
-      "src/combat/unitMotion.test.ts",
       "tools/combat-salvation-production-qa.mjs",
       "tools/demo-continuous-production-qa.mjs",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-08T2311Z-codex-earned-ending-checkpoint.md"
+      "docs/autonomy/handoffs/2026-10-09T0011Z-codex-salvation-ending-checkpoint.md",
+      "docs/autonomy/handoffs/2026-10-09T0443Z-codex-earned-ending-checkpoint.md",
+      "docs/reports/demo-earned-serpent-ending-0443-browser/compact-proof.json",
+      "docs/reports/demo-earned-serpent-ending-0443-browser/combat-3-result.png",
+      "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth.png",
+      "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth-resumed.png"
     ],
     "publication": {
       "status": "LOCAL_COHERENT_CHECKPOINT_READY_FOR_NORMAL_DEV_PUBLICATION",
@@ -17320,9 +17609,9 @@
         "docs/autonomy/handoffs/2026-10-08T2311Z-codex-earned-ending-checkpoint.md"
       ]
     },
-    "runStartedAt": "2026-10-08T21:07:21.390Z",
-    "runEndedAt": "2026-10-09T00:00:35.779Z",
-    "writerStopped": true,
+    "runStartedAt": "2026-10-09T04:43:36Z",
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "status": "RESOLVED_BY_OPERATOR_APPROVAL",
       "standingDecision": "OD-2026-10-08-B",
@@ -17625,14 +17914,230 @@
       "receiptPath": "tmp/demo/cast-salvation-2311/qa-job.json",
       "limits": "One standalone1366liveOS smoke FAILED at final moving reduced-phase sample wait; preceding normal-return await advanced, raw probe not persisted. Neither screenshot shows active reduced cast. Native HP/AP assertions after probe not reached; no smoke native heal/AP acceptance. Source-sliced local tests prove four cast timing/empty-tween hold/cancellation cleanup. InitialOS browser/otherpresets/phaseidentified/StageVFX/390/campaign/start2AP/general motion remain open.",
       "nextAction": "Review observed sample sequencing in existing Salvation runner within unchanged native assertions and real cast durations; do not lengthen runtime animation, weaken moving-frame assertions, inject state or blindly repeat. No assertion correction used this run."
+    },
+    "preflight0011": {
+      "at": "2026-10-09T00:14:50.496Z",
+      "lockInitiallyAbsent": true,
+      "treeInitiallyClean": true,
+      "priorOwnerIdle": true,
+      "remoteDev": "c95ab12e3da13474d59d8870d73f14d6c9c3b647",
+      "remoteMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "sequenceDeviation": "Fetch succeeded after sandbox lock acquisition denied and before escalated atomic acquisition; no source/tree edits during interval; current exclusive lock owned."
+    },
+    "castReview0011": {
+      "status": "ACCEPTED_SCOPED_STANDALONE_SALVATION_LIVE_OS_NUMERIC",
+      "receiptPath": "tmp/demo/cast-salvation-0011/qa-job.json",
+      "resultsPath": "tmp/demo/cast-salvation-0011/results.json",
+      "guardian": "Independent fresh digests/raw samples PASS",
+      "samples": 17,
+      "firstMovingReduced": 3,
+      "finalMovingReduced": 4,
+      "nativeHealing": "Mage28/75->58/75",
+      "nativeAP": "Cleric3->1 spec2",
+      "capturesInspected": [
+        "cast-live-os-reduced.png",
+        "after-salvation.png"
+      ],
+      "capturesPromoted": [],
+      "limits": "Effective reduced intervals only. One observed OS=true/effective=false raised transition sample(~361ms before next effective frame). Resumed-normal movement stays grounded; no regained lift claim. Screenshots settled, no moving-cast image acceptance. Allotherpresets/initialOS/StageVFX/390/campaign/exact2AP-start remain open."
+    },
+    "campaign0011": {
+      "status": "FAILED_NATIVE_DEFEAT_NOT_ACCEPTED",
+      "physicalFreeze": "tmp/autonomy/physical-freeze-0011.json",
+      "physicalFiles": 394,
+      "buildFiles": 9,
+      "inputs": 2,
+      "receiptPath": "tmp/demo/campaign-ending-0011/qa-job.json",
+      "lastObserved": {
+        "at": "2026-10-09T00:43:52.500Z",
+        "round": 13,
+        "actions": 65,
+        "bossHP": 192,
+        "livingPlayers": [
+          {
+            "name": "Alistair",
+            "hp": 95
+          },
+          {
+            "name": "Marian",
+            "hp": 113
+          }
+        ]
+      },
+      "failedOutputsNeverSeed": true,
+      "terminal": {
+        "at": "2026-10-09T00:49:19.988Z",
+        "round": 17,
+        "actions": 80,
+        "bossHP": 143,
+        "allAlliesKO": true,
+        "resultSha256": "f7fe364f63b5da5fa6c3225f0033e1a5a7487d53c2e8886d0108feeb9e2da779",
+        "driverChangedAfterTerminal": true
+      }
+    },
+    "run0011History": {
+      "status": "IN_PROGRESS",
+      "phase": "SCOPED_CAST_ACCEPTED_EARNED_ENDING_RUNNING",
+      "nextAction": "Continue observing campaign-ending-0011 frozen native pilot through terminal; inspect actual lone-survivor attack/move, ending/exactV6 and rawAP evidence. Scoped cast numeric proof accepted, broad presentation/exact2AP-start still open.",
+      "runId": "rpgthreejs-auto-dev-90m-20261009T0011",
+      "cast": {
+        "status": "ACCEPTED_SCOPED_STANDALONE_SALVATION_LIVE_OS_NUMERIC",
+        "receiptPath": "tmp/demo/cast-salvation-0011/qa-job.json",
+        "resultsPath": "tmp/demo/cast-salvation-0011/results.json",
+        "guardian": "Independent fresh digests/raw samples PASS",
+        "samples": 17,
+        "firstMovingReduced": 3,
+        "finalMovingReduced": 4,
+        "nativeHealing": "Mage28/75->58/75",
+        "nativeAP": "Cleric3->1 spec2",
+        "capturesInspected": [
+          "cast-live-os-reduced.png",
+          "after-salvation.png"
+        ],
+        "capturesPromoted": [],
+        "limits": "Effective reduced intervals only. One observed OS=true/effective=false raised transition sample(~361ms before next effective frame). Resumed-normal movement stays grounded; no regained lift claim. Screenshots settled, no moving-cast image acceptance. Allotherpresets/initialOS/StageVFX/390/campaign/exact2AP-start remain open."
+      },
+      "campaign": {
+        "status": "FAILED_NATIVE_DEFEAT_NOT_ACCEPTED",
+        "physicalFreeze": "tmp/autonomy/physical-freeze-0011.json",
+        "physicalFiles": 394,
+        "buildFiles": 9,
+        "inputs": 2,
+        "receiptPath": "tmp/demo/campaign-ending-0011/qa-job.json",
+        "lastObserved": {
+          "at": "2026-10-09T00:43:52.500Z",
+          "round": 13,
+          "actions": 65,
+          "bossHP": 192,
+          "livingPlayers": [
+            {
+              "name": "Alistair",
+              "hp": 95
+            },
+            {
+              "name": "Marian",
+              "hp": 113
+            }
+          ]
+        },
+        "failedOutputsNeverSeed": true,
+        "terminal": {
+          "at": "2026-10-09T00:49:19.988Z",
+          "round": 17,
+          "actions": 80,
+          "bossHP": 143,
+          "allAlliesKO": true,
+          "resultSha256": "f7fe364f63b5da5fa6c3225f0033e1a5a7487d53c2e8886d0108feeb9e2da779",
+          "driverChangedAfterTerminal": true
+        }
+      }
+    },
+    "preflight0443": {
+      "at": "2026-10-09T04:47:49.767Z",
+      "oldOwnerInactive": "systemError",
+      "oldHeartbeat": "2026-10-09T00:45:11.311Z",
+      "oldWorkersAbsent": [
+        55036,
+        30380
+      ],
+      "oldPortsAbsent": [
+        5349,
+        5350
+      ],
+      "unrelatedDevServer": {
+        "pid": 42060,
+        "port": 5173,
+        "created": "2026-10-03",
+        "action": "LEFT_UNTOUCHED"
+      },
+      "head": "c95ab12e3da13474d59d8870d73f14d6c9c3b647",
+      "originDev": "c95ab12e3da13474d59d8870d73f14d6c9c3b647",
+      "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "lockedGate": "EMPTY",
+      "inheritedPaths": [
+        "tools/combat-salvation-production-qa.mjs",
+        "tools/demo-continuous-production-qa.mjs",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/handoffs/2026-10-09T0011Z-codex-salvation-ending-checkpoint.md"
+      ]
+    },
+    "campaign0443": {
+      "status": "ACCEPTED_SCOPED_EARNED_RESCUE_SERPENT_ENDING_1366_NORMAL_V6",
+      "policy": "Inherited native wait at1AP with Salvation and another living ally; lone-survivor attacks retained",
+      "failedOutputsNeverSeed": true,
+      "physicalFreeze": "tmp/autonomy/physical-freeze-0443.json",
+      "physicalFiles": 394,
+      "buildFiles": 9,
+      "inputs": [
+        {
+          "path": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+          "sha256": "67d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b"
+        },
+        {
+          "path": "tmp/demo/campaign-second-refuge-1859/results.json",
+          "sha256": "1eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3"
+        }
+      ],
+      "driverSha256": "aac0382558d98048f90b5a0f08360821c688fc16f5a26b3ae49c43077da35524",
+      "receiptPath": "tmp/demo/campaign-ending-0443/qa-job.json",
+      "pid": 12512,
+      "port": 5351,
+      "startedAt": "2026-10-09T04:49:04.336Z",
+      "lastObserved": {
+        "at": "2026-10-09T05:14:32.815Z",
+        "round": 20,
+        "actions": 90,
+        "conserveActions": 12,
+        "bossHP": 106,
+        "livingPlayers": [
+          {
+            "name": "Alistair",
+            "hp": 140
+          },
+          {
+            "name": "Marian",
+            "hp": 113
+          }
+        ]
+      },
+      "terminal": {
+        "endedAt": "2026-10-09T05:20:18.648Z",
+        "round": 25,
+        "actions": 110,
+        "bossHP": 0,
+        "conserveWaits": 16,
+        "salvationCasts": 20,
+        "AP3to1": 15,
+        "AP5to3": 5,
+        "exact2APStarts": 0,
+        "endingId": "lion-seal-serpent-truth",
+        "exactV6Reload": true,
+        "resultSha256": "95a48f75e68fda6d54488639184d03bc04cdb6bbb67d77a655dbf9e5c5416772"
+      },
+      "compactProof": "docs/reports/demo-earned-serpent-ending-0443-browser/compact-proof.json",
+      "capturesInspected": 6,
+      "capturesPromoted": [
+        "combat-3-result.png",
+        "ending-lion-seal-serpent-truth.png",
+        "ending-lion-seal-serpent-truth-resumed.png"
+      ]
+    },
+    "guardian0443": {
+      "sourceReview": "PASS",
+      "reusableCast0011": "ACCEPTED_SCOPED_STANDALONE_NUMERIC",
+      "freshEnding": "PENDING",
+      "lockedGate": "EMPTY",
+      "validator": "8contracts8slots PASS",
+      "terminalReview": "PASS: ACCEPTED_SCOPED_EARNED_RESCUE_SERPENT_ENDING_1366_NORMAL_V6"
     }
   },
   "previousInterruptedRun": {
-    "runId": "rpgthreejs-auto-dev-90m-20261007T2039",
-    "nextAction": "Correct exact-shape narrow allied silhouette overlap; reviewers inspect placement; build and rerun same smoke scenario with frozen new provenance.",
-    "head": "1bfad661452cd8194a45c04762a776e1b18f2657",
-    "receipt": "tmp/cinematics/serpent-2039-normal/qa-job.json",
-    "acceptance": "NOT_ACCEPTED_VISUAL_OVERLAP"
+    "runId": "rpgthreejs-auto-dev-90m-20261009T0011",
+    "status": "SYSTEM_ERROR_AFTER_NATIVE_DEFEAT_AND_AP_POLICY_EDIT",
+    "heartbeat": "2026-10-09T00:45:11.311Z",
+    "lockArchive": ".git/codex-autonomy.abandoned-20261009T0011-by-0443.json",
+    "snapshot": "25a4fd77c9e3c2fb4a84fe598215782da0bb78a6"
   },
   "autonomousExecutionPolicy": {
     "decisionSource": "docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-02.md",
@@ -17672,28 +18177,15 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-08T2311Z-codex-earned-ending-checkpoint.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-09T0443Z-codex-earned-ending-checkpoint.md",
   "runMeasurement": {
-    "sourceFilesModified": 1,
-    "testFilesModified": 1,
-    "existingQAToolsModified": 2,
-    "qaToolsAdded": 0,
-    "proofFilesAdded": 0,
-    "workflowFiles": 3,
-    "inheritedWIPPaths": 0,
-    "distinctReadOnlyReviewers": 2,
-    "registeredInvocations": 2,
-    "acceptedScopedJobs": 0,
-    "harnessCorrectionsThisRun": 0,
-    "failedSeedsUsed": 0,
-    "campaignNativeActionsObserved": 131,
-    "reviewCost": "Two read-only reviewers reused for precise cast architecture/draft/diff and terminal pilot diagnosis; no quota savings claim.",
-    "selectedCapturesInspected": 6,
-    "selectedCapturesPromoted": 0,
-    "completedReviewers": 2,
-    "reviewerQuotaFailures": 0,
-    "endedAt": "2026-10-09T00:00:35.779Z",
-    "elapsedMinutes": 49.51298333333333
+    "inheritedWip": 5,
+    "sourceModified": 0,
+    "testModified": 0,
+    "existingQaModified": 0,
+    "newQa": 0,
+    "proofAdded": 0,
+    "workflowModified": 2
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -17916,9 +18408,9 @@
     "externalPursuitBlocker": "Ten authored canonical mappings missing; not retried"
   },
   "previousRun": {
-    "runId": "rpgthreejs-auto-dev-90m-20261007T1907",
-    "nextAction": "Read NARRATIVE_CONTEXT_COHERENCE.md and current state. Existing run_cin6d6_route_browser_qa.mjs witnesses-protected flow drives the council but captures only choices/final boundary: add one bounded council-opening text observation/capture, review exact assertion diff with guardian, build current sources and register one unique production smoke at390x844 OS-only on a free strict port. Inspect corrected opening text/fit and retained agency; do not change the exhausted campfire assertion or rerun its accepted matrix. Then audit remaining fact-sensitive dialogue before narrative milestone acceptance. Preserve exact deferred keyboard action/six blobs and Pursuit10mapping inventory.",
-    "head": "3eb01d1e6048d08653571ebeef4adcf3555866db"
+    "runId": "rpgthreejs-auto-dev-90m-20261008T2104",
+    "status": "IN_PROGRESS",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-08T2311Z-codex-earned-ending-checkpoint.md"
   },
   "pendingNarrativeTask": {
     "task": "NARRATIVE-CONTEXT-COHERENCE",

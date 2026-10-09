@@ -1,30 +1,21 @@
 # Autonomous work state
 
-CURRENT FACT2311: IN_PROGRESS safe source checkpoint; cast browser and earned ending open.
+CURRENT FACT0443: earned rescue/Serpent ending accepted in1366normal with exact terminalV6. Full demo incomplete.
 
-Active task: DEMO-QA-POLISH: continuous earned campaign beyond first refuge.
-Active subtask: Earned rescue/serpent ending: review native lone-survivor pilot fallback after bounded failure.
-Handoff: docs/autonomy/handoffs/2026-10-08T2311Z-codex-earned-ending-checkpoint.md.
+Active task: DEMO-QA-POLISH: continuous earned campaign beyond first refuge
+Active subtask: Earned rescue/serpent ending: validate native lone-survivor fallback; scoped cast OS smoke
 
 ## Exact next action
 
-Read this2311 handoff and normal preflight. Continue the same DEMO-QA-POLISH earned rescue/serpent ending: review the six-line lone-survivor fallback checkpoint in tools/demo-continuous-production-qa.mjs (existing native attack/move, only no other living ally, after support/skill/heal attempts). Guardian source PASS; no browser validation yet. Register one unique bounded ending QA on a free port with exact source/driver/build/input hashes; preserve every current native legality/outcome/lineage/assertion boundary. Seed only accepted1859 second-refuge save SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b and priorProof SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3. Do not blindly repeat failed2104/2311 pilot or use failed outputs as seeds. Separate exact2AP-start Salvation from observed cost2AP. Cast browser remains blocked: before any new smoke, persist partial samples/phase timestamps on failure, require a currently moving raised first sample, and remove extra marker round trips while retaining three moving samples per reduced interval and all native assertions. No repeat before that bounded review. Broader Stage/VFX/actions/widths and full demo remain open.
+Preserve accepted0443ending scope and exact deferred keyboard nextAction. Review demonstrated Ctrl/Alt/Meta shortcut collision in combatKeyboard.ts; narrow modifier routing correction only, focused tests and fresh build. Keyboard browser acceptance remains open for next run existing battlefield driver; no second browser smoke this run.
 
-## Product and scoped verification
+## Accepted scope
 
-Four cast decorations only. Disposable epoch-owned baselines settle groundY and signed sprite/outline scales on every frame and preference change, including no-active-tween impact waits. Existing impact callbacks/timing, tactical AP/HP/coordinates, RNG and V6 unchanged. Teleport/other motions outside scope. Normal re-enable while impact is held can remain grounded until another tween.
+ACCEPTED_SCOPED_EARNED_RESCUE_SERPENT_ENDING_1366_NORMAL_V6. Native victory25rounds110actions; Alistair140/Marian113 survive, Cedric/ElaraKO.16native AP-conserve waits,20new40percent Salvation casts,15AP3->1/fiveAP5->3, zeroexact2AP-start. Currentdriver/source/build/1859lineage/receipt/result digests stable; ending=resumed=earnedV6. GuardianPASS; sixcaptures inspected, three explicitly promoted plus compactproof docs/reports/demo-earned-serpent-ending-0443-browser/compact-proof.json. Victory capture retains ATTACK banner; settledVFX/balance/fresh single-build fullcampaign/allotherbroadercriteria remain open.
 
-38post-change tests (25motion/4preference/3skills/6RNG), types,8contracts/8slots,210module production build, immutable/protected/whitespace gates PASS. Earlier89campaign-owner tests precede presentation-only change. Native standalone1366 Salvation liveOS smoke FAILED with stable request/source/driver/build/result digest; two diagnostic captures inspected, none promoted. One standalone1366liveOS smoke FAILED at final moving reduced-phase sample wait; preceding normal-return await advanced, raw probe not persisted. Neither screenshot shows active reduced cast. Native HP/AP assertions after probe not reached; no smoke native heal/AP acceptance. Source-sliced local tests prove four cast timing/empty-tween hold/cancellation cleanup. InitialOS browser/otherpresets/phaseidentified/StageVFX/390/campaign/start2AP/general motion remain open.
+## Governance
 
-## Earned ending limitation
-
-Unchanged earned ending campaign2311 FAILED at bounded35min deadline:131actions, over=false, Serpent156HP, Marian sole alive109/113HP. Sourcepilot support branch excludes native foe damage/move.25new40percent heals:9start3AP->1,16start5AP->3, allspec2/sameactor. Cost observation is not exact2AP-start proof; none starts2AP. No ending/reload/seed or tactical balance acceptance. Failed raw results/captures remain ignored diagnostics.
-
-## Governance and measurements
-
-Set1.1.0 immutable d7ca28aed5c377ffedb03202f6364b7a947d1096 unchanged; no LOCKED rules changed. All156inheritedQAentries and exact deferredDemoTask/pendingNarrativeTask/taskQueue preserved;158total jobs. Existing historical receipts retain their prior scope. Standing OD-2026-10-08-B authorizes reviewed normal origin/dev publication. Final SHA/remote/main/release verification goes in automation memory.
-
-Counts:1runtime source,1test modified,2existingQAmodified,0newQA,0selected proof files,3workflow files;0inheritedWIP.2registered jobs (endingFAILED+one production smokeFAILED),0accepted jobs,0harnesscorrections,0failedseeds,2read-only reviewers reused. No full demo acceptance.
+Five inherited WIP paths preserved and verified.115tests/types/direct8contracts8slots/build210modules PASS; immutablegate unchanged. All161jobs and exact deferredDemoTask/pendingNarrativeTask/taskQueue retained. Worker12512/port5351 stopped. Standing OD-2026-10-08-B applies. No current automatic-review rejection.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -187,4 +178,7 @@ Counts:1runtime source,1test modified,2existingQAmodified,0newQA,0selected proof
 - campaign-ending-2104: RUNNING; port 5346; receipt `tmp/demo/campaign-ending-2104/qa-job.json`; NOT_ACCEPTED
 - campaign-ending-2311: FAILED; port 5347; receipt `tmp/demo/campaign-ending-2311/qa-job.json`; NOT_ACCEPTED
 - cast-salvation-2311: FAILED; port 5348; receipt `tmp/demo/cast-salvation-2311/qa-job.json`; NOT_ACCEPTED
+- campaign-ending-0011: FAILED; port 5349; receipt `tmp/demo/campaign-ending-0011/qa-job.json`; NOT_ACCEPTED
+- cast-salvation-0011: SUCCEEDED; port 5350; receipt `tmp/demo/cast-salvation-0011/qa-job.json`; NOT_ACCEPTED
+- campaign-ending-0443: SUCCEEDED; port 5351; receipt `tmp/demo/campaign-ending-0443/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
