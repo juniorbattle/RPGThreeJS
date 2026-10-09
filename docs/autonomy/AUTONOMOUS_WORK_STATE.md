@@ -1,29 +1,27 @@
 # Autonomous work state
 
-CURRENT FACT0443: earned rescue/Serpent ending accepted in1366normal/exactV6 on52ecf923 execution. Later keyboard modifier correction is source/unit/build verified; browser acceptance OPEN. Full demo incomplete.
+CURRENT FACT0613: ACCEPTED_SCOPED_STANDALONE_NATIVE_KEYBOARD_MODIFIERS_1366_620_390_NORMAL_OS. Full demo IN_PROGRESS. No runtime edits this run; delivered product modifier guard now has fresh standalone browser acceptance.
 
 Active task: DEMO-QA-POLISH: continuous earned campaign beyond first refuge
-Active subtask: Combat keyboard modifier ownership: source correction verified; native browser matrix pending
+Active subtask: Standalone modifier/native keyboard accepted; fresh campaign iframe and accessibility acceptance remains
 
 ## Exact next action
 
-Normal preflight/exclusive lock; resume SAME DEMO-QA-POLISH keyboard subtask. Use existing tools/combat-battlefield-keyboard-production-qa.mjs with a minimal delivered Ctrl/Alt/Meta/combined-chord non-interference check against actual native mode/cursor/action/focus truth; have guardian review exact certifying-driver diff before running. Preserve original deferredDemoTask.nextAction verbatim: actual Tab/ShiftTab, cursor bounds/announcement/no truth mutation, invalid/legal move and native targeting, Escape/Retour focus, native controls/pointer regression in1366/620/390 normal andOS-only. Register one unique job/freeport/currentsource+driver+build, freeze physical inputs and inspect captures. Do not repeat accepted0443ending or0011cast proof as current keyboard acceptance. Exact2AP-start/otherendings/StageVFX/balance/demo remain open.
+Normal preflight/exclusive lock; resume SAME DEMO-QA-POLISH campaign keyboard boundary. Reuse accepted keyboard-0613 standalone six-case proof, do not rerun it or accepted0443ending/0011cast. Inspect existing campaignBattlefieldKeyboard() and parent focus-return coverage in tools/demo-continuous-production-qa.mjs; preserve deferredDemoTask.nextAction VERBATIM. Advance one registered fresh390x844 OS-only first-refuge scenario on current source/build using existing runner (DEMO_QA_TARGET=first-refuge, ROUTE=rescue, OS_MOTION=1, gamefalse, no seed), including actual Tab/ShiftTab iframe entry/cancel/dock focus, unchanged owner/autosaveV6, and native parent focus after combat. Correct only demonstrated product defect or minimally missing certifying assertion; guardian review for sensitive assertion diff before register-demo. Unique35min job/freeport/physicalfreeze, inspect actual captures. Campaign/AT/actorframing/exact2AP-start/otherendings/StageVFX/balance/full-demo remain open; preserve external blockers and original deferred task.
 
-## Accepted scope
+## Accepted scope and evidence
 
-ACCEPTED_SCOPED_EARNED_RESCUE_SERPENT_ENDING_1366_NORMAL_V6. Native victory25rounds110actions; Alistair140/Marian113 survive, Cedric/ElaraKO.16native AP-conserve waits,20new40percent Salvation casts,15AP3->1/fiveAP5->3, zeroexact2AP-start. Currentdriver/source/build/1859lineage/receipt/result digests stable; ending=resumed=earnedV6. GuardianPASS; sixcaptures inspected, three explicitly promoted plus compactproof docs/reports/demo-earned-serpent-ending-0443-browser/compact-proof.json. Victory capture retains ATTACK banner; settledVFX/balance/fresh single-build fullcampaign/allotherbroadercriteria remain open.
+One registered job keyboard-0613, six1366/620/390 normal/OS-only cases,840delivered exact-modifier chords. Native Tab/ShiftTab, cursor/announcement, invalid/legal move/target, cancel/Retour/dock focus, native controls and fresh native pointer attack verified. Result 3c3269d90cd81a2d440ce678ad2de778a49ca95ec4dfa68a0bc7350183ac03d7;395physicalfiles/10build stable, driver fbfa5123 and full provenance in docs/reports/demo-keyboard-modifiers-0613-browser/compact-proof.json. GuardianPASS/UIconditions closed;8captures inspected/3promoted. No tactical injections or outcomes. Worker60012/port5352 positively absent.
 
-## Keyboard source checkpoint
+## Limits and preserved continuity
 
-Ctrl/Alt/Meta chords no longer enter game shortcut routing; Shift/simplecancel/nativecontrols retained.24keyboard/59focusedtests,types,validator/new210module8MP4 build PASS; UI+guardian source review PASS. No second browser smoke. KeyboardInput bookkeeping/Shiftarrows/nativebrowser/AT remain open. Historical ending build9 and original two sourcefiles archived with exact hashes; prior proof does not certify later keyboard source.
+Standalone only: fresh campaign iframe/parent focus/V6 and AT/real OS-reserved chords/AltGraph remain OPEN. 390actor edges visibly cropped; no actor framing, Stage/VFX, live motion or balance acceptance. Exact2AP-start/otherendings/fresh single-build fullcampaign remain OPEN. Accepted0443earned rescue/Serpent ending retains its original52ecf923 source/build scope and compactproof unchanged. Exact deferredDemoTask/pendingNarrativeTask/taskQueue and all162jobs preserved. Historical failed jobs remain historical, never seeds. External staticOS-shadow/council/nightplate/tenPursuitmappings unchanged.
 
-## Run checkpoint
+## Compliance and run measurements
 
-Source/unit/build checkpoint06e6a565 published and remoteverified; original acceptedproduction52ecf923. Task IN_PROGRESS, keyboardbrowser acceptance OPEN. One productsource/one test modified;0newQA/4proofadded/3workflow, inherited fivepaths retained/integrated. ExactnextAction/deferredtask/queue preserved. Worker12512/port5351 stopped. Final metadata SHA and verified lockrelease are recorded in automation memory.
+Contractset1.1.0; constitution/index/manifest and combat/UI/QA/campaign/autonomy/presentation contracts read. No LOCKED rule changed; immutable diff and protected status empty, validator8contracts/8slots PASS.59focused/types/210module8MP4build/syntax/whitespace PASS. Guardian authority/save/combat/QA/governance PASS; art/characters/environment/narrativepresentation/Traversal N/A.
 
-## Governance
-
-Five inherited WIP paths preserved and verified.115tests/types/direct8contracts8slots/build210modules PASS; immutablegate unchanged. All161jobs and exact deferredDemoTask/pendingNarrativeTask/taskQueue retained. Worker12512/port5351 stopped. Standing OD-2026-10-08-B applies. No current automatic-review rejection.
+Excluding inheritedWIP:0source/0tests modified,1existingQAdriver modified,0newQA,4proofadded (3captures+compactJSON),3workflowfiles. One milestone job/sixcases;2reviewers (guardian3passes/UI2), no quota savings claim. Existing runner verifies prior delivered product fix; no speculative runtime edit or new QA tool. Standing OD-2026-10-08-B authorizes reviewed normal dev/WIP publication; main unchanged.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -189,8 +187,5 @@ Five inherited WIP paths preserved and verified.115tests/types/direct8contracts8
 - campaign-ending-0011: FAILED; port 5349; receipt `tmp/demo/campaign-ending-0011/qa-job.json`; NOT_ACCEPTED
 - cast-salvation-0011: SUCCEEDED; port 5350; receipt `tmp/demo/cast-salvation-0011/qa-job.json`; NOT_ACCEPTED
 - campaign-ending-0443: SUCCEEDED; port 5351; receipt `tmp/demo/campaign-ending-0443/qa-job.json`; NOT_ACCEPTED
+- keyboard-0613: SUCCEEDED; port 5352; receipt `tmp/demo/keyboard-0613/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
-
-## Actual retirement disposition
-
-Automatic review rejected remote/local own0443 WIP deletion before command execution as insufficiently authorized; no branch or lock deletion occurred. Preserve own0443 and inherited0011 WIP. Complete safe owned-lock release only after this metadata disposition is published. Product/QA/nextAction unchanged.

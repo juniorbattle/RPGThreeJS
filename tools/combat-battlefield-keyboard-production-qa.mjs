@@ -7,7 +7,7 @@ import {chromium} from 'playwright';
 import {beginJob} from './qa/qa-job.mjs';
 const movementMotion=process.env.BATTLEFIELD_QA_MOVEMENT==='1';
 export const parameters={viewports:[[1366,768],[620,780],[390,844]],motionModes:['no-preference','reduce'],movementMotion};
-export const requiredAssertions=['ACTUAL_TAB_BATTLEFIELD','TRANSIENT_CURSOR_ONLY','NATIVE_INVALID_AND_LEGAL_MOVE','NATIVE_TARGET_EXECUTION','CANCEL_AND_RETURN_FOCUS','NATIVE_CONTROLS','POINTER_REGRESSION',...(movementMotion?['ORDINARY_MOVE_LIVE_OS_REDUCTION','UNCHANGED_MOVEMENT_COMPLETION']:[])];
+export const requiredAssertions=['ACTUAL_TAB_BATTLEFIELD','TRANSIENT_CURSOR_ONLY','MODIFIER_CHORD_NON_INTERFERENCE','NATIVE_INVALID_AND_LEGAL_MOVE','NATIVE_TARGET_EXECUTION','CANCEL_AND_RETURN_FOCUS','NATIVE_CONTROLS','POINTER_REGRESSION',...(movementMotion?['ORDINARY_MOVE_LIVE_OS_REDUCTION','UNCHANGED_MOVEMENT_COMPLETION']:[])];
 const output=process.env.BATTLEFIELD_QA_OUTPUT??'tmp/demo/battlefield-keyboard-production';
 const port=Number(process.env.BATTLEFIELD_QA_PORT??5275);
 const job=beginJob({driver:'tools/combat-battlefield-keyboard-production-qa.mjs',output,port,parameters,requiredAssertions,jobId:process.env.BATTLEFIELD_QA_JOB_ID});
@@ -28,6 +28,33 @@ try{
     const truth=s=>({round:s.round,turnIdx:s.turnIdx,moved:s.moved,basicAttacks:s.basicAttacks,active:s.active,units:s.units,inventory:s.inventory});
     const unchanged=async(before,label)=>{assert.deepEqual(truth(await read()),truth(before),label);entry.checks.push(label);};
     async function key(value){await page.keyboard.press(value);entry.inputs.push({key:value});}
+    async function modifierChords(label){
+      const snapshot=async()=>({state:await read(),presentation:await page.evaluate(()=>({
+        cursor:{gx:document.querySelector('#combat-battlefield').dataset.cursorGx,gz:document.querySelector('#combat-battlefield').dataset.cursorGz},
+        pending:G.pending?{spec:JSON.parse(JSON.stringify(G.pending.spec)),centers:G.pending.centers.map(c=>({gx:c.gx,gz:c.gz})),keys:[...G.pending.keys].sort()}:null,
+        announcement:document.querySelector('#combat-cell-status').textContent,
+        submenuHidden:document.querySelector('#skillmenu').classList.contains('hidden')
+      }))});
+      const before=await snapshot();
+      for(const modifier of ['Control','Alt','Meta','Control+Alt','Meta+Shift'])for(const input of ['ArrowRight','Enter','Space','Escape','a','m','u']){
+        await page.evaluate(()=>{
+          window.__modifierDelivered=null;
+          window.addEventListener('keydown',function observe(e){
+            if(['Control','Alt','Meta','Shift'].includes(e.key))return;
+            window.__modifierDelivered={key:e.key,ctrl:e.ctrlKey,alt:e.altKey,meta:e.metaKey,shift:e.shiftKey,prevented:e.defaultPrevented,target:e.target?.id};
+            window.removeEventListener('keydown',observe);
+          });
+        });
+        const chord=modifier+'+'+input;await key(chord);
+        const delivered=await page.evaluate(()=>window.__modifierDelivered);
+        assert.ok(delivered&&(delivered.ctrl||delivered.alt||delivered.meta),'Modifier chord must reach the page: '+chord);
+        assert.equal(delivered.target,'combat-battlefield','Modifier chord must reach the focused battlefield');
+        assert.equal(delivered.prevented,false,'Combat must leave modifier chord unclaimed: '+chord);
+        assert.deepEqual(await snapshot(),before,label+': '+chord+' changed native state/cursor/action/focus');
+        entry.inputs.at(-1).delivered=delivered;
+      }
+      entry.checks.push(label+' modifier chords preserve native state/cursor/action/focus');
+    }
     async function tabTo(selector){
       const control=page.locator(selector).first();await control.waitFor({state:'visible'});
       for(let step=0;step<70;step++){
@@ -118,6 +145,7 @@ try{
     await tabTo('#combat-battlefield');await nav(zone);
     const deploymentBefore=await read();await key('Enter');
     assert.equal((await read()).units.filter(u=>u.alive).length,deploymentBefore.units.filter(u=>u.alive).length+1,'Native keyboard placement');
+    await modifierChords('Deployment occupied cell');
     await key('Enter');assert.equal((await read()).units.length,deploymentBefore.units.length,'Native keyboard removal');entry.checks.push('Native manual keyboard deployment/removal');
     await activate('#menu [data-d="auto"]');await activate('#menu [data-d="start"]');
     await page.waitForFunction(()=>G.mode==='menu'&&!G.busy&&G.active?.team==='player');
@@ -131,6 +159,7 @@ try{
     await unchanged(inspectionBefore,'Grid edges/arrows preserve all tactical truth');
     const occupant=inspectionBefore.units.find(u=>u.alive);await nav(occupant);await key('Enter');await key('Space');await unchanged(inspectionBefore,'Canvas inspection Enter/Space never ends a turn');
     assert.ok((await page.locator('#combat-cell-status').textContent()).includes('PV'));
+    await modifierChords('Menu inspection');
     await capture('inspection-focus');
     await activate('#menu [data-a="move"]');assert.equal((await read()).focus,'combat-battlefield');
     const beforeInvalid=await read();await nav(beforeInvalid.active);await key('Enter');await unchanged(beforeInvalid,'Origin-cell Enter cannot move or spend AP');
@@ -141,6 +170,7 @@ try{
       const distance=c=>Math.min(...G.units.filter(u=>u.alive&&u.team==='foe').map(u=>Math.abs(c.gx-u.gx)+Math.abs(c.gz-u.gz)));return distance(a)-distance(b);
     })[0]);assert.ok(destination,'No native reachable destination');
     await nav(destination);await capture('move-cursor');
+    await modifierChords('Legal move cursor');
     if(movementMotion){
       assert.ok(Math.abs(destination.gx-inspectionBefore.active.gx)+Math.abs(destination.gz-inspectionBefore.active.gz)>=3,'Live movement proof needs a multi-step native path');
       await startMovementProbe(destination);
@@ -173,7 +203,7 @@ try{
     const target=await page.evaluate(()=>G.pending.centers.find(c=>G.grid[c.gx][c.gz].occupant?.alive&&G.grid[c.gx][c.gz].occupant.team==='foe'));
     assert.ok(target,'No living foe in native attack centers after native approach');
     const spec=await page.evaluate(()=>({key:G.pending.spec.key,ap:G.pending.spec.ap}));entry.target={cell:target,spec,before:await read()};
-    await nav(target);await capture('target-preview');await key('Enter');await page.waitForFunction(()=>!G.busy&&(G.mode==='menu'||G.over),null,{timeout:60000});
+    await nav(target);await modifierChords('Legal attack target');await capture('target-preview');await key('Enter');await page.waitForFunction(()=>!G.busy&&(G.mode==='menu'||G.over),null,{timeout:60000});
     entry.target.after=await read();assert.equal(entry.target.after.basicAttacks,attackBefore.basicAttacks+1,'One native attack only');
     assert.equal(entry.target.after.active.ap,attackBefore.active.ap-spec.ap,'Native attack AP cost');await focusDock('Native target execution restores enabled dock');
     await capture('target-resolved');entry.checks.push('Native legal foe target resolves once');

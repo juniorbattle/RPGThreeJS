@@ -1,32 +1,48 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-09T04:43:36Z",
-  "runEndedAt": "2026-10-09T05:34:22.588Z",
+  "runStartedAt": "2026-10-09T06:15:49.8780757Z",
+  "runEndedAt": null,
   "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
-  "activePhase": "KEYBOARD_MODIFIER_SOURCE_CHECKPOINT_BROWSER_OPEN",
-  "activeSubtask": "Combat keyboard modifier ownership: source correction verified; native browser matrix pending",
+  "activePhase": "KEYBOARD_STANDALONE_MODIFIERS_ACCEPTED_CAMPAIGN_ACCESSIBILITY_OPEN",
+  "activeSubtask": "Standalone modifier/native keyboard accepted; fresh campaign iframe and accessibility acceptance remains",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "06e6a565db47f0a3320005cfa556a38ff6f4b57b",
   "lastPushedCommit": "06e6a565db47f0a3320005cfa556a38ff6f4b57b",
   "completedThisRun": [
-    "Recovered and preserved five inherited WIP paths",
-    "Accepted scoped native earned rescue/Serpent ending1366normal/exactV6 after guardian and six inspected captures",
-    "Corrected Ctrl/Alt/Meta combat shortcut eligibility; Shift/simple Escape/native controls preserved; five regression cases added; source/unit/build checkpoint only"
+    "Read-only preflight: clean dev14358d8 equals live origin/dev; no lock/QA worker/listener; other Vite belongs to HD-2D left untouched; acquired exclusive lock",
+    "Guardian approved passive delivered modifier assertion design after one pre-execution normalized pending-spec/centers/keys correction; no runtime edit",
+    "Existing production keyboard runner extended with passive modifier delivery and native pending-spec/targets non-interference assertions; no source or gameplay edits",
+    "Registered keyboard-0613 terminalSUCCEEDED: six1366/620/390 normal+OS-only cases,840exactdelivered chords, native keyboard/pointer one attack with expectedAP;395files/10build stable",
+    "Guardian finalPASS and UI conditions closed; eight captures inspected, three selected plus compactproof promoted; standalone scoped acceptance only"
   ],
   "filesChanged": [
-    "src/combat/combatKeyboard.ts",
-    "src/combat/combatKeyboard.test.ts"
+    "tools/combat-battlefield-keyboard-production-qa.mjs",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    "docs/autonomy/handoffs/2026-10-09T0613Z-codex-keyboard-modifier-checkpoint.md",
+    "docs/reports/demo-keyboard-modifiers-0613-browser/compact-proof.json",
+    "docs/reports/demo-keyboard-modifiers-0613-browser/1366-no-preference-target-preview.png",
+    "docs/reports/demo-keyboard-modifiers-0613-browser/620-no-preference-inspection-focus.png",
+    "docs/reports/demo-keyboard-modifiers-0613-browser/390-reduce-target-resolved.png"
   ],
   "testsRun": [
-    "115tests: unitMotion25/reducedMotion4/combatRandom6/management56/lionFinale24; types/directvalidator8contracts8slots/build210modules PASS; scripts syntax and immutable/whitespace gates PASS",
-    "After keyboard correction:59tests (keyboard24/motion25/RNG6/reduced4),types,direct8contracts8slots,fresh210module build/8MP4,immutable+whitespace gates PASS"
+    "59focused: combatKeyboard24/unitMotion25/combatRandom6/reducedMotion4 (tmp historical copy excluded)",
+    "TypeScript --noEmit PASS",
+    "Direct validator8contracts/8slots PASS",
+    "Production build210modules/eightMP4 PASS",
+    "Driver syntax/whitespace/immutable LOCKED gates PASS",
+    "One registered standalone browser milestone keyboard-0613:6cases/840delivered chords PASS, source/driver/helper/build/parameters/assertions/resultdigest stable"
   ],
   "testsPassed": [
-    "115tests: unitMotion25/reducedMotion4/combatRandom6/management56/lionFinale24; types/directvalidator8contracts8slots/build210modules PASS; scripts syntax and immutable/whitespace gates PASS",
-    "After keyboard correction:59tests (keyboard24/motion25/RNG6/reduced4),types,direct8contracts8slots,fresh210module build/8MP4,immutable+whitespace gates PASS"
+    "59focused: combatKeyboard24/unitMotion25/combatRandom6/reducedMotion4 (tmp historical copy excluded)",
+    "TypeScript --noEmit PASS",
+    "Direct validator8contracts/8slots PASS",
+    "Production build210modules/eightMP4 PASS",
+    "Driver syntax/whitespace/immutable LOCKED gates PASS",
+    "One registered standalone browser milestone keyboard-0613:6cases/840delivered chords PASS, source/driver/helper/build/parameters/assertions/resultdigest stable"
   ],
   "testsRemaining": [
-    "Keyboard Ctrl/Alt/Meta source guard: native browser/AT validation OPEN; delivered chords and exact deferred battlefield matrix required",
+    "Standalone keyboard/modifier six-case acceptance COMPLETE; fresh campaign iframe/parent focus/V6, spokenAT and actual OS/AltGraph reserved shortcuts remain OPEN",
     "Exact2AP-start Salvation remains open; native2APcost/debit confirmed only from higherAP",
     "Broad accessibility,390actor framing,enabledskills/automaticfocusreturn/spokenAT and leap/attack/Stage/VFX motion remain open; four-cast local timing tests and 1366Salvation effectiveOS numeric scope accepted0011, broader visual acceptance open",
     "Sacrifice/trial/fallback/settledVFX/balance/single-build campaign acceptance",
@@ -47,11 +63,11 @@
   "remainingWork": [
     "COPY full static-only OS shadow acceptance",
     "ENV approved Bois-Clair night tableau plus broader context inventory",
-    "Exact deferred keyboard production matrix and fresh campaign iframe entry/return",
+    "Standalone six-case keyboard/modifier matrix accepted0613; fresh campaign iframe/parent focus/V6 and AT remain OPEN",
     "Council/refugee browser acceptance and ten Pursuit canonical mappings",
     "Earned rescue/Serpent ending1366normal accepted; other endings/exact2AP-start/VFX/balance remain open"
   ],
-  "nextAction": "Normal preflight/exclusive lock; resume SAME DEMO-QA-POLISH keyboard subtask. Use existing tools/combat-battlefield-keyboard-production-qa.mjs with a minimal delivered Ctrl/Alt/Meta/combined-chord non-interference check against actual native mode/cursor/action/focus truth; have guardian review exact certifying-driver diff before running. Preserve original deferredDemoTask.nextAction verbatim: actual Tab/ShiftTab, cursor bounds/announcement/no truth mutation, invalid/legal move and native targeting, Escape/Retour focus, native controls/pointer regression in1366/620/390 normal andOS-only. Register one unique job/freeport/currentsource+driver+build, freeze physical inputs and inspect captures. Do not repeat accepted0443ending or0011cast proof as current keyboard acceptance. Exact2AP-start/otherendings/StageVFX/balance/demo remain open.",
+  "nextAction": "Normal preflight/exclusive lock; resume SAME DEMO-QA-POLISH campaign keyboard boundary. Reuse accepted keyboard-0613 standalone six-case proof, do not rerun it or accepted0443ending/0011cast. Inspect existing campaignBattlefieldKeyboard() and parent focus-return coverage in tools/demo-continuous-production-qa.mjs; preserve deferredDemoTask.nextAction VERBATIM. Advance one registered fresh390x844 OS-only first-refuge scenario on current source/build using existing runner (DEMO_QA_TARGET=first-refuge, ROUTE=rescue, OS_MOTION=1, gamefalse, no seed), including actual Tab/ShiftTab iframe entry/cancel/dock focus, unchanged owner/autosaveV6, and native parent focus after combat. Correct only demonstrated product defect or minimally missing certifying assertion; guardian review for sensitive assertion diff before register-demo. Unique35min job/freeport/physicalfreeze, inspect actual captures. Campaign/AT/actorframing/exact2AP-start/otherendings/StageVFX/balance/full-demo remain open; preserve external blockers and original deferred task.",
   "taskQueue": [
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
     "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
@@ -65,8 +81,8 @@
     "ENVIRONMENT-NARRATIVE-COHERENCE: BLOCKED_ASSET_BOIS_CLAIR_NIGHT; bounded audit complete",
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
-  "creditStatus": "Ordinary usage available. One automatic-review rejection: WIP retirement denied; preserve branches and complete safe lock release. No quota outage or product publication rejection.",
-  "contractComplianceStatus": "PASS accepted ending scope; PASS keyboard source authority; BLOCKED keyboard browser/AT acceptance, full demo open. Set1.1.0/immutable gate unchanged.",
+  "creditStatus": "Work proceeded within authorized scope; no quota-based reduction or savings claim",
+  "contractComplianceStatus": "PASS scoped standalone native keyboard/modifiers; full demo IN_PROGRESS. Set1.1.0/immutable LOCKED gate unchanged; campaign iframe/AT/actor/StageVFX acceptance OPEN.",
   "commitReferenceScope": "KnownGood and Pushed identify published source/unit/build checkpoint06e6a56; acceptedProduction identifies original ending52ecf92. Final workflow closure SHA is recorded externally in automation memory after verified publication.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
@@ -168,34 +184,31 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261009T0443",
+  "runId": "rpgthreejs-auto-dev-90m-20261009T0613",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-09T05:34:22.588Z",
+  "lastHeartbeat": "2026-10-09T06:51:47.423Z",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261009T0443",
-    "sha": "955facb8ed4c5560e0a733a05ab958d2cf1db61b",
-    "snapshotAt": "2026-10-09T05:32:50.618Z",
-    "status": "IN_PROGRESS",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261009T0613",
+    "sha": "9ddc00d633288eaac349bfb494276c74714ad07b",
+    "snapshotAt": "2026-10-09T06:51:47.423Z",
     "dirtyFiles": [
-      "tools/combat-salvation-production-qa.mjs",
-      "tools/demo-continuous-production-qa.mjs",
+      "tools/combat-battlefield-keyboard-production-qa.mjs",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-09T0011Z-codex-salvation-ending-checkpoint.md",
-      "docs/autonomy/handoffs/2026-10-09T0443Z-codex-earned-ending-checkpoint.md",
-      "docs/reports/demo-earned-serpent-ending-0443-browser/compact-proof.json",
-      "docs/reports/demo-earned-serpent-ending-0443-browser/combat-3-result.png",
-      "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth.png",
-      "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth-resumed.png",
-      "src/combat/combatKeyboard.ts",
-      "src/combat/combatKeyboard.test.ts"
-    ]
+      "docs/autonomy/handoffs/2026-10-09T0613Z-codex-keyboard-modifier-checkpoint.md",
+      "docs/reports/demo-keyboard-modifiers-0613-browser/compact-proof.json",
+      "docs/reports/demo-keyboard-modifiers-0613-browser/1366-no-preference-target-preview.png",
+      "docs/reports/demo-keyboard-modifiers-0613-browser/620-no-preference-inspection-focus.png",
+      "docs/reports/demo-keyboard-modifiers-0613-browser/390-reduce-target-resolved.png"
+    ],
+    "status": "GREEN",
+    "lastGreenCheck": "ACCEPTED_SCOPED_STANDALONE_NATIVE_KEYBOARD_MODIFIERS_1366_620_390_NORMAL_OS"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261009T0443",
+    "runId": "rpgthreejs-auto-dev-90m-20261009T0613",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-09T05:34:22.588Z",
-    "status": "CHECKPOINTED_KEYBOARD_BROWSER_ACCEPTANCE_OPEN",
+    "lastHeartbeat": "2026-10-09T06:51:47.423Z",
+    "status": "IN_PROGRESS",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -17462,29 +17475,141 @@
         "provenanceStable": true,
         "reviewedAt": "2026-10-09T05:25:07.000Z",
         "reviewScope": "Native earned1859 continuation, Serpent victory25rounds110actions,20native40percent/2AP casts, exact endingV6;1366normal. Exact2AP-start/balance/full demo/settledVFX excluded."
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "keyboard-0613",
+        "runId": "rpgthreejs-auto-dev-90m-20261009T0613",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-09T06:19:53.881Z",
+        "pid": 60012,
+        "port": 5352,
+        "command": [
+          "node",
+          "tools/combat-battlefield-keyboard-production-qa.mjs"
+        ],
+        "parameters": {
+          "viewports": [
+            [
+              1366,
+              768
+            ],
+            [
+              620,
+              780
+            ],
+            [
+              390,
+              844
+            ]
+          ],
+          "motionModes": [
+            "no-preference",
+            "reduce"
+          ],
+          "movementMotion": false
+        },
+        "requiredAssertions": [
+          "ACTUAL_TAB_BATTLEFIELD",
+          "TRANSIENT_CURSOR_ONLY",
+          "MODIFIER_CHORD_NON_INTERFERENCE",
+          "NATIVE_INVALID_AND_LEGAL_MOVE",
+          "NATIVE_TARGET_EXECUTION",
+          "CANCEL_AND_RETURN_FOCUS",
+          "NATIVE_CONTROLS",
+          "POINTER_REGRESSION"
+        ],
+        "output": "tmp/demo/keyboard-0613",
+        "receiptPath": "tmp/demo/keyboard-0613/qa-job.json",
+        "provenance": {
+          "gitHead": "14358d8a2005793ca457080e59f3f0fddd8f798a",
+          "sourceTree": "d7cd1fe743138c5e860af098a371d27164cdf59c",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/combat-battlefield-keyboard-production-qa.mjs",
+            "sha256": "fbfa5123ac6bf78201803bcf3cb6da92d22737375e22616ef7d70d6e6eb5b134"
+          },
+          "inputs": [],
+          "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CgtHztqA.js",
+              "sha256": "b1f8cbeab4c54a8c7eea48e6eeda9ac635b0fbdcb41115b9d375e98233fa0802"
+            },
+            {
+              "path": "dist/assets/combat-CR5R5JG5.js",
+              "sha256": "535f7d429b8fa72318b73aafef98c979393f27bc89de26d06820d6b38f1dfe50"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-3pkMo-Ir.css",
+              "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+            },
+            {
+              "path": "dist/assets/game-CfeGt3vL.js",
+              "sha256": "b059922fb1efd0bdc9944e07e83a4f75e1d1a9fd74b4db6eae90456ba2d365b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "eb6086357447b6e5b34da2c0ffdfa1956d9e0d98472ab195b513fa1c19c32abb"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-09T06:19:58.105Z",
+        "endedAt": "2026-10-09T06:46:18.222Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "exitCode": 0,
+        "resultPath": "tmp/demo/keyboard-0613/results.json",
+        "resultSha256": "3c3269d90cd81a2d440ce678ad2de778a49ca95ec4dfa68a0bc7350183ac03d7",
+        "provenanceStable": true,
+        "reviewedDisposition": {
+          "status": "ACCEPTED_SCOPED_STANDALONE_NATIVE_KEYBOARD_MODIFIERS_1366_620_390_NORMAL_OS",
+          "proof": "docs/reports/demo-keyboard-modifiers-0613-browser/compact-proof.json",
+          "reviewedAt": "2026-10-09T06:51:23.750Z",
+          "guardian": "PASS",
+          "ui": "OK",
+          "campaignAcceptance": false
+        }
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261009T0443",
-      "sha": "955facb8ed4c5560e0a733a05ab958d2cf1db61b",
-      "snapshotAt": "2026-10-09T05:32:50.618Z",
-      "status": "IN_PROGRESS",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261009T0613",
+      "sha": "9ddc00d633288eaac349bfb494276c74714ad07b",
+      "snapshotAt": "2026-10-09T06:51:47.423Z",
       "dirtyFiles": [
-        "tools/combat-salvation-production-qa.mjs",
-        "tools/demo-continuous-production-qa.mjs",
+        "tools/combat-battlefield-keyboard-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-09T0011Z-codex-salvation-ending-checkpoint.md",
-        "docs/autonomy/handoffs/2026-10-09T0443Z-codex-earned-ending-checkpoint.md",
-        "docs/reports/demo-earned-serpent-ending-0443-browser/compact-proof.json",
-        "docs/reports/demo-earned-serpent-ending-0443-browser/combat-3-result.png",
-        "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth.png",
-        "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth-resumed.png",
-        "src/combat/combatKeyboard.ts",
-        "src/combat/combatKeyboard.test.ts"
-      ]
+        "docs/autonomy/handoffs/2026-10-09T0613Z-codex-keyboard-modifier-checkpoint.md",
+        "docs/reports/demo-keyboard-modifiers-0613-browser/compact-proof.json",
+        "docs/reports/demo-keyboard-modifiers-0613-browser/1366-no-preference-target-preview.png",
+        "docs/reports/demo-keyboard-modifiers-0613-browser/620-no-preference-inspection-focus.png",
+        "docs/reports/demo-keyboard-modifiers-0613-browser/390-reduce-target-resolved.png"
+      ],
+      "status": "GREEN",
+      "lastGreenCheck": "ACCEPTED_SCOPED_STANDALONE_NATIVE_KEYBOARD_MODIFIERS_1366_620_390_NORMAL_OS"
     },
-    "nextAction": "Normal preflight/exclusive lock; resume SAME DEMO-QA-POLISH keyboard subtask. Use existing tools/combat-battlefield-keyboard-production-qa.mjs with a minimal delivered Ctrl/Alt/Meta/combined-chord non-interference check against actual native mode/cursor/action/focus truth; have guardian review exact certifying-driver diff before running. Preserve original deferredDemoTask.nextAction verbatim: actual Tab/ShiftTab, cursor bounds/announcement/no truth mutation, invalid/legal move and native targeting, Escape/Retour focus, native controls/pointer regression in1366/620/390 normal andOS-only. Register one unique job/freeport/currentsource+driver+build, freeze physical inputs and inspect captures. Do not repeat accepted0443ending or0011cast proof as current keyboard acceptance. Exact2AP-start/otherendings/StageVFX/balance/demo remain open.",
+    "nextAction": "Normal preflight/exclusive lock; resume SAME DEMO-QA-POLISH campaign keyboard boundary. Reuse accepted keyboard-0613 standalone six-case proof, do not rerun it or accepted0443ending/0011cast. Inspect existing campaignBattlefieldKeyboard() and parent focus-return coverage in tools/demo-continuous-production-qa.mjs; preserve deferredDemoTask.nextAction VERBATIM. Advance one registered fresh390x844 OS-only first-refuge scenario on current source/build using existing runner (DEMO_QA_TARGET=first-refuge, ROUTE=rescue, OS_MOTION=1, gamefalse, no seed), including actual Tab/ShiftTab iframe entry/cancel/dock focus, unchanged owner/autosaveV6, and native parent focus after combat. Correct only demonstrated product defect or minimally missing certifying assertion; guardian review for sensitive assertion diff before register-demo. Unique35min job/freeport/physicalfreeze, inspect actual captures. Campaign/AT/actorframing/exact2AP-start/otherendings/StageVFX/balance/full-demo remain open; preserve external blockers and original deferred task.",
     "runMetrics": {
       "sourceFilesModified": 0,
       "testFilesModified": 0,
@@ -17529,9 +17654,9 @@
         "docs/autonomy/handoffs/2026-10-08T2311Z-codex-earned-ending-checkpoint.md"
       ]
     },
-    "runStartedAt": "2026-10-09T04:43:36Z",
-    "runEndedAt": "2026-10-09T05:34:22.588Z",
-    "writerStopped": true,
+    "runStartedAt": "2026-10-09T06:15:49.8780757Z",
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "status": "RESOLVED_BY_OPERATOR_APPROVAL",
       "standingDecision": "OD-2026-10-08-B",
@@ -18085,7 +18210,12 @@
         "keyboardInput transient flag still set before eligibility",
         "Shift+arrows retain existing routing",
         "Actual AltGraph/AT/layout/nativefocus/browser delivery not certified"
-      ]
+      ],
+      "currentBrowserSuccessor": {
+        "runId": "rpgthreejs-auto-dev-90m-20261009T0613",
+        "scope": "ACCEPTED_SCOPED_STANDALONE_NATIVE_KEYBOARD_MODIFIERS_1366_620_390_NORMAL_OS",
+        "proof": "docs/reports/demo-keyboard-modifiers-0613-browser/compact-proof.json"
+      }
     },
     "compliance0443": {
       "contractSet": "1.1.0",
@@ -18128,6 +18258,177 @@
       "reason": "Branch retirement judged insufficiently authorized relative to WIP preservation; lock release authorized",
       "safeAlternative": "Preserve all WIP branches; publish explicit disposition and release owned lock only",
       "workaroundAttempted": false
+    },
+    "keyboard0613": {
+      "status": "ACCEPTED_SCOPED_STANDALONE_NATIVE_KEYBOARD_MODIFIERS_1366_620_390_NORMAL_OS",
+      "baseline": "14358d8a2005793ca457080e59f3f0fddd8f798a",
+      "driver": "tools/combat-battlefield-keyboard-production-qa.mjs",
+      "scope": "Standalone built combat, 1366/620/390 normal and OS-only, native keyboard/pointer; never campaign/AT acceptance",
+      "newQaTool": false,
+      "productFirst": "Prior0443 product modifier guard is already delivered; this run resumes its exact missing browser acceptance, no speculative runtime edit",
+      "physicalFreeze": {
+        "path": "tmp/autonomy/physical-freeze-0613.json",
+        "sha256": "d3ad8300e0f8b2cd02ccbd28505c03334db87831adb8c87a14348e92fc521671",
+        "files": 395,
+        "build": 10,
+        "includesStandaloneHtml": true,
+        "allStableThroughTerminal": true
+      },
+      "guardianBeforeExecution": "PASS corrected pending specification/targets comparison",
+      "capturesInspected": [
+        "tmp/demo/keyboard-0613/1366-no-preference-inspection-focus.png",
+        "tmp/demo/keyboard-0613/1366-no-preference-move-cursor.png",
+        "tmp/demo/keyboard-0613/1366-no-preference-target-preview.png",
+        "tmp/demo/keyboard-0613/1366-reduce-move-cursor.png",
+        "tmp/demo/keyboard-0613/620-no-preference-inspection-focus.png",
+        "tmp/demo/keyboard-0613/620-reduce-target-resolved.png",
+        "tmp/demo/keyboard-0613/390-no-preference-inspection-focus.png",
+        "tmp/demo/keyboard-0613/390-reduce-target-resolved.png"
+      ],
+      "resultSha256": "3c3269d90cd81a2d440ce678ad2de778a49ca95ec4dfa68a0bc7350183ac03d7",
+      "deliveredModifierChords": 840,
+      "uiReview": "OK_STANDALONE_CONDITIONS_CLOSED",
+      "guardian": "PASS_SCOPED_FINAL_PROOF",
+      "compactProof": "docs/reports/demo-keyboard-modifiers-0613-browser/compact-proof.json",
+      "provenance": {
+        "gitHead": "14358d8a2005793ca457080e59f3f0fddd8f798a",
+        "sourceTree": "d7cd1fe743138c5e860af098a371d27164cdf59c",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/combat-battlefield-keyboard-production-qa.mjs",
+          "sha256": "fbfa5123ac6bf78201803bcf3cb6da92d22737375e22616ef7d70d6e6eb5b134"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-CgtHztqA.js",
+            "sha256": "b1f8cbeab4c54a8c7eea48e6eeda9ac635b0fbdcb41115b9d375e98233fa0802"
+          },
+          {
+            "path": "dist/assets/combat-CR5R5JG5.js",
+            "sha256": "535f7d429b8fa72318b73aafef98c979393f27bc89de26d06820d6b38f1dfe50"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-3pkMo-Ir.css",
+            "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+          },
+          {
+            "path": "dist/assets/game-CfeGt3vL.js",
+            "sha256": "b059922fb1efd0bdc9944e07e83a4f75e1d1a9fd74b4db6eae90456ba2d365b4"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "eb6086357447b6e5b34da2c0ffdfa1956d9e0d98472ab195b513fa1c19c32abb"
+          }
+        ]
+      },
+      "cases": [
+        {
+          "viewport": [
+            1366,
+            768
+          ],
+          "os": false,
+          "game": false,
+          "pass": true,
+          "delivered": 140
+        },
+        {
+          "viewport": [
+            1366,
+            768
+          ],
+          "os": true,
+          "game": false,
+          "pass": true,
+          "delivered": 140
+        },
+        {
+          "viewport": [
+            620,
+            780
+          ],
+          "os": false,
+          "game": false,
+          "pass": true,
+          "delivered": 140
+        },
+        {
+          "viewport": [
+            620,
+            780
+          ],
+          "os": true,
+          "game": false,
+          "pass": true,
+          "delivered": 140
+        },
+        {
+          "viewport": [
+            390,
+            844
+          ],
+          "os": false,
+          "game": false,
+          "pass": true,
+          "delivered": 140
+        },
+        {
+          "viewport": [
+            390,
+            844
+          ],
+          "os": true,
+          "game": false,
+          "pass": true,
+          "delivered": 140
+        }
+      ],
+      "capturesPromoted": [
+        "docs/reports/demo-keyboard-modifiers-0613-browser/1366-no-preference-target-preview.png",
+        "docs/reports/demo-keyboard-modifiers-0613-browser/620-no-preference-inspection-focus.png",
+        "docs/reports/demo-keyboard-modifiers-0613-browser/390-reduce-target-resolved.png"
+      ],
+      "limits": [
+        "Standalone proof never certifies campaign iframe focus/V6 or full demo",
+        "AT, actual OS/AltGraph layouts and browser-reserved shortcuts outside delivered headless chords remain open",
+        "keyboardInput transient bookkeeping before eligibility and Shift-arrow behavior unchanged",
+        "390px actor edge cropping remains OPEN; no actor/Stage/VFX/art/balance acceptance",
+        "Exact2AP-start Salvation, other endings, single-build fresh fullcampaign and external narrative/asset/canonical blockers remain open"
+      ],
+      "compliance": {
+        "GAME_CONSTITUTION": "PASS native authority preserved",
+        "ART_DIRECTION": "N/A no assets changed",
+        "CHARACTERS": "N/A actor framing remains OPEN",
+        "ENVIRONMENTS": "N/A",
+        "NARRATIVE_CAMPAIGN": "PASS no campaign writes or acceptance",
+        "NARRATIVE_PRESENTATION": "N/A",
+        "TRAVERSAL": "N/A",
+        "COMBAT": "PASS native legality/AP/resolution; keyboard and pointer resolve once",
+        "SAVE": "PASS schema/IDs unchanged; campaign iframe/V6 proof remains OPEN",
+        "UI_ACCESSIBILITY": "PASS scoped native keyboard/focus/controls six cases; AT and broader motion remain OPEN",
+        "QA_EVIDENCE": "PASS exact840delivered modifiers, digest,395physicalfiles/10build and selected captures",
+        "REPOSITORY_GOVERNANCE": "PASS owned dev/single writer/empty LOCKED gates"
+      },
+      "workerAbsent": 60012,
+      "portAbsent": 5352
     }
   },
   "previousInterruptedRun": {
@@ -18175,43 +18476,38 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-09T0443Z-codex-earned-ending-checkpoint.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-09T0613Z-codex-keyboard-modifier-checkpoint.md",
   "runMeasurement": {
-    "inheritedWipPaths": 5,
-    "inheritedQaModified": [
-      "tools/combat-salvation-production-qa.mjs",
-      "tools/demo-continuous-production-qa.mjs"
+    "inheritedWipPaths": 0,
+    "sourceModified": [],
+    "testModified": [],
+    "existingQaModified": [
+      "tools/combat-battlefield-keyboard-production-qa.mjs"
     ],
-    "sourceModified": [
-      "src/combat/combatKeyboard.ts"
-    ],
-    "testModified": [
-      "src/combat/combatKeyboard.test.ts"
-    ],
-    "existingQaModified": [],
     "newQa": [],
     "proofAdded": [
-      "docs/reports/demo-earned-serpent-ending-0443-browser/compact-proof.json",
-      "docs/reports/demo-earned-serpent-ending-0443-browser/combat-3-result.png",
-      "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth.png",
-      "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth-resumed.png"
+      "docs/reports/demo-keyboard-modifiers-0613-browser/compact-proof.json",
+      "docs/reports/demo-keyboard-modifiers-0613-browser/1366-no-preference-target-preview.png",
+      "docs/reports/demo-keyboard-modifiers-0613-browser/620-no-preference-inspection-focus.png",
+      "docs/reports/demo-keyboard-modifiers-0613-browser/390-reduce-target-resolved.png"
     ],
     "workflowModified": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-09T0443Z-codex-earned-ending-checkpoint.md"
+      "docs/autonomy/handoffs/2026-10-09T0613Z-codex-keyboard-modifier-checkpoint.md"
     ],
     "browserJobsLaunched": 1,
-    "browserJobsAcceptedScoped": 1,
-    "capturesInspected": 6,
+    "browserMilestoneCases": 6,
+    "acceptedScopedJobs": 1,
+    "deliveredModifierChords": 840,
+    "capturesInspected": 8,
     "capturesPromoted": 3,
     "reviewers": 2,
     "reviewPasses": {
       "guardian": 3,
       "ui": 2
     },
-    "quotaSavingsClaimed": false,
-    "elapsedMinutesAtCheckpoint": 50.776466666666664
+    "quotaSavingsClaimed": false
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
