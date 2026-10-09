@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-09T04:43:36Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-09T05:34:22.588Z",
   "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
   "activePhase": "KEYBOARD_MODIFIER_SOURCE_CHECKPOINT_BROWSER_OPEN",
   "activeSubtask": "Combat keyboard modifier ownership: source correction verified; native browser matrix pending",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "52ecf923f36a628e576d449b21879233fea940ed",
-  "lastPushedCommit": "52ecf923f36a628e576d449b21879233fea940ed",
+  "lastKnownGoodCommit": "06e6a565db47f0a3320005cfa556a38ff6f4b57b",
+  "lastPushedCommit": "06e6a565db47f0a3320005cfa556a38ff6f4b57b",
   "completedThisRun": [
     "Recovered and preserved five inherited WIP paths",
     "Accepted scoped native earned rescue/Serpent ending1366normal/exactV6 after guardian and six inspected captures",
@@ -65,9 +65,9 @@
     "ENVIRONMENT-NARRATIVE-COHERENCE: BLOCKED_ASSET_BOIS_CLAIR_NIGHT; bounded audit complete",
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
-  "creditStatus": "Ordinary usage available at preflight; no quota-based scope reduction",
+  "creditStatus": "Ordinary usage available; no quota/tool outage and no automatic-review rejection. Earlier sandbox read/write denials resolved with authorized escalation.",
   "contractComplianceStatus": "PASS accepted ending scope; PASS keyboard source authority; BLOCKED keyboard browser/AT acceptance, full demo open. Set1.1.0/immutable gate unchanged.",
-  "commitReferenceScope": "Starting dev baseline only; final self-referential commit/remote/release verified externally in automation memory.",
+  "commitReferenceScope": "KnownGood and Pushed identify published source/unit/build checkpoint06e6a56; acceptedProduction identifies original ending52ecf92. Final workflow closure SHA is recorded externally in automation memory after verified publication.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -170,7 +170,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261009T0443",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-09T05:32:50.618Z",
+  "lastHeartbeat": "2026-10-09T05:34:22.588Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261009T0443",
     "sha": "955facb8ed4c5560e0a733a05ab958d2cf1db61b",
@@ -194,8 +194,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261009T0443",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-09T05:32:50.618Z",
-    "status": "IN_PROGRESS",
+    "lastHeartbeat": "2026-10-09T05:34:22.588Z",
+    "status": "CHECKPOINTED_KEYBOARD_BROWSER_ACCEPTANCE_OPEN",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -17530,8 +17530,8 @@
       ]
     },
     "runStartedAt": "2026-10-09T04:43:36Z",
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-09T05:34:22.588Z",
+    "writerStopped": true,
     "metadataPublication": {
       "status": "RESOLVED_BY_OPERATOR_APPROVAL",
       "standingDecision": "OD-2026-10-08-B",
@@ -18107,7 +18107,7 @@
       }
     },
     "publication0443": {
-      "status": "KEYBOARD_CHECKPOINT_READY",
+      "status": "PUBLISHED_SOURCE_CHECKPOINT_WORKFLOW_CLOSURE_READY",
       "acceptedEndingCommit": "52ecf923f36a628e576d449b21879233fea940ed",
       "mode": "NORMAL_NON_FORCE_DEV",
       "authority": "OD-2026-10-08-B",
@@ -18115,7 +18115,11 @@
         "src/combat/combatKeyboard.ts",
         "src/combat/combatKeyboard.test.ts"
       ],
-      "mainExcluded": true
+      "mainExcluded": true,
+      "currentSourceCommit": "06e6a565db47f0a3320005cfa556a38ff6f4b57b",
+      "remoteParity": "Verified HEAD=origin/dev=live remote06e6a56 before metadata closure",
+      "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged",
+      "ownedWipRetirement": "Only owned0443 branch after metadata-only content-coverage guard; inherited0011 snapshot remains retained"
     }
   },
   "previousInterruptedRun": {
@@ -18198,7 +18202,8 @@
       "guardian": 3,
       "ui": 2
     },
-    "quotaSavingsClaimed": false
+    "quotaSavingsClaimed": false,
+    "elapsedMinutesAtCheckpoint": 50.776466666666664
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -18341,8 +18346,13 @@
     }
   },
   "uncommittedWork": {
-    "reason": "No product/QA WIP. Selected standing-authorization and closeout workflow files form this coherent checkpoint; final SHA/parity recorded externally before lock release.",
-    "files": []
+    "status": "WORKFLOW_CLOSURE_ONLY",
+    "paths": [
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/handoffs/2026-10-09T0443Z-codex-earned-ending-checkpoint.md"
+    ],
+    "inheritedWip": "Integrated and preserved; original0011 snapshot retained"
   },
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
@@ -18560,5 +18570,6 @@
     "node": "lion-second-refuge",
     "preparation": "Native rest75;3KO/5wounded/300gold",
     "scope": "Scoped1366normal rescue secondrefuge on prior frozen build"
-  }
+  },
+  "lastAcceptedProductionCommit": "52ecf923f36a628e576d449b21879233fea940ed"
 }

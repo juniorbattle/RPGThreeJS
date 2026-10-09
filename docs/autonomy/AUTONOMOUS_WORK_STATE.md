@@ -17,6 +17,10 @@ ACCEPTED_SCOPED_EARNED_RESCUE_SERPENT_ENDING_1366_NORMAL_V6. Native victory25rou
 
 Ctrl/Alt/Meta chords no longer enter game shortcut routing; Shift/simplecancel/nativecontrols retained.24keyboard/59focusedtests,types,validator/new210module8MP4 build PASS; UI+guardian source review PASS. No second browser smoke. KeyboardInput bookkeeping/Shiftarrows/nativebrowser/AT remain open. Historical ending build9 and original two sourcefiles archived with exact hashes; prior proof does not certify later keyboard source.
 
+## Run checkpoint
+
+Source/unit/build checkpoint06e6a565 published and remoteverified; original acceptedproduction52ecf923. Task IN_PROGRESS, keyboardbrowser acceptance OPEN. One productsource/one test modified;0newQA/4proofadded/3workflow, inherited fivepaths retained/integrated. ExactnextAction/deferredtask/queue preserved. Worker12512/port5351 stopped. Final metadata SHA and verified lockrelease are recorded in automation memory.
+
 ## Governance
 
 Five inherited WIP paths preserved and verified.115tests/types/direct8contracts8slots/build210modules PASS; immutablegate unchanged. All161jobs and exact deferredDemoTask/pendingNarrativeTask/taskQueue retained. Worker12512/port5351 stopped. Standing OD-2026-10-08-B applies. No current automatic-review rejection.

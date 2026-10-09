@@ -21,3 +21,7 @@ CurrentnextAction: Normal preflight/exclusive lock; resume SAME DEMO-QA-POLISH k
 Counts excluding inheritedWIP:1productsource modified/1test modified/0newQA/4proofadded (3captures+compactJSON)/3workflowfiles. Inherited2QAdrivers plus0011handoff integrated unchanged. One browserjob/one scopedacceptance;6captures inspected/3promoted;2reviewers reused (guardian3passes/UI2), no quota savings claim.
 
 Finalsync after keyboard: receiptSUCCEEDED/result+request stable, matchesCurrentExecution=false and helperacceptanceNOT_ACCEPTED. Original reviewed ending disposition retained in live.campaign0443 and immutable compactproof at52ecf923; never use these flags to certify new keyboard code. Contractmatrix explicitly BLOCKED only for unverified keyboardbrowser/AT; sourceauthorityPASS and historical ending scopePASS.
+
+## Safe closeout
+
+Source/unit/build checkpoint06e6a565db47f0a3320005cfa556a38ff6f4b57b published normalnonforce and HEAD/origin/dev/live remoteverified; main00b96f1 unchanged. Pairedstate marks taskIN_PROGRESS, writer stopped and browsercriteriaOPEN. Final metadata closure SHA belongs in external automation memory, avoiding selfhash loop. Own0443 WIP retirement/lockrelease only after clean remoteverified checkpoint and metadata-only snapshot coverage. Prior0011 WIP retained. No automatic-review rejection; sandbox restrictions resolved through authorized escalation. Counts/provenance/nextAction above remain binding.
