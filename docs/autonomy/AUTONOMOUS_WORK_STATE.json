@@ -1,50 +1,52 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-10T17:23:39.6009404Z",
-  "runEndedAt": "2026-10-10T17:38:54.460Z",
+  "runStartedAt": "2026-10-10T18:08:05.4005850Z",
+  "runEndedAt": null,
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-  "activePhase": "DESKTOP_CHECKPOINT_REMAINING_ACCEPTANCE",
-  "activeSubtask": "T0 normal desktop checkpoint braking/wheel travel accepted scoped; T1/T3/reduced and broader Pursuit/manual criteria open",
+  "activePhase": "DESKTOP_NATIVE_SKILLS_REMAINING_ACCEPTANCE",
+  "activeSubtask": "Shared desktop positive checkpoint braking and normal/OS alternatives accepted scoped; native sixhero/exact2AP healing and broader manual criteria OPEN",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "9b15e2a015de6b29d23c231582be840af22c833c",
-  "lastPushedCommit": "9b15e2a015de6b29d23c231582be840af22c833c",
+  "lastKnownGoodCommit": "da2ee09ec7f56370bc651219bbd7ab525ab9b1c8",
+  "lastPushedCommit": "da2ee09ec7f56370bc651219bbd7ab525ab9b1c8",
   "completedThisRun": [
-    "Carry residual speed and brake during checkpoint reveal without restart",
-    "Preserve wheel/dust/suspension travel phase across covered world origins",
-    "Extend existing motion runner observations; one T0 normal1440 smoke SUCCEEDED and reviewed scoped"
+    "Reused accepted T0normal1722 without rerun;393physicalsource/exactdriverhelper9build and originalresult digest checked",
+    "Finished five missing desktop checkpoint cases: T1/T3normal,T0/T1/T3OS-only at1440,3338frames21stops1350positivewheelpairs,zeroerrors",
+    "Root+Traversal+guardian inspected selected proof and passed scoped acceptance with explicit OS camera and wheel/readiness gaps",
+    "Initial sandbox browser-cache failures preserved; host-installed Chromium v2 succeeded without source/harness edit"
   ],
   "filesChanged": [
-    "src/traversal/TraversalRoadScene.ts",
-    "src/traversal/TraversalRoadMotion.test.ts",
-    "tools/traversal-motion-production-qa.mjs",
-    "docs/reports/checkpoint-braking-20261010-1722/checks.json",
-    "docs/reports/checkpoint-braking-20261010-1722/EVIDENCE.md",
-    "docs/reports/checkpoint-braking-20261010-1722/T0-1440-checkpoint-route-1.png",
-    "docs/reports/checkpoint-braking-20261010-1722/T0-1440-departure-visible.png",
-    "docs/reports/checkpoint-braking-20261010-1722/T0-1440-reveal-moving.png",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    "docs/reports/checkpoint-desktop-20261010-1806/checks.json",
+    "docs/reports/checkpoint-desktop-20261010-1806/EVIDENCE.md",
+    "docs/reports/checkpoint-desktop-20261010-1806/T1-normal-checkpoint.png",
+    "docs/reports/checkpoint-desktop-20261010-1806/T3-normal-checkpoint.png",
+    "docs/reports/checkpoint-desktop-20261010-1806/T0-os-checkpoint.png",
+    "docs/reports/checkpoint-desktop-20261010-1806/T1-os-checkpoint.png",
+    "docs/reports/checkpoint-desktop-20261010-1806/T3-os-checkpoint.png",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/handoffs/2026-10-10T1722Z-codex-checkpoint-braking.md"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    "docs/autonomy/handoffs/2026-10-10T1806Z-codex-checkpoint-desktop.md"
   ],
   "testsRun": [
-    "23 unique tests in TraversalRoadMotion7 and TraversalRoadCamera16; tmp historical copies excluded",
-    "TypeScript noEmit PASS",
-    "8-contract/8-slot validator, immutable/protected/whitespace gates PASS",
-    "Production build214modules/eightMP4 PASS",
-    "One existing normal T0 1440x810 smoke,12assertions/930frames/5stops/345wheelgroundpairs/2departures/zeroerrors PASS"
+    "node node_modules/vitest/vitest.mjs run src/traversal/TraversalRoadMotion.test.ts src/traversal/TraversalRoadCamera.test.ts --exclude tmp/**:23PASS",
+    "node node_modules/typescript/bin/tsc --noEmit:PASS",
+    "node tools/contracts/validate-contracts.mjs:8contracts8slotsPASS",
+    "git diff --check and immutable/protected gates:PASS",
+    "Existing1722production build reused by exact9asset/html hashes;393physicalsource frozen",
+    "Two registered desktop motion milestone jobsv2:5casesPASS; initial2prebrowserenvironmentFAILED retained"
   ],
   "testsPassed": [
-    "23 unique tests in TraversalRoadMotion7 and TraversalRoadCamera16; tmp historical copies excluded",
-    "TypeScript noEmit PASS",
-    "8-contract/8-slot validator, immutable/protected/whitespace gates PASS",
-    "Production build214modules/eightMP4 PASS",
-    "One existing normal T0 1440x810 smoke,12assertions/930frames/5stops/345wheelgroundpairs/2departures/zeroerrors PASS"
+    "node node_modules/vitest/vitest.mjs run src/traversal/TraversalRoadMotion.test.ts src/traversal/TraversalRoadCamera.test.ts --exclude tmp/**:23PASS",
+    "node node_modules/typescript/bin/tsc --noEmit:PASS",
+    "node tools/contracts/validate-contracts.mjs:8contracts8slotsPASS",
+    "git diff --check and immutable/protected gates:PASS",
+    "Existing1722production build reused by exact9asset/html hashes;393physicalsource frozen",
+    "Two registered desktop motion milestone jobsv2:5casesPASS; initial2prebrowserenvironmentFAILED retained"
   ],
   "testsRemaining": [
-    "T1/T3 and OS/game-reduced checkpoint browser acceptance open",
     "Delayed focus readiness and long-frame behavior source-reviewed, not separately tested",
     "V6 origin and injected combat result fixtures; no earned campaign or balance acceptance",
-    "Operator manual visual acceptance, broader scenery and full demo remain open"
+    "Operator manual visual acceptance, broader scenery and full demo remain open",
+    "Game-only checkpoint reduction; stationary/backward and covered-swap/departure wheelphase; general OS camera comfort remain OPEN"
   ],
   "blockers": [
     "Narrative OS smoke: static-only council rejected by unchanged approved-video-attempt assertion; one correction exhausted, both outputs NOT_ACCEPTED. Normal council and static-only OS milestone proof remain open.",
@@ -62,13 +64,13 @@
     "Native forest_ambush variant and overall beginner balance; KestrelKO in tested wolf_pack",
     "Salvation from exactly2AP and40%HP verification; current casts3to1AP/salvationVerifiedfalse",
     "Parent focus settled visible proof: immediate capture during fade, numeric focus/owner/autosave only",
-    "Checkpoint braking/glissement perceptual sequence; selected T0 ground frame only",
+    "Shared positive checkpoint braking desktop normal/OS alternatives accepted scoped1806; full phase/readiness/game-only/camera comfort/manual broader scenery OPEN",
     "Shadow gait/reduced-miss proofs remain scoped; native T1 forest_patrol victory/return/tempLoot/focus/precombatV6 now accepted1366normal; full-tail/ground, other contexts, defeat/cancel/reentry/reduced/AT still open",
     "Other campaign branches/endings, Stage/VFX/AT/desktop accessibility",
     "Council/refugees/static-only OS narrative acceptance and approved Bois-Clair night plate",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Read-only preflight/exclusive lock, then inspect checkpoint-braking-1722 terminal receipt and docs/reports/checkpoint-braking-20261010-1722/checks.json. T0 normal1440 checkpoint residual braking and wheel/ground travel are accepted scoped only; do not repeat this case or the accepted45min native T1 Pursuit/historical desktop exits. Source commit changes tree/diff representation: compare ignored frozen-sources.json (393 physical hashes), exact driver/helper/build/parameters/assertions before reuse. Continue the shared checkpoint correction at its remaining desktop acceptance milestone with existing traversal-motion-production-qa: T1/T3 and OS-only reduction, registered unique ignored outputs and only relevant missing assertions/captures; mobile remains LAST. Delayed focus readiness/long-frame behavior is source-reviewed, not separately tested. If runtime defect appears, fix product source first and reverify that boundary; no new tool/instrumentation loop. Preserve original continuation in checkpointBraking1722.previousNextAction and all prior/deferred records. Native Pursuit defeat/cancel/reentry/other contexts/reduced/AT, sixhero skills/campaign/narrative/Stage/VFX/balance, broader scenery and operator final manual/full-demo criteria remain OPEN. Ten mappings/category already resolved1856; eight videos/Alaric/temporary loot/V6/audioDEFERRED/LOCKED protected.",
+  "nextAction": "Read-only preflight/exclusive lock; inspect checkpoint-desktop-1806 normal-v2 and os-v2 terminal receipts plus docs/reports/checkpoint-desktop-20261010-1806/checks.json. Reuse only matching393physicalsource/driver/helper/9build/digests; do not rerun accepted five desktop cases, prior T0normal1722 or45min native Pursuit0420. Shared positive checkpoint braking and normal/OS vehicle departure/covered exit are accepted scoped; OS ground still travels120–226px, general camera comfort/manual scenery, stationary/backward wheel travel, covered-swap/departure wheelphase, game-only reduction and delayedreadiness/longframe remain OPEN. Resume active OPERATOR-FEEDBACK desktop native competence acceptance: inspect src/game/skills.ts, src/combat/legacyCombatSkillSpec.test.ts and existing tools/demo-continuous-production-qa.mjs skill()240–278/initialRoster336–339, with compatible earned campaign receipts. Verify all six demo heroes first2AP competence at authored joining and the remaining LumiereSalvatrice native exactly2AP-start/40percent healing boundary; existing3to1AP casts do not close exactly2AP-start. Product correction only for a demonstrated runtime defect; reuse existing native runner, at most one narrowly necessary assertion correction under sensitive guardian review, one registered unique relevant desktop scenario with exact source/build/input provenance. Do not invent canon, alter combat/AP/recruitment/save authority or restart full matrices. Preserve pendingNarrativeTask.nextAction, all original/deferred histories and scoped Pursuit evidence. Other contexts/defeat/cancel/reentry/reduced/AT, broader skills/campaign/narrative/Stage/VFX/balance/operator final manual/full-demo remain OPEN; mobileLAST, eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -84,7 +86,7 @@
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
   "creditStatus": "AVAILABLE_THIS_RUN",
-  "contractComplianceStatus": "PASS_SCOPED_CHECKPOINT_BRAKING_SET1.1.0; demo and remaining acceptance OPEN",
+  "contractComplianceStatus": "PASS_SCOPED_DESKTOP_CHECKPOINT_SET1.1.0; broader manual/demo OPEN",
   "commitReferenceScope": "Implementation 70b3446ffd2af149f7cbb1d6481b61f8b4b170bb is source mechanically verified, not native browser acceptance; metadata publication and exact final SHA/lock disposition recorded externally in automation memory after remote verification.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
@@ -210,10 +212,10 @@
     "lastGreenCheck": "23unique tests/types/contracts/build and one normalT0 smoke reviewed scoped PASS; provenance/digest match"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261010T1722",
+    "runId": "rpgthreejs-auto-dev-90m-20261010T1806",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-10T17:38:54.460Z",
-    "status": "PUBLISHED_SCOPE_ACCEPTED_CLOSURE_PREPARING",
+    "lastHeartbeat": "2026-10-10T18:23:10.954Z",
+    "status": "REVIEWED_SCOPED_DESKTOP_CHECKPOINT_PUBLISHING",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -19238,45 +19240,467 @@
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "postCommitNote": "Source tree/diff representation changed after reviewed commit;393 physical source hashes+driver/build remain exact. Original scoped proof preserved separately."
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "checkpoint-desktop-1806-normal",
+        "runId": "rpgthreejs-auto-dev-90m-20261010T1806",
+        "status": "FAILED",
+        "registeredAt": "2026-10-10T18:09:44.132Z",
+        "pid": 25620,
+        "port": 5364,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "normal",
+          "viewports": [
+            "1440x810"
+          ],
+          "legs": [
+            "T1",
+            "T3"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "pursuitCheck": false,
+          "gaitCheck": false,
+          "reducedChargeCheck": false,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-checkpoint-braking",
+          "checkpoint-wheel-ground-travel",
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "native-keyboard-focus",
+          "responsive-controls",
+          "forward-exit-and-resize",
+          "accelerating-arrival"
+        ],
+        "output": "tmp/traversal/checkpoint-desktop-1806-normal",
+        "receiptPath": "tmp/traversal/checkpoint-desktop-1806-normal/qa-job.json",
+        "provenance": {
+          "gitHead": "da2ee09ec7f56370bc651219bbd7ab525ab9b1c8",
+          "sourceTree": "f5d2d917f1bc2bfce472dcab68dd638337069e58",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "1a9e47fabe663c52db7a47f346018e03d5554bef4ed02e2b4a95c3bedf4f31c8"
+          },
+          "inputs": [],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/game-EarLSl_Z.js",
+              "sha256": "e5b669f0e93f991ece7d2efd533df955f96cb4d46933beb1fe1c530bcab6b0cc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1ee0e1b79e25dfa25d3d716965c86b49b6687499eae7f29efc6ab0eef12a0aaf"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-10T18:09:54.512Z",
+        "endedAt": "2026-10-10T18:10:29.994Z",
+        "exitCode": 1,
+        "resultPath": "tmp/traversal/checkpoint-desktop-1806-normal/results.json",
+        "resultSha256": "5a76a427c4809713100b989ca1e68b453770318dfa1990a1855d7eb2e0307578",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "checkpoint-desktop-1806-os",
+        "runId": "rpgthreejs-auto-dev-90m-20261010T1806",
+        "status": "FAILED",
+        "registeredAt": "2026-10-10T18:09:45.007Z",
+        "pid": 19720,
+        "port": 5365,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "os",
+          "viewports": [
+            "1440x810"
+          ],
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "pursuitCheck": false,
+          "gaitCheck": false,
+          "reducedChargeCheck": false,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-checkpoint-braking",
+          "checkpoint-wheel-ground-travel",
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "native-keyboard-focus",
+          "responsive-controls",
+          "os-covered-exit"
+        ],
+        "output": "tmp/traversal/checkpoint-desktop-1806-os",
+        "receiptPath": "tmp/traversal/checkpoint-desktop-1806-os/qa-job.json",
+        "provenance": {
+          "gitHead": "da2ee09ec7f56370bc651219bbd7ab525ab9b1c8",
+          "sourceTree": "f5d2d917f1bc2bfce472dcab68dd638337069e58",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "1a9e47fabe663c52db7a47f346018e03d5554bef4ed02e2b4a95c3bedf4f31c8"
+          },
+          "inputs": [],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/game-EarLSl_Z.js",
+              "sha256": "e5b669f0e93f991ece7d2efd533df955f96cb4d46933beb1fe1c530bcab6b0cc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1ee0e1b79e25dfa25d3d716965c86b49b6687499eae7f29efc6ab0eef12a0aaf"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-10T18:09:54.559Z",
+        "endedAt": "2026-10-10T18:10:30.348Z",
+        "exitCode": 1,
+        "resultPath": "tmp/traversal/checkpoint-desktop-1806-os/results.json",
+        "resultSha256": "54fd39d36ea35c667a7b264d38ce42a6647579e3c7c5ebdbfa7417898cd36eed",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "checkpoint-desktop-1806-normal-v2",
+        "runId": "rpgthreejs-auto-dev-90m-20261010T1806",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-10T18:11:39.486Z",
+        "pid": 20520,
+        "port": 5364,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "normal",
+          "viewports": [
+            "1440x810"
+          ],
+          "legs": [
+            "T1",
+            "T3"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "pursuitCheck": false,
+          "gaitCheck": false,
+          "reducedChargeCheck": false,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-checkpoint-braking",
+          "checkpoint-wheel-ground-travel",
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "native-keyboard-focus",
+          "responsive-controls",
+          "forward-exit-and-resize",
+          "accelerating-arrival"
+        ],
+        "output": "tmp/traversal/checkpoint-desktop-1806-normal-v2",
+        "receiptPath": "tmp/traversal/checkpoint-desktop-1806-normal-v2/qa-job.json",
+        "provenance": {
+          "gitHead": "da2ee09ec7f56370bc651219bbd7ab525ab9b1c8",
+          "sourceTree": "f5d2d917f1bc2bfce472dcab68dd638337069e58",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "1a9e47fabe663c52db7a47f346018e03d5554bef4ed02e2b4a95c3bedf4f31c8"
+          },
+          "inputs": [],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/game-EarLSl_Z.js",
+              "sha256": "e5b669f0e93f991ece7d2efd533df955f96cb4d46933beb1fe1c530bcab6b0cc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1ee0e1b79e25dfa25d3d716965c86b49b6687499eae7f29efc6ab0eef12a0aaf"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-10T18:11:45.387Z",
+        "endedAt": "2026-10-10T18:15:57.247Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/checkpoint-desktop-1806-normal-v2/results.json",
+        "resultSha256": "c41d02d1089a576c308ccf47e7b7df806e1233aaf71e4567de5d89f37cfbe256",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "checkpoint-desktop-1806-os-v2",
+        "runId": "rpgthreejs-auto-dev-90m-20261010T1806",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-10T18:11:40.348Z",
+        "pid": 2536,
+        "port": 5365,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "os",
+          "viewports": [
+            "1440x810"
+          ],
+          "legs": [
+            "T0",
+            "T1",
+            "T3"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "pursuitCheck": false,
+          "gaitCheck": false,
+          "reducedChargeCheck": false,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-checkpoint-braking",
+          "checkpoint-wheel-ground-travel",
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "native-keyboard-focus",
+          "responsive-controls",
+          "os-covered-exit"
+        ],
+        "output": "tmp/traversal/checkpoint-desktop-1806-os-v2",
+        "receiptPath": "tmp/traversal/checkpoint-desktop-1806-os-v2/qa-job.json",
+        "provenance": {
+          "gitHead": "da2ee09ec7f56370bc651219bbd7ab525ab9b1c8",
+          "sourceTree": "f5d2d917f1bc2bfce472dcab68dd638337069e58",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "1a9e47fabe663c52db7a47f346018e03d5554bef4ed02e2b4a95c3bedf4f31c8"
+          },
+          "inputs": [],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/game-EarLSl_Z.js",
+              "sha256": "e5b669f0e93f991ece7d2efd533df955f96cb4d46933beb1fe1c530bcab6b0cc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1ee0e1b79e25dfa25d3d716965c86b49b6687499eae7f29efc6ab0eef12a0aaf"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-10T18:11:45.801Z",
+        "endedAt": "2026-10-10T18:17:37.973Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/checkpoint-desktop-1806-os-v2/results.json",
+        "resultSha256": "0fe7ae339a5e99080021aaa2a7b27135375743b0f704b44107250925ca4d2f2c",
+        "provenanceStable": true
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261010T1722",
-      "sha": "eb49c7027f94fa2f0ba3a0e053539835b321f3a0",
-      "snapshotAt": "2026-10-10T17:37:56.087Z",
-      "status": "AUDITED_PRODUCT_PROOF_ON_VERIFIED_DEV_PENDING_RETIREMENT",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261010T1806",
+      "sha": "be3db1cfeb125c598a9321a3019b1635f0d89151",
+      "status": "GREEN_SCOPED_DESKTOP_ACCEPTANCE",
       "dirtyFiles": [
-        "src/traversal/TraversalRoadScene.ts",
-        "src/traversal/TraversalRoadMotion.test.ts",
-        "tools/traversal-motion-production-qa.mjs",
-        "docs/reports/checkpoint-braking-20261010-1722/checks.json",
-        "docs/reports/checkpoint-braking-20261010-1722/EVIDENCE.md",
-        "docs/reports/checkpoint-braking-20261010-1722/T0-1440-checkpoint-route-1.png",
-        "docs/reports/checkpoint-braking-20261010-1722/T0-1440-departure-visible.png",
-        "docs/reports/checkpoint-braking-20261010-1722/T0-1440-reveal-moving.png",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/reports/checkpoint-desktop-20261010-1806/checks.json",
+        "docs/reports/checkpoint-desktop-20261010-1806/EVIDENCE.md",
+        "docs/reports/checkpoint-desktop-20261010-1806/T1-normal-checkpoint.png",
+        "docs/reports/checkpoint-desktop-20261010-1806/T3-normal-checkpoint.png",
+        "docs/reports/checkpoint-desktop-20261010-1806/T0-os-checkpoint.png",
+        "docs/reports/checkpoint-desktop-20261010-1806/T1-os-checkpoint.png",
+        "docs/reports/checkpoint-desktop-20261010-1806/T3-os-checkpoint.png",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/handoffs/2026-10-10T1722Z-codex-checkpoint-braking.md"
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/handoffs/2026-10-10T1806Z-codex-checkpoint-desktop.md"
       ],
-      "lastGreenCheck": "23unique tests/types/contracts/build and one normalT0 smoke reviewed scoped PASS; provenance/digest match"
+      "lastGreenCheck": "23focused/types/8contracts8slots/physical393/buildlineage/fivecases/selectedcaptures/TraversalGuardianPASS_SCOPED"
     },
-    "nextAction": "Read-only preflight/exclusive lock, then inspect checkpoint-braking-1722 terminal receipt and docs/reports/checkpoint-braking-20261010-1722/checks.json. T0 normal1440 checkpoint residual braking and wheel/ground travel are accepted scoped only; do not repeat this case or the accepted45min native T1 Pursuit/historical desktop exits. Source commit changes tree/diff representation: compare ignored frozen-sources.json (393 physical hashes), exact driver/helper/build/parameters/assertions before reuse. Continue the shared checkpoint correction at its remaining desktop acceptance milestone with existing traversal-motion-production-qa: T1/T3 and OS-only reduction, registered unique ignored outputs and only relevant missing assertions/captures; mobile remains LAST. Delayed focus readiness/long-frame behavior is source-reviewed, not separately tested. If runtime defect appears, fix product source first and reverify that boundary; no new tool/instrumentation loop. Preserve original continuation in checkpointBraking1722.previousNextAction and all prior/deferred records. Native Pursuit defeat/cancel/reentry/other contexts/reduced/AT, sixhero skills/campaign/narrative/Stage/VFX/balance, broader scenery and operator final manual/full-demo criteria remain OPEN. Ten mappings/category already resolved1856; eight videos/Alaric/temporary loot/V6/audioDEFERRED/LOCKED protected.",
+    "nextAction": "Read-only preflight/exclusive lock; inspect checkpoint-desktop-1806 normal-v2 and os-v2 terminal receipts plus docs/reports/checkpoint-desktop-20261010-1806/checks.json. Reuse only matching393physicalsource/driver/helper/9build/digests; do not rerun accepted five desktop cases, prior T0normal1722 or45min native Pursuit0420. Shared positive checkpoint braking and normal/OS vehicle departure/covered exit are accepted scoped; OS ground still travels120–226px, general camera comfort/manual scenery, stationary/backward wheel travel, covered-swap/departure wheelphase, game-only reduction and delayedreadiness/longframe remain OPEN. Resume active OPERATOR-FEEDBACK desktop native competence acceptance: inspect src/game/skills.ts, src/combat/legacyCombatSkillSpec.test.ts and existing tools/demo-continuous-production-qa.mjs skill()240–278/initialRoster336–339, with compatible earned campaign receipts. Verify all six demo heroes first2AP competence at authored joining and the remaining LumiereSalvatrice native exactly2AP-start/40percent healing boundary; existing3to1AP casts do not close exactly2AP-start. Product correction only for a demonstrated runtime defect; reuse existing native runner, at most one narrowly necessary assertion correction under sensitive guardian review, one registered unique relevant desktop scenario with exact source/build/input provenance. Do not invent canon, alter combat/AP/recruitment/save authority or restart full matrices. Preserve pendingNarrativeTask.nextAction, all original/deferred histories and scoped Pursuit evidence. Other contexts/defeat/cancel/reentry/reduced/AT, broader skills/campaign/narrative/Stage/VFX/balance/operator final manual/full-demo remain OPEN; mobileLAST, eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected.",
     "runMetrics": {
-      "sourceFilesModified": 3,
-      "testFilesModified": 1,
-      "existingQaFilesModified": 2,
-      "newQaFilesAdded": 0,
-      "proofFilesAdded": 3,
+      "sourceFilesModified": 0,
+      "testFilesModified": 0,
+      "existingQaFilesModified": 0,
+      "newQaFiles": 0,
+      "proofFilesAdded": 7,
       "workflowFilesChanged": 3,
       "inheritedWIP": 0,
-      "reviewers": 1,
-      "guardianPasses": 4,
-      "designatedBrowserScenarios": 1,
-      "executedAttempts": 1,
-      "postFailureHarnessCorrections": 0,
-      "quotaSavingsClaimed": false,
-      "endedAt": "2026-10-10T04:06:07.698Z",
-      "elapsedMinutes": 41.49068333333334
+      "reviewers": 2,
+      "traversalPasses": 2,
+      "guardianPasses": 2,
+      "browserMatrixCases": 5,
+      "registeredJobs": 4,
+      "preBrowserEnvironmentFailures": 2,
+      "harnessCorrections": 0,
+      "quotaSavingsClaimed": false
     },
     "checkpointPaths": [
       "src/game/GameApp.ts",
@@ -19302,7 +19726,7 @@
     },
     "runStartedAt": "2026-10-10T03:24:38.2578953Z",
     "runEndedAt": "2026-10-10T04:06:07.698Z",
-    "writerStopped": true,
+    "writerStopped": false,
     "metadataPublication": {
       "status": "RESOLVED_BY_OPERATOR_APPROVAL",
       "standingDecision": "OD-2026-10-08-B",
@@ -20132,7 +20556,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-    "activeSubtask": "Pursuit return lane focus corrected and mechanically verified; native victory/return/rewards/persisted V6 browser target NOT_ACCEPTED after bounded25min",
+    "activeSubtask": "Shared desktop positive checkpoint braking and normal/OS alternatives accepted scoped; native sixhero/exact2AP healing and broader manual criteria OPEN",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -21385,5 +21809,140 @@
     "implementationCommit": "9b15e2a015de6b29d23c231582be840af22c833c",
     "postCommitPhysicalSourcesMatch": 393,
     "committedSourceTree": "f5d2d917f1bc2bfce472dcab68dd638337069e58"
+  },
+  "checkpointBraking1806": {
+    "runId": "rpgthreejs-auto-dev-90m-20261010T1806",
+    "startedAt": "2026-10-10T18:09:09.966Z",
+    "previousNextAction": "Read-only preflight/exclusive lock, then inspect checkpoint-braking-1722 terminal receipt and docs/reports/checkpoint-braking-20261010-1722/checks.json. T0 normal1440 checkpoint residual braking and wheel/ground travel are accepted scoped only; do not repeat this case or the accepted45min native T1 Pursuit/historical desktop exits. Source commit changes tree/diff representation: compare ignored frozen-sources.json (393 physical hashes), exact driver/helper/build/parameters/assertions before reuse. Continue the shared checkpoint correction at its remaining desktop acceptance milestone with existing traversal-motion-production-qa: T1/T3 and OS-only reduction, registered unique ignored outputs and only relevant missing assertions/captures; mobile remains LAST. Delayed focus readiness/long-frame behavior is source-reviewed, not separately tested. If runtime defect appears, fix product source first and reverify that boundary; no new tool/instrumentation loop. Preserve original continuation in checkpointBraking1722.previousNextAction and all prior/deferred records. Native Pursuit defeat/cancel/reentry/other contexts/reduced/AT, sixhero skills/campaign/narrative/Stage/VFX/balance, broader scenery and operator final manual/full-demo criteria remain OPEN. Ten mappings/category already resolved1856; eight videos/Alaric/temporary loot/V6/audioDEFERRED/LOCKED protected.",
+    "previousSubtask": "T0 normal desktop checkpoint braking/wheel travel accepted scoped; T1/T3/reduced and broader Pursuit/manual criteria open",
+    "physicalSourceFiles": 393,
+    "physicalLineageMatches1722": true,
+    "priorResultDigest": "782a72dedbb9d3d323d469560a4fb4262aaeb42d8a9e16dec7f132ef03a1fcb7",
+    "newQaTool": false,
+    "productFirst": "Resume delivered checkpoint correction at its exact missing desktop acceptance milestone; no speculative product edit. Existing runner covers T1/T3 normal and T0/T1/T3 OS-only at1440.",
+    "previousRunFields": {
+      "completedThisRun": [
+        "Carry residual speed and brake during checkpoint reveal without restart",
+        "Preserve wheel/dust/suspension travel phase across covered world origins",
+        "Extend existing motion runner observations; one T0 normal1440 smoke SUCCEEDED and reviewed scoped"
+      ],
+      "filesChanged": [
+        "src/traversal/TraversalRoadScene.ts",
+        "src/traversal/TraversalRoadMotion.test.ts",
+        "tools/traversal-motion-production-qa.mjs",
+        "docs/reports/checkpoint-braking-20261010-1722/checks.json",
+        "docs/reports/checkpoint-braking-20261010-1722/EVIDENCE.md",
+        "docs/reports/checkpoint-braking-20261010-1722/T0-1440-checkpoint-route-1.png",
+        "docs/reports/checkpoint-braking-20261010-1722/T0-1440-departure-visible.png",
+        "docs/reports/checkpoint-braking-20261010-1722/T0-1440-reveal-moving.png",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/handoffs/2026-10-10T1722Z-codex-checkpoint-braking.md"
+      ],
+      "testsRun": [
+        "23 unique tests in TraversalRoadMotion7 and TraversalRoadCamera16; tmp historical copies excluded",
+        "TypeScript noEmit PASS",
+        "8-contract/8-slot validator, immutable/protected/whitespace gates PASS",
+        "Production build214modules/eightMP4 PASS",
+        "One existing normal T0 1440x810 smoke,12assertions/930frames/5stops/345wheelgroundpairs/2departures/zeroerrors PASS"
+      ],
+      "testsPassed": [
+        "23 unique tests in TraversalRoadMotion7 and TraversalRoadCamera16; tmp historical copies excluded",
+        "TypeScript noEmit PASS",
+        "8-contract/8-slot validator, immutable/protected/whitespace gates PASS",
+        "Production build214modules/eightMP4 PASS",
+        "One existing normal T0 1440x810 smoke,12assertions/930frames/5stops/345wheelgroundpairs/2departures/zeroerrors PASS"
+      ],
+      "testsRemaining": [
+        "T1/T3 and OS/game-reduced checkpoint browser acceptance open",
+        "Delayed focus readiness and long-frame behavior source-reviewed, not separately tested",
+        "V6 origin and injected combat result fixtures; no earned campaign or balance acceptance",
+        "Operator manual visual acceptance, broader scenery and full demo remain open"
+      ],
+      "remainingWork": [
+        "Native forest_ambush variant and overall beginner balance; KestrelKO in tested wolf_pack",
+        "Salvation from exactly2AP and40%HP verification; current casts3to1AP/salvationVerifiedfalse",
+        "Parent focus settled visible proof: immediate capture during fade, numeric focus/owner/autosave only",
+        "Checkpoint braking/glissement perceptual sequence; selected T0 ground frame only",
+        "Shadow gait/reduced-miss proofs remain scoped; native T1 forest_patrol victory/return/tempLoot/focus/precombatV6 now accepted1366normal; full-tail/ground, other contexts, defeat/cancel/reentry/reduced/AT still open",
+        "Other campaign branches/endings, Stage/VFX/AT/desktop accessibility",
+        "Council/refugees/static-only OS narrative acceptance and approved Bois-Clair night plate",
+        "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
+      ],
+      "activePhase": "DESKTOP_CHECKPOINT_REMAINING_ACCEPTANCE"
+    },
+    "disposition": "ACCEPTED_SCOPED_DESKTOP_1440_CHECKPOINT_BRAKING_POSITIVE_WHEEL_NORMAL_OS_ALTERNATIVES",
+    "reviewedAt": "2026-10-10T18:21:50.294Z",
+    "proof": "docs/reports/checkpoint-desktop-20261010-1806/checks.json",
+    "reviewers": {
+      "traversal": "PASS_SCOPED_DESKTOP_1440_CHECKPOINT_BRAKING_POSITIVE_WHEEL_TRAVEL_NORMAL_AND_OS_ALTERNATIVES",
+      "guardian": "PASS_SCOPED_DESKTOP_MOTION_LIFECYCLE",
+      "passes": {
+        "traversal": 2,
+        "guardian": 2
+      },
+      "selectedCapturesInspectedBy": "root+traversal+guardian"
+    },
+    "osCameraObservation": {
+      "vehicleOffset": 0,
+      "totalCheckpointGroundTravelPx": [
+        119.94,
+        225.98
+      ],
+      "visibleTravelAfterOpacityBelow095Px": [
+        107.08,
+        201.78
+      ],
+      "visibleIntervalMs": [
+        950,
+        1092
+      ],
+      "visibleStartSpeed": [
+        0.715,
+        1.348
+      ],
+      "lastBrakingSampleSpeed": [
+        0.00217,
+        0.00409
+      ],
+      "completeStopAsserted": true,
+      "scope": "Decelerating ground travel and zero vehicle displacement; never frozen-ground/general camera comfort acceptance"
+    },
+    "limits": [
+      "Wheel assertions cover positive checkpoint travel only; stationary/backward travel skipped",
+      "Covered-swap/departure wheel-phase continuity not asserted",
+      "Delayed readiness/long-frame source-reviewed, not browser certified",
+      "OS checkpoint ground still travels119.94–225.98px; no frozen ground/general gentle-camera or no-large-camera-motion claim",
+      "Combat results and V6 origins are fixtures; no earned combat, V6 compatibility, balance or full-demo acceptance",
+      "Game-only checkpoint reduction, mobile finalization and operator manual review remain OPEN"
+    ],
+    "initialEnvironmentFailures": [
+      "checkpoint-desktop-1806-normal",
+      "checkpoint-desktop-1806-os"
+    ],
+    "harnessCorrections": 0,
+    "browserCases": 5,
+    "browserMatrix": "ONE missing desktop checkpoint milestone with two motion jobs; initial attempts fail before browser",
+    "sourceFilesModified": 0,
+    "testFilesModified": 0,
+    "existingQaFilesModified": 0,
+    "newQaFiles": 0,
+    "proofFilesAdded": 7,
+    "workflowFilesChanged": 3,
+    "inheritedWIP": 0,
+    "buildReused": true,
+    "workersAbsent": [
+      20520,
+      2536,
+      25620,
+      19720
+    ],
+    "portsAbsent": [
+      5364,
+      5365
+    ],
+    "qaJobsPrevious": 177,
+    "qaJobsTotal": 181,
+    "quotaSavingsClaimed": false
   }
 }

@@ -1,0 +1,897 @@
+{
+  "schemaVersion": 1,
+  "runId": "rpgthreejs-auto-dev-90m-20261010T1806",
+  "recordedAt": "2026-10-10T18:17:45.561Z",
+  "baseline": "da2ee09ec7f56370bc651219bbd7ab525ab9b1c8",
+  "disposition": "ACCEPTED_SCOPED_DESKTOP_1440_CHECKPOINT_BRAKING_POSITIVE_WHEEL_NORMAL_OS_ALTERNATIVES",
+  "scope": "Desktop1440 checkpoint positive braking travel, departure, covered reveal and complete exit; V6-origin/combat-result fixtures, not earned campaign",
+  "priorT0Normal": "docs/reports/checkpoint-braking-20261010-1722/checks.json",
+  "physicalSourceFiles": 393,
+  "physicalSourceFreezeSha256": "34ea963c5ea26727949cd9170d5fe889de29f0b28db931c6b25ca29dd36b9656",
+  "physicalSourceStable": true,
+  "buildReusedFrom1722": true,
+  "jobs": [
+    {
+      "jobId": "checkpoint-desktop-1806-normal-v2",
+      "status": "SUCCEEDED",
+      "receiptAcceptance": "NOT_ACCEPTED",
+      "startedAt": "2026-10-10T18:11:45.387Z",
+      "endedAt": "2026-10-10T18:15:57.247Z",
+      "pid": 20520,
+      "port": 5364,
+      "parameters": {
+        "motion": "normal",
+        "viewports": [
+          "1440x810"
+        ],
+        "legs": [
+          "T1",
+          "T3"
+        ],
+        "branch": "event",
+        "gameReducedMotion": false,
+        "pursuitCheck": false,
+        "gaitCheck": false,
+        "reducedChargeCheck": false,
+        "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+      },
+      "requiredAssertions": [
+        "continuous-checkpoint-braking",
+        "checkpoint-wheel-ground-travel",
+        "continuous-departure",
+        "opaque-swap",
+        "reveal-momentum",
+        "clock-zero-during-reveal",
+        "full-exit-before-arrival",
+        "single-canonical-arrival",
+        "native-keyboard-focus",
+        "responsive-controls",
+        "forward-exit-and-resize",
+        "accelerating-arrival"
+      ],
+      "resultSha256": "c41d02d1089a576c308ccf47e7b7df806e1233aaf71e4567de5d89f37cfbe256",
+      "provenance": {
+        "gitHead": "da2ee09ec7f56370bc651219bbd7ab525ab9b1c8",
+        "sourceTree": "f5d2d917f1bc2bfce472dcab68dd638337069e58",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/traversal-motion-production-qa.mjs",
+          "sha256": "1a9e47fabe663c52db7a47f346018e03d5554bef4ed02e2b4a95c3bedf4f31c8"
+        },
+        "inputs": [],
+        "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+            "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+          },
+          {
+            "path": "dist/assets/combat-B0LaJhFj.js",
+            "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-CdUsLhii.css",
+            "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+          },
+          {
+            "path": "dist/assets/game-EarLSl_Z.js",
+            "sha256": "e5b669f0e93f991ece7d2efd533df955f96cb4d46933beb1fe1c530bcab6b0cc"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "1ee0e1b79e25dfa25d3d716965c86b49b6687499eae7f29efc6ab0eef12a0aaf"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "matchesCurrentExecution": true,
+      "resultDigestMatches": true,
+      "errors": [],
+      "failures": [],
+      "cases": [
+        {
+          "leg": "T1",
+          "viewport": {
+            "width": 1440,
+            "height": 810
+          },
+          "complete": true,
+          "frames": 647,
+          "braking": [
+            {
+              "segment": "t1-route-1",
+              "frames": 110,
+              "carriedSpeed": 0.7568999992991825,
+              "stopped": true,
+              "wheelPairs": 64
+            },
+            {
+              "segment": "t1-route-2",
+              "frames": 109,
+              "carriedSpeed": 0.9233156313053202,
+              "stopped": true,
+              "wheelPairs": 62
+            },
+            {
+              "segment": "t1-route-3",
+              "frames": 111,
+              "carriedSpeed": 1.4260037075741088,
+              "stopped": true,
+              "wheelPairs": 65
+            },
+            {
+              "segment": "t1-route-4a",
+              "frames": 107,
+              "carriedSpeed": 1.1625162876966821,
+              "stopped": true,
+              "wheelPairs": 62
+            }
+          ],
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 41,
+              "revealFrames": 11,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.4514178017397343,
+              "displacement": 200.1503032446795
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-village-choice",
+              "left": 2196.71875,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 5.3999999998875,
+              "fade": 1,
+              "node": "lion-second-trial-event",
+              "resolved": false
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t1-route-2",
+              "speed": 1.167955615388628,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-3",
+              "speed": 1.8167195214405623,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 30,
+              "height": 30,
+              "x": 14,
+              "y": 409,
+              "right": 44,
+              "bottom": 439
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 280,
+              "height": 58,
+              "x": 1101.8125,
+              "y": 267.171875,
+              "right": 1381.8125,
+              "bottom": 325.171875
+            }
+          ],
+          "gameReduced": false,
+          "osReduced": false,
+          "resize": {
+            "from": 1440,
+            "to": 1800,
+            "left": 1335.9921875,
+            "viewport": 1800,
+            "arrivals": 0
+          }
+        },
+        {
+          "leg": "T3",
+          "viewport": {
+            "width": 1440,
+            "height": 810
+          },
+          "complete": true,
+          "frames": 649,
+          "braking": [
+            {
+              "segment": "t3-route-1",
+              "frames": 109,
+              "carriedSpeed": 0.7568999992991825,
+              "stopped": true,
+              "wheelPairs": 63
+            },
+            {
+              "segment": "t3-route-2",
+              "frames": 106,
+              "carriedSpeed": 0.9233156309163633,
+              "stopped": true,
+              "wheelPairs": 60
+            },
+            {
+              "segment": "t3-route-3",
+              "frames": 113,
+              "carriedSpeed": 1.4260037075741088,
+              "stopped": true,
+              "wheelPairs": 65
+            },
+            {
+              "segment": "t3-route-4a",
+              "frames": 108,
+              "carriedSpeed": 1.1625162922014147,
+              "stopped": true,
+              "wheelPairs": 62
+            }
+          ],
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 41,
+              "revealFrames": 13,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.4514178017397343,
+              "displacement": 206.0523539221728
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-shadow-signs",
+              "left": 2196.875,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 5.3999999998875,
+              "fade": 1,
+              "node": "lion-final-trial-event",
+              "resolved": false
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t3-route-2",
+              "speed": 1.167955615388628,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-3",
+              "speed": 1.8167195214405623,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 30,
+              "height": 30,
+              "x": 14,
+              "y": 409,
+              "right": 44,
+              "bottom": 439
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 280,
+              "height": 58,
+              "x": 1101.8125,
+              "y": 267.171875,
+              "right": 1381.8125,
+              "bottom": 325.171875
+            }
+          ],
+          "gameReduced": false,
+          "osReduced": false,
+          "resize": {
+            "from": 1440,
+            "to": 1800,
+            "left": 1335.8515625,
+            "viewport": 1800,
+            "arrivals": 0
+          }
+        }
+      ]
+    },
+    {
+      "jobId": "checkpoint-desktop-1806-os-v2",
+      "status": "SUCCEEDED",
+      "receiptAcceptance": "NOT_ACCEPTED",
+      "startedAt": "2026-10-10T18:11:45.801Z",
+      "endedAt": "2026-10-10T18:17:37.973Z",
+      "pid": 2536,
+      "port": 5365,
+      "parameters": {
+        "motion": "os",
+        "viewports": [
+          "1440x810"
+        ],
+        "legs": [
+          "T0",
+          "T1",
+          "T3"
+        ],
+        "branch": "event",
+        "gameReducedMotion": false,
+        "pursuitCheck": false,
+        "gaitCheck": false,
+        "reducedChargeCheck": false,
+        "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+      },
+      "requiredAssertions": [
+        "continuous-checkpoint-braking",
+        "checkpoint-wheel-ground-travel",
+        "continuous-departure",
+        "opaque-swap",
+        "reveal-momentum",
+        "clock-zero-during-reveal",
+        "full-exit-before-arrival",
+        "single-canonical-arrival",
+        "native-keyboard-focus",
+        "responsive-controls",
+        "os-covered-exit"
+      ],
+      "resultSha256": "0fe7ae339a5e99080021aaa2a7b27135375743b0f704b44107250925ca4d2f2c",
+      "provenance": {
+        "gitHead": "da2ee09ec7f56370bc651219bbd7ab525ab9b1c8",
+        "sourceTree": "f5d2d917f1bc2bfce472dcab68dd638337069e58",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/traversal-motion-production-qa.mjs",
+          "sha256": "1a9e47fabe663c52db7a47f346018e03d5554bef4ed02e2b4a95c3bedf4f31c8"
+        },
+        "inputs": [],
+        "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+            "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+          },
+          {
+            "path": "dist/assets/combat-B0LaJhFj.js",
+            "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-CdUsLhii.css",
+            "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+          },
+          {
+            "path": "dist/assets/game-EarLSl_Z.js",
+            "sha256": "e5b669f0e93f991ece7d2efd533df955f96cb4d46933beb1fe1c530bcab6b0cc"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "1ee0e1b79e25dfa25d3d716965c86b49b6687499eae7f29efc6ab0eef12a0aaf"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "matchesCurrentExecution": true,
+      "resultDigestMatches": true,
+      "errors": [],
+      "failures": [],
+      "cases": [
+        {
+          "leg": "T0",
+          "viewport": {
+            "width": 1440,
+            "height": 810
+          },
+          "complete": true,
+          "frames": 806,
+          "braking": [
+            {
+              "segment": "route-1",
+              "frames": 112,
+              "carriedSpeed": 0.7568999992991825,
+              "stopped": true,
+              "wheelPairs": 65
+            },
+            {
+              "segment": "route-2",
+              "frames": 114,
+              "carriedSpeed": 0.9233156309163633,
+              "stopped": true,
+              "wheelPairs": 65
+            },
+            {
+              "segment": "route-3",
+              "frames": 116,
+              "carriedSpeed": 1.1484108983214425,
+              "stopped": true,
+              "wheelPairs": 65
+            },
+            {
+              "segment": "route-4",
+              "frames": 117,
+              "carriedSpeed": 1.4260037075741088,
+              "stopped": true,
+              "wheelPairs": 66
+            },
+            {
+              "segment": "route-5a",
+              "frames": 114,
+              "carriedSpeed": 1.162516294438812,
+              "stopped": true,
+              "wheelPairs": 62
+            }
+          ],
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "return",
+              "checkpointFrames": 43,
+              "revealFrames": 13,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.8167195214405623,
+              "displacement": 0
+            },
+            {
+              "serial": 2,
+              "kind": "fork",
+              "checkpointFrames": 43,
+              "revealFrames": 14,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.4514178017397343,
+              "displacement": 0
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-first-refuge",
+              "left": 1495.96875,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 3.5999999997000023,
+              "fade": 1,
+              "node": "lion-first-trial-event",
+              "resolved": false
+            }
+          ],
+          "returns": [
+            {
+              "segment": "route-2",
+              "speed": 1.167955615388628,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-3",
+              "speed": 1.4526917822874068,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-6",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 30,
+              "height": 30,
+              "x": 14,
+              "y": 409,
+              "right": 44,
+              "bottom": 439
+            },
+            {
+              "label": "optional return",
+              "focused": true,
+              "outline": "solid",
+              "width": 173,
+              "height": 32,
+              "x": 742,
+              "y": 158.53125,
+              "right": 915,
+              "bottom": 190.53125
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 280,
+              "height": 58,
+              "x": 1097.8125,
+              "y": 273.171875,
+              "right": 1377.8125,
+              "bottom": 331.171875
+            }
+          ],
+          "gameReduced": false,
+          "osReduced": true
+        },
+        {
+          "leg": "T1",
+          "viewport": {
+            "width": 1440,
+            "height": 810
+          },
+          "complete": true,
+          "frames": 604,
+          "braking": [
+            {
+              "segment": "t1-route-1",
+              "frames": 118,
+              "carriedSpeed": 0.7568999992991825,
+              "stopped": true,
+              "wheelPairs": 66
+            },
+            {
+              "segment": "t1-route-2",
+              "frames": 113,
+              "carriedSpeed": 0.9233156313053202,
+              "stopped": true,
+              "wheelPairs": 64
+            },
+            {
+              "segment": "t1-route-3",
+              "frames": 121,
+              "carriedSpeed": 1.4260037075741088,
+              "stopped": true,
+              "wheelPairs": 67
+            },
+            {
+              "segment": "t1-route-4a",
+              "frames": 110,
+              "carriedSpeed": 1.1625162922014147,
+              "stopped": true,
+              "wheelPairs": 58
+            }
+          ],
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 42,
+              "revealFrames": 14,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.4514178017397343,
+              "displacement": 0
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-village-choice",
+              "left": 1495.96875,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 3.5999999997000023,
+              "fade": 1,
+              "node": "lion-second-trial-event",
+              "resolved": false
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t1-route-2",
+              "speed": 1.167955615388628,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-3",
+              "speed": 1.8167195214405623,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 30,
+              "height": 30,
+              "x": 14,
+              "y": 409,
+              "right": 44,
+              "bottom": 439
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 280,
+              "height": 58,
+              "x": 1097.8125,
+              "y": 273.171875,
+              "right": 1377.8125,
+              "bottom": 331.171875
+            }
+          ],
+          "gameReduced": false,
+          "osReduced": true
+        },
+        {
+          "leg": "T3",
+          "viewport": {
+            "width": 1440,
+            "height": 810
+          },
+          "complete": true,
+          "frames": 632,
+          "braking": [
+            {
+              "segment": "t3-route-1",
+              "frames": 123,
+              "carriedSpeed": 0.7568999989049785,
+              "stopped": true,
+              "wheelPairs": 68
+            },
+            {
+              "segment": "t3-route-2",
+              "frames": 118,
+              "carriedSpeed": 0.9233156309163633,
+              "stopped": true,
+              "wheelPairs": 66
+            },
+            {
+              "segment": "t3-route-3",
+              "frames": 121,
+              "carriedSpeed": 1.4260037075741088,
+              "stopped": true,
+              "wheelPairs": 67
+            },
+            {
+              "segment": "t3-route-4a",
+              "frames": 123,
+              "carriedSpeed": 1.162516294438812,
+              "stopped": true,
+              "wheelPairs": 68
+            }
+          ],
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 45,
+              "revealFrames": 14,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.4514178017397343,
+              "displacement": 0
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-shadow-signs",
+              "left": 1495.96875,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 3.5998199999916567,
+              "fade": 1,
+              "node": "lion-final-trial-event",
+              "resolved": false
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t3-route-2",
+              "speed": 1.167955615388628,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-3",
+              "speed": 1.8167195214405623,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 30,
+              "height": 30,
+              "x": 14,
+              "y": 409,
+              "right": 44,
+              "bottom": 439
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 280,
+              "height": 58,
+              "x": 1097.8125,
+              "y": 273.171875,
+              "right": 1377.8125,
+              "bottom": 331.171875
+            }
+          ],
+          "gameReduced": false,
+          "osReduced": true
+        }
+      ]
+    }
+  ],
+  "captures": [
+    {
+      "source": "tmp/traversal/checkpoint-desktop-1806-normal-v2/T1-1440-checkpoint-t1-route-1.png",
+      "path": "docs/reports/checkpoint-desktop-20261010-1806/T1-normal-checkpoint.png",
+      "sha256": "4343dd5342e2ed25d62b7bed93deed60fad5e62a0894070ca3e7ab4941c7a8f4"
+    },
+    {
+      "source": "tmp/traversal/checkpoint-desktop-1806-normal-v2/T3-1440-checkpoint-t3-route-1.png",
+      "path": "docs/reports/checkpoint-desktop-20261010-1806/T3-normal-checkpoint.png",
+      "sha256": "9ecc26d57b13e13ee211f205e28e60711db352a35ba557a582e1845bcd0326cd"
+    },
+    {
+      "source": "tmp/traversal/checkpoint-desktop-1806-os-v2/T0-1440-checkpoint-route-1.png",
+      "path": "docs/reports/checkpoint-desktop-20261010-1806/T0-os-checkpoint.png",
+      "sha256": "96cc9bb635c6ba1c145e24d6efceb0b38d9a0d75c62849d04786087921344fa4"
+    },
+    {
+      "source": "tmp/traversal/checkpoint-desktop-1806-os-v2/T1-1440-checkpoint-t1-route-1.png",
+      "path": "docs/reports/checkpoint-desktop-20261010-1806/T1-os-checkpoint.png",
+      "sha256": "cc1f128c285bc99c1ace1fb80e2793a65459da69c52fa61ab1c215c7ad5641fd"
+    },
+    {
+      "source": "tmp/traversal/checkpoint-desktop-1806-os-v2/T3-1440-checkpoint-t3-route-1.png",
+      "path": "docs/reports/checkpoint-desktop-20261010-1806/T3-os-checkpoint.png",
+      "sha256": "a7606671be721f831927384e34a72bae51fdf1b38c8a250fa2af0d1764370d49"
+    }
+  ],
+  "mechanical": {
+    "focusedTests": 23,
+    "types": "PASS",
+    "contracts": "8contracts/8slots",
+    "lockedGate": "EMPTY",
+    "sourceFilesModified": 0,
+    "testFilesModified": 0,
+    "existingQaFilesModified": 0,
+    "newQaFiles": 0
+  },
+  "limits": [
+    "Wheel assertions cover positive checkpoint travel only; stationary/backward travel skipped",
+    "Covered-swap/departure wheel-phase continuity not asserted",
+    "Delayed readiness/long-frame source-reviewed, not browser certified",
+    "OS checkpoint ground still travels119.94–225.98px; no frozen ground/general gentle-camera or no-large-camera-motion claim",
+    "Combat results and V6 origins are fixtures; no earned combat, V6 compatibility, balance or full-demo acceptance",
+    "Game-only checkpoint reduction, mobile finalization and operator manual review remain OPEN"
+  ],
+  "reviewers": {
+    "traversal": "PASS_SCOPED_DESKTOP_1440_CHECKPOINT_BRAKING_POSITIVE_WHEEL_TRAVEL_NORMAL_AND_OS_ALTERNATIVES",
+    "guardian": "PASS_SCOPED_DESKTOP_MOTION_LIFECYCLE",
+    "passes": {
+      "traversal": 2,
+      "guardian": 2
+    },
+    "selectedCapturesInspectedBy": "root+traversal+guardian"
+  },
+  "osCameraObservation": {
+    "vehicleOffset": 0,
+    "totalCheckpointGroundTravelPx": [
+      119.94,
+      225.98
+    ],
+    "visibleTravelAfterOpacityBelow095Px": [
+      107.08,
+      201.78
+    ],
+    "visibleIntervalMs": [
+      950,
+      1092
+    ],
+    "visibleStartSpeed": [
+      0.715,
+      1.348
+    ],
+    "lastBrakingSampleSpeed": [
+      0.00217,
+      0.00409
+    ],
+    "completeStopAsserted": true,
+    "scope": "Decelerating ground travel and zero vehicle displacement; never frozen-ground/general camera comfort acceptance"
+  },
+  "compliance": {
+    "contractSet": "1.1.0",
+    "baseline": "d7ca28aed5c377ffedb03202f6364b7a947d1096",
+    "lockedRulesChanged": false,
+    "contractsRead": [
+      "GAME_CONSTITUTION",
+      "README/manifest",
+      "AUTONOMOUS_WORK_PROTOCOL",
+      "TRAVERSAL",
+      "CAMPAIGN_AND_STATE",
+      "COMBAT_AND_VFX",
+      "UI_AND_ACCESSIBILITY",
+      "AUTHORING_AND_QA",
+      "T0_PRODUCTION_CONTRACT"
+    ],
+    "rows": {
+      "GAME_CONSTITUTION": "PASS presentation-only",
+      "ART_DIRECTION": "N/A",
+      "CHARACTERS": "N/A",
+      "ENVIRONMENTS": "N/A",
+      "NARRATIVE_CAMPAIGN": "PASS authored callbacks retained",
+      "NARRATIVE_PRESENTATION": "N/A",
+      "TRAVERSAL": "PASS scoped positive braking/departure/reveal/complete exit",
+      "COMBAT": "N/A fixture outcome uncertified",
+      "SAVE": "PASS no schema edit; no V6 compatibility acceptance",
+      "UI_ACCESSIBILITY": "PASS scoped desktop keyboard/OStrue gamefalse zero vehicle departure and covered exit; camera comfort OPEN",
+      "QA_EVIDENCE": "PASS stable lineage/digests/assertions/selectedcaptures",
+      "REPOSITORY_GOVERNANCE": "PASS owned dev/exact paths/empty LOCKED gates"
+    }
+  }
+}

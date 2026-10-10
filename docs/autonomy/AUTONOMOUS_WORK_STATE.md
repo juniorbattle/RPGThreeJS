@@ -1,3 +1,21 @@
+## Reviewed desktop checkpoint milestone - 2026-10-10T18:21:50.294Z
+
+Run rpgthreejs-auto-dev-90m-20261010T1806; IN_PROGRESS. ACCEPTED_SCOPED_DESKTOP_1440_CHECKPOINT_BRAKING_POSITIVE_WHEEL_NORMAL_OS_ALTERNATIVES. Existing correction9b15e2a unchanged;393physicalsource/driver/helper/9build stable. Five new1440cases normalT1/T3 and OS-onlyT0/T1/T3 SUCCEEDED,3338frames21stops1350positivewheelpairs/zeroerrors. T0normal1722 reused. Root+Traversal2passes+guardian2passes inspect5selectedcaptures plus raw departures/reveals/exits. ReceiptNOT_ACCEPTED remains separate; initial2environmentFAILED preserved.
+
+OS ground still travels120–226px while decelerating to stop; no frozen-ground/general camera comfort claim. Stationary/backward wheels, covered-swap/departure wheelphase, delayedreadiness/longframe, game-only reduction, mobileLAST and broader manual/demo remainOPEN. Fixtures never certify earnedcombat/campaign/V6compatibility/balance. Compliance12rows in docs/reports/checkpoint-desktop-20261010-1806/checks.json; set1.1.0/LOCKED unchanged.23focused/types/8contracts8slots/gatesPASS; buildreused, no rebuild claim.
+
+Counts0source/0tests/0existingQA/0newQA/7proof/3workflow/0inheritedWIP;2reviewers,one desktop milestone5cases4registeredjobs(including2prebrowserfailures),noquota-savings claim. All177priorjobIDs and exacttaskQueue/deferred/narrative/operator records preserved;181total. Workers20520/2536/25620/19720 and ports5364/5365 absent.
+
+Exact nextAction: Read-only preflight/exclusive lock; inspect checkpoint-desktop-1806 normal-v2 and os-v2 terminal receipts plus docs/reports/checkpoint-desktop-20261010-1806/checks.json. Reuse only matching393physicalsource/driver/helper/9build/digests; do not rerun accepted five desktop cases, prior T0normal1722 or45min native Pursuit0420. Shared positive checkpoint braking and normal/OS vehicle departure/covered exit are accepted scoped; OS ground still travels120–226px, general camera comfort/manual scenery, stationary/backward wheel travel, covered-swap/departure wheelphase, game-only reduction and delayedreadiness/longframe remain OPEN. Resume active OPERATOR-FEEDBACK desktop native competence acceptance: inspect src/game/skills.ts, src/combat/legacyCombatSkillSpec.test.ts and existing tools/demo-continuous-production-qa.mjs skill()240–278/initialRoster336–339, with compatible earned campaign receipts. Verify all six demo heroes first2AP competence at authored joining and the remaining LumiereSalvatrice native exactly2AP-start/40percent healing boundary; existing3to1AP casts do not close exactly2AP-start. Product correction only for a demonstrated runtime defect; reuse existing native runner, at most one narrowly necessary assertion correction under sensitive guardian review, one registered unique relevant desktop scenario with exact source/build/input provenance. Do not invent canon, alter combat/AP/recruitment/save authority or restart full matrices. Preserve pendingNarrativeTask.nextAction, all original/deferred histories and scoped Pursuit evidence. Other contexts/defeat/cancel/reentry/reduced/AT, broader skills/campaign/narrative/Stage/VFX/balance/operator final manual/full-demo remain OPEN; mobileLAST, eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected.
+
+Publication: reviewed normalorigin/dev preparing; finalSHA/parity/WIP/lockrelease recorded in automationmemory.
+
+## Current checkpoint desktop milestone - 2026-10-10T18:09:09.966Z
+
+Run rpgthreejs-auto-dev-90m-20261010T1806; IN_PROGRESS. Clean verified dev da2ee09; no inherited WIP. 393 physical sources, exact driver/helper/9build hashes and original result digest match1722. T0 normal accepted proof reused, never rerun. Product correction delivered; missing acceptance uses existing runner normalT1/T3 and OS-onlyT0/T1/T3 at1440x810; fixtures certify presentation only. No new QA tool. MobileLAST; all deferred/history retained.
+
+Exact nextAction: Run registered existing checkpoint milestone jobs with exact unchanged sources/driver/build: normal T1/T3 and OS-only T0/T1/T3 at1440x810, inspect missing braking/wheel/departure/arrival boundaries. Preserve accepted T0 normal and all historical/deferred records. No earned combat or full-demo acceptance.
+
 ## Verified publication checkpoint - 2026-10-10T17:38:54.460Z
 
 Implementation 9b15e2a015de6b29d23c231582be840af22c833c verified HEAD=origin/dev=live remote, main00b96f1 unchanged.393 frozen physical source hashes exact after commit. Original scoped T0 proof retained separately; current-execution flag false because committed tree/diff representation changed. Only three workflow closure files preparing; exact final SHA/parity/ownedWIP retirement/lock release in automation memory. Active task and nextAction unchanged, demoIN_PROGRESS/mobileLAST.
@@ -345,6 +363,10 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - pursuit-native-0323-v2: FAILED; port 5361; receipt `tmp/demo/pursuit-native-0323-v2/qa-job.json`; NOT_ACCEPTED
 - pursuit-native-0420: SUCCEEDED; port 5362; receipt `tmp/demo/pursuit-native-0420/qa-job.json`; NOT_ACCEPTED
 - checkpoint-braking-1722: SUCCEEDED; port 5363; receipt `tmp/traversal/checkpoint-braking-1722/qa-job.json`; NOT_ACCEPTED
+- checkpoint-desktop-1806-normal: FAILED; port 5364; receipt `tmp/traversal/checkpoint-desktop-1806-normal/qa-job.json`; NOT_ACCEPTED
+- checkpoint-desktop-1806-os: FAILED; port 5365; receipt `tmp/traversal/checkpoint-desktop-1806-os/qa-job.json`; NOT_ACCEPTED
+- checkpoint-desktop-1806-normal-v2: SUCCEEDED; port 5364; receipt `tmp/traversal/checkpoint-desktop-1806-normal-v2/qa-job.json`; NOT_ACCEPTED
+- checkpoint-desktop-1806-os-v2: SUCCEEDED; port 5365; receipt `tmp/traversal/checkpoint-desktop-1806-os-v2/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
