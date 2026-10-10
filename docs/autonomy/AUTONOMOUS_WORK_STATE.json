@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-10T17:23:39.6009404Z",
-  "runEndedAt": "2026-10-10T17:37:11.752Z",
+  "runEndedAt": "2026-10-10T17:38:54.460Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "DESKTOP_CHECKPOINT_REMAINING_ACCEPTANCE",
   "activeSubtask": "T0 normal desktop checkpoint braking/wheel travel accepted scoped; T1/T3/reduced and broader Pursuit/manual criteria open",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "b1bb2f55fa789df060181fff7ea52fcc3bd249d5",
-  "lastPushedCommit": "b1bb2f55fa789df060181fff7ea52fcc3bd249d5",
+  "lastKnownGoodCommit": "9b15e2a015de6b29d23c231582be840af22c833c",
+  "lastPushedCommit": "9b15e2a015de6b29d23c231582be840af22c833c",
   "completedThisRun": [
     "Carry residual speed and brake during checkpoint reveal without restart",
     "Preserve wheel/dust/suspension travel phase across covered world origins",
@@ -188,7 +188,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261010T1722",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-10T17:37:56.087Z",
+  "lastHeartbeat": "2026-10-10T17:38:54.460Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261010T1722",
     "sha": "eb49c7027f94fa2f0ba3a0e053539835b321f3a0",
@@ -212,8 +212,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261010T1722",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-10T17:37:56.087Z",
-    "status": "CHECKPOINT_READY_FOR_PUBLICATION",
+    "lastHeartbeat": "2026-10-10T17:38:54.460Z",
+    "status": "PUBLISHED_SCOPE_ACCEPTED_CLOSURE_PREPARING",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -19234,16 +19234,17 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true
+        "eligibleForReview": false,
+        "postCommitNote": "Source tree/diff representation changed after reviewed commit;393 physical source hashes+driver/build remain exact. Original scoped proof preserved separately."
       }
     ],
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261010T1722",
       "sha": "eb49c7027f94fa2f0ba3a0e053539835b321f3a0",
       "snapshotAt": "2026-10-10T17:37:56.087Z",
-      "status": "GREEN_REVIEWED_PROOF_PUBLISHED_WIP",
+      "status": "AUDITED_PRODUCT_PROOF_ON_VERIFIED_DEV_PENDING_RETIREMENT",
       "dirtyFiles": [
         "src/traversal/TraversalRoadScene.ts",
         "src/traversal/TraversalRoadMotion.test.ts",
@@ -20447,7 +20448,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "Reviewed eleven-path product/proof/workflow checkpoint preparing; inherited WIP0",
+  "uncommittedWork": "Only reviewed three-file workflow closure preparing; source/proof already verified ondev",
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
@@ -20576,7 +20577,7 @@
     "preparation": "Native rest/revival before further combat;130gold/rest60",
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
-  "implementationCommit": "2cf650906f73bd5a6ffc517eddbdbd7acf7ccb0d",
+  "implementationCommit": "9b15e2a015de6b29d23c231582be840af22c833c",
   "authorizedWorkContinuation": "First obtain exact-payload public dev publication approval for run1859 local checkpoint; automatic review rejected the public WIP state push and no workaround is authorized. Inspect clean Git/local commits, owned writerStopped lock and preserved receipts. After approved normal push/remote parity and lock resolution, continue DEMO-QA-POLISH with existing tools/demo-continuous-production-qa.mjs from earnedSavePath tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json (SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b) and priorProofPath tmp/demo/campaign-second-refuge-1859/results.json (SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3). Rescue/serpent/ending1366normal, native rest75 first (3KO/5wounded,300gold), existing native shop/equip preparation, register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID, unique ignored output/free strict port and bounded deadline. Verify current physical source/driver/build identities; do not relabel old frozen577 campaign proof as new build acceptance. Inspect terminal receipt, genuine combats/T1/T3/temporaryloot/exactV6/ending/Salvation2AP and selected captures. Do not repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices; keep live leap/attack/Stage, live-slope smoothness,390framing/broadaccessibility/balance/settledVFX/fullending gates open. Preserve152historicaljobs/exact deferredDemoTask and pendingNarrativeTask.",
   "publication1214History": {
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
@@ -21380,6 +21381,9 @@
       "QA_EVIDENCE": "PASS_SCOPED",
       "REPOSITORY_GOVERNANCE": "PASS"
     },
-    "publication": "Reviewed dev checkpoint preparing; exact final SHA/parity/lock release recorded in automation memory after verification"
+    "publication": "Implementation verified9b15e2a local/live dev; main00b96f1 unchanged. Final workflow closure preparing; final SHA/parity/WIP retirement and lock release recorded in automation memory.",
+    "implementationCommit": "9b15e2a015de6b29d23c231582be840af22c833c",
+    "postCommitPhysicalSourcesMatch": 393,
+    "committedSourceTree": "f5d2d917f1bc2bfce472dcab68dd638337069e58"
   }
 }

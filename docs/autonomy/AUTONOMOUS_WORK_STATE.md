@@ -1,3 +1,7 @@
+## Verified publication checkpoint - 2026-10-10T17:38:54.460Z
+
+Implementation 9b15e2a015de6b29d23c231582be840af22c833c verified HEAD=origin/dev=live remote, main00b96f1 unchanged.393 frozen physical source hashes exact after commit. Original scoped T0 proof retained separately; current-execution flag false because committed tree/diff representation changed. Only three workflow closure files preparing; exact final SHA/parity/ownedWIP retirement/lock release in automation memory. Active task and nextAction unchanged, demoIN_PROGRESS/mobileLAST.
+
 ## Checkpoint braking scoped acceptance - 2026-10-10T17:37:11.752Z
 
 Run rpgthreejs-auto-dev-90m-20261010T1722; IN_PROGRESS. Baseline a4b582fc; stale0705 owner stopped on quota, recovered only after105min and associated-process checks. Source correction carries residual speed through covered focus and visible checkpoint braking; accumulated wheel travel rebases origins. Existing canonical stop/decision/save/truth/media paths retained. Active task unchanged; original exact continuation preserved in checkpointBraking1722.previousNextAction and previousState.
