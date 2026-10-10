@@ -1,3 +1,32 @@
+## Safe native-skills checkpoint - 2026-10-10T23:58:17.6778443+00:00
+
+Demo remains IN_PROGRESS. Current handoff: docs/autonomy/handoffs/2026-10-10T2321Z-codex-native-skills.md. Pilot correction e5f2c67 published; no demonstrated product defect. ONE smoke FAILED/NOT_ACCEPTED. Opening won3rounds17actions, ordinaryT0 Pursuit t0:r6:pursuit-1 forest_ambush stopped at25min/22actions. Native40percent heals5to3 and3to1 AP observed; exactly2start/setup/firstrefuge/V6/Pursuitreturn remain OPEN. Terminal job ledger synced FAILED, digest/currentexecution match, not eligible for acceptance. Guardian thirdpass staticauthority PASS, QA_EVIDENCE BLOCKED; governance staleledger resolved by verified sync. Worker26324/port5367 absent. No more harness edits or relaunch thisrun.
+
+Checks:60focused tests/types/8contracts8slots/driver syntax/whitespace/immutable gate PASS; existing9file production build reused with393physicalsource hashes, no rebuild claim. Counts:0runtime/0tests/1existingQA/0newQA/0proof/3workflow, inherited3paths preserved;1browser/1reviewer/3passes/1harnesscorrection. Fifteen protected histories and all182prior job IDs retained (183total). Historical1214 earned input passes existing lineage guard only; no current skill acceptance. OwnWIP may be retired only after exactdev coverage; inherited1840/0735/1600 refs retained.
+
+Exact nextAction: Read-only preflight/owned lock; inspect skills-native-1840 and salvation-exact2-2321 FAILED receipts plus tmp/autonomy/skills-2321/terminal-audit.json. New2321 driver9b5a33ca/393physicalsource/9build stable, resultb45aab0b; no exactly2AP marker/setup or firstrefuge/V6/T0Pursuit return acceptance. Opening won3rounds17actions; ordinaryT0 t0:r6:pursuit-1 forest_ambush timedout22actions, two native40percent casts5to3/3to1 observed; no product defect demonstrated. Do not rerun unchanged freshopening or acceptedTraversal/nativeT1 matrices. Retain ONE reviewed existingpilot correction unchanged; verify earned firstrefuge1214 save/proof lineage from tmp/autonomy/skills-2321/future-earned-input-audit.json, then ONE registered1366normal existing demo-continuous-production-qa targetsecond-refuge continuation through T1 for missing native exactly2AP-start context. No further instrumentation edit; do not seed from failed2321. Preserve pendingNarrativeTask.nextAction, sixnative candidates observed1840 (not joininginstant/sixcasts acceptance), all original/deferred histories and mobileLAST. Eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected; broaderPursuit/skills/campaign/narrative/StageVFX/AT/balance/operator final/full-demo remainOPEN.
+## Native exactly2AP smoke terminal - 2026-10-10T23:54:42.327Z
+
+salvation-exact2-2321 FAILED native25min deadline in ordinary T0 Pursuit t0:r6:pursuit-1 forest_ambush; no canonical firsttrial outcome resolved. Opening native victory3rounds17actions; second22actions/two40percent native casts5to3 and3to1, noexact2start/setup. Source393physical/driver/helper/9build/currentexecution/digestb45aab0b stable; zeroerrors. Worker26324 andport5367 absent. Overall/firstrefuge/V6/Pursuitreturn/exact2 NOT_ACCEPTED. No more harness edits/relaunch; guardianfinalpass pending.
+
+Exact nextAction: Read-only preflight/owned lock; inspect skills-native-1840 and salvation-exact2-2321 FAILED receipts plus tmp/autonomy/skills-2321/terminal-audit.json. New2321 driver9b5a33ca/393physicalsource/9build stable, resultb45aab0b; no exactly2AP marker/setup or firstrefuge/V6/T0Pursuit return acceptance. Opening won3rounds17actions; ordinaryT0 t0:r6:pursuit-1 forest_ambush timedout22actions, two native40percent casts5to3/3to1 observed; no product defect demonstrated. Do not rerun unchanged freshopening or acceptedTraversal/nativeT1 matrices. Retain ONE reviewed existingpilot correction unchanged; verify earned firstrefuge1214 save/proof lineage from tmp/autonomy/skills-2321/future-earned-input-audit.json, then ONE registered1366normal existing demo-continuous-production-qa targetsecond-refuge continuation through T1 for missing native exactly2AP-start context. No further instrumentation edit; do not seed from failed2321. Preserve pendingNarrativeTask.nextAction, sixnative candidates observed1840 (not joininginstant/sixcasts acceptance), all original/deferred histories and mobileLAST. Eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected; broaderPursuit/skills/campaign/narrative/StageVFX/AT/balance/operator final/full-demo remainOPEN.
+
+## Published live opening WIP - 2026-10-10T23:39:32.146Z
+
+Snapshot 2de663a27d35a29977a39c25de7ff6c13bec571c verified on ownedremoteWIP; only two workflowstates differ fromdev, pilot identical toe5f2c67. No terminal/exact2 acceptance.
+
+## Live native opening checkpoint - 2026-10-10T23:39:11.044Z
+
+Worker26324/port5367 running, native opening round2/10actions at2026-10-10T23:36:28.478Z. KestrelKO retained, no balance/general acceptance; exact2 proof pending. Published driver e5f2c67 and source/build frozen; snapshot following affects only two workflow states. Same nextAction and all original/deferred histories retained.
+
+Exact nextAction: Inspect salvation-exact2-2321 terminal receipt/results without restarting the worker; verify current source/driver/helper/build/digest and actual samecaster2to0/40percent, selected before/after captures, firstrefuge exactV6. Ask existing guardian for final scoped review. Original skills-native-1840 FAILED is preserved; no further instrumentation edits or second smoke thisrun. Six native novice candidates observed in failed1840 remain separate; no joininginstant/sixcasts/ending/full-demo acceptance. Preserve original/deferred nextActions and mobileLAST.
+
+## Published pilot and current mechanical checks - 2026-10-10T23:33:03.712Z
+
+Checkpoint e5f2c67 published/verified ondev,main unchanged. ONE existingQA correction;0product/0tests/0newQA/0proof/2workflow/3inheritedWIP paths.60focused/types/8contracts8slots/gatesPASS; build reused exact. Guardian2passes staticPASS, terminal exact2 evidence pending. Worker26324/port5367 continues unchanged. All182originaljobIDs/taskQueue/deferred/pendingNarrative and operator/pursuit histories preserved.
+
+Exact nextAction: Inspect salvation-exact2-2321 terminal receipt/results without restarting the worker; verify current source/driver/helper/build/digest and actual samecaster2to0/40percent, selected before/after captures, firstrefuge exactV6. Ask existing guardian for final scoped review. Original skills-native-1840 FAILED is preserved; no further instrumentation edits or second smoke thisrun. Six native novice candidates observed in failed1840 remain separate; no joininginstant/sixcasts/ending/full-demo acceptance. Preserve original/deferred nextActions and mobileLAST.
+
 ## Exactly2AP production smoke running - 2026-10-10T23:27:25.469Z
 
 Registered salvation-exact2-2321,1366normal/firstrefuge/25min/port5367, noearnedinput fixture. Guardian actualdiff launchPASS; one minimal correction only, no further edits while running. 60focused/types/validator/gatesPASS; exact unchanged source/build reused.
@@ -422,7 +451,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - checkpoint-desktop-1806-normal-v2: SUCCEEDED; port 5364; receipt `tmp/traversal/checkpoint-desktop-1806-normal-v2/qa-job.json`; NOT_ACCEPTED
 - checkpoint-desktop-1806-os-v2: SUCCEEDED; port 5365; receipt `tmp/traversal/checkpoint-desktop-1806-os-v2/qa-job.json`; NOT_ACCEPTED
 - skills-native-1840: FAILED; port 5366; receipt `tmp/demo/skills-native-1840/qa-job.json`; NOT_ACCEPTED
-- salvation-exact2-2321: PLANNED; port 5367; receipt `tmp/demo/salvation-exact2-2321/qa-job.json`; NOT_ACCEPTED
+- salvation-exact2-2321: FAILED; port 5367; receipt `tmp/demo/salvation-exact2-2321/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

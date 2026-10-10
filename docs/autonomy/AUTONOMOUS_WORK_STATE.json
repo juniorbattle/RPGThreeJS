@@ -1,41 +1,39 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-10T19:22:22.5423147-04:00",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-10T19:58:17.6778443-04:00",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-  "activePhase": "DESKTOP_NATIVE_SKILLS_REMAINING_ACCEPTANCE",
-  "activeSubtask": "Native exactly2AP Salvation pilot correction; inherited sixhero availability observations pending scoped review",
+  "activePhase": "DESKTOP_NATIVE_EXACT2AP_SCOPED_VERIFICATION",
+  "activeSubtask": "Corrected native1AP setup published; new T0 Pursuit timeout leaves exactly2AP/firstrefuge proof OPEN",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "92adf938a5cc60b7a52c9132302d9788b2d344c5",
-  "lastPushedCommit": "92adf938a5cc60b7a52c9132302d9788b2d344c5",
-  "completedThisRun": [],
+  "lastKnownGoodCommit": "e5f2c67d2e73cf2a04fe171e919f2ff009a2b53e",
+  "lastPushedCommit": "e5f2c67d2e73cf2a04fe171e919f2ff009a2b53e",
+  "completedThisRun": [
+    "Recovered interrupted1840 lock under cumulative stale conditions; reviewed/published three-path recovery snapshot",
+    "Synced1840 FAILED timeout and audited sixnative candidates/seven40percent native healing casts; noexact2 acceptance",
+    "Made ONE guardian-reviewed minimal healthy-ally1AP pilot setup correction; coherentcheckpoint e5f2c67 published",
+    "ONE registered fresh1366normal scenario FAILED at25min ordinaryT0 Pursuit deadline; audited terminal provenance and inspected captures; zero exactly2AP acceptance"
+  ],
   "filesChanged": [
-    "docs/reports/checkpoint-desktop-20261010-1806/checks.json",
-    "docs/reports/checkpoint-desktop-20261010-1806/EVIDENCE.md",
-    "docs/reports/checkpoint-desktop-20261010-1806/T1-normal-checkpoint.png",
-    "docs/reports/checkpoint-desktop-20261010-1806/T3-normal-checkpoint.png",
-    "docs/reports/checkpoint-desktop-20261010-1806/T0-os-checkpoint.png",
-    "docs/reports/checkpoint-desktop-20261010-1806/T1-os-checkpoint.png",
-    "docs/reports/checkpoint-desktop-20261010-1806/T3-os-checkpoint.png",
+    "tools/demo-continuous-production-qa.mjs",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-10T1806Z-codex-checkpoint-desktop.md"
+    "docs/autonomy/handoffs/2026-10-10T2321Z-codex-native-skills.md"
   ],
   "testsRun": [
-    "node node_modules/vitest/vitest.mjs run src/traversal/TraversalRoadMotion.test.ts src/traversal/TraversalRoadCamera.test.ts --exclude tmp/**:23PASS",
-    "node node_modules/typescript/bin/tsc --noEmit:PASS",
-    "node tools/contracts/validate-contracts.mjs:8contracts8slotsPASS",
-    "git diff --check and immutable/protected gates:PASS",
-    "Existing1722production build reused by exact9asset/html hashes;393physicalsource frozen",
-    "Two registered desktop motion milestone jobsv2:5casesPASS; initial2prebrowserenvironmentFAILED retained"
+    "60focused: management57/legacyCombatSkillSpec3 PASS",
+    "TypeScript --noEmit PASS",
+    "8contracts8slots validator PASS",
+    "Immutable baseline/status gates EMPTY; diff--check and driver syntax PASS",
+    "Exact393physicalsource and9build/input/helper hashes verified; prior production build reused",
+    "salvation-exact2-2321 FAILED/NOT_ACCEPTED: opening victory3rounds17actions; T0 Pursuit22actions deadline; native40percent casts5to3/3to1, noexact2 marker/setup"
   ],
   "testsPassed": [
-    "node node_modules/vitest/vitest.mjs run src/traversal/TraversalRoadMotion.test.ts src/traversal/TraversalRoadCamera.test.ts --exclude tmp/**:23PASS",
-    "node node_modules/typescript/bin/tsc --noEmit:PASS",
-    "node tools/contracts/validate-contracts.mjs:8contracts8slotsPASS",
-    "git diff --check and immutable/protected gates:PASS",
-    "Existing1722production build reused by exact9asset/html hashes;393physicalsource frozen",
-    "Two registered desktop motion milestone jobsv2:5casesPASS; initial2prebrowserenvironmentFAILED retained"
+    "60focused: management57/legacyCombatSkillSpec3 PASS",
+    "TypeScript --noEmit PASS",
+    "8contracts8slots validator PASS",
+    "Immutable baseline/status gates EMPTY; diff--check and driver syntax PASS",
+    "Exact393physicalsource and9build/input/helper hashes verified; prior production build reused"
   ],
   "testsRemaining": [
     "Delayed focus readiness and long-frame behavior source-reviewed, not separately tested",
@@ -65,7 +63,7 @@
     "Council/refugees/static-only OS narrative acceptance and approved Bois-Clair night plate",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Inspect salvation-exact2-2321 terminal receipt/results without restarting the worker; verify current source/driver/helper/build/digest and actual samecaster2to0/40percent, selected before/after captures, firstrefuge exactV6. Ask existing guardian for final scoped review. Original skills-native-1840 FAILED is preserved; no further instrumentation edits or second smoke thisrun. Six native novice candidates observed in failed1840 remain separate; no joininginstant/sixcasts/ending/full-demo acceptance. Preserve original/deferred nextActions and mobileLAST.",
+  "nextAction": "Read-only preflight/owned lock; inspect skills-native-1840 and salvation-exact2-2321 FAILED receipts plus tmp/autonomy/skills-2321/terminal-audit.json. New2321 driver9b5a33ca/393physicalsource/9build stable, resultb45aab0b; no exactly2AP marker/setup or firstrefuge/V6/T0Pursuit return acceptance. Opening won3rounds17actions; ordinaryT0 t0:r6:pursuit-1 forest_ambush timedout22actions, two native40percent casts5to3/3to1 observed; no product defect demonstrated. Do not rerun unchanged freshopening or acceptedTraversal/nativeT1 matrices. Retain ONE reviewed existingpilot correction unchanged; verify earned firstrefuge1214 save/proof lineage from tmp/autonomy/skills-2321/future-earned-input-audit.json, then ONE registered1366normal existing demo-continuous-production-qa targetsecond-refuge continuation through T1 for missing native exactly2AP-start context. No further instrumentation edit; do not seed from failed2321. Preserve pendingNarrativeTask.nextAction, sixnative candidates observed1840 (not joininginstant/sixcasts acceptance), all original/deferred histories and mobileLAST. Eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected; broaderPursuit/skills/campaign/narrative/StageVFX/AT/balance/operator final/full-demo remainOPEN.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -81,8 +79,8 @@
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
   "creditStatus": "AVAILABLE_THIS_RUN",
-  "contractComplianceStatus": "PASS_SCOPED_DESKTOP_CHECKPOINT_SET1.1.0; broader manual/demo OPEN",
-  "commitReferenceScope": "Implementation 70b3446ffd2af149f7cbb1d6481b61f8b4b170bb is source mechanically verified, not native browser acceptance; metadata publication and exact final SHA/lock disposition recorded externally in automation memory after remote verification.",
+  "contractComplianceStatus": "PASS_STATIC_NATIVE_AUTHORITY_SET1.1.0_AND_GOVERNANCE; QA_EVIDENCE_BLOCKED_TIMEOUT_EXACT2AP_UNPROVEN",
+  "commitReferenceScope": "Reviewed pilot checkpoint e5f2c67d2e73cf2a04fe171e919f2ff009a2b53e published ondev. Terminal metadata closure SHA and lock disposition recorded externally in automation memory after verified publication; no native exactly2AP/full-demo acceptance.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -183,34 +181,24 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261010T1722",
+  "runId": "rpgthreejs-auto-dev-90m-20261010T2321",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-10T17:38:54.460Z",
+  "lastHeartbeat": "2026-10-10T23:54:42.327Z",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261010T1722",
-    "sha": "eb49c7027f94fa2f0ba3a0e053539835b321f3a0",
-    "snapshotAt": "2026-10-10T17:37:56.087Z",
-    "status": "GREEN_REVIEWED_PROOF_PUBLISHED_WIP",
+    "sha": "2de663a27d35a29977a39c25de7ff6c13bec571c",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261010T2321",
+    "status": "GREEN",
     "dirtyFiles": [
-      "src/traversal/TraversalRoadScene.ts",
-      "src/traversal/TraversalRoadMotion.test.ts",
-      "tools/traversal-motion-production-qa.mjs",
-      "docs/reports/checkpoint-braking-20261010-1722/checks.json",
-      "docs/reports/checkpoint-braking-20261010-1722/EVIDENCE.md",
-      "docs/reports/checkpoint-braking-20261010-1722/T0-1440-checkpoint-route-1.png",
-      "docs/reports/checkpoint-braking-20261010-1722/T0-1440-departure-visible.png",
-      "docs/reports/checkpoint-braking-20261010-1722/T0-1440-reveal-moving.png",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/handoffs/2026-10-10T1722Z-codex-checkpoint-braking.md"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
     ],
-    "lastGreenCheck": "23unique tests/types/contracts/build and one normalT0 smoke reviewed scoped PASS; provenance/digest match"
+    "lastGreenCheck": "2026-10-10T23:39:32.146Z"
   },
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261010T2321",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-10T23:27:25.469Z",
-    "status": "NATIVE_SKILLS_BROWSER_RUNNING",
+    "lastHeartbeat": "2026-10-10T19:58:17.6778443-04:00",
+    "status": "CHECKPOINT_READY_FAILED_SCOPED_QA",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -838,7 +826,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-02T20:23:26.064Z",
-        "endedAt": "2026-10-02T20:34:46.490Z",
+        "endedAt": "2026-10-02T20:34:46.49Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": false,
@@ -1547,7 +1535,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T21:35:25.150Z",
+        "startedAt": "2026-10-02T21:35:25.15Z",
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
@@ -2046,7 +2034,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T21:57:42.750Z",
+        "startedAt": "2026-10-02T21:57:42.75Z",
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
@@ -3213,7 +3201,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T23:01:40.220Z",
+        "startedAt": "2026-10-02T23:01:40.22Z",
         "endedAt": "2026-10-02T23:09:17.242Z",
         "provenanceMatches": true,
         "requestMatches": true,
@@ -3809,7 +3797,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T03:58:19.322Z",
-        "endedAt": "2026-10-03T04:12:44.910Z",
+        "endedAt": "2026-10-03T04:12:44.91Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": false,
@@ -4041,7 +4029,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T08:35:15.236Z",
-        "endedAt": "2026-10-03T08:39:36.250Z",
+        "endedAt": "2026-10-03T08:39:36.25Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/visual-0820-normal/results.json",
         "resultSha256": "8f436d53e689a95ff86b7ba21dc5ff36cdd15f0b2e1aab994d3177aad7c24f6a",
@@ -4779,7 +4767,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T10:17:45.170Z",
+        "startedAt": "2026-10-03T10:17:45.17Z",
         "workerReceiptCommand": [
           "node",
           "tools/traversal-motion-production-qa.mjs"
@@ -5957,7 +5945,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T14:42:25.416Z",
-        "endedAt": "2026-10-03T14:42:27.890Z",
+        "endedAt": "2026-10-03T14:42:27.89Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/pursuit-1430-v2/results.json",
         "resultSha256": "5cea3ff60c2b2e598b79446c03f128bfcdb4be7e15a03c10dc0df692ce7e4e65",
@@ -6269,7 +6257,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T14:47:29.015Z",
-        "endedAt": "2026-10-03T14:49:01.160Z",
+        "endedAt": "2026-10-03T14:49:01.16Z",
         "exitCode": 0,
         "resultPath": "tmp/traversal/pursuit-1430-v5/results.json",
         "resultSha256": "56bfd9fe624ca76365a22fa8e9f68e5babe8099939a76f6b4657f3db27d74a7d",
@@ -7082,8 +7070,8 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T18:46:54.240Z",
-        "endedAt": "2026-10-03T18:48:11.360Z",
+        "startedAt": "2026-10-03T18:46:54.24Z",
+        "endedAt": "2026-10-03T18:48:11.36Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/road-1815-reset-probe-v5/results.json",
         "resultSha256": "57486890ac446d43fc67d17d4b501cc6d7394a0173ba7df0803f43b05cf1cea2",
@@ -7183,7 +7171,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T18:52:11.702Z",
-        "endedAt": "2026-10-03T18:53:28.590Z",
+        "endedAt": "2026-10-03T18:53:28.59Z",
         "exitCode": 0,
         "resultPath": "tmp/traversal/road-1815-early-probe-v6/results.json",
         "resultSha256": "66cba3835856879cd39e06a600a4a36e3c1dab38fb143b461c1e69eead3e69c5",
@@ -8054,7 +8042,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T19:09:25.730Z",
+        "startedAt": "2026-10-03T19:09:25.73Z",
         "endedAt": "2026-10-03T19:20:01.341Z",
         "provenanceMatches": true,
         "requestMatches": true,
@@ -8163,7 +8151,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T19:09:38.740Z",
+        "startedAt": "2026-10-03T19:09:38.74Z",
         "endedAt": "2026-10-03T19:25:44.264Z",
         "provenanceMatches": true,
         "requestMatches": true,
@@ -8382,7 +8370,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T19:50:45.790Z",
+        "startedAt": "2026-10-03T19:50:45.79Z",
         "endedAt": "2026-10-03T19:50:45.957Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/road-1945-v4-os/results.json",
@@ -8493,7 +8481,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T19:50:46.117Z",
-        "endedAt": "2026-10-03T19:50:46.290Z",
+        "endedAt": "2026-10-03T19:50:46.29Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/road-1945-v4-game/results.json",
         "resultSha256": "9a1acbf9786a25cf9bbaff2e8af9781650000fae0b3bf724d474b65bc5e88411",
@@ -10786,7 +10774,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T20:22:18.271Z",
-        "endedAt": "2026-10-03T20:24:00.320Z",
+        "endedAt": "2026-10-03T20:24:00.32Z",
         "exitCode": 0,
         "resultPath": "tmp/traversal/road-1945-entry-v2-normal/results.json",
         "resultSha256": "9c60543725f9997931e2be79b967fd11c9c8b86303d3861d1f166e595e571159",
@@ -11248,7 +11236,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-04T00:22:43.913Z",
-        "endedAt": "2026-10-04T00:23:04.440Z",
+        "endedAt": "2026-10-04T00:23:04.44Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/road-0007-late-lab/results.json",
         "resultSha256": "48e8d17207a4f8ad4c5ff6439b33b5a4bf9ada85121f38f4b5bbacd9ffe56ad1",
@@ -12464,7 +12452,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-04T02:00:36.911Z",
-        "endedAt": "2026-10-04T02:17:00.530Z",
+        "endedAt": "2026-10-04T02:17:00.53Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": false,
@@ -12663,7 +12651,7 @@
         "resultSha256": "59cb7bf661134698f1d76fa9d49444113c5805beacb8585562f9a52632b33d53",
         "exitCode": 0,
         "acceptanceScope": "One fixture-origin production smoke: existing final_refuge dialogue resolution, campfire capture inspected, exact resolved-node reload/no replay. Full milestone pending.",
-        "startedAt": "2026-10-04T05:25:15.710Z",
+        "startedAt": "2026-10-04T05:25:15.71Z",
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
@@ -13204,7 +13192,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "exitCode": 1,
-        "endedAt": "2026-10-07T19:53:25.930Z",
+        "endedAt": "2026-10-07T19:53:25.93Z",
         "resultPath": "tmp/cinematics/council-1933-os-fixed/results.json",
         "resultSha256": "72f2306b8d757d94ba67fb3f8bee9ed18f63b89ffec389523261c06a027f9ce0",
         "manualExecutionRecord": true,
@@ -13296,7 +13284,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-07T20:45:48.3258600Z",
+        "startedAt": "2026-10-07T20:45:48.32586Z",
         "sessionId": 97317,
         "endedAt": "2026-10-07T20:47:09.122Z",
         "exitCode": 0,
@@ -14235,7 +14223,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:22:55.972Z",
-        "endedAt": "2026-10-08T01:24:08.780Z",
+        "endedAt": "2026-10-08T01:24:08.78Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
         "resultPath": "tmp/cinematics/tableau-0115-v2-1440-os/results.json",
         "resultSha256": "648a0752d4543583d722c09b96f89c3b64cad72df175b9cbcb8ed6e18d567685",
@@ -14327,7 +14315,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-08T01:24:26.180Z",
+        "startedAt": "2026-10-08T01:24:26.18Z",
         "endedAt": "2026-10-08T01:25:47.109Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
         "resultPath": "tmp/cinematics/tableau-0115-v2-620-normal/results.json",
@@ -14420,7 +14408,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-08T01:24:26.200Z",
+        "startedAt": "2026-10-08T01:24:26.2Z",
         "endedAt": "2026-10-08T01:25:31.789Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
         "resultPath": "tmp/cinematics/tableau-0115-v2-620-os/results.json",
@@ -15766,7 +15754,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-08T05:32:45.570Z",
+        "startedAt": "2026-10-08T05:32:45.57Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
         "executedCommand": [
           "node",
@@ -16197,7 +16185,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T05:53:42.534Z",
-        "endedAt": "2026-10-08T06:08:50.720Z",
+        "endedAt": "2026-10-08T06:08:50.72Z",
         "requestMatches": true,
         "provenanceMatches": true,
         "matchesCurrentExecution": false,
@@ -16394,7 +16382,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T12:21:11.004Z",
-        "endedAt": "2026-10-08T12:21:47.690Z",
+        "endedAt": "2026-10-08T12:21:47.69Z",
         "exitCode": 0,
         "resultPath": "tmp/demo/compact-1214-os/results.json",
         "resultSha256": "1f75e4eb3bea6326498143ef8f73ec1b2cb549fc4562d8df2a8d296fb68ec535",
@@ -16731,7 +16719,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T19:26:16.222Z",
-        "endedAt": "2026-10-08T19:28:05.230Z",
+        "endedAt": "2026-10-08T19:28:05.23Z",
         "exitCode": 1,
         "resultSha256": "48f53f8327f94f4901de3ff039f757615eeecd2b96778f870bcbdcaba398d94d",
         "failure": "all-samples OS/effective equality assertion; raw probe absent; cause unproven",
@@ -16841,7 +16829,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T19:33:44.113Z",
-        "endedAt": "2026-10-08T19:43:05.510Z",
+        "endedAt": "2026-10-08T19:43:05.51Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": false,
@@ -17678,7 +17666,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-09T17:00:57.490Z",
+        "startedAt": "2026-10-09T17:00:57.49Z",
         "endedAt": "2026-10-09T17:05:29.424Z",
         "provenanceMatches": true,
         "requestMatches": true,
@@ -18788,7 +18776,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-09T23:02:51.550Z",
+        "startedAt": "2026-10-09T23:02:51.55Z",
         "physicalFreeze": "tmp/autonomy/physical-freeze-2255-v2-final.json",
         "endedAt": "2026-10-09T23:05:04.087Z",
         "exitCode": 0,
@@ -19000,7 +18988,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-10T03:32:17.897Z",
-        "endedAt": "2026-10-10T03:57:38.410Z",
+        "endedAt": "2026-10-10T03:57:38.41Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": false,
@@ -19772,7 +19760,7 @@
         "schemaVersion": 1,
         "jobId": "salvation-exact2-2321",
         "runId": "rpgthreejs-auto-dev-90m-20261010T2321",
-        "status": "RUNNING",
+        "status": "FAILED",
         "registeredAt": "2026-10-10T23:26:39.676Z",
         "pid": 26324,
         "port": 5367,
@@ -19853,51 +19841,44 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-10T23:27:15.687Z"
+        "startedAt": "2026-10-10T23:27:15.687Z",
+        "endedAt": "2026-10-10T23:52:49.383Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/salvation-exact2-2321/results.json",
+        "resultSha256": "b45aab0b864cbcae3fa8ea74a8dc68dfdaa7785994587e49ae422e9b18f354eb",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       }
     ],
     "wip": {
-      "sha": "1839be75c71648320e9515b265f08d784eb963fd",
       "branch": "wip/rpgthreejs-auto-dev-90m-20261010T2321",
-      "status": "GREEN",
-      "dirtyFiles": [
-        "tools/demo-continuous-production-qa.mjs",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
-      ],
-      "lastGreenCheck": "2026-10-10T23:28:07.770Z"
+      "sha": "cd90eb3ce6bbf9a26c27c520e445e213dc743a7d",
+      "remoteVerified": true
     },
-    "nextAction": "Inspect salvation-exact2-2321 terminal receipt/results without restarting the worker; verify current source/driver/helper/build/digest and actual samecaster2to0/40percent, selected before/after captures, firstrefuge exactV6. Ask existing guardian for final scoped review. Original skills-native-1840 FAILED is preserved; no further instrumentation edits or second smoke thisrun. Six native novice candidates observed in failed1840 remain separate; no joininginstant/sixcasts/ending/full-demo acceptance. Preserve original/deferred nextActions and mobileLAST.",
+    "nextAction": "Read-only preflight/owned lock; inspect skills-native-1840 and salvation-exact2-2321 FAILED receipts plus tmp/autonomy/skills-2321/terminal-audit.json. New2321 driver9b5a33ca/393physicalsource/9build stable, resultb45aab0b; no exactly2AP marker/setup or firstrefuge/V6/T0Pursuit return acceptance. Opening won3rounds17actions; ordinaryT0 t0:r6:pursuit-1 forest_ambush timedout22actions, two native40percent casts5to3/3to1 observed; no product defect demonstrated. Do not rerun unchanged freshopening or acceptedTraversal/nativeT1 matrices. Retain ONE reviewed existingpilot correction unchanged; verify earned firstrefuge1214 save/proof lineage from tmp/autonomy/skills-2321/future-earned-input-audit.json, then ONE registered1366normal existing demo-continuous-production-qa targetsecond-refuge continuation through T1 for missing native exactly2AP-start context. No further instrumentation edit; do not seed from failed2321. Preserve pendingNarrativeTask.nextAction, sixnative candidates observed1840 (not joininginstant/sixcasts acceptance), all original/deferred histories and mobileLAST. Eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected; broaderPursuit/skills/campaign/narrative/StageVFX/AT/balance/operator final/full-demo remainOPEN.",
     "runMetrics": {
-      "sourceFilesModified": 0,
-      "testFilesModified": 0,
-      "existingQaFilesModified": 0,
-      "newQaFiles": 0,
-      "proofFilesAdded": 7,
-      "workflowFilesChanged": 3,
-      "inheritedWIP": 0,
-      "reviewers": 2,
-      "traversalPasses": 2,
-      "guardianPasses": 2,
-      "browserMatrixCases": 5,
-      "registeredJobs": 4,
-      "preBrowserEnvironmentFailures": 2,
-      "harnessCorrections": 0,
-      "quotaSavingsClaimed": false
+      "existingQaFilesModified": 1,
+      "harnessCorrections": 1,
+      "newQaFilesAdded": 0,
+      "quotaSavingsClaim": "NONE",
+      "inheritedWipPaths": 3,
+      "guardianPasses": 3,
+      "browserScenarios": 1,
+      "workflowFilesModifiedOrAdded": 3,
+      "reviewers": 1,
+      "runtimeSourceFilesModified": 0,
+      "existingTestFilesModified": 0,
+      "proofFilesAdded": 0
     },
     "checkpointPaths": [
-      "src/game/GameApp.ts",
-      "src/traversal/TraversalPresentation.ts",
-      "src/traversal/TraversalRoadScene.ts",
-      "src/traversal/TraversalRoadScene.test.ts",
       "tools/demo-continuous-production-qa.mjs",
-      "tools/qa/qa-job.mjs",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-10T0323Z-codex-native-pursuit.md",
-      "docs/reports/pursuit-native-20261010/checks.json",
-      "docs/reports/pursuit-native-20261010/EVIDENCE.md",
-      "docs/reports/pursuit-native-20261010/native-contact-deployment.png"
+      "docs/autonomy/handoffs/2026-10-10T2321Z-codex-native-skills.md"
     ],
     "publication": {
       "status": "SCOPED_PROOF_PUBLISHED_VERIFIED_METADATA_CLOSURE_PREPARING",
@@ -19909,7 +19890,7 @@
       "sourceExecutionUnchangedAfterCommit": true
     },
     "runStartedAt": "2026-10-10T18:41:24.4755993Z",
-    "runEndedAt": null,
+    "runEndedAt": "2026-10-10T19:58:17.6778443-04:00",
     "writerStopped": true,
     "metadataPublication": {
       "status": "RESOLVED_BY_OPERATOR_APPROVAL",
@@ -20952,11 +20933,11 @@
         "contracts": "8contracts8slots PASS",
         "lockedGate": "EMPTY"
       },
-      "nextAction": "Review inherited skills-native-1840 FAILED timeout and verified lineage first. ONE minimal existing-pilot correction for legal native1AP setup with healthy ally only when a wounded Salvation target is in range; keep native3to2 then2to0/40percent assertions. Under guardian actual diff review launch one registered fresh1366normal first-refuge production scenario. No product defect demonstrated; preserve6native-candidate observation separately from overallFAILED, all original/deferred nextActions and mobileLAST/full-demo gaps.",
+      "nextAction": "Read-only preflight/owned lock; inspect skills-native-1840 and salvation-exact2-2321 FAILED receipts plus tmp/autonomy/skills-2321/terminal-audit.json. New2321 driver9b5a33ca/393physicalsource/9build stable, resultb45aab0b; no exactly2AP marker/setup or firstrefuge/V6/T0Pursuit return acceptance. Opening won3rounds17actions; ordinaryT0 t0:r6:pursuit-1 forest_ambush timedout22actions, two native40percent casts5to3/3to1 observed; no product defect demonstrated. Do not rerun unchanged freshopening or acceptedTraversal/nativeT1 matrices. Retain ONE reviewed existingpilot correction unchanged; verify earned firstrefuge1214 save/proof lineage from tmp/autonomy/skills-2321/future-earned-input-audit.json, then ONE registered1366normal existing demo-continuous-production-qa targetsecond-refuge continuation through T1 for missing native exactly2AP-start context. No further instrumentation edit; do not seed from failed2321. Preserve pendingNarrativeTask.nextAction, sixnative candidates observed1840 (not joininginstant/sixcasts acceptance), all original/deferred histories and mobileLAST. Eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected; broaderPursuit/skills/campaign/narrative/StageVFX/AT/balance/operator final/full-demo remainOPEN.",
       "driverChange": "ONE minimal correction: native healthy-ally1AP setup only while native Salvation centers contain wounded ally; health clamp equality on setup only; strict ordinary support assertions and Salvation exact2to0/40percent retained. No newQA tool.",
       "build": "REUSED exact9bundles/index from1722,393physicalsource hashes verified; no runtime source change/rebuild claim",
-      "status": "RUNNING",
-      "guardian": "PASS_FOR_ONE_FRESH_FIRST_REFUGE_1366_NORMAL_LAUNCH actual correction; fresh evidence pending",
+      "status": "FAILED_TIMEOUT_MISSING_EXACT2_AP_NO_ACCEPTANCE",
+      "guardian": "HONEST_SCOPED_FAILURE; final thirdpass staticauthority PASS/QA_EVIDENCE BLOCKED; governance jobledger synchronized FAILED and independently verified by root",
       "jobId": "salvation-exact2-2321",
       "expectedAssertions": [
         "FRESH_SALVATION_NATIVE_2_TO_0_AP",
@@ -20971,9 +20952,211 @@
         "receiptPath": "tmp/demo/salvation-exact2-2321/qa-job.json"
       },
       "lastSnapshot": {
+        "publishedAt": "2026-10-10T23:58:56.0767002+00:00",
         "branch": "wip/rpgthreejs-auto-dev-90m-20261010T2321",
-        "sha": "1839be75c71648320e9515b265f08d784eb963fd",
+        "sha": "cd90eb3ce6bbf9a26c27c520e445e213dc743a7d",
         "remoteVerified": true
+      },
+      "publishedCheckpoint": "e5f2c67d2e73cf2a04fe171e919f2ff009a2b53e",
+      "publishedAt": "2026-10-10T23:31:25.658Z",
+      "inspectedCaptures": [
+        "tmp/demo/skills-native-1840/combat-3-deployment.png (intermediate native roster, FAILED overall)",
+        "tmp/demo/salvation-exact2-2321/combat-0-deployment.png (intermediate opening only)",
+        "tmp/demo/salvation-exact2-2321/combat-0-result.png (native victory/archerKO, not exact2 acceptance)",
+        "tmp/demo/salvation-exact2-2321/combat-1-deployment.png (Cedric native deployed, not sixcasts acceptance)",
+        "tmp/demo/salvation-exact2-2321/combat-1-w_salvation-20.png (native3to1, not exactly2start)"
+      ],
+      "staticCompliance": {
+        "GAME_CONSTITUTION": "PASS native authority",
+        "ART_DIRECTION": "N/A",
+        "CHARACTERS": "N/A",
+        "ENVIRONMENTS": "N/A",
+        "NARRATIVE_CAMPAIGN": "PASS no canon/route/recruitment patch",
+        "NARRATIVE_PRESENTATION": "N/A",
+        "TRAVERSAL": "PASS ordinaryPursuit accurately identified; no return acceptance",
+        "COMBAT": "PASS native spec/inputs own AP/results",
+        "SAVE": "PASS no schema/write path",
+        "UI_ACCESSIBILITY": "N/A no productUI edit",
+        "QA_EVIDENCE": "BLOCKED timeout/exact2AP absent; firstrefuge/V6/Pursuitreturn NOT_ACCEPTED",
+        "REPOSITORY_GOVERNANCE": "PASS ownedwriter/dev/reviewedpaths/LOCKEDgates/FAILED terminal ledger synced"
+      },
+      "currentProgress": {
+        "at": "2026-10-10T23:30:14.649Z",
+        "nodeId": "lion-opening-ambush"
+      },
+      "latestProgress": {
+        "at": "2026-10-10T23:48:41.812Z",
+        "nodeId": "lion-first-trial-event",
+        "round": 3,
+        "actions": 15,
+        "active": "rogue",
+        "ap": 1
+      },
+      "openingObservation": "Current trace archerKO, otherthree standing; no balance/general acceptance",
+      "futureEarnedInputAudit": {
+        "at": "2026-10-10T23:46:23.635Z",
+        "status": "VERIFIED_POTENTIAL_EARNED_INPUT_NOT_NEW_ACCEPTANCE",
+        "savePath": "tmp/demo/campaign-first-refuge-1214/earned-lion-first-refuge-v6.json",
+        "proofPath": "tmp/demo/campaign-first-refuge-1214/results.json",
+        "saveSha256": "3f5a7391e4641bad288455df175441e8a8629dc5c4e192f5d2641fb0c737d7db",
+        "proofSha256": "c82b21818668943b172dd7409f6febd146eaebbfdb3d62e04da81476e476c2b2",
+        "version": 6,
+        "nodeId": "lion-first-refuge",
+        "priorBattles": 1,
+        "priorProofScope": "Historical earnedfirstrefuge input lineage only; not currentdriver/source/exact2AP acceptance"
+      },
+      "terminal": {
+        "endedAt": "2026-10-10T23:52:49.383Z",
+        "resultSha256": "b45aab0b864cbcae3fa8ea74a8dc68dfdaa7785994587e49ae422e9b18f354eb",
+        "physicalFiles": 393,
+        "currentExecutionMatches": true,
+        "provenanceStable": true,
+        "errors": 0,
+        "battles": [
+          {
+            "index": 0,
+            "nodeId": "lion-opening-ambush",
+            "combatId": "forest_ambush",
+            "pass": true,
+            "actions": 17,
+            "pursuit": null,
+            "initialEquipmentSkills": [
+              {
+                "id": "warrior",
+                "definitionId": "warrior",
+                "weaponId": "novice_greatsword",
+                "skillId": "w_break_guard"
+              },
+              {
+                "id": "white_mage",
+                "definitionId": "white_mage",
+                "weaponId": "novice_crosier",
+                "skillId": "w_salvation"
+              },
+              {
+                "id": "dark_mage",
+                "definitionId": "dark_mage",
+                "weaponId": "novice_grimoire",
+                "skillId": "n_dark_bolt"
+              },
+              {
+                "id": "archer",
+                "definitionId": "archer",
+                "weaponId": "novice_longbow",
+                "skillId": "a_precise_shot"
+              }
+            ],
+            "heals": [],
+            "setupActions": 0,
+            "healthySetupAttempts": [
+              {
+                "reason": "no-native-eligible-target",
+                "specAp": 1,
+                "candidates": 0
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "nodeId": "lion-first-trial-event",
+            "combatId": "forest_ambush",
+            "pass": false,
+            "actions": 22,
+            "pursuit": "t0:r6:pursuit-1",
+            "initialEquipmentSkills": [
+              {
+                "id": "warrior",
+                "definitionId": "warrior",
+                "weaponId": "novice_greatsword",
+                "skillId": "w_break_guard"
+              },
+              {
+                "id": "white_mage",
+                "definitionId": "white_mage",
+                "weaponId": "novice_crosier",
+                "skillId": "w_salvation"
+              },
+              {
+                "id": "dark_mage",
+                "definitionId": "dark_mage",
+                "weaponId": "novice_grimoire",
+                "skillId": "n_dark_bolt"
+              },
+              {
+                "id": "rogue",
+                "definitionId": "rogue",
+                "weaponId": "novice_dagger",
+                "skillId": "ro_sneak_attack"
+              }
+            ],
+            "heals": [
+              {
+                "skillId": "w_salvation",
+                "targetId": "rogue",
+                "apBefore": 5,
+                "apAfter": 3,
+                "hpBefore": 27,
+                "hpAfter": 67,
+                "maxhp": 100,
+                "healPercent": 0.4,
+                "specAp": 2,
+                "verifiedExactly2Ap": false
+              },
+              {
+                "skillId": "w_salvation",
+                "targetId": "rogue",
+                "apBefore": 3,
+                "apAfter": 1,
+                "hpBefore": 67,
+                "hpAfter": 100,
+                "maxhp": 100,
+                "healPercent": 0.4,
+                "specAp": 2,
+                "verifiedExactly2Ap": false
+              }
+            ],
+            "setupActions": 0,
+            "healthySetupAttempts": [
+              {
+                "reason": "no-native-eligible-target",
+                "specAp": 1,
+                "candidates": 0
+              },
+              {
+                "reason": "no-native-eligible-target",
+                "specAp": 1,
+                "candidates": 0
+              }
+            ]
+          }
+        ],
+        "acceptance": "NOT_ACCEPTED",
+        "workerAbsent": 26324,
+        "portAbsent": 5367
+      },
+      "closeout": {
+        "nextAction": "Read-only preflight/owned lock; inspect skills-native-1840 and salvation-exact2-2321 FAILED receipts plus tmp/autonomy/skills-2321/terminal-audit.json. New2321 driver9b5a33ca/393physicalsource/9build stable, resultb45aab0b; no exactly2AP marker/setup or firstrefuge/V6/T0Pursuit return acceptance. Opening won3rounds17actions; ordinaryT0 t0:r6:pursuit-1 forest_ambush timedout22actions, two native40percent casts5to3/3to1 observed; no product defect demonstrated. Do not rerun unchanged freshopening or acceptedTraversal/nativeT1 matrices. Retain ONE reviewed existingpilot correction unchanged; verify earned firstrefuge1214 save/proof lineage from tmp/autonomy/skills-2321/future-earned-input-audit.json, then ONE registered1366normal existing demo-continuous-production-qa targetsecond-refuge continuation through T1 for missing native exactly2AP-start context. No further instrumentation edit; do not seed from failed2321. Preserve pendingNarrativeTask.nextAction, sixnative candidates observed1840 (not joininginstant/sixcasts acceptance), all original/deferred histories and mobileLAST. Eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected; broaderPursuit/skills/campaign/narrative/StageVFX/AT/balance/operator final/full-demo remainOPEN.",
+        "totalJobIds": 183,
+        "oldJobIdsRetained": 182,
+        "workerStopped": true,
+        "portStopped": true,
+        "metrics": {
+          "existingQaFilesModified": 1,
+          "harnessCorrections": 1,
+          "newQaFilesAdded": 0,
+          "quotaSavingsClaim": "NONE",
+          "inheritedWipPaths": 3,
+          "guardianPasses": 3,
+          "browserScenarios": 1,
+          "workflowFilesModifiedOrAdded": 3,
+          "reviewers": 1,
+          "runtimeSourceFilesModified": 0,
+          "existingTestFilesModified": 0,
+          "proofFilesAdded": 0
+        },
+        "at": "2026-10-10T19:58:17.6778443-04:00",
+        "protectedHistories": 15,
+        "handoff": "docs/autonomy/handoffs/2026-10-10T2321Z-codex-native-skills.md"
       }
     }
   },
@@ -21022,19 +21205,19 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-10T1722Z-codex-checkpoint-braking.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-10T2321Z-codex-native-skills.md",
   "runMeasurement": {
-    "productSource": 1,
-    "existingTests": 1,
+    "productSource": 0,
+    "existingTests": 0,
     "existingQa": 1,
     "newQa": 0,
-    "proof": 5,
-    "workflow": 3,
-    "inheritedWip": 0,
+    "proof": 0,
+    "workflow": 2,
+    "inheritedWip": 3,
     "browserScenarios": 1,
-    "reviewers": 2,
-    "traversalPasses": 3,
+    "reviewers": 1,
     "guardianPasses": 2,
+    "harnessCorrections": 1,
     "quotaSavingsClaim": false
   },
   "deferredDemoTask": {
