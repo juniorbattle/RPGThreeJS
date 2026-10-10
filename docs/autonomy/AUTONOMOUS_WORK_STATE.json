@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-10T18:08:05.4005850Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-10T18:24:27.317Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "DESKTOP_NATIVE_SKILLS_REMAINING_ACCEPTANCE",
   "activeSubtask": "Shared desktop positive checkpoint braking and normal/OS alternatives accepted scoped; native sixhero/exact2AP healing and broader manual criteria OPEN",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "da2ee09ec7f56370bc651219bbd7ab525ab9b1c8",
-  "lastPushedCommit": "da2ee09ec7f56370bc651219bbd7ab525ab9b1c8",
+  "lastKnownGoodCommit": "92adf938a5cc60b7a52c9132302d9788b2d344c5",
+  "lastPushedCommit": "92adf938a5cc60b7a52c9132302d9788b2d344c5",
   "completedThisRun": [
     "Reused accepted T0normal1722 without rerun;393physicalsource/exactdriverhelper9build and originalresult digest checked",
     "Finished five missing desktop checkpoint cases: T1/T3normal,T0/T1/T3OS-only at1440,3338frames21stops1350positivewheelpairs,zeroerrors",
@@ -214,8 +214,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261010T1806",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-10T18:23:10.954Z",
-    "status": "REVIEWED_SCOPED_DESKTOP_CHECKPOINT_PUBLISHING",
+    "lastHeartbeat": "2026-10-10T18:24:27.317Z",
+    "status": "PUBLISHED_SCOPED_DESKTOP_ACCEPTANCE_CLOSURE_PREPARING",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -19717,16 +19717,17 @@
       "docs/reports/pursuit-native-20261010/native-contact-deployment.png"
     ],
     "publication": {
-      "status": "LOCAL_CHECKPOINT_PENDING_NORMAL_DEV_PUBLICATION",
-      "implementationCommit": "70b3446ffd2af149f7cbb1d6481b61f8b4b170bb",
-      "lastVerifiedOriginDev": "ffd0a42074c23d6ce95ad24456f19e114448ccff",
+      "status": "SCOPED_PROOF_PUBLISHED_VERIFIED_METADATA_CLOSURE_PREPARING",
+      "checkpoint": "92adf938a5cc60b7a52c9132302d9788b2d344c5",
+      "authority": "OD-2026-10-08-B",
+      "mode": "NORMAL_NON_FORCE_DEV",
+      "remoteParity": true,
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "rejectionsThisRun": 2,
-      "rejectedAction": "Temporary WIP push; no export occurred; current user expressly requests normal dev checkpoint"
+      "sourceExecutionUnchangedAfterCommit": true
     },
     "runStartedAt": "2026-10-10T03:24:38.2578953Z",
     "runEndedAt": "2026-10-10T04:06:07.698Z",
-    "writerStopped": false,
+    "writerStopped": true,
     "metadataPublication": {
       "status": "RESOLVED_BY_OPERATOR_APPROVAL",
       "standingDecision": "OD-2026-10-08-B",
@@ -21944,5 +21945,40 @@
     "qaJobsPrevious": 177,
     "qaJobsTotal": 181,
     "quotaSavingsClaimed": false
+  },
+  "closeout1806": {
+    "runEndedAt": "2026-10-10T18:24:27.317Z",
+    "publishedCheckpoint": "92adf938a5cc60b7a52c9132302d9788b2d344c5",
+    "finalMetadataPublication": "Exact finalSHA/parity/ownedWIPretirement/lockrelease in automationmemory after guarded operations",
+    "workerPidsAbsent": [
+      20520,
+      2536,
+      25620,
+      19720
+    ],
+    "portsAbsent": [
+      5364,
+      5365
+    ],
+    "sourcePhysicalStable393": true,
+    "sameExecutionAfterCommit": true,
+    "counts": {
+      "sourceFilesModified": 0,
+      "testFilesModified": 0,
+      "existingQaFilesModified": 0,
+      "newQaFiles": 0,
+      "proofFilesAdded": 7,
+      "workflowFilesChanged": 3,
+      "inheritedWIP": 0,
+      "reviewers": 2,
+      "traversalPasses": 2,
+      "guardianPasses": 2,
+      "browserMatrixCases": 5,
+      "registeredJobs": 4,
+      "preBrowserEnvironmentFailures": 2,
+      "harnessCorrections": 0,
+      "quotaSavingsClaimed": false
+    },
+    "fullDemoComplete": false
   }
 }
