@@ -142,6 +142,9 @@ export class TraversalRoadScene {
   private confirming = false;
   private speed = 0;
   private focusStartSpeed = 0;
+  private checkpointStartSpeed = 0;
+  private wheelDistance = 0;
+  private wheelGround: { view: 'ROUTE' | 'CHECKPOINT'; distance: number } | null = null;
   private approachElapsed: number | null = null;
   private departure: { kind: 'return' | 'fork'; elapsed: number; distance: number;
     midpoint: () => void | Promise<void> } | null = null;
@@ -523,10 +526,11 @@ export class TraversalRoadScene {
     const transition = this.transition;
     if (!transition) return;
     if (transition.kind === 'focus' && this.viewMode === 'ROUTE') {
-      const braking = 1 - transitionEase(transition.elapsed / TRAVERSAL_RHYTHM.fade);
+      const duration = TRAVERSAL_RHYTHM.hold + TRAVERSAL_RHYTHM.fade;
+      const visibleSeconds = Math.max(0, Math.min(seconds, duration - transition.elapsed));
+      const braking = 1 - .42 * transitionEase((transition.elapsed + visibleSeconds) / duration);
       const visualSpeed = this.focusStartSpeed * braking;
-      const visibleSeconds = Math.max(0, Math.min(seconds, TRAVERSAL_RHYTHM.fade - transition.elapsed));
-      this.routeRenderer.advance(visibleSeconds * 1000, visualSpeed);
+      this.routeRenderer.advance(visibleSeconds * 1000, (this.speed + visualSpeed) / 2);
       this.speed = visualSpeed;
       this.element.style.setProperty('--route-rush-opacity', String(Math.max(0,
         (this.routeRun.progress01 - .55) * 1.2 * braking)));
@@ -556,6 +560,9 @@ export class TraversalRoadScene {
       seconds -= held;
       this.element.style.setProperty('--transition-opacity', '1');
       if (seconds <= 0) return;
+    }
+    if (transition.kind === 'focus' && this.viewMode === 'CHECKPOINT') {
+      this.advanceCheckpointBraking(seconds);
     }
     transition.elapsed += seconds;
     const half = TRAVERSAL_RHYTHM.fade;
@@ -604,7 +611,7 @@ export class TraversalRoadScene {
       delete this.element.dataset.transition;
       if (carriedDeparture) this.finishCheckpointDeparture();
       this.renderRuntimeState();
-      if (this.session.phase !== 'ARRIVING' && !carriedDeparture) this.speed = 0;
+      if (this.session.phase !== 'ARRIVING' && !carriedDeparture && transition.kind !== 'focus') this.speed = 0;
     }
   }
 
@@ -801,6 +808,7 @@ export class TraversalRoadScene {
       this.viewMode = 'CHECKPOINT';
       this.element.dataset.view = 'checkpoint';
       this.checkpointElapsed = 0;
+      this.checkpointStartSpeed = this.speed;
       this.checkpointEntries++;
       this.element.dataset.checkpointEntries = String(this.checkpointEntries);
       this.updateWorldTransforms();
@@ -845,12 +853,17 @@ export class TraversalRoadScene {
     delete this.element.dataset.presentation;
   }
 
+  private advanceCheckpointBraking(deltaSeconds: number): void {
+    if (!this.checkpointBeat) return;
+    this.checkpointElapsed = Math.min(1.15, this.checkpointElapsed + deltaSeconds);
+    this.speed = this.checkpointStartSpeed * (1 - this.checkpointElapsed / 1.15);
+    this.element.dataset.motion = 'decelerating';
+  }
+
   private advanceCheckpointStep(deltaSeconds: number): void {
     const beat = this.checkpointBeat;
     if (!beat) return;
-    this.checkpointElapsed = Math.min(1.15, this.checkpointElapsed + deltaSeconds);
-    this.speed = this.routeSegment.vMin * (1 - this.checkpointElapsed / 1.15);
-    this.element.dataset.motion = 'decelerating';
+    this.advanceCheckpointBraking(deltaSeconds);
     if (this.checkpointElapsed < 1.15) return;
     this.checkpointBeat = null;
     this.speed = 0;
@@ -1182,7 +1195,7 @@ export class TraversalRoadScene {
     const checkpointCamera = this.checkpointBeat
       // Remaining braking distance shares the displayed speed instead of a fixed 650px slide.
       ? roadCameraX(this.checkpointBeat.progress01)
-        - this.routeSegment.vMin * 1000 * .28 * (1.15 - this.checkpointElapsed) ** 2 / (2 * 1.15)
+        - this.checkpointStartSpeed * 1000 * .28 * (1.15 - this.checkpointElapsed) ** 2 / (2 * 1.15)
       : roadCameraX(session.routeProgress01);
     const camera = checkpointCamera + departureDistance;
     if (this.viewMode === 'CHECKPOINT' || forceWorld) {
@@ -1199,8 +1212,15 @@ export class TraversalRoadScene {
         `${roadWorldToScreen(0, routeCamera, width) * ROAD_SPACE.foregroundFactor}px`);
     }
     const entryDistance = 600 + Number.parseFloat(this.element.style.getPropertyValue('--vehicle-entry-x') || '0');
-    const drivenDistance = (this.viewMode === 'ROUTE' ? this.routeRenderer.distance : camera)
+    const groundDistance = (this.viewMode === 'ROUTE' ? this.routeRenderer.distance : camera)
       + exitDistance + departureDistance + entryDistance * ROAD_SPACE.referenceWidth / width;
+    // Covered world swaps change the camera origin, not the wheel phase. Within
+    // a surface, both scrolling ground and vehicle displacement count as travel.
+    if (this.wheelGround?.view === this.viewMode) {
+      this.wheelDistance += groundDistance - this.wheelGround.distance;
+    }
+    this.wheelGround = { view: this.viewMode, distance: groundDistance };
+    const drivenDistance = this.wheelDistance;
     // Mirrors --vehicle-height without forcing layout of the composite wheel subtree.
     const vehicleHeight = Math.min(height * .24, width * (width <= 1000 ? .16 : .14));
     vehicle.style.setProperty('--wheel-angle', `${caravanWheelAngle(drivenDistance, vehicleHeight, width)}rad`);

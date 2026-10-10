@@ -21,7 +21,7 @@ assert.ok(viewports.every(value=>/^\d+x\d+$/.test(value)&&value.split('x').every
 const parameters={motion,viewports,legs,branch:'event',gameReducedMotion:false,pursuitCheck,
   gaitCheck,reducedChargeCheck,
   scope:'native production motion with V6-origin/combat-result fixtures; not earned campaign'};
-const requiredAssertions=['continuous-departure','opaque-swap','reveal-momentum','clock-zero-during-reveal','full-exit-before-arrival','single-canonical-arrival','native-keyboard-focus','responsive-controls',
+const requiredAssertions=['continuous-checkpoint-braking','checkpoint-wheel-ground-travel','continuous-departure','opaque-swap','reveal-momentum','clock-zero-during-reveal','full-exit-before-arrival','single-canonical-arrival','native-keyboard-focus','responsive-controls',
   ...(motion==='os'?['os-covered-exit']:['forward-exit-and-resize','accelerating-arrival'])];
 if(pursuitCheck)requiredAssertions.push('pursuit-contact-single','pursuit-ordinary-pool','pursuit-exact-road-resume','pursuit-miss-full-exit','pursuit-no-node-resolution');
 if(gaitCheck)requiredAssertions.push('pursuit-six-clocked-poses','pursuit-os-or-game-static-pose','pursuit-sheet-failure-static-fallback');
@@ -99,7 +99,7 @@ try{
           fade:Number(root.style.getPropertyValue('--arrival-fade')),node:app.state.run.currentNodeId,resolved:app.state.resolvedNodeIds.includes(args[0])});
         return arrival(...args);
       };
-      let departure=null,serial=0,lastSegment='',afterDeparture=0;
+      let departure=null,serial=0,lastSegment='',afterDeparture=0,afterBraking=0;
       const sample=()=>{
         const scene=app.activeTraversal;
         if(scene){
@@ -108,13 +108,21 @@ try{
           if(scene.departure&&scene.departure!==departure){departure=scene.departure;serial++;}
           const active=Boolean(scene.departure),arriving=scene.session.phase==='ARRIVING';
           if(active)afterDeparture=12;else afterDeparture=Math.max(0,afterDeparture-1);
+          const braking=scene.approachElapsed!==null||root.dataset.transition==='focus'
+            ||(root.dataset.view==='checkpoint'&&!!scene.checkpointBeat);
+          if(braking)afterBraking=12;else afterBraking=Math.max(0,afterBraking-1);
           const globalCover=document.querySelector('.scene-transition--traversal');
           const cover=globalCover?Number(getComputedStyle(globalCover).opacity):0;
           if(segment!==lastSegment&&lastSegment&&root.dataset.view==='route'&&!active){proof.returns.push({segment,speed:scene.speed,elapsed:scene.routeRun.elapsedMs,globalCover:cover});}
           if(root.dataset.view==='route')lastSegment=segment;
-          if(active||arriving||afterDeparture){
-            const r=root.querySelector('.traversal-vehicle').getBoundingClientRect();
+          if(active||arriving||afterDeparture||braking||afterBraking){
+            const vehicle=root.querySelector('.traversal-vehicle'),r=vehicle.getBoundingClientRect();
+            const world=root.querySelector('.traversal-world__sections');
             proof.samples.push({time:performance.now(),serial,departure:active,kind:scene.departure?.kind,segment,view:root.dataset.view,phase:scene.session.phase,
+              braking,checkpointElapsed:scene.checkpointElapsed,
+              wheelAngle:parseFloat(vehicle.style.getPropertyValue('--wheel-angle')),
+              wheelRadius:vehicle.querySelector('[data-wheel="near-rear"]').getBoundingClientRect().height/2,
+              groundLeft:new DOMMatrixReadOnly(getComputedStyle(world).transform).m41,
               transition:root.dataset.transition,opacity:Number(root.style.getPropertyValue('--transition-opacity')),fade:Number(root.style.getPropertyValue('--arrival-fade')||0),
               speed:scene.speed,min:scene.routeSegment.vMin,elapsed:scene.routeRun.elapsedMs,duration:scene.routeSegment.durationMs,distance:scene.routeRenderer.distance,
               offset:Number(root.dataset.vehicleOffset),left:r.left,right:r.right,width:r.width,viewport:innerWidth,globalCover:cover});
@@ -278,6 +286,28 @@ try{
     assert.equal(proof.arrivals.length,1);const arrival=proof.arrivals[0];
     assert.ok(arrival.left>=arrival.viewport+arrival.width*.1+4,'Full trailing-edge exit before callback');assert.ok(arrival.speed>0,'Forward speed until handoff');assert.equal(arrival.resolved,false,'Destination agency unresolved');
     assert.ok(proof.handoffs.includes(branch),'Existing selected branch handoff');
+    const brakeSegments=[...new Set(proof.samples.filter(s=>s.braking).map(s=>s.segment))];
+    assert.ok(brakeSegments.length,'Checkpoint approach sampled');
+    entry.braking=brakeSegments.map(segment=>{
+      const samples=proof.samples.filter(s=>s.segment===segment&&s.braking&&!s.departure);
+      const checkpoint=samples.filter(s=>s.view==='checkpoint');
+      assert.ok(checkpoint.length>=3,'Checkpoint reveal/braking sampled');
+      assert.ok(checkpoint[0].speed>0,'Positive speed carried across covered swap');
+      assert.ok(checkpoint.some(s=>s.opacity<.95&&s.speed>0),'Checkpoint already brakes during reveal');
+      for(let i=1;i<samples.length;i++)assert.ok(samples[i].speed<=samples[i-1].speed+.001,'No checkpoint speed restart');
+      const stopped=proof.samples.some(s=>s.segment===segment&&s.view==='checkpoint'&&!s.departure&&!s.braking&&s.speed===0);
+      assert.ok(stopped,'One complete checkpoint stop observed');
+      let wheelPairs=0;
+      for(let i=1;i<checkpoint.length;i++){
+        const a=checkpoint[i-1],b=checkpoint[i];
+        const travel=a.groundLeft-b.groundLeft+b.offset-a.offset;
+        if(travel<=.01)continue;
+        assert.ok(Math.abs((b.wheelAngle-a.wheelAngle)*b.wheelRadius-travel)<.6,'Wheel travel matches visible ground displacement');
+        wheelPairs++;
+      }
+      assert.ok(wheelPairs>=2,'Moving checkpoint wheel/ground pairs sampled');
+      return {segment,frames:samples.length,carriedSpeed:checkpoint[0].speed,stopped,wheelPairs};
+    });
     const groups=[...new Set(proof.samples.filter(s=>s.departure).map(s=>s.serial))];assert.ok(groups.length,'Native checkpoint departure sampled');
     entry.departures=groups.map(serial=>{
       const samples=proof.samples.filter(s=>s.serial===serial&&s.departure),checkpoint=samples.filter(s=>s.view==='checkpoint'),route=samples.filter(s=>s.view==='route');

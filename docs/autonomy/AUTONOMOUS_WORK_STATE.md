@@ -1,3 +1,23 @@
+## Checkpoint braking scoped acceptance - 2026-10-10T17:37:11.752Z
+
+Run rpgthreejs-auto-dev-90m-20261010T1722; IN_PROGRESS. Baseline a4b582fc; stale0705 owner stopped on quota, recovered only after105min and associated-process checks. Source correction carries residual speed through covered focus and visible checkpoint braking; accumulated wheel travel rebases origins. Existing canonical stop/decision/save/truth/media paths retained. Active task unchanged; original exact continuation preserved in checkpointBraking1722.previousNextAction and previousState.
+
+ACCEPTED_SCOPED_T0_CHECKPOINT_BRAKING_WHEEL_GROUND_1440_NORMAL. Existing runner checkpoint-braking-1722 SUCCEEDED 2026-10-10T17:30:20.586Z to 2026-10-10T17:32:32.278Z;12assertions,930frames,five positive-speed stops,345wheelgroundpairs,two departures,zeroerrors. Digest 782a72dedbb9d3d323d469560a4fb4262aaeb42d8a9e16dec7f132ef03a1fcb7; request/source/driver/helper/build/currentexecution/digest true at review; receipt NOT_ACCEPTED stays separate. Root+Traversal3passes+guardian2passes inspect three captures; selected five proof files under docs/reports/checkpoint-braking-20261010-1722.23unique tests/types/8contracts8slots/build214/eightMP4/gates PASS. Inherited arrival test2to4 corrected to existing acceleration; tmp duplicate tests excluded.393physicalsources frozen ignored; source commit requires physical lineage comparison before reuse.
+
+Counts1productsource/1existingtest/1existingQA/0newQA/5proof/3workflow/0inheritedWIP;one scenario/two reviewers,noquota-savings claim. All176 prior jobIDs and exact taskQueue/deferred/narrative/operator/history objects verified preserved,177total. No LOCKED/canon/IDs/V6/truth/video/audio/main changes. T1/T3/reduced/delayedfocus-longframe/earnedcombat/broader scenery/manual/full-demo remainOPEN;mobileLAST.
+
+Exact nextAction: Read-only preflight/exclusive lock, then inspect checkpoint-braking-1722 terminal receipt and docs/reports/checkpoint-braking-20261010-1722/checks.json. T0 normal1440 checkpoint residual braking and wheel/ground travel are accepted scoped only; do not repeat this case or the accepted45min native T1 Pursuit/historical desktop exits. Source commit changes tree/diff representation: compare ignored frozen-sources.json (393 physical hashes), exact driver/helper/build/parameters/assertions before reuse. Continue the shared checkpoint correction at its remaining desktop acceptance milestone with existing traversal-motion-production-qa: T1/T3 and OS-only reduction, registered unique ignored outputs and only relevant missing assertions/captures; mobile remains LAST. Delayed focus readiness/long-frame behavior is source-reviewed, not separately tested. If runtime defect appears, fix product source first and reverify that boundary; no new tool/instrumentation loop. Preserve original continuation in checkpointBraking1722.previousNextAction and all prior/deferred records. Native Pursuit defeat/cancel/reentry/other contexts/reduced/AT, sixhero skills/campaign/narrative/Stage/VFX/balance, broader scenery and operator final manual/full-demo criteria remain OPEN. Ten mappings/category already resolved1856; eight videos/Alaric/temporary loot/V6/audioDEFERRED/LOCKED protected.
+
+Publication preparing reviewed normal origin/dev checkpoint; exact final SHA/parity/main/WIPretirement/lockrelease in automation memory after verification.
+
+## Mechanical WIP checkpoint - 2026-10-10T17:30:02.736Z
+
+Reviewed snapshot f56f886ab750af79dd1963ec55f5b9c7aa5184fb; 23 unique current tests/types/8contracts8slots/immutable/whitespace PASS. Existing arrival unit expectation2 corrected to4 matching already implemented acceleration, no runtime arrival change. Prior tmp test copies excluded. Build/browser/captures pending; no acceptance yet.
+
+## Checkpoint braking continuation - 2026-10-10T17:26:23.335Z
+
+Run rpgthreejs-auto-dev-90m-20261010T1722; IN_PROGRESS. Stale0705 lock recovered after 105-minute/process/thread checks, clean verified dev a4b582fc. Residual braking and continuous wheel phase under implementation; previous exact nextAction retained in checkpointBraking1722.previousNextAction. Existing runner will gain checkpoint observations because it currently samples departure/arrival only; no new tool. Source changes not accepted before tests/build/one registered normal T0 1440 smoke and capture review. All historical/deferred histories retained.
+
 ## Publication checkpoint - 2026-10-10T05:15:14.041Z
 
 Reviewed native proof b1bb2f55fa789df060181fff7ea52fcc3bd249d5 verified HEAD/local/live origin/dev. Main00b96f1 unchanged. Own WIP6eec2c92776a3a20bd41864a38160c0dce40b81e audited: all source and selected proof exact; only state self-reference differs. Final3workflow closure preparing; WIP retirement and lock release follow verified publication, with exact finalSHA/time in automation memory. Scope/nextAction unchanged; demo IN_PROGRESS,mobile LAST.
@@ -320,6 +340,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - pursuit-native-0323: PLANNED; port 5361; receipt `tmp/demo/pursuit-native-0323/qa-job.json`; NOT_ACCEPTED
 - pursuit-native-0323-v2: FAILED; port 5361; receipt `tmp/demo/pursuit-native-0323-v2/qa-job.json`; NOT_ACCEPTED
 - pursuit-native-0420: SUCCEEDED; port 5362; receipt `tmp/demo/pursuit-native-0420/qa-job.json`; NOT_ACCEPTED
+- checkpoint-braking-1722: SUCCEEDED; port 5363; receipt `tmp/traversal/checkpoint-braking-1722/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
