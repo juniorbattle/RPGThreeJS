@@ -434,6 +434,9 @@ export class GameApp {
         if (!traversal.resumeRoadCombat(contact.windowId)) throw new Error('Pursuit road return mismatch.');
         this.statusHud.refresh();
       } });
+      if (this.activeTraversal === traversal && !owner.signal.aborted && this.mode === 'NARRATIVE') {
+        traversal.focusRoadControls();
+      }
     } catch (error) {
       console.error('[Traversal] Pursuit combat handoff failed.', error);
       if (this.activeTraversal === traversal) await this.failJourneyToTravel(error);

@@ -320,8 +320,14 @@ export class TraversalRoadScene {
     this.controller.releaseDecision();
     this.previousFrameMs = 0;
     this.renderRuntimeState();
-    this.element.querySelector<HTMLButtonElement>(`[data-traversal-lane="${this.session.currentLane}"]`)?.focus({ preventScroll: true });
     return true;
+  }
+
+  /** The lifecycle owner restores keyboard agency after the return curtain clears. */
+  focusRoadControls(): void {
+    if (!this.opened || this.session.phase !== 'RUNNING' || this.roadCombatWindow
+      || document.body.classList.contains('scene-transition--locked')) return;
+    this.element.querySelector<HTMLButtonElement>(`[data-traversal-lane="${this.session.currentLane}"]:not(:disabled)`)?.focus({ preventScroll: true });
   }
 
   completeArrival(): void {

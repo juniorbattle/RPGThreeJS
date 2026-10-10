@@ -18,7 +18,7 @@ const defeatNodeId=process.env.DEMO_QA_DEFEAT_NODE??'lion-village-choice';
 const nativeDefeatWait=process.env.DEMO_QA_DEFEAT_WAIT==='1';
 const viewport=(process.env.DEMO_QA_VIEWPORT??'1366x768').split('x').map(Number);
 assert.ok(viewport.length===2&&viewport.every(n=>Number.isInteger(n)&&n>0),'Invalid viewport');
-assert.ok(['first-refuge','second-refuge','ending','defeat-recovery'].includes(target),'Unknown bounded target');
+assert.ok(['first-refuge','second-refuge','ending','defeat-recovery','pursuit-victory'].includes(target),'Unknown bounded target');
 if(target==='defeat-recovery')assert.equal(defeatNodeId,'lion-village-choice','Only the observed Bois-Clair defeat boundary is currently supported');
 assert.ok(!nativeDefeatWait||target==='defeat-recovery','Native defeat wait requires the recovery target');
 assert.ok(['rescue','sacrifice'].includes(routePlan),'Unknown authored route plan');
@@ -314,6 +314,14 @@ async function battle(){
   await frame.waitForFunction(()=>window.__BOOTED===true,null,{timeout:60000});
   const entry={index:report.battles.length,nodeId:(await state()).currentNodeId,
     combatId:await page.evaluate(()=>window.__demoQaApp.combat.session?.config.id),actions:[],pass:false}; report.battles.push(entry);
+  entry.pursuit=await page.evaluate(()=>{
+    const app=window.__demoQaApp,scene=app.activeTraversal;
+    if(!scene?.roadCombatWindow)return null;
+    window.__demoQaPursuitRoad=scene; // Observation reference only; no runtime method or state write.
+    return {windowId:scene.roadCombatWindow,legId:scene.session.legId,segment:scene.element.dataset.routeSegment,
+      session:structuredClone(scene.session),elapsedMs:scene.routeRun.elapsedMs,distance:scene.routeRenderer.distance,
+      config:structuredClone(app.combat.session.config)};
+  });
   assert.equal(await frame.evaluate(()=>typeof window.__qaHelpers.teleportActiveUnitNextToEnemy),'undefined','Production mutation helper present');
   for(const selector of ['#tutorial:not(.hidden) [data-action="skip"]','#boss-tutorial:not(.hidden) [data-action="start"]']){
     if(await frame.locator(selector).isVisible().catch(()=>false))await frame.locator(selector).click();
@@ -449,6 +457,66 @@ async function battle(){
   assert.equal(entry.result.units.filter(u=>u.team==='foe'&&u.alive).length,0);
   assert.ok(entry.actions.some(a=>a.kind==='attack'));entry.pass=true;
   entry.outcome='victory';
+  if(entry.pursuit){
+    entry.pursuit.nativePayload=await frame.evaluate(()=>({
+      participants:G.deployedUnits.map(u=>u.campaignId||u.name),
+      unitHealth:Object.fromEntries(G.deployedUnits.map(u=>[u.campaignId||u.name,Math.max(0,Math.round(u.alive?u.hp:0))])),
+    }));
+    assert.ok(['forest_patrol','forest_ambush','wolf_pack'].includes(entry.combatId));
+    assert.equal(entry.pursuit.config.encounterRank,'normal');assert.ok(!entry.pursuit.config.isBoss);
+    await frame.locator('#combat-result-action').focus();await page.keyboard.press('Enter');
+    report.inputs.push({action:'native Pursuit result Enter',windowId:entry.pursuit.windowId});
+    await element.waitFor({state:'detached',timeout:30000});
+    await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked')
+      &&window.__demoQaApp.activeTraversal?.session.phase==='RUNNING');
+    entry.ownerAfter=await state();
+    const before=entry.ownerBefore,after=entry.ownerAfter;
+    for(const key of ['currentNodeId','resolvedNodeIds','flags','endingId'])assert.deepEqual(after[key],before[key],`Pursuit changed ${key}`);
+    for(const key of ['graph','currentNodeId','visitedNodeIds','traversalBranches','bypassedRouteNodeIds','checkpointNodeId','status'])
+      assert.deepEqual(after.run[key],before.run[key],`Pursuit changed run.${key}`);
+    assert.equal(after.gold,before.gold,'Pursuit secured route gold');
+    const expectedLoot=structuredClone(before.run.temporaryLoot),rewards=entry.pursuit.config.rewards;
+    expectedLoot.gold+=rewards.gold;
+    for(const [id,quantity] of Object.entries(rewards.materials))expectedLoot.inventory.materials[id]=(expectedLoot.inventory.materials[id]??0)+quantity;
+    assert.deepEqual(after.run.temporaryLoot,expectedLoot,'Pursuit must apply existing temporary reward exactly once');
+    assert.deepEqual(after.inventory.consumables,entry.result.inventory,'Native consumed items were not retained');
+    for(const unit of before.clan.members){
+      const nativeHealth=entry.pursuit.nativePayload.unitHealth[unit.id];
+      assert.equal(after.clan.members.find(u=>u.id===unit.id).currentHealth,nativeHealth??unit.currentHealth,'Native participant HP or nonparticipant health changed');
+    }
+    assert.deepEqual(after.deployment.unitIds,entry.pursuit.nativePayload.participants.slice(0,entry.pursuit.config.maxPlayerUnits));
+    const reputation=Math.max(0,Math.min(100,before.reputation+Math.trunc(rewards.reputation)));
+    assert.equal(after.reputation,reputation);
+    assert.deepEqual(after.reputationHistory,[...before.reputationHistory,{delta:Math.trunc(rewards.reputation),source:`combat:${entry.combatId}`,value:reputation}]);
+    entry.pursuit.returned=await page.evaluate(()=>{
+      const scene=window.__demoQaApp.activeTraversal,control=document.activeElement,r=control.getBoundingClientRect(),style=getComputedStyle(control);
+      return {sameRoad:scene===window.__demoQaPursuitRoad,window:scene.roadCombatWindow,segment:scene.element.dataset.routeSegment,
+        stage:scene.session.stageIndex,consumed:[...scene.session.consumedBeatIds],elapsedMs:scene.routeRun.elapsedMs,
+        focusedLane:control.dataset.traversalLane,focusVisible:control.matches(':focus-visible'),
+        outlineWidth:style.outlineWidth,bounds:{left:r.left,top:r.top,right:r.right,bottom:r.bottom}};
+    });
+    const returned=entry.pursuit.returned;
+    assert.equal(returned.sameRoad,true);assert.equal(returned.window,null);assert.equal(returned.segment,entry.pursuit.segment);
+    assert.equal(returned.stage,entry.pursuit.session.stageIndex);assert.deepEqual(returned.consumed,entry.pursuit.session.consumedBeatIds);
+    assert.ok(returned.elapsedMs>=entry.pursuit.elapsedMs&&returned.elapsedMs-entry.pursuit.elapsedMs<1500,'Return restarted or advanced the held road');
+    assert.equal(returned.focusedLane,String(entry.pursuit.session.currentLane));assert.equal(returned.focusVisible,true);
+    assert.ok(Number.parseFloat(returned.outlineWidth)>0&&returned.bounds.left>=0&&returned.bounds.top>=0
+      &&returned.bounds.right<=viewport[0]&&returned.bounds.bottom<=viewport[1],'Returned focus is clipped or invisible');
+    await capture(`combat-${entry.index}-pursuit-return-focus`);
+    assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),entry.autosaveBefore,'Incidental victory changed autosave cadence');
+    assert.equal(entry.autosaveBefore.version,6,'Persistence proof requires an actual V6 autosave');
+    if(target==='pursuit-victory'){
+      await page.reload({waitUntil:'networkidle'});await click('.title-screen [data-action="continue"]');
+      await page.waitForFunction(id=>window.__demoQaApp.state.currentNodeId===id
+        &&!document.body.classList.contains('scene-transition--locked')
+        &&[...document.querySelectorAll('[data-traversal-lane],[data-traversal-confirm],[data-journey-continue],[data-journey-choice],.dialogue-choice,.exploration-stop button')]
+          .some(e=>!e.disabled&&e.getClientRects().length&&!e.closest('[inert]')),entry.autosaveBefore.currentNodeId);
+      report.resumed=await state();assert.deepEqual(report.resumed,entry.autosaveBefore,'Reload changed persisted canonical truth');
+      assert.equal(await page.locator('iframe.combat-frame').count(),0,'Reload replayed ephemeral Pursuit combat');
+      await capture('pursuit-v6-reloaded');assert.deepEqual(report.errors,[]);report.pass=true;
+    }
+    entry.pass=true;return;
+  }
   if(entry.index===0&&!priorProof){
     await frame.locator('#combat-result-action').focus();
     await page.keyboard.press('Enter');
@@ -591,7 +659,14 @@ try{
       report.resumed=await state();assert.deepEqual(report.resumed,live);await capture(`ending-${live.endingId}-resumed`);
       assert.deepEqual(report.errors,[]);report.pass=true;break;
     }
-    if(await page.locator('iframe.combat-frame').count()){await battle();if(report.defeatRecovery?.pass)break;continue;}
+    if(await page.locator('iframe.combat-frame').count()){await battle();if(report.defeatRecovery?.pass||report.pass)break;continue;}
+    if(target==='pursuit-victory'){
+      const charge=page.locator('.traversal-pursuit-charge[data-phase="CHARGING"]:visible');
+      if(await charge.count()){
+        const lane=await charge.getAttribute('data-lane'),button=page.locator(`[data-traversal-lane="${lane}"]:visible:not(:disabled)`);
+        if(await button.count())await keyboardActivate(`[data-traversal-lane="${lane}"]:visible:not(:disabled)`);
+      }
+    }
     if(await page.locator('.prologue-view').count()){await page.keyboard.press('Enter');}
     else if(await page.locator('.cinematic-overlay__skip:visible').count()){await click('.cinematic-overlay__skip:visible');}
     else if(await page.locator('.dialogue-choice:visible:not(:disabled)').count()){await choose();}

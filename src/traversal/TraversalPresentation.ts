@@ -19,6 +19,7 @@ export interface TraversalPresentationScene {
   beginNodeResolution(nodeId: string): void;
   resumeNode(nodeId: string): void;
   resumeRoadCombat(windowId: string): boolean;
+  focusRoadControls(): void;
   completeArrival(): void;
   dispose(): void;
 }

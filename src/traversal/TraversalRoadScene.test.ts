@@ -10,7 +10,7 @@ import { T0_ROAD_AUTHORING } from './TraversalT0Authoring';
 import { hasAuthoredTraversalPresentation } from './TraversalPresentation';
 import { createPursuitCharge } from './TraversalPursuitCharge';
 
-afterEach(() => { document.body.replaceChildren(); vi.restoreAllMocks(); });
+afterEach(() => { document.body.replaceChildren(); document.body.className = ''; vi.restoreAllMocks(); });
 
 describe('shared road scene authoring boundary', () => {
   it('contacts once, freezes road clocks, and resumes the same mounted road without consuming a campaign stage', () => {
@@ -34,12 +34,22 @@ describe('shared road scene authoring boundary', () => {
     clock.advance(10);
     expect(clock.routeRun.elapsedMs).toBe(held.elapsed); expect(clock.routeRenderer.distance).toBe(held.distance);
     expect(scene.resumeRoadCombat('wrong')).toBe(false);
+    const parentControl = document.createElement('button');
+    document.body.append(parentControl); parentControl.focus();
+    document.body.classList.add('scene-transition--locked');
     expect(scene.resumeRoadCombat('t0:r3:pursuit-1')).toBe(true);
+    scene.focusRoadControls();
+    expect(document.activeElement).toBe(parentControl);
+    document.body.classList.remove('scene-transition--locked');
+    scene.focusRoadControls();
+    expect(document.activeElement).toBe(scene.element.querySelector('[data-traversal-lane="0"]'));
     expect(scene.session.stageIndex).toBe(held.stage); expect(scene.session.routeProgress01).toBe(held.progress);
     expect(clock.routeRun.elapsedMs).toBe(held.elapsed); expect(clock.routeRenderer.distance).toBe(held.distance);
     clock.advance(.1); expect(clock.routeRun.elapsedMs).toBeGreaterThan(held.elapsed);
     expect(handoff).toHaveBeenCalledOnce(); expect(state).toEqual(original);
     scene.dispose();
+    parentControl.focus(); scene.focusRoadControls();
+    expect(document.activeElement).toBe(parentControl);
   });
   it('finishes a partially completed lane switch inside a delayed frame and freezes under global cover', () => {
     vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
