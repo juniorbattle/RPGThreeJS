@@ -1,3 +1,15 @@
+## Native skills second live snapshot - 2026-10-10T19:14:56.534Z
+
+Jobskills-native-1840 PID29620/port5366 running at native judgement round2/10actions. Two deployment captures inspected; Garen native deployed with novice lance, four-standing-party limit retained; no6casts/joininginstant/terminal/exact2 acceptance. Source/driver/helper/build/input frozen; original35min deadline retained. Same exact nextAction: inspect terminal receipt and new markers/captures under guardian before disposition.
+
+## Native skills judgement continuation - 2026-10-10T19:10:47.899Z
+
+Jobskills-native-1840 native wolf victory; retainedCedric/ElaraKO; canonical shadow-signs/finalrefuge/judgement now Champion combat. PID29620/port5366 running;35min original deadline unchanged. No terminal/exact2AP acceptance. Driver/source/build frozen, no new QA or instrumentation correction. OwnWIP b905f0d published; next action terminal receipt/results/captures/guardian.
+
+## Published native skills WIP - 2026-10-10T18:59:32.382Z
+
+Own snapshot b905f0d62c75454bd422bfb8e13f1ff992cffec3, normal remote parity verified. Three reviewed paths against dev; only two workflow paths changed since prior snapshot, driver identical. No acceptance.
+
 ## Native skills live checkpoint - 2026-10-10T18:59:08.268Z
 
 Owned run rpgthreejs-auto-dev-90m-20261010T1840; worker29620/port5366 RUNNING. Native lion-final-trial-event, round3,20actions at2026-10-10T18:58:24.696Z. Deployment capture inspected:4ready/2pages/readable1366; intermediate only. Driver/build/source frozen; no exact2AP acceptance yet. Current nextAction remains terminal receipt/results/provenance/capture/guardian review; do not restart worker. All181originaljobIDs/deferred histories retained.

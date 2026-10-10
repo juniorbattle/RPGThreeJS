@@ -209,7 +209,7 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261010T1840",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-10T18:59:08.268Z",
+    "lastHeartbeat": "2026-10-10T19:14:56.534Z",
     "status": "NATIVE_SKILLS_BROWSER_RUNNING",
     "qaJobs": [
       {
@@ -19766,7 +19766,7 @@
       }
     ],
     "wip": {
-      "sha": "a8c4682bd810d93d5cda52b162efa83127f98aff",
+      "sha": "b905f0d62c75454bd422bfb8e13f1ff992cffec3",
       "branch": "wip/rpgthreejs-auto-dev-90m-20261010T1840",
       "status": "GREEN",
       "dirtyFiles": [
@@ -19774,7 +19774,7 @@
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
       ],
-      "lastGreenCheck": "2026-10-10T18:47:44.808Z"
+      "lastGreenCheck": "2026-10-10T18:59:32.382Z"
     },
     "nextAction": "Inspect skills-native-1840 terminal receipt/results at completion; check unchanged source/driver/helper/build/input digests, new native2to0/40percent cast and all6 novice-equipment candidates. Do not restart running worker. Review selected captures and request guardian final evidence pass; otherwise keep missing assertions unaccepted.",
     "runMetrics": {
@@ -20809,14 +20809,21 @@
         "Broader campaign/balance/AT/StageVFX/operator final/demo"
       ],
       "latestProgress": {
-        "at": "2026-10-10T18:58:24.696Z",
-        "nodeId": "lion-final-trial-event",
-        "round": 3,
-        "actions": 20
+        "at": "2026-10-10T19:13:39.844Z",
+        "nodeId": "lion-final-judgement",
+        "round": 2,
+        "actions": 10
       },
       "inspectedCaptures": [
-        "tmp/demo/skills-native-1840/combat-3-deployment.png (intermediate deployment only, not acceptance)"
-      ]
+        "tmp/demo/skills-native-1840/combat-3-deployment.png (intermediate deployment only, not acceptance)",
+        "tmp/demo/skills-native-1840/combat-4-deployment.png (native Garen deployed; intermediate only)"
+      ],
+      "lastSnapshot": {
+        "branch": "wip/rpgthreejs-auto-dev-90m-20261010T1840",
+        "sha": "b905f0d62c75454bd422bfb8e13f1ff992cffec3",
+        "publishedAt": "2026-10-10T18:59:32.382Z"
+      },
+      "intermediateNativeOutcome": "Final-trial wolf_pack won; Cedric/Elara KO retained; canonical shadow/final-refuge/judgement reached; Champion native combat running; no terminal proof or exact2 acceptance."
     }
   },
   "previousInterruptedRun": {
