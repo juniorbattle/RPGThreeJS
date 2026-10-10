@@ -1,3 +1,13 @@
+## Native skills live checkpoint - 2026-10-10T18:59:08.268Z
+
+Owned run rpgthreejs-auto-dev-90m-20261010T1840; worker29620/port5366 RUNNING. Native lion-final-trial-event, round3,20actions at2026-10-10T18:58:24.696Z. Deployment capture inspected:4ready/2pages/readable1366; intermediate only. Driver/build/source frozen; no exact2AP acceptance yet. Current nextAction remains terminal receipt/results/provenance/capture/guardian review; do not restart worker. All181originaljobIDs/deferred histories retained.
+
+## Native skills browser running - 2026-10-10T18:49:47.769Z
+
+Run rpgthreejs-auto-dev-90m-20261010T1840; jobskills-native-1840 PID29620/port5366/35min desktop1366normal, exact earned1859V6/proof. Guardian actualdiff PASS_FOR_ONE_LAUNCH; no acceptance. OwnWIP a8c4682 published/verified; realindex preserved. Preparation retains novice crosier under verifyflag; prior sacred-crosier balance not reused. Source393physicalhashes/exact9build reused; driver frozen for running job.
+
+Exact nextAction: Inspect skills-native-1840 terminal receipt/results at completion; check unchanged source/driver/helper/build/input digests, new native2to0/40percent cast and all6 novice-equipment candidates. Do not restart running worker. Review selected captures and request guardian final evidence pass; otherwise keep missing assertions unaccepted.
+
 ## Native skills pilot checkpoint - 2026-10-10T18:46:45.404Z
 
 Run rpgthreejs-auto-dev-90m-20261010T1840;60focused tests/types/8contracts8slots/gates PASS. Source unchanged393physicalhashes; exact production build reused. One existing-pilot/assertion enhancement, no newQA tool: native1AP input/reposition then Salvation2to0/40percent; six novice-equipment native roster candidates. Earned1859V6/result digest and exact resumed truth verified; prior proof not current skills acceptance. Guardian actualdiff review pending; no browser acceptance.
@@ -383,6 +393,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - checkpoint-desktop-1806-os: FAILED; port 5365; receipt `tmp/traversal/checkpoint-desktop-1806-os/qa-job.json`; NOT_ACCEPTED
 - checkpoint-desktop-1806-normal-v2: SUCCEEDED; port 5364; receipt `tmp/traversal/checkpoint-desktop-1806-normal-v2/qa-job.json`; NOT_ACCEPTED
 - checkpoint-desktop-1806-os-v2: SUCCEEDED; port 5365; receipt `tmp/traversal/checkpoint-desktop-1806-os-v2/qa-job.json`; NOT_ACCEPTED
+- skills-native-1840: RUNNING; port 5366; receipt `tmp/demo/skills-native-1840/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

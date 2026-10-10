@@ -65,7 +65,7 @@
     "Council/refugees/static-only OS narrative acceptance and approved Bois-Clair night plate",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Review current driver diff, snapshot reviewed3paths, register ONE desktop1366 normal35min ending continuation from earned1859 second-refuge with verifySalvation1. Inspect new exact2AP40percent native cast and all6 novice-equipment candidates; retain missing/native joining/casts/full-demo gaps. No Traversal rerun.",
+  "nextAction": "Inspect skills-native-1840 terminal receipt/results at completion; check unchanged source/driver/helper/build/input digests, new native2to0/40percent cast and all6 novice-equipment candidates. Do not restart running worker. Review selected captures and request guardian final evidence pass; otherwise keep missing assertions unaccepted.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -209,8 +209,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261010T1840",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-10T18:46:45.404Z",
-    "status": "NATIVE_SKILLS_SOURCE_REVIEW",
+    "lastHeartbeat": "2026-10-10T18:59:08.268Z",
+    "status": "NATIVE_SKILLS_BROWSER_RUNNING",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -19659,27 +19659,124 @@
         "resultPath": "tmp/traversal/checkpoint-desktop-1806-os-v2/results.json",
         "resultSha256": "0fe7ae339a5e99080021aaa2a7b27135375743b0f704b44107250925ca4d2f2c",
         "provenanceStable": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "skills-native-1840",
+        "runId": "rpgthreejs-auto-dev-90m-20261010T1840",
+        "status": "RUNNING",
+        "registeredAt": "2026-10-10T18:47:44.391Z",
+        "pid": 29620,
+        "port": 5366,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "ending",
+          "routePlan": "rescue",
+          "timeoutMinutes": 35,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/campaign-second-refuge-1859/results.json",
+          "verifySalvation": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/skills-native-1840",
+        "receiptPath": "tmp/demo/skills-native-1840/qa-job.json",
+        "provenance": {
+          "gitHead": "2129a0b7b14de0234424097966e0684f4692c760",
+          "sourceTree": "f5d2d917f1bc2bfce472dcab68dd638337069e58",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "92ad280b914e967371cfb035610a19d1cdaf316b33a487ca20131d22d81f34e6"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+              "sha256": "67d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/campaign-second-refuge-1859/results.json",
+              "sha256": "1eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3"
+            }
+          ],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/game-EarLSl_Z.js",
+              "sha256": "e5b669f0e93f991ece7d2efd533df955f96cb4d46933beb1fe1c530bcab6b0cc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1ee0e1b79e25dfa25d3d716965c86b49b6687499eae7f29efc6ab0eef12a0aaf"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-10T18:47:50.159Z",
+        "endedAt": null,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": false,
+        "eligibleForReview": false
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261010T1806",
-      "sha": "be3db1cfeb125c598a9321a3019b1635f0d89151",
-      "status": "GREEN_SCOPED_DESKTOP_ACCEPTANCE",
+      "sha": "a8c4682bd810d93d5cda52b162efa83127f98aff",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261010T1840",
+      "status": "GREEN",
       "dirtyFiles": [
-        "docs/reports/checkpoint-desktop-20261010-1806/checks.json",
-        "docs/reports/checkpoint-desktop-20261010-1806/EVIDENCE.md",
-        "docs/reports/checkpoint-desktop-20261010-1806/T1-normal-checkpoint.png",
-        "docs/reports/checkpoint-desktop-20261010-1806/T3-normal-checkpoint.png",
-        "docs/reports/checkpoint-desktop-20261010-1806/T0-os-checkpoint.png",
-        "docs/reports/checkpoint-desktop-20261010-1806/T1-os-checkpoint.png",
-        "docs/reports/checkpoint-desktop-20261010-1806/T3-os-checkpoint.png",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "tools/demo-continuous-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-10T1806Z-codex-checkpoint-desktop.md"
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
       ],
-      "lastGreenCheck": "23focused/types/8contracts8slots/physical393/buildlineage/fivecases/selectedcaptures/TraversalGuardianPASS_SCOPED"
+      "lastGreenCheck": "2026-10-10T18:47:44.808Z"
     },
-    "nextAction": "Review current driver diff, snapshot reviewed3paths, register ONE desktop1366 normal35min ending continuation from earned1859 second-refuge with verifySalvation1. Inspect new exact2AP40percent native cast and all6 novice-equipment candidates; retain missing/native joining/casts/full-demo gaps. No Traversal rerun.",
+    "nextAction": "Inspect skills-native-1840 terminal receipt/results at completion; check unchanged source/driver/helper/build/input digests, new native2to0/40percent cast and all6 novice-equipment candidates. Do not restart running worker. Review selected captures and request guardian final evidence pass; otherwise keep missing assertions unaccepted.",
     "runMetrics": {
       "sourceFilesModified": 0,
       "testFilesModified": 0,
@@ -20675,7 +20772,7 @@
       "physicalSourceFiles": 393,
       "priorCheckpointReceiptsVerified": true,
       "scope": "Native exactly2AP Salvation and sixhero initial competence availability; authored recruitment retained",
-      "status": "PILOT_ASSERTION_CHECKPOINT",
+      "status": "RUNNING",
       "productDefect": "NONE_DEMONSTRATED",
       "newQaTool": false,
       "driverChange": "One bounded existing-pilot enhancement: native exact1AP setup/reposition then exactly2AP Salvation/40percent, six native initial-equipment roster candidates; flagged scenario retains novice crosier. No new QA tool or product correction.",
@@ -20689,7 +20786,37 @@
         "whitespace": "PASS",
         "syntax": "PASS",
         "build": "Prior1722 exact9bundle hashes reused;393physicalsource hashes unchanged"
-      }
+      },
+      "jobId": "skills-native-1840",
+      "guardian": "PASS_FOR_ONE_LAUNCH actual driver diff; fresh evidence pending",
+      "expectedAssertions": [
+        "FRESH_EXACTLY_2AP_SALVATION_2_TO_0",
+        "AUTHORED_40_PERCENT_ROUNDED_CLAMPED_HP",
+        "SIX_NATIVE_NOVICE_EQUIPMENT_CANDIDATES",
+        "FOUR_UNIT_DEPLOYMENT_CAP",
+        "EARNED_INPUTS_ENDING_EXACT_V6_RELOAD"
+      ],
+      "worker": {
+        "pid": 29620,
+        "port": 5366,
+        "startedAt": "2026-10-10T18:47:50.159Z",
+        "receiptPath": "tmp/demo/skills-native-1840/qa-job.json"
+      },
+      "openCriteria": [
+        "Authored joining instant native observation",
+        "Six actual native casts",
+        "Other motion/viewport/encounter contexts",
+        "Broader campaign/balance/AT/StageVFX/operator final/demo"
+      ],
+      "latestProgress": {
+        "at": "2026-10-10T18:58:24.696Z",
+        "nodeId": "lion-final-trial-event",
+        "round": 3,
+        "actions": 20
+      },
+      "inspectedCaptures": [
+        "tmp/demo/skills-native-1840/combat-3-deployment.png (intermediate deployment only, not acceptance)"
+      ]
     }
   },
   "previousInterruptedRun": {
