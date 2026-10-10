@@ -1,45 +1,34 @@
 {
-  "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-09T22:56:41.5631524Z",
-  "runEndedAt": "2026-10-09T23:10:57.994Z",
+  "status": "PAUSED_FOR_CREDITS",
+  "runStartedAt": "2026-10-10T00:25:52.6169307Z",
+  "runEndedAt": "2026-10-10T03:21:04.174Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "DESKTOP_PURSUIT_CONTINUATION",
   "activeSubtask": "Reduced charge opacity fixed; scoped desktop OS/game missed-charge visibility accepted, native/broader Pursuit open",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "2cf650906f73bd5a6ffc517eddbdbd7acf7ccb0d",
-  "lastPushedCommit": "2cf650906f73bd5a6ffc517eddbdbd7acf7ccb0d",
+  "lastKnownGoodCommit": "d305b09b8cf24c93a2152ccd6415c21358dcb8b8",
+  "lastPushedCommit": "d305b09b8cf24c93a2152ccd6415c21358dcb8b8",
   "completedThisRun": [
-    "Preflight: absent lock, clean dev375157d/live parity, main00b96f1 unchanged, no RPG QA/Git jobs; owned exclusive lock/fetch; inspected prior2223 terminal receipt/proof and limits",
-    "Corrected premature reduced charge disappearance and contact opacity jump in presentation only",
-    "20current focusedtests/types/build/8contracts8slots/immutablegatePASS",
-    "One designated T0 production smoke: firstFAIL due contacttarget; one minimal triggercorrection; v2SUCCEEDED18, two captures inspected/selected, scopedUI/guardianPASS"
+    "Read-only preflight: no lock, clean dev/live origin parity, main unchanged; previous owner threads idle and no repository QA/Git worker/listener; acquired exclusive lock and fetched.",
+    "Read current authorities and exact paired-state continuation; no runtime/QA implementation before guardian usage limit.",
+    "Workflow-only safe credits checkpoint; exact task and nextAction preserved."
   ],
   "filesChanged": [
-    "src/traversal/TraversalPursuitChargeRenderer.ts",
-    "src/traversal/TraversalPursuitChargeRenderer.test.ts",
-    "tools/traversal-motion-production-qa.mjs",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-09T2255Z-codex-reduced-charge.md",
-    "docs/reports/pursuit-reduced-charge-20261009/checks.json",
-    "docs/reports/pursuit-reduced-charge-20261009/README.md",
-    "docs/reports/pursuit-reduced-charge-20261009/T0-1440-charge-os-visible.png",
-    "docs/reports/pursuit-reduced-charge-20261009/T0-1440-charge-game-visible.png"
+    "docs/autonomy/handoffs/2026-10-10T0030Z-codex-credits-pause.md"
   ],
   "testsRun": [
-    "Focused vitest current4files20unique PASS;14 tmp historical duplicates excluded",
-    "tsc --noEmit PASS",
-    "contracts validator8contracts8slots PASS",
-    "production build214modules8MP4 PASS",
-    "node --check driver PASS",
-    "whitespace/immutable/dirtyLOCKED gates EMPTY/PASS"
+    "git diff --check PASS",
+    "Immutable LOCKED HEAD and working-tree gates EMPTY",
+    "node tools/contracts/validate-contracts.mjs PASS: 8 contracts / 8 slots",
+    "node node_modules/typescript/bin/tsc --noEmit PASS"
   ],
   "testsPassed": [
-    "20 current focused tests",
-    "TypeScript",
-    "8contracts8slots",
-    "Production build214modules8MP4",
-    "Syntax/whitespace/protected gates"
+    "git diff --check PASS",
+    "Immutable LOCKED HEAD and working-tree gates EMPTY",
+    "node tools/contracts/validate-contracts.mjs PASS: 8 contracts / 8 slots",
+    "node node_modules/typescript/bin/tsc --noEmit PASS"
   ],
   "testsRemaining": [
     "One T0/1440x810 authored missed charge only; other mapped contexts and broad viewport acceptance open",
@@ -87,9 +76,9 @@
     "ENVIRONMENT-NARRATIVE-COHERENCE: BLOCKED_ASSET_BOIS_CLAIR_NIGHT; bounded audit complete",
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
-  "creditStatus": "Work proceeded within authorized scope; no quota-based reduction or savings claim",
-  "contractComplianceStatus": "PASS_SCOPED_REDUCED_CHARGE_VISIBILITY; FULL_DEMO_OPEN",
-  "commitReferenceScope": "Scoped reduced-charge source/driver/proof checkpoint 2cf650906f73bd5a6ffc517eddbdbd7acf7ccb0d; final metadata SHA/parity/lockrelease recorded externally in automation memory. Earlier campaign/gait proof retains original sources; whole Pursuit/demo OPEN.",
+  "creditStatus": "PAUSED_FOR_CREDITS: contracts-guardian usage limit; resume availability check then SAME exact nextAction.",
+  "contractComplianceStatus": "WORKFLOW_ONLY_GATES_PASS; GUARDIAN_UNAVAILABLE; NO_NEW_PRODUCT_ACCEPTANCE",
+  "commitReferenceScope": "Workflow-only PAUSED_FOR_CREDITS checkpoint on product baseline d305b09b8cf24c93a2152ccd6415c21358dcb8b8; exact final publication and lockrelease recorded in automation memory. Prior runtime acceptance scopes unchanged.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -190,9 +179,9 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261009T2255",
+  "runId": "rpgthreejs-auto-dev-90m-20261010T0030",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-09T23:10:57.994Z",
+  "lastHeartbeat": "2026-10-10T03:21:04.174Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261009T2255",
     "sha": "c85de3adac0ff76f3e5d312e89e46b003211f2ed",
@@ -213,10 +202,10 @@
     "lastGreenCheck": "docs/reports/pursuit-reduced-charge-20261009/checks.json"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261009T2255",
+    "runId": "rpgthreejs-auto-dev-90m-20261010T0030",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-09T23:10:57.994Z",
-    "status": "IN_PROGRESS",
+    "lastHeartbeat": "2026-10-10T03:21:04.174Z",
+    "status": "PAUSED_FOR_CREDITS",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -18810,23 +18799,15 @@
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261009T2255",
-      "sha": "c85de3adac0ff76f3e5d312e89e46b003211f2ed",
-      "snapshotAt": "2026-10-09T23:09:17.311Z",
-      "status": "CONTENT_INTEGRATED; SAFE_RETIREMENT_PENDING",
-      "paths": [
-        "src/traversal/TraversalPursuitChargeRenderer.ts",
-        "src/traversal/TraversalPursuitChargeRenderer.test.ts",
-        "tools/traversal-motion-production-qa.mjs",
+      "branch": null,
+      "sha": null,
+      "status": "NONE_THIS_RUN_WORKFLOW_ONLY",
+      "dirtyFiles": [
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-09T2255Z-codex-reduced-charge.md",
-        "docs/reports/pursuit-reduced-charge-20261009/checks.json",
-        "docs/reports/pursuit-reduced-charge-20261009/README.md",
-        "docs/reports/pursuit-reduced-charge-20261009/T0-1440-charge-os-visible.png",
-        "docs/reports/pursuit-reduced-charge-20261009/T0-1440-charge-game-visible.png"
+        "docs/autonomy/handoffs/2026-10-10T0030Z-codex-credits-pause.md"
       ],
-      "lastGreenCheck": "docs/reports/pursuit-reduced-charge-20261009/checks.json"
+      "lastGreenCheck": "TypeScript/validator/LOCKED/whitespace PASS; no product acceptance"
     },
     "nextAction": "Read-only preflight/exclusive lock; inspect pursuit-reduced-charge-2255-v2 receipt and docs/reports/pursuit-reduced-charge-20261009/checks.json before any rerun. Reuse scoped desktop reduced-miss visibility only with matching physical source/driver/build/parameters/assertions. Reduced contact and reduced terminal exit remain browser-open (unit coverage only); other ten authored context bindings, native Pursuit victory/defeat temporary-loot/persistedV6 and cancel/re-entry/focus-visible remain open. Use existing tools/demo-continuous-production-qa.mjs battle() native pilot as authority for native combat; existing motion runner still injects outcomes and has no persisted autosave in T0 fixture. Preserve reducedCharge2255.previous, pursuitGait2223.previous, operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue desktop checkpoint braking/full-tail approach/ground-contact/settled parentfocus, sixhero skills/campaign/narrative gaps; mobile finalization LAST. Ten mappings/category already resolved1856; eightvideos/Alaric/audioDEFERRED/LOCKED unchanged; operator final manual artistic/literary/balance review pending.",
     "runMetrics": {
@@ -18878,8 +18859,8 @@
       "verifiedAt": "2026-10-09T23:10:57.994Z",
       "rejectionsThisRun": 0
     },
-    "runStartedAt": "2026-10-09T22:56:41.5631524Z",
-    "runEndedAt": "2026-10-09T23:10:57.994Z",
+    "runStartedAt": "2026-10-10T00:25:52.6169307Z",
+    "runEndedAt": "2026-10-10T03:21:04.174Z",
     "writerStopped": true,
     "metadataPublication": {
       "status": "RESOLVED_BY_OPERATOR_APPROVAL",
@@ -19733,6 +19714,17 @@
       "sourceFreezeStable": true,
       "fullDemoComplete": false,
       "finalMetadataPublication": "Exact finalSHA/parity/ownWIPretirement/lockrelease recorded externally after operations"
+    },
+    "closeout0030": {
+      "runEndedAt": "2026-10-10T03:21:04.174Z",
+      "status": "PAUSED_FOR_CREDITS",
+      "newQaJobs": 0,
+      "sourceFilesModified": 0,
+      "qaFilesModified": 0,
+      "proofFilesAdded": 0,
+      "workflowFiles": 3,
+      "reviewerCompleted": false,
+      "finalPublication": "Recorded externally after verified normal dev push and lock release"
     }
   },
   "previousInterruptedRun": {
@@ -20473,5 +20465,39 @@
       ],
       "status": "CONTENT_INTEGRATED; retirement after final parity/stoppedjob checks"
     }
+  },
+  "creditsPause0030": {
+    "baseline": "d305b09b8cf24c93a2152ccd6415c21358dcb8b8",
+    "previous": {
+      "status": "IN_PROGRESS",
+      "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
+      "activeSubtask": "Reduced charge opacity fixed; scoped desktop OS/game missed-charge visibility accepted, native/broader Pursuit open",
+      "nextAction": "Read-only preflight/exclusive lock; inspect pursuit-reduced-charge-2255-v2 receipt and docs/reports/pursuit-reduced-charge-20261009/checks.json before any rerun. Reuse scoped desktop reduced-miss visibility only with matching physical source/driver/build/parameters/assertions. Reduced contact and reduced terminal exit remain browser-open (unit coverage only); other ten authored context bindings, native Pursuit victory/defeat temporary-loot/persistedV6 and cancel/re-entry/focus-visible remain open. Use existing tools/demo-continuous-production-qa.mjs battle() native pilot as authority for native combat; existing motion runner still injects outcomes and has no persisted autosave in T0 fixture. Preserve reducedCharge2255.previous, pursuitGait2223.previous, operatorConsolidation1856.previous and original deferredDemoTask.nextAction verbatim. Continue desktop checkpoint braking/full-tail approach/ground-contact/settled parentfocus, sixhero skills/campaign/narrative gaps; mobile finalization LAST. Ten mappings/category already resolved1856; eightvideos/Alaric/audioDEFERRED/LOCKED unchanged; operator final manual artistic/literary/balance review pending."
+    },
+    "stoppedAt": "2026-10-10T03:21:04.174Z",
+    "reason": "Read-only contracts-guardian failed before review with usage limit; user protocol requires PAUSED_FOR_CREDITS.",
+    "reviewer": "/root/pursuit_guardian",
+    "reviewCompleted": false,
+    "runtimeEdits": 0,
+    "testsEdited": 0,
+    "qaDriversEdited": 0,
+    "newQaJobs": 0,
+    "newProofFiles": 0,
+    "workflowFiles": 3,
+    "smoke": "NOT_RUN: no product/QA edit and review credits unavailable; no new acceptance.",
+    "checks": {
+      "lockedHeadGate": "EMPTY",
+      "lockedWorkingTreeGate": "EMPTY",
+      "diffCheck": "PASS",
+      "validator": "8 contracts / 8 slots PASS",
+      "types": "PASS"
+    },
+    "remotePreflight": {
+      "dev": "d305b09b8cf24c93a2152ccd6415c21358dcb8b8",
+      "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
+    },
+    "preserved": "Exact activeTask/activeSubtask/nextAction; all historical QA/deferred/narrative/operator/queue records unchanged.",
+    "limitations": "Native Pursuit victory/defeat/tempLoot/persistedV6/cancel/re-entry/focus and broader presentation remain open. No demo completion.",
+    "clockGap": "Execution clock advanced from initial00:25Z preflight to03:21Z closeout after usage-limit interruption; no product or QA work during gap. Rechecked exclusive ownership, clean selected-path inventory, no repository workers and live remote parity before publication."
   }
 }
