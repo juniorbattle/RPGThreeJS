@@ -1,3 +1,7 @@
+## Publication checkpoint - 2026-10-10T05:15:14.041Z
+
+Reviewed native proof b1bb2f55fa789df060181fff7ea52fcc3bd249d5 verified HEAD/local/live origin/dev. Main00b96f1 unchanged. Own WIP6eec2c92776a3a20bd41864a38160c0dce40b81e audited: all source and selected proof exact; only state self-reference differs. Final3workflow closure preparing; WIP retirement and lock release follow verified publication, with exact finalSHA/time in automation memory. Scope/nextAction unchanged; demo IN_PROGRESS,mobile LAST.
+
 ## Reviewed native T1 Pursuit checkpoint - 2026-10-10T0420Z
 
 Run rpgthreejs-auto-dev-90m-20261010T0420; IN_PROGRESS; checkpoint prepared 2026-10-10T05:12:21.073Z. Current source unchanged c88ee1d,393 physical source hashes stable. Native T1 t1:t0:r5a:pursuit-1 forest_patrol victory5rounds41actions accepted scoped after root+guardian/two passes: same mounted road/segment/stage/beats,clock+33.3ms,tempLoot105to190/materials+1/+1,secured35 unchanged,native HP/items/deployment/reputation61to62,visible lane1 focus and exact previous first-refuge V6 reload. No immediate live-reward persistence or all-context/demo claim.

@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-10T04:21:33.4863528Z",
-  "runEndedAt": "2026-10-10T05:12:21.073Z",
+  "runEndedAt": "2026-10-10T05:15:14.041Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "DESKTOP_CHECKPOINT_PERCEPTION_CONTINUATION",
   "activeSubtask": "Native T1 Pursuit victory/return/tempLoot/focus/precombat V6 accepted scoped; checkpoint perception and broader Pursuit/manual criteria open",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "c88ee1d69d9ec994a5b21691d48f2d13b34c6d2b",
-  "lastPushedCommit": "c88ee1d69d9ec994a5b21691d48f2d13b34c6d2b",
+  "lastKnownGoodCommit": "b1bb2f55fa789df060181fff7ea52fcc3bd249d5",
+  "lastPushedCommit": "b1bb2f55fa789df060181fff7ea52fcc3bd249d5",
   "completedThisRun": [
     "Read-only preflight clean dev/no lock/no inheritedWIP; previous owner idle, repository workers/listeners absent; live dev/main parity verified; acquired exclusive lock then fetch.",
     "Resumed exact45min nextAction; existing25minFAILED/unlaunched0323 evidence preserved, no source/test/QA/build/media changes.",
@@ -16,7 +16,7 @@
     "Visible lane1 desktop focus and actual previous lion-first-refuge V6 reload accepted; no immediate victory-reward persistence claim.",
     "393physical sources, driver/helper, two seed inputs and9build/html hashes unchanged; request/digest/current execution true; receiptNOT_ACCEPTED retained separately.",
     "Root and one reused guardian/two scoped passes inspect3selected captures; acceptance recorded narrowly; demo remains IN_PROGRESS.",
-    "Reviewed WIP snapshots normally published; source0/tests0/QA0/proof5/workflow3; checkpoint preparing normal dev publication."
+    "Reviewed WIP snapshots and native acceptance checkpoint b1bb2f5 normally published/verified; exact selected proof in WIP equals dev,only state self-reference differs; final metadata closure preparing."
   ],
   "filesChanged": [
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -210,7 +210,7 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261010T0420",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-10T05:13:17.9779065Z",
+    "lastHeartbeat": "2026-10-10T05:15:14.041Z",
     "status": "CHECKPOINT_READY_FOR_PUBLICATION",
     "qaJobs": [
       {
@@ -19126,16 +19126,11 @@
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261010T0420",
       "sha": "6eec2c92776a3a20bd41864a38160c0dce40b81e",
-      "status": "GREEN_SCOPED_NATIVE_ACCEPTANCE_PUBLICATION_PREPARATION",
+      "status": "AUDITED_ALL_PROOF_ON_VERIFIED_DEV_PENDING_RETIREMENT",
       "dirtyFiles": [
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-10T0420Z-codex-native-pursuit.md",
-        "docs/reports/pursuit-native-20261010-0420/checks.json",
-        "docs/reports/pursuit-native-20261010-0420/EVIDENCE.md",
-        "docs/reports/pursuit-native-20261010-0420/native-result.png",
-        "docs/reports/pursuit-native-20261010-0420/road-return-focus.png",
-        "docs/reports/pursuit-native-20261010-0420/v6-reloaded.png"
+        "docs/autonomy/handoffs/2026-10-10T0420Z-codex-native-pursuit.md"
       ],
       "lastGreenCheck": "32unique source tests/types/8contracts8slots/gates PASS; one native smoke scoped accepted after root+guardian captures/lineage review",
       "snapshotAt": "2026-10-10T05:13:17.9779065Z"
@@ -21135,7 +21130,7 @@
       ],
       "contractComplianceStatus": "SOURCE_MECHANICAL_PASS_BROWSER_TARGET_NOT_ACCEPTED: source owner boundaries PASS; native browser target incomplete/NOT_ACCEPTED; immutable and dirty LOCKED gates empty; eight contracts/eight slots unchanged."
     },
-    "endedAt": "2026-10-10T05:12:21.073Z",
+    "endedAt": "2026-10-10T05:15:14.041Z",
     "proof": "docs/reports/pursuit-native-20261010-0420/checks.json",
     "sourceTree": "7a91b152b3cec984592c7e454f1efe68612147c9",
     "physicalSourcesStable": 393,
@@ -21154,6 +21149,14 @@
       "inheritedWIP": 0
     },
     "nextAction": "Read-only preflight and exclusive lock; inspect pursuit-native-0420 SUCCEEDED receipt and docs/reports/pursuit-native-20261010-0420/checks.json first. Reuse only with matching physical source/driver/helper/build/seed/assertions. Native T1 t1:t0:r5a:pursuit-1 forest_patrol victory/return/tempLoot/current-lane focus and exact previous first-refuge V6 reload are accepted scoped; no immediate live-reward persistence, other-window or full-demo claim. Do not repeat this45min scenario or the six historical accepted desktop exits. Resume OD-2026-10-09-A remaining desktop checkpoint braking/glissement: inspect tmp/traversal/motion-desktop-1748-normal/T0-1440-checkpoint-route-1.png and matching transition samples, then src/traversal/TraversalRoadScene.ts focus transition around502-550, TraversalRoadCamera.ts and TraversalWorldRenderer.ts ground/marker ownership. Fix only a demonstrated slide/conflicting-scenery issue; otherwise continue full-tail approach/ground-contact and remaining desktop agency. Verify one relevant registered production smoke with existing tools/traversal-motion-production-qa.mjs, normal/T0/1440x810, unique ignored output; no new QA tool or instrumentation loop. Native Pursuit defeat/cancel/reentry/other contexts/reduced modes/AT, broader skills/campaign/narrative/Stage/VFX/balance and operator final manual criteria stay OPEN. Preserve prior/deferred exact nextActions and ten-mapping resolution1856; mobile finalization LAST; eightvideos/Alaric/audioDEFERRED/LOCKED unchanged.",
-    "publication": "Prepared under standing current-run origin/dev authority; final SHA/parity/lock disposition in automation memory"
+    "publication": {
+      "proofCommit": "b1bb2f55fa789df060181fff7ea52fcc3bd249d5",
+      "liveDevVerified": true,
+      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "wipAuditedSha": "6eec2c92776a3a20bd41864a38160c0dce40b81e",
+      "wipDifference": "Only state self-reference metadata; all source/driver/build/selected proof exact",
+      "finalClosure": "Normal metadata publication preparing; final SHA and lock release in automation memory",
+      "approvalRejections": 0
+    }
   }
 }
