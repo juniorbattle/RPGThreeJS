@@ -1,3 +1,17 @@
+## Current native Pursuit checkpoint - 2026-10-10T0323Z
+
+Run: rpgthreejs-auto-dev-90m-20261010T0323; status: IN_PROGRESS; checkpoint prepared 2026-10-10T04:06:07.698Z. Credits available.
+
+Active task unchanged. Implementation 70b3446ffd2af149f7cbb1d6481b61f8b4b170bb: lane focus restored after outer return curtain, with same-owner/readiness guards. 32 unique current source tests/types/validator8contracts8slots/build214/eightMP4/16 unique ledger tests/syntax/gates PASS.
+
+One designated smoke pursuit-native-0323-v2 FAILED bounded25min after canonical prerequisite victory and native ordinary T1 contact. Native Pursuit outcome/return/temp reward/settled focus/persisted V6 NOT_REACHED; receipt NOT_ACCEPTED. One deployment capture explicitly inspected/selected in docs/reports/pursuit-native-20261010; no new acceptance, no post-failure harness edit/relaunch. Guardian four focused passes: SOURCE_MECHANICAL_PASS_BROWSER_TARGET_NOT_ACCEPTED.
+
+Exact next action: Read-only preflight and exclusive lock; inspect pursuit-native-0323-v2 FAILED receipt/results and docs/reports/pursuit-native-20261010/checks.json first. Source focus correction is mechanically verified, native victory/return/reward/focus/persisted V6 remain NOT_ACCEPTED. Next run register ONE new unique pursuit-victory desktop1366x768 normal job with existing tools/demo-continuous-production-qa.mjs, timeout45min, route rescue/finale serpent and SAME earned campaign-first-refuge-1214 save/proof hashes. Keep native rest/deployment/actions/results and unchanged autosave cadence; no injected outcome or weakened assertions. Freeze sources/driver/build; inspect final receipt/captures, compare physical source tree and exact driver/helper/build/seed hashes, then scoped guardian review. Preserve failed25min outputs and unlaunched0323 plan; no historical matrix rerun. If repeat cannot finish, document actionable pilot/runtime cause without instrumentation loops. Defeat/cancel/reentry/other contexts/reduced modes, full-tail/ground/checkpoint perception, sixhero skills/campaign/narrative and operator final artistic/literary/balance review stay OPEN; mobile finalization LAST. Preserve prior/deferred nextActions verbatim; ten mappings/category already resolved1856; eightvideos/Alaric/audioDEFERRED/LOCKED unchanged.
+
+Previous exact nextAction retained verbatim in pursuitNative0323.previousNextAction and historical sections below. TaskQueue/deferred/narrative/operator histories and173 prior job IDs preserved;175 jobs total (new initial0323 plan unlaunched +v2FAILED). Counts: 3 product source,1 existing test,2 existing QA,0 new QA,3 proof,3 workflow,0 inherited WIP.
+
+Publication: implementation local; normal reviewed origin/dev checkpoint pending under current automation authority. Two remote-WIP push rejections preserved; no WIP export/bypass. Exact final publication SHA/parity/main/lock disposition recorded externally in automation memory. Worker18400/listener5361 absent. Demo remains incomplete; mobile LAST.
+
 ## Current credits pause — 2026-10-10T0030Z
 
 Run: rpgthreejs-auto-dev-90m-20261010T0030; status: PAUSED_FOR_CREDITS; ended: 2026-10-10T03:21:04.174Z
@@ -285,7 +299,8 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - pursuit-gait-2223-v3: SUCCEEDED; port 5358; receipt `tmp/traversal/pursuit-gait-2223-v3/qa-job.json`; NOT_ACCEPTED
 - pursuit-reduced-charge-2255: FAILED; port 5359; receipt `tmp/traversal/pursuit-reduced-charge-2255/qa-job.json`; NOT_ACCEPTED
 - pursuit-reduced-charge-2255-v2: SUCCEEDED; port 5359; receipt `tmp/traversal/pursuit-reduced-charge-2255-v2/qa-job.json`; NOT_ACCEPTED
-
+- pursuit-native-0323: PLANNED; port 5361; receipt `tmp/demo/pursuit-native-0323/qa-job.json`; NOT_ACCEPTED
+- pursuit-native-0323-v2: FAILED; port 5361; receipt `tmp/demo/pursuit-native-0323-v2/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
