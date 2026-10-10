@@ -1,19 +1,14 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-10T18:08:05.4005850Z",
-  "runEndedAt": "2026-10-10T18:24:27.317Z",
+  "runStartedAt": "2026-10-10T19:22:22.5423147-04:00",
+  "runEndedAt": null,
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "DESKTOP_NATIVE_SKILLS_REMAINING_ACCEPTANCE",
-  "activeSubtask": "Shared desktop positive checkpoint braking and normal/OS alternatives accepted scoped; native sixhero/exact2AP healing and broader manual criteria OPEN",
+  "activeSubtask": "Native exactly2AP Salvation pilot correction; inherited sixhero availability observations pending scoped review",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "92adf938a5cc60b7a52c9132302d9788b2d344c5",
   "lastPushedCommit": "92adf938a5cc60b7a52c9132302d9788b2d344c5",
-  "completedThisRun": [
-    "Reused accepted T0normal1722 without rerun;393physicalsource/exactdriverhelper9build and originalresult digest checked",
-    "Finished five missing desktop checkpoint cases: T1/T3normal,T0/T1/T3OS-only at1440,3338frames21stops1350positivewheelpairs,zeroerrors",
-    "Root+Traversal+guardian inspected selected proof and passed scoped acceptance with explicit OS camera and wheel/readiness gaps",
-    "Initial sandbox browser-cache failures preserved; host-installed Chromium v2 succeeded without source/harness edit"
-  ],
+  "completedThisRun": [],
   "filesChanged": [
     "docs/reports/checkpoint-desktop-20261010-1806/checks.json",
     "docs/reports/checkpoint-desktop-20261010-1806/EVIDENCE.md",
@@ -70,7 +65,7 @@
     "Council/refugees/static-only OS narrative acceptance and approved Bois-Clair night plate",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Read-only preflight/exclusive lock; inspect checkpoint-desktop-1806 normal-v2 and os-v2 terminal receipts plus docs/reports/checkpoint-desktop-20261010-1806/checks.json. Reuse only matching393physicalsource/driver/helper/9build/digests; do not rerun accepted five desktop cases, prior T0normal1722 or45min native Pursuit0420. Shared positive checkpoint braking and normal/OS vehicle departure/covered exit are accepted scoped; OS ground still travels120–226px, general camera comfort/manual scenery, stationary/backward wheel travel, covered-swap/departure wheelphase, game-only reduction and delayedreadiness/longframe remain OPEN. Resume active OPERATOR-FEEDBACK desktop native competence acceptance: inspect src/game/skills.ts, src/combat/legacyCombatSkillSpec.test.ts and existing tools/demo-continuous-production-qa.mjs skill()240–278/initialRoster336–339, with compatible earned campaign receipts. Verify all six demo heroes first2AP competence at authored joining and the remaining LumiereSalvatrice native exactly2AP-start/40percent healing boundary; existing3to1AP casts do not close exactly2AP-start. Product correction only for a demonstrated runtime defect; reuse existing native runner, at most one narrowly necessary assertion correction under sensitive guardian review, one registered unique relevant desktop scenario with exact source/build/input provenance. Do not invent canon, alter combat/AP/recruitment/save authority or restart full matrices. Preserve pendingNarrativeTask.nextAction, all original/deferred histories and scoped Pursuit evidence. Other contexts/defeat/cancel/reentry/reduced/AT, broader skills/campaign/narrative/Stage/VFX/balance/operator final manual/full-demo remain OPEN; mobileLAST, eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected.",
+  "nextAction": "Inspect salvation-exact2-2321 terminal receipt/results without restarting the worker; verify current source/driver/helper/build/digest and actual samecaster2to0/40percent, selected before/after captures, firstrefuge exactV6. Ask existing guardian for final scoped review. Original skills-native-1840 FAILED is preserved; no further instrumentation edits or second smoke thisrun. Six native novice candidates observed in failed1840 remain separate; no joininginstant/sixcasts/ending/full-demo acceptance. Preserve original/deferred nextActions and mobileLAST.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -212,10 +207,10 @@
     "lastGreenCheck": "23unique tests/types/contracts/build and one normalT0 smoke reviewed scoped PASS; provenance/digest match"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261010T1806",
+    "runId": "rpgthreejs-auto-dev-90m-20261010T2321",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-10T18:24:27.317Z",
-    "status": "PUBLISHED_SCOPED_DESKTOP_ACCEPTANCE_CLOSURE_PREPARING",
+    "lastHeartbeat": "2026-10-10T23:27:25.469Z",
+    "status": "NATIVE_SKILLS_BROWSER_RUNNING",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -19664,27 +19659,215 @@
         "resultPath": "tmp/traversal/checkpoint-desktop-1806-os-v2/results.json",
         "resultSha256": "0fe7ae339a5e99080021aaa2a7b27135375743b0f704b44107250925ca4d2f2c",
         "provenanceStable": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "skills-native-1840",
+        "runId": "rpgthreejs-auto-dev-90m-20261010T1840",
+        "status": "FAILED",
+        "registeredAt": "2026-10-10T18:47:44.391Z",
+        "pid": 29620,
+        "port": 5366,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "ending",
+          "routePlan": "rescue",
+          "timeoutMinutes": 35,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/campaign-second-refuge-1859/results.json",
+          "verifySalvation": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/skills-native-1840",
+        "receiptPath": "tmp/demo/skills-native-1840/qa-job.json",
+        "provenance": {
+          "gitHead": "2129a0b7b14de0234424097966e0684f4692c760",
+          "sourceTree": "f5d2d917f1bc2bfce472dcab68dd638337069e58",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "92ad280b914e967371cfb035610a19d1cdaf316b33a487ca20131d22d81f34e6"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+              "sha256": "67d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/campaign-second-refuge-1859/results.json",
+              "sha256": "1eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3"
+            }
+          ],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/game-EarLSl_Z.js",
+              "sha256": "e5b669f0e93f991ece7d2efd533df955f96cb4d46933beb1fe1c530bcab6b0cc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1ee0e1b79e25dfa25d3d716965c86b49b6687499eae7f29efc6ab0eef12a0aaf"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-10T18:47:50.159Z",
+        "endedAt": "2026-10-10T19:23:04.567Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/skills-native-1840/results.json",
+        "resultSha256": "9d5a2e68864da0ca1f7cf4fff47168dbd718207aa3ff5bf5a7f3adf685126949",
+        "provenanceStable": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "salvation-exact2-2321",
+        "runId": "rpgthreejs-auto-dev-90m-20261010T2321",
+        "status": "RUNNING",
+        "registeredAt": "2026-10-10T23:26:39.676Z",
+        "pid": 26324,
+        "port": 5367,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "first-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 25,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": null,
+          "priorProofPath": null,
+          "verifySalvation": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/salvation-exact2-2321",
+        "receiptPath": "tmp/demo/salvation-exact2-2321/qa-job.json",
+        "provenance": {
+          "gitHead": "2129a0b7b14de0234424097966e0684f4692c760",
+          "sourceTree": "f5d2d917f1bc2bfce472dcab68dd638337069e58",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "9b5a33ca4a3c57a288eed5f6f8a30c29b0894461bea8b0078aa1651158d843eb"
+          },
+          "inputs": [],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/game-EarLSl_Z.js",
+              "sha256": "e5b669f0e93f991ece7d2efd533df955f96cb4d46933beb1fe1c530bcab6b0cc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1ee0e1b79e25dfa25d3d716965c86b49b6687499eae7f29efc6ab0eef12a0aaf"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-10T23:27:15.687Z"
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261010T1806",
-      "sha": "be3db1cfeb125c598a9321a3019b1635f0d89151",
-      "status": "GREEN_SCOPED_DESKTOP_ACCEPTANCE",
+      "sha": "1839be75c71648320e9515b265f08d784eb963fd",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261010T2321",
+      "status": "GREEN",
       "dirtyFiles": [
-        "docs/reports/checkpoint-desktop-20261010-1806/checks.json",
-        "docs/reports/checkpoint-desktop-20261010-1806/EVIDENCE.md",
-        "docs/reports/checkpoint-desktop-20261010-1806/T1-normal-checkpoint.png",
-        "docs/reports/checkpoint-desktop-20261010-1806/T3-normal-checkpoint.png",
-        "docs/reports/checkpoint-desktop-20261010-1806/T0-os-checkpoint.png",
-        "docs/reports/checkpoint-desktop-20261010-1806/T1-os-checkpoint.png",
-        "docs/reports/checkpoint-desktop-20261010-1806/T3-os-checkpoint.png",
+        "tools/demo-continuous-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-10T1806Z-codex-checkpoint-desktop.md"
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
       ],
-      "lastGreenCheck": "23focused/types/8contracts8slots/physical393/buildlineage/fivecases/selectedcaptures/TraversalGuardianPASS_SCOPED"
+      "lastGreenCheck": "2026-10-10T23:28:07.770Z"
     },
-    "nextAction": "Read-only preflight/exclusive lock; inspect checkpoint-desktop-1806 normal-v2 and os-v2 terminal receipts plus docs/reports/checkpoint-desktop-20261010-1806/checks.json. Reuse only matching393physicalsource/driver/helper/9build/digests; do not rerun accepted five desktop cases, prior T0normal1722 or45min native Pursuit0420. Shared positive checkpoint braking and normal/OS vehicle departure/covered exit are accepted scoped; OS ground still travels120–226px, general camera comfort/manual scenery, stationary/backward wheel travel, covered-swap/departure wheelphase, game-only reduction and delayedreadiness/longframe remain OPEN. Resume active OPERATOR-FEEDBACK desktop native competence acceptance: inspect src/game/skills.ts, src/combat/legacyCombatSkillSpec.test.ts and existing tools/demo-continuous-production-qa.mjs skill()240–278/initialRoster336–339, with compatible earned campaign receipts. Verify all six demo heroes first2AP competence at authored joining and the remaining LumiereSalvatrice native exactly2AP-start/40percent healing boundary; existing3to1AP casts do not close exactly2AP-start. Product correction only for a demonstrated runtime defect; reuse existing native runner, at most one narrowly necessary assertion correction under sensitive guardian review, one registered unique relevant desktop scenario with exact source/build/input provenance. Do not invent canon, alter combat/AP/recruitment/save authority or restart full matrices. Preserve pendingNarrativeTask.nextAction, all original/deferred histories and scoped Pursuit evidence. Other contexts/defeat/cancel/reentry/reduced/AT, broader skills/campaign/narrative/Stage/VFX/balance/operator final manual/full-demo remain OPEN; mobileLAST, eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected.",
+    "nextAction": "Inspect salvation-exact2-2321 terminal receipt/results without restarting the worker; verify current source/driver/helper/build/digest and actual samecaster2to0/40percent, selected before/after captures, firstrefuge exactV6. Ask existing guardian for final scoped review. Original skills-native-1840 FAILED is preserved; no further instrumentation edits or second smoke thisrun. Six native novice candidates observed in failed1840 remain separate; no joininginstant/sixcasts/ending/full-demo acceptance. Preserve original/deferred nextActions and mobileLAST.",
     "runMetrics": {
       "sourceFilesModified": 0,
       "testFilesModified": 0,
@@ -19725,8 +19908,8 @@
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
       "sourceExecutionUnchangedAfterCommit": true
     },
-    "runStartedAt": "2026-10-10T03:24:38.2578953Z",
-    "runEndedAt": "2026-10-10T04:06:07.698Z",
+    "runStartedAt": "2026-10-10T18:41:24.4755993Z",
+    "runEndedAt": null,
     "writerStopped": true,
     "metadataPublication": {
       "status": "RESOLVED_BY_OPERATOR_APPROVAL",
@@ -20671,6 +20854,127 @@
       "guardianDisposition": "SOURCE_MECHANICAL_PASS_BROWSER_TARGET_NOT_ACCEPTED",
       "publication": "Pending guarded normal dev push, exact result in automation memory",
       "lock": "Owned; release only after verified dev publication and worker/listener absence"
+    },
+    "skills1840": {
+      "startedAt": "2026-10-10T18:43:19.556Z",
+      "previousNextAction": "Read-only preflight/exclusive lock; inspect checkpoint-desktop-1806 normal-v2 and os-v2 terminal receipts plus docs/reports/checkpoint-desktop-20261010-1806/checks.json. Reuse only matching393physicalsource/driver/helper/9build/digests; do not rerun accepted five desktop cases, prior T0normal1722 or45min native Pursuit0420. Shared positive checkpoint braking and normal/OS vehicle departure/covered exit are accepted scoped; OS ground still travels120–226px, general camera comfort/manual scenery, stationary/backward wheel travel, covered-swap/departure wheelphase, game-only reduction and delayedreadiness/longframe remain OPEN. Resume active OPERATOR-FEEDBACK desktop native competence acceptance: inspect src/game/skills.ts, src/combat/legacyCombatSkillSpec.test.ts and existing tools/demo-continuous-production-qa.mjs skill()240–278/initialRoster336–339, with compatible earned campaign receipts. Verify all six demo heroes first2AP competence at authored joining and the remaining LumiereSalvatrice native exactly2AP-start/40percent healing boundary; existing3to1AP casts do not close exactly2AP-start. Product correction only for a demonstrated runtime defect; reuse existing native runner, at most one narrowly necessary assertion correction under sensitive guardian review, one registered unique relevant desktop scenario with exact source/build/input provenance. Do not invent canon, alter combat/AP/recruitment/save authority or restart full matrices. Preserve pendingNarrativeTask.nextAction, all original/deferred histories and scoped Pursuit evidence. Other contexts/defeat/cancel/reentry/reduced/AT, broader skills/campaign/narrative/Stage/VFX/balance/operator final manual/full-demo remain OPEN; mobileLAST, eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected.",
+      "previousSubtask": "Shared desktop positive checkpoint braking and normal/OS alternatives accepted scoped; native sixhero/exact2AP healing and broader manual criteria OPEN",
+      "baseline": "2129a0b7b14de0234424097966e0684f4692c760",
+      "physicalSourceFiles": 393,
+      "priorCheckpointReceiptsVerified": true,
+      "scope": "Native exactly2AP Salvation and sixhero initial competence availability; authored recruitment retained",
+      "status": "FAILED_NATIVE_FINAL_JUDGEMENT_TIMEOUT_NO_EXACT2_ACCEPTANCE",
+      "productDefect": "NONE_DEMONSTRATED",
+      "newQaTool": false,
+      "driverChange": "One bounded existing-pilot enhancement: native exact1AP setup/reposition then exactly2AP Salvation/40percent, six native initial-equipment roster candidates; flagged scenario retains novice crosier. No new QA tool or product correction.",
+      "tests": {
+        "management": 57,
+        "skillAdapter": 3,
+        "total": 60,
+        "types": "PASS",
+        "contracts": "8contracts8slots PASS",
+        "lockedGate": "EMPTY",
+        "whitespace": "PASS",
+        "syntax": "PASS",
+        "build": "Prior1722 exact9bundle hashes reused;393physicalsource hashes unchanged"
+      },
+      "jobId": "skills-native-1840",
+      "guardian": "PASS_FOR_ONE_LAUNCH actual driver diff; fresh evidence pending",
+      "expectedAssertions": [
+        "FRESH_EXACTLY_2AP_SALVATION_2_TO_0",
+        "AUTHORED_40_PERCENT_ROUNDED_CLAMPED_HP",
+        "SIX_NATIVE_NOVICE_EQUIPMENT_CANDIDATES",
+        "FOUR_UNIT_DEPLOYMENT_CAP",
+        "EARNED_INPUTS_ENDING_EXACT_V6_RELOAD"
+      ],
+      "worker": {
+        "pid": 29620,
+        "port": 5366,
+        "startedAt": "2026-10-10T18:47:50.159Z",
+        "receiptPath": "tmp/demo/skills-native-1840/qa-job.json"
+      },
+      "openCriteria": [
+        "Authored joining instant native observation",
+        "Six actual native casts",
+        "Other motion/viewport/encounter contexts",
+        "Broader campaign/balance/AT/StageVFX/operator final/demo"
+      ],
+      "latestProgress": {
+        "at": "2026-10-10T19:13:39.844Z",
+        "nodeId": "lion-final-judgement",
+        "round": 2,
+        "actions": 10
+      },
+      "inspectedCaptures": [
+        "tmp/demo/skills-native-1840/combat-3-deployment.png (intermediate deployment only, not acceptance)",
+        "tmp/demo/skills-native-1840/combat-4-deployment.png (native Garen deployed; intermediate only)"
+      ],
+      "lastSnapshot": {
+        "branch": "wip/rpgthreejs-auto-dev-90m-20261010T1840",
+        "sha": "b2110fe0d28c295f476c39b427ec1fc7f1f49ec1",
+        "publishedAt": "2026-10-10T19:15:07.201Z"
+      },
+      "intermediateNativeOutcome": "Final-trial wolf_pack won; Cedric/Elara KO retained; canonical shadow/final-refuge/judgement reached; Champion native combat running; no terminal proof or exact2 acceptance.",
+      "terminalReceipt": {
+        "status": "FAILED",
+        "endedAt": "2026-10-10T19:23:04.567Z",
+        "resultSha256": "9d5a2e68864da0ca1f7cf4fff47168dbd718207aa3ff5bf5a7f3adf685126949",
+        "acceptance": "NOT_ACCEPTED"
+      }
+    },
+    "skills2321": {
+      "startedAt": "2026-10-10T23:25:25.378Z",
+      "baseline": "2129a0b7b14de0234424097966e0684f4692c760",
+      "previousNextAction": "Inspect skills-native-1840 terminal receipt/results at completion; check unchanged source/driver/helper/build/input digests, new native2to0/40percent cast and all6 novice-equipment candidates. Do not restart running worker. Review selected captures and request guardian final evidence pass; otherwise keep missing assertions unaccepted.",
+      "inheritedWip": {
+        "sha": "b2110fe0d28c295f476c39b427ec1fc7f1f49ec1",
+        "branch": "wip/rpgthreejs-auto-dev-90m-20261010T1840"
+      },
+      "recoverySnapshot": {
+        "sha": "f37327e0453e858d92f16b6ed1dea4986e16caa9",
+        "branch": "wip/rpgthreejs-auto-dev-90m-20261010T2321"
+      },
+      "inheritedJob": {
+        "jobId": "skills-native-1840",
+        "status": "FAILED",
+        "endedAt": "2026-10-10T19:23:04.567Z",
+        "resultSha256": "9d5a2e68864da0ca1f7cf4fff47168dbd718207aa3ff5bf5a7f3adf685126949",
+        "matchingExecution": true,
+        "physicalFiles": 393,
+        "scope": "six native novice candidates and40percent casts observed; noexact2AP; finaljudgement timeout; NO overall acceptance"
+      },
+      "productDefect": "NONE_DEMONSTRATED",
+      "newQaTool": false,
+      "harnessCorrections": 1,
+      "tests": {
+        "focused": 60,
+        "types": "PASS",
+        "contracts": "8contracts8slots PASS",
+        "lockedGate": "EMPTY"
+      },
+      "nextAction": "Review inherited skills-native-1840 FAILED timeout and verified lineage first. ONE minimal existing-pilot correction for legal native1AP setup with healthy ally only when a wounded Salvation target is in range; keep native3to2 then2to0/40percent assertions. Under guardian actual diff review launch one registered fresh1366normal first-refuge production scenario. No product defect demonstrated; preserve6native-candidate observation separately from overallFAILED, all original/deferred nextActions and mobileLAST/full-demo gaps.",
+      "driverChange": "ONE minimal correction: native healthy-ally1AP setup only while native Salvation centers contain wounded ally; health clamp equality on setup only; strict ordinary support assertions and Salvation exact2to0/40percent retained. No newQA tool.",
+      "build": "REUSED exact9bundles/index from1722,393physicalsource hashes verified; no runtime source change/rebuild claim",
+      "status": "RUNNING",
+      "guardian": "PASS_FOR_ONE_FRESH_FIRST_REFUGE_1366_NORMAL_LAUNCH actual correction; fresh evidence pending",
+      "jobId": "salvation-exact2-2321",
+      "expectedAssertions": [
+        "FRESH_SALVATION_NATIVE_2_TO_0_AP",
+        "ROUNDED_CLAMPED_40_PERCENT_HP",
+        "OPENING_FOUR_INITIAL_COMPETENCES",
+        "NATIVE_INPUTS_FIRST_REFUGE_EXACT_V6_RELOAD"
+      ],
+      "worker": {
+        "pid": 26324,
+        "port": 5367,
+        "startedAt": "2026-10-10T23:27:15.687Z",
+        "receiptPath": "tmp/demo/salvation-exact2-2321/qa-job.json"
+      },
+      "lastSnapshot": {
+        "branch": "wip/rpgthreejs-auto-dev-90m-20261010T2321",
+        "sha": "1839be75c71648320e9515b265f08d784eb963fd",
+        "remoteVerified": true
+      }
     }
   },
   "previousInterruptedRun": {

@@ -1,3 +1,53 @@
+## Exactly2AP production smoke running - 2026-10-10T23:27:25.469Z
+
+Registered salvation-exact2-2321,1366normal/firstrefuge/25min/port5367, noearnedinput fixture. Guardian actualdiff launchPASS; one minimal correction only, no further edits while running. 60focused/types/validator/gatesPASS; exact unchanged source/build reused.
+
+Exact nextAction: Inspect salvation-exact2-2321 terminal receipt/results without restarting the worker; verify current source/driver/helper/build/digest and actual samecaster2to0/40percent, selected before/after captures, firstrefuge exactV6. Ask existing guardian for final scoped review. Original skills-native-1840 FAILED is preserved; no further instrumentation edits or second smoke thisrun. Six native novice candidates observed in failed1840 remain separate; no joininginstant/sixcasts/ending/full-demo acceptance. Preserve original/deferred nextActions and mobileLAST.
+
+## Native skills interruption recovery - 2026-10-10T23:25:25.378Z
+
+Run rpgthreejs-auto-dev-90m-20261010T2321 owns lock after >105min/inactive owner/worker29620 andQAports absent/live dev parity. Snapshot f37327e0453e858d92f16b6ed1dea4986e16caa9 preserves three inherited paths, verified remote. skills-native-1840 FAILED bounded finaljudgement timeout; result/driver/helper/build/input and393physicalsource hashes verified. Six native novice candidates and seven40percent/AP2 casts observed, no exactly2start; overallFAILED retained. 60focused/types/validator/immutable gatesPASS. Product defect NONE_DEMONSTRATED; guardian precise review pending.
+
+Exact nextAction: Review inherited skills-native-1840 FAILED timeout and verified lineage first. ONE minimal existing-pilot correction for legal native1AP setup with healthy ally only when a wounded Salvation target is in range; keep native3to2 then2to0/40percent assertions. Under guardian actual diff review launch one registered fresh1366normal first-refuge production scenario. No product defect demonstrated; preserve6native-candidate observation separately from overallFAILED, all original/deferred nextActions and mobileLAST/full-demo gaps.
+
+## Published judgement WIP - 2026-10-10T19:15:07.201Z
+
+Own snapshot b2110fe0d28c295f476c39b427ec1fc7f1f49ec1, normal remote parity verified. Three reviewed paths against dev; driver unchanged during QA. All evidence remains pending terminal review.
+
+## Native skills second live snapshot - 2026-10-10T19:14:56.534Z
+
+Jobskills-native-1840 PID29620/port5366 running at native judgement round2/10actions. Two deployment captures inspected; Garen native deployed with novice lance, four-standing-party limit retained; no6casts/joininginstant/terminal/exact2 acceptance. Source/driver/helper/build/input frozen; original35min deadline retained. Same exact nextAction: inspect terminal receipt and new markers/captures under guardian before disposition.
+
+## Native skills judgement continuation - 2026-10-10T19:10:47.899Z
+
+Jobskills-native-1840 native wolf victory; retainedCedric/ElaraKO; canonical shadow-signs/finalrefuge/judgement now Champion combat. PID29620/port5366 running;35min original deadline unchanged. No terminal/exact2AP acceptance. Driver/source/build frozen, no new QA or instrumentation correction. OwnWIP b905f0d published; next action terminal receipt/results/captures/guardian.
+
+## Published native skills WIP - 2026-10-10T18:59:32.382Z
+
+Own snapshot b905f0d62c75454bd422bfb8e13f1ff992cffec3, normal remote parity verified. Three reviewed paths against dev; only two workflow paths changed since prior snapshot, driver identical. No acceptance.
+
+## Native skills live checkpoint - 2026-10-10T18:59:08.268Z
+
+Owned run rpgthreejs-auto-dev-90m-20261010T1840; worker29620/port5366 RUNNING. Native lion-final-trial-event, round3,20actions at2026-10-10T18:58:24.696Z. Deployment capture inspected:4ready/2pages/readable1366; intermediate only. Driver/build/source frozen; no exact2AP acceptance yet. Current nextAction remains terminal receipt/results/provenance/capture/guardian review; do not restart worker. All181originaljobIDs/deferred histories retained.
+
+## Native skills browser running - 2026-10-10T18:49:47.769Z
+
+Run rpgthreejs-auto-dev-90m-20261010T1840; jobskills-native-1840 PID29620/port5366/35min desktop1366normal, exact earned1859V6/proof. Guardian actualdiff PASS_FOR_ONE_LAUNCH; no acceptance. OwnWIP a8c4682 published/verified; realindex preserved. Preparation retains novice crosier under verifyflag; prior sacred-crosier balance not reused. Source393physicalhashes/exact9build reused; driver frozen for running job.
+
+Exact nextAction: Inspect skills-native-1840 terminal receipt/results at completion; check unchanged source/driver/helper/build/input digests, new native2to0/40percent cast and all6 novice-equipment candidates. Do not restart running worker. Review selected captures and request guardian final evidence pass; otherwise keep missing assertions unaccepted.
+
+## Native skills pilot checkpoint - 2026-10-10T18:46:45.404Z
+
+Run rpgthreejs-auto-dev-90m-20261010T1840;60focused tests/types/8contracts8slots/gates PASS. Source unchanged393physicalhashes; exact production build reused. One existing-pilot/assertion enhancement, no newQA tool: native1AP input/reposition then Salvation2to0/40percent; six novice-equipment native roster candidates. Earned1859V6/result digest and exact resumed truth verified; prior proof not current skills acceptance. Guardian actualdiff review pending; no browser acceptance.
+
+Exact nextAction: Review current driver diff, snapshot reviewed3paths, register ONE desktop1366 normal35min ending continuation from earned1859 second-refuge with verifySalvation1. Inspect new exact2AP40percent native cast and all6 novice-equipment candidates; retain missing/native joining/casts/full-demo gaps. No Traversal rerun.
+
+## Native skills continuation - 2026-10-10T18:43:19.556Z
+
+Run rpgthreejs-auto-dev-90m-20261010T1840; exclusive lock owned, clean live remote dev baseline2129a0b. Prior1806 two terminal receipts/digests,393physicalsources and9build hashes verified, no rerun. Native source review: no demonstrated product defect. Existing pilot misses exactly2AP-start; sensitive guardian review pending. All taskQueue/deferred/narrative/operator histories retained; previous exact nextAction in live.skills1840.previousNextAction.
+
+Exact nextAction: Inspect native skill availability and compatible earned lineage; extend existing pilot only for the missing exactly2AP-start assertion under guardian review, then one registered desktop first-refuge scenario. Do not rerun accepted Traversal/Pursuit matrices. Preserve all original/deferred continuations and authored recruitment.
+
 ## Verified desktop checkpoint publication - 2026-10-10T18:24:27.317Z
 
 Scoped proof 92adf938a5cc60b7a52c9132302d9788b2d344c5 published and verified HEAD=local/liveorigin/dev;main00b96f1 unchanged.393physicalsource and sourceExecution/driver/helper/9build remain exact after state/proof-only commit. Worker20520/2536/25620/19720 and port5364/5365 absent. Only three workflow closure paths follow; ownedWIP coverage/retirement and lockrelease after verified final publication, exactSHA/time in automationmemory. DemoIN_PROGRESS; nextAction/native skills and all explicit gaps unchanged.
@@ -371,6 +421,8 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - checkpoint-desktop-1806-os: FAILED; port 5365; receipt `tmp/traversal/checkpoint-desktop-1806-os/qa-job.json`; NOT_ACCEPTED
 - checkpoint-desktop-1806-normal-v2: SUCCEEDED; port 5364; receipt `tmp/traversal/checkpoint-desktop-1806-normal-v2/qa-job.json`; NOT_ACCEPTED
 - checkpoint-desktop-1806-os-v2: SUCCEEDED; port 5365; receipt `tmp/traversal/checkpoint-desktop-1806-os-v2/qa-job.json`; NOT_ACCEPTED
+- skills-native-1840: FAILED; port 5366; receipt `tmp/demo/skills-native-1840/qa-job.json`; NOT_ACCEPTED
+- salvation-exact2-2321: PLANNED; port 5367; receipt `tmp/demo/salvation-exact2-2321/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
