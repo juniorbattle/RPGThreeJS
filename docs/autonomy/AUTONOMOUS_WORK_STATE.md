@@ -1,3 +1,17 @@
+## Reviewed native T1 Pursuit checkpoint - 2026-10-10T0420Z
+
+Run rpgthreejs-auto-dev-90m-20261010T0420; IN_PROGRESS; checkpoint prepared 2026-10-10T05:12:21.073Z. Current source unchanged c88ee1d,393 physical source hashes stable. Native T1 t1:t0:r5a:pursuit-1 forest_patrol victory5rounds41actions accepted scoped after root+guardian/two passes: same mounted road/segment/stage/beats,clock+33.3ms,tempLoot105to190/materials+1/+1,secured35 unchanged,native HP/items/deployment/reputation61to62,visible lane1 focus and exact previous first-refuge V6 reload. No immediate live-reward persistence or all-context/demo claim.
+
+One45min job pursuit-native-0420 SUCCEEDED,request/provenance/current execution/digest true,errors[],receiptNOT_ACCEPTED retained separately. Three inspected captures and checks.json/EVIDENCE.md explicitly selected in docs/reports/pursuit-native-20261010-0420.32unique source tests/types/validator8contracts8slots/syntax/whitespace/LOCKED gates PASS; exact existing production build reused. No source/tests/QA/media/build changes; counts0/0/0/5proof/3workflow.175 historical QA jobs and previous/deferred/taskQueue/narrative histories preserved;176total.
+
+Exact next action: Read-only preflight and exclusive lock; inspect pursuit-native-0420 SUCCEEDED receipt and docs/reports/pursuit-native-20261010-0420/checks.json first. Reuse only with matching physical source/driver/helper/build/seed/assertions. Native T1 t1:t0:r5a:pursuit-1 forest_patrol victory/return/tempLoot/current-lane focus and exact previous first-refuge V6 reload are accepted scoped; no immediate live-reward persistence, other-window or full-demo claim. Do not repeat this45min scenario or the six historical accepted desktop exits. Resume OD-2026-10-09-A remaining desktop checkpoint braking/glissement: inspect tmp/traversal/motion-desktop-1748-normal/T0-1440-checkpoint-route-1.png and matching transition samples, then src/traversal/TraversalRoadScene.ts focus transition around502-550, TraversalRoadCamera.ts and TraversalWorldRenderer.ts ground/marker ownership. Fix only a demonstrated slide/conflicting-scenery issue; otherwise continue full-tail approach/ground-contact and remaining desktop agency. Verify one relevant registered production smoke with existing tools/traversal-motion-production-qa.mjs, normal/T0/1440x810, unique ignored output; no new QA tool or instrumentation loop. Native Pursuit defeat/cancel/reentry/other contexts/reduced modes/AT, broader skills/campaign/narrative/Stage/VFX/balance and operator final manual criteria stay OPEN. Preserve prior/deferred exact nextActions and ten-mapping resolution1856; mobile finalization LAST; eightvideos/Alaric/audioDEFERRED/LOCKED unchanged.
+
+Publication preparing reviewed origin/dev checkpoint; final SHA/parity/WIP retirement/lock release recorded in automation memory after verification. Native defeat/cancel/reentry/other contexts/reduced/AT/Stage/balance/manual/full demo OPEN; mobile LAST.
+
+## Current native Pursuit continuation - 2026-10-10T0420Z
+
+Run rpgthreejs-auto-dev-90m-20261010T0420; IN_PROGRESS. Clean baseline c88ee1d; no inherited WIP or lock; previous owner idle and no repository worker/listener. Live origin/dev parity verified; main unchanged. Exclusive lock acquired. One registered native production job pursuit-native-0420 on5362/pid40200, desktop1366x768 normal,45min, same earned1214 seed/proof. Source/driver/build frozen; historical25min FAILED preserved; return/tempLoot/focus/persistedV6 NOT_ACCEPTED pending receipt/captures/guardian. No new source/QA tool. Prelaunch state-path typo caused registration failure and worker refusal before browser/output; corrected, one scenario executed. ActiveTask and exact previous nextAction remain preserved in JSON pursuitNative0420.previousNextAction.
+
 ## Current native Pursuit checkpoint - 2026-10-10T0323Z
 
 Run: rpgthreejs-auto-dev-90m-20261010T0323; status: IN_PROGRESS; checkpoint prepared 2026-10-10T04:06:07.698Z. Credits available.
@@ -301,6 +315,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - pursuit-reduced-charge-2255-v2: SUCCEEDED; port 5359; receipt `tmp/traversal/pursuit-reduced-charge-2255-v2/qa-job.json`; NOT_ACCEPTED
 - pursuit-native-0323: PLANNED; port 5361; receipt `tmp/demo/pursuit-native-0323/qa-job.json`; NOT_ACCEPTED
 - pursuit-native-0323-v2: FAILED; port 5361; receipt `tmp/demo/pursuit-native-0323-v2/qa-job.json`; NOT_ACCEPTED
+- pursuit-native-0420: SUCCEEDED; port 5362; receipt `tmp/demo/pursuit-native-0420/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

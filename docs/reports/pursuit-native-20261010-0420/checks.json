@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 1,
+  "runId": "rpgthreejs-auto-dev-90m-20261010T0420",
+  "recordedAt": "2026-10-10T05:08:50.7140733Z",
+  "baseline": "c88ee1d69d9ec994a5b21691d48f2d13b34c6d2b",
+  "disposition": "ACCEPTED_SCOPED_NATIVE_T1_PURSUIT_VICTORY_RETURN_TEMPLOOT_FOCUS_PRECOMBAT_V6_1366_NORMAL",
+  "receiptAcceptance": "NOT_ACCEPTED",
+  "sourceTree": "7a91b152b3cec984592c7e454f1efe68612147c9",
+  "physicalSourcesStable": 393,
+  "sourceDriverHelperBuildModified": false,
+  "job": {
+    "jobId": "pursuit-native-0420",
+    "status": "SUCCEEDED",
+    "startedAt": "2026-10-10T04:22:30.871Z",
+    "endedAt": "2026-10-10T05:07:01.018Z",
+    "parameters": {
+      "target": "pursuit-victory",
+      "routePlan": "rescue",
+      "timeoutMinutes": 45,
+      "finalePlan": "serpent",
+      "defeatNodeId": "lion-village-choice",
+      "nativeDefeatWait": false,
+      "viewport": [
+        1366,
+        768
+      ],
+      "osReducedMotion": false,
+      "earnedSavePath": "tmp/demo/campaign-first-refuge-1214/earned-first-refuge-v6.json",
+      "priorProofPath": "tmp/demo/campaign-first-refuge-1214/results.json",
+      "verifySalvation": false
+    },
+    "requiredAssertions": [
+      "NATIVE_PURSUIT_VICTORY",
+      "SAME_MOUNTED_ROAD_RETURN",
+      "TEMPORARY_REWARD_ONCE",
+      "SETTLED_LANE_FOCUS",
+      "PERSISTED_V6_RELOAD"
+    ],
+    "provenance": {
+      "gitHead": "c88ee1d69d9ec994a5b21691d48f2d13b34c6d2b",
+      "sourceTree": "7a91b152b3cec984592c7e454f1efe68612147c9",
+      "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "driver": {
+        "path": "tools/demo-continuous-production-qa.mjs",
+        "sha256": "fdf0493132f6d8b12a6e4d64ca85303b0982054f9aadd5f745bd6baefe64de5a"
+      },
+      "inputs": [
+        {
+          "role": "earnedSavePath",
+          "path": "tmp/demo/campaign-first-refuge-1214/earned-first-refuge-v6.json",
+          "sha256": "3f5a7391e4641bad288455df175441e8a8629dc5c4e192f5d2641fb0c737d7db"
+        },
+        {
+          "role": "priorProofPath",
+          "path": "tmp/demo/campaign-first-refuge-1214/results.json",
+          "sha256": "c82b21818668943b172dd7409f6febd146eaebbfdb3d62e04da81476e476c2b2"
+        }
+      ],
+      "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+      "build": [
+        {
+          "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+          "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+        },
+        {
+          "path": "dist/assets/combat-B0LaJhFj.js",
+          "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+        },
+        {
+          "path": "dist/assets/combat-DGLEfKFr.css",
+          "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+        },
+        {
+          "path": "dist/assets/game-CdUsLhii.css",
+          "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+        },
+        {
+          "path": "dist/assets/game-JsEOPNHh.js",
+          "sha256": "806ee3dd6b3374184068e4b3fa8221126432f84824cd48dda3dbc59448d05d8a"
+        },
+        {
+          "path": "dist/assets/three-core-f0ajj1rG.js",
+          "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+        },
+        {
+          "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+          "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+        },
+        {
+          "path": "dist/assets/validation-mSkvzYyn.js",
+          "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "27047780e35507b7a888b10c20f1dec5ba96781a3b19564ce021f66ec5a2f64b"
+        }
+      ]
+    },
+    "provenanceStable": true,
+    "resultPath": "tmp/demo/pursuit-native-0420/results.json",
+    "resultSha256": "d93ea5fb805677e6036a5041bfb19bfe111695a57c0d4bbfcb9374c5860f0e27",
+    "requestMatches": true,
+    "provenanceMatches": true,
+    "matchesCurrentExecution": true,
+    "resultDigestMatches": true,
+    "eligibleForReview": true,
+    "errors": []
+  },
+  "observed": {
+    "windowId": "t1:t0:r5a:pursuit-1",
+    "legId": "T1",
+    "combatId": "forest_patrol",
+    "config": {
+      "id": "forest_patrol",
+      "sceneId": "forest_route",
+      "objective": "Éliminez la patrouille Serpent avant qu’elle ne donne l’alerte.",
+      "encounterLabel": "Patrouille Serpent",
+      "encounterRank": "normal",
+      "enemyVisualIds": [
+        "serpent_raider",
+        "serpent_raider",
+        "serpent_brute"
+      ],
+      "escortVisualIds": [],
+      "maxPlayerUnits": 4,
+      "preCombatDialogueId": "pre_serpent_patrol",
+      "postCombatDialogueId": "post_serpent_patrol",
+      "rewards": {
+        "gold": 85,
+        "reputation": 1,
+        "materials": {
+          "red_gem": 1,
+          "iron_ore": 1
+        }
+      }
+    },
+    "nativeOutcome": "victory",
+    "actions": 41,
+    "round": 5,
+    "sessionAtContact": {
+      "legId": "T1",
+      "originNodeId": "lion-first-refuge",
+      "destinationNodeId": "lion-village-choice",
+      "phase": "DECISION",
+      "stageIndex": 2,
+      "routeProgress01": 0.8799146666666667,
+      "resumeProgress01": 0.8799146666666667,
+      "currentLane": 1,
+      "consumedBeatIds": [
+        "lion-reserve-trail",
+        "lion-valmir-road"
+      ],
+      "bypassedBeatIds": [],
+      "pendingBeatId": "t1:t0:r5a:pursuit-1",
+      "worldMountState": "MOUNTED",
+      "worldVisibility": "VISIBLE",
+      "activeStageNodeIds": [
+        "lion-second-trial-event",
+        "lion-second-trial-combat"
+      ],
+      "forkOptionIds": [],
+      "activeNodeId": null
+    },
+    "elapsedBefore": 12179.500000000002,
+    "distanceObservedOnly": 31304.38952906943,
+    "returned": {
+      "sameRoad": true,
+      "window": null,
+      "segment": "t1-route-4a",
+      "stage": 2,
+      "consumed": [
+        "lion-reserve-trail",
+        "lion-valmir-road"
+      ],
+      "elapsedMs": 12212.799999999816,
+      "focusedLane": "1",
+      "focusVisible": true,
+      "outlineWidth": "2px",
+      "bounds": {
+        "left": 14,
+        "top": 388,
+        "right": 44,
+        "bottom": 418
+      }
+    },
+    "temporaryLootBefore": {
+      "gold": 105,
+      "inventory": {
+        "consumables": {},
+        "accessories": {},
+        "materials": {
+          "red_gem": 1,
+          "iron_ore": 1
+        },
+        "weapons": {}
+      }
+    },
+    "temporaryLootAfter": {
+      "gold": 190,
+      "inventory": {
+        "consumables": {},
+        "accessories": {},
+        "materials": {
+          "red_gem": 2,
+          "iron_ore": 2
+        },
+        "weapons": {}
+      }
+    },
+    "securedGoldBefore": 35,
+    "securedGoldAfter": 35,
+    "nativePayload": {
+      "participants": [
+        "warrior",
+        "white_mage",
+        "archer",
+        "rogue"
+      ],
+      "unitHealth": {
+        "warrior": 140,
+        "white_mage": 100,
+        "archer": 63,
+        "rogue": 89
+      }
+    },
+    "liveReputationBefore": 61,
+    "liveReputationAfter": 62,
+    "autosaveNode": "lion-first-refuge",
+    "autosaveVersion": 6,
+    "exactReloadNode": "lion-first-refuge",
+    "exactSavedCanonicalStateReload": true,
+    "canonicalValmir": {
+      "outcome": "victory",
+      "round": 7,
+      "actions": 54,
+      "ElaraKO": true
+    },
+    "roadClockDeltaMs": 33.3
+  },
+  "mechanicalChecks": [
+    "32 unique current source tests PASS:7road11authority14rollout; tmp duplicates excluded",
+    "TypeScript PASS",
+    "8 contracts/8 slots validator PASS",
+    "Existing exact production build reused; 9 bundle/html hashes match and eight MP4s",
+    "Immutable and workingtree LOCKED gates empty; whitespace/syntax PASS"
+  ],
+  "selectedCaptures": [
+    {
+      "path": "native-result.png",
+      "sha256": "e8d3d84dadb0075046cdccd3adc9fa95d9f553ad674ceae452797a0101a9b639",
+      "review": "Native victory card,all four participants standing;+85gold,+1redgem,+1ironore,+1reputation. Attack label still visible; no Stage completion acceptance."
+    },
+    {
+      "path": "road-return-focus.png",
+      "sha256": "2bad5ff22ce8a6a8582f26239e75e2dc4437c7d544a6156508e89c2cae0ed689",
+      "review": "Same road/caravan visible, lane1 outline at left, HUD secured35 and route190; next authored shrine. No full-road/motion/AT acceptance."
+    },
+    {
+      "path": "v6-reloaded.png",
+      "sha256": "930459560dae4d36edad74c1cd0cd854e51fc8b48bc2d6370934f03d95bdb5c4",
+      "review": "First-refuge canonical departure, visible PRENDRE LA ROUTE agency, secured35/reputation56; exact prebattle autosave restored, no replayed iframe."
+    }
+  ],
+  "guardian": {
+    "reviewers": 1,
+    "passes": 2,
+    "finalReview": "PASS scoped; root and guardian inspect3captures, matching receipt/assertions/lineage; other scopes open",
+    "matrix": {
+      "GAME_CONSTITUTION": "PASS",
+      "ART_DIRECTION": "N/A",
+      "CHARACTERS": "N/A",
+      "ENVIRONMENTS": "N/A",
+      "NARRATIVE_CAMPAIGN": "PASS",
+      "NARRATIVE_PRESENTATION": "N/A",
+      "TRAVERSAL": "PASS scoped",
+      "COMBAT": "PASS native observed",
+      "SAVE": "PASS exact previous firstrefugeV6,not live reward persistence",
+      "UI_ACCESSIBILITY": "PASS desktop return focus only",
+      "QA_EVIDENCE": "PASS scoped",
+      "REPOSITORY_GOVERNANCE": "PASS scoped"
+    }
+  },
+  "counts": {
+    "designatedBrowserScenarios": 1,
+    "inheritedWIP": 0,
+    "existingQaFilesModified": 0,
+    "newQaFilesAdded": 0,
+    "proofFilesAdded": 5,
+    "executedAttempts": 1,
+    "testFilesModified": 0,
+    "sourceFilesModified": 0,
+    "workflowFilesChanged": 3
+  },
+  "limits": [
+    "Only T1 t1:t0:r5a:pursuit-1 forest_patrol desktop1366normal; otherwindows open",
+    "Autosave cadence unchanged; live victory reward is not immediately persisted; reload returns prior first-refuge V6",
+    "Distance not asserted; no cross-reload physical-pursuit exactly-once claim",
+    "Native defeat/cancel/reentry/reduced modes/AT/postreload focus/balance/Stage/visual/campaign/narrative/full demo open",
+    "Existing25minFAILED/unlaunched0323 and all175 prior jobs preserved; no outcome injection/harness correction",
+    "Mobile finalization LAST; operator final artistic/literary/balance/manual acceptance open"
+  ]
+}
