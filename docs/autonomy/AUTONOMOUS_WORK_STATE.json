@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-10T19:22:22.5423147-04:00",
-  "runEndedAt": "2026-10-10T19:58:17.6778443-04:00",
+  "runEndedAt": "2026-10-10T23:59:51.6498157+00:00",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "DESKTOP_NATIVE_EXACT2AP_SCOPED_VERIFICATION",
   "activeSubtask": "Corrected native1AP setup published; new T0 Pursuit timeout leaves exactly2AP/firstrefuge proof OPEN",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "e5f2c67d2e73cf2a04fe171e919f2ff009a2b53e",
-  "lastPushedCommit": "e5f2c67d2e73cf2a04fe171e919f2ff009a2b53e",
+  "lastKnownGoodCommit": "90e675895265782beb28b37c8b516f742c7070fd",
+  "lastPushedCommit": "90e675895265782beb28b37c8b516f742c7070fd",
   "completedThisRun": [
     "Recovered interrupted1840 lock under cumulative stale conditions; reviewed/published three-path recovery snapshot",
     "Synced1840 FAILED timeout and audited sixnative candidates/seven40percent native healing casts; noexact2 acceptance",
@@ -197,8 +197,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261010T2321",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-10T19:58:17.6778443-04:00",
-    "status": "CHECKPOINT_READY_FAILED_SCOPED_QA",
+    "lastHeartbeat": "2026-10-10T23:59:51.6498157+00:00",
+    "status": "CHECKPOINT_PUBLISHED_FAILED_SCOPED_QA",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -19856,8 +19856,9 @@
     ],
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261010T2321",
-      "sha": "cd90eb3ce6bbf9a26c27c520e445e213dc743a7d",
-      "remoteVerified": true
+      "status": "RETIRED_AFTER_VERIFIED_DEV_COVERAGE",
+      "retiredAt": "2026-10-10T23:59:51.6498157+00:00",
+      "sha": "cd90eb3ce6bbf9a26c27c520e445e213dc743a7d"
     },
     "nextAction": "Read-only preflight/owned lock; inspect skills-native-1840 and salvation-exact2-2321 FAILED receipts plus tmp/autonomy/skills-2321/terminal-audit.json. New2321 driver9b5a33ca/393physicalsource/9build stable, resultb45aab0b; no exactly2AP marker/setup or firstrefuge/V6/T0Pursuit return acceptance. Opening won3rounds17actions; ordinaryT0 t0:r6:pursuit-1 forest_ambush timedout22actions, two native40percent casts5to3/3to1 observed; no product defect demonstrated. Do not rerun unchanged freshopening or acceptedTraversal/nativeT1 matrices. Retain ONE reviewed existingpilot correction unchanged; verify earned firstrefuge1214 save/proof lineage from tmp/autonomy/skills-2321/future-earned-input-audit.json, then ONE registered1366normal existing demo-continuous-production-qa targetsecond-refuge continuation through T1 for missing native exactly2AP-start context. No further instrumentation edit; do not seed from failed2321. Preserve pendingNarrativeTask.nextAction, sixnative candidates observed1840 (not joininginstant/sixcasts acceptance), all original/deferred histories and mobileLAST. Eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected; broaderPursuit/skills/campaign/narrative/StageVFX/AT/balance/operator final/full-demo remainOPEN.",
     "runMetrics": {
@@ -19889,8 +19890,8 @@
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
       "sourceExecutionUnchangedAfterCommit": true
     },
-    "runStartedAt": "2026-10-10T18:41:24.4755993Z",
-    "runEndedAt": "2026-10-10T19:58:17.6778443-04:00",
+    "runStartedAt": "2026-10-10T19:22:22.5423147-04:00",
+    "runEndedAt": "2026-10-10T23:59:51.6498157+00:00",
     "writerStopped": true,
     "metadataPublication": {
       "status": "RESOLVED_BY_OPERATOR_APPROVAL",
@@ -20952,7 +20953,7 @@
         "receiptPath": "tmp/demo/salvation-exact2-2321/qa-job.json"
       },
       "lastSnapshot": {
-        "publishedAt": "2026-10-10T23:58:56.0767002+00:00",
+        "publishedAt": "2026-10-10T19:58:56.0767002-04:00",
         "branch": "wip/rpgthreejs-auto-dev-90m-20261010T2321",
         "sha": "cd90eb3ce6bbf9a26c27c520e445e213dc743a7d",
         "remoteVerified": true
@@ -21156,7 +21157,16 @@
         },
         "at": "2026-10-10T19:58:17.6778443-04:00",
         "protectedHistories": 15,
-        "handoff": "docs/autonomy/handoffs/2026-10-10T2321Z-codex-native-skills.md"
+        "handoff": "docs/autonomy/handoffs/2026-10-10T2321Z-codex-native-skills.md",
+        "publication": {
+          "verifiedDev": "90e675895265782beb28b37c8b516f742c7070fd",
+          "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+          "associatedProcessesAbsent": true,
+          "inheritedRefsRetained": true,
+          "finalMetadataSha": "Recorded externally after final push",
+          "port5367Absent": true,
+          "ownWipRetired": true
+        }
       }
     }
   },

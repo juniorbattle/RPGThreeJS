@@ -1,3 +1,7 @@
+## Verified publication and WIP retirement - 2026-10-10T23:59:51.6498157+00:00
+
+Dev90e675895265782beb28b37c8b516f742c7070fd verified local/live origin; main00b96f1 unchanged. Own2321 WIPcd90eb3 retired local/remote after reviewed coverage: only workflow metadata differed, all pilot/handoff content ondev. Inherited1840/0735/1600 refs retained. Associated QA/Git/sync processes and port5367 absent. Final metadata SHA and owned-lock release recorded in external automation memory. Demo IN_PROGRESS; FAILED/NOT_ACCEPTED and exactnextAction unchanged.
+
 ## Safe native-skills checkpoint - 2026-10-10T23:58:17.6778443+00:00
 
 Demo remains IN_PROGRESS. Current handoff: docs/autonomy/handoffs/2026-10-10T2321Z-codex-native-skills.md. Pilot correction e5f2c67 published; no demonstrated product defect. ONE smoke FAILED/NOT_ACCEPTED. Opening won3rounds17actions, ordinaryT0 Pursuit t0:r6:pursuit-1 forest_ambush stopped at25min/22actions. Native40percent heals5to3 and3to1 AP observed; exactly2start/setup/firstrefuge/V6/Pursuitreturn remain OPEN. Terminal job ledger synced FAILED, digest/currentexecution match, not eligible for acceptance. Guardian thirdpass staticauthority PASS, QA_EVIDENCE BLOCKED; governance staleledger resolved by verified sync. Worker26324/port5367 absent. No more harness edits or relaunch thisrun.
