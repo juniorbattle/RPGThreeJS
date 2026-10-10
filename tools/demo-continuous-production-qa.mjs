@@ -186,7 +186,7 @@ async function cellClick(frame,cell,attempt){
   }return false;
 }
 async function settled(frame){await frame.waitForFunction(()=>window.G.over||!window.G.busy&&window.G.mode==='menu',null,{timeout:30000});}
-async function attack(frame,battle,{support=false}={}){
+async function attack(frame,battle,{support=false,exactAp=null}={}){
   const before=await combatState(frame), button=frame.locator('#menu [data-a="attack"]:not(:disabled)').first();
   const attempt={before,support,buttons:await frame.locator('#menu [data-a="attack"]').evaluateAll(bs=>bs.map(b=>({disabled:b.disabled,text:b.textContent.trim(),weaponIndex:b.dataset.wi})))};
   (battle.attackAttempts??=[]).push(attempt);
@@ -203,6 +203,7 @@ async function attack(frame,battle,{support=false}={}){
     :c.target.team!==g.active.team)).sort((a,b)=>support?a.target.hp/a.target.maxhp-b.target.hp/b.target.maxhp:a.target.hp-b.target.hp)
     .map(c=>({gx:c.gx,gz:c.gz,targetId:c.target.id}))};},support);
   Object.assign(attempt,native);
+  if(exactAp!==null&&native.spec?.ap!==exactAp){attempt.reason='native-cost-outside-scoped-setup';await cancel(frame);return false;}
   for(const cell of native.candidates){if(await cellClick(frame,cell,attempt)){
     await page.waitForTimeout(50);
     const started=await combatState(frame);
@@ -243,6 +244,18 @@ async function skill(frame,battle){
     if(battle.combatId==='lion_chief')(battle.skillAttempts??=[]).push({round:before.round,active:before.active,nativeMenuEnabled:false});
     return false;
   }
+  // Spend one AP through an ordinary crosier input to expose the missing 2-AP boundary.
+  if(process.env.DEMO_QA_VERIFY_SALVATION==='1'&&before.active.id==='white_mage'&&before.active.ap===3
+    &&before.attacks===0&&!report.battles.slice(report.inheritedBattleCount??0).some(b=>b.actions.some(a=>a.verifiedExactly2Ap))
+    ){
+    if(await attack(frame,battle,{support:true,exactAp:1})){
+      const setup=battle.actions.at(-1);
+      assert.equal(setup.after.active?.id,before.active.id,'Native setup changed caster');
+      assert.equal(setup.after.active.ap,2,'Native one-AP setup did not leave exactly two AP');
+      setup.exactly2ApSetup=true;return true;
+    }
+    if(await move(frame,battle,{support:true,supportRange:before.active.weapons[0].max}))return true;
+  }
   const wounded=before.units.filter(u=>u.team==='player'&&u.alive&&u.hp<u.maxhp*.95);
   const ids=(before.active.id==='white_mage'&&wounded.length
     ?['w_salvation','w_purify']:['n_dark_bolt','a_precise_shot','ar_calibrated_shot','w_break_guard']
@@ -265,6 +278,8 @@ async function skill(frame,battle){
     attempt.eligibleCenters=pending.centers.filter(c=>targets.some(t=>t.id===c.targetId));
     for(const cell of attempt.eligibleCenters){
       const target=targets.find(t=>t.id===cell.targetId);
+      if(id==='w_salvation'&&process.env.DEMO_QA_VERIFY_SALVATION==='1'&&before.active.ap===2)
+        await capture(`combat-${battle.index}-salvation-exactly2ap-before-${battle.actions.length}`);
       if(!await cellClick(frame,cell))continue;
       await settled(frame);const after=await combatState(frame);
       if(after.active?.id===before.active.id&&after.active.ap===before.active.ap){await cancel(frame);continue;}
@@ -273,8 +288,14 @@ async function skill(frame,battle){
       if(id==='w_salvation'&&process.env.DEMO_QA_VERIFY_SALVATION==='1'){
         const healed=after.units.find(u=>u.id===target.id);
         assert.equal(pending.spec.healPercent,.4,'Lumière Salvatrice lost its authored 40 percent heal in the action spec');
+        assert.equal(pending.spec.ap,2,'Lumière Salvatrice lost its authored two-AP cost');
         assert.equal(healed.hp,Math.min(target.maxhp,target.hp+Math.round(target.maxhp*.4)));
         battle.actions.at(-1).verifiedHealing=true;
+        if(before.active.ap===2){
+          assert.equal(after.active?.id,before.active.id,'Salvation changed the active caster');
+          assert.equal(after.active.ap,0,'Salvation from exactly two AP did not consume exactly two AP');
+          battle.actions.at(-1).verifiedExactly2Ap=true;
+        }
       }
       return true;
     }await cancel(frame);
@@ -329,6 +350,18 @@ async function battle(){
   await frame.locator('#menu [data-d="auto"]').click();
   entry.deployed=await frame.evaluate(()=>window.G.deployedUnits.length);assert.ok(entry.deployed>0&&entry.deployed<=4,'Deployment exceeds the existing four-unit cap');
   entry.ownerBefore=await state();
+  if(process.env.DEMO_QA_VERIFY_SALVATION==='1'){
+    entry.availableRoster=await frame.evaluate(()=>G.rosterDefs.map(u=>({id:u.campaignId||u.id,skills:[...u.skills]})));
+    const initialSkills={warrior:'w_break_guard',white_mage:'w_salvation',dark_mage:'n_dark_bolt',archer:'a_precise_shot',rogue:'ro_sneak_attack',lancer:'l_long_thrust'};
+    entry.initialEquipmentSkills=[];
+    for(const candidate of entry.availableRoster){
+      const hero=entry.ownerBefore.clan.members.find(u=>u.id===candidate.id),expected=initialSkills[hero?.definitionId];
+      if(expected&&hero.equipment.weaponIds[0]?.startsWith('novice_')){
+        assert.deepEqual(candidate.skills,[expected],`Native initial-equipment competence: ${candidate.id}`);
+        entry.initialEquipmentSkills.push({id:candidate.id,definitionId:hero.definitionId,weaponId:hero.equipment.weaponIds[0],skillId:expected});
+      }
+    }
+  }
   entry.autosaveBefore=JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')));
   await capture(`combat-${entry.index}-deployment`);
   await frame.locator('#menu [data-d="start"]').click();
@@ -622,7 +655,7 @@ try{
           temporaryLootUnchanged:true,exactV6ReloadVerified:true};
         await capture(`${nodeId}-native-potion-stock-resumed`);
       }
-      if(nodeId==='lion-second-refuge'&&target==='ending'){
+      if(nodeId==='lion-second-refuge'&&target==='ending'&&process.env.DEMO_QA_VERIFY_SALVATION!=='1'){
         await keyboardActivate('.exploration-stop [data-action="shop"]');
         const buy='.management [data-trade="buy"][data-item="sacred_crosier"]';
         await page.locator(buy).waitFor({state:'visible'});assert.equal(await page.locator(buy).isEnabled(),true);
@@ -634,7 +667,7 @@ try{
       }
       await keyboardActivate('.exploration-stop [data-action="clan"]');
       await page.locator('.management [data-action="close"]').waitFor({state:'visible'});
-      if(nodeId==='lion-second-refuge'&&target==='ending'){
+      if(nodeId==='lion-second-refuge'&&target==='ending'&&process.env.DEMO_QA_VERIFY_SALVATION!=='1'){
         await keyboardActivate('.management [data-unit="white_mage"]');
         await keyboardActivate('.management [data-equip-slot="weapon"]');
         await keyboardActivate('.management [data-preview-item="sacred_crosier"]');
@@ -681,7 +714,13 @@ try{
   }
   assert.equal(report.pass,true,`Did not reach earned ${target} before the bounded deadline`);
   report.salvationVerified=report.battles.slice(report.inheritedBattleCount??0).some(b=>b.actions.some(a=>a.verifiedHealing));
-  if(target==='ending'&&process.env.DEMO_QA_VERIFY_SALVATION==='1')assert.equal(report.salvationVerified,true,'No new verified Salvation cast occurred');
+  if(process.env.DEMO_QA_VERIFY_SALVATION==='1'){
+    const newBattles=report.battles.slice(report.inheritedBattleCount??0);
+    report.salvationExactly2ApVerified=newBattles.some(b=>b.actions.some(a=>a.verifiedExactly2Ap));
+    assert.equal(report.salvationExactly2ApVerified,true,'No new native exactly-two-AP Salvation cast occurred');
+    report.nativeInitialEquipmentHeroes=[...new Set(newBattles.flatMap(b=>(b.initialEquipmentSkills??[]).map(u=>u.definitionId)))].sort();
+    if(target==='ending')assert.deepEqual(report.nativeInitialEquipmentHeroes,['archer','dark_mage','lancer','rogue','warrior','white_mage'],'Six native initial-equipment candidates were not observed');
+  }
 }catch(error){report.pass=false;report.failure=error.stack;await capture('failure-state').catch(()=>{});
   report.lastState=await state().catch(()=>null);console.error(error.stack);process.exitCode=1;
 }finally{

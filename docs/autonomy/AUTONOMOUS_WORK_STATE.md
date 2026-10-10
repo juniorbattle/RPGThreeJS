@@ -1,3 +1,15 @@
+## Native skills pilot checkpoint - 2026-10-10T18:46:45.404Z
+
+Run rpgthreejs-auto-dev-90m-20261010T1840;60focused tests/types/8contracts8slots/gates PASS. Source unchanged393physicalhashes; exact production build reused. One existing-pilot/assertion enhancement, no newQA tool: native1AP input/reposition then Salvation2to0/40percent; six novice-equipment native roster candidates. Earned1859V6/result digest and exact resumed truth verified; prior proof not current skills acceptance. Guardian actualdiff review pending; no browser acceptance.
+
+Exact nextAction: Review current driver diff, snapshot reviewed3paths, register ONE desktop1366 normal35min ending continuation from earned1859 second-refuge with verifySalvation1. Inspect new exact2AP40percent native cast and all6 novice-equipment candidates; retain missing/native joining/casts/full-demo gaps. No Traversal rerun.
+
+## Native skills continuation - 2026-10-10T18:43:19.556Z
+
+Run rpgthreejs-auto-dev-90m-20261010T1840; exclusive lock owned, clean live remote dev baseline2129a0b. Prior1806 two terminal receipts/digests,393physicalsources and9build hashes verified, no rerun. Native source review: no demonstrated product defect. Existing pilot misses exactly2AP-start; sensitive guardian review pending. All taskQueue/deferred/narrative/operator histories retained; previous exact nextAction in live.skills1840.previousNextAction.
+
+Exact nextAction: Inspect native skill availability and compatible earned lineage; extend existing pilot only for the missing exactly2AP-start assertion under guardian review, then one registered desktop first-refuge scenario. Do not rerun accepted Traversal/Pursuit matrices. Preserve all original/deferred continuations and authored recruitment.
+
 ## Verified desktop checkpoint publication - 2026-10-10T18:24:27.317Z
 
 Scoped proof 92adf938a5cc60b7a52c9132302d9788b2d344c5 published and verified HEAD=local/liveorigin/dev;main00b96f1 unchanged.393physicalsource and sourceExecution/driver/helper/9build remain exact after state/proof-only commit. Worker20520/2536/25620/19720 and port5364/5365 absent. Only three workflow closure paths follow; ownedWIP coverage/retirement and lockrelease after verified final publication, exactSHA/time in automationmemory. DemoIN_PROGRESS; nextAction/native skills and all explicit gaps unchanged.

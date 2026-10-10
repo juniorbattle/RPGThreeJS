@@ -1,19 +1,14 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-10T18:08:05.4005850Z",
-  "runEndedAt": "2026-10-10T18:24:27.317Z",
+  "runStartedAt": "2026-10-10T18:41:24.4755993Z",
+  "runEndedAt": null,
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "DESKTOP_NATIVE_SKILLS_REMAINING_ACCEPTANCE",
-  "activeSubtask": "Shared desktop positive checkpoint braking and normal/OS alternatives accepted scoped; native sixhero/exact2AP healing and broader manual criteria OPEN",
+  "activeSubtask": "Desktop sixhero initial competence and native exactly2AP Salvation acceptance in progress",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "92adf938a5cc60b7a52c9132302d9788b2d344c5",
   "lastPushedCommit": "92adf938a5cc60b7a52c9132302d9788b2d344c5",
-  "completedThisRun": [
-    "Reused accepted T0normal1722 without rerun;393physicalsource/exactdriverhelper9build and originalresult digest checked",
-    "Finished five missing desktop checkpoint cases: T1/T3normal,T0/T1/T3OS-only at1440,3338frames21stops1350positivewheelpairs,zeroerrors",
-    "Root+Traversal+guardian inspected selected proof and passed scoped acceptance with explicit OS camera and wheel/readiness gaps",
-    "Initial sandbox browser-cache failures preserved; host-installed Chromium v2 succeeded without source/harness edit"
-  ],
+  "completedThisRun": [],
   "filesChanged": [
     "docs/reports/checkpoint-desktop-20261010-1806/checks.json",
     "docs/reports/checkpoint-desktop-20261010-1806/EVIDENCE.md",
@@ -70,7 +65,7 @@
     "Council/refugees/static-only OS narrative acceptance and approved Bois-Clair night plate",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Read-only preflight/exclusive lock; inspect checkpoint-desktop-1806 normal-v2 and os-v2 terminal receipts plus docs/reports/checkpoint-desktop-20261010-1806/checks.json. Reuse only matching393physicalsource/driver/helper/9build/digests; do not rerun accepted five desktop cases, prior T0normal1722 or45min native Pursuit0420. Shared positive checkpoint braking and normal/OS vehicle departure/covered exit are accepted scoped; OS ground still travels120–226px, general camera comfort/manual scenery, stationary/backward wheel travel, covered-swap/departure wheelphase, game-only reduction and delayedreadiness/longframe remain OPEN. Resume active OPERATOR-FEEDBACK desktop native competence acceptance: inspect src/game/skills.ts, src/combat/legacyCombatSkillSpec.test.ts and existing tools/demo-continuous-production-qa.mjs skill()240–278/initialRoster336–339, with compatible earned campaign receipts. Verify all six demo heroes first2AP competence at authored joining and the remaining LumiereSalvatrice native exactly2AP-start/40percent healing boundary; existing3to1AP casts do not close exactly2AP-start. Product correction only for a demonstrated runtime defect; reuse existing native runner, at most one narrowly necessary assertion correction under sensitive guardian review, one registered unique relevant desktop scenario with exact source/build/input provenance. Do not invent canon, alter combat/AP/recruitment/save authority or restart full matrices. Preserve pendingNarrativeTask.nextAction, all original/deferred histories and scoped Pursuit evidence. Other contexts/defeat/cancel/reentry/reduced/AT, broader skills/campaign/narrative/Stage/VFX/balance/operator final manual/full-demo remain OPEN; mobileLAST, eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected.",
+  "nextAction": "Review current driver diff, snapshot reviewed3paths, register ONE desktop1366 normal35min ending continuation from earned1859 second-refuge with verifySalvation1. Inspect new exact2AP40percent native cast and all6 novice-equipment candidates; retain missing/native joining/casts/full-demo gaps. No Traversal rerun.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -212,10 +207,10 @@
     "lastGreenCheck": "23unique tests/types/contracts/build and one normalT0 smoke reviewed scoped PASS; provenance/digest match"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261010T1806",
+    "runId": "rpgthreejs-auto-dev-90m-20261010T1840",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-10T18:24:27.317Z",
-    "status": "PUBLISHED_SCOPED_DESKTOP_ACCEPTANCE_CLOSURE_PREPARING",
+    "lastHeartbeat": "2026-10-10T18:46:45.404Z",
+    "status": "NATIVE_SKILLS_SOURCE_REVIEW",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -19684,7 +19679,7 @@
       ],
       "lastGreenCheck": "23focused/types/8contracts8slots/physical393/buildlineage/fivecases/selectedcaptures/TraversalGuardianPASS_SCOPED"
     },
-    "nextAction": "Read-only preflight/exclusive lock; inspect checkpoint-desktop-1806 normal-v2 and os-v2 terminal receipts plus docs/reports/checkpoint-desktop-20261010-1806/checks.json. Reuse only matching393physicalsource/driver/helper/9build/digests; do not rerun accepted five desktop cases, prior T0normal1722 or45min native Pursuit0420. Shared positive checkpoint braking and normal/OS vehicle departure/covered exit are accepted scoped; OS ground still travels120–226px, general camera comfort/manual scenery, stationary/backward wheel travel, covered-swap/departure wheelphase, game-only reduction and delayedreadiness/longframe remain OPEN. Resume active OPERATOR-FEEDBACK desktop native competence acceptance: inspect src/game/skills.ts, src/combat/legacyCombatSkillSpec.test.ts and existing tools/demo-continuous-production-qa.mjs skill()240–278/initialRoster336–339, with compatible earned campaign receipts. Verify all six demo heroes first2AP competence at authored joining and the remaining LumiereSalvatrice native exactly2AP-start/40percent healing boundary; existing3to1AP casts do not close exactly2AP-start. Product correction only for a demonstrated runtime defect; reuse existing native runner, at most one narrowly necessary assertion correction under sensitive guardian review, one registered unique relevant desktop scenario with exact source/build/input provenance. Do not invent canon, alter combat/AP/recruitment/save authority or restart full matrices. Preserve pendingNarrativeTask.nextAction, all original/deferred histories and scoped Pursuit evidence. Other contexts/defeat/cancel/reentry/reduced/AT, broader skills/campaign/narrative/Stage/VFX/balance/operator final manual/full-demo remain OPEN; mobileLAST, eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected.",
+    "nextAction": "Review current driver diff, snapshot reviewed3paths, register ONE desktop1366 normal35min ending continuation from earned1859 second-refuge with verifySalvation1. Inspect new exact2AP40percent native cast and all6 novice-equipment candidates; retain missing/native joining/casts/full-demo gaps. No Traversal rerun.",
     "runMetrics": {
       "sourceFilesModified": 0,
       "testFilesModified": 0,
@@ -19725,8 +19720,8 @@
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
       "sourceExecutionUnchangedAfterCommit": true
     },
-    "runStartedAt": "2026-10-10T03:24:38.2578953Z",
-    "runEndedAt": "2026-10-10T04:06:07.698Z",
+    "runStartedAt": "2026-10-10T18:41:24.4755993Z",
+    "runEndedAt": null,
     "writerStopped": true,
     "metadataPublication": {
       "status": "RESOLVED_BY_OPERATOR_APPROVAL",
@@ -20671,6 +20666,30 @@
       "guardianDisposition": "SOURCE_MECHANICAL_PASS_BROWSER_TARGET_NOT_ACCEPTED",
       "publication": "Pending guarded normal dev push, exact result in automation memory",
       "lock": "Owned; release only after verified dev publication and worker/listener absence"
+    },
+    "skills1840": {
+      "startedAt": "2026-10-10T18:43:19.556Z",
+      "previousNextAction": "Read-only preflight/exclusive lock; inspect checkpoint-desktop-1806 normal-v2 and os-v2 terminal receipts plus docs/reports/checkpoint-desktop-20261010-1806/checks.json. Reuse only matching393physicalsource/driver/helper/9build/digests; do not rerun accepted five desktop cases, prior T0normal1722 or45min native Pursuit0420. Shared positive checkpoint braking and normal/OS vehicle departure/covered exit are accepted scoped; OS ground still travels120–226px, general camera comfort/manual scenery, stationary/backward wheel travel, covered-swap/departure wheelphase, game-only reduction and delayedreadiness/longframe remain OPEN. Resume active OPERATOR-FEEDBACK desktop native competence acceptance: inspect src/game/skills.ts, src/combat/legacyCombatSkillSpec.test.ts and existing tools/demo-continuous-production-qa.mjs skill()240–278/initialRoster336–339, with compatible earned campaign receipts. Verify all six demo heroes first2AP competence at authored joining and the remaining LumiereSalvatrice native exactly2AP-start/40percent healing boundary; existing3to1AP casts do not close exactly2AP-start. Product correction only for a demonstrated runtime defect; reuse existing native runner, at most one narrowly necessary assertion correction under sensitive guardian review, one registered unique relevant desktop scenario with exact source/build/input provenance. Do not invent canon, alter combat/AP/recruitment/save authority or restart full matrices. Preserve pendingNarrativeTask.nextAction, all original/deferred histories and scoped Pursuit evidence. Other contexts/defeat/cancel/reentry/reduced/AT, broader skills/campaign/narrative/Stage/VFX/balance/operator final manual/full-demo remain OPEN; mobileLAST, eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected.",
+      "previousSubtask": "Shared desktop positive checkpoint braking and normal/OS alternatives accepted scoped; native sixhero/exact2AP healing and broader manual criteria OPEN",
+      "baseline": "2129a0b7b14de0234424097966e0684f4692c760",
+      "physicalSourceFiles": 393,
+      "priorCheckpointReceiptsVerified": true,
+      "scope": "Native exactly2AP Salvation and sixhero initial competence availability; authored recruitment retained",
+      "status": "PILOT_ASSERTION_CHECKPOINT",
+      "productDefect": "NONE_DEMONSTRATED",
+      "newQaTool": false,
+      "driverChange": "One bounded existing-pilot enhancement: native exact1AP setup/reposition then exactly2AP Salvation/40percent, six native initial-equipment roster candidates; flagged scenario retains novice crosier. No new QA tool or product correction.",
+      "tests": {
+        "management": 57,
+        "skillAdapter": 3,
+        "total": 60,
+        "types": "PASS",
+        "contracts": "8contracts8slots PASS",
+        "lockedGate": "EMPTY",
+        "whitespace": "PASS",
+        "syntax": "PASS",
+        "build": "Prior1722 exact9bundle hashes reused;393physicalsource hashes unchanged"
+      }
     }
   },
   "previousInterruptedRun": {
