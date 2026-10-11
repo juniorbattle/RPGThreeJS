@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-11T17:31:11Z",
-  "runEndedAt": "2026-10-11T17:55:33.001Z",
+  "runEndedAt": "2026-10-11T17:57:13.179Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "NATIVE_SKILL_COVERAGE_ACCEPTANCE",
   "activeSubtask": "Rogue/lancer native casts observed historically; refund-aware pilot unexecuted, six-hero gate OPEN",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "2a083a9551cd39d73284f6f6c35ed7e19e1d6b46",
-  "lastPushedCommit": "2a083a9551cd39d73284f6f6c35ed7e19e1d6b46",
+  "lastKnownGoodCommit": "1ca520498d6262293f1f57800c4adbd4539bda57",
+  "lastPushedCommit": "1ca520498d6262293f1f57800c4adbd4539bda57",
   "completedThisRun": [
     "Read-only preflight clean dev/live99ea303, no active lock/writer; original task and histories preserved",
     "Bounded existing native pilot coverage correction: rogue/lancer IDs, native four-unit rotation, actual fresh casts rather than roster availability",
@@ -81,7 +81,7 @@
   ],
   "creditStatus": "AVAILABLE_THIS_RUN",
   "contractComplianceStatus": "PASS_SAFE_PILOT_CHECKPOINT; QA_EVIDENCE_OPEN/corrected driver unexecuted; set1.1.0 and immutable d7ca28a unchanged; demoIN_PROGRESS",
-  "commitReferenceScope": "Published baseline/checkpoint references; final dev metadata SHA/parity/WIP retirement/lock release recorded in automationmemory after verification",
+  "commitReferenceScope": "Verified pilot checkpoint publication only; corrected driver has no browser acceptance. Final workflow SHA in automation memory/ignored final-publication audit.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -184,24 +184,19 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261011T1731",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-11T17:56:12.4321702+00:00",
+  "lastHeartbeat": "2026-10-11T17:57:13.179Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1731",
     "sha": "2d587906ce5ee13b6fb5014b23e24d4c6d2c4208",
     "at": "2026-10-11T17:56:12.4321702+00:00",
-    "status": "GREEN_MECHANICAL_PILOT_BROWSER_FAILED_CORRECTION_UNEXECUTED",
-    "dirtyFiles": [
-      "tools/demo-continuous-production-qa.mjs",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-11T1731Z-codex-native-skills.md"
-    ],
+    "status": "PRESERVED_RECOVERABLE_PILOT_CONTENT_ON_DEV_BROWSER_GATE_OPEN",
+    "dirtyFiles": [],
     "lastGreenCheck": "60unique tests plus60baseline duplicates/types/contracts8slots/syntax/gates/guardian safecheckpointPASS; sixhero browser acceptanceOPEN"
   },
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261011T1731",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-11T17:56:12.4321702+00:00",
+    "lastHeartbeat": "2026-10-11T17:57:13.179Z",
     "status": "CLOSED_PUBLISHED_LOCK_RELEASE_PENDING_PARITY",
     "qaJobs": [
       {
@@ -21294,13 +21289,8 @@
       "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1731",
       "sha": "2d587906ce5ee13b6fb5014b23e24d4c6d2c4208",
       "at": "2026-10-11T17:56:12.4321702+00:00",
-      "status": "GREEN_MECHANICAL_PILOT_BROWSER_FAILED_CORRECTION_UNEXECUTED",
-      "dirtyFiles": [
-        "tools/demo-continuous-production-qa.mjs",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-11T1731Z-codex-native-skills.md"
-      ],
+      "status": "PRESERVED_RECOVERABLE_PILOT_CONTENT_ON_DEV_BROWSER_GATE_OPEN",
+      "dirtyFiles": [],
       "lastGreenCheck": "60unique tests plus60baseline duplicates/types/contracts8slots/syntax/gates/guardian safecheckpointPASS; sixhero browser acceptanceOPEN"
     },
     "nextAction": "Read-only autonomy preflight/exclusive lock; inspect skills-1731 terminal-audit-original-driver.json and current pilot diff before reuse. Retain original-driver7bf4c901/result569ad04f FAILED/NOT_ACCEPTED and only reviewed historical novice rogue/lancer3to1 native cast observations; never seed from failed1731/0001 or repeat unchanged failed1840/2321/0001. Current refund-aware driver20ee6322 is unexecuted: native spec.ap2/samecaster/capped KO refund accounting/!busy settlement and six fresh casts are required; Salvation exactly2to0/40percent unchanged. Verify393physical sources/ninebuild/input receipt and earned second-refuge1859 exact save/proof, then ONE unique registered1366 normal ending/rescue/serpent35min verifySalvation1 scenario via register-demo with AUTONOMY_QA_STATE_PATH=absolute docs/autonomy/AUTONOMOUS_WORK_STATE.json and verified host Chromium cache. No further harness correction without a newly demonstrated defect, no instrumentation loop or injected truth. Parent six-skills/Pursuit/fullV6/balance/later narrative/AT/operatorfinal/demo remainOPEN; preserve accepted narrative matrices and exact deferred keyboard; mobileLAST.",
@@ -23485,7 +23475,8 @@
           "boundedReviews": 2,
           "harnessCorrections": 0,
           "quotaSavingsClaim": "NONE"
-        }
+        },
+        "currentHandoff": "docs/autonomy/handoffs/2026-10-11T0534Z-codex-opening-os.md"
       },
       "fact": "Existing native pilot now selects rogue/lancer first skills and rotates native four-unit deployment toward missing novice casts. ONE registered ending continuation FAILED after17fresh actions on newly introduced net-AP assertion: Alistair Brise-Garde killed Loup26to0; native+1KO refund precedes2AP cost,3to2 is correct. ONE minimal postfailure correction models capped refund and waits !busy before sampling finalKO AP; no second smoke. Guardian final PASS_FOR_SAFE_PILOT_CHECKPOINT, QA_EVIDENCE_OPEN. Corrected driver unexecuted. Historical Cedric ro_sneak_attack and Garen l_long_thrust novice casts each3to1 verified with damage65to38/80to47; root/guardian captures inspected. Receipt remainsFAILED/NOT_ACCEPTED, cannot seed or certify six/ending/Salvation/fullV6. Previous exact2to0/40percent Salvation sample retained independently.",
       "driverSha256": "20ee63221cb92d2e271363212385647e617c84bda56cc814214b03fb125a68f7",
@@ -23519,7 +23510,7 @@
       "buildArtifacts": 9,
       "sourceBuildReused": true,
       "ownedWorkerAndPortAbsent": true,
-      "publication": "NORMAL_DEV_PENDING",
+      "publication": "NORMAL_DEV_VERIFIED_METADATA_CLOSURE_PENDING",
       "compliance": {
         "GAME_CONSTITUTION": "PASS",
         "ART_DIRECTION": "N/A",
@@ -23533,7 +23524,8 @@
         "UI_ACCESSIBILITY": "PASS_NATIVE_CONTROLS",
         "QA_EVIDENCE": "OPEN_CORRECTED_DRIVER_UNEXECUTED",
         "REPOSITORY_GOVERNANCE": "PASS_OWNED_LOCK_SELECTED_PATHS"
-      }
+      },
+      "pilotCommit": "1ca520498d6262293f1f57800c4adbd4539bda57"
     }
   },
   "previousInterruptedRun": {
@@ -23581,7 +23573,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-11T0534Z-codex-opening-os.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-11T1731Z-codex-native-skills.md",
   "runMeasurement": {
     "productSource": 0,
     "existingTests": 0,
