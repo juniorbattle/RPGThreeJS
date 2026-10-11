@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-11T04:01:29.2824277Z",
-  "runEndedAt": "2026-10-11T04:11:03.451Z",
+  "runEndedAt": "2026-10-11T04:12:12.762Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "INDEPENDENT_NARRATIVE_REMAINING_GATES",
   "activeSubtask": "Council and first-refuge acknowledgements accepted normal1366 scoped; displaced-family/static-only OS and skills continuation open",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "79eceda534d45a0367da7a4d9585df6596999ed8",
-  "lastPushedCommit": "79eceda534d45a0367da7a4d9585df6596999ed8",
+  "lastKnownGoodCommit": "8ab8c911b2481db07945490b417f898b391e368d",
+  "lastPushedCommit": "8ab8c911b2481db07945490b417f898b391e368d",
   "completedThisRun": [
     "Recovered0055 only after >105min heartbeat, terminal usage-limit owner, positive process/listener absence and liveorigin/dev parity; inherited two workflow paths preserved in published explicit WIP",
     "393 physical sources/prior council result digest verified; accepted runs not repeated",
@@ -15,7 +15,8 @@
     "Existing production route runner extended59lines for canonical first-refuge hub leave and paginated text; no product defect/source change/new QA tool",
     "ONE refugee-ack-0400 production smoke SUCCEEDED;2displayed segments/exact authored text/zero combat/errors/native hub Enter/Journey; root+guardian inspect four promoted captures",
     "114unique current source tests/TypeScript/validator/immutable protected gates PASS; build reused393source/ninebuild hashes unchanged",
-    "Displaced-family acknowledgement and static-only OS runner limitations recorded; exact skills/deferred histories and all prior QA IDs preserved"
+    "Displaced-family acknowledgement and static-only OS runner limitations recorded; exact skills/deferred histories and all prior QA IDs preserved",
+    "Normal dev checkpoint8ab8c91 published and verified live parity/main unchanged; first-refuge sameExecution remains true aftercommit; council historical driver differs explicitly;393physicalsource unchanged"
   ],
   "filesChanged": [
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -196,7 +197,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261011T0400",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-11T04:11:03.451Z",
+  "lastHeartbeat": "2026-10-11T04:12:12.762Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0001",
     "sha": "8982d52529d53636340e1f724176cc42020b92ea",
@@ -211,8 +212,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261011T0400",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-11T04:11:03.451Z",
-    "status": "CLOSING_PUBLISHED_SNAPSHOT_SCOPED_ACCEPTANCE",
+    "lastHeartbeat": "2026-10-11T04:12:12.762Z",
+    "status": "CLOSING_PUBLISHED_SCOPED_NARRATIVE_CHECKPOINT",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -21775,6 +21776,15 @@
         "seed": 26,
         "event": "displaced-family-demand",
         "scope": "Source selector only; not browser/native event acceptance; effects may change selection"
+      },
+      "publication": {
+        "checkpoint": "8ab8c911b2481db07945490b417f898b391e368d",
+        "devParityVerified": true,
+        "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+        "postCommitFirstRefugeExecutionMatch": true,
+        "councilHistoricalDriverChanged": true,
+        "physicalSourceFilesMatch": 393,
+        "finalMetadata": "Final SHA/parity/ownedWIPcoverage-retirement/lock release in automationmemory after guarded checks"
       }
     }
   },
