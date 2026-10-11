@@ -24,6 +24,11 @@ const APPROVED_VIDEO_IDS = ['camp_departure', 'alaric_audience_arrival', 'bois_c
   'bois_clair_sacrificed', 'lion_judgement', 'serpent_route_ending', 'lion_trial_route_ending'];
 const BLOCK_MEDIA = process.env.CIN6D6_BLOCK_MEDIA === '1';
 const INTERRUPT_PRELUDE = process.env.CIN6D6_INTERRUPT_PRELUDE === '1';
+const LIVE_OS_FLIP = process.env.CIN6D6_LIVE_OS_FLIP === '1';
+if (LIVE_OS_FLIP && (!PRODUCTION || SCENARIO_FILTER !== 'opening-camp-audience'
+  || REDUCED_MOTION || OS_REDUCED_MOTION || BLOCK_MEDIA || INTERRUPT_PRELUDE)) {
+  throw new Error('Live OS flip requires only the built opening scenario, initially normal OS/game motion and available media.');
+}
 const FIRST_REFUGE_EXPLOITATION_TEXT = 'Les feux sont bas. Une famille arrivée après nous raconte que notre compagnie lui a vendu le chemin du refuge contre ses quarante dernières pièces. Le refuge écoute cette version avec une attention que notre bannière ne peut pas commander.';
 const DISPLACED_FAMILY_EXPLOITATION_TEXT = 'Vous avez vendu l’itinéraire contre les quarante dernières pièces de familles qui n’avaient déjà presque rien. Je ne demande pas que vous réécriviez la route. Je demande ce que vous faites maintenant pour leur prochain convoi.';
 if (INTERRUPT_PRELUDE && (!PRODUCTION || REDUCED_MOTION || OS_REDUCED_MOTION || BLOCK_MEDIA)) {
@@ -361,6 +366,7 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
       && !trace.openingCastTransition && await dialogue.getAttribute('data-dialogue-step') === '4') {
       const segment = (await dialogue.getAttribute('data-dialogue-segment') ?? '1/1').split('/');
       if (segment[0] === segment[1]) {
+        if (LIVE_OS_FLIP) trace.openingLiveOsFlip = await flipMountedOpeningOsMotion(page);
         trace.openingCastTransition = await observeOpeningCastTransition(page);
         continue;
       }
@@ -509,6 +515,45 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
   throw new Error(`${sequenceId}: dialogue did not complete.`);
 }
 
+async function flipMountedOpeningOsMotion(page) {
+  await page.waitForFunction(() => {
+    const dialogue = document.querySelector('.dialogue[data-dialogue-sequence="acte_ouverture"]');
+    return dialogue?.dataset.dialogueStep === '4' && !dialogue.classList.contains('dialogue--preparing-step')
+      && !document.querySelector('.narrative-scene-surface')?.dataset.castTransition;
+  });
+  const before = await page.evaluate(() => {
+    const surface = document.querySelector('.narrative-stage .narrative-scene-surface');
+    window.__openingPreFlipSurface = surface;
+    return { osReduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
+      gameReduced: window.__cin8App.state.settings.reducedGraphics,
+      actors: [...surface.querySelectorAll('.narrative-cast__actor')].map(actor => actor.dataset.actorId),
+      saved: localStorage.getItem('rpg-threejs:autosave:v6') };
+  });
+  if (before.osReduced || before.gameReduced || before.actors.length !== 4
+    || !before.saved || JSON.parse(before.saved).version !== 6) throw new Error('Mounted opening must start with normal motion and stored V6.');
+  await page.screenshot({ path: resolve(OUTPUT_DIR, 'opening-os-before-flip.png') });
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.waitForFunction(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const after = await page.evaluate(() => {
+    const surface = document.querySelector('.narrative-stage .narrative-scene-surface');
+    const proof = { osReduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
+      gameReduced: window.__cin8App.state.settings.reducedGraphics,
+      sameMountedSurface: surface === window.__openingPreFlipSurface && surface.isConnected,
+      stepId: document.querySelector('.dialogue')?.dataset.dialogueStep,
+      actors: [...surface.querySelectorAll('.narrative-cast__actor')].map(actor => actor.dataset.actorId),
+      saved: localStorage.getItem('rpg-threejs:autosave:v6') };
+    delete window.__openingPreFlipSurface;
+    return proof;
+  });
+  if (!after.osReduced || after.gameReduced || !after.sameMountedSurface || after.stepId !== '4'
+    || JSON.stringify(before.actors) !== JSON.stringify(after.actors) || before.saved !== after.saved) {
+    throw new Error('OS flip remounted the stage, changed dialogue/cast or stored truth.');
+  }
+  // Keep full saved bytes out of the result; equality here is only an effect-free observation.
+  delete before.saved; delete after.saved;
+  return { before, after, savedTruthUnchanged: true, capture: 'opening-os-before-flip.png' };
+}
+
 async function observeOpeningCastTransition(page) {
   await page.waitForFunction(() => {
     const dialogue = document.querySelector('.dialogue[data-dialogue-sequence="acte_ouverture"]');
@@ -527,7 +572,8 @@ async function observeOpeningCastTransition(page) {
       const actors = [...surface.querySelectorAll('.narrative-cast__actor')];
       samples.push({ elapsedMs: performance.now() - started, phase: surface.dataset.castTransition ?? 'SETTLED',
         actors: actors.map(actor => ({ id: actor.dataset.actorId, facing: actor.dataset.facing,
-          animation: getComputedStyle(actor).animationName })),
+          animation: getComputedStyle(actor).animationName,
+          entryEffect: actor.dataset.entryEffect, exitEffect: actor.dataset.exitEffect })),
         retained: retained.every(actor => surface.contains(actor)),
         preparing: document.querySelector('.dialogue')?.classList.contains('dialogue--preparing-step') });
     };
@@ -574,9 +620,15 @@ async function observeOpeningCastTransition(page) {
     || observation.samples.some(sample => sample.actors.length > 4 || !sample.retained)
     || observation.samples.filter(sample => sample.phase !== 'SETTLED').some(sample => !sample.preparing)
     || !observation.focused || !observation.enabled || !observation.fits
-    || (OS_REDUCED_MOTION && (!observation.osReduced || observation.gameReduced
+    || ((OS_REDUCED_MOTION || LIVE_OS_FLIP) && (!observation.osReduced || observation.gameReduced
       || observation.samples.some(sample => sample.actors.some(actor => actor.animation !== 'none'))))) {
     throw new Error(`Opening cast continuity/agency failed: ${JSON.stringify(observation)}`);
+  }
+  if (LIVE_OS_FLIP && (!phase('EXIT').some(sample => sample.actors.some(actor => actor.exitEffect === 'FADE_OUT'))
+    || !phase('ENTRY').some(sample => sample.actors.some(actor => actor.entryEffect === 'FADE_IN'))
+    || [...phase('EXIT'), ...phase('ENTRY')].some(sample => sample.actors.some(actor =>
+      /^SLIDE_|^CUT_/.test(actor.exitEffect ?? '') || /^SLIDE_|^CUT_/.test(actor.entryEffect ?? ''))))) {
+    throw new Error('Mounted OS flip did not select gentle cast effects.');
   }
   const finalCast = observation.samples.at(-1).actors;
   if (JSON.stringify(finalCast.map(actor => [actor.id, actor.facing])) !== JSON.stringify([
@@ -928,7 +980,8 @@ async function runOpeningScenario(context) {
     const unexpected = diagnostics.requestFailures.filter((failure) => !isExpectedMediaFailure(failure));
     if (diagnostics.consoleErrors.length || diagnostics.pageErrors.length || unexpected.length) throw new Error(`Opening diagnostics: ${JSON.stringify(diagnostics)}`);
     if (!trace.openingCastTransition) throw new Error('Opening cast replacement was not observed.');
-    return { id: 'opening-camp-audience', camp, audience, openingCastTransition: trace.openingCastTransition, dialogues: [...trace.dialogues], media: [...trace.media],
+    return { id: 'opening-camp-audience', camp, audience, openingCastTransition: trace.openingCastTransition,
+      ...(LIVE_OS_FLIP ? { openingLiveOsFlip: trace.openingLiveOsFlip } : {}), dialogues: [...trace.dialogues], media: [...trace.media],
       truth: { lionMissionAccepted: true }, resume, choiceBounds: trace.choiceBounds, systemMotion: await systemMotionProof(page),
       diagnostics: { ...diagnostics, requestFailures: unexpected }, pass: true };
   } finally { await page.close(); }
@@ -1047,6 +1100,7 @@ const context = await browser.newContext({ viewport: VIEWPORT, reducedMotion: RE
 const result = { schemaVersion: 1, viewport: VIEWPORT, reducedMotion: REDUCED_MOTION, osReducedMotion: OS_REDUCED_MOTION, blockedMedia: BLOCK_MEDIA,
   finalRefugeContext: DISPLACED_FAMILY_CONTEXT ? 'exploited-refugees' : null,
   interruptPrelude: INTERRUPT_PRELUDE,
+  liveOsFlip: LIVE_OS_FLIP,
   method: PRODUCTION ? 'BUILT_PRODUCTION_REAL_GAMEAPP_V6_COMBAT_RESULT_FIXTURE_ONLY' : 'DEV_REAL_GAMEAPP_V6_QA_VICTORY', opening: [], nodes: [], finales: [], pass: false };
 let failed = false;
 try {

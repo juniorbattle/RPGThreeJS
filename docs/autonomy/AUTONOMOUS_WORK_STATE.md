@@ -1,3 +1,23 @@
+## Mounted opening OS flip scoped acceptance — 2026-10-11T16:25:33.171Z
+
+CURRENT FACT: ACCEPTED_SCOPED_MOUNTED_OPENING_OS_FLIP_1366. Current built1366 opening verifies OSfalse→true/gamefalse on the same connected mounted scene surface at step4, unchanged cast/step/effect-free storedV6 bytes. Subsequent4to2to4 EXIT/BREATH/ENTRY, retainedMaelor/Seraphine/final authored facing, preparing/focus/enabled/sampled bounds and FADE_OUT/FADE_IN/no-slide/no-animation pass; observation428.1ms. Root inspected5captures; preflip prose partial, diagnostic only. Existing resolved reload compares currentNodeId/resolvedNodes/flags/ending/memberDefinitions only, never fullV6 migration/resources. Source393/ninebuild unchanged/reused; driver48acf930 and result703c784f stable. Guardian PASS; manual OWNER_TERMINAL_RECONCILIATION_NOT_WORKER receipt SUCCEEDED/eligible true with acceptance NOT_ACCEPTED separate from reviewed scoped acceptance. Initial sandbox-cache failure before browser retains FAILED_ENVIRONMENT_BEFORE_BROWSER/no result; verified hostcache recovery unchanged assertions,0harnesscorrections.
+
+Counts runtime0/tests0/existingQA1/newQA0/proof0/workflow3/canonical1/inherited0;1executedbrowser/1prebrowserenvironmentfailure,1guardian/2passes. Set1.1.0 unchanged. Parent skills/narrative/demo IN_PROGRESS;mobileLAST.
+
+Exact nextAction: Read-only autonomy preflight/exclusive lock; inspect narrative-1612 terminal-audit, result703c784f, driver48acf930, helper/source393/build9 before reuse. Mounted opening OSflip1366 now accepted scoped; do not repeat it, fixedOS0534 or historical contextual matrices/unchanged failed campaign samples. Next ONE registered production opening-camp-audience1366 normal motion with CIN6D6_LIVE_OS_FLIP=0, OS=0/game=0/media available and verified host Chromium cache; reuse existing phase/cap/facing/preparing/focus/bounds/saved-byte observer, no driver/assertion change required. Then complete pending desktop/intermediate dynamic staging gates at narrative milestone, retain exact original all-six-skills/Pursuit/deferred keyboard continuation. No source defect demonstrated this run; earned campaign/fullV6/native balance/later environment/AT/operator full-demo remainOPEN; mobileLAST.
+
+## Mounted OS smoke registration — 2026-10-11T16:17:58.229Z
+
+54focused tests/types/8contracts8slots/gates PASS; guardian prelaunch PASS. Owned snapshot e16b39428f35a0268aaca781c9bc11568cc8c5e1 published. Prior source393/build9 unchanged; driver changed so fixedOS0534 is historical.
+
+Exact nextAction: Inspect ONE registered opening-live-os-1612 production1366 smoke and fresh terminal receipt; verify same mounted surface OSfalse→true/gamefalse, cast/fade/preparing/focus/facing/save-byte observations. No systemMotionProof/eight-video/fullV6/full-demo claim. Retain original skills/Pursuit/deferred keyboard; mobileLAST.
+
+## Mounted tableau OS flip continuation — 2026-10-11T16:14:06.122Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T1612; operator-authorized stale takeover, no inherited dirty files; development server5173 retained. Prior393physical files/ninebuild and fixedOS0534 result match; build reused. Add only a bounded opt-in to the existing opening driver. Original task and deferred histories retained; mobileLAST.
+
+Exact nextAction: Review opt-in production opening mounted-stage OS flip diff with guardian, then register and execute ONE1366 production smoke on unique ignored output/free strict port. Preserve original skills/Pursuit/deferred keyboard, historical fixedOS0534 and contextual receipts; no fullV6/nativecombat/mobile/full-demo claim.
+
 ## Current opening OS scoped checkpoint — 2026-10-11T05:40:49.332Z
 
 Current production opening/camp/audience1366 OStrue/gamefalse passes existing observer: ordered EXIT/BREATH/ENTRY,4to2to4, retained actors/final facing, preparing state/focus/enabled interaction, sampled text/choice bounds and four root-inspected captures.455.6ms observation. Nonempty storedV6 byte equality during effect-free replacement; limited resolved-resume projection only. Approved camp/audience video attempts skipped for reduced-motion; no playback claim. Manual owner terminal receipt SUCCEEDED/eligible true; worker acceptance NOT_ACCEPTED remains separate.393 physical files/ninebuild/driver/helper/digest stable; build reused. Guardian PASS. No new runtime/test/QA tool/source changes.
@@ -643,6 +663,8 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - displaced-ack-normal-0455: SUCCEEDED; port 5372; receipt `tmp/cinematics/displaced-ack-normal-0455/qa-job.json`; NOT_ACCEPTED
 - contextual-static-0455: SUCCEEDED; port 5373; receipt `tmp/cinematics/contextual-static-0455/qa-job.json`; NOT_ACCEPTED
 - opening-cast-os-0534: SUCCEEDED; port 5374; receipt `tmp/cinematics/opening-cast-os-0534/qa-job.json`; NOT_ACCEPTED
+- opening-live-os-1612: FAILED_ENVIRONMENT_BEFORE_BROWSER; port 5375; receipt `tmp/cinematics/opening-live-os-1612/qa-job.json`; NOT_ACCEPTED
+- opening-live-os-1612-host-cache: SUCCEEDED; port 5375; receipt `tmp/cinematics/opening-live-os-1612-host-cache/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
