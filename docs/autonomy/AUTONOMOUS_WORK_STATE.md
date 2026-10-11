@@ -1,3 +1,23 @@
+## Native skills pilot checkpoint — 2026-10-11T17:55:33.001Z
+
+Existing native pilot now selects rogue/lancer first skills and rotates native four-unit deployment toward missing novice casts. ONE registered ending continuation FAILED after17fresh actions on newly introduced net-AP assertion: Alistair Brise-Garde killed Loup26to0; native+1KO refund precedes2AP cost,3to2 is correct. ONE minimal postfailure correction models capped refund and waits !busy before sampling finalKO AP; no second smoke. Guardian final PASS_FOR_SAFE_PILOT_CHECKPOINT, QA_EVIDENCE_OPEN. Corrected driver unexecuted. Historical Cedric ro_sneak_attack and Garen l_long_thrust novice casts each3to1 verified with damage65to38/80to47; root/guardian captures inspected. Receipt remainsFAILED/NOT_ACCEPTED, cannot seed or certify six/ending/Salvation/fullV6. Previous exact2to0/40percent Salvation sample retained independently.
+
+60unique tests plus60baseline duplicates/types/contracts8slots/syntax/immutable/whitespace PASS.393physical source/ninebuild reused; source0/tests0/existingQA1/newQA0/promotedproof0/workflow3/inherited0; one smoke/one postfailure assertion correction/one guardian four bounded passes. No runtime defect invented or sixhero/demo closure. Persistent development servers and historical WIP refs retained.
+
+Exact nextAction: Read-only autonomy preflight/exclusive lock; inspect skills-1731 terminal-audit-original-driver.json and current pilot diff before reuse. Retain original-driver7bf4c901/result569ad04f FAILED/NOT_ACCEPTED and only reviewed historical novice rogue/lancer3to1 native cast observations; never seed from failed1731/0001 or repeat unchanged failed1840/2321/0001. Current refund-aware driver20ee6322 is unexecuted: native spec.ap2/samecaster/capped KO refund accounting/!busy settlement and six fresh casts are required; Salvation exactly2to0/40percent unchanged. Verify393physical sources/ninebuild/input receipt and earned second-refuge1859 exact save/proof, then ONE unique registered1366 normal ending/rescue/serpent35min verifySalvation1 scenario via register-demo with AUTONOMY_QA_STATE_PATH=absolute docs/autonomy/AUTONOMOUS_WORK_STATE.json and verified host Chromium cache. No further harness correction without a newly demonstrated defect, no instrumentation loop or injected truth. Parent six-skills/Pursuit/fullV6/balance/later narrative/AT/operatorfinal/demo remainOPEN; preserve accepted narrative matrices and exact deferred keyboard; mobileLAST.
+
+## Native skills live checkpoint - 2026-10-11T17:49:04.541Z
+
+One registered scenario RUNNING. Root inspected deployment, rogue/lancer post-cast captures and refuge rest. Native initial-skill AP assertions passed for both new skills; no terminal acceptance yet. Sources/build/driver remain frozen; original task and deferred continuation retained.
+
+Exact nextAction: Inspect RUNNING registered skills-six-native-1731 terminal receipt/results before any relaunch; reviewed deployment plus rogue/lancer captures show fresh two-AP assertions passed, but six-cast/Salvation/ending remains unaccepted until terminal review. Do not mutate frozen pilot/source/build; preserve prior2to0/40percent sample/deferred keyboard/mobileLAST.
+
+## Native skills continuation — 2026-10-11T17:34:30.865Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T1731; preflight clean dev/live99ea303, no execution lock or active QA writer; persistent development servers retained. Original task/deferred history retained. Existing pilot coverage gap only; no new tool/runtime defect invented. MobileLAST.
+
+Exact nextAction: Review bounded native six-hero pilot correction with guardian, preserve Salvation assertions and historical receipts; register ONE earned desktop continuation with exact state path before launch. No failed proof seed; mobileLAST.
+
 ## Published opening milestone closure — 2026-10-11T17:04:26.536Z
 
 Acceptance 2a083a9551cd39d73284f6f6c35ed7e19e1d6b46 normally pushed/live origin parity verified. Owned WIP8e8654e retained, historical refs untouched. Metadata closure and fresh clean/parity/process checks precede lock release; final metadata SHA recorded in automation memory/ignored final-publication audit. Parent task/demo IN_PROGRESS; mobileLAST. Original exact skills/deferred history retained.
@@ -723,6 +743,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - opening-normal-1642-host: SUCCEEDED; port 5376; receipt `tmp/cinematics/opening-normal-1642-host/qa-job.json`; NOT_ACCEPTED
 - opening-620-normal-1642: SUCCEEDED; port 5377; receipt `tmp/cinematics/opening-620-normal-1642/qa-job.json`; NOT_ACCEPTED
 - opening-620-os-1642: SUCCEEDED; port 5378; receipt `tmp/cinematics/opening-620-os-1642/qa-job.json`; NOT_ACCEPTED
+- skills-six-native-1731: FAILED; port 5379; receipt `tmp/demo/skills-six-native-1731/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

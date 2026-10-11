@@ -99,7 +99,7 @@ async function choose(){
 async function cancel(frame){await frame.locator('body').press('Escape');}
 async function combatState(frame){return frame.evaluate(()=>{const g=window.G;return{round:g.round,turnIdx:g.turnIdx,mode:g.mode,busy:g.busy,
   over:g.over,moved:g.movedThisTurn,attacks:g.basicAttacksThisTurn,active:g.active&&{id:g.active.campaignId,name:g.active.name,team:g.active.team,
-    gx:g.active.gx,gz:g.active.gz,hp:g.active.hp,maxhp:g.active.maxhp,ap:g.active.ap,skills:[...g.active.skills],
+    gx:g.active.gx,gz:g.active.gz,hp:g.active.hp,maxhp:g.active.maxhp,ap:g.active.ap,maxap:g.active.maxap,skills:[...g.active.skills],
     statuses:{...g.active.statuses},weapons:g.active.weapons.map(w=>({name:w.name,weaponType:w.weaponType,min:w.min,max:w.max}))},
   units:g.units.map(u=>({id:u.campaignId||u.id,name:u.name,team:u.team,gx:u.gx,gz:u.gz,hp:u.hp,maxhp:u.maxhp,alive:u.alive,downed:!!u.downed})),
   inventory:{...g.inv},diagnostics:window.__COMBAT_DIAGNOSTICS};});}
@@ -268,7 +268,7 @@ async function skill(frame,battle){
     if(eligible&&await move(frame,battle,{support:true,supportRange:before.active.weapons[0].max}))return true;
   }
   const ids=(before.active.id==='white_mage'&&wounded.length
-    ?['w_salvation','w_purify']:['n_dark_bolt','a_precise_shot','ar_calibrated_shot','w_break_guard']
+    ?['w_salvation','w_purify']:['n_dark_bolt','a_precise_shot','ar_calibrated_shot','w_break_guard','ro_sneak_attack','l_long_thrust']
   ).filter(id=>before.active.skills.includes(id));
   for(const id of ids){
     await menu.click();const option=frame.locator(`#skillmenu [data-s="${id}"]:not(:disabled)`);
@@ -291,9 +291,22 @@ async function skill(frame,battle){
       if(id==='w_salvation'&&process.env.DEMO_QA_VERIFY_SALVATION==='1'&&before.active.ap===2)
         await capture(`combat-${battle.index}-salvation-exactly2ap-before-${battle.actions.length}`);
       if(!await cellClick(frame,cell))continue;
-      await settled(frame);const after=await combatState(frame);
+      // A final knockout can set over before the native AP deduction has completed.
+      await frame.waitForFunction(()=>!G.busy&&(G.over||G.mode==='menu'),null,{timeout:30000});
+      const after=await combatState(frame);
       if(after.active?.id===before.active.id&&after.active.ap===before.active.ap){await cancel(frame);continue;}
       battle.actions.push({kind:'skill',skillId:id,targetId:target.id,spec:pending.spec,before,after});
+      const initial=battle.initialEquipmentSkills?.find(u=>u.id===before.active.id&&u.skillId===id);
+      if(initial){
+        assert.equal(pending.spec.ap,2,'Initial competence lost its authored two-AP cost');
+        assert.equal(after.active?.id,before.active.id,'Initial competence changed the active caster');
+        const knockoutRefunds=before.units.filter(u=>u.team==='foe'&&u.alive
+          &&after.units.some(t=>t.id===u.id&&!t.alive)).length;
+        const expectedAp=Math.max(0,Math.min(before.active.maxap,before.active.ap+knockoutRefunds)-2);
+        assert.equal(after.active.ap,expectedAp,'Initial competence AP disagrees with native cost and capped knockout refunds');
+        battle.actions.at(-1).nativeApAccounting={cost:2,knockoutRefunds,maxap:before.active.maxap,expectedAp};
+        battle.actions.at(-1).verifiedInitialEquipmentCast=initial;
+      }
       await capture(`combat-${battle.index}-${id}-${battle.actions.length}`);
       if(id==='w_salvation'&&process.env.DEMO_QA_VERIFY_SALVATION==='1'){
         const healed=after.units.find(u=>u.id===target.id);
@@ -371,6 +384,34 @@ async function battle(){
         entry.initialEquipmentSkills.push({id:candidate.id,definitionId:hero.definitionId,weaponId:hero.equipment.weaponIds[0],skillId:expected});
       }
     }
+    // Native player deployment rotates unobserved initial competences into the four-unit party.
+    const observed=new Set(report.battles.slice(report.inheritedBattleCount??0)
+      .flatMap(b=>b.actions.map(a=>a.verifiedInitialEquipmentCast?.id).filter(Boolean)));
+    const missing=entry.initialEquipmentSkills.filter(u=>!observed.has(u.id))
+      .sort((a,b)=>Number(['rogue','lancer'].includes(b.definitionId))-Number(['rogue','lancer'].includes(a.definitionId)));
+    const available=new Set(entry.availableRoster.map(u=>u.id));
+    const picks=[...new Set(['white_mage','warrior',...missing.map(u=>u.id),...available])]
+      .filter(id=>available.has(id)).slice(0,4);
+    await frame.locator('#menu [data-d="reset"]').click();
+    for(const id of picks){
+      const selector=`#menu [data-unit="${id}"]`;
+      for(let pageIndex=0;pageIndex<entry.availableRoster.length&&!await frame.locator(selector).count();pageIndex++){
+        const next=frame.locator('#menu [data-d="next"]:not(:disabled)');
+        if(!await next.count())break;await next.click();
+      }
+      assert.equal(await frame.locator(selector).count(),1,`Native deployment card missing: ${id}`);
+      await frame.locator(selector).click();
+      const cells=await frame.evaluate(()=>G.deployZone.filter(c=>!c.occupant).map(c=>({gx:c.gx,gz:c.gz})));
+      let placed=false;
+      for(const cell of cells){if(await cellClick(frame,cell)
+        &&await frame.evaluate(id=>G.deployedUnits.some(u=>u.campaignId===id),id)){placed=true;break;}}
+      assert.equal(placed,true,`Native deployment did not place: ${id}`);
+      const previous=frame.locator('#menu [data-d="prev"]:not(:disabled)');
+      if(await previous.count())await previous.click();
+    }
+    entry.nativeDeploymentIds=await frame.evaluate(()=>G.deployedUnits.map(u=>u.campaignId));
+    assert.deepEqual(entry.nativeDeploymentIds,picks,'Native deployment does not match selected party');
+    entry.deployed=entry.nativeDeploymentIds.length;
   }
   entry.autosaveBefore=JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')));
   await capture(`combat-${entry.index}-deployment`);
@@ -730,6 +771,9 @@ try{
     assert.equal(report.salvationExactly2ApVerified,true,'No new native exactly-two-AP Salvation cast occurred');
     report.nativeInitialEquipmentHeroes=[...new Set(newBattles.flatMap(b=>(b.initialEquipmentSkills??[]).map(u=>u.definitionId)))].sort();
     if(target==='ending')assert.deepEqual(report.nativeInitialEquipmentHeroes,['archer','dark_mage','lancer','rogue','warrior','white_mage'],'Six native initial-equipment candidates were not observed');
+    report.nativeInitialEquipmentCasts=[...new Set(newBattles.flatMap(b=>b.actions
+      .map(a=>a.verifiedInitialEquipmentCast?.definitionId).filter(Boolean)))].sort();
+    if(target==='ending')assert.deepEqual(report.nativeInitialEquipmentCasts,['archer','dark_mage','lancer','rogue','warrior','white_mage'],'Six fresh native initial-equipment casts were not observed');
   }
 }catch(error){report.pass=false;report.failure=error.stack;await capture('failure-state').catch(()=>{});
   report.lastState=await state().catch(()=>null);console.error(error.stack);process.exitCode=1;
