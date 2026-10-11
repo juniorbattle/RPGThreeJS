@@ -460,7 +460,10 @@ async function battle(){
       if(wounded&&await move(frame,entry,{support:true,supportRange:current.active.weapons[0].max}))continue;
       await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait-novice-support',reason:wounded?'no-native-support-hit-or-better-reachable-cell':'retain-ap-for-ally-support',before:current});continue;
     }
-    if(entry.combatId==='lion_chief'&&conserveArcher&&current.active.ap===1&&current.attacks===0){
+    const missingInitialArcher=process.env.DEMO_QA_VERIFY_SALVATION==='1'&&conserveArcher
+      &&!report.battles.slice(report.inheritedBattleCount??0)
+        .some(b=>b.actions.some(a=>a.verifiedInitialEquipmentCast?.id===current.active.id));
+    if((entry.combatId==='lion_chief'||missingInitialArcher)&&conserveArcher&&current.active.ap===1&&current.attacks===0){
       await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait-conserve-ap',before:current});continue;
     }
     if(await skill(frame,entry))continue;

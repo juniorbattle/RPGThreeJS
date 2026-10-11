@@ -1,41 +1,39 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-11T17:31:11Z",
-  "runEndedAt": "2026-10-11T17:57:13.179Z",
+  "runStartedAt": "2026-10-11T18:00:00Z",
+  "runEndedAt": null,
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "NATIVE_SKILL_COVERAGE_ACCEPTANCE",
-  "activeSubtask": "Rogue/lancer native casts observed historically; refund-aware pilot unexecuted, six-hero gate OPEN",
+  "activeSubtask": "Five native novice casts observed; corrected archer AP-conservation pilot unexecuted, six-hero gate OPEN",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "1ca520498d6262293f1f57800c4adbd4539bda57",
   "lastPushedCommit": "1ca520498d6262293f1f57800c4adbd4539bda57",
   "completedThisRun": [
-    "Read-only preflight clean dev/live99ea303, no active lock/writer; original task and histories preserved",
-    "Bounded existing native pilot coverage correction: rogue/lancer IDs, native four-unit rotation, actual fresh casts rather than roster availability",
-    "ONE registered1366 earned second-refuge continuation; FAILED on newly introduced net-AP assertion; no false PASS",
-    "Historical native novice Cedric/Garen casts3to1 observed and captures inspected; parent six-hero acceptance OPEN",
-    "ONE minimal refund/settlement assertion correction, guardian PASS for safe checkpoint; corrected driver unexecuted"
+    "Owned clean dev preflight and retained historical/deferred work",
+    "ONE registered35min desktop native continuation FAILED/NOT_ACCEPTED; five fresh novice classes and strict capped Salvation observed",
+    "Observed native T3 Pursuit victory, same road return and visible lane focus; no full V6 reward persistence acceptance",
+    "ONE minimal input-only archer conservation correction; corrected driver unexecuted, no second smoke"
   ],
   "filesChanged": [
     "tools/demo-continuous-production-qa.mjs",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/handoffs/2026-10-11T1731Z-codex-native-skills.md"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    "docs/autonomy/handoffs/2026-10-11T1800Z-codex-native-skills.md"
   ],
   "testsRun": [
-    "node vitest run src/game/management.test.ts src/combat/deploymentRules.test.ts",
-    "tsc --noEmit",
-    "contracts validator, immutable/working-copy/whitespace gates, driver syntax",
-    "393physical source/ninebuild/earned seed receipt digest and exact resumed save verified; build reused",
-    "ONE registered production1366 native ending continuation"
+    "60 unique management/deployment tests, excluding tmp baseline duplicates",
+    "TypeScript,8LOCKED/8slots contract validation, driver syntax, immutable/working-copy/whitespace gates",
+    "393physical sources/ninebuild and successful1859 seed hashes verified; production build reused",
+    "ONE registered ending/rescue/serpent35min1366normal native smoke"
   ],
   "testsPassed": [
-    "60unique focused tests (57management/3deployment); vitest also ran60 tmpbaseline duplicates, not120unique",
-    "TypeScript",
-    "8LOCKED contracts/8video slots; immutable+working-copy gates empty; syntax/whitespace PASS",
-    "393physical sources/ninebuild unchanged; earned1859 successful historical input digest/exact resumed save",
-    "Guardian scoped historical rogue/lancer observations and safe pilot checkpoint PASS"
+    "60 unique focused tests",
+    "TypeScript and8LOCKED/8video slots validator; immutable/working-copy/whitespace/syntax gates",
+    "Exact393source/ninebuild reused, earned1859 seed verified",
+    "Bounded guardian authority review; overall browser acceptance remainsOPEN"
   ],
   "testsRemaining": [
+    "Corrected archer pilot unexecuted: all six fresh novice casts, strict Salvation and earned ending/exact reload need one registered scenario",
     "Mounted-stage live OS flip, current normal and intermediate dynamic cast browser proof",
     "Later narrative/branch and earned transaction/campaign coverage",
     "Node completion/fullV6 reload beyond earlier limited scopes",
@@ -64,7 +62,7 @@
     "Opening dynamic1366/620 normalOS accepted scoped; later/earned narrative and approvedBois-Clair nightplate remainOPEN",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Read-only autonomy preflight/exclusive lock; inspect skills-1731 terminal-audit-original-driver.json and current pilot diff before reuse. Retain original-driver7bf4c901/result569ad04f FAILED/NOT_ACCEPTED and only reviewed historical novice rogue/lancer3to1 native cast observations; never seed from failed1731/0001 or repeat unchanged failed1840/2321/0001. Current refund-aware driver20ee6322 is unexecuted: native spec.ap2/samecaster/capped KO refund accounting/!busy settlement and six fresh casts are required; Salvation exactly2to0/40percent unchanged. Verify393physical sources/ninebuild/input receipt and earned second-refuge1859 exact save/proof, then ONE unique registered1366 normal ending/rescue/serpent35min verifySalvation1 scenario via register-demo with AUTONOMY_QA_STATE_PATH=absolute docs/autonomy/AUTONOMOUS_WORK_STATE.json and verified host Chromium cache. No further harness correction without a newly demonstrated defect, no instrumentation loop or injected truth. Parent six-skills/Pursuit/fullV6/balance/later narrative/AT/operatorfinal/demo remainOPEN; preserve accepted narrative matrices and exact deferred keyboard; mobileLAST.",
+  "nextAction": "Read-only autonomy preflight/exclusive lock; inspect skills-1800 terminal-audit-original-driver.json and corrected pilot diff. Preserve original20ee6322/result84acc2d2 FAILED/NOT_ACCEPTED historical observations only; NEVER seed from failed1800/1731/0001 or repeat unchanged failed1840/2321/0001/1731/1800. Current archer-conservation driverc6306944 is UNEXECUTED: verify393physical sources/ninebuild and SUCCEEDED second-refuge1859 exact save/proof; then ONE unique registered1366x768 normal ending/rescue/serpent45min verifySalvation1 scenario via register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID/AUTONOMY_QA_STATE_PATH absolute state JSON and verified host Chromium cache. Existing45min parameter allows more time for both native battles after35min expired; no balance acceptance inferred. Observe archer native AP conservation/novice a_precise_shot, all six fresh initial-equipment casts, strict Salvation2to0/40percent capped healing, earned ending and exact reload; inspect terminal receipt/digest and selected captures. No instrumentation loop/second smoke/injected truth/proof weakening. Parent six-skills/randomPursuit/fullV6/balance/later narrative/AT/operatorfinal/demo OPEN; accepted narrative matrices and exact deferred keyboard preserved; mobileLAST.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -80,7 +78,7 @@
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
   "creditStatus": "AVAILABLE_THIS_RUN",
-  "contractComplianceStatus": "PASS_SAFE_PILOT_CHECKPOINT; QA_EVIDENCE_OPEN/corrected driver unexecuted; set1.1.0 and immutable d7ca28a unchanged; demoIN_PROGRESS",
+  "contractComplianceStatus": "PASS_SAFE_INPUT_ONLY_PILOT_CHECKPOINT; QA_EVIDENCE_OPEN/corrected driver unexecuted; set1.1.0/d7ca28a unchanged; demoIN_PROGRESS",
   "commitReferenceScope": "Verified pilot checkpoint publication only; corrected driver has no browser acceptance. Final workflow SHA in automation memory/ignored final-publication audit.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
@@ -182,22 +180,27 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261011T1731",
+  "runId": "rpgthreejs-auto-dev-90m-20261011T1800",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-11T17:57:13.179Z",
+  "lastHeartbeat": "2026-10-11T18:49:05.7875223+00:00",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1731",
-    "sha": "2d587906ce5ee13b6fb5014b23e24d4c6d2c4208",
-    "at": "2026-10-11T17:56:12.4321702+00:00",
-    "status": "PRESERVED_RECOVERABLE_PILOT_CONTENT_ON_DEV_BROWSER_GATE_OPEN",
-    "dirtyFiles": [],
-    "lastGreenCheck": "60unique tests plus60baseline duplicates/types/contracts8slots/syntax/gates/guardian safecheckpointPASS; sixhero browser acceptanceOPEN"
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1800",
+    "sha": "9ec1205520bdf8410f3a3e07d4a2b94387337358",
+    "at": "2026-10-11T18:49:05.7875223+00:00",
+    "status": "GREEN_MECHANICAL_PILOT_CHECKPOINT_BROWSER_ACCEPTANCE_OPEN",
+    "dirtyFiles": [
+      "tools/demo-continuous-production-qa.mjs",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/handoffs/2026-10-11T1800Z-codex-native-skills.md"
+    ],
+    "lastGreenCheck": "60unique tests/types/contracts8slots/syntax/gates; sources393/build9/input matched; corrected driver unexecuted"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261011T1731",
+    "runId": "rpgthreejs-auto-dev-90m-20261011T1800",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-11T17:57:13.179Z",
-    "status": "CLOSED_PUBLISHED_LOCK_RELEASE_PENDING_PARITY",
+    "lastHeartbeat": "2026-10-11T18:49:05.7875223+00:00",
+    "status": "CHECKPOINT_PENDING_PUBLICATION",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -21283,17 +21286,131 @@
         "resultSha256": "569ad04f816fff5aa54a313f10dfe684ee685cf05b10366de7849546f0233256",
         "provenanceStable": true,
         "reason": "Original driver FAILED; corrected driver hash changed after terminal cleanup. Historical two-cast observations separate; no overall acceptance."
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "skills-six-native-1800",
+        "runId": "rpgthreejs-auto-dev-90m-20261011T1800",
+        "status": "FAILED",
+        "registeredAt": "2026-10-11T18:05:44.990Z",
+        "pid": 68348,
+        "port": 5380,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "ending",
+          "routePlan": "rescue",
+          "timeoutMinutes": 35,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/campaign-second-refuge-1859/results.json",
+          "verifySalvation": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/skills-six-native-1800",
+        "receiptPath": "tmp/demo/skills-six-native-1800/qa-job.json",
+        "provenance": {
+          "gitHead": "bae8a688ba2c3b6b8bae2f18c14cdcf5f79dae3e",
+          "sourceTree": "a147f5c25febb460ad69f38d184d8047c4cca780",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "20ee63221cb92d2e271363212385647e617c84bda56cc814214b03fb125a68f7"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+              "sha256": "67d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/campaign-second-refuge-1859/results.json",
+              "sha256": "1eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3"
+            }
+          ],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/game-zrccER2T.js",
+              "sha256": "fd9a3ff2f576d9fcfa2f7055d94eb1c1702f5594063904b480ef2d96253dfeab"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "2d3c23a073ba24f72568a542a0519e5714858dc13ea32a41f99aa17a12535e1e"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-11T18:05:46.024Z",
+        "endedAt": "2026-10-11T18:41:09.330Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/skills-six-native-1800/results.json",
+        "resultSha256": "84acc2d2e1d2bc3974f13a533709e185d41245c62f258b23cf5fb354add2c182",
+        "provenanceStable": true,
+        "reason": "Original unchanged driver20ee6322 FAILED by bounded deadline; new input-only driverc6306944 unexecuted. Scoped historical observations separate, no sixhero/ending acceptance."
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1731",
-      "sha": "2d587906ce5ee13b6fb5014b23e24d4c6d2c4208",
-      "at": "2026-10-11T17:56:12.4321702+00:00",
-      "status": "PRESERVED_RECOVERABLE_PILOT_CONTENT_ON_DEV_BROWSER_GATE_OPEN",
-      "dirtyFiles": [],
-      "lastGreenCheck": "60unique tests plus60baseline duplicates/types/contracts8slots/syntax/gates/guardian safecheckpointPASS; sixhero browser acceptanceOPEN"
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1800",
+      "sha": "9ec1205520bdf8410f3a3e07d4a2b94387337358",
+      "at": "2026-10-11T18:49:05.7875223+00:00",
+      "status": "GREEN_MECHANICAL_PILOT_CHECKPOINT_BROWSER_ACCEPTANCE_OPEN",
+      "dirtyFiles": [
+        "tools/demo-continuous-production-qa.mjs",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/handoffs/2026-10-11T1800Z-codex-native-skills.md"
+      ],
+      "lastGreenCheck": "60unique tests/types/contracts8slots/syntax/gates; sources393/build9/input matched; corrected driver unexecuted"
     },
-    "nextAction": "Read-only autonomy preflight/exclusive lock; inspect skills-1731 terminal-audit-original-driver.json and current pilot diff before reuse. Retain original-driver7bf4c901/result569ad04f FAILED/NOT_ACCEPTED and only reviewed historical novice rogue/lancer3to1 native cast observations; never seed from failed1731/0001 or repeat unchanged failed1840/2321/0001. Current refund-aware driver20ee6322 is unexecuted: native spec.ap2/samecaster/capped KO refund accounting/!busy settlement and six fresh casts are required; Salvation exactly2to0/40percent unchanged. Verify393physical sources/ninebuild/input receipt and earned second-refuge1859 exact save/proof, then ONE unique registered1366 normal ending/rescue/serpent35min verifySalvation1 scenario via register-demo with AUTONOMY_QA_STATE_PATH=absolute docs/autonomy/AUTONOMOUS_WORK_STATE.json and verified host Chromium cache. No further harness correction without a newly demonstrated defect, no instrumentation loop or injected truth. Parent six-skills/Pursuit/fullV6/balance/later narrative/AT/operatorfinal/demo remainOPEN; preserve accepted narrative matrices and exact deferred keyboard; mobileLAST.",
+    "nextAction": "Read-only autonomy preflight/exclusive lock; inspect skills-1800 terminal-audit-original-driver.json and corrected pilot diff. Preserve original20ee6322/result84acc2d2 FAILED/NOT_ACCEPTED historical observations only; NEVER seed from failed1800/1731/0001 or repeat unchanged failed1840/2321/0001/1731/1800. Current archer-conservation driverc6306944 is UNEXECUTED: verify393physical sources/ninebuild and SUCCEEDED second-refuge1859 exact save/proof; then ONE unique registered1366x768 normal ending/rescue/serpent45min verifySalvation1 scenario via register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID/AUTONOMY_QA_STATE_PATH absolute state JSON and verified host Chromium cache. Existing45min parameter allows more time for both native battles after35min expired; no balance acceptance inferred. Observe archer native AP conservation/novice a_precise_shot, all six fresh initial-equipment casts, strict Salvation2to0/40percent capped healing, earned ending and exact reload; inspect terminal receipt/digest and selected captures. No instrumentation loop/second smoke/injected truth/proof weakening. Parent six-skills/randomPursuit/fullV6/balance/later narrative/AT/operatorfinal/demo OPEN; accepted narrative matrices and exact deferred keyboard preserved; mobileLAST.",
     "runMetrics": {
       "existingQaFilesModified": 1,
       "harnessCorrections": 1,
@@ -21315,34 +21432,25 @@
       "docs/autonomy/handoffs/2026-10-10T2321Z-codex-native-skills.md"
     ],
     "publication": {
-      "status": "SCOPED_PROOF_PUBLISHED_VERIFIED_METADATA_CLOSURE_PREPARING",
-      "checkpoint": "92adf938a5cc60b7a52c9132302d9788b2d344c5",
+      "runId": "rpgthreejs-auto-dev-90m-20261011T1800",
+      "status": "SAFE_PILOT_CHECKPOINT_PENDING_NORMAL_DEV",
       "authority": "OD-2026-10-08-B",
       "mode": "NORMAL_NON_FORCE_DEV",
-      "remoteParity": true,
-      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "sourceExecutionUnchangedAfterCommit": true
+      "remoteParity": false,
+      "mainExpected": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
-    "runStartedAt": "2026-10-11T04:17:09.8414143Z",
-    "runEndedAt": "2026-10-11T04:28:16.625Z",
-    "writerStopped": true,
+    "runStartedAt": "2026-10-11T18:00:00Z",
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
-      "status": "RESOLVED_BY_OPERATOR_APPROVAL",
-      "standingDecision": "OD-2026-10-08-B",
+      "runId": "rpgthreejs-auto-dev-90m-20261011T1800",
+      "status": "PENDING_AFTER_CHECKPOINT",
+      "rejectionsThisRun": 0,
       "selectedPaths": [
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-08T1859Z-codex-ordinary-motion-second-refuge-checkpoint.md"
-      ],
-      "executed": true,
-      "rejectionsThisRun": 1,
-      "reason": "Automatic review rejected public disclosure of exact newly modified three state/handoff files despite direct human standing authorization reaffirmation",
-      "noRetryOrWorkaround": true,
-      "publishedCheckpoint": "632b9bc9a9219adf5636c3866e8377413481f5aa",
-      "devRemoteVerified": "632b9bc9a9219adf5636c3866e8377413481f5aa",
-      "verifiedAt": "2026-10-08T21:07:21.39Z",
-      "lockReleased": true,
-      "resolution": "Direct approval and actual normal dev publication/lock release recorded automation memory20:54 and reverified live21:05; previous rejection remains historical"
+        "docs/autonomy/handoffs/2026-10-11T1800Z-codex-native-skills.md"
+      ]
     },
     "publication1752History": {
       "status": "VERIFIED_PUBLISHED",
@@ -22155,7 +22263,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-    "activeSubtask": "Shared desktop positive checkpoint braking and normal/OS alternatives accepted scoped; native sixhero/exact2AP healing and broader manual criteria OPEN",
+    "activeSubtask": "Five native novice casts observed; corrected archer AP-conservation pilot unexecuted, six-hero gate OPEN",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -23526,6 +23634,604 @@
         "REPOSITORY_GOVERNANCE": "PASS_OWNED_LOCK_SELECTED_PATHS"
       },
       "pilotCommit": "1ca520498d6262293f1f57800c4adbd4539bda57"
+    },
+    "skills1800": {
+      "at": "2026-10-11T18:49:02.285Z",
+      "baseline": "bae8a688ba2c3b6b8bae2f18c14cdcf5f79dae3e",
+      "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect skills-1731 terminal-audit-original-driver.json and current pilot diff before reuse. Retain original-driver7bf4c901/result569ad04f FAILED/NOT_ACCEPTED and only reviewed historical novice rogue/lancer3to1 native cast observations; never seed from failed1731/0001 or repeat unchanged failed1840/2321/0001. Current refund-aware driver20ee6322 is unexecuted: native spec.ap2/samecaster/capped KO refund accounting/!busy settlement and six fresh casts are required; Salvation exactly2to0/40percent unchanged. Verify393physical sources/ninebuild/input receipt and earned second-refuge1859 exact save/proof, then ONE unique registered1366 normal ending/rescue/serpent35min verifySalvation1 scenario via register-demo with AUTONOMY_QA_STATE_PATH=absolute docs/autonomy/AUTONOMOUS_WORK_STATE.json and verified host Chromium cache. No further harness correction without a newly demonstrated defect, no instrumentation loop or injected truth. Parent six-skills/Pursuit/fullV6/balance/later narrative/AT/operatorfinal/demo remainOPEN; preserve accepted narrative matrices and exact deferred keyboard; mobileLAST.",
+      "newQaTool": false,
+      "reason": "Execute previously checkpointed minimal refund-aware assertion correction through existing registered pilot; no demonstrated runtime defect or new tooling.",
+      "sourceFiles": 393,
+      "buildArtifacts": 9,
+      "driverSha256": "c6306944b2821eb011f347135c75c4f2e649e6d813191175f69bece3e3e74720",
+      "sourceBuildReused": true,
+      "historicalInputOnly": true,
+      "guardianPrelaunch": "PASS_NATIVE_AP_ORDER_AND_EARNED_SEED_GUARDS_RUNTIME_ACCEPTANCE_OPEN",
+      "fact": "ONE registered native ending continuation FAILED at35min bounded deadline in serpent_captain; no ending/reload.70fresh actions: native T3 forest_patrol Pursuit won49, boss unfinished21. Five novice classes observed (rogue/lancer/warrior/white_mage/dark_mage), archer missing. Refund-aware assertion exercised warrior3to2 finalKO with+1refund. Salvation exactly2to0, spec40percent, Cedric79to100 CAPPED+21; independent5to3 cast39to79 gives+40. Darkbolt action11 missed, action19 hit425to403. Root/guardian selected captures inspected; no universal skill-hit or uncapped40 at exactly2 claim. Archer pilot repeatedly spent1AP basic attack then waited0; ONE minimal native-wait conservation extension while verifySalvation and that archer lacks a fresh novice cast. Corrected driver UNEXECUTED; no second smoke or runtime defect invented.",
+      "previousSummary": {
+        "activePhase": "NATIVE_SKILL_COVERAGE_ACCEPTANCE",
+        "activeSubtask": "Rogue/lancer native casts observed historically; refund-aware pilot unexecuted, six-hero gate OPEN",
+        "completedThisRun": [
+          "Read-only preflight clean dev/live99ea303, no active lock/writer; original task and histories preserved",
+          "Bounded existing native pilot coverage correction: rogue/lancer IDs, native four-unit rotation, actual fresh casts rather than roster availability",
+          "ONE registered1366 earned second-refuge continuation; FAILED on newly introduced net-AP assertion; no false PASS",
+          "Historical native novice Cedric/Garen casts3to1 observed and captures inspected; parent six-hero acceptance OPEN",
+          "ONE minimal refund/settlement assertion correction, guardian PASS for safe checkpoint; corrected driver unexecuted"
+        ],
+        "filesChanged": [
+          "tools/demo-continuous-production-qa.mjs",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+          "docs/autonomy/handoffs/2026-10-11T1731Z-codex-native-skills.md"
+        ],
+        "testsRun": [
+          "node vitest run src/game/management.test.ts src/combat/deploymentRules.test.ts",
+          "tsc --noEmit",
+          "contracts validator, immutable/working-copy/whitespace gates, driver syntax",
+          "393physical source/ninebuild/earned seed receipt digest and exact resumed save verified; build reused",
+          "ONE registered production1366 native ending continuation"
+        ],
+        "testsPassed": [
+          "60unique focused tests (57management/3deployment); vitest also ran60 tmpbaseline duplicates, not120unique",
+          "TypeScript",
+          "8LOCKED contracts/8video slots; immutable+working-copy gates empty; syntax/whitespace PASS",
+          "393physical sources/ninebuild unchanged; earned1859 successful historical input digest/exact resumed save",
+          "Guardian scoped historical rogue/lancer observations and safe pilot checkpoint PASS"
+        ],
+        "contractComplianceStatus": "PASS_SAFE_PILOT_CHECKPOINT; QA_EVIDENCE_OPEN/corrected driver unexecuted; set1.1.0 and immutable d7ca28a unchanged; demoIN_PROGRESS",
+        "currentRunMeasurement": {
+          "runId": "rpgthreejs-auto-dev-90m-20261011T1731",
+          "runtimeSourceFilesModified": 0,
+          "testFilesModified": 0,
+          "existingQaFilesModified": 1,
+          "newQaFilesAdded": 0,
+          "promotedProofFiles": 0,
+          "workflowDocs": 3,
+          "inheritedWipFiles": 0,
+          "browserScenarios": 1,
+          "harnessCorrectionsAfterFailure": 1,
+          "reviewers": 1,
+          "reviewPasses": 4,
+          "quotaSavingClaim": false
+        }
+      },
+      "originalDriver": {
+        "path": "tools/demo-continuous-production-qa.mjs",
+        "sha256": "20ee63221cb92d2e271363212385647e617c84bda56cc814214b03fb125a68f7"
+      },
+      "originalResultSha256": "84acc2d2e1d2bc3974f13a533709e185d41245c62f258b23cf5fb354add2c182",
+      "originalReceiptStatus": "FAILED_NOT_ACCEPTED",
+      "originalObservedCasts": [
+        {
+          "nodeId": "lion-final-trial-event",
+          "combatId": "forest_patrol",
+          "index": 3,
+          "action": 9,
+          "skill": "ro_sneak_attack",
+          "hero": "rogue",
+          "weapon": "novice_dagger",
+          "caster": "rogue",
+          "beforeAP": 3,
+          "afterAP": 1,
+          "cost": 2,
+          "accounting": {
+            "cost": 2,
+            "knockoutRefunds": 0,
+            "maxap": 5,
+            "expectedAp": 1
+          },
+          "target": 3,
+          "beforeTarget": {
+            "id": 3,
+            "name": "Brute Serpent",
+            "team": "foe",
+            "gx": 5,
+            "gz": 2,
+            "hp": 130,
+            "maxhp": 130,
+            "alive": true,
+            "downed": false
+          },
+          "afterTarget": {
+            "id": 3,
+            "name": "Brute Serpent",
+            "team": "foe",
+            "gx": 5,
+            "gz": 2,
+            "hp": 113,
+            "maxhp": 130,
+            "alive": true,
+            "downed": false
+          },
+          "capture": "combat-3-ro_sneak_attack-9.png"
+        },
+        {
+          "nodeId": "lion-final-trial-event",
+          "combatId": "forest_patrol",
+          "index": 3,
+          "action": 14,
+          "skill": "l_long_thrust",
+          "hero": "lancer",
+          "weapon": "novice_spear",
+          "caster": "lancer",
+          "beforeAP": 3,
+          "afterAP": 1,
+          "cost": 2,
+          "accounting": {
+            "cost": 2,
+            "knockoutRefunds": 0,
+            "maxap": 5,
+            "expectedAp": 1
+          },
+          "target": 1,
+          "beforeTarget": {
+            "id": 1,
+            "name": "Pillard Serpent",
+            "team": "foe",
+            "gx": 4,
+            "gz": 1,
+            "hp": 85,
+            "maxhp": 85,
+            "alive": true,
+            "downed": false
+          },
+          "afterTarget": {
+            "id": 1,
+            "name": "Pillard Serpent",
+            "team": "foe",
+            "gx": 4,
+            "gz": 1,
+            "hp": 43,
+            "maxhp": 85,
+            "alive": true,
+            "downed": false
+          },
+          "capture": "combat-3-l_long_thrust-14.png"
+        },
+        {
+          "nodeId": "lion-final-trial-event",
+          "combatId": "forest_patrol",
+          "index": 3,
+          "action": 17,
+          "skill": "w_break_guard",
+          "hero": "warrior",
+          "weapon": "novice_greatsword",
+          "caster": "warrior",
+          "beforeAP": 3,
+          "afterAP": 1,
+          "cost": 2,
+          "accounting": {
+            "cost": 2,
+            "knockoutRefunds": 0,
+            "maxap": 5,
+            "expectedAp": 1
+          },
+          "target": 2,
+          "beforeTarget": {
+            "id": 2,
+            "name": "Pillard Serpent",
+            "team": "foe",
+            "gx": 3,
+            "gz": 1,
+            "hp": 85,
+            "maxhp": 85,
+            "alive": true,
+            "downed": false
+          },
+          "afterTarget": {
+            "id": 2,
+            "name": "Pillard Serpent",
+            "team": "foe",
+            "gx": 3,
+            "gz": 1,
+            "hp": 60,
+            "maxhp": 85,
+            "alive": true,
+            "downed": false
+          },
+          "capture": "combat-3-w_break_guard-17.png"
+        },
+        {
+          "nodeId": "lion-final-trial-event",
+          "combatId": "forest_patrol",
+          "index": 3,
+          "action": 33,
+          "skill": "l_long_thrust",
+          "hero": "lancer",
+          "weapon": "novice_spear",
+          "caster": "lancer",
+          "beforeAP": 3,
+          "afterAP": 1,
+          "cost": 2,
+          "accounting": {
+            "cost": 2,
+            "knockoutRefunds": 0,
+            "maxap": 5,
+            "expectedAp": 1
+          },
+          "target": 3,
+          "beforeTarget": {
+            "id": 3,
+            "name": "Brute Serpent",
+            "team": "foe",
+            "gx": 5,
+            "gz": 2,
+            "hp": 97,
+            "maxhp": 130,
+            "alive": true,
+            "downed": false
+          },
+          "afterTarget": {
+            "id": 3,
+            "name": "Brute Serpent",
+            "team": "foe",
+            "gx": 5,
+            "gz": 2,
+            "hp": 77,
+            "maxhp": 130,
+            "alive": true,
+            "downed": false
+          },
+          "capture": "combat-3-l_long_thrust-33.png"
+        },
+        {
+          "nodeId": "lion-final-trial-event",
+          "combatId": "forest_patrol",
+          "index": 3,
+          "action": 41,
+          "skill": "w_salvation",
+          "hero": "white_mage",
+          "weapon": "novice_crosier",
+          "caster": "white_mage",
+          "beforeAP": 5,
+          "afterAP": 3,
+          "cost": 2,
+          "accounting": {
+            "cost": 2,
+            "knockoutRefunds": 0,
+            "maxap": 5,
+            "expectedAp": 3
+          },
+          "target": "rogue",
+          "beforeTarget": {
+            "id": "rogue",
+            "name": "Cedric",
+            "team": "player",
+            "gx": 4,
+            "gz": 2,
+            "hp": 39,
+            "maxhp": 100,
+            "alive": true,
+            "downed": false
+          },
+          "afterTarget": {
+            "id": "rogue",
+            "name": "Cedric",
+            "team": "player",
+            "gx": 4,
+            "gz": 2,
+            "hp": 79,
+            "maxhp": 100,
+            "alive": true,
+            "downed": false
+          },
+          "capture": "combat-3-w_salvation-41.png"
+        },
+        {
+          "nodeId": "lion-final-trial-event",
+          "combatId": "forest_patrol",
+          "index": 3,
+          "action": 43,
+          "skill": "w_salvation",
+          "hero": "white_mage",
+          "weapon": "novice_crosier",
+          "caster": "white_mage",
+          "beforeAP": 2,
+          "afterAP": 0,
+          "cost": 2,
+          "accounting": {
+            "cost": 2,
+            "knockoutRefunds": 0,
+            "maxap": 5,
+            "expectedAp": 0
+          },
+          "target": "rogue",
+          "beforeTarget": {
+            "id": "rogue",
+            "name": "Cedric",
+            "team": "player",
+            "gx": 4,
+            "gz": 2,
+            "hp": 79,
+            "maxhp": 100,
+            "alive": true,
+            "downed": false
+          },
+          "afterTarget": {
+            "id": "rogue",
+            "name": "Cedric",
+            "team": "player",
+            "gx": 4,
+            "gz": 2,
+            "hp": 100,
+            "maxhp": 100,
+            "alive": true,
+            "downed": false
+          },
+          "capture": "combat-3-w_salvation-43.png"
+        },
+        {
+          "nodeId": "lion-final-trial-event",
+          "combatId": "forest_patrol",
+          "index": 3,
+          "action": 48,
+          "skill": "w_break_guard",
+          "hero": "warrior",
+          "weapon": "novice_greatsword",
+          "caster": "warrior",
+          "beforeAP": 5,
+          "afterAP": 3,
+          "cost": 2,
+          "accounting": {
+            "cost": 2,
+            "knockoutRefunds": 0,
+            "maxap": 5,
+            "expectedAp": 3
+          },
+          "target": 3,
+          "beforeTarget": {
+            "id": 3,
+            "name": "Brute Serpent",
+            "team": "foe",
+            "gx": 5,
+            "gz": 2,
+            "hp": 29,
+            "maxhp": 130,
+            "alive": true,
+            "downed": false
+          },
+          "afterTarget": {
+            "id": 3,
+            "name": "Brute Serpent",
+            "team": "foe",
+            "gx": 5,
+            "gz": 2,
+            "hp": 5,
+            "maxhp": 130,
+            "alive": true,
+            "downed": false
+          },
+          "capture": "combat-3-w_break_guard-48.png"
+        },
+        {
+          "nodeId": "lion-final-trial-event",
+          "combatId": "forest_patrol",
+          "index": 3,
+          "action": 49,
+          "skill": "w_break_guard",
+          "hero": "warrior",
+          "weapon": "novice_greatsword",
+          "caster": "warrior",
+          "beforeAP": 3,
+          "afterAP": 2,
+          "cost": 2,
+          "accounting": {
+            "cost": 2,
+            "knockoutRefunds": 1,
+            "maxap": 5,
+            "expectedAp": 2
+          },
+          "target": 3,
+          "beforeTarget": {
+            "id": 3,
+            "name": "Brute Serpent",
+            "team": "foe",
+            "gx": 5,
+            "gz": 2,
+            "hp": 5,
+            "maxhp": 130,
+            "alive": true,
+            "downed": false
+          },
+          "afterTarget": {
+            "id": 3,
+            "name": "Brute Serpent",
+            "team": "foe",
+            "gx": 5,
+            "gz": 2,
+            "hp": 0,
+            "maxhp": 130,
+            "alive": false,
+            "downed": true
+          },
+          "capture": "combat-3-w_break_guard-49.png"
+        },
+        {
+          "nodeId": "lion-final-judgement",
+          "combatId": "serpent_captain",
+          "index": 4,
+          "action": 11,
+          "skill": "n_dark_bolt",
+          "hero": "dark_mage",
+          "weapon": "novice_grimoire",
+          "caster": "dark_mage",
+          "beforeAP": 3,
+          "afterAP": 1,
+          "cost": 2,
+          "accounting": {
+            "cost": 2,
+            "knockoutRefunds": 0,
+            "maxap": 5,
+            "expectedAp": 1
+          },
+          "target": 1,
+          "beforeTarget": {
+            "id": 1,
+            "name": "Général Serpent",
+            "team": "foe",
+            "gx": 6,
+            "gz": 1,
+            "hp": 437,
+            "maxhp": 450,
+            "alive": true,
+            "downed": false
+          },
+          "afterTarget": {
+            "id": 1,
+            "name": "Général Serpent",
+            "team": "foe",
+            "gx": 6,
+            "gz": 1,
+            "hp": 437,
+            "maxhp": 450,
+            "alive": true,
+            "downed": false
+          },
+          "capture": "combat-4-n_dark_bolt-11.png"
+        },
+        {
+          "nodeId": "lion-final-judgement",
+          "combatId": "serpent_captain",
+          "index": 4,
+          "action": 19,
+          "skill": "n_dark_bolt",
+          "hero": "dark_mage",
+          "weapon": "novice_grimoire",
+          "caster": "dark_mage",
+          "beforeAP": 3,
+          "afterAP": 1,
+          "cost": 2,
+          "accounting": {
+            "cost": 2,
+            "knockoutRefunds": 0,
+            "maxap": 5,
+            "expectedAp": 1
+          },
+          "target": 1,
+          "beforeTarget": {
+            "id": 1,
+            "name": "Général Serpent",
+            "team": "foe",
+            "gx": 6,
+            "gz": 1,
+            "hp": 425,
+            "maxhp": 450,
+            "alive": true,
+            "downed": false
+          },
+          "afterTarget": {
+            "id": 1,
+            "name": "Général Serpent",
+            "team": "foe",
+            "gx": 6,
+            "gz": 1,
+            "hp": 403,
+            "maxhp": 450,
+            "alive": true,
+            "downed": false
+          },
+          "capture": "combat-4-n_dark_bolt-19.png"
+        }
+      ],
+      "strictSalvation": [
+        {
+          "nodeId": "lion-final-trial-event",
+          "combatId": "forest_patrol",
+          "index": 3,
+          "action": 43,
+          "skill": "w_salvation",
+          "caster": "white_mage",
+          "beforeAP": 2,
+          "afterAP": 0,
+          "healPercent": 0.4,
+          "cost": 2,
+          "beforeTarget": {
+            "id": "rogue",
+            "name": "Cedric",
+            "team": "player",
+            "gx": 4,
+            "gz": 2,
+            "hp": 79,
+            "maxhp": 100,
+            "alive": true,
+            "downed": false
+          },
+          "afterTarget": {
+            "id": "rogue",
+            "name": "Cedric",
+            "team": "player",
+            "gx": 4,
+            "gz": 2,
+            "hp": 100,
+            "maxhp": 100,
+            "alive": true,
+            "downed": false
+          },
+          "beforeCapture": "combat-3-salvation-exactly2ap-before-42.png",
+          "afterCapture": "combat-3-w_salvation-43.png"
+        }
+      ],
+      "correctedDriverAcceptance": "OPEN_UNEXECUTED",
+      "sixHeroAcceptance": "OPEN_ARCHER_MISSING",
+      "endingReloadAcceptance": "OPEN_TIMEOUT",
+      "harnessCorrectionsAfterFailure": 1,
+      "guardian": "PASS_SAFE_ACTUAL_INPUT_ONLY_DIFF_QA_EXECUTION_OPEN",
+      "compliance": {
+        "GAME_CONSTITUTION": "PASS",
+        "ART_DIRECTION": "N/A",
+        "CHARACTERS": "N/A",
+        "ENVIRONMENTS": "N/A",
+        "NARRATIVE_CAMPAIGN": "PASS_NATIVE_HANDOFF_ONLY",
+        "NARRATIVE_PRESENTATION": "N/A",
+        "TRAVERSAL": "PASS_OBSERVED_T3_RETURN_SCOPE_ONLY",
+        "COMBAT": "PASS_NATIVE_AUTHORITY_QA_COVERAGE_OPEN",
+        "SAVE": "PASS_PRECOMBAT_AUTOSAVE_ONLY_FULL_V6_OPEN",
+        "UI_ACCESSIBILITY": "PASS_OBSERVED_RETURN_FOCUS_ONLY",
+        "QA_EVIDENCE": "OPEN_CORRECTED_DRIVER_UNEXECUTED_ORIGINAL_FAILED",
+        "REPOSITORY_GOVERNANCE": "PASS_OWNED_LOCK_SELECTED_PATHS"
+      },
+      "ownedWorkerAndPortAbsent": true,
+      "publication": "NORMAL_DEV_PENDING",
+      "guardianActualDriverSha256": "c6306944b2821eb011f347135c75c4f2e649e6d813191175f69bece3e3e74720",
+      "guardianFinalAt": "2026-10-11T18:49:26.052Z",
+      "previousPublicationFields": {
+        "publication": {
+          "status": "SCOPED_PROOF_PUBLISHED_VERIFIED_METADATA_CLOSURE_PREPARING",
+          "checkpoint": "92adf938a5cc60b7a52c9132302d9788b2d344c5",
+          "authority": "OD-2026-10-08-B",
+          "mode": "NORMAL_NON_FORCE_DEV",
+          "remoteParity": true,
+          "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+          "sourceExecutionUnchangedAfterCommit": true
+        },
+        "metadataPublication": {
+          "status": "RESOLVED_BY_OPERATOR_APPROVAL",
+          "standingDecision": "OD-2026-10-08-B",
+          "selectedPaths": [
+            "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+            "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+            "docs/autonomy/handoffs/2026-10-08T1859Z-codex-ordinary-motion-second-refuge-checkpoint.md"
+          ],
+          "executed": true,
+          "rejectionsThisRun": 1,
+          "reason": "Automatic review rejected public disclosure of exact newly modified three state/handoff files despite direct human standing authorization reaffirmation",
+          "noRetryOrWorkaround": true,
+          "publishedCheckpoint": "632b9bc9a9219adf5636c3866e8377413481f5aa",
+          "devRemoteVerified": "632b9bc9a9219adf5636c3866e8377413481f5aa",
+          "verifiedAt": "2026-10-08T21:07:21.39Z",
+          "lockReleased": true,
+          "resolution": "Direct approval and actual normal dev publication/lock release recorded automation memory20:54 and reverified live21:05; previous rejection remains historical"
+        },
+        "publishedCheckpoint": "e34959f801fcf4812a7a976142f2235bde81411e",
+        "testsRemaining": [
+          "Mounted-stage live OS flip, current normal and intermediate dynamic cast browser proof",
+          "Later narrative/branch and earned transaction/campaign coverage",
+          "Node completion/fullV6 reload beyond earlier limited scopes",
+          "Automatic focus and dynamic cast transition acceptance",
+          "Broader environment and AT/balance/operator full-demo; mobileLAST"
+        ],
+        "uncommittedWork": "Only the selected three workflow closure paths; final committed clean-tree and live parity verification recorded in external automation memory."
+      }
     }
   },
   "previousInterruptedRun": {
@@ -23573,7 +24279,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-11T1731Z-codex-native-skills.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-11T1800Z-codex-native-skills.md",
   "runMeasurement": {
     "productSource": 0,
     "existingTests": 0,
@@ -23728,7 +24434,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "Only the selected three workflow closure paths; final committed clean-tree and live parity verification recorded in external automation memory.",
+  "uncommittedWork": "Selected existing QA pilot and three workflow files only; inherited WIP0. Final clean-tree/parity verification recorded externally.",
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
@@ -24876,7 +25582,7 @@
     "fullDemoComplete": false
   },
   "currentRunMeasurement": {
-    "runId": "rpgthreejs-auto-dev-90m-20261011T1731",
+    "runId": "rpgthreejs-auto-dev-90m-20261011T1800",
     "runtimeSourceFilesModified": 0,
     "testFilesModified": 0,
     "existingQaFilesModified": 1,
@@ -24887,7 +25593,7 @@
     "browserScenarios": 1,
     "harnessCorrectionsAfterFailure": 1,
     "reviewers": 1,
-    "reviewPasses": 4,
+    "reviewPasses": 3,
     "quotaSavingClaim": false
   }
 }

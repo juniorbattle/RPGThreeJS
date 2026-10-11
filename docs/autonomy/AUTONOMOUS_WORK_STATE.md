@@ -1,3 +1,43 @@
+## Native skills and archer pilot checkpoint - 2026-10-11T18:49:02.285Z
+
+ONE registered native ending continuation FAILED at35min bounded deadline in serpent_captain; no ending/reload.70fresh actions: native T3 forest_patrol Pursuit won49, boss unfinished21. Five novice classes observed (rogue/lancer/warrior/white_mage/dark_mage), archer missing. Refund-aware assertion exercised warrior3to2 finalKO with+1refund. Salvation exactly2to0, spec40percent, Cedric79to100 CAPPED+21; independent5to3 cast39to79 gives+40. Darkbolt action11 missed, action19 hit425to403. Root/guardian selected captures inspected; no universal skill-hit or uncapped40 at exactly2 claim. Archer pilot repeatedly spent1AP basic attack then waited0; ONE minimal native-wait conservation extension while verifySalvation and that archer lacks a fresh novice cast. Corrected driver UNEXECUTED; no second smoke or runtime defect invented.
+
+Observed T3 t3:t0:r6:pursuit-1/forest_patrol return retained same window/leg/segment/stage/consumed state and visible lane0 focus. Securedgold225 unchanged, temporarygold15to100; native reward85gold/1rep/redgem1/ironore1. Precombat autosave only: immediate reward reload durability remainsOPEN. No narrative/camera/mobile/full-demo acceptance.
+
+60unique tests/types/8contracts8slots/syntax/immutable/whitespace PASS;393physical source/ninebuild reused. Source0/tests0/existingQA1/newQA0/promotedproof0/workflow3/inherited0; one smoke/one postfailure correction/one guardian three bounded passes. Original task,197 historical job records, exact deferred keyboard and accepted narrative matrices preserved.
+
+Exact nextAction: Read-only autonomy preflight/exclusive lock; inspect skills-1800 terminal-audit-original-driver.json and corrected pilot diff. Preserve original20ee6322/result84acc2d2 FAILED/NOT_ACCEPTED historical observations only; NEVER seed from failed1800/1731/0001 or repeat unchanged failed1840/2321/0001/1731/1800. Current archer-conservation driverc6306944 is UNEXECUTED: verify393physical sources/ninebuild and SUCCEEDED second-refuge1859 exact save/proof; then ONE unique registered1366x768 normal ending/rescue/serpent45min verifySalvation1 scenario via register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID/AUTONOMY_QA_STATE_PATH absolute state JSON and verified host Chromium cache. Existing45min parameter allows more time for both native battles after35min expired; no balance acceptance inferred. Observe archer native AP conservation/novice a_precise_shot, all six fresh initial-equipment casts, strict Salvation2to0/40percent capped healing, earned ending and exact reload; inspect terminal receipt/digest and selected captures. No instrumentation loop/second smoke/injected truth/proof weakening. Parent six-skills/randomPursuit/fullV6/balance/later narrative/AT/operatorfinal/demo OPEN; accepted narrative matrices and exact deferred keyboard preserved; mobileLAST.
+
+## Native skills live checkpoint - 2026-10-11T18:36:51.805Z
+
+60unique tests, types,8contracts8slots/syntax/gates PASS. Guardian prelaunch PASS for native refund/AP order and earned seed guards; runtime acceptance OPEN. Existing pilot/source/build frozen; original task/deferred history retained.
+
+Exact nextAction: Inspect RUNNING registered skills-six-native-1800 terminal receipt/result/digest before any relaunch; unchanged refund-aware pilot20ee6322/source393/build9 frozen. Require six fresh novice casts, strict Salvation2to0/40percent, exact ending/reload and selected capture review before any acceptance. One browser scenario only; no failed seed, injected truth, repeat or proof weakening; original deferred work/mobileLAST retained.
+
+## Native skills live checkpoint - 2026-10-11T18:25:22.753Z
+
+60unique tests, types,8contracts8slots/syntax/gates PASS. Guardian prelaunch PASS for native refund/AP order and earned seed guards; runtime acceptance OPEN. Existing pilot/source/build frozen; original task/deferred history retained.
+
+Exact nextAction: Inspect RUNNING registered skills-six-native-1800 terminal receipt/result/digest before any relaunch; unchanged refund-aware pilot20ee6322/source393/build9 frozen. Require six fresh novice casts, strict Salvation2to0/40percent, exact ending/reload and selected capture review before any acceptance. One browser scenario only; no failed seed, injected truth, repeat or proof weakening; original deferred work/mobileLAST retained.
+
+## Native skills live checkpoint - 2026-10-11T18:15:17.551Z
+
+60unique tests, types,8contracts8slots/syntax/gates PASS. Guardian prelaunch PASS for native refund/AP order and earned seed guards; runtime acceptance OPEN. Existing pilot/source/build frozen; original task/deferred history retained.
+
+Exact nextAction: Inspect RUNNING registered skills-six-native-1800 terminal receipt/result/digest before any relaunch; unchanged refund-aware pilot20ee6322/source393/build9 frozen. Require six fresh novice casts, strict Salvation2to0/40percent, exact ending/reload and selected capture review before any acceptance. One browser scenario only; no failed seed, injected truth, repeat or proof weakening; original deferred work/mobileLAST retained.
+
+## Native skills live checkpoint - 2026-10-11T18:05:40.167Z
+
+60unique tests, types,8contracts8slots/syntax/gates PASS. Guardian prelaunch PASS for native refund/AP order and earned seed guards; runtime acceptance OPEN. Existing pilot/source/build frozen; original task/deferred history retained.
+
+Exact nextAction: Inspect RUNNING registered skills-six-native-1800 terminal receipt/result/digest before any relaunch; unchanged refund-aware pilot20ee6322/source393/build9 frozen. Require six fresh novice casts, strict Salvation2to0/40percent, exact ending/reload and selected capture review before any acceptance. One browser scenario only; no failed seed, injected truth, repeat or proof weakening; original deferred work/mobileLAST retained.
+
+## Native skills refund-aware verification - 2026-10-11T18:03:01.745Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T1800; clean dev/livebae8a68, no active writer or QA/build process, persistent development servers retained. Existing pilot and physical393source/ninebuild unchanged; independently successful1859 input verified. No new QA tool, runtime change or acceptance inferred. Original task/deferred work retained; mobileLAST.
+
+Exact nextAction: Await guardian scoped review of unchanged refund-aware pilot20ee6322; register ONE skills-six-native-1800 ending/rescue/serpent35min 1366normal verifySalvation1 from independently successful1859 exact earned input, then inspect terminal receipt/digest/native sixcast and2to0/40percent assertions plus selected captures. Preserve failed1731 and all historical/deferred work; mobileLAST.
+
 ## Published native pilot closure — 2026-10-11T17:57:13.179Z
 
 Pilot checkpoint 1ca520498d6262293f1f57800c4adbd4539bda57 normally pushed/live origin parity verified. Corrected driver remains unexecuted; original receipt FAILED/NOT_ACCEPTED and two historical novice casts retained only. Owned WIP2d58790 preserved; historical refs untouched. Worker68132/port5379 absent, persistent development servers retained. Source0/tests0/existingQA1/newQA0/proof0/workflow3/inherited0. Metadata closure and final parity precede lock release.
@@ -750,9 +790,12 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - opening-620-normal-1642: SUCCEEDED; port 5377; receipt `tmp/cinematics/opening-620-normal-1642/qa-job.json`; NOT_ACCEPTED
 - opening-620-os-1642: SUCCEEDED; port 5378; receipt `tmp/cinematics/opening-620-os-1642/qa-job.json`; NOT_ACCEPTED
 - skills-six-native-1731: FAILED; port 5379; receipt `tmp/demo/skills-six-native-1731/qa-job.json`; NOT_ACCEPTED
+- skills-six-native-1800: FAILED; port 5380; receipt `tmp/demo/skills-six-native-1800/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
 Publication verified 2026-10-09T18:31:51.303Z: source checkpoint 20b082984088a05b4b7aa3b562724229bd35e41a on origin/dev; physical frozen source/driver/build unchanged. Main remains 00b96f1b502539618790b1c0d8d642f86d3dcf7f. All three owned workers/listeners stopped; lock released after final closure transport. Original two historical WIP branches retained.
 
 Published acceptance checkpoint ea78eff9bcd3e23cc00b6e6e77e6b7f6b324d3bd verified on origin/dev; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. Postcommit source393/build9/driver/helper/input execution identity and result digest unchanged. OwnedWIP a8a235cad89e2665207a457c362e3e4dc35f2996 content covered, with only3workflow metadata differences; retire after final metadata parity. No runtime/proof/contract changes. Final actual SHA, ownedWIP retirement and lock release in automationmemory after verification.
+
+Guardian final actual-diff review: PASS_SAFE_INPUT_ONLY_CHECKPOINT at 2026-10-11T18:49:26.052Z; correcteddriverc6306944 UNEXECUTED, all fresh six/ending/reload acceptance OPEN.
