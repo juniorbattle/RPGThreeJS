@@ -1,3 +1,18 @@
+## Six novice casts and Serpent observation checkpoint - 2026-10-11T19:53:20.867Z
+
+ONE registered1366normal45min ending/rescue/serpent continuation reached native Serpent victory and exact terminal reload, then FAILED strict assertion774: no new exactly-two-AP Salvation cast. Fresh forest_ambush18actions and serpent_captain128actions both won.31 independently extracted novice casts cover all six classes with native two-AP cost/refund accounting.20 Salvation casts from3/5AP match capped40percent; selected AP5to3 warrior40to96/140 is uncapped+56. No2to0 cast, no native setup, no six-class terminal summary gate executed.18 AP3+wounded-player setup attempts have zero healthy native basic-crosier centers. Pilot positioning/coverage gap only; no demonstrated runtime defect. Overall FAILED/NOT_ACCEPTED remains immutable; six casts/ending are REVIEWED_OBSERVATIONS_ONLY, never a certified seed or coupled PASS.
+
+60unique tests/types/contracts8slots/syntax/immutable/whitespace PASS.393source/ninebuild reused; errors0/unmutated/no outcome injection. One guardian/three bounded passes; root and guardian reviewed six cast captures and both terminal captures. Proof: docs/reports/native-six-skills-observations-20261011-1858/checks.json. Source0/test0/existingQA0/newQA0/proof9/workflow3/inherited0; one smoke, no correction afterfailure. Original task,198 historical jobs, prior1800/deferred keyboard/narrative/queue preserved. MobileLAST; demoIN_PROGRESS.
+
+Exact nextAction: Read-only preflight/exclusive lock; inspect native-six-skills-observations-20261011-1858/checks.json and tmp/autonomy/skills-1858/terminal-audit.json first. Preserve FAILED/NOT_ACCEPTED driverc6306944/resultad28f416, all six reviewed novice-cast observations and exact earned Serpent terminal V6 equality; NEVER seed1858/1800/1731/0001 or replay unchanged45min campaign. Coupled exactly2AP Salvation remains OPEN: all20 casts begin3/5AP;18 AP3 native one-AP setup attempts had no healthy ally in basic-crosier centers. Inspect existing pilot skill()250-270, attack()202-215 and support move()330-365 against native reach. Establish a bounded native positioning plan with a healthy ally at basic-crosier range and a wounded eligible Salvation target; preserve3to2 native setup and strict2to0/40percent assertions. Only a demonstrated plan warrants ONE minimal existing-pilot input correction with guardian review and targeted registered verification from SUCCEEDED1859 or another independently successful exact seed; no instrumentation rewrite/unchanged failed replay. If unsupported, record the precise proof blocker and advance independent desktop production work. Keep original skills/randomPursuit task, exact deferred keyboard, accepted narrative history, canonical mapping blockers and mobileLAST; demo IN_PROGRESS.
+
+
+## Native skills refund-aware verification - 2026-10-11T19:00:32.085Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T1858; clean dev/livebae8a68, no active writer or QA/build process, persistent development servers retained. Checkpointed archer pilotc6306944 and physical393source/ninebuild unchanged; independently successful1859 input verified. No new QA tool, runtime change or acceptance inferred. Original task/deferred work retained; mobileLAST.
+
+Exact nextAction: Await guardian scoped review of unchanged archer-conserving pilotc6306944; register ONE skills-six-native-1800 ending/rescue/serpent45min 1366normal verifySalvation1 from independently successful1859 exact earned input, then inspect terminal receipt/digest/native sixcast and2to0/40percent assertions plus selected captures. Preserve failed1731 and all historical/deferred work; mobileLAST.
+
 ## Native skills and archer pilot checkpoint - 2026-10-11T18:49:02.285Z
 
 ONE registered native ending continuation FAILED at35min bounded deadline in serpent_captain; no ending/reload.70fresh actions: native T3 forest_patrol Pursuit won49, boss unfinished21. Five novice classes observed (rogue/lancer/warrior/white_mage/dark_mage), archer missing. Refund-aware assertion exercised warrior3to2 finalKO with+1refund. Salvation exactly2to0, spec40percent, Cedric79to100 CAPPED+21; independent5to3 cast39to79 gives+40. Darkbolt action11 missed, action19 hit425to403. Root/guardian selected captures inspected; no universal skill-hit or uncapped40 at exactly2 claim. Archer pilot repeatedly spent1AP basic attack then waited0; ONE minimal native-wait conservation extension while verifySalvation and that archer lacks a fresh novice cast. Corrected driver UNEXECUTED; no second smoke or runtime defect invented.
@@ -791,6 +806,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - opening-620-os-1642: SUCCEEDED; port 5378; receipt `tmp/cinematics/opening-620-os-1642/qa-job.json`; NOT_ACCEPTED
 - skills-six-native-1731: FAILED; port 5379; receipt `tmp/demo/skills-six-native-1731/qa-job.json`; NOT_ACCEPTED
 - skills-six-native-1800: FAILED; port 5380; receipt `tmp/demo/skills-six-native-1800/qa-job.json`; NOT_ACCEPTED
+- skills-six-native-1858: FAILED; port 5381; receipt `tmp/demo/skills-six-native-1858/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
