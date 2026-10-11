@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-11T04:56:50.63607Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-11T05:26:45.885Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "INDEPENDENT_NARRATIVE_REMAINING_GATES",
   "activeSubtask": "Live OS preference correction source-green; fresh opening cast production smoke next",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "68e2e42f5d915aba3ab0f5a56cf3182f59eef763",
-  "lastPushedCommit": "68e2e42f5d915aba3ab0f5a56cf3182f59eef763",
+  "lastKnownGoodCommit": "bcd218591f52bbf2c786b8466608c567c583940d",
+  "lastPushedCommit": "bcd218591f52bbf2c786b8466608c567c583940d",
   "completedThisRun": [
     "Read-only preflight clean/no-lock/dev equals live origin/dev2d4de45; positive associated QA/Git/listener absence; exclusive lock acquired",
     "393physical source files/ninebuild and compatible displaced OS receipt/result/driver/helper verified; build reused without rerun",
@@ -226,7 +226,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261011T0455",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-11T05:24:52.1847603Z",
+  "lastHeartbeat": "2026-10-11T05:26:45.885Z",
   "wip": {
     "sha": "a8a235cad89e2665207a457c362e3e4dc35f2996",
     "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0415",
@@ -244,8 +244,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261011T0455",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-11T05:24:52.1847603Z",
-    "status": "GREEN_SOURCE_CHECKPOINT_PRODUCTION_MOTION_OPEN",
+    "lastHeartbeat": "2026-10-11T05:26:45.885Z",
+    "status": "CHECKPOINTED_LIVE_OS_SOURCE_GREEN_PRODUCTION_BROWSER_OPEN",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -20493,13 +20493,8 @@
       "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0455",
       "sha": "c2745be8d450269321a182190d0653adce18ad32",
       "at": "2026-10-11T05:24:52.1847603Z",
-      "status": "GREEN_SOURCE_SNAPSHOTTED_BROWSER_OPEN",
+      "status": "CONTENT_ON_DEV_RETIRE_AFTER_CLOSEOUT_PUBLICATION",
       "dirtyFiles": [
-        "src/cinematics/NarrativeStage.ts",
-        "src/cinematics/NarrativeSceneSurface.ts",
-        "src/cinematics/NarrativeStage.test.ts",
-        "src/cinematics/NarrativeSceneSurface.test.ts",
-        "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
         "docs/autonomy/handoffs/2026-10-11T0455Z-codex-contextual-static.md"
@@ -22324,7 +22319,29 @@
         "browserSmokesThisRun": 1,
         "milestoneMatricesThisRun": 1
       },
-      "historicalAcceptanceCommit": "68e2e42f5d915aba3ab0f5a56cf3182f59eef763"
+      "historicalAcceptanceCommit": "68e2e42f5d915aba3ab0f5a56cf3182f59eef763",
+      "closeout": {
+        "recordedAt": "2026-10-11T05:26:45.885Z",
+        "productCommit": "bcd218591f52bbf2c786b8466608c567c583940d",
+        "historicalScopedBrowserCommit": "68e2e42f5d915aba3ab0f5a56cf3182f59eef763",
+        "physicalSourceFilesVerified": 393,
+        "buildFilesVerified": 9,
+        "ownedSnapshot": "c2745be8d450269321a182190d0653adce18ad32",
+        "ownedSnapshotContentCovered": true,
+        "associatedQaStopped": true,
+        "associatedGitStopped": true,
+        "ports5350to5379Absent": true,
+        "excludedTrustedCuaHostPids": [
+          29400,
+          49688
+        ],
+        "lockRelease": "After normal workflow closeout push and live remote parity; actual final SHA retained in closed lock archive",
+        "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+        "historicalRootKeysPreserved": 40,
+        "historicalQaJobsPreserved": 187,
+        "wholeNarrativeAndDemo": "IN_PROGRESS",
+        "credits": "AVAILABLE; no quota saving claim"
+      }
     }
   },
   "previousInterruptedRun": {
@@ -23676,6 +23693,8 @@
     "reviewers": 2,
     "boundedReviews": 6,
     "harnessCorrectionsAfterFailure": 0,
-    "quotaSavingsClaim": "NONE"
+    "quotaSavingsClaim": "NONE",
+    "sourceProductCheckpoint": "bcd218591f52bbf2c786b8466608c567c583940d",
+    "recordedAt": "2026-10-11T05:26:45.885Z"
   }
 }
