@@ -1,3 +1,17 @@
+## Current opening OS scoped checkpoint — 2026-10-11T05:40:49.332Z
+
+Current production opening/camp/audience1366 OStrue/gamefalse passes existing observer: ordered EXIT/BREATH/ENTRY,4to2to4, retained actors/final facing, preparing state/focus/enabled interaction, sampled text/choice bounds and four root-inspected captures.455.6ms observation. Nonempty storedV6 byte equality during effect-free replacement; limited resolved-resume projection only. Approved camp/audience video attempts skipped for reduced-motion; no playback claim. Manual owner terminal receipt SUCCEEDED/eligible true; worker acceptance NOT_ACCEPTED remains separate.393 physical files/ninebuild/driver/helper/digest stable; build reused. Guardian PASS. No new runtime/test/QA tool/source changes.
+
+Counts runtime0/tests0/existingQA0/newQA0/promotedproof0/workflow3/canonicaldoc1/inherited0; one smoke, one guardian/two passes.54unique tests/types/8contracts8slots/gates PASS. Parent narrative/skills/demo IN_PROGRESS; mobileLAST. Raw proof remains ignored pending wider dynamic milestone.
+
+Exact nextAction: Read-only preflight/exclusive lock. Reuse opening-cast-os-0534 receipt/result3e36bcae and narrative-0534 terminal-audit only while393physical source/driver/helper/ninebuild match; do not repeat accepted fixedOS1366 or historical contextual matrices. Verify published live OS correction in a mounted stage: minimally extend existing run_cin6d6_route_browser_qa.mjs with an opt-in production opening-only live-OS-flip parameter, initial OS no-preference/gamefalse, page.emulateMedia(reduce) after stage mounted at opening step4 and before existing cast observer; preserve exact phase/cap/facing/preparing/focus/saved-byte assertions. Existing fixed-OS runner cannot certify that boundary; no new tool/exhausted assertion rewrite. Guardian review certifying diff before ONE unique registered1366 production live-flip smoke; keep default behavior unchanged and prior receipt historical if driver changes. If no safe narrow extension, document precise gap and advance independent product audit. Original allsixskills/Pursuit/deferred keyboard exact continuation retained; normal/intermediate dynamic/later/earned/fullV6/AT/balance/operatorfull-demo OPEN; mobileLAST.
+
+## Opening OS production continuation — 2026-10-11T05:36:22.286Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T0534; clean dev/live origin parity c6681738, no inherited WIP.393 physical source/build/driver/helper freeze matches; prior build reused. One existing-runner smoke planned; fixed OS-only sample does not prove live OS flip. Original task/deferred histories retained; mobileLAST.
+
+Exact nextAction: Inspect ONE opening-cast-os-0534 current production1366 OS-only opening/camp/audience run; reconcile unchanged source/driver/helper/build and manual terminal receipt, inspect cast/facing/focus/geometry/saved-byte captures. Mounted-stage OS flip remains OPEN; do not rewrite exhausted transition assertion or rerun historical contextual matrices. Preserve original skills/Pursuit/deferred keyboard; mobileLAST.
+
 ## Safe run checkpoint — 2026-10-11T05:26:45.885Z
 
 Source correction published and verified on origin/dev at bcd218591f52bbf2c786b8466608c567c583940d. Historical contextual nine-cell/displaced scopes remain at68e2e42; current production motion acceptance OPEN.393physical source hashes and nine build artifacts verified after publication. Both receipts SUCCEEDED historically and correctly current=false; no rerun. Associated QA/Git/ports stopped; trusted CUA hosts29400/49688 excluded. Parent skills/Pursuit, deferred keyboard and history preserved.
@@ -628,6 +642,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - displaced-ack-os-0415: SUCCEEDED; port 5371; receipt `tmp/cinematics/displaced-ack-os-0415/qa-job.json`; NOT_ACCEPTED
 - displaced-ack-normal-0455: SUCCEEDED; port 5372; receipt `tmp/cinematics/displaced-ack-normal-0455/qa-job.json`; NOT_ACCEPTED
 - contextual-static-0455: SUCCEEDED; port 5373; receipt `tmp/cinematics/contextual-static-0455/qa-job.json`; NOT_ACCEPTED
+- opening-cast-os-0534: SUCCEEDED; port 5374; receipt `tmp/cinematics/opening-cast-os-0534/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

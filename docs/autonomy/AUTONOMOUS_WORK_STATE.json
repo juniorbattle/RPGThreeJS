@@ -1,55 +1,43 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-11T04:56:50.63607Z",
-  "runEndedAt": "2026-10-11T05:26:45.885Z",
+  "runStartedAt": "2026-10-11T05:35:26.2859964Z",
+  "runEndedAt": null,
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "INDEPENDENT_NARRATIVE_REMAINING_GATES",
-  "activeSubtask": "Live OS preference correction source-green; fresh opening cast production smoke next",
+  "activeSubtask": "Current opening cast fixed OS-only desktop scoped accepted; mounted-stage OS flip next",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "bcd218591f52bbf2c786b8466608c567c583940d",
-  "lastPushedCommit": "bcd218591f52bbf2c786b8466608c567c583940d",
+  "lastKnownGoodCommit": "c6681738faf25282e34ca3bea2ee6885c0908fde",
+  "lastPushedCommit": "c6681738faf25282e34ca3bea2ee6885c0908fde",
   "completedThisRun": [
-    "Read-only preflight clean/no-lock/dev equals live origin/dev2d4de45; positive associated QA/Git/listener absence; exclusive lock acquired",
-    "393physical source files/ninebuild and compatible displaced OS receipt/result/driver/helper verified; build reused without rerun",
-    "Normal1366 displaced acknowledgement accepted scoped; unchanged driver and matching owner terminal receipt",
-    "Existing static runner production-context mode;9/9 first-step cells SUCCEEDED; independent scoped acceptance and four inspected captures promoted",
-    "Product correction: live OS-or-game decision at cast EXIT/BREATH/ENTRY; five added regressions;54focused tests/types/fresh build PASS; new production acceptance OPEN"
+    "Clean/no-lock read-only preflight, live origin/dev c6681738 parity; no associated worker/listener; exclusive lock",
+    "393 physical source/build/driver/helper files match motion freeze; prior build reused, not rebuilt",
+    "Current production opening/camp/audience1366 OStrue/gamefalse passes existing observer: ordered EXIT/BREATH/ENTRY,4to2to4, retained actors/final facing, preparing state/focus/enabled interaction, sampled text/choice bounds and four root-inspected captures.455.6ms observation. Nonempty storedV6 byte equality during effect-free replacement; limited resolved-resume projection only. Approved camp/audience video attempts skipped for reduced-motion; no playback claim. Manual owner terminal receipt SUCCEEDED/eligible true; worker acceptance NOT_ACCEPTED remains separate.393 physical files/ninebuild/driver/helper/digest stable; build reused. Guardian PASS. No new runtime/test/QA tool/source changes.",
+    "54 unique focused current tests(27Surface/23Stage/4helper),types,8contracts8slots,immutable/whitespace PASS; initial103 run included49 ignored baseline tests and is excluded from accepted count"
   ],
   "filesChanged": [
-    "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
-    "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-11T0455Z-codex-contextual-static.md",
-    "docs/reports/narrative-context-20261011-0455/checks.json",
-    "docs/reports/narrative-context-20261011-0455/EVIDENCE.md",
-    "docs/reports/narrative-context-20261011-0455/1366x768-os-protected-witness-council-1-1.png",
-    "docs/reports/narrative-context-20261011-0455/620x780-os-first-refuge-exploitation-1-2.png",
-    "docs/reports/narrative-context-20261011-0455/620x780-os-displaced-family-choices.png",
-    "docs/reports/narrative-context-20261011-0455/620x780-normal-displaced-family-1-2.png",
-    "src/cinematics/NarrativeStage.ts",
-    "src/cinematics/NarrativeSceneSurface.ts",
-    "src/cinematics/NarrativeStage.test.ts",
-    "src/cinematics/NarrativeSceneSurface.test.ts"
+    "docs/autonomy/handoffs/2026-10-11T0534Z-codex-opening-os.md",
+    "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md"
   ],
   "testsRun": [
-    "132 current unique tests in6source files PASS; tmp excluded",
-    "TypeScript --noEmit PASS",
-    "8contracts8slots validator, immutable and whitespace PASS",
-    "393physical sources/ninebuild verified; build reused",
-    "Existing static runner production contextual extension syntax PASS",
-    "Motion checkpoint:54 tests PASS (27Surface/23Stage/4helper),five added regressions; TypeScript --noEmit and fresh Vite build PASS"
+    "54 unique focused tests PASS (--exclude tmp/**); focused-tests.log",
+    "TypeScript --noEmit PASS; types.log",
+    "8LOCKED contracts/8slots validator PASS",
+    "Immutable HEAD and working tree gates empty; whitespace PASS",
+    "ONE registered current production1366 OS-only opening/camp/audience smoke SUCCEEDED; provenance/capture review guardian PASS",
+    "Matching prior production build reused, not rebuilt"
   ],
   "testsPassed": [
-    "132 current unique tests in6source files PASS; tmp excluded",
-    "TypeScript --noEmit PASS",
-    "8contracts8slots validator, immutable and whitespace PASS",
-    "393physical sources/ninebuild verified; build reused",
-    "Existing static runner production contextual extension syntax PASS",
-    "Motion checkpoint:54 tests PASS (27Surface/23Stage/4helper),five added regressions; TypeScript --noEmit and fresh Vite build PASS"
+    "54 unique focused tests PASS (--exclude tmp/**); focused-tests.log",
+    "TypeScript --noEmit PASS; types.log",
+    "8LOCKED contracts/8slots validator PASS",
+    "Immutable HEAD and working tree gates empty; whitespace PASS",
+    "ONE registered current production1366 OS-only opening/camp/audience smoke SUCCEEDED; provenance/capture review guardian PASS",
+    "Matching prior production build reused, not rebuilt"
   ],
   "testsRemaining": [
-    "Fresh opening-camp-audience production smoke and mounted-stage live OS flip browser proof on current source/build",
+    "Mounted-stage live OS flip, current normal and intermediate dynamic cast browser proof",
     "Later narrative/branch and earned transaction/campaign coverage",
     "Node completion/fullV6 reload beyond earlier limited scopes",
     "Automatic focus and dynamic cast transition acceptance",
@@ -74,10 +62,10 @@
     "Shared positive checkpoint braking desktop normal/OS alternatives accepted scoped1806; full phase/readiness/game-only/camera comfort/manual broader scenery OPEN",
     "Shadow gait/reduced-miss proofs remain scoped; native T1 forest_patrol victory/return/tempLoot/focus/precombatV6 now accepted1366normal; full-tail/ground, other contexts, defeat/cancel/reentry/reduced/AT still open",
     "Other campaign branches/endings, Stage/VFX/AT/desktop accessibility",
-    "Contextual first-step/displaced acknowledgement historical scoped acceptance; current live-OS motion production smoke, later/earned campaign and approved Bois-Clair night plate remain OPEN",
+    "Contextual first-step/displaced acknowledgement historical scoped acceptance; mounted-stage live-OS flip browser proof, later/earned campaign and approved Bois-Clair night plate remain OPEN",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Read-only autonomy preflight and exclusive lock; retain original all-six-skills/random-Pursuit activeTask and deferred keyboard exact continuation. Inspect motion-physical-freeze.json, motion-tests/types/build logs and historical contextual0455 scoped proof. Product checkpoint has live OS preference correction (Stage raw game flag; Surface shared helper at EXIT/BREATH/ENTRY), 54 focused tests/types/build PASS but no matching production browser acceptance. Use existing run_cin6d6_route_browser_qa.mjs --production opening-camp-audience,1366x768,OS reduce=true,game=false,available media,one new ignored output/free strict port; register exact command/environment/source/driver/build/assertions in live.qaJobs before launch and reconcile terminal receipt. Inspect cast 4to2to4/facing/dialogue-preparing/focus/geometry/saved-byte observation and screenshots. Existing runner does not toggle OS during a mounted stage: that live-flip browser claim remains OPEN, covered only by regressions; do not certify it from static samples. Do not rerun historical first-step matrix, normal/OS displaced or unchanged failed campaign samples. Later branches/earned transactions/fullV6/dynamic cast/browser OS flip/environment/operatorfinal/full-demo OPEN; mobileLAST.",
+  "nextAction": "Read-only preflight/exclusive lock. Reuse opening-cast-os-0534 receipt/result3e36bcae and narrative-0534 terminal-audit only while393physical source/driver/helper/ninebuild match; do not repeat accepted fixedOS1366 or historical contextual matrices. Verify published live OS correction in a mounted stage: minimally extend existing run_cin6d6_route_browser_qa.mjs with an opt-in production opening-only live-OS-flip parameter, initial OS no-preference/gamefalse, page.emulateMedia(reduce) after stage mounted at opening step4 and before existing cast observer; preserve exact phase/cap/facing/preparing/focus/saved-byte assertions. Existing fixed-OS runner cannot certify that boundary; no new tool/exhausted assertion rewrite. Guardian review certifying diff before ONE unique registered1366 production live-flip smoke; keep default behavior unchanged and prior receipt historical if driver changes. If no safe narrow extension, document precise gap and advance independent product audit. Original allsixskills/Pursuit/deferred keyboard exact continuation retained; normal/intermediate dynamic/later/earned/fullV6/AT/balance/operatorfull-demo OPEN; mobileLAST.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -86,7 +74,7 @@
     "TRAVERSAL-PURSUIT-THREAT: TEN_MAPPINGS_IMPLEMENTED; T0_DESKTOP_FIXTURE_CONTACT_MISS_RETURN_PASS; ARTICULATED_GAIT_AND_FULL_ACCEPTANCE_OPEN",
     "TRAVERSAL-ROAD-ELEMENTS: COMPLETE_SCOPED_PRESENTATION",
     "PRE-JUDGEMENT-CAMPFIRE: COMPLETE_SCOPED_PRESENTATION",
-    "NARRATIVE-CONTEXT-COHERENCE: CONTEXTUAL_FIRST_STEP_HISTORICAL_SCOPED_PASS; LIVE_OS_SOURCE_GREEN_BROWSER_OPEN; later/earned/autofocus/dynamic/mobile/full-demo OPEN",
+    "NARRATIVE-CONTEXT-COHERENCE: CURRENT_OPENING_1366_OS_SCOPED_PASS; LIVE_OS_FLIP_BROWSER_OPEN; later/earned/autofocus/intermediate/mobile/full-demo OPEN",
     "STATIC-TABLEAU-STAGING-POLISH: COMPLETE_SCOPED_RUNTIME; exact old checkpoint and recovery snapshot live remote verified run0514",
     "SCENE-TRANSITION-COPY: SCOPED_RUNTIME_PASS; BLOCKED_STATIC_OS_SHADOW",
     "ENVIRONMENT-NARRATIVE-COHERENCE: BLOCKED_ASSET_BOIS_CLAIR_NIGHT; bounded audit complete",
@@ -95,22 +83,22 @@
   "creditStatus": "AVAILABLE_THIS_RUN",
   "contractComplianceStatus": {
     "contractSetVersion": "1.1.0",
-    "scope": "LIVE_OS_NARRATIVE_CAST_SOURCE_CHECKPOINT_ONLY",
+    "scope": "ACCEPTED_SCOPED_CURRENT_BUILD_OPENING_CAST_1366_OS_ONLY",
     "matrix": {
-      "GAME_CONSTITUTION": "PASS: production owners unchanged",
+      "GAME_CONSTITUTION": "PASS presentation authority/gates",
       "ART_DIRECTION": "N/A",
       "CHARACTERS": "N/A",
-      "ENVIRONMENTS": "N/A: no environment certification",
-      "NARRATIVE_CAMPAIGN": "PASS: native fact-sensitive selection in three declared origin fixtures",
-      "NARRATIVE_PRESENTATION": "PASS: shared motion helper at existing EXIT/BREATH/ENTRY; phase/facing/cast ownership unchanged",
+      "ENVIRONMENTS": "N/A",
+      "NARRATIVE_CAMPAIGN": "PASS native opening/mission choice no authored change",
+      "NARRATIVE_PRESENTATION": "PASS scoped4to2to4/retained/facing/preparing",
       "TRAVERSAL": "N/A",
-      "COMBAT": "N/A: zero combat",
-      "SAVE": "PASS: existing nonemptyV6 observation-byte equality only",
-      "UI_ACCESSIBILITY": "PASS_SOURCE: explicit game false cannot mask current OS request;54tests; browser current build OPEN",
-      "QA_EVIDENCE": "PASS_SOURCE:54tests/types/build; prior browser receipts historical source/build mismatch; no current production acceptance",
-      "REPOSITORY_GOVERNANCE": "PASS: immutable gates/eight slots/selected public paths"
+      "COMBAT": "N/A no nativecombat claim",
+      "SAVE": "PASS storedV6 observation bytes/limited resume projection only",
+      "UI_ACCESSIBILITY": "PASS fixedOStrue/gamefalse/focus/sampled bounds/captures",
+      "QA_EVIDENCE": "PASS matching393physical/ninebuild/manualreceipt/54tests/types/guardian",
+      "REPOSITORY_GOVERNANCE": "PASS selected dev docs/no main/secrets"
     },
-    "lockedDocumentGate": "PASS empty HEAD/worktree gate at immutable d7ca28a; no LOCKED rule changed",
+    "lockedDocumentGate": "PASS empty immutable HEAD/worktree gates; no LOCKED rule changed",
     "contractsRead": [
       "GAME_CONSTITUTION",
       "README/manifest",
@@ -121,7 +109,7 @@
       "UI_AND_ACCESSIBILITY",
       "WORLD_AND_CHARACTERS"
     ],
-    "open": "Current production motion, mounted-stage OS flip, later/earned/fullV6/mobile/full narrative/demo remain OPEN"
+    "open": "Mounted-stage OS flip/current normal/intermediate dynamic/fullV6/earned/mobile/full demo OPEN"
   },
   "commitReferenceScope": "Published baseline/checkpoint references; final dev metadata SHA/parity/WIP retirement/lock release recorded in automationmemory after verification",
   "operatorAuthorization": {
@@ -224,9 +212,9 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261011T0455",
+  "runId": "rpgthreejs-auto-dev-90m-20261011T0534",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-11T05:26:45.885Z",
+  "lastHeartbeat": "2026-10-11T05:41:08.8407950Z",
   "wip": {
     "sha": "a8a235cad89e2665207a457c362e3e4dc35f2996",
     "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0415",
@@ -242,10 +230,10 @@
     "lastGreenCheck": "132tests/types/contracts8slots/immutable/whitespace; one smoke scoped accepted by root/guardian;5reviewed paths snapshot published"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261011T0455",
+    "runId": "rpgthreejs-auto-dev-90m-20261011T0534",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-11T05:26:45.885Z",
-    "status": "CHECKPOINTED_LIVE_OS_SOURCE_GREEN_PRODUCTION_BROWSER_OPEN",
+    "lastHeartbeat": "2026-10-11T05:41:08.8407950Z",
+    "status": "SCOPED_OPENING_OS_ACCEPTED_CHECKPOINT",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -20487,21 +20475,124 @@
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "opening-cast-os-0534",
+        "runId": "rpgthreejs-auto-dev-90m-20261011T0534",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-11T05:36:22.309Z",
+        "pid": 32828,
+        "port": 5374,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "production": true,
+          "scenario": "opening-camp-audience",
+          "viewport": "1366x768",
+          "osReducedMotion": true,
+          "reducedMotion": false,
+          "blockedMedia": false,
+          "environment": {
+            "CIN6D6_PORT": "5374",
+            "CIN6D6_ROUTE_SCENARIO": "opening-camp-audience",
+            "CIN6D6_VIEWPORT": "1366x768",
+            "CIN6D6_OS_REDUCED_MOTION": "1",
+            "CIN6D6_REDUCED_MOTION": "0",
+            "CIN6D6_BLOCK_MEDIA": "0",
+            "CIN6D6_ROUTE_OUTPUT_DIR": "tmp/cinematics/opening-cast-os-0534"
+          },
+          "execution": "node tools/cinematics/run_cin6d6_route_browser_qa.mjs --production"
+        },
+        "requiredAssertions": [
+          "Opening ordered SETTLED/EXIT/BREATH/ENTRY/SETTLED; cast4/2/4 within four actors, retained Maelor/Seraphine, authored final facing",
+          "Dialogue preparing during phase transition, restored focus/enabled settled text fits; OStrue/gamefalse and no cast animation",
+          "Nonempty V6 autosave byte equality across effect-free opening cast replacement; limited resolved resume projection only",
+          "Camp/audience STATIC_TABLEAU and existing mission choice/native campaign flag; zero combat, clean diagnostics",
+          "Fixed OS setting only; no browser live flip/fullV6/balance/mobile/full-demo claim"
+        ],
+        "output": "tmp/cinematics/opening-cast-os-0534",
+        "receiptPath": "tmp/cinematics/opening-cast-os-0534/qa-job.json",
+        "provenance": {
+          "gitHead": "c6681738faf25282e34ca3bea2ee6885c0908fde",
+          "sourceTree": "a147f5c25febb460ad69f38d184d8047c4cca780",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "05851ac56ad5a8930a84d551b3acb5f9cc307c26777cb5cf0889bf900c2193f0"
+          },
+          "inputs": [],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/game-zrccER2T.js",
+              "sha256": "fd9a3ff2f576d9fcfa2f7055d94eb1c1702f5594063904b480ef2d96253dfeab"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "2d3c23a073ba24f72568a542a0519e5714858dc13ea32a41f99aa17a12535e1e"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-11T05:37:35.5306922Z",
+        "endedAt": "2026-10-11T05:38:35.899Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/opening-cast-os-0534/results.json",
+        "resultSha256": "3e36bcaee95deef2f1f4dd5bb81e7aff66375e7f5594c49c0e7081d6682fdb1f",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0455",
-      "sha": "c2745be8d450269321a182190d0653adce18ad32",
-      "at": "2026-10-11T05:24:52.1847603Z",
-      "status": "CONTENT_ON_DEV_RETIRE_AFTER_CLOSEOUT_PUBLICATION",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0534",
+      "sha": "64cb7e768f2da831f87b0c0873f599cd213ec751",
+      "status": "GREEN_SCOPED_SNAPSHOT_PUBLISHED",
       "dirtyFiles": [
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-11T0455Z-codex-contextual-static.md"
+        "docs/autonomy/handoffs/2026-10-11T0534Z-codex-opening-os.md",
+        "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md"
       ],
-      "lastGreenCheck": "54motion tests/types/build/8contracts8slots/immutable/whitespace; browser acceptance OPEN"
+      "lastGreenCheck": "54unique tests/types/contracts/gates; current production scoped PASS",
+      "at": "2026-10-11T05:41:08.8407950Z"
     },
-    "nextAction": "Read-only autonomy preflight and exclusive lock; retain original all-six-skills/random-Pursuit activeTask and deferred keyboard exact continuation. Inspect motion-physical-freeze.json, motion-tests/types/build logs and historical contextual0455 scoped proof. Product checkpoint has live OS preference correction (Stage raw game flag; Surface shared helper at EXIT/BREATH/ENTRY), 54 focused tests/types/build PASS but no matching production browser acceptance. Use existing run_cin6d6_route_browser_qa.mjs --production opening-camp-audience,1366x768,OS reduce=true,game=false,available media,one new ignored output/free strict port; register exact command/environment/source/driver/build/assertions in live.qaJobs before launch and reconcile terminal receipt. Inspect cast 4to2to4/facing/dialogue-preparing/focus/geometry/saved-byte observation and screenshots. Existing runner does not toggle OS during a mounted stage: that live-flip browser claim remains OPEN, covered only by regressions; do not certify it from static samples. Do not rerun historical first-step matrix, normal/OS displaced or unchanged failed campaign samples. Later branches/earned transactions/fullV6/dynamic cast/browser OS flip/environment/operatorfinal/full-demo OPEN; mobileLAST.",
+    "nextAction": "Read-only preflight/exclusive lock. Reuse opening-cast-os-0534 receipt/result3e36bcae and narrative-0534 terminal-audit only while393physical source/driver/helper/ninebuild match; do not repeat accepted fixedOS1366 or historical contextual matrices. Verify published live OS correction in a mounted stage: minimally extend existing run_cin6d6_route_browser_qa.mjs with an opt-in production opening-only live-OS-flip parameter, initial OS no-preference/gamefalse, page.emulateMedia(reduce) after stage mounted at opening step4 and before existing cast observer; preserve exact phase/cap/facing/preparing/focus/saved-byte assertions. Existing fixed-OS runner cannot certify that boundary; no new tool/exhausted assertion rewrite. Guardian review certifying diff before ONE unique registered1366 production live-flip smoke; keep default behavior unchanged and prior receipt historical if driver changes. If no safe narrow extension, document precise gap and advance independent product audit. Original allsixskills/Pursuit/deferred keyboard exact continuation retained; normal/intermediate dynamic/later/earned/fullV6/AT/balance/operatorfull-demo OPEN; mobileLAST.",
     "runMetrics": {
       "existingQaFilesModified": 1,
       "harnessCorrections": 1,
@@ -22021,7 +22112,7 @@
       }
     },
     "narrative0400": {
-      "startedAt": "2026-10-11T04:03:10.540Z",
+      "startedAt": "2026-10-11T04:03:10.54Z",
       "previousNextAction": "Review council-normal-0055 unchanged-source production evidence with guardian; normal1366 fixture-origin council/text/choice/resume scope only. Then independently observe corrected refugee acknowledgements with existing runner and wider static-only OS before narrative milestone. Do not rerun compatible normal council/native samples; preserve original skills/deferred keyboard/mobileLAST.",
       "inheritedPaths": 2,
       "physicalSourcesUnchanged": 393,
@@ -22342,6 +22433,24 @@
         "wholeNarrativeAndDemo": "IN_PROGRESS",
         "credits": "AVAILABLE; no quota saving claim"
       }
+    },
+    "narrative0534": {
+      "baseline": "c6681738faf25282e34ca3bea2ee6885c0908fde",
+      "sourceDefect": "Prior published live OS preference correction; no new defect demonstrated",
+      "browserScope": "Opening/camp/audience1366 OS-only, fixed OS preference; not mounted-stage flip, earned combat/full V6 or full demo",
+      "harnessCorrections": 0,
+      "acceptance": "ACCEPTED_SCOPED_CURRENT_BUILD_OPENING_CAST_1366_OS_ONLY",
+      "fact": "Current production opening/camp/audience1366 OStrue/gamefalse passes existing observer: ordered EXIT/BREATH/ENTRY,4to2to4, retained actors/final facing, preparing state/focus/enabled interaction, sampled text/choice bounds and four root-inspected captures.455.6ms observation. Nonempty storedV6 byte equality during effect-free replacement; limited resolved-resume projection only. Approved camp/audience video attempts skipped for reduced-motion; no playback claim. Manual owner terminal receipt SUCCEEDED/eligible true; worker acceptance NOT_ACCEPTED remains separate.393 physical files/ninebuild/driver/helper/digest stable; build reused. Guardian PASS. No new runtime/test/QA tool/source changes.",
+      "terminalAudit": "tmp/autonomy/narrative-0534/terminal-audit.json",
+      "resultSha256": "3e36bcaee95deef2f1f4dd5bb81e7aff66375e7f5594c49c0e7081d6682fdb1f",
+      "guardian": "PASS; one reviewer/two bounded passes",
+      "rootInspectedCaptures": [
+        "opening-cast-before.png",
+        "opening-cast-after.png",
+        "opening-camp.png",
+        "opening-audience.png"
+      ],
+      "workerAndPortAbsent": true
     }
   },
   "previousInterruptedRun": {
@@ -22389,7 +22498,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-11T0455Z-codex-contextual-static.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-11T0534Z-codex-opening-os.md",
   "runMeasurement": {
     "productSource": 0,
     "existingTests": 0,
@@ -22628,10 +22737,10 @@
   },
   "pendingNarrativeTask": {
     "task": "NARRATIVE-CONTEXT-COHERENCE",
-    "status": "CONTEXTUAL_FIRST_STEP_HISTORICAL_SCOPED_PASS_LIVE_OS_SOURCE_GREEN_BROWSER_OPEN",
+    "status": "CURRENT_OPENING_OS_SCOPED_PASS_LIVE_OS_FLIP_BROWSER_OPEN",
     "record": "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
     "blocker": "Historical static-only council/shadow route video-attempt assertion exhausted; final-refuge OS context accepted separately, wider contextual production matrix still open",
-    "nextAction": "Read-only autonomy preflight and exclusive lock; retain original all-six-skills/random-Pursuit activeTask and deferred keyboard exact continuation. Inspect motion-physical-freeze.json, motion-tests/types/build logs and historical contextual0455 scoped proof. Product checkpoint has live OS preference correction (Stage raw game flag; Surface shared helper at EXIT/BREATH/ENTRY), 54 focused tests/types/build PASS but no matching production browser acceptance. Use existing run_cin6d6_route_browser_qa.mjs --production opening-camp-audience,1366x768,OS reduce=true,game=false,available media,one new ignored output/free strict port; register exact command/environment/source/driver/build/assertions in live.qaJobs before launch and reconcile terminal receipt. Inspect cast 4to2to4/facing/dialogue-preparing/focus/geometry/saved-byte observation and screenshots. Existing runner does not toggle OS during a mounted stage: that live-flip browser claim remains OPEN, covered only by regressions; do not certify it from static samples. Do not rerun historical first-step matrix, normal/OS displaced or unchanged failed campaign samples. Later branches/earned transactions/fullV6/dynamic cast/browser OS flip/environment/operatorfinal/full-demo OPEN; mobileLAST.",
+    "nextAction": "Read-only preflight/exclusive lock. Reuse opening-cast-os-0534 receipt/result3e36bcae and narrative-0534 terminal-audit only while393physical source/driver/helper/ninebuild match; do not repeat accepted fixedOS1366 or historical contextual matrices. Verify published live OS correction in a mounted stage: minimally extend existing run_cin6d6_route_browser_qa.mjs with an opt-in production opening-only live-OS-flip parameter, initial OS no-preference/gamefalse, page.emulateMedia(reduce) after stage mounted at opening step4 and before existing cast observer; preserve exact phase/cap/facing/preparing/focus/saved-byte assertions. Existing fixed-OS runner cannot certify that boundary; no new tool/exhausted assertion rewrite. Guardian review certifying diff before ONE unique registered1366 production live-flip smoke; keep default behavior unchanged and prior receipt historical if driver changes. If no safe narrow extension, document precise gap and advance independent product audit. Original allsixskills/Pursuit/deferred keyboard exact continuation retained; normal/intermediate dynamic/later/earned/fullV6/AT/balance/operatorfull-demo OPEN; mobileLAST.",
     "contextual0455": {
       "acceptance": "ACCEPTED_SCOPED_CONTEXTUAL_STATIC_FIRST_STEP_DESKTOP_INTERMEDIATE_OS_SETTINGS",
       "evidence": "docs/reports/narrative-context-20261011-0455/checks.json",
@@ -23678,23 +23787,18 @@
     "fullDemoComplete": false
   },
   "currentRunMeasurement": {
-    "runtimeSourceFilesModified": 2,
-    "testFilesModified": 2,
-    "newRegressionCases": 5,
-    "existingQaFilesModified": 1,
-    "newQaFilesAdded": 0,
-    "proofFilesAdded": 6,
-    "workflowFilesModifiedOrAdded": 3,
-    "canonicalDocsModified": 1,
-    "inheritedWipFiles": 0,
+    "runtimeSourceFiles": 0,
+    "testFiles": 0,
+    "existingQaFilesChanged": 0,
+    "newQaTools": 0,
+    "promotedProofFiles": 0,
+    "workflowFiles": 3,
+    "canonicalDocs": 1,
+    "inheritedWip": 0,
     "browserSmokes": 1,
-    "desktopMilestoneMatrices": 1,
-    "matrixCases": 9,
-    "reviewers": 2,
-    "boundedReviews": 6,
-    "harnessCorrectionsAfterFailure": 0,
-    "quotaSavingsClaim": "NONE",
-    "sourceProductCheckpoint": "bcd218591f52bbf2c786b8466608c567c583940d",
-    "recordedAt": "2026-10-11T05:26:45.885Z"
+    "reviewers": 1,
+    "boundedReviews": 2,
+    "harnessCorrections": 0,
+    "quotaSavingsClaim": "NONE"
   }
 }
