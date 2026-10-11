@@ -1,3 +1,27 @@
+## Narrative publication preparation — 2026-10-11T04:11:03.451Z
+
+Scoped checkpoint green; staging validator PASS/282reachable-planned/0missing-unknown, two legacy unreachable steps do not expand acceptance. Published owned WIP 7c52e7cf5dc69974972c75e42c634e5fefbbd8d3;11explicit paths. Final normal dev publication/parity/WIP retirement and lock release follow guarded checks and are recorded in automation memory. Counts0runtime/0tests/1existingQA/0newQA/6proof/3workflow/1canonicaldoc/2inheritedpaths; one new smoke, prior council reused, one reviewer/two passes. Demo IN_PROGRESS.
+
+Exact nextAction: Read-only preflight/exclusive lock; inspect docs/reports/narrative-context-20261011-0400/checks.json and manual terminal receipts council-normal-0055/refugee-ack-0400, compare393physical sources/ninebuild plus each recorded driver/helper/parameters before reuse; do not repeat accepted normal1366 cases. Continue independent pendingNarrativeTask.nextAction for displaced-family exploitation acknowledgement and wider static-only OS. Existing run_cin6ea4_dialogue_qa hardcodes reducedMotion:true/getState=createInitialState and DEV imports; run_cin671_browser_qa targets DEV golden/static opening and only1920/1366, neither certifies contextual OS-only explicit game=false built production. Do not rewrite exhausted route video-attempt assertion or create unbounded QA instrumentation. Main skills task remains IN_PROGRESS; retain all prior/deferred exact continuations, proven native Salvation sample and FAILED campaigns; never seed failed saves. Broader skills/Pursuit/campaign/StageVFX/AT/balance/operator/manual/full-demo OPEN; mobileLAST. Source-only selector candidate tmp/autonomy/narrative-0400/displaced-selection-candidate.json seed26 selects existing displaced-family-demand at lion-final-refuge before story effects; verify native post-story selection, never force event or count source analysis as browser acceptance.
+
+## Narrative scoped checkpoint — 2026-10-11T04:08:47.822Z
+
+Council and first-refuge exploitation acknowledgement normal1366 accepted fixture-origin scoped; complete autosave observation equality, reload projection only. 114unique tests/types/contracts passed; build reused. One smoke executed; no runtime edits. Displaced-family and static-only OS remain OPEN; demo IN_PROGRESS; mobileLAST.
+
+Exact nextAction: Read-only preflight/exclusive lock; inspect docs/reports/narrative-context-20261011-0400/checks.json and manual terminal receipts council-normal-0055/refugee-ack-0400, compare393physical sources/ninebuild plus each recorded driver/helper/parameters before reuse; do not repeat accepted normal1366 cases. Continue independent pendingNarrativeTask.nextAction for displaced-family exploitation acknowledgement and wider static-only OS. Existing run_cin6ea4_dialogue_qa hardcodes reducedMotion:true/getState=createInitialState and DEV imports; run_cin671_browser_qa targets DEV golden/static opening and only1920/1366, neither certifies contextual OS-only explicit game=false built production. Do not rewrite exhausted route video-attempt assertion or create unbounded QA instrumentation. Main skills task remains IN_PROGRESS; retain all prior/deferred exact continuations, proven native Salvation sample and FAILED campaigns; never seed failed saves. Broader skills/Pursuit/campaign/StageVFX/AT/balance/operator/manual/full-demo OPEN; mobileLAST.
+
+## Narrative recovery — 2026-10-11T04:03:10.540Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T0400; inherited two state paths preserved. Source/build unchanged; council receipt reviewed without rerun.
+
+Exact nextAction: Finish bounded guardian review of council-normal-0055 without rerun, then one registered normal1366 first-refuge exploitation acknowledgement with existing route runner. Preserve skills task/deferred records/mobile LAST; displaced-family acknowledgement and static-only OS remain independent OPEN gates.
+
+## Narrative council continuation — 2026-10-11T00:57:48.122Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T0055. Clean/no-lock preflight and live dev parity c33d42c; exclusive lock acquired; Previous approved publication/lock release verified; failed salvation-t1-0001 receipt digest and unchanged execution verified; 393 physical source files and nine build files match; existing production build reused. Original skills task remains IN_PROGRESS. No source or QA edits; mobile LAST.
+
+Exact nextAction: Inspect ONE council-normal-0055 terminal results/captures, unchanged source/driver/helper/build provenance and resolved-node reload. Existing witnesses-protected1366normal fixture-origin presentation flow; no earned campaign assertion. Preserve skills native sample/failed continuations/deferred keyboard. Refugee acknowledgements and wider static-only OS remain separate OPEN gates; no exhausted harness edit.
+
 ## Publication approved and verified — 2026-10-11T00:50:38.698Z
 
 Explicit human oui approved checkpoint79eceda and its three workflow files on public origin/dev. Normal push succeeded; local/tracking/live dev79eceda verified and main00b96f1 unchanged. Prior two unexecuted approval rejections are historical and resolved for this publication. Final metadata closure, owned-WIP coverage/retirement and lock release are verified in automation memory. No source/test/QA/proof changes; three workflow files. Native observational sample unchanged; coupled campaign receipt remains FAILED/NOT_ACCEPTED.
@@ -519,6 +543,8 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - skills-native-1840: FAILED; port 5366; receipt `tmp/demo/skills-native-1840/qa-job.json`; NOT_ACCEPTED
 - salvation-exact2-2321: FAILED; port 5367; receipt `tmp/demo/salvation-exact2-2321/qa-job.json`; NOT_ACCEPTED
 - salvation-t1-0001: FAILED; port 5368; receipt `tmp/demo/salvation-t1-0001/qa-job.json`; NOT_ACCEPTED
+- council-normal-0055: SUCCEEDED; port 5369; receipt `tmp/cinematics/council-normal-0055/qa-job.json`; NOT_ACCEPTED
+- refugee-ack-0400: SUCCEEDED; port 5370; receipt `tmp/cinematics/refugee-ack-0400/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

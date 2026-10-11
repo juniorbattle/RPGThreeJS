@@ -20,6 +20,7 @@ const APPROVED_VIDEO_IDS = ['camp_departure', 'alaric_audience_arrival', 'bois_c
   'bois_clair_sacrificed', 'lion_judgement', 'serpent_route_ending', 'lion_trial_route_ending'];
 const BLOCK_MEDIA = process.env.CIN6D6_BLOCK_MEDIA === '1';
 const INTERRUPT_PRELUDE = process.env.CIN6D6_INTERRUPT_PRELUDE === '1';
+const FIRST_REFUGE_EXPLOITATION_TEXT = 'Les feux sont bas. Une famille arrivée après nous raconte que notre compagnie lui a vendu le chemin du refuge contre ses quarante dernières pièces. Le refuge écoute cette version avec une attention que notre bannière ne peut pas commander.';
 if (INTERRUPT_PRELUDE && (!PRODUCTION || REDUCED_MOTION || OS_REDUCED_MOTION || BLOCK_MEDIA)) {
   throw new Error('Prelude interruption requires built production with normal motion and available media.');
 }
@@ -260,6 +261,40 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
   for (let index = 0; index < 100; index += 1) {
     if (!await dialogue.count()) return;
     trace?.dialogues.add(sequenceId);
+    if (PRODUCTION && trace?.capturePrefix === 'first-refuge-exploitation'
+      && sequenceId === 'ate_first_refuge_watch' && await dialogue.getAttribute('data-dialogue-step') === '1') {
+      const segment = await dialogue.getAttribute('data-dialogue-segment');
+      trace.refugeeAcknowledgementSegments ??= [];
+      if (!trace.refugeeAcknowledgementSegments.some(entry => entry.segment === segment)) {
+        const before = await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6'));
+        await page.waitForFunction(() => {
+          const dialogue = document.querySelector('.dialogue[data-dialogue-sequence="ate_first_refuge_watch"]');
+          const text = dialogue?.querySelector('.dialogue__text');
+          return dialogue && !dialogue.classList.contains('dialogue--preparing-step')
+            && getComputedStyle(dialogue).opacity === '1' && text?.dataset.finalText
+            && text.querySelector('.dialogue__text-reveal')?.textContent === text.dataset.finalText;
+        }, null, { timeout: 10_000 });
+        const observation = await dialogue.evaluate(element => {
+          const text = element.querySelector('.dialogue__text'), box = element.querySelector('.dialogue__box');
+          const rect = text.getBoundingClientRect(), boxRect = box.getBoundingClientRect();
+          return { segment: element.dataset.dialogueSegment, text: text.querySelector('.dialogue__text-reveal').textContent,
+            exploitedRefugees: window.__cin8App.state.flags.exploitedRefugees,
+            withinViewport: rect.left >= -1 && rect.top >= -1 && rect.right <= innerWidth + 1 && rect.bottom <= innerHeight + 1,
+            fitsBox: rect.left >= boxRect.left - 1 && rect.right <= boxRect.right + 1 && rect.top >= boxRect.top - 1 && rect.bottom <= boxRect.bottom + 1,
+            boxEnabled: !box.disabled };
+        });
+        if (observation.exploitedRefugees !== true || !observation.withinViewport || !observation.fitsBox || !observation.boxEnabled) {
+          throw new Error(`Refugee acknowledgement unreadable or inconsistent: ${JSON.stringify(observation)}`);
+        }
+        const presentation = await readPresentation(page); assertDialogueTableau(presentation, 'first-refuge acknowledgement');
+        const capture = `${trace.capturePrefix}-acknowledgement-${segment.replace('/', '-')}.png`;
+        await page.screenshot({ path: resolve(OUTPUT_DIR, capture), fullPage: false });
+        if (!before || before !== await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6'))) {
+          throw new Error('Observing refugee acknowledgement changed stored V6.');
+        }
+        trace.refugeeAcknowledgementSegments.push({ ...observation, presentation, capture, savedTruthUnchanged: true });
+      }
+    }
     if (PRODUCTION && sequenceId === 'village_choice' && trace?.capturePrefix === 'bois-clair-saved') {
       const stepId = await dialogue.getAttribute('data-dialogue-step');
       trace.villageTableau ??= [];
@@ -676,6 +711,13 @@ async function runNodeScenario(context, scenario) {
     await installNodeSave(page, scenario.nodeId, scenario.flags, scenario.reputation, scenario.seed);
     await continueSavedNode(page);
     const interruption = await checkPreludeInterruption(page, scenario.dialogueId, trace);
+    if (scenario.refugeNodeId) {
+      await waitForDialogueSequence(page, 'first_refuge_gathering', trace);
+      await finishDialogue(page, 'first_refuge_gathering', 0, trace);
+      const leave = page.locator(`.exploration-stop[data-refuge-node="${scenario.refugeNodeId}"] [data-action="continue"]`);
+      await leave.waitFor({ state: 'visible', timeout: 40_000 });
+      await leave.focus(); await page.keyboard.press('Enter');
+    }
     await waitForDialogueSequence(page, scenario.dialogueId, trace);
     const initialPresentation = await readPresentation(page);
     const expectedMode = scenario.expectedMode ?? 'STATIC_TABLEAU';
@@ -700,6 +742,13 @@ async function runNodeScenario(context, scenario) {
     }
     if (PRODUCTION && scenario.id === 'witnesses-protected' && !trace.councilOpening) {
       throw new Error('Protected witnesses never displayed the council opening.');
+    }
+    if (PRODUCTION && scenario.id === 'first-refuge-exploitation') {
+      const segments = trace.refugeeAcknowledgementSegments ?? [];
+      const normalized = text => text.replace(/\s+/g, ' ').trim();
+      if (!segments.length || normalized(segments.map(entry => entry.text).join(' ')) !== normalized(FIRST_REFUGE_EXPLOITATION_TEXT)) {
+        throw new Error(`Incomplete first-refuge acknowledgement: ${JSON.stringify(segments)}`);
+      }
     }
     if (PRODUCTION && scenario.id === 'bois-clair-saved' && trace.villageTableau?.length !== 3) {
       throw new Error('Village first tableau/restage/choice observations missing.');
@@ -743,6 +792,7 @@ async function runNodeScenario(context, scenario) {
       combats: trace.combats,
       choiceBounds: trace.choiceBounds,
       councilOpening: trace.councilOpening ?? null,
+      refugeeAcknowledgementSegments: trace.refugeeAcknowledgementSegments ?? null,
       villageTableau: trace.villageTableau ?? null,
       ateCopy: trace.ateCopy ?? null,
       transitionLabels,
@@ -862,6 +912,15 @@ async function runOpeningScenario(context) {
 }
 
 const nodeScenarios = [
+  {
+    id: 'first-refuge-exploitation', nodeId: 'lion-first-refuge', refugeNodeId: 'lion-first-refuge',
+    dialogueId: 'ate_first_refuge_watch', choiceIndex: 0,
+    flags: { lionMissionAccepted: true, lionMandateAdvance: true, exploitedRefugees: true }, reputation: 60, seed: 6101,
+    assertTruth: truth => truth?.flags.exploitedRefugees === true && truth.resolvedNodeIds.includes('lion-first-refuge')
+      && truth.flags['ate:ate_first_refuge_watch'] === true,
+    pickTruth: truth => ({ exploitedRefugees: truth.flags.exploitedRefugees,
+      firstRefugeResolved: truth.resolvedNodeIds.includes('lion-first-refuge'), ateSeen: truth.flags['ate:ate_first_refuge_watch'] }),
+  },
   {
     id: 'cedric-recruit', nodeId: 'lion-nomad-crossroads', dialogueId: 'mystery_recruit', choiceIndex: 0,
     flags: { lionMissionAccepted: true, lionMandateHonour: true }, reputation: 60, seed: 6101,

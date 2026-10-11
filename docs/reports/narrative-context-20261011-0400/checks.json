@@ -1,0 +1,515 @@
+{
+  "task": "NARRATIVE-CONTEXT-COHERENCE",
+  "baseline": "c33d42c8be8d90b1a12c1dce2ea818cb890973fd",
+  "branch": "dev",
+  "contractSet": "1.1.0",
+  "immutableBaseline": "d7ca28aed5c377ffedb03202f6364b7a947d1096",
+  "disposition": "ACCEPTED_SCOPED_COUNCIL_AND_FIRST_REFUGE_FIXTURE_ORIGIN_1366_NORMAL",
+  "council": {
+    "receipt": {
+      "schemaVersion": 1,
+      "jobId": "council-normal-0055",
+      "runId": "rpgthreejs-auto-dev-90m-20261011T0055",
+      "status": "SUCCEEDED",
+      "registeredAt": "2026-10-11T00:57:48.583Z",
+      "pid": null,
+      "port": 5369,
+      "command": [
+        "node",
+        "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+      ],
+      "parameters": {
+        "scenario": "witnesses-protected",
+        "viewport": "1366x768",
+        "production": true,
+        "osReducedMotion": false,
+        "gameReducedMotion": false,
+        "method": "fixture-origin real GameApp; zero combat expected"
+      },
+      "requiredAssertions": [
+        "native live protected witnesses select supportive council opening",
+        "settled displayed opening text fits viewport and enabled dialogue box",
+        "full V6 autosave unchanged during observation",
+        "native choice Enter progresses to council and resolved-node resume"
+      ],
+      "output": "tmp/cinematics/council-normal-0055",
+      "receiptPath": "tmp/cinematics/council-normal-0055/qa-job.json",
+      "provenance": {
+        "gitHead": "c33d42c8be8d90b1a12c1dce2ea818cb890973fd",
+        "sourceTree": "f5d2d917f1bc2bfce472dcab68dd638337069e58",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "sha256": "ec44494c1f959ee20b87ad43b415b31fa4df27392415517a299749714732d1b9"
+        },
+        "inputs": [],
+        "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+            "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+          },
+          {
+            "path": "dist/assets/combat-B0LaJhFj.js",
+            "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-CdUsLhii.css",
+            "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+          },
+          {
+            "path": "dist/assets/game-EarLSl_Z.js",
+            "sha256": "e5b669f0e93f991ece7d2efd533df955f96cb4d46933beb1fe1c530bcab6b0cc"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "1ee0e1b79e25dfa25d3d716965c86b49b6687499eae7f29efc6ab0eef12a0aaf"
+          }
+        ]
+      },
+      "acceptance": "NOT_ACCEPTED",
+      "startedAt": "2026-10-11T00:57:48.583Z",
+      "endedAt": "2026-10-11T00:59:20.770Z",
+      "exitCode": 0,
+      "resultPath": "tmp/cinematics/council-normal-0055/results.json",
+      "resultSha256": "c3ea5f4c26dda4123e49d4695ebd5607d8e3af6169f48de606f8a7fb1065b0d3",
+      "provenanceStable": true,
+      "manualExecutionRecord": true,
+      "receiptWriter": "OWNER_TERMINAL_RECONCILIATION_NOT_WORKER",
+      "executionTimeScope": "registeredAt precedes external driver launch; endedAt is owner reconciliation after process exit"
+    },
+    "result": {
+      "schemaVersion": 1,
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "reducedMotion": false,
+      "osReducedMotion": false,
+      "blockedMedia": false,
+      "interruptPrelude": false,
+      "method": "BUILT_PRODUCTION_REAL_GAMEAPP_V6_COMBAT_RESULT_FIXTURE_ONLY",
+      "opening": [],
+      "nodes": [
+        {
+          "id": "witnesses-protected",
+          "nodeId": "lion-witnesses",
+          "settled": "journey",
+          "dialogues": [
+            "witnesses_on_road",
+            "ate_lion_council_doubt"
+          ],
+          "media": [],
+          "combats": 0,
+          "choiceBounds": [
+            {
+              "sequenceId": "witnesses_on_road",
+              "stepId": "1",
+              "bounds": [
+                {
+                  "label": "Protéger les témoins jusqu’au camp.⚠Risque : élevé◇Les témoins doutent de votre protection.",
+                  "x": 458,
+                  "y": 618.5,
+                  "width": 450,
+                  "height": 79.25,
+                  "withinViewport": true
+                },
+                {
+                  "label": "Faire taire les témoins, quel qu’en soit le prix.◇Les témoins résisteront◇Votre conduite sera jugée",
+                  "x": 458,
+                  "y": 703.75,
+                  "width": 450,
+                  "height": 53.25,
+                  "withinViewport": true
+                }
+              ],
+              "keyboardActivation": true,
+              "capture": "witnesses-protected-witnesses_on_road-1-choices.png"
+            }
+          ],
+          "councilOpening": {
+            "stepId": "1",
+            "segment": "1/1",
+            "text": "Les survivants de Bois-Clair ont choisi de parler librement. Leur témoignage compte, mais il ne suffit pas à leur remettre le Sceau.",
+            "withinViewport": true,
+            "fitsBox": true,
+            "boxEnabled": true,
+            "bounds": {
+              "x": 514,
+              "y": 646.984375,
+              "width": 449,
+              "height": 69.984375
+            },
+            "witnessFlags": {
+              "protected": true
+            },
+            "presentation": {
+              "mode": "STATIC_TABLEAU",
+              "beat": "dialogue:ate_lion_council_doubt",
+              "visualFamily": "WITNESS_ROAD",
+              "fallbackActive": "false",
+              "castOwnership": "STAGE_OWNS_CAST",
+              "staticActors": 2,
+              "primarySurfaces": 1,
+              "primaryInvariant": "PASS",
+              "dialogueSequence": "ate_lion_council_doubt",
+              "surface": "STATIC_TABLEAU",
+              "dialogueStepsOnHold": "0",
+              "choiceStepsOnHold": "0",
+              "movingMedia": 0
+            },
+            "capture": "witnesses-protected-council-opening.png",
+            "savedTruthUnchanged": true
+          },
+          "villageTableau": null,
+          "ateCopy": null,
+          "initialPresentation": {
+            "mode": "STATIC_TABLEAU",
+            "beat": "dialogue:witnesses_on_road",
+            "visualFamily": "WITNESS_ROAD",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 4,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "witnesses_on_road",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "protectedWitnesses": true,
+            "silencedWitnesses": false
+          },
+          "capture": "witnesses-protected.png",
+          "continuation": null,
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-witnesses",
+            "endingId": null,
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "systemMotion": null,
+          "interruption": null,
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 0,
+          "pass": true
+        }
+      ],
+      "finales": [],
+      "pass": true
+    }
+  },
+  "firstRefuge": {
+    "receipt": {
+      "schemaVersion": 1,
+      "jobId": "refugee-ack-0400",
+      "runId": "rpgthreejs-auto-dev-90m-20261011T0400",
+      "status": "SUCCEEDED",
+      "registeredAt": "2026-10-11T04:04:32.788Z",
+      "pid": null,
+      "port": 5370,
+      "command": [
+        "node",
+        "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+      ],
+      "parameters": {
+        "scenario": "first-refuge-exploitation",
+        "viewport": "1366x768",
+        "production": true,
+        "osReducedMotion": false,
+        "gameReducedMotion": false,
+        "seed": 6101,
+        "reputation": 60,
+        "method": "fixture-origin real first-refuge GameApp; native hub Enter leave; no combat expected"
+      },
+      "requiredAssertions": [
+        "All displayed first-step segments equal authored exploitation acknowledgement",
+        "Tracked exploitedRefugees true, settled text fits viewport/box and enabled agency",
+        "Complete stored V6 unchanged during each observation",
+        "Existing first-refuge owner marks node and ATE resolved; reload saved-truth projection unchanged; zero combats/errors"
+      ],
+      "output": "tmp/cinematics/refugee-ack-0400",
+      "receiptPath": "tmp/cinematics/refugee-ack-0400/qa-job.json",
+      "provenance": {
+        "gitHead": "c33d42c8be8d90b1a12c1dce2ea818cb890973fd",
+        "sourceTree": "f5d2d917f1bc2bfce472dcab68dd638337069e58",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "sha256": "841eeeef3018f934233fd2f75c3443c0092b9ae00bb5a47853a53b9e86871e24"
+        },
+        "inputs": [],
+        "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+            "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+          },
+          {
+            "path": "dist/assets/combat-B0LaJhFj.js",
+            "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-CdUsLhii.css",
+            "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+          },
+          {
+            "path": "dist/assets/game-EarLSl_Z.js",
+            "sha256": "e5b669f0e93f991ece7d2efd533df955f96cb4d46933beb1fe1c530bcab6b0cc"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "1ee0e1b79e25dfa25d3d716965c86b49b6687499eae7f29efc6ab0eef12a0aaf"
+          }
+        ]
+      },
+      "acceptance": "NOT_ACCEPTED",
+      "startedAt": "2026-10-11T04:04:32.788Z",
+      "endedAt": "2026-10-11T04:06:23.630Z",
+      "exitCode": 0,
+      "resultPath": "tmp/cinematics/refugee-ack-0400/results.json",
+      "resultSha256": "14d356d702fe35d506a58d6997287f49bf5dc5c5d279eb3354363546535d4889",
+      "provenanceStable": true,
+      "manualExecutionRecord": true,
+      "receiptWriter": "OWNER_TERMINAL_RECONCILIATION_NOT_WORKER",
+      "executionTimeScope": "registeredAt precedes external driver launch; endedAt is owner reconciliation after confirmed process exit"
+    },
+    "result": {
+      "schemaVersion": 1,
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "reducedMotion": false,
+      "osReducedMotion": false,
+      "blockedMedia": false,
+      "interruptPrelude": false,
+      "method": "BUILT_PRODUCTION_REAL_GAMEAPP_V6_COMBAT_RESULT_FIXTURE_ONLY",
+      "opening": [],
+      "nodes": [
+        {
+          "id": "first-refuge-exploitation",
+          "nodeId": "lion-first-refuge",
+          "settled": "journey",
+          "dialogues": [
+            "first_refuge_gathering",
+            "ate_first_refuge_watch",
+            "rep_event_public_petition"
+          ],
+          "media": [],
+          "combats": 0,
+          "choiceBounds": [
+            {
+              "sequenceId": "rep_event_public_petition",
+              "stepId": "1",
+              "bounds": [
+                {
+                  "label": "Financer les provisions — 35 or.●150 or disponible♜Réputation +3",
+                  "x": 458,
+                  "y": 645.4171752929688,
+                  "width": 450,
+                  "height": 53.25,
+                  "withinViewport": true
+                },
+                {
+                  "label": "Refuser publiquement.♜Réputation -1",
+                  "x": 458,
+                  "y": 704.6671752929688,
+                  "width": 450,
+                  "height": 53.25,
+                  "withinViewport": true
+                }
+              ],
+              "keyboardActivation": true,
+              "capture": "first-refuge-exploitation-rep_event_public_petition-1-choices.png"
+            }
+          ],
+          "councilOpening": null,
+          "refugeeAcknowledgementSegments": [
+            {
+              "segment": "1/2",
+              "text": "Les feux sont bas. Une famille arrivée après nous raconte que notre compagnie lui a vendu le chemin du refuge contre ses quarante dernières pièces.",
+              "exploitedRefugees": true,
+              "withinViewport": true,
+              "fitsBox": true,
+              "boxEnabled": true,
+              "presentation": {
+                "mode": "STATIC_TABLEAU",
+                "beat": "dialogue:ate_first_refuge_watch",
+                "visualFamily": "FIRST_REFUGE",
+                "fallbackActive": "false",
+                "castOwnership": "STAGE_OWNS_CAST",
+                "staticActors": 4,
+                "primarySurfaces": 1,
+                "primaryInvariant": "PASS",
+                "dialogueSequence": "ate_first_refuge_watch",
+                "surface": "STATIC_TABLEAU",
+                "dialogueStepsOnHold": "0",
+                "choiceStepsOnHold": "0",
+                "movingMedia": 0
+              },
+              "capture": "first-refuge-exploitation-acknowledgement-1-2.png",
+              "savedTruthUnchanged": true
+            },
+            {
+              "segment": "2/2",
+              "text": "Le refuge écoute cette version avec une attention que notre bannière ne peut pas commander.",
+              "exploitedRefugees": true,
+              "withinViewport": true,
+              "fitsBox": true,
+              "boxEnabled": true,
+              "presentation": {
+                "mode": "STATIC_TABLEAU",
+                "beat": "dialogue:ate_first_refuge_watch",
+                "visualFamily": "FIRST_REFUGE",
+                "fallbackActive": "false",
+                "castOwnership": "STAGE_OWNS_CAST",
+                "staticActors": 4,
+                "primarySurfaces": 1,
+                "primaryInvariant": "PASS",
+                "dialogueSequence": "ate_first_refuge_watch",
+                "surface": "STATIC_TABLEAU",
+                "dialogueStepsOnHold": "0",
+                "choiceStepsOnHold": "0",
+                "movingMedia": 0
+              },
+              "capture": "first-refuge-exploitation-acknowledgement-2-2.png",
+              "savedTruthUnchanged": true
+            }
+          ],
+          "villageTableau": null,
+          "ateCopy": null,
+          "initialPresentation": {
+            "mode": "STATIC_TABLEAU",
+            "beat": "dialogue:ate_first_refuge_watch",
+            "visualFamily": "FIRST_REFUGE",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 4,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "ate_first_refuge_watch",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "exploitedRefugees": true,
+            "firstRefugeResolved": true,
+            "ateSeen": true
+          },
+          "capture": "first-refuge-exploitation.png",
+          "continuation": null,
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-first-refuge",
+            "endingId": null,
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "systemMotion": null,
+          "interruption": null,
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 0,
+          "pass": true
+        }
+      ],
+      "finales": [],
+      "pass": true
+    }
+  },
+  "physicalSourcesUnchanged": 393,
+  "buildReused": true,
+  "councilDriverHistorical": "Prior committed driver hash matches0055; new first-refuge observer changes current driver so prior currentexecution eligibility is false, not a rerun or invalidation of reviewed scoped proof",
+  "receiptLimitation": "Both receipts are explicit OWNER_TERMINAL_RECONCILIATION_NOT_WORKER; registeredAt precedes external launch and endedAt records owner reconciliation after exit, not measured worker duration",
+  "selectedCaptures": [
+    {
+      "path": "council-opening.png",
+      "sha256": "e0a81476123b10c44bda6b9f4ddb91902d3b965cd74e58098035f62c99ee8351"
+    },
+    {
+      "path": "witness-choice.png",
+      "sha256": "9a9ca28cdc1d04814b0500ac672c0cd10c438c8adbb40a335483cad3ec573092"
+    },
+    {
+      "path": "refugee-acknowledgement-1.png",
+      "sha256": "e1cdc58eea3457242621c922cbfe13804ba15432ec3d0bc9860a2a3737553c95"
+    },
+    {
+      "path": "refugee-acknowledgement-2.png",
+      "sha256": "55565056b30c2ab2c75351a678809ec49e0d8aa398c3065967aa825ba10a1107"
+    }
+  ],
+  "review": {
+    "contractsGuardian": "Two bounded passes; prior council and exact first-refuge driver diff/captures PASS; terminal administrative gap reconciled by owner digest/currentexecution audit",
+    "root": "Five captures inspected, four explicitly promoted"
+  },
+  "compliance": {
+    "GAME_CONSTITUTION": "PASS_NO_RUNTIME_CHANGE",
+    "ART_DIRECTION": "N/A",
+    "CHARACTERS": "N/A",
+    "ENVIRONMENTS": "N/A_NO_GLOBAL_ACCEPTANCE",
+    "NARRATIVE_CAMPAIGN": "PASS_SCOPED_FACTUAL_TEXT",
+    "NARRATIVE_PRESENTATION": "PASS_SCOPED_NORMAL1366",
+    "TRAVERSAL": "N/A",
+    "COMBAT": "N/A_ZERO_COMBATS",
+    "SAVE": "PASS_STORED_OBSERVATION_RELOAD_PROJECTION_ONLY",
+    "UI_ACCESSIBILITY": "PASS_NORMAL1366_KEYBOARD_ONLY",
+    "QA_EVIDENCE": "PASS_SCOPED_MANUAL_RECEIPTS",
+    "REPOSITORY_GOVERNANCE": "PASS_OWNED_LOCK_EXPLICIT_PATHS"
+  },
+  "gaps": [
+    "displaced-family-demand acknowledgement",
+    "wider static-only OS",
+    "earned refugee transaction/campaign",
+    "full V6 reload equality",
+    "mobile LAST",
+    "full demo"
+  ]
+}
