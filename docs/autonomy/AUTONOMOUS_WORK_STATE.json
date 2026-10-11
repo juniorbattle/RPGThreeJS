@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-11T16:11:38Z",
-  "runEndedAt": "2026-10-11T16:28:42.669Z",
+  "runEndedAt": "2026-10-11T16:34:19.900Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "INDEPENDENT_NARRATIVE_REMAINING_GATES",
   "activeSubtask": "Mounted opening OS flip1366 accepted scoped; normal desktop dynamic cast next",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "74355dec75a1a8e2f643613121db021d5f9cb00b",
-  "lastPushedCommit": "74355dec75a1a8e2f643613121db021d5f9cb00b",
+  "lastKnownGoodCommit": "6d5fd12c5d317a5539307e6f9f6df07a69a64c71",
+  "lastPushedCommit": "6d5fd12c5d317a5539307e6f9f6df07a69a64c71",
   "completedThisRun": [
     "Operator-authorized stale takeover; no active agent or associated QA/build; persistent development server5173 retained",
     "393 physical files and nine production artifacts match fixed-OS0534 source/build; old result verified and not rerun",
@@ -20761,7 +20761,7 @@
       "at": "2026-10-11T16:26:03Z",
       "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1612",
       "sha": "51f333ea6d5ef64e6fccb4d41c09eb7e227617d5",
-      "status": "PUBLISHED_CONTENT_COVERED_WIP_RETAINED",
+      "status": "RETIRED_CONTENT_COVERED_ON_DEV",
       "dirtyFiles": [],
       "lastGreenCheck": "54tests/types/contracts/gates+registered scoped smoke+guardian PASS"
     },
@@ -22735,15 +22735,26 @@
         "coveredWipDiff": [
           "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
         ],
-        "finalMetadata": "Final metadata SHA and lock release recorded in audit/memory; owned WIP refs retained after automatic deletion review rejection",
+        "finalMetadata": "Owned WIP retired after explicit operator authorization; final cleanup commit/parity/lock release in wip-retirement-publication-audit and automationmemory",
         "inheritedRefsRetained": true,
-        "ownedWipPreserved": true
+        "ownedWipPreserved": false,
+        "ownedWipRetired": {
+          "inheritedRefsUntouched": true,
+          "authorization": "Direct operator: tu peux supprimer",
+          "sha": "51f333ea6d5ef64e6fccb4d41c09eb7e227617d5",
+          "localDeleted": true,
+          "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1612",
+          "at": "2026-10-11T16:33:17.5202001Z",
+          "remoteDeleted": true,
+          "coveredOnDev": "6d5fd12c5d317a5539307e6f9f6df07a69a64c71"
+        }
       },
       "approvalReviewRejection": {
         "action": "Delete local/remote owned WIP branch",
         "reason": "Automatic review requires explicit branch-deletion authorization",
-        "resolution": "Omit deletion; preserve both refs and complete unaffected metadata publication/lock release",
-        "deletionAttempted": false
+        "resolution": "Direct operator authorized exact WIP deletion: tu peux supprimer; fresh preflight/coverage/parity verified, local and remote WIP removed",
+        "deletionAttempted": true,
+        "resolvedAt": "2026-10-11T16:33:17.5202001Z"
       }
     }
   },
