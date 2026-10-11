@@ -1,3 +1,35 @@
+## Safe opening milestone closeout — 2026-10-11T17:03:01.564Z
+
+Owned WIP 8e8654e9539c4797be16911634e3aad2fb0f5159 published; registered QA processes and ports5242/5376/5377/5378 absent. Development5173 retained. Coherent selected11paths ready for normal dev publication under OD-2026-10-08-A/B. Source0/test0/QA0/proof6/workflow3/canonical2/inherited0; parent task/demo IN_PROGRESS. Owned WIP retained as recoverable checkpoint; no historical refs retired.
+
+Exact nextAction: Read-only autonomy preflight/exclusive lock; inspect narrative-1642 audits and opening-dynamic-staging-20261011-1642/checks.json before reuse. Opening desktop/intermediate dynamic cast normal/OS is accepted scoped; do not repeat it, mountedOS1612, fixedOS0534, contextual historical matrices or unchanged failed1840/2321/0001 samples. Resume original all-six-skills task: inspect retained skills1840/2321/0001 receipts/actions and src/game/catalog.ts initial-skill exception, then tools/demo-continuous-production-qa.mjs skill() lines242-318. Source audit shows existing initialRoster records six competences but offensive selection omits ro_sneak_attack/l_long_thrust; verify precise remaining native-cast gap, then make only a bounded existing-pilot correction if warranted, guardian review of certifying diff before ONE registered native desktop scenario using register-demo/exact state path and independently valid earned input. Never seed failed0001, inject outcome/truth or weaken AP/healing assertions. Preserve current exactly2to0/40percent Salvation scoped observation and deferred keyboard exact continuation; parent skills/Pursuit/later-earned narrative/fullV6/AT/balance/operatorfull-demo remainOPEN. Bois-Clair nightplate remains BLOCKED_ASSET and consumes no repeat run; mobileLAST.
+
+## Opening dynamic desktop/intermediate milestone — 2026-10-11T17:00:39.787Z
+
+CURRENT FACT: ACCEPTED_SCOPED_OPENING_DYNAMIC_CAST_DESKTOP_INTERMEDIATE_NORMAL_OS. Current unchanged built opening verifies native cast replacement at1366normal and620normal/OS, reusing matching mountedOS1366. Ordered EXIT/BREATH/ENTRY with4/2/4actors, retained Maelor/Seraphine, authored final facing, preparing/focus/enabled/settled-text measured bounds and effect-free storedV6 byte equality. Cast phases447.7/429.3/418.7ms; mountedOS1366 phase407.7ms reused. Total observer duration includes typewriter and is not cast timing. Root inspected8captures this run; guardian inspected6current settled captures plus priorOS after. Camp/audience early captures diagnostic only; no settled typography or geometry acceptance there. Five settled captures explicitly selected. Source393/build9/driver48acf930 unchanged; registered receipts SUCCEEDED/current/digest eligible remain machine NOT_ACCEPTED separate from reviewed scope. No fullV6/migration/physical displacement/nativebalance/eight-video/latercampaign/mobile/full-demo claim.
+
+Proof: docs/reports/opening-dynamic-staging-20261011-1642/checks.json. Guardian READY_TO_CLOSE_SCOPED;54tests/types/8contracts8slots/staging/gates PASS. Runtime0/tests0/existingQA0/newQA0/proof6/workflow3/canonical2/inherited0.3registered product scenarios(1smoke+2milestone),1sandbox failure before game,1own unregistered diagnostic child stopped; default ignored output contaminated/excluded. No QA assertion correction or source defect invented. Original task/deferred history retained; parent narrative/demo IN_PROGRESS, mobileLAST.
+
+Exact nextAction: Read-only autonomy preflight/exclusive lock; inspect narrative-1642 audits and opening-dynamic-staging-20261011-1642/checks.json before reuse. Opening desktop/intermediate dynamic cast normal/OS is accepted scoped; do not repeat it, mountedOS1612, fixedOS0534, contextual historical matrices or unchanged failed1840/2321/0001 samples. Resume original all-six-skills task: inspect retained skills1840/2321/0001 receipts/actions and src/game/catalog.ts initial-skill exception, then tools/demo-continuous-production-qa.mjs skill() lines242-318. Source audit shows existing initialRoster records six competences but offensive selection omits ro_sneak_attack/l_long_thrust; verify precise remaining native-cast gap, then make only a bounded existing-pilot correction if warranted, guardian review of certifying diff before ONE registered native desktop scenario using register-demo/exact state path and independently valid earned input. Never seed failed0001, inject outcome/truth or weaken AP/healing assertions. Preserve current exactly2to0/40percent Salvation scoped observation and deferred keyboard exact continuation; parent skills/Pursuit/later-earned narrative/fullV6/AT/balance/operatorfull-demo remainOPEN. Bois-Clair nightplate remains BLOCKED_ASSET and consumes no repeat run; mobileLAST.
+
+## Opening dynamic scoped milestone registration — 2026-10-11T16:53:10.956Z
+
+Normal1366 current smoke green; matching mountedOS1366 reused without rerun. Guardian permits remaining620normal/OS unchanged runner. This closes only opening dynamic desktop/intermediate cast, not parent narrative/demo; mobileLAST. Owned WIP 3cbf51567649a743d39ec0612ead1a7ab962305e published.
+
+Exact nextAction: Inspect remaining registered620normal and620OS opening dynamic cast milestone; same unchanged source393/build9/driver, reconcile receipts and selected settled captures. No mobile/fullV6/nativebalance/eight-video/full-demo claim. Original all-six-skills/Pursuit/deferred keyboard intact.
+
+## Normal opening green checkpoint — 2026-10-11T16:51:58.009Z
+
+Registered normal1366 opening SUCCEEDED/current identity/digest eligible; root inspected cast before/after, camp/audience partial diagnostics only. Cast phases447.7ms; total observation3302.9ms includes text reveal.54tests/types/8contracts8slots/gates PASS; build/source unchanged. Guardian scoped review pending. Sandbox localhost failure retained. Own prematurely launched default child46748 stopped; ignored default routes captures contaminated, unregistered diagnostic only, never acceptance. Original task/deferred history preserved; mobileLAST.
+
+Exact nextAction: Inspect ONE registered production opening-camp-audience1366 normal smoke; reconcile terminal receipt/current identity/captures and existing phase/cap/facing/preparing/focus/bounds/save-byte observer. Then pending desktop/intermediate dynamic staging milestone; preserve original skills/Pursuit/deferred keyboard; mobileLAST.
+
+## Normal opening continuation — 2026-10-11T16:44:59.054Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T1642; clean dev/live parity, no inherited WIP; existing development server5173 retained. Source393/build9 match1612 and reused; no runtime or assertion edit. Original task, deferred work and history retained.
+
+Exact nextAction: Inspect ONE registered production opening-camp-audience1366 normal smoke; reconcile terminal receipt/current identity/captures and existing phase/cap/facing/preparing/focus/bounds/save-byte observer. Then pending desktop/intermediate dynamic staging milestone; preserve original skills/Pursuit/deferred keyboard; mobileLAST.
+
 ## Owned WIP retirement authorized and completed — 2026-10-11T16:33:17.5202001Z
 
 Direct operator authorized deletion: tu peux supprimer. Fresh clean/no-lock preflight and live dev parity 6d5fd12c5d317a5539307e6f9f6df07a69a64c71; selected source/driver/canonical content covered on dev, only workflow metadata differs from snapshot. Exact owned branch wip/rpgthreejs-auto-dev-90m-20261011T1612@51f333ea6d5ef64e6fccb4d41c09eb7e227617d5 deleted locally and remotely; inherited WIPrefs untouched. Initial automatic rejection is resolved through explicit user authorization. Driver/source/build/result still match scoped OS proof; no runtime or QA change. Metadata cleanup publication and lock release follow; final SHA in cleanup audit/memory.
@@ -681,6 +713,10 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - opening-cast-os-0534: SUCCEEDED; port 5374; receipt `tmp/cinematics/opening-cast-os-0534/qa-job.json`; NOT_ACCEPTED
 - opening-live-os-1612: FAILED_ENVIRONMENT_BEFORE_BROWSER; port 5375; receipt `tmp/cinematics/opening-live-os-1612/qa-job.json`; NOT_ACCEPTED
 - opening-live-os-1612-host-cache: SUCCEEDED; port 5375; receipt `tmp/cinematics/opening-live-os-1612-host-cache/qa-job.json`; NOT_ACCEPTED
+- opening-normal-1642: FAILED; port 5376; receipt `tmp/cinematics/opening-normal-1642/qa-job.json`; NOT_ACCEPTED
+- opening-normal-1642-host: SUCCEEDED; port 5376; receipt `tmp/cinematics/opening-normal-1642-host/qa-job.json`; NOT_ACCEPTED
+- opening-620-normal-1642: SUCCEEDED; port 5377; receipt `tmp/cinematics/opening-620-normal-1642/qa-job.json`; NOT_ACCEPTED
+- opening-620-os-1642: SUCCEEDED; port 5378; receipt `tmp/cinematics/opening-620-os-1642/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

@@ -1,0 +1,302 @@
+{
+  "TASK": "OPERATOR-NARRATIVE-OPENING-DYNAMIC-1642",
+  "DOMAIN": "Narrative presentation/UI",
+  "BASELINE": "ca98354a71a1f71820e501b05ae0aa6a07396797",
+  "BRANCH": "dev",
+  "HEAD": "ca98354a71a1f71820e501b05ae0aa6a07396797",
+  "HEAD_SCOPE": "Tested source checkpoint; workflow publication SHA is in automation memory",
+  "STATUS": "HISTORICAL_SCOPED_ACCEPTANCE",
+  "MERGED_IN": "NONE",
+  "SUPERSEDES": "NONE",
+  "SUPERSEDED_BY": "NONE",
+  "PRODUCTION_IMPACT": "NONE this run; verifies published NarrativeStage/Surface live OS correction",
+  "CANONICAL_DOCS_UPDATED": [
+    "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
+    "docs/autonomy/STATIC_TABLEAU_STAGING_POLISH.md"
+  ],
+  "at": "2026-10-11T17:00:39.787Z",
+  "acceptance": "ACCEPTED_SCOPED_OPENING_DYNAMIC_CAST_DESKTOP_INTERMEDIATE_NORMAL_OS",
+  "fact": "Current unchanged built opening verifies native cast replacement at1366normal and620normal/OS, reusing matching mountedOS1366. Ordered EXIT/BREATH/ENTRY with4/2/4actors, retained Maelor/Seraphine, authored final facing, preparing/focus/enabled/settled-text measured bounds and effect-free storedV6 byte equality. Cast phases447.7/429.3/418.7ms; mountedOS1366 phase407.7ms reused. Total observer duration includes typewriter and is not cast timing. Root inspected8captures this run; guardian inspected6current settled captures plus priorOS after. Camp/audience early captures diagnostic only; no settled typography or geometry acceptance there. Five settled captures explicitly selected. Source393/build9/driver48acf930 unchanged; registered receipts SUCCEEDED/current/digest eligible remain machine NOT_ACCEPTED separate from reviewed scope. No fullV6/migration/physical displacement/nativebalance/eight-video/latercampaign/mobile/full-demo claim.",
+  "sourceTree": "a147f5c25febb460ad69f38d184d8047c4cca780",
+  "physicalSourceFiles": 393,
+  "physicalFingerprintSha256": "2c512f689988526cae15a2b015a0e67338ea94da80bb81b8208124a30750ecc6",
+  "build": [
+    {
+      "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+      "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+    },
+    {
+      "path": "dist/assets/combat-B0LaJhFj.js",
+      "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+    },
+    {
+      "path": "dist/assets/combat-DGLEfKFr.css",
+      "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+    },
+    {
+      "path": "dist/assets/game-CdUsLhii.css",
+      "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+    },
+    {
+      "path": "dist/assets/game-zrccER2T.js",
+      "sha256": "fd9a3ff2f576d9fcfa2f7055d94eb1c1702f5594063904b480ef2d96253dfeab"
+    },
+    {
+      "path": "dist/assets/three-core-f0ajj1rG.js",
+      "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+    },
+    {
+      "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+      "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+    },
+    {
+      "path": "dist/assets/validation-mSkvzYyn.js",
+      "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+    },
+    {
+      "path": "dist/index.html",
+      "sha256": "2d3c23a073ba24f72568a542a0519e5714858dc13ea32a41f99aa17a12535e1e"
+    }
+  ],
+  "cases": [
+    {
+      "jobId": "opening-normal-1642-host",
+      "runId": "rpgthreejs-auto-dev-90m-20261011T1642",
+      "resultPath": "tmp/cinematics/opening-normal-1642-host/results.json",
+      "resultSha256": "8a80749da5cd4181e63cf42765d7007085a92fd4eb829d23e0c03bbb4b2e7c9c",
+      "receiptPath": "tmp/cinematics/opening-normal-1642-host/qa-job.json",
+      "parameters": {
+        "production": true,
+        "scenario": "opening-camp-audience",
+        "viewport": "1366x768",
+        "initialOsReducedMotion": false,
+        "liveOsFlip": false,
+        "reducedMotion": false,
+        "blockedMedia": false,
+        "environment": {
+          "CIN6D6_PORT": "5376",
+          "CIN6D6_ROUTE_SCENARIO": "opening-camp-audience",
+          "CIN6D6_VIEWPORT": "1366x768",
+          "CIN6D6_OS_REDUCED_MOTION": "0",
+          "CIN6D6_REDUCED_MOTION": "0",
+          "CIN6D6_BLOCK_MEDIA": "0",
+          "CIN6D6_INTERRUPT_PRELUDE": "0",
+          "CIN6D6_LIVE_OS_FLIP": "0",
+          "CIN6D6_ROUTE_OUTPUT_DIR": "tmp/cinematics/opening-normal-1642-host",
+          "PLAYWRIGHT_BROWSERS_PATH": "C:/Users/miche/AppData/Local/ms-playwright"
+        },
+        "execution": "node tools/cinematics/run_cin6d6_route_browser_qa.mjs --production"
+      },
+      "status": "SUCCEEDED",
+      "acceptance": "NOT_ACCEPTED",
+      "eligibleForReview": true,
+      "driver": {
+        "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+        "sha256": "48acf9300873aa75025881c90b013b32be01aa5745386c9027535f1d4bfe5f5a"
+      },
+      "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1"
+    },
+    {
+      "jobId": "opening-live-os-1612-host-cache",
+      "runId": "rpgthreejs-auto-dev-90m-20261011T1612",
+      "resultPath": "tmp/cinematics/opening-live-os-1612-host-cache/results.json",
+      "resultSha256": "703c784f7f265a0e67b765cdbc2d8ac6405a183081db55acc5ecc25a2dcb5feb",
+      "receiptPath": "tmp/cinematics/opening-live-os-1612-host-cache/qa-job.json",
+      "parameters": {
+        "production": true,
+        "scenario": "opening-camp-audience",
+        "viewport": "1366x768",
+        "initialOsReducedMotion": false,
+        "liveOsFlip": true,
+        "reducedMotion": false,
+        "blockedMedia": false,
+        "environment": {
+          "CIN6D6_PORT": "5375",
+          "CIN6D6_ROUTE_SCENARIO": "opening-camp-audience",
+          "CIN6D6_VIEWPORT": "1366x768",
+          "CIN6D6_OS_REDUCED_MOTION": "0",
+          "CIN6D6_REDUCED_MOTION": "0",
+          "CIN6D6_BLOCK_MEDIA": "0",
+          "CIN6D6_INTERRUPT_PRELUDE": "0",
+          "CIN6D6_LIVE_OS_FLIP": "1",
+          "CIN6D6_ROUTE_OUTPUT_DIR": "tmp/cinematics/opening-live-os-1612-host-cache",
+          "PLAYWRIGHT_BROWSERS_PATH": "C:\\Users\\miche\\AppData\\Local\\ms-playwright"
+        },
+        "execution": "node tools/cinematics/run_cin6d6_route_browser_qa.mjs --production"
+      },
+      "status": "SUCCEEDED",
+      "acceptance": "NOT_ACCEPTED",
+      "eligibleForReview": true,
+      "driver": {
+        "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+        "sha256": "48acf9300873aa75025881c90b013b32be01aa5745386c9027535f1d4bfe5f5a"
+      },
+      "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1"
+    },
+    {
+      "jobId": "opening-620-normal-1642",
+      "runId": "rpgthreejs-auto-dev-90m-20261011T1642",
+      "resultPath": "tmp/cinematics/opening-620-normal-1642/results.json",
+      "resultSha256": "0c4a839ad4df3345f7a69c53e5aa0b55d0aa6a39a6f93888b587a29a34f168f7",
+      "receiptPath": "tmp/cinematics/opening-620-normal-1642/qa-job.json",
+      "parameters": {
+        "production": true,
+        "scenario": "opening-camp-audience",
+        "viewport": "620x780",
+        "initialOsReducedMotion": false,
+        "liveOsFlip": false,
+        "reducedMotion": false,
+        "blockedMedia": false,
+        "environment": {
+          "CIN6D6_PORT": "5377",
+          "CIN6D6_ROUTE_SCENARIO": "opening-camp-audience",
+          "CIN6D6_VIEWPORT": "620x780",
+          "CIN6D6_OS_REDUCED_MOTION": "0",
+          "CIN6D6_REDUCED_MOTION": "0",
+          "CIN6D6_BLOCK_MEDIA": "0",
+          "CIN6D6_INTERRUPT_PRELUDE": "0",
+          "CIN6D6_LIVE_OS_FLIP": "0",
+          "CIN6D6_ROUTE_OUTPUT_DIR": "tmp/cinematics/opening-620-normal-1642",
+          "PLAYWRIGHT_BROWSERS_PATH": "C:/Users/miche/AppData/Local/ms-playwright"
+        },
+        "execution": "node tools/cinematics/run_cin6d6_route_browser_qa.mjs --production"
+      },
+      "status": "SUCCEEDED",
+      "acceptance": "NOT_ACCEPTED",
+      "eligibleForReview": true,
+      "driver": {
+        "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+        "sha256": "48acf9300873aa75025881c90b013b32be01aa5745386c9027535f1d4bfe5f5a"
+      },
+      "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1"
+    },
+    {
+      "jobId": "opening-620-os-1642",
+      "runId": "rpgthreejs-auto-dev-90m-20261011T1642",
+      "resultPath": "tmp/cinematics/opening-620-os-1642/results.json",
+      "resultSha256": "1a4c0364f023637eeb9488bc816e9bbea45ba83fd39da30a46d05ccf46585dca",
+      "receiptPath": "tmp/cinematics/opening-620-os-1642/qa-job.json",
+      "parameters": {
+        "production": true,
+        "scenario": "opening-camp-audience",
+        "viewport": "620x780",
+        "initialOsReducedMotion": true,
+        "liveOsFlip": false,
+        "reducedMotion": false,
+        "blockedMedia": false,
+        "environment": {
+          "CIN6D6_PORT": "5378",
+          "CIN6D6_ROUTE_SCENARIO": "opening-camp-audience",
+          "CIN6D6_VIEWPORT": "620x780",
+          "CIN6D6_OS_REDUCED_MOTION": "1",
+          "CIN6D6_REDUCED_MOTION": "0",
+          "CIN6D6_BLOCK_MEDIA": "0",
+          "CIN6D6_INTERRUPT_PRELUDE": "0",
+          "CIN6D6_LIVE_OS_FLIP": "0",
+          "CIN6D6_ROUTE_OUTPUT_DIR": "tmp/cinematics/opening-620-os-1642",
+          "PLAYWRIGHT_BROWSERS_PATH": "C:/Users/miche/AppData/Local/ms-playwright"
+        },
+        "execution": "node tools/cinematics/run_cin6d6_route_browser_qa.mjs --production"
+      },
+      "status": "SUCCEEDED",
+      "acceptance": "NOT_ACCEPTED",
+      "eligibleForReview": true,
+      "driver": {
+        "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+        "sha256": "48acf9300873aa75025881c90b013b32be01aa5745386c9027535f1d4bfe5f5a"
+      },
+      "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1"
+    }
+  ],
+  "castPhaseMs": {
+    "normal1366": 447.7,
+    "mountedOs1366": 407.7,
+    "normal620": 429.30000019073486,
+    "os620": 418.7000000476837
+  },
+  "selectedCaptures": [
+    {
+      "origin": "tmp/cinematics/opening-normal-1642-host/opening-cast-after.png",
+      "path": "docs/reports/opening-dynamic-staging-20261011-1642/normal-1366-after.png",
+      "sha256": "6a681ad2f27255bc67beda03336073a9004c60d9227d02004e138406de4ee51c"
+    },
+    {
+      "origin": "tmp/cinematics/opening-620-normal-1642/opening-cast-before.png",
+      "path": "docs/reports/opening-dynamic-staging-20261011-1642/normal-620-before.png",
+      "sha256": "8cddb527635aa14225c047df02b9ad950e7c4f994ca70aa39bd3bff9966ae148"
+    },
+    {
+      "origin": "tmp/cinematics/opening-620-normal-1642/opening-cast-after.png",
+      "path": "docs/reports/opening-dynamic-staging-20261011-1642/normal-620-after.png",
+      "sha256": "4f6d7c1c349cd422e80dac01a343c4410cdc882e585a58aad03a93d9b3066476"
+    },
+    {
+      "origin": "tmp/cinematics/opening-620-os-1642/opening-cast-before.png",
+      "path": "docs/reports/opening-dynamic-staging-20261011-1642/os-620-before.png",
+      "sha256": "d4592d3ddc434318e81bdccd9458b58084aacca8436396d3e1945c4c9f8a5237"
+    },
+    {
+      "origin": "tmp/cinematics/opening-620-os-1642/opening-cast-after.png",
+      "path": "docs/reports/opening-dynamic-staging-20261011-1642/os-620-after.png",
+      "sha256": "b70cb9d5867b0af296bda2169e01b8fe75d5f865db34cb0b3b82792cfa22bed9"
+    }
+  ],
+  "checks": [
+    "54tests3files",
+    "TypeScript",
+    "8contracts8slots",
+    "Narrative staging validator ok:true",
+    "source393/build9 reused",
+    "immutable/working-copy/whitespace/syntax gates"
+  ],
+  "compliance": {
+    "GAME_CONSTITUTION": "PASS",
+    "ART_DIRECTION": "N/A",
+    "CHARACTERS": "N/A",
+    "ENVIRONMENTS": "N/A",
+    "NARRATIVE_CAMPAIGN": "PASS",
+    "NARRATIVE_PRESENTATION": "PASS_SCOPED_OPENING_ONLY",
+    "TRAVERSAL": "N/A",
+    "COMBAT": "N/A_ZERO_COMBAT",
+    "SAVE": "PASS_EFFECT_FREE_BYTES_LIMITED_PROJECTION_ONLY",
+    "UI_ACCESSIBILITY": "PASS_SCOPED_DESKTOP_INTERMEDIATE",
+    "QA_EVIDENCE": "PASS_REGISTERED_MATCHING_INSPECTED_SCOPE",
+    "REPOSITORY_GOVERNANCE": "PASS_OWNED_LOCK_EXPLICIT_PATHS"
+  },
+  "guardian": "READY_TO_CLOSE_SCOPED; one reviewer/two bounded passes; individual matrix receipts inspected before aggregate",
+  "counts": {
+    "runtimeSourceFilesModified": 0,
+    "testFilesModified": 0,
+    "existingQaFilesModified": 0,
+    "newQaFilesAdded": 0,
+    "proofFilesAdded": 6,
+    "workflowFilesModifiedOrAdded": 3,
+    "canonicalDocsModified": 2,
+    "inheritedWipPaths": 0,
+    "registeredProductScenariosExecuted": 3,
+    "registeredPreGameEnvironmentFailures": 1,
+    "unregisteredDiagnosticLaunches": 1,
+    "readOnlyReviewers": 1,
+    "guardianPasses": 2,
+    "harnessCorrectionsAfterFailure": 0,
+    "quotaSavingsClaim": "NONE"
+  },
+  "excludedDiagnostics": {
+    "environmentFailure": "opening-normal-1642 localhost denied before game",
+    "prematureLaunch": {
+      "pid": 46748,
+      "stopped": true,
+      "registered": false,
+      "output": "tmp/cinematics/cin6d6/browser-qa/routes",
+      "disposition": "DIAGNOSTIC_ONLY_UNREGISTERED_DEFAULT_OUTPUT_CONTAMINATED_NO_ACCEPTANCE",
+      "observedFirstRefugeCaptures": true
+    }
+  },
+  "limitations": [
+    "Opening dynamic cast only",
+    "Stored-byte effect-free equality; limited resolved reload projection",
+    "No physical displacement/fullV6/migration/nativebalance/eight-video playback/latercampaign",
+    "Camp/audience partial transition/typewriter captures diagnostic",
+    "MobileLAST; parent narrative/demo IN_PROGRESS"
+  ]
+}

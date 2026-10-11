@@ -1,38 +1,48 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-11T16:11:38Z",
-  "runEndedAt": "2026-10-11T16:34:19.900Z",
+  "runStartedAt": "2026-10-11T16:42:26Z",
+  "runEndedAt": "2026-10-11T17:03:01.564Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "INDEPENDENT_NARRATIVE_REMAINING_GATES",
-  "activeSubtask": "Mounted opening OS flip1366 accepted scoped; normal desktop dynamic cast next",
+  "activeSubtask": "Opening desktop/intermediate dynamic cast accepted scoped; six-hero native cast gap next",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "6d5fd12c5d317a5539307e6f9f6df07a69a64c71",
   "lastPushedCommit": "6d5fd12c5d317a5539307e6f9f6df07a69a64c71",
   "completedThisRun": [
-    "Operator-authorized stale takeover; no active agent or associated QA/build; persistent development server5173 retained",
-    "393 physical files and nine production artifacts match fixed-OS0534 source/build; old result verified and not rerun",
-    "Existing opening driver opt-in mounted OS flip;57added/3removed,0runtime changes",
-    "ACCEPTED_SCOPED_MOUNTED_OPENING_OS_FLIP_1366",
-    "54focused tests/types/8contracts8slots/immutable/whitespace/syntax PASS; source393/build9 reused; guardian PASS",
-    "One actual browser scenario; one pre-browser cache failure retained, environment recovery only,0assertion corrections"
+    "Read-only preflight: clean dev/live parity ca98354, no lock/other active writer; dev server5173 retained",
+    "393 physical source files and nine artifacts match1612; prior scoped OS flip result verified without rerun",
+    "Normal1366 native opening smoke SUCCEEDED; root inspected4captures; cast before/after settled, camp/audience diagnostic only",
+    "ACCEPTED_SCOPED_OPENING_DYNAMIC_CAST_DESKTOP_INTERMEDIATE_NORMAL_OS",
+    "620normal/OS registered milestone PASS; matching mountedOS1366 reused, no repeat",
+    "Guardian READY_TO_CLOSE_SCOPED; five inspected captures plus one compact checks explicitly promoted",
+    "Independent next source audit: pilot skill selection omits rogue/lancer; no modification or native acceptance this run"
   ],
   "filesChanged": [
-    "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
     "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
-    "docs/autonomy/handoffs/2026-10-11T1612Z-codex-mounted-os-flip.md"
+    "docs/autonomy/STATIC_TABLEAU_STAGING_POLISH.md",
+    "docs/autonomy/handoffs/2026-10-11T1642Z-codex-opening-dynamic.md",
+    "docs/reports/opening-dynamic-staging-20261011-1642/checks.json",
+    "docs/reports/opening-dynamic-staging-20261011-1642/normal-1366-after.png",
+    "docs/reports/opening-dynamic-staging-20261011-1642/normal-620-before.png",
+    "docs/reports/opening-dynamic-staging-20261011-1642/normal-620-after.png",
+    "docs/reports/opening-dynamic-staging-20261011-1642/os-620-before.png",
+    "docs/reports/opening-dynamic-staging-20261011-1642/os-620-after.png"
   ],
   "testsRun": [
     "vitest NarrativeSceneSurface/NarrativeStage/ReducedMotion --exclude tmp/**",
     "tsc --noEmit",
     "node tools/contracts/validate-contracts.mjs",
-    "driver node --check; immutable/working-copy/whitespace gates"
+    "driver syntax, immutable working-copy and whitespace gates",
+    "Existing narrative staging validator"
   ],
   "testsPassed": [
-    "54 tests in3files (27Surface/23Stage/4helper)",
+    "54tests3files (27Surface/23Stage/4helper)",
     "TypeScript",
-    "8LOCKED contracts/8slots; syntax/immutable/whitespace"
+    "8LOCKED contracts/8slots; syntax/immutable/whitespace",
+    "Source393/build9 reused; registered normal1366 smoke SUCCEEDED eligibleForReview",
+    "Narrative staging validator ok:true;75reachable dialogues/282runtime presentation steps mapped"
   ],
   "testsRemaining": [
     "Mounted-stage live OS flip, current normal and intermediate dynamic cast browser proof",
@@ -60,10 +70,10 @@
     "Shared positive checkpoint braking desktop normal/OS alternatives accepted scoped1806; full phase/readiness/game-only/camera comfort/manual broader scenery OPEN",
     "Shadow gait/reduced-miss proofs remain scoped; native T1 forest_patrol victory/return/tempLoot/focus/precombatV6 now accepted1366normal; full-tail/ground, other contexts, defeat/cancel/reentry/reduced/AT still open",
     "Other campaign branches/endings, Stage/VFX/AT/desktop accessibility",
-    "Mounted opening OSflip1366 accepted scoped; normal/intermediate dynamic/later/earned narrative and approved Bois-Clair night plate remainOPEN",
+    "Opening dynamic1366/620 normalOS accepted scoped; later/earned narrative and approvedBois-Clair nightplate remainOPEN",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Read-only autonomy preflight/exclusive lock; inspect narrative-1612 terminal-audit, result703c784f, driver48acf930, helper/source393/build9 before reuse. Mounted opening OSflip1366 now accepted scoped; do not repeat it, fixedOS0534 or historical contextual matrices/unchanged failed campaign samples. Next ONE registered production opening-camp-audience1366 normal motion with CIN6D6_LIVE_OS_FLIP=0, OS=0/game=0/media available and verified host Chromium cache; reuse existing phase/cap/facing/preparing/focus/bounds/saved-byte observer, no driver/assertion change required. Then complete pending desktop/intermediate dynamic staging gates at narrative milestone, retain exact original all-six-skills/Pursuit/deferred keyboard continuation. No source defect demonstrated this run; earned campaign/fullV6/native balance/later environment/AT/operator full-demo remainOPEN; mobileLAST.",
+  "nextAction": "Read-only autonomy preflight/exclusive lock; inspect narrative-1642 audits and opening-dynamic-staging-20261011-1642/checks.json before reuse. Opening desktop/intermediate dynamic cast normal/OS is accepted scoped; do not repeat it, mountedOS1612, fixedOS0534, contextual historical matrices or unchanged failed1840/2321/0001 samples. Resume original all-six-skills task: inspect retained skills1840/2321/0001 receipts/actions and src/game/catalog.ts initial-skill exception, then tools/demo-continuous-production-qa.mjs skill() lines242-318. Source audit shows existing initialRoster records six competences but offensive selection omits ro_sneak_attack/l_long_thrust; verify precise remaining native-cast gap, then make only a bounded existing-pilot correction if warranted, guardian review of certifying diff before ONE registered native desktop scenario using register-demo/exact state path and independently valid earned input. Never seed failed0001, inject outcome/truth or weaken AP/healing assertions. Preserve current exactly2to0/40percent Salvation scoped observation and deferred keyboard exact continuation; parent skills/Pursuit/later-earned narrative/fullV6/AT/balance/operatorfull-demo remainOPEN. Bois-Clair nightplate remains BLOCKED_ASSET and consumes no repeat run; mobileLAST.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -79,7 +89,7 @@
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
   "creditStatus": "AVAILABLE_THIS_RUN",
-  "contractComplianceStatus": "PASS_SCOPED; set1.1.0/immutable d7ca28a unchanged; whole narrative/demo IN_PROGRESS",
+  "contractComplianceStatus": "PASS_SCOPED_OPENING_DYNAMIC; set1.1.0/immutable d7ca28a unchanged; whole narrative/demo IN_PROGRESS",
   "commitReferenceScope": "Published baseline/checkpoint references; final dev metadata SHA/parity/WIP retirement/lock release recorded in automationmemory after verification",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
@@ -181,9 +191,9 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261011T1612",
+  "runId": "rpgthreejs-auto-dev-90m-20261011T1642",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-11T16:14:06.122Z",
+  "lastHeartbeat": "2026-10-11T17:03:01.564Z",
   "wip": {
     "sha": "a8a235cad89e2665207a457c362e3e4dc35f2996",
     "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0415",
@@ -199,10 +209,10 @@
     "lastGreenCheck": "132tests/types/contracts8slots/immutable/whitespace; one smoke scoped accepted by root/guardian;5reviewed paths snapshot published"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261011T1612",
+    "runId": "rpgthreejs-auto-dev-90m-20261011T1642",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-11T16:28:42.669Z",
-    "status": "CLOSED_SCOPED_OS_FLIP_PUBLISHED",
+    "lastHeartbeat": "2026-10-11T17:03:01.564Z",
+    "status": "SAFE_CLOSEOUT_PENDING_PUBLICATION",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -20755,17 +20765,453 @@
         "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "opening-normal-1642",
+        "runId": "rpgthreejs-auto-dev-90m-20261011T1642",
+        "status": "FAILED",
+        "registeredAt": "2026-10-11T16:44:59.089Z",
+        "pid": 4884,
+        "port": 5376,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "production": true,
+          "scenario": "opening-camp-audience",
+          "viewport": "1366x768",
+          "initialOsReducedMotion": false,
+          "liveOsFlip": false,
+          "reducedMotion": false,
+          "blockedMedia": false,
+          "environment": {
+            "CIN6D6_PORT": "5376",
+            "CIN6D6_ROUTE_SCENARIO": "opening-camp-audience",
+            "CIN6D6_VIEWPORT": "1366x768",
+            "CIN6D6_OS_REDUCED_MOTION": "0",
+            "CIN6D6_REDUCED_MOTION": "0",
+            "CIN6D6_BLOCK_MEDIA": "0",
+            "CIN6D6_INTERRUPT_PRELUDE": "0",
+            "CIN6D6_LIVE_OS_FLIP": "0",
+            "CIN6D6_ROUTE_OUTPUT_DIR": "tmp/cinematics/opening-normal-1642",
+            "PLAYWRIGHT_BROWSERS_PATH": "C:/Users/miche/AppData/Local/ms-playwright"
+          },
+          "execution": "node tools/cinematics/run_cin6d6_route_browser_qa.mjs --production"
+        },
+        "requiredAssertions": [
+          "Opening SETTLED/EXIT/BREATH/ENTRY/SETTLED with4/2/4actors, retainedMaelor/Seraphine and authored final facing",
+          "Normal OS/game motion; preparing during transitions and settled focused/enabled dialogue within measured bounds",
+          "Effect-free cast replacement preserves nonempty storedV6 bytes; existing limited resolved resume projection only",
+          "Camp/audience tableau and native mission choice flag; zero combat and clean diagnostics",
+          "No fullV6/migration/nativebalance/eight-video/mobile/full-demo claim"
+        ],
+        "output": "tmp/cinematics/opening-normal-1642",
+        "receiptPath": "tmp/cinematics/opening-normal-1642/qa-job.json",
+        "provenance": {
+          "gitHead": "ca98354a71a1f71820e501b05ae0aa6a07396797",
+          "sourceTree": "a147f5c25febb460ad69f38d184d8047c4cca780",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "48acf9300873aa75025881c90b013b32be01aa5745386c9027535f1d4bfe5f5a"
+          },
+          "inputs": [],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/game-zrccER2T.js",
+              "sha256": "fd9a3ff2f576d9fcfa2f7055d94eb1c1702f5594063904b480ef2d96253dfeab"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "2d3c23a073ba24f72568a542a0519e5714858dc13ea32a41f99aa17a12535e1e"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-11T16:45:49.9103914+00:00",
+        "endedAt": "2026-10-11T16:47:22.982Z",
+        "exitCode": 1,
+        "resultPath": "tmp/cinematics/opening-normal-1642/results.json",
+        "resultSha256": "ac1289e6fef835de1191708ba1e24bf083bd98430c76267e059e109c6b22cadd",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "opening-normal-1642-host",
+        "runId": "rpgthreejs-auto-dev-90m-20261011T1642",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-11T16:48:30.736Z",
+        "pid": 61484,
+        "port": 5376,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "production": true,
+          "scenario": "opening-camp-audience",
+          "viewport": "1366x768",
+          "initialOsReducedMotion": false,
+          "liveOsFlip": false,
+          "reducedMotion": false,
+          "blockedMedia": false,
+          "environment": {
+            "CIN6D6_PORT": "5376",
+            "CIN6D6_ROUTE_SCENARIO": "opening-camp-audience",
+            "CIN6D6_VIEWPORT": "1366x768",
+            "CIN6D6_OS_REDUCED_MOTION": "0",
+            "CIN6D6_REDUCED_MOTION": "0",
+            "CIN6D6_BLOCK_MEDIA": "0",
+            "CIN6D6_INTERRUPT_PRELUDE": "0",
+            "CIN6D6_LIVE_OS_FLIP": "0",
+            "CIN6D6_ROUTE_OUTPUT_DIR": "tmp/cinematics/opening-normal-1642-host",
+            "PLAYWRIGHT_BROWSERS_PATH": "C:/Users/miche/AppData/Local/ms-playwright"
+          },
+          "execution": "node tools/cinematics/run_cin6d6_route_browser_qa.mjs --production"
+        },
+        "requiredAssertions": [
+          "Opening SETTLED/EXIT/BREATH/ENTRY/SETTLED with4/2/4actors, retainedMaelor/Seraphine and authored final facing",
+          "Normal OS/game motion; preparing during transitions and settled focused/enabled dialogue within measured bounds",
+          "Effect-free cast replacement preserves nonempty storedV6 bytes; existing limited resolved resume projection only",
+          "Camp/audience tableau and native mission choice flag; zero combat and clean diagnostics",
+          "No fullV6/migration/nativebalance/eight-video/mobile/full-demo claim"
+        ],
+        "output": "tmp/cinematics/opening-normal-1642-host",
+        "receiptPath": "tmp/cinematics/opening-normal-1642-host/qa-job.json",
+        "provenance": {
+          "gitHead": "ca98354a71a1f71820e501b05ae0aa6a07396797",
+          "sourceTree": "a147f5c25febb460ad69f38d184d8047c4cca780",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "48acf9300873aa75025881c90b013b32be01aa5745386c9027535f1d4bfe5f5a"
+          },
+          "inputs": [],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/game-zrccER2T.js",
+              "sha256": "fd9a3ff2f576d9fcfa2f7055d94eb1c1702f5594063904b480ef2d96253dfeab"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "2d3c23a073ba24f72568a542a0519e5714858dc13ea32a41f99aa17a12535e1e"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-11T16:49:08.0757689+00:00",
+        "endedAt": "2026-10-11T16:50:07.443Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/opening-normal-1642-host/results.json",
+        "resultSha256": "8a80749da5cd4181e63cf42765d7007085a92fd4eb829d23e0c03bbb4b2e7c9c",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "opening-620-normal-1642",
+        "runId": "rpgthreejs-auto-dev-90m-20261011T1642",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-11T16:53:10.988Z",
+        "pid": 69624,
+        "port": 5377,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "production": true,
+          "scenario": "opening-camp-audience",
+          "viewport": "620x780",
+          "initialOsReducedMotion": false,
+          "liveOsFlip": false,
+          "reducedMotion": false,
+          "blockedMedia": false,
+          "environment": {
+            "CIN6D6_PORT": "5377",
+            "CIN6D6_ROUTE_SCENARIO": "opening-camp-audience",
+            "CIN6D6_VIEWPORT": "620x780",
+            "CIN6D6_OS_REDUCED_MOTION": "0",
+            "CIN6D6_REDUCED_MOTION": "0",
+            "CIN6D6_BLOCK_MEDIA": "0",
+            "CIN6D6_INTERRUPT_PRELUDE": "0",
+            "CIN6D6_LIVE_OS_FLIP": "0",
+            "CIN6D6_ROUTE_OUTPUT_DIR": "tmp/cinematics/opening-620-normal-1642",
+            "PLAYWRIGHT_BROWSERS_PATH": "C:/Users/miche/AppData/Local/ms-playwright"
+          },
+          "execution": "node tools/cinematics/run_cin6d6_route_browser_qa.mjs --production"
+        },
+        "requiredAssertions": [
+          "Opening SETTLED/EXIT/BREATH/ENTRY/SETTLED with4/2/4actors, retainedMaelor/Seraphine and authored final facing",
+          "Normal OS/game motion; preparing during transitions and settled focused/enabled dialogue within measured bounds",
+          "Effect-free cast replacement preserves nonempty storedV6 bytes; existing limited resolved resume projection only",
+          "Camp/audience tableau and native mission choice flag; zero combat and clean diagnostics",
+          "No fullV6/migration/nativebalance/eight-video/mobile/full-demo claim"
+        ],
+        "output": "tmp/cinematics/opening-620-normal-1642",
+        "receiptPath": "tmp/cinematics/opening-620-normal-1642/qa-job.json",
+        "provenance": {
+          "gitHead": "ca98354a71a1f71820e501b05ae0aa6a07396797",
+          "sourceTree": "a147f5c25febb460ad69f38d184d8047c4cca780",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "48acf9300873aa75025881c90b013b32be01aa5745386c9027535f1d4bfe5f5a"
+          },
+          "inputs": [],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/game-zrccER2T.js",
+              "sha256": "fd9a3ff2f576d9fcfa2f7055d94eb1c1702f5594063904b480ef2d96253dfeab"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "2d3c23a073ba24f72568a542a0519e5714858dc13ea32a41f99aa17a12535e1e"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-11T16:53:43.2903934+00:00",
+        "endedAt": "2026-10-11T16:55:25.332Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/opening-620-normal-1642/results.json",
+        "resultSha256": "0c4a839ad4df3345f7a69c53e5aa0b55d0aa6a39a6f93888b587a29a34f168f7",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "opening-620-os-1642",
+        "runId": "rpgthreejs-auto-dev-90m-20261011T1642",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-11T16:53:11.325Z",
+        "pid": 46676,
+        "port": 5378,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "--production"
+        ],
+        "parameters": {
+          "production": true,
+          "scenario": "opening-camp-audience",
+          "viewport": "620x780",
+          "initialOsReducedMotion": true,
+          "liveOsFlip": false,
+          "reducedMotion": false,
+          "blockedMedia": false,
+          "environment": {
+            "CIN6D6_PORT": "5378",
+            "CIN6D6_ROUTE_SCENARIO": "opening-camp-audience",
+            "CIN6D6_VIEWPORT": "620x780",
+            "CIN6D6_OS_REDUCED_MOTION": "1",
+            "CIN6D6_REDUCED_MOTION": "0",
+            "CIN6D6_BLOCK_MEDIA": "0",
+            "CIN6D6_INTERRUPT_PRELUDE": "0",
+            "CIN6D6_LIVE_OS_FLIP": "0",
+            "CIN6D6_ROUTE_OUTPUT_DIR": "tmp/cinematics/opening-620-os-1642",
+            "PLAYWRIGHT_BROWSERS_PATH": "C:/Users/miche/AppData/Local/ms-playwright"
+          },
+          "execution": "node tools/cinematics/run_cin6d6_route_browser_qa.mjs --production"
+        },
+        "requiredAssertions": [
+          "Opening SETTLED/EXIT/BREATH/ENTRY/SETTLED with4/2/4actors, retainedMaelor/Seraphine and authored final facing",
+          "OStrue/gamefalse with no sampled actor animation; preparing during transitions and settled focused/enabled dialogue within measured bounds",
+          "Effect-free cast replacement preserves nonempty storedV6 bytes; existing limited resolved resume projection only",
+          "Camp/audience tableau and native mission choice flag; zero combat and clean diagnostics",
+          "No fullV6/migration/nativebalance/eight-video/mobile/full-demo claim"
+        ],
+        "output": "tmp/cinematics/opening-620-os-1642",
+        "receiptPath": "tmp/cinematics/opening-620-os-1642/qa-job.json",
+        "provenance": {
+          "gitHead": "ca98354a71a1f71820e501b05ae0aa6a07396797",
+          "sourceTree": "a147f5c25febb460ad69f38d184d8047c4cca780",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "48acf9300873aa75025881c90b013b32be01aa5745386c9027535f1d4bfe5f5a"
+          },
+          "inputs": [],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/game-zrccER2T.js",
+              "sha256": "fd9a3ff2f576d9fcfa2f7055d94eb1c1702f5594063904b480ef2d96253dfeab"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "2d3c23a073ba24f72568a542a0519e5714858dc13ea32a41f99aa17a12535e1e"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-11T16:54:26.4190936+00:00",
+        "endedAt": "2026-10-11T16:55:25.664Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/opening-620-os-1642/results.json",
+        "resultSha256": "1a4c0364f023637eeb9488bc816e9bbea45ba83fd39da30a46d05ccf46585dca",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
       }
     ],
     "wip": {
-      "at": "2026-10-11T16:26:03Z",
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1612",
-      "sha": "51f333ea6d5ef64e6fccb4d41c09eb7e227617d5",
-      "status": "RETIRED_CONTENT_COVERED_ON_DEV",
-      "dirtyFiles": [],
-      "lastGreenCheck": "54tests/types/contracts/gates+registered scoped smoke+guardian PASS"
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1642",
+      "sha": "8e8654e9539c4797be16911634e3aad2fb0f5159",
+      "at": "2026-10-11T17:01:28.2908972+00:00",
+      "status": "PRESERVED_GREEN_CONTENT_PENDING_DEV_PUBLICATION",
+      "dirtyFiles": [
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
+        "docs/autonomy/STATIC_TABLEAU_STAGING_POLISH.md",
+        "docs/autonomy/handoffs/2026-10-11T1642Z-codex-opening-dynamic.md",
+        "docs/reports/opening-dynamic-staging-20261011-1642/checks.json",
+        "docs/reports/opening-dynamic-staging-20261011-1642/normal-1366-after.png",
+        "docs/reports/opening-dynamic-staging-20261011-1642/normal-620-before.png",
+        "docs/reports/opening-dynamic-staging-20261011-1642/normal-620-after.png",
+        "docs/reports/opening-dynamic-staging-20261011-1642/os-620-before.png",
+        "docs/reports/opening-dynamic-staging-20261011-1642/os-620-after.png"
+      ],
+      "lastGreenCheck": "54tests/types/staging/contracts/gates/three registered scenarios/guardian scopedPASS"
     },
-    "nextAction": "Read-only autonomy preflight/exclusive lock; inspect narrative-1612 terminal-audit, result703c784f, driver48acf930, helper/source393/build9 before reuse. Mounted opening OSflip1366 now accepted scoped; do not repeat it, fixedOS0534 or historical contextual matrices/unchanged failed campaign samples. Next ONE registered production opening-camp-audience1366 normal motion with CIN6D6_LIVE_OS_FLIP=0, OS=0/game=0/media available and verified host Chromium cache; reuse existing phase/cap/facing/preparing/focus/bounds/saved-byte observer, no driver/assertion change required. Then complete pending desktop/intermediate dynamic staging gates at narrative milestone, retain exact original all-six-skills/Pursuit/deferred keyboard continuation. No source defect demonstrated this run; earned campaign/fullV6/native balance/later environment/AT/operator full-demo remainOPEN; mobileLAST.",
+    "nextAction": "Read-only autonomy preflight/exclusive lock; inspect narrative-1642 audits and opening-dynamic-staging-20261011-1642/checks.json before reuse. Opening desktop/intermediate dynamic cast normal/OS is accepted scoped; do not repeat it, mountedOS1612, fixedOS0534, contextual historical matrices or unchanged failed1840/2321/0001 samples. Resume original all-six-skills task: inspect retained skills1840/2321/0001 receipts/actions and src/game/catalog.ts initial-skill exception, then tools/demo-continuous-production-qa.mjs skill() lines242-318. Source audit shows existing initialRoster records six competences but offensive selection omits ro_sneak_attack/l_long_thrust; verify precise remaining native-cast gap, then make only a bounded existing-pilot correction if warranted, guardian review of certifying diff before ONE registered native desktop scenario using register-demo/exact state path and independently valid earned input. Never seed failed0001, inject outcome/truth or weaken AP/healing assertions. Preserve current exactly2to0/40percent Salvation scoped observation and deferred keyboard exact continuation; parent skills/Pursuit/later-earned narrative/fullV6/AT/balance/operatorfull-demo remainOPEN. Bois-Clair nightplate remains BLOCKED_ASSET and consumes no repeat run; mobileLAST.",
     "runMetrics": {
       "existingQaFilesModified": 1,
       "harnessCorrections": 1,
@@ -22756,6 +23202,109 @@
         "deletionAttempted": true,
         "resolvedAt": "2026-10-11T16:33:17.5202001Z"
       }
+    },
+    "narrative1642": {
+      "baseline": "ca98354a71a1f71820e501b05ae0aa6a07396797",
+      "previousNextAction": "Read-only autonomy preflight/exclusive lock; inspect narrative-1612 terminal-audit, result703c784f, driver48acf930, helper/source393/build9 before reuse. Mounted opening OSflip1366 now accepted scoped; do not repeat it, fixedOS0534 or historical contextual matrices/unchanged failed campaign samples. Next ONE registered production opening-camp-audience1366 normal motion with CIN6D6_LIVE_OS_FLIP=0, OS=0/game=0/media available and verified host Chromium cache; reuse existing phase/cap/facing/preparing/focus/bounds/saved-byte observer, no driver/assertion change required. Then complete pending desktop/intermediate dynamic staging gates at narrative milestone, retain exact original all-six-skills/Pursuit/deferred keyboard continuation. No source defect demonstrated this run; earned campaign/fullV6/native balance/later environment/AT/operator full-demo remainOPEN; mobileLAST.",
+      "sourceDefect": "None demonstrated; resume explicit browser gate for published motion correction",
+      "sourcePhysicalFiles": 393,
+      "buildFiles": 9,
+      "buildReused": true,
+      "inheritedWipPaths": 0,
+      "harnessCorrections": 0,
+      "environmentFailure": {
+        "jobId": "opening-normal-1642",
+        "classification": "FAILED_ENVIRONMENT_BEFORE_GAME_NETWORK_ACCESS_DENIED",
+        "productAssertionsExecuted": 0,
+        "harnessCorrections": 0
+      },
+      "normalOpening": {
+        "jobId": "opening-normal-1642-host",
+        "resultSha256": "8a80749da5cd4181e63cf42765d7007085a92fd4eb829d23e0c03bbb4b2e7c9c",
+        "terminalAudit": "tmp/autonomy/narrative-1642/terminal-audit.json",
+        "rootInspectedCaptures": [
+          "opening-cast-before.png",
+          "opening-cast-after.png",
+          "opening-camp.png",
+          "opening-audience.png"
+        ],
+        "castPhaseDurationMs": 447.7,
+        "totalObservationMs": 3302.9000000953674,
+        "acceptance": "REVIEW_PENDING"
+      },
+      "prematureLaunch": {
+        "pid": 46748,
+        "stopped": true,
+        "registered": false,
+        "output": "tmp/cinematics/cin6d6/browser-qa/routes",
+        "disposition": "DIAGNOSTIC_ONLY_UNREGISTERED_DEFAULT_OUTPUT_CONTAMINATED_NO_ACCEPTANCE",
+        "observedFirstRefugeCaptures": true
+      },
+      "browserCounts": {
+        "registeredGameScenarios": 1,
+        "preGameEnvironmentFailures": 1,
+        "unregisteredDiagnosticLaunches": 1,
+        "unregisteredScenarioScope": "Default node scenario partially ran; interrupted, no result/acceptance; output contaminated"
+      },
+      "guardianPreMatrix": "1366normal and same-source mountedOS reusable; proceed only620normal/OS, current settled captures reviewed, no whole narrative closure",
+      "acceptance": "ACCEPTED_SCOPED_OPENING_DYNAMIC_CAST_DESKTOP_INTERMEDIATE_NORMAL_OS",
+      "fact": "Current unchanged built opening verifies native cast replacement at1366normal and620normal/OS, reusing matching mountedOS1366. Ordered EXIT/BREATH/ENTRY with4/2/4actors, retained Maelor/Seraphine, authored final facing, preparing/focus/enabled/settled-text measured bounds and effect-free storedV6 byte equality. Cast phases447.7/429.3/418.7ms; mountedOS1366 phase407.7ms reused. Total observer duration includes typewriter and is not cast timing. Root inspected8captures this run; guardian inspected6current settled captures plus priorOS after. Camp/audience early captures diagnostic only; no settled typography or geometry acceptance there. Five settled captures explicitly selected. Source393/build9/driver48acf930 unchanged; registered receipts SUCCEEDED/current/digest eligible remain machine NOT_ACCEPTED separate from reviewed scope. No fullV6/migration/physical displacement/nativebalance/eight-video/latercampaign/mobile/full-demo claim.",
+      "nextAction": "Read-only autonomy preflight/exclusive lock; inspect narrative-1642 audits and opening-dynamic-staging-20261011-1642/checks.json before reuse. Opening desktop/intermediate dynamic cast normal/OS is accepted scoped; do not repeat it, mountedOS1612, fixedOS0534, contextual historical matrices or unchanged failed1840/2321/0001 samples. Resume original all-six-skills task: inspect retained skills1840/2321/0001 receipts/actions and src/game/catalog.ts initial-skill exception, then tools/demo-continuous-production-qa.mjs skill() lines242-318. Source audit shows existing initialRoster records six competences but offensive selection omits ro_sneak_attack/l_long_thrust; verify precise remaining native-cast gap, then make only a bounded existing-pilot correction if warranted, guardian review of certifying diff before ONE registered native desktop scenario using register-demo/exact state path and independently valid earned input. Never seed failed0001, inject outcome/truth or weaken AP/healing assertions. Preserve current exactly2to0/40percent Salvation scoped observation and deferred keyboard exact continuation; parent skills/Pursuit/later-earned narrative/fullV6/AT/balance/operatorfull-demo remainOPEN. Bois-Clair nightplate remains BLOCKED_ASSET and consumes no repeat run; mobileLAST.",
+      "counts": {
+        "runtimeSourceFilesModified": 0,
+        "testFilesModified": 0,
+        "existingQaFilesModified": 0,
+        "newQaFilesAdded": 0,
+        "proofFilesAdded": 6,
+        "workflowFilesModifiedOrAdded": 3,
+        "canonicalDocsModified": 2,
+        "inheritedWipPaths": 0,
+        "registeredProductScenariosExecuted": 3,
+        "registeredPreGameEnvironmentFailures": 1,
+        "unregisteredDiagnosticLaunches": 1,
+        "readOnlyReviewers": 1,
+        "guardianPasses": 2,
+        "harnessCorrectionsAfterFailure": 0,
+        "quotaSavingsClaim": "NONE"
+      },
+      "compliance": {
+        "GAME_CONSTITUTION": "PASS",
+        "ART_DIRECTION": "N/A",
+        "CHARACTERS": "N/A",
+        "ENVIRONMENTS": "N/A",
+        "NARRATIVE_CAMPAIGN": "PASS",
+        "NARRATIVE_PRESENTATION": "PASS_SCOPED_OPENING_ONLY",
+        "TRAVERSAL": "N/A",
+        "COMBAT": "N/A_ZERO_COMBAT",
+        "SAVE": "PASS_EFFECT_FREE_BYTES_LIMITED_PROJECTION_ONLY",
+        "UI_ACCESSIBILITY": "PASS_SCOPED_DESKTOP_INTERMEDIATE",
+        "QA_EVIDENCE": "PASS_REGISTERED_MATCHING_INSPECTED_SCOPE",
+        "REPOSITORY_GOVERNANCE": "PASS_OWNED_LOCK_EXPLICIT_PATHS"
+      },
+      "guardian": "READY_TO_CLOSE_SCOPED; two passes, no source/assertion correction",
+      "matrixAudit": "tmp/autonomy/narrative-1642/matrix-terminal-audit.json",
+      "selectedProof": "docs/reports/opening-dynamic-staging-20261011-1642/checks.json",
+      "independentNextGap": "Existing native pilot offensive list excludes rogue/lancer initial competences; source observation only, no new runtime defect claimed",
+      "contractSetVersion": "1.1.0",
+      "lockedRulesChanged": false,
+      "publication": {
+        "status": "PENDING_NORMAL_DEV_PUSH",
+        "ownedWipRetained": true,
+        "snapshot": {
+          "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1642",
+          "sha": "8e8654e9539c4797be16911634e3aad2fb0f5159",
+          "at": "2026-10-11T17:01:28.2908972+00:00"
+        },
+        "authorization": "OD-2026-10-08-A/B standing normal non-force dev/WIP authorization",
+        "qaProcessesStopped": true,
+        "qaPortsClear": [
+          5242,
+          5376,
+          5377,
+          5378
+        ],
+        "dev5173Retained": true
+      }
     }
   },
   "previousInterruptedRun": {
@@ -23042,10 +23591,10 @@
   },
   "pendingNarrativeTask": {
     "task": "NARRATIVE-CONTEXT-COHERENCE",
-    "status": "MOUNTED_OPENING_OS_FLIP_1366_SCOPED_PASS_NORMAL_INTERMEDIATE_DYNAMIC_OPEN",
+    "status": "OPENING_DYNAMIC_DESKTOP_INTERMEDIATE_SCOPED_PASS_LATER_EARNED_MOBILE_OPEN",
     "record": "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
-    "blocker": "No blocker for accepted mounted1366 OS flip; normal/intermediate dynamic, later/earned/fullV6/operator final remainOPEN",
-    "nextAction": "Read-only autonomy preflight/exclusive lock; inspect narrative-1612 terminal-audit, result703c784f, driver48acf930, helper/source393/build9 before reuse. Mounted opening OSflip1366 now accepted scoped; do not repeat it, fixedOS0534 or historical contextual matrices/unchanged failed campaign samples. Next ONE registered production opening-camp-audience1366 normal motion with CIN6D6_LIVE_OS_FLIP=0, OS=0/game=0/media available and verified host Chromium cache; reuse existing phase/cap/facing/preparing/focus/bounds/saved-byte observer, no driver/assertion change required. Then complete pending desktop/intermediate dynamic staging gates at narrative milestone, retain exact original all-six-skills/Pursuit/deferred keyboard continuation. No source defect demonstrated this run; earned campaign/fullV6/native balance/later environment/AT/operator full-demo remainOPEN; mobileLAST.",
+    "blocker": "Opening dynamic scope accepted; later/earned/fullV6/operator final remainOPEN; Bois-Clair nightplate BLOCKED_ASSET",
+    "nextAction": "Read-only autonomy preflight/exclusive lock; inspect narrative-1642 audits and opening-dynamic-staging-20261011-1642/checks.json before reuse. Opening desktop/intermediate dynamic cast normal/OS is accepted scoped; do not repeat it, mountedOS1612, fixedOS0534, contextual historical matrices or unchanged failed1840/2321/0001 samples. Resume original all-six-skills task: inspect retained skills1840/2321/0001 receipts/actions and src/game/catalog.ts initial-skill exception, then tools/demo-continuous-production-qa.mjs skill() lines242-318. Source audit shows existing initialRoster records six competences but offensive selection omits ro_sneak_attack/l_long_thrust; verify precise remaining native-cast gap, then make only a bounded existing-pilot correction if warranted, guardian review of certifying diff before ONE registered native desktop scenario using register-demo/exact state path and independently valid earned input. Never seed failed0001, inject outcome/truth or weaken AP/healing assertions. Preserve current exactly2to0/40percent Salvation scoped observation and deferred keyboard exact continuation; parent skills/Pursuit/later-earned narrative/fullV6/AT/balance/operatorfull-demo remainOPEN. Bois-Clair nightplate remains BLOCKED_ASSET and consumes no repeat run; mobileLAST.",
     "contextual0455": {
       "acceptance": "ACCEPTED_SCOPED_CONTEXTUAL_STATIC_FIRST_STEP_DESKTOP_INTERMEDIATE_OS_SETTINGS",
       "evidence": "docs/reports/narrative-context-20261011-0455/checks.json",
@@ -23078,6 +23627,12 @@
       "driverSha256": "48acf9300873aa75025881c90b013b32be01aa5745386c9027535f1d4bfe5f5a",
       "resultSha256": "703c784f7f265a0e67b765cdbc2d8ac6405a183081db55acc5ecc25a2dcb5feb",
       "nextAction": "Read-only autonomy preflight/exclusive lock; inspect narrative-1612 terminal-audit, result703c784f, driver48acf930, helper/source393/build9 before reuse. Mounted opening OSflip1366 now accepted scoped; do not repeat it, fixedOS0534 or historical contextual matrices/unchanged failed campaign samples. Next ONE registered production opening-camp-audience1366 normal motion with CIN6D6_LIVE_OS_FLIP=0, OS=0/game=0/media available and verified host Chromium cache; reuse existing phase/cap/facing/preparing/focus/bounds/saved-byte observer, no driver/assertion change required. Then complete pending desktop/intermediate dynamic staging gates at narrative milestone, retain exact original all-six-skills/Pursuit/deferred keyboard continuation. No source defect demonstrated this run; earned campaign/fullV6/native balance/later environment/AT/operator full-demo remainOPEN; mobileLAST."
+    },
+    "dynamicOpening1642": {
+      "acceptance": "ACCEPTED_SCOPED_OPENING_DYNAMIC_CAST_DESKTOP_INTERMEDIATE_NORMAL_OS",
+      "fact": "Current unchanged built opening verifies native cast replacement at1366normal and620normal/OS, reusing matching mountedOS1366. Ordered EXIT/BREATH/ENTRY with4/2/4actors, retained Maelor/Seraphine, authored final facing, preparing/focus/enabled/settled-text measured bounds and effect-free storedV6 byte equality. Cast phases447.7/429.3/418.7ms; mountedOS1366 phase407.7ms reused. Total observer duration includes typewriter and is not cast timing. Root inspected8captures this run; guardian inspected6current settled captures plus priorOS after. Camp/audience early captures diagnostic only; no settled typography or geometry acceptance there. Five settled captures explicitly selected. Source393/build9/driver48acf930 unchanged; registered receipts SUCCEEDED/current/digest eligible remain machine NOT_ACCEPTED separate from reviewed scope. No fullV6/migration/physical displacement/nativebalance/eight-video/latercampaign/mobile/full-demo claim.",
+      "proof": "docs/reports/opening-dynamic-staging-20261011-1642/checks.json",
+      "nextAction": "Read-only autonomy preflight/exclusive lock; inspect narrative-1642 audits and opening-dynamic-staging-20261011-1642/checks.json before reuse. Opening desktop/intermediate dynamic cast normal/OS is accepted scoped; do not repeat it, mountedOS1612, fixedOS0534, contextual historical matrices or unchanged failed1840/2321/0001 samples. Resume original all-six-skills task: inspect retained skills1840/2321/0001 receipts/actions and src/game/catalog.ts initial-skill exception, then tools/demo-continuous-production-qa.mjs skill() lines242-318. Source audit shows existing initialRoster records six competences but offensive selection omits ro_sneak_attack/l_long_thrust; verify precise remaining native-cast gap, then make only a bounded existing-pilot correction if warranted, guardian review of certifying diff before ONE registered native desktop scenario using register-demo/exact state path and independently valid earned input. Never seed failed0001, inject outcome/truth or weaken AP/healing assertions. Preserve current exactly2to0/40percent Salvation scoped observation and deferred keyboard exact continuation; parent skills/Pursuit/later-earned narrative/fullV6/AT/balance/operatorfull-demo remainOPEN. Bois-Clair nightplate remains BLOCKED_ASSET and consumes no repeat run; mobileLAST."
     }
   },
   "runStatistics": {
