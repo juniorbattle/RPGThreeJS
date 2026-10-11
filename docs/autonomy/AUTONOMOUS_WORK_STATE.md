@@ -1,3 +1,31 @@
+## Contextual first-step milestone accepted — 2026-10-11T05:12:56.747Z
+
+CURRENT FACT: ACCEPTED_SCOPED_CONTEXTUAL_STATIC_FIRST_STEP_DESKTOP_INTERMEDIATE_OS_SETTINGS. Nine cases: council, first-refuge exploitation and displaced-family;1366OS,620OS,620normal. Complete first authored step pages, native tracked facts, one STATIC_TABLEAU/1to4actors, text/control bounds, keyboard advancement, nonemptyV6 unchanged observation bytes. Native static player returns unavailable/playedfalse in normal and OS; OStrue/gamefalse is observed, not OS-caused video suppression. Target choices unselected and manually focused in new matrix. Separate normal1366 displaced smoke verifies second-choice acknowledgement and limited resolved reload projection. Worker8492 and port5373 stopped; worker receipt SUCCEEDED remains NOT_ACCEPTED separate from scoped reviewed acceptance.393physical sources/ninebuild retained; no rebuild/runtime/canon/ID/save/media/LOCKED changes.132tests/types/contracts PASS. Parent narrative/skills/demo IN_PROGRESS; mobileLAST.
+
+Gaps: earned transaction/campaign, later branch dialogue, fullV6 reload, automatic focus restoration, dynamic cast exit/breath/entry, broader environment, narrow/mobile and operator full-demo review.
+
+Exact nextAction: Read-only preflight/exclusive lock; inspect narrative-0455 contextual-terminal-audit and compact checks/provenance before reuse. Do not repeat accepted first-step nine-cell matrix, displaced normal/OS samples or unchanged FAILED campaign/native Salvation samples. Continue precise product audit of NarrativeStage/NarrativeSceneSurface cached motion and ownership of dynamic cast/focus; correct only a demonstrated defect with focused regression and one relevant registered production smoke. Original all-six-skills/Pursuit/deferred keyboard exact continuation remains; later narrative branches/earned transaction/fullV6/autofocus/dynamiccast/environment/operatorfinal/full-demo OPEN; mobileLAST.
+
+## Desktop narrative milestone preparation — 2026-10-11T05:05:52.294Z
+
+Normal1366 displaced acknowledgement scoped accepted by root/guardian;132tests/types/contracts PASS. Existing static runner production-context extension justified: Normal1366 council/refuge/displaced observations now accepted scoped; remaining desktop narrative milestone needs contextual OS-only and intermediate first-step pagination/agency. Existing cin6ea4 hardcodes DEV/initialstate/reducedtrue, cin671 is DEV golden opening; extend existing cin6ea4 only with built native owner-selection fixtures and worker receipts. No new QA tool and no exhausted route assertion rewrite.
+
+Scope: Three contexts x1366OS/620OS/620normal; first authored step pages/static player/geometry/keyboard. No earned progression, node completion/reload, autofocus, dynamic cast transitions or mobile acceptance.
+
+Exact nextAction: Inspect registered contextual-static-0455 nine-cell desktop/intermediate production first-step matrix with frozen driver/source/build; reuse normal and displaced OS previous scope. One permitted minimal harness correction only if demonstrated defect; no proof inflation. Preserve original skills/deferred tasks; mobileLAST.
+
+## Displaced-family smoke terminal — 2026-10-11T04:59:39.199Z
+
+ONE registered displaced-ack-normal-0455 SUCCEEDED/NOT_ACCEPTED pending review;1366 OS=false/game=false,2 acknowledgement pages/native event/Enter choice/zero combat-errors. Root inspected4captures;393physicalsources/ninebuild unchanged. Existing reload projection only; manual-focus focusability only; owner terminal receipt timing explicit.
+
+Exact nextAction: Review matching displaced-ack-normal-0455 terminal audit and selected two acknowledgement/choice/Journey captures with reused guardian. Accept only fixture-origin1366 normal scoped observation, preserve normal/wider contextual OS/earned/fullV6 and full-demo gaps; then continue pending narrative desktop milestone without repeating accepted smoke.
+
+## Narrative normal continuation — 2026-10-11T04:57:46.121Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T0455; clean preflight/live dev parity2d4de45; no inherited WIP. Compatible OS1366 displaced acknowledgement reused;393physical sources/ninebuild unchanged. Original skills/deferred exact actions preserved; mobile LAST.
+
+Exact nextAction: Inspect ONE registered displaced-ack-normal-0455 production1366 normal fixture-origin native post-story selection/acknowledgement/Enter and limited reload projection; preserve original skills/deferred tasks. Continue bounded existing static runner extension for contextual OS desktop/intermediate milestone, never rewrite exhausted route motion assertion.
+
 ## Scoped narrative publication checkpoint — 2026-10-11T04:27:25.914Z
 
 OwnedWIP a8a235cad89e2665207a457c362e3e4dc35f2996 on wip/rpgthreejs-auto-dev-90m-20261011T0415 published from5explicit reviewed paths. Source0/tests0/existingQA1/newQA0/proof0/workflow3/canonicaldoc1/inherited0;1browser/1reviewer2passes. Original activeTask/deferred exact continuation,40protected root histories and186oldjobIDs retained;187totaljobs. Parent/demo IN_PROGRESS. Final dev publication/parity/lock release follows guarded checks and is recorded in automationmemory.
@@ -580,6 +608,8 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - council-normal-0055: SUCCEEDED; port 5369; receipt `tmp/cinematics/council-normal-0055/qa-job.json`; NOT_ACCEPTED
 - refugee-ack-0400: SUCCEEDED; port 5370; receipt `tmp/cinematics/refugee-ack-0400/qa-job.json`; NOT_ACCEPTED
 - displaced-ack-os-0415: SUCCEEDED; port 5371; receipt `tmp/cinematics/displaced-ack-os-0415/qa-job.json`; NOT_ACCEPTED
+- displaced-ack-normal-0455: SUCCEEDED; port 5372; receipt `tmp/cinematics/displaced-ack-normal-0455/qa-job.json`; NOT_ACCEPTED
+- contextual-static-0455: SUCCEEDED; port 5373; receipt `tmp/cinematics/contextual-static-0455/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

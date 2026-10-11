@@ -2,6 +2,13 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { chromium } from 'playwright';
 
+// Contextual production acceptance uses the actual GameApp; the historical isolated
+// DEV staging harness below retains its original behaviour and evidence scope.
+if (process.argv.includes('--production-contextual')) {
+  await runContextualProduction();
+  process.exit(process.exitCode ?? 0);
+}
+
 const BASE_URL = process.env.CIN6EA4_BASE_URL ?? 'http://127.0.0.1:5173';
 const OUTPUT_DIR = resolve(process.env.CIN6EA4_OUTPUT_DIR ?? 'tmp/cinematics/cin6ea4/browser-qa');
 const VIEWPORTS = [{ width: 1920, height: 1080 }, { width: 1366, height: 768 }];
@@ -462,3 +469,182 @@ try {
 await writeFile(resolve(OUTPUT_DIR, 'results.json'), `${JSON.stringify({ baseline: visualAudit.baseline, doctrine: 'STATIC_TABLEAU_FIRST', representativeScenarioCount: REPRESENTATIVE_SCENARIOS.length, finaleScenarioCount: FINALE_SCENARIOS.length, targetedScenarioCount: TARGETED_SCENARIOS.length, results }, null, 2)}\n`);
 console.log(JSON.stringify(results.map((result) => ({ viewport: result.viewport, pass: result.pass, liveLionOpen: result.liveLionOpeningProbe?.stepId ?? null, representativeScenarios: result.representativeScenarios?.length ?? 0, finaleScenarios: result.finaleScenarios?.length ?? 0, targetedScenarios: result.targetedScenarios?.length ?? 0, transitions: result.transitionProbe ? 4 : 0, error: result.error })), null, 2));
 if (failed) process.exitCode = 1;
+
+async function runContextualProduction() {
+  const { createServer, preview } = await import('vite');
+  const { beginJob } = await import('../qa/qa-job.mjs');
+  const assert = (await import('node:assert/strict')).default;
+  const output = process.env.CIN6EA4_OUTPUT_DIR;
+  assert.ok(output?.startsWith('tmp/'), 'Contextual production requires a unique ignored output');
+  const port = Number(process.env.CIN6EA4_PORT ?? 5373);
+  const parameters = {
+    mode: 'contextual-static-production',
+    cells: ['1366x768-os', '620x780-os', '620x780-normal'],
+    contexts: ['protected-witness-council', 'first-refuge-exploitation', 'displaced-family'],
+    gameReducedMotion: false,
+    method: 'fixture-origin native owner selection; first authored step pages only; keyboard advancement; static player observations',
+  };
+  const requiredAssertions = [
+    'All first-step pages concatenate to the authored factual acknowledgement in each context and cell',
+    'Native live facts match protected witnesses or refugee exploitation; no event or outcome injection',
+    'One STATIC_TABLEAU with one to four actors; settled text and enabled controls fit; no moving media',
+    'OS-only cells keep game setting false and native static player results played=false with OS reduction true',
+    'Each static observation preserves complete stored save bytes; Enter advances existing dialogue controls; clean diagnostics and zero combat',
+  ];
+  const job = beginJob({ output, driver: 'tools/cinematics/run_cin6ea4_dialogue_qa.mjs', port, parameters, requiredAssertions });
+  const report = { schemaVersion: 1, parameters, results: [], errors: [], pass: false,
+    scope: 'Fixture-origin first-step contextual static presentation; no earned campaign, node completion, reload, autofocus or dynamic cast-transition acceptance' };
+  let models, server, browser;
+  try {
+    models = await createServer({ server: { middlewareMode: true, hmr: false, watch: null }, appType: 'custom' });
+    const { createInitialState } = await models.ssrLoadModule('/src/game/store.ts');
+    const { createRunState, enterRunNode } = await models.ssrLoadModule('/src/game/runSystem.ts');
+    server = await preview({ preview: { host: '127.0.0.1', port, strictPort: true } });
+    browser = await chromium.launch({ headless: true });
+    const cases = [
+      { id: 'protected-witness-council', nodeId: 'lion-witnesses', sequence: 'ate_lion_council_doubt', seed: 6101, flags: { missionSuccess: true },
+        expected: 'Les survivants de Bois-Clair ont choisi de parler librement. Leur témoignage compte, mais il ne suffit pas à leur remettre le Sceau.' },
+      { id: 'first-refuge-exploitation', nodeId: 'lion-first-refuge', sequence: 'ate_first_refuge_watch', seed: 6101,
+        flags: { lionMissionAccepted: true, lionMandateAdvance: true, exploitedRefugees: true },
+        expected: 'Les feux sont bas. Une famille arrivée après nous raconte que notre compagnie lui a vendu le chemin du refuge contre ses quarante dernières pièces. Le refuge écoute cette version avec une attention que notre bannière ne peut pas commander.' },
+      { id: 'displaced-family', nodeId: 'lion-final-refuge', sequence: 'rep_event_displaced_family_demand', seed: 26,
+        flags: { lionMissionAccepted: true, lionMandateAdvance: true, exploitedRefugees: true, missionSuccess: true },
+        expected: 'Vous avez vendu l’itinéraire contre les quarante dernières pièces de familles qui n’avaient déjà presque rien. Je ne demande pas que vous réécriviez la route. Je demande ce que vous faites maintenant pour leur prochain convoi.' },
+    ];
+    for (const cell of parameters.cells) for (const scenario of cases) {
+      const [width, height] = cell.split('-')[0].split('x').map(Number), os = cell.endsWith('-os');
+      const context = await browser.newContext({ viewport: { width, height }, reducedMotion: os ? 'reduce' : 'no-preference' });
+      const page = await context.newPage(), errors = [], segments = [];
+      let choiceControls = null;
+      page.on('pageerror', error => errors.push(error.message));
+      page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
+      page.on('requestfailed', request => { if (!/\.mp4$/.test(new URL(request.url()).pathname) || request.failure()?.errorText !== 'net::ERR_ABORTED') errors.push(`${request.url()} ${request.failure()?.errorText}`); });
+      try {
+        await page.route('**/assets/game-*.js', async route => {
+          const response = await route.fetch(), source = await response.text();
+          const pattern = /const ([A-Za-z_$][\w$]*)=new [A-Za-z_$][\w$]*\([^;]+?\);window\.addEventListener\("pagehide",\(\)=>\1\.dispose/;
+          assert.ok(pattern.test(source), 'Built bootstrap hook missing');
+          await route.fulfill({ response, body: source.replace(pattern, (match, name) => match.replace(';window.addEventListener', `;window.__contextualApp=${name};window.addEventListener`)) });
+        });
+        const state = createInitialState(); state.run = createRunState(scenario.seed);
+        state.currentNodeId = state.run.currentNodeId; state.visitedNodeIds = [...state.run.visitedNodeIds];
+        state.flags.prologueSeen = true; state.settings.reducedGraphics = false;
+        Object.assign(state.flags, scenario.flags); state.reputation = 60;
+        const nodes = new Map(state.run.graph.nodes.map(node => [node.id, node]));
+        const previous = new Map([[state.currentNodeId, null]]), queue = [state.currentNodeId];
+        // Build the declared origin fixture using the authored graph, never a failed save.
+        while (queue.length && !previous.has(scenario.nodeId)) {
+          const current = queue.shift();
+          for (const next of nodes.get(current)?.links ?? []) if (!previous.has(next)) { previous.set(next, current); queue.push(next); }
+        }
+        assert.ok(previous.has(scenario.nodeId), 'No authored path to fixture origin');
+        const path = []; for (let id = scenario.nodeId; id; id = previous.get(id)) path.unshift(id);
+        for (const id of path.slice(1)) {
+          state.resolvedNodeIds.push(state.currentNodeId); assert.ok(enterRunNode(state.run, id));
+          state.currentNodeId = id; state.visitedNodeIds = [...state.run.visitedNodeIds]; state.stepCounter++;
+        }
+        await page.goto(`http://127.0.0.1:${port}/?presentation=narrative&media=video`, { waitUntil: 'domcontentloaded' });
+        await page.evaluate(fixture => localStorage.setItem('rpg-threejs:autosave:v6', JSON.stringify(fixture)), state);
+        await page.reload({ waitUntil: 'domcontentloaded' });
+        await page.waitForFunction(() => window.__contextualApp);
+        await page.evaluate(() => {
+          window.__contextualMotion = [];
+          const player = window.__contextualApp.cinematicPlayer;
+          for (const method of ['play', 'playHeld']) {
+            const original = player[method].bind(player);
+            player[method] = async (id, options = {}) => {
+              const outcome = await original(id, options), result = outcome.result ?? outcome;
+              window.__contextualMotion.push({ id, played: result.played, reason: result.reason,
+                osReduced: matchMedia('(prefers-reduced-motion: reduce)').matches, gameReduced: window.__contextualApp.state.settings.reducedGraphics });
+              return outcome;
+            };
+          }
+        });
+        await page.getByRole('button', { name: 'Continuer', exact: true }).click();
+        const deadline = Date.now() + 180000;
+        while (Date.now() < deadline) {
+          assert.equal(await page.locator('iframe').count(), 0, 'Unexpected combat in static context');
+          const dialogue = page.locator('.dialogue:visible').first();
+          if (await dialogue.count()) {
+            const sequence = await dialogue.getAttribute('data-dialogue-sequence'), step = await dialogue.getAttribute('data-dialogue-step');
+            if (segments.length && (sequence !== scenario.sequence || step !== '1')) break;
+            const visibleChoices = dialogue.locator('.dialogue-choice:visible:not([disabled])');
+            if (segments.length && sequence === scenario.sequence && await visibleChoices.count()) {
+              choiceControls = await visibleChoices.evaluateAll(buttons => buttons.map(button => {
+                const r = button.getBoundingClientRect();
+                return { text: button.textContent, withinViewport: r.left >= -1 && r.top >= -1 && r.right <= innerWidth + 1 && r.bottom <= innerHeight + 1,
+                  width: r.width, height: r.height };
+              }));
+              assert.ok(choiceControls.every(control => control.withinViewport && control.width >= 24 && control.height >= 24));
+              const choice = scenario.id === 'displaced-family' ? visibleChoices.nth(1) : visibleChoices.first();
+              await choice.focus(); assert.ok(await choice.evaluate(button => document.activeElement === button));
+              await page.screenshot({ path: resolve(output, `${cell}-${scenario.id}-choices.png`) });
+              break;
+            }
+            await page.waitForFunction(() => {
+              const dialogue = document.querySelector('.dialogue'), text = dialogue?.querySelector('.dialogue__text');
+              return dialogue && !dialogue.classList.contains('dialogue--preparing-step') && getComputedStyle(dialogue).opacity === '1'
+                && text?.dataset.finalText && text.querySelector('.dialogue__text-reveal')?.textContent === text.dataset.finalText;
+            }, null, { timeout: 15000 });
+            if (sequence === scenario.sequence && step === '1') {
+              const before = await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6'));
+              assert.ok(typeof before === 'string' && before.length > 0, 'Stored save missing at observation');
+              assert.equal(JSON.parse(before).version, 6, 'Observation requires an existing V6 save');
+              const observation = await dialogue.evaluate(element => {
+                const stage = element.closest('.narrative-stage'), text = element.querySelector('.dialogue__text'), box = element.querySelector('.dialogue__box');
+                const fits = node => { const r = node.getBoundingClientRect(); return r.width > 0 && r.height > 0 && r.left >= -1 && r.top >= -1 && r.right <= innerWidth + 1 && r.bottom <= innerHeight + 1; };
+                const t = text.getBoundingClientRect(), b = box.getBoundingClientRect();
+                return { segment: element.dataset.dialogueSegment, text: text.dataset.finalText,
+                  mode: stage.dataset.presentationMode, surfaces: stage.querySelectorAll(':scope [data-narrative-layer="media"] > .narrative-media-surface, :scope [data-narrative-layer="media"] > .cinematic-overlay').length,
+                  mediaSurface: stage.dataset.narrativeMediaSurface, castOwnership: stage.dataset.narrativeCastOwnership, primaryInvariant: stage.dataset.primarySurfaceInvariant,
+                  actors: stage.querySelectorAll('.narrative-cast__actor').length, textFits: fits(text) && t.top >= b.top - 1 && t.bottom <= b.bottom + 1 && t.left >= b.left - 1 && t.right <= b.right + 1,
+                  boxFits: fits(box), boxEnabled: !box.disabled, activeVideos: stage.querySelectorAll('video').length,
+                  osReduced: matchMedia('(prefers-reduced-motion: reduce)').matches, gameReduced: window.__contextualApp.state.settings.reducedGraphics,
+                  facts: { protectedWitnesses: window.__contextualApp.state.flags.protectedWitnesses, silencedWitnesses: window.__contextualApp.state.flags.silencedWitnesses, exploitedRefugees: window.__contextualApp.state.flags.exploitedRefugees } };
+              });
+              assert.equal(observation.mode, 'STATIC_TABLEAU'); assert.equal(observation.surfaces, 1);
+              assert.equal(observation.mediaSurface, 'STATIC_TABLEAU'); assert.equal(observation.castOwnership, 'STAGE_OWNS_CAST'); assert.notEqual(observation.primaryInvariant, 'FAIL');
+              assert.ok(observation.actors >= 1 && observation.actors <= 4); assert.ok(observation.textFits && observation.boxFits && observation.boxEnabled);
+              assert.equal(observation.activeVideos, 0); assert.equal(observation.osReduced, os); assert.equal(observation.gameReduced, false);
+              if (scenario.id === 'protected-witness-council') { assert.equal(observation.facts.protectedWitnesses, true); assert.notEqual(observation.facts.silencedWitnesses, true); }
+              else assert.equal(observation.facts.exploitedRefugees, true);
+              const capture = `${cell}-${scenario.id}-${observation.segment.replace('/', '-')}.png`;
+              await page.screenshot({ path: resolve(output, capture) });
+              assert.equal(await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6')), before, 'Observation changed stored save');
+              assert.ok(!segments.some(entry => entry.segment === observation.segment), 'Keyboard did not advance the observed page');
+              segments.push({ ...observation, savedBytesUnchanged: true, capture });
+            }
+            const choices = dialogue.locator('.dialogue-choice:visible:not([disabled])');
+            const control = await choices.count() ? choices.first() : dialogue.locator('.dialogue__box');
+            await control.focus(); await page.keyboard.press('Enter');
+          } else {
+            const leave = page.locator('.exploration-stop[data-refuge-node="lion-first-refuge"] [data-action="continue"]:visible');
+            if (await leave.count()) { await leave.focus(); await page.keyboard.press('Enter'); }
+            else await page.waitForTimeout(50);
+          }
+          await page.waitForTimeout(60);
+        }
+        const normalize = text => text.replace(/\s+/g, ' ').trim();
+        assert.equal(normalize(segments.map(entry => entry.text).join(' ')), normalize(scenario.expected), 'Incomplete or inconsistent contextual text');
+        const motion = await page.evaluate(() => window.__contextualMotion);
+        if (os) assert.ok(motion.length && motion.every(entry => /^(dialogue-tableau:|narrative-static:)/.test(entry.id) && entry.played === false && entry.osReduced && entry.gameReduced === false), 'Missing native OS-only static observations');
+        assert.equal(errors.length, 0, JSON.stringify(errors));
+        report.results.push({ cell, context: scenario.id, origin: scenario.nodeId, seed: scenario.seed, segments, choiceControls, motion, keyboardAdvancement: true, pass: true });
+      } catch (error) {
+        report.results.push({ cell, context: scenario.id, segments, pass: false, error: error.stack ?? String(error) });
+        report.errors.push(`${cell}/${scenario.id}: ${error.message}`);
+        await page.screenshot({ path: resolve(output, `${cell}-${scenario.id}-failure.png`) }).catch(() => {});
+      } finally { await context.close(); }
+    }
+    report.pass = report.errors.length === 0 && report.results.length === parameters.cells.length * parameters.contexts.length;
+  } catch (error) { report.errors.push(error.stack ?? String(error)); }
+  finally {
+    if (browser) await browser.close();
+    if (server) await new Promise((resolveClose, reject) => server.httpServer.close(error => error ? reject(error) : resolveClose()));
+    if (models) await models.close();
+  }
+  await writeFile(resolve(output, 'results.json'), JSON.stringify(report, null, 2) + '\n');
+  job.finish(report);
+  console.log(JSON.stringify({ pass: report.pass, cases: report.results.length, errors: report.errors }));
+  if (!report.pass) process.exitCode = 1;
+}
