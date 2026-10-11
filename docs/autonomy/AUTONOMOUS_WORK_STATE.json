@@ -1,39 +1,38 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-10T19:22:22.5423147-04:00",
-  "runEndedAt": "2026-10-10T23:59:51.6498157+00:00",
+  "runStartedAt": "2026-10-11T00:02:23.4964361+00:00",
+  "runEndedAt": "2026-10-11T00:46:40.894Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "DESKTOP_NATIVE_EXACT2AP_SCOPED_VERIFICATION",
-  "activeSubtask": "Corrected native1AP setup published; new T0 Pursuit timeout leaves exactly2AP/firstrefuge proof OPEN",
+  "activeSubtask": "Native Salvation2to0/40percent sample verified; coupled campaign target failed; local publication blocked",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "90e675895265782beb28b37c8b516f742c7070fd",
-  "lastPushedCommit": "90e675895265782beb28b37c8b516f742c7070fd",
+  "lastKnownGoodCommit": "6bb1c3c0454ed7864f302e7b150bec3c482b231e",
+  "lastPushedCommit": "6bb1c3c0454ed7864f302e7b150bec3c482b231e",
   "completedThisRun": [
-    "Recovered interrupted1840 lock under cumulative stale conditions; reviewed/published three-path recovery snapshot",
-    "Synced1840 FAILED timeout and audited sixnative candidates/seven40percent native healing casts; noexact2 acceptance",
-    "Made ONE guardian-reviewed minimal healthy-ally1AP pilot setup correction; coherentcheckpoint e5f2c67 published",
-    "ONE registered fresh1366normal scenario FAILED at25min ordinaryT0 Pursuit deadline; audited terminal provenance and inspected captures; zero exactly2AP acceptance"
+    "Read-only preflight clean dev6bb1c3c/live parity/lock absent; owned lock acquired",
+    "1840/2321 FAILED receipts preserved; exact firstrefuge1214 earned lineage verified",
+    "Current driver/helper/source/build equals2321; physical inventory unchanged; existing production build reused",
+    "ONE earnedfirstrefuge1214 second-refuge1366normal35min smoke FAILED/NOT_ACCEPTED; lion-valmir-road/marsh_crossing/56actions/passtrue; lion-second-trial-event/forest_patrol/12actions/passfalse; 5 native40percent casts, 1 exact2start markers; errors0; physical393/driver/helper/9build/inputs/digest stable.",
+    "Two normal ownedWIP publications rejected/unexecuted; local reviewed snapshots preserved; no more export attempts",
+    "41protected top-level histories and183old QA IDs retained; exact deferred/narrative continuations preserved"
   ],
   "filesChanged": [
-    "tools/demo-continuous-production-qa.mjs",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-10T2321Z-codex-native-skills.md"
+    "docs/autonomy/handoffs/2026-10-11T0001Z-codex-native-skills.md"
   ],
   "testsRun": [
-    "60focused: management57/legacyCombatSkillSpec3 PASS",
-    "TypeScript --noEmit PASS",
-    "8contracts8slots validator PASS",
-    "Immutable baseline/status gates EMPTY; diff--check and driver syntax PASS",
-    "Exact393physicalsource and9build/input/helper hashes verified; prior production build reused",
-    "salvation-exact2-2321 FAILED/NOT_ACCEPTED: opening victory3rounds17actions; T0 Pursuit22actions deadline; native40percent casts5to3/3to1, noexact2 marker/setup"
+    "48current focused tests:42runtime hotfix/3Salvation adapter/3combatProgress PASS;48historical tmp copies excluded",
+    "TypeScript PASS",
+    "Validator8contracts8slots/driver syntax/immutable gates/whitespace PASS",
+    "Exact production build reused; no rebuild claim",
+    "ONE earnedfirstrefuge1214 second-refuge1366normal35min smoke FAILED/NOT_ACCEPTED; lion-valmir-road/marsh_crossing/56actions/passtrue; lion-second-trial-event/forest_patrol/12actions/passfalse; 5 native40percent casts, 1 exact2start markers; errors0; physical393/driver/helper/9build/inputs/digest stable."
   ],
   "testsPassed": [
-    "60focused: management57/legacyCombatSkillSpec3 PASS",
-    "TypeScript --noEmit PASS",
-    "8contracts8slots validator PASS",
-    "Immutable baseline/status gates EMPTY; diff--check and driver syntax PASS",
-    "Exact393physicalsource and9build/input/helper hashes verified; prior production build reused"
+    "48current focused tests:42runtime hotfix/3Salvation adapter/3combatProgress PASS;48historical tmp copies excluded",
+    "TypeScript PASS",
+    "Validator8contracts8slots/driver syntax/immutable gates/whitespace PASS",
+    "Exact production build reused; no rebuild claim"
   ],
   "testsRemaining": [
     "Delayed focus readiness and long-frame behavior source-reviewed, not separately tested",
@@ -51,11 +50,12 @@
     "Ending2311 FAILED_NOT_ACCEPTED: bounded131actions, three damage alliesKO, Marian alone; support-only crosier pilot excludes native foe actions. Review pilot fallback before new QA; no balance or terminalV6 conclusion. Prior2104 interrupted output remains historical NOT_ACCEPTED.",
     "Ending2311 FAILED_NOT_ACCEPTED: bounded131actions, three damage alliesKO, Marian alone; support-only crosier pilot excludes native foe actions. Six-line lone-survivor native fallback is source-reviewed checkpoint only, verify in new registered QA; no balance or terminalV6 conclusion. Prior2104 interrupted output remains historical NOT_ACCEPTED.",
     "campaign-keyboard-1655: native opening defeat blocks intended parent-return/first-refuge proof; pilot strategy versus gameplay reliability unresolved, not established product regression",
-    "1748/1856: checkpoint perception and parent settled-focus visuals OPEN; Pursuit mappings implemented/scoped T0 fixture verified, articulated gait and broader browser acceptance OPEN; mobile final"
+    "1748/1856: checkpoint perception and parent settled-focus visuals OPEN; Pursuit mappings implemented/scoped T0 fixture verified, articulated gait and broader browser acceptance OPEN; mobile final",
+    "Publication0001 BLOCKED_BY_ACTUAL_AUTOMATIC_APPROVAL_REVIEW: two normal ownedWIP pushes rejected/unexecuted for unverified trusted destination/internal state export; no further export without explicit human approval. Complete local checkpoint and preserve owned lock/WIP."
   ],
   "remainingWork": [
     "Native forest_ambush variant and overall beginner balance; KestrelKO in tested wolf_pack",
-    "Salvation from exactly2AP and40%HP verification; current casts3to1AP/salvationVerifiedfalse",
+    "Native exactly2to0 Salvation and uncapped40percent current sample verified0001; coupled second-refuge continuation/Pursuitreturn/V6 target FAILED/NOT_ACCEPTED; broader skills still OPEN",
     "Parent focus settled visible proof: immediate capture during fade, numeric focus/owner/autosave only",
     "Shared positive checkpoint braking desktop normal/OS alternatives accepted scoped1806; full phase/readiness/game-only/camera comfort/manual broader scenery OPEN",
     "Shadow gait/reduced-miss proofs remain scoped; native T1 forest_patrol victory/return/tempLoot/focus/precombatV6 now accepted1366normal; full-tail/ground, other contexts, defeat/cancel/reentry/reduced/AT still open",
@@ -63,7 +63,7 @@
     "Council/refugees/static-only OS narrative acceptance and approved Bois-Clair night plate",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Read-only preflight/owned lock; inspect skills-native-1840 and salvation-exact2-2321 FAILED receipts plus tmp/autonomy/skills-2321/terminal-audit.json. New2321 driver9b5a33ca/393physicalsource/9build stable, resultb45aab0b; no exactly2AP marker/setup or firstrefuge/V6/T0Pursuit return acceptance. Opening won3rounds17actions; ordinaryT0 t0:r6:pursuit-1 forest_ambush timedout22actions, two native40percent casts5to3/3to1 observed; no product defect demonstrated. Do not rerun unchanged freshopening or acceptedTraversal/nativeT1 matrices. Retain ONE reviewed existingpilot correction unchanged; verify earned firstrefuge1214 save/proof lineage from tmp/autonomy/skills-2321/future-earned-input-audit.json, then ONE registered1366normal existing demo-continuous-production-qa targetsecond-refuge continuation through T1 for missing native exactly2AP-start context. No further instrumentation edit; do not seed from failed2321. Preserve pendingNarrativeTask.nextAction, sixnative candidates observed1840 (not joininginstant/sixcasts acceptance), all original/deferred histories and mobileLAST. Eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected; broaderPursuit/skills/campaign/narrative/StageVFX/AT/balance/operator final/full-demo remainOPEN.",
+  "nextAction": "Read-only preflight: retained owned0001 lock is BLOCKED_BY_PUBLICATION_APPROVAL/writerStopped after terminal worker/port clearance. Obtain explicit human approval to export the concrete selected three-file local checkpoint to https://github.com/juniorbattle/RPGThreeJS.git origin/dev before any further push; two automatic-review rejections unexecuted, no workaround. Verify local checkpoint/outgoing paths, remote dev6bb1c3c/main00b96f1, source/driver/build/input lineage and stopped jobs, then normal authorized publication and owned-lock release. Inspect salvation-t1-0001 FAILED terminal audit/captures: native Salvation sample exactly2to0 plus independent uncapped40percent observed/verified on current execution; coupled second-refuge/Pursuitreturn/V6 target NOT_ACCEPTED. Do not repeat this unchanged proven sample or unchanged1840/2321/0001 failed scenarios; no further instrumentation edit without a newly demonstrated defect, and never seed from failed0001. Preserve original active skills task and exact deferred keyboard; proceed independent pendingNarrativeTask.nextAction under fresh exclusivity after publication recovery (existing witnesses-protected normal production opening; refugee acknowledgements/static-only OS acceptance remain separate). All-six joining/casts, broaderPursuit/skills/campaign/StageVFX/AT/balance/operatorfinal/full-demo OPEN; mobileLAST.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -79,8 +79,8 @@
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
   "creditStatus": "AVAILABLE_THIS_RUN",
-  "contractComplianceStatus": "PASS_STATIC_NATIVE_AUTHORITY_SET1.1.0_AND_GOVERNANCE; QA_EVIDENCE_BLOCKED_TIMEOUT_EXACT2AP_UNPROVEN",
-  "commitReferenceScope": "Reviewed pilot checkpoint e5f2c67d2e73cf2a04fe171e919f2ff009a2b53e published ondev. Terminal metadata closure SHA and lock disposition recorded externally in automation memory after verified publication; no native exactly2AP/full-demo acceptance.",
+  "contractComplianceStatus": "PASS_STATIC_AUTHORITY_SET1.1.0; VERIFIED_NATIVE_SALVATION_SAMPLE_2_TO_0_PLUS_UNCAPPED_40_PERCENT; QA_EVIDENCE_BLOCKED_COUPLED_TARGET; GOVERNANCE_BLOCKED_ACTUAL_PUBLICATION_REJECTION",
+  "commitReferenceScope": "Current local-only workflow checkpoint SHA recorded in external automation memory after commit. Native exactly2to0 and separate uncapped40percent samples verified observationally; coupled campaign target NOT_ACCEPTED. No publication or full-demo acceptance. Last published dev6bb1c3c unchanged.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -181,24 +181,25 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261010T2321",
+  "runId": "rpgthreejs-auto-dev-90m-20261011T0001",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-10T23:54:42.327Z",
+  "lastHeartbeat": "2026-10-11T00:46:40.894Z",
   "wip": {
-    "sha": "2de663a27d35a29977a39c25de7ff6c13bec571c",
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261010T2321",
-    "status": "GREEN",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0001",
+    "sha": "9badaad62ed04f850e1c701273cc8e32485779b2",
+    "status": "LOCAL_ONLY_PRESERVED_FOR_PUBLICATION_APPROVAL",
     "dirtyFiles": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/handoffs/2026-10-11T0001Z-codex-native-skills.md"
     ],
-    "lastGreenCheck": "2026-10-10T23:39:32.146Z"
+    "lastSnapshotAt": "2026-10-11T00:46:07.5200551+00:00"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261010T2321",
+    "runId": "rpgthreejs-auto-dev-90m-20261011T0001",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-10T23:59:51.6498157+00:00",
-    "status": "CHECKPOINT_PUBLISHED_FAILED_SCOPED_QA",
+    "lastHeartbeat": "2026-10-11T00:46:40.894Z",
+    "status": "BLOCKED_BY_PUBLICATION_APPROVAL",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -826,7 +827,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-02T20:23:26.064Z",
-        "endedAt": "2026-10-02T20:34:46.49Z",
+        "endedAt": "2026-10-02T20:34:46.490Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": false,
@@ -1535,7 +1536,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T21:35:25.15Z",
+        "startedAt": "2026-10-02T21:35:25.150Z",
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
@@ -2034,7 +2035,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T21:57:42.75Z",
+        "startedAt": "2026-10-02T21:57:42.750Z",
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
@@ -3201,7 +3202,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-02T23:01:40.22Z",
+        "startedAt": "2026-10-02T23:01:40.220Z",
         "endedAt": "2026-10-02T23:09:17.242Z",
         "provenanceMatches": true,
         "requestMatches": true,
@@ -3797,7 +3798,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T03:58:19.322Z",
-        "endedAt": "2026-10-03T04:12:44.91Z",
+        "endedAt": "2026-10-03T04:12:44.910Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": false,
@@ -4029,7 +4030,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T08:35:15.236Z",
-        "endedAt": "2026-10-03T08:39:36.25Z",
+        "endedAt": "2026-10-03T08:39:36.250Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/visual-0820-normal/results.json",
         "resultSha256": "8f436d53e689a95ff86b7ba21dc5ff36cdd15f0b2e1aab994d3177aad7c24f6a",
@@ -4767,7 +4768,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T10:17:45.17Z",
+        "startedAt": "2026-10-03T10:17:45.170Z",
         "workerReceiptCommand": [
           "node",
           "tools/traversal-motion-production-qa.mjs"
@@ -5945,7 +5946,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T14:42:25.416Z",
-        "endedAt": "2026-10-03T14:42:27.89Z",
+        "endedAt": "2026-10-03T14:42:27.890Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/pursuit-1430-v2/results.json",
         "resultSha256": "5cea3ff60c2b2e598b79446c03f128bfcdb4be7e15a03c10dc0df692ce7e4e65",
@@ -6257,7 +6258,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T14:47:29.015Z",
-        "endedAt": "2026-10-03T14:49:01.16Z",
+        "endedAt": "2026-10-03T14:49:01.160Z",
         "exitCode": 0,
         "resultPath": "tmp/traversal/pursuit-1430-v5/results.json",
         "resultSha256": "56bfd9fe624ca76365a22fa8e9f68e5babe8099939a76f6b4657f3db27d74a7d",
@@ -7070,8 +7071,8 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T18:46:54.24Z",
-        "endedAt": "2026-10-03T18:48:11.36Z",
+        "startedAt": "2026-10-03T18:46:54.240Z",
+        "endedAt": "2026-10-03T18:48:11.360Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/road-1815-reset-probe-v5/results.json",
         "resultSha256": "57486890ac446d43fc67d17d4b501cc6d7394a0173ba7df0803f43b05cf1cea2",
@@ -7171,7 +7172,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T18:52:11.702Z",
-        "endedAt": "2026-10-03T18:53:28.59Z",
+        "endedAt": "2026-10-03T18:53:28.590Z",
         "exitCode": 0,
         "resultPath": "tmp/traversal/road-1815-early-probe-v6/results.json",
         "resultSha256": "66cba3835856879cd39e06a600a4a36e3c1dab38fb143b461c1e69eead3e69c5",
@@ -8042,7 +8043,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T19:09:25.73Z",
+        "startedAt": "2026-10-03T19:09:25.730Z",
         "endedAt": "2026-10-03T19:20:01.341Z",
         "provenanceMatches": true,
         "requestMatches": true,
@@ -8151,7 +8152,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T19:09:38.74Z",
+        "startedAt": "2026-10-03T19:09:38.740Z",
         "endedAt": "2026-10-03T19:25:44.264Z",
         "provenanceMatches": true,
         "requestMatches": true,
@@ -8370,7 +8371,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-03T19:50:45.79Z",
+        "startedAt": "2026-10-03T19:50:45.790Z",
         "endedAt": "2026-10-03T19:50:45.957Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/road-1945-v4-os/results.json",
@@ -8481,7 +8482,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T19:50:46.117Z",
-        "endedAt": "2026-10-03T19:50:46.29Z",
+        "endedAt": "2026-10-03T19:50:46.290Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/road-1945-v4-game/results.json",
         "resultSha256": "9a1acbf9786a25cf9bbaff2e8af9781650000fae0b3bf724d474b65bc5e88411",
@@ -10774,7 +10775,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-03T20:22:18.271Z",
-        "endedAt": "2026-10-03T20:24:00.32Z",
+        "endedAt": "2026-10-03T20:24:00.320Z",
         "exitCode": 0,
         "resultPath": "tmp/traversal/road-1945-entry-v2-normal/results.json",
         "resultSha256": "9c60543725f9997931e2be79b967fd11c9c8b86303d3861d1f166e595e571159",
@@ -11236,7 +11237,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-04T00:22:43.913Z",
-        "endedAt": "2026-10-04T00:23:04.44Z",
+        "endedAt": "2026-10-04T00:23:04.440Z",
         "exitCode": 1,
         "resultPath": "tmp/traversal/road-0007-late-lab/results.json",
         "resultSha256": "48e8d17207a4f8ad4c5ff6439b33b5a4bf9ada85121f38f4b5bbacd9ffe56ad1",
@@ -12452,7 +12453,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-04T02:00:36.911Z",
-        "endedAt": "2026-10-04T02:17:00.53Z",
+        "endedAt": "2026-10-04T02:17:00.530Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": false,
@@ -12651,7 +12652,7 @@
         "resultSha256": "59cb7bf661134698f1d76fa9d49444113c5805beacb8585562f9a52632b33d53",
         "exitCode": 0,
         "acceptanceScope": "One fixture-origin production smoke: existing final_refuge dialogue resolution, campfire capture inspected, exact resolved-node reload/no replay. Full milestone pending.",
-        "startedAt": "2026-10-04T05:25:15.71Z",
+        "startedAt": "2026-10-04T05:25:15.710Z",
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
@@ -13192,7 +13193,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "exitCode": 1,
-        "endedAt": "2026-10-07T19:53:25.93Z",
+        "endedAt": "2026-10-07T19:53:25.930Z",
         "resultPath": "tmp/cinematics/council-1933-os-fixed/results.json",
         "resultSha256": "72f2306b8d757d94ba67fb3f8bee9ed18f63b89ffec389523261c06a027f9ce0",
         "manualExecutionRecord": true,
@@ -13284,7 +13285,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-07T20:45:48.32586Z",
+        "startedAt": "2026-10-07T20:45:48.3258600Z",
         "sessionId": 97317,
         "endedAt": "2026-10-07T20:47:09.122Z",
         "exitCode": 0,
@@ -14223,7 +14224,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T01:22:55.972Z",
-        "endedAt": "2026-10-08T01:24:08.78Z",
+        "endedAt": "2026-10-08T01:24:08.780Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
         "resultPath": "tmp/cinematics/tableau-0115-v2-1440-os/results.json",
         "resultSha256": "648a0752d4543583d722c09b96f89c3b64cad72df175b9cbcb8ed6e18d567685",
@@ -14315,7 +14316,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-08T01:24:26.18Z",
+        "startedAt": "2026-10-08T01:24:26.180Z",
         "endedAt": "2026-10-08T01:25:47.109Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
         "resultPath": "tmp/cinematics/tableau-0115-v2-620-normal/results.json",
@@ -14408,7 +14409,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-08T01:24:26.2Z",
+        "startedAt": "2026-10-08T01:24:26.200Z",
         "endedAt": "2026-10-08T01:25:31.789Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
         "resultPath": "tmp/cinematics/tableau-0115-v2-620-os/results.json",
@@ -15754,7 +15755,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-08T05:32:45.57Z",
+        "startedAt": "2026-10-08T05:32:45.570Z",
         "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
         "executedCommand": [
           "node",
@@ -16185,7 +16186,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T05:53:42.534Z",
-        "endedAt": "2026-10-08T06:08:50.72Z",
+        "endedAt": "2026-10-08T06:08:50.720Z",
         "requestMatches": true,
         "provenanceMatches": true,
         "matchesCurrentExecution": false,
@@ -16382,7 +16383,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T12:21:11.004Z",
-        "endedAt": "2026-10-08T12:21:47.69Z",
+        "endedAt": "2026-10-08T12:21:47.690Z",
         "exitCode": 0,
         "resultPath": "tmp/demo/compact-1214-os/results.json",
         "resultSha256": "1f75e4eb3bea6326498143ef8f73ec1b2cb549fc4562d8df2a8d296fb68ec535",
@@ -16719,7 +16720,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T19:26:16.222Z",
-        "endedAt": "2026-10-08T19:28:05.23Z",
+        "endedAt": "2026-10-08T19:28:05.230Z",
         "exitCode": 1,
         "resultSha256": "48f53f8327f94f4901de3ff039f757615eeecd2b96778f870bcbdcaba398d94d",
         "failure": "all-samples OS/effective equality assertion; raw probe absent; cause unproven",
@@ -16829,7 +16830,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-08T19:33:44.113Z",
-        "endedAt": "2026-10-08T19:43:05.51Z",
+        "endedAt": "2026-10-08T19:43:05.510Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": false,
@@ -17666,7 +17667,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-09T17:00:57.49Z",
+        "startedAt": "2026-10-09T17:00:57.490Z",
         "endedAt": "2026-10-09T17:05:29.424Z",
         "provenanceMatches": true,
         "requestMatches": true,
@@ -18776,7 +18777,7 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED",
-        "startedAt": "2026-10-09T23:02:51.55Z",
+        "startedAt": "2026-10-09T23:02:51.550Z",
         "physicalFreeze": "tmp/autonomy/physical-freeze-2255-v2-final.json",
         "endedAt": "2026-10-09T23:05:04.087Z",
         "exitCode": 0,
@@ -18988,7 +18989,7 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-10T03:32:17.897Z",
-        "endedAt": "2026-10-10T03:57:38.41Z",
+        "endedAt": "2026-10-10T03:57:38.410Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": false,
@@ -19852,15 +19853,128 @@
         "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "salvation-t1-0001",
+        "runId": "rpgthreejs-auto-dev-90m-20261011T0001",
+        "status": "FAILED",
+        "registeredAt": "2026-10-11T00:04:45.545Z",
+        "pid": 65752,
+        "port": 5368,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "second-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 35,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/campaign-first-refuge-1214/earned-lion-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/campaign-first-refuge-1214/results.json",
+          "verifySalvation": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/salvation-t1-0001",
+        "receiptPath": "tmp/demo/salvation-t1-0001/qa-job.json",
+        "provenance": {
+          "gitHead": "6bb1c3c0454ed7864f302e7b150bec3c482b231e",
+          "sourceTree": "f5d2d917f1bc2bfce472dcab68dd638337069e58",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "9b5a33ca4a3c57a288eed5f6f8a30c29b0894461bea8b0078aa1651158d843eb"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/campaign-first-refuge-1214/earned-lion-first-refuge-v6.json",
+              "sha256": "3f5a7391e4641bad288455df175441e8a8629dc5c4e192f5d2641fb0c737d7db"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/campaign-first-refuge-1214/results.json",
+              "sha256": "c82b21818668943b172dd7409f6febd146eaebbfdb3d62e04da81476e476c2b2"
+            }
+          ],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/game-EarLSl_Z.js",
+              "sha256": "e5b669f0e93f991ece7d2efd533df955f96cb4d46933beb1fe1c530bcab6b0cc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1ee0e1b79e25dfa25d3d716965c86b49b6687499eae7f29efc6ab0eef12a0aaf"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-11T00:04:46.976Z",
+        "endedAt": "2026-10-11T00:40:49.882Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/salvation-t1-0001/results.json",
+        "resultSha256": "eac3e0d664c66cf844515556c143f8e13c162fd644d8fb4ff5f038cff724ee3e",
+        "provenanceStable": true
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261010T2321",
-      "status": "RETIRED_AFTER_VERIFIED_DEV_COVERAGE",
-      "retiredAt": "2026-10-10T23:59:51.6498157+00:00",
-      "sha": "cd90eb3ce6bbf9a26c27c520e445e213dc743a7d"
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0001",
+      "sha": "9badaad62ed04f850e1c701273cc8e32485779b2",
+      "status": "LOCAL_ONLY_PRESERVED_FOR_PUBLICATION_APPROVAL",
+      "dirtyFiles": [
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/handoffs/2026-10-11T0001Z-codex-native-skills.md"
+      ],
+      "lastSnapshotAt": "2026-10-11T00:46:07.5200551+00:00"
     },
-    "nextAction": "Read-only preflight/owned lock; inspect skills-native-1840 and salvation-exact2-2321 FAILED receipts plus tmp/autonomy/skills-2321/terminal-audit.json. New2321 driver9b5a33ca/393physicalsource/9build stable, resultb45aab0b; no exactly2AP marker/setup or firstrefuge/V6/T0Pursuit return acceptance. Opening won3rounds17actions; ordinaryT0 t0:r6:pursuit-1 forest_ambush timedout22actions, two native40percent casts5to3/3to1 observed; no product defect demonstrated. Do not rerun unchanged freshopening or acceptedTraversal/nativeT1 matrices. Retain ONE reviewed existingpilot correction unchanged; verify earned firstrefuge1214 save/proof lineage from tmp/autonomy/skills-2321/future-earned-input-audit.json, then ONE registered1366normal existing demo-continuous-production-qa targetsecond-refuge continuation through T1 for missing native exactly2AP-start context. No further instrumentation edit; do not seed from failed2321. Preserve pendingNarrativeTask.nextAction, sixnative candidates observed1840 (not joininginstant/sixcasts acceptance), all original/deferred histories and mobileLAST. Eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected; broaderPursuit/skills/campaign/narrative/StageVFX/AT/balance/operator final/full-demo remainOPEN.",
+    "nextAction": "Read-only preflight: retained owned0001 lock is BLOCKED_BY_PUBLICATION_APPROVAL/writerStopped after terminal worker/port clearance. Obtain explicit human approval to export the concrete selected three-file local checkpoint to https://github.com/juniorbattle/RPGThreeJS.git origin/dev before any further push; two automatic-review rejections unexecuted, no workaround. Verify local checkpoint/outgoing paths, remote dev6bb1c3c/main00b96f1, source/driver/build/input lineage and stopped jobs, then normal authorized publication and owned-lock release. Inspect salvation-t1-0001 FAILED terminal audit/captures: native Salvation sample exactly2to0 plus independent uncapped40percent observed/verified on current execution; coupled second-refuge/Pursuitreturn/V6 target NOT_ACCEPTED. Do not repeat this unchanged proven sample or unchanged1840/2321/0001 failed scenarios; no further instrumentation edit without a newly demonstrated defect, and never seed from failed0001. Preserve original active skills task and exact deferred keyboard; proceed independent pendingNarrativeTask.nextAction under fresh exclusivity after publication recovery (existing witnesses-protected normal production opening; refugee acknowledgements/static-only OS acceptance remain separate). All-six joining/casts, broaderPursuit/skills/campaign/StageVFX/AT/balance/operatorfinal/full-demo OPEN; mobileLAST.",
     "runMetrics": {
       "existingQaFilesModified": 1,
       "harnessCorrections": 1,
@@ -21168,6 +21282,181 @@
           "ownWipRetired": true
         }
       }
+    },
+    "skills0001": {
+      "startedAt": "2026-10-11T00:04:19.669Z",
+      "previousNextAction": "Read-only preflight/owned lock; inspect skills-native-1840 and salvation-exact2-2321 FAILED receipts plus tmp/autonomy/skills-2321/terminal-audit.json. New2321 driver9b5a33ca/393physicalsource/9build stable, resultb45aab0b; no exactly2AP marker/setup or firstrefuge/V6/T0Pursuit return acceptance. Opening won3rounds17actions; ordinaryT0 t0:r6:pursuit-1 forest_ambush timedout22actions, two native40percent casts5to3/3to1 observed; no product defect demonstrated. Do not rerun unchanged freshopening or acceptedTraversal/nativeT1 matrices. Retain ONE reviewed existingpilot correction unchanged; verify earned firstrefuge1214 save/proof lineage from tmp/autonomy/skills-2321/future-earned-input-audit.json, then ONE registered1366normal existing demo-continuous-production-qa targetsecond-refuge continuation through T1 for missing native exactly2AP-start context. No further instrumentation edit; do not seed from failed2321. Preserve pendingNarrativeTask.nextAction, sixnative candidates observed1840 (not joininginstant/sixcasts acceptance), all original/deferred histories and mobileLAST. Eightvideos/Alaric/tempLoot/V6/audioDEFERRED/LOCKED protected; broaderPursuit/skills/campaign/narrative/StageVFX/AT/balance/operator final/full-demo remainOPEN.",
+      "inputAudit": "tmp/autonomy/skills-0001/input-audit.json",
+      "physicalFreeze": "tmp/autonomy/skills-0001/physical-freeze.json",
+      "productDefect": "NONE_DEMONSTRATED",
+      "driverChange": "NONE; reviewed2321 pilot preserved",
+      "metrics": {
+        "runtimeSourceFilesModified": 0,
+        "existingQaFilesModified": 0,
+        "newQaFilesAdded": 0,
+        "proofFilesAdded": 0,
+        "browserScenarios": 1,
+        "harnessCorrections": 0,
+        "inheritedWipPaths": 0
+      },
+      "publication": {
+        "status": "BLOCKED_BY_ACTUAL_AUTOMATIC_APPROVAL_REVIEW",
+        "unexecutedPushes": 2,
+        "rejectedSnapshot": "58a042e828469f1d1cbb3e3b6454b691e1be3969",
+        "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
+        "audit": "tmp/autonomy/skills-0001/publication-audit.json",
+        "reason": "Remote not considered verified trusted; paired internal state payload export considered insufficiently authorized even after bounded audit and standing decision evidence",
+        "noFurtherRetryOrWorkaround": true,
+        "next": "Complete browser/verification/local concrete checkpoint; obtain explicit human approval for selected payload/destination before any export"
+      },
+      "terminal": {
+        "audit": "tmp/autonomy/skills-0001/terminal-audit.json",
+        "status": "FAILED",
+        "resultSha256": "eac3e0d664c66cf844515556c143f8e13c162fd644d8fb4ff5f038cff724ee3e",
+        "acceptance": "NOT_ACCEPTED",
+        "nativeHeals": [
+          {
+            "skillId": "w_salvation",
+            "targetId": "archer",
+            "sameCaster": true,
+            "apBefore": 3,
+            "apAfter": 1,
+            "hpBefore": 83,
+            "hpAfter": 90,
+            "maxhp": 90,
+            "healPercent": 0.4,
+            "specAp": 2,
+            "verifiedExactly2Ap": false
+          },
+          {
+            "skillId": "w_salvation",
+            "targetId": "archer",
+            "sameCaster": true,
+            "apBefore": 3,
+            "apAfter": 1,
+            "hpBefore": 53,
+            "hpAfter": 89,
+            "maxhp": 90,
+            "healPercent": 0.4,
+            "specAp": 2,
+            "verifiedExactly2Ap": false
+          },
+          {
+            "skillId": "w_salvation",
+            "targetId": "archer",
+            "sameCaster": true,
+            "apBefore": 3,
+            "apAfter": 1,
+            "hpBefore": 61,
+            "hpAfter": 90,
+            "maxhp": 90,
+            "healPercent": 0.4,
+            "specAp": 2,
+            "verifiedExactly2Ap": false
+          },
+          {
+            "skillId": "w_salvation",
+            "targetId": "archer",
+            "sameCaster": true,
+            "apBefore": 3,
+            "apAfter": 1,
+            "hpBefore": 70,
+            "hpAfter": 90,
+            "maxhp": 90,
+            "healPercent": 0.4,
+            "specAp": 2,
+            "verifiedExactly2Ap": false
+          },
+          {
+            "skillId": "w_salvation",
+            "targetId": "archer",
+            "sameCaster": true,
+            "apBefore": 2,
+            "apAfter": 0,
+            "hpBefore": 70,
+            "hpAfter": 90,
+            "maxhp": 90,
+            "healPercent": 0.4,
+            "specAp": 2,
+            "verifiedExactly2Ap": true
+          }
+        ],
+        "workerAbsent": 65752,
+        "portAbsent": 5368,
+        "reviewedCaptures": [
+          "combat-1-deployment.png",
+          "combat-1-actual-impact.png",
+          "combat-1-n_dark_bolt-11.png",
+          "combat-1-w_salvation-16.png",
+          "combat-1-w_salvation-26.png",
+          "combat-1-salvation-exactly2ap-before-52.png",
+          "combat-1-w_salvation-53.png",
+          "combat-1-result.png",
+          "combat-2-deployment.png",
+          "failure-state.png"
+        ]
+      },
+      "guardian": {
+        "passes": 2,
+        "disposition": "VERIFIED_NATIVE_OBSERVATIONAL_SAMPLE_ONLY; static authority PASS; coupled QA_EVIDENCE BLOCKED; publication governance blocked"
+      },
+      "nativeSample": {
+        "disposition": "VERIFIED_NATIVE_SALVATION_SAMPLE_2_TO_0_PLUS_UNCAPPED_40_PERCENT",
+        "scope": "One observed native exactly2to0 cast and separate native uncapped40percent cast; not successful campaign target/full-demo acceptance",
+        "exactCast": [
+          {
+            "skillId": "w_salvation",
+            "targetId": "archer",
+            "sameCaster": true,
+            "apBefore": 2,
+            "apAfter": 0,
+            "hpBefore": 70,
+            "hpAfter": 90,
+            "maxhp": 90,
+            "healPercent": 0.4,
+            "specAp": 2,
+            "verifiedExactly2Ap": true
+          }
+        ],
+        "uncappedCasts": [
+          {
+            "skillId": "w_salvation",
+            "targetId": "archer",
+            "sameCaster": true,
+            "apBefore": 3,
+            "apAfter": 1,
+            "hpBefore": 53,
+            "hpAfter": 89,
+            "maxhp": 90,
+            "healPercent": 0.4,
+            "specAp": 2,
+            "verifiedExactly2Ap": false
+          }
+        ],
+        "receiptAcceptance": "NOT_ACCEPTED",
+        "trackedProofPromoted": false
+      },
+      "closeout": {
+        "at": "2026-10-11T00:46:40.894Z",
+        "summary": "ONE earnedfirstrefuge1214 second-refuge1366normal35min smoke FAILED/NOT_ACCEPTED; lion-valmir-road/marsh_crossing/56actions/passtrue; lion-second-trial-event/forest_patrol/12actions/passfalse; 5 native40percent casts, 1 exact2start markers; errors0; physical393/driver/helper/9build/inputs/digest stable.",
+        "nextAction": "Read-only preflight: retained owned0001 lock is BLOCKED_BY_PUBLICATION_APPROVAL/writerStopped after terminal worker/port clearance. Obtain explicit human approval to export the concrete selected three-file local checkpoint to https://github.com/juniorbattle/RPGThreeJS.git origin/dev before any further push; two automatic-review rejections unexecuted, no workaround. Verify local checkpoint/outgoing paths, remote dev6bb1c3c/main00b96f1, source/driver/build/input lineage and stopped jobs, then normal authorized publication and owned-lock release. Inspect salvation-t1-0001 FAILED terminal audit/captures: native Salvation sample exactly2to0 plus independent uncapped40percent observed/verified on current execution; coupled second-refuge/Pursuitreturn/V6 target NOT_ACCEPTED. Do not repeat this unchanged proven sample or unchanged1840/2321/0001 failed scenarios; no further instrumentation edit without a newly demonstrated defect, and never seed from failed0001. Preserve original active skills task and exact deferred keyboard; proceed independent pendingNarrativeTask.nextAction under fresh exclusivity after publication recovery (existing witnesses-protected normal production opening; refugee acknowledgements/static-only OS acceptance remain separate). All-six joining/casts, broaderPursuit/skills/campaign/StageVFX/AT/balance/operatorfinal/full-demo OPEN; mobileLAST.",
+        "metrics": {
+          "runtimeSourceFilesModified": 0,
+          "existingTestFilesModified": 0,
+          "existingQaFilesModified": 0,
+          "newQaFilesAdded": 0,
+          "proofFilesAdded": 0,
+          "workflowFilesModifiedOrAdded": 3,
+          "inheritedWipPaths": 0,
+          "reviewers": 1,
+          "guardianPasses": 2,
+          "browserScenarios": 1,
+          "harnessCorrections": 0,
+          "quotaSavingsClaim": "NONE"
+        },
+        "publication": "BLOCKED; no export executed",
+        "lock": "RETAINED_BLOCKED_BY_PUBLICATION_APPROVAL_WRITER_STOPPED"
+      }
     }
   },
   "previousInterruptedRun": {
@@ -21215,7 +21504,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-10T2321Z-codex-native-skills.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-11T0001Z-codex-native-skills.md",
   "runMeasurement": {
     "productSource": 0,
     "existingTests": 0,
@@ -21370,7 +21659,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "Only reviewed three-file workflow closure preparing; source/proof already verified ondev",
+  "uncommittedWork": "No inherited working-tree WIP. Selected three-file workflow checkpoint committed locally; final HEAD and clean-tree verification recorded in external automation memory. No export executed.",
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",

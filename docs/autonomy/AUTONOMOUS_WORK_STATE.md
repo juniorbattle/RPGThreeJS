@@ -1,3 +1,59 @@
+## Local native-skills checkpoint — publication blocked
+
+Native Salvation observations verified: exactly 2→0 AP with capped healing, plus a separate uncapped +40% maximum-HP cast. The second-refuge/Pursuit continuation FAILED; its receipt remains NOT_ACCEPTED. Zero browser errors; 48 current tests, TypeScript, contracts and immutable gates passed. Driver, sources and production build remain unchanged.
+
+Two publication requests were refused and never executed. The three workflow files and owned snapshots remain local; the lock is retained with writerStopped pending explicit publication approval. Source/test/QA/proof changes: 0; workflow files: 3. All historical and deferred work is preserved. Current handoff: docs/autonomy/handoffs/2026-10-11T0001Z-codex-native-skills.md.
+
+Exact nextAction: Read-only preflight: retained owned0001 lock is BLOCKED_BY_PUBLICATION_APPROVAL/writerStopped after terminal worker/port clearance. Obtain explicit human approval to export the concrete selected three-file local checkpoint to https://github.com/juniorbattle/RPGThreeJS.git origin/dev before any further push; two automatic-review rejections unexecuted, no workaround. Verify local checkpoint/outgoing paths, remote dev6bb1c3c/main00b96f1, source/driver/build/input lineage and stopped jobs, then normal authorized publication and owned-lock release. Inspect salvation-t1-0001 FAILED terminal audit/captures: native Salvation sample exactly2to0 plus independent uncapped40percent observed/verified on current execution; coupled second-refuge/Pursuitreturn/V6 target NOT_ACCEPTED. Do not repeat this unchanged proven sample or unchanged1840/2321/0001 failed scenarios; no further instrumentation edit without a newly demonstrated defect, and never seed from failed0001. Preserve original active skills task and exact deferred keyboard; proceed independent pendingNarrativeTask.nextAction under fresh exclusivity after publication recovery (existing witnesses-protected normal production opening; refugee acknowledgements/static-only OS acceptance remain separate). All-six joining/casts, broaderPursuit/skills/campaign/StageVFX/AT/balance/operatorfinal/full-demo OPEN; mobileLAST.
+
+## Native exactly2AP continuation heartbeat - 2026-10-11T00:34:21.652Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T0001. Read-only preflight clean dev6bb1c3c/live parity/lock absent; owned lock acquired; 1840/2321 FAILED receipts preserved; exact firstrefuge1214 earned lineage verified; Current driver/helper/source/build equals2321; physical inventory unchanged; existing production build reused. No product defect demonstrated; unchanged reviewed driver. Build/source frozen.
+
+Exact nextAction: Inspect salvation-t1-0001 terminal receipt/results at completion; worker65752/port5368, unchanged reviewed pilot, earnedfirstrefuge1214, second-refuge1366normal35min. Do not restart worker. Verify native exactly2to0/40percent, physical execution/input identity, exactreload and captures; missing assertions remain OPEN.
+
+## Native exactly2AP continuation heartbeat - 2026-10-11T00:33:01.755Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T0001. Read-only preflight clean dev6bb1c3c/live parity/lock absent; owned lock acquired; 1840/2321 FAILED receipts preserved; exact firstrefuge1214 earned lineage verified; Current driver/helper/source/build equals2321; physical inventory unchanged; existing production build reused. No product defect demonstrated; unchanged reviewed driver. Build/source frozen.
+
+Exact nextAction: Inspect salvation-t1-0001 terminal receipt/results at completion; worker65752/port5368, unchanged reviewed pilot, earnedfirstrefuge1214, second-refuge1366normal35min. Do not restart worker. Verify native exactly2to0/40percent, physical execution/input identity, exactreload and captures; missing assertions remain OPEN.
+
+## Native exactly2AP continuation heartbeat - 2026-10-11T00:23:15.713Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T0001. Read-only preflight clean dev6bb1c3c/live parity/lock absent; owned lock acquired; 1840/2321 FAILED receipts preserved; exact firstrefuge1214 earned lineage verified; Current driver/helper/source/build equals2321; physical inventory unchanged; existing production build reused. No product defect demonstrated; unchanged reviewed driver. Build/source frozen.
+
+Exact nextAction: Inspect salvation-t1-0001 terminal receipt/results at completion; worker65752/port5368, unchanged reviewed pilot, earnedfirstrefuge1214, second-refuge1366normal35min. Do not restart worker. Verify native exactly2to0/40percent, physical execution/input identity, exactreload and captures; missing assertions remain OPEN.
+
+## Native exactly2AP continuation heartbeat - 2026-10-11T00:16:15.549Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T0001. Read-only preflight clean dev6bb1c3c/live parity/lock absent; owned lock acquired; 1840/2321 FAILED receipts preserved; exact firstrefuge1214 earned lineage verified; Current driver/helper/source/build equals2321; physical inventory unchanged; existing production build reused. No product defect demonstrated; unchanged reviewed driver. Build/source frozen.
+
+Exact nextAction: Inspect salvation-t1-0001 terminal receipt/results at completion; worker65752/port5368, unchanged reviewed pilot, earnedfirstrefuge1214, second-refuge1366normal35min. Do not restart worker. Verify native exactly2to0/40percent, physical execution/input identity, exactreload and captures; missing assertions remain OPEN.
+
+## Native exactly2AP continuation publication-blocked - 2026-10-11T00:09:47.183Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T0001. Read-only preflight clean dev6bb1c3c/live parity/lock absent; owned lock acquired; 1840/2321 FAILED receipts preserved; exact firstrefuge1214 earned lineage verified; Current driver/helper/source/build equals2321; physical inventory unchanged; existing production build reused. No product defect demonstrated; unchanged reviewed driver. Build/source frozen.
+
+Exact nextAction: Inspect salvation-t1-0001 terminal receipt/results at completion; worker65752/port5368, unchanged reviewed pilot, earnedfirstrefuge1214, second-refuge1366normal35min. Do not restart worker. Verify native exactly2to0/40percent, physical execution/input identity, exactreload and captures; missing assertions remain OPEN.
+
+## Native exactly2AP continuation heartbeat - 2026-10-11T00:07:29.553Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T0001. Read-only preflight clean dev6bb1c3c/live parity/lock absent; owned lock acquired; 1840/2321 FAILED receipts preserved; exact firstrefuge1214 earned lineage verified; Current driver/helper/source/build equals2321; physical inventory unchanged; existing production build reused. No product defect demonstrated; unchanged reviewed driver. Build/source frozen.
+
+Exact nextAction: Inspect salvation-t1-0001 terminal receipt/results at completion; worker65752/port5368, unchanged reviewed pilot, earnedfirstrefuge1214, second-refuge1366normal35min. Do not restart worker. Verify native exactly2to0/40percent, physical execution/input identity, exactreload and captures; missing assertions remain OPEN.
+
+## Native exactly2AP continuation heartbeat - 2026-10-11T00:06:12.874Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T0001. Read-only preflight clean dev6bb1c3c/live parity/lock absent; owned lock acquired; 1840/2321 FAILED receipts preserved; exact firstrefuge1214 earned lineage verified; Current driver/helper/source/build equals2321; physical inventory unchanged; existing production build reused. No product defect demonstrated; unchanged reviewed driver. Build/source frozen.
+
+Exact nextAction: Inspect salvation-t1-0001 terminal receipt/results at completion; worker65752/port5368, unchanged reviewed pilot, earnedfirstrefuge1214, second-refuge1366normal35min. Do not restart worker. Verify native exactly2to0/40percent, physical execution/input identity, exactreload and captures; missing assertions remain OPEN.
+
+## Native exactly2AP continuation start - 2026-10-11T00:04:19.669Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T0001. Read-only preflight clean dev6bb1c3c/live parity/lock absent; owned lock acquired; 1840/2321 FAILED receipts preserved; exact firstrefuge1214 earned lineage verified; Current driver/helper/source/build equals2321; physical inventory unchanged; existing production build reused. No product defect demonstrated; unchanged reviewed driver. Build/source frozen.
+
+Exact nextAction: Register and launch ONE second-refuge1366normal35min continuation from verified earnedfirstrefuge1214 with unchanged2321 driver/verifySalvation1. Review new native samecaster2to0/40percent cast, exactV6 reload and terminal provenance. No failed seed, acceptedTraversal rerun or instrumentation edit; preserve sixjoining/sixcasts and full-demo gaps.
+
 ## Verified publication and WIP retirement - 2026-10-10T23:59:51.6498157+00:00
 
 Dev90e675895265782beb28b37c8b516f742c7070fd verified local/live origin; main00b96f1 unchanged. Own2321 WIPcd90eb3 retired local/remote after reviewed coverage: only workflow metadata differed, all pilot/handoff content ondev. Inherited1840/0735/1600 refs retained. Associated QA/Git/sync processes and port5367 absent. Final metadata SHA and owned-lock release recorded in external automation memory. Demo IN_PROGRESS; FAILED/NOT_ACCEPTED and exactnextAction unchanged.
@@ -456,6 +512,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - checkpoint-desktop-1806-os-v2: SUCCEEDED; port 5365; receipt `tmp/traversal/checkpoint-desktop-1806-os-v2/qa-job.json`; NOT_ACCEPTED
 - skills-native-1840: FAILED; port 5366; receipt `tmp/demo/skills-native-1840/qa-job.json`; NOT_ACCEPTED
 - salvation-exact2-2321: FAILED; port 5367; receipt `tmp/demo/salvation-exact2-2321/qa-job.json`; NOT_ACCEPTED
+- salvation-t1-0001: FAILED; port 5368; receipt `tmp/demo/salvation-t1-0001/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
