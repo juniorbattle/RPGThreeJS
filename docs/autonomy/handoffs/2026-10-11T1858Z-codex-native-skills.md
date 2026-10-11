@@ -17,3 +17,7 @@ Receipt driverc6306944b2821eb011f347135c75c4f2e649e6d813191175f69bece3e3e74720; 
 Scoped reviewer: PASS safe observation package, BLOCKED coupled criterion. Six-class summary gates779+ were not reached after774 failed. Healthy setup attempted18times at3AP with wounded players, zero native healthy centers; no2AP setup. Preserve strict assertions and diagnose positioning before any future tiny existing-pilot input correction. No repeated unchanged45min scenario or harness rewrite.
 
 Operational closure: owned worker1172/port5381 absence checked; unrelated development servers retained. Temporary-index reviewed snapshots published normally on ownedWIP; historical refs untouched. Prior1800 nested live summary restored from start snapshot after detecting adaptation field-name collision; exact198 historical QA/deferred/queue comparisons passed. Final parity/lock release recorded in automation memory and ignored final-publication audit.
+
+## Published observation checkpoint - 2026-10-11T19:57:31.547Z
+
+Checkpoint a599557540f8ad7c95c3b2f5a636fb8823d8ffd0 normally published/live origin dev verified; main unchanged. Strict2AP scenario remains FAILED/NOT_ACCEPTED; six novice casts and exact earned terminal equality are reviewed observations only. Mechanical checks PASS; no source/QA edit or second smoke. Metadata closure and owned-WIP/lock cleanup follow final parity. Exact nextAction remains above.

@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-11T18:58:13Z",
-  "runEndedAt": "2026-10-11T19:53:20.867Z",
+  "runEndedAt": "2026-10-11T19:57:31.547Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "NATIVE_SKILL_COVERAGE_ACCEPTANCE",
   "activeSubtask": "Six novice casts and exact Serpent terminal reload observed; strict2AP Salvation setup coverage OPEN",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "ab513766b3c60ce71f2fb2a0d049e85640adec9c",
-  "lastPushedCommit": "ab513766b3c60ce71f2fb2a0d049e85640adec9c",
+  "lastKnownGoodCommit": "a599557540f8ad7c95c3b2f5a636fb8823d8ffd0",
+  "lastPushedCommit": "a599557540f8ad7c95c3b2f5a636fb8823d8ffd0",
   "completedThisRun": [
     "Verified owned clean dev preflight and preserved198 QA histories/deferred work",
     "Executed ONE registered current-pilot native scenario; two fresh battles won and earned terminal V6 reloaded exactly",
@@ -190,7 +190,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261011T1858",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-11T19:55:21.4320337+00:00",
+  "lastHeartbeat": "2026-10-11T19:57:31.547Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1858",
     "sha": "b2da7eb93c834e71740c6c1e437ff47fe3e8fc24",
@@ -215,8 +215,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261011T1858",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-11T19:55:21.4320337+00:00",
-    "status": "CHECKPOINT_PENDING_PUBLICATION",
+    "lastHeartbeat": "2026-10-11T19:57:31.547Z",
+    "status": "CHECKPOINT_PUBLISHED",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -21526,20 +21526,12 @@
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1858",
       "sha": "b2da7eb93c834e71740c6c1e437ff47fe3e8fc24",
-      "status": "GREEN_MECHANICAL_OBSERVATION_CHECKPOINT_STRICT_2AP_OPEN",
+      "status": "RECOVERABLE_PUBLISHED_ON_DEV_METADATA_CLOSURE",
       "dirtyFiles": [
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
         "docs/autonomy/handoffs/2026-10-11T1858Z-codex-native-skills.md",
-        "docs/reports/native-six-skills-observations-20261011-1858/checks.json",
-        "docs/reports/native-six-skills-observations-20261011-1858/combat-3-ro_sneak_attack-9.png",
-        "docs/reports/native-six-skills-observations-20261011-1858/combat-3-l_long_thrust-13.png",
-        "docs/reports/native-six-skills-observations-20261011-1858/combat-3-w_break_guard-17.png",
-        "docs/reports/native-six-skills-observations-20261011-1858/combat-4-a_precise_shot-8.png",
-        "docs/reports/native-six-skills-observations-20261011-1858/combat-4-n_dark_bolt-19.png",
-        "docs/reports/native-six-skills-observations-20261011-1858/combat-4-w_salvation-44.png",
-        "docs/reports/native-six-skills-observations-20261011-1858/ending-lion-seal-serpent-truth.png",
-        "docs/reports/native-six-skills-observations-20261011-1858/ending-lion-seal-serpent-truth-resumed.png"
+        "docs/reports/native-six-skills-observations-20261011-1858/checks.json"
       ],
       "lastGreenCheck": "60 unique tests/types/contracts8slots/syntax/immutable/physical393source9build/earnedseed PASS",
       "at": "2026-10-11T19:55:21.4320337+00:00"
@@ -24487,8 +24479,14 @@
         }
       },
       "ownedWorkerAndPortAbsent": true,
-      "publication": "NORMAL_DEV_PENDING",
-      "guardianPublication": "READY_REVIEWED_OBSERVATIONS_ONLY_STRICT2_OPEN"
+      "publication": "NORMAL_DEV_VERIFIED_OBSERVATIONS_ONLY",
+      "guardianPublication": "READY_REVIEWED_OBSERVATIONS_ONLY_STRICT2_OPEN",
+      "publishedCheckpoint": "a599557540f8ad7c95c3b2f5a636fb8823d8ffd0",
+      "publicationVerifiedAt": "2026-10-11T19:57:31.547Z",
+      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "ownedWipCleanup": "VERIFY_AFTER_METADATA_PARITY",
+      "mechanicalCloseout": "PASS_60TESTS_TYPES_8CONTRACTS_8SLOTS_SYNTAX_WHITESPACE_IMMUTABLE",
+      "operationalNote": "Final gate invocation with misspelled baseline stopped with bad revision; exact d7ca28aed5c377ffedb03202f6364b7a947d1096 gate rerun PASS before staging. No contract mutation or review rejection."
     }
   },
   "previousInterruptedRun": {

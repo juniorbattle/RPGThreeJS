@@ -4,9 +4,9 @@
   "DOMAIN": "Native tactical skill observations and earned terminal boundary",
   "BASELINE": "b7dd0b64c60d53c854025e4953b7329b5373cec5",
   "BRANCH": "dev",
-  "HEAD": "b7dd0b64c60d53c854025e4953b7329b5373cec5",
+  "HEAD": "a599557540f8ad7c95c3b2f5a636fb8823d8ffd0",
   "STATUS": "REVIEWED_OBSERVATIONS_ONLY_FAILED_MACHINE_SCENARIO_EXACTLY2_OPEN",
-  "MERGED_IN": "NONE_AT_CREATION",
+  "MERGED_IN": "a599557540f8ad7c95c3b2f5a636fb8823d8ffd0",
   "SUPERSEDES": "NONE",
   "SUPERSEDED_BY": "NONE",
   "PRODUCTION_IMPACT": "NONE_RUNTIME_UNCHANGED",
@@ -517,5 +517,11 @@
     "No native balance, random Pursuit generalization, accessibility/mobile/full-demo acceptance",
     "FAILED1858 must never seed continuation"
   ],
-  "nextAction": "Read-only preflight/exclusive lock; inspect native-six-skills-observations-20261011-1858/checks.json and tmp/autonomy/skills-1858/terminal-audit.json first. Preserve FAILED/NOT_ACCEPTED driverc6306944/resultad28f416, all six reviewed novice-cast observations and exact earned Serpent terminal V6 equality; NEVER seed1858/1800/1731/0001 or replay unchanged45min campaign. Coupled exactly2AP Salvation remains OPEN: all20 casts begin3/5AP;18 AP3 native one-AP setup attempts had no healthy ally in basic-crosier centers. Inspect existing pilot skill()250-270, attack()202-215 and support move()330-365 against native reach. Establish a bounded native positioning plan with a healthy ally at basic-crosier range and a wounded eligible Salvation target; preserve3to2 native setup and strict2to0/40percent assertions. Only a demonstrated plan warrants ONE minimal existing-pilot input correction with guardian review and targeted registered verification from SUCCEEDED1859 or another independently successful exact seed; no instrumentation rewrite/unchanged failed replay. If unsupported, record the precise proof blocker and advance independent desktop production work. Keep original skills/randomPursuit task, exact deferred keyboard, accepted narrative history, canonical mapping blockers and mobileLAST; demo IN_PROGRESS."
+  "nextAction": "Read-only preflight/exclusive lock; inspect native-six-skills-observations-20261011-1858/checks.json and tmp/autonomy/skills-1858/terminal-audit.json first. Preserve FAILED/NOT_ACCEPTED driverc6306944/resultad28f416, all six reviewed novice-cast observations and exact earned Serpent terminal V6 equality; NEVER seed1858/1800/1731/0001 or replay unchanged45min campaign. Coupled exactly2AP Salvation remains OPEN: all20 casts begin3/5AP;18 AP3 native one-AP setup attempts had no healthy ally in basic-crosier centers. Inspect existing pilot skill()250-270, attack()202-215 and support move()330-365 against native reach. Establish a bounded native positioning plan with a healthy ally at basic-crosier range and a wounded eligible Salvation target; preserve3to2 native setup and strict2to0/40percent assertions. Only a demonstrated plan warrants ONE minimal existing-pilot input correction with guardian review and targeted registered verification from SUCCEEDED1859 or another independently successful exact seed; no instrumentation rewrite/unchanged failed replay. If unsupported, record the precise proof blocker and advance independent desktop production work. Keep original skills/randomPursuit task, exact deferred keyboard, accepted narrative history, canonical mapping blockers and mobileLAST; demo IN_PROGRESS.",
+  "publication": {
+    "checkpoint": "a599557540f8ad7c95c3b2f5a636fb8823d8ffd0",
+    "at": "2026-10-11T19:57:31.547Z",
+    "status": "NORMAL_DEV_VERIFIED_OBSERVATIONS_ONLY",
+    "sourceExecutionGitHead": "b7dd0b64c60d53c854025e4953b7329b5373cec5"
+  }
 }
