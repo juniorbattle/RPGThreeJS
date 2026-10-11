@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-11T16:42:26Z",
-  "runEndedAt": "2026-10-11T17:03:01.564Z",
+  "runEndedAt": "2026-10-11T17:04:26.536Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "INDEPENDENT_NARRATIVE_REMAINING_GATES",
   "activeSubtask": "Opening desktop/intermediate dynamic cast accepted scoped; six-hero native cast gap next",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "6d5fd12c5d317a5539307e6f9f6df07a69a64c71",
-  "lastPushedCommit": "6d5fd12c5d317a5539307e6f9f6df07a69a64c71",
+  "lastKnownGoodCommit": "2a083a9551cd39d73284f6f6c35ed7e19e1d6b46",
+  "lastPushedCommit": "2a083a9551cd39d73284f6f6c35ed7e19e1d6b46",
   "completedThisRun": [
     "Read-only preflight: clean dev/live parity ca98354, no lock/other active writer; dev server5173 retained",
     "393 physical source files and nine artifacts match1612; prior scoped OS flip result verified without rerun",
@@ -15,7 +15,8 @@
     "ACCEPTED_SCOPED_OPENING_DYNAMIC_CAST_DESKTOP_INTERMEDIATE_NORMAL_OS",
     "620normal/OS registered milestone PASS; matching mountedOS1366 reused, no repeat",
     "Guardian READY_TO_CLOSE_SCOPED; five inspected captures plus one compact checks explicitly promoted",
-    "Independent next source audit: pilot skill selection omits rogue/lancer; no modification or native acceptance this run"
+    "Independent next source audit: pilot skill selection omits rogue/lancer; no modification or native acceptance this run",
+    "Acceptance2a083a9 normally published/live parity verified; owned WIP8e8654e retained, historical refs unchanged"
   ],
   "filesChanged": [
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -193,7 +194,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261011T1642",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-11T17:03:01.564Z",
+  "lastHeartbeat": "2026-10-11T17:04:26.536Z",
   "wip": {
     "sha": "a8a235cad89e2665207a457c362e3e4dc35f2996",
     "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0415",
@@ -211,8 +212,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261011T1642",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-11T17:03:01.564Z",
-    "status": "SAFE_CLOSEOUT_PENDING_PUBLICATION",
+    "lastHeartbeat": "2026-10-11T17:04:26.536Z",
+    "status": "CLOSED_PUBLISHED_LOCK_RELEASE_PENDING_PARITY",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -21195,20 +21196,8 @@
       "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1642",
       "sha": "8e8654e9539c4797be16911634e3aad2fb0f5159",
       "at": "2026-10-11T17:01:28.2908972+00:00",
-      "status": "PRESERVED_GREEN_CONTENT_PENDING_DEV_PUBLICATION",
-      "dirtyFiles": [
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
-        "docs/autonomy/STATIC_TABLEAU_STAGING_POLISH.md",
-        "docs/autonomy/handoffs/2026-10-11T1642Z-codex-opening-dynamic.md",
-        "docs/reports/opening-dynamic-staging-20261011-1642/checks.json",
-        "docs/reports/opening-dynamic-staging-20261011-1642/normal-1366-after.png",
-        "docs/reports/opening-dynamic-staging-20261011-1642/normal-620-before.png",
-        "docs/reports/opening-dynamic-staging-20261011-1642/normal-620-after.png",
-        "docs/reports/opening-dynamic-staging-20261011-1642/os-620-before.png",
-        "docs/reports/opening-dynamic-staging-20261011-1642/os-620-after.png"
-      ],
+      "status": "PRESERVED_GREEN_ACCEPTED_CONTENT_ON_DEV",
+      "dirtyFiles": [],
       "lastGreenCheck": "54tests/types/staging/contracts/gates/three registered scenarios/guardian scopedPASS"
     },
     "nextAction": "Read-only autonomy preflight/exclusive lock; inspect narrative-1642 audits and opening-dynamic-staging-20261011-1642/checks.json before reuse. Opening desktop/intermediate dynamic cast normal/OS is accepted scoped; do not repeat it, mountedOS1612, fixedOS0534, contextual historical matrices or unchanged failed1840/2321/0001 samples. Resume original all-six-skills task: inspect retained skills1840/2321/0001 receipts/actions and src/game/catalog.ts initial-skill exception, then tools/demo-continuous-production-qa.mjs skill() lines242-318. Source audit shows existing initialRoster records six competences but offensive selection omits ro_sneak_attack/l_long_thrust; verify precise remaining native-cast gap, then make only a bounded existing-pilot correction if warranted, guardian review of certifying diff before ONE registered native desktop scenario using register-demo/exact state path and independently valid earned input. Never seed failed0001, inject outcome/truth or weaken AP/healing assertions. Preserve current exactly2to0/40percent Salvation scoped observation and deferred keyboard exact continuation; parent skills/Pursuit/later-earned narrative/fullV6/AT/balance/operatorfull-demo remainOPEN. Bois-Clair nightplate remains BLOCKED_ASSET and consumes no repeat run; mobileLAST.",
@@ -23288,7 +23277,7 @@
       "contractSetVersion": "1.1.0",
       "lockedRulesChanged": false,
       "publication": {
-        "status": "PENDING_NORMAL_DEV_PUSH",
+        "status": "ACCEPTANCE_PUBLISHED_METADATA_CLOSEOUT",
         "ownedWipRetained": true,
         "snapshot": {
           "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1642",
@@ -23303,7 +23292,23 @@
           5377,
           5378
         ],
-        "dev5173Retained": true
+        "dev5173Retained": true,
+        "sha": "2a083a9551cd39d73284f6f6c35ed7e19e1d6b46",
+        "at": "2026-10-11T17:03:15.5777324+00:00",
+        "retentionReason": "Recoverable coherent checkpoint retained; no branch deletion attempted",
+        "lockRelease": "After clean final metadata/live parity check"
+      },
+      "closeout": {
+        "at": "2026-10-11T17:04:26.536Z",
+        "acceptanceCommit": "2a083a9551cd39d73284f6f6c35ed7e19e1d6b46",
+        "safeAtomicMilestoneFinished": true,
+        "noSourceDefectInvented": true,
+        "sourceQaCount": 0,
+        "proofFiles": 6,
+        "workflowFiles": 3,
+        "canonicalDocs": 2,
+        "originalTaskAndDeferredUnchanged": true,
+        "finalWorkflowShaLocation": "tmp/autonomy/narrative-1642/final-publication-audit.json and automation memory"
       }
     }
   },
