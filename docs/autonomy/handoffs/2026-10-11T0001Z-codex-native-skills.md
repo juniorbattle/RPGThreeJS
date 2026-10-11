@@ -1,3 +1,13 @@
+# Publication closure — operator approval received
+
+At 2026-10-11T00:50:38.698Z, the operator explicitly approved checkpoint79eceda and its three workflow files for public origin/dev. Normal push succeeded and live dev79eceda/main00b96f1 were verified. REPOSITORY_GOVERNANCE publication blocker is resolved; QA_EVIDENCE remains BLOCKED for the failed coupled campaign target. The final closure commit and actual lock release are recorded in automation memory. Counts remain zero source/test/QA/proof changes and three workflow files. Only covered owned local WIP is retired; inherited refs remain.
+
+## Current exact next action
+
+Read-only preflight under fresh exclusivity: verify publication closeout and released owned0001 lock, live dev parity, and salvation-t1-0001 FAILED terminal receipt/audit/captures. Retain VERIFIED_NATIVE_SALVATION_SAMPLE_2_TO_0_PLUS_UNCAPPED_40_PERCENT observational scope; second-refuge/Pursuitreturn/V6 target remains NOT_ACCEPTED. Do not rediscover the unchanged native sample or rerun unchanged1840/2321/0001 failures, edit unchanged instrumentation without a newly demonstrated defect, or seed from failed0001. Preserve original active skills task and exact deferred keyboard. Advance independent pendingNarrativeTask.nextAction: Run existing witnesses-protected normal-motion production opening proof; independently observe refugee transaction acknowledgements and wider static-only OS acceptance before task milestone. All-six joining/casts and broader Pursuit/campaign/StageVFX/AT/balance/operatorfinal/full-demo remain OPEN; mobile LAST.
+
+## Historical checkpoint below (publication blocker superseded above)
+
 # Native skills checkpoint — 2026-10-11T0001Z
 
 Run rpgthreejs-auto-dev-90m-20261011T0001. Demo IN_PROGRESS; the original skills task and deferred work remain open.

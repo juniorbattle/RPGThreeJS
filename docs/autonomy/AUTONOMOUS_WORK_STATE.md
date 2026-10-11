@@ -1,3 +1,9 @@
+## Publication approved and verified — 2026-10-11T00:50:38.698Z
+
+Explicit human oui approved checkpoint79eceda and its three workflow files on public origin/dev. Normal push succeeded; local/tracking/live dev79eceda verified and main00b96f1 unchanged. Prior two unexecuted approval rejections are historical and resolved for this publication. Final metadata closure, owned-WIP coverage/retirement and lock release are verified in automation memory. No source/test/QA/proof changes; three workflow files. Native observational sample unchanged; coupled campaign receipt remains FAILED/NOT_ACCEPTED.
+
+Exact nextAction: Read-only preflight under fresh exclusivity: verify publication closeout and released owned0001 lock, live dev parity, and salvation-t1-0001 FAILED terminal receipt/audit/captures. Retain VERIFIED_NATIVE_SALVATION_SAMPLE_2_TO_0_PLUS_UNCAPPED_40_PERCENT observational scope; second-refuge/Pursuitreturn/V6 target remains NOT_ACCEPTED. Do not rediscover the unchanged native sample or rerun unchanged1840/2321/0001 failures, edit unchanged instrumentation without a newly demonstrated defect, or seed from failed0001. Preserve original active skills task and exact deferred keyboard. Advance independent pendingNarrativeTask.nextAction: Run existing witnesses-protected normal-motion production opening proof; independently observe refugee transaction acknowledgements and wider static-only OS acceptance before task milestone. All-six joining/casts and broader Pursuit/campaign/StageVFX/AT/balance/operatorfinal/full-demo remain OPEN; mobile LAST.
+
 ## Local native-skills checkpoint — publication blocked
 
 Native Salvation observations verified: exactly 2→0 AP with capped healing, plus a separate uncapped +40% maximum-HP cast. The second-refuge/Pursuit continuation FAILED; its receipt remains NOT_ACCEPTED. Zero browser errors; 48 current tests, TypeScript, contracts and immutable gates passed. Driver, sources and production build remain unchanged.

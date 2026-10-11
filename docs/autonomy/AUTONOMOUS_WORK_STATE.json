@@ -1,20 +1,21 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-11T00:02:23.4964361+00:00",
-  "runEndedAt": "2026-10-11T00:46:40.894Z",
+  "runEndedAt": "2026-10-11T00:50:38.698Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-  "activePhase": "DESKTOP_NATIVE_EXACT2AP_SCOPED_VERIFICATION",
-  "activeSubtask": "Native Salvation2to0/40percent sample verified; coupled campaign target failed; local publication blocked",
+  "activePhase": "CHECKPOINT_PUBLICATION_CLOSEOUT",
+  "activeSubtask": "Native Salvation observational sample verified; coupled campaign failed; publication approved and verified",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "6bb1c3c0454ed7864f302e7b150bec3c482b231e",
-  "lastPushedCommit": "6bb1c3c0454ed7864f302e7b150bec3c482b231e",
+  "lastKnownGoodCommit": "79eceda534d45a0367da7a4d9585df6596999ed8",
+  "lastPushedCommit": "79eceda534d45a0367da7a4d9585df6596999ed8",
   "completedThisRun": [
     "Read-only preflight clean dev6bb1c3c/live parity/lock absent; owned lock acquired",
     "1840/2321 FAILED receipts preserved; exact firstrefuge1214 earned lineage verified",
     "Current driver/helper/source/build equals2321; physical inventory unchanged; existing production build reused",
     "ONE earnedfirstrefuge1214 second-refuge1366normal35min smoke FAILED/NOT_ACCEPTED; lion-valmir-road/marsh_crossing/56actions/passtrue; lion-second-trial-event/forest_patrol/12actions/passfalse; 5 native40percent casts, 1 exact2start markers; errors0; physical393/driver/helper/9build/inputs/digest stable.",
     "Two normal ownedWIP publications rejected/unexecuted; local reviewed snapshots preserved; no more export attempts",
-    "41protected top-level histories and183old QA IDs retained; exact deferred/narrative continuations preserved"
+    "41protected top-level histories and183old QA IDs retained; exact deferred/narrative continuations preserved",
+    "Explicit human oui approved checkpoint79eceda and three workflow files to public origin/dev; normal push succeeded and live parity verified; prior two unexecuted rejections retained as history."
   ],
   "filesChanged": [
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -50,8 +51,7 @@
     "Ending2311 FAILED_NOT_ACCEPTED: bounded131actions, three damage alliesKO, Marian alone; support-only crosier pilot excludes native foe actions. Review pilot fallback before new QA; no balance or terminalV6 conclusion. Prior2104 interrupted output remains historical NOT_ACCEPTED.",
     "Ending2311 FAILED_NOT_ACCEPTED: bounded131actions, three damage alliesKO, Marian alone; support-only crosier pilot excludes native foe actions. Six-line lone-survivor native fallback is source-reviewed checkpoint only, verify in new registered QA; no balance or terminalV6 conclusion. Prior2104 interrupted output remains historical NOT_ACCEPTED.",
     "campaign-keyboard-1655: native opening defeat blocks intended parent-return/first-refuge proof; pilot strategy versus gameplay reliability unresolved, not established product regression",
-    "1748/1856: checkpoint perception and parent settled-focus visuals OPEN; Pursuit mappings implemented/scoped T0 fixture verified, articulated gait and broader browser acceptance OPEN; mobile final",
-    "Publication0001 BLOCKED_BY_ACTUAL_AUTOMATIC_APPROVAL_REVIEW: two normal ownedWIP pushes rejected/unexecuted for unverified trusted destination/internal state export; no further export without explicit human approval. Complete local checkpoint and preserve owned lock/WIP."
+    "1748/1856: checkpoint perception and parent settled-focus visuals OPEN; Pursuit mappings implemented/scoped T0 fixture verified, articulated gait and broader browser acceptance OPEN; mobile final"
   ],
   "remainingWork": [
     "Native forest_ambush variant and overall beginner balance; KestrelKO in tested wolf_pack",
@@ -63,7 +63,7 @@
     "Council/refugees/static-only OS narrative acceptance and approved Bois-Clair night plate",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Read-only preflight: retained owned0001 lock is BLOCKED_BY_PUBLICATION_APPROVAL/writerStopped after terminal worker/port clearance. Obtain explicit human approval to export the concrete selected three-file local checkpoint to https://github.com/juniorbattle/RPGThreeJS.git origin/dev before any further push; two automatic-review rejections unexecuted, no workaround. Verify local checkpoint/outgoing paths, remote dev6bb1c3c/main00b96f1, source/driver/build/input lineage and stopped jobs, then normal authorized publication and owned-lock release. Inspect salvation-t1-0001 FAILED terminal audit/captures: native Salvation sample exactly2to0 plus independent uncapped40percent observed/verified on current execution; coupled second-refuge/Pursuitreturn/V6 target NOT_ACCEPTED. Do not repeat this unchanged proven sample or unchanged1840/2321/0001 failed scenarios; no further instrumentation edit without a newly demonstrated defect, and never seed from failed0001. Preserve original active skills task and exact deferred keyboard; proceed independent pendingNarrativeTask.nextAction under fresh exclusivity after publication recovery (existing witnesses-protected normal production opening; refugee acknowledgements/static-only OS acceptance remain separate). All-six joining/casts, broaderPursuit/skills/campaign/StageVFX/AT/balance/operatorfinal/full-demo OPEN; mobileLAST.",
+  "nextAction": "Read-only preflight under fresh exclusivity: verify publication closeout and released owned0001 lock, live dev parity, and salvation-t1-0001 FAILED terminal receipt/audit/captures. Retain VERIFIED_NATIVE_SALVATION_SAMPLE_2_TO_0_PLUS_UNCAPPED_40_PERCENT observational scope; second-refuge/Pursuitreturn/V6 target remains NOT_ACCEPTED. Do not rediscover the unchanged native sample or rerun unchanged1840/2321/0001 failures, edit unchanged instrumentation without a newly demonstrated defect, or seed from failed0001. Preserve original active skills task and exact deferred keyboard. Advance independent pendingNarrativeTask.nextAction: Run existing witnesses-protected normal-motion production opening proof; independently observe refugee transaction acknowledgements and wider static-only OS acceptance before task milestone. All-six joining/casts and broader Pursuit/campaign/StageVFX/AT/balance/operatorfinal/full-demo remain OPEN; mobile LAST.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -79,8 +79,8 @@
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
   "creditStatus": "AVAILABLE_THIS_RUN",
-  "contractComplianceStatus": "PASS_STATIC_AUTHORITY_SET1.1.0; VERIFIED_NATIVE_SALVATION_SAMPLE_2_TO_0_PLUS_UNCAPPED_40_PERCENT; QA_EVIDENCE_BLOCKED_COUPLED_TARGET; GOVERNANCE_BLOCKED_ACTUAL_PUBLICATION_REJECTION",
-  "commitReferenceScope": "Current local-only workflow checkpoint SHA recorded in external automation memory after commit. Native exactly2to0 and separate uncapped40percent samples verified observationally; coupled campaign target NOT_ACCEPTED. No publication or full-demo acceptance. Last published dev6bb1c3c unchanged.",
+  "contractComplianceStatus": "PASS_STATIC_AUTHORITY_SET1.1.0; VERIFIED_NATIVE_SALVATION_SAMPLE_2_TO_0_PLUS_UNCAPPED_40_PERCENT; QA_EVIDENCE_BLOCKED_COUPLED_TARGET; REPOSITORY_GOVERNANCE_PASS_APPROVED_PUBLICATION",
+  "commitReferenceScope": "Approved checkpoint79eceda verified on origin/dev. Final workflow closure commit SHA and verified owned-lock release recorded in external automation memory. No new product or acceptance claim.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -183,23 +183,23 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261011T0001",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-11T00:46:40.894Z",
+  "lastHeartbeat": "2026-10-11T00:50:38.698Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0001",
-    "sha": "9badaad62ed04f850e1c701273cc8e32485779b2",
-    "status": "LOCAL_ONLY_PRESERVED_FOR_PUBLICATION_APPROVAL",
+    "sha": "8982d52529d53636340e1f724176cc42020b92ea",
+    "status": "COVERED_WORKFLOW_ONLY_PENDING_LOCAL_RETIREMENT",
     "dirtyFiles": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
       "docs/autonomy/handoffs/2026-10-11T0001Z-codex-native-skills.md"
     ],
-    "lastSnapshotAt": "2026-10-11T00:46:07.5200551+00:00"
+    "lastSnapshotAt": "2026-10-11T00:50:58.4256851+00:00"
   },
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261011T0001",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-11T00:46:40.894Z",
-    "status": "BLOCKED_BY_PUBLICATION_APPROVAL",
+    "lastHeartbeat": "2026-10-11T00:50:38.698Z",
+    "status": "CHECKPOINT_PUBLISHED",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -19965,16 +19965,16 @@
     ],
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0001",
-      "sha": "9badaad62ed04f850e1c701273cc8e32485779b2",
-      "status": "LOCAL_ONLY_PRESERVED_FOR_PUBLICATION_APPROVAL",
+      "sha": "8982d52529d53636340e1f724176cc42020b92ea",
+      "status": "COVERED_WORKFLOW_ONLY_PENDING_LOCAL_RETIREMENT",
       "dirtyFiles": [
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
         "docs/autonomy/handoffs/2026-10-11T0001Z-codex-native-skills.md"
       ],
-      "lastSnapshotAt": "2026-10-11T00:46:07.5200551+00:00"
+      "lastSnapshotAt": "2026-10-11T00:50:58.4256851+00:00"
     },
-    "nextAction": "Read-only preflight: retained owned0001 lock is BLOCKED_BY_PUBLICATION_APPROVAL/writerStopped after terminal worker/port clearance. Obtain explicit human approval to export the concrete selected three-file local checkpoint to https://github.com/juniorbattle/RPGThreeJS.git origin/dev before any further push; two automatic-review rejections unexecuted, no workaround. Verify local checkpoint/outgoing paths, remote dev6bb1c3c/main00b96f1, source/driver/build/input lineage and stopped jobs, then normal authorized publication and owned-lock release. Inspect salvation-t1-0001 FAILED terminal audit/captures: native Salvation sample exactly2to0 plus independent uncapped40percent observed/verified on current execution; coupled second-refuge/Pursuitreturn/V6 target NOT_ACCEPTED. Do not repeat this unchanged proven sample or unchanged1840/2321/0001 failed scenarios; no further instrumentation edit without a newly demonstrated defect, and never seed from failed0001. Preserve original active skills task and exact deferred keyboard; proceed independent pendingNarrativeTask.nextAction under fresh exclusivity after publication recovery (existing witnesses-protected normal production opening; refugee acknowledgements/static-only OS acceptance remain separate). All-six joining/casts, broaderPursuit/skills/campaign/StageVFX/AT/balance/operatorfinal/full-demo OPEN; mobileLAST.",
+    "nextAction": "Read-only preflight under fresh exclusivity: verify publication closeout and released owned0001 lock, live dev parity, and salvation-t1-0001 FAILED terminal receipt/audit/captures. Retain VERIFIED_NATIVE_SALVATION_SAMPLE_2_TO_0_PLUS_UNCAPPED_40_PERCENT observational scope; second-refuge/Pursuitreturn/V6 target remains NOT_ACCEPTED. Do not rediscover the unchanged native sample or rerun unchanged1840/2321/0001 failures, edit unchanged instrumentation without a newly demonstrated defect, or seed from failed0001. Preserve original active skills task and exact deferred keyboard. Advance independent pendingNarrativeTask.nextAction: Run existing witnesses-protected normal-motion production opening proof; independently observe refugee transaction acknowledgements and wider static-only OS acceptance before task milestone. All-six joining/casts and broader Pursuit/campaign/StageVFX/AT/balance/operatorfinal/full-demo remain OPEN; mobile LAST.",
     "runMetrics": {
       "existingQaFilesModified": 1,
       "harnessCorrections": 1,
@@ -21300,14 +21300,20 @@
         "inheritedWipPaths": 0
       },
       "publication": {
-        "status": "BLOCKED_BY_ACTUAL_AUTOMATIC_APPROVAL_REVIEW",
+        "status": "APPROVED_CHECKPOINT_PUBLISHED_VERIFIED",
         "unexecutedPushes": 2,
         "rejectedSnapshot": "58a042e828469f1d1cbb3e3b6454b691e1be3969",
         "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
         "audit": "tmp/autonomy/skills-0001/publication-audit.json",
         "reason": "Remote not considered verified trusted; paired internal state payload export considered insufficiently authorized even after bounded audit and standing decision evidence",
         "noFurtherRetryOrWorkaround": true,
-        "next": "Complete browser/verification/local concrete checkpoint; obtain explicit human approval for selected payload/destination before any export"
+        "next": "Publish reviewed metadata closure under standing OD-2026-10-08-B; verify exact remote parity, retire only covered owned local WIP, archive/release owned lock.",
+        "previousStatus": "BLOCKED_BY_ACTUAL_AUTOMATIC_APPROVAL_REVIEW",
+        "approvedAt": "2026-10-11T00:50:38.698Z",
+        "humanApproval": "Explicit oui to annotation1 of checkpoint79eceda three workflow files publication, same chat",
+        "publishedCheckpoint": "79eceda534d45a0367da7a4d9585df6596999ed8",
+        "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+        "previousNextAction": "Read-only preflight: retained owned0001 lock is BLOCKED_BY_PUBLICATION_APPROVAL/writerStopped after terminal worker/port clearance. Obtain explicit human approval to export the concrete selected three-file local checkpoint to https://github.com/juniorbattle/RPGThreeJS.git origin/dev before any further push; two automatic-review rejections unexecuted, no workaround. Verify local checkpoint/outgoing paths, remote dev6bb1c3c/main00b96f1, source/driver/build/input lineage and stopped jobs, then normal authorized publication and owned-lock release. Inspect salvation-t1-0001 FAILED terminal audit/captures: native Salvation sample exactly2to0 plus independent uncapped40percent observed/verified on current execution; coupled second-refuge/Pursuitreturn/V6 target NOT_ACCEPTED. Do not repeat this unchanged proven sample or unchanged1840/2321/0001 failed scenarios; no further instrumentation edit without a newly demonstrated defect, and never seed from failed0001. Preserve original active skills task and exact deferred keyboard; proceed independent pendingNarrativeTask.nextAction under fresh exclusivity after publication recovery (existing witnesses-protected normal production opening; refugee acknowledgements/static-only OS acceptance remain separate). All-six joining/casts, broaderPursuit/skills/campaign/StageVFX/AT/balance/operatorfinal/full-demo OPEN; mobileLAST."
       },
       "terminal": {
         "audit": "tmp/autonomy/skills-0001/terminal-audit.json",
@@ -21437,9 +21443,9 @@
         "trackedProofPromoted": false
       },
       "closeout": {
-        "at": "2026-10-11T00:46:40.894Z",
+        "at": "2026-10-11T00:50:38.698Z",
         "summary": "ONE earnedfirstrefuge1214 second-refuge1366normal35min smoke FAILED/NOT_ACCEPTED; lion-valmir-road/marsh_crossing/56actions/passtrue; lion-second-trial-event/forest_patrol/12actions/passfalse; 5 native40percent casts, 1 exact2start markers; errors0; physical393/driver/helper/9build/inputs/digest stable.",
-        "nextAction": "Read-only preflight: retained owned0001 lock is BLOCKED_BY_PUBLICATION_APPROVAL/writerStopped after terminal worker/port clearance. Obtain explicit human approval to export the concrete selected three-file local checkpoint to https://github.com/juniorbattle/RPGThreeJS.git origin/dev before any further push; two automatic-review rejections unexecuted, no workaround. Verify local checkpoint/outgoing paths, remote dev6bb1c3c/main00b96f1, source/driver/build/input lineage and stopped jobs, then normal authorized publication and owned-lock release. Inspect salvation-t1-0001 FAILED terminal audit/captures: native Salvation sample exactly2to0 plus independent uncapped40percent observed/verified on current execution; coupled second-refuge/Pursuitreturn/V6 target NOT_ACCEPTED. Do not repeat this unchanged proven sample or unchanged1840/2321/0001 failed scenarios; no further instrumentation edit without a newly demonstrated defect, and never seed from failed0001. Preserve original active skills task and exact deferred keyboard; proceed independent pendingNarrativeTask.nextAction under fresh exclusivity after publication recovery (existing witnesses-protected normal production opening; refugee acknowledgements/static-only OS acceptance remain separate). All-six joining/casts, broaderPursuit/skills/campaign/StageVFX/AT/balance/operatorfinal/full-demo OPEN; mobileLAST.",
+        "nextAction": "Read-only preflight under fresh exclusivity: verify publication closeout and released owned0001 lock, live dev parity, and salvation-t1-0001 FAILED terminal receipt/audit/captures. Retain VERIFIED_NATIVE_SALVATION_SAMPLE_2_TO_0_PLUS_UNCAPPED_40_PERCENT observational scope; second-refuge/Pursuitreturn/V6 target remains NOT_ACCEPTED. Do not rediscover the unchanged native sample or rerun unchanged1840/2321/0001 failures, edit unchanged instrumentation without a newly demonstrated defect, or seed from failed0001. Preserve original active skills task and exact deferred keyboard. Advance independent pendingNarrativeTask.nextAction: Run existing witnesses-protected normal-motion production opening proof; independently observe refugee transaction acknowledgements and wider static-only OS acceptance before task milestone. All-six joining/casts and broader Pursuit/campaign/StageVFX/AT/balance/operatorfinal/full-demo remain OPEN; mobile LAST.",
         "metrics": {
           "runtimeSourceFilesModified": 0,
           "existingTestFilesModified": 0,
@@ -21454,8 +21460,16 @@
           "harnessCorrections": 0,
           "quotaSavingsClaim": "NONE"
         },
-        "publication": "BLOCKED; no export executed",
-        "lock": "RETAINED_BLOCKED_BY_PUBLICATION_APPROVAL_WRITER_STOPPED"
+        "publication": "EXPLICITLY_APPROVED_AND_VERIFIED; historical rejections unexecuted",
+        "lock": "OWNED_LOCK_RELEASE_AFTER_FINAL_VERIFIED_PUBLICATION"
+      },
+      "publicationClosure": {
+        "at": "2026-10-11T00:50:38.698Z",
+        "checkpoint": "79eceda534d45a0367da7a4d9585df6596999ed8",
+        "remoteDev": "79eceda534d45a0367da7a4d9585df6596999ed8",
+        "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+        "lockRelease": "After final closure publication; actual final SHA/release in automation memory",
+        "acceptanceUnchanged": true
       }
     }
   },
@@ -21508,15 +21522,15 @@
   "runMeasurement": {
     "productSource": 0,
     "existingTests": 0,
-    "existingQa": 1,
+    "existingQa": 0,
     "newQa": 0,
     "proof": 0,
-    "workflow": 2,
-    "inheritedWip": 3,
+    "workflow": 3,
+    "inheritedWip": 0,
     "browserScenarios": 1,
     "reviewers": 1,
     "guardianPasses": 2,
-    "harnessCorrections": 1,
+    "harnessCorrections": 0,
     "quotaSavingsClaim": false
   },
   "deferredDemoTask": {
@@ -21659,7 +21673,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "No inherited working-tree WIP. Selected three-file workflow checkpoint committed locally; final HEAD and clean-tree verification recorded in external automation memory. No export executed.",
+  "uncommittedWork": "Only the selected three workflow closure paths; final committed clean-tree and live parity verification recorded in external automation memory.",
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
