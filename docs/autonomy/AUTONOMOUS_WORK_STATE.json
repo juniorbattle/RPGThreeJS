@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-11T04:17:09.8414143Z",
-  "runEndedAt": "2026-10-11T04:27:25.914Z",
+  "runEndedAt": "2026-10-11T04:28:16.625Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "INDEPENDENT_NARRATIVE_REMAINING_GATES",
   "activeSubtask": "Displaced-family acknowledgement accepted scoped1366 OS-only; normal/wider contextual desktop narrative and skills gates open",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "6b1920e7cea3c5585b0651ecee71aca2f78792b3",
-  "lastPushedCommit": "6b1920e7cea3c5585b0651ecee71aca2f78792b3",
+  "lastKnownGoodCommit": "ea78eff9bcd3e23cc00b6e6e77e6b7f6b324d3bd",
+  "lastPushedCommit": "ea78eff9bcd3e23cc00b6e6e77e6b7f6b324d3bd",
   "completedThisRun": [
     "Clean read-only preflight; no lock, no associated QA/build/Git, live dev parity6b1920e/main00b96f1; atomically acquired new lock; no inherited WIP",
     "393physical source files and ninebuild digests verified; prior scoped council/refuge receipts preserved without rerun",
@@ -214,12 +214,12 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261011T0415",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-11T04:27:25.914Z",
+  "lastHeartbeat": "2026-10-11T04:28:16.625Z",
   "wip": {
     "sha": "a8a235cad89e2665207a457c362e3e4dc35f2996",
     "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0415",
     "at": "2026-10-11T04:26:40.1059993Z",
-    "status": "GREEN",
+    "status": "GREEN_PUBLISHED_CONTENT_COVERED_RETIRE_AFTER_FINAL_PARITY",
     "dirtyFiles": [
       "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
       "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
@@ -232,8 +232,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261011T0415",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-11T04:27:25.914Z",
-    "status": "SCOPED_NARRATIVE_ACCEPTED_PENDING_DEV_PUBLICATION",
+    "lastHeartbeat": "2026-10-11T04:28:16.625Z",
+    "status": "CLOSED_PUBLISHED_SCOPED_NARRATIVE_ACCEPTANCE",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -20283,7 +20283,7 @@
       "sha": "a8a235cad89e2665207a457c362e3e4dc35f2996",
       "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0415",
       "at": "2026-10-11T04:26:40.1059993Z",
-      "status": "GREEN",
+      "status": "GREEN_PUBLISHED_CONTENT_COVERED_RETIRE_AFTER_FINAL_PARITY",
       "dirtyFiles": [
         "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
         "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
@@ -20324,7 +20324,7 @@
       "sourceExecutionUnchangedAfterCommit": true
     },
     "runStartedAt": "2026-10-11T04:17:09.8414143Z",
-    "runEndedAt": "2026-10-11T04:27:25.914Z",
+    "runEndedAt": "2026-10-11T04:28:16.625Z",
     "writerStopped": true,
     "metadataPublication": {
       "status": "RESOLVED_BY_OPERATOR_APPROVAL",
@@ -22013,7 +22013,7 @@
         "quotaSavingsClaim": "NONE"
       },
       "closeout": {
-        "preparedAt": "2026-10-11T04:26:06.433Z",
+        "preparedAt": "2026-10-11T04:28:16.625Z",
         "publication": "Normal owned WIP then dev publication/parity/lock release recorded after verification",
         "safeBoundary": "Completed atomic scoped acceptance; no new browser/matrix outside this one-smoke run; no time padding",
         "demoComplete": false,
@@ -22021,7 +22021,21 @@
           "sha": "a8a235cad89e2665207a457c362e3e4dc35f2996",
           "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0415",
           "at": "2026-10-11T04:26:40.1059993Z"
-        }
+        },
+        "lockRelease": "AFTER_FINAL_VERIFIED_METADATA_PUBLICATION_AND_POSITIVE_PROCESS_ABSENCE"
+      },
+      "publication": {
+        "checkpoint": "ea78eff9bcd3e23cc00b6e6e77e6b7f6b324d3bd",
+        "devParityVerified": true,
+        "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+        "postCommitExecutionMatch": true,
+        "resultDigest": "b3c51e45879a3c440787c1c67dfae131233c76622d53a968327389b76c874e00",
+        "coveredWipDiff": [
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+          "docs/autonomy/handoffs/2026-10-11T0415Z-codex-displaced-family.md"
+        ],
+        "finalMetadata": "Final SHA/parity and actual guarded WIP retirement/lock release in automationmemory after verification"
       }
     }
   },
