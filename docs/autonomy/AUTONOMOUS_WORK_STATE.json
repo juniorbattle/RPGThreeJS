@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-11T18:00:00Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-11T18:51:47.833Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "NATIVE_SKILL_COVERAGE_ACCEPTANCE",
   "activeSubtask": "Five native novice casts observed; corrected archer AP-conservation pilot unexecuted, six-hero gate OPEN",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "1ca520498d6262293f1f57800c4adbd4539bda57",
-  "lastPushedCommit": "1ca520498d6262293f1f57800c4adbd4539bda57",
+  "lastKnownGoodCommit": "ab513766b3c60ce71f2fb2a0d049e85640adec9c",
+  "lastPushedCommit": "ab513766b3c60ce71f2fb2a0d049e85640adec9c",
   "completedThisRun": [
     "Owned clean dev preflight and retained historical/deferred work",
     "ONE registered35min desktop native continuation FAILED/NOT_ACCEPTED; five fresh novice classes and strict capped Salvation observed",
@@ -79,7 +79,7 @@
   ],
   "creditStatus": "AVAILABLE_THIS_RUN",
   "contractComplianceStatus": "PASS_SAFE_INPUT_ONLY_PILOT_CHECKPOINT; QA_EVIDENCE_OPEN/corrected driver unexecuted; set1.1.0/d7ca28a unchanged; demoIN_PROGRESS",
-  "commitReferenceScope": "Verified pilot checkpoint publication only; corrected driver has no browser acceptance. Final workflow SHA in automation memory/ignored final-publication audit.",
+  "commitReferenceScope": "Verified input-only pilot checkpoint ab51376 on dev; corrected driver UNEXECUTED. Final metadata SHA and lock release in automation memory/ignored final-publication audit.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -182,25 +182,22 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261011T1800",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-11T18:49:05.7875223+00:00",
+  "lastHeartbeat": "2026-10-11T18:51:47.833Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1800",
     "sha": "9ec1205520bdf8410f3a3e07d4a2b94387337358",
     "at": "2026-10-11T18:49:05.7875223+00:00",
-    "status": "GREEN_MECHANICAL_PILOT_CHECKPOINT_BROWSER_ACCEPTANCE_OPEN",
-    "dirtyFiles": [
-      "tools/demo-continuous-production-qa.mjs",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-11T1800Z-codex-native-skills.md"
-    ],
-    "lastGreenCheck": "60unique tests/types/contracts8slots/syntax/gates; sources393/build9/input matched; corrected driver unexecuted"
+    "status": "LANDED_ON_DEV_OWNED_BRANCH_DELETED",
+    "dirtyFiles": [],
+    "lastGreenCheck": "60unique tests/types/contracts8slots/syntax/gates; sources393/build9/input matched; corrected driver unexecuted",
+    "landedCheckpoint": "ab513766b3c60ce71f2fb2a0d049e85640adec9c",
+    "cleanupVerifiedAt": "2026-10-11T18:51:47.833Z"
   },
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261011T1800",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-11T18:49:05.7875223+00:00",
-    "status": "CHECKPOINT_PENDING_PUBLICATION",
+    "lastHeartbeat": "2026-10-11T18:51:47.833Z",
+    "status": "CHECKPOINTED_IN_PROGRESS",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -21401,14 +21398,11 @@
       "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1800",
       "sha": "9ec1205520bdf8410f3a3e07d4a2b94387337358",
       "at": "2026-10-11T18:49:05.7875223+00:00",
-      "status": "GREEN_MECHANICAL_PILOT_CHECKPOINT_BROWSER_ACCEPTANCE_OPEN",
-      "dirtyFiles": [
-        "tools/demo-continuous-production-qa.mjs",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-11T1800Z-codex-native-skills.md"
-      ],
-      "lastGreenCheck": "60unique tests/types/contracts8slots/syntax/gates; sources393/build9/input matched; corrected driver unexecuted"
+      "status": "LANDED_ON_DEV_OWNED_BRANCH_DELETED",
+      "dirtyFiles": [],
+      "lastGreenCheck": "60unique tests/types/contracts8slots/syntax/gates; sources393/build9/input matched; corrected driver unexecuted",
+      "landedCheckpoint": "ab513766b3c60ce71f2fb2a0d049e85640adec9c",
+      "cleanupVerifiedAt": "2026-10-11T18:51:47.833Z"
     },
     "nextAction": "Read-only autonomy preflight/exclusive lock; inspect skills-1800 terminal-audit-original-driver.json and corrected pilot diff. Preserve original20ee6322/result84acc2d2 FAILED/NOT_ACCEPTED historical observations only; NEVER seed from failed1800/1731/0001 or repeat unchanged failed1840/2321/0001/1731/1800. Current archer-conservation driverc6306944 is UNEXECUTED: verify393physical sources/ninebuild and SUCCEEDED second-refuge1859 exact save/proof; then ONE unique registered1366x768 normal ending/rescue/serpent45min verifySalvation1 scenario via register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID/AUTONOMY_QA_STATE_PATH absolute state JSON and verified host Chromium cache. Existing45min parameter allows more time for both native battles after35min expired; no balance acceptance inferred. Observe archer native AP conservation/novice a_precise_shot, all six fresh initial-equipment casts, strict Salvation2to0/40percent capped healing, earned ending and exact reload; inspect terminal receipt/digest and selected captures. No instrumentation loop/second smoke/injected truth/proof weakening. Parent six-skills/randomPursuit/fullV6/balance/later narrative/AT/operatorfinal/demo OPEN; accepted narrative matrices and exact deferred keyboard preserved; mobileLAST.",
     "runMetrics": {
@@ -21433,24 +21427,27 @@
     ],
     "publication": {
       "runId": "rpgthreejs-auto-dev-90m-20261011T1800",
-      "status": "SAFE_PILOT_CHECKPOINT_PENDING_NORMAL_DEV",
+      "status": "SAFE_PILOT_CHECKPOINT_PUBLISHED_VERIFIED_METADATA_CLOSURE",
+      "checkpoint": "ab513766b3c60ce71f2fb2a0d049e85640adec9c",
       "authority": "OD-2026-10-08-B",
       "mode": "NORMAL_NON_FORCE_DEV",
-      "remoteParity": false,
-      "mainExpected": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
+      "remoteParity": true,
+      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "browserAcceptance": "OPEN_CORRECTED_DRIVER_UNEXECUTED"
     },
     "runStartedAt": "2026-10-11T18:00:00Z",
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-11T18:51:47.833Z",
+    "writerStopped": true,
     "metadataPublication": {
       "runId": "rpgthreejs-auto-dev-90m-20261011T1800",
-      "status": "PENDING_AFTER_CHECKPOINT",
-      "rejectionsThisRun": 0,
+      "status": "PREPARING_FINAL_METADATA_COMMIT",
       "selectedPaths": [
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
         "docs/autonomy/handoffs/2026-10-11T1800Z-codex-native-skills.md"
-      ]
+      ],
+      "rejectionsThisRun": 0,
+      "actualFinalShaExternal": true
     },
     "publication1752History": {
       "status": "VERIFIED_PUBLISHED",
@@ -22207,7 +22204,7 @@
       "workerAbsent": 60012,
       "portAbsent": 5352
     },
-    "publishedCheckpoint": "e34959f801fcf4812a7a976142f2235bde81411e",
+    "publishedCheckpoint": "ab513766b3c60ce71f2fb2a0d049e85640adec9c",
     "closeout0613": {
       "checkpoint": "babc01bf3571247b73516a740c501a88b1deb7dd",
       "runEndedAt": "2026-10-09T06:56:55.147Z",
@@ -24191,7 +24188,7 @@
         "REPOSITORY_GOVERNANCE": "PASS_OWNED_LOCK_SELECTED_PATHS"
       },
       "ownedWorkerAndPortAbsent": true,
-      "publication": "NORMAL_DEV_PENDING",
+      "publication": "NORMAL_DEV_VERIFIED",
       "guardianActualDriverSha256": "c6306944b2821eb011f347135c75c4f2e649e6d813191175f69bece3e3e74720",
       "guardianFinalAt": "2026-10-11T18:49:26.052Z",
       "previousPublicationFields": {
@@ -24231,7 +24228,11 @@
           "Broader environment and AT/balance/operator full-demo; mobileLAST"
         ],
         "uncommittedWork": "Only the selected three workflow closure paths; final committed clean-tree and live parity verification recorded in external automation memory."
-      }
+      },
+      "publishedCheckpoint": "ab513766b3c60ce71f2fb2a0d049e85640adec9c",
+      "publicationVerifiedAt": "2026-10-11T18:51:47.833Z",
+      "ownedWipCleanup": "DELETED_AFTER_CONTENT_ON_DEV",
+      "operationalCleanupGuard": "Initial state snapshot read hit default1MB ENOBUFS; stopped before deletion, increased read buffer to8MB and verified content before cleanup. No approval rejection."
     }
   },
   "previousInterruptedRun": {
@@ -24434,7 +24435,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "Selected existing QA pilot and three workflow files only; inherited WIP0. Final clean-tree/parity verification recorded externally.",
+  "uncommittedWork": "Only three selected workflow closure paths pending metadata commit; final clean-tree/parity verification recorded externally.",
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
