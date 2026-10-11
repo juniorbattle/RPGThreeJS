@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-11T16:11:38Z",
-  "runEndedAt": "2026-10-11T16:27:15.828Z",
+  "runEndedAt": "2026-10-11T16:28:42.669Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "INDEPENDENT_NARRATIVE_REMAINING_GATES",
   "activeSubtask": "Mounted opening OS flip1366 accepted scoped; normal desktop dynamic cast next",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "c6681738faf25282e34ca3bea2ee6885c0908fde",
-  "lastPushedCommit": "c6681738faf25282e34ca3bea2ee6885c0908fde",
+  "lastKnownGoodCommit": "74355dec75a1a8e2f643613121db021d5f9cb00b",
+  "lastPushedCommit": "74355dec75a1a8e2f643613121db021d5f9cb00b",
   "completedThisRun": [
     "Operator-authorized stale takeover; no active agent or associated QA/build; persistent development server5173 retained",
     "393 physical files and nine production artifacts match fixed-OS0534 source/build; old result verified and not rerun",
@@ -201,8 +201,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261011T1612",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-11T16:27:15.828Z",
-    "status": "SCOPED_OS_FLIP_ACCEPTED_CHECKPOINT",
+    "lastHeartbeat": "2026-10-11T16:28:42.669Z",
+    "status": "CLOSED_SCOPED_OS_FLIP_PUBLISHED",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -20761,14 +20761,8 @@
       "at": "2026-10-11T16:26:03Z",
       "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1612",
       "sha": "51f333ea6d5ef64e6fccb4d41c09eb7e227617d5",
-      "status": "GREEN",
-      "dirtyFiles": [
-        "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
-        "docs/autonomy/handoffs/2026-10-11T1612Z-codex-mounted-os-flip.md"
-      ],
+      "status": "PUBLISHED_CONTENT_COVERED_WIP_RETAINED",
+      "dirtyFiles": [],
       "lastGreenCheck": "54tests/types/contracts/gates+registered scoped smoke+guardian PASS"
     },
     "nextAction": "Read-only autonomy preflight/exclusive lock; inspect narrative-1612 terminal-audit, result703c784f, driver48acf930, helper/source393/build9 before reuse. Mounted opening OSflip1366 now accepted scoped; do not repeat it, fixedOS0534 or historical contextual matrices/unchanged failed campaign samples. Next ONE registered production opening-camp-audience1366 normal motion with CIN6D6_LIVE_OS_FLIP=0, OS=0/game=0/media available and verified host Chromium cache; reuse existing phase/cap/facing/preparing/focus/bounds/saved-byte observer, no driver/assertion change required. Then complete pending desktop/intermediate dynamic staging gates at narrative milestone, retain exact original all-six-skills/Pursuit/deferred keyboard continuation. No source defect demonstrated this run; earned campaign/fullV6/native balance/later environment/AT/operator full-demo remainOPEN; mobileLAST.",
@@ -22729,7 +22723,27 @@
         "retainedDevelopmentPort5173": true,
         "publication": "Normal five-path dev checkpoint then metadata closure/parity; final exact SHA in closed lock and automationmemory",
         "safeBoundary": "Completed atomic mountedOS browser gate, no new browser/matrix outside one-smoke run; no time padding",
-        "demoComplete": false
+        "demoComplete": false,
+        "recordedAt": "2026-10-11T16:28:42.669Z"
+      },
+      "publication": {
+        "checkpoint": "74355dec75a1a8e2f643613121db021d5f9cb00b",
+        "devParityVerified": true,
+        "postCommitExecutionMatch": true,
+        "physicalSourceFiles": 393,
+        "buildFiles": 9,
+        "coveredWipDiff": [
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
+        ],
+        "finalMetadata": "Final metadata SHA and lock release recorded in audit/memory; owned WIP refs retained after automatic deletion review rejection",
+        "inheritedRefsRetained": true,
+        "ownedWipPreserved": true
+      },
+      "approvalReviewRejection": {
+        "action": "Delete local/remote owned WIP branch",
+        "reason": "Automatic review requires explicit branch-deletion authorization",
+        "resolution": "Omit deletion; preserve both refs and complete unaffected metadata publication/lock release",
+        "deletionAttempted": false
       }
     }
   },
