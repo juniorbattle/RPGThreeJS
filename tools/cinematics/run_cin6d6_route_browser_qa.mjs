@@ -10,6 +10,10 @@ const OUTPUT_DIR = resolve(process.env.CIN6D6_ROUTE_OUTPUT_DIR ?? resolve(proces
 const [viewportWidth, viewportHeight] = (process.env.CIN6D6_VIEWPORT ?? '1920x1080').split('x').map(Number);
 const VIEWPORT = { width: viewportWidth, height: viewportHeight };
 const SCENARIO_FILTER = process.env.CIN6D6_ROUTE_SCENARIO ?? '';
+const DISPLACED_FAMILY_CONTEXT = process.env.CIN6D6_FINAL_REFUGE_CONTEXT === 'exploited-refugees';
+if (DISPLACED_FAMILY_CONTEXT && (!PRODUCTION || SCENARIO_FILTER !== 'final-refuge-story')) {
+  throw new Error('Displaced-family context requires the built final-refuge-story scenario.');
+}
 const REVIEW_TRANSITION_COPY = process.env.CIN6D6_TRANSITION_COPY === '1';
 const CIN8_GROUP = process.env.CIN6D6_ROUTE_GROUP === 'cin8';
 const REDUCED_MOTION = process.env.CIN6D6_REDUCED_MOTION === '1';
@@ -21,6 +25,7 @@ const APPROVED_VIDEO_IDS = ['camp_departure', 'alaric_audience_arrival', 'bois_c
 const BLOCK_MEDIA = process.env.CIN6D6_BLOCK_MEDIA === '1';
 const INTERRUPT_PRELUDE = process.env.CIN6D6_INTERRUPT_PRELUDE === '1';
 const FIRST_REFUGE_EXPLOITATION_TEXT = 'Les feux sont bas. Une famille arrivée après nous raconte que notre compagnie lui a vendu le chemin du refuge contre ses quarante dernières pièces. Le refuge écoute cette version avec une attention que notre bannière ne peut pas commander.';
+const DISPLACED_FAMILY_EXPLOITATION_TEXT = 'Vous avez vendu l’itinéraire contre les quarante dernières pièces de familles qui n’avaient déjà presque rien. Je ne demande pas que vous réécriviez la route. Je demande ce que vous faites maintenant pour leur prochain convoi.';
 if (INTERRUPT_PRELUDE && (!PRODUCTION || REDUCED_MOTION || OS_REDUCED_MOTION || BLOCK_MEDIA)) {
   throw new Error('Prelude interruption requires built production with normal motion and available media.');
 }
@@ -261,19 +266,23 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
   for (let index = 0; index < 100; index += 1) {
     if (!await dialogue.count()) return;
     trace?.dialogues.add(sequenceId);
-    if (PRODUCTION && trace?.capturePrefix === 'first-refuge-exploitation'
-      && sequenceId === 'ate_first_refuge_watch' && await dialogue.getAttribute('data-dialogue-step') === '1') {
+    const observeRefugeeAcknowledgement = trace?.capturePrefix === 'first-refuge-exploitation'
+      && sequenceId === 'ate_first_refuge_watch';
+    const observeDisplacedAcknowledgement = DISPLACED_FAMILY_CONTEXT && trace?.capturePrefix === 'final-refuge-story'
+      && sequenceId === 'rep_event_displaced_family_demand';
+    if (PRODUCTION && (observeRefugeeAcknowledgement || observeDisplacedAcknowledgement)
+      && await dialogue.getAttribute('data-dialogue-step') === '1') {
       const segment = await dialogue.getAttribute('data-dialogue-segment');
       trace.refugeeAcknowledgementSegments ??= [];
       if (!trace.refugeeAcknowledgementSegments.some(entry => entry.segment === segment)) {
         const before = await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6'));
-        await page.waitForFunction(() => {
-          const dialogue = document.querySelector('.dialogue[data-dialogue-sequence="ate_first_refuge_watch"]');
+        await page.waitForFunction(id => {
+          const dialogue = document.querySelector(`.dialogue[data-dialogue-sequence="${id}"]`);
           const text = dialogue?.querySelector('.dialogue__text');
           return dialogue && !dialogue.classList.contains('dialogue--preparing-step')
             && getComputedStyle(dialogue).opacity === '1' && text?.dataset.finalText
             && text.querySelector('.dialogue__text-reveal')?.textContent === text.dataset.finalText;
-        }, null, { timeout: 10_000 });
+        }, sequenceId, { timeout: 10_000 });
         const observation = await dialogue.evaluate(element => {
           const text = element.querySelector('.dialogue__text'), box = element.querySelector('.dialogue__box');
           const rect = text.getBoundingClientRect(), boxRect = box.getBoundingClientRect();
@@ -286,7 +295,20 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
         if (observation.exploitedRefugees !== true || !observation.withinViewport || !observation.fitsBox || !observation.boxEnabled) {
           throw new Error(`Refugee acknowledgement unreadable or inconsistent: ${JSON.stringify(observation)}`);
         }
-        const presentation = await readPresentation(page); assertDialogueTableau(presentation, 'first-refuge acknowledgement');
+        const presentation = await readPresentation(page); assertDialogueTableau(presentation, `${sequenceId} acknowledgement`);
+        if (observeDisplacedAcknowledgement) {
+          await dialogue.locator('.dialogue__box').focus();
+          observation.motion = await dialogue.evaluate(element => ({
+            osReduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
+            gameReduced: window.__cin8App.state.settings.reducedGraphics,
+            focused: document.activeElement === element.querySelector('.dialogue__box'),
+            castAnimations: [...document.querySelectorAll('.narrative-cast__actor')].map(actor => getComputedStyle(actor).animationName),
+          }));
+          if (!observation.motion.focused || (OS_REDUCED_MOTION && (!observation.motion.osReduced
+            || observation.motion.gameReduced || observation.motion.castAnimations.some(name => name !== 'none')))) {
+            throw new Error(`Displaced acknowledgement motion/focus failed: ${JSON.stringify(observation)}`);
+          }
+        }
         const capture = `${trace.capturePrefix}-acknowledgement-${segment.replace('/', '-')}.png`;
         await page.screenshot({ path: resolve(OUTPUT_DIR, capture), fullPage: false });
         if (!before || before !== await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6'))) {
@@ -572,7 +594,7 @@ async function finishCurrentDialogue(page, trace) {
   const dialogue = page.locator('.dialogue').first();
   const sequenceId = await dialogue.getAttribute('data-dialogue-sequence');
   if (!sequenceId) throw new Error('Visible dialogue has no sequence id.');
-  await finishDialogue(page, sequenceId, 0, trace);
+  await finishDialogue(page, sequenceId, DISPLACED_FAMILY_CONTEXT && sequenceId === 'rep_event_displaced_family_demand' ? 1 : 0, trace);
 }
 
 async function waitForBoundaryOrCombat(page, trace) {
@@ -743,11 +765,12 @@ async function runNodeScenario(context, scenario) {
     if (PRODUCTION && scenario.id === 'witnesses-protected' && !trace.councilOpening) {
       throw new Error('Protected witnesses never displayed the council opening.');
     }
-    if (PRODUCTION && scenario.id === 'first-refuge-exploitation') {
+    if (PRODUCTION && (scenario.id === 'first-refuge-exploitation' || (DISPLACED_FAMILY_CONTEXT && scenario.id === 'final-refuge-story'))) {
       const segments = trace.refugeeAcknowledgementSegments ?? [];
       const normalized = text => text.replace(/\s+/g, ' ').trim();
-      if (!segments.length || normalized(segments.map(entry => entry.text).join(' ')) !== normalized(FIRST_REFUGE_EXPLOITATION_TEXT)) {
-        throw new Error(`Incomplete first-refuge acknowledgement: ${JSON.stringify(segments)}`);
+      const expected = DISPLACED_FAMILY_CONTEXT ? DISPLACED_FAMILY_EXPLOITATION_TEXT : FIRST_REFUGE_EXPLOITATION_TEXT;
+      if (!segments.length || normalized(segments.map(entry => entry.text).join(' ')) !== normalized(expected)) {
+        throw new Error(`Incomplete refugee acknowledgement: ${JSON.stringify(segments)}`);
       }
     }
     if (PRODUCTION && scenario.id === 'bois-clair-saved' && trace.villageTableau?.length !== 3) {
@@ -969,9 +992,15 @@ const nodeScenarios = [
   },
   {
     id: 'final-refuge-story', nodeId: 'lion-final-refuge', dialogueId: 'final_refuge', choiceIndex: 0,
-    flags: { missionSuccess: true, protectedWitnesses: true, shadowEvidence: true, shadowRevealed: true }, reputation: 60, seed: 6101,
-    assertTruth: (truth) => truth?.resolvedNodeIds.includes('lion-final-refuge'),
-    pickTruth: (truth) => ({ resolved: truth.resolvedNodeIds.includes('lion-final-refuge'), endingId: truth.endingId }),
+    flags: DISPLACED_FAMILY_CONTEXT
+      ? { lionMissionAccepted: true, lionMandateAdvance: true, exploitedRefugees: true, missionSuccess: true }
+      : { missionSuccess: true, protectedWitnesses: true, shadowEvidence: true, shadowRevealed: true },
+    reputation: 60, seed: DISPLACED_FAMILY_CONTEXT ? 26 : 6101,
+    assertTruth: (truth) => truth?.resolvedNodeIds.includes('lion-final-refuge')
+      && (!DISPLACED_FAMILY_CONTEXT || (truth.flags.exploitedRefugees === true && truth.flags.r5AcknowledgedDisplacedFamilies === true)),
+    pickTruth: (truth) => ({ resolved: truth.resolvedNodeIds.includes('lion-final-refuge'), endingId: truth.endingId,
+      ...(DISPLACED_FAMILY_CONTEXT ? { exploitedRefugees: truth.flags.exploitedRefugees,
+        acknowledgedDisplacedFamilies: truth.flags.r5AcknowledgedDisplacedFamilies } : {}) }),
   },
 ];
 
@@ -1016,6 +1045,7 @@ const browser = await chromium.launch({ headless: true });
 const productionServer = PRODUCTION ? await preview({ preview: { host: '127.0.0.1', port: PRODUCTION_PORT, strictPort: true } }) : null;
 const context = await browser.newContext({ viewport: VIEWPORT, reducedMotion: REDUCED_MOTION || OS_REDUCED_MOTION ? 'reduce' : 'no-preference' });
 const result = { schemaVersion: 1, viewport: VIEWPORT, reducedMotion: REDUCED_MOTION, osReducedMotion: OS_REDUCED_MOTION, blockedMedia: BLOCK_MEDIA,
+  finalRefugeContext: DISPLACED_FAMILY_CONTEXT ? 'exploited-refugees' : null,
   interruptPrelude: INTERRUPT_PRELUDE,
   method: PRODUCTION ? 'BUILT_PRODUCTION_REAL_GAMEAPP_V6_COMBAT_RESULT_FIXTURE_ONLY' : 'DEV_REAL_GAMEAPP_V6_QA_VICTORY', opening: [], nodes: [], finales: [], pass: false };
 let failed = false;

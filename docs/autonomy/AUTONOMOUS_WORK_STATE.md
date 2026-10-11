@@ -1,3 +1,31 @@
+## Scoped narrative publication checkpoint — 2026-10-11T04:27:25.914Z
+
+OwnedWIP a8a235cad89e2665207a457c362e3e4dc35f2996 on wip/rpgthreejs-auto-dev-90m-20261011T0415 published from5explicit reviewed paths. Source0/tests0/existingQA1/newQA0/proof0/workflow3/canonicaldoc1/inherited0;1browser/1reviewer2passes. Original activeTask/deferred exact continuation,40protected root histories and186oldjobIDs retained;187totaljobs. Parent/demo IN_PROGRESS. Final dev publication/parity/lock release follows guarded checks and is recorded in automationmemory.
+
+## Displaced-family scoped OS acceptance — 2026-10-11T04:26:06.433Z
+
+CURRENT FACT: ACCEPTED_SCOPED_FIXTURE_ORIGIN_DISPLACED_FAMILY_1366_OS_ONLY. ONE registered built1366x768 final-refuge-story/exploited-refugees fixture (seed26/reputation60) natively selects rep_event_displaced_family_demand. Complete two-page corrected text, one actor/one STATIC_TABLEAU, second-choice Enter acknowledgement preserving exploitation, zero combats/browser errors. OS=true/game=false,3static motion records/no active videos; unchanged existing final-refuge-story motion assertion. Stored-save bytes equal during each observation; resolved reload projection only. Root/guardian inspected4captures. Manually set focus proves focusability only; settled animation proves no cast animation at observation, not transition timing.
+
+Receipt is OWNER_TERMINAL_RECONCILIATION_NOT_WORKER with pidnull: registeredAt precedes external launch, endedAt is owner reconciliation after confirmed process exit/port5371 absence; runtime not independently measured. Result SHA256 b3c51e45879a3c440787c1c67dfae131233c76622d53a968327389b76c874e00; driver05851ac56ad5a8930a84d551b3acb5f9cc307c26777cb5cf0889bf900c2193f0; helper/source393/build9 unchanged.132unique current tests/types/contracts8slots/immutable/whitespace PASS; existing build/staging result reused. No runtime/canon/ID/V6/media/LOCKED change.
+
+Evidence retained ignored at tmp/cinematics/displaced-ack-os-0415/ and tmp/autonomy/narrative-0415/terminal-audit.json; no proof promotion before wider milestone. Parent NARRATIVE-CONTEXT-COHERENCE and original skills task IN_PROGRESS. Normal displaced, wider contextual OS desktop/intermediate, earned transaction/campaign, complete V6 reload, auto-focus/dynamic cast timing/full-demo OPEN; mobileLAST. Counts source0/tests0/existingQA1/newQA0/proof0/workflow3/canonicaldoc1/inherited0; one smoke/one guardian2passes.
+
+Exact nextAction: Read-only preflight/exclusive lock; inspect tmp/autonomy/narrative-0415/terminal-audit.json, matching displaced-ack-os-0415 receipt/result b3c51e45 and393physical sources/ninebuild/driver05851ac5/helper lineage before reuse. Do not repeat accepted1366 OS displaced-family or historical normal council/refuge cases. Next independent pendingNarrativeTask gate: ONE registered1366 normal final-refuge-story with CIN6D6_FINAL_REFUGE_CONTEXT=exploited-refugees, seed26/reputation60, unchanged reviewed driver, native event/second-choice Enter and matching acknowledgement/resume scope. At narrative desktop milestone complete wider contextual OS/desktop-intermediate coverage using a bounded justified existing static-tableau runner extension; run_cin6ea4_dialogue_qa uses DEV imports/reducedMotion:true/getState=createInitialState, run_cin671 uses DEV golden/opening, utility-consistency uses fixed tracked output/DEV server and manual owner hooks, so none currently certifies built contextual OStrue/gamefalse. Do not rewrite exhausted route systemMotionProof or count final-refuge OS as council/refuge OS. Original all-six-skills/Pursuit task and exact deferred keyboard preserved; no unchanged failed campaign/native sample retries or failedsave seeds; earned campaign/fullV6/AT/dynamic motion/balance/operator final/full-demo OPEN, mobileLAST.
+
+## Displaced-family smoke terminal — 2026-10-11T04:22:52.947Z
+
+ONE registered displaced-ack-os-0415 SUCCEEDED/NOT_ACCEPTED pending review;1366 OS=true/game=false,2 acknowledgement pages/native event/Enter choice/zero combat-errors. Root inspected4captures;393physicalsources/ninebuild unchanged. Existing reload projection only; manual-focus focusability only; owner terminal receipt timing explicit.
+
+Exact nextAction: Review matching displaced-ack-os-0415 terminal audit and selected two acknowledgement/choice/Journey captures with reused guardian. Accept only fixture-origin1366 OS-only scoped observation, preserve normal/wider contextual OS/earned/fullV6 and full-demo gaps; then continue pending narrative desktop milestone without repeating accepted smoke.
+
+## Displaced-family contextual continuation — 2026-10-11T04:19:21.317Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T0415; clean preflight/live dev parity6b1920e; no inherited WIP. Existing factual correction awaits displaced-family browser observation. Prior accepted council/refuge cases not rerun;393physical sources/ninebuild verified and reused. Main skills task remains IN_PROGRESS; deferred work preserved; mobileLAST.
+
+Runner reason: Existing final-refuge-story already verifies built static-only OS without the exhausted video-attempt rewrite; add explicit fixture context seed26 and reuse paginated acknowledgement observer for the corrected displaced-family text. Legacy static runners hardcode reducedMotion=true/initial state/DEV and cannot observe native contextual post-node selection. No new QA tool, no runtime or event injection beyond declared initial fixture.
+
+Exact nextAction: Review bounded existing-driver diff with guardian; launch ONE registered1366 OS-only final-refuge-story/exploited-refugees seed26. Observe native post-story displaced-family selection and all displayed acknowledgement segments, choice Enter, stored observation equality, existing resolved reload projection and unchanged static-only OS assertion. If missing event/assertion, retain NOT_ACCEPTED; no exhausted motion assertion rewrite. Preserve original skills/deferred and mobileLAST.
+
 ## Narrative checkpoint published — 2026-10-11T04:12:12.762Z
 
 8ab8c911b2481db07945490b417f898b391e368d verified local/tracking/live origin/dev; main unchanged. First-refuge exact execution still matches aftercommit;393 physical sources/ninebuild retained. Council historical driver differs after narrow runner extension, scoped acceptance remains historical. Final metadata publication/WIP retirement/lock release follows guarded checks; automation memory records final SHA.
@@ -551,6 +579,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - salvation-t1-0001: FAILED; port 5368; receipt `tmp/demo/salvation-t1-0001/qa-job.json`; NOT_ACCEPTED
 - council-normal-0055: SUCCEEDED; port 5369; receipt `tmp/cinematics/council-normal-0055/qa-job.json`; NOT_ACCEPTED
 - refugee-ack-0400: SUCCEEDED; port 5370; receipt `tmp/cinematics/refugee-ack-0400/qa-job.json`; NOT_ACCEPTED
+- displaced-ack-os-0415: SUCCEEDED; port 5371; receipt `tmp/cinematics/displaced-ack-os-0415/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

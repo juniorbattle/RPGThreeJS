@@ -1,62 +1,59 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-11T04:01:29.2824277Z",
-  "runEndedAt": "2026-10-11T04:12:12.762Z",
+  "runStartedAt": "2026-10-11T04:17:09.8414143Z",
+  "runEndedAt": "2026-10-11T04:27:25.914Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "INDEPENDENT_NARRATIVE_REMAINING_GATES",
-  "activeSubtask": "Council and first-refuge acknowledgements accepted normal1366 scoped; displaced-family/static-only OS and skills continuation open",
+  "activeSubtask": "Displaced-family acknowledgement accepted scoped1366 OS-only; normal/wider contextual desktop narrative and skills gates open",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "8ab8c911b2481db07945490b417f898b391e368d",
-  "lastPushedCommit": "8ab8c911b2481db07945490b417f898b391e368d",
+  "lastKnownGoodCommit": "6b1920e7cea3c5585b0651ecee71aca2f78792b3",
+  "lastPushedCommit": "6b1920e7cea3c5585b0651ecee71aca2f78792b3",
   "completedThisRun": [
-    "Recovered0055 only after >105min heartbeat, terminal usage-limit owner, positive process/listener absence and liveorigin/dev parity; inherited two workflow paths preserved in published explicit WIP",
-    "393 physical sources/prior council result digest verified; accepted runs not repeated",
-    "Council0055 completed receipt/source/build/captures reused without rerun; guardian PASS scoped with saved-truth projection reload correction",
-    "Existing production route runner extended59lines for canonical first-refuge hub leave and paginated text; no product defect/source change/new QA tool",
-    "ONE refugee-ack-0400 production smoke SUCCEEDED;2displayed segments/exact authored text/zero combat/errors/native hub Enter/Journey; root+guardian inspect four promoted captures",
-    "114unique current source tests/TypeScript/validator/immutable protected gates PASS; build reused393source/ninebuild hashes unchanged",
-    "Displaced-family acknowledgement and static-only OS runner limitations recorded; exact skills/deferred histories and all prior QA IDs preserved",
-    "Normal dev checkpoint8ab8c91 published and verified live parity/main unchanged; first-refuge sameExecution remains true aftercommit; council historical driver differs explicitly;393physicalsource unchanged"
+    "Clean read-only preflight; no lock, no associated QA/build/Git, live dev parity6b1920e/main00b96f1; atomically acquired new lock; no inherited WIP",
+    "393physical source files and ninebuild digests verified; prior scoped council/refuge receipts preserved without rerun",
+    "Extended existing runner with declared final-refuge exploitation context and paginated observer; no runtime/newQA/media changes; exhausted motion assertion unchanged",
+    "ONE registered1366 OStrue/gamefalse smoke SUCCEEDED; native displaced-family selection, complete2page acknowledgement and existing second-choice Enter; zero combat/errors",
+    "Root and reused guardian inspected4captures; scoped fixture-origin acceptance only; owner manual receipt timing explicit; no tracked proof promotion"
   ],
   "filesChanged": [
+    "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+    "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
-    "docs/autonomy/handoffs/2026-10-11T0400Z-codex-narrative-context.md",
-    "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
-    "docs/reports/narrative-context-20261011-0400/checks.json",
-    "docs/reports/narrative-context-20261011-0400/EVIDENCE.md",
-    "docs/reports/narrative-context-20261011-0400/council-opening.png",
-    "docs/reports/narrative-context-20261011-0400/witness-choice.png",
-    "docs/reports/narrative-context-20261011-0400/refugee-acknowledgement-1.png",
-    "docs/reports/narrative-context-20261011-0400/refugee-acknowledgement-2.png"
+    "docs/autonomy/handoffs/2026-10-11T0415Z-codex-displaced-family.md"
   ],
   "testsRun": [
-    "114 unique current tests in5source files PASS; tmp excluded",
+    "132 current unique tests in6source files PASS (71+61; tmp excluded)",
     "TypeScript --noEmit PASS",
-    "8contracts8slots validator and immutable/protected gates PASS",
-    "Existing build reused9physical hashes;393 source files unchanged",
-    "ONE registered normal1366 first-refuge smoke SUCCEEDED;2segments/zero combats/errors; saved observation equality and resume projection",
-    "Narrative staging validator exit0/oktrue;282 runtime reachable/planned,0missing/unknown;2dead/unreachable legacy steps reported without acceptance expansion",
-    "Existing dist eightMP4 count verified; no rebuild/media change"
+    "8contracts8slots validator, immutable/workingtree gates, driver syntax and whitespace PASS",
+    "393physical sources and ninebuild verified; build reused",
+    "ONE production displaced-ack-os-0415 smoke SUCCEEDED, matching receipt/current execution/hash; scoped review accepted; no normal/wider/full-demo claim",
+    "Unchanged-source narrative staging validation reused from0400: oktrue/282planned/0missing-unknown/2legacy unreachable; ninebuild/eightMP4 retained"
   ],
   "testsPassed": [
-    "114 unique current tests in5source files PASS; tmp excluded",
+    "132 current unique tests in6source files PASS (71+61; tmp excluded)",
     "TypeScript --noEmit PASS",
-    "8contracts8slots validator and immutable/protected gates PASS",
-    "Existing build reused9physical hashes;393 source files unchanged",
-    "ONE registered normal1366 first-refuge smoke SUCCEEDED;2segments/zero combats/errors; saved observation equality and resume projection",
-    "Narrative staging validator exit0/oktrue;282 runtime reachable/planned,0missing/unknown;2dead/unreachable legacy steps reported without acceptance expansion",
-    "Existing dist eightMP4 count verified; no rebuild/media change"
+    "8contracts8slots validator, immutable/workingtree gates, driver syntax and whitespace PASS",
+    "393physical sources and ninebuild verified; build reused",
+    "ONE production displaced-ack-os-0415 smoke SUCCEEDED, matching receipt/current execution/hash; scoped review accepted; no normal/wider/full-demo claim",
+    "Unchanged-source narrative staging validation reused from0400: oktrue/282planned/0missing-unknown/2legacy unreachable; ninebuild/eightMP4 retained"
   ],
   "testsRemaining": [
     "Delayed focus readiness and long-frame behavior source-reviewed, not separately tested",
     "V6 origin and injected combat result fixtures; no earned campaign or balance acceptance",
     "Operator manual visual acceptance, broader scenery and full demo remain open",
-    "Game-only checkpoint reduction; stationary/backward and covered-swap/departure wheelphase; general OS camera comfort remain OPEN"
+    "Game-only checkpoint reduction; stationary/backward and covered-swap/departure wheelphase; general OS camera comfort remain OPEN",
+    "normal displaced-family context",
+    "wider desktop/intermediate contextual OS matrix",
+    "mobileLAST",
+    "earned transaction/campaign",
+    "full V6 reload equality",
+    "automatic focus restoration",
+    "dynamic cast transition timing",
+    "full demo"
   ],
   "blockers": [
-    "Narrative OS smoke: static-only council rejected by unchanged approved-video-attempt assertion; one correction exhausted, both outputs NOT_ACCEPTED. Normal council and static-only OS milestone proof remain open.",
+    "Narrative: normal council and first-refuge accepted historical scoped1366; displaced-family accepted scoped1366 OS-only. Historical council OS approved-video-attempt assertion exhausted; normal displaced/wider contextual OS matrix remains OPEN.",
     "SCENE-TRANSITION-COPY: authored ATE captions source and six-case scoped proof PASS; full static-only OS-shadow proof remains blocked by existing video-attempt assertion; no repeat or weakening.",
     "ENVIRONMENT-NARRATIVE-COHERENCE BLOCKED_ASSET: Bois-Clair night-watch says night, approved burning plate is bright sunset; no approved same-location night replacement. Preserve text/masters.",
     "Fresh campaign-0514-first-refuge FAILED at15min battle deadline after19nativeactions; no earnedfirstrefuge/fullV6 acceptance; reached iframe keyboard assertions diagnostic only",
@@ -74,10 +71,10 @@
     "Shared positive checkpoint braking desktop normal/OS alternatives accepted scoped1806; full phase/readiness/game-only/camera comfort/manual broader scenery OPEN",
     "Shadow gait/reduced-miss proofs remain scoped; native T1 forest_patrol victory/return/tempLoot/focus/precombatV6 now accepted1366normal; full-tail/ground, other contexts, defeat/cancel/reentry/reduced/AT still open",
     "Other campaign branches/endings, Stage/VFX/AT/desktop accessibility",
-    "Council/refugees/static-only OS narrative acceptance and approved Bois-Clair night plate",
+    "Normal displaced-family acknowledgement and wider contextual static-only OS; earned narrative/campaign and approved Bois-Clair night plate remain OPEN",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Read-only preflight/exclusive lock; inspect docs/reports/narrative-context-20261011-0400/checks.json and manual terminal receipts council-normal-0055/refugee-ack-0400, compare393physical sources/ninebuild plus each recorded driver/helper/parameters before reuse; do not repeat accepted normal1366 cases. Continue independent pendingNarrativeTask.nextAction for displaced-family exploitation acknowledgement and wider static-only OS. Existing run_cin6ea4_dialogue_qa hardcodes reducedMotion:true/getState=createInitialState and DEV imports; run_cin671_browser_qa targets DEV golden/static opening and only1920/1366, neither certifies contextual OS-only explicit game=false built production. Do not rewrite exhausted route video-attempt assertion or create unbounded QA instrumentation. Main skills task remains IN_PROGRESS; retain all prior/deferred exact continuations, proven native Salvation sample and FAILED campaigns; never seed failed saves. Broader skills/Pursuit/campaign/StageVFX/AT/balance/operator/manual/full-demo OPEN; mobileLAST. Source-only selector candidate tmp/autonomy/narrative-0400/displaced-selection-candidate.json seed26 selects existing displaced-family-demand at lion-final-refuge before story effects; verify native post-story selection, never force event or count source analysis as browser acceptance.",
+  "nextAction": "Read-only preflight/exclusive lock; inspect tmp/autonomy/narrative-0415/terminal-audit.json, matching displaced-ack-os-0415 receipt/result b3c51e45 and393physical sources/ninebuild/driver05851ac5/helper lineage before reuse. Do not repeat accepted1366 OS displaced-family or historical normal council/refuge cases. Next independent pendingNarrativeTask gate: ONE registered1366 normal final-refuge-story with CIN6D6_FINAL_REFUGE_CONTEXT=exploited-refugees, seed26/reputation60, unchanged reviewed driver, native event/second-choice Enter and matching acknowledgement/resume scope. At narrative desktop milestone complete wider contextual OS/desktop-intermediate coverage using a bounded justified existing static-tableau runner extension; run_cin6ea4_dialogue_qa uses DEV imports/reducedMotion:true/getState=createInitialState, run_cin671 uses DEV golden/opening, utility-consistency uses fixed tracked output/DEV server and manual owner hooks, so none currently certifies built contextual OStrue/gamefalse. Do not rewrite exhausted route systemMotionProof or count final-refuge OS as council/refuge OS. Original all-six-skills/Pursuit task and exact deferred keyboard preserved; no unchanged failed campaign/native sample retries or failedsave seeds; earned campaign/fullV6/AT/dynamic motion/balance/operator final/full-demo OPEN, mobileLAST.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -86,15 +83,35 @@
     "TRAVERSAL-PURSUIT-THREAT: TEN_MAPPINGS_IMPLEMENTED; T0_DESKTOP_FIXTURE_CONTACT_MISS_RETURN_PASS; ARTICULATED_GAIT_AND_FULL_ACCEPTANCE_OPEN",
     "TRAVERSAL-ROAD-ELEMENTS: COMPLETE_SCOPED_PRESENTATION",
     "PRE-JUDGEMENT-CAMPFIRE: COMPLETE_SCOPED_PRESENTATION",
-    "NARRATIVE-CONTEXT-COHERENCE: SOURCE_CHECKPOINT; BROWSER_GATE_OPEN_STATIC_OS_HARNESS",
+    "NARRATIVE-CONTEXT-COHERENCE: SOURCE_CHECKPOINT; council/refuge normal1366 and displaced-family OS1366 scoped acceptance; normal displaced/wider contextual OS/earned gates OPEN",
     "STATIC-TABLEAU-STAGING-POLISH: COMPLETE_SCOPED_RUNTIME; exact old checkpoint and recovery snapshot live remote verified run0514",
     "SCENE-TRANSITION-COPY: SCOPED_RUNTIME_PASS; BLOCKED_STATIC_OS_SHADOW",
     "ENVIRONMENT-NARRATIVE-COHERENCE: BLOCKED_ASSET_BOIS_CLAIR_NIGHT; bounded audit complete",
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
   "creditStatus": "AVAILABLE_THIS_RUN",
-  "contractComplianceStatus": "PASS_SCOPED_NARRATIVE_NORMAL1366_SET1.1.0; wider narrative and demo criteria OPEN",
-  "commitReferenceScope": "Approved checkpoint79eceda verified on origin/dev. Final workflow closure commit SHA and verified owned-lock release recorded in external automation memory. No new product or acceptance claim.",
+  "contractComplianceStatus": {
+    "contractSet": "1.1.0",
+    "immutableBaseline": "d7ca28aed5c377ffedb03202f6364b7a947d1096",
+    "lockedRulesChanged": false,
+    "scope": "ACCEPTED_SCOPED_FIXTURE_ORIGIN_DISPLACED_FAMILY_1366_OS_ONLY",
+    "matrix": {
+      "GAME_CONSTITUTION": "PASS_AUTHORITY_UNCHANGED",
+      "ART_DIRECTION": "N/A",
+      "CHARACTERS": "N/A",
+      "ENVIRONMENTS": "N/A_COHERENCE_OUTSIDE_SCOPE",
+      "NARRATIVE_CAMPAIGN": "PASS_NATIVE_SELECTION_EXISTING_TEXT_CHOICE",
+      "NARRATIVE_PRESENTATION": "PASS_SINGLE_STATIC_TABLEAU_ONE_EVENT_ACTOR",
+      "TRAVERSAL": "N/A",
+      "COMBAT": "N/A_ZERO_COMBATS",
+      "SAVE": "PASS_OBSERVATION_BYTES_RELOAD_PROJECTION_ONLY",
+      "UI_ACCESSIBILITY": "PASS_SCOPED_FOCUSABILITY_ENTER_SETTLED_OS1366",
+      "QA_EVIDENCE": "PASS_SCOPED_MANUAL_RECEIPT_INSPECTED_CAPTURES",
+      "REPOSITORY_GOVERNANCE": "PASS_OWNED_LOCK_EXPLICIT_PATHS"
+    },
+    "parentTaskComplete": false
+  },
+  "commitReferenceScope": "Published baseline/checkpoint references; final dev metadata SHA/parity/WIP retirement/lock release recorded in automationmemory after verification",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -195,25 +212,28 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261011T0400",
+  "runId": "rpgthreejs-auto-dev-90m-20261011T0415",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-11T04:12:12.762Z",
+  "lastHeartbeat": "2026-10-11T04:27:25.914Z",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0001",
-    "sha": "8982d52529d53636340e1f724176cc42020b92ea",
-    "status": "COVERED_WORKFLOW_ONLY_PENDING_LOCAL_RETIREMENT",
+    "sha": "a8a235cad89e2665207a457c362e3e4dc35f2996",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0415",
+    "at": "2026-10-11T04:26:40.1059993Z",
+    "status": "GREEN",
     "dirtyFiles": [
+      "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+      "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-11T0001Z-codex-native-skills.md"
+      "docs/autonomy/handoffs/2026-10-11T0415Z-codex-displaced-family.md"
     ],
-    "lastSnapshotAt": "2026-10-11T00:50:58.4256851+00:00"
+    "lastGreenCheck": "132tests/types/contracts8slots/immutable/whitespace; one smoke scoped accepted by root/guardian;5reviewed paths snapshot published"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261011T0400",
+    "runId": "rpgthreejs-auto-dev-90m-20261011T0415",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-11T04:12:12.762Z",
-    "status": "CLOSING_PUBLISHED_SCOPED_NARRATIVE_CHECKPOINT",
+    "lastHeartbeat": "2026-10-11T04:27:25.914Z",
+    "status": "SCOPED_NARRATIVE_ACCEPTED_PENDING_DEV_PUBLICATION",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -20154,32 +20174,126 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "displaced-ack-os-0415",
+        "runId": "rpgthreejs-auto-dev-90m-20261011T0415",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-11T04:20:55.519Z",
+        "pid": null,
+        "port": 5371,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "scenario": "final-refuge-story",
+          "finalRefugeContext": "exploited-refugees",
+          "viewport": "1366x768",
+          "production": true,
+          "osReducedMotion": true,
+          "gameReducedMotion": false,
+          "seed": 26,
+          "reputation": 60,
+          "flags": {
+            "lionMissionAccepted": true,
+            "lionMandateAdvance": true,
+            "exploitedRefugees": true,
+            "missionSuccess": true
+          },
+          "method": "fixture-origin final-refuge GameApp; native post-story event selection; existing second-choice Enter; zero combat expected"
+        },
+        "requiredAssertions": [
+          "Native post-story selection displays rep_event_displaced_family_demand with complete authored exploitation acknowledgement across all segments",
+          "Tracked exploitedRefugees true, oneSTATIC_TABLEAU/1to4actors, settled text fits viewport/box and box focusable",
+          "Existing second choice Enter acknowledges without erasing exploitation; final-refuge resolved and existing reload projection equal",
+          "Complete stored save bytes unchanged during each observation; unchanged final-refuge-story static-only OS assertion os=true/game=false/no active video",
+          "Zero combat and clean browser diagnostics; no earned campaign/fullV6 or other context acceptance"
+        ],
+        "output": "tmp/cinematics/displaced-ack-os-0415",
+        "receiptPath": "tmp/cinematics/displaced-ack-os-0415/qa-job.json",
+        "provenance": {
+          "gitHead": "6b1920e7cea3c5585b0651ecee71aca2f78792b3",
+          "sourceTree": "f5d2d917f1bc2bfce472dcab68dd638337069e58",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "05851ac56ad5a8930a84d551b3acb5f9cc307c26777cb5cf0889bf900c2193f0"
+          },
+          "inputs": [],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/game-EarLSl_Z.js",
+              "sha256": "e5b669f0e93f991ece7d2efd533df955f96cb4d46933beb1fe1c530bcab6b0cc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1ee0e1b79e25dfa25d3d716965c86b49b6687499eae7f29efc6ab0eef12a0aaf"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-11T04:20:55.519Z",
+        "endedAt": "2026-10-11T04:22:52.947Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/displaced-ack-os-0415/results.json",
+        "resultSha256": "b3c51e45879a3c440787c1c67dfae131233c76622d53a968327389b76c874e00",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
         "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": true
       }
     ],
     "wip": {
-      "sha": "7c52e7cf5dc69974972c75e42c634e5fefbbd8d3",
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0400",
+      "sha": "a8a235cad89e2665207a457c362e3e4dc35f2996",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0415",
+      "at": "2026-10-11T04:26:40.1059993Z",
       "status": "GREEN",
-      "at": "2026-10-11T04:09:32.0414098Z",
       "dirtyFiles": [
+        "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+        "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
-        "docs/autonomy/handoffs/2026-10-11T0400Z-codex-narrative-context.md",
-        "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
-        "docs/reports/narrative-context-20261011-0400/checks.json",
-        "docs/reports/narrative-context-20261011-0400/EVIDENCE.md",
-        "docs/reports/narrative-context-20261011-0400/council-opening.png",
-        "docs/reports/narrative-context-20261011-0400/witness-choice.png",
-        "docs/reports/narrative-context-20261011-0400/refugee-acknowledgement-1.png",
-        "docs/reports/narrative-context-20261011-0400/refugee-acknowledgement-2.png"
+        "docs/autonomy/handoffs/2026-10-11T0415Z-codex-displaced-family.md"
       ],
-      "lastGreenCheck": "114currenttests/types/contracts/staging/source-buildphysical/one smoke scoped PASS; exact reviewed11paths snapshot published"
+      "lastGreenCheck": "132tests/types/contracts8slots/immutable/whitespace; one smoke scoped accepted by root/guardian;5reviewed paths snapshot published"
     },
-    "nextAction": "Read-only preflight/exclusive lock; inspect docs/reports/narrative-context-20261011-0400/checks.json and manual terminal receipts council-normal-0055/refugee-ack-0400, compare393physical sources/ninebuild plus each recorded driver/helper/parameters before reuse; do not repeat accepted normal1366 cases. Continue independent pendingNarrativeTask.nextAction for displaced-family exploitation acknowledgement and wider static-only OS. Existing run_cin6ea4_dialogue_qa hardcodes reducedMotion:true/getState=createInitialState and DEV imports; run_cin671_browser_qa targets DEV golden/static opening and only1920/1366, neither certifies contextual OS-only explicit game=false built production. Do not rewrite exhausted route video-attempt assertion or create unbounded QA instrumentation. Main skills task remains IN_PROGRESS; retain all prior/deferred exact continuations, proven native Salvation sample and FAILED campaigns; never seed failed saves. Broader skills/Pursuit/campaign/StageVFX/AT/balance/operator/manual/full-demo OPEN; mobileLAST. Source-only selector candidate tmp/autonomy/narrative-0400/displaced-selection-candidate.json seed26 selects existing displaced-family-demand at lion-final-refuge before story effects; verify native post-story selection, never force event or count source analysis as browser acceptance.",
+    "nextAction": "Read-only preflight/exclusive lock; inspect tmp/autonomy/narrative-0415/terminal-audit.json, matching displaced-ack-os-0415 receipt/result b3c51e45 and393physical sources/ninebuild/driver05851ac5/helper lineage before reuse. Do not repeat accepted1366 OS displaced-family or historical normal council/refuge cases. Next independent pendingNarrativeTask gate: ONE registered1366 normal final-refuge-story with CIN6D6_FINAL_REFUGE_CONTEXT=exploited-refugees, seed26/reputation60, unchanged reviewed driver, native event/second-choice Enter and matching acknowledgement/resume scope. At narrative desktop milestone complete wider contextual OS/desktop-intermediate coverage using a bounded justified existing static-tableau runner extension; run_cin6ea4_dialogue_qa uses DEV imports/reducedMotion:true/getState=createInitialState, run_cin671 uses DEV golden/opening, utility-consistency uses fixed tracked output/DEV server and manual owner hooks, so none currently certifies built contextual OStrue/gamefalse. Do not rewrite exhausted route systemMotionProof or count final-refuge OS as council/refuge OS. Original all-six-skills/Pursuit task and exact deferred keyboard preserved; no unchanged failed campaign/native sample retries or failedsave seeds; earned campaign/fullV6/AT/dynamic motion/balance/operator final/full-demo OPEN, mobileLAST.",
     "runMetrics": {
       "existingQaFilesModified": 1,
       "harnessCorrections": 1,
@@ -20209,8 +20323,8 @@
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
       "sourceExecutionUnchangedAfterCommit": true
     },
-    "runStartedAt": "2026-10-10T19:22:22.5423147-04:00",
-    "runEndedAt": "2026-10-10T23:59:51.6498157+00:00",
+    "runStartedAt": "2026-10-11T04:17:09.8414143Z",
+    "runEndedAt": "2026-10-11T04:27:25.914Z",
     "writerStopped": true,
     "metadataPublication": {
       "status": "RESOLVED_BY_OPERATOR_APPROVAL",
@@ -21786,6 +21900,129 @@
         "physicalSourceFilesMatch": 393,
         "finalMetadata": "Final SHA/parity/ownedWIPcoverage-retirement/lock release in automationmemory after guarded checks"
       }
+    },
+    "narrative0415": {
+      "startedAt": "2026-10-11T04:19:21.317Z",
+      "baseline": "6b1920e7cea3c5585b0651ecee71aca2f78792b3",
+      "previousNextAction": "Read-only preflight/exclusive lock; inspect docs/reports/narrative-context-20261011-0400/checks.json and manual terminal receipts council-normal-0055/refugee-ack-0400, compare393physical sources/ninebuild plus each recorded driver/helper/parameters before reuse; do not repeat accepted normal1366 cases. Continue independent pendingNarrativeTask.nextAction for displaced-family exploitation acknowledgement and wider static-only OS. Existing run_cin6ea4_dialogue_qa hardcodes reducedMotion:true/getState=createInitialState and DEV imports; run_cin671_browser_qa targets DEV golden/static opening and only1920/1366, neither certifies contextual OS-only explicit game=false built production. Do not rewrite exhausted route video-attempt assertion or create unbounded QA instrumentation. Main skills task remains IN_PROGRESS; retain all prior/deferred exact continuations, proven native Salvation sample and FAILED campaigns; never seed failed saves. Broader skills/Pursuit/campaign/StageVFX/AT/balance/operator/manual/full-demo OPEN; mobileLAST. Source-only selector candidate tmp/autonomy/narrative-0400/displaced-selection-candidate.json seed26 selects existing displaced-family-demand at lion-final-refuge before story effects; verify native post-story selection, never force event or count source analysis as browser acceptance.",
+      "previousPendingNarrativeTask": {
+        "task": "NARRATIVE-CONTEXT-COHERENCE",
+        "status": "SOURCE_REVIEW_PASS_COUNCIL_FIRST_REFUGE_NORMAL_SCOPED_REMAINING_GATES_OPEN",
+        "record": "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
+        "blocker": "One correction exhausted; static-only OS scenario fails unchanged approved-video-attempt assertion",
+        "nextAction": "Inspect0400 scoped proof first; do not repeat compatible council0055 or first-refuge0400 normal1366. Observe rep_event_displaced_family_demand exploitation acknowledgement via existing runner with canonical eligible selection (lion-village-choice or lion-final-refuge), recorded fixture/seed and unchanged facts. Inspect existing static-tableau runners for OS-only explicit game=false and real context coverage before wider desktop milestone; legacy route systemMotionProof exhausted/no rewrite. If no runner covers built/static-only claim, document exact existing-runner gaps before bounded justified extension; never count game+OS static harness as OS-only production. Preserve active skills/deferred keyboard/mobileLAST."
+      },
+      "sourceDefect": "NONE_NEW_DEMONSTRATED; existing factual correction needs scoped production observation",
+      "reuseAudit": "tmp/autonomy/narrative-0415/reuse-audit.json",
+      "runnerReason": "Existing final-refuge-story already verifies built static-only OS without the exhausted video-attempt rewrite; add explicit fixture context seed26 and reuse paginated acknowledgement observer for the corrected displaced-family text. Legacy static runners hardcode reducedMotion=true/initial state/DEV and cannot observe native contextual post-node selection. No new QA tool, no runtime or event injection beyond declared initial fixture.",
+      "harnessCorrectionsAfterFailure": 0,
+      "terminal": {
+        "status": "SUCCEEDED",
+        "resultSha256": "b3c51e45879a3c440787c1c67dfae131233c76622d53a968327389b76c874e00",
+        "audit": "tmp/autonomy/narrative-0415/terminal-audit.json",
+        "acceptance": "NOT_ACCEPTED_PENDING_SCOPED_REVIEW"
+      },
+      "guardian": {
+        "passes": 2,
+        "sourceVerdict": "PASS_NO_CORRECTION",
+        "evidenceVerdict": "ACCEPTED_SCOPED_FIXTURE_ORIGIN_DISPLACED_FAMILY_1366_OS_ONLY",
+        "record": "tmp/autonomy/narrative-0415/guardian-review.json"
+      },
+      "rootInspectedCaptures": [
+        "final-refuge-story-acknowledgement-1-2.png",
+        "final-refuge-story-acknowledgement-2-2.png",
+        "final-refuge-story-rep_event_displaced_family_demand-1-choices.png",
+        "final-refuge-story.png"
+      ],
+      "previousStatusFields": {
+        "blockers": [
+          "Narrative OS smoke: static-only council rejected by unchanged approved-video-attempt assertion; one correction exhausted, both outputs NOT_ACCEPTED. Normal council and static-only OS milestone proof remain open.",
+          "SCENE-TRANSITION-COPY: authored ATE captions source and six-case scoped proof PASS; full static-only OS-shadow proof remains blocked by existing video-attempt assertion; no repeat or weakening.",
+          "ENVIRONMENT-NARRATIVE-COHERENCE BLOCKED_ASSET: Bois-Clair night-watch says night, approved burning plate is bright sunset; no approved same-location night replacement. Preserve text/masters.",
+          "Fresh campaign-0514-first-refuge FAILED at15min battle deadline after19nativeactions; no earnedfirstrefuge/fullV6 acceptance; reached iframe keyboard assertions diagnostic only",
+          "Broad accessibility remains open: compact44px/ordinary-flat-motion have scoped accepted evidence, but spokenAT/enabledskills/automaticfocusrestore/390framing/allactionmotion remain unverified",
+          "Cast smoke2311 FAILED: final OS interval lacks3moving samples; no retained raw probe. Browser reduction/heal/AP acceptance remains open, no retry/weakening.",
+          "Ending2311 FAILED_NOT_ACCEPTED: bounded131actions, three damage alliesKO, Marian alone; support-only crosier pilot excludes native foe actions. Review pilot fallback before new QA; no balance or terminalV6 conclusion. Prior2104 interrupted output remains historical NOT_ACCEPTED.",
+          "Ending2311 FAILED_NOT_ACCEPTED: bounded131actions, three damage alliesKO, Marian alone; support-only crosier pilot excludes native foe actions. Six-line lone-survivor native fallback is source-reviewed checkpoint only, verify in new registered QA; no balance or terminalV6 conclusion. Prior2104 interrupted output remains historical NOT_ACCEPTED.",
+          "campaign-keyboard-1655: native opening defeat blocks intended parent-return/first-refuge proof; pilot strategy versus gameplay reliability unresolved, not established product regression",
+          "1748/1856: checkpoint perception and parent settled-focus visuals OPEN; Pursuit mappings implemented/scoped T0 fixture verified, articulated gait and broader browser acceptance OPEN; mobile final"
+        ],
+        "remainingWork": [
+          "Native forest_ambush variant and overall beginner balance; KestrelKO in tested wolf_pack",
+          "Native exactly2to0 Salvation and uncapped40percent current sample verified0001; coupled second-refuge continuation/Pursuitreturn/V6 target FAILED/NOT_ACCEPTED; broader skills still OPEN",
+          "Parent focus settled visible proof: immediate capture during fade, numeric focus/owner/autosave only",
+          "Shared positive checkpoint braking desktop normal/OS alternatives accepted scoped1806; full phase/readiness/game-only/camera comfort/manual broader scenery OPEN",
+          "Shadow gait/reduced-miss proofs remain scoped; native T1 forest_patrol victory/return/tempLoot/focus/precombatV6 now accepted1366normal; full-tail/ground, other contexts, defeat/cancel/reentry/reduced/AT still open",
+          "Other campaign branches/endings, Stage/VFX/AT/desktop accessibility",
+          "Council/refugees/static-only OS narrative acceptance and approved Bois-Clair night plate",
+          "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
+        ],
+        "testsRemaining": [
+          "Delayed focus readiness and long-frame behavior source-reviewed, not separately tested",
+          "V6 origin and injected combat result fixtures; no earned campaign or balance acceptance",
+          "Operator manual visual acceptance, broader scenery and full demo remain open",
+          "Game-only checkpoint reduction; stationary/backward and covered-swap/departure wheelphase; general OS camera comfort remain OPEN"
+        ],
+        "taskQueue": [
+          "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
+          "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
+          "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
+          "TRAVERSAL-MOTION-POLISH: COMPLETE_SCOPED_PRESENTATION",
+          "TRAVERSAL-PURSUIT-THREAT: TEN_MAPPINGS_IMPLEMENTED; T0_DESKTOP_FIXTURE_CONTACT_MISS_RETURN_PASS; ARTICULATED_GAIT_AND_FULL_ACCEPTANCE_OPEN",
+          "TRAVERSAL-ROAD-ELEMENTS: COMPLETE_SCOPED_PRESENTATION",
+          "PRE-JUDGEMENT-CAMPFIRE: COMPLETE_SCOPED_PRESENTATION",
+          "NARRATIVE-CONTEXT-COHERENCE: SOURCE_CHECKPOINT; BROWSER_GATE_OPEN_STATIC_OS_HARNESS",
+          "STATIC-TABLEAU-STAGING-POLISH: COMPLETE_SCOPED_RUNTIME; exact old checkpoint and recovery snapshot live remote verified run0514",
+          "SCENE-TRANSITION-COPY: SCOPED_RUNTIME_PASS; BLOCKED_STATIC_OS_SHADOW",
+          "ENVIRONMENT-NARRATIVE-COHERENCE: BLOCKED_ASSET_BOIS_CLAIR_NIGHT; bounded audit complete",
+          "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
+        ]
+      },
+      "disposition": "ACCEPTED_SCOPED_FIXTURE_ORIGIN_DISPLACED_FAMILY_1366_OS_ONLY",
+      "compliance": {
+        "GAME_CONSTITUTION": "PASS_AUTHORITY_UNCHANGED",
+        "ART_DIRECTION": "N/A",
+        "CHARACTERS": "N/A",
+        "ENVIRONMENTS": "N/A_COHERENCE_OUTSIDE_SCOPE",
+        "NARRATIVE_CAMPAIGN": "PASS_NATIVE_SELECTION_EXISTING_TEXT_CHOICE",
+        "NARRATIVE_PRESENTATION": "PASS_SINGLE_STATIC_TABLEAU_ONE_EVENT_ACTOR",
+        "TRAVERSAL": "N/A",
+        "COMBAT": "N/A_ZERO_COMBATS",
+        "SAVE": "PASS_OBSERVATION_BYTES_RELOAD_PROJECTION_ONLY",
+        "UI_ACCESSIBILITY": "PASS_SCOPED_FOCUSABILITY_ENTER_SETTLED_OS1366",
+        "QA_EVIDENCE": "PASS_SCOPED_MANUAL_RECEIPT_INSPECTED_CAPTURES",
+        "REPOSITORY_GOVERNANCE": "PASS_OWNED_LOCK_EXPLICIT_PATHS"
+      },
+      "proofPromotion": "NONE; ignored output retained until wider milestone",
+      "protectedHistoryKeys": 40,
+      "oldQaJobIdsRetained": 186,
+      "counts": {
+        "runtimeSourceFilesModified": 0,
+        "testFilesModified": 0,
+        "existingQaFilesModified": 1,
+        "newQaFilesAdded": 0,
+        "proofFilesAdded": 0,
+        "workflowFilesModifiedOrAdded": 3,
+        "canonicalDocsModified": 1,
+        "inheritedWipPaths": 0,
+        "browserScenarios": 1,
+        "reusedPreviousBrowserScenarios": 2,
+        "readOnlyReviewers": 1,
+        "guardianPasses": 2,
+        "harnessCorrectionsAfterFailure": 0,
+        "quotaSavingsClaim": "NONE"
+      },
+      "closeout": {
+        "preparedAt": "2026-10-11T04:26:06.433Z",
+        "publication": "Normal owned WIP then dev publication/parity/lock release recorded after verification",
+        "safeBoundary": "Completed atomic scoped acceptance; no new browser/matrix outside this one-smoke run; no time padding",
+        "demoComplete": false,
+        "snapshot": {
+          "sha": "a8a235cad89e2665207a457c362e3e4dc35f2996",
+          "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0415",
+          "at": "2026-10-11T04:26:40.1059993Z"
+        }
+      }
     }
   },
   "previousInterruptedRun": {
@@ -21833,7 +22070,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-11T0001Z-codex-native-skills.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-11T0415Z-codex-displaced-family.md",
   "runMeasurement": {
     "productSource": 0,
     "existingTests": 0,
@@ -22072,10 +22309,10 @@
   },
   "pendingNarrativeTask": {
     "task": "NARRATIVE-CONTEXT-COHERENCE",
-    "status": "SOURCE_REVIEW_PASS_COUNCIL_FIRST_REFUGE_NORMAL_SCOPED_REMAINING_GATES_OPEN",
+    "status": "SOURCE_REVIEW_PASS_COUNCIL_REFUGE_NORMAL_DISPLACED_OS1366_SCOPED_WIDER_GATES_OPEN",
     "record": "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
-    "blocker": "One correction exhausted; static-only OS scenario fails unchanged approved-video-attempt assertion",
-    "nextAction": "Inspect0400 scoped proof first; do not repeat compatible council0055 or first-refuge0400 normal1366. Observe rep_event_displaced_family_demand exploitation acknowledgement via existing runner with canonical eligible selection (lion-village-choice or lion-final-refuge), recorded fixture/seed and unchanged facts. Inspect existing static-tableau runners for OS-only explicit game=false and real context coverage before wider desktop milestone; legacy route systemMotionProof exhausted/no rewrite. If no runner covers built/static-only claim, document exact existing-runner gaps before bounded justified extension; never count game+OS static harness as OS-only production. Preserve active skills/deferred keyboard/mobileLAST."
+    "blocker": "Historical static-only council/shadow route video-attempt assertion exhausted; final-refuge OS context accepted separately, wider contextual production matrix still open",
+    "nextAction": "Read-only preflight/exclusive lock; inspect tmp/autonomy/narrative-0415/terminal-audit.json, matching displaced-ack-os-0415 receipt/result b3c51e45 and393physical sources/ninebuild/driver05851ac5/helper lineage before reuse. Do not repeat accepted1366 OS displaced-family or historical normal council/refuge cases. Next independent pendingNarrativeTask gate: ONE registered1366 normal final-refuge-story with CIN6D6_FINAL_REFUGE_CONTEXT=exploited-refugees, seed26/reputation60, unchanged reviewed driver, native event/second-choice Enter and matching acknowledgement/resume scope. At narrative desktop milestone complete wider contextual OS/desktop-intermediate coverage using a bounded justified existing static-tableau runner extension; run_cin6ea4_dialogue_qa uses DEV imports/reducedMotion:true/getState=createInitialState, run_cin671 uses DEV golden/opening, utility-consistency uses fixed tracked output/DEV server and manual owner hooks, so none currently certifies built contextual OStrue/gamefalse. Do not rewrite exhausted route systemMotionProof or count final-refuge OS as council/refuge OS. Original all-six-skills/Pursuit task and exact deferred keyboard preserved; no unchanged failed campaign/native sample retries or failedsave seeds; earned campaign/fullV6/AT/dynamic motion/balance/operator final/full-demo OPEN, mobileLAST."
   },
   "runStatistics": {
     "sourceFilesModified": 3,
@@ -23101,15 +23338,15 @@
     "testFilesModified": 0,
     "existingQaFilesModified": 1,
     "newQaFilesAdded": 0,
-    "proofFilesAdded": 6,
-    "workflowFilesModified": 3,
+    "proofFilesAdded": 0,
+    "workflowFilesModifiedOrAdded": 3,
     "canonicalDocsModified": 1,
-    "inheritedWipPaths": 2,
-    "browserScenariosExecuted": 1,
-    "previousBrowserScenarioReused": 1,
+    "inheritedWipPaths": 0,
+    "browserScenarios": 1,
+    "reusedPreviousBrowserScenarios": 2,
     "readOnlyReviewers": 1,
     "guardianPasses": 2,
     "harnessCorrectionsAfterFailure": 0,
-    "quotaSavingsClaim": false
+    "quotaSavingsClaim": "NONE"
   }
 }
