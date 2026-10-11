@@ -90,7 +90,29 @@ describe('NarrativeStage', () => {
 
   afterEach(() => {
     document.body.replaceChildren();
+    vi.useRealTimers();
     vi.restoreAllMocks();
+    vi.unstubAllGlobals();
+  });
+
+  it.each([false, true])('uses the current OS request when constructing a surface after initial reduction=%s', async (initialReduction) => {
+    vi.useFakeTimers();
+    let osReduced = initialReduction;
+    vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: osReduced })));
+    const registry = new CinematicRegistry(manifest);
+    const stage = new NarrativeStage({ player: new CinematicPlayer(registry), registry, reducedMotion: false, transitionRevealMs: 0 });
+    const base = ALARIC_AUDIENCE_TABLEAU.phases![0]!;
+    stage.setTableau({ ...ALARIC_AUDIENCE_TABLEAU, phases: [
+      { ...base, staticCast: [{ ...base.staticCast[0]!, entryEffect: 'SLIDE_IN_LEFT' }] },
+    ] });
+    osReduced = !initialReduction;
+    const presented = stage.presentPaintedFallback('Audience');
+    await vi.runAllTimersAsync(); await presented;
+    const actor = stage.element.querySelector('.narrative-cast__actor');
+    expect(actor?.getAttribute('data-entry-effect')).toBe(osReduced ? 'FADE_IN' : 'SLIDE_IN_LEFT');
+    expect(actor?.getAttribute('data-facing')).toBe(base.staticCast[0]!.facing);
+    expect(stage.element.querySelectorAll('.narrative-cast__actor')).toHaveLength(1);
+    stage.dispose();
   });
 
   it('mounts one stage with explicit media, dialogue, agency, transition, and utility layers', async () => {

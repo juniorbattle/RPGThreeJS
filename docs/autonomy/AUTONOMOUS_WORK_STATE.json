@@ -4,15 +4,16 @@
   "runEndedAt": null,
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "INDEPENDENT_NARRATIVE_REMAINING_GATES",
-  "activeSubtask": "Contextual static first-step desktop milestone accepted; dynamic cast/focus product audit next",
+  "activeSubtask": "Live OS preference correction source-green; fresh opening cast production smoke next",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "ea78eff9bcd3e23cc00b6e6e77e6b7f6b324d3bd",
-  "lastPushedCommit": "ea78eff9bcd3e23cc00b6e6e77e6b7f6b324d3bd",
+  "lastKnownGoodCommit": "68e2e42f5d915aba3ab0f5a56cf3182f59eef763",
+  "lastPushedCommit": "68e2e42f5d915aba3ab0f5a56cf3182f59eef763",
   "completedThisRun": [
     "Read-only preflight clean/no-lock/dev equals live origin/dev2d4de45; positive associated QA/Git/listener absence; exclusive lock acquired",
     "393physical source files/ninebuild and compatible displaced OS receipt/result/driver/helper verified; build reused without rerun",
     "Normal1366 displaced acknowledgement accepted scoped; unchanged driver and matching owner terminal receipt",
-    "Existing static runner production-context mode;9/9 first-step cells SUCCEEDED; independent scoped acceptance and four inspected captures promoted"
+    "Existing static runner production-context mode;9/9 first-step cells SUCCEEDED; independent scoped acceptance and four inspected captures promoted",
+    "Product correction: live OS-or-game decision at cast EXIT/BREATH/ENTRY; five added regressions;54focused tests/types/fresh build PASS; new production acceptance OPEN"
   ],
   "filesChanged": [
     "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
@@ -25,30 +26,37 @@
     "docs/reports/narrative-context-20261011-0455/1366x768-os-protected-witness-council-1-1.png",
     "docs/reports/narrative-context-20261011-0455/620x780-os-first-refuge-exploitation-1-2.png",
     "docs/reports/narrative-context-20261011-0455/620x780-os-displaced-family-choices.png",
-    "docs/reports/narrative-context-20261011-0455/620x780-normal-displaced-family-1-2.png"
+    "docs/reports/narrative-context-20261011-0455/620x780-normal-displaced-family-1-2.png",
+    "src/cinematics/NarrativeStage.ts",
+    "src/cinematics/NarrativeSceneSurface.ts",
+    "src/cinematics/NarrativeStage.test.ts",
+    "src/cinematics/NarrativeSceneSurface.test.ts"
   ],
   "testsRun": [
     "132 current unique tests in6source files PASS; tmp excluded",
     "TypeScript --noEmit PASS",
     "8contracts8slots validator, immutable and whitespace PASS",
     "393physical sources/ninebuild verified; build reused",
-    "Existing static runner production contextual extension syntax PASS"
+    "Existing static runner production contextual extension syntax PASS",
+    "Motion checkpoint:54 tests PASS (27Surface/23Stage/4helper),five added regressions; TypeScript --noEmit and fresh Vite build PASS"
   ],
   "testsPassed": [
     "132 current unique tests in6source files PASS; tmp excluded",
     "TypeScript --noEmit PASS",
     "8contracts8slots validator, immutable and whitespace PASS",
     "393physical sources/ninebuild verified; build reused",
-    "Existing static runner production contextual extension syntax PASS"
+    "Existing static runner production contextual extension syntax PASS",
+    "Motion checkpoint:54 tests PASS (27Surface/23Stage/4helper),five added regressions; TypeScript --noEmit and fresh Vite build PASS"
   ],
   "testsRemaining": [
+    "Fresh opening-camp-audience production smoke and mounted-stage live OS flip browser proof on current source/build",
     "Later narrative/branch and earned transaction/campaign coverage",
     "Node completion/fullV6 reload beyond earlier limited scopes",
     "Automatic focus and dynamic cast transition acceptance",
     "Broader environment and AT/balance/operator full-demo; mobileLAST"
   ],
   "blockers": [
-    "Narrative: normal council and first-refuge accepted historical scoped1366; displaced-family accepted scoped1366 OS-only. Historical council OS approved-video-attempt assertion exhausted; normal displaced/wider contextual OS matrix remains OPEN.",
+    "Narrative: contextual nine-cell first-step/displaced normal and OS samples accepted historically at68e2e42; new live OS preference source correction tests/types/build PASS, production motion acceptance OPEN; later/earned/fullV6/mobile/full-demo gates retained.",
     "SCENE-TRANSITION-COPY: authored ATE captions source and six-case scoped proof PASS; full static-only OS-shadow proof remains blocked by existing video-attempt assertion; no repeat or weakening.",
     "ENVIRONMENT-NARRATIVE-COHERENCE BLOCKED_ASSET: Bois-Clair night-watch says night, approved burning plate is bright sunset; no approved same-location night replacement. Preserve text/masters.",
     "Fresh campaign-0514-first-refuge FAILED at15min battle deadline after19nativeactions; no earnedfirstrefuge/fullV6 acceptance; reached iframe keyboard assertions diagnostic only",
@@ -66,10 +74,10 @@
     "Shared positive checkpoint braking desktop normal/OS alternatives accepted scoped1806; full phase/readiness/game-only/camera comfort/manual broader scenery OPEN",
     "Shadow gait/reduced-miss proofs remain scoped; native T1 forest_patrol victory/return/tempLoot/focus/precombatV6 now accepted1366normal; full-tail/ground, other contexts, defeat/cancel/reentry/reduced/AT still open",
     "Other campaign branches/endings, Stage/VFX/AT/desktop accessibility",
-    "Normal displaced-family acknowledgement and wider contextual static-only OS; earned narrative/campaign and approved Bois-Clair night plate remain OPEN",
+    "Contextual first-step/displaced acknowledgement historical scoped acceptance; current live-OS motion production smoke, later/earned campaign and approved Bois-Clair night plate remain OPEN",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Read-only preflight/exclusive lock; inspect narrative-0455 contextual-terminal-audit and compact checks/provenance before reuse. Do not repeat accepted first-step nine-cell matrix, displaced normal/OS samples or unchanged FAILED campaign/native Salvation samples. Continue precise product audit of NarrativeStage/NarrativeSceneSurface cached motion and ownership of dynamic cast/focus; correct only a demonstrated defect with focused regression and one relevant registered production smoke. Original all-six-skills/Pursuit/deferred keyboard exact continuation remains; later narrative branches/earned transaction/fullV6/autofocus/dynamiccast/environment/operatorfinal/full-demo OPEN; mobileLAST.",
+  "nextAction": "Read-only autonomy preflight and exclusive lock; retain original all-six-skills/random-Pursuit activeTask and deferred keyboard exact continuation. Inspect motion-physical-freeze.json, motion-tests/types/build logs and historical contextual0455 scoped proof. Product checkpoint has live OS preference correction (Stage raw game flag; Surface shared helper at EXIT/BREATH/ENTRY), 54 focused tests/types/build PASS but no matching production browser acceptance. Use existing run_cin6d6_route_browser_qa.mjs --production opening-camp-audience,1366x768,OS reduce=true,game=false,available media,one new ignored output/free strict port; register exact command/environment/source/driver/build/assertions in live.qaJobs before launch and reconcile terminal receipt. Inspect cast 4to2to4/facing/dialogue-preparing/focus/geometry/saved-byte observation and screenshots. Existing runner does not toggle OS during a mounted stage: that live-flip browser claim remains OPEN, covered only by regressions; do not certify it from static samples. Do not rerun historical first-step matrix, normal/OS displaced or unchanged failed campaign samples. Later branches/earned transactions/fullV6/dynamic cast/browser OS flip/environment/operatorfinal/full-demo OPEN; mobileLAST.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -78,7 +86,7 @@
     "TRAVERSAL-PURSUIT-THREAT: TEN_MAPPINGS_IMPLEMENTED; T0_DESKTOP_FIXTURE_CONTACT_MISS_RETURN_PASS; ARTICULATED_GAIT_AND_FULL_ACCEPTANCE_OPEN",
     "TRAVERSAL-ROAD-ELEMENTS: COMPLETE_SCOPED_PRESENTATION",
     "PRE-JUDGEMENT-CAMPFIRE: COMPLETE_SCOPED_PRESENTATION",
-    "NARRATIVE-CONTEXT-COHERENCE: SOURCE_REVIEW_PLUS_CONTEXTUAL_FIRST_STEP_DESKTOP_INTERMEDIATE_SCOPED_PASS; later dialogue/earned/autofocus/dynamic/mobile/full-demo gates OPEN",
+    "NARRATIVE-CONTEXT-COHERENCE: CONTEXTUAL_FIRST_STEP_HISTORICAL_SCOPED_PASS; LIVE_OS_SOURCE_GREEN_BROWSER_OPEN; later/earned/autofocus/dynamic/mobile/full-demo OPEN",
     "STATIC-TABLEAU-STAGING-POLISH: COMPLETE_SCOPED_RUNTIME; exact old checkpoint and recovery snapshot live remote verified run0514",
     "SCENE-TRANSITION-COPY: SCOPED_RUNTIME_PASS; BLOCKED_STATIC_OS_SHADOW",
     "ENVIRONMENT-NARRATIVE-COHERENCE: BLOCKED_ASSET_BOIS_CLAIR_NIGHT; bounded audit complete",
@@ -87,19 +95,19 @@
   "creditStatus": "AVAILABLE_THIS_RUN",
   "contractComplianceStatus": {
     "contractSetVersion": "1.1.0",
-    "scope": "ACCEPTED_SCOPED_CONTEXTUAL_STATIC_FIRST_STEP_DESKTOP_INTERMEDIATE_OS_SETTINGS",
+    "scope": "LIVE_OS_NARRATIVE_CAST_SOURCE_CHECKPOINT_ONLY",
     "matrix": {
       "GAME_CONSTITUTION": "PASS: production owners unchanged",
       "ART_DIRECTION": "N/A",
       "CHARACTERS": "N/A",
       "ENVIRONMENTS": "N/A: no environment certification",
       "NARRATIVE_CAMPAIGN": "PASS: native fact-sensitive selection in three declared origin fixtures",
-      "NARRATIVE_PRESENTATION": "PASS: one STATIC_TABLEAU/owned cast/1to4actors",
+      "NARRATIVE_PRESENTATION": "PASS: shared motion helper at existing EXIT/BREATH/ENTRY; phase/facing/cast ownership unchanged",
       "TRAVERSAL": "N/A",
       "COMBAT": "N/A: zero combat",
       "SAVE": "PASS: existing nonemptyV6 observation-byte equality only",
-      "UI_ACCESSIBILITY": "PASS: nine scoped cells/geometry/Enter/manual-focus; dynamic modes open",
-      "QA_EVIDENCE": "PASS: matching worker/current/request/digest and selected captures",
+      "UI_ACCESSIBILITY": "PASS_SOURCE: explicit game false cannot mask current OS request;54tests; browser current build OPEN",
+      "QA_EVIDENCE": "PASS_SOURCE:54tests/types/build; prior browser receipts historical source/build mismatch; no current production acceptance",
       "REPOSITORY_GOVERNANCE": "PASS: immutable gates/eight slots/selected public paths"
     },
     "lockedDocumentGate": "PASS empty HEAD/worktree gate at immutable d7ca28a; no LOCKED rule changed",
@@ -113,7 +121,7 @@
       "UI_AND_ACCESSIBILITY",
       "WORLD_AND_CHARACTERS"
     ],
-    "open": "Full narrative/demo not complete"
+    "open": "Current production motion, mounted-stage OS flip, later/earned/fullV6/mobile/full narrative/demo remain OPEN"
   },
   "commitReferenceScope": "Published baseline/checkpoint references; final dev metadata SHA/parity/WIP retirement/lock release recorded in automationmemory after verification",
   "operatorAuthorization": {
@@ -218,7 +226,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261011T0455",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-11T05:12:56.747Z",
+  "lastHeartbeat": "2026-10-11T05:24:52.1847603Z",
   "wip": {
     "sha": "a8a235cad89e2665207a457c362e3e4dc35f2996",
     "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0415",
@@ -236,8 +244,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261011T0455",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-11T05:12:56.747Z",
-    "status": "GREEN_CONTEXTUAL_MILESTONE_NEXT_PRODUCT_AUDIT",
+    "lastHeartbeat": "2026-10-11T05:24:52.1847603Z",
+    "status": "GREEN_SOURCE_CHECKPOINT_PRODUCTION_MOTION_OPEN",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -19365,7 +19373,7 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false
       },
@@ -19471,7 +19479,7 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false
       },
@@ -19577,9 +19585,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -19679,9 +19687,9 @@
         "endedAt": "2026-10-10T18:17:37.973Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "exitCode": 0,
         "resultPath": "tmp/traversal/checkpoint-desktop-1806-os-v2/results.json",
         "resultSha256": "0fe7ae339a5e99080021aaa2a7b27135375743b0f704b44107250925ca4d2f2c",
@@ -19888,7 +19896,7 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false
       },
@@ -19992,7 +20000,7 @@
         "endedAt": "2026-10-11T00:40:49.882Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "exitCode": 1,
@@ -20278,9 +20286,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -20378,9 +20386,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -20476,32 +20484,29 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true
+        "eligibleForReview": false
       }
     ],
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261011T0455",
-      "at": "2026-10-11T05:05:58.8819659Z",
-      "sha": "6fb23114d70897436257944402b43604da52857b",
-      "status": "GREEN_MILESTONE_ACCEPTED",
+      "sha": "c2745be8d450269321a182190d0653adce18ad32",
+      "at": "2026-10-11T05:24:52.1847603Z",
+      "status": "GREEN_SOURCE_SNAPSHOTTED_BROWSER_OPEN",
       "dirtyFiles": [
-        "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
+        "src/cinematics/NarrativeStage.ts",
+        "src/cinematics/NarrativeSceneSurface.ts",
+        "src/cinematics/NarrativeStage.test.ts",
+        "src/cinematics/NarrativeSceneSurface.test.ts",
         "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-11T0455Z-codex-contextual-static.md",
-        "docs/reports/narrative-context-20261011-0455/checks.json",
-        "docs/reports/narrative-context-20261011-0455/EVIDENCE.md",
-        "docs/reports/narrative-context-20261011-0455/1366x768-os-protected-witness-council-1-1.png",
-        "docs/reports/narrative-context-20261011-0455/620x780-os-first-refuge-exploitation-1-2.png",
-        "docs/reports/narrative-context-20261011-0455/620x780-os-displaced-family-choices.png",
-        "docs/reports/narrative-context-20261011-0455/620x780-normal-displaced-family-1-2.png"
+        "docs/autonomy/handoffs/2026-10-11T0455Z-codex-contextual-static.md"
       ],
-      "lastGreenCheck": "132tests/types/contracts/immutable/whitespace; normal smoke and9cells scoped accepted"
+      "lastGreenCheck": "54motion tests/types/build/8contracts8slots/immutable/whitespace; browser acceptance OPEN"
     },
-    "nextAction": "Read-only preflight/exclusive lock; inspect narrative-0455 contextual-terminal-audit and compact checks/provenance before reuse. Do not repeat accepted first-step nine-cell matrix, displaced normal/OS samples or unchanged FAILED campaign/native Salvation samples. Continue precise product audit of NarrativeStage/NarrativeSceneSurface cached motion and ownership of dynamic cast/focus; correct only a demonstrated defect with focused regression and one relevant registered production smoke. Original all-six-skills/Pursuit/deferred keyboard exact continuation remains; later narrative branches/earned transaction/fullV6/autofocus/dynamiccast/environment/operatorfinal/full-demo OPEN; mobileLAST.",
+    "nextAction": "Read-only autonomy preflight and exclusive lock; retain original all-six-skills/random-Pursuit activeTask and deferred keyboard exact continuation. Inspect motion-physical-freeze.json, motion-tests/types/build logs and historical contextual0455 scoped proof. Product checkpoint has live OS preference correction (Stage raw game flag; Surface shared helper at EXIT/BREATH/ENTRY), 54 focused tests/types/build PASS but no matching production browser acceptance. Use existing run_cin6d6_route_browser_qa.mjs --production opening-camp-audience,1366x768,OS reduce=true,game=false,available media,one new ignored output/free strict port; register exact command/environment/source/driver/build/assertions in live.qaJobs before launch and reconcile terminal receipt. Inspect cast 4to2to4/facing/dialogue-preparing/focus/geometry/saved-byte observation and screenshots. Existing runner does not toggle OS during a mounted stage: that live-flip browser claim remains OPEN, covered only by regressions; do not certify it from static samples. Do not rerun historical first-step matrix, normal/OS displaced or unchanged failed campaign samples. Later branches/earned transactions/fullV6/dynamic cast/browser OS flip/environment/operatorfinal/full-demo OPEN; mobileLAST.",
     "runMetrics": {
       "existingQaFilesModified": 1,
       "harnessCorrections": 1,
@@ -22271,10 +22276,11 @@
       "matrixScope": "Three contexts x1366OS/620OS/620normal; first authored step pages/static player/geometry/keyboard. No earned progression, node completion/reload, autofocus, dynamic cast transitions or mobile acceptance.",
       "guardian": {
         "reviewer": "narrative_guardian",
-        "boundedReviews": 3,
+        "boundedReviews": 4,
         "normal": "PASS_SCOPED",
         "prelaunch": "PASS_AFTER_PRELAUNCH_FIXES",
-        "matrix": "PASS_SCOPED; reason unavailable caveat retained"
+        "matrix": "PASS_SCOPED; reason unavailable caveat retained",
+        "sourceMotion": "PASS_SOURCE_CHECKPOINT_ONLY; no current browser acceptance"
       },
       "contextualTerminal": {
         "status": "SUCCEEDED",
@@ -22302,7 +22308,23 @@
         "SCENE-TRANSITION-COPY: SCOPED_RUNTIME_PASS; BLOCKED_STATIC_OS_SHADOW",
         "ENVIRONMENT-NARRATIVE-COHERENCE: BLOCKED_ASSET_BOIS_CLAIR_NIGHT; bounded audit complete",
         "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
-      ]
+      ],
+      "motionCheckpoint": {
+        "at": "2026-10-11T05:24:00.351Z",
+        "scope": "NarrativeStage now retains only the raw game reduced-motion request; NarrativeSceneSurface re-reads the shared OS-or-game helper at EXIT, BREATH and ENTRY. Five regressions cover OS changes between stage construction and presentation, between replacements, during departure, and explicit game reduction. Pre-fix four failed/one passed; post-fix54/54 tests PASS (27Surface,23Stage,4helper), TypeScript and fresh build PASS. CSS already responds live to OS; no demonstrated pre-fix visible reduced-motion violation is claimed. No cast/facing/canon/truth/save/media changes. Fresh game-zrccER2T.js has no production browser acceptance yet. The earlier nine-cell first-step and displaced smoke retain scoped historical acceptance at68e2e42; both receipts now correctly matchesCurrentExecution=false/eligibleForReview=false after source/build change.",
+        "physicalSourceFiles": 393,
+        "provenanceFile": "tmp/autonomy/narrative-0455/motion-physical-freeze.json",
+        "logs": [
+          "tmp/autonomy/narrative-0455/motion-before.log",
+          "tmp/autonomy/narrative-0455/motion-tests.log",
+          "tmp/autonomy/narrative-0455/motion-types.log",
+          "tmp/autonomy/narrative-0455/motion-build.log"
+        ],
+        "uiReview": "OK_WITH_CONDITIONS: browser production live OS flip remains OPEN",
+        "browserSmokesThisRun": 1,
+        "milestoneMatricesThisRun": 1
+      },
+      "historicalAcceptanceCommit": "68e2e42f5d915aba3ab0f5a56cf3182f59eef763"
     }
   },
   "previousInterruptedRun": {
@@ -22589,10 +22611,10 @@
   },
   "pendingNarrativeTask": {
     "task": "NARRATIVE-CONTEXT-COHERENCE",
-    "status": "SOURCE_REVIEW_PASS_CONTEXTUAL_FIRST_STEP_DESKTOP_INTERMEDIATE_SCOPED_BROADER_GATES_OPEN",
+    "status": "CONTEXTUAL_FIRST_STEP_HISTORICAL_SCOPED_PASS_LIVE_OS_SOURCE_GREEN_BROWSER_OPEN",
     "record": "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
     "blocker": "Historical static-only council/shadow route video-attempt assertion exhausted; final-refuge OS context accepted separately, wider contextual production matrix still open",
-    "nextAction": "Read-only preflight/exclusive lock; inspect narrative-0455 contextual-terminal-audit and compact checks/provenance before reuse. Do not repeat accepted first-step nine-cell matrix, displaced normal/OS samples or unchanged FAILED campaign/native Salvation samples. Continue precise product audit of NarrativeStage/NarrativeSceneSurface cached motion and ownership of dynamic cast/focus; correct only a demonstrated defect with focused regression and one relevant registered production smoke. Original all-six-skills/Pursuit/deferred keyboard exact continuation remains; later narrative branches/earned transaction/fullV6/autofocus/dynamiccast/environment/operatorfinal/full-demo OPEN; mobileLAST.",
+    "nextAction": "Read-only autonomy preflight and exclusive lock; retain original all-six-skills/random-Pursuit activeTask and deferred keyboard exact continuation. Inspect motion-physical-freeze.json, motion-tests/types/build logs and historical contextual0455 scoped proof. Product checkpoint has live OS preference correction (Stage raw game flag; Surface shared helper at EXIT/BREATH/ENTRY), 54 focused tests/types/build PASS but no matching production browser acceptance. Use existing run_cin6d6_route_browser_qa.mjs --production opening-camp-audience,1366x768,OS reduce=true,game=false,available media,one new ignored output/free strict port; register exact command/environment/source/driver/build/assertions in live.qaJobs before launch and reconcile terminal receipt. Inspect cast 4to2to4/facing/dialogue-preparing/focus/geometry/saved-byte observation and screenshots. Existing runner does not toggle OS during a mounted stage: that live-flip browser claim remains OPEN, covered only by regressions; do not certify it from static samples. Do not rerun historical first-step matrix, normal/OS displaced or unchanged failed campaign samples. Later branches/earned transactions/fullV6/dynamic cast/browser OS flip/environment/operatorfinal/full-demo OPEN; mobileLAST.",
     "contextual0455": {
       "acceptance": "ACCEPTED_SCOPED_CONTEXTUAL_STATIC_FIRST_STEP_DESKTOP_INTERMEDIATE_OS_SETTINGS",
       "evidence": "docs/reports/narrative-context-20261011-0455/checks.json",
@@ -22605,6 +22627,18 @@
         "Narrow/mobileLAST",
         "Whole narrative/demo acceptance"
       ]
+    },
+    "motion0455": {
+      "status": "SOURCE_GREEN_BROWSER_OPEN",
+      "runtime": [
+        "src/cinematics/NarrativeStage.ts",
+        "src/cinematics/NarrativeSceneSurface.ts"
+      ],
+      "tests": 54,
+      "newRegressions": 5,
+      "build": "game-zrccER2T.js",
+      "scope": "NarrativeStage now retains only the raw game reduced-motion request; NarrativeSceneSurface re-reads the shared OS-or-game helper at EXIT, BREATH and ENTRY. Five regressions cover OS changes between stage construction and presentation, between replacements, during departure, and explicit game reduction. Pre-fix four failed/one passed; post-fix54/54 tests PASS (27Surface,23Stage,4helper), TypeScript and fresh build PASS. CSS already responds live to OS; no demonstrated pre-fix visible reduced-motion violation is claimed. No cast/facing/canon/truth/save/media changes. Fresh game-zrccER2T.js has no production browser acceptance yet. The earlier nine-cell first-step and displaced smoke retain scoped historical acceptance at68e2e42; both receipts now correctly matchesCurrentExecution=false/eligibleForReview=false after source/build change.",
+      "nextAction": "Read-only autonomy preflight and exclusive lock; retain original all-six-skills/random-Pursuit activeTask and deferred keyboard exact continuation. Inspect motion-physical-freeze.json, motion-tests/types/build logs and historical contextual0455 scoped proof. Product checkpoint has live OS preference correction (Stage raw game flag; Surface shared helper at EXIT/BREATH/ENTRY), 54 focused tests/types/build PASS but no matching production browser acceptance. Use existing run_cin6d6_route_browser_qa.mjs --production opening-camp-audience,1366x768,OS reduce=true,game=false,available media,one new ignored output/free strict port; register exact command/environment/source/driver/build/assertions in live.qaJobs before launch and reconcile terminal receipt. Inspect cast 4to2to4/facing/dialogue-preparing/focus/geometry/saved-byte observation and screenshots. Existing runner does not toggle OS during a mounted stage: that live-flip browser claim remains OPEN, covered only by regressions; do not certify it from static samples. Do not rerun historical first-step matrix, normal/OS displaced or unchanged failed campaign samples. Later branches/earned transactions/fullV6/dynamic cast/browser OS flip/environment/operatorfinal/full-demo OPEN; mobileLAST."
     }
   },
   "runStatistics": {
@@ -23627,8 +23661,9 @@
     "fullDemoComplete": false
   },
   "currentRunMeasurement": {
-    "runtimeSourceFilesModified": 0,
-    "testFilesModified": 0,
+    "runtimeSourceFilesModified": 2,
+    "testFilesModified": 2,
+    "newRegressionCases": 5,
     "existingQaFilesModified": 1,
     "newQaFilesAdded": 0,
     "proofFilesAdded": 6,
@@ -23638,8 +23673,8 @@
     "browserSmokes": 1,
     "desktopMilestoneMatrices": 1,
     "matrixCases": 9,
-    "reviewers": 1,
-    "boundedReviews": 3,
+    "reviewers": 2,
+    "boundedReviews": 6,
     "harnessCorrectionsAfterFailure": 0,
     "quotaSavingsClaim": "NONE"
   }

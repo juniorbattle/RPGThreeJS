@@ -3,6 +3,7 @@ import { assets } from '../render/assetManifest';
 import { resolveCharacterAsset } from '../render/CharacterVisualRegistry';
 import { createGenericNarrativeTableau, type NarrativeActorEntryEffect, type NarrativeActorExitEffect, type NarrativeAddressResolution, type NarrativeLayoutPlacement, type NarrativeStagedActorSpec, type NarrativeTableauSpec, type NarrativeVisualPhaseSpec } from './NarrativeTableau';
 import { resolveStaticTableauActorTuning, resolveStaticTableauComposition, type StaticTableauCompositionProfile } from './StaticTableauComposition';
+import { prefersReducedMotion } from '../ui/ReducedMotion';
 
 interface DialogueAssetProfile {
   full: string;
@@ -102,7 +103,7 @@ export class NarrativeSceneSurface {
   private phaseRevision = 0;
   private disposed = false;
   private readonly renderableWaits = new Set<() => void>();
-  private readonly reducedMotion: boolean;
+  private readonly gameReducedMotion: boolean;
   private readonly actorImages: Readonly<Record<string, string>>;
 
   constructor(
@@ -110,7 +111,7 @@ export class NarrativeSceneSurface {
     private readonly tableau: NarrativeTableauSpec,
     options: { reducedMotion?: boolean; actorImages?: Readonly<Record<string, string>> } = {},
   ) {
-    this.reducedMotion = options.reducedMotion ?? false;
+    this.gameReducedMotion = options.reducedMotion === true;
     this.actorImages = options.actorImages ?? {};
     this.phases = tableau.phases ?? [];
     this.element.className = 'narrative-scene-surface narrative-media-surface narrative-media-surface--still';
@@ -216,7 +217,7 @@ export class NarrativeSceneSurface {
     const exitByActor = new Map((previousPhase?.exits ?? []).map((exit) => [exit.actorId, exit]));
     for (const actor of exiting) {
       const exit = exitByActor.get(actor.dataset.actorId ?? '');
-      const effect = this.reducedMotion ? reducedExitEffect(exit?.effect) : exit?.effect ?? 'FADE_OUT';
+      const effect = prefersReducedMotion(this.gameReducedMotion) ? reducedExitEffect(exit?.effect) : exit?.effect ?? 'FADE_OUT';
       actor.dataset.exitEffect = effect;
       actor.dataset.exitKind = exit?.kind ?? 'STAGE_OUT';
       actor.classList.add('is-exiting');
@@ -251,7 +252,7 @@ export class NarrativeSceneSurface {
       this.castLayer.dataset.castCount = `${retained.length}`;
       if (newcomers.length) {
         this.element.dataset.castTransition = 'BREATH';
-        await pause(this.reducedMotion ? 40 : 60);
+        await pause(prefersReducedMotion(this.gameReducedMotion) ? 40 : 60);
         if (!current()) return;
       }
     }
@@ -261,7 +262,7 @@ export class NarrativeSceneSurface {
         const spec = phase.staticCast[index]!;
         const scenePlacement = sceneIntegrated ? this.tableau.sceneCastPlacement?.[spec.actorId] : undefined;
         applyActorState(actor, spec, speakerId, { facing: speakerFacing, lookTarget: speakerLookTarget }, compositionProfile, scenePlacement);
-        const effect = this.reducedMotion ? reducedEntryEffect(spec.entryEffect) : spec.entryEffect ?? 'NONE';
+        const effect = prefersReducedMotion(this.gameReducedMotion) ? reducedEntryEffect(spec.entryEffect) : spec.entryEffect ?? 'NONE';
         actor.dataset.entryEffect = newcomers.includes(actor) ? effect : 'NONE';
         actor.classList.toggle('is-entering', newcomers.includes(actor) && effect !== 'NONE');
       });

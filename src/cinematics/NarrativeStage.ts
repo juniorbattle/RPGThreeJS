@@ -15,7 +15,6 @@ import type { ResolvedPresentationBeat, TravelStillSource } from './NarrativePre
 import { TravelStillSurface } from './TravelStillSurface';
 import { validatePrimarySurface } from './NarrativePresentationTransition';
 import type { CampaignStatusHud } from '../ui/CampaignStatusHud';
-import { prefersReducedMotion } from '../ui/ReducedMotion';
 
 export type NarrativeMediaSurfaceKind = 'STILL' | 'STATIC_TABLEAU' | 'TRAVEL_STILL' | 'VIDEO' | 'HELD_VIDEO' | 'PASSIVE_BACKDROP' | 'FALLBACK' | 'NONE';
 
@@ -62,7 +61,7 @@ export class NarrativeStage {
   private readonly videoStartupTimeoutMs: number;
   private readonly transitionRevealMs: number;
   private readonly dev: boolean;
-  private readonly reducedMotion: boolean;
+  private readonly gameReducedMotion: boolean;
   private director: NarrativeBeatDirector | null = null;
   private tableau: NarrativeTableauSpec | null = null;
   private mounted = false;
@@ -88,7 +87,7 @@ export class NarrativeStage {
     this.videoStartupTimeoutMs = options.videoStartupTimeoutMs ?? DEFAULT_VIDEO_STARTUP_TIMEOUT_MS;
     this.transitionRevealMs = options.transitionRevealMs ?? DEFAULT_TRANSITION_REVEAL_MS;
     this.dev = options.dev ?? false;
-    this.reducedMotion = prefersReducedMotion(options.reducedMotion);
+    this.gameReducedMotion = options.reducedMotion === true;
     this.element.className = 'narrative-stage';
     this.element.setAttribute('aria-label', 'Scène narrative');
     this.element.dataset.narrativeAuthoringMedia = this.mediaMode;
@@ -400,7 +399,7 @@ export class NarrativeStage {
       await this.revealPreparedSurface(readiness, 'FALLBACK');
       return result;
     }
-    const surface = new NarrativeSceneSurface(this.mediaLayer, tableau, { reducedMotion: this.reducedMotion });
+    const surface = new NarrativeSceneSurface(this.mediaLayer, tableau, { reducedMotion: this.gameReducedMotion });
     this.sceneSurface = surface;
     if (this.boundDialogue) surface.bindDialogue(this.boundDialogue);
     surface.mount(image ?? tableau.stillImage, phaseId);
@@ -654,7 +653,7 @@ export class NarrativeStage {
 
   private createPreparedSceneSurface(image?: string): NarrativeSceneSurface | null {
     if (!this.tableau) return null;
-    const surface = new NarrativeSceneSurface(this.mediaLayer, this.tableau, { reducedMotion: this.reducedMotion });
+    const surface = new NarrativeSceneSurface(this.mediaLayer, this.tableau, { reducedMotion: this.gameReducedMotion });
     if (this.boundDialogue) surface.bindDialogue(this.boundDialogue);
     surface.prepare(image ?? this.tableau.stillImage);
     return surface;

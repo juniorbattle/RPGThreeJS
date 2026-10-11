@@ -12,6 +12,7 @@ describe('NarrativeSceneSurface', () => {
   afterEach(() => {
     vi.useRealTimers();
     vi.restoreAllMocks();
+    vi.unstubAllGlobals();
     document.body.replaceChildren();
   });
 
@@ -319,6 +320,57 @@ describe('NarrativeSceneSurface', () => {
     await vi.advanceTimersByTimeAsync(180);
     await exit;
     vi.useRealTimers();
+  });
+
+  it.each([false, true])('reads live OS motion between cast replacements with game reduction=%s', async (gameReduced) => {
+    vi.useFakeTimers();
+    let osReduced = false;
+    vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: osReduced })));
+    const base = ALARIC_AUDIENCE_TABLEAU.phases![0]!;
+    const tableau = { ...ALARIC_AUDIENCE_TABLEAU, phases: [
+      { ...base, id: 'FIRST', staticCast: [{ ...base.staticCast[0]!, entryEffect: 'SLIDE_IN_LEFT' as const }],
+        exits: [{ actorId: base.staticCast[0]!.actorId, kind: 'STAGE_OUT' as const, effect: 'SLIDE_OUT_LEFT' as const, reason: 'cast replacement' }] },
+      { ...base, id: 'NEXT', staticCast: [{ ...base.staticCast[1]!, entryEffect: 'SLIDE_IN_RIGHT' as const }],
+        exits: [{ actorId: base.staticCast[1]!.actorId, kind: 'STAGE_OUT' as const, effect: 'SLIDE_OUT_RIGHT' as const, reason: 'cast replacement' }] },
+    ] };
+    const surface = new NarrativeSceneSurface(document.createElement('div'), tableau, { reducedMotion: gameReduced });
+    const first = surface.setPhase('FIRST'); await vi.runAllTimersAsync(); await first;
+    osReduced = true;
+    const reduced = surface.setPhase('NEXT');
+    expect(surface.castLayer.firstElementChild?.getAttribute('data-exit-effect')).toBe('FADE_OUT');
+    await vi.advanceTimersByTimeAsync(180);
+    expect(surface.element.dataset.castTransition).toBe('BREATH');
+    await vi.advanceTimersByTimeAsync(40);
+    expect(surface.castLayer.firstElementChild?.getAttribute('data-entry-effect')).toBe('FADE_IN');
+    await vi.runAllTimersAsync(); await reduced;
+    osReduced = false;
+    const restored = surface.setPhase('FIRST');
+    expect(surface.castLayer.firstElementChild?.getAttribute('data-exit-effect')).toBe(gameReduced ? 'FADE_OUT' : 'SLIDE_OUT_RIGHT');
+    await vi.runAllTimersAsync(); await restored;
+    expect(surface.castLayer.firstElementChild?.getAttribute('data-entry-effect')).toBe(gameReduced ? 'FADE_IN' : 'SLIDE_IN_LEFT');
+    expect(surface.castLayer.firstElementChild?.getAttribute('data-facing')).toBe(base.staticCast[0]!.facing);
+    expect(surface.castLayer.childElementCount).toBe(1);
+    surface.dispose();
+  });
+
+  it('reads an OS request arriving during departure before mounting the replacement', async () => {
+    vi.useFakeTimers();
+    let osReduced = false;
+    vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: osReduced })));
+    const base = ALARIC_AUDIENCE_TABLEAU.phases![0]!;
+    const tableau = { ...ALARIC_AUDIENCE_TABLEAU, phases: [
+      { ...base, id: 'FIRST', staticCast: [{ ...base.staticCast[0]!, entryEffect: 'NONE' as const }] },
+      { ...base, id: 'NEXT', staticCast: [{ ...base.staticCast[1]!, entryEffect: 'SLIDE_IN_RIGHT' as const }] },
+    ] };
+    const surface = new NarrativeSceneSurface(document.createElement('div'), tableau, { reducedMotion: false });
+    await surface.setPhase('FIRST');
+    const replacement = surface.setPhase('NEXT');
+    await vi.advanceTimersByTimeAsync(100);
+    osReduced = true;
+    await vi.advanceTimersByTimeAsync(120);
+    expect(surface.castLayer.firstElementChild?.getAttribute('data-entry-effect')).toBe('FADE_IN');
+    await vi.runAllTimersAsync(); await replacement;
+    surface.dispose();
   });
 
   it('reduces slide choreography to fades without changing final facing or cast', async () => {
