@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-12T03:33:48.1447109+00:00",
-  "runEndedAt": "2026-10-12T03:44:00.351Z",
+  "runEndedAt": "2026-10-12T04:03:39.901Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "SAFE_PUBLICATION_CLOSEOUT",
-  "activeSubtask": "Standalone archer1AP pointer menu verified; exact checkpoint publication blocked",
+  "activeSubtask": "Standalone archer1AP pointer menu verified; approved checkpoint published",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "fb2e2f5feb840caa7855fdb0c691a630d4fd01a6",
-  "lastPushedCommit": "9b14235e5cde97bf1c3a835c350de3ae21624082",
+  "lastKnownGoodCommit": "ecda3048073f524c9546ddb2cd315cf819fb675c",
+  "lastPushedCommit": "ecda3048073f524c9546ddb2cd315cf819fb675c",
   "completedThisRun": [
     "Diagnosed selected native menu source; no runtime failure established",
     "Added one bounded pointer scenario in existing keyboard runner",
@@ -66,7 +66,7 @@
     "Opening dynamic1366/620 normalOS accepted scoped; later/earned narrative and approvedBois-Clair nightplate remainOPEN",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Resolve automatic-review rejection for the concrete local0332 four-path dev checkpoint before export; no WIP/dev publication retry or workaround. Then confirm HEAD/lock/worker absence/live origin parity, normally publish approved checkpoint and archive/release owned lock. Preserve original all-six-skills/random-Pursuit task, FAILED2012 and all unseedable failed outputs. Reuse desktop-pointer-menus-0332 receipt only with driverbd200b39/source393/build9/current parameters and result584b2b9f: three standalone1366normal archer1AP pointer open/Retour cycles passed with sampled tactical snapshot unchanged; not campaign iframe/latency/cause/six-casts/ending/reload acceptance. No runtime defect or warranted campaign-pilot correction established; do not replay unchanged45min continuation. Next independently audit desktop checkpoint departure/final-exit perception against current source and prior scoped receipts before one change-relevant production smoke; keep parent skills/earned campaign/fullV6/later narrative/AT/balance/operatorfinal/mobileLAST/demo OPEN and deferred keyboard exact continuation preserved.",
+  "nextAction": "Read-only autonomy preflight/exclusive lock; publication of0332 is resolved by explicit human approval and normal origin/dev push, with final closure parity/lock archive recorded in automation memory. Keep original all-six-skills/random-Pursuit task and reuse desktop-pointer-menus-0332 receipt only with driverbd200b39/source393/build9/parameters/result584b2b9f: three standalone1366normal archer1AP pointer cycles accepted with sampled snapshot unchanged; excludes campaign iframe/2012cause/latency/sixcasts/ending/reload. No runtime defect or warranted campaign-pilot correction established; FAILED2012 and other failed outputs remain unseedable, never replay unchanged45min campaign. Continue independent desktop checkpoint departure/final-exit perception audit against current source and prior scoped receipts before ONE change-relevant production smoke. Preserve original task, exact deferred keyboard, pending narrative,201 QA records and taskQueue; parent skills/earnedcampaign/fullV6/later narrative/AT/balance/operatorfinal/mobileLAST/demo remainOPEN.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -94,7 +94,7 @@
     "SAVE": "N/A_NO_SCHEMA_OR_SAVE_CHANGE",
     "UI_ACCESSIBILITY": "PASS_SCOPED_STANDALONE_POINTER_ONLY",
     "QA_EVIDENCE": "PASS_SCOPED_FINAL_GUARDIAN_REVIEW",
-    "REPOSITORY_GOVERNANCE": "BLOCKED_PUBLICATION_AUTO_REVIEW_REJECTION"
+    "REPOSITORY_GOVERNANCE": "PASS_EXPLICITLY_APPROVED_NORMAL_DEV_PUBLICATION"
   },
   "commitReferenceScope": "Last pushed commit9b14235 is verified workflow closure; final publication checkpoint/clean parity/lock release recorded in automation memory after transport. No product acceptance advanced.",
   "operatorAuthorization": {
@@ -219,7 +219,7 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261012T0332",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-12T03:44:30.450Z",
+    "lastHeartbeat": "2026-10-12T04:03:39.901Z",
     "status": "PUBLICATION_RESOLVED_STANDING_AUTHORIZATION_RECORDED",
     "qaJobs": [
       {
@@ -21743,18 +21743,13 @@
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0332",
       "sha": "09f87540ba496b3908e19130ff64d091147f79d4",
-      "status": "GREEN_LOCAL_ONLY_PUBLICATION_BLOCKED",
-      "dirtyFiles": [
-        "tools/combat-keyboard-production-qa.mjs",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-12T0332Z-codex-pointer-menu.md"
-      ],
+      "status": "GREEN_CONTENT_ON_DEV_LOCAL_SNAPSHOT_RETAINED",
+      "dirtyFiles": [],
       "lastGreenCheck": "56tests/types/8contracts8slots/one registered native pointer smoke; no runtime source change",
       "snapshotAt": "2026-10-12T03:44:30.450Z",
-      "publication": "LOCAL_ONLY_AUTO_REVIEW_REJECTED"
+      "publication": "ACCEPTED_RUNNER_CONTENT_PUBLISHED_ON_DEV"
     },
-    "nextAction": "Resolve automatic-review rejection for the concrete local0332 four-path dev checkpoint before export; no WIP/dev publication retry or workaround. Then confirm HEAD/lock/worker absence/live origin parity, normally publish approved checkpoint and archive/release owned lock. Preserve original all-six-skills/random-Pursuit task, FAILED2012 and all unseedable failed outputs. Reuse desktop-pointer-menus-0332 receipt only with driverbd200b39/source393/build9/current parameters and result584b2b9f: three standalone1366normal archer1AP pointer open/Retour cycles passed with sampled tactical snapshot unchanged; not campaign iframe/latency/cause/six-casts/ending/reload acceptance. No runtime defect or warranted campaign-pilot correction established; do not replay unchanged45min continuation. Next independently audit desktop checkpoint departure/final-exit perception against current source and prior scoped receipts before one change-relevant production smoke; keep parent skills/earned campaign/fullV6/later narrative/AT/balance/operatorfinal/mobileLAST/demo OPEN and deferred keyboard exact continuation preserved.",
+    "nextAction": "Read-only autonomy preflight/exclusive lock; publication of0332 is resolved by explicit human approval and normal origin/dev push, with final closure parity/lock archive recorded in automation memory. Keep original all-six-skills/random-Pursuit task and reuse desktop-pointer-menus-0332 receipt only with driverbd200b39/source393/build9/parameters/result584b2b9f: three standalone1366normal archer1AP pointer cycles accepted with sampled snapshot unchanged; excludes campaign iframe/2012cause/latency/sixcasts/ending/reload. No runtime defect or warranted campaign-pilot correction established; FAILED2012 and other failed outputs remain unseedable, never replay unchanged45min campaign. Continue independent desktop checkpoint departure/final-exit perception audit against current source and prior scoped receipts before ONE change-relevant production smoke. Preserve original task, exact deferred keyboard, pending narrative,201 QA records and taskQueue; parent skills/earnedcampaign/fullV6/later narrative/AT/balance/operatorfinal/mobileLAST/demo remainOPEN.",
     "runMetrics": {
       "runId": "rpgthreejs-auto-dev-90m-20261012T0310",
       "runtimeSourceFilesModified": 0,
@@ -22640,7 +22635,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-    "activeSubtask": "Standalone archer1AP pointer menu verified; exact checkpoint publication blocked",
+    "activeSubtask": "Standalone archer1AP pointer menu verified; approved checkpoint published",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -25120,7 +25115,7 @@
         "browser": "SUCCEEDED_SCOPED"
       },
       "publication": {
-        "status": "AUTO_REVIEW_REJECTED_UNEXECUTED",
+        "status": "PUBLISHED_EXPLICIT_HUMAN_APPROVAL",
         "action": "Normal owned WIP snapshot push",
         "reason": "Private source/state WIP to unverified external GitHub destination; general recorded authorization judged insufficient for exact branch/payload",
         "noRetryOrWorkaround": true,
@@ -25135,7 +25130,14 @@
         "localSnapshot": {
           "sha": "09f87540ba496b3908e19130ff64d091147f79d4",
           "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0332"
-        }
+        },
+        "approvedCommit": "ecda3048073f524c9546ddb2cd315cf819fb675c",
+        "verifiedRemoteDev": "ecda3048073f524c9546ddb2cd315cf819fb675c",
+        "approvedAt": "2026-10-12T04:03:39.901Z",
+        "priorRejectionResolved": true,
+        "approval": "Direct human oui j autorise in annotation on exact ecda304 origin/dev publication",
+        "closureMetadata": "PREPARED_FOR_NORMAL_AUTHORIZED_DEV_PUBLICATION",
+        "ownedLocalWip": "RETAINED_NO_BRANCH_CLEANUP"
       },
       "compliance": {
         "GAME_CONSTITUTION": "PASS",
@@ -25149,7 +25151,7 @@
         "SAVE": "N/A_NO_SCHEMA_OR_SAVE_CHANGE",
         "UI_ACCESSIBILITY": "PASS_SCOPED_STANDALONE_POINTER_ONLY",
         "QA_EVIDENCE": "PASS_SCOPED_FINAL_GUARDIAN_REVIEW",
-        "REPOSITORY_GOVERNANCE": "BLOCKED_PUBLICATION_AUTO_REVIEW_REJECTION"
+        "REPOSITORY_GOVERNANCE": "PASS_EXPLICITLY_APPROVED_NORMAL_DEV_PUBLICATION"
       },
       "guardian": {
         "prelaunch": "PASS_AFTER_METHOD_METADATA_CORRECTION",
