@@ -1,18 +1,19 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-12T04:17:27.0980381Z",
-  "runEndedAt": "2026-10-12T04:30:53.594Z",
+  "runEndedAt": "2026-10-12T05:00:08.378Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "DESKTOP_TRAVERSAL_VELOCITY_JOIN_REDUCED_PROOF_PENDING",
   "activeSubtask": "Reveal-to-driving velocity corrected; normal desktop T1 scoped proof accepted",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "ecda3048073f524c9546ddb2cd315cf819fb675c",
-  "lastPushedCommit": "ecda3048073f524c9546ddb2cd315cf819fb675c",
+  "lastKnownGoodCommit": "f957cb673d05a0dc43415d8ab3e848938802e0c3",
+  "lastPushedCommit": "f957cb673d05a0dc43415d8ab3e848938802e0c3",
   "completedThisRun": [
     "Audited current departure/final exit against manual findings and historical scoped proof; established17-18% velocity discontinuity, no final-exit defect",
     "Corrected shared reveal camera velocity using existing pure anchored predictor; zero authored clock/contact ownership preserved",
     "47focused tests4files/types/214module build8MP4/contracts8slots8/gates PASS; ONE registered T1 normal1440 smoke13assertions/718samples/8captures/zeroerrors, join1.2578%; root inspected3captures",
-    "Owned five-path WIP9d2d4a7 normally published/verified; final six-path coherent dev checkpoint prepared under standing OD-2026-10-12-A"
+    "Owned five-path WIP9d2d4a7 normally published/verified; final six-path coherent dev checkpoint prepared under standing OD-2026-10-12-A",
+    "Normal dev publication f957cb6 live verified;393source/ninebuild/driver physical bytes unchanged after commit; original receipt sourceTree/diff representation retained honestly"
   ],
   "filesChanged": [
     "src/traversal/TraversalRoadScene.ts",
@@ -82,7 +83,16 @@
     "ENVIRONMENT-NARRATIVE-COHERENCE: BLOCKED_ASSET_BOIS_CLAIR_NIGHT; bounded audit complete",
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
-  "creditStatus": "AVAILABLE_THIS_RUN",
+  "creditStatus": {
+    "status": "AVAILABLE_APPROVAL_REVIEW_RESUMED",
+    "previousReviewFailure": {
+      "status": "APPROVAL_REVIEW_USAGE_LIMIT",
+      "observedAt": "2026-10-12T04:59:34.361Z",
+      "retryAfterLocal": "2026-10-12T00:49:00-04:00",
+      "reason": "Automatic approval review failed due usage limit; no unsafe determination. Rejected publication-closeout command was NOT_EXECUTED; no bypass."
+    },
+    "at": "2026-10-12T05:00:08.378Z"
+  },
   "contractComplianceStatus": {
     "GAME_CONSTITUTION": "PASS",
     "ART_DIRECTION": "N/A",
@@ -95,7 +105,7 @@
     "SAVE": "PASS_NO_SCHEMA_OR_SERIALIZATION_CHANGE",
     "UI_ACCESSIBILITY": "PASS_POLICY_UNCHANGED_REDUCED_BROWSER_GAP_OPEN",
     "QA_EVIDENCE": "PASS_SCOPED_T1_NORMAL_FINAL_GUARDIAN_REVIEW",
-    "REPOSITORY_GOVERNANCE": "PASS_LOCAL_CHECKPOINT_PUBLICATION_PENDING"
+    "REPOSITORY_GOVERNANCE": "PASS_NORMAL_DEV_PUBLICATION_LIVE_VERIFIED"
   },
   "commitReferenceScope": "Last pushed commit9b14235 is verified workflow closure; final publication checkpoint/clean parity/lock release recorded in automation memory after transport. No product acceptance advanced.",
   "operatorAuthorization": {
@@ -200,7 +210,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261012T0415",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-12T04:31:51.524Z",
+  "lastHeartbeat": "2026-10-12T05:00:08.378Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0415",
     "sha": "2e363eaedd2aec1695c608a90f572864c66ab985",
@@ -218,8 +228,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261012T0415",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-12T04:31:51.524Z",
-    "status": "CHECKPOINT_READY",
+    "lastHeartbeat": "2026-10-12T05:00:08.378Z",
+    "status": "PUBLISHED_CHECKPOINT_CLOSURE_PENDING",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -21840,9 +21850,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "scopedDisposition": {
           "status": "ACCEPTED_SCOPED_NORMAL_T1_1440_FORK_VELOCITY_JOIN",
           "reviewers": [
@@ -21857,6 +21867,13 @@
             "EARNED_CAMPAIGN_V6",
             "MOBILE_FULL_DEMO"
           ]
+        },
+        "reviewExecutionMatchedAt": "2026-10-12T04:31:51.184Z",
+        "postCommitPhysicalIdentity": {
+          "status": "MATCH_393_SOURCES_9_BUILD_DRIVER",
+          "commit": "f957cb673d05a0dc43415d8ab3e848938802e0c3",
+          "audit": "tmp/autonomy/motion-0415/physical-postcommit.json",
+          "reason": "Commit changes source-tree/diff representation; original receipt remains intact. Separate scoped review is bound to unchanged physical bytes; no new execution claimed."
         }
       }
     ],
@@ -21900,8 +21917,9 @@
       "docs/autonomy/handoffs/2026-10-12T0415Z-codex-motion-join.md"
     ],
     "publication": {
-      "status": "READY_FOR_NORMAL_DEV_PUBLICATION",
+      "status": "PUBLISHED_NORMAL_DEV_LIVE_VERIFIED",
       "authorization": "OD-2026-10-12-A",
+      "commit": "f957cb673d05a0dc43415d8ab3e848938802e0c3",
       "selectedPaths": [
         "src/traversal/TraversalRoadScene.ts",
         "src/traversal/TraversalRoadMotion.test.ts",
@@ -21909,10 +21927,11 @@
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/handoffs/2026-10-12T0415Z-codex-motion-join.md"
-      ]
+      ],
+      "verifiedAt": "2026-10-12T05:00:08.378Z"
     },
     "runStartedAt": "2026-10-12T04:17:27.0980381Z",
-    "runEndedAt": "2026-10-12T04:30:53.594Z",
+    "runEndedAt": "2026-10-12T05:00:08.378Z",
     "writerStopped": true,
     "metadataPublication": {
       "status": "NORMAL_DEV_PUBLICATION_VERIFIED",
@@ -25395,7 +25414,38 @@
         "guardian": "PASS_SCOPED_NORMAL_T1_CHECKPOINT"
       },
       "reviewedAt": "2026-10-12T04:31:51.184Z",
-      "finalGuardian": "13assertions/718samples/zeroerrors; same-road33.9ms fork join1.2578%; no contract conflict. No T0/T3/OS/game/campaign/full-demo claim."
+      "finalGuardian": "13assertions/718samples/zeroerrors; same-road33.9ms fork join1.2578%; no contract conflict. No T0/T3/OS/game/campaign/full-demo claim.",
+      "reviewFailure": {
+        "at": "2026-10-12T04:59:34.361Z",
+        "action": "Read-only live parity/physical check plus local publication closure metadata and owned lock update",
+        "reason": "You have hit your usage limit. Try again at12:49AM. Action not executed because automatic approval review could not be completed; review failure, not a determination unsafe.",
+        "executed": false,
+        "productPublication": "ALREADY_VERIFIED_f957cb6",
+        "safeLocalOnlyDisposition": "Only workspace state/handoff changed; no Git/network/lock/memory write attempted after refusal",
+        "resumeProductNextAction": "Read-only preflight/exclusive lock; inspect motion-join-desktop-0415 terminal receipt/result964d1d2e/driverce350f77/current tested source diff and build before reuse. Preserve accepted normal T1 1440x810 fork join1.26%/zero-clock reveal/complete exit/single unresolved-destination handoff; no repeated normal T1 smoke on unchanged identity. Next run ONE existing traversal-motion-production-qa.mjs OS-only T1 1440x810 registered smoke to verify reduced departure velocity join/covered equivalent exit on current build; T0/T3 normal and game-only motion remain milestone gaps, operator perception remains OPEN, mobile LAST. Then resume original all-six-skills/random-Pursuit and pending desktop narrative/earned campaign work; FAILED2012/1858/1800/1731/0001 remain unseedable, no unchanged45min campaign replay. Exact deferred keyboard/pending narrative/taskQueue/all201 historical QA records preserved; fullV6/AT/balance/operatorfinal/demo IN_PROGRESS.",
+        "resolution": "Resolved after00:49Toronto reset by successful normal automatic review at01:00; no bypass."
+      },
+      "postCommitPhysicalIdentity": {
+        "status": "MATCH_393_SOURCES_9_BUILD_DRIVER",
+        "commit": "f957cb673d05a0dc43415d8ab3e848938802e0c3",
+        "audit": "tmp/autonomy/motion-0415/physical-postcommit.json",
+        "reason": "Commit changes source-tree/diff representation; original receipt remains intact. Separate scoped review is bound to unchanged physical bytes; no new execution claimed."
+      },
+      "publication": {
+        "status": "PUBLISHED_NORMAL_DEV_LIVE_VERIFIED",
+        "authorization": "OD-2026-10-12-A",
+        "commit": "f957cb673d05a0dc43415d8ab3e848938802e0c3",
+        "selectedPaths": [
+          "src/traversal/TraversalRoadScene.ts",
+          "src/traversal/TraversalRoadMotion.test.ts",
+          "tools/traversal-motion-production-qa.mjs",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+          "docs/autonomy/handoffs/2026-10-12T0415Z-codex-motion-join.md"
+        ],
+        "verifiedAt": "2026-10-12T05:00:08.378Z"
+      },
+      "ownedSnapshotDisposition": "Product/test/driver content on verified dev; ownedWIP retirement disposition recorded after final parity in automationmemory/finalaudit. No unrelated refs removed."
     }
   },
   "previousInterruptedRun": {
@@ -25767,7 +25817,7 @@
     "preparation": "Native rest/revival before further combat;130gold/rest60",
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
-  "implementationCommit": "9b15e2a015de6b29d23c231582be840af22c833c",
+  "implementationCommit": "f957cb673d05a0dc43415d8ab3e848938802e0c3",
   "authorizedWorkContinuation": "First obtain exact-payload public dev publication approval for run1859 local checkpoint; automatic review rejected the public WIP state push and no workaround is authorized. Inspect clean Git/local commits, owned writerStopped lock and preserved receipts. After approved normal push/remote parity and lock resolution, continue DEMO-QA-POLISH with existing tools/demo-continuous-production-qa.mjs from earnedSavePath tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json (SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b) and priorProofPath tmp/demo/campaign-second-refuge-1859/results.json (SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3). Rescue/serpent/ending1366normal, native rest75 first (3KO/5wounded,300gold), existing native shop/equip preparation, register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID, unique ignored output/free strict port and bounded deadline. Verify current physical source/driver/build identities; do not relabel old frozen577 campaign proof as new build acceptance. Inspect terminal receipt, genuine combats/T1/T3/temporaryloot/exactV6/ending/Salvation2AP and selected captures. Do not repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices; keep live leap/attack/Stage, live-slope smoothness,390framing/broadaccessibility/balance/settledVFX/fullending gates open. Preserve152historicaljobs/exact deferredDemoTask and pendingNarrativeTask.",
   "publication1214History": {
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
