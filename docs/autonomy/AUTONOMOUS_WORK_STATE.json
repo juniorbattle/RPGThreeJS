@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-12T06:04:32.6388361+00:00",
-  "runEndedAt": "2026-10-12T06:36:43.961Z",
+  "runEndedAt": "2026-10-12T06:40:10.747Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "SAFE_SCOPED_CHECKPOINT",
   "activeSubtask": "Native forest opening and first-refuge reload accepted; parent campaign remains open",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "9d0960d942e6274293d35e0852b71797a1cb4b90",
-  "lastPushedCommit": "9d0960d942e6274293d35e0852b71797a1cb4b90",
+  "lastKnownGoodCommit": "fb8430c711e69468f9c380086b6b49880eaa74bd",
+  "lastPushedCommit": "fb8430c711e69468f9c380086b6b49880eaa74bd",
   "completedThisRun": [
     "Current native forest opening, incidental T0 Pursuit victory, first-refuge earned V6 exact reload scoped accepted",
     "Authored Minerai de fer label visibly fits current native result; native keyboard result/parent/road focus verified within stated limits",
@@ -206,7 +206,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261012T0603",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-12T06:37:35.911Z",
+  "lastHeartbeat": "2026-10-12T06:40:10.747Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0603",
     "sha": "0e332c31fe7ea3e5ca9d392a53770ff69aa33849",
@@ -215,7 +215,7 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261012T0603",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-12T06:37:35.911Z",
+    "lastHeartbeat": "2026-10-12T06:40:10.747Z",
     "status": "CLOSED_SCOPED_NATIVE_FIRST_REFUGE_ACCEPTED",
     "qaJobs": [
       {
@@ -22240,7 +22240,7 @@
       "closure": "Final workflow-only metadata publication and owned lock/WIP retirement recorded in automationmemory/finalaudit"
     },
     "runStartedAt": "2026-10-12T06:04:32.6388361+00:00",
-    "runEndedAt": "2026-10-12T06:36:43.961Z",
+    "runEndedAt": "2026-10-12T06:40:10.747Z",
     "writerStopped": true,
     "metadataPublication": {
       "status": "NORMAL_DEV_PUBLICATION_VERIFIED",
@@ -26159,9 +26159,23 @@
         "quotaSavingsClaim": "NONE"
       },
       "publication": {
-        "status": "PENDING_REVIEWED_NORMAL_DEV_PUBLICATION",
-        "authorization": "OD-2026-10-12-A"
-      }
+        "status": "PUBLISHED_NORMAL_DEV_LIVE_VERIFIED",
+        "authorization": "OD-2026-10-12-A",
+        "sha": "fb8430c711e69468f9c380086b6b49880eaa74bd",
+        "at": "2026-10-12T06:40:10.747Z",
+        "selectedPaths": [
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+          "docs/autonomy/handoffs/2026-10-12T0603Z-codex-reward-label.md",
+          "docs/reports/native-first-refuge-20261012-0603/checks.json",
+          "docs/reports/native-first-refuge-20261012-0603/combat-0-result.png",
+          "docs/reports/native-first-refuge-20261012-0603/combat-1-pursuit-return-focus.png",
+          "docs/reports/native-first-refuge-20261012-0603/lion-first-refuge-earned-resumed.png"
+        ],
+        "closure": "Final state-only metadata publication and owned0603 lock/WIP release recorded in automationmemory/finalaudit"
+      },
+      "workers": "Worker58912 and port5387 absent after terminal; existing servers retained",
+      "precommitWhitespace": "New handoff EOF blank caught by staged gate and trimmed before commit; staged gate green, no source/test/driver edit"
     }
   },
   "previousInterruptedRun": {
