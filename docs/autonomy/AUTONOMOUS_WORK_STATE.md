@@ -1,3 +1,18 @@
+# Current autonomous checkpoint - 2026-10-12T16:26:56.005Z
+
+TASK: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat
+RUN: rpgthreejs-auto-dev-90m-20261012T1617
+STATUS: IN_PROGRESS
+SUBTASK: T0normal1366 numerical motion/exit accepted scoped; computed opacity/perception open; T3normal next
+
+T0normal1366: ONE registered unchanged-driver smoke SUCCEEDED/current matched,13assertions/errors0/881frames. Return/fork velocity joins1.58%/1.85%; revealed authored clock0; accelerating complete exit; actual resize1366to1440to1366 with no premature arrival; one unresolved lion-first-refuge callback. Traversal reviewer PASS scoped. Computed local-curtain opacity remains BLOCKED by missing measurement; whole movement perception remains OPEN. Origin fixture/injected combat outcomes certify motion/lifecycle only, never earned campaign/V6/tactical/Pursuit. No demonstrated product defect, no source/test/driver/assertion/newQA edit or tracked proof promotion.
+
+Checks: current16focusedtests/2files,types,8contracts/8slots,immutable/workingcopy/whitespace PASS; unchanged9physicalbuild hashes match. Initial broad substring test selection accidentally included retained tmp/autonomy/baseline-2223 historical4vs2 failure; live tests16green, corrected --exclude tmp/** command16/16 PASS. Root inspected5captures, reviewer4, all diagnostics ignored. Counts source0/test0/existingQA0/newQA0/proof0/workflow3/inherited0/browser1/reviewer1. No quota savings claim.
+
+Exact nextAction: Read-only autonomy preflight/exclusive lock; inspect motion-t0-native-desktop-1617 SUCCEEDED result66a38b71/current stable request/digest and scoped workflow review before reuse. T0normal1366 numerical departure/reveal joins1.58%/1.85%, zero authored reveal clock, accelerating complete exit/resize and single unresolved-destination handoff accepted scoped; computed local-curtain opacity/full perceived continuity remain OPEN, not certified by inline variable or stills. No source defect demonstrated. ONE next registered existing tools/traversal-motion-production-qa.mjs --motion=normal --legs=T3 --viewports=1366x768 --pursuit-check=0 --port=<verified-free-port> --output=<unique-ignored-path>, same parameters for --register,13assertions. Fixture-origin/injected tactical outcomes certify motion/lifecycle only; no earned campaign/V6/Pursuit claim. Do not repeat accepted unchanged T0normal1617 or T1normal0415/OS0504. T0/T3OS and game-only/milestone perception remain open; mobileLAST. Keep native all-six/random-Pursuit parent and lancer/second-refuge/fullV6/ending/balance acceptance OPEN; never seed FAILED1521 partial outputs or replay unchanged35/45min. Preserve exact deferred keyboard/pendingNarrative/taskQueue.
+
+---
+
 ## Native proof checkpoint published - 2026-10-12T16:12:23.255Z
 
 Checkpoint0d79c75d30a153bb7e37bf77a466775ba8c6c09f and owned WIP9dcd74aa0b1d581752604eabacd711cac0016fa3 normally published/live verified on origin/dev under permanent OD-2026-10-12-A; main00b96f1 unchanged, clean before metadata closure. First final WIP export saw GitHub server fatal error in commit_refs; live refs unchanged, one same-payload normal retry succeeded, then dev published; no automatic approval refusal. Native1521 machine FAILED/NOT_ACCEPTED/unseedable remains separate from guardian accepted Salvation2to0/cap40/fiveclasses. Host worker26700/port5389 absent; preexisting Vite29856 retained. Source/driver/build unchanged,207QA jobs and protected intent preserved. Source0/test0/existingQA0/newQA0/proof4/workflow3/inherited3/browser1/rootcaptures7/reviewers2/threeboundedpasses. Exact nextAction unchanged: independent single next-run T0normal1366 fixture-origin motion gap; no unchanged campaign35/45 replay or partial seed. Final workflow-only publication and only owned1521 WIP/lock release recorded in automation memory/final audit.
@@ -1029,6 +1044,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - reward-label-native-desktop-0603: SUCCEEDED; port 5387; receipt `tmp/demo/reward-label-native-desktop-0603/qa-job.json`; NOT_ACCEPTED
 - second-refuge-native-desktop-0647: RUNNING; port 5388; receipt `tmp/demo/second-refuge-native-desktop-0647/qa-job.json`; NOT_ACCEPTED
 - second-refuge-native-desktop-1521: FAILED; port 5389; receipt `tmp/demo/second-refuge-native-desktop-1521/qa-job.json`; NOT_ACCEPTED
+- motion-t0-native-desktop-1617: SUCCEEDED; port 5390; receipt `tmp/traversal/motion-t0-native-desktop-1617/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
@@ -1071,3 +1087,9 @@ Configuration-only maintenance: source0, QA/proofAdded0, workflow7; existing pro
 ## Next independent desktop boundary reviewed
 
 Traversal reviewer PASS for ONE next-run T0normal1366 scenario with explicit --pursuit-check=0. Existing driver13normal assertions includes temporary arrival resize1366to1440x900to1366. Shared guarded departure/opaque readiness swap/reveal clock0 and carried velocity/accelerating complete exit source invariants reviewed; no actionable source defect established. T1normal0415 and OS0504 reviewed scopes retained, no repeat. T0 driver uses explicit QA origin and injected combat victories: fixture-origin motion/lifecycle only, no earned campaign/tactical outcome/V6/Pursuit claim. Original parent/deferred/pending and mobileLAST remain. Total reviewers2, bounded passes3. Requested skill runtime already implemented; this run advances fresh native proof without inventing a product defect or changing frozen code.
+
+## T0 motion continuation - 10/12/2026 16:19:03
+
+Owned run1617: clean dev/live e9536cad parity/no lock/previous owner idle; existing Vite29856 retained, port5390 free. FAILED1521 result digest matched and partial outputs remain unseedable. Shared movement correction already implemented, no demonstrated product defect. Exact independent nextAction: ONE registered existing T0normal1366 motion/lifecycle smoke,13assertions, explicit pursuit-check0, arrival resize1366to1440x900to1366. V6-origin fixture and injected combat outcomes cannot certify campaign, saves, tactical results or Pursuit. Original parent/deferred/pending/taskQueue preserved; T1normal/OS unchanged acceptance retained; T3/game-only/mobileLAST remain open. No new QA tool or assertion/source change.
+
+Current nextAction: Inspect ONE registered motion-t0-native-desktop-1617 receipt/result/captures at1366normal, explicit pursuit-check0 and arrival resize. Existing fixture-origin driver certifies motion/lifecycle only. Do not seed FAILED1521 outputs or repeat campaign35/45min; parent all-six/random-Pursuit, pending narrative/taskQueue/deferred keyboard preserved; T1normal/OS acceptance retained; T3/game-only/milestone/mobileLAST remain open.
