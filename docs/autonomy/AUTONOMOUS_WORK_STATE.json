@@ -1,39 +1,38 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-12T03:33:48.1447109+00:00",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-12T03:44:00.351Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "SAFE_PUBLICATION_CLOSEOUT",
-  "activeSubtask": "Diagnose native desktop skill-menu pointer responsiveness",
+  "activeSubtask": "Standalone archer1AP pointer menu verified; exact checkpoint publication blocked",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "fb2e2f5feb840caa7855fdb0c691a630d4fd01a6",
   "lastPushedCommit": "9b14235e5cde97bf1c3a835c350de3ae21624082",
   "completedThisRun": [
-    "Safely resumed interrupted2012 under stale-lock protocol; preserved three inherited WIP paths and prior refs",
-    "Verified terminalFAILED receipt/digest/driver/393source/9build and reviewed eight fresh captures with guardian",
-    "Recorded six novice native casts and same-round3to2 native setup/2to0 Salvation scoped observations; machineFAILED retained"
+    "Diagnosed selected native menu source; no runtime failure established",
+    "Added one bounded pointer scenario in existing keyboard runner",
+    "Verified standalone1366normal archer1AP native menu opens/returns three times with sampled tactical snapshot unchanged",
+    "56 focused tests, TypeScript,8 contracts/8 slots,immutable/whitespace gates passed",
+    "Automatic review rejected WIP publication; local checkpoint prepared without export retry"
   ],
   "filesChanged": [
+    "tools/combat-keyboard-production-qa.mjs",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/OPERATOR_DECISIONS.md",
-    "docs/autonomy/PUBLICATION_OPERATOR_DECISION_2026-10-08.md",
-    "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md",
-    "docs/reports/native-six-skills-observations-20261011-2012/checks.json"
+    "docs/autonomy/handoffs/2026-10-12T0332Z-codex-pointer-menu.md"
   ],
   "testsRun": [
-    "60 focused management/deployment tests excluding tmp duplicates",
-    "TypeScript --noEmit",
-    "8-contract/8-slot validator",
-    "Existing driver syntax, git diff --check and immutable/working-copy LOCKED gates",
-    "Physical393source/9build and terminal2012 result/receipt/current execution identity"
+    "node node_modules/vitest/vitest.mjs run src/combat/combatKeyboard.test.ts src/combat/combatHudPresentation.test.ts src/combat/skillPresentation.test.ts --exclude tmp/**",
+    "node node_modules/typescript/bin/tsc --noEmit",
+    "node tools/contracts/validate-contracts.mjs",
+    "node tools/combat-keyboard-production-qa.mjs (desktop-pointer-menus)"
   ],
   "testsPassed": [
-    "60 focused management/deployment tests excluding tmp duplicates",
-    "TypeScript --noEmit",
-    "8-contract/8-slot validator",
-    "Existing driver syntax, git diff --check and immutable/working-copy LOCKED gates",
-    "Physical393source/9build and terminal2012 result/receipt/current execution identity"
+    "56 tests in3 files",
+    "TypeScript",
+    "8contracts8slots",
+    "ONE registered standalone1366normal pointer smoke",
+    "Immutable LOCKED/workingcopy/whitespace gates"
   ],
   "testsRemaining": [
     "Read-only preflight/exclusive lock; inspect native-six-skills-observations-20261011-1858/checks.json and tmp/autonomy/skills-1858/terminal-audit.json first. Preserve FAILED/NOT_ACCEPTED driverc6306944/resultad28f416, all six reviewed novice-cast observations and exact earned Serpent terminal V6 equality; NEVER seed1858/1800/1731/0001 or replay unchanged45min campaign. Coupled exactly2AP Salvation remains OPEN: all20 casts begin3/5AP;18 AP3 native one-AP setup attempts had no healthy ally in basic-crosier centers. Inspect existing pilot skill()250-270, attack()202-215 and support move()330-365 against native reach. Establish a bounded native positioning plan with a healthy ally at basic-crosier range and a wounded eligible Salvation target; preserve3to2 native setup and strict2to0/40percent assertions. Only a demonstrated plan warrants ONE minimal existing-pilot input correction with guardian review and targeted registered verification from SUCCEEDED1859 or another independently successful exact seed; no instrumentation rewrite/unchanged failed replay. If unsupported, record the precise proof blocker and advance independent desktop production work. Keep original skills/randomPursuit task, exact deferred keyboard, accepted narrative history, canonical mapping blockers and mobileLAST; demo IN_PROGRESS.",
@@ -67,7 +66,7 @@
     "Opening dynamic1366/620 normalOS accepted scoped; later/earned narrative and approvedBois-Clair nightplate remainOPEN",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Review and execute ONE registered desktop-pointer-menus-0332 standalone1366normal scenario using existing keyboard runner. Inspect native pointer open/Return cycles and unchanged tactical snapshots. This diagnoses menu dispatch only, excludes 1AP/campaign iframe/six casts/ending/reload; do not replay unchanged45min failed campaign or seed failed outputs. Preserve original task/deferred keyboard/narrative/history/queue; mobileLAST.",
+  "nextAction": "Resolve automatic-review rejection for the concrete local0332 four-path dev checkpoint before export; no WIP/dev publication retry or workaround. Then confirm HEAD/lock/worker absence/live origin parity, normally publish approved checkpoint and archive/release owned lock. Preserve original all-six-skills/random-Pursuit task, FAILED2012 and all unseedable failed outputs. Reuse desktop-pointer-menus-0332 receipt only with driverbd200b39/source393/build9/current parameters and result584b2b9f: three standalone1366normal archer1AP pointer open/Retour cycles passed with sampled tactical snapshot unchanged; not campaign iframe/latency/cause/six-casts/ending/reload acceptance. No runtime defect or warranted campaign-pilot correction established; do not replay unchanged45min continuation. Next independently audit desktop checkpoint departure/final-exit perception against current source and prior scoped receipts before one change-relevant production smoke; keep parent skills/earned campaign/fullV6/later narrative/AT/balance/operatorfinal/mobileLAST/demo OPEN and deferred keyboard exact continuation preserved.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -83,7 +82,20 @@
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
   "creditStatus": "AVAILABLE_THIS_RUN",
-  "contractComplianceStatus": "PASS_SCOPED_NATIVE_OBSERVATIONS_FULL_TASK_OPEN_PUBLICATION_VERIFIED",
+  "contractComplianceStatus": {
+    "GAME_CONSTITUTION": "PASS",
+    "ART_DIRECTION": "N/A",
+    "CHARACTERS": "N/A",
+    "ENVIRONMENTS": "N/A",
+    "NARRATIVE_CAMPAIGN": "N/A_STANDALONE_NO_CHANGE",
+    "NARRATIVE_PRESENTATION": "N/A",
+    "TRAVERSAL": "N/A",
+    "COMBAT": "PASS_SAMPLED_SNAPSHOT_EQUALITY_ONLY",
+    "SAVE": "N/A_NO_SCHEMA_OR_SAVE_CHANGE",
+    "UI_ACCESSIBILITY": "PASS_SCOPED_STANDALONE_POINTER_ONLY",
+    "QA_EVIDENCE": "PASS_SCOPED_FINAL_GUARDIAN_REVIEW",
+    "REPOSITORY_GOVERNANCE": "BLOCKED_PUBLICATION_AUTO_REVIEW_REJECTION"
+  },
   "commitReferenceScope": "Last pushed commit9b14235 is verified workflow closure; final publication checkpoint/clean parity/lock release recorded in automation memory after transport. No product acceptance advanced.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
@@ -207,7 +219,7 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261012T0332",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-12T03:37:35.980Z",
+    "lastHeartbeat": "2026-10-12T03:44:00.351Z",
     "status": "PUBLICATION_RESOLVED_STANDING_AUTHORIZATION_RECORDED",
     "qaJobs": [
       {
@@ -21626,9 +21638,9 @@
         "schemaVersion": 1,
         "jobId": "desktop-pointer-menus-0332",
         "runId": "rpgthreejs-auto-dev-90m-20261012T0332",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-12T03:38:48.191Z",
-        "pid": null,
+        "pid": 22992,
         "port": 5383,
         "command": [
           "node",
@@ -21701,21 +21713,46 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-12T03:38:49.384Z",
+        "endedAt": "2026-10-12T03:39:48.662Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/desktop-pointer-menus-0332/results.json",
+        "resultSha256": "584b2b9fb52ca44cf1a825c3c5e0d16cfdb6420a740f40079045cd26c1978830",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "scopedDisposition": {
+          "status": "ACCEPTED_SCOPED_STANDALONE_ARCHER_1AP_POINTER_MENU",
+          "reviewer": "contracts-guardian",
+          "rootCapturesReviewed": 2,
+          "excludes": [
+            "CAMPAIGN_IFRAME",
+            "2012_CAUSE",
+            "LATENCY",
+            "SIX_CASTS",
+            "ENDING_RELOAD",
+            "EXHAUSTIVE_TACTICAL_IMMUTABILITY"
+          ]
+        }
       }
     ],
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0332",
-      "sha": null,
-      "status": "UNKNOWN_REVIEW_PENDING",
+      "sha": "2c299b73c375e042530e17d3ed67756182f55a5c",
+      "status": "GREEN_LOCAL_ONLY_PUBLICATION_BLOCKED",
       "dirtyFiles": [
         "tools/combat-keyboard-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/handoffs/2026-10-12T0332Z-codex-pointer-menu.md"
       ],
-      "lastGreenCheck": "393 physical sources/nine build artifacts/historical FAILED2012 identity verified"
+      "lastGreenCheck": "56tests/types/8contracts8slots/one registered native pointer smoke; no runtime source change"
     },
-    "nextAction": "Review and execute ONE registered desktop-pointer-menus-0332 standalone1366normal scenario using existing keyboard runner. Inspect native pointer open/Return cycles and unchanged tactical snapshots. This diagnoses menu dispatch only, excludes 1AP/campaign iframe/six casts/ending/reload; do not replay unchanged45min failed campaign or seed failed outputs. Preserve original task/deferred keyboard/narrative/history/queue; mobileLAST.",
+    "nextAction": "Resolve automatic-review rejection for the concrete local0332 four-path dev checkpoint before export; no WIP/dev publication retry or workaround. Then confirm HEAD/lock/worker absence/live origin parity, normally publish approved checkpoint and archive/release owned lock. Preserve original all-six-skills/random-Pursuit task, FAILED2012 and all unseedable failed outputs. Reuse desktop-pointer-menus-0332 receipt only with driverbd200b39/source393/build9/current parameters and result584b2b9f: three standalone1366normal archer1AP pointer open/Retour cycles passed with sampled tactical snapshot unchanged; not campaign iframe/latency/cause/six-casts/ending/reload acceptance. No runtime defect or warranted campaign-pilot correction established; do not replay unchanged45min continuation. Next independently audit desktop checkpoint departure/final-exit perception against current source and prior scoped receipts before one change-relevant production smoke; keep parent skills/earned campaign/fullV6/later narrative/AT/balance/operatorfinal/mobileLAST/demo OPEN and deferred keyboard exact continuation preserved.",
     "runMetrics": {
       "runId": "rpgthreejs-auto-dev-90m-20261012T0310",
       "runtimeSourceFilesModified": 0,
@@ -22601,7 +22638,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-    "activeSubtask": "Publication closure verified; standing publication authorization reaffirmed; native menu diagnosis remains open",
+    "activeSubtask": "Standalone archer1AP pointer menu verified; exact checkpoint publication blocked",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -25021,9 +25058,9 @@
       "sourceQaProofUnchanged": true
     },
     "menu0332": {
-      "at": "2026-10-12T03:37:35.980Z",
+      "at": "2026-10-12T03:43:18.812Z",
       "baseline": "d1b12a860a4ebd4583164b8b22a381cd6ac287e3",
-      "priorNextAction": "Review and execute ONE registered desktop-pointer-menus-0332 standalone1366normal scenario using existing keyboard runner. Inspect native pointer open/Return cycles and unchanged tactical snapshots. This diagnoses menu dispatch only, excludes 1AP/campaign iframe/six casts/ending/reload; do not replay unchanged45min failed campaign or seed failed outputs. Preserve original task/deferred keyboard/narrative/history/queue; mobileLAST.",
+      "priorNextAction": "Read-only autonomy preflight and exclusive lock; resume original all-six-skills/random-Pursuit task. Publication approvals are resolved and standing OD-2026-10-11-A covers all normal authorized dev/owned-WIP checkpoints, including state/handoff closure: do not ask routine per-checkpoint confirmation. Inspect native-six-skills-observations-20261011-2012/checks.json, terminal2012 receipt/result digest and source/build/driver before reuse. Preserve FAILED2012 and scoped six novice casts plus native3to2 setup/Salvation2to0 capped40percent; never seed2012/1858/1800/1731/0001 or replay unchanged45min campaign. Click275 remains a proof blocker, not an established runtime regression: inspected failure capture shows normal unoccluded menu, while actual job elapsed211.8min exceeds registered45min and may reflect execution suspension (inference only). Diagnose native menu responsiveness using existing runners before any demonstrated minimal pilot correction or single registered targeted desktop continuation from independently SUCCEEDED1859 exact seed. Keep all AP/healing/aggregate/earned-ending/reload assertions; no harness rewrite or truth injection. Full ending/aggregate/reload, randomPursuit/later narrative/fullV6/AT/balance/operatorfinal/demo remain OPEN; exact deferred keyboard/history/queue retained, mobileLAST.",
       "sourceFiles": 393,
       "buildArtifacts": 9,
       "sourceBuildReused": true,
@@ -25035,7 +25072,89 @@
         "currentExecutionMatches": true
       },
       "scope": "STANDALONE_DESKTOP_POINTER_MENU_ONLY_NOT_CAMPAIGN_OR_1AP",
-      "runtimeDefectEstablished": false
+      "runtimeDefectEstablished": false,
+      "acceptance": "REVIEWED_SCOPED_STANDALONE_ARCHER_1AP_POINTER_MENU",
+      "jobStatus": "SUCCEEDED",
+      "resultSha256": "584b2b9fb52ca44cf1a825c3c5e0d16cfdb6420a740f40079045cd26c1978830",
+      "driverSha256": "bd200b39485da5da225466903ba2eed1cb04941e34b283c7ceb84a300caa5895",
+      "observed": {
+        "activeId": 8,
+        "ap": 1,
+        "round": 1,
+        "turnIdx": 0,
+        "cycles": 3,
+        "disabledRows": 4,
+        "sampledEqualityChecks": 6
+      },
+      "capturesReviewed": [
+        "tmp/demo/desktop-pointer-menus-0332/1366-pointer-skill-open.png",
+        "tmp/demo/desktop-pointer-menus-0332/1366-pointer-skill-return.png"
+      ],
+      "limitations": [
+        "Standalone only; no campaign iframe or historical2012 cause proof",
+        "No latency/performance threshold; elapsedMs includes capture/assertion work",
+        "Sampled tactical fields equality, not exhaustive immutability",
+        "No six-cast aggregate/ending/reload/fullV6/demo acceptance"
+      ],
+      "counts": {
+        "runtimeSourceModified": 0,
+        "testModified": 0,
+        "existingQaModified": 1,
+        "newQaTools": 0,
+        "proofAdded": 0,
+        "workflowModifiedOrAdded": 3,
+        "inheritedWip": 0,
+        "browserScenarios": 1,
+        "assertionCorrectionsAfterFailure": 0
+      },
+      "checks": {
+        "tests": 56,
+        "files": 3,
+        "typescript": "PASS",
+        "contracts": "PASS_8_8",
+        "immutable": "PASS",
+        "whitespace": "PASS",
+        "build": "REUSED_IDENTICAL393_SOURCE9_ARTIFACTS",
+        "browser": "SUCCEEDED_SCOPED"
+      },
+      "publication": {
+        "status": "AUTO_REVIEW_REJECTED_UNEXECUTED",
+        "action": "Normal owned WIP snapshot push",
+        "reason": "Private source/state WIP to unverified external GitHub destination; general recorded authorization judged insufficient for exact branch/payload",
+        "noRetryOrWorkaround": true,
+        "standingAuthority": "OD-2026-10-11-A",
+        "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
+        "selectedPaths": [
+          "tools/combat-keyboard-production-qa.mjs",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+          "docs/autonomy/handoffs/2026-10-12T0332Z-codex-pointer-menu.md"
+        ]
+      },
+      "compliance": {
+        "GAME_CONSTITUTION": "PASS",
+        "ART_DIRECTION": "N/A",
+        "CHARACTERS": "N/A",
+        "ENVIRONMENTS": "N/A",
+        "NARRATIVE_CAMPAIGN": "N/A_STANDALONE_NO_CHANGE",
+        "NARRATIVE_PRESENTATION": "N/A",
+        "TRAVERSAL": "N/A",
+        "COMBAT": "PASS_SAMPLED_SNAPSHOT_EQUALITY_ONLY",
+        "SAVE": "N/A_NO_SCHEMA_OR_SAVE_CHANGE",
+        "UI_ACCESSIBILITY": "PASS_SCOPED_STANDALONE_POINTER_ONLY",
+        "QA_EVIDENCE": "PASS_SCOPED_FINAL_GUARDIAN_REVIEW",
+        "REPOSITORY_GOVERNANCE": "BLOCKED_PUBLICATION_AUTO_REVIEW_REJECTION"
+      },
+      "guardian": {
+        "prelaunch": "PASS_AFTER_METHOD_METADATA_CORRECTION",
+        "final": "PASS_SCOPED_DESKTOP_POINTER_MENU",
+        "passes": 2,
+        "inspectedCaptures": 2
+      },
+      "uiReviewer": {
+        "verdict": "OK_WITH_CONDITIONS_NO_RUNTIME_DEFECT_ESTABLISHED",
+        "reviewers": 1
+      }
     }
   },
   "previousInterruptedRun": {
