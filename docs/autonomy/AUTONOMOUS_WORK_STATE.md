@@ -1,3 +1,33 @@
+## Owned reward-label snapshot - 2026-10-12T06:37:35.911Z
+
+wip/rpgthreejs-auto-dev-90m-20261012T0603@0e332c31fe7ea3e5ca9d392a53770ff69aa33849; three workflow paths and four explicitly selected proof files. Source and driver unchanged; snapshot is recovery only.
+
+## Native first-refuge scoped milestone - 2026-10-12T06:36:43.961Z
+
+SUCCEEDED current-matched native1366normal scenario22.9min, result03eab0e5a83eea0f40c962cd7ce741df4e88cd4757ff331197f2f9f595bfc9f0. Forest opening17actions/round3 and incidentalT0r6 forest29actions/round4, same-road native return/focus/temporary reward once; first-refuge earned/live/resumed V6 structurally equal, secured gold210,temp0,materials2+2. No fixture/runtime/outcome injection, errors0. Minerai de fer +1/complete result/Continue visibly fit; keyboard Enter and automatic parent-focus/road-focus assertions PASS. Early parent typewriter and50ms impact capture exclude settled-prose/CombatStage claims. Root inspected6captures/UI2passes/guardian milestone PASS. Explicit selected compact proof docs/reports/native-first-refuge-20261012-0603/checks.json +3captures.17tests/types/8contracts8slots/immutable/workingcopy/whitespace green, unchanged214module build reused. No source/test/driver/newQA edit; proof4/workflow3/inherited0/browser1. Parent all-six/randomPursuit/later narrative/fullV6/ending/balance/AT/operatorfinal/mobileLAST/demo IN_PROGRESS;205jobs/queue/deferredwork intact. Machine NOT_ACCEPTED retained separately from reviewed scoped acceptance.
+
+Exact nextAction: Read-only autonomy preflight/exclusive lock; inspect reward-label-native-desktop-0603 SUCCEEDED receipt/result03eab0e5 and selected docs/reports/native-first-refuge-20261012-0603/checks.json; verify current physical source/driver/build and exact earned-first-refuge-v6.json equals proof.resumed before reuse. Current native forest opening/T0r6 Pursuit/first-refuge exact reload and Minerai de fer label accepted scoped; do not repeat this fresh opening or unchanged T1 normal/OS. Resume original all-six-skills/random-Pursuit parent: ONE registered existing demo-continuous-production-qa.mjs second-refuge desktop1366normal continuation35min, rescue/serpent, from this newly SUCCEEDED exactsave/proof (DEMO_QA_EARNED_SAVE=tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json; DEMO_QA_PRIOR_PROOF=tmp/demo/reward-label-native-desktop-0603/results.json), VERIFY_SALVATION=1 keeps native2AP/40% assertions unchanged. Native rest already exists at driver684-691 and will prepare two downed allies before departure; do not inject recovery or rewrite the pilot. Register/sync and inspect terminal/captures; a new failed aggregate remains unseedable, never replay unchanged45min or infer all-six/fullending from second-refuge target. Prior2012 sixcasts/Salvation3to2setup/2to0 capped40% remain scoped; no demonstrated menu-selector correction. Preserve exact deferred keyboard/pendingNarrative/taskQueue/history; T0/T3/game-only motion milestone gaps, later earned narrative/fullV6/ending/balance/AT/operatorfinal/mobileLAST/demo remain OPEN.
+
+## Owned reward-label snapshot - 2026-10-12T06:21:20.138Z
+
+wip/rpgthreejs-auto-dev-90m-20261012T0603@c86f1d83640dc44d03347bcab33faf5ef6a243f8; three explicitly reviewed workflow paths. Source and driver frozen; snapshot is recovery only.
+
+## Native label observed, terminal pending - 2026-10-12T06:21:17.928Z
+
+Opening native victory17actions/round3. Root/UI inspected result and early parent-focus captures: Minerai de fer +1 and complete Continue/card visibly fit1366normal. Parent early typewriter excludes settled prose; no exact DOM reward bounds or automatic result-focus claim. Aggregate/refuge/reload still RUNNING; no seed or acceptance promotion.17tests/types/contracts/gates green, build unchanged.
+
+Exact nextAction: Inspect ONE registered reward-label-native-desktop-0603 terminal receipt and actual resultText/captures on current build. Distinguish corrected-label visibility/native Continue and earned refuge/reload; no second smoke or failed-output seed. Preserve all-six-skills/random-Pursuit original task, exact deferred work and mobileLAST; campaign/fullV6/balance/operatorfinal/demo remain OPEN.
+
+## Owned reward-label snapshot - 2026-10-12T06:08:18.031Z
+
+wip/rpgthreejs-auto-dev-90m-20261012T0603@0401595cf94ed6f736d42bd6e7f88913a91637de; three explicitly reviewed workflow paths. Source and driver frozen; snapshot is recovery only.
+
+## Native reward label verification - 2026-10-12T06:05:44.265Z
+
+Clean no-lock preflight, previous owner idle, live dev=HEAD49bce297/main00b96f1; fetched under exclusive0603 lock. No related campaign workers, port5387 free; existing Vite server preserved. Prior0523 FAILED result digest verified, never seeded. Current214module build and authored Minerai de fer correction require ONE fresh existing-driver native1366normal first-refuge smoke25min; no source/driver/assertion/truth mutation. Parent task/queue/deferred keyboard/narrative and204 historical jobs retained.
+
+Exact nextAction: Inspect ONE registered reward-label-native-desktop-0603 terminal receipt and actual resultText/captures on current build. Distinguish corrected-label visibility/native Continue and earned refuge/reload; no second smoke or failed-output seed. Preserve all-six-skills/random-Pursuit original task, exact deferred work and mobileLAST; campaign/fullV6/balance/operatorfinal/demo remain OPEN.
+
 ## Published source-local checkpoint - 2026-10-12T05:56:35.345Z
 
 Product9d0960d942e6274293d35e0852b71797a1cb4b90 normally published/live verified origin/dev under permanent OD-2026-10-12-A; main00b96f1 unchanged. Post-fix build214modules/174tests/types/contracts/gates green, label browser acceptance OPEN.0523 receipt remains FAILED/unseedable/pre-edit only; no successful refuge/reload. Exact nextAction preserved. Final metadata closure, ownedWIP retirement and lockarchive confirmed in automationmemory/ignoredfinalaudit after clean parity.
@@ -960,6 +990,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - motion-join-desktop-0415: SUCCEEDED; port 5384; receipt `tmp/traversal/motion-join-desktop-0415/qa-job.json`; NOT_ACCEPTED
 - motion-os-desktop-0504: SUCCEEDED; port 5385; receipt `tmp/traversal/motion-os-desktop-0504/qa-job.json`; NOT_ACCEPTED
 - opening-native-desktop-0523: FAILED; port 5386; receipt `tmp/demo/opening-native-desktop-0523/qa-job.json`; NOT_ACCEPTED
+- reward-label-native-desktop-0603: SUCCEEDED; port 5387; receipt `tmp/demo/reward-label-native-desktop-0603/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
