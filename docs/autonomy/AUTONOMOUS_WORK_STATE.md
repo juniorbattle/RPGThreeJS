@@ -1,3 +1,19 @@
+## Owned green snapshot - 2026-10-12T05:13:55.938Z
+
+wip/rpgthreejs-auto-dev-90m-20261012T0504@3964b2da110671651795c3352f6dc76f7e8170ef; three reviewed workflow paths only. Scoped OS T1 proof GREEN; snapshot is recovery, not acceptance. Exact nextAction stays in current paired state.
+
+## OS-only desktop motion scoped checkpoint - 2026-10-12T05:13:16.203Z
+
+ONE registered OS-only T1 1440x810 event branch smoke SUCCEEDED:12assertions/619samples/7captures/errors0; root/reviewer inspected3captures. Fork join1.228873269to1.213400072=1.25914%; zero authored reveal clock/zero visible reduced departure offset. Fully covered complete exit precedes unique unresolved-destination callback.47focusedtests/types/contracts8slots8/immutable/whitespace PASS; unchanged393source/ninebuild/driver/helper retained. No demonstrated extra product defect or source/assertion edit. Reviewed scoped acceptance is separate from machine NOT_ACCEPTED. T0/T3/game-only/otherbranches/readiness/operatorperception/campaign/V6/full-demo remainOPEN. 202 historicalQA records and protectedtask/queue/deferredwork preserved. Counts source0/test0/existingQA0/newQA0/proof0/workflow3/inherited0/browser1; one targeted traversalreviewer.
+
+Exact nextAction: Read-only autonomy preflight/exclusive lock; inspect motion-os-desktop-0504 terminal receipt/result4e7e30aa and existing normal0415 physical audit before reuse. OS-only T1 1440 event-branch fork velocity join1.25914%/zero-clock reveal/covered complete exit/unique unresolved-destination callback is scoped accepted; do not repeat unchanged normal or OS T1 smoke. Resume original all-six-skills/random-Pursuit task: inspect native-six-skills-observations-20261011-2012/checks.json and current pilot lines242-327 first; six novice casts and same-round3to2 setup/Salvation2to0 capped40% are already scoped reviewed, coupled aggregate/ending/reload remain OPEN. FAILED2012/1858/1800/1731/0001 stay unseedable; no unchanged45min replay or speculative skill-menu correction. Independent desktop next: audit existing native opening forest_ambush proof versus wolf_pack scoped findings and current opening two-enemy/initial-skill configuration; use existing first-refuge driver for ONE fresh bounded native desktop smoke only if that boundary lacks compatible proof, without outcome/owner injection or weakening AP/healing assertions. T0/T3/game-only motion and other contexts are milestone gaps, not repeated T1 work. Preserve exact deferred keyboard/pending narrative/taskQueue/history; later earned narrative/fullV6/AT/balance/operatorfinal/mobileLAST/demo IN_PROGRESS.
+
+## OS-only desktop motion verification - 2026-10-12T05:07:09.971Z
+
+Run rpgthreejs-auto-dev-90m-20261012T0504. Preflight clean/no lock/live dev parity d4913b8; previous owner idle and related workers absent. Exact pending OS-only T1 1440x810 smoke, unchanged 393 physical sources/nine build/driver/helper. No additional demonstrated product defect; no normal smoke replay. Parent task, taskQueue, deferred work and 202 historical QA jobs preserved. Scope excludes earned campaign/V6/operator perception/mobile/full-demo.
+
+Exact nextAction: Run ONE registered existing traversal-motion-production-qa.mjs --motion=os --legs=T1 --viewports=1440x810 on unchanged committed source/build. Inspect receipt, velocity samples, covered exit and selected captures before scoped disposition; retain original all-six-skills/random-Pursuit and every deferred/failed/unseedable proof boundary.
+
 ## Current closure after review reset - 2026-10-12T05:00:53.689Z
 
 Automatic approval review resumed normally after the announced reset; the earlier quota pause is resolved. Productf957cb6 already verified on origin/dev;393source/ninebuild/driver remain identical. Final workflow-only closure publication is authorized by OD-2026-10-12-A. Exact nextAction: Read-only preflight/exclusive lock; inspect motion-join-desktop-0415 terminal receipt/result964d1d2e/driverce350f77/current tested source diff and build before reuse. Preserve accepted normal T1 1440x810 fork join1.26%/zero-clock reveal/complete exit/single unresolved-destination handoff; no repeated normal T1 smoke on unchanged identity. Next run ONE existing traversal-motion-production-qa.mjs OS-only T1 1440x810 registered smoke to verify reduced departure velocity join/covered equivalent exit on current build; T0/T3 normal and game-only motion remain milestone gaps, operator perception remains OPEN, mobile LAST. Then resume original all-six-skills/random-Pursuit and pending desktop narrative/earned campaign work; FAILED2012/1858/1800/1731/0001 remain unseedable, no unchanged45min campaign replay. Exact deferred keyboard/pending narrative/taskQueue/all201 historical QA records preserved; fullV6/AT/balance/operatorfinal/demo IN_PROGRESS.
@@ -896,6 +912,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - skills-six-native-2012: FAILED; port 5382; receipt `tmp/demo/skills-six-native-2012/qa-job.json`; NOT_ACCEPTED
 - desktop-pointer-menus-0332: SUCCEEDED; port 5383; receipt `tmp/demo/desktop-pointer-menus-0332/qa-job.json`; NOT_ACCEPTED
 - motion-join-desktop-0415: SUCCEEDED; port 5384; receipt `tmp/traversal/motion-join-desktop-0415/qa-job.json`; NOT_ACCEPTED
+- motion-os-desktop-0504: SUCCEEDED; port 5385; receipt `tmp/traversal/motion-os-desktop-0504/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
