@@ -1,3 +1,9 @@
+## Native second-refuge continuation - 2026-10-12T06:50:15.362Z
+
+Clean no-lock dev969d662/live parity; prior owner idle, campaign workers absent, existing Vite servers retained. Exclusive lock/fetch. Successful0603 receipt/result/exact earned save/source tree/driver/helper/nine build files matched.
+
+Exact nextAction: Inspect ONE registered second-refuge-native-desktop-0647 terminal and fresh actions/captures. Continuation from SUCCEEDED0603 exact first-refuge V6, native Rest, desktop1366normal rescue/serpent35min VERIFY_SALVATION=1. Keep exact2AP/40percent assertions and failed-result quarantine; no second smoke or pilot rewrite. Preserve original all-six-skills/random-Pursuit parent, deferred keyboard/pending narrative/taskQueue/history/mobileLAST.
+
 ## Native proof checkpoint published - 2026-10-12T06:40:10.747Z
 
 Checkpointfb8430c711e69468f9c380086b6b49880eaa74bd normally published/live verified on origin/dev under OD-2026-10-12-A; main00b96f1 unchanged. Native0603 receipt still execution-compatible after evidence/workflow commit; machine NOT_ACCEPTED separate from guardian reviewed scoped acceptance. Worker58912/port5387 absent, existing servers retained;205jobs and original task/queue/deferred work preserved. Staged gate caught and corrected new-handoff EOF blank before commit. Final metadata publication and ownedWIP/lock retirement recorded in automationmemory/finalaudit.
@@ -997,6 +1003,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - motion-os-desktop-0504: SUCCEEDED; port 5385; receipt `tmp/traversal/motion-os-desktop-0504/qa-job.json`; NOT_ACCEPTED
 - opening-native-desktop-0523: FAILED; port 5386; receipt `tmp/demo/opening-native-desktop-0523/qa-job.json`; NOT_ACCEPTED
 - reward-label-native-desktop-0603: SUCCEEDED; port 5387; receipt `tmp/demo/reward-label-native-desktop-0603/qa-job.json`; NOT_ACCEPTED
+- second-refuge-native-desktop-0647: RUNNING; port 5388; receipt `tmp/demo/second-refuge-native-desktop-0647/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
