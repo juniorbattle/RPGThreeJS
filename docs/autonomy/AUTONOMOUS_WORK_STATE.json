@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-12T11:21:02.8790059-04:00",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-12T16:12:23.255Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "SAFE_SCOPED_CHECKPOINT",
   "activeSubtask": "Fresh Salvation2to0 and five novice casts accepted scoped; native second-refuge aggregate timed out",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "fb8430c711e69468f9c380086b6b49880eaa74bd",
-  "lastPushedCommit": "fb8430c711e69468f9c380086b6b49880eaa74bd",
+  "lastPushedCommit": "0d79c75d30a153bb7e37bf77a466775ba8c6c09f",
   "completedThisRun": [
     "Recover0647 cutoff under full105min/owner/process/port/live-parity protocol; reviewed inherited workflow WIP preserved",
     "ONE existing-driver1521 native continuation finalized FAILED35min with stable matched provenance/errors0; no rerun/assertion change",
@@ -97,20 +97,20 @@
     "at": "2026-10-12T05:00:08.378Z"
   },
   "contractComplianceStatus": {
-    "GAME_CONSTITUTION": "PASS_OWNER_BOUNDARIES",
+    "GAME_CONSTITUTION": "PASS_OWNER_BOUNDARIES_UNCHANGED",
     "ART_DIRECTION": "N/A",
     "CHARACTERS": "N/A",
     "ENVIRONMENTS": "N/A",
-    "NARRATIVE_CAMPAIGN": "PASS_EXISTING_CHOICES_PERSISTENCE_SCOPED",
+    "NARRATIVE_CAMPAIGN": "PASS_EXISTING_AUTHORED_NODES_PARENT_OPEN",
     "NARRATIVE_PRESENTATION": "N/A",
-    "TRAVERSAL": "PASS_SINGLE_T0R6_NATIVE_RETURN_TEMPORARY_REWARD_ONCE",
-    "COMBAT": "PASS_NATIVE_OPENING_AND_PURSUIT_NO_INJECTION",
-    "SAVE": "PASS_EXACT_FIRST_REFUGE_V6_ONLY",
-    "UI_ACCESSIBILITY": "PASS_SCOPED_DESKTOP_LABEL_KEYBOARD_AND_LANE_FOCUS",
-    "QA_EVIDENCE": "PASS_CURRENT_MATCHED_SCOPED_PROOF",
-    "REPOSITORY_GOVERNANCE": "PASS_OWNED_LOCK_EXPLICIT_SELECTION_OD_2026_10_12_A"
+    "TRAVERSAL": "N/A_NO_NEW_PURSUIT_ACCEPTANCE",
+    "COMBAT": "PASS_STRICT_SALVATION_AND_FIVE_NATIVE_CASTS_SCOPED",
+    "SAVE": "PASS_EXACT_VALID_INPUT_FAILED_OUTPUT_QUARANTINE_SECOND_REFUGE_OPEN",
+    "UI_ACCESSIBILITY": "N/A_DESKTOP_NORMAL_CAPTURES_ONLY",
+    "QA_EVIDENCE": "PASS_SCOPED_OBSERVATIONS_SEPARATE_FROM_FAILED_AGGREGATE",
+    "REPOSITORY_GOVERNANCE": "PASS_LOCK_GATES_SELECTED_PATHS_DEV_ONLY"
   },
-  "commitReferenceScope": "Product source-local checkpoint9d0960d normally published/live verified; final workflow-only closure SHA recorded in automation memory/final audit; no post-fix browser acceptance",
+  "commitReferenceScope": "Native source/driver/build unchanged; scoped proof/workflow checkpoint0d79c75 published/live verified; final metadata closure hash recorded in automation memory/final audit; FAILED aggregate never accepted.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -213,17 +213,17 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261012T1521",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-12T16:07:44.721Z",
+  "lastHeartbeat": "2026-10-12T16:12:23.255Z",
   "wip": {
-    "at": "2026-10-12T15:57:55.8495058+00:00",
+    "at": "2026-10-12T16:09:03.2082206+00:00",
     "branch": "wip/rpgthreejs-auto-dev-90m-20261012T1521",
-    "sha": "536406711f4f4317fefa64df3eb513230d4e8e93"
+    "sha": "9dcd74aa0b1d581752604eabacd711cac0016fa3"
   },
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261012T1521",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-12T16:07:44.721Z",
-    "status": "SCOPED_NATIVE_SKILLS_ACCEPTED_AGGREGATE_FAILED",
+    "lastHeartbeat": "2026-10-12T16:12:23.255Z",
+    "status": "CLOSED_SCOPED_NATIVE_SKILLS_ACCEPTED_AGGREGATE_FAILED",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -22425,9 +22425,9 @@
       }
     ],
     "wip": {
-      "at": "2026-10-12T15:57:55.8495058+00:00",
+      "at": "2026-10-12T16:09:03.2082206+00:00",
       "branch": "wip/rpgthreejs-auto-dev-90m-20261012T1521",
-      "sha": "536406711f4f4317fefa64df3eb513230d4e8e93"
+      "sha": "9dcd74aa0b1d581752604eabacd711cac0016fa3"
     },
     "nextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
     "runMetrics": {
@@ -22466,7 +22466,7 @@
       "closure": "Final workflow-only metadata publication and owned lock/WIP retirement recorded in automationmemory/finalaudit"
     },
     "runStartedAt": "2026-10-12T11:21:02.8790059-04:00",
-    "runEndedAt": null,
+    "runEndedAt": "2026-10-12T16:12:23.255Z",
     "writerStopped": false,
     "metadataPublication": {
       "status": "NORMAL_DEV_PUBLICATION_VERIFIED",
@@ -26543,7 +26543,90 @@
         "reviewerPasses": 3
       },
       "nextIndependent": "TRAVERSAL_REVIEWER_PASS: ONE next-run registered T0normal1366 existing-driver motion smoke,13assertions, arrival resize1366to1440x900to1366; fixture-origin and injected combat outcomes only, not campaign/V6/Pursuit acceptance. Shared source invariant review establishes no actionable defect. T1normal0415/OS0504 unchanged acceptance retained.",
-      "noProductEditReason": "Requested initial competence runtime already implemented; fresh native acceptance gaps advanced without a demonstrated source defect. ONE smoke consumed. No speculative changes or unchanged native aggregate rerun."
+      "noProductEditReason": "Requested initial competence runtime already implemented; fresh native acceptance gaps advanced without a demonstrated source defect. ONE smoke consumed. No speculative changes or unchanged native aggregate rerun.",
+      "previousTopMetadata": {
+        "runMeasurement": {
+          "productSource": 0,
+          "existingTests": 0,
+          "existingQa": 0,
+          "newQa": 0,
+          "proof": 0,
+          "workflow": 3,
+          "inheritedWip": 0,
+          "browserScenarios": 1,
+          "reviewers": 1,
+          "guardianPasses": 2,
+          "harnessCorrections": 0,
+          "quotaSavingsClaim": false
+        },
+        "currentRunMeasurement": {
+          "runId": "rpgthreejs-auto-dev-90m-20261012T0523",
+          "runtimeSourceFilesModified": 1,
+          "testFilesModified": 0,
+          "existingQaFilesModified": 0,
+          "newQaFilesAdded": 0,
+          "promotedProofFiles": 0,
+          "workflowDocs": 3,
+          "inheritedWipFiles": 0,
+          "browserScenarios": 1,
+          "registeredJobs": 1,
+          "rootCapturesInspected": 4,
+          "reviewers": 1,
+          "reviewerPasses": 4,
+          "quotaSavingsClaim": "NONE"
+        },
+        "runStatistics": {
+          "sourceFilesModified": 3,
+          "testFilesModified": 1,
+          "existingQaFilesModified": 2,
+          "newQaFilesAdded": 0,
+          "proofFilesAdded": 3,
+          "workflowFilesChanged": 3,
+          "inheritedWIP": 0,
+          "reviewers": 1,
+          "guardianPasses": 4,
+          "designatedBrowserScenarios": 1,
+          "executedAttempts": 1,
+          "postFailureHarnessCorrections": 0,
+          "quotaSavingsClaimed": false,
+          "endedAt": "2026-10-10T04:06:07.698Z",
+          "elapsedMinutes": 41.49068333333334
+        },
+        "contractComplianceStatus": {
+          "GAME_CONSTITUTION": "PASS_OWNER_BOUNDARIES",
+          "ART_DIRECTION": "N/A",
+          "CHARACTERS": "N/A",
+          "ENVIRONMENTS": "N/A",
+          "NARRATIVE_CAMPAIGN": "PASS_EXISTING_CHOICES_PERSISTENCE_SCOPED",
+          "NARRATIVE_PRESENTATION": "N/A",
+          "TRAVERSAL": "PASS_SINGLE_T0R6_NATIVE_RETURN_TEMPORARY_REWARD_ONCE",
+          "COMBAT": "PASS_NATIVE_OPENING_AND_PURSUIT_NO_INJECTION",
+          "SAVE": "PASS_EXACT_FIRST_REFUGE_V6_ONLY",
+          "UI_ACCESSIBILITY": "PASS_SCOPED_DESKTOP_LABEL_KEYBOARD_AND_LANE_FOCUS",
+          "QA_EVIDENCE": "PASS_CURRENT_MATCHED_SCOPED_PROOF",
+          "REPOSITORY_GOVERNANCE": "PASS_OWNED_LOCK_EXPLICIT_SELECTION_OD_2026_10_12_A"
+        }
+      },
+      "publication": {
+        "status": "PUBLISHED_NORMAL_DEV_LIVE_VERIFIED",
+        "authorization": "OD-2026-10-12-A",
+        "sha": "0d79c75d30a153bb7e37bf77a466775ba8c6c09f",
+        "at": "2026-10-12T16:12:23.255Z",
+        "paths": [
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+          "docs/autonomy/handoffs/2026-10-12T0647Z-codex-native-continuation.md",
+          "docs/autonomy/handoffs/2026-10-12T1521Z-codex-recovery.md",
+          "docs/reports/native-skills-20261012-1521/checks.json",
+          "docs/reports/native-skills-20261012-1521/combat-2-result.png",
+          "docs/reports/native-skills-20261012-1521/combat-2-salvation-exactly2ap-before-52.png",
+          "docs/reports/native-skills-20261012-1521/combat-2-w_salvation-53.png"
+        ],
+        "wipSha": "9dcd74aa0b1d581752604eabacd711cac0016fa3",
+        "serverError": "First final WIP push GitHub remote fatal error in commit_refs; live refs unchanged; ONE same-payload normal retry succeeded; dev published afterward. No auto-review refusal.",
+        "closure": "Final workflow-only metadata commit, exact proof/intent audit and only owned1521 WIP/lock retirement recorded in automation memory/final audit"
+      },
+      "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
     "activePhase": "SAFE_SCOPED_CHECKPOINT"
   },
@@ -26598,12 +26681,13 @@
     "existingTests": 0,
     "existingQa": 0,
     "newQa": 0,
-    "proof": 0,
+    "proof": 4,
     "workflow": 3,
-    "inheritedWip": 0,
+    "inheritedWip": 3,
     "browserScenarios": 1,
-    "reviewers": 1,
+    "reviewers": 2,
     "guardianPasses": 2,
+    "traversalPasses": 1,
     "harnessCorrections": 0,
     "quotaSavingsClaim": false
   },
@@ -26747,7 +26831,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "Only three selected workflow closure paths pending metadata commit; final clean-tree/parity verification recorded externally.",
+  "uncommittedWork": "Only three selected workflow publication-closure paths pending metadata commit; final clean-tree/live-parity verification recorded in automation memory and ignored final audit.",
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
@@ -26877,21 +26961,22 @@
     }
   },
   "runStatistics": {
-    "sourceFilesModified": 3,
-    "testFilesModified": 1,
-    "existingQaFilesModified": 2,
+    "sourceFilesModified": 0,
+    "testFilesModified": 0,
+    "existingQaFilesModified": 0,
     "newQaFilesAdded": 0,
-    "proofFilesAdded": 3,
+    "proofFilesAdded": 4,
     "workflowFilesChanged": 3,
-    "inheritedWIP": 0,
-    "reviewers": 1,
-    "guardianPasses": 4,
+    "inheritedWIP": 3,
+    "reviewers": 2,
+    "guardianPasses": 2,
+    "traversalPasses": 1,
     "designatedBrowserScenarios": 1,
     "executedAttempts": 1,
     "postFailureHarnessCorrections": 0,
     "quotaSavingsClaimed": false,
-    "endedAt": "2026-10-10T04:06:07.698Z",
-    "elapsedMinutes": 41.49068333333334
+    "endedAt": "2026-10-12T16:12:23.255Z",
+    "elapsedMinutes": 51.3396
   },
   "qaToolingJustification": "Extend existing campaign battle() and receipt assertions for incidental Pursuit; no new QA tool. Prior motion runner injects outcomes and cannot certify native HP/items/temp rewards or actual persisted V6.",
   "retainedRunArtifacts": {
@@ -27896,20 +27981,21 @@
     "fullDemoComplete": false
   },
   "currentRunMeasurement": {
-    "runId": "rpgthreejs-auto-dev-90m-20261012T0523",
-    "runtimeSourceFilesModified": 1,
+    "runId": "rpgthreejs-auto-dev-90m-20261012T1521",
+    "runtimeSourceFilesModified": 0,
     "testFilesModified": 0,
     "existingQaFilesModified": 0,
     "newQaFilesAdded": 0,
-    "promotedProofFiles": 0,
+    "promotedProofFiles": 4,
     "workflowDocs": 3,
-    "inheritedWipFiles": 0,
+    "inheritedWipPaths": 3,
     "browserScenarios": 1,
     "registeredJobs": 1,
-    "rootCapturesInspected": 4,
-    "reviewers": 1,
-    "reviewerPasses": 4,
-    "quotaSavingsClaim": "NONE"
+    "rootCapturesInspected": 7,
+    "guardianPasses": 2,
+    "quotaSavingsClaim": "NONE",
+    "reviewers": 2,
+    "reviewerPasses": 3
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",
