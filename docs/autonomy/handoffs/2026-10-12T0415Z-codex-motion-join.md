@@ -1,0 +1,18 @@
+# Desktop reveal-to-driving velocity checkpoint
+
+TASK: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat
+BASELINE: dev58ee73df9438715d3df603ac3ddf97b6e94cc937
+STATUS: IN_PROGRESS; normal T1 velocity join scoped proof, broader acceptance OPEN
+
+## Desktop reveal velocity checkpoint - 2026-10-12T04:30:53.594Z
+
+Shared presentation fix removes measured reveal-to-driving velocity kink. ONE T1 normal1440x810 production smoke SUCCEEDED: join1.229005to1.213547(1.26%),13assertions/718samples/errors0; root/traversal inspected3ignoredcaptures.47focusedtests/types/build214modules8MP4/contracts8slots8/immutable/whitespace PASS. No final-exit correction established; final exit unchanged and single unresolved-destination callback verified. Current receipt/digest/provenance matched. Scope is normal T1 fork only; T0/T3, OS/game, operatorperception/campaign/fullV6/AT/balance/mobileLAST/demo remainOPEN. Historical201jobs/deferredkeyboard/narrative/queue preserved. Counts source1/test1/existingQA1/newQA0/proof0/workflow3/inherited0/browser1. Finalguardian PASS scoped; publication pending; ownedWIP9d2d4a7 verified on origin.
+
+Exact nextAction: Read-only preflight/exclusive lock; inspect motion-join-desktop-0415 terminal receipt/result964d1d2e/driverce350f77/current tested source diff and build before reuse. Preserve accepted normal T1 1440x810 fork join1.26%/zero-clock reveal/complete exit/single unresolved-destination handoff; no repeated normal T1 smoke on unchanged identity. Next run ONE existing traversal-motion-production-qa.mjs OS-only T1 1440x810 registered smoke to verify reduced departure velocity join/covered equivalent exit on current build; T0/T3 normal and game-only motion remain milestone gaps, operator perception remains OPEN, mobile LAST. Then resume original all-six-skills/random-Pursuit and pending desktop narrative/earned campaign work; FAILED2012/1858/1800/1731/0001 remain unseedable, no unchanged45min campaign replay. Exact deferred keyboard/pending narrative/taskQueue/all201 historical QA records preserved; fullV6/AT/balance/operatorfinal/demo IN_PROGRESS.
+
+
+Source: shared TraversalRoadScene pure anchored predictor and factored existing contact reader. Retain actual reveal velocity; no authored clock/contact/reward/campaign/save/MP4/canon change. Existing runner adds adjacent same-road/short-frame (<100ms) velocity comparison<5%; no new tool. Anchor/no-anchor scene regression verifies first16ms distance and<2%velocity join.
+
+Evidence: tmp/traversal/motion-join-desktop-0415/qa-job.json; tmp/traversal/motion-join-desktop-0415/results.json; resultSHA256 964d1d2e2c28a1a6fe282f9548abe734ac60c007b942c5f1951db7e01fa15da7; driverSHA256 ce350f772a0ef6cebbd61c8e5b9ed623d3aa724f4ce76c48f3a5b79cb9e9802c; sourceDiffSHA256 ff136e45313fc4c3c7d07181b186733819f650e99572db8e534c0e922d9e22e9; nine current build files in receipt. Machine acceptance stays NOT_ACCEPTED; finalguardian PASS and reviewed scoped normal T1 disposition are recorded separately. Three named captures remain ignored; no evidence promotion at this small checkpoint. Production origin/combat outcomes are fixtures, road clocks/keyboard native; not earned campaign/tactical balance/V6 proof.
+
+Compliance set1.1.0; constitution/index/manifest/TRAVERSAL/CAMPAIGN/COMBAT/UI/AUTHORING/AUTONOMOUS/T0 baseline read. Immutable d7ca28aed5c377ffedb03202f6364b7a947d1096 gates empty; no LOCKED rule changed. Source/authority review PASS. Final matrix in paired state. Worker12124/port5384 exited; existing5173/5174 retained. Publication OD-2026-10-12-A standing authorized; normal dev publication and lock archive after verified parity.

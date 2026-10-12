@@ -1,4 +1,4 @@
-import { TraversalRoadCamera, roadEntryScale, roadVehicleHeight, setRoadGroundDepth } from './TraversalRoadAnchor';
+import { anchoredRoadSpeed, TraversalRoadCamera, roadEntryScale, roadVehicleHeight, setRoadGroundDepth } from './TraversalRoadAnchor';
 import type { LionTraversalLeg } from '../campaign/LionCampaignTravelRelations';
 import type { GameState, RunNode } from '../game/types';
 import type { CampaignStatusHud } from '../ui/CampaignStatusHud';
@@ -548,9 +548,15 @@ export class TraversalRoadScene {
     if (this.departure && this.viewMode === 'ROUTE') {
       // Reveal with engaged momentum, without skipping any authored route-clock windows.
       const reveal = Math.max(0, transition.elapsed - TRAVERSAL_RHYTHM.hold - TRAVERSAL_RHYTHM.fade);
-      const minimum = this.routeSegment.vMin * this.roadDistanceScale;
-      const nextSpeed = minimum + ((this.routeLaunchSpeed ?? minimum)
-        - minimum) * (1 - transitionEase((reveal + seconds) / TRAVERSAL_RHYTHM.fade));
+      // The revealed road has already travelled while its authored clock stayed
+      // at zero. Match its anchored camera velocity, not the entry-scale minimum.
+      const predicted = anchoredRoadSpeed(this.routeRun, this.routeRun, this.routeSegment,
+        this.routeRenderer.distance, this.nextRoadContact(this.routeRun.progress01), 1, this.roadDistanceScale);
+      const roadSpeed = Number.isFinite(predicted) && predicted > 0
+        && predicted <= 2 * this.routeSegment.vMax * this.roadDistanceScale
+        ? predicted : this.routeRun.speed * this.roadDistanceScale;
+      const nextSpeed = roadSpeed + ((this.routeLaunchSpeed ?? roadSpeed)
+        - roadSpeed) * (1 - transitionEase((reveal + seconds) / TRAVERSAL_RHYTHM.fade));
       this.routeRenderer.advance(seconds * 1000, (this.speed + nextSpeed) / 2);
       this.speed = nextSpeed;
     }
@@ -606,7 +612,7 @@ export class TraversalRoadScene {
       : half * (transition.reveal ? 1 : 2);
     if (time >= duration) {
       const carriedDeparture = Boolean(this.departure && this.viewMode === 'ROUTE');
-      if (carriedDeparture) this.routeLaunchSpeed = this.speed = this.routeSegment.vMin * this.roadDistanceScale;
+      if (carriedDeparture) this.routeLaunchSpeed = this.speed;
       this.transition = null;
       delete this.element.dataset.transition;
       if (carriedDeparture) this.finishCheckpointDeparture();
@@ -687,9 +693,7 @@ export class TraversalRoadScene {
     }
     const restart = this.routeLaunchSpeed === null
       ? transitionEase(this.routeRun.elapsedMs / (TRAVERSAL_RHYTHM.restart * 1000)) : 1;
-    const contact = [this.riskRenderer?.nextContact(this.authoring.hazards(this.routeSegment.id), previous.progress01),
-      this.rewardRenderer?.nextContact(this.authoring.pickups(this.routeSegment.id), previous.progress01)]
-      .filter(target => target != null).sort((a, b) => a!.progress01 - b!.progress01)[0] ?? null;
+    const contact = this.nextRoadContact(previous.progress01);
     const presentedSpeed = this.roadCamera.speed(previous, this.routeRun, this.routeSegment,
       this.routeRenderer.distance, contact, restart, this.roadDistanceScale);
     this.routeRenderer.advance(this.routeRun.elapsedMs - previous.elapsedMs, presentedSpeed);
@@ -814,6 +818,12 @@ export class TraversalRoadScene {
       this.updateWorldTransforms();
       return Promise.all([this.worldRenderer.readyVisible(), this.foregroundRenderer.readyVisible()]).then(() => undefined);
     });
+  }
+
+  private nextRoadContact(progress01: number) {
+    return [this.riskRenderer?.nextContact(this.authoring.hazards(this.routeSegment.id), progress01),
+      this.rewardRenderer?.nextContact(this.authoring.pickups(this.routeSegment.id), progress01)]
+      .filter(target => target != null).sort((a, b) => a!.progress01 - b!.progress01)[0] ?? null;
   }
 
   private beginCheckpointDeparture(kind: 'return' | 'fork', midpoint: () => void | Promise<void>): void {

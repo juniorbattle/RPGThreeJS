@@ -1,38 +1,38 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-12T03:33:48.1447109+00:00",
-  "runEndedAt": "2026-10-12T04:03:39.901Z",
+  "runStartedAt": "2026-10-12T04:17:27.0980381Z",
+  "runEndedAt": "2026-10-12T04:30:53.594Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-  "activePhase": "SAFE_PUBLICATION_CLOSEOUT",
-  "activeSubtask": "Standalone archer1AP pointer menu verified; approved checkpoint published",
+  "activePhase": "DESKTOP_TRAVERSAL_VELOCITY_JOIN_REDUCED_PROOF_PENDING",
+  "activeSubtask": "Reveal-to-driving velocity corrected; normal desktop T1 scoped proof accepted",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "ecda3048073f524c9546ddb2cd315cf819fb675c",
   "lastPushedCommit": "ecda3048073f524c9546ddb2cd315cf819fb675c",
   "completedThisRun": [
-    "Diagnosed selected native menu source; no runtime failure established",
-    "Added one bounded pointer scenario in existing keyboard runner",
-    "Verified standalone1366normal archer1AP native menu opens/returns three times with sampled tactical snapshot unchanged",
-    "56 focused tests, TypeScript,8 contracts/8 slots,immutable/whitespace gates passed",
-    "Automatic review rejected WIP publication; local checkpoint prepared without export retry"
+    "Audited current departure/final exit against manual findings and historical scoped proof; established17-18% velocity discontinuity, no final-exit defect",
+    "Corrected shared reveal camera velocity using existing pure anchored predictor; zero authored clock/contact ownership preserved",
+    "47focused tests4files/types/214module build8MP4/contracts8slots8/gates PASS; ONE registered T1 normal1440 smoke13assertions/718samples/8captures/zeroerrors, join1.2578%; root inspected3captures",
+    "Owned five-path WIP9d2d4a7 normally published/verified; final six-path coherent dev checkpoint prepared under standing OD-2026-10-12-A"
   ],
   "filesChanged": [
-    "tools/combat-keyboard-production-qa.mjs",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "src/traversal/TraversalRoadScene.ts",
+    "src/traversal/TraversalRoadMotion.test.ts",
+    "tools/traversal-motion-production-qa.mjs",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-12T0332Z-codex-pointer-menu.md"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/handoffs/2026-10-12T0415Z-codex-motion-join.md"
   ],
   "testsRun": [
-    "node node_modules/vitest/vitest.mjs run src/combat/combatKeyboard.test.ts src/combat/combatHudPresentation.test.ts src/combat/skillPresentation.test.ts --exclude tmp/**",
-    "node node_modules/typescript/bin/tsc --noEmit",
-    "node tools/contracts/validate-contracts.mjs",
-    "node tools/combat-keyboard-production-qa.mjs (desktop-pointer-menus)"
+    "47tests/4files: RoadMotion9/RoadCamera16/RoadAnchor15/RoadScene7; tmp excluded",
+    "TypeScript noEmit PASS; production214modules/eightMP4 PASS",
+    "Immutable baseline/protected-status/whitespace gates, validator8contracts8slots PASS",
+    "ONE registered native-clock T1 normal1440x810 smoke:13assertions/718samples/onefork velocityjoin1.26%/8captures/errors0; fixtures only for campaign origin/combat results"
   ],
   "testsPassed": [
-    "56 tests in3 files",
-    "TypeScript",
-    "8contracts8slots",
-    "ONE registered standalone1366normal pointer smoke",
-    "Immutable LOCKED/workingcopy/whitespace gates"
+    "47tests/4files: RoadMotion9/RoadCamera16/RoadAnchor15/RoadScene7; tmp excluded",
+    "TypeScript noEmit PASS; production214modules/eightMP4 PASS",
+    "Immutable baseline/protected-status/whitespace gates, validator8contracts8slots PASS",
+    "ONE registered native-clock T1 normal1440x810 smoke:13assertions/718samples/onefork velocityjoin1.26%/8captures/errors0; fixtures only for campaign origin/combat results"
   ],
   "testsRemaining": [
     "Read-only preflight/exclusive lock; inspect native-six-skills-observations-20261011-1858/checks.json and tmp/autonomy/skills-1858/terminal-audit.json first. Preserve FAILED/NOT_ACCEPTED driverc6306944/resultad28f416, all six reviewed novice-cast observations and exact earned Serpent terminal V6 equality; NEVER seed1858/1800/1731/0001 or replay unchanged45min campaign. Coupled exactly2AP Salvation remains OPEN: all20 casts begin3/5AP;18 AP3 native one-AP setup attempts had no healthy ally in basic-crosier centers. Inspect existing pilot skill()250-270, attack()202-215 and support move()330-365 against native reach. Establish a bounded native positioning plan with a healthy ally at basic-crosier range and a wounded eligible Salvation target; preserve3to2 native setup and strict2to0/40percent assertions. Only a demonstrated plan warrants ONE minimal existing-pilot input correction with guardian review and targeted registered verification from SUCCEEDED1859 or another independently successful exact seed; no instrumentation rewrite/unchanged failed replay. If unsupported, record the precise proof blocker and advance independent desktop production work. Keep original skills/randomPursuit task, exact deferred keyboard, accepted narrative history, canonical mapping blockers and mobileLAST; demo IN_PROGRESS.",
@@ -40,7 +40,8 @@
     "Later narrative/branch and earned transaction/campaign coverage",
     "Node completion/fullV6 reload beyond earlier limited scopes",
     "Automatic focus and dynamic cast transition acceptance",
-    "Broader environment and AT/balance/operator full-demo; mobileLAST"
+    "Broader environment and AT/balance/operator full-demo; mobileLAST",
+    "Current normal T0/T3 and OS/game-only reveal velocity join browser proof; operator perception/mobile/full-demo acceptance remain OPEN"
   ],
   "blockers": [
     "Narrative: contextual first-step/displaced historical acceptance retained; current opening fixedOS0534 historical and mountedOSflip1612 scoped accepted. Normal/intermediate dynamic/later/earned/fullV6/full-demo remainOPEN.",
@@ -66,7 +67,7 @@
     "Opening dynamic1366/620 normalOS accepted scoped; later/earned narrative and approvedBois-Clair nightplate remainOPEN",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Read-only autonomy preflight/exclusive lock; publication of0332 is resolved by explicit human approval and normal origin/dev push, with final closure parity/lock archive recorded in automation memory. Keep original all-six-skills/random-Pursuit task and reuse desktop-pointer-menus-0332 receipt only with driverbd200b39/source393/build9/parameters/result584b2b9f: three standalone1366normal archer1AP pointer cycles accepted with sampled snapshot unchanged; excludes campaign iframe/2012cause/latency/sixcasts/ending/reload. No runtime defect or warranted campaign-pilot correction established; FAILED2012 and other failed outputs remain unseedable, never replay unchanged45min campaign. Continue independent desktop checkpoint departure/final-exit perception audit against current source and prior scoped receipts before ONE change-relevant production smoke. Preserve original task, exact deferred keyboard, pending narrative,201 QA records and taskQueue; parent skills/earnedcampaign/fullV6/later narrative/AT/balance/operatorfinal/mobileLAST/demo remainOPEN.",
+  "nextAction": "Read-only preflight/exclusive lock; inspect motion-join-desktop-0415 terminal receipt/result964d1d2e/driverce350f77/current tested source diff and build before reuse. Preserve accepted normal T1 1440x810 fork join1.26%/zero-clock reveal/complete exit/single unresolved-destination handoff; no repeated normal T1 smoke on unchanged identity. Next run ONE existing traversal-motion-production-qa.mjs OS-only T1 1440x810 registered smoke to verify reduced departure velocity join/covered equivalent exit on current build; T0/T3 normal and game-only motion remain milestone gaps, operator perception remains OPEN, mobile LAST. Then resume original all-six-skills/random-Pursuit and pending desktop narrative/earned campaign work; FAILED2012/1858/1800/1731/0001 remain unseedable, no unchanged45min campaign replay. Exact deferred keyboard/pending narrative/taskQueue/all201 historical QA records preserved; fullV6/AT/balance/operatorfinal/demo IN_PROGRESS.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -87,14 +88,14 @@
     "ART_DIRECTION": "N/A",
     "CHARACTERS": "N/A",
     "ENVIRONMENTS": "N/A",
-    "NARRATIVE_CAMPAIGN": "N/A_STANDALONE_NO_CHANGE",
+    "NARRATIVE_CAMPAIGN": "PASS_NO_AUTHORED_TRUTH_CHANGE",
     "NARRATIVE_PRESENTATION": "N/A",
-    "TRAVERSAL": "N/A",
-    "COMBAT": "PASS_SAMPLED_SNAPSHOT_EQUALITY_ONLY",
-    "SAVE": "N/A_NO_SCHEMA_OR_SAVE_CHANGE",
-    "UI_ACCESSIBILITY": "PASS_SCOPED_STANDALONE_POINTER_ONLY",
-    "QA_EVIDENCE": "PASS_SCOPED_FINAL_GUARDIAN_REVIEW",
-    "REPOSITORY_GOVERNANCE": "PASS_EXPLICITLY_APPROVED_NORMAL_DEV_PUBLICATION"
+    "TRAVERSAL": "PASS_SCOPED_T1_NORMAL_VELOCITY_JOIN",
+    "COMBAT": "N/A",
+    "SAVE": "PASS_NO_SCHEMA_OR_SERIALIZATION_CHANGE",
+    "UI_ACCESSIBILITY": "PASS_POLICY_UNCHANGED_REDUCED_BROWSER_GAP_OPEN",
+    "QA_EVIDENCE": "PASS_SCOPED_T1_NORMAL_FINAL_GUARDIAN_REVIEW",
+    "REPOSITORY_GOVERNANCE": "PASS_LOCAL_CHECKPOINT_PUBLICATION_PENDING"
   },
   "commitReferenceScope": "Last pushed commit9b14235 is verified workflow closure; final publication checkpoint/clean parity/lock release recorded in automation memory after transport. No product acceptance advanced.",
   "operatorAuthorization": {
@@ -197,30 +198,28 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261012T0332",
+  "runId": "rpgthreejs-auto-dev-90m-20261012T0415",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-12T03:19:20.427Z",
+  "lastHeartbeat": "2026-10-12T04:31:51.524Z",
   "wip": {
-    "selectedPaths": [
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0415",
+    "sha": "2e363eaedd2aec1695c608a90f572864c66ab985",
+    "dirtyFiles": [
+      "src/traversal/TraversalRoadScene.ts",
+      "src/traversal/TraversalRoadMotion.test.ts",
+      "tools/traversal-motion-production-qa.mjs",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/PUBLICATION_OPERATOR_DECISION_2026-10-08.md",
-      "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md",
-      "docs/reports/native-six-skills-observations-20261011-2012/checks.json"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/handoffs/2026-10-12T0415Z-codex-motion-join.md"
     ],
-    "sha": "e65a070cbb3f0f651bbfa5f28f5c63413ac1604a",
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0310",
-    "at": "2026-10-12T03:19:00Z",
-    "status": "RETIRED_CONTENT_ON_DEV_VERIFIED_BUNDLE_BACKUP",
-    "retiredAt": "2026-10-12T03:30:57.443Z",
-    "backup": "tmp/autonomy/wip-cleanup-0324/wip-snapshots.bundle"
+    "status": "GREEN_SCOPED_T1_NORMAL",
+    "lastGreenCheck": "2026-10-12T04:31:51.524Z"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261012T0332",
+    "runId": "rpgthreejs-auto-dev-90m-20261012T0415",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-12T04:03:39.901Z",
-    "status": "PUBLICATION_RESOLVED_STANDING_AUTHORIZATION_RECORDED",
+    "lastHeartbeat": "2026-10-12T04:31:51.524Z",
+    "status": "CHECKPOINT_READY",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -21738,18 +21737,144 @@
             "EXHAUSTIVE_TACTICAL_IMMUTABILITY"
           ]
         }
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "motion-join-desktop-0415",
+        "runId": "rpgthreejs-auto-dev-90m-20261012T0415",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-12T04:25:08.646Z",
+        "pid": 12124,
+        "port": 5384,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "normal",
+          "viewports": [
+            "1440x810"
+          ],
+          "legs": [
+            "T1"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "pursuitCheck": false,
+          "gaitCheck": false,
+          "reducedChargeCheck": false,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-checkpoint-braking",
+          "checkpoint-wheel-ground-travel",
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "reveal-driving-velocity-continuity",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "native-keyboard-focus",
+          "responsive-controls",
+          "forward-exit-and-resize",
+          "accelerating-arrival"
+        ],
+        "output": "tmp/traversal/motion-join-desktop-0415",
+        "receiptPath": "tmp/traversal/motion-join-desktop-0415/qa-job.json",
+        "provenance": {
+          "gitHead": "58ee73df9438715d3df603ac3ddf97b6e94cc937",
+          "sourceTree": "a147f5c25febb460ad69f38d184d8047c4cca780",
+          "sourceDiffSha256": "ff136e45313fc4c3c7d07181b186733819f650e99572db8e534c0e922d9e22e9",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "ce350f772a0ef6cebbd61c8e5b9ed623d3aa724f4ce76c48f3a5b79cb9e9802c"
+          },
+          "inputs": [],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-C2zvqMPX.js",
+              "sha256": "e30054e5f7e7e0d4b472b4117e419cd7a4b7824d500170168955e8112dace0d4"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "2ccb3efb6a34d4518df1fb4b4afe832000523a257d1af3c1e048037c84f985af"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-12T04:25:09.662Z",
+        "endedAt": "2026-10-12T04:27:16.718Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/motion-join-desktop-0415/results.json",
+        "resultSha256": "964d1d2e2c28a1a6fe282f9548abe734ac60c007b942c5f1951db7e01fa15da7",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "scopedDisposition": {
+          "status": "ACCEPTED_SCOPED_NORMAL_T1_1440_FORK_VELOCITY_JOIN",
+          "reviewers": [
+            "traversal-engineer",
+            "contracts-guardian"
+          ],
+          "rootCapturesReviewed": 3,
+          "excludes": [
+            "T0_T3_CURRENT_BROWSER",
+            "OS_GAME_CURRENT_BROWSER",
+            "OVERALL_OPERATOR_PERCEPTION",
+            "EARNED_CAMPAIGN_V6",
+            "MOBILE_FULL_DEMO"
+          ]
+        }
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0332",
-      "sha": "09f87540ba496b3908e19130ff64d091147f79d4",
-      "status": "GREEN_CONTENT_ON_DEV_LOCAL_SNAPSHOT_RETAINED",
-      "dirtyFiles": [],
-      "lastGreenCheck": "56tests/types/8contracts8slots/one registered native pointer smoke; no runtime source change",
-      "snapshotAt": "2026-10-12T03:44:30.450Z",
-      "publication": "ACCEPTED_RUNNER_CONTENT_PUBLISHED_ON_DEV"
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0415",
+      "sha": "2e363eaedd2aec1695c608a90f572864c66ab985",
+      "dirtyFiles": [
+        "src/traversal/TraversalRoadScene.ts",
+        "src/traversal/TraversalRoadMotion.test.ts",
+        "tools/traversal-motion-production-qa.mjs",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/handoffs/2026-10-12T0415Z-codex-motion-join.md"
+      ],
+      "status": "GREEN_SCOPED_T1_NORMAL",
+      "lastGreenCheck": "2026-10-12T04:31:51.524Z"
     },
-    "nextAction": "Read-only autonomy preflight/exclusive lock; publication of0332 is resolved by explicit human approval and normal origin/dev push, with final closure parity/lock archive recorded in automation memory. Keep original all-six-skills/random-Pursuit task and reuse desktop-pointer-menus-0332 receipt only with driverbd200b39/source393/build9/parameters/result584b2b9f: three standalone1366normal archer1AP pointer cycles accepted with sampled snapshot unchanged; excludes campaign iframe/2012cause/latency/sixcasts/ending/reload. No runtime defect or warranted campaign-pilot correction established; FAILED2012 and other failed outputs remain unseedable, never replay unchanged45min campaign. Continue independent desktop checkpoint departure/final-exit perception audit against current source and prior scoped receipts before ONE change-relevant production smoke. Preserve original task, exact deferred keyboard, pending narrative,201 QA records and taskQueue; parent skills/earnedcampaign/fullV6/later narrative/AT/balance/operatorfinal/mobileLAST/demo remainOPEN.",
+    "nextAction": "Read-only preflight/exclusive lock; inspect motion-join-desktop-0415 terminal receipt/result964d1d2e/driverce350f77/current tested source diff and build before reuse. Preserve accepted normal T1 1440x810 fork join1.26%/zero-clock reveal/complete exit/single unresolved-destination handoff; no repeated normal T1 smoke on unchanged identity. Next run ONE existing traversal-motion-production-qa.mjs OS-only T1 1440x810 registered smoke to verify reduced departure velocity join/covered equivalent exit on current build; T0/T3 normal and game-only motion remain milestone gaps, operator perception remains OPEN, mobile LAST. Then resume original all-six-skills/random-Pursuit and pending desktop narrative/earned campaign work; FAILED2012/1858/1800/1731/0001 remain unseedable, no unchanged45min campaign replay. Exact deferred keyboard/pending narrative/taskQueue/all201 historical QA records preserved; fullV6/AT/balance/operatorfinal/demo IN_PROGRESS.",
     "runMetrics": {
       "runId": "rpgthreejs-auto-dev-90m-20261012T0310",
       "runtimeSourceFilesModified": 0,
@@ -21767,45 +21892,27 @@
       "quotaSavingsClaim": "NONE"
     },
     "checkpointPaths": [
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "src/traversal/TraversalRoadScene.ts",
+      "src/traversal/TraversalRoadMotion.test.ts",
+      "tools/traversal-motion-production-qa.mjs",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/PUBLICATION_OPERATOR_DECISION_2026-10-08.md",
-      "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md",
-      "docs/reports/native-six-skills-observations-20261011-2012/checks.json"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/handoffs/2026-10-12T0415Z-codex-motion-join.md"
     ],
     "publication": {
-      "at": "2026-10-12T00:07:33.871Z",
-      "status": "EXPLICIT_HUMAN_APPROVAL_NORMAL_DEV_VERIFIED",
-      "approvedCommits": [
-        "fb2e2f5feb840caa7855fdb0c691a630d4fd01a6",
-        "b6bf0e4be2e42a13efa99c679d3a73aa4a22d556"
-      ],
-      "publishedCheckpoint": "b6bf0e4be2e42a13efa99c679d3a73aa4a22d556",
+      "status": "READY_FOR_NORMAL_DEV_PUBLICATION",
+      "authorization": "OD-2026-10-12-A",
       "selectedPaths": [
-        "tools/demo-continuous-production-qa.mjs",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "src/traversal/TraversalRoadScene.ts",
+        "src/traversal/TraversalRoadMotion.test.ts",
+        "tools/traversal-motion-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/reports/native-six-skills-observations-20261011-2012/checks.json",
-        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-ro_sneak_attack-9.png",
-        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-l_long_thrust-14.png",
-        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_break_guard-17.png",
-        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-41.png",
-        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-salvation-exactly2ap-before-42.png",
-        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-43.png",
-        "docs/reports/native-six-skills-observations-20261011-2012/combat-4-a_precise_shot-8.png",
-        "docs/reports/native-six-skills-observations-20261011-2012/combat-4-n_dark_bolt-11.png",
-        "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md"
-      ],
-      "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
-      "branch": "dev",
-      "nonForce": true,
-      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "approvalSource": "User replied OUI j autorise to exact two-commit thirteen-path publication request in current chat",
-      "inheritedRejectionResolved": true
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/handoffs/2026-10-12T0415Z-codex-motion-join.md"
+      ]
     },
-    "runStartedAt": "2026-10-12T03:10:43Z",
-    "runEndedAt": "2026-10-12T03:18:00.260Z",
+    "runStartedAt": "2026-10-12T04:17:27.0980381Z",
+    "runEndedAt": "2026-10-12T04:30:53.594Z",
     "writerStopped": true,
     "metadataPublication": {
       "status": "NORMAL_DEV_PUBLICATION_VERIFIED",
@@ -25167,6 +25274,128 @@
         "sha": "09f87540ba496b3908e19130ff64d091147f79d4",
         "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0332"
       }
+    },
+    "motion0415": {
+      "startedAt": "2026-10-12T04:19:53.004Z",
+      "preflight": "CLEAN_NO_LOCK_LIVE_DEV_PARITY_58ee73d",
+      "inheritedWIP": 0,
+      "question": "Perceived continuous departure and full accelerating exit; old numeric PASS does not invalidate manual finding",
+      "reviewer": "traversal-engineer read-only precise source/proof audit",
+      "product": "Reveal targets the ordinary anchored camera speed with finite/positive/ceiling guards, then retains actual velocity. No authored clock/authority/final-exit change.",
+      "checks": "47 focused tests/4files, TypeScript,214module build/eightMP4,8contracts8slots,immutable/whitespace PASS. ONE registered normal T1 1440 smoke SUCCEEDED and scoped reviewed.",
+      "previousCheckpoint": {
+        "status": "IN_PROGRESS",
+        "runId": "rpgthreejs-auto-dev-90m-20261012T0332",
+        "runStartedAt": "2026-10-12T03:33:48.1447109+00:00",
+        "runEndedAt": "2026-10-12T04:03:39.901Z",
+        "activePhase": "SAFE_PUBLICATION_CLOSEOUT",
+        "activeSubtask": "Standalone archer1AP pointer menu verified; approved checkpoint published",
+        "completedThisRun": [
+          "Diagnosed selected native menu source; no runtime failure established",
+          "Added one bounded pointer scenario in existing keyboard runner",
+          "Verified standalone1366normal archer1AP native menu opens/returns three times with sampled tactical snapshot unchanged",
+          "56 focused tests, TypeScript,8 contracts/8 slots,immutable/whitespace gates passed",
+          "Automatic review rejected WIP publication; local checkpoint prepared without export retry"
+        ],
+        "filesChanged": [
+          "tools/combat-keyboard-production-qa.mjs",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+          "docs/autonomy/handoffs/2026-10-12T0332Z-codex-pointer-menu.md"
+        ],
+        "testsRun": [
+          "node node_modules/vitest/vitest.mjs run src/combat/combatKeyboard.test.ts src/combat/combatHudPresentation.test.ts src/combat/skillPresentation.test.ts --exclude tmp/**",
+          "node node_modules/typescript/bin/tsc --noEmit",
+          "node tools/contracts/validate-contracts.mjs",
+          "node tools/combat-keyboard-production-qa.mjs (desktop-pointer-menus)"
+        ],
+        "testsPassed": [
+          "56 tests in3 files",
+          "TypeScript",
+          "8contracts8slots",
+          "ONE registered standalone1366normal pointer smoke",
+          "Immutable LOCKED/workingcopy/whitespace gates"
+        ],
+        "testsRemaining": [
+          "Read-only preflight/exclusive lock; inspect native-six-skills-observations-20261011-1858/checks.json and tmp/autonomy/skills-1858/terminal-audit.json first. Preserve FAILED/NOT_ACCEPTED driverc6306944/resultad28f416, all six reviewed novice-cast observations and exact earned Serpent terminal V6 equality; NEVER seed1858/1800/1731/0001 or replay unchanged45min campaign. Coupled exactly2AP Salvation remains OPEN: all20 casts begin3/5AP;18 AP3 native one-AP setup attempts had no healthy ally in basic-crosier centers. Inspect existing pilot skill()250-270, attack()202-215 and support move()330-365 against native reach. Establish a bounded native positioning plan with a healthy ally at basic-crosier range and a wounded eligible Salvation target; preserve3to2 native setup and strict2to0/40percent assertions. Only a demonstrated plan warrants ONE minimal existing-pilot input correction with guardian review and targeted registered verification from SUCCEEDED1859 or another independently successful exact seed; no instrumentation rewrite/unchanged failed replay. If unsupported, record the precise proof blocker and advance independent desktop production work. Keep original skills/randomPursuit task, exact deferred keyboard, accepted narrative history, canonical mapping blockers and mobileLAST; demo IN_PROGRESS.",
+          "Mounted-stage live OS flip, current normal and intermediate dynamic cast browser proof",
+          "Later narrative/branch and earned transaction/campaign coverage",
+          "Node completion/fullV6 reload beyond earlier limited scopes",
+          "Automatic focus and dynamic cast transition acceptance",
+          "Broader environment and AT/balance/operator full-demo; mobileLAST"
+        ],
+        "nextAction": "Read-only autonomy preflight/exclusive lock; publication of0332 is resolved by explicit human approval and normal origin/dev push, with final closure parity/lock archive recorded in automation memory. Keep original all-six-skills/random-Pursuit task and reuse desktop-pointer-menus-0332 receipt only with driverbd200b39/source393/build9/parameters/result584b2b9f: three standalone1366normal archer1AP pointer cycles accepted with sampled snapshot unchanged; excludes campaign iframe/2012cause/latency/sixcasts/ending/reload. No runtime defect or warranted campaign-pilot correction established; FAILED2012 and other failed outputs remain unseedable, never replay unchanged45min campaign. Continue independent desktop checkpoint departure/final-exit perception audit against current source and prior scoped receipts before ONE change-relevant production smoke. Preserve original task, exact deferred keyboard, pending narrative,201 QA records and taskQueue; parent skills/earnedcampaign/fullV6/later narrative/AT/balance/operatorfinal/mobileLAST/demo remainOPEN.",
+        "contractComplianceStatus": {
+          "GAME_CONSTITUTION": "PASS",
+          "ART_DIRECTION": "N/A",
+          "CHARACTERS": "N/A",
+          "ENVIRONMENTS": "N/A",
+          "NARRATIVE_CAMPAIGN": "N/A_STANDALONE_NO_CHANGE",
+          "NARRATIVE_PRESENTATION": "N/A",
+          "TRAVERSAL": "N/A",
+          "COMBAT": "PASS_SAMPLED_SNAPSHOT_EQUALITY_ONLY",
+          "SAVE": "N/A_NO_SCHEMA_OR_SAVE_CHANGE",
+          "UI_ACCESSIBILITY": "PASS_SCOPED_STANDALONE_POINTER_ONLY",
+          "QA_EVIDENCE": "PASS_SCOPED_FINAL_GUARDIAN_REVIEW",
+          "REPOSITORY_GOVERNANCE": "PASS_EXPLICITLY_APPROVED_NORMAL_DEV_PUBLICATION"
+        },
+        "currentHandoff": "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md",
+        "currentRunMeasurement": {
+          "runId": "rpgthreejs-auto-dev-90m-20261012T0310",
+          "runtimeSourceFilesModified": 0,
+          "testFilesModified": 0,
+          "existingQaFilesModified": 0,
+          "newQaFilesAdded": 0,
+          "promotedProofFiles": 0,
+          "proofMetadataFilesModified": 1,
+          "workflowDocs": 5,
+          "inheritedWipFiles": 0,
+          "browserScenarios": 0,
+          "reusedTerminalScenarios": 0,
+          "harnessCorrections": 0,
+          "reviewers": 0,
+          "quotaSavingsClaim": "NONE"
+        }
+      },
+      "endedAt": "2026-10-12T04:30:53.594Z",
+      "receipt": "tmp/traversal/motion-join-desktop-0415/qa-job.json",
+      "result": "tmp/traversal/motion-join-desktop-0415/results.json",
+      "resultSha256": "964d1d2e2c28a1a6fe282f9548abe734ac60c007b942c5f1951db7e01fa15da7",
+      "driverSha256": "ce350f772a0ef6cebbd61c8e5b9ed623d3aa724f4ce76c48f3a5b79cb9e9802c",
+      "sourceDiffSha256": "ff136e45313fc4c3c7d07181b186733819f650e99572db8e534c0e922d9e22e9",
+      "velocityJoin": {
+        "reveal": 1.2290053009277089,
+        "driving": 1.2135473534726462,
+        "relativeChange": 0.01257760844757494
+      },
+      "selectedIgnoredCaptures": [
+        "T1-1440-departure-visible.png",
+        "T1-1440-reveal-moving.png",
+        "T1-1440-arrival-exited.png"
+      ],
+      "counts": {
+        "sourceFilesModified": 1,
+        "testFilesModified": 1,
+        "existingQaFilesModified": 1,
+        "newQaFiles": 0,
+        "proofFilesAdded": 0,
+        "workflowFilesChanged": 3,
+        "inheritedWIP": 0,
+        "browserScenarios": 1,
+        "registeredJobs": 1,
+        "rootCapturesInspected": 3,
+        "reviewers": 2,
+        "quotaSavingsClaimed": false
+      },
+      "scope": "NORMAL_T1_1440_FORK_JOIN_ONLY; not allroute/motion/campaign/V6/operatorperception/full-demo acceptance",
+      "historicalEvidence": "checkpoint1806 digest verified but global current execution false; traversal/style diff from receipt HEAD empty; used diagnosis only",
+      "productSourceFrozen": true,
+      "reviewers": {
+        "traversal": "PASS_SCOPED",
+        "guardian": "PASS_SCOPED_NORMAL_T1_CHECKPOINT"
+      },
+      "reviewedAt": "2026-10-12T04:31:51.184Z",
+      "finalGuardian": "13assertions/718samples/zeroerrors; same-road33.9ms fork join1.2578%; no contract conflict. No T0/T3/OS/game/campaign/full-demo claim."
     }
   },
   "previousInterruptedRun": {
@@ -25214,7 +25443,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-12T0415Z-codex-motion-join.md",
   "runMeasurement": {
     "productSource": 0,
     "existingTests": 0,
@@ -25447,9 +25676,10 @@
     "externalPursuitBlocker": "Ten authored canonical mappings missing; not retried"
   },
   "previousRun": {
-    "runId": "rpgthreejs-auto-dev-90m-20261008T2104",
-    "status": "IN_PROGRESS",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-08T2311Z-codex-earned-ending-checkpoint.md"
+    "runId": "rpgthreejs-auto-dev-90m-20261012T0332",
+    "activeSubtask": "Standalone archer1AP pointer menu verified; approved checkpoint published",
+    "nextAction": "Read-only autonomy preflight/exclusive lock; publication of0332 is resolved by explicit human approval and normal origin/dev push, with final closure parity/lock archive recorded in automation memory. Keep original all-six-skills/random-Pursuit task and reuse desktop-pointer-menus-0332 receipt only with driverbd200b39/source393/build9/parameters/result584b2b9f: three standalone1366normal archer1AP pointer cycles accepted with sampled snapshot unchanged; excludes campaign iframe/2012cause/latency/sixcasts/ending/reload. No runtime defect or warranted campaign-pilot correction established; FAILED2012 and other failed outputs remain unseedable, never replay unchanged45min campaign. Continue independent desktop checkpoint departure/final-exit perception audit against current source and prior scoped receipts before ONE change-relevant production smoke. Preserve original task, exact deferred keyboard, pending narrative,201 QA records and taskQueue; parent skills/earnedcampaign/fullV6/later narrative/AT/balance/operatorfinal/mobileLAST/demo remainOPEN.",
+    "runEndedAt": "2026-10-12T04:03:39.901Z"
   },
   "pendingNarrativeTask": {
     "task": "NARRATIVE-CONTEXT-COHERENCE",
@@ -26517,20 +26747,18 @@
     "fullDemoComplete": false
   },
   "currentRunMeasurement": {
-    "runId": "rpgthreejs-auto-dev-90m-20261012T0310",
-    "runtimeSourceFilesModified": 0,
-    "testFilesModified": 0,
-    "existingQaFilesModified": 0,
-    "newQaFilesAdded": 0,
-    "promotedProofFiles": 0,
-    "proofMetadataFilesModified": 1,
-    "workflowDocs": 5,
-    "inheritedWipFiles": 0,
-    "browserScenarios": 0,
-    "reusedTerminalScenarios": 0,
-    "harnessCorrections": 0,
-    "reviewers": 0,
-    "quotaSavingsClaim": "NONE"
+    "sourceFilesModified": 1,
+    "testFilesModified": 1,
+    "existingQaFilesModified": 1,
+    "newQaFiles": 0,
+    "proofFilesAdded": 0,
+    "workflowFilesChanged": 3,
+    "inheritedWIP": 0,
+    "browserScenarios": 1,
+    "registeredJobs": 1,
+    "rootCapturesInspected": 3,
+    "reviewers": 2,
+    "quotaSavingsClaimed": false
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",

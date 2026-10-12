@@ -8,6 +8,8 @@ import type { TraversalRouteRunState } from './TraversalRouteRun';
 import type { TraversalRunSession } from './TraversalRunRuntime';
 import { TraversalRoadScene } from './TraversalRoadScene';
 import { T0_ROAD_AUTHORING } from './TraversalT0Authoring';
+import { forecastRouteDistance } from './TraversalRouteRun';
+import type { TraversalCheckpointSegment } from './TraversalCheckpointRoute';
 
 afterEach(() => { document.body.replaceChildren(); vi.restoreAllMocks(); });
 
@@ -129,6 +131,32 @@ it('keeps the next clock at zero under delayed coverage and reveals engaged mome
   expect(motion.routeRun.elapsedMs).toBe(16);
   expect(motion.speed).toBeGreaterThanOrEqual(1);
   expect(state).toEqual(before);
+  scene.dispose();
+});
+
+it.each([false, true])('joins the first driving frame to reveal velocity with contact anchor=%s', async anchored => {
+  const { scene, motion } = fixture();
+  const camera = scene as unknown as { routeSegment: TraversalCheckpointSegment; roadDistanceScale: number;
+    nextRoadContact(progress01: number): { id: string; progress01: number; distance: number } | null };
+  motion.viewMode = 'CHECKPOINT';
+  motion.beginCheckpointDeparture('return', () => {
+    motion.startRoute(1);
+    const distance = forecastRouteDistance(motion.routeRun, camera.routeSegment, .5) * camera.roadDistanceScale * .85;
+    vi.spyOn(camera, 'nextRoadContact').mockReturnValue(anchored ? { id: 'visible-rock', progress01: .5, distance } : null);
+    return Promise.resolve();
+  });
+  motion.advance(.28);
+  for (let frame = 0; frame < 90; frame++) {
+    motion.advanceTransition(1 / 60);
+    await Promise.resolve();
+  }
+  expect(motion.departure).toBeNull();
+  expect(motion.routeRun.elapsedMs).toBe(0);
+  const revealSpeed = motion.speed, distance = motion.routeRenderer.distance;
+  motion.advance(.016);
+  expect(motion.routeRun.elapsedMs).toBe(16);
+  expect(Math.abs(motion.speed / revealSpeed - 1)).toBeLessThan(.02);
+  expect(motion.routeRenderer.distance - distance).toBeCloseTo(motion.speed * 16 * .28);
   scene.dispose();
 });
 

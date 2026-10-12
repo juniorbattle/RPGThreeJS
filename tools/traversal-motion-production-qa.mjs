@@ -21,7 +21,7 @@ assert.ok(viewports.every(value=>/^\d+x\d+$/.test(value)&&value.split('x').every
 const parameters={motion,viewports,legs,branch:'event',gameReducedMotion:false,pursuitCheck,
   gaitCheck,reducedChargeCheck,
   scope:'native production motion with V6-origin/combat-result fixtures; not earned campaign'};
-const requiredAssertions=['continuous-checkpoint-braking','checkpoint-wheel-ground-travel','continuous-departure','opaque-swap','reveal-momentum','clock-zero-during-reveal','full-exit-before-arrival','single-canonical-arrival','native-keyboard-focus','responsive-controls',
+const requiredAssertions=['continuous-checkpoint-braking','checkpoint-wheel-ground-travel','continuous-departure','opaque-swap','reveal-momentum','reveal-driving-velocity-continuity','clock-zero-during-reveal','full-exit-before-arrival','single-canonical-arrival','native-keyboard-focus','responsive-controls',
   ...(motion==='os'?['os-covered-exit']:['forward-exit-and-resize','accelerating-arrival'])];
 if(pursuitCheck)requiredAssertions.push('pursuit-contact-single','pursuit-ordinary-pool','pursuit-exact-road-resume','pursuit-miss-full-exit','pursuit-no-node-resolution');
 if(gaitCheck)requiredAssertions.push('pursuit-six-clocked-poses','pursuit-os-or-game-static-pose','pursuit-sheet-failure-static-fallback');
@@ -316,9 +316,15 @@ try{
       const reveal=route.filter(s=>s.opacity<.95&&s.opacity>.02);assert.ok(reveal.length>=2,'Visible reveal sampled');
       assert.ok(reveal.every(s=>s.speed>=s.min),'Reveal already engaged');assert.ok(reveal.at(-1).distance>reveal[0].distance,'Moving world through reveal');
       const continued=proof.samples.filter(s=>s.serial===serial&&!s.departure&&s.phase!=='ARRIVING');assert.ok(continued.some(s=>s.elapsed>0&&s.speed>=s.min),'No second restart');
+      const revealEnd=route.at(-1),firstDriving=continued.find(s=>s.elapsed>0&&s.view==='route');
+      assert.ok(firstDriving,'First driving frame sampled after reveal');
+      assert.equal(firstDriving.segment,revealEnd.segment,'Velocity join stays on the same road');
+      assert.ok(firstDriving.time-revealEnd.time<100,'Velocity join sampled across ordinary adjacent frames');
+      const velocityChange=Math.abs(firstDriving.speed/revealEnd.speed-1);
+      assert.ok(velocityChange<.05,'Reveal joins driving without a velocity step above five percent');
       if(motion==='normal')assert.ok(checkpoint.at(-1).offset>checkpoint[0].offset+20*width/1440,'Readable forward displacement');
       else assert.ok(checkpoint.every(s=>Math.abs(s.offset)<.1),'No large reduced departure displacement');
-      return {serial,kind:checkpoint[0].kind,checkpointFrames:checkpoint.length,revealFrames:reveal.length,clockStayedZero:true,minRevealSpeed:Math.min(...reveal.map(s=>s.speed)),displacement:checkpoint.at(-1).offset-checkpoint[0].offset};
+      return {serial,kind:checkpoint[0].kind,checkpointFrames:checkpoint.length,revealFrames:reveal.length,clockStayedZero:true,minRevealSpeed:Math.min(...reveal.map(s=>s.speed)),displacement:checkpoint.at(-1).offset-checkpoint[0].offset,velocityJoin:{reveal:revealEnd.speed,driving:firstDriving.speed,relativeChange:velocityChange}};
     });
     const exit=proof.samples.filter(s=>s.phase==='ARRIVING');assert.ok(exit.length>=3,'Exit sampled');
     assert.ok(exit.every(s=>s.speed>0),'No near stop');
