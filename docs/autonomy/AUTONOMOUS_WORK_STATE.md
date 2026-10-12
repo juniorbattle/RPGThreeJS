@@ -1,3 +1,29 @@
+## Native skills scoped checkpoint - 2026-10-12T16:07:44.721Z
+
+Recovered0647 interrupted/no-result under105min/idle-owner/host worker-port absence/live dev969d662 parity; preexisting Vite29856 retained. Three inherited workflow paths preserved in normal verified owned WIP snapshots. ONE registered1521 desktop1366normal/rescue/serpent35min continuation from unchanged SUCCEEDED0603 exact V6 ended FAILED15:59:45 solely deadline at lion-second-trial-event; errors0/current/stable/digest/request matched. Both fresh authored canonical combats pass: serpent_reprisals57actions/round9 and road_to_valmir45actions/round8. Both pursuit=null: earlier provisional root Pursuit description corrected; no fresh random-Pursuit proof. Final capture shows active T1route5/5 after shrine approaching Bois-Clair, not a demonstrated stuck transition. FAILED aggregate and all partial saves remain unseedable.
+
+Guardian independently accepts ACCEPTED_SCOPED_NATIVE_SALVATION_2_TO_0_CAP40_AND_FIVE_NOVICE_CASTS_1366_NORMAL: healthy Alistair140/140 native crosier setup Marian3to2, then exact Salvation2to0 speccost2/healPercent0.4/Marian62to100of100 (gain38 capped), plus fresh archer/dark_mage/rogue/warrior/white_mage novice cost2/AP accounting. Lancer/new-all-six/second-refuge/fullV6/ending/balance/Pursuit breadth/AT/OS/mobile/operatorfinal/demo stayOPEN. Three inspected before52/after53/result2 captures and compact checks explicitly selected under docs/reports/native-skills-20261012-1521; raw diagnostics ignored. Aggregate NOT_ACCEPTED remains separate.
+
+Types/20focusedtests3files/16receipt tests/8contracts8slots/immutable/working-copy/whitespace PASS; unchanged214module build9hashes/sourceTree637f91ee/driver152e8ff1/helper5dedab6 physically matched. No source/test/driver/assertion/newQA change; no harness defect correction demonstrated. Parent/taskQueue/deferred keyboard/pending narrative and206historical QA records exactly preserved,207total. Active live/subtask/handoff pointers aligned. Counts source0/test0/existingQA0/newQA0/proof4/workflow3/inheritedWIP3/browser1/rootcaptures7/guardian2boundedpasses; no quota-savings claim.
+
+Exact nextAction: Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, default pursuit-check0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.
+
+## Interrupted native continuation recovered - 2026-10-12T15:23:29.379Z
+
+Old0647 owner idle/usage-limit, heartbeat over105min, host worker12752/port5388 absent; live dev969d662 parity verified. Preexisting Vite29856 retained. Three inherited workflow paths snapshot450abd4 published/verified. Receipt remains honestly RUNNING with no terminal result; progress stopped07:02:43 during native serpent patrol round2, no acceptance or seed. SUCCEEDED0603 exact resumed V6 and source/driver/helper/build physically matched. ONE existing-driver replacement smoke is justified by worker cutoff before any terminal result; not a repeat of a failed aggregate. No source/driver/assertion change.
+
+Exact nextAction: Inspect ONE registered second-refuge-native-desktop-1521 terminal receipt and selected captures. Recovery of interrupted0647 with no result and stopped worker/port, from unchanged SUCCEEDED0603 exact first-refuge V6; desktop1366normal rescue/serpent35min VERIFY_SALVATION=1. No old partial save/progress seed; no second smoke or speculative pilot rewrite. Preserve parent all-six/random-Pursuit, deferred keyboard, pending narrative, taskQueue and mobileLAST; incomplete or failed aggregate cannot seed continuation.
+
+## Owned continuation snapshot - 2026-10-12T06:53:35.454Z
+
+wip/rpgthreejs-auto-dev-90m-20261012T0647@01450fa8f884d67317b351e584b5240c09d625dd; three selected workflow paths; source and driver unchanged. Recovery snapshot, current QA acceptance pending.
+
+## Native second-refuge continuation - 2026-10-12T06:50:15.362Z
+
+Clean no-lock dev969d662/live parity; prior owner idle, campaign workers absent, existing Vite servers retained. Exclusive lock/fetch. Successful0603 receipt/result/exact earned save/source tree/driver/helper/nine build files matched.
+
+Exact nextAction: Inspect ONE registered second-refuge-native-desktop-0647 terminal and fresh actions/captures. Continuation from SUCCEEDED0603 exact first-refuge V6, native Rest, desktop1366normal rescue/serpent35min VERIFY_SALVATION=1. Keep exact2AP/40percent assertions and failed-result quarantine; no second smoke or pilot rewrite. Preserve original all-six-skills/random-Pursuit parent, deferred keyboard/pending narrative/taskQueue/history/mobileLAST.
+
 ## Native proof checkpoint published - 2026-10-12T06:40:10.747Z
 
 Checkpointfb8430c711e69468f9c380086b6b49880eaa74bd normally published/live verified on origin/dev under OD-2026-10-12-A; main00b96f1 unchanged. Native0603 receipt still execution-compatible after evidence/workflow commit; machine NOT_ACCEPTED separate from guardian reviewed scoped acceptance. Worker58912/port5387 absent, existing servers retained;205jobs and original task/queue/deferred work preserved. Staged gate caught and corrected new-handoff EOF blank before commit. Final metadata publication and ownedWIP/lock retirement recorded in automationmemory/finalaudit.
@@ -997,6 +1023,8 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - motion-os-desktop-0504: SUCCEEDED; port 5385; receipt `tmp/traversal/motion-os-desktop-0504/qa-job.json`; NOT_ACCEPTED
 - opening-native-desktop-0523: FAILED; port 5386; receipt `tmp/demo/opening-native-desktop-0523/qa-job.json`; NOT_ACCEPTED
 - reward-label-native-desktop-0603: SUCCEEDED; port 5387; receipt `tmp/demo/reward-label-native-desktop-0603/qa-job.json`; NOT_ACCEPTED
+- second-refuge-native-desktop-0647: RUNNING; port 5388; receipt `tmp/demo/second-refuge-native-desktop-0647/qa-job.json`; NOT_ACCEPTED
+- second-refuge-native-desktop-1521: FAILED; port 5389; receipt `tmp/demo/second-refuge-native-desktop-1521/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
@@ -1035,3 +1063,7 @@ Direct human authorization in chat01a12e17: delete unnecessary WIP branches. Six
 The operator explicitly approves every future concrete payload of coherent authorized checkpoints for normal non-force publication to the public juniorbattle/RPGThreeJS origin/dev, including source/tests/selected evidence/workflow/state/handoff closure. No routine per-commit, path or payload confirmation. Cite the direct authorization in technical Git/network permission requests; actual tool refusals remain enforceable and must be reported without bypass. Decision: PUBLICATION_OPERATOR_DECISION_2026-10-08.md, OD-2026-10-12-A. Origin/main, canon, LOCKED and scope boundaries retained.
 
 Configuration-only maintenance: source0, QA/proofAdded0, workflow7; existing product task, exact nextAction, all QA jobs, deferred work and taskQueue preserved. Model gpt-6.1-sol, reasoning high, cadence90min, automation ACTIVE unchanged. ecda304 and ceabfe2 already published; no duplicate push or QA replay needed.
+
+## Next independent desktop boundary reviewed
+
+Traversal reviewer PASS for ONE next-run T0normal1366 scenario with explicit --pursuit-check=0. Existing driver13normal assertions includes temporary arrival resize1366to1440x900to1366. Shared guarded departure/opaque readiness swap/reveal clock0 and carried velocity/accelerating complete exit source invariants reviewed; no actionable source defect established. T1normal0415 and OS0504 reviewed scopes retained, no repeat. T0 driver uses explicit QA origin and injected combat victories: fixture-origin motion/lifecycle only, no earned campaign/tactical outcome/V6/Pursuit claim. Original parent/deferred/pending and mobileLAST remain. Total reviewers2, bounded passes3. Requested skill runtime already implemented; this run advances fresh native proof without inventing a product defect or changing frozen code.

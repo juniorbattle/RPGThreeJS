@@ -1,35 +1,40 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-12T06:04:32.6388361+00:00",
-  "runEndedAt": "2026-10-12T06:40:10.747Z",
+  "runStartedAt": "2026-10-12T11:21:02.8790059-04:00",
+  "runEndedAt": null,
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "SAFE_SCOPED_CHECKPOINT",
-  "activeSubtask": "Native forest opening and first-refuge reload accepted; parent campaign remains open",
+  "activeSubtask": "Fresh Salvation2to0 and five novice casts accepted scoped; native second-refuge aggregate timed out",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "fb8430c711e69468f9c380086b6b49880eaa74bd",
   "lastPushedCommit": "fb8430c711e69468f9c380086b6b49880eaa74bd",
   "completedThisRun": [
-    "Current native forest opening, incidental T0 Pursuit victory, first-refuge earned V6 exact reload scoped accepted",
-    "Authored Minerai de fer label visibly fits current native result; native keyboard result/parent/road focus verified within stated limits",
-    "17focusedtests/types/8contracts8slots/immutable/whitespace passed; unchanged214module build matched",
-    "Independent UI and guardian scoped reviews; three captures and compact checks explicitly selected"
+    "Recover0647 cutoff under full105min/owner/process/port/live-parity protocol; reviewed inherited workflow WIP preserved",
+    "ONE existing-driver1521 native continuation finalized FAILED35min with stable matched provenance/errors0; no rerun/assertion change",
+    "Scoped fresh Salvation3to2 healthy setup then2to0/capped40percent and five novice casts independently guardian reviewed; three captures/compact proof selected"
   ],
   "filesChanged": [
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-12T0603Z-codex-reward-label.md",
-    "docs/reports/native-first-refuge-20261012-0603/checks.json",
-    "docs/reports/native-first-refuge-20261012-0603/combat-0-result.png",
-    "docs/reports/native-first-refuge-20261012-0603/combat-1-pursuit-return-focus.png",
-    "docs/reports/native-first-refuge-20261012-0603/lion-first-refuge-earned-resumed.png"
+    "docs/autonomy/handoffs/2026-10-12T1521Z-codex-recovery.md",
+    "docs/reports/native-skills-20261012-1521/checks.json",
+    "docs/reports/native-skills-20261012-1521/combat-2-salvation-exactly2ap-before-52.png",
+    "docs/reports/native-skills-20261012-1521/combat-2-w_salvation-53.png",
+    "docs/reports/native-skills-20261012-1521/combat-2-result.png"
   ],
   "testsRun": [
-    "17focusedtests/2files",
-    "TypeScript --noEmit",
-    "8contracts/eightvideo slots and immutable/workingcopy/whitespace gates",
-    "ONE unseeded native desktop1366normal registered first-refuge smoke SUCCEEDED22.9min"
+    "TypeScript noEmit",
+    "8contract/8video validator and immutable/working-copy gates",
+    "20focused tests3files (combat shell/HUD/legacy skills)",
+    "16existing qa-job tests",
+    "ONE native35min desktop1366normal second-refuge continuation",
+    "Whitespace gate; source/build unchanged and physical hashes verified"
   ],
-  "testsPassed": true,
+  "testsPassed": [
+    "Types/contracts/immutable/whitespace",
+    "20focused plus16receipt tests",
+    "Both fresh authored native combat victories and independently inspected exact Salvation/five novice casts"
+  ],
   "testsRemaining": [
     "Read-only autonomy preflight/exclusive lock; inspect reward-label-native-desktop-0603 SUCCEEDED receipt/result03eab0e5 and selected docs/reports/native-first-refuge-20261012-0603/checks.json; verify current physical source/driver/build and exact earned-first-refuge-v6.json equals proof.resumed before reuse. Current native forest opening/T0r6 Pursuit/first-refuge exact reload and Minerai de fer label accepted scoped; do not repeat this fresh opening or unchanged T1 normal/OS. Resume original all-six-skills/random-Pursuit parent: ONE registered existing demo-continuous-production-qa.mjs second-refuge desktop1366normal continuation35min, rescue/serpent, from this newly SUCCEEDED exactsave/proof (DEMO_QA_EARNED_SAVE=tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json; DEMO_QA_PRIOR_PROOF=tmp/demo/reward-label-native-desktop-0603/results.json), VERIFY_SALVATION=1 keeps native2AP/40% assertions unchanged. Native rest already exists at driver684-691 and will prepare two downed allies before departure; do not inject recovery or rewrite the pilot. Register/sync and inspect terminal/captures; a new failed aggregate remains unseedable, never replay unchanged45min or infer all-six/fullending from second-refuge target. Prior2012 sixcasts/Salvation3to2setup/2to0 capped40% remain scoped; no demonstrated menu-selector correction. Preserve exact deferred keyboard/pendingNarrative/taskQueue/history; T0/T3/game-only motion milestone gaps, later earned narrative/fullV6/ending/balance/AT/operatorfinal/mobileLAST/demo remain OPEN.",
     "Mounted-stage live OS flip, current normal and intermediate dynamic cast browser proof",
@@ -51,7 +56,8 @@
     "Ending2311 FAILED_NOT_ACCEPTED: bounded131actions, three damage alliesKO, Marian alone; support-only crosier pilot excludes native foe actions. Six-line lone-survivor native fallback is source-reviewed checkpoint only, verify in new registered QA; no balance or terminalV6 conclusion. Prior2104 interrupted output remains historical NOT_ACCEPTED.",
     "campaign-keyboard-1655: native opening defeat blocks intended parent-return/first-refuge proof; pilot strategy versus gameplay reliability unresolved, not established product regression",
     "1748/1856: checkpoint perception and parent settled-focus visuals OPEN; Pursuit mappings implemented/scoped T0 fixture verified, articulated gait and broader browser acceptance OPEN; mobile final",
-    "FAILED2012 native skill-menu locator.click timeout at275; full ending/aggregate/reload unproved, no established runtime regression."
+    "FAILED2012 native skill-menu locator.click timeout at275; full ending/aggregate/reload unproved, no established runtime regression.",
+    "1521 FAILED at35min deadline at lion-second-trial-event after57action round9 serpent_reprisals and45action round8 road_to_valmir victories; no browser errors or established product regression. Final T1route5/5 active toward Bois-Clair; failed aggregate/partial saves unseedable, no unchanged35/45min repeat or deadline-only extension. Independent desktop motion gap remains available."
   ],
   "remainingWork": [
     "Six fresh novice cast/AP coverage and same-round healthy setup3to2/Salvation2to0 capped40percent reviewed2012; fullcampaign aggregate/ending/reload OPEN after skill-menu click timeout",
@@ -62,9 +68,10 @@
     "Shadow gait/reduced-miss proofs remain scoped; native T1 forest_patrol victory/return/tempLoot/focus/precombatV6 now accepted1366normal; full-tail/ground, other contexts, defeat/cancel/reentry/reduced/AT still open",
     "Other campaign branches/endings, Stage/VFX/AT/desktop accessibility",
     "Opening dynamic1366/620 normalOS accepted scoped; later/earned narrative and approvedBois-Clair nightplate remainOPEN",
-    "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
+    "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest",
+    "1521: five fresh novice classes and capped40percent Salvation2to0 scoped accepted; sixth/lancer, earned second-refuge reload, ending, fullV6, balance and fresh random-Pursuit breadth remain OPEN"
   ],
-  "nextAction": "Read-only autonomy preflight/exclusive lock; inspect reward-label-native-desktop-0603 SUCCEEDED receipt/result03eab0e5 and selected docs/reports/native-first-refuge-20261012-0603/checks.json; verify current physical source/driver/build and exact earned-first-refuge-v6.json equals proof.resumed before reuse. Current native forest opening/T0r6 Pursuit/first-refuge exact reload and Minerai de fer label accepted scoped; do not repeat this fresh opening or unchanged T1 normal/OS. Resume original all-six-skills/random-Pursuit parent: ONE registered existing demo-continuous-production-qa.mjs second-refuge desktop1366normal continuation35min, rescue/serpent, from this newly SUCCEEDED exactsave/proof (DEMO_QA_EARNED_SAVE=tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json; DEMO_QA_PRIOR_PROOF=tmp/demo/reward-label-native-desktop-0603/results.json), VERIFY_SALVATION=1 keeps native2AP/40% assertions unchanged. Native rest already exists at driver684-691 and will prepare two downed allies before departure; do not inject recovery or rewrite the pilot. Register/sync and inspect terminal/captures; a new failed aggregate remains unseedable, never replay unchanged45min or infer all-six/fullending from second-refuge target. Prior2012 sixcasts/Salvation3to2setup/2to0 capped40% remain scoped; no demonstrated menu-selector correction. Preserve exact deferred keyboard/pendingNarrative/taskQueue/history; T0/T3/game-only motion milestone gaps, later earned narrative/fullV6/ending/balance/AT/operatorfinal/mobileLAST/demo remain OPEN.",
+  "nextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -204,19 +211,19 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261012T0603",
+  "runId": "rpgthreejs-auto-dev-90m-20261012T1521",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-12T06:40:10.747Z",
+  "lastHeartbeat": "2026-10-12T16:07:44.721Z",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0603",
-    "sha": "0e332c31fe7ea3e5ca9d392a53770ff69aa33849",
-    "at": "2026-10-12T06:37:35.911Z"
+    "at": "2026-10-12T15:57:55.8495058+00:00",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261012T1521",
+    "sha": "536406711f4f4317fefa64df3eb513230d4e8e93"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261012T0603",
+    "runId": "rpgthreejs-auto-dev-90m-20261012T1521",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-12T06:40:10.747Z",
-    "status": "CLOSED_SCOPED_NATIVE_FIRST_REFUGE_ACCEPTED",
+    "lastHeartbeat": "2026-10-12T16:07:44.721Z",
+    "status": "SCOPED_NATIVE_SKILLS_ACCEPTED_AGGREGATE_FAILED",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -22185,25 +22192,244 @@
             "50ms actual-impact capture is transitional and excluded from CombatStage visual acceptance"
           ]
         }
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "second-refuge-native-desktop-0647",
+        "runId": "rpgthreejs-auto-dev-90m-20261012T0647",
+        "status": "RUNNING",
+        "registeredAt": "2026-10-12T06:50:37.777Z",
+        "pid": 12752,
+        "port": 5388,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "second-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 35,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/reward-label-native-desktop-0603/results.json",
+          "verifySalvation": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/second-refuge-native-desktop-0647",
+        "receiptPath": "tmp/demo/second-refuge-native-desktop-0647/qa-job.json",
+        "provenance": {
+          "gitHead": "969d662af4331dddf2814b473cf06b254610f038",
+          "sourceTree": "637f91ee993a3ac5f745a0b73975c4d252d62a86",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "152e8ff1ac4d8beb9ce7b9259690a0a6eda3ac44c8e0d5c20a7a3918c3dd7189"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json",
+              "sha256": "d0fc5c11f8263316c071c4d859982f60a8be97b6d35ea024b7a960c93b5fd656"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/reward-label-native-desktop-0603/results.json",
+              "sha256": "03eab0e5a83eea0f40c962cd7ce741df4e88cd4757ff331197f2f9f595bfc9f0"
+            }
+          ],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-CP2whCOz.js",
+              "sha256": "a537d8a7a218115f4afe53bda13f59bea47a330285f65beb956d9694e3c3dd01"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-C2zvqMPX.js",
+              "sha256": "e30054e5f7e7e0d4b472b4117e419cd7a4b7824d500170168955e8112dace0d4"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "2ccb3efb6a34d4518df1fb4b4afe832000523a257d1af3c1e048037c84f985af"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-12T06:50:38.854Z",
+        "endedAt": null,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": false,
+        "eligibleForReview": false,
+        "orchestratorDisposition": "INTERRUPTED_ORPHANED_NO_RESULT_NOT_ACCEPTED",
+        "workerObservedAbsentAt": "2026-10-12T15:20:00Z"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "second-refuge-native-desktop-1521",
+        "runId": "rpgthreejs-auto-dev-90m-20261012T1521",
+        "status": "FAILED",
+        "registeredAt": "2026-10-12T15:24:42.691Z",
+        "pid": 26700,
+        "port": 5389,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "second-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 35,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/reward-label-native-desktop-0603/results.json",
+          "verifySalvation": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/second-refuge-native-desktop-1521",
+        "receiptPath": "tmp/demo/second-refuge-native-desktop-1521/qa-job.json",
+        "provenance": {
+          "gitHead": "969d662af4331dddf2814b473cf06b254610f038",
+          "sourceTree": "637f91ee993a3ac5f745a0b73975c4d252d62a86",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "152e8ff1ac4d8beb9ce7b9259690a0a6eda3ac44c8e0d5c20a7a3918c3dd7189"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json",
+              "sha256": "d0fc5c11f8263316c071c4d859982f60a8be97b6d35ea024b7a960c93b5fd656"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/reward-label-native-desktop-0603/results.json",
+              "sha256": "03eab0e5a83eea0f40c962cd7ce741df4e88cd4757ff331197f2f9f595bfc9f0"
+            }
+          ],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-CP2whCOz.js",
+              "sha256": "a537d8a7a218115f4afe53bda13f59bea47a330285f65beb956d9694e3c3dd01"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-C2zvqMPX.js",
+              "sha256": "e30054e5f7e7e0d4b472b4117e419cd7a4b7824d500170168955e8112dace0d4"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "2ccb3efb6a34d4518df1fb4b4afe832000523a257d1af3c1e048037c84f985af"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-12T15:24:44.508Z",
+        "endedAt": "2026-10-12T15:59:45.637Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/second-refuge-native-desktop-1521/results.json",
+        "resultSha256": "1da5daa008f2f6070ea6535c62802d9884b03e7f93c525f912063230cb58c53d",
+        "provenanceStable": true,
+        "reviewedDisposition": {
+          "at": "2026-10-12T16:07:44.721Z",
+          "status": "ACCEPTED_SCOPED_NATIVE_SALVATION_2_TO_0_CAP40_AND_FIVE_NOVICE_CASTS_1366_NORMAL",
+          "scope": "Five fresh novice initial-competence casts and native Salvation exactly2to0AP/capped40percent at1366normal; two canonical battles only",
+          "proof": "docs/reports/native-skills-20261012-1521/checks.json",
+          "aggregate": "FAILED_NOT_ACCEPTED_UNSEEDABLE",
+          "limitations": [
+            "FAILED aggregate and every partial save remain unusable as continuation seeds",
+            "No second-refuge reload, ending, fullV6 or migration acceptance",
+            "Five fresh classes only; lancer and all-six-in-this-scenario remain unverified",
+            "No fresh incidental Pursuit: both fresh battles are canonical authored nodes; inherited0603 Pursuit is separate",
+            "No balance, full Stage/VFX visual, AT, broad motion, mobile or operator-final-demo acceptance",
+            "Salvation gain is38HP capped at100;40percent formula, not an uncapped40HP observation",
+            "Selected frames show one desktop1366normal boundary only"
+          ]
+        }
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0603",
-      "sha": "0e332c31fe7ea3e5ca9d392a53770ff69aa33849",
-      "at": "2026-10-12T06:37:35.911Z",
-      "dirtyFiles": [
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-12T0603Z-codex-reward-label.md",
-        "docs/reports/native-first-refuge-20261012-0603/checks.json",
-        "docs/reports/native-first-refuge-20261012-0603/combat-0-result.png",
-        "docs/reports/native-first-refuge-20261012-0603/combat-1-pursuit-return-focus.png",
-        "docs/reports/native-first-refuge-20261012-0603/lion-first-refuge-earned-resumed.png"
-      ],
-      "status": "GREEN",
-      "lastGreenCheck": "17tests/types/8contracts/eight slots/gates; native job SUCCEEDED/current/digest, UI and guardian scoped acceptance"
+      "at": "2026-10-12T15:57:55.8495058+00:00",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261012T1521",
+      "sha": "536406711f4f4317fefa64df3eb513230d4e8e93"
     },
-    "nextAction": "Read-only autonomy preflight/exclusive lock; inspect reward-label-native-desktop-0603 SUCCEEDED receipt/result03eab0e5 and selected docs/reports/native-first-refuge-20261012-0603/checks.json; verify current physical source/driver/build and exact earned-first-refuge-v6.json equals proof.resumed before reuse. Current native forest opening/T0r6 Pursuit/first-refuge exact reload and Minerai de fer label accepted scoped; do not repeat this fresh opening or unchanged T1 normal/OS. Resume original all-six-skills/random-Pursuit parent: ONE registered existing demo-continuous-production-qa.mjs second-refuge desktop1366normal continuation35min, rescue/serpent, from this newly SUCCEEDED exactsave/proof (DEMO_QA_EARNED_SAVE=tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json; DEMO_QA_PRIOR_PROOF=tmp/demo/reward-label-native-desktop-0603/results.json), VERIFY_SALVATION=1 keeps native2AP/40% assertions unchanged. Native rest already exists at driver684-691 and will prepare two downed allies before departure; do not inject recovery or rewrite the pilot. Register/sync and inspect terminal/captures; a new failed aggregate remains unseedable, never replay unchanged45min or infer all-six/fullending from second-refuge target. Prior2012 sixcasts/Salvation3to2setup/2to0 capped40% remain scoped; no demonstrated menu-selector correction. Preserve exact deferred keyboard/pendingNarrative/taskQueue/history; T0/T3/game-only motion milestone gaps, later earned narrative/fullV6/ending/balance/AT/operatorfinal/mobileLAST/demo remain OPEN.",
+    "nextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
     "runMetrics": {
       "runId": "rpgthreejs-auto-dev-90m-20261012T0523",
       "runtimeSourceFilesModified": 1,
@@ -22239,9 +22465,9 @@
       ],
       "closure": "Final workflow-only metadata publication and owned lock/WIP retirement recorded in automationmemory/finalaudit"
     },
-    "runStartedAt": "2026-10-12T06:04:32.6388361+00:00",
-    "runEndedAt": "2026-10-12T06:40:10.747Z",
-    "writerStopped": true,
+    "runStartedAt": "2026-10-12T11:21:02.8790059-04:00",
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "status": "NORMAL_DEV_PUBLICATION_VERIFIED",
       "checkpoint": "9b14235e5cde97bf1c3a835c350de3ae21624082",
@@ -23070,7 +23296,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-    "activeSubtask": "OS-only desktop T1 velocity join and covered final exit verified scoped",
+    "activeSubtask": "Fresh Salvation2to0 and five novice casts accepted scoped; native second-refuge aggregate timed out",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -26176,7 +26402,150 @@
       },
       "workers": "Worker58912 and port5387 absent after terminal; existing servers retained",
       "precommitWhitespace": "New handoff EOF blank caught by staged gate and trimmed before commit; staged gate green, no source/test/driver edit"
-    }
+    },
+    "continuation0647": {
+      "startedAt": "2026-10-12T06:50:15.362Z",
+      "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect reward-label-native-desktop-0603 SUCCEEDED receipt/result03eab0e5 and selected docs/reports/native-first-refuge-20261012-0603/checks.json; verify current physical source/driver/build and exact earned-first-refuge-v6.json equals proof.resumed before reuse. Current native forest opening/T0r6 Pursuit/first-refuge exact reload and Minerai de fer label accepted scoped; do not repeat this fresh opening or unchanged T1 normal/OS. Resume original all-six-skills/random-Pursuit parent: ONE registered existing demo-continuous-production-qa.mjs second-refuge desktop1366normal continuation35min, rescue/serpent, from this newly SUCCEEDED exactsave/proof (DEMO_QA_EARNED_SAVE=tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json; DEMO_QA_PRIOR_PROOF=tmp/demo/reward-label-native-desktop-0603/results.json), VERIFY_SALVATION=1 keeps native2AP/40% assertions unchanged. Native rest already exists at driver684-691 and will prepare two downed allies before departure; do not inject recovery or rewrite the pilot. Register/sync and inspect terminal/captures; a new failed aggregate remains unseedable, never replay unchanged45min or infer all-six/fullending from second-refuge target. Prior2012 sixcasts/Salvation3to2setup/2to0 capped40% remain scoped; no demonstrated menu-selector correction. Preserve exact deferred keyboard/pendingNarrative/taskQueue/history; T0/T3/game-only motion milestone gaps, later earned narrative/fullV6/ending/balance/AT/operatorfinal/mobileLAST/demo remain OPEN.",
+      "preflight": "Clean no-lock dev969d662/live parity; prior owner idle, campaign workers absent, existing Vite servers retained. Exclusive lock/fetch. Successful0603 receipt/result/exact earned save/source tree/driver/helper/nine build files matched.",
+      "priorQaJobs": 205,
+      "scope": "ONE native desktop second-refuge continuation; parent all-six/ending/fullV6 remains open",
+      "inheritedWIP": 0,
+      "worker": {
+        "jobId": "second-refuge-native-desktop-0647",
+        "status": "RUNNING",
+        "pid": 12752,
+        "port": 5388,
+        "receipt": "tmp/demo/second-refuge-native-desktop-0647/qa-job.json"
+      },
+      "snapshot": {
+        "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0647",
+        "sha": "01450fa8f884d67317b351e584b5240c09d625dd",
+        "at": "2026-10-12T06:53:35.454Z"
+      }
+    },
+    "recovery1521": {
+      "at": "2026-10-12T15:23:29.379Z",
+      "priorRunId": "rpgthreejs-auto-dev-90m-20261012T0647",
+      "priorReceiptStatus": "RUNNING",
+      "disposition": "INTERRUPTED_NO_TERMINAL_RESULT_NOT_ACCEPTED",
+      "progressAt": "2026-10-12T07:02:43.190Z",
+      "worker12752": "ABSENT_HOST_CIM",
+      "port5388": "ABSENT_HOST_NETTCP",
+      "owner": "IDLE_FAILED_USAGE_LIMIT",
+      "remoteParity": "HEAD_ORIGIN_DEV_LIVE_969d662_MAIN_00b96f1",
+      "existingVite": "29856_PREEXISTING_SERVER_RETAINED_NO_RELATED_QA_BUILD_GIT",
+      "inheritedWorkflowPaths": 3,
+      "sourceDriverBuild": "UNCHANGED_MATCHED_BOTH_RECEIPTS",
+      "seed": "SUCCEEDED0603_EXACT_RESUMED_V6",
+      "retryReason": "Previous QA worker was cut off before final result; no failed aggregate is replayed and no compatible terminal evidence exists",
+      "sourceFiles": 0,
+      "testFiles": 0,
+      "qaFiles": 0,
+      "newQaTools": 0,
+      "checks": {
+        "contracts": "PASS_8_CONTRACTS_8_SLOTS",
+        "types": "PASS",
+        "focusedTests": 20,
+        "focusedFiles": 3,
+        "qaReceiptTests": "PASS_16",
+        "immutable": "PASS",
+        "workingCopyContracts": "UNCHANGED",
+        "whitespace": "PASS",
+        "build": "UNCHANGED_EXACT_PHYSICAL_RECEIPT_MATCH"
+      },
+      "captureReview": [
+        "lion-first-refuge-native-rest.png: visible180gold/30gold native Rest, clan focus, all five refuge controls fit1366normal; no broad layout claim"
+      ],
+      "worker": {
+        "jobId": "second-refuge-native-desktop-1521",
+        "status": "FAILED",
+        "pid": 26700,
+        "port": 5389,
+        "receipt": "tmp/demo/second-refuge-native-desktop-1521/qa-job.json"
+      },
+      "guardian": "PASS_RECOVERY_AND_TERMINAL_SCOPED_NATIVE_REVIEW",
+      "compliance": {
+        "GAME_CONSTITUTION": "PASS_OWNER_BOUNDARIES_UNCHANGED",
+        "ART_DIRECTION": "N/A",
+        "CHARACTERS": "N/A",
+        "ENVIRONMENTS": "N/A",
+        "NARRATIVE_CAMPAIGN": "PASS_EXISTING_AUTHORED_NODES_PARENT_OPEN",
+        "NARRATIVE_PRESENTATION": "N/A",
+        "TRAVERSAL": "N/A_NO_NEW_PURSUIT_ACCEPTANCE",
+        "COMBAT": "PASS_STRICT_SALVATION_AND_FIVE_NATIVE_CASTS_SCOPED",
+        "SAVE": "PASS_EXACT_VALID_INPUT_FAILED_OUTPUT_QUARANTINE_SECOND_REFUGE_OPEN",
+        "UI_ACCESSIBILITY": "N/A_DESKTOP_NORMAL_CAPTURES_ONLY",
+        "QA_EVIDENCE": "PASS_SCOPED_OBSERVATIONS_SEPARATE_FROM_FAILED_AGGREGATE",
+        "REPOSITORY_GOVERNANCE": "PASS_LOCK_GATES_SELECTED_PATHS_DEV_ONLY"
+      },
+      "endedAt": "2026-10-12T15:59:45.637Z",
+      "receipt": "tmp/demo/second-refuge-native-desktop-1521/qa-job.json",
+      "result": "tmp/demo/second-refuge-native-desktop-1521/results.json",
+      "resultSha256": "1da5daa008f2f6070ea6535c62802d9884b03e7f93c525f912063230cb58c53d",
+      "aggregate": "FAILED_NOT_ACCEPTED_UNSEEDABLE",
+      "proof": "docs/reports/native-skills-20261012-1521/checks.json",
+      "acceptedScope": "ACCEPTED_SCOPED_NATIVE_SALVATION_2_TO_0_CAP40_AND_FIVE_NOVICE_CASTS_1366_NORMAL",
+      "guardianPasses": 2,
+      "salvation": {
+        "battleIndex": 2,
+        "combatId": "serpent_reprisals",
+        "actionIndex": 52,
+        "activeId": "white_mage",
+        "targetId": "white_mage",
+        "beforeAp": 2,
+        "afterAp": 0,
+        "specCost": 2,
+        "healPercent": 0.4,
+        "beforeHp": 62,
+        "afterHp": 100,
+        "maxHp": 100,
+        "actualGain": 38,
+        "formula": "min(maxHp, hp + round(maxHp * 0.4))",
+        "verifiedExactly2Ap": true,
+        "verifiedHealing": true,
+        "setup": {
+          "actionIndex": 51,
+          "kind": "crosier-heal",
+          "specCost": 1,
+          "beforeAp": 3,
+          "afterAp": 2,
+          "targetId": "warrior",
+          "beforeHp": 140,
+          "afterHp": 140,
+          "maxHp": 140
+        }
+      },
+      "freshClasses": [
+        "rogue",
+        "dark_mage",
+        "warrior",
+        "white_mage",
+        "archer"
+      ],
+      "missingFreshClasses": [
+        "lancer"
+      ],
+      "diagnosis": "Final capture active T1route5/5 after shrine, no transition defect; canonical native combat consumed registered budget. No new Pursuit: both fresh b.pursuit=null; earlier provisional root label corrected.",
+      "counts": {
+        "runtimeSourceFilesModified": 0,
+        "testFilesModified": 0,
+        "existingQaFilesModified": 0,
+        "newQaFilesAdded": 0,
+        "promotedProofFiles": 4,
+        "workflowDocs": 3,
+        "inheritedWipPaths": 3,
+        "browserScenarios": 1,
+        "registeredJobs": 1,
+        "rootCapturesInspected": 7,
+        "guardianPasses": 2,
+        "quotaSavingsClaim": "NONE",
+        "reviewers": 2,
+        "reviewerPasses": 3
+      },
+      "nextIndependent": "TRAVERSAL_REVIEWER_PASS: ONE next-run registered T0normal1366 existing-driver motion smoke,13assertions, arrival resize1366to1440x900to1366; fixture-origin and injected combat outcomes only, not campaign/V6/Pursuit acceptance. Shared source invariant review establishes no actionable defect. T1normal0415/OS0504 unchanged acceptance retained.",
+      "noProductEditReason": "Requested initial competence runtime already implemented; fresh native acceptance gaps advanced without a demonstrated source defect. ONE smoke consumed. No speculative changes or unchanged native aggregate rerun."
+    },
+    "activePhase": "SAFE_SCOPED_CHECKPOINT"
   },
   "previousInterruptedRun": {
     "runId": "rpgthreejs-auto-dev-90m-20261009T0011",
@@ -26223,7 +26592,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-12T0603Z-codex-reward-label.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-12T1521Z-codex-recovery.md",
   "runMeasurement": {
     "productSource": 0,
     "existingTests": 0,
