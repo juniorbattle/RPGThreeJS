@@ -200,7 +200,9 @@
     "sha": "e65a070cbb3f0f651bbfa5f28f5c63413ac1604a",
     "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0310",
     "at": "2026-10-12T03:19:00Z",
-    "status": "LOCAL_VERIFIED_SNAPSHOT_FINAL_METADATA_DIFF_ONLY"
+    "status": "RETIRED_CONTENT_ON_DEV_VERIFIED_BUNDLE_BACKUP",
+    "retiredAt": "2026-10-12T03:30:57.443Z",
+    "backup": "tmp/autonomy/wip-cleanup-0324/wip-snapshots.bundle"
   },
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261012T0310",
@@ -21633,7 +21635,9 @@
       "sha": "e65a070cbb3f0f651bbfa5f28f5c63413ac1604a",
       "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0310",
       "at": "2026-10-12T03:19:00Z",
-      "status": "LOCAL_VERIFIED_SNAPSHOT_FINAL_METADATA_DIFF_ONLY"
+      "status": "RETIRED_CONTENT_ON_DEV_VERIFIED_BUNDLE_BACKUP",
+      "retiredAt": "2026-10-12T03:30:57.443Z",
+      "backup": "tmp/autonomy/wip-cleanup-0324/wip-snapshots.bundle"
     },
     "nextAction": "Read-only autonomy preflight and exclusive lock; resume original all-six-skills/random-Pursuit task. Publication approvals are resolved and standing OD-2026-10-11-A covers all normal authorized dev/owned-WIP checkpoints, including state/handoff closure: do not ask routine per-checkpoint confirmation. Inspect native-six-skills-observations-20261011-2012/checks.json, terminal2012 receipt/result digest and source/build/driver before reuse. Preserve FAILED2012 and scoped six novice casts plus native3to2 setup/Salvation2to0 capped40percent; never seed2012/1858/1800/1731/0001 or replay unchanged45min campaign. Click275 remains a proof blocker, not an established runtime regression: inspected failure capture shows normal unoccluded menu, while actual job elapsed211.8min exceeds registered45min and may reflect execution suspension (inference only). Diagnose native menu responsiveness using existing runners before any demonstrated minimal pilot correction or single registered targeted desktop continuation from independently SUCCEEDED1859 exact seed. Keep all AP/healing/aggregate/earned-ending/reload assertions; no harness rewrite or truth injection. Full ending/aggregate/reload, randomPursuit/later narrative/fullV6/AT/balance/operatorfinal/demo remain OPEN; exact deferred keyboard/history/queue retained, mobileLAST.",
     "runMetrics": {
@@ -24905,7 +24909,40 @@
         "UI_AND_ACCESSIBILITY"
       ],
       "lockedRulesChanged": false,
-      "finalTransport": "Prepared coherent selected checkpoint; final actual SHA/parity/lock cleanup in automation memory"
+      "finalTransport": "Prepared coherent selected checkpoint; final actual SHA/parity/lock cleanup in automation memory",
+      "ownedSnapshotsRetired": true,
+      "snapshotCleanup": "Direct user authorized obsolete branch cleanup; six local/four remote retired; three unique historical branches retained; verified complete bundle backup"
+    },
+    "wipCleanup0324": {
+      "at": "2026-10-12T03:30:57.443Z",
+      "runId": "rpgthreejs-wip-cleanup-20261012T0324",
+      "status": "SIX_OBSOLETE_WIP_BRANCHES_RETIRED",
+      "explicitHumanAuthorization": "tu peux supprimmer les branches wip plus necessaires",
+      "deletedLocal": [
+        "wip/rpgthreejs-auto-dev-90m-20261011T0534",
+        "wip/rpgthreejs-auto-dev-90m-20261011T1642",
+        "wip/rpgthreejs-auto-dev-90m-20261011T1731",
+        "wip/rpgthreejs-auto-dev-90m-20261011T2012",
+        "wip/rpgthreejs-auto-dev-90m-20261011T2354",
+        "wip/rpgthreejs-auto-dev-90m-20261012T0310"
+      ],
+      "deletedRemote": [
+        "wip/rpgthreejs-auto-dev-90m-20261011T0534",
+        "wip/rpgthreejs-auto-dev-90m-20261011T1642",
+        "wip/rpgthreejs-auto-dev-90m-20261011T1731",
+        "wip/rpgthreejs-auto-dev-90m-20261012T0310"
+      ],
+      "kept": [
+        "wip/codex-manual-playtest-20261003T0735",
+        "wip/rpgthreejs-auto-dev-90m-20261003T1600",
+        "wip/rpgthreejs-auto-dev-90m-20261010T1840"
+      ],
+      "reasonKept": "Two deferred keyboard snapshots and one historical pilot whose exact blob is absent from dev history",
+      "backup": "tmp/autonomy/wip-cleanup-0324/wip-snapshots.bundle",
+      "backupSha256": "3D3D729595950E08C9DBF7963DD6515CBE60D77002FDFF6C0874632EAC219DCA",
+      "backupVerified": true,
+      "activeTaskAndNextActionUnchanged": true,
+      "sourceQaProofUnchanged": true
     }
   },
   "previousInterruptedRun": {
