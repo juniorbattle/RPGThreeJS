@@ -1,43 +1,46 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-11T18:58:13Z",
-  "runEndedAt": "2026-10-11T19:57:31.547Z",
+  "runStartedAt": "2026-10-11T23:51:56.9913643+00:00",
+  "runEndedAt": null,
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-  "activePhase": "NATIVE_SKILL_COVERAGE_ACCEPTANCE",
-  "activeSubtask": "Six novice casts and exact Serpent terminal reload observed; strict2AP Salvation setup coverage OPEN",
+  "activePhase": "CHECKPOINT_READY_PUBLICATION_BLOCKED",
+  "activeSubtask": "Reviewed six native novice casts and coupled Salvation2AP; checkpoint publication blocked",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "a599557540f8ad7c95c3b2f5a636fb8823d8ffd0",
   "lastPushedCommit": "a599557540f8ad7c95c3b2f5a636fb8823d8ffd0",
   "completedThisRun": [
-    "Verified owned clean dev preflight and preserved198 QA histories/deferred work",
-    "Executed ONE registered current-pilot native scenario; two fresh battles won and earned terminal V6 reloaded exactly",
-    "Reviewed all six novice-cast observations; strict2AP assertion failed, overall NOT_ACCEPTED retained",
-    "Promoted only eight reviewed captures and compact FAILED observation provenance; no runtime/pilot/test edit"
+    "Safely resumed interrupted2012 under stale-lock protocol; preserved three inherited WIP paths and prior refs",
+    "Verified terminalFAILED receipt/digest/driver/393source/9build and reviewed eight fresh captures with guardian",
+    "Recorded six novice native casts and same-round3to2 native setup/2to0 Salvation scoped observations; machineFAILED retained"
   ],
   "filesChanged": [
+    "tools/demo-continuous-production-qa.mjs",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-11T1858Z-codex-native-skills.md",
-    "docs/reports/native-six-skills-observations-20261011-1858/checks.json",
-    "docs/reports/native-six-skills-observations-20261011-1858/combat-3-ro_sneak_attack-9.png",
-    "docs/reports/native-six-skills-observations-20261011-1858/combat-3-l_long_thrust-13.png",
-    "docs/reports/native-six-skills-observations-20261011-1858/combat-3-w_break_guard-17.png",
-    "docs/reports/native-six-skills-observations-20261011-1858/combat-4-a_precise_shot-8.png",
-    "docs/reports/native-six-skills-observations-20261011-1858/combat-4-n_dark_bolt-19.png",
-    "docs/reports/native-six-skills-observations-20261011-1858/combat-4-w_salvation-44.png",
-    "docs/reports/native-six-skills-observations-20261011-1858/ending-lion-seal-serpent-truth.png",
-    "docs/reports/native-six-skills-observations-20261011-1858/ending-lion-seal-serpent-truth-resumed.png"
+    "docs/reports/native-six-skills-observations-20261011-2012/checks.json",
+    "docs/reports/native-six-skills-observations-20261011-2012/combat-3-ro_sneak_attack-9.png",
+    "docs/reports/native-six-skills-observations-20261011-2012/combat-3-l_long_thrust-14.png",
+    "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_break_guard-17.png",
+    "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-41.png",
+    "docs/reports/native-six-skills-observations-20261011-2012/combat-3-salvation-exactly2ap-before-42.png",
+    "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-43.png",
+    "docs/reports/native-six-skills-observations-20261011-2012/combat-4-a_precise_shot-8.png",
+    "docs/reports/native-six-skills-observations-20261011-2012/combat-4-n_dark_bolt-11.png",
+    "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md"
   ],
   "testsRun": [
-    "60 unique management/deployment tests excludingtmp",
-    "TypeScript/contracts8slots/syntax/immutable/whitespace gates",
-    "393physical sources/ninebuild and successful1859 exact input reverified; build reused",
-    "ONE registered1366normal45min native campaign scenario"
+    "60 focused management/deployment tests excluding tmp duplicates",
+    "TypeScript --noEmit",
+    "8-contract/8-slot validator",
+    "Existing driver syntax, git diff --check and immutable/working-copy LOCKED gates",
+    "Physical393source/9build and terminal2012 result/receipt/current execution identity"
   ],
   "testsPassed": [
-    "60 focused tests; TypeScript; contracts8slots; syntax/immutable/whitespace",
-    "Stable source/build/input/result hashes",
-    "Native battles and exact terminal reload independently observed; machine scenario FAILED strict2AP"
+    "60 focused management/deployment tests excluding tmp duplicates",
+    "TypeScript --noEmit",
+    "8-contract/8-slot validator",
+    "Existing driver syntax, git diff --check and immutable/working-copy LOCKED gates",
+    "Physical393source/9build and terminal2012 result/receipt/current execution identity"
   ],
   "testsRemaining": [
     "Read-only preflight/exclusive lock; inspect native-six-skills-observations-20261011-1858/checks.json and tmp/autonomy/skills-1858/terminal-audit.json first. Preserve FAILED/NOT_ACCEPTED driverc6306944/resultad28f416, all six reviewed novice-cast observations and exact earned Serpent terminal V6 equality; NEVER seed1858/1800/1731/0001 or replay unchanged45min campaign. Coupled exactly2AP Salvation remains OPEN: all20 casts begin3/5AP;18 AP3 native one-AP setup attempts had no healthy ally in basic-crosier centers. Inspect existing pilot skill()250-270, attack()202-215 and support move()330-365 against native reach. Establish a bounded native positioning plan with a healthy ally at basic-crosier range and a wounded eligible Salvation target; preserve3to2 native setup and strict2to0/40percent assertions. Only a demonstrated plan warrants ONE minimal existing-pilot input correction with guardian review and targeted registered verification from SUCCEEDED1859 or another independently successful exact seed; no instrumentation rewrite/unchanged failed replay. If unsupported, record the precise proof blocker and advance independent desktop production work. Keep original skills/randomPursuit task, exact deferred keyboard, accepted narrative history, canonical mapping blockers and mobileLAST; demo IN_PROGRESS.",
@@ -57,12 +60,14 @@
     "Ending2311 FAILED_NOT_ACCEPTED: bounded131actions, three damage alliesKO, Marian alone; support-only crosier pilot excludes native foe actions. Review pilot fallback before new QA; no balance or terminalV6 conclusion. Prior2104 interrupted output remains historical NOT_ACCEPTED.",
     "Ending2311 FAILED_NOT_ACCEPTED: bounded131actions, three damage alliesKO, Marian alone; support-only crosier pilot excludes native foe actions. Six-line lone-survivor native fallback is source-reviewed checkpoint only, verify in new registered QA; no balance or terminalV6 conclusion. Prior2104 interrupted output remains historical NOT_ACCEPTED.",
     "campaign-keyboard-1655: native opening defeat blocks intended parent-return/first-refuge proof; pilot strategy versus gameplay reliability unresolved, not established product regression",
-    "1748/1856: checkpoint perception and parent settled-focus visuals OPEN; Pursuit mappings implemented/scoped T0 fixture verified, articulated gait and broader browser acceptance OPEN; mobile final"
+    "1748/1856: checkpoint perception and parent settled-focus visuals OPEN; Pursuit mappings implemented/scoped T0 fixture verified, articulated gait and broader browser acceptance OPEN; mobile final",
+    "Inherited automatic review rejected2012 WIP publication; concrete local checkpoint needs approval before export. No push retry/workaround.",
+    "FAILED2012 native skill-menu locator.click timeout at275; full ending/aggregate/reload unproved, no established runtime regression."
   ],
   "remainingWork": [
-    "Coupled exactly2AP Salvation remainsOPEN; six native novice casts and terminal V6 are reviewed observations fromFAILED1858 only",
+    "Six fresh novice cast/AP coverage and same-round healthy setup3to2/Salvation2to0 capped40percent reviewed2012; fullcampaign aggregate/ending/reload OPEN after skill-menu click timeout",
     "Native forest_ambush variant and overall beginner balance; KestrelKO in tested wolf_pack",
-    "Native exactly2to0 Salvation and uncapped40percent current sample verified0001; coupled second-refuge continuation/Pursuitreturn/V6 target FAILED/NOT_ACCEPTED; broader skills still OPEN",
+    "Strict2to0 Salvation and uncapped40percent corroboration retained in separate same-round casts; no universal six successful effects, fullcampaign/Pursuit/V6 acceptance",
     "Parent focus settled visible proof: immediate capture during fade, numeric focus/owner/autosave only",
     "Shared positive checkpoint braking desktop normal/OS alternatives accepted scoped1806; full phase/readiness/game-only/camera comfort/manual broader scenery OPEN",
     "Shadow gait/reduced-miss proofs remain scoped; native T1 forest_patrol victory/return/tempLoot/focus/precombatV6 now accepted1366normal; full-tail/ground, other contexts, defeat/cancel/reentry/reduced/AT still open",
@@ -70,7 +75,7 @@
     "Opening dynamic1366/620 normalOS accepted scoped; later/earned narrative and approvedBois-Clair nightplate remainOPEN",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Read-only preflight/exclusive lock; inspect native-six-skills-observations-20261011-1858/checks.json and tmp/autonomy/skills-1858/terminal-audit.json first. Preserve FAILED/NOT_ACCEPTED driverc6306944/resultad28f416, all six reviewed novice-cast observations and exact earned Serpent terminal V6 equality; NEVER seed1858/1800/1731/0001 or replay unchanged45min campaign. Coupled exactly2AP Salvation remains OPEN: all20 casts begin3/5AP;18 AP3 native one-AP setup attempts had no healthy ally in basic-crosier centers. Inspect existing pilot skill()250-270, attack()202-215 and support move()330-365 against native reach. Establish a bounded native positioning plan with a healthy ally at basic-crosier range and a wounded eligible Salvation target; preserve3to2 native setup and strict2to0/40percent assertions. Only a demonstrated plan warrants ONE minimal existing-pilot input correction with guardian review and targeted registered verification from SUCCEEDED1859 or another independently successful exact seed; no instrumentation rewrite/unchanged failed replay. If unsupported, record the precise proof blocker and advance independent desktop production work. Keep original skills/randomPursuit task, exact deferred keyboard, accepted narrative history, canonical mapping blockers and mobileLAST; demo IN_PROGRESS.",
+  "nextAction": "Resolve inherited automatic-publication rejection for the concrete reviewed local dev checkpoint before any push/retry; then verify lock/HEAD/stopped workers/live origin parity, publish normally to origin/dev and archive/release owned lock. Preserve FAILED2012 driver152e8ff1/resulta04d3061 and reviewed scoped six novice casts plus same-round3to2 setup/Salvation2to0 capped40percent; never seed2012/1858/1800/1731/0001 or repeat unchanged45min campaign. Full native judgement/ending/reload and aggregate gates remain OPEN after native skill-menu click timeout at275; diagnose only a demonstrated failure with existing runners before any single targeted desktop verification from independently SUCCEEDED1859 exact seed. No harness rewrite or weaker assertion. Parent randomPursuit/later narrative/fullV6/AT/balance/operatorfinal/demo IN_PROGRESS; exact deferred keyboard/history/queue retained, mobileLAST.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -188,35 +193,26 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261011T1858",
+  "runId": "rpgthreejs-auto-dev-90m-20261011T2354",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-11T19:57:31.547Z",
+  "lastHeartbeat": "2026-10-11T23:57:03.214Z",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1858",
-    "sha": "b2da7eb93c834e71740c6c1e437ff47fe3e8fc24",
-    "status": "GREEN_MECHANICAL_OBSERVATION_CHECKPOINT_STRICT_2AP_OPEN",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261011T2012",
+    "sha": "bd885d24511e08b72b93ae5d4c3f419f863f2564",
+    "status": "GREEN_MECHANICAL_BROWSER_PENDING",
     "dirtyFiles": [
+      "tools/demo-continuous-production-qa.mjs",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-11T1858Z-codex-native-skills.md",
-      "docs/reports/native-six-skills-observations-20261011-1858/checks.json",
-      "docs/reports/native-six-skills-observations-20261011-1858/combat-3-ro_sneak_attack-9.png",
-      "docs/reports/native-six-skills-observations-20261011-1858/combat-3-l_long_thrust-13.png",
-      "docs/reports/native-six-skills-observations-20261011-1858/combat-3-w_break_guard-17.png",
-      "docs/reports/native-six-skills-observations-20261011-1858/combat-4-a_precise_shot-8.png",
-      "docs/reports/native-six-skills-observations-20261011-1858/combat-4-n_dark_bolt-19.png",
-      "docs/reports/native-six-skills-observations-20261011-1858/combat-4-w_salvation-44.png",
-      "docs/reports/native-six-skills-observations-20261011-1858/ending-lion-seal-serpent-truth.png",
-      "docs/reports/native-six-skills-observations-20261011-1858/ending-lion-seal-serpent-truth-resumed.png"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
     ],
-    "lastGreenCheck": "60 unique tests/types/contracts8slots/syntax/immutable/physical393source9build/earnedseed PASS",
-    "at": "2026-10-11T19:55:21.4320337+00:00"
+    "lastGreenCheck": "Syntax/whitespace/physical393source/ninebuild/input lineage gates passed",
+    "at": "2026-10-11T20:19:59.7400484+00:00"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261011T1858",
+    "runId": "rpgthreejs-auto-dev-90m-20261011T2354",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-11T19:57:31.547Z",
-    "status": "CHECKPOINT_PUBLISHED",
+    "lastHeartbeat": "2026-10-11T23:57:03.214Z",
+    "status": "CHECKPOINT_READY_PUBLICATION_BLOCKED",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -21521,22 +21517,138 @@
         "provenanceStable": true,
         "reviewedObservationPackage": "docs/reports/native-six-skills-observations-20261011-1858/checks.json",
         "reason": "Strict exactly2AP assertion774 FAILED; six-class gates not reached. Compact independent six-cast/terminal observations only; never seed."
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "skills-six-native-2012",
+        "runId": "rpgthreejs-auto-dev-90m-20261011T2012",
+        "status": "FAILED",
+        "registeredAt": "2026-10-11T20:18:00.615Z",
+        "pid": 52212,
+        "port": 5382,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "ending",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/campaign-second-refuge-1859/results.json",
+          "verifySalvation": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/skills-six-native-2012",
+        "receiptPath": "tmp/demo/skills-six-native-2012/qa-job.json",
+        "provenance": {
+          "gitHead": "5d9401c010e665dcd6c900a2e3e180dd746cfbed",
+          "sourceTree": "a147f5c25febb460ad69f38d184d8047c4cca780",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "152e8ff1ac4d8beb9ce7b9259690a0a6eda3ac44c8e0d5c20a7a3918c3dd7189"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+              "sha256": "67d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/campaign-second-refuge-1859/results.json",
+              "sha256": "1eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3"
+            }
+          ],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/game-zrccER2T.js",
+              "sha256": "fd9a3ff2f576d9fcfa2f7055d94eb1c1702f5594063904b480ef2d96253dfeab"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "2d3c23a073ba24f72568a542a0519e5714858dc13ea32a41f99aa17a12535e1e"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-11T20:18:01.537Z",
+        "endedAt": "2026-10-11T23:49:47.340Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/skills-six-native-2012/results.json",
+        "resultSha256": "a04d3061f9a36ea9c596f5adc22354d40c89060fe4297ebcc9dd117494d26272",
+        "provenanceStable": true
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261011T1858",
-      "sha": "b2da7eb93c834e71740c6c1e437ff47fe3e8fc24",
-      "status": "RECOVERABLE_PUBLISHED_ON_DEV_METADATA_CLOSURE",
+      "sha": "3de2a43dd81b9ffa523d6db8cb30a8e225a5d3a6",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261011T2354",
+      "status": "LOCAL_REVIEWED_CHECKPOINT_PUBLICATION_BLOCKED",
       "dirtyFiles": [
+        "tools/demo-continuous-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-11T1858Z-codex-native-skills.md",
-        "docs/reports/native-six-skills-observations-20261011-1858/checks.json"
+        "docs/reports/native-six-skills-observations-20261011-2012/checks.json",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-ro_sneak_attack-9.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-l_long_thrust-14.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_break_guard-17.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-41.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-salvation-exactly2ap-before-42.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-43.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-4-a_precise_shot-8.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-4-n_dark_bolt-11.png",
+        "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md"
       ],
-      "lastGreenCheck": "60 unique tests/types/contracts8slots/syntax/immutable/physical393source9build/earnedseed PASS",
-      "at": "2026-10-11T19:55:21.4320337+00:00"
+      "lastGreenCheck": "60tests/types/8contracts8slots/syntax/immutable/whitespace/receiptphysicalprovenance PASS; machineFAILED scoped observation review"
     },
-    "nextAction": "Read-only preflight/exclusive lock; inspect native-six-skills-observations-20261011-1858/checks.json and tmp/autonomy/skills-1858/terminal-audit.json first. Preserve FAILED/NOT_ACCEPTED driverc6306944/resultad28f416, all six reviewed novice-cast observations and exact earned Serpent terminal V6 equality; NEVER seed1858/1800/1731/0001 or replay unchanged45min campaign. Coupled exactly2AP Salvation remains OPEN: all20 casts begin3/5AP;18 AP3 native one-AP setup attempts had no healthy ally in basic-crosier centers. Inspect existing pilot skill()250-270, attack()202-215 and support move()330-365 against native reach. Establish a bounded native positioning plan with a healthy ally at basic-crosier range and a wounded eligible Salvation target; preserve3to2 native setup and strict2to0/40percent assertions. Only a demonstrated plan warrants ONE minimal existing-pilot input correction with guardian review and targeted registered verification from SUCCEEDED1859 or another independently successful exact seed; no instrumentation rewrite/unchanged failed replay. If unsupported, record the precise proof blocker and advance independent desktop production work. Keep original skills/randomPursuit task, exact deferred keyboard, accepted narrative history, canonical mapping blockers and mobileLAST; demo IN_PROGRESS.",
+    "nextAction": "Resolve inherited automatic-publication rejection for the concrete reviewed local dev checkpoint before any push/retry; then verify lock/HEAD/stopped workers/live origin parity, publish normally to origin/dev and archive/release owned lock. Preserve FAILED2012 driver152e8ff1/resulta04d3061 and reviewed scoped six novice casts plus same-round3to2 setup/Salvation2to0 capped40percent; never seed2012/1858/1800/1731/0001 or repeat unchanged45min campaign. Full native judgement/ending/reload and aggregate gates remain OPEN after native skill-menu click timeout at275; diagnose only a demonstrated failure with existing runners before any single targeted desktop verification from independently SUCCEEDED1859 exact seed. No harness rewrite or weaker assertion. Parent randomPursuit/later narrative/fullV6/AT/balance/operatorfinal/demo IN_PROGRESS; exact deferred keyboard/history/queue retained, mobileLAST.",
     "runMetrics": {
       "existingQaFilesModified": 1,
       "harnessCorrections": 1,
@@ -21567,9 +21679,9 @@
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
       "browserAcceptance": "OPEN_CORRECTED_DRIVER_UNEXECUTED"
     },
-    "runStartedAt": "2026-10-11T18:00:00Z",
-    "runEndedAt": "2026-10-11T18:51:47.833Z",
-    "writerStopped": true,
+    "runStartedAt": "2026-10-11T23:51:56.9913643+00:00",
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "runId": "rpgthreejs-auto-dev-90m-20261011T1800",
       "status": "PREPARING_FINAL_METADATA_COMMIT",
@@ -22392,7 +22504,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-    "activeSubtask": "Six novice casts and exact Serpent terminal reload observed; strict2AP Salvation setup coverage OPEN",
+    "activeSubtask": "Reviewed six native novice casts and coupled Salvation2AP; checkpoint publication blocked",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -24487,6 +24599,123 @@
       "ownedWipCleanup": "VERIFY_AFTER_METADATA_PARITY",
       "mechanicalCloseout": "PASS_60TESTS_TYPES_8CONTRACTS_8SLOTS_SYNTAX_WHITESPACE_IMMUTABLE",
       "operationalNote": "Final gate invocation with misspelled baseline stopped with bad revision; exact d7ca28aed5c377ffedb03202f6364b7a947d1096 gate rerun PASS before staging. No contract mutation or review rejection."
+    },
+    "skills2012": {
+      "at": "2026-10-11T20:19:38.880Z",
+      "baseline": "5d9401c010e665dcd6c900a2e3e180dd746cfbed",
+      "priorNextAction": "Read-only preflight/exclusive lock; inspect native-six-skills-observations-20261011-1858/checks.json and tmp/autonomy/skills-1858/terminal-audit.json first. Preserve FAILED/NOT_ACCEPTED driverc6306944/resultad28f416, all six reviewed novice-cast observations and exact earned Serpent terminal V6 equality; NEVER seed1858/1800/1731/0001 or replay unchanged45min campaign. Coupled exactly2AP Salvation remains OPEN: all20 casts begin3/5AP;18 AP3 native one-AP setup attempts had no healthy ally in basic-crosier centers. Inspect existing pilot skill()250-270, attack()202-215 and support move()330-365 against native reach. Establish a bounded native positioning plan with a healthy ally at basic-crosier range and a wounded eligible Salvation target; preserve3to2 native setup and strict2to0/40percent assertions. Only a demonstrated plan warrants ONE minimal existing-pilot input correction with guardian review and targeted registered verification from SUCCEEDED1859 or another independently successful exact seed; no instrumentation rewrite/unchanged failed replay. If unsupported, record the precise proof blocker and advance independent desktop production work. Keep original skills/randomPursuit task, exact deferred keyboard, accepted narrative history, canonical mapping blockers and mobileLAST; demo IN_PROGRESS.",
+      "newQaTool": false,
+      "reason": "Existing pilot support ranking rejected the demonstrated native-reachable(3,2) healthy-ally setup at round9. One minimal input ranking correction uses native pending Salvation range; all strict assertions unchanged.",
+      "sourceFiles": 393,
+      "buildArtifacts": 9,
+      "driverSha256": "152e8ff1ac4d8beb9ce7b9259690a0a6eda3ac44c8e0d5c20a7a3918c3dd7189",
+      "sourceBuildReused": true,
+      "plan": {
+        "round": 9,
+        "from": [
+          4,
+          2
+        ],
+        "candidate": [
+          3,
+          2
+        ],
+        "healthy": [
+          3,
+          3
+        ],
+        "wounded": [
+          5,
+          2
+        ],
+        "healthyDistance": 1,
+        "salvationDistance": 2,
+        "nativeMoveObservedPending": false,
+        "scope": "SOURCE_AND_HISTORICAL_TRACE_PLAN_NOT_BROWSER_ACCEPTANCE"
+      },
+      "jobStatus": "RUNNING",
+      "pid": 52212,
+      "port": 5382,
+      "guardianPrelaunch": "PASS_SAFE_NATIVE_POSITIONING_ONLY_ACCEPTANCE_OPEN",
+      "publication": {
+        "status": "AUTO_REVIEW_REJECTED_UNEXECUTED",
+        "rejections": 1,
+        "action": "Normal owned WIP snapshot push",
+        "reason": "Private source/state to unverified external destination; general authorization judged insufficient for exact payload",
+        "noRetryOrWorkaround": true,
+        "standingAuthority": "OD-2026-10-08-B",
+        "selectedPaths": [
+          "tools/demo-continuous-production-qa.mjs",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
+        ],
+        "destination": "https://github.com/juniorbattle/RPGThreeJS.git"
+      },
+      "terminalReview": {
+        "at": "2026-10-11T23:57:03.214Z",
+        "status": "FAILED",
+        "acceptance": "NOT_ACCEPTED",
+        "digest": "a04d3061f9a36ea9c596f5adc22354d40c89060fe4297ebcc9dd117494d26272",
+        "reviewedObservations": "docs/reports/native-six-skills-observations-20261011-2012/checks.json",
+        "sixFreshNativeCastClasses": [
+          "archer",
+          "dark_mage",
+          "lancer",
+          "rogue",
+          "warrior",
+          "white_mage"
+        ],
+        "coupledSetup2APObserved": true,
+        "exact2APUncapped": false,
+        "fullCampaignOpen": true
+      }
+    },
+    "skills2354": {
+      "at": "2026-10-11T23:57:03.214Z",
+      "takeoverFrom": "rpgthreejs-auto-dev-90m-20261011T2012",
+      "heartbeatAgeMinutes": 210,
+      "priorWriterStopped": "THREAD_USAGE_LIMIT_FAILED",
+      "worker52212Absent": true,
+      "port5382Absent": true,
+      "baseline": "5d9401c010e665dcd6c900a2e3e180dd746cfbed",
+      "provenanceMatches": true,
+      "sourceBuildReused": true,
+      "reviewedProof": "docs/reports/native-six-skills-observations-20261011-2012/checks.json",
+      "guardian": {
+        "review": "PASS_SCOPED_OBSERVATIONS_FULL_TASK_BLOCKED",
+        "passes": 2
+      },
+      "compliance": {
+        "GAME_CONSTITUTION": "PASS",
+        "ART_DIRECTION": "N/A",
+        "CHARACTERS": "N/A",
+        "ENVIRONMENTS": "N/A",
+        "NARRATIVE_CAMPAIGN": "PASS_NO_AUTHORED_CHANGE",
+        "NARRATIVE_PRESENTATION": "N/A",
+        "TRAVERSAL": "N/A",
+        "COMBAT": "PASS_SCOPED_NATIVE_CASTS_AND_2AP_SETUP",
+        "SAVE": "PASS_SCHEMA_UNCHANGED_NEW_ENDING_RELOAD_OPEN",
+        "UI_ACCESSIBILITY": "N/A",
+        "QA_EVIDENCE": "PASS_REVIEWED_FRESH_OBSERVATIONS_MACHINE_FAILED",
+        "REPOSITORY_GOVERNANCE": "BLOCKED_PUBLICATION_AUTO_REVIEW_REJECTION"
+      },
+      "currentRunMeasurement": {
+        "runId": "rpgthreejs-auto-dev-90m-20261011T2354",
+        "runtimeSourceFilesModified": 0,
+        "testFilesModified": 0,
+        "existingQaFilesModified": 0,
+        "newQaFilesAdded": 0,
+        "promotedProofFiles": 9,
+        "workflowDocs": 3,
+        "inheritedWipFiles": 3,
+        "browserScenarios": 0,
+        "reusedTerminalScenarios": 1,
+        "harnessCorrectionsAfterFailure": 0,
+        "reviewers": 1,
+        "reviewPasses": 2,
+        "quotaSavingClaim": false
+      },
+      "publication": "INHERITED_AUTO_REVIEW_REJECTION_NO_RETRY"
     }
   },
   "previousInterruptedRun": {
@@ -24534,7 +24763,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-11T1858Z-codex-native-skills.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md",
   "runMeasurement": {
     "productSource": 0,
     "existingTests": 0,
@@ -25837,18 +26066,19 @@
     "fullDemoComplete": false
   },
   "currentRunMeasurement": {
-    "runId": "rpgthreejs-auto-dev-90m-20261011T1858",
+    "runId": "rpgthreejs-auto-dev-90m-20261011T2354",
     "runtimeSourceFilesModified": 0,
     "testFilesModified": 0,
     "existingQaFilesModified": 0,
     "newQaFilesAdded": 0,
     "promotedProofFiles": 9,
     "workflowDocs": 3,
-    "inheritedWipFiles": 0,
-    "browserScenarios": 1,
+    "inheritedWipFiles": 3,
+    "browserScenarios": 0,
+    "reusedTerminalScenarios": 1,
     "harnessCorrectionsAfterFailure": 0,
     "reviewers": 1,
-    "reviewPasses": 3,
+    "reviewPasses": 2,
     "quotaSavingClaim": false
   }
 }

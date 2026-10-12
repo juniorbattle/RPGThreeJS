@@ -1,3 +1,23 @@
+## Native coupled-skill observation checkpoint - 2026-10-11T23:57:03.214Z
+
+Run rpgthreejs-auto-dev-90m-20261011T2354; interrupted2012 stale takeover after210minutes, stopped owner/worker52212/port5382 and live origin parity verified. Three inherited WIP paths locally snapshotted; no discarded work. Matching terminal2012 receipt staysFAILED/NOT_ACCEPTED, resulta04d3061f9a36ea9c596f5adc22354d40c89060fe4297ebcc9dd117494d26272. Fresh trial49actions + boss16actions contain allsix novice casts. Same-round Marian Salvation5to3/Cedric39to79, healthy Garen crosier setup3to2, Salvation2to0/Cedric79to100 capped40percent; eight root/guardian-reviewed captures selected. Darkbolt cast spends2AP with no targetHP change436to436; successful effect unproved; no allsix effect claim or immediate-recruitment/balance acceptance. Native skill-menu click timeout275 leaves fullcampaign aggregate/ending/reload OPEN; no runtime defect established, no pilot correction or new smoke. Physical393source/ninebuild reused.60focused tests/types/8contracts8slots/syntax/immutable/whitespace PASS. No LOCKED change.
+
+Counts source0/tests0/existingQA0/newQA0/proof9/workflow3/inheritedWIP3; one reviewer/two bounded passes, one matching terminal receipt reused, no quota-saving claim. Original activeTask,199 other job records, queue/deferredkeyboard/pendingnarrative preserved. Parent/demoIN_PROGRESS; mobileLAST. Publication remains blocked by inherited automatic-review rejection; no push retry or workaround.
+
+Exact nextAction: Resolve inherited automatic-publication rejection for the concrete reviewed local dev checkpoint before any push/retry; then verify lock/HEAD/stopped workers/live origin parity, publish normally to origin/dev and archive/release owned lock. Preserve FAILED2012 driver152e8ff1/resulta04d3061 and reviewed scoped six novice casts plus same-round3to2 setup/Salvation2to0 capped40percent; never seed2012/1858/1800/1731/0001 or repeat unchanged45min campaign. Full native judgement/ending/reload and aggregate gates remain OPEN after native skill-menu click timeout at275; diagnose only a demonstrated failure with existing runners before any single targeted desktop verification from independently SUCCEEDED1859 exact seed. No harness rewrite or weaker assertion. Parent randomPursuit/later narrative/fullV6/AT/balance/operatorfinal/demo IN_PROGRESS; exact deferred keyboard/history/queue retained, mobileLAST.
+
+## Native setup verification checkpoint - 2026-10-11T20:19:38.880Z
+
+Run rpgthreejs-auto-dev-90m-20261011T2012; job skills-six-native-2012 RUNNING, PID52212, port5382; existing pilot152e8ff1 and393source/ninebuild frozen.63 focused tests/types/8contracts8slots/syntax/immutable/whitespace PASS; guardian input-only review PASS, acceptance OPEN. Local WIP snapshot; automatic review rejected normal owned-WIP push, unexecuted, no retry/workaround. Exact previous histories/deferred work preserved.
+
+Exact nextAction: Inspect RUNNING registered skills-six-native-2012 receipt/result/digest before any relaunch. Driver152e8ff1/source393/build9 frozen; strict healthy setup3to2, Salvation2to0/40percent and six fresh novice casts/earned ending/exact reload unchanged. ONE45min1366normal scenario; no second smoke or failed seed. Publication AUTO_REVIEW_REJECTED; no export retry/workaround. Preserve original task, deferred keyboard, narrative/history, mobileLAST.
+
+## Native healthy-ally positioning verification - 2026-10-11T20:16:38.266Z
+
+Owned run rpgthreejs-auto-dev-90m-20261011T2012; clean dev/live5d9401c; no competing writer/QA worker; persistent development servers retained. Existing pilot changed only setup movement ranking, no runtime or new tool. Historical FAILED1858 never seeds; successful1859 exact input and physical393source/ninebuild reverified. Plan source/trace only pending production proof; all assertions retained. Original task/deferred/history preserved; mobileLAST.
+
+Exact nextAction: Review native healthy-ally positioning correction with guardian, then ONE registered1366normal ending/rescue/serpent45min verifySalvation1 from independently SUCCEEDED1859 exact input. Retain strict3to2 setup,2to0 Salvation/40percent and six-class terminal gates. No second smoke or instrumentation loop; preserve failed1858 observations, all deferred/history, mobileLAST.
+
 ## Six novice casts and Serpent observation checkpoint - 2026-10-11T19:53:20.867Z
 
 ONE registered1366normal45min ending/rescue/serpent continuation reached native Serpent victory and exact terminal reload, then FAILED strict assertion774: no new exactly-two-AP Salvation cast. Fresh forest_ambush18actions and serpent_captain128actions both won.31 independently extracted novice casts cover all six classes with native two-AP cost/refund accounting.20 Salvation casts from3/5AP match capped40percent; selected AP5to3 warrior40to96/140 is uncapped+56. No2to0 cast, no native setup, no six-class terminal summary gate executed.18 AP3+wounded-player setup attempts have zero healthy native basic-crosier centers. Pilot positioning/coverage gap only; no demonstrated runtime defect. Overall FAILED/NOT_ACCEPTED remains immutable; six casts/ending are REVIEWED_OBSERVATIONS_ONLY, never a certified seed or coupled PASS.
@@ -807,6 +827,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - skills-six-native-1731: FAILED; port 5379; receipt `tmp/demo/skills-six-native-1731/qa-job.json`; NOT_ACCEPTED
 - skills-six-native-1800: FAILED; port 5380; receipt `tmp/demo/skills-six-native-1800/qa-job.json`; NOT_ACCEPTED
 - skills-six-native-1858: FAILED; port 5381; receipt `tmp/demo/skills-six-native-1858/qa-job.json`; NOT_ACCEPTED
+- skills-six-native-2012: FAILED; port 5382; receipt `tmp/demo/skills-six-native-2012/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

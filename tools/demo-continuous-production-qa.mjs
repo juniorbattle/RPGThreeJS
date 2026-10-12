@@ -251,12 +251,13 @@ async function skill(frame,battle){
     &&before.attacks===0&&wounded.length&&!report.battles.slice(report.inheritedBattleCount??0).some(b=>b.actions.some(a=>a.verifiedExactly2Ap))
     ){
     await menu.click();const salvation=frame.locator('#skillmenu [data-s="w_salvation"]:not(:disabled)');
-    let eligible=false;
+    let eligible=false,salvationRange=null;
     if(await salvation.count()){
       await salvation.click();
       eligible=await frame.evaluate(()=>G.pending?.centers.some(c=>{
         const u=G.grid[c.gx]?.[c.gz]?.occupant;return u?.team==='player'&&u.alive&&u.hp<u.maxhp*.95;
       })??false);
+      salvationRange=await frame.evaluate(()=>G.pending?.spec.range);
     }
     await cancel(frame);
     if(eligible&&await attack(frame,battle,{support:true,exactAp:1})){
@@ -265,7 +266,7 @@ async function skill(frame,battle){
       assert.equal(setup.after.active.ap,2,'Native one-AP setup did not leave exactly two AP');
       setup.exactly2ApSetup=true;return true;
     }
-    if(eligible&&await move(frame,battle,{support:true,supportRange:before.active.weapons[0].max}))return true;
+    if(eligible&&await move(frame,battle,{support:true,supportRange:before.active.weapons[0].max,salvationRange}))return true;
   }
   const ids=(before.active.id==='white_mage'&&wounded.length
     ?['w_salvation','w_purify']:['n_dark_bolt','a_precise_shot','ar_calibrated_shot','w_break_guard','ro_sneak_attack','l_long_thrust']
@@ -324,16 +325,25 @@ async function skill(frame,battle){
     }await cancel(frame);
   }return false;
 }
-async function move(frame,battle,{support=false,supportRange=3}={}){
+async function move(frame,battle,{support=false,supportRange=3,salvationRange=null}={}){
   const before=await combatState(frame), button=frame.locator('#menu [data-a="move"]:not(:disabled)');
   if(!await button.count())return false;await button.click();
-  const candidates=await frame.evaluate(({support,supportRange})=>{const g=window.G,u=g.active,foes=g.units.filter(e=>e.team==='foe'&&e.alive);
+  const candidates=await frame.evaluate(({support,supportRange,salvationRange})=>{const g=window.G,u=g.active,foes=g.units.filter(e=>e.team==='foe'&&e.alive);
     const allies=g.units.filter(e=>e.team===u.team&&e.alive&&e!==u);
     // This is a pilot preference only. Native reach and subsequent pointer
     // activation remain the authority for every move; no outcome is predicted.
     const distance=(a,b)=>Math.abs(a.gx-b.gx)+Math.abs(a.gz-b.gz);
     const rank=c=>{if(support){
       const nearestFoe=Math.min(...foes.map(e=>distance(c,e)));
+      if(salvationRange){
+        // Keep a healthy basic-crosier target and a distinct wounded Salvation
+        // target in range; native reach, targeting and AP still decide legality.
+        const healthyGap=Math.min(...allies.filter(a=>a.hp===a.maxhp).map(a=>Math.max(0,distance(c,a)-supportRange)));
+        const woundedGap=Math.min(...allies.filter(a=>a.hp<a.maxhp*.95).map(a=>{
+          const d=distance(c,a);return Math.max(0,salvationRange[0]-d,d-salvationRange[1]);
+        }));
+        return healthyGap*1000+woundedGap*1000+(nearestFoe<1?1000:0);
+      }
       const uncovered=allies.filter(a=>distance(c,a)>supportRange).length;
       const woundedGap=allies.filter(a=>a.hp<a.maxhp*.95).reduce((sum,a)=>sum+Math.max(0,distance(c,a)-supportRange),0);
       return (nearestFoe<(supportRange>=3?3:1)?1000:0)+uncovered*100+woundedGap*200+Math.abs(nearestFoe-4)*5;
@@ -344,7 +354,7 @@ async function move(frame,battle,{support=false,supportRange=3}={}){
       score=Math.min(score,(inRange?0:100)+d);
     }return score;};
     return(g.reach?.list??[]).filter(c=>(c.gx!==u.gx||c.gz!==u.gz)&&!g.grid[c.gx][c.gz].occupant)
-      .map(c=>({gx:c.gx,gz:c.gz,score:rank(c)})).filter(c=>!support||c.score<rank(u)).sort((a,b)=>a.score-b.score);},{support,supportRange});
+      .map(c=>({gx:c.gx,gz:c.gz,score:rank(c)})).filter(c=>!support||c.score<rank(u)).sort((a,b)=>a.score-b.score);},{support,supportRange,salvationRange});
   for(const cell of candidates){if(await cellClick(frame,cell)){
     await page.waitForTimeout(50); const start=await combatState(frame);
     if(start.mode==='move'&&!start.busy)continue;
