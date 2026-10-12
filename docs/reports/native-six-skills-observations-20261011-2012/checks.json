@@ -4,9 +4,9 @@
   "DOMAIN": "Native initial skill casts and coupled Salvation observations",
   "BASELINE": "5d9401c010e665dcd6c900a2e3e180dd746cfbed",
   "BRANCH": "dev",
-  "HEAD": "LOCAL_CHECKPOINT_PENDING",
+  "HEAD": "fb2e2f5feb840caa7855fdb0c691a630d4fd01a6",
   "STATUS": "REVIEWED_SCOPED_NATIVE_CASTS_AND_COUPLED_2AP_OBSERVATIONS_MACHINE_FAILED",
-  "MERGED_IN": "NONE_LOCAL_ONLY",
+  "MERGED_IN": "NONE_LOCAL_DEV_ONLY_PUBLICATION_BLOCKED",
   "SUPERSEDES": "NONE",
   "SUPERSEDED_BY": "NONE",
   "PRODUCTION_IMPACT": "NONE_RUNTIME_UNCHANGED_INHERITED_PILOT_POSITIONING",
@@ -759,7 +759,8 @@
   },
   "guardian": {
     "review": "PASS_SCOPED_OBSERVATIONS_FULL_TASK_BLOCKED",
-    "passes": 2
+    "passes": 2,
+    "precisionCorrections": "Required wording/raw-capture-path corrections applied and root verified after bounded package review"
   },
   "compliance": {
     "GAME_CONSTITUTION": "PASS",
@@ -777,5 +778,28 @@
   },
   "contractSetVersion": "1.1.0",
   "immutableBaseline": "d7ca28aed5c377ffedb03202f6364b7a947d1096",
-  "lockedRuleChanged": false
+  "lockedRuleChanged": false,
+  "publication": {
+    "status": "BLOCKED_INHERITED_AUTO_REVIEW_REJECTION",
+    "checkpoint": "fb2e2f5feb840caa7855fdb0c691a630d4fd01a6",
+    "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
+    "branch": "dev",
+    "normalNonForceOnly": true,
+    "selectedPaths": [
+      "tools/demo-continuous-production-qa.mjs",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/reports/native-six-skills-observations-20261011-2012/checks.json",
+      "docs/reports/native-six-skills-observations-20261011-2012/combat-3-ro_sneak_attack-9.png",
+      "docs/reports/native-six-skills-observations-20261011-2012/combat-3-l_long_thrust-14.png",
+      "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_break_guard-17.png",
+      "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-41.png",
+      "docs/reports/native-six-skills-observations-20261011-2012/combat-3-salvation-exactly2ap-before-42.png",
+      "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-43.png",
+      "docs/reports/native-six-skills-observations-20261011-2012/combat-4-a_precise_shot-8.png",
+      "docs/reports/native-six-skills-observations-20261011-2012/combat-4-n_dark_bolt-11.png",
+      "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md"
+    ],
+    "noRetryOrWorkaround": true
+  }
 }

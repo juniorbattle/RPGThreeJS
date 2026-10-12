@@ -1,12 +1,12 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-11T23:51:56.9913643+00:00",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-12T00:01:29.936Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "CHECKPOINT_READY_PUBLICATION_BLOCKED",
   "activeSubtask": "Reviewed six native novice casts and coupled Salvation2AP; checkpoint publication blocked",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "a599557540f8ad7c95c3b2f5a636fb8823d8ffd0",
+  "lastKnownGoodCommit": "fb2e2f5feb840caa7855fdb0c691a630d4fd01a6",
   "lastPushedCommit": "a599557540f8ad7c95c3b2f5a636fb8823d8ffd0",
   "completedThisRun": [
     "Safely resumed interrupted2012 under stale-lock protocol; preserved three inherited WIP paths and prior refs",
@@ -91,7 +91,7 @@
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
   "creditStatus": "AVAILABLE_THIS_RUN",
-  "contractComplianceStatus": "SAFE_OBSERVATION_CHECKPOINT; QA_EVIDENCE_BLOCKED_STRICT_2AP; set1.1.0/d7ca28a unchanged; demoIN_PROGRESS",
+  "contractComplianceStatus": "PASS_SCOPED_NATIVE_OBSERVATIONS_FULL_TASK_AND_PUBLICATION_BLOCKED",
   "commitReferenceScope": "Verified input-only pilot checkpoint ab51376 on dev; corrected driver UNEXECUTED. Final metadata SHA and lock release in automation memory/ignored final-publication audit.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
@@ -195,7 +195,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261011T2354",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-11T23:57:03.214Z",
+  "lastHeartbeat": "2026-10-12T00:01:29.936Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261011T2012",
     "sha": "bd885d24511e08b72b93ae5d4c3f419f863f2564",
@@ -211,8 +211,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261011T2354",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-11T23:57:03.214Z",
-    "status": "CHECKPOINT_READY_PUBLICATION_BLOCKED",
+    "lastHeartbeat": "2026-10-12T00:01:29.936Z",
+    "status": "CHECKPOINT_COMMITTED_PUBLICATION_BLOCKED",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -21628,9 +21628,9 @@
       }
     ],
     "wip": {
-      "sha": "3de2a43dd81b9ffa523d6db8cb30a8e225a5d3a6",
+      "sha": "ff08c19eae3b86716b56348a861e3e452c823126",
       "branch": "wip/rpgthreejs-auto-dev-90m-20261011T2354",
-      "status": "LOCAL_REVIEWED_CHECKPOINT_PUBLICATION_BLOCKED",
+      "status": "LOCAL_COMMITTED_PUBLICATION_BLOCKED",
       "dirtyFiles": [
         "tools/demo-continuous-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -21680,8 +21680,8 @@
       "browserAcceptance": "OPEN_CORRECTED_DRIVER_UNEXECUTED"
     },
     "runStartedAt": "2026-10-11T23:51:56.9913643+00:00",
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-12T00:01:29.936Z",
+    "writerStopped": true,
     "metadataPublication": {
       "runId": "rpgthreejs-auto-dev-90m-20261011T1800",
       "status": "PREPARING_FINAL_METADATA_COMMIT",
@@ -24715,7 +24715,34 @@
         "reviewPasses": 2,
         "quotaSavingClaim": false
       },
-      "publication": "INHERITED_AUTO_REVIEW_REJECTION_NO_RETRY"
+      "publication": "INHERITED_AUTO_REVIEW_REJECTION_NO_RETRY",
+      "localCheckpoint": "fb2e2f5feb840caa7855fdb0c691a630d4fd01a6",
+      "localCheckpointPaths": [
+        "tools/demo-continuous-production-qa.mjs",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/reports/native-six-skills-observations-20261011-2012/checks.json",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-ro_sneak_attack-9.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-l_long_thrust-14.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_break_guard-17.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-41.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-salvation-exactly2ap-before-42.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-43.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-4-a_precise_shot-8.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-4-n_dark_bolt-11.png",
+        "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md"
+      ],
+      "closure": {
+        "at": "2026-10-12T00:01:29.936Z",
+        "workerStopped": true,
+        "publicationBlocked": true,
+        "lockRetained": true,
+        "ownedAndInheritedSnapshotsRetained": true,
+        "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+        "publicationRetry": false,
+        "guardianPrecisionCorrections": "AP/noHPchange wording and raw capture paths corrected and root verified; no claim of explicit miss telemetry",
+        "operationalNote": "One baseline typo stopped the gate before staging; exact immutable gate subsequently PASS. Snapshot script pipeline syntax error stopped before mutation and was corrected. No source/driver/assertion change in this run."
+      }
     }
   },
   "previousInterruptedRun": {
