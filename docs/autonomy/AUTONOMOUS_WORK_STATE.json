@@ -26531,5 +26531,33 @@
     "harnessCorrections": 0,
     "reviewers": 0,
     "quotaSavingsClaim": "NONE"
+  },
+  "standingDevPublicationAuthorization": {
+    "decision": "OD-2026-10-12-A",
+    "decisionSource": "docs/autonomy/PUBLICATION_OPERATOR_DECISION_2026-10-08.md",
+    "operatorChat": "01a0f5ba-db22-7412-b3ad-a3429d76cad6",
+    "status": "PERMANENT_ADVANCE_AUTHORIZATION",
+    "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
+    "branch": "dev",
+    "remoteRef": "refs/heads/dev",
+    "nonForce": true,
+    "allFutureAuthorizedCheckpointPayloads": true,
+    "includes": [
+      "product",
+      "tests",
+      "existing QA drivers",
+      "selected evidence",
+      "documentation",
+      "workflow",
+      "paired state",
+      "handoff closure"
+    ],
+    "requestRoutineConfirmation": false,
+    "technicalPermissionRequestsCiteOperatorAuthorization": true,
+    "actualToolRefusalNeverBypassed": true,
+    "productTaskAndAcceptanceUnchanged": true,
+    "sourceModified": 0,
+    "qaProofAdded": 0,
+    "workflowFilesModified": 7
   }
 }

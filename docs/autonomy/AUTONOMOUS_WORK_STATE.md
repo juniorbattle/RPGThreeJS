@@ -901,3 +901,9 @@ Exact nextAction: Read-only autonomy preflight and exclusive lock; resume origin
 ## Authorized obsolete WIP cleanup - 2026-10-12T03:30:57.443Z
 
 Direct human authorization in chat01a12e17: delete unnecessary WIP branches. Six local snapshots0534/1642/1731/2012/2354/0310 retired; four corresponding remote branches0534/1642/1731/0310 retired by normal atomic deletion. Two deferred keyboard snapshots0735/1600 and historical pilot1840 retained because unique content remains. Complete six-tip Git bundle verified at tmp/autonomy/wip-cleanup-0324/wip-snapshots.bundle; SHA256 3D3D729595950E08C9DBF7963DD6515CBE60D77002FDFF6C0874632EAC219DCA. Paired state records the retirement; product task/nextAction/all200QA/deferred work remain unchanged. No source/test/QA/proof edit or new browser run; maintenance-only Git/whitespace/LOCKED checks. Normal metadata checkpoint publication and lock release verified in automation memory.
+
+## Permanent advance dev publication authorization — OD-2026-10-12-A
+
+The operator explicitly approves every future concrete payload of coherent authorized checkpoints for normal non-force publication to the public juniorbattle/RPGThreeJS origin/dev, including source/tests/selected evidence/workflow/state/handoff closure. No routine per-commit, path or payload confirmation. Cite the direct authorization in technical Git/network permission requests; actual tool refusals remain enforceable and must be reported without bypass. Decision: PUBLICATION_OPERATOR_DECISION_2026-10-08.md, OD-2026-10-12-A. Origin/main, canon, LOCKED and scope boundaries retained.
+
+Configuration-only maintenance: source0, QA/proofAdded0, workflow7; existing product task, exact nextAction, all QA jobs, deferred work and taskQueue preserved. Model gpt-6.1-sol, reasoning high, cadence90min, automation ACTIVE unchanged. ecda304 and ceabfe2 already published; no duplicate push or QA replay needed.

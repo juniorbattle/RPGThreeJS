@@ -21,6 +21,7 @@ The code adapts to a LOCKED contract, never the reverse. On a conflict: record i
 - Audio is DEFERRED. Do not infer an audio doctrine.
 - Preserve durable IDs and V6 save compatibility. Never serialize visual or transient state.
 - Never push, force-push or merge into `main`. Autonomous write targets are `dev` and temporary branches created from `dev`.
+- OD-2026-10-12-A grants permanent advance authorization for normal, non-force publication of every coherent authorized checkpoint to the operator's public `juniorbattle/RPGThreeJS` repository on `origin/dev`, including product code, selected evidence and workflow/state/handoff closure. Do not ask per-commit or per-payload confirmation. Review outgoing commits, selected paths, destination, secrets, lock and parity, then publish autonomously. Cite this direct operator authorization in technical permission requests; an actual tool refusal must be reported and never bypassed. See `docs/autonomy/PUBLICATION_OPERATOR_DECISION_2026-10-08.md`.
 - Files named `legacy*` can be production owners. Inventory every reference before touching or deleting anything.
 - Never read, print or commit secrets (`.env*`, tokens, `~/.codex/auth.json`).
 

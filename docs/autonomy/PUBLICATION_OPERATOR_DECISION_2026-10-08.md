@@ -41,3 +41,17 @@ Status: **ACTIVE**. Direct operator instruction received in Codex chat 01a12e17-
 This explicitly resolves the pending closure publication and reaffirms OD-2026-10-08-B for all subsequent normal, non-force publications of coherent authorized RPGThreeJS checkpoints to origin/dev and owned wip branches. Workflow, paired state, handoff, and selected evidence closure are included. Do not request routine per-checkpoint confirmation. Keep selected-path review, exclusive locking, stopped-job checks, secret/ignored-output exclusion, verified destination and remote parity. Main, canon, LOCKED amendments and additional product scope retain their existing boundaries. Actual automatic-review failures must be handled through the normal mechanism; this authorization does not permit bypassing safeguards.
 
 No runtime, save, QA assertion or LOCKED rule changed.
+
+## Standing dev publication for all future payloads - OD-2026-10-12-A
+
+Status: **ACTIVE**. Direct operator instruction in Codex chat `01a0f5ba-db22-7412-b3ad-a3429d76cad6`, reaffirmed after the recurring publication request for `ecda304`:
+
+> Je veux que tu autorises toujours cette demandes pour des publications vers la branche dev. tu n'as plus besoin de demander ma validation, car parfois la tache autonome semble bloquer en attendant mon approbation. plus besoin, fonce
+
+This is permanent, explicit advance authorization from the human operator for **all future concrete commit payloads** of coherent, already-authorized RPGThreeJS work published by normal non-force push from `dev` to `origin/dev`, on the operator's public repository `https://github.com/juniorbattle/RPGThreeJS.git`. It covers product code, tests, existing QA drivers, deliberately selected evidence, documentation, operator-decision records and workflow/state/handoff closure. A new commit, selected path list or payload does not require another routine human confirmation. After the required review, publish and verify autonomously; do not ask "Autorises-tu sa publication sur origin/dev ?". Existing authorization for owned WIP snapshots remains active under OD-2026-10-08-A/B and OD-2026-10-11-A.
+
+Before export, verify the exact destination and outgoing commits/paths, preserve exclusive locking, exclude secrets and ignored outputs, retain contract/verification gates and check remote parity. Technical Git/network permission requests must cite this direct human authorization and this section; do not misclassify future authorized payloads as lacking operator consent merely because they are new.
+
+An actual automatic-review or tool refusal remains enforceable: preserve the local checkpoint, state the rejected action and exact reason, and use the normal approval mechanism if intervention is genuinely required. This instruction does not disable or circumvent tool safeguards. `main`, canon, LOCKED amendments and extensions of product scope retain their existing boundaries.
+
+The live `ecda304` example was already published, followed by closure `ceabfe2`, before this configuration update; no duplicate publication or replay is needed. This decision changes workflow instructions only, not runtime, QA assertions, saves or production acceptance. Contract set 1.1.0 and its immutable baseline remain unchanged.
