@@ -1,3 +1,16 @@
+# Current autonomous checkpoint - 2026-10-12T20:49:55.474Z
+
+TASK: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat
+RUN: rpgthreejs-auto-dev-90m-20261012T2045
+STATUS: IN_PROGRESS
+SUBTASK: T0 computed curtain coverage and temporal sequence audit
+
+Existing driver gains optional computed coverage/video evidence; no new QA tool. Prior completed T0OS1848 digest/source/driver/helper/nine build identity verified before driver edit, no rerun of unchanged numerical claim. Product audit has not demonstrated a runtime defect. Guardian review pending for certifying assertion changes.
+
+Exact nextAction: Complete bounded T0OS1848 review; review new optional existing-driver computed coverage assertions, then ONE registered T0 OS-only1366 coverage smoke with ignored timestamped captures/video. Preserve all parent/deferred/queue work and existing accepted numerical receipts; no speculative runtime edit.
+
+---
+
 # Current autonomous checkpoint - 2026-10-12T20:29:09.871Z
 
 TASK: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat
@@ -1105,6 +1118,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - motion-t3-native-desktop-1648: SUCCEEDED; port 5391; receipt `tmp/traversal/motion-t3-native-desktop-1648/qa-job.json`; NOT_ACCEPTED
 - motion-t3-os-desktop-1821: SUCCEEDED; port 5392; receipt `tmp/traversal/motion-t3-os-desktop-1821/qa-job.json`; NOT_ACCEPTED
 - motion-t0-os-desktop-1848: SUCCEEDED; port 5393; receipt `tmp/traversal/motion-t0-os-desktop-1848/qa-job.json`; NOT_ACCEPTED
+- motion-t0-os-coverage-2045: PLANNED; port 5394; receipt `tmp/traversal/motion-t0-os-coverage-2045/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

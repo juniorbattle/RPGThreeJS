@@ -1,10 +1,10 @@
 {
-  "status": "PAUSED_FOR_CREDITS",
+  "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-12T18:49:48.4824588+00:00",
   "runEndedAt": "2026-10-12T20:31:29.740Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-  "activePhase": "SAFE_CREDIT_CHECKPOINT",
-  "activeSubtask": "T0 OS-only1366 smoke completed; independent motion review paused for credits",
+  "activePhase": "COMPUTED_COVERAGE_REVIEW",
+  "activeSubtask": "T0 computed curtain coverage and temporal sequence audit",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "1d763e639085c2e83a1b491038058900c261fd07",
   "lastPushedCommit": "1d763e639085c2e83a1b491038058900c261fd07",
@@ -69,7 +69,7 @@
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest",
     "1521: five fresh novice classes and capped40percent Salvation2to0 scoped accepted; sixth/lancer, earned second-refuge reload, ending, fullV6, balance and fresh random-Pursuit breadth remain OPEN"
   ],
-  "nextAction": "Retry reviewer availability after read-only preflight/exclusive lock; inspect motion-t0-os-desktop-1848 SUCCEEDED terminal receipt/result9fb0743d and current source637f91ee/driverce350f77/helper/nine physical build identity. Reuse this completed T0OS1366 smoke: root inspected four captures, 12 driver assertions/841 samples, return/fork numerical joins1.5776%/1.2606%, zero departure offset/reveal clock, one unresolved lion-first-refuge callback under inline fade1. Independent traversal review failed before findings with usage_limit_exceeded; resume the same bounded review, do not rerun unchanged T0OS1848/T3OS1821/T3normal1648/T0normal1617/T1normal0415/OS0504. Root source audit found JS-driven fade timing but no demonstrated runtime defect: next resolve actual getComputedStyle local curtain and root ::after opacity/visibility/geometry/z-order, snapshot at view swap, and timestamped departure/arrival sequence in existing driver; inline values and stills cannot certify coverage or perceived continuity. Before editing certifying assertions, apply the relevant guardian trigger and one-smoke policy; no speculative product edit or broad matrix. Game-only/full perception/mobileLAST and original all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo remain OPEN. Preserve exact deferred keyboard/pendingNarrative/taskQueue; never seed FAILED1521 partial saves or replay unchanged deadline-only campaign.",
+  "nextAction": "Complete bounded T0OS1848 review; review new optional existing-driver computed coverage assertions, then ONE registered T0 OS-only1366 coverage smoke with ignored timestamped captures/video. Preserve all parent/deferred/queue work and existing accepted numerical receipts; no speculative runtime edit.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -232,7 +232,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261012T1848",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-12T20:31:29.740Z",
+  "lastHeartbeat": "2026-10-12T20:51:06.287Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261012T1848",
     "sha": "64575cac0791376cf168fda463f94bd25a964e3c",
@@ -240,7 +240,7 @@
     "status": "GREEN_RECOVERY_REMOTE_VERIFIED_RETAIN_REFS"
   },
   "live": {
-    "lastHeartbeat": "2026-10-12T20:31:29.740Z",
+    "lastHeartbeat": "2026-10-12T20:49:55.474Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -22888,6 +22888,114 @@
           "No temporal-sequence acceptance",
           "Fixtures exclude earned campaign/combat/save proof"
         ]
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "motion-t0-os-coverage-2045",
+        "runId": "rpgthreejs-auto-dev-90m-20261012T2045",
+        "status": "RUNNING",
+        "registeredAt": "2026-10-12T20:50:04.606Z",
+        "pid": 24400,
+        "port": 5394,
+        "command": [
+          "node",
+          "tools/traversal-motion-production-qa.mjs"
+        ],
+        "parameters": {
+          "motion": "os",
+          "viewports": [
+            "1366x768"
+          ],
+          "legs": [
+            "T0"
+          ],
+          "branch": "event",
+          "gameReducedMotion": false,
+          "pursuitCheck": false,
+          "gaitCheck": false,
+          "reducedChargeCheck": false,
+          "coverageCheck": true,
+          "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+        },
+        "requiredAssertions": [
+          "continuous-checkpoint-braking",
+          "checkpoint-wheel-ground-travel",
+          "continuous-departure",
+          "opaque-swap",
+          "reveal-momentum",
+          "reveal-driving-velocity-continuity",
+          "clock-zero-during-reveal",
+          "full-exit-before-arrival",
+          "single-canonical-arrival",
+          "native-keyboard-focus",
+          "responsive-controls",
+          "os-covered-exit",
+          "computed-opaque-midpoint",
+          "computed-departure-reveal",
+          "computed-arrival-cover"
+        ],
+        "output": "tmp/traversal/motion-t0-os-coverage-2045",
+        "receiptPath": "tmp/traversal/motion-t0-os-coverage-2045/qa-job.json",
+        "provenance": {
+          "gitHead": "c6aa68f9e4fd9e24983ac7471dab75d7bc684734",
+          "sourceTree": "637f91ee993a3ac5f745a0b73975c4d252d62a86",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/traversal-motion-production-qa.mjs",
+            "sha256": "3851db0b6743b076b97f9483ae929841e114b06e5b4daa1f9b2953fa8e44ad6f"
+          },
+          "inputs": [],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-CP2whCOz.js",
+              "sha256": "a537d8a7a218115f4afe53bda13f59bea47a330285f65beb956d9694e3c3dd01"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-C2zvqMPX.js",
+              "sha256": "e30054e5f7e7e0d4b472b4117e419cd7a4b7824d500170168955e8112dace0d4"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "2ccb3efb6a34d4518df1fb4b4afe832000523a257d1af3c1e048037c84f985af"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-12T20:50:19.984Z",
+        "launchArguments": [
+          "--motion=os",
+          "--legs=T0",
+          "--viewports=1366x768",
+          "--pursuit-check=0",
+          "--coverage-check=1",
+          "--port=5394",
+          "--output=tmp/traversal/motion-t0-os-coverage-2045"
+        ]
       }
     ],
     "wip": {
@@ -22896,7 +23004,7 @@
       "at": "2026-10-12T20:30:09.1661372Z",
       "status": "GREEN_RECOVERY_REMOTE_VERIFIED_RETAIN_REFS"
     },
-    "nextAction": "Retry reviewer availability after read-only preflight/exclusive lock; inspect motion-t0-os-desktop-1848 SUCCEEDED terminal receipt/result9fb0743d and current source637f91ee/driverce350f77/helper/nine physical build identity. Reuse this completed T0OS1366 smoke: root inspected four captures, 12 driver assertions/841 samples, return/fork numerical joins1.5776%/1.2606%, zero departure offset/reveal clock, one unresolved lion-first-refuge callback under inline fade1. Independent traversal review failed before findings with usage_limit_exceeded; resume the same bounded review, do not rerun unchanged T0OS1848/T3OS1821/T3normal1648/T0normal1617/T1normal0415/OS0504. Root source audit found JS-driven fade timing but no demonstrated runtime defect: next resolve actual getComputedStyle local curtain and root ::after opacity/visibility/geometry/z-order, snapshot at view swap, and timestamped departure/arrival sequence in existing driver; inline values and stills cannot certify coverage or perceived continuity. Before editing certifying assertions, apply the relevant guardian trigger and one-smoke policy; no speculative product edit or broad matrix. Game-only/full perception/mobileLAST and original all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo remain OPEN. Preserve exact deferred keyboard/pendingNarrative/taskQueue; never seed FAILED1521 partial saves or replay unchanged deadline-only campaign.",
+    "nextAction": "Complete bounded T0OS1848 review; review new optional existing-driver computed coverage assertions, then ONE registered T0 OS-only1366 coverage smoke with ignored timestamped captures/video. Preserve all parent/deferred/queue work and existing accepted numerical receipts; no speculative runtime edit.",
     "runMetrics": {
       "runId": "rpgthreejs-auto-dev-90m-20261012T1848",
       "runtimeSourceFilesModified": 0,
@@ -22931,8 +23039,8 @@
         "docs/autonomy/handoffs/2026-10-12T1848Z-codex-t0-os-motion.md"
       ]
     },
-    "runEndedAt": "2026-10-12T20:31:29.740Z",
-    "writerStopped": true,
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "status": "NORMAL_DEV_PUBLICATION_VERIFIED",
       "sha": "69ae9121cb1bc8e8d6e46b934ccc76c6dfeb1f25",
@@ -23731,7 +23839,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-    "activeSubtask": "T0 OS-only1366 smoke completed; independent motion review paused for credits",
+    "activeSubtask": "T0 computed curtain coverage and temporal sequence audit",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -27063,12 +27171,12 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "rpgthreejs-auto-dev-90m-20261012T1848",
+    "runId": "rpgthreejs-auto-dev-90m-20261012T2045",
     "agent": "codex",
-    "status": "PAUSED_FOR_CREDITS",
-    "runStartedAt": "2026-10-12T18:49:48.4824588+00:00",
-    "activePhase": "SAFE_CREDIT_CHECKPOINT",
-    "heartbeat": "2026-10-12T20:31:29.740Z",
+    "status": "IN_PROGRESS",
+    "runStartedAt": "2026-10-12T20:46:41.6721833Z",
+    "activePhase": "COMPUTED_COVERAGE_REVIEW",
+    "heartbeat": "2026-10-12T20:51:06.287Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-12T1848Z-codex-t0-os-motion.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -27604,6 +27712,19 @@
       "sourceAudit": "advanceTransition JS --transition-opacity and advanceArrival JS --arrival-fade drive .36s smoothstep/.12s hold; CSS OS motion rule does not itself cancel JS fade; actual computed styles/coverage and timed rendered sequence absent, so no runtime PASS or source defect inferred",
       "build": "UNCHANGED_NINE_PHYSICAL_HASHES_MATCHED",
       "nextAction": "Retry reviewer availability after read-only preflight/exclusive lock; inspect motion-t0-os-desktop-1848 SUCCEEDED terminal receipt/result9fb0743d and current source637f91ee/driverce350f77/helper/nine physical build identity. Reuse this completed T0OS1366 smoke: root inspected four captures, 12 driver assertions/841 samples, return/fork numerical joins1.5776%/1.2606%, zero departure offset/reveal clock, one unresolved lion-first-refuge callback under inline fade1. Independent traversal review failed before findings with usage_limit_exceeded; resume the same bounded review, do not rerun unchanged T0OS1848/T3OS1821/T3normal1648/T0normal1617/T1normal0415/OS0504. Root source audit found JS-driven fade timing but no demonstrated runtime defect: next resolve actual getComputedStyle local curtain and root ::after opacity/visibility/geometry/z-order, snapshot at view swap, and timestamped departure/arrival sequence in existing driver; inline values and stills cannot certify coverage or perceived continuity. Before editing certifying assertions, apply the relevant guardian trigger and one-smoke policy; no speculative product edit or broad matrix. Game-only/full perception/mobileLAST and original all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo remain OPEN. Preserve exact deferred keyboard/pendingNarrative/taskQueue; never seed FAILED1521 partial saves or replay unchanged deadline-only campaign."
+    },
+    "guardian2045": {
+      "status": "READINESS_PASS",
+      "reviewer": "/root/coverage_guardian",
+      "correction": "computed-arrival-cover assertion only required for OS motion",
+      "remaining": "Terminal15assertions; explicit return/fork opaque midpoint samples; arrival coverage; reviewed timestamped sequence",
+      "newQaTool": false
+    },
+    "motion1848Review2045": {
+      "status": "ACCEPTED_SCOPED_NUMERICAL_ONLY",
+      "reviewer": "/root/t0_motion_review",
+      "resultSha256": "9fb0743d22cf0b1f20a1b9132356c3832c3da58bd2b4a80acb090bac42a02260",
+      "computedCoverage": "OPEN_new_smoke_pending"
     }
   },
   "previousInterruptedRun": {

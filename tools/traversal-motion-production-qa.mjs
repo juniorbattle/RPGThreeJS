@@ -15,17 +15,20 @@ const legs=arg('legs','T0,T1,T3').split(',');assert.ok(legs.every(leg=>['T0','T1
 const pursuitCheck=arg('pursuit-check','0')==='1';
 const gaitCheck=arg('gait-check','0')==='1';
 const reducedChargeCheck=arg('reduced-charge-check','0')==='1';
+const coverageCheck=arg('coverage-check','0')==='1';
 assert.ok(!gaitCheck||(pursuitCheck&&motion==='normal'&&legs.length===1&&legs[0]==='T0'),'Gait smoke requires one normal T0 Pursuit scenario');
 assert.ok(!reducedChargeCheck||(pursuitCheck&&motion==='normal'&&legs.length===1&&legs[0]==='T0'),'Reduced charge smoke requires one normal T0 Pursuit scenario');
 assert.ok(viewports.every(value=>/^\d+x\d+$/.test(value)&&value.split('x').every(n=>Number(n)>0)),'Invalid viewports');
 const parameters={motion,viewports,legs,branch:'event',gameReducedMotion:false,pursuitCheck,
   gaitCheck,reducedChargeCheck,
+  ...(coverageCheck?{coverageCheck:true}:{}),
   scope:'native production motion with V6-origin/combat-result fixtures; not earned campaign'};
 const requiredAssertions=['continuous-checkpoint-braking','checkpoint-wheel-ground-travel','continuous-departure','opaque-swap','reveal-momentum','reveal-driving-velocity-continuity','clock-zero-during-reveal','full-exit-before-arrival','single-canonical-arrival','native-keyboard-focus','responsive-controls',
   ...(motion==='os'?['os-covered-exit']:['forward-exit-and-resize','accelerating-arrival'])];
 if(pursuitCheck)requiredAssertions.push('pursuit-contact-single','pursuit-ordinary-pool','pursuit-exact-road-resume','pursuit-miss-full-exit','pursuit-no-node-resolution');
 if(gaitCheck)requiredAssertions.push('pursuit-six-clocked-poses','pursuit-os-or-game-static-pose','pursuit-sheet-failure-static-fallback');
 if(reducedChargeCheck)requiredAssertions.push('pursuit-reduced-charge-visible','pursuit-reduced-charge-os-or-game-static','pursuit-reduced-charge-terminal-exit');
+if(coverageCheck)requiredAssertions.push('computed-opaque-midpoint','computed-departure-reveal',...(motion==='os'?['computed-arrival-cover']:[]));
 if(process.argv.includes('--register')){
   const registered=registerJob({runId:process.env.AUTONOMY_RUN_ID,jobId:process.env.DEMO_QA_JOB_ID,output,
     driver:'tools/traversal-motion-production-qa.mjs',port,parameters,requiredAssertions});
@@ -59,7 +62,8 @@ try{
     const [width,height]=dimensions.split('x').map(Number),branch=`lion-${leg==='T0'?'first':leg==='T1'?'second':'final'}-trial-event`;
     const entry={leg,viewport:{width,height},branch,captures:[],keyboard:[],complete:false};report.runs.push(entry);
     console.log(`${motion}/${leg}/${dimensions}: start`);
-    const context=await browser.newContext({viewport:{width,height},reducedMotion:motion==='os'?'reduce':'no-preference'});
+    const context=await browser.newContext({viewport:{width,height},reducedMotion:motion==='os'?'reduce':'no-preference',
+      ...(coverageCheck?{recordVideo:{dir:output,size:{width,height}}}:{})});
     const page=await context.newPage();
     page.on('pageerror',e=>report.errors.push(`${leg}/${dimensions}: ${e.message}`));
     page.on('console',m=>{if(m.type()==='error')report.errors.push(`${leg}/${dimensions}: ${m.text()}`);});
@@ -80,8 +84,26 @@ try{
       if(!app.state.resolvedNodeIds.includes('lion-audience'))app.state.resolvedNodeIds.push('lion-audience');
     });
     else await page.locator('[data-action="continue"]').click();
-    await page.evaluate(()=>{
+    await page.evaluate(coverageCheck=>{
       const app=window.__motionApp,proof=window.__motionProof={samples:[],handoffs:[],arrivals:[],returns:[],combats:[],pursuit:[],roadBattles:[]};
+      const coverState=root=>{
+        const curtain=root.querySelector('.traversal-transition'),style=getComputedStyle(curtain),bounds=curtain.getBoundingClientRect();
+        const pseudo=getComputedStyle(root,'::after'),rootStyle=getComputedStyle(root),r=root.getBoundingClientRect();
+        const vehicle=root.querySelector('.traversal-vehicle'),ancestors=[];
+        for(let e=vehicle;e;e=e.parentElement){const s=getComputedStyle(e);ancestors.push({className:e.className,opacity:Number(s.opacity),visibility:s.visibility,display:s.display});}
+        const points=[[1,1],[innerWidth-2,1],[1,innerHeight-2],[innerWidth-2,innerHeight-2],[innerWidth/2,innerHeight/2]];
+        return {local:{opacity:Number(style.opacity),visibility:style.visibility,display:style.display,background:style.backgroundColor,
+          zIndex:style.zIndex,left:bounds.left,top:bounds.top,right:bounds.right,bottom:bounds.bottom,
+          topmost:points.every(([x,y])=>document.elementFromPoint(x,y)===curtain)},
+          vehicleAncestors:ancestors,
+          arrival:{opacity:Number(pseudo.opacity),visibility:pseudo.visibility,display:pseudo.display,content:pseudo.content,
+            position:pseudo.position,background:pseudo.backgroundColor,zIndex:pseudo.zIndex,width:parseFloat(pseudo.width),height:parseFloat(pseudo.height),
+            top:pseudo.top,left:pseudo.left,rootOpacity:Number(rootStyle.opacity),rootVisibility:rootStyle.visibility,
+            rootLeft:r.left,rootTop:r.top,rootRight:r.right,rootBottom:r.bottom,
+            visibleChildren:[...root.children].filter(e=>getComputedStyle(e).visibility==='visible'&&getComputedStyle(e).display!=='none')
+              .map(e=>({className:e.className,zIndex:getComputedStyle(e).zIndex}))}};
+      };
+      if(coverageCheck)proof.swaps=[];
       const roadCombat=app.startTraversalPursuitCombat.bind(app);
       app.startTraversalPursuitCombat=async contact=>{
         const scene=app.activeTraversal;
@@ -96,7 +118,8 @@ try{
       const arrival=app.completeTraversalArrival.bind(app);app.completeTraversalArrival=(...args)=>{
         const scene=app.activeTraversal,root=scene.element,r=root.querySelector('.traversal-vehicle').getBoundingClientRect();
         proof.arrivals.push({destination:args[0],left:r.left,width:r.width,viewport:innerWidth,speed:scene.speed,
-          fade:Number(root.style.getPropertyValue('--arrival-fade')),node:app.state.run.currentNodeId,resolved:app.state.resolvedNodeIds.includes(args[0])});
+          fade:Number(root.style.getPropertyValue('--arrival-fade')),node:app.state.run.currentNodeId,resolved:app.state.resolvedNodeIds.includes(args[0]),
+          ...(coverageCheck?{time:performance.now(),cover:coverState(root)}:{})});
         return arrival(...args);
       };
       let departure=null,serial=0,lastSegment='',afterDeparture=0,afterBraking=0;
@@ -104,6 +127,15 @@ try{
         const scene=app.activeTraversal;
         if(scene){
           const root=scene.element,segment=root.dataset.routeSegment;
+          if(coverageCheck&&scene.transition?.midpoint&&!scene.transition.__coverageWrapped){
+            const transition=scene.transition,midpoint=transition.midpoint;transition.__coverageWrapped=true;
+            transition.midpoint=()=>{
+              const before={time:performance.now(),view:root.dataset.view,cover:coverState(root)};
+              const result=midpoint();
+              proof.swaps.push({kind:transition.kind,before,after:{time:performance.now(),view:root.dataset.view,cover:coverState(root)}});
+              return result;
+            };
+          }
           if(scene.pursuitCharge)proof.pursuit.push({window:scene.pursuitCharge.windowId,phase:scene.pursuitCharge.phase,left:scene.pursuitCharge.left,speed:scene.pursuitCharge.speed,lane:scene.pursuitCharge.lane,time:performance.now()});
           if(scene.departure&&scene.departure!==departure){departure=scene.departure;serial++;}
           const active=Boolean(scene.departure),arriving=scene.session.phase==='ARRIVING';
@@ -125,15 +157,19 @@ try{
               groundLeft:new DOMMatrixReadOnly(getComputedStyle(world).transform).m41,
               transition:root.dataset.transition,opacity:Number(root.style.getPropertyValue('--transition-opacity')),fade:Number(root.style.getPropertyValue('--arrival-fade')||0),
               speed:scene.speed,min:scene.routeSegment.vMin,elapsed:scene.routeRun.elapsedMs,duration:scene.routeSegment.durationMs,distance:scene.routeRenderer.distance,
-              offset:Number(root.dataset.vehicleOffset),left:r.left,right:r.right,width:r.width,viewport:innerWidth,globalCover:cover});
+              offset:Number(root.dataset.vehicleOffset),left:r.left,right:r.right,width:r.width,viewport:innerWidth,globalCover:cover,
+              ...(coverageCheck?{cover:coverState(root)}:{})});
           }
         }
         window.__motionSampler=requestAnimationFrame(sample);
       };sample();
-    });
+    },coverageCheck);
     const captured=new Set();
     const capture=async label=>{if(captured.has(label))return;captured.add(label);
-      const file=`${leg}-${width}-${label}.png`;await page.screenshot({path:`${output}/${file}`});entry.captures.push(file);report.captures.push({file,leg,viewport:{width,height},motion,label});};
+      const file=`${leg}-${width}-${label}.png`;
+      const before=coverageCheck?await page.evaluate(()=>({time:performance.now(),sample:window.__motionProof.samples.at(-1)})):null;
+      await page.screenshot({path:`${output}/${file}`});entry.captures.push(file);report.captures.push({file,leg,viewport:{width,height},motion,label,
+        ...(coverageCheck?{before,after:await page.evaluate(()=>({time:performance.now(),sample:window.__motionProof.samples.at(-1)}))}:{})});};
     async function activate(selector,label){
       const locator=page.locator(selector);if(!await locator.count())return false;
       for(let tab=0;tab<35;tab++){
@@ -228,6 +264,7 @@ try{
       if(s.view==='checkpoint'&&s.opacity<.02&&!s.transition)await capture(`checkpoint-${s.segment}`);
       if(s.phase==='ARRIVING'&&s.fade===0&&s.left<width)await capture('arrival-visible');
       if(s.phase==='ARRIVING'&&s.left>=width)await capture('arrival-exited');
+      if(coverageCheck&&s.phase==='ARRIVING'&&s.fade>0&&s.fade<1)await capture(`arrival-fade-${Math.min(3,Math.floor(s.fade*4))}`);
       if(pursuitCheck&&s.phase==='RUNNING'&&s.view==='route'&&!s.transition){
         const desired=s.segment==='route-3'||s.segment==='route-6'?1:0;
         if(s.lane!==desired)await page.keyboard.press(desired?'ArrowDown':'ArrowUp');
@@ -327,6 +364,33 @@ try{
       return {serial,kind:checkpoint[0].kind,checkpointFrames:checkpoint.length,revealFrames:reveal.length,clockStayedZero:true,minRevealSpeed:Math.min(...reveal.map(s=>s.speed)),displacement:checkpoint.at(-1).offset-checkpoint[0].offset,velocityJoin:{reveal:revealEnd.speed,driving:firstDriving.speed,relativeChange:velocityChange}};
     });
     const exit=proof.samples.filter(s=>s.phase==='ARRIVING');assert.ok(exit.length>=3,'Exit sampled');
+    if(coverageCheck){
+      const opaque=cover=>{
+        const c=cover.local;assert.equal(c.opacity,1,'Computed curtain opaque at midpoint');
+        assert.equal(c.visibility,'visible');assert.notEqual(c.display,'none');assert.equal(c.background,'rgb(0, 0, 0)');
+        assert.ok(c.left<=0&&c.top<=0&&c.right>=width&&c.bottom>=height,'Curtain covers viewport');assert.equal(c.topmost,true,'Curtain above world at viewport probes');
+      };
+      const swaps=proof.swaps.filter(s=>s.before.view!==s.after.view);assert.ok(swaps.length>=2,'View swaps measured synchronously');
+      for(const swap of swaps){opaque(swap.before.cover);opaque(swap.after.cover);}
+      for(const serial of groups){
+        const reveal=proof.samples.filter(s=>s.serial===serial&&s.departure&&s.view==='route'&&s.opacity>.02&&s.opacity<.95);
+        assert.ok(reveal.length>=2);assert.ok(reveal.every(s=>Math.abs(s.cover.local.opacity-s.opacity)<.001&&s.cover.local.visibility==='visible'),'Computed reveal follows live opacity');
+      }
+      if(motion==='os'){
+        assert.ok(exit.some(s=>s.cover.arrival.opacity>0&&s.cover.arrival.opacity<1),'Computed gentle arrival fade sampled');
+        for(const s of exit){
+          const c=s.cover.arrival;assert.ok(Math.abs(c.opacity-s.fade)<.001);assert.equal(c.visibility,'visible');assert.notEqual(c.display,'none');assert.equal(c.content,'""');
+          assert.ok(s.cover.vehicleAncestors.every(e=>e.opacity===1&&e.visibility==='visible'&&e.display!=='none'),'Vehicle remains rendered through fade');
+          assert.equal(c.position,'absolute');assert.equal(c.background,'rgb(0, 0, 0)');assert.equal(c.rootOpacity,1);assert.equal(c.rootVisibility,'visible');
+          assert.equal(c.top,'0px');assert.equal(c.left,'0px');assert.ok(c.width>=width&&c.height>=height);
+          assert.ok(c.rootLeft<=0&&c.rootTop<=0&&c.rootRight>=width&&c.rootBottom>=height);
+          assert.ok(c.visibleChildren.every(e=>e.className==='traversal-world'&&(e.zIndex==='auto'||Number(e.zIndex)<Number(c.zIndex))),'Arrival cover above visible world stacking context');
+          if(s.left>=s.viewport)assert.equal(c.opacity,1,'Equivalent exit occurs only under actual full cover');
+        }
+        assert.equal(arrival.cover.arrival.opacity,1,'Canonical callback covered');
+      }
+      entry.coverage={viewSwaps:swaps.length,computedReveal:true,computedArrival:motion==='os',scope:'computed CSS geometry/stacking; timestamped captures and video still require visual review'};
+    }
     assert.ok(exit.every(s=>s.speed>0),'No near stop');
     if(motion==='normal'){
       const visible=exit.filter(s=>s.left<s.viewport);assert.ok(visible.length>=3,'Visible exit sequence');
@@ -342,6 +406,7 @@ try{
     assert.ok(proof.returns.every(s=>s.speed>=1),'Canonical return mounted with momentum');
     console.log(`${motion}/${leg}/${dimensions}: PASS ${proof.samples.length} frames ${entry.departures.length} departures`);
     await context.close();
+    if(coverageCheck)entry.video=await page.video().path();
   }
   for(const name of requiredAssertions)report.assertions[name]=true;
 }catch(error){report.failures.push(error.stack??String(error));}
