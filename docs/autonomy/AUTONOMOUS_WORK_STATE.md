@@ -1,3 +1,20 @@
+# Current autonomous checkpoint - 2026-10-12T16:56:02.846Z
+
+TASK: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat
+RUN: rpgthreejs-auto-dev-90m-20261012T1648
+STATUS: IN_PROGRESS
+SUBTASK: T3normal1366 fork numerical motion/exit accepted scoped; T3OS next; whole perception open
+
+ONE registered T3normal1366 smoke SUCCEEDED:13assertions,698samples,eight captures,errors0; request/digest/stable/current source637f91ee/driverce350f77/helper/build9 physically matched. Fork departure44checkpoint/13reveal frames, displacement195.46; velocity1.240106to1.213868=2.11575percent, zero authored reveal clock. Arrival115samples/speed2.7to5.4, zero inline fade while visible, resize1366to1440 with zero early callback. Exactly one lion-shadow-signs callback with left2083.77 beyond1366; unresolved only at callback entry. Root inspected four captures and bounded traversal reviewer PASS numerical motion/exit/lifecycle. Computed local-curtain opacity BLOCKED_MISSING_MEASUREMENT and full perceived continuity OPEN; no accepted temporal sequence. Fixture origin and injected young_dragon_roost/forest_patrol victories exclude earned campaign/tactical/V6/Pursuit/postarrival reload. Machine NOT_ACCEPTED retained separately from scoped disposition.
+
+No demonstrated product defect, source/test/driver/assertion/newQA edit or tracked proof promotion. 47focusedtests/four files,TypeScript,eight contracts/eight slots,immutable/working-copy/whitespace PASS; unchanged build reused. Exact parent/taskQueue/deferred keyboard/pending narrative and208historical QA requests preserved;209total. Counts source0/test0/existingQA0/newQA0/proof0/workflow3/inherited0/browser1/rootcaptures4/reviewer1/one bounded pass; no quota savings claim. No guardian trigger: no sensitive owner/assertion change or queue-item completion.
+
+Compliance set1.1.0: constitution/TRAVERSAL/CAMPAIGN_AND_STATE/COMBAT_AND_VFX/UI_AND_ACCESSIBILITY/AUTHORING_AND_QA/AUTONOMOUS_WORK_PROTOCOL read; no LOCKED rule changed. Owner boundaries unchanged. Whole-demo acceptance remains IN_PROGRESS.
+
+Exact nextAction: Read-only autonomy preflight/exclusive lock; inspect motion-t3-native-desktop-1648 SUCCEEDED result064bf819/current stable request/digest and bounded traversal review before reuse. T3normal1366 fork numeric join2.11575%, zero reveal route clock, complete accelerating right exit/resize and one lion-shadow-signs unresolved-at-callback entry accepted scoped. Computed local-curtain coverage and whole perceived continuity remain OPEN; stills/inline variables and positivity do not certify them. No demonstrated source defect. ONE next registered existing tools/traversal-motion-production-qa.mjs --motion=os --legs=T3 --viewports=1366x768 --pursuit-check=0 --port=<verified-free-port> --output=<unique-ignored-path>, identical args for --register,12assertions. Fixture-origin/injected tactical outcomes certify motion/lifecycle only; no earned campaign/V6/Pursuit/postarrival-reload claim. Do not repeat unchanged accepted T3normal1648/T0normal1617/T1normal0415/OS0504. T0OS/game-only/full-perception and mobileLAST remain later gaps. Keep original all-six/random-Pursuit parent and lancer/second-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo OPEN; never seed FAILED1521 partial outputs or replay unchanged35/45min/deadline-only campaign. Preserve exact deferred keyboard/pendingNarrative/taskQueue.
+
+---
+
 ## T0 scoped checkpoint published - 2026-10-12T16:30:58.425Z
 
 Checkpoint5047a94a7f2edeab2209264b5edeaa3d0c3ced54 and owned WIP643377f688a8dce929d7be1a9258881af85788cd normally published/live verified under permanent OD-2026-10-12-A. Exact three selected workflow blobs match snapshot on dev; main00b96f1 unchanged. Worker34860/port5390 absent, existing Vite29856 retained. Parent/taskQueue/deferred keyboard/pending narrative exact and207historical requests preserved;208total. No source/test/driver/assertion/newQA edit, no tracked proof promotion. Source0/test0/existingQA0/newQA0/proof0/workflow3/inherited0/browser1/rootcaptures5/reviewer1. T0normal1366 scoped numerical/lifecycle acceptance only; computed local-curtain opacity BLOCKED_MISSING_MEASUREMENT/full motion perception OPEN. No automatic approval refusal or publication confirmation request. Final metadata closure and ownedWIP/lock retirement recorded in automation memory/final audit. Exact nextAction remains one next-run T3normal1366 existing-driver smoke; no unchanged native campaign replay/partial seed.
@@ -1049,6 +1066,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - second-refuge-native-desktop-0647: RUNNING; port 5388; receipt `tmp/demo/second-refuge-native-desktop-0647/qa-job.json`; NOT_ACCEPTED
 - second-refuge-native-desktop-1521: FAILED; port 5389; receipt `tmp/demo/second-refuge-native-desktop-1521/qa-job.json`; NOT_ACCEPTED
 - motion-t0-native-desktop-1617: SUCCEEDED; port 5390; receipt `tmp/traversal/motion-t0-native-desktop-1617/qa-job.json`; NOT_ACCEPTED
+- motion-t3-native-desktop-1648: SUCCEEDED; port 5391; receipt `tmp/traversal/motion-t3-native-desktop-1648/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
