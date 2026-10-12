@@ -30,3 +30,14 @@ This approves that metadata checkpoint and verified lock release, and provides s
 The existing selected-path review, secret and ignored-output exclusion, exclusive writer lock, stopped-job checks, verification and remote-parity protocol continue to apply. `main` remains excluded. Canon, LOCKED contracts and additional product scope retain their existing operator-decision boundaries. OD-2026-10-08-A continues to govern publication mechanics and existing owned-WIP handling.
 
 Record this standing authorization in run state and automation memory so scheduled runs can use it. An actual subsequent automatic-review rejection must still be reported and resolved through the normal approval mechanism; this decision does not authorize bypassing such a rejection.
+
+
+## Standing publication authorization reaffirmed - OD-2026-10-11-A
+
+Status: **ACTIVE**. Direct operator instruction received in Codex chat 01a12e17-1fcf-7e02-a862-8e1dfe03454b on 2026-10-11 (America/Toronto), after pending closure commit9b14235 and its four selected metadata files were identified:
+
+> OUI AUTORISE TOUTES LES PUBLICATIONS, NE ME DEMANDE PLUS A L'AVENIR
+
+This explicitly resolves the pending closure publication and reaffirms OD-2026-10-08-B for all subsequent normal, non-force publications of coherent authorized RPGThreeJS checkpoints to origin/dev and owned wip branches. Workflow, paired state, handoff, and selected evidence closure are included. Do not request routine per-checkpoint confirmation. Keep selected-path review, exclusive locking, stopped-job checks, secret/ignored-output exclusion, verified destination and remote parity. Main, canon, LOCKED amendments and additional product scope retain their existing boundaries. Actual automatic-review failures must be handled through the normal mechanism; this authorization does not permit bypassing safeguards.
+
+No runtime, save, QA assertion or LOCKED rule changed.

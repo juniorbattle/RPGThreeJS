@@ -1,32 +1,25 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-11T23:51:56.9913643+00:00",
-  "runEndedAt": "2026-10-12T00:09:15.352Z",
+  "runStartedAt": "2026-10-12T03:10:43Z",
+  "runEndedAt": "2026-10-12T03:18:00.260Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-  "activePhase": "PUBLICATION_METADATA_BLOCKED",
-  "activeSubtask": "Six-skill checkpoint published; closure metadata approval pending",
+  "activePhase": "SAFE_PUBLICATION_CLOSEOUT",
+  "activeSubtask": "Publication closure verified; standing publication authorization reaffirmed; native menu diagnosis remains open",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "fb2e2f5feb840caa7855fdb0c691a630d4fd01a6",
-  "lastPushedCommit": "b6bf0e4be2e42a13efa99c679d3a73aa4a22d556",
+  "lastPushedCommit": "9b14235e5cde97bf1c3a835c350de3ae21624082",
   "completedThisRun": [
     "Safely resumed interrupted2012 under stale-lock protocol; preserved three inherited WIP paths and prior refs",
     "Verified terminalFAILED receipt/digest/driver/393source/9build and reviewed eight fresh captures with guardian",
     "Recorded six novice native casts and same-round3to2 native setup/2to0 Salvation scoped observations; machineFAILED retained"
   ],
   "filesChanged": [
-    "tools/demo-continuous-production-qa.mjs",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/reports/native-six-skills-observations-20261011-2012/checks.json",
-    "docs/reports/native-six-skills-observations-20261011-2012/combat-3-ro_sneak_attack-9.png",
-    "docs/reports/native-six-skills-observations-20261011-2012/combat-3-l_long_thrust-14.png",
-    "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_break_guard-17.png",
-    "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-41.png",
-    "docs/reports/native-six-skills-observations-20261011-2012/combat-3-salvation-exactly2ap-before-42.png",
-    "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-43.png",
-    "docs/reports/native-six-skills-observations-20261011-2012/combat-4-a_precise_shot-8.png",
-    "docs/reports/native-six-skills-observations-20261011-2012/combat-4-n_dark_bolt-11.png",
-    "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md"
+    "docs/autonomy/OPERATOR_DECISIONS.md",
+    "docs/autonomy/PUBLICATION_OPERATOR_DECISION_2026-10-08.md",
+    "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md",
+    "docs/reports/native-six-skills-observations-20261011-2012/checks.json"
   ],
   "testsRun": [
     "60 focused management/deployment tests excluding tmp duplicates",
@@ -61,8 +54,7 @@
     "Ending2311 FAILED_NOT_ACCEPTED: bounded131actions, three damage alliesKO, Marian alone; support-only crosier pilot excludes native foe actions. Six-line lone-survivor native fallback is source-reviewed checkpoint only, verify in new registered QA; no balance or terminalV6 conclusion. Prior2104 interrupted output remains historical NOT_ACCEPTED.",
     "campaign-keyboard-1655: native opening defeat blocks intended parent-return/first-refuge proof; pilot strategy versus gameplay reliability unresolved, not established product regression",
     "1748/1856: checkpoint perception and parent settled-focus visuals OPEN; Pursuit mappings implemented/scoped T0 fixture verified, articulated gait and broader browser acceptance OPEN; mobile final",
-    "FAILED2012 native skill-menu locator.click timeout at275; full ending/aggregate/reload unproved, no established runtime regression.",
-    "Original approved two commits published; new four-path closure metadata export rejected by automatic review, explicit approval required before publish/lock release."
+    "FAILED2012 native skill-menu locator.click timeout at275; full ending/aggregate/reload unproved, no established runtime regression."
   ],
   "remainingWork": [
     "Six fresh novice cast/AP coverage and same-round healthy setup3to2/Salvation2to0 capped40percent reviewed2012; fullcampaign aggregate/ending/reload OPEN after skill-menu click timeout",
@@ -75,7 +67,7 @@
     "Opening dynamic1366/620 normalOS accepted scoped; later/earned narrative and approvedBois-Clair nightplate remainOPEN",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Approve the concrete four-path local publication-closure metadata checkpoint, then recheck owned lock/HEAD/live origin/stoppedjobs and normally publish it to origin/dev before archiving/releasing lock. Original fb2e2f5/b6bf0e4 are already verified on origin/dev. Auto-review rejected only new closure-content egress as beyond the exact prior approval; no retry/workaround. After closure, Read-only preflight/exclusive lock, verify published native-six-skills-observations-20261011-2012/checks.json and terminal2012 receipt/digest/current393source/9build first. Preserve FAILED2012 driver152e8ff1/resulta04d3061 and reviewed scoped six novice casts plus same-round3to2 setup/Salvation2to0 capped40percent; never seed2012/1858/1800/1731/0001 or repeat unchanged45min campaign. Full native judgement/ending/reload and aggregate gates remain OPEN after native skill-menu click timeout at275; diagnose only a demonstrated failure with existing runners before any single targeted desktop verification from independently SUCCEEDED1859 exact seed. No harness rewrite or weaker assertion. Parent randomPursuit/later narrative/fullV6/AT/balance/operatorfinal/demo IN_PROGRESS; exact deferred keyboard/history/queue retained, mobileLAST. Publication rejection resolved by explicit human approval and verified normal dev push; metadata closure and lock archive complete when confirmed in automation memory.",
+  "nextAction": "Read-only autonomy preflight and exclusive lock; resume original all-six-skills/random-Pursuit task. Publication approvals are resolved and standing OD-2026-10-11-A covers all normal authorized dev/owned-WIP checkpoints, including state/handoff closure: do not ask routine per-checkpoint confirmation. Inspect native-six-skills-observations-20261011-2012/checks.json, terminal2012 receipt/result digest and source/build/driver before reuse. Preserve FAILED2012 and scoped six novice casts plus native3to2 setup/Salvation2to0 capped40percent; never seed2012/1858/1800/1731/0001 or replay unchanged45min campaign. Click275 remains a proof blocker, not an established runtime regression: inspected failure capture shows normal unoccluded menu, while actual job elapsed211.8min exceeds registered45min and may reflect execution suspension (inference only). Diagnose native menu responsiveness using existing runners before any demonstrated minimal pilot correction or single registered targeted desktop continuation from independently SUCCEEDED1859 exact seed. Keep all AP/healing/aggregate/earned-ending/reload assertions; no harness rewrite or truth injection. Full ending/aggregate/reload, randomPursuit/later narrative/fullV6/AT/balance/operatorfinal/demo remain OPEN; exact deferred keyboard/history/queue retained, mobileLAST.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -92,7 +84,7 @@
   ],
   "creditStatus": "AVAILABLE_THIS_RUN",
   "contractComplianceStatus": "PASS_SCOPED_NATIVE_OBSERVATIONS_FULL_TASK_OPEN_PUBLICATION_VERIFIED",
-  "commitReferenceScope": "Verified input-only pilot checkpoint ab51376 on dev; corrected driver UNEXECUTED. Final metadata SHA and lock release in automation memory/ignored final-publication audit.",
+  "commitReferenceScope": "Last pushed commit9b14235 is verified workflow closure; final publication checkpoint/clean parity/lock release recorded in automation memory after transport. No product acceptance advanced.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -193,26 +185,28 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261011T2354",
+  "runId": "rpgthreejs-auto-dev-90m-20261012T0310",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-12T00:09:15.352Z",
+  "lastHeartbeat": "2026-10-12T03:19:20.427Z",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261011T2012",
-    "sha": "bd885d24511e08b72b93ae5d4c3f419f863f2564",
-    "status": "GREEN_MECHANICAL_BROWSER_PENDING",
-    "dirtyFiles": [
-      "tools/demo-continuous-production-qa.mjs",
+    "selectedPaths": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/OPERATOR_DECISIONS.md",
+      "docs/autonomy/PUBLICATION_OPERATOR_DECISION_2026-10-08.md",
+      "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md",
+      "docs/reports/native-six-skills-observations-20261011-2012/checks.json"
     ],
-    "lastGreenCheck": "Syntax/whitespace/physical393source/ninebuild/input lineage gates passed",
-    "at": "2026-10-11T20:19:59.7400484+00:00"
+    "sha": "e65a070cbb3f0f651bbfa5f28f5c63413ac1604a",
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0310",
+    "at": "2026-10-12T03:19:00Z",
+    "status": "LOCAL_VERIFIED_SNAPSHOT_FINAL_METADATA_DIFF_ONLY"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261011T2354",
+    "runId": "rpgthreejs-auto-dev-90m-20261012T0310",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-12T00:09:15.352Z",
-    "status": "ORIGINAL_CHECKPOINT_PUBLISHED_METADATA_BLOCKED",
+    "lastHeartbeat": "2026-10-12T03:19:20.427Z",
+    "status": "PUBLICATION_RESOLVED_STANDING_AUTHORIZATION_RECORDED",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -21628,46 +21622,43 @@
       }
     ],
     "wip": {
-      "sha": "ff08c19eae3b86716b56348a861e3e452c823126",
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261011T2354",
-      "status": "CONTENT_ON_DEV_RETAINED_UNTIL_FINAL_PARITY",
-      "dirtyFiles": [
-        "tools/demo-continuous-production-qa.mjs",
+      "selectedPaths": [
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/reports/native-six-skills-observations-20261011-2012/checks.json",
-        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-ro_sneak_attack-9.png",
-        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-l_long_thrust-14.png",
-        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_break_guard-17.png",
-        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-41.png",
-        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-salvation-exactly2ap-before-42.png",
-        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-43.png",
-        "docs/reports/native-six-skills-observations-20261011-2012/combat-4-a_precise_shot-8.png",
-        "docs/reports/native-six-skills-observations-20261011-2012/combat-4-n_dark_bolt-11.png",
-        "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md"
+        "docs/autonomy/OPERATOR_DECISIONS.md",
+        "docs/autonomy/PUBLICATION_OPERATOR_DECISION_2026-10-08.md",
+        "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md",
+        "docs/reports/native-six-skills-observations-20261011-2012/checks.json"
       ],
-      "lastGreenCheck": "60tests/types/8contracts8slots/syntax/immutable/whitespace/receiptphysicalprovenance PASS; machineFAILED scoped observation review"
+      "sha": "e65a070cbb3f0f651bbfa5f28f5c63413ac1604a",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0310",
+      "at": "2026-10-12T03:19:00Z",
+      "status": "LOCAL_VERIFIED_SNAPSHOT_FINAL_METADATA_DIFF_ONLY"
     },
-    "nextAction": "Approve the concrete four-path local publication-closure metadata checkpoint, then recheck owned lock/HEAD/live origin/stoppedjobs and normally publish it to origin/dev before archiving/releasing lock. Original fb2e2f5/b6bf0e4 are already verified on origin/dev. Auto-review rejected only new closure-content egress as beyond the exact prior approval; no retry/workaround. After closure, Read-only preflight/exclusive lock, verify published native-six-skills-observations-20261011-2012/checks.json and terminal2012 receipt/digest/current393source/9build first. Preserve FAILED2012 driver152e8ff1/resulta04d3061 and reviewed scoped six novice casts plus same-round3to2 setup/Salvation2to0 capped40percent; never seed2012/1858/1800/1731/0001 or repeat unchanged45min campaign. Full native judgement/ending/reload and aggregate gates remain OPEN after native skill-menu click timeout at275; diagnose only a demonstrated failure with existing runners before any single targeted desktop verification from independently SUCCEEDED1859 exact seed. No harness rewrite or weaker assertion. Parent randomPursuit/later narrative/fullV6/AT/balance/operatorfinal/demo IN_PROGRESS; exact deferred keyboard/history/queue retained, mobileLAST. Publication rejection resolved by explicit human approval and verified normal dev push; metadata closure and lock archive complete when confirmed in automation memory.",
+    "nextAction": "Read-only autonomy preflight and exclusive lock; resume original all-six-skills/random-Pursuit task. Publication approvals are resolved and standing OD-2026-10-11-A covers all normal authorized dev/owned-WIP checkpoints, including state/handoff closure: do not ask routine per-checkpoint confirmation. Inspect native-six-skills-observations-20261011-2012/checks.json, terminal2012 receipt/result digest and source/build/driver before reuse. Preserve FAILED2012 and scoped six novice casts plus native3to2 setup/Salvation2to0 capped40percent; never seed2012/1858/1800/1731/0001 or replay unchanged45min campaign. Click275 remains a proof blocker, not an established runtime regression: inspected failure capture shows normal unoccluded menu, while actual job elapsed211.8min exceeds registered45min and may reflect execution suspension (inference only). Diagnose native menu responsiveness using existing runners before any demonstrated minimal pilot correction or single registered targeted desktop continuation from independently SUCCEEDED1859 exact seed. Keep all AP/healing/aggregate/earned-ending/reload assertions; no harness rewrite or truth injection. Full ending/aggregate/reload, randomPursuit/later narrative/fullV6/AT/balance/operatorfinal/demo remain OPEN; exact deferred keyboard/history/queue retained, mobileLAST.",
     "runMetrics": {
-      "existingQaFilesModified": 1,
-      "harnessCorrections": 1,
-      "newQaFilesAdded": 0,
-      "quotaSavingsClaim": "NONE",
-      "inheritedWipPaths": 3,
-      "guardianPasses": 3,
-      "browserScenarios": 1,
-      "workflowFilesModifiedOrAdded": 3,
-      "reviewers": 1,
+      "runId": "rpgthreejs-auto-dev-90m-20261012T0310",
       "runtimeSourceFilesModified": 0,
-      "existingTestFilesModified": 0,
-      "proofFilesAdded": 0
+      "testFilesModified": 0,
+      "existingQaFilesModified": 0,
+      "newQaFilesAdded": 0,
+      "promotedProofFiles": 0,
+      "proofMetadataFilesModified": 1,
+      "workflowDocs": 5,
+      "inheritedWipFiles": 0,
+      "browserScenarios": 0,
+      "reusedTerminalScenarios": 0,
+      "harnessCorrections": 0,
+      "reviewers": 0,
+      "quotaSavingsClaim": "NONE"
     },
     "checkpointPaths": [
-      "tools/demo-continuous-production-qa.mjs",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-10T2321Z-codex-native-skills.md"
+      "docs/autonomy/OPERATOR_DECISIONS.md",
+      "docs/autonomy/PUBLICATION_OPERATOR_DECISION_2026-10-08.md",
+      "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md",
+      "docs/reports/native-six-skills-observations-20261011-2012/checks.json"
     ],
     "publication": {
       "at": "2026-10-12T00:07:33.871Z",
@@ -21699,22 +21690,17 @@
       "approvalSource": "User replied OUI j autorise to exact two-commit thirteen-path publication request in current chat",
       "inheritedRejectionResolved": true
     },
-    "runStartedAt": "2026-10-11T23:51:56.9913643+00:00",
-    "runEndedAt": "2026-10-12T00:09:15.352Z",
+    "runStartedAt": "2026-10-12T03:10:43Z",
+    "runEndedAt": "2026-10-12T03:18:00.260Z",
     "writerStopped": true,
     "metadataPublication": {
-      "status": "AUTO_REVIEW_REJECTED_UNEXECUTED",
-      "at": "2026-10-12T00:09:15.352Z",
-      "action": "Commit and normal push of four publication-closure metadata paths",
-      "reason": "Modified metadata contents exceed exact original commit payload approval; sensitive repository-state egress not specifically authorized",
-      "selectedPaths": [
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md",
-        "docs/reports/native-six-skills-observations-20261011-2012/checks.json"
-      ],
-      "localCommitOnly": true,
-      "noPushRetryOrWorkaround": true
+      "status": "NORMAL_DEV_PUBLICATION_VERIFIED",
+      "checkpoint": "9b14235e5cde97bf1c3a835c350de3ae21624082",
+      "verifiedOriginDev": "9b14235e5cde97bf1c3a835c350de3ae21624082",
+      "rejectionResolvedBy": "Direct human authorization in this run: OUI AUTORISE TOUTES LES PUBLICATIONS, NE ME DEMANDE PLUS A L AVENIR",
+      "normalPush": true,
+      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "at": "2026-10-12T03:18:00.260Z"
     },
     "publication1752History": {
       "status": "VERIFIED_PUBLISHED",
@@ -21948,7 +21934,15 @@
       },
       "creditStatus": "UNAVAILABLE_REVIEWER_USAGE_LIMIT_EXCEEDED_ROOT_RESUMED_FOR_SAFE_CLOSEOUT"
     },
-    "publicationAuthorization": "Standing OD-2026-10-08-B: coherent selected code/tests/evidence/workflow checkpoints to public origin/dev normally, no force/main/secrets/ignored outputs; no routine approval.",
+    "publicationAuthorization": {
+      "status": "STANDING_AUTHORIZATION_REAFFIRMED",
+      "decision": "OD-2026-10-11-A",
+      "source": "docs/autonomy/PUBLICATION_OPERATOR_DECISION_2026-10-08.md",
+      "humanInstruction": "OUI AUTORISE TOUTES LES PUBLICATIONS, NE ME DEMANDE PLUS A L'AVENIR",
+      "scope": "All normal non-force publications of authorized coherent dev and owned-WIP checkpoints, including workflow/state/handoff closure; main/secrets/ignored outputs excluded",
+      "routineConfirmationRequired": false,
+      "automaticReviewBypass": false
+    },
     "campaign2311": {
       "physicalFreeze": "tmp/autonomy/physical-freeze-2311.json",
       "physicalFiles": 393,
@@ -22527,7 +22521,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-    "activeSubtask": "Six-skill checkpoint published; closure metadata approval pending",
+    "activeSubtask": "Publication closure verified; standing publication authorization reaffirmed; native menu diagnosis remains open",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -24804,6 +24798,114 @@
         "metadataClosure": "AUTO_REVIEW_REJECTED_LOCAL_CHECKPOINT_PENDING_APPROVAL",
         "lockRetainedUntilFinalParity": true
       }
+    },
+    "previousPublication0310": {
+      "runId": "rpgthreejs-auto-dev-90m-20261011T2354",
+      "status": "ORIGINAL_CHECKPOINT_PUBLISHED_METADATA_BLOCKED",
+      "metadataPublication": {
+        "status": "AUTO_REVIEW_REJECTED_UNEXECUTED",
+        "at": "2026-10-12T00:09:15.352Z",
+        "action": "Commit and normal push of four publication-closure metadata paths",
+        "reason": "Modified metadata contents exceed exact original commit payload approval; sensitive repository-state egress not specifically authorized",
+        "selectedPaths": [
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+          "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md",
+          "docs/reports/native-six-skills-observations-20261011-2012/checks.json"
+        ],
+        "localCommitOnly": true,
+        "noPushRetryOrWorkaround": true
+      },
+      "wip": {
+        "sha": "ff08c19eae3b86716b56348a861e3e452c823126",
+        "branch": "wip/rpgthreejs-auto-dev-90m-20261011T2354",
+        "status": "CONTENT_ON_DEV_RETAINED_UNTIL_FINAL_PARITY",
+        "dirtyFiles": [
+          "tools/demo-continuous-production-qa.mjs",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+          "docs/reports/native-six-skills-observations-20261011-2012/checks.json",
+          "docs/reports/native-six-skills-observations-20261011-2012/combat-3-ro_sneak_attack-9.png",
+          "docs/reports/native-six-skills-observations-20261011-2012/combat-3-l_long_thrust-14.png",
+          "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_break_guard-17.png",
+          "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-41.png",
+          "docs/reports/native-six-skills-observations-20261011-2012/combat-3-salvation-exactly2ap-before-42.png",
+          "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-43.png",
+          "docs/reports/native-six-skills-observations-20261011-2012/combat-4-a_precise_shot-8.png",
+          "docs/reports/native-six-skills-observations-20261011-2012/combat-4-n_dark_bolt-11.png",
+          "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md"
+        ],
+        "lastGreenCheck": "60tests/types/8contracts8slots/syntax/immutable/whitespace/receiptphysicalprovenance PASS; machineFAILED scoped observation review"
+      }
+    },
+    "closeout0310": {
+      "at": "2026-10-12T03:18:00.260Z",
+      "measures": {
+        "runId": "rpgthreejs-auto-dev-90m-20261012T0310",
+        "runtimeSourceFilesModified": 0,
+        "testFilesModified": 0,
+        "existingQaFilesModified": 0,
+        "newQaFilesAdded": 0,
+        "promotedProofFiles": 0,
+        "proofMetadataFilesModified": 1,
+        "workflowDocs": 5,
+        "inheritedWipFiles": 0,
+        "browserScenarios": 0,
+        "reusedTerminalScenarios": 0,
+        "harnessCorrections": 0,
+        "reviewers": 0,
+        "quotaSavingsClaim": "NONE"
+      },
+      "preflight": {
+        "previousOwnerIdle": true,
+        "matchingJobs": 0,
+        "port5382Listeners": 0,
+        "rawIsoHeartbeatOver105min": true,
+        "liveOriginVerified": true,
+        "oldLockArchived": ".git/codex-autonomy.abandoned-20261012T0310.json"
+      },
+      "tests": {
+        "focused": "60/60 management/deployment",
+        "types": "PASS",
+        "contracts": "8LOCKED/8slots PASS",
+        "immutableBarrier": "PASS",
+        "whitespace": "PASS",
+        "productionSmoke": "NOT_RUN: publication/governance-only changes; no product/build/driver boundary changed and no unchanged failed45min replay"
+      },
+      "diagnosis": {
+        "failureScreenshotInspected": true,
+        "menuUnoccludedInTerminalCapture": true,
+        "originalJobElapsedMinutes": 211.8,
+        "registeredDeadlineMinutes": 45,
+        "executionSuspension": "POSSIBLE_INFERENCE_NOT_CONFIRMED",
+        "runtimeDefect": "NOT_ESTABLISHED"
+      },
+      "compliance": {
+        "GAME_CONSTITUTION": "PASS_UNCHANGED",
+        "ART_DIRECTION": "N/A",
+        "CHARACTERS": "N/A",
+        "ENVIRONMENTS": "N/A",
+        "NARRATIVE_CAMPAIGN": "PASS_UNCHANGED",
+        "NARRATIVE_PRESENTATION": "N/A",
+        "TRAVERSAL": "N/A",
+        "COMBAT": "PASS_NO_RUNTIME_OR_ASSERTION_CHANGE",
+        "SAVE": "PASS_SCHEMA_UNCHANGED_NEW_ENDING_RELOAD_OPEN",
+        "UI_ACCESSIBILITY": "N/A",
+        "QA_EVIDENCE": "PASS_FAILED_RECEIPT_UNCHANGED_NO_SCOPE_PROMOTION",
+        "REPOSITORY_GOVERNANCE": "PASS_DIRECT_STANDING_AUTHORIZATION_NORMAL_DEV_PUBLICATION"
+      },
+      "contractsRead": [
+        "GAME_CONSTITUTION",
+        "README",
+        "manifest1.1.0",
+        "AUTONOMOUS_WORK_PROTOCOL",
+        "COMBAT_AND_VFX",
+        "CAMPAIGN_AND_STATE",
+        "AUTHORING_AND_QA",
+        "UI_AND_ACCESSIBILITY"
+      ],
+      "lockedRulesChanged": false,
+      "finalTransport": "Prepared coherent selected checkpoint; final actual SHA/parity/lock cleanup in automation memory"
     }
   },
   "previousInterruptedRun": {
@@ -26154,19 +26256,19 @@
     "fullDemoComplete": false
   },
   "currentRunMeasurement": {
-    "runId": "rpgthreejs-auto-dev-90m-20261011T2354",
+    "runId": "rpgthreejs-auto-dev-90m-20261012T0310",
     "runtimeSourceFilesModified": 0,
     "testFilesModified": 0,
     "existingQaFilesModified": 0,
     "newQaFilesAdded": 0,
-    "promotedProofFiles": 9,
-    "workflowDocs": 3,
-    "inheritedWipFiles": 3,
+    "promotedProofFiles": 0,
+    "proofMetadataFilesModified": 1,
+    "workflowDocs": 5,
+    "inheritedWipFiles": 0,
     "browserScenarios": 0,
-    "reusedTerminalScenarios": 1,
-    "harnessCorrectionsAfterFailure": 0,
-    "reviewers": 1,
-    "reviewPasses": 2,
-    "quotaSavingClaim": false
+    "reusedTerminalScenarios": 0,
+    "harnessCorrections": 0,
+    "reviewers": 0,
+    "quotaSavingsClaim": "NONE"
   }
 }

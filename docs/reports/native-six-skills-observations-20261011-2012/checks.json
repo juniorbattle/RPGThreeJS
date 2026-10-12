@@ -812,9 +812,12 @@
     "approvalSource": "User replied OUI j autorise to exact two-commit thirteen-path publication request in current chat",
     "inheritedRejectionResolved": true,
     "metadataClosure": {
-      "status": "AUTO_REVIEW_REJECTED_PENDING_EXPLICIT_APPROVAL",
+      "status": "NORMAL_DEV_PUBLICATION_VERIFIED",
+      "checkpoint": "9b14235e5cde97bf1c3a835c350de3ae21624082",
+      "at": "2026-10-12T03:18:00.260Z",
       "originalCheckpointVerified": true,
-      "noRetryOrWorkaround": true
+      "rejectionResolvedBy": "OD-2026-10-11-A direct standing authorization",
+      "normalPush": true
     }
   }
 }
