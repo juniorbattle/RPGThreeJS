@@ -16,3 +16,7 @@ Exact nextAction: Read-only autonomy preflight/exclusive lock; inspect motion-t3
 ## Owned green recovery snapshot
 
 Owned WIP121d45fde8a32c85340b1bcfe9f990be74781944 normally published and remote verified; three explicitly selected workflow paths. Recovery only. Original JSON date spellings retained. Dev checkpoint publication pending; nextAction unchanged.
+
+## T3 scoped checkpoint published - 2026-10-12T16:58:55.973Z
+
+Checkpoint0b7fb9d80d52da46d6b2b8269af837ea4aafdcba and owned WIP121d45fde8a32c85340b1bcfe9f990be74781944 normally published/live verified under permanent OD-2026-10-12-A; main00b96f1 unchanged. Snapshot content verified on published dev with only enriched WIP metadata/prose additions. Source/driver/helper/nine physical build hashes remain execution-compatible after workflow-only commit. Worker23740/port5391 absent; existing Vite29856 retained. No automatic approval refusal or routine publication question. Parent/taskQueue/deferred keyboard/pending narrative and208historical requests preserved;209total. Counts source0/test0/existingQA0/newQA0/proof0/workflow3/inherited0/browser1/rootcaptures4/reviewer1. Full perception, computed local curtain, campaign/V6/Pursuit/demo acceptance remain OPEN. Final metadata publication and only-owned WIP/lock retirement recorded in automation memory/final audit. Exact nextAction unchanged: one next-run T3OS1366 existing-driver smoke.
