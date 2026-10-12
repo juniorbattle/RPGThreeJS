@@ -6,7 +6,7 @@
   "BRANCH": "dev",
   "HEAD": "fb2e2f5feb840caa7855fdb0c691a630d4fd01a6",
   "STATUS": "REVIEWED_SCOPED_NATIVE_CASTS_AND_COUPLED_2AP_OBSERVATIONS_MACHINE_FAILED",
-  "MERGED_IN": "NONE_LOCAL_DEV_ONLY_PUBLICATION_BLOCKED",
+  "MERGED_IN": "fb2e2f5feb840caa7855fdb0c691a630d4fd01a6",
   "SUPERSEDES": "NONE",
   "SUPERSEDED_BY": "NONE",
   "PRODUCTION_IMPACT": "NONE_RUNTIME_UNCHANGED_INHERITED_PILOT_POSITIONING",
@@ -774,13 +774,13 @@
     "SAVE": "PASS_SCHEMA_UNCHANGED_NEW_ENDING_RELOAD_OPEN",
     "UI_ACCESSIBILITY": "N/A",
     "QA_EVIDENCE": "PASS_REVIEWED_FRESH_OBSERVATIONS_MACHINE_FAILED",
-    "REPOSITORY_GOVERNANCE": "BLOCKED_PUBLICATION_AUTO_REVIEW_REJECTION"
+    "REPOSITORY_GOVERNANCE": "PASS_EXPLICIT_APPROVED_NORMAL_DEV_PUBLICATION"
   },
   "contractSetVersion": "1.1.0",
   "immutableBaseline": "d7ca28aed5c377ffedb03202f6364b7a947d1096",
   "lockedRuleChanged": false,
   "publication": {
-    "status": "BLOCKED_INHERITED_AUTO_REVIEW_REJECTION",
+    "status": "NORMAL_DEV_PUBLICATION_VERIFIED",
     "checkpoint": "fb2e2f5feb840caa7855fdb0c691a630d4fd01a6",
     "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
     "branch": "dev",
@@ -800,6 +800,21 @@
       "docs/reports/native-six-skills-observations-20261011-2012/combat-4-n_dark_bolt-11.png",
       "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md"
     ],
-    "noRetryOrWorkaround": true
+    "noRetryOrWorkaround": true,
+    "at": "2026-10-12T00:07:33.871Z",
+    "approvedCommits": [
+      "fb2e2f5feb840caa7855fdb0c691a630d4fd01a6",
+      "b6bf0e4be2e42a13efa99c679d3a73aa4a22d556"
+    ],
+    "publishedCheckpoint": "b6bf0e4be2e42a13efa99c679d3a73aa4a22d556",
+    "nonForce": true,
+    "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+    "approvalSource": "User replied OUI j autorise to exact two-commit thirteen-path publication request in current chat",
+    "inheritedRejectionResolved": true,
+    "metadataClosure": {
+      "status": "AUTO_REVIEW_REJECTED_PENDING_EXPLICIT_APPROVAL",
+      "originalCheckpointVerified": true,
+      "noRetryOrWorkaround": true
+    }
   }
 }

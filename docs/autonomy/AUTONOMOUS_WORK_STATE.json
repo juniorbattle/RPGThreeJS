@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-11T23:51:56.9913643+00:00",
-  "runEndedAt": "2026-10-12T00:01:29.936Z",
+  "runEndedAt": "2026-10-12T00:09:15.352Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-  "activePhase": "CHECKPOINT_READY_PUBLICATION_BLOCKED",
-  "activeSubtask": "Reviewed six native novice casts and coupled Salvation2AP; checkpoint publication blocked",
+  "activePhase": "PUBLICATION_METADATA_BLOCKED",
+  "activeSubtask": "Six-skill checkpoint published; closure metadata approval pending",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "fb2e2f5feb840caa7855fdb0c691a630d4fd01a6",
-  "lastPushedCommit": "a599557540f8ad7c95c3b2f5a636fb8823d8ffd0",
+  "lastPushedCommit": "b6bf0e4be2e42a13efa99c679d3a73aa4a22d556",
   "completedThisRun": [
     "Safely resumed interrupted2012 under stale-lock protocol; preserved three inherited WIP paths and prior refs",
     "Verified terminalFAILED receipt/digest/driver/393source/9build and reviewed eight fresh captures with guardian",
@@ -61,8 +61,8 @@
     "Ending2311 FAILED_NOT_ACCEPTED: bounded131actions, three damage alliesKO, Marian alone; support-only crosier pilot excludes native foe actions. Six-line lone-survivor native fallback is source-reviewed checkpoint only, verify in new registered QA; no balance or terminalV6 conclusion. Prior2104 interrupted output remains historical NOT_ACCEPTED.",
     "campaign-keyboard-1655: native opening defeat blocks intended parent-return/first-refuge proof; pilot strategy versus gameplay reliability unresolved, not established product regression",
     "1748/1856: checkpoint perception and parent settled-focus visuals OPEN; Pursuit mappings implemented/scoped T0 fixture verified, articulated gait and broader browser acceptance OPEN; mobile final",
-    "Inherited automatic review rejected2012 WIP publication; concrete local checkpoint needs approval before export. No push retry/workaround.",
-    "FAILED2012 native skill-menu locator.click timeout at275; full ending/aggregate/reload unproved, no established runtime regression."
+    "FAILED2012 native skill-menu locator.click timeout at275; full ending/aggregate/reload unproved, no established runtime regression.",
+    "Original approved two commits published; new four-path closure metadata export rejected by automatic review, explicit approval required before publish/lock release."
   ],
   "remainingWork": [
     "Six fresh novice cast/AP coverage and same-round healthy setup3to2/Salvation2to0 capped40percent reviewed2012; fullcampaign aggregate/ending/reload OPEN after skill-menu click timeout",
@@ -75,7 +75,7 @@
     "Opening dynamic1366/620 normalOS accepted scoped; later/earned narrative and approvedBois-Clair nightplate remainOPEN",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Resolve inherited automatic-publication rejection for the concrete reviewed local dev checkpoint before any push/retry; then verify lock/HEAD/stopped workers/live origin parity, publish normally to origin/dev and archive/release owned lock. Preserve FAILED2012 driver152e8ff1/resulta04d3061 and reviewed scoped six novice casts plus same-round3to2 setup/Salvation2to0 capped40percent; never seed2012/1858/1800/1731/0001 or repeat unchanged45min campaign. Full native judgement/ending/reload and aggregate gates remain OPEN after native skill-menu click timeout at275; diagnose only a demonstrated failure with existing runners before any single targeted desktop verification from independently SUCCEEDED1859 exact seed. No harness rewrite or weaker assertion. Parent randomPursuit/later narrative/fullV6/AT/balance/operatorfinal/demo IN_PROGRESS; exact deferred keyboard/history/queue retained, mobileLAST.",
+  "nextAction": "Approve the concrete four-path local publication-closure metadata checkpoint, then recheck owned lock/HEAD/live origin/stoppedjobs and normally publish it to origin/dev before archiving/releasing lock. Original fb2e2f5/b6bf0e4 are already verified on origin/dev. Auto-review rejected only new closure-content egress as beyond the exact prior approval; no retry/workaround. After closure, Read-only preflight/exclusive lock, verify published native-six-skills-observations-20261011-2012/checks.json and terminal2012 receipt/digest/current393source/9build first. Preserve FAILED2012 driver152e8ff1/resulta04d3061 and reviewed scoped six novice casts plus same-round3to2 setup/Salvation2to0 capped40percent; never seed2012/1858/1800/1731/0001 or repeat unchanged45min campaign. Full native judgement/ending/reload and aggregate gates remain OPEN after native skill-menu click timeout at275; diagnose only a demonstrated failure with existing runners before any single targeted desktop verification from independently SUCCEEDED1859 exact seed. No harness rewrite or weaker assertion. Parent randomPursuit/later narrative/fullV6/AT/balance/operatorfinal/demo IN_PROGRESS; exact deferred keyboard/history/queue retained, mobileLAST. Publication rejection resolved by explicit human approval and verified normal dev push; metadata closure and lock archive complete when confirmed in automation memory.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -91,7 +91,7 @@
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
   "creditStatus": "AVAILABLE_THIS_RUN",
-  "contractComplianceStatus": "PASS_SCOPED_NATIVE_OBSERVATIONS_FULL_TASK_AND_PUBLICATION_BLOCKED",
+  "contractComplianceStatus": "PASS_SCOPED_NATIVE_OBSERVATIONS_FULL_TASK_OPEN_PUBLICATION_VERIFIED",
   "commitReferenceScope": "Verified input-only pilot checkpoint ab51376 on dev; corrected driver UNEXECUTED. Final metadata SHA and lock release in automation memory/ignored final-publication audit.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
@@ -195,7 +195,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261011T2354",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-12T00:01:29.936Z",
+  "lastHeartbeat": "2026-10-12T00:09:15.352Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261011T2012",
     "sha": "bd885d24511e08b72b93ae5d4c3f419f863f2564",
@@ -211,8 +211,8 @@
   "live": {
     "runId": "rpgthreejs-auto-dev-90m-20261011T2354",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-12T00:01:29.936Z",
-    "status": "CHECKPOINT_COMMITTED_PUBLICATION_BLOCKED",
+    "lastHeartbeat": "2026-10-12T00:09:15.352Z",
+    "status": "ORIGINAL_CHECKPOINT_PUBLISHED_METADATA_BLOCKED",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -21630,7 +21630,7 @@
     "wip": {
       "sha": "ff08c19eae3b86716b56348a861e3e452c823126",
       "branch": "wip/rpgthreejs-auto-dev-90m-20261011T2354",
-      "status": "LOCAL_COMMITTED_PUBLICATION_BLOCKED",
+      "status": "CONTENT_ON_DEV_RETAINED_UNTIL_FINAL_PARITY",
       "dirtyFiles": [
         "tools/demo-continuous-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -21648,7 +21648,7 @@
       ],
       "lastGreenCheck": "60tests/types/8contracts8slots/syntax/immutable/whitespace/receiptphysicalprovenance PASS; machineFAILED scoped observation review"
     },
-    "nextAction": "Resolve inherited automatic-publication rejection for the concrete reviewed local dev checkpoint before any push/retry; then verify lock/HEAD/stopped workers/live origin parity, publish normally to origin/dev and archive/release owned lock. Preserve FAILED2012 driver152e8ff1/resulta04d3061 and reviewed scoped six novice casts plus same-round3to2 setup/Salvation2to0 capped40percent; never seed2012/1858/1800/1731/0001 or repeat unchanged45min campaign. Full native judgement/ending/reload and aggregate gates remain OPEN after native skill-menu click timeout at275; diagnose only a demonstrated failure with existing runners before any single targeted desktop verification from independently SUCCEEDED1859 exact seed. No harness rewrite or weaker assertion. Parent randomPursuit/later narrative/fullV6/AT/balance/operatorfinal/demo IN_PROGRESS; exact deferred keyboard/history/queue retained, mobileLAST.",
+    "nextAction": "Approve the concrete four-path local publication-closure metadata checkpoint, then recheck owned lock/HEAD/live origin/stoppedjobs and normally publish it to origin/dev before archiving/releasing lock. Original fb2e2f5/b6bf0e4 are already verified on origin/dev. Auto-review rejected only new closure-content egress as beyond the exact prior approval; no retry/workaround. After closure, Read-only preflight/exclusive lock, verify published native-six-skills-observations-20261011-2012/checks.json and terminal2012 receipt/digest/current393source/9build first. Preserve FAILED2012 driver152e8ff1/resulta04d3061 and reviewed scoped six novice casts plus same-round3to2 setup/Salvation2to0 capped40percent; never seed2012/1858/1800/1731/0001 or repeat unchanged45min campaign. Full native judgement/ending/reload and aggregate gates remain OPEN after native skill-menu click timeout at275; diagnose only a demonstrated failure with existing runners before any single targeted desktop verification from independently SUCCEEDED1859 exact seed. No harness rewrite or weaker assertion. Parent randomPursuit/later narrative/fullV6/AT/balance/operatorfinal/demo IN_PROGRESS; exact deferred keyboard/history/queue retained, mobileLAST. Publication rejection resolved by explicit human approval and verified normal dev push; metadata closure and lock archive complete when confirmed in automation memory.",
     "runMetrics": {
       "existingQaFilesModified": 1,
       "harnessCorrections": 1,
@@ -21670,28 +21670,51 @@
       "docs/autonomy/handoffs/2026-10-10T2321Z-codex-native-skills.md"
     ],
     "publication": {
-      "runId": "rpgthreejs-auto-dev-90m-20261011T1800",
-      "status": "SAFE_PILOT_CHECKPOINT_PUBLISHED_VERIFIED_METADATA_CLOSURE",
-      "checkpoint": "ab513766b3c60ce71f2fb2a0d049e85640adec9c",
-      "authority": "OD-2026-10-08-B",
-      "mode": "NORMAL_NON_FORCE_DEV",
-      "remoteParity": true,
+      "at": "2026-10-12T00:07:33.871Z",
+      "status": "EXPLICIT_HUMAN_APPROVAL_NORMAL_DEV_VERIFIED",
+      "approvedCommits": [
+        "fb2e2f5feb840caa7855fdb0c691a630d4fd01a6",
+        "b6bf0e4be2e42a13efa99c679d3a73aa4a22d556"
+      ],
+      "publishedCheckpoint": "b6bf0e4be2e42a13efa99c679d3a73aa4a22d556",
+      "selectedPaths": [
+        "tools/demo-continuous-production-qa.mjs",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/reports/native-six-skills-observations-20261011-2012/checks.json",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-ro_sneak_attack-9.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-l_long_thrust-14.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_break_guard-17.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-41.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-salvation-exactly2ap-before-42.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-43.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-4-a_precise_shot-8.png",
+        "docs/reports/native-six-skills-observations-20261011-2012/combat-4-n_dark_bolt-11.png",
+        "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md"
+      ],
+      "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
+      "branch": "dev",
+      "nonForce": true,
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "browserAcceptance": "OPEN_CORRECTED_DRIVER_UNEXECUTED"
+      "approvalSource": "User replied OUI j autorise to exact two-commit thirteen-path publication request in current chat",
+      "inheritedRejectionResolved": true
     },
     "runStartedAt": "2026-10-11T23:51:56.9913643+00:00",
-    "runEndedAt": "2026-10-12T00:01:29.936Z",
+    "runEndedAt": "2026-10-12T00:09:15.352Z",
     "writerStopped": true,
     "metadataPublication": {
-      "runId": "rpgthreejs-auto-dev-90m-20261011T1800",
-      "status": "PREPARING_FINAL_METADATA_COMMIT",
+      "status": "AUTO_REVIEW_REJECTED_UNEXECUTED",
+      "at": "2026-10-12T00:09:15.352Z",
+      "action": "Commit and normal push of four publication-closure metadata paths",
+      "reason": "Modified metadata contents exceed exact original commit payload approval; sensitive repository-state egress not specifically authorized",
       "selectedPaths": [
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-11T1800Z-codex-native-skills.md"
+        "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md",
+        "docs/reports/native-six-skills-observations-20261011-2012/checks.json"
       ],
-      "rejectionsThisRun": 0,
-      "actualFinalShaExternal": true
+      "localCommitOnly": true,
+      "noPushRetryOrWorkaround": true
     },
     "publication1752History": {
       "status": "VERIFIED_PUBLISHED",
@@ -22448,7 +22471,7 @@
       "workerAbsent": 60012,
       "portAbsent": 5352
     },
-    "publishedCheckpoint": "ab513766b3c60ce71f2fb2a0d049e85640adec9c",
+    "publishedCheckpoint": "b6bf0e4be2e42a13efa99c679d3a73aa4a22d556",
     "closeout0613": {
       "checkpoint": "babc01bf3571247b73516a740c501a88b1deb7dd",
       "runEndedAt": "2026-10-09T06:56:55.147Z",
@@ -22504,7 +22527,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-    "activeSubtask": "Reviewed six native novice casts and coupled Salvation2AP; checkpoint publication blocked",
+    "activeSubtask": "Six-skill checkpoint published; closure metadata approval pending",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -24649,7 +24672,13 @@
           "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
           "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
         ],
-        "destination": "https://github.com/juniorbattle/RPGThreeJS.git"
+        "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
+        "resolution": {
+          "at": "2026-10-12T00:07:33.871Z",
+          "humanApproval": true,
+          "checkpoint": "b6bf0e4be2e42a13efa99c679d3a73aa4a22d556",
+          "normalPushVerified": true
+        }
       },
       "terminalReview": {
         "at": "2026-10-11T23:57:03.214Z",
@@ -24697,7 +24726,7 @@
         "SAVE": "PASS_SCHEMA_UNCHANGED_NEW_ENDING_RELOAD_OPEN",
         "UI_ACCESSIBILITY": "N/A",
         "QA_EVIDENCE": "PASS_REVIEWED_FRESH_OBSERVATIONS_MACHINE_FAILED",
-        "REPOSITORY_GOVERNANCE": "BLOCKED_PUBLICATION_AUTO_REVIEW_REJECTION"
+        "REPOSITORY_GOVERNANCE": "PASS_EXPLICIT_APPROVED_NORMAL_DEV_PUBLICATION"
       },
       "currentRunMeasurement": {
         "runId": "rpgthreejs-auto-dev-90m-20261011T2354",
@@ -24715,7 +24744,36 @@
         "reviewPasses": 2,
         "quotaSavingClaim": false
       },
-      "publication": "INHERITED_AUTO_REVIEW_REJECTION_NO_RETRY",
+      "publication": {
+        "at": "2026-10-12T00:07:33.871Z",
+        "status": "EXPLICIT_HUMAN_APPROVAL_NORMAL_DEV_VERIFIED",
+        "approvedCommits": [
+          "fb2e2f5feb840caa7855fdb0c691a630d4fd01a6",
+          "b6bf0e4be2e42a13efa99c679d3a73aa4a22d556"
+        ],
+        "publishedCheckpoint": "b6bf0e4be2e42a13efa99c679d3a73aa4a22d556",
+        "selectedPaths": [
+          "tools/demo-continuous-production-qa.mjs",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+          "docs/reports/native-six-skills-observations-20261011-2012/checks.json",
+          "docs/reports/native-six-skills-observations-20261011-2012/combat-3-ro_sneak_attack-9.png",
+          "docs/reports/native-six-skills-observations-20261011-2012/combat-3-l_long_thrust-14.png",
+          "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_break_guard-17.png",
+          "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-41.png",
+          "docs/reports/native-six-skills-observations-20261011-2012/combat-3-salvation-exactly2ap-before-42.png",
+          "docs/reports/native-six-skills-observations-20261011-2012/combat-3-w_salvation-43.png",
+          "docs/reports/native-six-skills-observations-20261011-2012/combat-4-a_precise_shot-8.png",
+          "docs/reports/native-six-skills-observations-20261011-2012/combat-4-n_dark_bolt-11.png",
+          "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md"
+        ],
+        "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
+        "branch": "dev",
+        "nonForce": true,
+        "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+        "approvalSource": "User replied OUI j autorise to exact two-commit thirteen-path publication request in current chat",
+        "inheritedRejectionResolved": true
+      },
       "localCheckpoint": "fb2e2f5feb840caa7855fdb0c691a630d4fd01a6",
       "localCheckpointPaths": [
         "tools/demo-continuous-production-qa.mjs",
@@ -24741,7 +24799,10 @@
         "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
         "publicationRetry": false,
         "guardianPrecisionCorrections": "AP/noHPchange wording and raw capture paths corrected and root verified; no claim of explicit miss telemetry",
-        "operationalNote": "One baseline typo stopped the gate before staging; exact immutable gate subsequently PASS. Snapshot script pipeline syntax error stopped before mutation and was corrected. No source/driver/assertion change in this run."
+        "operationalNote": "One baseline typo stopped the gate before staging; exact immutable gate subsequently PASS. Snapshot script pipeline syntax error stopped before mutation and was corrected. No source/driver/assertion change in this run.",
+        "publicationVerifiedAt": "2026-10-12T00:07:33.871Z",
+        "metadataClosure": "AUTO_REVIEW_REJECTED_LOCAL_CHECKPOINT_PENDING_APPROVAL",
+        "lockRetainedUntilFinalParity": true
       }
     }
   },
