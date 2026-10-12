@@ -1,44 +1,45 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-12T18:49:48.4824588+00:00",
-  "runEndedAt": "2026-10-12T20:31:29.740Z",
+  "runStartedAt": "2026-10-12T20:46:41.6721833Z",
+  "runEndedAt": "2026-10-12T21:01:25.101Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-  "activePhase": "COMPUTED_COVERAGE_REVIEW",
-  "activeSubtask": "T0 computed curtain coverage and temporal sequence audit",
+  "activePhase": "COMPUTED_COVERAGE_CHECKPOINT",
+  "activeSubtask": "T0 OS1366 computed swap and equivalent exit accepted; rendered gentle arrival fade remains open",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "1d763e639085c2e83a1b491038058900c261fd07",
-  "lastPushedCommit": "1d763e639085c2e83a1b491038058900c261fd07",
+  "lastKnownGoodCommit": "c6aa68f9e4fd9e24983ac7471dab75d7bc684734",
+  "lastPushedCommit": "c6aa68f9e4fd9e24983ac7471dab75d7bc684734",
   "completedThisRun": [
-    "Read-only preflight and live remote parity verified; clean dev/no inherited WIP",
-    "Prior T3OS1821 compatible proof reused without rerun",
-    "ONE unchanged registered T0OS1366 smoke SUCCEEDED12 assertions/841samples/errors0; root four captures inspected",
-    "Bounded root computed-curtain source audit; missing actual computed/timed evidence kept OPEN",
-    "Reviewer failed before findings with usage_limit_exceeded; no independent PASS",
-    "20focusedtests/threefiles,TypeScript,eightcontracts/eightslots,immutable/workingcopy/whitespace gates PASS"
+    "Clean read-only preflight; no lock/WIP; live dev parity and old owner inactive; inherited Vite retained",
+    "Prior T0OS1848 receipt/source-driver-helper-nine-build verified and independently accepted scoped numerical only, no unchanged rerun",
+    "Existing QA driver optional computed opacity/geometry/stack measurements and ignored video; no new tool or runtime defect inferred",
+    "ONE registered T0OS1366 coverage smoke15assertions/747samples/errors0; explicit return and fork computed-opaque swaps",
+    "Bounded domain and guardian reviews accept computed coverage only; rendered gentle fade remains OPEN",
+    "20focusedtests/threefiles,TypeScript,eightcontracts/eightslots,syntax,immutable/workingcopy/whitespace PASS; unchanged physical build reused"
   ],
   "filesChanged": [
+    "tools/traversal-motion-production-qa.mjs",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-12T1848Z-codex-t0-os-motion.md"
+    "docs/autonomy/handoffs/2026-10-12T2045Z-codex-computed-traversal-coverage.md"
   ],
   "testsRun": [
     "npx vitest run src/traversal/TraversalRoadMotion.test.ts src/traversal/TraversalRoadScene.test.ts src/ui/reducedMotion.test.ts --exclude tmp/**:20PASS",
     "npx tsc --noEmit:PASS",
     "npm run contracts:validate:8contracts/8slots PASS",
-    "git diff --check and immutable/workingcopy LOCKED gates:PASS",
-    "ONE existing registered production T0OS1366 smoke:SUCCEEDED12 assertions,841samples,8captures,errors0"
+    "node --check existing driver and immutable/workingcopy/whitespace gates:PASS",
+    "ONE registered production coverage T0OS1366:SUCCEEDED15assertions/747samples/errors0; stable/request/current/digest matched"
   ],
   "testsPassed": [
     "20focusedtests",
     "TypeScript",
     "8contracts/8slots",
-    "LOCKED gates and whitespace",
-    "T0OS worker completed; production acceptance remains pending"
+    "LOCKED and whitespace gates",
+    "Fresh T0OS computed coverage scoped acceptance"
   ],
   "testsRemaining": [
-    "Bounded independent T0OS1848 review after credit availability",
-    "Actual computed curtain/pseudo-element coverage and timestamped rendered sequence",
-    "Original parent/deferred campaign and mobileLAST acceptance"
+    "Rendered arrival gentle fade with precisely aligned composited frames",
+    "Normal/game-only/T1/T3 computed coverage; mobileLAST",
+    "Original parent and exact deferred campaign/demo acceptance"
   ],
   "blockers": [
     "One desktop1366normal scenario and one incidental ordinary Pursuit outcome only; No exact DOM reward/card/Continue bounds or automatic result-focus assertion; Early parent typewriter excludes settled prose typography; No full random-pool breadth, defeat/re-entry, six fresh skills, balance, ending, broadV6/migration, OS/mobile/full-demo claim; Kestrel and Elara KO at refuge: native preparation remains necessary; 50ms actual-impact capture is transitional and excluded from CombatStage visual acceptance",
@@ -69,7 +70,7 @@
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest",
     "1521: five fresh novice classes and capped40percent Salvation2to0 scoped accepted; sixth/lancer, earned second-refuge reload, ending, fullV6, balance and fresh random-Pursuit breadth remain OPEN"
   ],
-  "nextAction": "Complete bounded T0OS1848 review; review new optional existing-driver computed coverage assertions, then ONE registered T0 OS-only1366 coverage smoke with ignored timestamped captures/video. Preserve all parent/deferred/queue work and existing accepted numerical receipts; no speculative runtime edit.",
+  "nextAction": "Read-only preflight/exclusive lock; reuse motion-t0-os-coverage-2045 SUCCEEDED result142a13c4, exact driver3851db0b/source637f91ee/helper/nine physical build and scoped guardian/traversal reviews. Computed return/fork full-cover swap and OS equivalent exit are accepted only for T0 OS1366. Do not repeat unchanged accepted numerical/computed scenarios or campaign deadline-only runs. Next resolve rendered arrival perception: inspect existing WebM frame timeline and 119917..120273ms computed interval; current arrival screenshot spans119974..120415ms and strips show coarse scene-to-black, so gentle rendered fade remains OPEN, not a runtime defect. If existing recording cannot supply intermediate aligned frames, make only a bounded capture-policy correction in the existing driver to avoid screenshot calls during the short transition, retain all certifying assertions and guardian trigger, then ONE registered T0OS1366 temporal smoke; no instrumentation rewrite or speculative product edit. Normal/game-only/T1/T3 computed coverage and mobileLAST remain later gaps. Preserve exact parent all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo, deferred keyboard, pendingNarrative and taskQueue; never seed FAILED1521 partial outputs.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -84,21 +85,7 @@
     "ENVIRONMENT-NARRATIVE-COHERENCE: BLOCKED_ASSET_BOIS_CLAIR_NIGHT; bounded audit complete",
     "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
   ],
-  "creditStatus": {
-    "status": "PAUSED_FOR_CREDITS",
-    "at": "2026-10-12T20:29:09.871Z",
-    "reason": "traversal-engineer /root/t0_os_review usage_limit_exceeded before findings",
-    "previous": {
-      "status": "AVAILABLE_APPROVAL_REVIEW_RESUMED",
-      "previousReviewFailure": {
-        "status": "APPROVAL_REVIEW_USAGE_LIMIT",
-        "observedAt": "2026-10-12T04:59:34.361Z",
-        "retryAfterLocal": "2026-10-12T00:49:00-04:00",
-        "reason": "Automatic approval review failed due usage limit; no unsafe determination. Rejected publication-closeout command was NOT_EXECUTED; no bypass."
-      },
-      "at": "2026-10-12T05:00:08.378Z"
-    }
-  },
+  "creditStatus": "AVAILABLE_THIS_RUN; previous PAUSED_FOR_CREDITS resumed without changing parent task",
   "contractComplianceStatus": {
     "contractSetVersion": "1.1.0",
     "lockedRulesChanged": false,
@@ -112,21 +99,22 @@
       "CAMPAIGN_AND_STATE",
       "COMBAT_AND_VFX",
       "UI_AND_ACCESSIBILITY",
+      "PRESENTATION_AND_MEDIA",
       "AUTHORING_AND_QA"
     ],
     "matrix": {
-      "GAME_CONSTITUTION": "PASS unchanged authority/IDs",
+      "GAME_CONSTITUTION": "PASS unchanged truth authority",
       "ART_DIRECTION": "N/A unchanged",
       "CHARACTERS": "N/A unchanged",
       "ENVIRONMENTS": "N/A unchanged",
-      "NARRATIVE_CAMPAIGN": "PASS no owner changes; fixtures do not certify campaign",
+      "NARRATIVE_CAMPAIGN": "PASS no owner change; fixtures excluded from campaign proof",
       "NARRATIVE_PRESENTATION": "N/A unchanged",
-      "TRAVERSAL": "BLOCKED full motion acceptance: reviewer credits, computed coverage and temporal sequence missing",
-      "COMBAT": "PASS unchanged; injected outcomes excluded from tactical acceptance",
-      "SAVE": "PASS unchanged; no V6 acceptance claim",
-      "UI_ACCESSIBILITY": "BLOCKED full reduced-motion acceptance; numeric OS-only observation only",
-      "QA_EVIDENCE": "PASS terminal digest/request/current identity and four root captures; machine NOT_ACCEPTED",
-      "REPOSITORY_GOVERNANCE": "PASS owned lock, selected workflow paths, normal dev publication authorized OD-2026-10-12-A"
+      "TRAVERSAL": "PASS scoped computed T0OS1366 swap/exit; BLOCKED whole perceived continuity",
+      "COMBAT": "PASS unchanged; injected outcomes excluded",
+      "SAVE": "PASS IDs/V6 unchanged; no earned save acceptance",
+      "UI_ACCESSIBILITY": "PASS scoped computed OS coverage; BLOCKED rendered gentle fade and wider modes/viewports",
+      "QA_EVIDENCE": "PASS fresh terminal15assertions/digest/current source-driver-build and bounded reviews; NOT_ACCEPTED machine status retained separately",
+      "REPOSITORY_GOVERNANCE": "PASS exclusive lock, selected paths, permanent OD-2026-10-12-A normal origin/dev publication"
     }
   },
   "commitReferenceScope": "Published workflow checkpoint; final metadata closure identified by Git and automation memory",
@@ -232,15 +220,16 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261012T1848",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-12T20:51:06.287Z",
+  "lastHeartbeat": "2026-10-12T21:01:25.101Z",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261012T1848",
-    "sha": "64575cac0791376cf168fda463f94bd25a964e3c",
-    "at": "2026-10-12T20:30:09.1661372Z",
-    "status": "GREEN_RECOVERY_REMOTE_VERIFIED_RETAIN_REFS"
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261012T2045",
+    "sha": "25d1f2d371a012f0a84c3154a81158add63b4ca7",
+    "at": "2026-10-12T20:52:43.5069073Z",
+    "remoteVerified": true,
+    "status": "RECOVERY_NET_not_acceptance"
   },
   "live": {
-    "lastHeartbeat": "2026-10-12T20:49:55.474Z",
+    "lastHeartbeat": "2026-10-12T21:01:25.101Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -22538,9 +22527,9 @@
         "endedAt": "2026-10-12T16:23:21.670Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "exitCode": 0,
         "resultPath": "tmp/traversal/motion-t0-native-desktop-1617/results.json",
         "resultSha256": "66a38b713ebb2b3021e7f8cdad406b96b6f47ee577cd5a1232a7da5ec022c372",
@@ -22644,9 +22633,9 @@
         "endedAt": "2026-10-12T16:53:43.703Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "exitCode": 0,
         "resultPath": "tmp/traversal/motion-t3-native-desktop-1648/results.json",
         "resultSha256": "064bf819647428642ea182b1cfec019d29f3c3deec6ed1b746cb48d52733dcc2",
@@ -22762,9 +22751,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "reviewDisposition": "ACCEPTED_SCOPED_T3_OS_ONLY_1366_FORK_NUMERICAL_MOTION_EQUIVALENT_EXIT_LIFECYCLE",
         "reviewedAt": "2026-10-12T18:30:09.678Z",
         "reviewScope": "V6-origin fixture and injected young_dragon_roost/forest_ambush victories; motion/lifecycle only",
@@ -22876,9 +22865,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "reviewDisposition": "ROOT_INSPECTED_NUMERICAL_EVIDENCE_PENDING_INDEPENDENT_REVIEW",
         "reviewedAt": "2026-10-12T20:29:09.871Z",
         "reviewScope": "T0 QA origin and two injected wolf_pack victories; numerical motion/lifecycle only; no earned campaign/tactical/V6/Pursuit/reload acceptance",
@@ -22893,7 +22882,7 @@
         "schemaVersion": 1,
         "jobId": "motion-t0-os-coverage-2045",
         "runId": "rpgthreejs-auto-dev-90m-20261012T2045",
-        "status": "RUNNING",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-12T20:50:04.606Z",
         "pid": 24400,
         "port": 5394,
@@ -22995,51 +22984,74 @@
           "--coverage-check=1",
           "--port=5394",
           "--output=tmp/traversal/motion-t0-os-coverage-2045"
+        ],
+        "endedAt": "2026-10-12T20:52:36.626Z",
+        "exitCode": 0,
+        "resultPath": "tmp/traversal/motion-t0-os-coverage-2045/results.json",
+        "resultSha256": "142a13c461269ba23779d9a12273deabbc652ce5e4537e99be59481df2a80186",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "reviewDisposition": "ACCEPTED_SCOPED_COMPUTED_COVERAGE_T0_OS1366",
+        "reviewedAt": "2026-10-12T21:01:25.101Z",
+        "reviewScope": "T0 QA origin plus injected wolf_pack results certify presentation/lifecycle only; exclude earned campaign, combat, V6, Pursuit and reload",
+        "reviewLimitations": [
+          "Rendered gentle arrival fade not accepted",
+          "T0 OS1366 only",
+          "Fixtures exclude earned campaign/combat/V6/Pursuit/reload"
+        ],
+        "reviewers": [
+          "/root/t0_motion_review",
+          "/root/coverage_guardian"
         ]
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261012T1848",
-      "sha": "64575cac0791376cf168fda463f94bd25a964e3c",
-      "at": "2026-10-12T20:30:09.1661372Z",
-      "status": "GREEN_RECOVERY_REMOTE_VERIFIED_RETAIN_REFS"
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261012T2045",
+      "sha": "25d1f2d371a012f0a84c3154a81158add63b4ca7",
+      "at": "2026-10-12T20:52:43.5069073Z",
+      "remoteVerified": true,
+      "status": "RECOVERY_NET_not_acceptance"
     },
-    "nextAction": "Complete bounded T0OS1848 review; review new optional existing-driver computed coverage assertions, then ONE registered T0 OS-only1366 coverage smoke with ignored timestamped captures/video. Preserve all parent/deferred/queue work and existing accepted numerical receipts; no speculative runtime edit.",
+    "nextAction": "Read-only preflight/exclusive lock; reuse motion-t0-os-coverage-2045 SUCCEEDED result142a13c4, exact driver3851db0b/source637f91ee/helper/nine physical build and scoped guardian/traversal reviews. Computed return/fork full-cover swap and OS equivalent exit are accepted only for T0 OS1366. Do not repeat unchanged accepted numerical/computed scenarios or campaign deadline-only runs. Next resolve rendered arrival perception: inspect existing WebM frame timeline and 119917..120273ms computed interval; current arrival screenshot spans119974..120415ms and strips show coarse scene-to-black, so gentle rendered fade remains OPEN, not a runtime defect. If existing recording cannot supply intermediate aligned frames, make only a bounded capture-policy correction in the existing driver to avoid screenshot calls during the short transition, retain all certifying assertions and guardian trigger, then ONE registered T0OS1366 temporal smoke; no instrumentation rewrite or speculative product edit. Normal/game-only/T1/T3 computed coverage and mobileLAST remain later gaps. Preserve exact parent all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo, deferred keyboard, pendingNarrative and taskQueue; never seed FAILED1521 partial outputs.",
     "runMetrics": {
-      "runId": "rpgthreejs-auto-dev-90m-20261012T1848",
+      "runId": "rpgthreejs-auto-dev-90m-20261012T2045",
       "runtimeSourceFilesModified": 0,
       "testFilesModified": 0,
-      "existingQaFilesModified": 0,
+      "existingQaFilesModified": 1,
       "newQaFilesAdded": 0,
       "promotedProofFiles": 0,
       "workflowDocs": 3,
       "inheritedWipFiles": 0,
       "browserScenarios": 1,
       "registeredJobs": 1,
-      "rootCapturesInspected": 4,
-      "reviewers": 1,
-      "reviewerPasses": 0,
-      "harnessCorrections": 0,
+      "reviewers": 2,
+      "reviewerPasses": 4,
+      "rootSequenceStripsInspected": 5,
+      "harnessAssertionCorrections": 1,
       "quotaSavingsClaim": "NONE"
     },
     "checkpointPaths": [
+      "tools/traversal-motion-production-qa.mjs",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-12T1848Z-codex-t0-os-motion.md"
+      "docs/autonomy/handoffs/2026-10-12T2045Z-codex-computed-traversal-coverage.md"
     ],
     "publication": {
-      "status": "PUBLISHED_NORMAL_DEV_LIVE_VERIFIED",
-      "checkpoint": "1d763e639085c2e83a1b491038058900c261fd07",
+      "status": "READY_FOR_AUTHORIZED_NORMAL_DEV_PUBLICATION",
       "authorization": "OD-2026-10-12-A",
       "destination": "origin/dev",
-      "verifiedAt": "2026-10-12T20:31:29.740Z",
       "paths": [
+        "tools/traversal-motion-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-12T1848Z-codex-t0-os-motion.md"
+        "docs/autonomy/handoffs/2026-10-12T2045Z-codex-computed-traversal-coverage.md"
       ]
     },
-    "runEndedAt": null,
+    "runEndedAt": "2026-10-12T21:01:25.101Z",
     "writerStopped": false,
     "metadataPublication": {
       "status": "NORMAL_DEV_PUBLICATION_VERIFIED",
@@ -23839,7 +23851,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-    "activeSubtask": "T0 computed curtain coverage and temporal sequence audit",
+    "activeSubtask": "T0 OS1366 computed swap and equivalent exit accepted; rendered gentle arrival fade remains open",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -27175,9 +27187,9 @@
     "agent": "codex",
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-12T20:46:41.6721833Z",
-    "activePhase": "COMPUTED_COVERAGE_REVIEW",
-    "heartbeat": "2026-10-12T20:51:06.287Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-12T1848Z-codex-t0-os-motion.md",
+    "activePhase": "COMPUTED_COVERAGE_CHECKPOINT",
+    "heartbeat": "2026-10-12T21:01:25.101Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-12T2045Z-codex-computed-traversal-coverage.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -27535,18 +27547,7 @@
       },
       "aliasReconciliation": "Current generic live aliases reconciled with run1617; prior values retained, no parent/queue/QA request edits"
     },
-    "lastSnapshot": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261012T1617",
-      "sha": "643377f688a8dce929d7be1a9258881af85788cd",
-      "at": "2026-10-12T16:28:26.8529321Z",
-      "base": "e9536cad090caf919973cfae7848151cae8efee1",
-      "paths": [
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-12T1617Z-codex-t0-motion.md"
-      ],
-      "status": "NORMAL_REMOTE_VERIFIED_EXACT_BLOBS_ON_DEV"
-    },
+    "lastSnapshot": "2026-10-12T20:52:43.5069073Z",
     "motion1648": {
       "jobId": "motion-t3-native-desktop-1648",
       "receipt": "tmp/traversal/motion-t3-native-desktop-1648/qa-job.json",
@@ -27714,7 +27715,7 @@
       "nextAction": "Retry reviewer availability after read-only preflight/exclusive lock; inspect motion-t0-os-desktop-1848 SUCCEEDED terminal receipt/result9fb0743d and current source637f91ee/driverce350f77/helper/nine physical build identity. Reuse this completed T0OS1366 smoke: root inspected four captures, 12 driver assertions/841 samples, return/fork numerical joins1.5776%/1.2606%, zero departure offset/reveal clock, one unresolved lion-first-refuge callback under inline fade1. Independent traversal review failed before findings with usage_limit_exceeded; resume the same bounded review, do not rerun unchanged T0OS1848/T3OS1821/T3normal1648/T0normal1617/T1normal0415/OS0504. Root source audit found JS-driven fade timing but no demonstrated runtime defect: next resolve actual getComputedStyle local curtain and root ::after opacity/visibility/geometry/z-order, snapshot at view swap, and timestamped departure/arrival sequence in existing driver; inline values and stills cannot certify coverage or perceived continuity. Before editing certifying assertions, apply the relevant guardian trigger and one-smoke policy; no speculative product edit or broad matrix. Game-only/full perception/mobileLAST and original all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo remain OPEN. Preserve exact deferred keyboard/pendingNarrative/taskQueue; never seed FAILED1521 partial saves or replay unchanged deadline-only campaign."
     },
     "guardian2045": {
-      "status": "READINESS_PASS",
+      "status": "ACCEPTED_SCOPED_COMPUTED_COVERAGE_FINAL_REVIEW",
       "reviewer": "/root/coverage_guardian",
       "correction": "computed-arrival-cover assertion only required for OS motion",
       "remaining": "Terminal15assertions; explicit return/fork opaque midpoint samples; arrival coverage; reviewed timestamped sequence",
@@ -27725,6 +27726,211 @@
       "reviewer": "/root/t0_motion_review",
       "resultSha256": "9fb0743d22cf0b1f20a1b9132356c3832c3da58bd2b4a80acb090bac42a02260",
       "computedCoverage": "OPEN_new_smoke_pending"
+    },
+    "motionCoverage2045": {
+      "jobId": "motion-t0-os-coverage-2045",
+      "resultSha256": "142a13c461269ba23779d9a12273deabbc652ce5e4537e99be59481df2a80186",
+      "sourceTree": "637f91ee993a3ac5f745a0b73975c4d252d62a86",
+      "driver": {
+        "path": "tools/traversal-motion-production-qa.mjs",
+        "sha256": "3851db0b6743b076b97f9483ae929841e114b06e5b4daa1f9b2953fa8e44ad6f"
+      },
+      "helper": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+      "build": [
+        {
+          "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+          "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+        },
+        {
+          "path": "dist/assets/combat-CP2whCOz.js",
+          "sha256": "a537d8a7a218115f4afe53bda13f59bea47a330285f65beb956d9694e3c3dd01"
+        },
+        {
+          "path": "dist/assets/combat-DGLEfKFr.css",
+          "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+        },
+        {
+          "path": "dist/assets/game-C2zvqMPX.js",
+          "sha256": "e30054e5f7e7e0d4b472b4117e419cd7a4b7824d500170168955e8112dace0d4"
+        },
+        {
+          "path": "dist/assets/game-CdUsLhii.css",
+          "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+        },
+        {
+          "path": "dist/assets/three-core-f0ajj1rG.js",
+          "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+        },
+        {
+          "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+          "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+        },
+        {
+          "path": "dist/assets/validation-mSkvzYyn.js",
+          "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "2ccb3efb6a34d4518df1fb4b4afe832000523a257d1af3c1e048037c84f985af"
+        }
+      ],
+      "reviewDisposition": "ACCEPTED_SCOPED_COMPUTED_COVERAGE_T0_OS1366",
+      "machineAcceptance": "NOT_ACCEPTED",
+      "parameters": {
+        "motion": "os",
+        "viewports": [
+          "1366x768"
+        ],
+        "legs": [
+          "T0"
+        ],
+        "branch": "event",
+        "gameReducedMotion": false,
+        "pursuitCheck": false,
+        "gaitCheck": false,
+        "reducedChargeCheck": false,
+        "coverageCheck": true,
+        "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+      },
+      "assertions": 15,
+      "samples": 747,
+      "departures": [
+        {
+          "serial": 1,
+          "kind": "return",
+          "checkpointFrames": 39,
+          "revealFrames": 12,
+          "clockStayedZero": true,
+          "minRevealSpeed": 1.5303012219447476,
+          "displacement": 0,
+          "velocityJoin": {
+            "reveal": 1.472087249244188,
+            "driving": 1.4488182655045416,
+            "relativeChange": 0.015806796609096008
+          }
+        },
+        {
+          "serial": 2,
+          "kind": "fork",
+          "checkpointFrames": 41,
+          "revealFrames": 13,
+          "clockStayedZero": true,
+          "minRevealSpeed": 1.2602133746013024,
+          "displacement": 0,
+          "velocityJoin": {
+            "reveal": 1.240124434495682,
+            "driving": 1.2138214106209564,
+            "relativeChange": 0.021209987597270663
+          }
+        }
+      ],
+      "viewSwaps": 7,
+      "arrivalFrames": 35,
+      "arrivalPartialFrames": 20,
+      "arrival": {
+        "destination": "lion-first-refuge",
+        "left": 1419.4765625,
+        "width": 303.171875,
+        "viewport": 1366,
+        "speed": 3.600179999925007,
+        "fade": 1,
+        "node": "lion-first-trial-event",
+        "resolved": false,
+        "time": 120396.19999980927,
+        "cover": {
+          "local": {
+            "opacity": 0,
+            "visibility": "hidden",
+            "display": "block",
+            "background": "rgb(0, 0, 0)",
+            "zIndex": "10000",
+            "left": 0,
+            "top": 0,
+            "right": 1366,
+            "bottom": 768,
+            "topmost": false
+          },
+          "vehicleAncestors": [
+            {
+              "className": "traversal-vehicle",
+              "opacity": 1,
+              "visibility": "visible",
+              "display": "block"
+            },
+            {
+              "className": "traversal-world__actors",
+              "opacity": 1,
+              "visibility": "visible",
+              "display": "block"
+            },
+            {
+              "className": "traversal-world",
+              "opacity": 1,
+              "visibility": "visible",
+              "display": "block"
+            },
+            {
+              "className": "traversal-road traversal-t0",
+              "opacity": 1,
+              "visibility": "visible",
+              "display": "block"
+            },
+            {
+              "className": "",
+              "opacity": 1,
+              "visibility": "visible",
+              "display": "block"
+            },
+            {
+              "className": "mode-entering",
+              "opacity": 1,
+              "visibility": "visible",
+              "display": "block"
+            },
+            {
+              "className": "",
+              "opacity": 1,
+              "visibility": "visible",
+              "display": "block"
+            }
+          ],
+          "arrival": {
+            "opacity": 1,
+            "visibility": "visible",
+            "display": "block",
+            "content": "\"\"",
+            "position": "absolute",
+            "background": "rgb(0, 0, 0)",
+            "zIndex": "100",
+            "width": 1366,
+            "height": 768,
+            "top": "0px",
+            "left": "0px",
+            "rootOpacity": 1,
+            "rootVisibility": "visible",
+            "rootLeft": 0,
+            "rootTop": 0,
+            "rootRight": 1366,
+            "rootBottom": 768,
+            "visibleChildren": [
+              {
+                "className": "traversal-world",
+                "zIndex": "auto"
+              }
+            ]
+          }
+        }
+      },
+      "computedCoverage": "PASS scoped full viewport computed opacity/geometry/stack ordering at synchronous return/fork swaps and equivalent arrival",
+      "temporalPerception": "OPEN; coarse native arrival recording and whole-fade screenshot do not prove gentle composited progression",
+      "video": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\tmp\\traversal\\motion-t0-os-coverage-2045\\page@75ea25f3153e9da529ff7db1d028aa4a.webm",
+      "selectedArtifacts": "tmp/autonomy/run-2045/selected-review-artifacts.json",
+      "scope": "T0 QA origin plus injected wolf_pack results certify presentation/lifecycle only; exclude earned campaign, combat, V6, Pursuit and reload",
+      "reviewers": [
+        "/root/t0_motion_review",
+        "/root/coverage_guardian"
+      ],
+      "nextAction": "Read-only preflight/exclusive lock; reuse motion-t0-os-coverage-2045 SUCCEEDED result142a13c4, exact driver3851db0b/source637f91ee/helper/nine physical build and scoped guardian/traversal reviews. Computed return/fork full-cover swap and OS equivalent exit are accepted only for T0 OS1366. Do not repeat unchanged accepted numerical/computed scenarios or campaign deadline-only runs. Next resolve rendered arrival perception: inspect existing WebM frame timeline and 119917..120273ms computed interval; current arrival screenshot spans119974..120415ms and strips show coarse scene-to-black, so gentle rendered fade remains OPEN, not a runtime defect. If existing recording cannot supply intermediate aligned frames, make only a bounded capture-policy correction in the existing driver to avoid screenshot calls during the short transition, retain all certifying assertions and guardian trigger, then ONE registered T0OS1366 temporal smoke; no instrumentation rewrite or speculative product edit. Normal/game-only/T1/T3 computed coverage and mobileLAST remain later gaps. Preserve exact parent all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo, deferred keyboard, pendingNarrative and taskQueue; never seed FAILED1521 partial outputs."
     }
   },
   "previousInterruptedRun": {
@@ -27772,22 +27978,22 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-12T1848Z-codex-t0-os-motion.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-12T2045Z-codex-computed-traversal-coverage.md",
   "runMeasurement": {
-    "runId": "rpgthreejs-auto-dev-90m-20261012T1848",
+    "runId": "rpgthreejs-auto-dev-90m-20261012T2045",
     "runtimeSourceFilesModified": 0,
     "testFilesModified": 0,
-    "existingQaFilesModified": 0,
+    "existingQaFilesModified": 1,
     "newQaFilesAdded": 0,
     "promotedProofFiles": 0,
     "workflowDocs": 3,
     "inheritedWipFiles": 0,
     "browserScenarios": 1,
     "registeredJobs": 1,
-    "rootCapturesInspected": 4,
-    "reviewers": 1,
-    "reviewerPasses": 0,
-    "harnessCorrections": 0,
+    "reviewers": 2,
+    "reviewerPasses": 4,
+    "rootSequenceStripsInspected": 5,
+    "harnessAssertionCorrections": 1,
     "quotaSavingsClaim": "NONE"
   },
   "deferredDemoTask": {
@@ -28060,25 +28266,24 @@
     }
   },
   "runStatistics": {
-    "runId": "rpgthreejs-auto-dev-90m-20261012T1848",
-    "startedAt": "2026-10-12T18:49:48.4824588+00:00",
-    "endedAt": "2026-10-12T20:31:29.740Z",
-    "elapsedMinutes": 101.68763333333334,
+    "runId": "rpgthreejs-auto-dev-90m-20261012T2045",
+    "startedAt": "2026-10-12T20:46:41.6721833Z",
+    "endedAt": "2026-10-12T21:01:25.101Z",
+    "elapsedMinutes": 14.723816666666666,
     "runtimeSourceFilesModified": 0,
     "testFilesModified": 0,
-    "existingQaFilesModified": 0,
+    "existingQaFilesModified": 1,
     "newQaFilesAdded": 0,
     "promotedProofFiles": 0,
     "workflowDocs": 3,
     "inheritedWipFiles": 0,
     "browserScenarios": 1,
     "registeredJobs": 1,
-    "rootCapturesInspected": 4,
-    "reviewers": 1,
-    "reviewerPasses": 0,
-    "harnessCorrections": 0,
-    "quotaSavingsClaim": "NONE",
-    "timingNote": "Wall elapsed includes credit-limited interruption; atomic QA ended18:52:47Z, safe closure resumed20:29Z. No new heavy work."
+    "reviewers": 2,
+    "reviewerPasses": 4,
+    "rootSequenceStripsInspected": 5,
+    "harnessAssertionCorrections": 1,
+    "quotaSavingsClaim": "NONE"
   },
   "qaToolingJustification": "Extend existing campaign battle() and receipt assertions for incidental Pursuit; no new QA tool. Prior motion runner injects outcomes and cannot certify native HP/items/temp rewards or actual persisted V6.",
   "retainedRunArtifacts": {
@@ -29083,20 +29288,20 @@
     "fullDemoComplete": false
   },
   "currentRunMeasurement": {
-    "runId": "rpgthreejs-auto-dev-90m-20261012T1848",
+    "runId": "rpgthreejs-auto-dev-90m-20261012T2045",
     "runtimeSourceFilesModified": 0,
     "testFilesModified": 0,
-    "existingQaFilesModified": 0,
+    "existingQaFilesModified": 1,
     "newQaFilesAdded": 0,
     "promotedProofFiles": 0,
     "workflowDocs": 3,
     "inheritedWipFiles": 0,
     "browserScenarios": 1,
     "registeredJobs": 1,
-    "rootCapturesInspected": 4,
-    "reviewers": 1,
-    "reviewerPasses": 0,
-    "harnessCorrections": 0,
+    "reviewers": 2,
+    "reviewerPasses": 4,
+    "rootSequenceStripsInspected": 5,
+    "harnessAssertionCorrections": 1,
     "quotaSavingsClaim": "NONE"
   },
   "standingDevPublicationAuthorization": {
