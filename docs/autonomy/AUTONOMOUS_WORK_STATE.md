@@ -1,3 +1,7 @@
+## T0 scoped checkpoint published - 2026-10-12T16:30:58.425Z
+
+Checkpoint5047a94a7f2edeab2209264b5edeaa3d0c3ced54 and owned WIP643377f688a8dce929d7be1a9258881af85788cd normally published/live verified under permanent OD-2026-10-12-A. Exact three selected workflow blobs match snapshot on dev; main00b96f1 unchanged. Worker34860/port5390 absent, existing Vite29856 retained. Parent/taskQueue/deferred keyboard/pending narrative exact and207historical requests preserved;208total. No source/test/driver/assertion/newQA edit, no tracked proof promotion. Source0/test0/existingQA0/newQA0/proof0/workflow3/inherited0/browser1/rootcaptures5/reviewer1. T0normal1366 scoped numerical/lifecycle acceptance only; computed local-curtain opacity BLOCKED_MISSING_MEASUREMENT/full motion perception OPEN. No automatic approval refusal or publication confirmation request. Final metadata closure and ownedWIP/lock retirement recorded in automation memory/final audit. Exact nextAction remains one next-run T3normal1366 existing-driver smoke; no unchanged native campaign replay/partial seed.
+
 # Current autonomous checkpoint - 2026-10-12T16:26:56.005Z
 
 TASK: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat
