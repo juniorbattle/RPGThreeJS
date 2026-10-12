@@ -16,3 +16,7 @@ Exact nextAction: Read-only autonomy preflight/exclusive lock; inspect motion-t3
 ## Owned green snapshot - 2026-10-12T18:32:18.293Z
 
 WIP c9269055afd5e5959865afd4d542cee4139c0cde normally published/live verified from three explicitly selected workflow paths. Recovery only; acceptance remains numerical T3 OS-only scoped. Dates serialized by Node preserve historical spellings. Source/driver/helper/nine physical build files unchanged.
+
+## Scoped checkpoint published - 2026-10-12T18:33:13.823Z
+
+Checkpoint 05c7ed8c2ef4779a2179f2598ab79a8781c4571e normally published/live verified under OD-2026-10-12-A; main00b96f1 unchanged. Snapshot content verified on published dev, protected parent/deferred/queue and209historical requests retained,210total. Source/driver/helper/nine build hashes remain current after workflow-only commit. Worker/port5392 absent; existing Vite29856 retained. Counts source0/test0/existingQA0/newQA0/proof0/workflow3/inherited0/browser1/reviewer1. No automatic-review refusal. Owned WIP refs retained without cleanup attempt. Final workflow closure publication and owned lock archival recorded in automation memory/final audit. Exact nextAction unchanged; demo IN_PROGRESS.

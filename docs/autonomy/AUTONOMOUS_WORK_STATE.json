@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-12T18:23:08.8730641Z",
-  "runEndedAt": "2026-10-12T18:30:09.678Z",
+  "runEndedAt": "2026-10-12T18:33:13.823Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "SAFE_SCOPED_CHECKPOINT",
   "activeSubtask": "T3 OS-only1366 numerical motion/equivalent exit accepted scoped; T0OS and temporal perception open",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "0b7fb9d80d52da46d6b2b8269af837ea4aafdcba",
-  "lastPushedCommit": "d8049b33b579968fe232b432484b6d03c251f9c9",
+  "lastKnownGoodCommit": "05c7ed8c2ef4779a2179f2598ab79a8781c4571e",
+  "lastPushedCommit": "05c7ed8c2ef4779a2179f2598ab79a8781c4571e",
   "completedThisRun": [
     "Read-only preflight clean/no lock/live dev6340430 parity; exclusive lock acquired; existing Vite29856 retained",
     "Prior T3normal1648 receipt digest/current execution matched, unchanged physical build reused without repeat",
@@ -105,7 +105,7 @@
     "QA_EVIDENCE": "PASS_CURRENT_REQUEST_DIGEST_SOURCE_DRIVER_BUILD; MACHINE_NOT_ACCEPTED_SEPARATE",
     "REPOSITORY_GOVERNANCE": "PASS_LOCK_GATES_EXPLICIT_WORKFLOW_DEV_PATHS"
   },
-  "commitReferenceScope": "Scoped T3 workflow acceptance checkpoint; later metadata closure is recorded by Git and automation memory",
+  "commitReferenceScope": "Scoped T3 OS workflow checkpoint; final metadata commit recorded by Git and automation memory",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -208,15 +208,15 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261012T1821",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-12T18:32:18.293Z",
+  "lastHeartbeat": "2026-10-12T18:33:13.823Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261012T1821",
     "sha": "c9269055afd5e5959865afd4d542cee4139c0cde",
     "at": "2026-10-12T18:30:43.3457615Z",
-    "status": "GREEN_SCOPED_RECOVERY_REMOTE_VERIFIED"
+    "status": "CONTENT_VERIFIED_ON_PUBLISHED_DEV; RETAIN_OWNED_REFS"
   },
   "live": {
-    "lastHeartbeat": "2026-10-12T18:32:18.293Z",
+    "lastHeartbeat": "2026-10-12T18:33:13.823Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -22756,7 +22756,7 @@
       "branch": "wip/rpgthreejs-auto-dev-90m-20261012T1821",
       "sha": "c9269055afd5e5959865afd4d542cee4139c0cde",
       "at": "2026-10-12T18:30:43.3457615Z",
-      "status": "GREEN_SCOPED_RECOVERY_REMOTE_VERIFIED"
+      "status": "CONTENT_VERIFIED_ON_PUBLISHED_DEV; RETAIN_OWNED_REFS"
     },
     "nextAction": "Read-only autonomy preflight/exclusive lock; inspect motion-t3-os-desktop-1821 SUCCEEDED receipt/result af1f2815, request/digest/current source637f91ee/driverce350f77/helper/nine-build identity and scoped traversal review before reuse. T3 OS-only1366 fork numerical join1.84761%, reveal clock0, zero visible departure/exit offset, equivalent full right exit and one unresolved lion-shadow-signs callback accepted scoped. Computed local curtain opacity and whole perceived movement/gentle temporal fade remain OPEN; inline variables and stills cannot certify them. No source defect demonstrated. ONE next registered existing tools/traversal-motion-production-qa.mjs --motion=os --legs=T0 --viewports=1366x768 --pursuit-check=0 --port=<verified-free-port> --output=<unique-ignored-path>, identical --register args,12assertions; fixtures certify numerical motion/lifecycle only. Do not repeat accepted T3OS1821/T3normal1648/T0normal1617/T1normal0415/OS0504. After remaining T0OS gap, prioritize actual computed coverage/timed-sequence desktop source audit before any wider motion matrix; game-only/full temporal perception/mobileLAST remain pending. Original all-six/random-Pursuit parent, lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo OPEN; FAILED1521 partial saves unseedable, no unchanged35/45min or deadline-only campaign replay. Preserve exact deferred keyboard/pendingNarrative/taskQueue and historical evidence.",
     "runMetrics": {
@@ -22782,17 +22782,19 @@
       "docs/autonomy/handoffs/2026-10-12T1821Z-codex-t3-os-motion.md"
     ],
     "publication": {
-      "status": "PREPARED_NOT_YET_PUBLISHED",
-      "destination": "origin/dev",
+      "status": "PUBLISHED_NORMAL_DEV_LIVE_VERIFIED",
+      "checkpoint": "05c7ed8c2ef4779a2179f2598ab79a8781c4571e",
       "authorization": "OD-2026-10-12-A",
+      "destination": "origin/dev",
+      "verifiedAt": "2026-10-12T18:33:13.823Z",
       "paths": [
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
         "docs/autonomy/handoffs/2026-10-12T1821Z-codex-t3-os-motion.md"
       ]
     },
-    "runEndedAt": "2026-10-12T18:30:09.678Z",
-    "writerStopped": false,
+    "runEndedAt": "2026-10-12T18:33:13.823Z",
+    "writerStopped": true,
     "metadataPublication": {
       "status": "NORMAL_DEV_PUBLICATION_VERIFIED",
       "sha": "69ae9121cb1bc8e8d6e46b934ccc76c6dfeb1f25",
@@ -22907,23 +22909,16 @@
       "reason": "Automatic review found insufficient trusted exact authorization to disclose internal state on public GitHub WIP branch; local concrete checkpoint in preparation"
     },
     "publicationCloseout": {
-      "runId": "rpgthreejs-auto-dev-90m-20261012T1648",
-      "checkpoint": "0b7fb9d80d52da46d6b2b8269af837ea4aafdcba",
-      "snapshot": "121d45fde8a32c85340b1bcfe9f990be74781944",
-      "snapshotContent": "VERIFIED_ON_PUBLISHED_DEV_EXCEPT_ENRICHED_METADATA",
-      "worker23740": "ABSENT",
-      "port5391": "ABSENT",
-      "sourceDriverBuild": "CURRENT_MATCHED_AFTER_WORKFLOW_COMMIT",
-      "automaticReviewRefusals": 1,
-      "ownedWip": "RETAINED_REMOTE_AND_LOCAL_AFTER_OPTIONAL_CLEANUP_REJECTION",
-      "nextAction": "Read-only autonomy preflight/exclusive lock; inspect motion-t3-native-desktop-1648 SUCCEEDED result064bf819/current stable request/digest and bounded traversal review before reuse. T3normal1366 fork numeric join2.11575%, zero reveal route clock, complete accelerating right exit/resize and one lion-shadow-signs unresolved-at-callback entry accepted scoped. Computed local-curtain coverage and whole perceived continuity remain OPEN; stills/inline variables and positivity do not certify them. No demonstrated source defect. ONE next registered existing tools/traversal-motion-production-qa.mjs --motion=os --legs=T3 --viewports=1366x768 --pursuit-check=0 --port=<verified-free-port> --output=<unique-ignored-path>, identical args for --register,12assertions. Fixture-origin/injected tactical outcomes certify motion/lifecycle only; no earned campaign/V6/Pursuit/postarrival-reload claim. Do not repeat unchanged accepted T3normal1648/T0normal1617/T1normal0415/OS0504. T0OS/game-only/full-perception and mobileLAST remain later gaps. Keep original all-six/random-Pursuit parent and lancer/second-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo OPEN; never seed FAILED1521 partial outputs or replay unchanged35/45min/deadline-only campaign. Preserve exact deferred keyboard/pendingNarrative/taskQueue.",
-      "cleanupRefusal": {
-        "at": "2026-10-12T17:00:28.173Z",
-        "action": "Delete only owned remote/local WIP refs",
-        "beforeExecution": true,
-        "reason": "Automatic approval rejected remote/local owned WIP ref deletion: publication authorization does not cover destructive cleanup and retained prior instructions require separate cleanup authority. Rejected before execution. No retry/workaround; optional refs retained. Dev publications already succeeded.",
-        "disposition": "RETAIN_ALL_REFS; RELEASE_OWNED_LOCK_AFTER_FINAL_PUBLICATION; NO_PERMISSION_REQUEST_NEEDED_FOR_OPTIONAL_RETENTION"
-      }
+      "runId": "rpgthreejs-auto-dev-90m-20261012T1821",
+      "checkpoint": "05c7ed8c2ef4779a2179f2598ab79a8781c4571e",
+      "snapshot": "c9269055afd5e5959865afd4d542cee4139c0cde",
+      "currentExecution": true,
+      "ownedWip": "RETAIN_LOCAL_REMOTE_NO_CLEANUP_ATTEMPT",
+      "worker": "ABSENT_AFTER_TERMINAL",
+      "port": 5392,
+      "portStatus": "ABSENT",
+      "automaticReviewRefusals": 0,
+      "nextAction": "Read-only autonomy preflight/exclusive lock; inspect motion-t3-os-desktop-1821 SUCCEEDED receipt/result af1f2815, request/digest/current source637f91ee/driverce350f77/helper/nine-build identity and scoped traversal review before reuse. T3 OS-only1366 fork numerical join1.84761%, reveal clock0, zero visible departure/exit offset, equivalent full right exit and one unresolved lion-shadow-signs callback accepted scoped. Computed local curtain opacity and whole perceived movement/gentle temporal fade remain OPEN; inline variables and stills cannot certify them. No source defect demonstrated. ONE next registered existing tools/traversal-motion-production-qa.mjs --motion=os --legs=T0 --viewports=1366x768 --pursuit-check=0 --port=<verified-free-port> --output=<unique-ignored-path>, identical --register args,12assertions; fixtures certify numerical motion/lifecycle only. Do not repeat accepted T3OS1821/T3normal1648/T0normal1617/T1normal0415/OS0504. After remaining T0OS gap, prioritize actual computed coverage/timed-sequence desktop source audit before any wider motion matrix; game-only/full temporal perception/mobileLAST remain pending. Original all-six/random-Pursuit parent, lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo OPEN; FAILED1521 partial saves unseedable, no unchanged35/45min or deadline-only campaign replay. Preserve exact deferred keyboard/pendingNarrative/taskQueue and historical evidence."
     },
     "run1859History": {
       "runId": "rpgthreejs-auto-dev-90m-20261008T1859",
@@ -26932,10 +26927,10 @@
     },
     "runId": "rpgthreejs-auto-dev-90m-20261012T1821",
     "agent": "codex",
-    "status": "SCOPED_T3_OS_ACCEPTED_FULL_ACCEPTANCE_OPEN",
+    "status": "CLOSED_SCOPED_T3_OS_ACCEPTED_FULL_ACCEPTANCE_OPEN",
     "runStartedAt": "2026-10-12T18:23:08.8730641Z",
     "activePhase": "SAFE_SCOPED_CHECKPOINT",
-    "heartbeat": "2026-10-12T18:32:18.293Z",
+    "heartbeat": "2026-10-12T18:33:13.823Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-12T1821Z-codex-t3-os-motion.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -27757,8 +27752,8 @@
     "reviewerPasses": 1,
     "harnessCorrections": 0,
     "quotaSavingsClaim": "NONE",
-    "endedAt": "2026-10-12T18:30:09.678Z",
-    "elapsedMinutes": 7.013416666666667
+    "endedAt": "2026-10-12T18:33:13.823Z",
+    "elapsedMinutes": 10.0825
   },
   "qaToolingJustification": "Extend existing campaign battle() and receipt assertions for incidental Pursuit; no new QA tool. Prior motion runner injects outcomes and cannot certify native HP/items/temp rewards or actual persisted V6.",
   "retainedRunArtifacts": {
@@ -27783,7 +27778,7 @@
     "preparation": "Native rest/revival before further combat;130gold/rest60",
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
-  "implementationCommit": "0b7fb9d80d52da46d6b2b8269af837ea4aafdcba",
+  "implementationCommit": "05c7ed8c2ef4779a2179f2598ab79a8781c4571e",
   "authorizedWorkContinuation": "First obtain exact-payload public dev publication approval for run1859 local checkpoint; automatic review rejected the public WIP state push and no workaround is authorized. Inspect clean Git/local commits, owned writerStopped lock and preserved receipts. After approved normal push/remote parity and lock resolution, continue DEMO-QA-POLISH with existing tools/demo-continuous-production-qa.mjs from earnedSavePath tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json (SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b) and priorProofPath tmp/demo/campaign-second-refuge-1859/results.json (SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3). Rescue/serpent/ending1366normal, native rest75 first (3KO/5wounded,300gold), existing native shop/equip preparation, register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID, unique ignored output/free strict port and bounded deadline. Verify current physical source/driver/build identities; do not relabel old frozen577 campaign proof as new build acceptance. Inspect terminal receipt, genuine combats/T1/T3/temporaryloot/exactV6/ending/Salvation2AP and selected captures. Do not repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices; keep live leap/attack/Stage, live-slope smoothness,390framing/broadaccessibility/balance/settledVFX/fullending gates open. Preserve152historicaljobs/exact deferredDemoTask and pendingNarrativeTask.",
   "publication1214History": {
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
