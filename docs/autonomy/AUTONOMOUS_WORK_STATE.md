@@ -1,3 +1,9 @@
+## Desktop pointer-menu diagnosis - 2026-10-12T03:37:35.980Z
+
+Owned run rpgthreejs-auto-dev-90m-20261012T0332; clean dev/live d1b12a860a4ebd4583164b8b22a381cd6ac287e3; no lock or associated worker at preflight; persistent5173/5174 servers preserved. Historical2012 FAILED digest/source393/build9/driver identity verified. No runtime defect established. One bounded native pointer branch in existing keyboard runner; no new QA tool. Scope excludes 1AP/campaign iframe/six casts/ending/reload. Original task/deferred keyboard/narrative/history/queue preserved, mobileLAST.
+
+Exact nextAction: Review and execute ONE registered desktop-pointer-menus-0332 standalone1366normal scenario using existing keyboard runner. Inspect native pointer open/Return cycles and unchanged tactical snapshots. This diagnoses menu dispatch only, excludes 1AP/campaign iframe/six casts/ending/reload; do not replay unchanged45min failed campaign or seed failed outputs. Preserve original task/deferred keyboard/narrative/history/queue; mobileLAST.
+
 ## Metadata export blocked after approved publication - 2026-10-12T00:09:15.352Z
 
 Original fb2e2f5/b6bf0e4 normally published and live origin/dev verified. Automatic review rejected the newly changed four-file publication closure content, because exact approval covered original commits, not new metadata contents. No retry/workaround; local commit only, owned lock retained until metadata publication. No source/QA/assertion change.
@@ -844,6 +850,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - skills-six-native-1800: FAILED; port 5380; receipt `tmp/demo/skills-six-native-1800/qa-job.json`; NOT_ACCEPTED
 - skills-six-native-1858: FAILED; port 5381; receipt `tmp/demo/skills-six-native-1858/qa-job.json`; NOT_ACCEPTED
 - skills-six-native-2012: FAILED; port 5382; receipt `tmp/demo/skills-six-native-2012/qa-job.json`; NOT_ACCEPTED
+- desktop-pointer-menus-0332: PLANNED; port 5383; receipt `tmp/demo/desktop-pointer-menus-0332/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

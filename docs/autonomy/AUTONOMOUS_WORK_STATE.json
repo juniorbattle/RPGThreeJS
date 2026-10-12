@@ -1,10 +1,10 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-12T03:10:43Z",
-  "runEndedAt": "2026-10-12T03:18:00.260Z",
+  "runStartedAt": "2026-10-12T03:33:48.1447109+00:00",
+  "runEndedAt": null,
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "SAFE_PUBLICATION_CLOSEOUT",
-  "activeSubtask": "Publication closure verified; standing publication authorization reaffirmed; native menu diagnosis remains open",
+  "activeSubtask": "Diagnose native desktop skill-menu pointer responsiveness",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "fb2e2f5feb840caa7855fdb0c691a630d4fd01a6",
   "lastPushedCommit": "9b14235e5cde97bf1c3a835c350de3ae21624082",
@@ -67,7 +67,7 @@
     "Opening dynamic1366/620 normalOS accepted scoped; later/earned narrative and approvedBois-Clair nightplate remainOPEN",
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest"
   ],
-  "nextAction": "Read-only autonomy preflight and exclusive lock; resume original all-six-skills/random-Pursuit task. Publication approvals are resolved and standing OD-2026-10-11-A covers all normal authorized dev/owned-WIP checkpoints, including state/handoff closure: do not ask routine per-checkpoint confirmation. Inspect native-six-skills-observations-20261011-2012/checks.json, terminal2012 receipt/result digest and source/build/driver before reuse. Preserve FAILED2012 and scoped six novice casts plus native3to2 setup/Salvation2to0 capped40percent; never seed2012/1858/1800/1731/0001 or replay unchanged45min campaign. Click275 remains a proof blocker, not an established runtime regression: inspected failure capture shows normal unoccluded menu, while actual job elapsed211.8min exceeds registered45min and may reflect execution suspension (inference only). Diagnose native menu responsiveness using existing runners before any demonstrated minimal pilot correction or single registered targeted desktop continuation from independently SUCCEEDED1859 exact seed. Keep all AP/healing/aggregate/earned-ending/reload assertions; no harness rewrite or truth injection. Full ending/aggregate/reload, randomPursuit/later narrative/fullV6/AT/balance/operatorfinal/demo remain OPEN; exact deferred keyboard/history/queue retained, mobileLAST.",
+  "nextAction": "Review and execute ONE registered desktop-pointer-menus-0332 standalone1366normal scenario using existing keyboard runner. Inspect native pointer open/Return cycles and unchanged tactical snapshots. This diagnoses menu dispatch only, excludes 1AP/campaign iframe/six casts/ending/reload; do not replay unchanged45min failed campaign or seed failed outputs. Preserve original task/deferred keyboard/narrative/history/queue; mobileLAST.",
   "taskQueue": [
     "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
     "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
@@ -185,7 +185,7 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261012T0310",
+  "runId": "rpgthreejs-auto-dev-90m-20261012T0332",
   "agent": "codex",
   "lastHeartbeat": "2026-10-12T03:19:20.427Z",
   "wip": {
@@ -205,9 +205,9 @@
     "backup": "tmp/autonomy/wip-cleanup-0324/wip-snapshots.bundle"
   },
   "live": {
-    "runId": "rpgthreejs-auto-dev-90m-20261012T0310",
+    "runId": "rpgthreejs-auto-dev-90m-20261012T0332",
     "agent": "codex",
-    "lastHeartbeat": "2026-10-12T03:19:20.427Z",
+    "lastHeartbeat": "2026-10-12T03:37:35.980Z",
     "status": "PUBLICATION_RESOLVED_STANDING_AUTHORIZATION_RECORDED",
     "qaJobs": [
       {
@@ -21621,25 +21621,101 @@
         "resultPath": "tmp/demo/skills-six-native-2012/results.json",
         "resultSha256": "a04d3061f9a36ea9c596f5adc22354d40c89060fe4297ebcc9dd117494d26272",
         "provenanceStable": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "desktop-pointer-menus-0332",
+        "runId": "rpgthreejs-auto-dev-90m-20261012T0332",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-12T03:38:48.191Z",
+        "pid": null,
+        "port": 5383,
+        "command": [
+          "node",
+          "tools/combat-keyboard-production-qa.mjs"
+        ],
+        "parameters": {
+          "viewports": [
+            [
+              1366,
+              768
+            ]
+          ],
+          "motionModes": [
+            "no-preference"
+          ],
+          "scenario": "desktop-pointer-menus"
+        },
+        "requiredAssertions": [
+          "NATIVE_POINTER_SKILL_MENU",
+          "POINTER_MENU_PRESERVES_TACTICAL_STATE"
+        ],
+        "output": "tmp/demo/desktop-pointer-menus-0332",
+        "receiptPath": "tmp/demo/desktop-pointer-menus-0332/qa-job.json",
+        "provenance": {
+          "gitHead": "d1b12a860a4ebd4583164b8b22a381cd6ac287e3",
+          "sourceTree": "a147f5c25febb460ad69f38d184d8047c4cca780",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/combat-keyboard-production-qa.mjs",
+            "sha256": "bd200b39485da5da225466903ba2eed1cb04941e34b283c7ceb84a300caa5895"
+          },
+          "inputs": [],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-B0LaJhFj.js",
+              "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/game-zrccER2T.js",
+              "sha256": "fd9a3ff2f576d9fcfa2f7055d94eb1c1702f5594063904b480ef2d96253dfeab"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "2d3c23a073ba24f72568a542a0519e5714858dc13ea32a41f99aa17a12535e1e"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
       }
     ],
     "wip": {
-      "selectedPaths": [
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0332",
+      "sha": null,
+      "status": "UNKNOWN_REVIEW_PENDING",
+      "dirtyFiles": [
+        "tools/combat-keyboard-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/OPERATOR_DECISIONS.md",
-        "docs/autonomy/PUBLICATION_OPERATOR_DECISION_2026-10-08.md",
-        "docs/autonomy/handoffs/2026-10-11T2354Z-codex-native-skills.md",
-        "docs/reports/native-six-skills-observations-20261011-2012/checks.json"
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
       ],
-      "sha": "e65a070cbb3f0f651bbfa5f28f5c63413ac1604a",
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261012T0310",
-      "at": "2026-10-12T03:19:00Z",
-      "status": "RETIRED_CONTENT_ON_DEV_VERIFIED_BUNDLE_BACKUP",
-      "retiredAt": "2026-10-12T03:30:57.443Z",
-      "backup": "tmp/autonomy/wip-cleanup-0324/wip-snapshots.bundle"
+      "lastGreenCheck": "393 physical sources/nine build artifacts/historical FAILED2012 identity verified"
     },
-    "nextAction": "Read-only autonomy preflight and exclusive lock; resume original all-six-skills/random-Pursuit task. Publication approvals are resolved and standing OD-2026-10-11-A covers all normal authorized dev/owned-WIP checkpoints, including state/handoff closure: do not ask routine per-checkpoint confirmation. Inspect native-six-skills-observations-20261011-2012/checks.json, terminal2012 receipt/result digest and source/build/driver before reuse. Preserve FAILED2012 and scoped six novice casts plus native3to2 setup/Salvation2to0 capped40percent; never seed2012/1858/1800/1731/0001 or replay unchanged45min campaign. Click275 remains a proof blocker, not an established runtime regression: inspected failure capture shows normal unoccluded menu, while actual job elapsed211.8min exceeds registered45min and may reflect execution suspension (inference only). Diagnose native menu responsiveness using existing runners before any demonstrated minimal pilot correction or single registered targeted desktop continuation from independently SUCCEEDED1859 exact seed. Keep all AP/healing/aggregate/earned-ending/reload assertions; no harness rewrite or truth injection. Full ending/aggregate/reload, randomPursuit/later narrative/fullV6/AT/balance/operatorfinal/demo remain OPEN; exact deferred keyboard/history/queue retained, mobileLAST.",
+    "nextAction": "Review and execute ONE registered desktop-pointer-menus-0332 standalone1366normal scenario using existing keyboard runner. Inspect native pointer open/Return cycles and unchanged tactical snapshots. This diagnoses menu dispatch only, excludes 1AP/campaign iframe/six casts/ending/reload; do not replay unchanged45min failed campaign or seed failed outputs. Preserve original task/deferred keyboard/narrative/history/queue; mobileLAST.",
     "runMetrics": {
       "runId": "rpgthreejs-auto-dev-90m-20261012T0310",
       "runtimeSourceFilesModified": 0,
@@ -24943,6 +25019,23 @@
       "backupVerified": true,
       "activeTaskAndNextActionUnchanged": true,
       "sourceQaProofUnchanged": true
+    },
+    "menu0332": {
+      "at": "2026-10-12T03:37:35.980Z",
+      "baseline": "d1b12a860a4ebd4583164b8b22a381cd6ac287e3",
+      "priorNextAction": "Review and execute ONE registered desktop-pointer-menus-0332 standalone1366normal scenario using existing keyboard runner. Inspect native pointer open/Return cycles and unchanged tactical snapshots. This diagnoses menu dispatch only, excludes 1AP/campaign iframe/six casts/ending/reload; do not replay unchanged45min failed campaign or seed failed outputs. Preserve original task/deferred keyboard/narrative/history/queue; mobileLAST.",
+      "sourceFiles": 393,
+      "buildArtifacts": 9,
+      "sourceBuildReused": true,
+      "newQaTool": false,
+      "reason": "Existing keyboard runner tests skill menus using Enter; no existing narrow desktop pointer scenario verifies the observed click timeout. Add one bounded native pointer branch to that runner without changing campaign/AP/healing/ending/reload assertions.",
+      "historical2012": {
+        "status": "FAILED",
+        "resultSha256": "a04d3061f9a36ea9c596f5adc22354d40c89060fe4297ebcc9dd117494d26272",
+        "currentExecutionMatches": true
+      },
+      "scope": "STANDALONE_DESKTOP_POINTER_MENU_ONLY_NOT_CAMPAIGN_OR_1AP",
+      "runtimeDefectEstablished": false
     }
   },
   "previousInterruptedRun": {

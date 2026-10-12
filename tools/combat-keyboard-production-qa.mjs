@@ -8,13 +8,14 @@ import {beginJob} from './qa/qa-job.mjs';
 const output=process.env.KEYBOARD_QA_OUTPUT??'tmp/demo/combat-keyboard-production';
 const port=Number(process.env.KEYBOARD_QA_PORT??5262);
 const compactSmoke=process.env.KEYBOARD_QA_SCENARIO==='compact-menus';
-const parameters={viewports:compactSmoke?[[390,844]]:[[1366,768],[620,780],[390,844]],motionModes:compactSmoke?['reduce']:['no-preference','reduce'],scenario:compactSmoke?'compact-menus':'controls'};
-const requiredAssertions=['FOCUSED_NATIVE_ACTIVATION','NO_PARASITIC_END_TURN','BATTLEFIELD_SHORTCUTS',...(compactSmoke?['SUBMENU_TARGET_BOUNDS_AND_SCROLL','OS_OR_GAME_EFFECTIVE_REDUCTION','LIVE_OS_CHANGE_WITHOUT_TACTICAL_MUTATION']:[])];
+const pointerSmoke=process.env.KEYBOARD_QA_SCENARIO==='desktop-pointer-menus';
+const parameters={viewports:pointerSmoke?[[1366,768]]:compactSmoke?[[390,844]]:[[1366,768],[620,780],[390,844]],motionModes:compactSmoke?['reduce']:pointerSmoke?['no-preference']:['no-preference','reduce'],scenario:pointerSmoke?'desktop-pointer-menus':compactSmoke?'compact-menus':'controls'};
+const requiredAssertions=pointerSmoke?['NATIVE_POINTER_SKILL_MENU','POINTER_MENU_PRESERVES_TACTICAL_STATE']:['FOCUSED_NATIVE_ACTIVATION','NO_PARASITIC_END_TURN','BATTLEFIELD_SHORTCUTS',...(compactSmoke?['SUBMENU_TARGET_BOUNDS_AND_SCROLL','OS_OR_GAME_EFFECTIVE_REDUCTION','LIVE_OS_CHANGE_WITHOUT_TACTICAL_MUTATION']:[])];
 const job=beginJob({driver:'tools/combat-keyboard-production-qa.mjs',output,port,parameters,requiredAssertions,
   jobId:process.env.KEYBOARD_QA_JOB_ID});
 const server=await preview({preview:{host:'127.0.0.1',port,strictPort:true}});
 const browser=await chromium.launch({headless:true});
-const report={schemaVersion:1,method:'NATIVE_BUILT_STANDALONE_KEYBOARD',runtimeMutated:false,outcomeInjected:false,
+const report={schemaVersion:1,method:pointerSmoke?'NATIVE_BUILT_STANDALONE_POINTER_MENUS':'NATIVE_BUILT_STANDALONE_KEYBOARD',runtimeMutated:false,outcomeInjected:false,
   campaignAcceptance:false,errors:[],cases:[],pass:false};
 try{
   for(const [width,height] of parameters.viewports)for(const reducedMotion of parameters.motionModes){
@@ -60,6 +61,26 @@ try{
     await activate('#menu [data-d="auto"]');await activate('#menu [data-d="start"]');
     await page.waitForFunction(()=>window.G.mode==='menu'&&!window.G.busy&&window.G.active?.team==='player');
     const before=await state();entry.before=before;
+    if(pointerSmoke){
+      entry.pointerMenus=[];
+      for(let attempt=0;attempt<3;attempt++){
+        const menu=page.locator('#menu [data-a="skill"]:not(:disabled)');
+        const hit=await menu.evaluate(e=>{const r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;return{x,y,width:r.width,height:r.height,hit:e.contains(document.elementFromPoint(x,y))};});
+        assert.ok(hit.hit&&hit.x>=0&&hit.y>=0&&hit.x<width&&hit.y<height,'Native skill dock pointer is obstructed or outside viewport');
+        const started=Date.now();await menu.click();
+        await page.locator('#skillmenu[data-kind="skill"]:not(.hidden)').waitFor({state:'visible'});
+        const rows=await page.locator('#skillmenu [data-s]:not([data-s="_back"])').evaluateAll(bs=>bs.map(b=>({id:b.dataset.s,disabled:b.disabled,text:b.textContent.trim()})));
+        assert.ok(rows.length,'Native skill submenu is empty');
+        await unchanged(before,'Pointer skill open preserves tactical truth '+attempt);
+        if(attempt===0)await page.screenshot({path:resolve(output,'1366-pointer-skill-open.png')});
+        await page.locator('#skillmenu [data-s="_back"]').click();
+        await page.locator('#skillmenu').waitFor({state:'hidden'});
+        await unchanged(before,'Pointer skill Retour preserves tactical truth '+attempt);
+        entry.pointerMenus.push({hit,rows,elapsedMs:Date.now()-started});
+      }
+      await page.screenshot({path:resolve(output,'1366-pointer-skill-return.png')});
+      entry.pass=true;await context.close();continue;
+    }
     if(compactSmoke){
       const sample=()=>page.evaluate(()=>({os:matchMedia('(prefers-reduced-motion: reduce)').matches,requested:window.__COMBAT_DIAGNOSTICS.requestedReducedGraphics,effective:window.__COMBAT_DIAGNOSTICS.reducedGraphics,body:document.body.classList.contains('reduced-graphics'),spriteY:G.active.spr.position.y,baseY:G.active.baseY}));
       await page.waitForFunction(()=>window.__COMBAT_DIAGNOSTICS?.reducedGraphics===true);
