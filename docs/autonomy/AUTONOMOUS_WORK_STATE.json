@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-12T20:46:41.6721833Z",
-  "runEndedAt": "2026-10-12T21:01:25.101Z",
+  "runEndedAt": "2026-10-12T21:03:35.590Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-  "activePhase": "COMPUTED_COVERAGE_CHECKPOINT",
+  "activePhase": "SCOPED_CHECKPOINT_PUBLISHED",
   "activeSubtask": "T0 OS1366 computed swap and equivalent exit accepted; rendered gentle arrival fade remains open",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "c6aa68f9e4fd9e24983ac7471dab75d7bc684734",
-  "lastPushedCommit": "c6aa68f9e4fd9e24983ac7471dab75d7bc684734",
+  "lastKnownGoodCommit": "f07a0ef572b0eaf06d01c58dfbebc1d7d64154e8",
+  "lastPushedCommit": "f07a0ef572b0eaf06d01c58dfbebc1d7d64154e8",
   "completedThisRun": [
     "Clean read-only preflight; no lock/WIP; live dev parity and old owner inactive; inherited Vite retained",
     "Prior T0OS1848 receipt/source-driver-helper-nine-build verified and independently accepted scoped numerical only, no unchanged rerun",
@@ -220,7 +220,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261012T1848",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-12T21:02:19.370Z",
+  "lastHeartbeat": "2026-10-12T21:03:35.590Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261012T2045",
     "sha": "29a75e2ea8fafb174b82628ee509b93572edceec",
@@ -229,7 +229,7 @@
     "status": "GREEN_SCOPED_COMPUTED_COVERAGE_RECOVERY_NET"
   },
   "live": {
-    "lastHeartbeat": "2026-10-12T21:01:25.101Z",
+    "lastHeartbeat": "2026-10-12T21:03:35.590Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -23044,23 +23044,29 @@
       "docs/autonomy/handoffs/2026-10-12T2045Z-codex-computed-traversal-coverage.md"
     ],
     "publication": {
-      "status": "READY_FOR_AUTHORIZED_NORMAL_DEV_PUBLICATION",
-      "authorization": "OD-2026-10-12-A",
+      "status": "VERIFIED_REMOTE_DEV",
+      "checkpoint": "f07a0ef572b0eaf06d01c58dfbebc1d7d64154e8",
+      "verifiedAt": "2026-10-12T21:03:35.590Z",
       "destination": "origin/dev",
+      "authorization": "OD-2026-10-12-A",
       "paths": [
         "tools/traversal-motion-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
         "docs/autonomy/handoffs/2026-10-12T2045Z-codex-computed-traversal-coverage.md"
-      ]
+      ],
+      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "automaticReviewRefusal": null
     },
-    "runEndedAt": "2026-10-12T21:01:25.101Z",
-    "writerStopped": false,
+    "runEndedAt": "2026-10-12T21:03:35.590Z",
+    "writerStopped": true,
     "metadataPublication": {
-      "status": "NORMAL_DEV_PUBLICATION_VERIFIED",
-      "sha": "69ae9121cb1bc8e8d6e46b934ccc76c6dfeb1f25",
-      "authorization": "OD-2026-10-12-A",
-      "finalMetadataReference": "Automation memory and tmp/autonomy/run-1617/final-publication-audit.json"
+      "status": "CLOSURE_NEXT_AUTHORIZED_NORMAL_DEV_PUSH",
+      "paths": [
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/handoffs/2026-10-12T2045Z-codex-computed-traversal-coverage.md"
+      ]
     },
     "publication1752History": {
       "status": "VERIFIED_PUBLISHED",
@@ -23798,7 +23804,7 @@
       "workerAbsent": 60012,
       "portAbsent": 5352
     },
-    "publishedCheckpoint": "5047a94a7f2edeab2209264b5edeaa3d0c3ced54",
+    "publishedCheckpoint": "f07a0ef572b0eaf06d01c58dfbebc1d7d64154e8",
     "closeout0613": {
       "checkpoint": "babc01bf3571247b73516a740c501a88b1deb7dd",
       "runEndedAt": "2026-10-09T06:56:55.147Z",
@@ -27190,8 +27196,8 @@
     "agent": "codex",
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-12T20:46:41.6721833Z",
-    "activePhase": "COMPUTED_COVERAGE_CHECKPOINT",
-    "heartbeat": "2026-10-12T21:02:19.370Z",
+    "activePhase": "SCOPED_CHECKPOINT_PUBLISHED",
+    "heartbeat": "2026-10-12T21:03:35.590Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-12T2045Z-codex-computed-traversal-coverage.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -27934,6 +27940,17 @@
         "/root/coverage_guardian"
       ],
       "nextAction": "Read-only preflight/exclusive lock; reuse motion-t0-os-coverage-2045 SUCCEEDED result142a13c4, exact driver3851db0b/source637f91ee/helper/nine physical build and scoped guardian/traversal reviews. Computed return/fork full-cover swap and OS equivalent exit are accepted only for T0 OS1366. Do not repeat unchanged accepted numerical/computed scenarios or campaign deadline-only runs. Next resolve rendered arrival perception: inspect existing WebM frame timeline and 119917..120273ms computed interval; current arrival screenshot spans119974..120415ms and strips show coarse scene-to-black, so gentle rendered fade remains OPEN, not a runtime defect. If existing recording cannot supply intermediate aligned frames, make only a bounded capture-policy correction in the existing driver to avoid screenshot calls during the short transition, retain all certifying assertions and guardian trigger, then ONE registered T0OS1366 temporal smoke; no instrumentation rewrite or speculative product edit. Normal/game-only/T1/T3 computed coverage and mobileLAST remain later gaps. Preserve exact parent all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo, deferred keyboard, pendingNarrative and taskQueue; never seed FAILED1521 partial outputs."
+    },
+    "closeout2045": {
+      "worker24400Absent": true,
+      "port5394Absent": true,
+      "sourceDriverHelperBuildExactAfterCommit": true,
+      "protectedParentDeferredQueue": true,
+      "historicalRequests": 211,
+      "newRequests": 1,
+      "wipRetained": true,
+      "fullDemo": "IN_PROGRESS",
+      "perceivedArrivalFade": "OPEN"
     }
   },
   "previousInterruptedRun": {
@@ -28271,8 +28288,8 @@
   "runStatistics": {
     "runId": "rpgthreejs-auto-dev-90m-20261012T2045",
     "startedAt": "2026-10-12T20:46:41.6721833Z",
-    "endedAt": "2026-10-12T21:01:25.101Z",
-    "elapsedMinutes": 14.723816666666666,
+    "endedAt": "2026-10-12T21:03:35.590Z",
+    "elapsedMinutes": 16.898633333333333,
     "runtimeSourceFilesModified": 0,
     "testFilesModified": 0,
     "existingQaFilesModified": 1,

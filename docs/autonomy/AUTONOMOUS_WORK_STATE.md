@@ -1199,3 +1199,8 @@ Checkpoint 05c7ed8c2ef4779a2179f2598ab79a8781c4571e normally published/live veri
 Owned snapshot 64575cac0791376cf168fda463f94bd25a964e3c normally published and remotely verified. Only the three selected workflow paths; no acceptance claim. WIP refs retained. Final publication/lock archival recorded in automation memory and ignored audit.
 
 Published checkpoint 1d763e639085c2e83a1b491038058900c261fd07 verified on origin/dev; main00b96f1 unchanged. Worker45584 and port5393 absent; current source/driver/build and protected parent/deferred/queue preserved. PAUSED_FOR_CREDITS remains; no independent acceptance. Final metadata commit and owned-lock archive recorded in automation memory/audit. Wall elapsed includes interruption; no heavy work resumed.
+
+
+## Scoped coverage checkpoint published - 2026-10-12T21:03:35.590Z
+
+Checkpoint f07a0ef572b0eaf06d01c58dfbebc1d7d64154e8 normally published/live verified on origin/dev under permanent OD-2026-10-12-A; main00b96f1 unchanged. Post-commit source/driver/helper/nine physical build identity still matches the completed receipt. Worker24400/port5394 absent; existing Vite29856 preserved. Owned WIP29a75e2ea8fafb174b82628ee509b93572edceec retained locally/remotely; no cleanup attempt. Parent/taskQueue/exact deferred keyboard/pendingNarrative and211 historical requests retained;212total. Runtime0/test0/existingQA1/newQA0/proof0/workflow3/browser1, no tracked evidence promotion or quota savings claim. Computed coverage T0OS1366 accepted scoped; rendered gentle arrival fade/full demo remain OPEN. Final metadata closure SHA, clean parity and owned-lock archival are recorded in automation memory and ignored final audit after verification.
