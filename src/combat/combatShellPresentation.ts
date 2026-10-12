@@ -41,7 +41,9 @@ export function resultRewardRows(rewards?: ResultRewards): string {
   const rows: [string, string][] = [];
   if (rewards.gold) rows.push(['Or', `+${rewards.gold}`]);
   for (const [key, amount] of Object.entries(rewards.materials ?? {})) {
-    if (amount) rows.push([key === 'red_gem' ? 'Gemmes rouges' : key.replaceAll('_', ' '), `+${amount}`]);
+    const label = key === 'red_gem' ? 'Gemmes rouges'
+      : key === 'iron_ore' ? 'Minerai de fer' : key.replaceAll('_', ' ');
+    if (amount) rows.push([label, `+${amount}`]);
   }
   if (rewards.reputation) rows.push(['Réputation', `${rewards.reputation > 0 ? '+' : ''}${rewards.reputation}`]);
   return rows.length ? `<div class="combat-result__rewards"><h2>Récompenses</h2><div class="combat-result__reward-list">${rows.map(([label, value]) => `<div><span>${esc(label)}</span><b>${esc(value)}</b></div>`).join('')}</div></div>` : '';
