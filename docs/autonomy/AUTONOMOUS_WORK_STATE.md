@@ -1,3 +1,21 @@
+## Final scoped pointer-menu review - 2026-10-12T03:44:00.351Z
+
+Guardian final PASS after corrected pointer method metadata: standalone1366normal Archère1AP/three native pointer cycles/four disabled rows/six sampled equality checks/two inspected captures only. Registered receipt SUCCEEDED and all request/provenance/currentexecution/digest/eligible checks true; machine acceptance stays NOT_ACCEPTED with separate reviewed scoped disposition. Prior200 QA records and protected task/deferred/narrative/queue retained. Workflow/publication remains BLOCKED by automatic review; no retry/workaround. Local four-path checkpoint only; keep lock with writerStopped pending approved normal publication.
+
+## Standalone archer1AP pointer-menu checkpoint - 2026-10-12T03:43:18.812Z
+
+Run rpgthreejs-auto-dev-90m-20261012T0332; ONE registered desktop-pointer-menus-0332 SUCCEEDED/result584b2b9fb52ca44cf1a825c3c5e0d16cfdb6420a740f40079045cd26c1978830, driverbd200b39485da5da225466903ba2eed1cb04941e34b283c7ceb84a300caa5895; source393/build9 reverified/reused. Native standalone Archère1AP, round1/turn0: three real pointer open/Retour cycles, four disabled2/3/4/5AP rows observed, six sampled tactical equality checks, errors0. Root inspected both ignored captures. Accepted scope only standalone1366normal; no campaign iframe, historical2012 cause, latency, exhaustive truth, six casts, ending/reload/fullV6/demo claim. No runtime defect/pilot correction established. 56tests/TypeScript/8contracts8slots/immutable/whitespace PASS. Counts runtime0/test0/existingQA1/newQA0/proof0/workflow3/inherited0/browser1; mobileLAST; original task/200jobs/deferred keyboard/narrative/queue preserved.
+
+Automatic reviewer rejected owned-WIP publication before execution despite standing publication authorization: exact new branch/payload considered insufficiently authorized. Local snapshot retained; no export retry/workaround. Prepare concrete local four-path commit and request exact publication approval only after verification.
+
+Exact nextAction: Resolve automatic-review rejection for the concrete local0332 four-path dev checkpoint before export; no WIP/dev publication retry or workaround. Then confirm HEAD/lock/worker absence/live origin parity, normally publish approved checkpoint and archive/release owned lock. Preserve original all-six-skills/random-Pursuit task, FAILED2012 and all unseedable failed outputs. Reuse desktop-pointer-menus-0332 receipt only with driverbd200b39/source393/build9/current parameters and result584b2b9f: three standalone1366normal archer1AP pointer open/Retour cycles passed with sampled tactical snapshot unchanged; not campaign iframe/latency/cause/six-casts/ending/reload acceptance. No runtime defect or warranted campaign-pilot correction established; do not replay unchanged45min continuation. Next independently audit desktop checkpoint departure/final-exit perception against current source and prior scoped receipts before one change-relevant production smoke; keep parent skills/earned campaign/fullV6/later narrative/AT/balance/operatorfinal/mobileLAST/demo OPEN and deferred keyboard exact continuation preserved.
+
+## Desktop pointer-menu diagnosis - 2026-10-12T03:37:35.980Z
+
+Owned run rpgthreejs-auto-dev-90m-20261012T0332; clean dev/live d1b12a860a4ebd4583164b8b22a381cd6ac287e3; no lock or associated worker at preflight; persistent5173/5174 servers preserved. Historical2012 FAILED digest/source393/build9/driver identity verified. No runtime defect established. One bounded native pointer branch in existing keyboard runner; no new QA tool. Scope excludes 1AP/campaign iframe/six casts/ending/reload. Original task/deferred keyboard/narrative/history/queue preserved, mobileLAST.
+
+Exact nextAction: Review and execute ONE registered desktop-pointer-menus-0332 standalone1366normal scenario using existing keyboard runner. Inspect native pointer open/Return cycles and unchanged tactical snapshots. This diagnoses menu dispatch only, excludes 1AP/campaign iframe/six casts/ending/reload; do not replay unchanged45min failed campaign or seed failed outputs. Preserve original task/deferred keyboard/narrative/history/queue; mobileLAST.
+
 ## Metadata export blocked after approved publication - 2026-10-12T00:09:15.352Z
 
 Original fb2e2f5/b6bf0e4 normally published and live origin/dev verified. Automatic review rejected the newly changed four-file publication closure content, because exact approval covered original commits, not new metadata contents. No retry/workaround; local commit only, owned lock retained until metadata publication. No source/QA/assertion change.
@@ -844,6 +862,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - skills-six-native-1800: FAILED; port 5380; receipt `tmp/demo/skills-six-native-1800/qa-job.json`; NOT_ACCEPTED
 - skills-six-native-1858: FAILED; port 5381; receipt `tmp/demo/skills-six-native-1858/qa-job.json`; NOT_ACCEPTED
 - skills-six-native-2012: FAILED; port 5382; receipt `tmp/demo/skills-six-native-2012/qa-job.json`; NOT_ACCEPTED
+- desktop-pointer-menus-0332: SUCCEEDED; port 5383; receipt `tmp/demo/desktop-pointer-menus-0332/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
