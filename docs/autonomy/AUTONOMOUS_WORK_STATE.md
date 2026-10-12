@@ -1,3 +1,22 @@
+# Current autonomous checkpoint - 2026-10-12T20:29:09.871Z
+
+TASK: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat
+RUN: rpgthreejs-auto-dev-90m-20261012T1848
+STATUS: PAUSED_FOR_CREDITS
+SUBTASK: T0 OS-only1366 smoke completed; independent motion review paused for credits
+
+ONE registered unchanged T0 OS-only1366 production smoke SUCCEEDED:12assertions,841samples,eight captures,errors0; digest9fb0743d22cf0b1f20a1b9132356c3832c3da58bd2b4a80acb090bac42a02260, request/stable/current source637f91ee/driverce350f77/helper/nine physical build identity matched. Return/fork numerical velocity joins1.5776%/1.2606%, zero visible departure displacement/reveal clock, single lion-first-refuge callback left1419.4766,width303.1719,viewport1366,speed3.6,inlinefade1,resolvedfalse. Root inspected four captures; no arrival-visible capture was emitted, black arrival-exited still cannot certify a gentle temporal fade. Actual fixtures: T0 QA origin plus wolf_pack/wolf_pack injected victories; no earned campaign/tactical/V6/Pursuit/postarrival-reload acceptance. Machine NOT_ACCEPTED retained.
+
+Independent traversal reviewer usage_limit_exceeded before findings; no independent PASS and no reviewer retry. Per operator credit rule this run safely checkpoints PAUSED_FOR_CREDITS without changing the parent task. Root source audit traced JS smoothstep .36s fade/.12s hold and CSS local curtain/arrival ::after; OS CSS animation disabling does not itself cancel these JS property writes. No demonstrated product defect. Actual computed opacity/visibility/bounds/stack order and a timestamped rendered sequence remain missing; inline variables, speed and stills cannot certify coverage or whole perceived continuity.
+
+20focusedtests/three files,TypeScript,eightcontracts/eightslots,immutable/workingcopy/whitespace PASS; unchanged physical build reused. Counts source0/test0/existingQA0/newQA0/proof0/workflow3/inherited0/browser1/rootcaptures4/reviewer1/reviewerpasses0. Exact parent/taskQueue/deferred keyboard/pendingNarrative and210historical requests retained,211total. No tracked proof promotion or source/driver/assertion change. Demo remains IN_PROGRESS; current operational status PAUSED_FOR_CREDITS.
+
+Compliance set1.1.0: no LOCKED rule changed. TRAVERSAL and UI/ACCESSIBILITY full acceptance BLOCKED for missing independent/coverage/temporal proof; QA provenance and unchanged authority/IDs/save PASS. Guardian not triggered by unchanged owners/assertions and no queue-item completion.
+
+Exact nextAction: Retry reviewer availability after read-only preflight/exclusive lock; inspect motion-t0-os-desktop-1848 SUCCEEDED terminal receipt/result9fb0743d and current source637f91ee/driverce350f77/helper/nine physical build identity. Reuse this completed T0OS1366 smoke: root inspected four captures, 12 driver assertions/841 samples, return/fork numerical joins1.5776%/1.2606%, zero departure offset/reveal clock, one unresolved lion-first-refuge callback under inline fade1. Independent traversal review failed before findings with usage_limit_exceeded; resume the same bounded review, do not rerun unchanged T0OS1848/T3OS1821/T3normal1648/T0normal1617/T1normal0415/OS0504. Root source audit found JS-driven fade timing but no demonstrated runtime defect: next resolve actual getComputedStyle local curtain and root ::after opacity/visibility/geometry/z-order, snapshot at view swap, and timestamped departure/arrival sequence in existing driver; inline values and stills cannot certify coverage or perceived continuity. Before editing certifying assertions, apply the relevant guardian trigger and one-smoke policy; no speculative product edit or broad matrix. Game-only/full perception/mobileLAST and original all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo remain OPEN. Preserve exact deferred keyboard/pendingNarrative/taskQueue; never seed FAILED1521 partial saves or replay unchanged deadline-only campaign.
+
+---
+
 # Current autonomous checkpoint - 2026-10-12T18:30:09.678Z
 
 TASK: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat
@@ -1085,6 +1104,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - motion-t0-native-desktop-1617: SUCCEEDED; port 5390; receipt `tmp/traversal/motion-t0-native-desktop-1617/qa-job.json`; NOT_ACCEPTED
 - motion-t3-native-desktop-1648: SUCCEEDED; port 5391; receipt `tmp/traversal/motion-t3-native-desktop-1648/qa-job.json`; NOT_ACCEPTED
 - motion-t3-os-desktop-1821: SUCCEEDED; port 5392; receipt `tmp/traversal/motion-t3-os-desktop-1821/qa-job.json`; NOT_ACCEPTED
+- motion-t0-os-desktop-1848: SUCCEEDED; port 5393; receipt `tmp/traversal/motion-t0-os-desktop-1848/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
