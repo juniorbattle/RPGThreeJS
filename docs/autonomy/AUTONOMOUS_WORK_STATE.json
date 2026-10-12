@@ -1,13 +1,13 @@
 {
   "status": "PAUSED_FOR_CREDITS",
   "runStartedAt": "2026-10-12T18:49:48.4824588+00:00",
-  "runEndedAt": "2026-10-12T20:29:09.871Z",
+  "runEndedAt": "2026-10-12T20:31:29.740Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "SAFE_CREDIT_CHECKPOINT",
   "activeSubtask": "T0 OS-only1366 smoke completed; independent motion review paused for credits",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "4d47856fc6fd785beb57d728d17f44fa9668db9b",
-  "lastPushedCommit": "4d47856fc6fd785beb57d728d17f44fa9668db9b",
+  "lastKnownGoodCommit": "1d763e639085c2e83a1b491038058900c261fd07",
+  "lastPushedCommit": "1d763e639085c2e83a1b491038058900c261fd07",
   "completedThisRun": [
     "Read-only preflight and live remote parity verified; clean dev/no inherited WIP",
     "Prior T3OS1821 compatible proof reused without rerun",
@@ -129,7 +129,7 @@
       "REPOSITORY_GOVERNANCE": "PASS owned lock, selected workflow paths, normal dev publication authorized OD-2026-10-12-A"
     }
   },
-  "commitReferenceScope": "Verified published base before current workflow checkpoint; final commit identified by Git trailer and automation memory",
+  "commitReferenceScope": "Published workflow checkpoint; final metadata closure identified by Git and automation memory",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -232,7 +232,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261012T1848",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-12T20:30:42.356Z",
+  "lastHeartbeat": "2026-10-12T20:31:29.740Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261012T1848",
     "sha": "64575cac0791376cf168fda463f94bd25a964e3c",
@@ -240,7 +240,7 @@
     "status": "GREEN_RECOVERY_REMOTE_VERIFIED_RETAIN_REFS"
   },
   "live": {
-    "lastHeartbeat": "2026-10-12T20:30:42.356Z",
+    "lastHeartbeat": "2026-10-12T20:31:29.740Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -22920,16 +22920,18 @@
       "docs/autonomy/handoffs/2026-10-12T1848Z-codex-t0-os-motion.md"
     ],
     "publication": {
-      "status": "READY_FOR_AUTHORIZED_NORMAL_DEV_PUBLICATION",
+      "status": "PUBLISHED_NORMAL_DEV_LIVE_VERIFIED",
+      "checkpoint": "1d763e639085c2e83a1b491038058900c261fd07",
       "authorization": "OD-2026-10-12-A",
       "destination": "origin/dev",
+      "verifiedAt": "2026-10-12T20:31:29.740Z",
       "paths": [
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
         "docs/autonomy/handoffs/2026-10-12T1848Z-codex-t0-os-motion.md"
       ]
     },
-    "runEndedAt": "2026-10-12T20:29:09.871Z",
+    "runEndedAt": "2026-10-12T20:31:29.740Z",
     "writerStopped": true,
     "metadataPublication": {
       "status": "NORMAL_DEV_PUBLICATION_VERIFIED",
@@ -23046,12 +23048,15 @@
     },
     "publicationCloseout": {
       "runId": "rpgthreejs-auto-dev-90m-20261012T1848",
-      "status": "READY_FOR_NORMAL_DEV_PUBLICATION",
+      "status": "PUBLISHED_CHECKPOINT_FINAL_METADATA_CLOSURE_NEXT",
       "worker": "45584 absent after terminal receipt",
       "port": 5393,
       "portStatus": "FREE",
       "ownedWip": "RETAIN_LOCAL_REMOTE_NO_CLEANUP_ATTEMPT",
-      "nextAction": "Retry reviewer availability after read-only preflight/exclusive lock; inspect motion-t0-os-desktop-1848 SUCCEEDED terminal receipt/result9fb0743d and current source637f91ee/driverce350f77/helper/nine physical build identity. Reuse this completed T0OS1366 smoke: root inspected four captures, 12 driver assertions/841 samples, return/fork numerical joins1.5776%/1.2606%, zero departure offset/reveal clock, one unresolved lion-first-refuge callback under inline fade1. Independent traversal review failed before findings with usage_limit_exceeded; resume the same bounded review, do not rerun unchanged T0OS1848/T3OS1821/T3normal1648/T0normal1617/T1normal0415/OS0504. Root source audit found JS-driven fade timing but no demonstrated runtime defect: next resolve actual getComputedStyle local curtain and root ::after opacity/visibility/geometry/z-order, snapshot at view swap, and timestamped departure/arrival sequence in existing driver; inline values and stills cannot certify coverage or perceived continuity. Before editing certifying assertions, apply the relevant guardian trigger and one-smoke policy; no speculative product edit or broad matrix. Game-only/full perception/mobileLAST and original all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo remain OPEN. Preserve exact deferred keyboard/pendingNarrative/taskQueue; never seed FAILED1521 partial saves or replay unchanged deadline-only campaign."
+      "nextAction": "Retry reviewer availability after read-only preflight/exclusive lock; inspect motion-t0-os-desktop-1848 SUCCEEDED terminal receipt/result9fb0743d and current source637f91ee/driverce350f77/helper/nine physical build identity. Reuse this completed T0OS1366 smoke: root inspected four captures, 12 driver assertions/841 samples, return/fork numerical joins1.5776%/1.2606%, zero departure offset/reveal clock, one unresolved lion-first-refuge callback under inline fade1. Independent traversal review failed before findings with usage_limit_exceeded; resume the same bounded review, do not rerun unchanged T0OS1848/T3OS1821/T3normal1648/T0normal1617/T1normal0415/OS0504. Root source audit found JS-driven fade timing but no demonstrated runtime defect: next resolve actual getComputedStyle local curtain and root ::after opacity/visibility/geometry/z-order, snapshot at view swap, and timestamped departure/arrival sequence in existing driver; inline values and stills cannot certify coverage or perceived continuity. Before editing certifying assertions, apply the relevant guardian trigger and one-smoke policy; no speculative product edit or broad matrix. Game-only/full perception/mobileLAST and original all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo remain OPEN. Preserve exact deferred keyboard/pendingNarrative/taskQueue; never seed FAILED1521 partial saves or replay unchanged deadline-only campaign.",
+      "checkpoint": "1d763e639085c2e83a1b491038058900c261fd07",
+      "snapshot": "64575cac0791376cf168fda463f94bd25a964e3c",
+      "automaticReviewRefusals": 0
     },
     "run1859History": {
       "runId": "rpgthreejs-auto-dev-90m-20261008T1859",
@@ -27063,7 +27068,7 @@
     "status": "PAUSED_FOR_CREDITS",
     "runStartedAt": "2026-10-12T18:49:48.4824588+00:00",
     "activePhase": "SAFE_CREDIT_CHECKPOINT",
-    "heartbeat": "2026-10-12T20:30:42.356Z",
+    "heartbeat": "2026-10-12T20:31:29.740Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-12T1848Z-codex-t0-os-motion.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -27936,8 +27941,8 @@
   "runStatistics": {
     "runId": "rpgthreejs-auto-dev-90m-20261012T1848",
     "startedAt": "2026-10-12T18:49:48.4824588+00:00",
-    "endedAt": "2026-10-12T20:29:09.871Z",
-    "elapsedMinutes": 99.35648333333333,
+    "endedAt": "2026-10-12T20:31:29.740Z",
+    "elapsedMinutes": 101.68763333333334,
     "runtimeSourceFilesModified": 0,
     "testFilesModified": 0,
     "existingQaFilesModified": 0,
@@ -27951,7 +27956,8 @@
     "reviewers": 1,
     "reviewerPasses": 0,
     "harnessCorrections": 0,
-    "quotaSavingsClaim": "NONE"
+    "quotaSavingsClaim": "NONE",
+    "timingNote": "Wall elapsed includes credit-limited interruption; atomic QA ended18:52:47Z, safe closure resumed20:29Z. No new heavy work."
   },
   "qaToolingJustification": "Extend existing campaign battle() and receipt assertions for incidental Pursuit; no new QA tool. Prior motion runner injects outcomes and cannot certify native HP/items/temp rewards or actual persisted V6.",
   "retainedRunArtifacts": {
@@ -27976,7 +27982,7 @@
     "preparation": "Native rest/revival before further combat;130gold/rest60",
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
-  "implementationCommit": "05c7ed8c2ef4779a2179f2598ab79a8781c4571e",
+  "implementationCommit": "1d763e639085c2e83a1b491038058900c261fd07",
   "authorizedWorkContinuation": "First obtain exact-payload public dev publication approval for run1859 local checkpoint; automatic review rejected the public WIP state push and no workaround is authorized. Inspect clean Git/local commits, owned writerStopped lock and preserved receipts. After approved normal push/remote parity and lock resolution, continue DEMO-QA-POLISH with existing tools/demo-continuous-production-qa.mjs from earnedSavePath tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json (SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b) and priorProofPath tmp/demo/campaign-second-refuge-1859/results.json (SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3). Rescue/serpent/ending1366normal, native rest75 first (3KO/5wounded,300gold), existing native shop/equip preparation, register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID, unique ignored output/free strict port and bounded deadline. Verify current physical source/driver/build identities; do not relabel old frozen577 campaign proof as new build acceptance. Inspect terminal receipt, genuine combats/T1/T3/temporaryloot/exactV6/ending/Salvation2AP and selected captures. Do not repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices; keep live leap/attack/Stage, live-slope smoothness,390framing/broadaccessibility/balance/settledVFX/fullending gates open. Preserve152historicaljobs/exact deferredDemoTask and pendingNarrativeTask.",
   "publication1214History": {
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
