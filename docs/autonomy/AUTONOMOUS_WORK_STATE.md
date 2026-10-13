@@ -1,18 +1,16 @@
-# Native second-refuge continuation — run1828
+# Native Valmir and mounted refusal checkpoint — run1828
 
-Run: rpgthreejs-auto-dev-90m-20261013T1828. Started: 2026-10-13T18:20:44.5385169Z. Status: IN_PROGRESS. Registered native job second-refuge-native-desktop-1828 RUNNING PID18264/port5401; WIP523259c7c2c21bf998ee4de86707e6906fb6c6bf remote verified. Parent all-demo-skills/random-Pursuit task and deferred work preserved.
+Run: rpgthreejs-auto-dev-90m-20261013T1828. Started: 2026-10-13T18:20:44.5385169Z. Ended: 2026-10-13T19:24:14.958Z. Status: IN_PROGRESS. Product source unchanged; no new second-refuge/ending checkpoint.
 
-Visible goal: reach lion-second-refuge through native rescue route, existing20gold tributary choice, actual tactical combat and exact V6 reload. Existing keyboard helper checks invalid move/target refusal in first newly played resumed battle. ONE registered1366normal35min scenario only after guardian/gates; FAILED outputs never seeds.
+Existing pilot paid authored20gold, then native Valmir victory4round34actions; rawCedric0→owner1. Mounted Tab/ShiftTab/illegalmove+target refusal/Escape focus observed with tactical/AP/owner/autosave unchanged. Subsequent native potionCedric1→58/AP1→0/stock5→4. Guardian independently accepted these narrow observations plus exact first-refuge reload/native rest210→180/all5full. Salvation5→3/heal107→140 is not exact2→0 proof.
 
-Historical0603 result03eab0e5/save d0fc5c11 exact V6 resumed first refuge verified; rest prepares prior KO members. Existing pilot minimal native input correction only; game source unchanged. Pending0708 final independent review reuses terminal proof without replay. Scheduler PAUSED preserved; no reactivation.
+ONE job second-refuge-native-desktop-1828 FAILED at35min during ordinaryT1toad108/spider68 fight12actions near village approach, not defeat; errors0/no mutation/injection. Digest faf09be2a068e7eb533b5fd8e5d6bb74f2dc848a9686ba85cdebf68c79940361, frozen driver9b3347ef/source2a87b7a/helper/inputs/all9build matched before terminal edit. All failed partial saves unseedable; secondrefuge/ending/T1victory-return/V6/strict2APSalvation remain OPEN. Five root/four guardian captures inspected; no promotion.
 
-Next action: Finish guardian preserved0708 evidence review and current pilot diff review; focused checks then ONE registered existing targetsecond-refuge1366normal/rescue/serpent/verifySalvation1/35min with verified0603 seed, free5401 and hostcache. Keep tested source/driver/build frozen; inspect terminal receipt/assertions/captures and exact earned second-refuge V6 reload, never failed partial seeds or unchangedT0 loops.
+After terminal cleanup, prepared minimal existing-pilot opposite-lane steering using visibleCHARGING/native enabled controls only targetsecond-refuge/ending. Intentional pursuit-victory same-lane, real collisions, canonical choices, truth/assertions and35min retained. Static guardian PASS; avoidance effectiveness PENDING_NATIVE; no second browser scenario. Independent0708 final scoped recovery/T0return/precombatV6 review completed without replay.
 
-Counts: product0/test0/existingQA1/newQA0/promotion0/workflow3/inherited0/browser1. All216 historical QA records retained; no new global demo acceptance.
+Next action: Read-only preflight/exclusive lock; resume native PC second-refuge using independently reverified successful0603 exact earned save/proof (d0fc5c11/03eab0e5), unchanged current9-file build. Existing pilot now selects native opposite lane during visible CHARGING for second-refuge/ending; static guardian PASS only, effectiveness PENDING_NATIVE. Register ONE new targetsecond-refuge1366normal/rescue/serpent/VERIFY_SALVATION1/35min scenario at a verified free port/new ignored output/hostcache. Retain exact2→0 Salvation, owner/resource/reload/collision assertions and intentional pursuit-victory controls; no deadline-only extension. Inspect terminal provenance/assertions/captures and exact earned lion-second-refuge V6 reload; then earned ending continuation. Never use FAILED1828/0552/1521 partial saves, repeat unchanged collision-blind policy or T0 diagnostics.
 
-30keyboard tests/types/8contracts/8slots/syntax/LOCKED/diffcheck PASS. Exact unchanged9-file physical build reused. Independent guardian final0708 PASS scoped: rawarcher0→owner1/T0two-badger victory/same-road/temp80/precombatV6; broad gaps retained. Current minimal policy/refusal diff and historical0603 compatibility prelaunch PASS. No0708 replay.
-
-Current next action: Register and execute ONE current existing native second-refuge1366normal/rescue/serpent/verifySalvation1/35min with verified0603 earnedsave/proof, port5401/hostcache. Freeze source/driver/helper/build, sync receipt at heartbeat, inspect terminal assertions/captures/exact second-refugeV6 before acceptance; failed outputs unseedable. Ending continuation next only from successful proof.
+Counts: product0/test0/existingQA1/newQA0/promotedProof0/workflow3/inherited0/browser1/reviewer1. All216prior QA requests plus current217, parent/queue/remaining work and exact deferred keyboard/narrative preserved. Owned WIP retained for unique frozen9b3347ef driver lineage. Scheduler PAUSED preserved; no reactivation. Main/LOCKED/stats/canon/eightvideos/audio unchanged. Final publication SHA: Git/automation memory after push, no self-reference.
 
 ---
 
@@ -1243,7 +1241,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - motion-t0-os-temporal-0127-host: SUCCEEDED; port 5395; receipt `tmp/traversal/motion-t0-os-temporal-0127-host/qa-job.json`; NOT_ACCEPTED
 - second-refuge-native-desktop-0552: FAILED; port 5396; receipt `tmp/demo/second-refuge-native-desktop-0552/qa-job.json`; NOT_ACCEPTED
 - early-combat-native-pursuit-0708: SUCCEEDED; port 5397; receipt `tmp/demo/early-combat-native-pursuit-0708/qa-job.json`; NOT_ACCEPTED
-- second-refuge-native-desktop-1828: RUNNING; port 5401; receipt `tmp/demo/second-refuge-native-desktop-1828/qa-job.json`; NOT_ACCEPTED
+- second-refuge-native-desktop-1828: FAILED; port 5401; receipt `tmp/demo/second-refuge-native-desktop-1828/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

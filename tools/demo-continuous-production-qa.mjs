@@ -57,6 +57,8 @@ Object.assign(report,{target,routePlan,finalePlan,defeatNodeId,nativeDefeatWait,
   osReducedMotion:process.env.DEMO_QA_OS_MOTION==='1',observationHook:'Built bootstrap exposes GameApp for read-only snapshots; no owner method invoked',refuges:[],choices:[]});
 report.nativeTacticalPolicy='Champion Salvation policy retained; novice crosier uses native lowest-charge ally attacks and follows wounded allies; non-Champion potions below half health; read-only rejection telemetry; all actions use existing native controls';
 report.nativePreparationPolicy=target==='defeat-recovery'?'Four affordable first-refuge potions through native shop; exact secured wallet/inventory/stock transaction and reload':'Existing refuge preparation';
+report.nativeTraversalPolicy=target==='pursuit-victory'?'Native same-lane charge collision':
+  ['second-refuge','ending'].includes(target)?'Native opposite-lane steering during visible charge; any collision still resolves through actual combat':'Existing native traversal inputs';
 report.driverSha256=createHash('sha256').update(await readFile('tools/demo-continuous-production-qa.mjs')).digest('hex');
 report.productionBundles=await Promise.all((await readdir('dist/assets')).filter(name=>/^(game|combat)-.*\.js$/.test(name))
   .map(async name=>({path:`dist/assets/${name}`,sha256:createHash('sha256').update(await readFile(`dist/assets/${name}`)).digest('hex')})));
@@ -805,10 +807,13 @@ try{
       assert.deepEqual(report.errors,[]);report.pass=true;break;
     }
     if(await page.locator('iframe.combat-frame').count()){await battle();if(report.defeatRecovery?.pass||report.pass)break;continue;}
-    if(target==='pursuit-victory'){
+    if(['pursuit-victory','second-refuge','ending'].includes(target)){
       const charge=page.locator('.traversal-pursuit-charge[data-phase="CHARGING"]:visible');
       if(await charge.count()){
-        const lane=await charge.getAttribute('data-lane'),button=page.locator(`[data-traversal-lane="${lane}"]:visible:not(:disabled)`);
+        const chargeLane=await charge.getAttribute('data-lane');
+        assert.ok(chargeLane==='0'||chargeLane==='1','Visible Pursuit charge must identify a native lane');
+        const lane=target==='pursuit-victory'?chargeLane:String(1-Number(chargeLane));
+        const button=page.locator(`[data-traversal-lane="${lane}"]:visible:not(:disabled)`);
         if(await button.count())await keyboardActivate(`[data-traversal-lane="${lane}"]:visible:not(:disabled)`);
       }
     }
