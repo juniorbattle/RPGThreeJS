@@ -6,8 +6,15 @@ import {preview} from 'vite';
 import {chromium} from 'playwright';
 import {beginJob} from './qa/qa-job.mjs';
 const movementMotion=process.env.BATTLEFIELD_QA_MOVEMENT==='1';
-export const parameters={viewports:[[1366,768],[620,780],[390,844]],motionModes:['no-preference','reduce'],movementMotion};
-export const requiredAssertions=['ACTUAL_TAB_BATTLEFIELD','TRANSIENT_CURSOR_ONLY','MODIFIER_CHORD_NON_INTERFERENCE','NATIVE_INVALID_AND_LEGAL_MOVE','NATIVE_TARGET_EXECUTION','CANCEL_AND_RETURN_FOCUS','NATIVE_CONTROLS','POINTER_REGRESSION',...(movementMotion?['ORDINARY_MOVE_LIVE_OS_REDUCTION','UNCHANGED_MOVEMENT_COMPLETION']:[])];
+const supportedViewports=[[1366,768],[620,780],[390,844]];
+const requestedViewport=process.env.BATTLEFIELD_QA_VIEWPORT;
+const selectedViewport=supportedViewports.find(([width,height])=>`${width}x${height}`===requestedViewport);
+assert.ok(!requestedViewport||selectedViewport,'Unsupported battlefield viewport');
+const requestedMotion=process.env.BATTLEFIELD_QA_OS_MOTION;
+assert.ok(requestedMotion===undefined||['0','1'].includes(requestedMotion),'Battlefield OS motion must be0 or1');
+export const parameters={viewports:requestedViewport?[selectedViewport]:supportedViewports,
+  motionModes:requestedMotion===undefined?['no-preference','reduce']:[requestedMotion==='1'?'reduce':'no-preference'],movementMotion};
+export const requiredAssertions=['ACTUAL_TAB_BATTLEFIELD','NATIVE_DEPLOYMENT_FOCUS_RETENTION','TRANSIENT_CURSOR_ONLY','MODIFIER_CHORD_NON_INTERFERENCE','NATIVE_INVALID_AND_LEGAL_MOVE','NATIVE_TARGET_EXECUTION','CANCEL_AND_RETURN_FOCUS','NATIVE_CONTROLS','POINTER_REGRESSION',...(movementMotion?['ORDINARY_MOVE_LIVE_OS_REDUCTION','UNCHANGED_MOVEMENT_COMPLETION']:[])];
 const output=process.env.BATTLEFIELD_QA_OUTPUT??'tmp/demo/battlefield-keyboard-production';
 const port=Number(process.env.BATTLEFIELD_QA_PORT??5275);
 const job=beginJob({driver:'tools/combat-battlefield-keyboard-production-qa.mjs',output,port,parameters,requiredAssertions,jobId:process.env.BATTLEFIELD_QA_JOB_ID});
@@ -141,6 +148,18 @@ try{
     assert.equal(await page.evaluate(()=>typeof window.__qaHelpers.teleportActiveUnitNextToEnemy),'undefined','Production mutation helper exposed');
     if(await page.locator('#tutorial:not(.hidden) [data-action="skip"]').isVisible())await activate('#tutorial [data-action="skip"]');
     await activate('#menu [data-unit]');
+    const selectedId=await page.evaluate(()=>G.selectedDeployId);
+    const rosterFocus=await page.evaluate(()=>{
+      const e=document.activeElement,s=getComputedStyle(e),r=e.getBoundingClientRect();
+      return {unit:e.dataset.unit,disabled:e.disabled,visible:e.matches(':focus-visible'),outline:s.outlineStyle,width:s.outlineWidth,
+        x:r.x,y:r.y,right:r.right,bottom:r.bottom};
+    });
+    assert.equal(rosterFocus.unit,selectedId,'Keyboard roster selection lost its replacement control focus');
+    assert.equal(rosterFocus.disabled,false);
+    assert.ok(rosterFocus.visible&&rosterFocus.outline!=='none'&&Number.parseFloat(rosterFocus.width)>0,'Roster replacement must retain visible keyboard focus');
+    assert.ok(rosterFocus.x>=0&&rosterFocus.y>=0&&rosterFocus.right<=width+1&&rosterFocus.bottom<=height+1,'Focused roster replacement clipped');
+    entry.checks.push('Native roster selection retains visible enabled replacement focus');
+    await capture('deployment-roster-focus');
     const zone=await page.evaluate(()=>G.deployZone.find(c=>!c.occupant));
     await tabTo('#combat-battlefield');await nav(zone);
     const deploymentBefore=await read();await key('Enter');
@@ -163,7 +182,7 @@ try{
     await capture('inspection-focus');
     await activate('#menu [data-a="move"]');assert.equal((await read()).focus,'combat-battlefield');
     const beforeInvalid=await read();await nav(beforeInvalid.active);await key('Enter');await unchanged(beforeInvalid,'Origin-cell Enter cannot move or spend AP');
-    assert.match(await page.locator('#combat-cell-status').textContent(),/indisponible/);
+    assert.match(await page.locator('#combat-cell-status').textContent(),/Déplacement refusé — choisissez une case disponible/);
     await key('Escape');await focusDock('Escape restores enabled dock focus');
     await activate('#menu [data-a="move"]');
     const destination=await page.evaluate(()=>G.reach.list.filter(c=>c.gx!==G.active.gx||c.gz!==G.active.gz).sort((a,b)=>{

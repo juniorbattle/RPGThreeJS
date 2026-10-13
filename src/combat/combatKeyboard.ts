@@ -20,3 +20,19 @@ export function nextCombatCursor(cell: { gx: number; gz: number }, key: string, 
   const dz = key === 'ArrowUp' ? -1 : key === 'ArrowDown' ? 1 : 0;
   return { gx: Math.max(0, Math.min(width - 1, cell.gx + dx)), gz: Math.max(0, Math.min(depth - 1, cell.gz + dz)) };
 }
+
+/** Restore only the deployment menu's own keyboard focus after its controls rebuild. */
+export function captureDeploymentFocus(menu: HTMLElement): () => void {
+  const document = menu.ownerDocument;
+  const focused = document.activeElement as HTMLElement | null;
+  if (!focused || !menu.contains(focused) || !focused.matches('button:not(:disabled)[data-unit], button:not(:disabled)[data-d]')) return () => {};
+  const unit = focused.dataset.unit, action = focused.dataset.d;
+  return () => {
+    const active = document.activeElement;
+    if (active && active !== document.body && !menu.contains(active)) return;
+    const buttons = Array.from(menu.querySelectorAll<HTMLButtonElement>('button:not(:disabled)'));
+    const replacement = buttons.find(button => unit !== undefined ? button.dataset.unit === unit : button.dataset.d === action)
+      ?? buttons.find(button => button.dataset.d !== undefined);
+    replacement?.focus({ preventScroll: true });
+  };
+}

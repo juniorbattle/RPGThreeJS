@@ -1,7 +1,8 @@
 // @vitest-environment happy-dom
 import { readFileSync } from 'node:fs';
+import { URL as NodeURL } from 'node:url';
 import { describe, expect, it, vi } from 'vitest';
-import { nextCombatCursor, shouldHandleCombatShortcut, shouldPreventCombatWheel } from './combatKeyboard';
+import { captureDeploymentFocus, nextCombatCursor, shouldHandleCombatShortcut, shouldPreventCombatWheel } from './combatKeyboard';
 
 function routed(key: string, target: EventTarget, defaultPrevented = false): boolean {
   return shouldHandleCombatShortcut({ key, target, defaultPrevented });
@@ -174,5 +175,75 @@ describe('native battlefield rejection feedback', () => {
     const self = nativeInput('target', true, true);
     await self.activate(null);
     expect(self.execute).toHaveBeenCalledWith(self.game.pending.spec, 0, 0);
+  });
+});
+
+describe('native deployment keyboard focus', () => {
+  const runtime = readFileSync(new NodeURL('./legacyCombatRuntime.js', import.meta.url), 'utf8');
+  const menuSource = runtime.slice(runtime.indexOf('function openDeployMenu(){'), runtime.indexOf('\nfunction renderDefinitionPanel('));
+  const actionSource = runtime.slice(runtime.indexOf('function onDeploy('), runtime.indexOf('\nfunction startDeployment('));
+
+  function deployment(keyboard = true, rosterSize = 1, deployed = false, renderObjective = () => {}) {
+    const menu = document.createElement('div'), skillmenu = document.createElement('div'), outside = document.createElement('button');
+    document.body.replaceChildren(menu, skillmenu, outside);
+    const game = { rosterDefs: Array.from({ length: rosterSize }, (_, index) => ({ campaignId: 'hero-' + index })),
+      deployedUnits: deployed ? ['hero-0'] : [], deployPage: 0, selectedDeployId: null };
+    let open: () => void;
+    const reset = vi.fn(() => { game.deployedUnits = []; open(); });
+    open = new Function('G', 'dom', 'keyboardInput', 'captureDeploymentFocus', 'renderObjective', 'cl', 'playerDeployLimit',
+      'deploymentCard', 'canStartDeployment', 'deployDefById', 'selectUnitData', 'setHint', 'autoDeploy', 'resetDeploy', 'beginBattle',
+      menuSource + actionSource + ';return openDeployMenu;')(
+      game, { menu, skillmenu }, keyboard, captureDeploymentFocus, renderObjective,
+      (n: number, min: number, max: number) => Math.max(min, Math.min(max, n)), () => 4,
+      (unit: { campaignId: string }) => '<button type="button" data-unit="' + unit.campaignId + '">Hero</button>',
+      (count: number) => count > 0, () => ({ name: 'Hero' }), vi.fn(), vi.fn(), vi.fn(), reset, vi.fn(),
+    );
+    open();
+    const control = (selector: string) => menu.querySelector<HTMLButtonElement>(selector)!;
+    const activate = (selector: string) => { const button = control(selector); button.focus(); button.click(); return button; };
+    return { menu, game, outside, open, reset, control, activate };
+  }
+
+  it('retains the selected roster card without changing unrelated deployment state', () => {
+    const input = deployment(), before = structuredClone(input.game);
+    const original = input.activate('[data-unit="hero-0"]');
+    expect(original.isConnected).toBe(false);
+    expect(document.activeElement).toBe(input.control('[data-unit="hero-0"]'));
+    expect(input.game).toEqual({ ...before, selectedDeployId: 'hero-0' });
+    expect(input.reset).not.toHaveBeenCalled();
+  });
+
+  it('keeps pagination focus on an enabled deployment action when next becomes disabled', () => {
+    const input = deployment(true, 5), before = structuredClone(input.game);
+    input.activate('[data-d="next"]');
+    expect(input.control('[data-d="next"]').disabled).toBe(true);
+    expect(document.activeElement).toBe(input.control('[data-d="prev"]'));
+    expect(input.game).toEqual({ ...before, deployPage: 1 });
+  });
+
+  it('returns reset focus to an enabled action after the party becomes empty', () => {
+    const input = deployment(true, 1, true), before = structuredClone(input.game);
+    input.activate('[data-d="reset"]');
+    expect(input.control('[data-d="reset"]').disabled).toBe(true);
+    expect(document.activeElement).toBe(input.control('[data-d="auto"]'));
+    expect(input.game).toEqual({ ...before, deployedUnits: [] });
+    expect(input.reset).toHaveBeenCalledTimes(1);
+  });
+
+  it('leaves pointer mode and existing external focus ownership unchanged', () => {
+    const pointer = deployment(false);
+    pointer.activate('[data-unit="hero-0"]');
+    expect(document.activeElement).toBe(document.body);
+    const external = deployment();
+    external.outside.focus(); external.open();
+    expect(document.activeElement).toBe(external.outside);
+  });
+
+  it('does not steal focus acquired by another surface during the rebuild', () => {
+    let outside: HTMLButtonElement | undefined;
+    const input = deployment(true, 1, false, () => outside?.focus());
+    outside = input.outside;
+    input.activate('[data-unit="hero-0"]');
+    expect(document.activeElement).toBe(outside);
   });
 });

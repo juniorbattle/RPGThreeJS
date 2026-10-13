@@ -37,7 +37,7 @@ import { renderCombatResult, renderDeploymentCard, renderDeploymentPreview } fro
 import { resolveCombatStageProfileUniversal, getStageProfileInfo, forceResolveCombatStageProfile } from './stage/combatStageProfiles';
 import { isActionPublished, playActionVfx as playPublishedActionVfx, getPublishedDraft, __devUpdateOverlay, __devClearOverlay, getActiveRegistry } from './vfx/PublishedVfxResolver';
 import { combatHudCameraFov, renderCombatActionDock, renderCombatActionPreview, renderCombatObjective, renderCombatSkillRows, renderCombatStatuses, renderCombatTurnOrder, renderCombatUnitCard, selectedCombatAction } from './combatHudPresentation';
-import { nextCombatCursor, shouldHandleCombatShortcut, shouldPreventCombatWheel } from './combatKeyboard';
+import { captureDeploymentFocus, nextCombatCursor, shouldHandleCombatShortcut, shouldPreventCombatWheel } from './combatKeyboard';
 import { onReducedMotionChange, prefersReducedMotion } from '../ui/ReducedMotion';
 import { createCombatRandomStreams, mulberry32 } from './combatRandom';
 
@@ -2413,6 +2413,7 @@ function deploymentCard(def){
   return renderDeploymentCard({...def,portrait:uiPortraitFor(def.portrait)},id,active,deployed);
 }
 function openDeployMenu(){
+  const restoreFocus=keyboardInput?captureDeploymentFocus(dom.menu):()=>{};
   renderObjective(); dom.menu.classList.remove('hidden'); dom.menu.classList.add('deploy-roster'); dom.skillmenu.classList.add('hidden');
   const size=4,pages=Math.max(1,Math.ceil(G.rosterDefs.length/size)); G.deployPage=cl(G.deployPage,0,pages-1);
   const visible=G.rosterDefs.slice(G.deployPage*size,G.deployPage*size+size);
@@ -2423,6 +2424,7 @@ function openDeployMenu(){
     '<button type="button" class="deploy-start" data-d="start" '+(!canStartDeployment(G.deployedUnits.length,playerDeployLimit())?'disabled':'')+'>Lancer le combat</button></div>';
   dom.menu.querySelectorAll('[data-unit]').forEach(b=>b.onclick=()=>{ G.selectedDeployId=b.dataset.unit; openDeployMenu(); const d=deployDefById(G.selectedDeployId); if(d)selectUnitData(d); setHint('Placez « '+(d?.name||'unité')+' » sur une case disponible'); });
   dom.menu.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>onDeploy(b.dataset.d,b));
+  restoreFocus();
 }
 function renderDefinitionPanel(def,deployed=false){ dom.panel.dataset.team='player'; dom.panel.classList.remove('hidden'); dom.panel.classList.add('deploy-preview'); dom.panel.innerHTML=renderDeploymentPreview(def,deployed); }
 function selectUnitData(def){ const deployed=deployedById(def.campaignId||def.name); G.selected=deployed||null; renderDefinitionPanel(deployed||def,Boolean(deployed)); }
