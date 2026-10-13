@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-13T01:28:57.8373031Z",
-  "runEndedAt": "2026-10-13T01:40:17.019Z",
+  "runEndedAt": "2026-10-13T01:43:01.772Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-  "activePhase": "RENDERED_ARRIVAL_SCOPED_CHECKPOINT",
+  "activePhase": "SCOPED_CHECKPOINT_PUBLISHED",
   "activeSubtask": "T0 OS1366 rendered gentle arrival fade accepted; normal computed/perceived movement remains open",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "f07a0ef572b0eaf06d01c58dfbebc1d7d64154e8",
-  "lastPushedCommit": "f07a0ef572b0eaf06d01c58dfbebc1d7d64154e8",
+  "lastKnownGoodCommit": "652c5aed64ea21723e7f9d19cc8600dbc56a96f3",
+  "lastPushedCommit": "652c5aed64ea21723e7f9d19cc8600dbc56a96f3",
   "completedThisRun": [
     "Verified clean preflight, previous owner idle and live dev parity; exclusive lock acquired",
     "Reused exact prior computed proof and inspected coarse recording without repeating accepted evidence",
@@ -221,7 +221,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261013T0127",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-13T01:40:17.019Z",
+  "lastHeartbeat": "2026-10-13T01:43:01.772Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261013T0127",
     "sha": "72b1d3f6047b84968978b4e9c57ed31256a182e0",
@@ -229,7 +229,7 @@
     "remoteVerified": true
   },
   "live": {
-    "lastHeartbeat": "2026-10-13T01:40:17.019Z",
+    "lastHeartbeat": "2026-10-13T01:43:01.772Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -23297,21 +23297,21 @@
     ],
     "publication": {
       "status": "VERIFIED_REMOTE_DEV",
-      "checkpoint": "f07a0ef572b0eaf06d01c58dfbebc1d7d64154e8",
-      "verifiedAt": "2026-10-12T21:03:35.590Z",
+      "checkpoint": "652c5aed64ea21723e7f9d19cc8600dbc56a96f3",
+      "verifiedAt": "2026-10-13T01:43:01.772Z",
       "destination": "origin/dev",
       "authorization": "OD-2026-10-12-A",
       "paths": [
         "tools/traversal-motion-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-12T2045Z-codex-computed-traversal-coverage.md"
+        "docs/autonomy/handoffs/2026-10-13T0127Z-codex-arrival-temporal-proof.md"
       ],
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
       "automaticReviewRefusal": null
     },
-    "runEndedAt": "2026-10-13T01:40:17.019Z",
-    "writerStopped": false,
+    "runEndedAt": "2026-10-13T01:43:01.772Z",
+    "writerStopped": true,
     "metadataPublication": {
       "status": "CLOSURE_NEXT_AUTHORIZED_NORMAL_DEV_PUSH",
       "paths": [
@@ -24056,7 +24056,7 @@
       "workerAbsent": 60012,
       "portAbsent": 5352
     },
-    "publishedCheckpoint": "f07a0ef572b0eaf06d01c58dfbebc1d7d64154e8",
+    "publishedCheckpoint": "652c5aed64ea21723e7f9d19cc8600dbc56a96f3",
     "closeout0613": {
       "checkpoint": "babc01bf3571247b73516a740c501a88b1deb7dd",
       "runEndedAt": "2026-10-09T06:56:55.147Z",
@@ -27448,8 +27448,8 @@
     "agent": "codex",
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-13T01:28:57.8373031Z",
-    "activePhase": "RENDERED_ARRIVAL_SCOPED_CHECKPOINT",
-    "heartbeat": "2026-10-13T01:40:17.019Z",
+    "activePhase": "SCOPED_CHECKPOINT_PUBLISHED",
+    "heartbeat": "2026-10-13T01:43:01.772Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-13T0127Z-codex-arrival-temporal-proof.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -28395,6 +28395,17 @@
       "newQaTool": false,
       "buildReused": true,
       "previousNextAction": "Read-only preflight/exclusive lock; reuse motion-t0-os-coverage-2045 SUCCEEDED result142a13c4, exact driver3851db0b/source637f91ee/helper/nine physical build and scoped guardian/traversal reviews. Computed return/fork full-cover swap and OS equivalent exit are accepted only for T0 OS1366. Do not repeat unchanged accepted numerical/computed scenarios or campaign deadline-only runs. Next resolve rendered arrival perception: inspect existing WebM frame timeline and 119917..120273ms computed interval; current arrival screenshot spans119974..120415ms and strips show coarse scene-to-black, so gentle rendered fade remains OPEN, not a runtime defect. If existing recording cannot supply intermediate aligned frames, make only a bounded capture-policy correction in the existing driver to avoid screenshot calls during the short transition, retain all certifying assertions and guardian trigger, then ONE registered T0OS1366 temporal smoke; no instrumentation rewrite or speculative product edit. Normal/game-only/T1/T3 computed coverage and mobileLAST remain later gaps. Preserve exact parent all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo, deferred keyboard, pendingNarrative and taskQueue; never seed FAILED1521 partial outputs."
+    },
+    "closeout0127": {
+      "workers54308And41056Absent": true,
+      "port5395Absent": true,
+      "wipRetained": true,
+      "renderedArrival": "ACCEPTED_SCOPED_T0_OS1366",
+      "exactPaintedDuration": "OPEN",
+      "wholeDemo": "IN_PROGRESS",
+      "protectedParentDeferredQueue": true,
+      "historicalRequests": 212,
+      "newRequests": 2
     }
   },
   "previousInterruptedRun": {
@@ -28734,8 +28745,8 @@
   "runStatistics": {
     "runId": "rpgthreejs-auto-dev-90m-20261013T0127",
     "startedAt": "2026-10-13T01:28:57.8373031Z",
-    "endedAt": "2026-10-13T01:40:17.019Z",
-    "elapsedMinutes": 11.3197,
+    "endedAt": "2026-10-13T01:43:01.772Z",
+    "elapsedMinutes": 14.065583333333333,
     "runtimeSourceFilesModified": 0,
     "testFilesModified": 0,
     "existingQaFilesModified": 1,

@@ -1227,3 +1227,8 @@ Published checkpoint 1d763e639085c2e83a1b491038058900c261fd07 verified on origin
 ## Scoped coverage checkpoint published - 2026-10-12T21:03:35.590Z
 
 Checkpoint f07a0ef572b0eaf06d01c58dfbebc1d7d64154e8 normally published/live verified on origin/dev under permanent OD-2026-10-12-A; main00b96f1 unchanged. Post-commit source/driver/helper/nine physical build identity still matches the completed receipt. Worker24400/port5394 absent; existing Vite29856 preserved. Owned WIP29a75e2ea8fafb174b82628ee509b93572edceec retained locally/remotely; no cleanup attempt. Parent/taskQueue/exact deferred keyboard/pendingNarrative and211 historical requests retained;212total. Runtime0/test0/existingQA1/newQA0/proof0/workflow3/browser1, no tracked evidence promotion or quota savings claim. Computed coverage T0OS1366 accepted scoped; rendered gentle arrival fade/full demo remain OPEN. Final metadata closure SHA, clean parity and owned-lock archival are recorded in automation memory and ignored final audit after verification.
+
+
+## Publication verified - 2026-10-13T01:43:01.772Z
+
+Checkpoint 652c5aed64ea21723e7f9d19cc8600dbc56a96f3 published normally and verified on origin/dev under OD-2026-10-12-A. Main00b96f1 is unchanged. Both owned workers and listener5395 are absent; inherited Vite29856 is preserved. Owned WIP72b1d3f remains local/remote, with no cleanup attempt. Scoped rendered arrival acceptance and the exact next action are unchanged; broader demo criteria remain open. Final metadata closure, clean parity and lock archival are recorded in automation memory and the ignored final audit.
