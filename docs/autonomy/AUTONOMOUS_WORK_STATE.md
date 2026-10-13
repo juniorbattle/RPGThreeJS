@@ -1,6 +1,6 @@
 # Native campaign and deployment focus checkpoint — run1944
 
-Run: rpgthreejs-auto-dev-90m-20261013T1944. Started: 2026-10-13T19:45:46.4541492Z. Status: IN_PROGRESS. Active subtask: Deployment keyboard focus corrected; native exact2AP Salvation verified scoped; second refuge remains unverified.
+Run: rpgthreejs-auto-dev-90m-20261013T1944. Started: 2026-10-13T19:45:46.4541492Z. Ended: 2026-10-13T20:40:52.044Z. Status: IN_PROGRESS. Active subtask: Deployment keyboard focus corrected; native exact2AP Salvation verified scoped; second refuge remains unverified.
 
 Product changed: two runtime files retain keyboard focus on rebuilt deployment roster/actions, preserving enabled identities and external/pointer focus; no activation/tactical/V6 change. Five new actual-function DOM regressions fail3 on old code/pass35 with correction. Existing runner now checks visible enabled/bounded roster focus and current refusal copy; explicit1366normal scope retains default six-cell matrix and all assertions. No new QA tool or second browser.
 
@@ -1349,3 +1349,5 @@ Checkpoint 652c5aed64ea21723e7f9d19cc8600dbc56a96f3 published normally and verif
 La directive opérateur complète est dans PLAYABLE_DEMO_EXECUTION_DIRECTIVE_2026-10-13.md. Appliquer au prochain run après réactivation manuelle ; ce chat prépare seulement la suite. Plan OD13A, tâche/nextAction/file,214reçus et travaux différés inchangés. Aucun lancement de campagne/navigateur ni changement produit. Plafond20min pour investigation infructueuse uniquement ; format de retour section10. Automatisation PAUSED conservée. Compteurs : produit0, QA/preuves0, workflow5.
 
 Coherent checkpoint 1c1de18d481b6460cde0533af95ac4509affe77a normally published/remote verified. Final metadata closure reconciles terminalFAILED/current-driver mismatch and all live aliases; final metadata SHA in Git/automation memory. Worker stopped, source0/QA1/workflow3; owned WIP retained for frozen original driver.
+
+Coherent focus checkpoint 44761a642d5b27f4b385ef40fdc597d05ea8575e normally published and remote verified. Product/QA ended 2026-10-13T20:40:52.044Z; metadata closure SHA is in Git/automation memory. Owned1944 WIP content is on dev; retire only after final verified closure. Prior1828 unique driver WIP retained.

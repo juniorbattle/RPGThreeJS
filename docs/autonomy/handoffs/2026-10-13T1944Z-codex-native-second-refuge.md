@@ -1,6 +1,6 @@
 # Native campaign and deployment focus checkpoint — run1944
 
-Run: rpgthreejs-auto-dev-90m-20261013T1944. Started: 2026-10-13T19:45:46.4541492Z. Status: IN_PROGRESS. Active subtask: Deployment keyboard focus corrected; native exact2AP Salvation verified scoped; second refuge remains unverified.
+Run: rpgthreejs-auto-dev-90m-20261013T1944. Started: 2026-10-13T19:45:46.4541492Z. Ended: 2026-10-13T20:40:52.044Z. Status: IN_PROGRESS. Active subtask: Deployment keyboard focus corrected; native exact2AP Salvation verified scoped; second refuge remains unverified.
 
 Product changed: two runtime files retain keyboard focus on rebuilt deployment roster/actions, preserving enabled identities and external/pointer focus; no activation/tactical/V6 change. Five new actual-function DOM regressions fail3 on old code/pass35 with correction. Existing runner now checks visible enabled/bounded roster focus and current refusal copy; explicit1366normal scope retains default six-cell matrix and all assertions. No new QA tool or second browser.
 
@@ -13,3 +13,5 @@ Counts: product2/test1/existingQA1/newQA0/promotedProof0/workflow3/inherited0/br
 Next product action: Read-only preflight/exclusive lock; verify current focus build and actual runner fa3049ac. Register ONE existing tools/combat-battlefield-keyboard-production-qa.mjs native standalone1366x768/normal smoke with BATTLEFIELD_QA_VIEWPORT=1366x768, BATTLEFIELD_QA_OS_MOTION=0, BATTLEFIELD_QA_MOVEMENT=0, matching recorded parameters/assertions, new ignored output/job/verified free port/host cache. Retain visible enabled roster replacement, refusal, legalmove/target, cancellation, pointer, tactical truth assertions. Inspect focus capture/terminal digest/provenance and accept only this desktop native control scope; no six-cell/mobile/campaign/AT claim. Then return approved PC campaign using separately reverified successful0603 only; do not seed FAILED1944/1828/0552/1521 or replay ineffective opposite-lane policy/35min unchanged. Preserve exact deferred keyboard/narrative and historical proofs; no T0 diagnostic return.
 
 Normal origin/dev publication authorized permanently OD-2026-10-12-A. Final checkpoint/publication/ended timestamp follow Git and automation memory after verification.
+
+Coherent focus checkpoint 44761a642d5b27f4b385ef40fdc597d05ea8575e normally published and remote verified. Product/QA ended 2026-10-13T20:40:52.044Z; metadata closure SHA is in Git/automation memory. Owned1944 WIP content is on dev; retire only after final verified closure. Prior1828 unique driver WIP retained.

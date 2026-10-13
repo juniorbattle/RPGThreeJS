@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-13T19:45:46.4541492Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-13T20:40:52.044Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "DEMO-CAMPAIGN-KEYBOARD_PRODUCT_CHECKPOINT",
   "activeSubtask": "Deployment keyboard focus corrected; native exact2AP Salvation verified scoped; second refuge remains unverified",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "0b4eb9bdc9fd25cfcd774eaab978712b9e9f1f78",
-  "lastPushedCommit": "1c1de18d481b6460cde0533af95ac4509affe77a",
+  "lastPushedCommit": "44761a642d5b27f4b385ef40fdc597d05ea8575e",
   "completedThisRun": [
     "Clean/no-lock dev bd0e live parity; exclusive lock/fetch; seed0603 exact native/save lineage and current-build compatibility reverified",
     "ONE native second-refuge1944 FAILED35min in ordinary T1badger88/boar116, round3/27actions; Valmir victory4round34actions; all failed partial outputs unseedable",
@@ -122,7 +122,7 @@
       "SAVE": "PASS no schema/transient change; second-refuge reload OPEN",
       "UI_ACCESSIBILITY": "BLOCKED focus implemented/mechanical green, production browser OPEN",
       "QA_EVIDENCE": "PASS failed aggregate quarantined; scoped observation distinguished",
-      "REPOSITORY_GOVERNANCE": "PASS gates/selected owned checkpoint; final publication pending"
+      "REPOSITORY_GOVERNANCE": "PASS selected checkpoint44761a6 pushed/remote verified under owned lock; finalmetadata closure follows; main/LOCKED protected"
     }
   },
   "commitReferenceScope": "lastKnownGoodCommit retains accepted prior product; focus is coherent/source-green with browser OPEN. lastPushedCommit records verified coherent checkpoint after publication; closure SHA in Git/automation memory, no self-reference.",
@@ -228,12 +228,12 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261013T1944",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-13T20:31:55.249Z",
+  "lastHeartbeat": "2026-10-13T20:40:52.044Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261013T1944",
     "sha": "cc0e2fc5bf3934f6678a3b17248bcd98e72bf44f",
     "at": "2026-10-13T20:32:39.4791720Z",
-    "status": "GREEN_MECHANICAL_BROWSER_OPEN",
+    "status": "COHERENT_CONTENT_PUBLISHED_ON_DEV",
     "dirtyFiles": [
       "src/combat/combatKeyboard.ts",
       "src/combat/legacyCombatRuntime.js",
@@ -243,10 +243,11 @@
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
       "docs/autonomy/handoffs/2026-10-13T1944Z-codex-native-second-refuge.md"
     ],
-    "lastGreenCheck": "Current35DOM, fresh types/build,8contracts8slots,syntax/LOCKED/whitespace, guardian/UI actualdiff PASS; browser OPEN"
+    "lastGreenCheck": "Current35DOM, fresh types/build,8contracts8slots,syntax/LOCKED/whitespace, guardian/UI actualdiff PASS; browser OPEN",
+    "retirement": "Owned1944 branch may retire after final metadata publication;1828 unique frozen driver retained"
   },
   "live": {
-    "lastHeartbeat": "2026-10-13T20:31:55.249Z",
+    "lastHeartbeat": "2026-10-13T20:40:52.044Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -23775,7 +23776,7 @@
       "branch": "wip/rpgthreejs-auto-dev-90m-20261013T1944",
       "sha": "cc0e2fc5bf3934f6678a3b17248bcd98e72bf44f",
       "at": "2026-10-13T20:32:39.4791720Z",
-      "status": "GREEN_MECHANICAL_BROWSER_OPEN",
+      "status": "COHERENT_CONTENT_PUBLISHED_ON_DEV",
       "dirtyFiles": [
         "src/combat/combatKeyboard.ts",
         "src/combat/legacyCombatRuntime.js",
@@ -23785,7 +23786,8 @@
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
         "docs/autonomy/handoffs/2026-10-13T1944Z-codex-native-second-refuge.md"
       ],
-      "lastGreenCheck": "Current35DOM, fresh types/build,8contracts8slots,syntax/LOCKED/whitespace, guardian/UI actualdiff PASS; browser OPEN"
+      "lastGreenCheck": "Current35DOM, fresh types/build,8contracts8slots,syntax/LOCKED/whitespace, guardian/UI actualdiff PASS; browser OPEN",
+      "retirement": "Owned1944 branch may retire after final metadata publication;1828 unique frozen driver retained"
     },
     "nextAction": "Read-only preflight/exclusive lock; verify current focus build and actual runner fa3049ac. Register ONE existing tools/combat-battlefield-keyboard-production-qa.mjs native standalone1366x768/normal smoke with BATTLEFIELD_QA_VIEWPORT=1366x768, BATTLEFIELD_QA_OS_MOTION=0, BATTLEFIELD_QA_MOVEMENT=0, matching recorded parameters/assertions, new ignored output/job/verified free port/host cache. Retain visible enabled roster replacement, refusal, legalmove/target, cancellation, pointer, tactical truth assertions. Inspect focus capture/terminal digest/provenance and accept only this desktop native control scope; no six-cell/mobile/campaign/AT claim. Then return approved PC campaign using separately reverified successful0603 only; do not seed FAILED1944/1828/0552/1521 or replay ineffective opposite-lane policy/35min unchanged. Preserve exact deferred keyboard/narrative and historical proofs; no T0 diagnostic return.",
     "runMetrics": {
@@ -23812,21 +23814,26 @@
       "docs/autonomy/handoffs/2026-10-13T1944Z-codex-native-second-refuge.md"
     ],
     "publication": {
-      "branch": "dev",
-      "sha": "1c1de18d481b6460cde0533af95ac4509affe77a",
-      "at": "2026-10-13T19:26:01.1351224Z",
+      "paths": [
+        "src/combat/combatKeyboard.ts",
+        "src/combat/combatKeyboard.test.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "tools/combat-battlefield-keyboard-production-qa.mjs",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/handoffs/2026-10-13T1944Z-codex-native-second-refuge.md"
+      ],
       "remoteVerified": true,
-      "metadataClosureSha": "Git and automation memory after final push"
+      "sha": "44761a642d5b27f4b385ef40fdc597d05ea8575e",
+      "at": "2026-10-13T20:38:22.0875569Z",
+      "destination": "origin/dev",
+      "authorization": "OD-2026-10-12-A"
     },
-    "runEndedAt": null,
+    "runEndedAt": "2026-10-13T20:40:52.044Z",
     "writerStopped": true,
     "metadataPublication": {
-      "status": "CLOSURE_NEXT_AUTHORIZED_NORMAL_DEV_PUSH",
-      "paths": [
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-12T2045Z-codex-computed-traversal-coverage.md"
-      ]
+      "status": "FINAL_SELECTED_CLOSURE",
+      "shaIn": "Git/automation memory after push"
     },
     "publication1752History": {
       "status": "VERIFIED_PUBLISHED",
@@ -27957,7 +27964,7 @@
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-13T19:45:46.4541492Z",
     "activePhase": "DEMO-CAMPAIGN-KEYBOARD_PRODUCT_CHECKPOINT",
-    "heartbeat": "2026-10-13T20:31:55.249Z",
+    "heartbeat": "2026-10-13T20:40:52.044Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-13T1944Z-codex-native-second-refuge.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -29565,8 +29572,128 @@
           "POINTER_REGRESSION"
         ],
         "registered": false
-      }
-    }
+      },
+      "priorPublicationAliases": {
+        "publication": {
+          "branch": "dev",
+          "sha": "1c1de18d481b6460cde0533af95ac4509affe77a",
+          "at": "2026-10-13T19:26:01.1351224Z",
+          "remoteVerified": true,
+          "metadataClosureSha": "Git and automation memory after final push"
+        },
+        "metadataPublication": {
+          "status": "CLOSURE_NEXT_AUTHORIZED_NORMAL_DEV_PUSH",
+          "paths": [
+            "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+            "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+            "docs/autonomy/handoffs/2026-10-12T2045Z-codex-computed-traversal-coverage.md"
+          ]
+        }
+      },
+      "productBuildBeforeCommit": {
+        "gitHead": "bd0e514941eaf55d2cf6e6a0b7380163d1ad3464",
+        "sourceTree": "ebf76246002ed5e54c2cb9a235d2653166096f91",
+        "sourceDiffSha256": "0adc9d34f6615ae03ad7d34b217a71eb2c9de3b7494c5bfe4e5f9d38f60c1f61",
+        "driver": {
+          "path": "tools/combat-battlefield-keyboard-production-qa.mjs",
+          "sha256": "fa3049ac12ac9e1fd53f0e6df2b58b2e09cc18d25a838fb757106e311635ca9e"
+        },
+        "inputs": [],
+        "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DtiatkY9.js",
+            "sha256": "d39f95fda6d01d73fddc37bbd89463ffc973104b01d7821812f66e4a7f2763e2"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/combat-YBP9hIhO.js",
+            "sha256": "a6bb00b0121ea63ca0f50597850f2c5f60f91c12380567a45c2ef04b9f227f35"
+          },
+          {
+            "path": "dist/assets/game-B4zy_W2o.js",
+            "sha256": "95e0f8c050037d8943f2cede9b56e3c72de16612df0328dbca92475d76265258"
+          },
+          {
+            "path": "dist/assets/game-CdUsLhii.css",
+            "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "0b46a0edd9fabc7248d4c7966ffeaf937f1acc740239dc6c32a651a11c73ead2"
+          }
+        ]
+      },
+      "currentProductBuild": {
+        "gitHead": "44761a642d5b27f4b385ef40fdc597d05ea8575e",
+        "sourceTree": "039d9f443e26f152605fcf36b4a94ac3e0f89cff",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/combat-battlefield-keyboard-production-qa.mjs",
+          "sha256": "fa3049ac12ac9e1fd53f0e6df2b58b2e09cc18d25a838fb757106e311635ca9e"
+        },
+        "inputs": [],
+        "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DtiatkY9.js",
+            "sha256": "d39f95fda6d01d73fddc37bbd89463ffc973104b01d7821812f66e4a7f2763e2"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/combat-YBP9hIhO.js",
+            "sha256": "a6bb00b0121ea63ca0f50597850f2c5f60f91c12380567a45c2ef04b9f227f35"
+          },
+          {
+            "path": "dist/assets/game-B4zy_W2o.js",
+            "sha256": "95e0f8c050037d8943f2cede9b56e3c72de16612df0328dbca92475d76265258"
+          },
+          {
+            "path": "dist/assets/game-CdUsLhii.css",
+            "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "0b46a0edd9fabc7248d4c7966ffeaf937f1acc740239dc6c32a651a11c73ead2"
+          }
+        ]
+      },
+      "coherentCheckpoint": "44761a642d5b27f4b385ef40fdc597d05ea8575e",
+      "endedAt": "2026-10-13T20:40:52.044Z",
+      "automaticApprovalRefusals": 0,
+      "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
+    },
+    "lastPushedCommit": "44761a642d5b27f4b385ef40fdc597d05ea8575e"
   },
   "previousInterruptedRun": {
     "runId": "rpgthreejs-auto-dev-90m-20261009T0011",
@@ -29769,17 +29896,9 @@
     }
   },
   "uncommittedWork": {
-    "status": "SELECTED_GREEN_CHECKPOINT_PENDING_COMMIT",
-    "files": [
-      "src/combat/combatKeyboard.ts",
-      "src/combat/legacyCombatRuntime.js",
-      "src/combat/combatKeyboard.test.ts",
-      "tools/combat-battlefield-keyboard-production-qa.mjs",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-13T1944Z-codex-native-second-refuge.md"
-    ],
-    "inheritedFiles": 0
+    "status": "NO_DELIBERATE_SOURCE_WIP",
+    "files": [],
+    "workflowClosure": "Three selected metadata files committed with this record"
   },
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
@@ -29952,7 +30071,7 @@
     "preparation": "Native rest/revival before further combat;130gold/rest60",
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
-  "implementationCommit": "0b4eb9bdc9fd25cfcd774eaab978712b9e9f1f78",
+  "implementationCommit": "44761a642d5b27f4b385ef40fdc597d05ea8575e",
   "authorizedWorkContinuation": "First obtain exact-payload public dev publication approval for run1859 local checkpoint; automatic review rejected the public WIP state push and no workaround is authorized. Inspect clean Git/local commits, owned writerStopped lock and preserved receipts. After approved normal push/remote parity and lock resolution, continue DEMO-QA-POLISH with existing tools/demo-continuous-production-qa.mjs from earnedSavePath tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json (SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b) and priorProofPath tmp/demo/campaign-second-refuge-1859/results.json (SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3). Rescue/serpent/ending1366normal, native rest75 first (3KO/5wounded,300gold), existing native shop/equip preparation, register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID, unique ignored output/free strict port and bounded deadline. Verify current physical source/driver/build identities; do not relabel old frozen577 campaign proof as new build acceptance. Inspect terminal receipt, genuine combats/T1/T3/temporaryloot/exactV6/ending/Salvation2AP and selected captures. Do not repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices; keep live leap/attack/Stage, live-slope smoothness,390framing/broadaccessibility/balance/settledVFX/fullending gates open. Preserve152historicaljobs/exact deferredDemoTask and pendingNarrativeTask.",
   "publication1214History": {
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
