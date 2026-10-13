@@ -1,6 +1,6 @@
 # Native second-refuge continuation — run1828
 
-Run: rpgthreejs-auto-dev-90m-20261013T1828. Started: 2026-10-13T18:20:44.5385169Z. Status: IN_PROGRESS. Parent all-demo-skills/random-Pursuit task and deferred work preserved.
+Run: rpgthreejs-auto-dev-90m-20261013T1828. Started: 2026-10-13T18:20:44.5385169Z. Status: IN_PROGRESS. Registered native job second-refuge-native-desktop-1828 RUNNING PID18264/port5401; WIP523259c7c2c21bf998ee4de86707e6906fb6c6bf remote verified. Parent all-demo-skills/random-Pursuit task and deferred work preserved.
 
 Visible goal: reach lion-second-refuge through native rescue route, existing20gold tributary choice, actual tactical combat and exact V6 reload. Existing keyboard helper checks invalid move/target refusal in first newly played resumed battle. ONE registered1366normal35min scenario only after guardian/gates; FAILED outputs never seeds.
 
@@ -8,7 +8,7 @@ Historical0603 result03eab0e5/save d0fc5c11 exact V6 resumed first refuge verifi
 
 Next action: Finish guardian preserved0708 evidence review and current pilot diff review; focused checks then ONE registered existing targetsecond-refuge1366normal/rescue/serpent/verifySalvation1/35min with verified0603 seed, free5401 and hostcache. Keep tested source/driver/build frozen; inspect terminal receipt/assertions/captures and exact earned second-refuge V6 reload, never failed partial seeds or unchangedT0 loops.
 
-Counts: product0/test0/existingQA1/newQA0/promotion0/workflow3/inherited0/browser0. All216 historical QA records retained; no new global demo acceptance.
+Counts: product0/test0/existingQA1/newQA0/promotion0/workflow3/inherited0/browser1. All216 historical QA records retained; no new global demo acceptance.
 
 30keyboard tests/types/8contracts/8slots/syntax/LOCKED/diffcheck PASS. Exact unchanged9-file physical build reused. Independent guardian final0708 PASS scoped: rawarcher0→owner1/T0two-badger victory/same-road/temp80/precombatV6; broad gaps retained. Current minimal policy/refusal diff and historical0603 compatibility prelaunch PASS. No0708 replay.
 
@@ -1242,7 +1242,8 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - motion-t0-os-temporal-0127: FAILED; port 5395; receipt `tmp/traversal/motion-t0-os-temporal-0127/qa-job.json`; NOT_ACCEPTED
 - motion-t0-os-temporal-0127-host: SUCCEEDED; port 5395; receipt `tmp/traversal/motion-t0-os-temporal-0127-host/qa-job.json`; NOT_ACCEPTED
 - second-refuge-native-desktop-0552: FAILED; port 5396; receipt `tmp/demo/second-refuge-native-desktop-0552/qa-job.json`; NOT_ACCEPTED
-- early-combat-native-pursuit-0708: SUCCEEDED; port 5397; receipt `tmp/demo/early-combat-native-pursuit-0708/qa-job.json`; NOT_ACCEPTED; NOT_ACCEPTED_FINAL_INDEPENDENT_REVIEW_PAUSED_FOR_CREDITS
+- early-combat-native-pursuit-0708: SUCCEEDED; port 5397; receipt `tmp/demo/early-combat-native-pursuit-0708/qa-job.json`; NOT_ACCEPTED
+- second-refuge-native-desktop-1828: RUNNING; port 5401; receipt `tmp/demo/second-refuge-native-desktop-1828/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

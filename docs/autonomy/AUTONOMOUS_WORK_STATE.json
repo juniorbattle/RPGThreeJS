@@ -69,7 +69,7 @@
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest",
     "1521: five fresh novice classes and capped40percent Salvation2to0 scoped accepted; sixth/lancer, earned second-refuge reload, ending, fullV6, balance and fresh random-Pursuit breadth remain OPEN"
   ],
-  "nextAction": "Register and execute ONE current existing native second-refuge1366normal/rescue/serpent/verifySalvation1/35min with verified0603 earnedsave/proof, port5401/hostcache. Freeze source/driver/helper/build, sync receipt at heartbeat, inspect terminal assertions/captures/exact second-refugeV6 before acceptance; failed outputs unseedable. Ending continuation next only from successful proof.",
+  "nextAction": "Observe registered second-refuge-native-desktop-1828 worker/port5401; preserve frozen source/driver/build; synchronize receipt at heartbeat, inspect terminal proof/captures/exact V6 reload before acceptance; never seed failed output.",
   "taskQueue": [
     "DEMO-PC-CAMPAIGN: ACTIVE; native second refuge then authored ending/exact reload; full acceptance OPEN",
     "DEMO-COMBAT-SKILLS: PENDING_MISSING_CRITERIA_ONLY; six heroes/lancer, native victory/defeat and ordinary Pursuit return",
@@ -209,7 +209,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261013T1828",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-13T18:26:17.703Z",
+  "lastHeartbeat": "2026-10-13T18:38:52.135Z",
   "wip": {
     "branch": "wip/codex-early-combat-20261013T0708",
     "sha": "ca9fa01b75176e33f80962de105f3624797e1612",
@@ -219,7 +219,7 @@
     "lastGreenCheck": "195 tests/types/build/contracts/LOCKED/whitespace; guardian actualdiff PASS mechanical"
   },
   "live": {
-    "lastHeartbeat": "2026-10-13T18:26:17.703Z",
+    "lastHeartbeat": "2026-10-13T18:38:52.135Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -23446,7 +23446,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED_FINAL_INDEPENDENT_REVIEW_PAUSED_FOR_CREDITS",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-13T07:33:24.498Z",
         "endedAt": "2026-10-13T07:58:14.452Z",
         "provenanceMatches": true,
@@ -23489,11 +23489,115 @@
           "seed0603": "PASS exact digest/native/old resumedV6; native rest/current resume required",
           "prelaunchDriver": "PASS actual minimal existing payment and native refusal patch; no weakened assertion"
         }
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "second-refuge-native-desktop-1828",
+        "runId": "rpgthreejs-auto-dev-90m-20261013T1828",
+        "status": "RUNNING",
+        "registeredAt": "2026-10-13T18:26:28.733Z",
+        "pid": 18264,
+        "port": 5401,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "second-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 35,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/reward-label-native-desktop-0603/results.json",
+          "verifySalvation": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/second-refuge-native-desktop-1828",
+        "receiptPath": "tmp/demo/second-refuge-native-desktop-1828/qa-job.json",
+        "provenance": {
+          "gitHead": "2a87b7af1d0adaf031481d5b52dd8ced1d5150a6",
+          "sourceTree": "ebf76246002ed5e54c2cb9a235d2653166096f91",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "9b3347ef77741590b3a03a55e793f0118aeef27c27f215738702033db24cc8f9"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json",
+              "sha256": "d0fc5c11f8263316c071c4d859982f60a8be97b6d35ea024b7a960c93b5fd656"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/reward-label-native-desktop-0603/results.json",
+              "sha256": "03eab0e5a83eea0f40c962cd7ce741df4e88cd4757ff331197f2f9f595bfc9f0"
+            }
+          ],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-DtiatkY9.js",
+              "sha256": "d39f95fda6d01d73fddc37bbd89463ffc973104b01d7821812f66e4a7f2763e2"
+            },
+            {
+              "path": "dist/assets/combat-C_Okyjda.js",
+              "sha256": "9f02fd73e4da5c79f33f7dc3ff4f5ac044e714c28ed0d3cbebab5d1121549147"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-B4zy_W2o.js",
+              "sha256": "95e0f8c050037d8943f2cede9b56e3c72de16612df0328dbca92475d76265258"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "0b46a0edd9fabc7248d4c7966ffeaf937f1acc740239dc6c32a651a11c73ead2"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-13T18:26:45.512Z",
+        "endedAt": null,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": false,
+        "eligibleForReview": false
       }
     ],
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261013T1828",
-      "sha": null,
+      "sha": "523259c7c2c21bf998ee4de86707e6906fb6c6bf",
       "status": "GREEN",
       "dirtyFiles": [
         "tools/demo-continuous-production-qa.mjs",
@@ -23501,10 +23605,10 @@
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
       ],
       "lastGreenCheck": "30keyboard tests/types/8contracts/8slots/syntax/gates PASS; unchanged9-file physical production build independently matched",
-      "at": "2026-10-13T18:26:17.703Z",
-      "remoteVerified": false
+      "at": "2026-10-13T18:38:52.135Z",
+      "remoteVerified": true
     },
-    "nextAction": "Register and execute ONE current existing native second-refuge1366normal/rescue/serpent/verifySalvation1/35min with verified0603 earnedsave/proof, port5401/hostcache. Freeze source/driver/helper/build, sync receipt at heartbeat, inspect terminal assertions/captures/exact second-refugeV6 before acceptance; failed outputs unseedable. Ending continuation next only from successful proof.",
+    "nextAction": "Observe registered second-refuge-native-desktop-1828 worker/port5401; preserve frozen source/driver/build; synchronize receipt at heartbeat, inspect terminal proof/captures/exact V6 reload before acceptance; never seed failed output.",
     "runMetrics": {
       "runId": "codex-early-combat-20261013T0708",
       "runtimeSourceFilesModified": 4,
@@ -27682,7 +27786,7 @@
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-13T18:20:44.5385169Z",
     "activePhase": "Playable PC continuation after OD13C",
-    "heartbeat": "2026-10-13T18:26:17.703Z",
+    "heartbeat": "2026-10-13T18:38:52.135Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-13T0708Z-codex-early-combat-recovery.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -28042,12 +28146,9 @@
       "aliasReconciliation": "Current generic live aliases reconciled with run1617; prior values retained, no parent/queue/QA request edits"
     },
     "lastSnapshot": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261013T0552",
-      "sha": "a355d957a42cb672e89260a3ecc2ec8c02898e0a",
-      "at": "2026-10-13T06:38:19.5907745Z",
-      "remoteVerified": true,
-      "status": "GREEN",
-      "lastGreenCheck": "97current tests/build/types/contracts/immutable/whitespace; guardian PASSmechanics; browseracceptanceOPEN"
+      "at": "2026-10-13T18:29:23.815Z",
+      "sha": "523259c7c2c21bf998ee4de86707e6906fb6c6bf",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261013T1828"
     },
     "motion1648": {
       "jobId": "motion-t3-native-desktop-1648",
@@ -28900,10 +29001,36 @@
         "promotedProof": 0,
         "workflow": 3,
         "inheritedWip": 0,
-        "browser": 0
+        "browser": 1
       },
       "gates": "30focusedkeyboard/types/contracts8/slots8/syntax/immutable/working/diffcheck PASS",
-      "productionBuild": "Reused exact unchanged9-file frozen0708 build, independently hashed; source remains published0b4eb9b"
+      "productionBuild": "Reused exact unchanged9-file frozen0708 build, independently hashed; source remains published0b4eb9b",
+      "jobId": "second-refuge-native-desktop-1828",
+      "parameters": {
+        "target": "second-refuge",
+        "routePlan": "rescue",
+        "timeoutMinutes": 35,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/reward-label-native-desktop-0603/results.json",
+        "verifySalvation": true
+      },
+      "lastHeartbeat": "2026-10-13T18:38:52.135Z",
+      "currentJob": {
+        "status": "RUNNING",
+        "pid": 18264,
+        "port": 5401,
+        "output": "tmp/demo/second-refuge-native-desktop-1828",
+        "provenanceMatches": true,
+        "requestMatches": true
+      }
     },
     "threadId": "01a1367c-ada6-7e02-a5c9-7f842bdf02f6"
   },
