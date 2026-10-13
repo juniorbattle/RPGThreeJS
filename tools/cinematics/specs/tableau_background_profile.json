@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "role": "STATIC_TABLEAU_BACKGROUND",
+  "characterPolicy": "CHARACTER_FREE_FOR_PARTY_AND_STATE_DEPENDENT_ACTORS",
+  "sourceGeometry": [
+    "src/cinematics/NarrativeStage.ts",
+    "src/cinematics/NarrativeTableau.ts",
+    "src/styles/app.css"
+  ],
+  "viewports": [
+    {
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "width": 1366,
+      "height": 768
+    }
+  ],
+  "horizonTarget": 0.46,
+  "groundBandY": 0.84,
+  "normalizedZones": [
+    {
+      "label": "LEFT ACTOR LANE",
+      "x": 0.02,
+      "y": 0.38,
+      "width": 0.2,
+      "height": 0.57,
+      "color": "lane"
+    },
+    {
+      "label": "LEFT-CENTER ACTOR LANE",
+      "x": 0.19,
+      "y": 0.38,
+      "width": 0.2,
+      "height": 0.57,
+      "color": "lane"
+    },
+    {
+      "label": "CENTER ACTOR LANE",
+      "x": 0.4,
+      "y": 0.38,
+      "width": 0.2,
+      "height": 0.57,
+      "color": "lane"
+    },
+    {
+      "label": "RIGHT-CENTER ACTOR LANE",
+      "x": 0.61,
+      "y": 0.38,
+      "width": 0.2,
+      "height": 0.57,
+      "color": "lane"
+    },
+    {
+      "label": "RIGHT ACTOR LANE",
+      "x": 0.78,
+      "y": 0.38,
+      "width": 0.2,
+      "height": 0.57,
+      "color": "lane"
+    },
+    {
+      "label": "DIALOGUE SAFE BAND",
+      "x": 0.06,
+      "y": 0.14,
+      "width": 0.88,
+      "height": 0.22,
+      "color": "safe"
+    },
+    {
+      "label": "CHOICE SAFE BAND",
+      "x": 0.06,
+      "y": 0.69,
+      "width": 0.88,
+      "height": 0.2,
+      "color": "safe"
+    },
+    {
+      "label": "NO FACE DETAIL",
+      "x": 0.02,
+      "y": 0.34,
+      "width": 0.96,
+      "height": 0.25,
+      "color": "danger"
+    }
+  ],
+  "runtimeConstants": {
+    "standardBodyFramingPercent": 61.2,
+    "fourCharacterBodyFramingPercent": 64.8,
+    "intentionalBottomCropPercent": [
+      14,
+      17
+    ],
+    "activeSpeakerOpacity": 1,
+    "listenerOpacity": 0.5,
+    "dialogueCardWidthVw": 42,
+    "dialogueCardTopPercent": 14,
+    "choiceGeometryCases": 18,
+    "maximumChoiceDeltaPx": 0
+  },
+  "acceptance": [
+    "GROUND_PLANE_ALIGNMENT",
+    "PERSPECTIVE_INTEGRATION",
+    "SPRITE_ENVIRONMENT_COHERENCE",
+    "LIGHTING_COMPATIBILITY",
+    "ACTOR_READABILITY",
+    "DIALOGUE_SAFE_ZONE",
+    "CHOICE_SAFE_ZONE",
+    "NO_COLLAGE_LOOK_AT_RUNTIME"
+  ]
+}

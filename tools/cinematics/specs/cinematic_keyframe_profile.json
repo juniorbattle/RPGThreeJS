@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "role": "CINEMATIC_VIDEO_KEYFRAME",
+  "frame": {
+    "width": 1920,
+    "height": 1080,
+    "aspect": "16:9"
+  },
+  "generation": {
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "exactSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "max",
+    "endpoint": "OpenAI Images generate/edit as declared per attempt",
+    "status": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+  },
+  "integratedSceneEquation": [
+    "authoritative environment references",
+    "canonical character references",
+    "SceneCastManifest",
+    "VisualFamilyMaster",
+    "camera and staging",
+    "lighting and grounding",
+    "continuity and target endpoint"
+  ],
+  "requiredGates": [
+    "NO_COLLAGE_LOOK",
+    "CAST_FIDELITY",
+    "CHARACTER_IDENTITY",
+    "RELATIVE_CHARACTER_HEIGHT",
+    "GROUND_PLANE_ALIGNMENT",
+    "PERSPECTIVE",
+    "LIGHTING_INTEGRATION",
+    "WORLD_INTEGRATION"
+  ],
+  "forbidden": [
+    "separately pasted character layers",
+    "baked text",
+    "subtitles",
+    "speech",
+    "unjustified cast",
+    "character redesign"
+  ]
+}

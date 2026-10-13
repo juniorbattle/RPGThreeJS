@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "status": "CHARACTER_STYLE_CONTRACT_LOCKED_FOR_PREPRODUCTION",
+  "productionApproved": false,
+  "massGenerationAuthorized": false,
+  "runtimeIntegrationAuthorized": false,
+  "requiredModel": "gpt-image-2.5-sunburst-2026-09-08",
+  "requiredQuality": "max",
+  "fallbackAllowed": false,
+  "styleReference": {
+    "id": "CHARACTER_STYLE_REFERENCE_V1",
+    "path": "docs/art-direction/option-c/character-style-lock/references/character-style-reference-v1.png",
+    "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+    "approvedStyleReferenceInputCount": 1,
+    "legacyCharacterImageInputCount": 0,
+    "identityAuthority": false,
+    "directDesignTemplate": false
+  },
+  "styleSeedSelection": {
+    "finalStyleSeedSelected": true,
+    "characterStyleSeedV1": "B",
+    "characterStyleReferenceRole": "PRIMARY_ARTISTIC_QUALITY_AUTHORITY",
+    "characterStyleSeedRole": "PRODUCTION_FEASIBILITY_AUTHORITY",
+    "candidateStatus": {
+      "A": "VALID_ALTERNATE_NOT_SELECTED",
+      "B": "SELECTED_STYLE_AUTHORITY",
+      "C": "VALID_ALTERNATE_NOT_SELECTED"
+    },
+    "selectedLineup": "public/assets/dev/option-c/style-seed/runtime-512/style-seed-b-lineup.png",
+    "selectedLineupSha256": "d5ba51cb46f3589dfab4433ed2ceeabe2fbc803514b7e5bdbff6aa7fb46014cd"
+  },
+  "authority": {
+    "identity": [
+      "repository-game-truth",
+      "written-semantic-ledgers"
+    ],
+    "rendering": [
+      "character-style-lock",
+      "approved-fresh-roster-style-seed",
+      "accepted-fresh-character-master"
+    ],
+    "referenceOnly": [
+      "legacy-character-pngs",
+      "kestrel-phase4b-structural-contract",
+      "older-option-c-historical-evidence"
+    ]
+  },
+  "generationSourcePolicy": {
+    "buildFromScratch": true,
+    "legacyCharacterImagesAsModelInputs": false,
+    "legacyAnimationFramesAsModelInputs": false,
+    "legacyDerivedCandidatesAsModelInputs": false,
+    "legacyTracingOrRepaintingAllowed": false,
+    "freshRosterStyleSeedRequired": true,
+    "freshCharacterMasterRequired": true,
+    "styleSeedGenerationMode": "TEXT_PLUS_APPROVED_STYLE_REFERENCE",
+    "allowedStyleSeedInputs": [
+      "written-global-doctrine",
+      "character-style-reference-v1"
+    ],
+    "allowedInitialMasterInputs": [
+      "written-semantic-contract",
+      "character-style-reference-v1",
+      "approved-fresh-roster-style-seed"
+    ],
+    "allowedPoseInputs": [
+      "accepted-fresh-character-master",
+      "geometry-only-layout-guide"
+    ]
+  },
+  "construction": {
+    "logicalCanvas": [128, 128],
+    "deliveryCanvas": [512, 512],
+    "integerExportScale": 4,
+    "resampling": "nearest-neighbor",
+    "deliveryMode": "RGBA",
+    "generationBackground": "#FF00FF",
+    "pivotLogical": [64, 116],
+    "pivotDelivery": [256, 464],
+    "bottomMarginLogical": 12,
+    "bottomMarginDelivery": 48,
+    "perPoseScale": 1.0,
+    "independentPoseScalingAllowed": false,
+    "bodyHeightFamilyLogical": [82, 86],
+    "nominalBodyHeightLogical": 84,
+    "reviewHeightsPx": [96, 160, 320, 512]
+  },
+  "continuityTolerancesPercent": {
+    "headOrHelmet": 3,
+    "shoulderTorsoPelvis": 4,
+    "handAndBoot": 4,
+    "limbThickness": 5,
+    "weaponModules": 3,
+    "primaryPaletteArea": 8,
+    "capeOrRobeVolume": 10
+  },
+  "requiredPoses": [
+    "idle",
+    "dash",
+    "attack",
+    "cast-or-skill"
+  ],
+  "requiredSurfaces": [
+    "dialogue-tableau",
+    "strategic-combat",
+    "combat-stage"
+  ],
+  "requiredViewports": [
+    "1920x1080",
+    "1366x768"
+  ],
+  "characters": {
+    "warrior": {
+      "displayName": "Alistair",
+      "legacyReference": "public/assets/characters/pixel/full/alistair.png",
+      "legacyReferenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
+      "visualInputAllowed": false,
+      "weapon": "greatsword",
+      "role": "heavy-frontline",
+      "bodyHeightLogical": [82, 86],
+      "headProfile": "original-closed-helmet-and-visor-face-concealed",
+      "signatureAction": {
+        "id": "w_whirl",
+        "name": "Tourbillon d’Acier"
+      },
+      "palette": [
+        "blackened-steel",
+        "gunmetal",
+        "burgundy",
+        "dark-brown",
+        "restrained-old-gold"
+      ],
+      "silhouetteKeys": [
+        "broad-armored-wedge",
+        "oversized-two-handed-greatsword",
+        "restrained-deep-red-cape-or-tabard"
+      ],
+      "forbidden": [
+        "shield",
+        "exposed-face",
+        "visible-hair",
+        "one-handed-sword",
+        "baked-vfx"
+      ],
+      "contract": "alistair.md"
+    },
+    "white_mage": {
+      "displayName": "Marian",
+      "legacyReference": "public/assets/characters/pixel/full/marian.png",
+      "legacyReferenceSha256": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191",
+      "visualInputAllowed": false,
+      "weapon": "crosier",
+      "role": "sacred-support",
+      "bodyHeightLogical": [78, 82],
+      "headProfile": "white-hood-with-closed-gold-and-white-faceplate",
+      "signatureAction": {
+        "id": "w_sanctuary",
+        "name": "Sanctuaire"
+      },
+      "palette": [
+        "white",
+        "cool-pale-blue",
+        "silver",
+        "restrained-gold",
+        "blue-gem"
+      ],
+      "silhouetteKeys": [
+        "upright-crosier",
+        "triangular-white-robe",
+        "masked-hood",
+        "open-support-hand"
+      ],
+      "forbidden": [
+        "exposed-face",
+        "visible-hair",
+        "sword",
+        "grimoire",
+        "wings",
+        "baked-vfx"
+      ],
+      "contract": "marian.md"
+    },
+    "dark_mage": {
+      "displayName": "Elara",
+      "legacyReference": "public/assets/characters/pixel/full/elara.png",
+      "legacyReferenceSha256": "fc9a38e614b466c2258becac7b0f39618058b02a9b4ebdcaced541d2ebe99b74",
+      "visualInputAllowed": false,
+      "weapon": "grimoire",
+      "role": "arcane-offense",
+      "bodyHeightLogicalExcludingHat": [76, 80],
+      "headProfile": "pointed-navy-hat-shadow-face-two-cyan-eyes",
+      "signatureAction": {
+        "id": "n_dark_bolt",
+        "name": "Éclair Noir"
+      },
+      "palette": [
+        "deep-navy",
+        "indigo",
+        "cyan",
+        "restrained-old-gold"
+      ],
+      "silhouetteKeys": [
+        "pointed-hat-and-wide-brim",
+        "open-grimoire",
+        "asymmetric-casting-hand",
+        "compact-layered-robe"
+      ],
+      "forbidden": [
+        "staff",
+        "wand",
+        "sword",
+        "second-book",
+        "exposed-face",
+        "baked-vfx"
+      ],
+      "contract": "elara.md"
+    },
+    "archer": {
+      "displayName": "Kestrel",
+      "status": "STRUCTURAL_GOLD_REFERENCE_ONLY",
+      "legacyReference": "public/assets/characters/pixel/full/kestrel.png",
+      "legacyReferenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+      "visualInputAllowed": false,
+      "weapon": "longbow",
+      "role": "agile-ranger",
+      "currentBaselineDelivery": 466,
+      "futureRemasterBaselineDelivery": 464,
+      "modifiedInThisPhase": false,
+      "contract": "kestrel-benchmark.md"
+    }
+  },
+  "currentCandidatePolicy": {
+    "existingAlistairSunburstPack": "LEGACY_DERIVED_REJECTED_FOR_NEW_PIPELINE",
+    "allowedUse": "historical-process-and-rejection-evidence-only",
+    "allowedAsVisualBase": false,
+    "reason": "its generation lineage includes legacy character imagery and its rendering remains too close to illustrated cutout art",
+    "deleted": false,
+    "productionPromoted": false,
+    "newAlistairMasters": {
+      "A": "MASTER_CANDIDATE",
+      "B": "MASTER_CANDIDATE",
+      "C": "MASTER_CANDIDATE"
+    },
+    "recommendedAlistairMaster": "B",
+    "alistairCharacterMasterSelected": false,
+    "poseGenerationAuthorized": false
+  },
+  "protectedSystems": [
+    "gameplay-logic",
+    "combat-logic",
+    "save-schema",
+    "routes",
+    "choice-effects",
+    "narrative-truth",
+    "production-media",
+    "vfx-behavior",
+    "legacy-character-assets"
+  ]
+}

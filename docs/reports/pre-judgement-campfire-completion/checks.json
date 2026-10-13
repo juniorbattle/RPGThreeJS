@@ -1,0 +1,182 @@
+{
+  "task": "PRE-JUDGEMENT-CAMPFIRE",
+  "status": "COMPLETE_SCOPED_PRESENTATION",
+  "acceptedAt": "2026-10-07T19:22:42.352Z",
+  "contractSetVersion": "1.1.0",
+  "immutableBaseline": "d7ca28aed5c377ffedb03202f6364b7a947d1096",
+  "sourceBaseline": "cf7e6610b50e6703abf134c3d6e8b7d2619213d3",
+  "physicalSourceSnapshot": "fe3139903c0eda3719ba0a69de3e5db0efda7935",
+  "includesDeferredUnacceptedKeyboardWip": true,
+  "visualReceipt": {
+    "path": "tmp/cinematics/campfire-0511-reframed/qa-job.json",
+    "sha256": "606b825cf8aa3576a0cc0c75490e3592e70e9e725f3fe756206be1c14660b46b",
+    "resultPath": "tmp/cinematics/campfire-0511-reframed/results.json",
+    "resultSha256": "4e9a56eaffd8b42c683dcc06dbe6028f65d926977933efb044ebe513ad9c5774",
+    "provenance": {
+      "gitHead": "cf7e6610b50e6703abf134c3d6e8b7d2619213d3",
+      "sourceTree": "0b66ef5d00e324e47d42126800fcf8f79d592e6d",
+      "sourceDiffSha256": "a67e567d5e3190f590acaf2e20c8a301e5a084acd728dcb97d4312e7cd633dee",
+      "driver": {
+        "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+        "sha256": "3c6258fee153023abc658e53ce3aca81514b9fead0842e91c99edcbbb7045fc2"
+      },
+      "inputs": [],
+      "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+      "build": [
+        {
+          "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+          "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+        },
+        {
+          "path": "dist/assets/combat-DSUtGYdZ.js",
+          "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+        },
+        {
+          "path": "dist/assets/combat-s2FWu0a6.css",
+          "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+        },
+        {
+          "path": "dist/assets/game-DFzR6Ihk.css",
+          "sha256": "52dae39e562b6e08a3c7ea2c7543fe114e9ee89f535a7cf84f7fd3d6a6782049"
+        },
+        {
+          "path": "dist/assets/game-PN0Q0xUJ.js",
+          "sha256": "0a52d804203deac18c23b185f486f214dc7fbaeddf37b9ae66ddb3086d7292a5"
+        },
+        {
+          "path": "dist/assets/three-core-f0ajj1rG.js",
+          "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+        },
+        {
+          "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+          "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+        },
+        {
+          "path": "dist/assets/validation-mSkvzYyn.js",
+          "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "d1eb660f2b666a5dd2611682dd4ab994f9c5abcbf13e953e865c6e80ac160113"
+        }
+      ]
+    },
+    "verifiedCurrentBeforeCommit": true,
+    "cases": [
+      {
+        "viewport": "1440x810",
+        "motion": "normal",
+        "pass": true,
+        "resultSha256": "7b1b62d005692babde859c7477c2b63008e23692081c654f47f4a4120956ca6d"
+      },
+      {
+        "viewport": "1440x810",
+        "motion": "os",
+        "pass": true,
+        "resultSha256": "f2f88be5dd5cdbee96660822656d5e22e1c37bb9aa75c929081caa42ce7f1eff"
+      },
+      {
+        "viewport": "620x780",
+        "motion": "normal",
+        "pass": true,
+        "resultSha256": "dda5166698a4954085562482156a84357be17a4d5f92128c6e73096a1b5381eb"
+      },
+      {
+        "viewport": "620x780",
+        "motion": "os",
+        "pass": true,
+        "resultSha256": "727ba356413539d7475f263c2d4eaaa39f6aef1ce026ac823071ed5ae11f2133"
+      },
+      {
+        "viewport": "390x844",
+        "motion": "normal",
+        "pass": true,
+        "resultSha256": "4dc31c8dd8ce4444eb07e979c28a4cf330f0ad76ae871f12e390770a8959b61d"
+      },
+      {
+        "viewport": "390x844",
+        "motion": "os",
+        "pass": true,
+        "resultSha256": "e75b86736e56834530f9d1aaab9cf160cf73616684e244df87c56645eb2360cb"
+      }
+    ]
+  },
+  "nativeSmoke": {
+    "path": "tmp/cinematics/campfire-20261007-native/results.json",
+    "sha256": "e0b6ab43aa763f0e32303682aa28d59661fe488836c92ef19fea5cce50f98c6c",
+    "manualScriptSha256": "98a6a1ed225391bd32fbe329b839decfe97dd4d5604b5a6a8ec69b1ff98812c8",
+    "fixtureSha256": "46402e9a6ab46c44d1ceee3383efedc2d63a1d1c5f7fe463ba2942ef872ee3b8",
+    "viewport": "390x844",
+    "motion": "os-only",
+    "wait": {
+      "truthUnchanged": true,
+      "focused": true,
+      "temporaryGold": 17
+    },
+    "reload": {
+      "truthUnchanged": true,
+      "preparationRestored": true,
+      "focused": true
+    },
+    "continuation": {
+      "nodeId": "lion-final-judgement",
+      "stepCounterIncrement": 1,
+      "temporaryGold": 17,
+      "securedGoldUnchanged": true,
+      "judgementUnresolved": true
+    },
+    "systemMotion": {
+      "os": true,
+      "gameReduced": false
+    },
+    "diagnostics": [],
+    "pass": true
+  },
+  "selection": [
+    {
+      "source": "tmp/cinematics/campfire-0511-reframed/1440x810-normal/final-refuge-story.png",
+      "path": "docs/reports/pre-judgement-campfire-completion/desktop-preparation.png",
+      "sha256": "470e9708b797ec10bea10451596761b4654103d1734059f26f75ab4b52b2cd87",
+      "inspection": "Root inspected campfire/cast/agency framing and native judgement entry"
+    },
+    {
+      "source": "tmp/cinematics/campfire-0511-reframed/620x780-os/final-refuge-story.png",
+      "path": "docs/reports/pre-judgement-campfire-completion/intermediate-os-preparation.png",
+      "sha256": "83ef77e6abae323efc66f867834fcc1654fb4a79b7b97591c22bc6dcd3357a90",
+      "inspection": "Root inspected campfire/cast/agency framing and native judgement entry"
+    },
+    {
+      "source": "tmp/cinematics/campfire-0511-reframed/390x844-normal/final-refuge-story.png",
+      "path": "docs/reports/pre-judgement-campfire-completion/mobile-preparation.png",
+      "sha256": "5fce348da3bc3e9cea8f4fc2f83d33e3bea74d3c1771e47e016ac0b9b48a2a03",
+      "inspection": "Root inspected campfire/cast/agency framing and native judgement entry"
+    },
+    {
+      "source": "tmp/cinematics/campfire-20261007-native/judgement.png",
+      "path": "docs/reports/pre-judgement-campfire-completion/native-judgement-entry.png",
+      "sha256": "dfe8011c959a74dabe46578fb61ff2b1b90aff7bf24c355080abf88481a87b9b",
+      "inspection": "Root inspected campfire/cast/agency framing and native judgement entry"
+    }
+  ],
+  "scope": "Existing final_refuge story and static preparation across3widths normal/OS; resolved fixture reload/native judgement entry; unchanged IDs/type/loot/save/video owners",
+  "limits": [
+    "Fixture-origin; no earned campaign or judgement outcome acceptance",
+    "No new refuge hub, loot securing rule, video, canon or save schema",
+    "Deferred keyboard source present in physical build but not accepted or included in product commit"
+  ],
+  "guardian": "PASS scoped source, six visual cases, full-state wait/reload, native judgement entry; no earnedcampaign/outcome claim",
+  "complianceMatrix": {
+    "GAME_CONSTITUTION": "PASS",
+    "ART_DIRECTION": "N/A",
+    "CHARACTERS": "PASS",
+    "ENVIRONMENTS": "PASS",
+    "NARRATIVE_CAMPAIGN": "PASS",
+    "NARRATIVE_PRESENTATION": "PASS",
+    "TRAVERSAL": "N/A",
+    "COMBAT": "N/A",
+    "SAVE": "PASS unchanged owners/schema",
+    "UI_ACCESSIBILITY": "PASS scoped",
+    "QA_EVIDENCE": "PASS scoped",
+    "REPOSITORY_GOVERNANCE": "PASS"
+  }
+}

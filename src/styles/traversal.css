@@ -1,0 +1,420 @@
+/* T0 presentation. All positions use visible ground bounds; no canonical art is modified. */
+.traversal-t0 {
+  --vehicle-height: min(24vh, 14vw);
+  --traversal-lane-y: 63%;
+  --foreground-offset: 0px;
+  position: fixed; inset: 0; z-index: 40; overflow: hidden; isolation: isolate;
+  color: #fff4d2; background: #071b1e; font-family: Inter, sans-serif;
+}
+.traversal-t0 [hidden] { display: none !important; }
+.traversal-world, .traversal-world > div { position: absolute; inset: 0; }
+.traversal-world { overflow: hidden; }
+.traversal-world .traversal-world__road {
+  inset: 0;
+}
+.traversal-route-loop { position: absolute; inset: 0; overflow: hidden; }
+.traversal-route-loop > div { position: absolute; pointer-events: none; }
+.traversal-route-loop__speed-lines {
+  inset: 53% 0 13%; opacity: var(--route-rush-opacity, 0);
+  background: linear-gradient(90deg, transparent 4%, #d4caaa18 21%, transparent 39%, #e1d0aa12 68%, transparent 84%);
+}
+.traversal-t0[data-view='route'] .traversal-world__sections,
+.traversal-t0[data-view='route'] .traversal-world__foreground,
+.traversal-t0[data-view='route'] .traversal-world__occlusion,
+.traversal-t0[data-view='route'] .traversal-world__entities,
+.traversal-t0[data-view='route'] .traversal-world__markers { visibility: hidden; }
+.traversal-t0[data-view='route'] .traversal-world__foreground,
+.traversal-t0[data-view='route'] .traversal-world__occlusion { visibility: visible; }
+.traversal-world__route-sections { visibility: hidden; }
+.traversal-t0[data-view='route'] .traversal-world__route-sections { visibility: visible; }
+.traversal-t0[data-view='checkpoint'] .traversal-route-loop { visibility: hidden; }
+.traversal-world__sections, .traversal-world__route-sections { position: absolute; inset: 0; will-change: transform; }
+.traversal-world-section { position: absolute; top: 0; height: 100%; }
+.traversal-world-section__terrain {
+  --painting-width: 150vh;
+  position: absolute; top: 0; bottom: 0;
+  left: calc(-1 * var(--section-overlap)); width: calc(100% + 2 * var(--section-overlap));
+  overflow: hidden;
+  /* Incoming terrain fades over an OPAQUE outgoing image. Two fading images expose
+     the blue backdrop (25% at the midpoint). Mask outside the mirrored image. */
+  mask-image: linear-gradient(90deg, transparent, #000 calc(2 * var(--section-overlap)));
+}
+.traversal-world-section:first-child .traversal-world-section__terrain { mask-image: none; }
+.traversal-world-section__painting, .traversal-world-section__margin {
+  position: absolute; top: 0; height: 100%; width: var(--painting-width);
+}
+.traversal-world-section__painting { left: calc(50% - var(--painting-width) / 2); }
+.traversal-world-section__margin--before { right: calc(50% + var(--painting-width) / 2 - 2 * var(--section-overlap)); }
+.traversal-world-section__margin--after { left: calc(50% + var(--painting-width) / 2 - 2 * var(--section-overlap)); }
+.traversal-world-section__painting, .traversal-world-section__margin--after {
+  mask-image: linear-gradient(90deg, transparent, #000 calc(2 * var(--section-overlap)));
+}
+.traversal-world-section__terrain img {
+  display: block; width: 100%; height: 100%; max-width: none; object-fit: contain;
+}
+.traversal-world-section__painting > .traversal-world-section__ground {
+  position: absolute; inset: 0;
+  /* One opaque road owner: blending two painted roads caused doubled geometry. */
+  clip-path: inset(48% 0 0);
+}
+.traversal-entity[data-world-subject='shadow'] { --entity-height: calc(var(--vehicle-height) * .48); }
+.traversal-entity__shadow {
+  display: block; height: 100%; width: auto; max-width: none;
+  transform: scaleX(-1); filter: brightness(1.2) saturate(1.12);
+}
+.traversal-world .traversal-world__lane-glow {
+  inset: auto; top: calc(var(--traversal-lane-y) - 2%); left: 13%; width: 23%; height: 5%;
+  border-radius: 50%; background: radial-gradient(ellipse, #ffdc7d20, transparent 70%);
+  transition: top .38s ease;
+}
+.traversal-world__actors { isolation: isolate; z-index: 20; }
+.traversal-route-risk { position: absolute; inset: 0; pointer-events: none; z-index: auto; }
+.traversal-route-risk__hazard {
+  position: absolute; display: block; width: calc(var(--vehicle-height) * 1.16);
+  transform: translate(-50%, -100%);
+}
+.traversal-route-risk__hazard--boulder { width: calc(var(--vehicle-height) * .98); }
+.traversal-route-risk__hazard--roadblock { width: calc(var(--vehicle-height) * 1.08); }
+@media (max-width: 700px) {
+  .traversal-route-risk__hazard { width: calc(var(--vehicle-height) * 1.34); }
+  .traversal-route-risk__hazard--boulder { width: calc(var(--vehicle-height) * 1.26); }
+  .traversal-route-risk__hazard--roadblock { width: calc(var(--vehicle-height) * 1.3); }
+}
+.traversal-route-risk__hazard img { display: block; width: 100%; height: auto; max-width: none; }
+.traversal-route-risk__warning { position: absolute; left: 50%; bottom: calc(100% + 7px);
+  width: clamp(18px, 1.65vw, 22px); height: clamp(18px, 1.65vw, 22px);
+  display: grid; place-items: center; transform: translateX(-50%) rotate(45deg);
+  background: #302719ee; border: 1px solid #c9a366; border-radius: 3px;
+  box-shadow: 0 2px 6px #0b0908a8; }
+.traversal-route-risk__warning i { transform: rotate(-45deg); color: #edcf91;
+  font: normal 800 clamp(12px, 1.15vw, 15px) Inter, sans-serif; }
+.traversal-route-risk__hazard:not([data-warning='true']) .traversal-route-risk__warning { visibility: hidden; }
+.traversal-route-risk__impact { z-index: 10000; position: absolute; left: 25%; width: 1px; height: 1px; opacity: 0; }
+.traversal-route-risk__impact.is-active { animation: traversal-risk-burst .52s ease-out both; }
+.traversal-route-risk__impact i { position: absolute; width: calc(var(--vehicle-height) * .6);
+  height: calc(var(--vehicle-height) * .23); border-radius: 50%;
+  background: radial-gradient(ellipse, #b9a17dba, #7f674599 50%, transparent 76%); filter: blur(2px); }
+.traversal-route-risk__impact i:nth-child(1) { translate: calc(var(--vehicle-height) * -.85) -22px; }
+.traversal-route-risk__impact i:nth-child(2) { translate: calc(var(--vehicle-height) * .45) -28px; }
+.traversal-route-risk__impact i:nth-child(3) { translate: calc(var(--vehicle-height) * .85) -5px;
+  width: calc(var(--vehicle-height) * .26); height: calc(var(--vehicle-height) * .08);
+  border-radius: 38% 12% 45% 19%; background: #5e4730dd; filter: none; }
+@keyframes traversal-risk-burst { 0% { opacity: 0; scale: .35; } 15% { opacity: 1; scale: 1; }
+  100% { opacity: 0; scale: 1.8; } }
+.traversal-vehicle--risk-impact { animation: traversal-risk-jolt .52s ease-out both; }
+@keyframes traversal-risk-jolt {
+  0%, 100% { transform: translate(-50%, -100%) rotate(0); }
+  22% { transform: translate(calc(-50% - 8px), calc(-100% + 8px)) rotate(-1.5deg); }
+  52% { transform: translate(calc(-50% + 4px), calc(-100% - 3px)) rotate(.7deg); }
+}
+.traversal-t0[data-view='checkpoint'] .traversal-route-risk { visibility: hidden; }
+.traversal-route-reward { position: absolute; inset: 0; pointer-events: none; z-index: auto; }
+.traversal-route-reward__pickup {
+  position: absolute; display: block; width: clamp(48px, 5vw, 72px);
+  transform: translate(-50%, -100%);
+}
+.traversal-route-reward__pickup[data-collected='true'] img { filter: grayscale(1) brightness(.55); }
+.traversal-route-reward__pickup[data-collected='true']::after { content: '✓'; position: absolute; inset: 0; display: grid; place-items: center; color: #f4dfae; font-weight: 800; }
+.traversal-route-reward__pickup[hidden] { display: none; }
+.traversal-route-reward__pickup img { display: block; width: 100%; height: auto; max-width: none; }
+.traversal-route-reward__pulse { z-index: 10000; position: absolute; left: 25%;
+  width: clamp(48px, 5vw, 72px); aspect-ratio: 1; border-radius: 50%; opacity: 0;
+  background: radial-gradient(circle, #ffd57080, #e5a74442 40%, transparent 70%);
+  transform: translate(-50%, -50%); }
+.traversal-route-reward__pulse.is-active { animation: traversal-reward-pulse .45s ease-out both; }
+@keyframes traversal-reward-pulse { 0% { opacity: 0; scale: .45; }
+  25% { opacity: .8; scale: .8; } 100% { opacity: 0; scale: 1.2; } }
+.traversal-route-reward__feedback { z-index: 10000; position: absolute; left: 25%; opacity: 0;
+  transform: translate(-50%, calc(-1 * var(--vehicle-height) - 8px));
+  padding: 3px 9px; border: 1px solid #d3a353; border-radius: 20px;
+  color: #ffe4a0; background: #211b13e8; white-space: nowrap;
+  font: 700 clamp(13px, 1.5vw, 18px) Inter, sans-serif; text-shadow: 0 1px 2px #140b06;
+  box-shadow: 0 2px 8px #140b06aa; }
+.traversal-route-reward__feedback.is-active { animation: traversal-reward-collect .45s ease-out both; }
+@keyframes traversal-reward-collect { 0% { opacity: 0; translate: 0 4px; scale: .8; }
+  25% { opacity: 1; scale: 1; } 100% { opacity: 0; translate: 0 -22px; scale: 1.04; } }
+.traversal-t0[data-view='checkpoint'] .traversal-route-reward { visibility: hidden; }
+.traversal-route-pursuit { position: absolute; inset: 0; pointer-events: none; z-index: 21; }
+.traversal-route-pursuit__proxy {
+  position: absolute; width: var(--vehicle-height); height: calc(var(--vehicle-height) * .48);
+  transform: translate(-50%, -95%); transition: top .32s ease;
+  filter: drop-shadow(0 3px 3px #10080ac0) drop-shadow(0 0 3px #903d3870);
+}
+.traversal-route-pursuit__image { display: block; width: 100%; height: 100%; max-width: none;
+  pointer-events: none; filter: brightness(1.2) saturate(1.12); }
+@media (max-width: 700px) {
+  .traversal-route-pursuit__proxy { width: calc(var(--vehicle-height) * 1.12);
+    height: calc(var(--vehicle-height) * .52); }
+  .traversal-route-pursuit__image { filter: brightness(1.45) saturate(1.18); }
+}
+.traversal-route-pursuit__proxy.is-caught { animation: traversal-pursuit-contact .65s ease-out both; }
+.traversal-route-pursuit__proxy.is-caught::after { content: ''; position: absolute;
+  left: 86%; top: 40%; width: 52%; height: 27%; border-radius: 50%;
+  background: radial-gradient(ellipse, #ffe2a9d9, #c54f4c9c 45%, transparent 75%);
+  filter: blur(3px); animation: traversal-pursuit-burst .5s ease-out both; }
+.traversal-route-pursuit__proxy.is-escaped { animation: traversal-pursuit-retreat .65s ease-in both; }
+.traversal-route-pursuit__feedback { position: absolute; transform: translate(-50%, -180%);
+  padding: 3px 7px; border-radius: 3px; border: 1px solid #a4534b; background: #241416df;
+  color: #f1bbb1; font: 800 clamp(9px, 1vw, 12px) Inter, sans-serif; letter-spacing: .08em;
+  animation: traversal-pursuit-feedback .65s ease-out both; }
+.traversal-route-pursuit__feedback.is-escaped { border-color: #a69273; color: #e3d0ad; }
+@keyframes traversal-pursuit-contact { 0% { filter: brightness(2) drop-shadow(0 0 8px #d76559); translate: 0 0; }
+  18% { translate: 5px 0; } 100% { filter: brightness(.65); translate: 5px 0; opacity: 0; } }
+@keyframes traversal-pursuit-burst { 0% { scale: .3; opacity: 0; }
+  25% { scale: 1.4; opacity: 1; } 100% { scale: 2; opacity: 0; } }
+@keyframes traversal-pursuit-retreat { to { translate: -80px 0; opacity: 0; } }
+@keyframes traversal-pursuit-feedback { 0% { opacity: 0; translate: 0 5px; }
+  20% { opacity: 1; } 100% { opacity: 0; translate: 0 -20px; } }
+.traversal-t0[data-view='checkpoint'] .traversal-route-pursuit,
+.traversal-t0[data-phase='ARRIVING'] .traversal-route-pursuit { visibility: hidden; }
+.traversal-world__entities { position: absolute; inset: 0; pointer-events: none; }
+.traversal-world__markers, .traversal-world__occlusion { pointer-events: none; }
+.traversal-world__occlusion .traversal-near-plant { position: absolute; transform: translate(-50%, -100%); }
+.traversal-world__occlusion .traversal-near-plant.is-mirrored { transform: translate(-50%, -100%) scaleX(-1); }
+.traversal-world__foreground {
+  z-index: 34; pointer-events: none;
+  background: var(--traversal-foreground-image) var(--foreground-offset) bottom / auto 18% repeat-x;
+}
+.traversal-t0::after {
+  content: ''; position: absolute; inset: 0; z-index: 38; pointer-events: none;
+  background: linear-gradient(90deg, #02050a35, transparent 12% 88%, #02050a35),
+    linear-gradient(180deg, #02050a30, transparent 18% 83%, #02050a80);
+}
+.traversal-t0--interrupted .traversal-world { filter: brightness(.55) saturate(.72); }
+.traversal-t0--interrupted > :not(.traversal-world):not(.traversal-fork-overlay) { visibility: hidden; }
+.traversal-sprite { position: relative; display: block; height: 100%; flex: none; }
+.traversal-sprite img { position: absolute; max-width: none; object-fit: fill; pointer-events: none; }
+.traversal-sprite.is-mirrored { transform: scaleX(-1); }
+.traversal-vehicle {
+  position: absolute; top: var(--traversal-lane-y); left: calc(25% + var(--vehicle-exit-x, 0px) + var(--vehicle-entry-x, 0px)); z-index: 22;
+  height: var(--vehicle-height); aspect-ratio: 818 / 433; margin: 0;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+}
+.traversal-vehicle__art { position: absolute; max-width: none; z-index: 2; translate: 0 var(--suspension-y, 0px); transition: translate .12s ease-out; }
+.traversal-vehicle__shadow, .traversal-entity__body::after {
+  position: absolute; content: ''; bottom: -3%; left: 5%; width: 90%; height: 8%;
+  border-radius: 50%; background: #271a0d66; filter: blur(4px); z-index: -1;
+}
+.traversal-vehicle__wheel {
+  position: absolute; z-index: 3; pointer-events: none;
+}
+.traversal-vehicle__wheel[data-wheel-plane='far'] { z-index: 1; filter: brightness(.68); }
+.traversal-vehicle__wheel-projection { position: absolute; height: 100%; aspect-ratio: 1; left: 50%; translate: -50% 0; }
+.traversal-vehicle__wheel-rotor { position: absolute; inset: 0; rotate: var(--wheel-angle, 0rad); border-radius: 50%; overflow: hidden; }
+.traversal-vehicle__wheel-rotor img { position: absolute; max-width: none; }
+.traversal-vehicle__dust {
+  position: absolute; z-index: 1; top: 90%; left: -10%; width: 25%; height: 12%;
+  border-radius: 50%; background: radial-gradient(ellipse,#e7be7770,transparent 70%);
+  filter: blur(4px); opacity: var(--dust-opacity, 0);
+  translate: calc(var(--dust-phase, 0) * -40px) 0;
+  scale: calc(.7 + var(--dust-phase, 0) * .7);
+  transition: opacity .3s;
+}
+.traversal-vehicle__dust--two { animation-delay: -.65s; }
+@keyframes traversal-suspension { to { margin-top: -2px; } }
+@keyframes traversal-wheel-spin { to { rotate: 360deg; } }
+@keyframes traversal-dust { from { opacity: .5; translate: 10px 0; scale: .6; } to { opacity: 0; translate: -40px 2px; scale: 1.4; } }
+.traversal-t0:not([data-phase='RUNNING']) .traversal-vehicle,
+.traversal-t0:not([data-phase='RUNNING']) .traversal-vehicle * { animation-play-state: paused; }
+.traversal-t0[data-departure] .traversal-fork-overlay { opacity: 0; pointer-events: none; }
+.traversal-t0[data-phase='ARRIVING']::after { background: #000; opacity: var(--arrival-fade, 0); z-index: 100; }
+.traversal-t0[data-phase='ARRIVING'] > :not(.traversal-world) { visibility: hidden; }
+.traversal-actor-anchor {
+  --entity-height: calc(var(--vehicle-height) * .66);
+  position: absolute; height: var(--entity-height); width: max-content;
+  transform: translate(-50%, -100%); pointer-events: none;
+}
+.traversal-actor-anchor[data-scale='creature'] { --entity-height: calc(var(--vehicle-height) * .58); }
+.traversal-actor-anchor[data-scale='human'][data-category='OPTIONAL_EVENT'],
+.traversal-actor-anchor[data-scale='human'][data-category='MANDATORY_EVENT']:not([data-formation='true']) { --entity-height: calc(var(--vehicle-height) * .78); }
+.traversal-actor-anchor[data-scale='elite'] { --entity-height: calc(var(--vehicle-height) * .7); }
+.traversal-entity__body { position: relative; height: 100%; isolation: isolate; }
+.traversal-entity__subject { z-index: 2; }
+.traversal-formation-member { position: absolute; left: calc(70% + var(--formation-index) * 75%); bottom: calc((var(--formation-index) - .5) * 5vh); height: 100%; z-index: 3; }
+.traversal-actor-anchor[data-formation='true'][data-placement='centered'] { --entity-height: calc(var(--vehicle-height) * .52); }
+.traversal-entity__marker {
+  position: absolute; bottom: calc(100% + 10px); left: 50%; z-index: 3;
+  display: grid; place-items: center; width: clamp(19px, 1.65vw, 25px); aspect-ratio: 1;
+  border: 1px solid #f1d38c; transform: translateX(-50%) rotate(45deg);
+  background: #111b22ef; box-shadow: 0 2px 4px #0007; color: #fff2ce;
+  font: 700 12px/1 Inter, sans-serif;
+}
+.traversal-entity__marker::after { content: attr(data-glyph); transform: rotate(-45deg); }
+.traversal-marker-anchor[data-marker='danger'] .traversal-entity__marker { border-color: #ee977e; color: #ffd6c2; }
+.traversal-entity > strong { display: none; }
+.traversal-entity__prop { display: block; position: relative; height: 100%; }
+.traversal-entity__prop--campaign-node { aspect-ratio: .6; background: linear-gradient(90deg,transparent 42%,#664623 43% 55%,transparent 56%); }
+.traversal-hud, .traversal-lanes, .traversal-toast { position: absolute; z-index: 45; }
+.traversal-hud { top: 0; padding: 20px; pointer-events: none; }
+.traversal-hud p, .traversal-hud h1 { margin: 0; }
+.traversal-hud--context {
+  top: 82px; left: 20px; display: flex; gap: 12px; width: 310px; padding: 8px 12px;
+  border-left: 1px solid rgba(218,184,105,.28);
+  background: linear-gradient(90deg,rgba(6,16,23,.59),rgba(6,16,23,.2));
+}
+.traversal-hud__sigil { display: none; }
+.traversal-hud--context p { font: 600 9px Cinzel,serif; letter-spacing: .15em; color: #e1c383; }
+.traversal-hud--context h1 { margin: 3px 0; font: 600 clamp(16px,1.45vw,21px) Cinzel,serif; }
+.traversal-hud--context div > span { font: 11px Inter,sans-serif; color: #e2dbca; }
+.traversal-hud--progress { right: 0; width: 26%; text-align: right; background: linear-gradient(250deg,#061017d9,transparent); }
+.traversal-hud--progress p { margin: 8px 0 4px; font: 10px Cinzel,serif; color: #c9bd9f; }
+.traversal-hud--progress strong { display: block; font: 600 clamp(12px,1.1vw,18px) Cinzel,serif; }
+.traversal-hud--progress > span { color: #e1c383; font-size: 12px; }
+.traversal-route-rail { margin-left: auto; width: 160px; height: 4px; background: #e1c38330; border-radius: 2px; overflow: hidden; }
+.traversal-route-rail i { display: block; width: calc(var(--route-progress) * 100%); height: 100%; background: #e1c383; }
+.traversal-route-rail span, .traversal-route-rail b { display: none; }
+.traversal-lanes {
+  top: 50%; left: 14px; display: grid; gap: 8px; width: 30px; transform: translateY(-50%);
+  opacity: .32; transition: opacity .2s ease;
+}
+.traversal-lanes:hover, .traversal-lanes:focus-within { opacity: .92; }
+.traversal-lanes button {
+  width: 30px; height: 30px; padding: 0; display: grid; place-items: center;
+  border: 1px solid rgba(230,203,129,.34); border-radius: 50%;
+  background: rgba(6,16,23,.58); color: rgba(245,226,179,.74);
+  box-shadow: 0 5px 16px rgba(0,0,0,.2), inset 0 1px rgba(255,244,214,.06);
+  font: 700 9px/1 Inter,sans-serif; text-align: center; cursor: pointer; backdrop-filter: blur(4px);
+}
+.traversal-lanes button.is-active { border-color: rgba(230,203,129,.2); background: rgba(6,16,23,.32); color: rgba(245,226,179,.28); }
+.traversal-lanes button:not(.is-active):hover { border-color: rgba(242,211,140,.72); color: #fff0c8; background: rgba(31,39,40,.82); }
+.traversal-lanes button:disabled { cursor: default; }
+.traversal-event-panel {
+  position: absolute; top: 15px; left: 50%; z-index: 45; transform: translateX(-50%);
+  display: grid; grid-template-columns: 28px minmax(0,1fr); align-items: center; gap: 10px;
+  width: 32%; padding: 10px 13px; border: 1px solid #c9ac6d66; border-radius: 6px;
+  background: linear-gradient(125deg,#091722e9,#142127df); box-shadow: 0 7px 19px #0004;
+  animation: traversal-panel-reveal .24s ease-out both;
+}
+.traversal-event-panel figure { display: none; }
+.traversal-event-panel__marker { display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid #e1c383; border-radius: 50%; color: #f2d68e; font-size: 14px; }
+.traversal-event-panel small { display: block; font: 600 9px Cinzel,serif; color: #e1c383; letter-spacing: .06em; }
+.traversal-event-panel strong { display: block; margin-top: 3px; font: 600 clamp(14px,1.2vw,20px) Cinzel,serif; }
+.traversal-event-panel p { margin: 5px 0 0; font: 11px/1.45 Inter,sans-serif; color: #e2dbca; }
+.traversal-event-panel__actions { display: flex; gap: 10px; margin-top: 9px; }
+.traversal-event-panel button { padding: 8px 16px; border: 1px solid #d9ba78; border-radius: 4px; background: #cfaf6b; color: #17202a; font: 600 12px Inter,sans-serif; cursor: pointer; }
+.traversal-event-panel [data-traversal-skip] { background: transparent; color: #e2dbca; border-color: #e2dbca70; }
+.traversal-event-panel button:focus-visible, .traversal-lanes button:focus-visible { outline: 2px solid #fff6d6; outline-offset: 3px; }
+.traversal-event-panel button:disabled { opacity: .6; cursor: default; }
+.traversal-event-panel[data-interaction-policy='MANDATORY_CONFIRM'] { border-color: #d28e6b; }
+.traversal-toast { top: 26%; left: 50%; transform: translateX(-50%); opacity: 0; pointer-events: none; padding: 7px 12px; border-radius: 4px; background: #091722dd; font-size: 11px; }
+.traversal-toast.is-visible { animation: traversal-toast 2.7s ease both; }
+@keyframes traversal-toast { 0%,100% { opacity: 0; } 12%,75% { opacity: 1; } }
+@media (max-width: 1000px) {
+  .traversal-hud { padding: 12px; }
+  .traversal-hud--context { left: 12px; top: 78px; width: min(310px,calc(100vw - 24px)); padding: 8px 10px; }
+  .traversal-hud--progress { width: 36%; }
+  .traversal-event-panel { top: 162px; width: min(440px,62vw); }
+  .traversal-t0 { --vehicle-height: min(24vh,16vw); }
+  .traversal-lanes { left: 10px; width: 28px; }
+  .traversal-lanes button { width: 28px; height: 28px; }
+}
+@media (max-width: 620px) {
+  .traversal-hud--context p, .traversal-hud--context div > span { display: none; }
+  .traversal-hud--context h1 { font-size: 14px; }
+  .traversal-hud--progress p { margin-top: 0; }
+  .traversal-route-rail { width: 100px; }
+  .traversal-hud--context { top: 70px; }
+  .traversal-event-panel { top: 118px; width: calc(100% - 32px); }
+  .traversal-lanes { left: 8px; width: 26px; gap: 6px; }
+  .traversal-lanes button { width: 26px; height: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .traversal-t0 *, .traversal-t0 *::before, .traversal-t0 *::after { animation: none !important; transition-duration: .001ms !important; }
+}
+.traversal-entity[data-formation='true'][data-placement='lane'] .traversal-formation-member { bottom: calc(var(--formation-index) * 1vh); left: calc(80% + var(--formation-index) * 90%); height: 95%; }
+.traversal-entity--fork .traversal-entity__subject { height: calc(var(--vehicle-height) * .7); }
+.traversal-entity[data-placement='centered'][data-formation='true'] .traversal-formation-member { bottom: calc((var(--formation-index) - .5) * 6vh); }
+/* Lane changes are essential spatial feedback, even with decorative motion reduced. */
+@media (prefers-reduced-motion: reduce) {
+  .traversal-t0 .traversal-vehicle { transition: none !important; }
+  .traversal-t0 .traversal-world__lane-glow { transition-duration: .25s !important; }
+}
+.traversal-entity--fork .traversal-entity__subject { height: calc(var(--vehicle-height) * .54); }
+.traversal-transition {
+  position: absolute; inset: 0; z-index: 10000; pointer-events: none;
+  background: #000; opacity: var(--transition-opacity, 0);
+}
+.traversal-t0[data-transition] .traversal-transition { pointer-events: auto; }
+.traversal-t0[data-transition='entry'] .traversal-vehicle__dust,
+.traversal-t0[data-transition='event'] .traversal-vehicle__dust { opacity: 0; }
+.traversal-t0[data-transition='fork'] .traversal-vehicle { transition: none !important; }
+
+/* Authored location props are independent of interaction markers and survive consumption. */
+.traversal-location-prop { position: absolute; transform: translate(-50%, -100%); }
+.traversal-entity--fork { --entity-height: calc(var(--vehicle-height) * .54); }
+.traversal-entity__body--location { width: 1px; }
+.traversal-entity__body--location::after { display: none; }
+
+/* Canonical checkpoint and fork markers. */
+.traversal-marker-anchor[data-category='ROUTE_CHOICE'] .traversal-entity__marker { display: none; }
+.traversal-marker-anchor[data-category='OPTIONAL_EVENT'] .traversal-entity__marker {
+  border-radius: 50% 50% 50% 0; transform: translateX(-50%); border-color: #cbdab6;
+}
+.traversal-marker-anchor[data-category='OPTIONAL_EVENT'] .traversal-entity__marker::after { transform: none; }
+.traversal-marker-anchor[data-category='OPTIONAL_COMBAT'] .traversal-entity__marker { background: #632d23; border-color: #fb9477; }
+.traversal-marker-anchor[data-category='MANDATORY_EVENT'] .traversal-entity__marker { border-width: 2px; box-shadow: 0 0 12px #ee854b77; }
+.traversal-sign-directions {
+  position: absolute; bottom: 50%; left: 50%; transform: translateX(-50%); display: block;
+  white-space: nowrap; color: #eadbb7; font: 600 clamp(10px,.85vw,13px)/1.6 Cinzel,serif;
+}
+.traversal-sign-directions > span { display: block; margin: 4px 0; padding: 5px 16px; background: linear-gradient(#604627,#312318); border: 1px solid #bba16c; box-shadow: 0 3px 6px #0008; }
+.traversal-sign-directions > span:first-child { clip-path: polygon(9% 0,100% 0,100% 100%,9% 100%,0 50%); }
+.traversal-sign-directions > span:last-child { clip-path: polygon(0 0,91% 0,100% 50%,91% 100%,0 100%); }
+.traversal-t0 .traversal-fork-overlay__edge-shade { backdrop-filter: none; }
+.traversal-t0 .traversal-fork-overlay__choice strong::before { content: attr(data-direction) ' '; color: #e1c383; }
+.traversal-t0 .traversal-fork-overlay__rail { top: 26%; transform: none; width: min(310px,30vw); padding: 14px; background: #0a191fef; box-shadow: 0 8px 22px #0004; border-radius: 6px; animation: traversal-panel-reveal .24s ease-out both; }
+.traversal-t0 .traversal-fork-overlay__eyebrow { color: #d1ba87; letter-spacing: .1em; }
+.traversal-t0 .traversal-fork-overlay__title { font-size: clamp(14px,1.3vw,19px); letter-spacing: 0; }
+.traversal-t0 .traversal-fork-overlay__choice { min-height: 58px; padding: 10px 12px; border-color: #bda16a70; border-radius: 4px; background: #172727; gap: 3px; }
+.traversal-t0 .traversal-fork-overlay__choice strong { font-size: 13px; }
+.traversal-t0 .traversal-fork-overlay__meta { font: 10px Inter,sans-serif; color: #c1baa6; text-transform: none; letter-spacing: 0; padding-left: 16px; }
+.traversal-t0 .traversal-fork-overlay--committed .traversal-fork-overlay__rail { opacity: 1; }
+.traversal-t0 .traversal-fork-overlay--committed .traversal-fork-overlay__choice:not(.is-selected) { opacity: .4; }
+.traversal-t0 .traversal-fork-overlay__choice.is-selected { background: #765c2a; border-color: #ffe2a0; box-shadow: 0 0 16px #dfbd6544; }
+@keyframes traversal-panel-reveal { from { opacity: 0; margin-top: -6px; } to { opacity: 1; margin-top: 0; } }
+.scene-transition--traversal { background: #07100e; transition-timing-function: cubic-bezier(.33,0,.67,1); }
+.scene-transition--traversal::before, .scene-transition--traversal::after,
+.scene-transition--traversal .scene-transition__motif, .scene-transition--traversal .scene-transition__label { display: none; }
+.scene-transition--traversal.scene-transition--leaving { transition-timing-function: cubic-bezier(.33,0,.67,1); }
+@media (max-width: 760px) { .traversal-t0 .traversal-fork-overlay__rail { top: auto; bottom: 12px; width: min(310px,48vw); } }
+
+/* Compact campaign wayfinding and encounter chrome; scenery remains the primary surface. */
+.traversal-hud--context { display: none; }
+.traversal-hud--progress.campaign-ui-frame { position: absolute; top: 18px; right: 20px; width: 224px; min-height: 64px; padding: 7px 11px; display: grid; grid-template-columns: 25px minmax(0,1fr); gap: 6px; align-items: center; text-align: left; }
+.traversal-hud__destination-icon .campaign-ui-icon { width: 25px; height: 25px; }
+.traversal-hud--progress p { margin: 0 0 1px; color: var(--campaign-gold); font: 600 9px/1.1 var(--campaign-title-font); letter-spacing: .08em; text-transform: uppercase; }
+.traversal-hud--progress strong { display: block; color: var(--campaign-ivory); font: 600 15px/1.05 var(--campaign-title-font); white-space: normal; }
+.traversal-hud--progress [data-traversal-distance] { color: var(--campaign-muted); font: 400 11px/1.1 var(--campaign-data-font); }
+.traversal-route-rail { grid-column: 1 / -1; grid-row: 2; width: 100%; height: auto; min-height: 11px; margin: 0; overflow: visible; background: none; display: flex; align-items: center; justify-content: space-between; gap: 2px; }
+.traversal-route-rail .traversal-route-rail__stop { width: 10px; height: 10px; border: 1px solid #bd9a62; border-radius: 50%; background: #102638; color: #ead9ad; font-size: 8px; display: grid; place-items: center; }
+.traversal-route-rail__stop > span { display: inline !important; }
+.traversal-route-rail__stop[data-current='true'] { background: #e6c27c; box-shadow: 0 0 8px #ffe5a6; color: #16314a; }
+.traversal-route-rail__stop[data-complete='true'] { background: #ad8650; }
+.traversal-route-rail__stop[data-kind='fork'] { border-radius: 2px; transform: rotate(45deg); }
+.traversal-route-rail__stop[data-kind='fork'] > span { transform: rotate(-45deg); }
+.traversal-hud__destination-copy { min-width: 0; }
+.traversal-event-panel.campaign-ui-frame { position: absolute; top: 91px; width: min(420px, calc(100vw - 40px)); padding: 9px 14px; grid-template-columns: 27px minmax(0,1fr); gap: 9px; }
+.traversal-event-panel__marker { width: 27px; height: 27px; border: 0; border-radius: 0; }
+.traversal-event-panel__marker .campaign-ui-icon { width: 27px; height: 27px; }
+.traversal-event-panel small { color: var(--campaign-gold); font: 600 9px/1.1 var(--campaign-title-font); letter-spacing: .1em; text-transform: uppercase; }
+.traversal-event-panel strong { color: var(--campaign-ivory); font: 600 19px/1.1 var(--campaign-title-font); }
+.traversal-event-panel p { margin-top: 3px; color: var(--campaign-muted); font: 400 11px/1.25 var(--campaign-data-font); }
+.traversal-event-panel__actions { gap: 8px; margin-top: 7px; }
+.traversal-event-panel button.campaign-ui-button { flex: 1; min-height: 32px; padding: 5px 9px; font: 600 11px/1.1 var(--campaign-title-font); letter-spacing: .06em; }
+@media (max-width: 1000px) {
+  .traversal-event-panel button.campaign-ui-button { min-width: 44px; min-height: 44px; }
+}
+.traversal-event-panel button.campaign-ui-button--primary { background: linear-gradient(120deg, #193d63, #235888 50%, #102b49); color: var(--campaign-ivory); }
+.traversal-event-panel [data-traversal-skip].campaign-ui-button--secondary { background: linear-gradient(#172b40, #071522); color: var(--campaign-ivory); border-color: var(--campaign-brass); }
+.traversal-event-panel[data-interaction-policy='MANDATORY_CONFIRM'] { border-color: var(--campaign-brass); }
+@media (max-width: 700px) {
+  .traversal-hud--progress.campaign-ui-frame { top: 74px; right: 10px; width: min(205px, calc(100vw - 20px)); min-height: 56px; padding: 6px 10px; grid-template-columns: 21px minmax(0,1fr); gap: 5px; }
+  .traversal-hud__destination-icon .campaign-ui-icon { width: 21px; height: 21px; }
+  .traversal-hud--progress p { font-size: 8px; }
+  .traversal-hud--progress strong { font-size: 13px; }
+  .traversal-event-panel.campaign-ui-frame { top: 145px; width: min(420px, calc(100vw - 20px)); padding: 8px 12px; }
+  .traversal-lanes { left: 10px; width: 44px; gap: 10px; opacity: .88; }
+  .traversal-lanes button { width: 44px; height: 44px; font-size: 14px; background: rgba(6,16,23,.78); }
+  .traversal-lanes button.is-active { background: rgba(29,62,73,.9); color: #ffe6a4; border-color: #e6cb81; }
+}

@@ -1,0 +1,1995 @@
+{
+  "passed": true,
+  "captures": [
+    "first-refuge-1440.png",
+    "first-refuge-1366.png",
+    "first-refuge-620.png",
+    "first-refuge-390.png",
+    "first-refuge-post-management-1440.png",
+    "first-refuge-post-shop-1440.png",
+    "first-refuge-post-skills-1440.png",
+    "first-refuge-wounded-1440.png",
+    "first-refuge-post-rest-1440.png",
+    "second-refuge-1440.png",
+    "second-refuge-post-management-1440.png",
+    "second-refuge-390.png",
+    "production-first-gathering-1366.png",
+    "production-first-hub-1366.png",
+    "production-post-node-1366.png"
+  ],
+  "visual": {
+    "firstInitial": {
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "resourceDuplicates": 0,
+        "topNavDuplicates": 0,
+        "travelCount": 0,
+        "nodeId": "lion-first-refuge",
+        "family": "FIRST_REFUGE",
+        "context": "dialogue:first_refuge_gathering",
+        "background": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+        "backgroundUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+        "backgroundReady": true,
+        "naturalWidth": 1672,
+        "naturalHeight": 941,
+        "backgroundError": null,
+        "computedBackground": "url(\"http://127.0.0.1:5198/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+        "surfaceVisible": true,
+        "probeReady": true,
+        "probeWidth": 1672,
+        "probeHeight": 941,
+        "probeError": null,
+        "securedFeedback": "+25 or placé dans le coffre",
+        "actions": [
+          {
+            "id": "clan",
+            "disabled": false,
+            "rect": {
+              "left": 43.1875,
+              "top": 679.8125,
+              "right": 294.640625,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "shop",
+            "disabled": false,
+            "rect": {
+              "left": 306.15625,
+              "top": 679.8125,
+              "right": 557.609375,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "skills",
+            "disabled": false,
+            "rect": {
+              "left": 569.125,
+              "top": 679.8125,
+              "right": 820.578125,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "rest",
+            "disabled": true,
+            "rect": {
+              "left": 832.09375,
+              "top": 679.8125,
+              "right": 1083.546875,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "continue",
+            "disabled": false,
+            "rect": {
+              "left": 1095.0625,
+              "top": 679.8125,
+              "right": 1396.8125,
+              "bottom": 766.8125,
+              "width": 301.75,
+              "height": 87
+            },
+            "labelClipped": false
+          }
+        ],
+        "hudRect": {
+          "left": 24,
+          "top": 20,
+          "right": 462,
+          "bottom": 63.734375,
+          "width": 438,
+          "height": 43.734375
+        },
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 1440,
+          "height": 810
+        }
+      },
+      "state": {
+        "currentNodeId": "lion-first-refuge",
+        "runNodeId": "lion-first-refuge",
+        "stepCounter": 0,
+        "resolvedNodeIds": [],
+        "temporaryLootGold": 0,
+        "gold": 145,
+        "woundedCount": 0,
+        "counters": {
+          "hudMounts": 1,
+          "hubMounts": 1,
+          "travelMounts": 0,
+          "maxHud": 1,
+          "maxHub": 1
+        }
+      }
+    },
+    "first1366": {
+      "hubCount": 1,
+      "hudCount": 1,
+      "resourceDuplicates": 0,
+      "topNavDuplicates": 0,
+      "travelCount": 0,
+      "nodeId": "lion-first-refuge",
+      "family": "FIRST_REFUGE",
+      "context": "dialogue:first_refuge_gathering",
+      "background": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+      "backgroundUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+      "backgroundReady": true,
+      "naturalWidth": 1672,
+      "naturalHeight": 941,
+      "backgroundError": null,
+      "computedBackground": "url(\"http://127.0.0.1:5198/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+      "surfaceVisible": true,
+      "probeReady": true,
+      "probeWidth": 1672,
+      "probeHeight": 941,
+      "probeError": null,
+      "securedFeedback": "+25 or placé dans le coffre",
+      "actions": [
+        {
+          "id": "clan",
+          "disabled": false,
+          "rect": {
+            "left": 40.96875,
+            "top": 640.03125,
+            "right": 279.5,
+            "bottom": 727.03125,
+            "width": 238.53125,
+            "height": 87
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "shop",
+          "disabled": false,
+          "rect": {
+            "left": 290.421875,
+            "top": 640.03125,
+            "right": 528.953125,
+            "bottom": 727.03125,
+            "width": 238.53125,
+            "height": 87
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "skills",
+          "disabled": false,
+          "rect": {
+            "left": 539.875,
+            "top": 640.03125,
+            "right": 778.40625,
+            "bottom": 727.03125,
+            "width": 238.53125,
+            "height": 87
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "rest",
+          "disabled": true,
+          "rect": {
+            "left": 789.328125,
+            "top": 640.03125,
+            "right": 1027.859375,
+            "bottom": 727.03125,
+            "width": 238.53125,
+            "height": 87
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "continue",
+          "disabled": false,
+          "rect": {
+            "left": 1038.78125,
+            "top": 640.03125,
+            "right": 1325.03125,
+            "bottom": 727.03125,
+            "width": 286.25,
+            "height": 87
+          },
+          "labelClipped": false
+        }
+      ],
+      "hudRect": {
+        "left": 24,
+        "top": 20,
+        "right": 462,
+        "bottom": 63.734375,
+        "width": 438,
+        "height": 43.734375
+      },
+      "horizontalOverflow": false,
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      }
+    },
+    "first620": {
+      "hubCount": 1,
+      "hudCount": 1,
+      "resourceDuplicates": 0,
+      "topNavDuplicates": 0,
+      "travelCount": 0,
+      "nodeId": "lion-first-refuge",
+      "family": "FIRST_REFUGE",
+      "context": "dialogue:first_refuge_gathering",
+      "background": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+      "backgroundUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+      "backgroundReady": true,
+      "naturalWidth": 1672,
+      "naturalHeight": 941,
+      "backgroundError": null,
+      "computedBackground": "url(\"http://127.0.0.1:5198/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+      "surfaceVisible": true,
+      "probeReady": true,
+      "probeWidth": 1672,
+      "probeHeight": 941,
+      "probeError": null,
+      "securedFeedback": "+25 or placé dans le coffre",
+      "actions": [
+        {
+          "id": "clan",
+          "disabled": false,
+          "rect": {
+            "left": 14,
+            "top": 549,
+            "right": 306,
+            "bottom": 616,
+            "width": 292,
+            "height": 67
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "shop",
+          "disabled": false,
+          "rect": {
+            "left": 314,
+            "top": 549,
+            "right": 606,
+            "bottom": 616,
+            "width": 292,
+            "height": 67
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "skills",
+          "disabled": false,
+          "rect": {
+            "left": 14,
+            "top": 624,
+            "right": 306,
+            "bottom": 691,
+            "width": 292,
+            "height": 67
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "rest",
+          "disabled": true,
+          "rect": {
+            "left": 314,
+            "top": 624,
+            "right": 606,
+            "bottom": 691,
+            "width": 292,
+            "height": 67
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "continue",
+          "disabled": false,
+          "rect": {
+            "left": 14,
+            "top": 699,
+            "right": 606,
+            "bottom": 766,
+            "width": 592,
+            "height": 67
+          },
+          "labelClipped": false
+        }
+      ],
+      "hudRect": {
+        "left": 10,
+        "top": 10,
+        "right": 350,
+        "bottom": 47.484375,
+        "width": 340,
+        "height": 37.484375
+      },
+      "horizontalOverflow": false,
+      "viewport": {
+        "width": 620,
+        "height": 780
+      }
+    },
+    "first390": {
+      "hubCount": 1,
+      "hudCount": 1,
+      "resourceDuplicates": 0,
+      "topNavDuplicates": 0,
+      "travelCount": 0,
+      "nodeId": "lion-first-refuge",
+      "family": "FIRST_REFUGE",
+      "context": "dialogue:first_refuge_gathering",
+      "background": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+      "backgroundUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+      "backgroundReady": true,
+      "naturalWidth": 1672,
+      "naturalHeight": 941,
+      "backgroundError": null,
+      "computedBackground": "url(\"http://127.0.0.1:5198/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+      "surfaceVisible": true,
+      "probeReady": true,
+      "probeWidth": 1672,
+      "probeHeight": 941,
+      "probeError": null,
+      "securedFeedback": "+25 or placé dans le coffre",
+      "actions": [
+        {
+          "id": "clan",
+          "disabled": false,
+          "rect": {
+            "left": 14,
+            "top": 613,
+            "right": 191,
+            "bottom": 680,
+            "width": 177,
+            "height": 67
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "shop",
+          "disabled": false,
+          "rect": {
+            "left": 199,
+            "top": 613,
+            "right": 376,
+            "bottom": 680,
+            "width": 177,
+            "height": 67
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "skills",
+          "disabled": false,
+          "rect": {
+            "left": 14,
+            "top": 688,
+            "right": 191,
+            "bottom": 755,
+            "width": 177,
+            "height": 67
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "rest",
+          "disabled": true,
+          "rect": {
+            "left": 199,
+            "top": 688,
+            "right": 376,
+            "bottom": 755,
+            "width": 177,
+            "height": 67
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "continue",
+          "disabled": false,
+          "rect": {
+            "left": 14,
+            "top": 763,
+            "right": 376,
+            "bottom": 830,
+            "width": 362,
+            "height": 67
+          },
+          "labelClipped": false
+        }
+      ],
+      "hudRect": {
+        "left": 10,
+        "top": 10,
+        "right": 350,
+        "bottom": 47.484375,
+        "width": 340,
+        "height": 37.484375
+      },
+      "horizontalOverflow": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    "postClan": {
+      "before": {
+        "currentNodeId": "lion-first-refuge",
+        "runNodeId": "lion-first-refuge",
+        "stepCounter": 0,
+        "resolvedNodeIds": [],
+        "temporaryLootGold": 0,
+        "gold": 145,
+        "woundedCount": 0,
+        "counters": {
+          "hudMounts": 1,
+          "hubMounts": 1,
+          "travelMounts": 0,
+          "maxHud": 1,
+          "maxHub": 1
+        }
+      },
+      "after": {
+        "currentNodeId": "lion-first-refuge",
+        "runNodeId": "lion-first-refuge",
+        "stepCounter": 0,
+        "resolvedNodeIds": [],
+        "temporaryLootGold": 0,
+        "gold": 145,
+        "woundedCount": 0,
+        "counters": {
+          "hudMounts": 2,
+          "hubMounts": 2,
+          "travelMounts": 0,
+          "maxHud": 1,
+          "maxHub": 1
+        }
+      },
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "resourceDuplicates": 0,
+        "topNavDuplicates": 0,
+        "travelCount": 0,
+        "nodeId": "lion-first-refuge",
+        "family": "FIRST_REFUGE",
+        "context": "dialogue:first_refuge_gathering",
+        "background": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+        "backgroundUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+        "backgroundReady": true,
+        "naturalWidth": 1672,
+        "naturalHeight": 941,
+        "backgroundError": null,
+        "computedBackground": "url(\"http://127.0.0.1:5198/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+        "surfaceVisible": true,
+        "probeReady": true,
+        "probeWidth": 1672,
+        "probeHeight": 941,
+        "probeError": null,
+        "securedFeedback": "+0 or placé dans le coffre",
+        "actions": [
+          {
+            "id": "clan",
+            "disabled": false,
+            "rect": {
+              "left": 43.1875,
+              "top": 679.8125,
+              "right": 294.640625,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "shop",
+            "disabled": false,
+            "rect": {
+              "left": 306.15625,
+              "top": 679.8125,
+              "right": 557.609375,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "skills",
+            "disabled": false,
+            "rect": {
+              "left": 569.125,
+              "top": 679.8125,
+              "right": 820.578125,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "rest",
+            "disabled": true,
+            "rect": {
+              "left": 832.09375,
+              "top": 679.8125,
+              "right": 1083.546875,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "continue",
+            "disabled": false,
+            "rect": {
+              "left": 1095.0625,
+              "top": 679.8125,
+              "right": 1396.8125,
+              "bottom": 766.8125,
+              "width": 301.75,
+              "height": 87
+            },
+            "labelClipped": false
+          }
+        ],
+        "hudRect": {
+          "left": 24,
+          "top": 20,
+          "right": 462,
+          "bottom": 63.734375,
+          "width": 438,
+          "height": 43.734375
+        },
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 1440,
+          "height": 810
+        }
+      }
+    },
+    "postShop": {
+      "before": {
+        "currentNodeId": "lion-first-refuge",
+        "runNodeId": "lion-first-refuge",
+        "stepCounter": 0,
+        "resolvedNodeIds": [],
+        "temporaryLootGold": 0,
+        "gold": 145,
+        "woundedCount": 0,
+        "counters": {
+          "hudMounts": 2,
+          "hubMounts": 2,
+          "travelMounts": 0,
+          "maxHud": 1,
+          "maxHub": 1
+        }
+      },
+      "after": {
+        "currentNodeId": "lion-first-refuge",
+        "runNodeId": "lion-first-refuge",
+        "stepCounter": 0,
+        "resolvedNodeIds": [],
+        "temporaryLootGold": 0,
+        "gold": 145,
+        "woundedCount": 0,
+        "counters": {
+          "hudMounts": 3,
+          "hubMounts": 3,
+          "travelMounts": 0,
+          "maxHud": 1,
+          "maxHub": 1
+        }
+      },
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "resourceDuplicates": 0,
+        "topNavDuplicates": 0,
+        "travelCount": 0,
+        "nodeId": "lion-first-refuge",
+        "family": "FIRST_REFUGE",
+        "context": "dialogue:first_refuge_gathering",
+        "background": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+        "backgroundUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+        "backgroundReady": true,
+        "naturalWidth": 1672,
+        "naturalHeight": 941,
+        "backgroundError": null,
+        "computedBackground": "url(\"http://127.0.0.1:5198/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+        "surfaceVisible": true,
+        "probeReady": true,
+        "probeWidth": 1672,
+        "probeHeight": 941,
+        "probeError": null,
+        "securedFeedback": "+0 or placé dans le coffre",
+        "actions": [
+          {
+            "id": "clan",
+            "disabled": false,
+            "rect": {
+              "left": 43.1875,
+              "top": 679.8125,
+              "right": 294.640625,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "shop",
+            "disabled": false,
+            "rect": {
+              "left": 306.15625,
+              "top": 679.8125,
+              "right": 557.609375,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "skills",
+            "disabled": false,
+            "rect": {
+              "left": 569.125,
+              "top": 679.8125,
+              "right": 820.578125,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "rest",
+            "disabled": true,
+            "rect": {
+              "left": 832.09375,
+              "top": 679.8125,
+              "right": 1083.546875,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "continue",
+            "disabled": false,
+            "rect": {
+              "left": 1095.0625,
+              "top": 679.8125,
+              "right": 1396.8125,
+              "bottom": 766.8125,
+              "width": 301.75,
+              "height": 87
+            },
+            "labelClipped": false
+          }
+        ],
+        "hudRect": {
+          "left": 24,
+          "top": 20,
+          "right": 462,
+          "bottom": 63.734375,
+          "width": 438,
+          "height": 43.734375
+        },
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 1440,
+          "height": 810
+        }
+      }
+    },
+    "postSkills": {
+      "before": {
+        "currentNodeId": "lion-first-refuge",
+        "runNodeId": "lion-first-refuge",
+        "stepCounter": 0,
+        "resolvedNodeIds": [],
+        "temporaryLootGold": 0,
+        "gold": 145,
+        "woundedCount": 0,
+        "counters": {
+          "hudMounts": 3,
+          "hubMounts": 3,
+          "travelMounts": 0,
+          "maxHud": 1,
+          "maxHub": 1
+        }
+      },
+      "after": {
+        "currentNodeId": "lion-first-refuge",
+        "runNodeId": "lion-first-refuge",
+        "stepCounter": 0,
+        "resolvedNodeIds": [],
+        "temporaryLootGold": 0,
+        "gold": 145,
+        "woundedCount": 0,
+        "counters": {
+          "hudMounts": 4,
+          "hubMounts": 4,
+          "travelMounts": 0,
+          "maxHud": 1,
+          "maxHub": 1
+        }
+      },
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "resourceDuplicates": 0,
+        "topNavDuplicates": 0,
+        "travelCount": 0,
+        "nodeId": "lion-first-refuge",
+        "family": "FIRST_REFUGE",
+        "context": "dialogue:first_refuge_gathering",
+        "background": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+        "backgroundUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+        "backgroundReady": true,
+        "naturalWidth": 1672,
+        "naturalHeight": 941,
+        "backgroundError": null,
+        "computedBackground": "url(\"http://127.0.0.1:5198/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+        "surfaceVisible": true,
+        "probeReady": true,
+        "probeWidth": 1672,
+        "probeHeight": 941,
+        "probeError": null,
+        "securedFeedback": "+0 or placé dans le coffre",
+        "actions": [
+          {
+            "id": "clan",
+            "disabled": false,
+            "rect": {
+              "left": 43.1875,
+              "top": 679.8125,
+              "right": 294.640625,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "shop",
+            "disabled": false,
+            "rect": {
+              "left": 306.15625,
+              "top": 679.8125,
+              "right": 557.609375,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "skills",
+            "disabled": false,
+            "rect": {
+              "left": 569.125,
+              "top": 679.8125,
+              "right": 820.578125,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "rest",
+            "disabled": true,
+            "rect": {
+              "left": 832.09375,
+              "top": 679.8125,
+              "right": 1083.546875,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "continue",
+            "disabled": false,
+            "rect": {
+              "left": 1095.0625,
+              "top": 679.8125,
+              "right": 1396.8125,
+              "bottom": 766.8125,
+              "width": 301.75,
+              "height": 87
+            },
+            "labelClipped": false
+          }
+        ],
+        "hudRect": {
+          "left": 24,
+          "top": 20,
+          "right": 462,
+          "bottom": 63.734375,
+          "width": 438,
+          "height": 43.734375
+        },
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 1440,
+          "height": 810
+        }
+      }
+    },
+    "wounded": {
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "resourceDuplicates": 0,
+        "topNavDuplicates": 0,
+        "travelCount": 0,
+        "nodeId": "lion-first-refuge",
+        "family": "FIRST_REFUGE",
+        "context": "dialogue:first_refuge_gathering",
+        "background": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+        "backgroundUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+        "backgroundReady": true,
+        "naturalWidth": 1672,
+        "naturalHeight": 941,
+        "backgroundError": null,
+        "computedBackground": "url(\"http://127.0.0.1:5198/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+        "surfaceVisible": true,
+        "probeReady": true,
+        "probeWidth": 1672,
+        "probeHeight": 941,
+        "probeError": null,
+        "securedFeedback": "+25 or placé dans le coffre",
+        "actions": [
+          {
+            "id": "clan",
+            "disabled": false,
+            "rect": {
+              "left": 43.1875,
+              "top": 679.8125,
+              "right": 294.640625,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "shop",
+            "disabled": false,
+            "rect": {
+              "left": 306.15625,
+              "top": 679.8125,
+              "right": 557.609375,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "skills",
+            "disabled": false,
+            "rect": {
+              "left": 569.125,
+              "top": 679.8125,
+              "right": 820.578125,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "rest",
+            "disabled": false,
+            "rect": {
+              "left": 832.09375,
+              "top": 679.8125,
+              "right": 1083.546875,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "continue",
+            "disabled": false,
+            "rect": {
+              "left": 1095.0625,
+              "top": 679.8125,
+              "right": 1396.8125,
+              "bottom": 766.8125,
+              "width": 301.75,
+              "height": 87
+            },
+            "labelClipped": false
+          }
+        ],
+        "hudRect": {
+          "left": 24,
+          "top": 20,
+          "right": 462,
+          "bottom": 63.734375,
+          "width": 438,
+          "height": 43.734375
+        },
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 1440,
+          "height": 810
+        }
+      },
+      "state": {
+        "currentNodeId": "lion-first-refuge",
+        "runNodeId": "lion-first-refuge",
+        "stepCounter": 0,
+        "resolvedNodeIds": [],
+        "temporaryLootGold": 0,
+        "gold": 145,
+        "woundedCount": 2,
+        "counters": {
+          "hudMounts": 1,
+          "hubMounts": 1,
+          "travelMounts": 0,
+          "maxHud": 1,
+          "maxHub": 1
+        }
+      }
+    },
+    "postRest": {
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "resourceDuplicates": 0,
+        "topNavDuplicates": 0,
+        "travelCount": 0,
+        "nodeId": "lion-first-refuge",
+        "family": "FIRST_REFUGE",
+        "context": "dialogue:first_refuge_gathering",
+        "background": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+        "backgroundUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+        "backgroundReady": true,
+        "naturalWidth": 1672,
+        "naturalHeight": 941,
+        "backgroundError": null,
+        "computedBackground": "url(\"http://127.0.0.1:5198/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+        "surfaceVisible": true,
+        "probeReady": true,
+        "probeWidth": 1672,
+        "probeHeight": 941,
+        "probeError": null,
+        "securedFeedback": "+0 or placé dans le coffre",
+        "actions": [
+          {
+            "id": "clan",
+            "disabled": false,
+            "rect": {
+              "left": 43.1875,
+              "top": 679.8125,
+              "right": 294.640625,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "shop",
+            "disabled": false,
+            "rect": {
+              "left": 306.15625,
+              "top": 679.8125,
+              "right": 557.609375,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "skills",
+            "disabled": false,
+            "rect": {
+              "left": 569.125,
+              "top": 679.8125,
+              "right": 820.578125,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "rest",
+            "disabled": true,
+            "rect": {
+              "left": 832.09375,
+              "top": 679.8125,
+              "right": 1083.546875,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "continue",
+            "disabled": false,
+            "rect": {
+              "left": 1095.0625,
+              "top": 679.8125,
+              "right": 1396.8125,
+              "bottom": 766.8125,
+              "width": 301.75,
+              "height": 87
+            },
+            "labelClipped": false
+          }
+        ],
+        "hudRect": {
+          "left": 24,
+          "top": 20,
+          "right": 462,
+          "bottom": 63.734375,
+          "width": 438,
+          "height": 43.734375
+        },
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 1440,
+          "height": 810
+        }
+      },
+      "beforeRest": {
+        "currentNodeId": "lion-first-refuge",
+        "runNodeId": "lion-first-refuge",
+        "stepCounter": 0,
+        "resolvedNodeIds": [],
+        "temporaryLootGold": 0,
+        "gold": 145,
+        "woundedCount": 2,
+        "counters": {
+          "hudMounts": 1,
+          "hubMounts": 1,
+          "travelMounts": 0,
+          "maxHud": 1,
+          "maxHub": 1
+        }
+      },
+      "afterRest": {
+        "currentNodeId": "lion-first-refuge",
+        "runNodeId": "lion-first-refuge",
+        "stepCounter": 0,
+        "resolvedNodeIds": [],
+        "temporaryLootGold": 0,
+        "gold": 115,
+        "woundedCount": 0,
+        "counters": {
+          "hudMounts": 2,
+          "hubMounts": 2,
+          "travelMounts": 0,
+          "maxHud": 1,
+          "maxHub": 1
+        }
+      }
+    },
+    "secondInitial": {
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "resourceDuplicates": 0,
+        "topNavDuplicates": 0,
+        "travelCount": 0,
+        "nodeId": "lion-second-refuge",
+        "family": "SECOND_REFUGE",
+        "context": "node:lion-second-refuge",
+        "background": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png\")",
+        "backgroundUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png",
+        "backgroundReady": true,
+        "naturalWidth": 1672,
+        "naturalHeight": 941,
+        "backgroundError": null,
+        "computedBackground": "url(\"http://127.0.0.1:5198/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png\")",
+        "surfaceVisible": true,
+        "probeReady": true,
+        "probeWidth": 1672,
+        "probeHeight": 941,
+        "probeError": null,
+        "securedFeedback": "+25 or placé dans le coffre",
+        "actions": [
+          {
+            "id": "clan",
+            "disabled": false,
+            "rect": {
+              "left": 43.1875,
+              "top": 679.8125,
+              "right": 294.640625,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "shop",
+            "disabled": false,
+            "rect": {
+              "left": 306.15625,
+              "top": 679.8125,
+              "right": 557.609375,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "skills",
+            "disabled": false,
+            "rect": {
+              "left": 569.125,
+              "top": 679.8125,
+              "right": 820.578125,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "rest",
+            "disabled": true,
+            "rect": {
+              "left": 832.09375,
+              "top": 679.8125,
+              "right": 1083.546875,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "continue",
+            "disabled": false,
+            "rect": {
+              "left": 1095.0625,
+              "top": 679.8125,
+              "right": 1396.8125,
+              "bottom": 766.8125,
+              "width": 301.75,
+              "height": 87
+            },
+            "labelClipped": false
+          }
+        ],
+        "hudRect": {
+          "left": 24,
+          "top": 20,
+          "right": 462,
+          "bottom": 63.734375,
+          "width": 438,
+          "height": 43.734375
+        },
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 1440,
+          "height": 810
+        }
+      },
+      "state": {
+        "currentNodeId": "lion-second-refuge",
+        "runNodeId": "lion-second-refuge",
+        "stepCounter": 0,
+        "resolvedNodeIds": [],
+        "temporaryLootGold": 0,
+        "gold": 145,
+        "woundedCount": 0,
+        "counters": {
+          "hudMounts": 1,
+          "hubMounts": 1,
+          "travelMounts": 0,
+          "maxHud": 1,
+          "maxHub": 1
+        }
+      }
+    },
+    "secondReturn": {
+      "before": {
+        "currentNodeId": "lion-second-refuge",
+        "runNodeId": "lion-second-refuge",
+        "stepCounter": 0,
+        "resolvedNodeIds": [],
+        "temporaryLootGold": 0,
+        "gold": 145,
+        "woundedCount": 0,
+        "counters": {
+          "hudMounts": 1,
+          "hubMounts": 1,
+          "travelMounts": 0,
+          "maxHud": 1,
+          "maxHub": 1
+        }
+      },
+      "after": {
+        "currentNodeId": "lion-second-refuge",
+        "runNodeId": "lion-second-refuge",
+        "stepCounter": 0,
+        "resolvedNodeIds": [],
+        "temporaryLootGold": 0,
+        "gold": 145,
+        "woundedCount": 0,
+        "counters": {
+          "hudMounts": 2,
+          "hubMounts": 2,
+          "travelMounts": 0,
+          "maxHud": 1,
+          "maxHub": 1
+        }
+      },
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "resourceDuplicates": 0,
+        "topNavDuplicates": 0,
+        "travelCount": 0,
+        "nodeId": "lion-second-refuge",
+        "family": "SECOND_REFUGE",
+        "context": "node:lion-second-refuge",
+        "background": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png\")",
+        "backgroundUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png",
+        "backgroundReady": true,
+        "naturalWidth": 1672,
+        "naturalHeight": 941,
+        "backgroundError": null,
+        "computedBackground": "url(\"http://127.0.0.1:5198/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png\")",
+        "surfaceVisible": true,
+        "probeReady": true,
+        "probeWidth": 1672,
+        "probeHeight": 941,
+        "probeError": null,
+        "securedFeedback": "+0 or placé dans le coffre",
+        "actions": [
+          {
+            "id": "clan",
+            "disabled": false,
+            "rect": {
+              "left": 43.1875,
+              "top": 679.8125,
+              "right": 294.640625,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "shop",
+            "disabled": false,
+            "rect": {
+              "left": 306.15625,
+              "top": 679.8125,
+              "right": 557.609375,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "skills",
+            "disabled": false,
+            "rect": {
+              "left": 569.125,
+              "top": 679.8125,
+              "right": 820.578125,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "rest",
+            "disabled": true,
+            "rect": {
+              "left": 832.09375,
+              "top": 679.8125,
+              "right": 1083.546875,
+              "bottom": 766.8125,
+              "width": 251.453125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "continue",
+            "disabled": false,
+            "rect": {
+              "left": 1095.0625,
+              "top": 679.8125,
+              "right": 1396.8125,
+              "bottom": 766.8125,
+              "width": 301.75,
+              "height": 87
+            },
+            "labelClipped": false
+          }
+        ],
+        "hudRect": {
+          "left": 24,
+          "top": 20,
+          "right": 462,
+          "bottom": 63.734375,
+          "width": 438,
+          "height": 43.734375
+        },
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 1440,
+          "height": 810
+        }
+      }
+    },
+    "second390": {
+      "hubCount": 1,
+      "hudCount": 1,
+      "resourceDuplicates": 0,
+      "topNavDuplicates": 0,
+      "travelCount": 0,
+      "nodeId": "lion-second-refuge",
+      "family": "SECOND_REFUGE",
+      "context": "node:lion-second-refuge",
+      "background": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png\")",
+      "backgroundUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png",
+      "backgroundReady": true,
+      "naturalWidth": 1672,
+      "naturalHeight": 941,
+      "backgroundError": null,
+      "computedBackground": "url(\"http://127.0.0.1:5198/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png\")",
+      "surfaceVisible": true,
+      "probeReady": true,
+      "probeWidth": 1672,
+      "probeHeight": 941,
+      "probeError": null,
+      "securedFeedback": "+0 or placé dans le coffre",
+      "actions": [
+        {
+          "id": "clan",
+          "disabled": false,
+          "rect": {
+            "left": 14,
+            "top": 613,
+            "right": 191,
+            "bottom": 680,
+            "width": 177,
+            "height": 67
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "shop",
+          "disabled": false,
+          "rect": {
+            "left": 199,
+            "top": 613,
+            "right": 376,
+            "bottom": 680,
+            "width": 177,
+            "height": 67
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "skills",
+          "disabled": false,
+          "rect": {
+            "left": 14,
+            "top": 688,
+            "right": 191,
+            "bottom": 755,
+            "width": 177,
+            "height": 67
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "rest",
+          "disabled": true,
+          "rect": {
+            "left": 199,
+            "top": 688,
+            "right": 376,
+            "bottom": 755,
+            "width": 177,
+            "height": 67
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "continue",
+          "disabled": false,
+          "rect": {
+            "left": 14,
+            "top": 763,
+            "right": 376,
+            "bottom": 830,
+            "width": 362,
+            "height": 67
+          },
+          "labelClipped": false
+        }
+      ],
+      "hudRect": {
+        "left": 10,
+        "top": 10,
+        "right": 350,
+        "bottom": 47.484375,
+        "width": 340,
+        "height": 37.484375
+      },
+      "horizontalOverflow": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  },
+  "production": {
+    "gathering": {
+      "tableau": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+      "renderedBackground": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+      "hudCount": 0
+    },
+    "hub": {
+      "hubCount": 1,
+      "hudCount": 1,
+      "resourceDuplicates": 0,
+      "topNavDuplicates": 0,
+      "travelCount": 0,
+      "nodeId": "lion-first-refuge",
+      "family": "FIRST_REFUGE",
+      "context": "dialogue:first_refuge_gathering",
+      "background": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+      "backgroundUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+      "backgroundReady": true,
+      "naturalWidth": 1672,
+      "naturalHeight": 941,
+      "backgroundError": null,
+      "computedBackground": "url(\"http://127.0.0.1:5198/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+      "surfaceVisible": true,
+      "probeReady": true,
+      "probeWidth": 1672,
+      "probeHeight": 941,
+      "probeError": null,
+      "securedFeedback": "+25 or placé dans le coffre",
+      "actions": [
+        {
+          "id": "clan",
+          "disabled": false,
+          "rect": {
+            "left": 40.96875,
+            "top": 640.03125,
+            "right": 279.5,
+            "bottom": 727.03125,
+            "width": 238.53125,
+            "height": 87
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "shop",
+          "disabled": false,
+          "rect": {
+            "left": 290.421875,
+            "top": 640.03125,
+            "right": 528.953125,
+            "bottom": 727.03125,
+            "width": 238.53125,
+            "height": 87
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "skills",
+          "disabled": false,
+          "rect": {
+            "left": 539.875,
+            "top": 640.03125,
+            "right": 778.40625,
+            "bottom": 727.03125,
+            "width": 238.53125,
+            "height": 87
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "rest",
+          "disabled": false,
+          "rect": {
+            "left": 789.328125,
+            "top": 640.03125,
+            "right": 1027.859375,
+            "bottom": 727.03125,
+            "width": 238.53125,
+            "height": 87
+          },
+          "labelClipped": false
+        },
+        {
+          "id": "continue",
+          "disabled": false,
+          "rect": {
+            "left": 1038.78125,
+            "top": 640.03125,
+            "right": 1325.03125,
+            "bottom": 727.03125,
+            "width": 286.25,
+            "height": 87
+          },
+          "labelClipped": false
+        }
+      ],
+      "hudRect": {
+        "left": 24,
+        "top": 20,
+        "right": 462,
+        "bottom": 63.734375,
+        "width": 438,
+        "height": 43.734375
+      },
+      "horizontalOverflow": false,
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      }
+    },
+    "initial": {
+      "currentNodeId": "lion-first-refuge",
+      "runNodeId": "lion-first-refuge",
+      "stepCounter": 6,
+      "resolvedNodeIds": [
+        "lion-camp",
+        "lion-audience",
+        "lion-opening-ambush",
+        "lion-nomad-crossroads",
+        "lion-refugees",
+        "lion-first-trial-event"
+      ],
+      "temporaryLootGold": 0,
+      "gold": 145,
+      "woundedCount": 1,
+      "counters": {
+        "hudMounts": 3,
+        "hubMounts": 1,
+        "travelMounts": 0,
+        "maxHud": 1,
+        "maxHub": 1
+      }
+    },
+    "afterClan": {
+      "before": {
+        "currentNodeId": "lion-first-refuge",
+        "runNodeId": "lion-first-refuge",
+        "stepCounter": 6,
+        "resolvedNodeIds": [
+          "lion-camp",
+          "lion-audience",
+          "lion-opening-ambush",
+          "lion-nomad-crossroads",
+          "lion-refugees",
+          "lion-first-trial-event"
+        ],
+        "temporaryLootGold": 0,
+        "gold": 145,
+        "woundedCount": 1,
+        "counters": {
+          "hudMounts": 3,
+          "hubMounts": 1,
+          "travelMounts": 0,
+          "maxHud": 1,
+          "maxHub": 1
+        }
+      },
+      "after": {
+        "currentNodeId": "lion-first-refuge",
+        "runNodeId": "lion-first-refuge",
+        "stepCounter": 6,
+        "resolvedNodeIds": [
+          "lion-camp",
+          "lion-audience",
+          "lion-opening-ambush",
+          "lion-nomad-crossroads",
+          "lion-refugees",
+          "lion-first-trial-event"
+        ],
+        "temporaryLootGold": 0,
+        "gold": 145,
+        "woundedCount": 1,
+        "counters": {
+          "hudMounts": 4,
+          "hubMounts": 2,
+          "travelMounts": 0,
+          "maxHud": 1,
+          "maxHub": 1
+        }
+      },
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "resourceDuplicates": 0,
+        "topNavDuplicates": 0,
+        "travelCount": 0,
+        "nodeId": "lion-first-refuge",
+        "family": "FIRST_REFUGE",
+        "context": "dialogue:first_refuge_gathering",
+        "background": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+        "backgroundUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+        "backgroundReady": true,
+        "naturalWidth": 1672,
+        "naturalHeight": 941,
+        "backgroundError": null,
+        "computedBackground": "url(\"http://127.0.0.1:5198/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+        "surfaceVisible": true,
+        "probeReady": true,
+        "probeWidth": 1672,
+        "probeHeight": 941,
+        "probeError": null,
+        "securedFeedback": "+0 or placé dans le coffre",
+        "actions": [
+          {
+            "id": "clan",
+            "disabled": false,
+            "rect": {
+              "left": 40.96875,
+              "top": 640.03125,
+              "right": 279.5,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "shop",
+            "disabled": false,
+            "rect": {
+              "left": 290.421875,
+              "top": 640.03125,
+              "right": 528.953125,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "skills",
+            "disabled": false,
+            "rect": {
+              "left": 539.875,
+              "top": 640.03125,
+              "right": 778.40625,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "rest",
+            "disabled": false,
+            "rect": {
+              "left": 789.328125,
+              "top": 640.03125,
+              "right": 1027.859375,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "continue",
+            "disabled": false,
+            "rect": {
+              "left": 1038.78125,
+              "top": 640.03125,
+              "right": 1325.03125,
+              "bottom": 727.03125,
+              "width": 286.25,
+              "height": 87
+            },
+            "labelClipped": false
+          }
+        ],
+        "hudRect": {
+          "left": 24,
+          "top": 20,
+          "right": 462,
+          "bottom": 63.734375,
+          "width": 438,
+          "height": 43.734375
+        },
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        }
+      }
+    },
+    "afterShop": {
+      "before": {
+        "currentNodeId": "lion-first-refuge",
+        "runNodeId": "lion-first-refuge",
+        "stepCounter": 6,
+        "resolvedNodeIds": [
+          "lion-camp",
+          "lion-audience",
+          "lion-opening-ambush",
+          "lion-nomad-crossroads",
+          "lion-refugees",
+          "lion-first-trial-event"
+        ],
+        "temporaryLootGold": 0,
+        "gold": 145,
+        "woundedCount": 1,
+        "counters": {
+          "hudMounts": 4,
+          "hubMounts": 2,
+          "travelMounts": 0,
+          "maxHud": 1,
+          "maxHub": 1
+        }
+      },
+      "after": {
+        "currentNodeId": "lion-first-refuge",
+        "runNodeId": "lion-first-refuge",
+        "stepCounter": 6,
+        "resolvedNodeIds": [
+          "lion-camp",
+          "lion-audience",
+          "lion-opening-ambush",
+          "lion-nomad-crossroads",
+          "lion-refugees",
+          "lion-first-trial-event"
+        ],
+        "temporaryLootGold": 0,
+        "gold": 145,
+        "woundedCount": 1,
+        "counters": {
+          "hudMounts": 5,
+          "hubMounts": 3,
+          "travelMounts": 0,
+          "maxHud": 1,
+          "maxHub": 1
+        }
+      },
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "resourceDuplicates": 0,
+        "topNavDuplicates": 0,
+        "travelCount": 0,
+        "nodeId": "lion-first-refuge",
+        "family": "FIRST_REFUGE",
+        "context": "dialogue:first_refuge_gathering",
+        "background": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+        "backgroundUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+        "backgroundReady": true,
+        "naturalWidth": 1672,
+        "naturalHeight": 941,
+        "backgroundError": null,
+        "computedBackground": "url(\"http://127.0.0.1:5198/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png\")",
+        "surfaceVisible": true,
+        "probeReady": true,
+        "probeWidth": 1672,
+        "probeHeight": 941,
+        "probeError": null,
+        "securedFeedback": "+0 or placé dans le coffre",
+        "actions": [
+          {
+            "id": "clan",
+            "disabled": false,
+            "rect": {
+              "left": 40.96875,
+              "top": 640.03125,
+              "right": 279.5,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "shop",
+            "disabled": false,
+            "rect": {
+              "left": 290.421875,
+              "top": 640.03125,
+              "right": 528.953125,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "skills",
+            "disabled": false,
+            "rect": {
+              "left": 539.875,
+              "top": 640.03125,
+              "right": 778.40625,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "rest",
+            "disabled": false,
+            "rect": {
+              "left": 789.328125,
+              "top": 640.03125,
+              "right": 1027.859375,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "labelClipped": false
+          },
+          {
+            "id": "continue",
+            "disabled": false,
+            "rect": {
+              "left": 1038.78125,
+              "top": 640.03125,
+              "right": 1325.03125,
+              "bottom": 727.03125,
+              "width": 286.25,
+              "height": 87
+            },
+            "labelClipped": false
+          }
+        ],
+        "hudRect": {
+          "left": 24,
+          "top": 20,
+          "right": 462,
+          "bottom": 63.734375,
+          "width": 438,
+          "height": 43.734375
+        },
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        }
+      }
+    },
+    "beforeRest": {
+      "currentNodeId": "lion-first-refuge",
+      "runNodeId": "lion-first-refuge",
+      "stepCounter": 6,
+      "resolvedNodeIds": [
+        "lion-camp",
+        "lion-audience",
+        "lion-opening-ambush",
+        "lion-nomad-crossroads",
+        "lion-refugees",
+        "lion-first-trial-event"
+      ],
+      "temporaryLootGold": 0,
+      "gold": 145,
+      "woundedCount": 1,
+      "counters": {
+        "hudMounts": 5,
+        "hubMounts": 3,
+        "travelMounts": 0,
+        "maxHud": 1,
+        "maxHub": 1
+      }
+    },
+    "afterRest": {
+      "currentNodeId": "lion-first-refuge",
+      "runNodeId": "lion-first-refuge",
+      "stepCounter": 6,
+      "resolvedNodeIds": [
+        "lion-camp",
+        "lion-audience",
+        "lion-opening-ambush",
+        "lion-nomad-crossroads",
+        "lion-refugees",
+        "lion-first-trial-event"
+      ],
+      "temporaryLootGold": 0,
+      "gold": 130,
+      "woundedCount": 0,
+      "counters": {
+        "hudMounts": 6,
+        "hubMounts": 4,
+        "travelMounts": 0,
+        "maxHud": 1,
+        "maxHub": 1
+      }
+    },
+    "final": {
+      "currentNodeId": "lion-first-refuge",
+      "runNodeId": "lion-first-refuge",
+      "stepCounter": 6,
+      "resolvedNodeIds": [
+        "lion-camp",
+        "lion-audience",
+        "lion-opening-ambush",
+        "lion-nomad-crossroads",
+        "lion-refugees",
+        "lion-first-trial-event",
+        "lion-first-refuge"
+      ],
+      "temporaryLootGold": 0,
+      "gold": 95,
+      "woundedCount": 0,
+      "counters": {
+        "hudMounts": 8,
+        "hubMounts": 4,
+        "travelMounts": 0,
+        "maxHud": 1,
+        "maxHub": 1
+      }
+    },
+    "stages": [
+      "FIRST_REFUGE_GATHERING_TABLEAU",
+      "FIRST_REFUGE_GATHERING_TABLEAU",
+      "ATE_FIRST_REFUGE_WATCH_TABLEAU",
+      "REP_EVENT_PUBLIC_PETITION_TABLEAU",
+      "BOUNDARY_NODE_LION_FIRST_REFUGE_ARRIVAL_TABLEAU"
+    ]
+  },
+  "errors": []
+}

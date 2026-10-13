@@ -1,0 +1,420 @@
+// @vitest-environment happy-dom
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { CinematicPlayer } from '../cinematics/CinematicPlayer';
+import { CinematicRegistry } from '../cinematics/CinematicRegistry';
+import { getAvailableRunNodes } from '../game/runSystem';
+import { createInitialState } from '../game/store';
+import type { GameState, RunNode } from '../game/types';
+import { JourneyCampaignBoundary, withPresentationOnlyContinuation } from './JourneyCampaignBoundary';
+import { edgeKey, nodeArrivalKey } from './JourneyPresentationResolver';
+
+const SECONDARY = Object.freeze([
+  { id: 'COMPANY', label: 'Compagnie' },
+  { id: 'SAVE', label: 'Sauvegarder' },
+  { id: 'MENU', label: 'Menu' },
+]);
+
+function availableAt(state: GameState, nodeId: string): RunNode[] {
+  state.run.currentNodeId = nodeId;
+  state.currentNodeId = nodeId;
+  return getAvailableRunNodes(state);
+}
+
+function createBoundary(options: { registry?: CinematicRegistry; presentationMap?: Record<string, string | null> } = {}) {
+  const registry = options.registry ?? new CinematicRegistry();
+  const player = new CinematicPlayer(registry);
+  return new JourneyCampaignBoundary({
+    player,
+    registry,
+    transitionRevealMs: 0,
+    ...(options.presentationMap ? { presentationMap: options.presentationMap } : {}),
+  });
+}
+
+/** Drains the microtask chain the boundary uses to mount its surface and overlay. */
+async function flush(times = 12): Promise<void> {
+  for (let index = 0; index < times; index += 1) await Promise.resolve();
+}
+
+function click(selector: string): void {
+  document.querySelector<HTMLButtonElement>(selector)?.click();
+}
+
+describe('journey campaign boundary', () => {
+  it.each([false, true])('keeps final-refuge preparation and its canonical action on reload/reduction=%s without securing loot', async reducedMotion => {
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-final-refuge');
+    state.run.temporaryLoot.gold = 17;
+    state.resolvedNodeIds.push('lion-final-refuge');
+    const before = structuredClone(state);
+    for (const action of ['SAVE', 'continue']) {
+      // Reconstructing from the same saved node must not require transient presentation state.
+      const boundary = createBoundary();
+      const pending = boundary.present({ currentNodeId: state.currentNodeId,
+        currentContentId: 'final_refuge', available, secondary: SECONDARY, reducedMotion });
+      await flush();
+      expect(document.querySelector<HTMLElement>('.narrative-stage')?.dataset.narrativeTableau)
+        .toBe('FINAL_REFUGE_PREPARATION_TABLEAU');
+      expect(document.querySelectorAll('.narrative-cast__actor')).toHaveLength(3);
+      expect(document.querySelector('.journey-overlay__title')?.textContent).toBe('Avant le jugement');
+      expect(document.querySelector('[data-journey-continue]')?.textContent).toBe('Rejoindre Alaric');
+      expect(document.querySelectorAll('video, .exploration-stop')).toHaveLength(0);
+      click(action === 'continue' ? '[data-journey-continue]' : '[data-journey-secondary="SAVE"]');
+      await expect(pending).resolves.toMatchObject(action === 'continue'
+        ? { kind: 'node', id: 'lion-final-judgement', presentationMode: 'STATIC_TABLEAU' }
+        : { kind: 'secondary', id: 'SAVE', presentationMode: 'STATIC_TABLEAU' });
+      expect(state).toEqual(before);
+      boundary.dispose();
+    }
+  });
+
+  it('derives local continuation from planned agency without losing utilities or context', () => {
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-refugees');
+    const planned = {
+      mode: 'branch' as const, eyebrow: 'Choisir la route', title: 'La route se divise',
+      caption: 'Deux routes', context: 'Depuis : Refuge',
+      choices: available.map(node => ({ id: node.id, label: node.label })), secondary: SECONDARY,
+    };
+    expect(withPresentationOnlyContinuation(planned, { title: 'Vers Refuge du Lion', continueLabel: 'Prendre la route' }))
+      .toEqual({ ...planned, mode: 'single', choices: [], caption: undefined,
+        eyebrow: 'Départ', title: 'Vers Refuge du Lion', continueLabel: 'Prendre la route' });
+    expect(withPresentationOnlyContinuation(planned, { continueLabel: 'Poursuivre' }).title)
+      .toBe(planned.title);
+  });
+
+  it('reuses the reviewed departure but returns local continuation with no node identity', async () => {
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-audience');
+    const before = structuredClone(state);
+    const boundary = createBoundary();
+    const pending = boundary.present({ currentNodeId: 'lion-audience', available,
+      presentationOnly: { eyebrow: 'Départ', title: 'Vers Refuge du Lion', continueLabel: 'Prendre la route' } });
+    await flush();
+    expect(document.querySelector<HTMLElement>('.narrative-stage')?.dataset.narrativeTableau)
+      .toBe('AUDIENCE_ROAD_DEPARTURE_TABLEAU');
+    expect(document.querySelectorAll('.narrative-cast__actor')).toHaveLength(3);
+    expect(document.querySelector('.journey-overlay__eyebrow')?.textContent).toBe('Départ');
+    expect(document.querySelector('.journey-overlay__title')?.textContent).toBe('Vers Refuge du Lion');
+    expect(document.querySelector('[data-journey-continue]')?.textContent).toContain('Prendre la route');
+    expect(document.querySelectorAll('[data-journey-choice]')).toHaveLength(0);
+    click('[data-journey-continue]');
+    expect(await pending).toMatchObject({ kind: 'presentation-continue', id: null,
+      presentationKey: 'edge:lion-audience>lion-opening-ambush' });
+    expect(state).toEqual(before);
+    expect(document.querySelectorAll('.narrative-stage')).toHaveLength(1);
+    boundary.dispose();
+    expect(document.querySelector('.narrative-stage')).toBeNull();
+  });
+
+  it('offers all three actions on post-Audience departure and reports them without route agency', async () => {
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-audience');
+    const before = structuredClone(state);
+    const boundary = createBoundary();
+    const request = { currentNodeId: 'lion-audience', available, secondary: SECONDARY,
+      presentationOnly: { eyebrow: 'Départ', title: 'Vers Refuge du Lion', continueLabel: 'Prendre la route' } };
+    const pending = boundary.present(request);
+    await flush();
+    expect([...document.querySelectorAll<HTMLButtonElement>('.narrative-utility-dock [data-journey-secondary]')]
+      .map(button => button.dataset.journeySecondary)).toEqual(['COMPANY', 'SAVE', 'MENU']);
+    expect(document.querySelectorAll('.narrative-utility-dock')).toHaveLength(1);
+    expect(document.querySelector('[data-journey-continue]')?.textContent).toBe('Prendre la route');
+    click('[data-journey-secondary="COMPANY"]');
+    await expect(pending).resolves.toMatchObject({ kind: 'secondary', id: 'COMPANY' });
+    expect(document.querySelectorAll('.narrative-stage, .narrative-utility-dock')).toHaveLength(0);
+    expect(state).toEqual(before);
+
+    const restored = boundary.present(request);
+    await flush();
+    expect(document.querySelectorAll('.narrative-stage, .narrative-utility-dock')).toHaveLength(2);
+    click('[data-journey-continue]');
+    await expect(restored).resolves.toMatchObject({ kind: 'presentation-continue', id: null });
+    expect(state).toEqual(before);
+    boundary.dispose();
+  });
+  beforeEach(() => {
+    vi.spyOn(HTMLMediaElement.prototype, 'pause').mockImplementation(() => undefined);
+    vi.spyOn(HTMLMediaElement.prototype, 'load').mockImplementation(() => undefined);
+    vi.spyOn(HTMLMediaElement.prototype, 'canPlayType').mockReturnValue('probably');
+    vi.spyOn(HTMLImageElement.prototype, 'decode').mockResolvedValue(undefined);
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({ drawImage: vi.fn() } as unknown as CanvasRenderingContext2D);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+  });
+
+  afterEach(() => {
+    document.body.replaceChildren();
+    vi.restoreAllMocks();
+  });
+
+  it('presents a real branch and reports only the chosen node', async () => {
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-refugees');
+    expect(available).toHaveLength(2);
+    const boundary = createBoundary();
+    const pending = boundary.present({
+      currentNodeId: 'lion-refugees',
+      currentContentId: 'refugee_trial',
+      available,
+      secondary: SECONDARY,
+      reducedMotion: false,
+    });
+    await flush();
+    const rendered = [...document.querySelectorAll<HTMLElement>('[data-journey-choice]')]
+      .map((button) => button.dataset.journeyChoice);
+    expect(rendered).toEqual(available.map((node) => node.id));
+    expect(document.querySelectorAll('[data-journey-continue]')).toHaveLength(0);
+    click(`[data-journey-choice="${available[0]!.id}"]`);
+    const outcome = await pending;
+    expect(outcome).toMatchObject({ kind: 'node', id: available[0]!.id, boundary: 'branch' });
+    expect(outcome.cinematicId).toBeUndefined();
+    expect(outcome.presentationKey).toBe('node:lion-refugees:arrival');
+    expect(outcome.surfaceReason).toBe('ended');
+    expect(outcome.trace).toContain('AGENCY');
+  });
+
+  it('offers a continuation for a single successor and commits exactly that node', async () => {
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-nomad-crossroads');
+    expect(available).toHaveLength(1);
+    const boundary = createBoundary();
+    const pending = boundary.present({ currentNodeId: 'lion-nomad-crossroads', available, reducedMotion: false });
+    await flush();
+    expect(document.querySelectorAll('[data-journey-choice]')).toHaveLength(0);
+    expect(document.querySelectorAll('[data-journey-continue]')).toHaveLength(1);
+    click('[data-journey-continue]');
+    await expect(pending).resolves.toMatchObject({ kind: 'node', id: available[0]!.id, boundary: 'single' });
+  });
+
+  it('releases the audience context into the authored road tableau before opening combat', async () => {
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-audience');
+    const boundary = createBoundary();
+    const pending = boundary.present({
+      currentNodeId: 'lion-audience',
+      currentContentId: 'lion_briefing',
+      available,
+      reducedMotion: false,
+    });
+    await flush();
+    const stage = document.querySelector<HTMLElement>('.narrative-stage');
+    expect(stage?.dataset.narrativeTableau).toBe('AUDIENCE_ROAD_DEPARTURE_TABLEAU');
+    expect(stage?.dataset.narrativeGrammar).toBe('DEPARTURE');
+    expect(stage?.dataset.presentationMode).toBe('TRAVEL_STILL');
+    expect(stage?.dataset.narrativeCastOwnership).toBe('TRAVEL_SURFACE_OWNS_ENVIRONMENT');
+    expect(document.querySelector('[data-actor-id="alaric"]')).toBeNull();
+    expect(document.querySelectorAll<HTMLElement>('[data-actor-id]')).toHaveLength(0);
+    click('[data-journey-continue]');
+    await expect(pending).resolves.toMatchObject({
+      kind: 'node',
+      id: 'lion-opening-ambush',
+      presentationKey: 'edge:lion-audience>lion-opening-ambush',
+      cinematicId: undefined,
+      surfaceReason: 'ended',
+    });
+  });
+
+  it('presents a terminal boundary that can never commit a route', async () => {
+    const boundary = createBoundary();
+    const pending = boundary.present({ currentNodeId: 'lion-final-judgement', available: [], secondary: SECONDARY, reducedMotion: false });
+    await flush();
+    expect(document.querySelectorAll('[data-journey-choice]')).toHaveLength(0);
+    expect(document.querySelector('[data-journey-continue]')?.textContent).toBe('Retour au menu');
+    click('[data-journey-continue]');
+    await expect(pending).resolves.toMatchObject({ kind: 'terminal', id: null, boundary: 'terminal' });
+  });
+
+  it('commits at most once through repeated clicks and detached callbacks', async () => {
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-refugees');
+    const boundary = createBoundary();
+    const outcomes: unknown[] = [];
+    const pending = boundary.present({ currentNodeId: 'lion-refugees', available, reducedMotion: false });
+    void pending.then((outcome) => outcomes.push(outcome));
+    await flush();
+    const first = document.querySelector<HTMLButtonElement>(`[data-journey-choice="${available[0]!.id}"]`);
+    const second = document.querySelector<HTMLButtonElement>(`[data-journey-choice="${available[1]!.id}"]`);
+    first?.click();
+    first?.click();
+    second?.click();
+    // Detached callbacks: the overlay is already removed from the document here.
+    expect(first?.isConnected).toBe(false);
+    first?.click();
+    second?.click();
+    await pending;
+    await flush();
+    expect(outcomes).toHaveLength(1);
+    expect(outcomes[0]).toMatchObject({ kind: 'node', id: available[0]!.id });
+    expect(boundary.activeState).toBeNull();
+  });
+
+  it('reports secondary actions without committing a route', async () => {
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-refugees');
+    const boundary = createBoundary();
+    const pending = boundary.present({ currentNodeId: 'lion-refugees', available, secondary: SECONDARY, reducedMotion: false });
+    await flush();
+    expect(document.querySelectorAll('[data-journey-secondary]')).toHaveLength(3);
+    expect(document.querySelector('[data-journey-secondary="CAMP"]')).toBeNull();
+    click('[data-journey-secondary="COMPANY"]');
+    await expect(pending).resolves.toMatchObject({ kind: 'secondary', id: 'COMPANY' });
+  });
+
+  it('never mutates campaign truth while presenting', async () => {
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-refugees');
+    const before = {
+      stepCounter: state.stepCounter,
+      currentNodeId: state.run.currentNodeId,
+      visited: [...state.run.visitedNodeIds],
+      resolved: [...state.resolvedNodeIds],
+      gold: state.gold,
+    };
+    const boundary = createBoundary();
+    const pending = boundary.present({ currentNodeId: 'lion-refugees', available, reducedMotion: false });
+    await flush();
+    click(`[data-journey-choice="${available[0]!.id}"]`);
+    await pending;
+    expect({
+      stepCounter: state.stepCounter,
+      currentNodeId: state.run.currentNodeId,
+      visited: [...state.run.visitedNodeIds],
+      resolved: [...state.resolvedNodeIds],
+      gold: state.gold,
+    }).toEqual(before);
+  });
+
+  it('leaves no Journey DOM, media or preload behind', async () => {
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-refugees');
+    const boundary = createBoundary();
+    const pending = boundary.present({ currentNodeId: 'lion-refugees', available, reducedMotion: false });
+    await flush();
+    expect(document.querySelectorAll('.narrative-stage')).toHaveLength(1);
+    click(`[data-journey-choice="${available[0]!.id}"]`);
+    await pending;
+    expect(document.querySelectorAll('.journey-overlay, .journey-surface, .cinematic-overlay')).toHaveLength(0);
+    expect(boundary.activeState).toBeNull();
+    boundary.dispose();
+    expect(document.body.children).toHaveLength(0);
+  });
+
+  it('preloads only mapped candidates, deduplicated, and clears them on commit', async () => {
+    const registry = new CinematicRegistry({
+      version: 1,
+      cinematics: [
+        { id: 'clip-a', title: 'A', sources: [{ src: '/a.webm', type: 'video/webm' }] },
+        { id: 'clip-b', title: 'B', sources: [{ src: '/b.webm', type: 'video/webm' }] },
+      ],
+    });
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-refugees');
+    const [first, second] = available;
+    const boundary = createBoundary({
+      registry,
+      presentationMap: {
+        [edgeKey('lion-refugees', first!.id)]: 'clip-a',
+        [nodeArrivalKey(first!.id)]: 'clip-a',
+        [nodeArrivalKey(second!.id)]: 'clip-b',
+      },
+    });
+    const play = vi.spyOn(HTMLMediaElement.prototype, 'play').mockResolvedValue(undefined);
+    const pending = boundary.present({ currentNodeId: 'lion-refugees', available, reducedMotion: false });
+    await flush();
+    expect(play).not.toHaveBeenCalled();
+    click(`[data-journey-choice="${first!.id}"]`);
+    await pending;
+    expect(boundary.activeState).toBeNull();
+    expect(document.querySelectorAll('video')).toHaveLength(0);
+  });
+
+  it('plays a mapped clip for the boundary when one exists', async () => {
+    const registry = new CinematicRegistry({
+      version: 1,
+      cinematics: [{ id: 'clip-arrival', title: 'Arrival', sources: [], placeholderOnly: true }],
+    });
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-refugees');
+    const boundary = createBoundary({
+      registry,
+      presentationMap: { [nodeArrivalKey('lion-refugees')]: 'clip-arrival' },
+    });
+    const pending = boundary.present({ currentNodeId: 'lion-refugees', available, reducedMotion: true });
+    await vi.waitFor(() => expect(document.querySelector(`[data-journey-choice="${available[0]!.id}"]`)).not.toBeNull());
+    click(`[data-journey-choice="${available[0]!.id}"]`);
+    const outcome = await pending;
+    expect(outcome.cinematicId).toBe('clip-arrival');
+    expect(outcome.surfaceReason).toBe('ended');
+    expect(outcome.presentationMode).toBe('TRAVEL_STILL');
+    expect(outcome.kind).toBe('node');
+  });
+
+  it('does not replay the same mapped clip after a secondary-action re-presentation', async () => {
+    const playHeld = vi.spyOn(CinematicPlayer.prototype, 'playHeld');
+    const registry = new CinematicRegistry({
+      version: 1,
+      cinematics: [{ id: 'clip-arrival', title: 'Arrival', sources: [], placeholderOnly: true }],
+    });
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-refugees');
+    const boundary = createBoundary({
+      registry,
+      presentationMap: { [nodeArrivalKey('lion-refugees')]: 'clip-arrival' },
+    });
+
+    const first = boundary.present({ currentNodeId: 'lion-refugees', available, secondary: SECONDARY, reducedMotion: true });
+    await vi.waitFor(() => expect(document.querySelector('[data-journey-secondary="COMPANY"]')).not.toBeNull());
+    click('[data-journey-secondary="COMPANY"]');
+    await expect(first).resolves.toMatchObject({ cinematicId: 'clip-arrival', surfaceReason: 'ended', presentationMode: 'TRAVEL_STILL' });
+
+    const second = boundary.present({ currentNodeId: 'lion-refugees', available, secondary: SECONDARY, reducedMotion: false });
+    await vi.waitFor(() => expect(document.querySelector(`[data-journey-choice="${available[0]!.id}"]`)).not.toBeNull());
+    expect(document.querySelector('.narrative-stage')).not.toBeNull();
+    expect(document.querySelector('.narrative-media-surface--travel-still')).not.toBeNull();
+    click(`[data-journey-choice="${available[0]!.id}"]`);
+    await expect(second).resolves.toMatchObject({ cinematicId: 'clip-arrival', surfaceReason: 'ended', kind: 'node', presentationMode: 'TRAVEL_STILL' });
+    expect(playHeld.mock.calls.filter(([id]) => id === 'clip-arrival')).toHaveLength(1);
+    expect(document.querySelector('.narrative-stage')).toBeNull();
+  });
+
+  it('releases a prior cinematic snapshot before mounting a Travel Still boundary', async () => {
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-nomad-crossroads');
+    const boundary = createBoundary();
+    const held = document.createElement('section');
+    const canvas = document.createElement('canvas');
+    canvas.className = 'cinematic-overlay__freeze-frame';
+    canvas.width = 1920;
+    canvas.height = 1080;
+    held.append(canvas, document.createElement('video'));
+    expect(boundary.captureBackdrop(held)).toBe(true);
+    held.remove();
+
+    const pending = boundary.present({
+      currentNodeId: 'lion-nomad-crossroads', currentLabel: 'Croisée nomade', available, reducedMotion: false,
+    });
+    await flush();
+    expect(document.querySelector('.journey-surface--snapshot')).toBeNull();
+    expect(document.querySelector('.journey-surface--neutral')).toBeNull();
+    expect(document.querySelector('.narrative-media-surface--travel-still')).not.toBeNull();
+    expect(document.querySelector<HTMLElement>('.narrative-stage')?.dataset.fallbackActive).toBe('true');
+    expect(document.querySelector('video')).toBeNull();
+    expect(document.querySelector('.journey-overlay--single')).not.toBeNull();
+    click('[data-journey-continue]');
+    await pending;
+    expect(document.querySelector('.narrative-media-surface--travel-still')).toBeNull();
+  });
+
+  it('propagates catastrophic session failure to the caller', async () => {
+    const registry = new CinematicRegistry();
+    const boundary = new JourneyCampaignBoundary({
+      player: new CinematicPlayer(registry),
+      registry,
+      createSession: () => { throw new Error('journey session unavailable'); },
+    });
+    await expect(boundary.present({ currentNodeId: 'lion-camp', available: [], reducedMotion: false }))
+      .rejects.toThrow('journey session unavailable');
+    expect(document.querySelectorAll('.journey-overlay, .journey-surface')).toHaveLength(0);
+    expect(boundary.activeState).toBeNull();
+  });
+});

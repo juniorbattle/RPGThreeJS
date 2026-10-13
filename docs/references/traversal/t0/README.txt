@@ -1,0 +1,1 @@
+References recovered byte-for-byte from user attachments in task 01a0b886-440f-70b2-928c-088f5d339093. Current written Objective Mode specification takes precedence. Do not reproduce visible occupants, heraldry, automatic commits, or bottom HUD from these visual guides.

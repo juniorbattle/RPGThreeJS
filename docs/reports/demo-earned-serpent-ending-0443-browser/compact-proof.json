@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "TASK": "DEMO-QA-POLISH_EARNED_RESCUE_SERPENT_ENDING",
+  "DOMAIN": "campaign/combat/save",
+  "BASELINE": "dev@c95ab12e3da13474d59d8870d73f14d6c9c3b647",
+  "BRANCH": "dev",
+  "HEAD": "c95ab12e3da13474d59d8870d73f14d6c9c3b647 (execution source; tested working-tree drivers identified below)",
+  "STATUS": "ACCEPTED_SCOPED_EARNED_RESCUE_SERPENT_ENDING_1366_NORMAL_V6",
+  "MERGED_IN": "NONE",
+  "SUPERSEDES": "NONE",
+  "SUPERSEDED_BY": "NONE",
+  "PRODUCTION_IMPACT": "NONE: native QA strategy verified; no runtime changes",
+  "CANONICAL_DOCS_UPDATED": [
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
+  ],
+  "recordedAt": "2026-10-09T05:25:07.000Z",
+  "runId": "rpgthreejs-auto-dev-90m-20261009T0443",
+  "viewport": {
+    "width": 1366,
+    "height": 768
+  },
+  "osReducedMotion": false,
+  "receipt": {
+    "jobId": "campaign-ending-0443",
+    "path": "tmp/demo/campaign-ending-0443/qa-job.json",
+    "sha256": "068e19c285bd6c6d3b57c109df2a109509879fde2b2fd3eca158ee32a49d0506",
+    "startedAt": "2026-10-09T04:49:04.336Z",
+    "endedAt": "2026-10-09T05:20:18.648Z",
+    "resultSha256": "95a48f75e68fda6d54488639184d03bc04cdb6bbb67d77a655dbf9e5c5416772"
+  },
+  "provenance": {
+    "gitHead": "c95ab12e3da13474d59d8870d73f14d6c9c3b647",
+    "sourceTree": "7bc0cb6c7e0806d42ccccdab3b69c4787181b660",
+    "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "driver": {
+      "path": "tools/demo-continuous-production-qa.mjs",
+      "sha256": "aac0382558d98048f90b5a0f08360821c688fc16f5a26b3ae49c43077da35524"
+    },
+    "inputs": [
+      {
+        "role": "earnedSavePath",
+        "path": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+        "sha256": "67d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b"
+      },
+      {
+        "role": "priorProofPath",
+        "path": "tmp/demo/campaign-second-refuge-1859/results.json",
+        "sha256": "1eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3"
+      }
+    ],
+    "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+    "build": [
+      {
+        "path": "dist/assets/ReducedMotion-CgtHztqA.js",
+        "sha256": "b1f8cbeab4c54a8c7eea48e6eeda9ac635b0fbdcb41115b9d375e98233fa0802"
+      },
+      {
+        "path": "dist/assets/combat-BZzDTMkt.js",
+        "sha256": "e0a1beb1005d299ab23d17af5d035ab21878e17a0bca9b1bb143f8b338f1f8b3"
+      },
+      {
+        "path": "dist/assets/combat-DGLEfKFr.css",
+        "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+      },
+      {
+        "path": "dist/assets/game-3pkMo-Ir.css",
+        "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+      },
+      {
+        "path": "dist/assets/game-CfeGt3vL.js",
+        "sha256": "b059922fb1efd0bdc9944e07e83a4f75e1d1a9fd74b4db6eae90456ba2d365b4"
+      },
+      {
+        "path": "dist/assets/three-core-f0ajj1rG.js",
+        "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+      },
+      {
+        "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+        "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+      },
+      {
+        "path": "dist/assets/validation-mSkvzYyn.js",
+        "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "eb6086357447b6e5b34da2c0ffdfa1956d9e0d98472ab195b513fa1c19c32abb"
+      }
+    ]
+  },
+  "physicalFreeze": {
+    "path": "tmp/autonomy/physical-freeze-0443.json",
+    "sha256": "fe9d2914cc43543fb5b02a1147aba14378dc95ec01c680803b4577fc8a3be55f",
+    "files": 394,
+    "buildFiles": 9,
+    "inputFiles": 2,
+    "unchangedThroughTerminal": true
+  },
+  "earnedLineage": {
+    "savePath": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+    "priorProofPath": "tmp/demo/campaign-second-refuge-1859/results.json",
+    "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+    "sha256": "67d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b",
+    "proofSha256": "1eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3"
+  },
+  "battle": {
+    "round": 25,
+    "actions": 110,
+    "bossHP": 0,
+    "livingPlayers": [
+      {
+        "id": "warrior",
+        "hp": 140
+      },
+      {
+        "id": "white_mage",
+        "hp": 113
+      }
+    ],
+    "downedPlayers": [
+      "rogue",
+      "dark_mage"
+    ],
+    "nativeConserveWaits": 16
+  },
+  "salvation": {
+    "casts": 20,
+    "verifiedHealPercent": 0.4,
+    "sameActor2APDebits": true,
+    "AP3to1": 15,
+    "AP5to3": 5,
+    "exact2APStarts": 0
+  },
+  "ending": {
+    "id": "lion-seal-serpent-truth",
+    "version": 6,
+    "status": "completed",
+    "temporaryGold": 0,
+    "earnedSaveSha256": "1bf2022e5ac2f31a5e322986f36b8d578e1a3346c6391add0d53ebb57cb8c8e9",
+    "exactReload": true
+  },
+  "assertions": {
+    "allNewBattlesNative": true,
+    "noOutcomeInjection": true,
+    "noRuntimeMutation": true,
+    "errors": [],
+    "stableProvenance": true,
+    "receiptRequestAndResultDigestsMatch": true
+  },
+  "guardian": "Independent source and raw terminal proof PASS",
+  "EVIDENCE": [
+    {
+      "path": "docs/reports/demo-earned-serpent-ending-0443-browser/combat-3-result.png",
+      "sha256": "75bdc05dbe7a9a9ff6a31e836e64de1c5eeeba40b40e07d249269cdd5b6a5af3",
+      "inspected": true
+    },
+    {
+      "path": "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth.png",
+      "sha256": "be16390302beef2e6bbfe08eb0d7fb8db6235c29cdc75ca4a55e7c12ed72d1b5",
+      "inspected": true
+    },
+    {
+      "path": "docs/reports/demo-earned-serpent-ending-0443-browser/ending-lion-seal-serpent-truth-resumed.png",
+      "sha256": "f1eac1f3ab0fee2a0ffc5d81e4b576f8ea55f9cb83a79db0f3d2c18df7675f91",
+      "inspected": true
+    }
+  ],
+  "limits": [
+    "Full demo and operator acceptance remain open",
+    "Inherited1859lineage is earned but not a fresh single-build full campaign",
+    "Other routes/viewports/motion modes and balance remain open",
+    "Exact2AP-start unverified",
+    "Victory still has ATTACK banner: no settledVFX acceptance",
+    "Moving cast artwork/other presets/StageVFX remain unverified"
+  ]
+}

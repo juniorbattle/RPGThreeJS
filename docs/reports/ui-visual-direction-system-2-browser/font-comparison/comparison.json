@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Marcellus",
+    "surface": "departure",
+    "fontFamily": "Marcellus, serif",
+    "fontWeight": "400",
+    "faceLoaded": true,
+    "textWidth": 264.046875,
+    "boxWidth": 396,
+    "titleHeight": 27,
+    "titleText": "Vers Refuge du Lion"
+  },
+  {
+    "name": "Cormorant Garamond",
+    "surface": "departure",
+    "fontFamily": "\"Cormorant Garamond\", serif",
+    "fontWeight": "600",
+    "faceLoaded": true,
+    "textWidth": 272,
+    "boxWidth": 396,
+    "titleHeight": 27,
+    "titleText": "Vers Refuge du Lion"
+  },
+  {
+    "name": "Alegreya",
+    "surface": "departure",
+    "fontFamily": "Alegreya, serif",
+    "fontWeight": "600",
+    "faceLoaded": true,
+    "textWidth": 262.984375,
+    "boxWidth": 396,
+    "titleHeight": 27,
+    "titleText": "Vers Refuge du Lion"
+  },
+  {
+    "name": "Marcellus",
+    "surface": "merchant",
+    "fontFamily": "Marcellus, serif",
+    "fontWeight": "400",
+    "faceLoaded": true,
+    "textWidth": 187.90625,
+    "boxWidth": 354,
+    "titleHeight": 20.890625,
+    "titleText": "Marchande itinérante"
+  },
+  {
+    "name": "Cormorant Garamond",
+    "surface": "merchant",
+    "fontFamily": "\"Cormorant Garamond\", serif",
+    "fontWeight": "600",
+    "faceLoaded": true,
+    "textWidth": 161.890625,
+    "boxWidth": 354,
+    "titleHeight": 20.890625,
+    "titleText": "Marchande itinérante"
+  },
+  {
+    "name": "Alegreya",
+    "surface": "merchant",
+    "fontFamily": "Alegreya, serif",
+    "fontWeight": "600",
+    "faceLoaded": true,
+    "textWidth": 171.515625,
+    "boxWidth": 354,
+    "titleHeight": 20.890625,
+    "titleText": "Marchande itinérante"
+  }
+]

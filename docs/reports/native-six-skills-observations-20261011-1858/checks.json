@@ -1,0 +1,527 @@
+{
+  "schemaVersion": 1,
+  "TASK": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
+  "DOMAIN": "Native tactical skill observations and earned terminal boundary",
+  "BASELINE": "b7dd0b64c60d53c854025e4953b7329b5373cec5",
+  "BRANCH": "dev",
+  "HEAD": "a599557540f8ad7c95c3b2f5a636fb8823d8ffd0",
+  "STATUS": "REVIEWED_OBSERVATIONS_ONLY_FAILED_MACHINE_SCENARIO_EXACTLY2_OPEN",
+  "MERGED_IN": "a599557540f8ad7c95c3b2f5a636fb8823d8ffd0",
+  "SUPERSEDES": "NONE",
+  "SUPERSEDED_BY": "NONE",
+  "PRODUCTION_IMPACT": "NONE_RUNTIME_UNCHANGED",
+  "CANONICAL_DOCS_UPDATED": "NONE_COUPLED_ACCEPTANCE_OPEN",
+  "at": "2026-10-11T19:53:20.867Z",
+  "runId": "rpgthreejs-auto-dev-90m-20261011T1858",
+  "machine": {
+    "status": "FAILED",
+    "acceptance": "NOT_ACCEPTED",
+    "jobId": "skills-six-native-1858",
+    "receiptPath": "tmp/demo/skills-six-native-1858/qa-job.json",
+    "resultPath": "tmp/demo/skills-six-native-1858/results.json",
+    "resultSha256": "ad28f416ec38906e1174039b52993443f2fb753dc669084ea01d2c9b445c9326",
+    "failure": "AssertionError [ERR_ASSERTION]: No new native exactly-two-AP Salvation cast occurred\n\nfalse !== true\n\n    at file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:774:12",
+    "provenanceStable": true,
+    "currentExecutionMatches": true,
+    "parameters": {
+      "target": "ending",
+      "routePlan": "rescue",
+      "timeoutMinutes": 45,
+      "finalePlan": "serpent",
+      "defeatNodeId": "lion-village-choice",
+      "nativeDefeatWait": false,
+      "viewport": [
+        1366,
+        768
+      ],
+      "osReducedMotion": false,
+      "earnedSavePath": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+      "priorProofPath": "tmp/demo/campaign-second-refuge-1859/results.json",
+      "verifySalvation": true
+    },
+    "requiredAssertions": [
+      "EARNED_LINEAGE",
+      "NATIVE_INPUTS",
+      "EXACT_RELOAD"
+    ]
+  },
+  "provenance": {
+    "driver": {
+      "path": "tools/demo-continuous-production-qa.mjs",
+      "sha256": "c6306944b2821eb011f347135c75c4f2e649e6d813191175f69bece3e3e74720"
+    },
+    "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+    "sourceTree": "a147f5c25febb460ad69f38d184d8047c4cca780",
+    "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "physicalSourceFiles": 393,
+    "physicalSourceManifestDigest": "68172a4533503dfbb7d2e5964820ea32121ab945d1423b86eb8c3b2ee639413b",
+    "build": [
+      {
+        "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+        "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+      },
+      {
+        "path": "dist/assets/combat-B0LaJhFj.js",
+        "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+      },
+      {
+        "path": "dist/assets/combat-DGLEfKFr.css",
+        "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+      },
+      {
+        "path": "dist/assets/game-CdUsLhii.css",
+        "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+      },
+      {
+        "path": "dist/assets/game-zrccER2T.js",
+        "sha256": "fd9a3ff2f576d9fcfa2f7055d94eb1c1702f5594063904b480ef2d96253dfeab"
+      },
+      {
+        "path": "dist/assets/three-core-f0ajj1rG.js",
+        "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+      },
+      {
+        "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+        "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+      },
+      {
+        "path": "dist/assets/validation-mSkvzYyn.js",
+        "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "2d3c23a073ba24f72568a542a0519e5714858dc13ea32a41f99aa17a12535e1e"
+      }
+    ],
+    "inputs": [
+      {
+        "role": "earnedSavePath",
+        "path": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+        "sha256": "67d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b"
+      },
+      {
+        "role": "priorProofPath",
+        "path": "tmp/demo/campaign-second-refuge-1859/results.json",
+        "sha256": "1eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3"
+      }
+    ]
+  },
+  "observations": {
+    "freshBattles": [
+      {
+        "index": 3,
+        "nodeId": "lion-final-trial-event",
+        "combatId": "forest_ambush",
+        "pass": true,
+        "actions": 18,
+        "deployed": [
+          "white_mage",
+          "warrior",
+          "rogue",
+          "lancer"
+        ]
+      },
+      {
+        "index": 4,
+        "nodeId": "lion-final-judgement",
+        "combatId": "serpent_captain",
+        "pass": true,
+        "actions": 128,
+        "deployed": [
+          "white_mage",
+          "warrior",
+          "dark_mage",
+          "archer"
+        ]
+      }
+    ],
+    "sixFreshClasses": [
+      "archer",
+      "dark_mage",
+      "lancer",
+      "rogue",
+      "warrior",
+      "white_mage"
+    ],
+    "castCount": 31,
+    "selectedCasts": [
+      {
+        "nodeId": "lion-final-trial-event",
+        "combatId": "forest_ambush",
+        "index": 3,
+        "action": 9,
+        "skill": "ro_sneak_attack",
+        "hero": "rogue",
+        "weapon": "novice_dagger",
+        "caster": "rogue",
+        "beforeAP": 3,
+        "afterAP": 1,
+        "cost": 2,
+        "accounting": {
+          "cost": 2,
+          "knockoutRefunds": 0,
+          "maxap": 5,
+          "expectedAp": 1
+        },
+        "target": 2,
+        "beforeTarget": {
+          "id": 2,
+          "name": "Rat geant",
+          "team": "foe",
+          "gx": 4,
+          "gz": 1,
+          "hp": 65,
+          "maxhp": 65,
+          "alive": true,
+          "downed": false
+        },
+        "afterTarget": {
+          "id": 2,
+          "name": "Rat geant",
+          "team": "foe",
+          "gx": 4,
+          "gz": 1,
+          "hp": 38,
+          "maxhp": 65,
+          "alive": true,
+          "downed": false
+        },
+        "capture": "combat-3-ro_sneak_attack-9.png"
+      },
+      {
+        "nodeId": "lion-final-trial-event",
+        "combatId": "forest_ambush",
+        "index": 3,
+        "action": 13,
+        "skill": "l_long_thrust",
+        "hero": "lancer",
+        "weapon": "novice_spear",
+        "caster": "lancer",
+        "beforeAP": 3,
+        "afterAP": 1,
+        "cost": 2,
+        "accounting": {
+          "cost": 2,
+          "knockoutRefunds": 0,
+          "maxap": 5,
+          "expectedAp": 1
+        },
+        "target": 1,
+        "beforeTarget": {
+          "id": 1,
+          "name": "Loup",
+          "team": "foe",
+          "gx": 3,
+          "gz": 2,
+          "hp": 80,
+          "maxhp": 80,
+          "alive": true,
+          "downed": false
+        },
+        "afterTarget": {
+          "id": 1,
+          "name": "Loup",
+          "team": "foe",
+          "gx": 3,
+          "gz": 2,
+          "hp": 47,
+          "maxhp": 80,
+          "alive": true,
+          "downed": false
+        },
+        "capture": "combat-3-l_long_thrust-13.png"
+      },
+      {
+        "nodeId": "lion-final-trial-event",
+        "combatId": "forest_ambush",
+        "index": 3,
+        "action": 17,
+        "skill": "w_break_guard",
+        "hero": "warrior",
+        "weapon": "novice_greatsword",
+        "caster": "warrior",
+        "beforeAP": 3,
+        "afterAP": 2,
+        "cost": 2,
+        "accounting": {
+          "cost": 2,
+          "knockoutRefunds": 1,
+          "maxap": 5,
+          "expectedAp": 2
+        },
+        "target": 1,
+        "beforeTarget": {
+          "id": 1,
+          "name": "Loup",
+          "team": "foe",
+          "gx": 3,
+          "gz": 2,
+          "hp": 26,
+          "maxhp": 80,
+          "alive": true,
+          "downed": false
+        },
+        "afterTarget": {
+          "id": 1,
+          "name": "Loup",
+          "team": "foe",
+          "gx": 3,
+          "gz": 2,
+          "hp": 0,
+          "maxhp": 80,
+          "alive": false,
+          "downed": true
+        },
+        "capture": "combat-3-w_break_guard-17.png"
+      },
+      {
+        "nodeId": "lion-final-judgement",
+        "combatId": "serpent_captain",
+        "index": 4,
+        "action": 8,
+        "skill": "a_precise_shot",
+        "hero": "archer",
+        "weapon": "novice_longbow",
+        "caster": "archer",
+        "beforeAP": 3,
+        "afterAP": 1,
+        "cost": 2,
+        "accounting": {
+          "cost": 2,
+          "knockoutRefunds": 0,
+          "maxap": 5,
+          "expectedAp": 1
+        },
+        "target": 1,
+        "beforeTarget": {
+          "id": 1,
+          "name": "Général Serpent",
+          "team": "foe",
+          "gx": 6,
+          "gz": 1,
+          "hp": 450,
+          "maxhp": 450,
+          "alive": true,
+          "downed": false
+        },
+        "afterTarget": {
+          "id": 1,
+          "name": "Général Serpent",
+          "team": "foe",
+          "gx": 6,
+          "gz": 1,
+          "hp": 436,
+          "maxhp": 450,
+          "alive": true,
+          "downed": false
+        },
+        "capture": "combat-4-a_precise_shot-8.png"
+      },
+      {
+        "nodeId": "lion-final-judgement",
+        "combatId": "serpent_captain",
+        "index": 4,
+        "action": 19,
+        "skill": "n_dark_bolt",
+        "hero": "dark_mage",
+        "weapon": "novice_grimoire",
+        "caster": "dark_mage",
+        "beforeAP": 3,
+        "afterAP": 1,
+        "cost": 2,
+        "accounting": {
+          "cost": 2,
+          "knockoutRefunds": 0,
+          "maxap": 5,
+          "expectedAp": 1
+        },
+        "target": 1,
+        "beforeTarget": {
+          "id": 1,
+          "name": "Général Serpent",
+          "team": "foe",
+          "gx": 6,
+          "gz": 1,
+          "hp": 425,
+          "maxhp": 450,
+          "alive": true,
+          "downed": false
+        },
+        "afterTarget": {
+          "id": 1,
+          "name": "Général Serpent",
+          "team": "foe",
+          "gx": 6,
+          "gz": 1,
+          "hp": 402,
+          "maxhp": 450,
+          "alive": true,
+          "downed": false
+        },
+        "capture": "combat-4-n_dark_bolt-19.png"
+      },
+      {
+        "nodeId": "lion-final-judgement",
+        "combatId": "serpent_captain",
+        "index": 4,
+        "action": 44,
+        "skill": "w_salvation",
+        "hero": "white_mage",
+        "weapon": "novice_crosier",
+        "caster": "white_mage",
+        "beforeAP": 5,
+        "afterAP": 3,
+        "cost": 2,
+        "accounting": {
+          "cost": 2,
+          "knockoutRefunds": 0,
+          "maxap": 5,
+          "expectedAp": 3
+        },
+        "target": "warrior",
+        "beforeTarget": {
+          "id": "warrior",
+          "name": "Alistair",
+          "team": "player",
+          "gx": 5,
+          "gz": 2,
+          "hp": 40,
+          "maxhp": 140,
+          "alive": true,
+          "downed": false
+        },
+        "afterTarget": {
+          "id": "warrior",
+          "name": "Alistair",
+          "team": "player",
+          "gx": 5,
+          "gz": 2,
+          "hp": 96,
+          "maxhp": 140,
+          "alive": true,
+          "downed": false
+        },
+        "capture": "combat-4-w_salvation-44.png"
+      }
+    ],
+    "terminalSummaryGatesReached": false,
+    "salvation": {
+      "casts": 20,
+      "startingAP": [
+        3,
+        5
+      ],
+      "formulaMatchesAll": true,
+      "exactly2Observed": false,
+      "setupActions": 0,
+      "healthyTargetCenterGapAttempts": 18
+    },
+    "ending": {
+      "id": "lion-seal-serpent-truth",
+      "version": 6,
+      "exactEarnedFileOwnerResumedEquality": true,
+      "earnedFileSha256": "e81edd32fd0e0ee162a2584f479bf504e8d673816ceaaf8421009d612f1f6c8e",
+      "temporaryGold": 0,
+      "runStatus": "completed",
+      "runCompleted": true
+    },
+    "errors": [],
+    "runtimeMutated": false,
+    "combatOutcomeInjected": false
+  },
+  "selectedFiles": [
+    {
+      "path": "docs/reports/native-six-skills-observations-20261011-1858/combat-3-ro_sneak_attack-9.png",
+      "sha256": "4b7a31158a1cd2f3add172f1b5ff5e410f28967b563911d4f6711ff3177fd12e",
+      "reviewedBy": [
+        "codex",
+        "contracts-guardian"
+      ]
+    },
+    {
+      "path": "docs/reports/native-six-skills-observations-20261011-1858/combat-3-l_long_thrust-13.png",
+      "sha256": "90735bdad5bb3012689de4eabd143ce83f288d3bb4f9191a62b29efb10491d70",
+      "reviewedBy": [
+        "codex",
+        "contracts-guardian"
+      ]
+    },
+    {
+      "path": "docs/reports/native-six-skills-observations-20261011-1858/combat-3-w_break_guard-17.png",
+      "sha256": "77d45bb22056a0b8357309baa1fd28c3e30b096ba420bcd8f10e02c463d60343",
+      "reviewedBy": [
+        "codex",
+        "contracts-guardian"
+      ]
+    },
+    {
+      "path": "docs/reports/native-six-skills-observations-20261011-1858/combat-4-a_precise_shot-8.png",
+      "sha256": "f668f530ffa7e0f9f60ee3794ddfdf9f4ca2189460adcccff1d127fcd7504889",
+      "reviewedBy": [
+        "codex",
+        "contracts-guardian"
+      ]
+    },
+    {
+      "path": "docs/reports/native-six-skills-observations-20261011-1858/combat-4-n_dark_bolt-19.png",
+      "sha256": "69954a6fbb2f6b20004fb977228d996e6906f0f22d58d39eb27281a2210467ec",
+      "reviewedBy": [
+        "codex",
+        "contracts-guardian"
+      ]
+    },
+    {
+      "path": "docs/reports/native-six-skills-observations-20261011-1858/combat-4-w_salvation-44.png",
+      "sha256": "8cd522c298d2c7df1c0c1fe02eaa28efcc588a098a000c407b627e5336b2627c",
+      "reviewedBy": [
+        "codex",
+        "contracts-guardian"
+      ]
+    },
+    {
+      "path": "docs/reports/native-six-skills-observations-20261011-1858/ending-lion-seal-serpent-truth.png",
+      "sha256": "6a425f021d673c1699721ec437e2b3f06c8d74c63713ba310b42b46f87235146",
+      "reviewedBy": [
+        "codex",
+        "contracts-guardian"
+      ]
+    },
+    {
+      "path": "docs/reports/native-six-skills-observations-20261011-1858/ending-lion-seal-serpent-truth-resumed.png",
+      "sha256": "dd261486412afadd6d1f2fa5752b4744766c1541526dd98698cc3af30f66985a",
+      "reviewedBy": [
+        "codex",
+        "contracts-guardian"
+      ]
+    }
+  ],
+  "guardian": "PASS_RETAIN_OBSERVATIONS_BLOCKED_COUPLED_CRITERION",
+  "compliance": {
+    "GAME_CONSTITUTION": "PASS",
+    "ART_DIRECTION": "N/A",
+    "CHARACTERS": "N/A",
+    "ENVIRONMENTS": "N/A",
+    "NARRATIVE_CAMPAIGN": "PASS_OBSERVED_NATIVE_ENDING_ONLY",
+    "NARRATIVE_PRESENTATION": "N/A",
+    "TRAVERSAL": "N/A",
+    "COMBAT": "PASS_SIX_CAST_OBSERVATIONS_EXACTLY2_OPEN",
+    "SAVE": "PASS_EXACT_TERMINAL_V6_BOUNDARY_ONLY",
+    "UI_ACCESSIBILITY": "N/A",
+    "QA_EVIDENCE": "BLOCKED_COUPLED_STRICT_2AP_ASSERTION774",
+    "REPOSITORY_GOVERNANCE": "PASS_OWNED_LOCK_FAILED_HISTORY_PRESERVED"
+  },
+  "limits": [
+    "No exactly2AP Salvation acceptance",
+    "No passed six-class terminal gates",
+    "No current-build full campaign or broad V6 acceptance",
+    "No native balance, random Pursuit generalization, accessibility/mobile/full-demo acceptance",
+    "FAILED1858 must never seed continuation"
+  ],
+  "nextAction": "Read-only preflight/exclusive lock; inspect native-six-skills-observations-20261011-1858/checks.json and tmp/autonomy/skills-1858/terminal-audit.json first. Preserve FAILED/NOT_ACCEPTED driverc6306944/resultad28f416, all six reviewed novice-cast observations and exact earned Serpent terminal V6 equality; NEVER seed1858/1800/1731/0001 or replay unchanged45min campaign. Coupled exactly2AP Salvation remains OPEN: all20 casts begin3/5AP;18 AP3 native one-AP setup attempts had no healthy ally in basic-crosier centers. Inspect existing pilot skill()250-270, attack()202-215 and support move()330-365 against native reach. Establish a bounded native positioning plan with a healthy ally at basic-crosier range and a wounded eligible Salvation target; preserve3to2 native setup and strict2to0/40percent assertions. Only a demonstrated plan warrants ONE minimal existing-pilot input correction with guardian review and targeted registered verification from SUCCEEDED1859 or another independently successful exact seed; no instrumentation rewrite/unchanged failed replay. If unsupported, record the precise proof blocker and advance independent desktop production work. Keep original skills/randomPursuit task, exact deferred keyboard, accepted narrative history, canonical mapping blockers and mobileLAST; demo IN_PROGRESS.",
+  "publication": {
+    "checkpoint": "a599557540f8ad7c95c3b2f5a636fb8823d8ffd0",
+    "at": "2026-10-11T19:57:31.547Z",
+    "status": "NORMAL_DEV_VERIFIED_OBSERVATIONS_ONLY",
+    "sourceExecutionGitHead": "b7dd0b64c60d53c854025e4953b7329b5373cec5"
+  }
+}

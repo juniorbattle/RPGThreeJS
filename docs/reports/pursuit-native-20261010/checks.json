@@ -1,0 +1,229 @@
+{
+  "schemaVersion": 1,
+  "runId": "rpgthreejs-auto-dev-90m-20261010T0323",
+  "recordedAt": "2026-10-10T04:06:07.698Z",
+  "disposition": "SOURCE_MECHANICAL_PASS_BROWSER_TARGET_NOT_ACCEPTED",
+  "acceptance": "NOT_ACCEPTED",
+  "baseline": "ffd0a42074c23d6ce95ad24456f19e114448ccff",
+  "implementation": "70b3446ffd2af149f7cbb1d6481b61f8b4b170bb",
+  "sourceLineage": {
+    "testedWip": "0dfcfbc327f4dc7ed29486fd34af041c93a579c3",
+    "testedAndCommittedSrcTree": "7a91b152b3cec984592c7e454f1efe68612147c9",
+    "receiptRepresentation": "Baseline src tree plus sourceDiffSha256; subsequent implementation src tree physically equals frozen tested WIP src tree. matchesCurrentExecution becomes false after committing, not a new browser pass."
+  },
+  "job": {
+    "jobId": "pursuit-native-0323-v2",
+    "status": "FAILED",
+    "startedAt": "2026-10-10T03:32:17.897Z",
+    "endedAt": "2026-10-10T03:57:38.410Z",
+    "pid": 18400,
+    "port": 5361,
+    "parameters": {
+      "target": "pursuit-victory",
+      "routePlan": "rescue",
+      "timeoutMinutes": 25,
+      "finalePlan": "serpent",
+      "defeatNodeId": "lion-village-choice",
+      "nativeDefeatWait": false,
+      "viewport": [
+        1366,
+        768
+      ],
+      "osReducedMotion": false,
+      "earnedSavePath": "tmp/demo/campaign-first-refuge-1214/earned-first-refuge-v6.json",
+      "priorProofPath": "tmp/demo/campaign-first-refuge-1214/results.json",
+      "verifySalvation": false
+    },
+    "requiredAssertions": [
+      "NATIVE_PURSUIT_VICTORY",
+      "SAME_MOUNTED_ROAD_RETURN",
+      "TEMPORARY_REWARD_ONCE",
+      "SETTLED_LANE_FOCUS",
+      "PERSISTED_V6_RELOAD"
+    ],
+    "provenance": {
+      "gitHead": "ffd0a42074c23d6ce95ad24456f19e114448ccff",
+      "sourceTree": "f37e1ad4ac43c64a800a3392750abb781fe6617c",
+      "sourceDiffSha256": "085805af12607d5a718739d14bd5aab408aa8e65b5d020802613aefe43d56ee5",
+      "driver": {
+        "path": "tools/demo-continuous-production-qa.mjs",
+        "sha256": "fdf0493132f6d8b12a6e4d64ca85303b0982054f9aadd5f745bd6baefe64de5a"
+      },
+      "inputs": [
+        {
+          "role": "earnedSavePath",
+          "path": "tmp/demo/campaign-first-refuge-1214/earned-first-refuge-v6.json",
+          "sha256": "3f5a7391e4641bad288455df175441e8a8629dc5c4e192f5d2641fb0c737d7db"
+        },
+        {
+          "role": "priorProofPath",
+          "path": "tmp/demo/campaign-first-refuge-1214/results.json",
+          "sha256": "c82b21818668943b172dd7409f6febd146eaebbfdb3d62e04da81476e476c2b2"
+        }
+      ],
+      "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+      "build": [
+        {
+          "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+          "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+        },
+        {
+          "path": "dist/assets/combat-B0LaJhFj.js",
+          "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+        },
+        {
+          "path": "dist/assets/combat-DGLEfKFr.css",
+          "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+        },
+        {
+          "path": "dist/assets/game-CdUsLhii.css",
+          "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+        },
+        {
+          "path": "dist/assets/game-JsEOPNHh.js",
+          "sha256": "806ee3dd6b3374184068e4b3fa8221126432f84824cd48dda3dbc59448d05d8a"
+        },
+        {
+          "path": "dist/assets/three-core-f0ajj1rG.js",
+          "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+        },
+        {
+          "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+          "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+        },
+        {
+          "path": "dist/assets/validation-mSkvzYyn.js",
+          "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "27047780e35507b7a888b10c20f1dec5ba96781a3b19564ce021f66ec5a2f64b"
+        }
+      ]
+    },
+    "provenanceStable": true,
+    "resultPath": "tmp/demo/pursuit-native-0323-v2/results.json",
+    "resultSha256": "72f1714f47818144d2b49a1c1a4ac128c9ec6edaf17e67deea5e7987c96f6e20",
+    "failure": "AssertionError [ERR_ASSERTION]: Battle did not finish before bounded deadline\n\nfalse !== true\n\n    at battle (file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:390:10)\n    at async file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:662:59",
+    "errors": []
+  },
+  "observed": {
+    "canonicalValmir": {
+      "outcome": "victory",
+      "actions": 54,
+      "round": 7
+    },
+    "nativeContact": {
+      "windowId": "t1:t0:r5a:pursuit-1",
+      "legId": "T1",
+      "segment": "t1-route-4a",
+      "session": {
+        "legId": "T1",
+        "originNodeId": "lion-first-refuge",
+        "destinationNodeId": "lion-village-choice",
+        "phase": "DECISION",
+        "stageIndex": 2,
+        "routeProgress01": 0.8802709333333323,
+        "resumeProgress01": 0.8802709333333323,
+        "currentLane": 1,
+        "consumedBeatIds": [
+          "lion-reserve-trail",
+          "lion-valmir-road"
+        ],
+        "bypassedBeatIds": [],
+        "pendingBeatId": "t1:t0:r5a:pursuit-1",
+        "worldMountState": "MOUNTED",
+        "worldVisibility": "VISIBLE",
+        "activeStageNodeIds": [
+          "lion-second-trial-event",
+          "lion-second-trial-combat"
+        ],
+        "forkOptionIds": [],
+        "activeNodeId": null
+      },
+      "elapsedMs": 12212.899999999903,
+      "distance": 31335.300621259084,
+      "config": {
+        "id": "forest_ambush",
+        "sceneId": "forest_route",
+        "objective": "Défaites les créatures qui tendent l’embuscade sur la piste.",
+        "encounterLabel": "Embuscade",
+        "encounterRank": "normal",
+        "enemyVisualIds": [
+          "wolf",
+          "cave_rat"
+        ],
+        "escortVisualIds": [],
+        "maxPlayerUnits": 4,
+        "preCombatDialogueId": "pre_opening_trail",
+        "postCombatDialogueId": "post_opening_trail",
+        "rewards": {
+          "gold": 80,
+          "reputation": 1,
+          "materials": {
+            "red_gem": 1,
+            "iron_ore": 1
+          }
+        }
+      }
+    },
+    "nativeActions": [
+      "move",
+      "wait"
+    ],
+    "pursuitOutcome": "NOT_REACHED",
+    "returnAssertions": "NOT_REACHED"
+  },
+  "mechanicalChecks": [
+    "32 unique current src focused tests PASS; historical tmp duplicates excluded",
+    "TypeScript PASS",
+    "8-contract/8-slot validator PASS",
+    "Production build PASS214modules/eightMP4",
+    "16 unique QA ledger tests PASS; environment-only escalation",
+    "Syntax, whitespace, immutable HEAD and working-tree gates PASS"
+  ],
+  "selectedCapture": {
+    "path": "native-contact-deployment.png",
+    "sha256": "8c7ea784c4f58f2cbcae64eedec1339ef50b8b7624e3d7837299791dd9d5d2ed",
+    "review": "Inspected actual Pursuit deployment: four native player actors and readable deployment controls; wolf and cave rat. Diagnostic contact/deployment only; no return/focus/reward/reload proof."
+  },
+  "guardian": {
+    "reviewers": 1,
+    "passes": 4,
+    "disposition": "SOURCE_MECHANICAL_PASS_BROWSER_TARGET_NOT_ACCEPTED",
+    "matrix": {
+      "GAME_CONSTITUTION": "PASS source",
+      "WORLD_AND_CHARACTERS": "N/A unchanged",
+      "CAMPAIGN_AND_STATE": "PASS source; persisted V6 browser OPEN",
+      "PRESENTATION_AND_MEDIA": "PASS unchanged",
+      "TRAVERSAL": "PASS source; native return OPEN",
+      "COMBAT": "PASS source; native Pursuit outcome OPEN",
+      "UI_UX_ACCESSIBILITY": "PASS source; settled lane focus browser OPEN",
+      "QA_EVIDENCE": "BLOCKED browser target NOT_ACCEPTED",
+      "AUTONOMOUS_WORK_PROTOCOL": "PASS gates; normal dev publication pending"
+    }
+  },
+  "counts": {
+    "sourceFilesModified": 3,
+    "testFilesModified": 1,
+    "existingQaFilesModified": 2,
+    "newQaFilesAdded": 0,
+    "proofFilesAdded": 3,
+    "workflowFilesChanged": 3,
+    "inheritedWIP": 0,
+    "reviewers": 1,
+    "guardianPasses": 4,
+    "designatedBrowserScenarios": 1,
+    "executedAttempts": 1,
+    "postFailureHarnessCorrections": 0,
+    "quotaSavingsClaimed": false
+  },
+  "nextAction": "Read-only preflight and exclusive lock; inspect pursuit-native-0323-v2 FAILED receipt/results and docs/reports/pursuit-native-20261010/checks.json first. Source focus correction is mechanically verified, native victory/return/reward/focus/persisted V6 remain NOT_ACCEPTED. Next run register ONE new unique pursuit-victory desktop1366x768 normal job with existing tools/demo-continuous-production-qa.mjs, timeout45min, route rescue/finale serpent and SAME earned campaign-first-refuge-1214 save/proof hashes. Keep native rest/deployment/actions/results and unchanged autosave cadence; no injected outcome or weakened assertions. Freeze sources/driver/build; inspect final receipt/captures, compare physical source tree and exact driver/helper/build/seed hashes, then scoped guardian review. Preserve failed25min outputs and unlaunched0323 plan; no historical matrix rerun. If repeat cannot finish, document actionable pilot/runtime cause without instrumentation loops. Defeat/cancel/reentry/other contexts/reduced modes, full-tail/ground/checkpoint perception, sixhero skills/campaign/narrative and operator final artistic/literary/balance review stay OPEN; mobile finalization LAST. Preserve prior/deferred nextActions verbatim; ten mappings/category already resolved1856; eightvideos/Alaric/audioDEFERRED/LOCKED unchanged.",
+  "limits": [
+    "Timeout does not establish a product regression or tactical balance result",
+    "Victory, same-mounted-road return, temporary reward once, settled focus and persisted V6 reload remain OPEN",
+    "Native defeat/cancel/reentry/other windows/reduced modes/AT/operator/manual/full demo acceptance OPEN",
+    "Unlaunched pursuit-native-0323 plan preserved; no new acceptance",
+    "No source/driver/build mutation or browser relaunch after failure; worker18400/listener5361 stopped"
+  ]
+}

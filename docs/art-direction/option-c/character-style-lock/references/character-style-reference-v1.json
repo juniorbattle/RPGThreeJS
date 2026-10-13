@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "referenceId": "CHARACTER_STYLE_REFERENCE_V1",
+  "path": "docs/art-direction/option-c/character-style-lock/references/character-style-reference-v1.png",
+  "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+  "bytes": 2379980,
+  "dimensions": [1448, 1086],
+  "copiedWithoutAlteration": true,
+  "approvedStyleReference": true,
+  "legacyRpgThreeJsAsset": false,
+  "canonicalCharacterSource": false,
+  "identityAuthority": false,
+  "directDesignTemplate": false,
+  "pixelLanguageAuthority": true,
+  "proportionFamilyReference": true,
+  "faceConcealmentReference": true,
+  "materialLanguageReference": true,
+  "classReadabilityReference": true,
+  "rosterCoherenceReference": true
+}

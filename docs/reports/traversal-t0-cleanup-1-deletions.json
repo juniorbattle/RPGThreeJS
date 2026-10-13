@@ -1,0 +1,4749 @@
+{
+  "files": [
+    {
+      "path": "docs/reports/traversal-t0-production-rollout-1.md",
+      "bytes": 22063
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/01-departure.png",
+      "bytes": 2083752
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/02-route-1-early.png",
+      "bytes": 2088705
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/03-route-1-rush-390.png",
+      "bytes": 569600
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/03-route-1-rush-620.png",
+      "bytes": 864261
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/03-route-1-rush.png",
+      "bytes": 2087213
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/04-cp1-approach-390.png",
+      "bytes": 654184
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/04-cp1-approach-620.png",
+      "bytes": 972826
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/04-cp1-approach.png",
+      "bytes": 2122819
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/05-cp1-combat.png",
+      "bytes": 1895325
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/06-route-2.png",
+      "bytes": 2103839
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/07-cp2-cedric.png",
+      "bytes": 1843038
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/08-route-3.png",
+      "bytes": 2077524
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/09-cp3-refugees-390.png",
+      "bytes": 604384
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/09-cp3-refugees-620.png",
+      "bytes": 926579
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/09-cp3-refugees.png",
+      "bytes": 2308295
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/10-route-4.png",
+      "bytes": 2107357
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/11-fast-checkpoint-fork-390.png",
+      "bytes": 528922
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/11-fast-checkpoint-fork-620.png",
+      "bytes": 795712
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/11-fast-checkpoint-fork.png",
+      "bytes": 2166578
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/12-route-5a-390.png",
+      "bytes": 567868
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/12-route-5a-620.png",
+      "bytes": 864008
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/12-route-5a.png",
+      "bytes": 2074520
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/13-cp5a.png",
+      "bytes": 1918776
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/14-route-5b-390.png",
+      "bytes": 566622
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/14-route-5b-620.png",
+      "bytes": 862859
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/14-route-5b.png",
+      "bytes": 2073056
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/15-cp5b.png",
+      "bytes": 1902680
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/16-route-6-early.png",
+      "bytes": 2098960
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/17-route-6-rush.png",
+      "bytes": 2100505
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/18-arrival-390.png",
+      "bytes": 576928
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/18-arrival-620.png",
+      "bytes": 882526
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/18-arrival.png",
+      "bytes": 2117845
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/19-destination-agency.png",
+      "bytes": 1724662
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/branch-b-refugees-pass-390.png",
+      "bytes": 602067
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/branch-b-refugees-pass-620.png",
+      "bytes": 922776
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/branch-b-refugees-pass.png",
+      "bytes": 2304958
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/browser-qa.json",
+      "bytes": 19940
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/gallery-index.json",
+      "bytes": 57154
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/index.html",
+      "bytes": 4732
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/motion-flow.json",
+      "bytes": 12014
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-browser/route-checkpoint-route.webm",
+      "bytes": 3501895
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/01-route-1-early.png",
+      "bytes": 2065267
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/02-route-1-rush-390.png",
+      "bytes": 564971
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/02-route-1-rush.png",
+      "bytes": 2066215
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/03-route-2.png",
+      "bytes": 2056500
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/04-refugees-aider-390.png",
+      "bytes": 604435
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/04-refugees-aider.png",
+      "bytes": 2308306
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/05-route-4.png",
+      "bytes": 2068465
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/06-route-5a-620.png",
+      "bytes": 870452
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/06-route-5a.png",
+      "bytes": 2067646
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/07-route-6-early.png",
+      "bytes": 2062332
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/08-route-6-rush.png",
+      "bytes": 2073326
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/09-arrival-390.png",
+      "bytes": 586417
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/09-arrival.png",
+      "bytes": 2127845
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/10-destination-agency.png",
+      "bytes": 1724662
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/11-route-5b-620.png",
+      "bytes": 868275
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/11-route-5b.png",
+      "bytes": 2065578
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/12-refugees-passer-390.png",
+      "bytes": 604379
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/12-refugees-passer.png",
+      "bytes": 2311573
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/browser-qa.json",
+      "bytes": 20866
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/clip-qa.json",
+      "bytes": 223
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/cp1-a-before-fade.png",
+      "bytes": 2066588
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/cp1-b-black.png",
+      "bytes": 5274
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/cp1-c-after-reveal-390.png",
+      "bytes": 653966
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/cp1-c-after-reveal-620.png",
+      "bytes": 973204
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/cp1-c-after-reveal.png",
+      "bytes": 2299589
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/cp1-d-canonical-content-before-return.png",
+      "bytes": 1290939
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/cp1-d-checkpoint-before-content.png",
+      "bytes": 2309804
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/cp1-e-return-black.png",
+      "bytes": 5274
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/cp1-f-route-2-after-reveal.png",
+      "bytes": 2061864
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/forest-route-checkpoint-route.webm",
+      "bytes": 3579767
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/fork-a-black.png",
+      "bytes": 5274
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/fork-b-checkpoint-390.png",
+      "bytes": 530242
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/fork-b-checkpoint.png",
+      "bytes": 2165896
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/fork-c-return-black.png",
+      "bytes": 5274
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/gallery-index.json",
+      "bytes": 87109
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/index.html",
+      "bytes": 4529
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/motion-flow.json",
+      "bytes": 14102
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/refugees-b-return-black.png",
+      "bytes": 5274
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-browser/refugees-c-route-4-after-reveal.png",
+      "bytes": 2062880
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-final-pass.md",
+      "bytes": 8760
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/01-route-1-early.png",
+      "bytes": 2280518
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/02-route-1-mid.png",
+      "bytes": 2283184
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/03-route-1-rush.png",
+      "bytes": 2262749
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/04-route-1-upper-lane.png",
+      "bytes": 2285921
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/05-route-1-lower-lane.png",
+      "bytes": 2299260
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/06-route-1-before-transition.png",
+      "bytes": 2341875
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/07-black-midpoint.png",
+      "bytes": 5274
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/08-cp1-immediately-after-reveal.png",
+      "bytes": 2281543
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/09-cp1-stable.png",
+      "bytes": 2299017
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/10-cp1-canonical-before-return.png",
+      "bytes": 971197
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/10-cp1-last-checkpoint-frame.png",
+      "bytes": 2309192
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/11-return-black-midpoint.png",
+      "bytes": 5274
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/12-route-2-immediately-after-reveal.png",
+      "bytes": 2242048
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/13-route-2-resumed-movement.png",
+      "bytes": 2323057
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/14-route-1-620.png",
+      "bytes": 955145
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/15-route-1-390.png",
+      "bytes": 618088
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/16-cp1-390.png",
+      "bytes": 646403
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/17-route-2-390.png",
+      "bytes": 626630
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/browser-qa.json",
+      "bytes": 29998
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/clip-qa.json",
+      "bytes": 324
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/comparison.html",
+      "bytes": 920
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/index.html",
+      "bytes": 2840
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser/shared-world-route-1-cp1-route-2.webm",
+      "bytes": 3675042
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-slice.md",
+      "bytes": 4275
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1.md",
+      "bytes": 9948
+    },
+    {
+      "path": "tools/traversal-t0-motion-handoff-polish-1-browser.mjs",
+      "bytes": 21051
+    },
+    {
+      "path": "tools/traversal-t0-route-checkpoints-1-browser.mjs",
+      "bytes": 15812
+    },
+    {
+      "path": "tools/traversal-t0-route-checkpoints-1-final-browser.mjs",
+      "bytes": 22776
+    },
+    {
+      "path": "tools/traversal-t0-route-checkpoints-1-final-video.mjs",
+      "bytes": 3551
+    },
+    {
+      "path": "tools/traversal-t0-route-checkpoints-1-video.mjs",
+      "bytes": 2715
+    },
+    {
+      "path": "tools/traversal-t0-shared-world-full-browser.mjs",
+      "bytes": 34164
+    },
+    {
+      "path": "tools/traversal-t0-shared-world-full-video.mjs",
+      "bytes": 3002
+    },
+    {
+      "path": "tools/traversal-t0-shared-world-slice-browser.mjs",
+      "bytes": 15934
+    },
+    {
+      "path": "tools/traversal-t0-shared-world-slice-video.mjs",
+      "bytes": 4528
+    },
+    {
+      "path": "tools/traversal/assemble_forest_loops.py",
+      "bytes": 1519
+    },
+    {
+      "path": "tools/traversal/audit-caravan-assets.mjs",
+      "bytes": 3199
+    },
+    {
+      "path": "tools/traversal/audit-caravan-final.mjs",
+      "bytes": 3653
+    },
+    {
+      "path": "tools/traversal/audit-final-convergence.mjs",
+      "bytes": 4173
+    },
+    {
+      "path": "tools/traversal/audit_t0_assets.py",
+      "bytes": 2740
+    },
+    {
+      "path": "tools/traversal/build_t0_road_loop.py",
+      "bytes": 1395
+    },
+    {
+      "path": "tools/traversal/extract_closed_caravan.py",
+      "bytes": 1651
+    },
+    {
+      "path": "tools/traversal/extract_props.py",
+      "bytes": 1177
+    },
+    {
+      "path": "tools/traversal/measure_assets.py",
+      "bytes": 1575
+    },
+    {
+      "path": "tools/traversal/package_browser_motion.py",
+      "bytes": 812
+    },
+    {
+      "path": "tools/traversal/package_convergence_motion.py",
+      "bytes": 2524
+    },
+    {
+      "path": "tools/traversal/profile-convergence.mjs",
+      "bytes": 5559
+    },
+    {
+      "path": "tools/traversal/qa-campaign-grammar-completion.mjs",
+      "bytes": 6068
+    },
+    {
+      "path": "tools/traversal/qa-campaign-grammar-ui.mjs",
+      "bytes": 1645
+    },
+    {
+      "path": "tools/traversal/qa-campaign-grammar.mjs",
+      "bytes": 11368
+    },
+    {
+      "path": "tools/traversal/qa-caravan-candidates.mjs",
+      "bytes": 3177
+    },
+    {
+      "path": "tools/traversal/qa-caravan-depth.mjs",
+      "bytes": 5892
+    },
+    {
+      "path": "tools/traversal/qa-convergence-contacts.mjs",
+      "bytes": 4536
+    },
+    {
+      "path": "tools/traversal/qa-convergence-lifetime.mjs",
+      "bytes": 2245
+    },
+    {
+      "path": "tools/traversal/qa-convergence-production.mjs",
+      "bytes": 972
+    },
+    {
+      "path": "tools/traversal/qa-convergence-targeted.mjs",
+      "bytes": 4150
+    },
+    {
+      "path": "tools/traversal/qa-convergence.mjs",
+      "bytes": 8699
+    },
+    {
+      "path": "tools/traversal/qa-freeze-audit.mjs",
+      "bytes": 2171
+    },
+    {
+      "path": "tools/traversal/qa-freeze-live.mjs",
+      "bytes": 10685
+    },
+    {
+      "path": "tools/traversal/qa-freeze-release.mjs",
+      "bytes": 3421
+    },
+    {
+      "path": "tools/traversal/qa-freeze-seams.mjs",
+      "bytes": 4629
+    },
+    {
+      "path": "tools/traversal/qa-freeze-targeted.mjs",
+      "bytes": 4227
+    },
+    {
+      "path": "tools/traversal/qa-production-rollout.mjs",
+      "bytes": 14138
+    },
+    {
+      "path": "tools/traversal/qa-server.mjs",
+      "bytes": 321
+    },
+    {
+      "path": "tools/traversal/qa-taxonomy-targeted.mjs",
+      "bytes": 4102
+    },
+    {
+      "path": "tools/traversal/qa-taxonomy.mjs",
+      "bytes": 6609
+    },
+    {
+      "path": "tools/traversal/qa-world-gates.mjs",
+      "bytes": 1447
+    },
+    {
+      "path": "tools/traversal/qa-world-merchant.mjs",
+      "bytes": 2705
+    },
+    {
+      "path": "tools/traversal/qa-world-route.mjs",
+      "bytes": 4473
+    },
+    {
+      "path": "tools/traversal/qa/00-baseline.png",
+      "bytes": 264799
+    },
+    {
+      "path": "tools/traversal/qa/01-optional-first-pass.png",
+      "bytes": 277098
+    },
+    {
+      "path": "tools/traversal/qa/A-clean-travel.png",
+      "bytes": 278045
+    },
+    {
+      "path": "tools/traversal/qa/B-optional-approach.png",
+      "bytes": 280868
+    },
+    {
+      "path": "tools/traversal/qa/C-optional-paused.png",
+      "bytes": 280331
+    },
+    {
+      "path": "tools/traversal/qa/D-mandatory-paused.png",
+      "bytes": 280405
+    },
+    {
+      "path": "tools/traversal/qa/E-booster-paused.png",
+      "bytes": 276229
+    },
+    {
+      "path": "tools/traversal/qa/E-cart-and-debris-paused.png",
+      "bytes": 278346
+    },
+    {
+      "path": "tools/traversal/qa/E-chest-paused.png",
+      "bytes": 276273
+    },
+    {
+      "path": "tools/traversal/qa/F-canonical-fork.png",
+      "bytes": 148779
+    },
+    {
+      "path": "tools/traversal/qa/G-arrival.png",
+      "bytes": 87944
+    },
+    {
+      "path": "tools/traversal/qa/acceptance-report.md",
+      "bytes": 7057
+    },
+    {
+      "path": "tools/traversal/qa/asset-audit.json",
+      "bytes": 1441
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/FINAL-REPORT.md",
+      "bytes": 14177
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/asset-provenance.json",
+      "bytes": 6480
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/candidates/armored-lower.png",
+      "bytes": 2433088
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/candidates/armored-merchant.png",
+      "bytes": 2345853
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/candidates/armored-upper.png",
+      "bytes": 2426143
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/candidates/comparison.json",
+      "bytes": 1553
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/candidates/expedition-lower.png",
+      "bytes": 2435693
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/candidates/expedition-merchant.png",
+      "bytes": 2348678
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/candidates/expedition-upper.png",
+      "bytes": 2429585
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/candidates/mechanical-lower.png",
+      "bytes": 2444751
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/candidates/mechanical-merchant.png",
+      "bytes": 2357833
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/candidates/mechanical-upper.png",
+      "bytes": 2437844
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/component-prompts.json",
+      "bytes": 6304
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/covered-narrow.png",
+      "bytes": 3525
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/final-audit.json",
+      "bytes": 4542
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/fork-narrow.png",
+      "bytes": 1327665
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/full-tests.json",
+      "bytes": 809894
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/generation-prompts.json",
+      "bytes": 4723
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/clean-travel.png",
+      "bytes": 2362901
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/collect-gold.png",
+      "bytes": 2411105
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/collect-lion-ward.png",
+      "bytes": 2361666
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/collect-road-cache.png",
+      "bytes": 2395305
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/decision-0.09.png",
+      "bytes": 2350965
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/decision-0.2.png",
+      "bytes": 2384116
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/decision-0.4.png",
+      "bytes": 2456702
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/decision-0.6.png",
+      "bytes": 2333432
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/decision-0.91.png",
+      "bytes": 2426868
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/exit-right.png",
+      "bytes": 2405126
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/fork-approach.png",
+      "bytes": 2292116
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/fork-direct-choice.png",
+      "bytes": 2089042
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/fork-resumed.png",
+      "bytes": 2287302
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/fork-reveal.png",
+      "bytes": 2234714
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/ignored-same-lane-0.09.png",
+      "bytes": 2411578
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/ignored-same-lane-0.4.png",
+      "bytes": 2522088
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/ignored-same-lane-0.6.png",
+      "bytes": 2400394
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/ignored-same-lane-0.91.png",
+      "bytes": 2458471
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/mandatory-approach.png",
+      "bytes": 2388546
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/mandatory-combat.png",
+      "bytes": 1859378
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/report.json",
+      "bytes": 13696
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/transition-entry.png",
+      "bytes": 2437090
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/transition-event.png",
+      "bytes": 2389288
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/transition-focus.png",
+      "bytes": 2411360
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/transition-return.png",
+      "bytes": 1077214
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/travel-return.png",
+      "bytes": 2060091
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/avoid/uncluttered-road.png",
+      "bytes": 2417877
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/clean-travel.png",
+      "bytes": 2433039
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/collect-gold.png",
+      "bytes": 2406817
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/collect-lion-ward.png",
+      "bytes": 2315599
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/collect-road-cache.png",
+      "bytes": 2426992
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/decision-0.09.png",
+      "bytes": 2353173
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/decision-0.2.png",
+      "bytes": 2386920
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/decision-0.3.png",
+      "bytes": 2445635
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/decision-0.4.png",
+      "bytes": 2458499
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/decision-0.6.png",
+      "bytes": 2333345
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/decision-0.91.png",
+      "bytes": 2343067
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/exit-right.png",
+      "bytes": 2378874
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/fork-approach.png",
+      "bytes": 2291096
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/fork-direct-choice.png",
+      "bytes": 2100194
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/fork-resumed.png",
+      "bytes": 2331023
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/fork-reveal.png",
+      "bytes": 2308823
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/ignored-same-lane-0.09.png",
+      "bytes": 2346149
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/ignored-same-lane-0.4.png",
+      "bytes": 2523579
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/ignored-same-lane-0.6.png",
+      "bytes": 2426291
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/mandatory-approach.png",
+      "bytes": 2392371
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/mandatory-combat.png",
+      "bytes": 1859378
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/report.json",
+      "bytes": 15079
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/transition-entry.png",
+      "bytes": 2436813
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/transition-event.png",
+      "bytes": 2392088
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/transition-focus.png",
+      "bytes": 2412928
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/transition-return.png",
+      "bytes": 1551611
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/travel-return.png",
+      "bytes": 2060090
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/ignore-flee/uncluttered-road.png",
+      "bytes": 2336387
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/canonical-dialogue.png",
+      "bytes": 1921734
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/clean-travel.png",
+      "bytes": 2361780
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/collect-lion-ward.png",
+      "bytes": 2314888
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/collect-road-cache.png",
+      "bytes": 2439916
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/decision-0.09.png",
+      "bytes": 2350965
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/decision-0.2.png",
+      "bytes": 2386780
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/decision-0.3.png",
+      "bytes": 2445709
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/decision-0.6.png",
+      "bytes": 2337300
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/decision-0.91.png",
+      "bytes": 2430419
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/exit-right.png",
+      "bytes": 2407727
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/fork-approach.png",
+      "bytes": 2325211
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/fork-direct-choice.png",
+      "bytes": 2100387
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/fork-resumed.png",
+      "bytes": 2267745
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/fork-reveal.png",
+      "bytes": 2274145
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/ignored-same-lane-0.09.png",
+      "bytes": 2381301
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/ignored-same-lane-0.6.png",
+      "bytes": 2403928
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/ignored-same-lane-0.91.png",
+      "bytes": 2493437
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/journey.webm",
+      "bytes": 18673444
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/mandatory-approach.png",
+      "bytes": 2427277
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/mandatory-combat.png",
+      "bytes": 1862076
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/merchant-meet.png",
+      "bytes": 1383426
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/random-combat.png",
+      "bytes": 1864209
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/report.json",
+      "bytes": 16343
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/transition-entry.png",
+      "bytes": 2437117
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/transition-event.png",
+      "bytes": 2359555
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/transition-focus.png",
+      "bytes": 2411376
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/transition-return.png",
+      "bytes": 289900
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/travel-return.png",
+      "bytes": 2063647
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/lower-review/uncluttered-road.png",
+      "bytes": 2369839
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/canonical-dialogue.png",
+      "bytes": 1906556
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/clean-travel.png",
+      "bytes": 2347451
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/collect-gold.png",
+      "bytes": 2449954
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/collect-lion-ward.png",
+      "bytes": 2362432
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/collect-road-cache.png",
+      "bytes": 2440798
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/decision-0.09.png",
+      "bytes": 2353173
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/decision-0.2.png",
+      "bytes": 2386504
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/decision-0.3.png",
+      "bytes": 2434863
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/decision-0.6.png",
+      "bytes": 2369084
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/decision-0.91.png",
+      "bytes": 2426849
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/exit-right.png",
+      "bytes": 2412837
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/fork-approach.png",
+      "bytes": 2289805
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/fork-direct-choice.png",
+      "bytes": 2093108
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/fork-resumed.png",
+      "bytes": 2286336
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/fork-reveal.png",
+      "bytes": 2266348
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/journey.webm",
+      "bytes": 19942802
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/mandatory-approach.png",
+      "bytes": 2377620
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/mandatory-combat.png",
+      "bytes": 1862076
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/merchant-meet.png",
+      "bytes": 2353289
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/random-combat.png",
+      "bytes": 1871261
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/report.json",
+      "bytes": 19960
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/transition-entry.png",
+      "bytes": 2437031
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/transition-event.png",
+      "bytes": 2305133
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/transition-focus.png",
+      "bytes": 2400600
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/transition-return.png",
+      "bytes": 2330481
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/travel-return.png",
+      "bytes": 2037811
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/meet-fight/uncluttered-road.png",
+      "bytes": 2334424
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/clean-travel.png",
+      "bytes": 2415163
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/collect-gold.png",
+      "bytes": 2402974
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/decision-0.09.png",
+      "bytes": 2353669
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/decision-0.2.png",
+      "bytes": 2383589
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/decision-0.4.png",
+      "bytes": 2440651
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/decision-0.6.png",
+      "bytes": 2333186
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/decision-0.91.png",
+      "bytes": 2426868
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/exit-right.png",
+      "bytes": 2466034
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/fork-approach.png",
+      "bytes": 2300875
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/fork-direct-choice.png",
+      "bytes": 2094422
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/fork-resumed.png",
+      "bytes": 2287368
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/fork-reveal.png",
+      "bytes": 2242748
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/ignored-same-lane-0.09.png",
+      "bytes": 2384728
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/ignored-same-lane-0.4.png",
+      "bytes": 2506655
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/ignored-same-lane-0.6.png",
+      "bytes": 2400153
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/ignored-same-lane-0.91.png",
+      "bytes": 2458471
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/journey.webm",
+      "bytes": 15784525
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/mandatory-approach.png",
+      "bytes": 2387219
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/mandatory-combat.png",
+      "bytes": 1861315
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/report.json",
+      "bytes": 13755
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/transition-entry.png",
+      "bytes": 2437090
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/transition-event.png",
+      "bytes": 2388891
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/transition-focus.png",
+      "bytes": 2407319
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/transition-return.png",
+      "bytes": 1286779
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/travel-return.png",
+      "bytes": 2060090
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/live-final/upper-review/uncluttered-road.png",
+      "bytes": 2365465
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/production-disabled.png",
+      "bytes": 1098992
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/release-check.json",
+      "bytes": 748
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/review-desktop.png",
+      "bytes": 630251
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/review.html",
+      "bytes": 5328
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-depth-review.webm",
+      "bytes": 3929857
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-0-0.015.png",
+      "bytes": 2433869
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-0-0.09.png",
+      "bytes": 2413506
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-0-0.2.png",
+      "bytes": 2441433
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-0-0.3.png",
+      "bytes": 2489107
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-0-0.4.png",
+      "bytes": 2505548
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-0-0.49.png",
+      "bytes": 2449800
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-0-0.54.png",
+      "bytes": 2475373
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-0-0.6.png",
+      "bytes": 2476457
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-0-0.75.png",
+      "bytes": 2363159
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-0-0.8.png",
+      "bytes": 2390297
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-0-0.91.png",
+      "bytes": 2489752
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-1-0.015.png",
+      "bytes": 2442375
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-1-0.09.png",
+      "bytes": 2410812
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-1-0.2.png",
+      "bytes": 2444460
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-1-0.3.png",
+      "bytes": 2497579
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-1-0.4.png",
+      "bytes": 2521893
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-1-0.49.png",
+      "bytes": 2455021
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-1-0.54.png",
+      "bytes": 2482601
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-1-0.6.png",
+      "bytes": 2478914
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-1-0.75.png",
+      "bytes": 2371259
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-1-0.8.png",
+      "bytes": 2398119
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-lane-1-0.91.png",
+      "bytes": 2493250
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-qa-lower-human.png",
+      "bytes": 2493524
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-transition-toward-0.png",
+      "bytes": 2490920
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/1463-transition-toward-1.png",
+      "bytes": 2495376
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-depth-review.webm",
+      "bytes": 3164195
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-0-0.015.png",
+      "bytes": 1391341
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-0-0.09.png",
+      "bytes": 1385170
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-0-0.2.png",
+      "bytes": 1438115
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-0-0.3.png",
+      "bytes": 1437358
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-0-0.4.png",
+      "bytes": 1444233
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-0-0.49.png",
+      "bytes": 1415628
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-0-0.54.png",
+      "bytes": 1455134
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-0-0.6.png",
+      "bytes": 1474776
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-0-0.75.png",
+      "bytes": 1367217
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-0-0.8.png",
+      "bytes": 1357991
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-0-0.91.png",
+      "bytes": 1466671
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-1-0.015.png",
+      "bytes": 1396516
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-1-0.09.png",
+      "bytes": 1384473
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-1-0.2.png",
+      "bytes": 1440341
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-1-0.3.png",
+      "bytes": 1440967
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-1-0.4.png",
+      "bytes": 1452843
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-1-0.49.png",
+      "bytes": 1420227
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-1-0.54.png",
+      "bytes": 1459282
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-1-0.6.png",
+      "bytes": 1420875
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-1-0.75.png",
+      "bytes": 1362001
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-1-0.8.png",
+      "bytes": 1362642
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-lane-1-0.91.png",
+      "bytes": 1468278
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-qa-lower-human.png",
+      "bytes": 1438584
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-transition-toward-0.png",
+      "bytes": 1437703
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/960-transition-toward-1.png",
+      "bytes": 1441821
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/runtime/report.json",
+      "bytes": 27791
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/diagnostic-10450.png",
+      "bytes": 1624922
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/diagnostic-2050.png",
+      "bytes": 1715615
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/diagnostic-3250.png",
+      "bytes": 1596937
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/diagnostic-4850.png",
+      "bytes": 1651590
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/diagnostic-5250.png",
+      "bytes": 1643865
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/diagnostic-6850.png",
+      "bytes": 1718462
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/diagnostic-8050.png",
+      "bytes": 1690405
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/diagnostic-850.png",
+      "bytes": 1777167
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/diagnostic-9650.png",
+      "bytes": 1601053
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/lion-first-trial-combat-seam-10450.png",
+      "bytes": 2303956
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/lion-first-trial-combat-seam-6850.png",
+      "bytes": 2300981
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/lion-first-trial-combat-seam-8050.png",
+      "bytes": 2262701
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/lion-first-trial-combat-seam-9650.png",
+      "bytes": 2283138
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/lion-first-trial-event-seam-10450.png",
+      "bytes": 2303956
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/lion-first-trial-event-seam-6850.png",
+      "bytes": 2148346
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/lion-first-trial-event-seam-8050.png",
+      "bytes": 2225444
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/lion-first-trial-event-seam-9650.png",
+      "bytes": 2334382
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/merchant.png",
+      "bytes": 2411059
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/seam-10450.png",
+      "bytes": 2303956
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/seam-2050.png",
+      "bytes": 2327426
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/seam-3250.png",
+      "bytes": 2375700
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/seam-4850.png",
+      "bytes": 2334880
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/seam-5250.png",
+      "bytes": 2339331
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/seam-6850.png",
+      "bytes": 2391036
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/seam-8050.png",
+      "bytes": 2359127
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/seam-850.png",
+      "bytes": 2335899
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/seam-9650.png",
+      "bytes": 2294038
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/seam-scroll.webm",
+      "bytes": 6678754
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/seams/seams.json",
+      "bytes": 3260
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-covered.png",
+      "bytes": 5056
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-decision-0.09.png",
+      "bytes": 2391898
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-decision-0.2.png",
+      "bytes": 2439459
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-decision-0.3.png",
+      "bytes": 2494302
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-decision-0.4.png",
+      "bytes": 2502085
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-decision-0.6.png",
+      "bytes": 2473069
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-first-reveal.png",
+      "bytes": 2381378
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-passing-0.09.png",
+      "bytes": 2340440
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-passing-0.2.png",
+      "bytes": 2404011
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-passing-0.3.png",
+      "bytes": 2418702
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-passing-0.4.png",
+      "bytes": 2413123
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-passing-0.6.png",
+      "bytes": 2387056
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-pre-fork.png",
+      "bytes": 2240465
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-selection.png",
+      "bytes": 2163358
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-subject-0.09.png",
+      "bytes": 2353004
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-subject-0.2.png",
+      "bytes": 2386440
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-subject-0.3.png",
+      "bytes": 2435182
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-subject-0.4.png",
+      "bytes": 2439248
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-subject-0.6.png",
+      "bytes": 2412933
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-combat-three-seconds.png",
+      "bytes": 2392645
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-covered.png",
+      "bytes": 5056
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-decision-0.09.png",
+      "bytes": 2391898
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-decision-0.2.png",
+      "bytes": 2439278
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-decision-0.3.png",
+      "bytes": 2494282
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-decision-0.4.png",
+      "bytes": 2498783
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-decision-0.6.png",
+      "bytes": 2473069
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-first-reveal.png",
+      "bytes": 2311287
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-passing-0.09.png",
+      "bytes": 2340440
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-passing-0.2.png",
+      "bytes": 2404011
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-passing-0.3.png",
+      "bytes": 2418052
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-passing-0.4.png",
+      "bytes": 2413123
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-passing-0.6.png",
+      "bytes": 2386937
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-pre-fork.png",
+      "bytes": 2249181
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-selection.png",
+      "bytes": 2163222
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-subject-0.09.png",
+      "bytes": 2353004
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-subject-0.2.png",
+      "bytes": 2386337
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-subject-0.3.png",
+      "bytes": 2435182
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-subject-0.4.png",
+      "bytes": 2439248
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-subject-0.6.png",
+      "bytes": 2412933
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/lion-first-trial-event-three-seconds.png",
+      "bytes": 2379301
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/targeted/report.json",
+      "bytes": 2490
+    },
+    {
+      "path": "tools/traversal/qa/caravan-depth/wounded-person-narrow.png",
+      "bytes": 1434956
+    },
+    {
+      "path": "tools/traversal/qa/convergence/ASSET-PROVENANCE.md",
+      "bytes": 2469
+    },
+    {
+      "path": "tools/traversal/qa/convergence/FINAL-REPORT.md",
+      "bytes": 8828
+    },
+    {
+      "path": "tools/traversal/qa/convergence/asset-hashes.json",
+      "bytes": 2183
+    },
+    {
+      "path": "tools/traversal/qa/convergence/changed-files.txt",
+      "bytes": 664
+    },
+    {
+      "path": "tools/traversal/qa/convergence/chest-processing/animation.gif",
+      "bytes": 511077
+    },
+    {
+      "path": "tools/traversal/qa/convergence/chest-processing/pipeline-meta.json",
+      "bytes": 1866
+    },
+    {
+      "path": "tools/traversal/qa/convergence/chest-processing/raw-sheet-clean.png",
+      "bytes": 1739768
+    },
+    {
+      "path": "tools/traversal/qa/convergence/chest-processing/raw-sheet.png",
+      "bytes": 1739768
+    },
+    {
+      "path": "tools/traversal/qa/convergence/chest-processing/sheet-1.png",
+      "bytes": 487692
+    },
+    {
+      "path": "tools/traversal/qa/convergence/chest-processing/sheet-2.png",
+      "bytes": 716911
+    },
+    {
+      "path": "tools/traversal/qa/convergence/chest-processing/sheet-transparent.png",
+      "bytes": 1196673
+    },
+    {
+      "path": "tools/traversal/qa/convergence/contacts/gold-before-contact.png",
+      "bytes": 2391400
+    },
+    {
+      "path": "tools/traversal/qa/convergence/contacts/gold-moving-collection.png",
+      "bytes": 2450756
+    },
+    {
+      "path": "tools/traversal/qa/convergence/contacts/human-merchant.png",
+      "bytes": 2361795
+    },
+    {
+      "path": "tools/traversal/qa/convergence/contacts/merchant-ignore-still-visible.png",
+      "bytes": 2348448
+    },
+    {
+      "path": "tools/traversal/qa/convergence/contacts/obstacle-readable.png",
+      "bytes": 2403270
+    },
+    {
+      "path": "tools/traversal/qa/convergence/contacts/report.json",
+      "bytes": 859
+    },
+    {
+      "path": "tools/traversal/qa/convergence/contacts/road-cache-before-contact.png",
+      "bytes": 2350071
+    },
+    {
+      "path": "tools/traversal/qa/convergence/contacts/road-cache-moving-collection.png",
+      "bytes": 2374854
+    },
+    {
+      "path": "tools/traversal/qa/convergence/full-tests.json",
+      "bytes": 805412
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/clean-travel.png",
+      "bytes": 2375350
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/collect-gold.png",
+      "bytes": 2381158
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/collect-lion-ward.png",
+      "bytes": 2249303
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/collect-road-cache.png",
+      "bytes": 2413999
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/decision-0.09.png",
+      "bytes": 2359749
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/decision-0.2.png",
+      "bytes": 2372533
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/decision-0.4.png",
+      "bytes": 2367725
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/decision-0.6.png",
+      "bytes": 2325874
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/decision-0.91.png",
+      "bytes": 2387895
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/exit-right.png",
+      "bytes": 2394085
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/fork-approach.png",
+      "bytes": 2274688
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/fork-direct-choice.png",
+      "bytes": 2052800
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/fork-resumed.png",
+      "bytes": 2314749
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/mandatory-approach.png",
+      "bytes": 2377542
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/mandatory-combat.png",
+      "bytes": 1860879
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/obstacle-avoid.png",
+      "bytes": 2327120
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/report.json",
+      "bytes": 13890
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/transition-entry.png",
+      "bytes": 2424624
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/transition-event.png",
+      "bytes": 2372933
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/transition-focus.png",
+      "bytes": 2421276
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/transition-return.png",
+      "bytes": 316940
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/avoid/travel-return.png",
+      "bytes": 2060097
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/clean-travel.png",
+      "bytes": 2349539
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/collect-gold.png",
+      "bytes": 2427483
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/collect-lion-ward.png",
+      "bytes": 2249213
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/collect-road-cache.png",
+      "bytes": 2347606
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/decision-0.09.png",
+      "bytes": 2361795
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/decision-0.2.png",
+      "bytes": 2372454
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/decision-0.3.png",
+      "bytes": 2383594
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/decision-0.4.png",
+      "bytes": 2370968
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/decision-0.6.png",
+      "bytes": 2325874
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/decision-0.91.png",
+      "bytes": 2387895
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/exit-right.png",
+      "bytes": 2484649
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/fork-approach.png",
+      "bytes": 2287588
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/fork-direct-choice.png",
+      "bytes": 2053483
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/fork-resumed.png",
+      "bytes": 2309982
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/mandatory-approach.png",
+      "bytes": 2389525
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/mandatory-combat.png",
+      "bytes": 1858600
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/obstacle-avoid.png",
+      "bytes": 2362874
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/report.json",
+      "bytes": 15319
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/transition-entry.png",
+      "bytes": 2424276
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/transition-event.png",
+      "bytes": 2342505
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/transition-focus.png",
+      "bytes": 2410414
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/transition-return.png",
+      "bytes": 325843
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/ignore-flee/travel-return.png",
+      "bytes": 2060089
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/canonical-dialogue.png",
+      "bytes": 1903477
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/clean-travel.png",
+      "bytes": 2350092
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/collect-gold.png",
+      "bytes": 2417532
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/collect-lion-ward.png",
+      "bytes": 2286270
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/collect-road-cache.png",
+      "bytes": 2347655
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/decision-0.09.png",
+      "bytes": 2361795
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/decision-0.2.png",
+      "bytes": 2372402
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/decision-0.3.png",
+      "bytes": 2371099
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/decision-0.6.png",
+      "bytes": 2325874
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/decision-0.91.png",
+      "bytes": 2387895
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/exit-right.png",
+      "bytes": 2403459
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/fork-approach.png",
+      "bytes": 2311426
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/fork-direct-choice.png",
+      "bytes": 2053483
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/fork-resumed.png",
+      "bytes": 2309791
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/journey.webm",
+      "bytes": 18863677
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/mandatory-approach.png",
+      "bytes": 2362638
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/mandatory-combat.png",
+      "bytes": 1861315
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/merchant-meet.png",
+      "bytes": 2361941
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/obstacle-avoid.png",
+      "bytes": 2407126
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/random-combat.png",
+      "bytes": 1871261
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/report.json",
+      "bytes": 18942
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/transition-entry.png",
+      "bytes": 2424553
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/transition-event.png",
+      "bytes": 2313908
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/transition-focus.png",
+      "bytes": 2423367
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/transition-return.png",
+      "bytes": 2314847
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live/meet-fight/travel-return.png",
+      "bytes": 2037753
+    },
+    {
+      "path": "tools/traversal/qa/convergence/preservation.json",
+      "bytes": 174
+    },
+    {
+      "path": "tools/traversal/qa/convergence/production-disabled.png",
+      "bytes": 1098992
+    },
+    {
+      "path": "tools/traversal/qa/convergence/production-gate.json",
+      "bytes": 126
+    },
+    {
+      "path": "tools/traversal/qa/convergence/review-check.json",
+      "bytes": 108
+    },
+    {
+      "path": "tools/traversal/qa/convergence/review-page.png",
+      "bytes": 1678218
+    },
+    {
+      "path": "tools/traversal/qa/convergence/review.html",
+      "bytes": 6964
+    },
+    {
+      "path": "tools/traversal/qa/convergence/targeted/combat-variant-resumed.png",
+      "bytes": 1338021
+    },
+    {
+      "path": "tools/traversal/qa/convergence/targeted/enemy-seed-0.png",
+      "bytes": 1392952
+    },
+    {
+      "path": "tools/traversal/qa/convergence/targeted/enemy-seed-1.png",
+      "bytes": 1392732
+    },
+    {
+      "path": "tools/traversal/qa/convergence/targeted/enemy-seed-2.png",
+      "bytes": 1386364
+    },
+    {
+      "path": "tools/traversal/qa/convergence/targeted/flee-visible.png",
+      "bytes": 1468553
+    },
+    {
+      "path": "tools/traversal/qa/convergence/targeted/fork-full-cover.png",
+      "bytes": 3525
+    },
+    {
+      "path": "tools/traversal/qa/convergence/targeted/fork-narrow.png",
+      "bytes": 1248815
+    },
+    {
+      "path": "tools/traversal/qa/convergence/targeted/ignored-visible.png",
+      "bytes": 1411367
+    },
+    {
+      "path": "tools/traversal/qa/convergence/targeted/report.json",
+      "bytes": 784
+    },
+    {
+      "path": "tools/traversal/qa/convergence/transition-review.json",
+      "bytes": 331
+    },
+    {
+      "path": "tools/traversal/qa/convergence/transition-review.webm",
+      "bytes": 6456987
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/baseline/branch-A.png",
+      "bytes": 2436971
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/baseline/branch-B.png",
+      "bytes": 2337690
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/baseline/end.png",
+      "bytes": 2407061
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/baseline/middle.png",
+      "bytes": 2414546
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/baseline/profile.json",
+      "bytes": 6379
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/baseline/quarter.png",
+      "bytes": 2412293
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/baseline/start.png",
+      "bytes": 2380696
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/baseline/three-quarter.png",
+      "bytes": 2311670
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/caravan/extraction.json",
+      "bytes": 1210
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/caravan/processed/animation.gif",
+      "bytes": 9851
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/caravan/processed/pipeline-meta.json",
+      "bytes": 1181
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/caravan/processed/raw-sheet-clean.png",
+      "bytes": 1585712
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/caravan/processed/raw-sheet.png",
+      "bytes": 2308632
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/caravan/processed/sheet-transparent.png",
+      "bytes": 24129
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/caravan/processed/single-1.png",
+      "bytes": 25283
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/caravan/prompts.txt",
+      "bytes": 3363
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/caravan/source-sheet.png",
+      "bytes": 2156928
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/covered-narrow.png",
+      "bytes": 3525
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/final-audit.json",
+      "bytes": 4674
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/final/branch-A.png",
+      "bytes": 2447020
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/final/branch-B.png",
+      "bytes": 2346918
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/final/end.png",
+      "bytes": 2411863
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/final/middle.png",
+      "bytes": 2424195
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/final/profile.json",
+      "bytes": 6436
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/final/quarter.png",
+      "bytes": 2420693
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/final/start.png",
+      "bytes": 2392684
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/final/three-quarter.png",
+      "bytes": 2321198
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/focused-tests.json",
+      "bytes": 24007
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/fork-narrow.png",
+      "bytes": 1342171
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/full-tests-initial.json",
+      "bytes": 811460
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/full-tests.json",
+      "bytes": 810681
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/isolated/live-final/ignore-flee/report.json",
+      "bytes": 16990
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/lifetime.json",
+      "bytes": 1302
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/canonical-dialogue.png",
+      "bytes": 1980408
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/clean-travel.png",
+      "bytes": 2386713
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/collect-gold.png",
+      "bytes": 2418958
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/collect-lion-ward.png",
+      "bytes": 2370986
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/collect-road-cache.png",
+      "bytes": 2377827
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/decision-0.09.png",
+      "bytes": 2358837
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/decision-0.2.png",
+      "bytes": 2388430
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/decision-0.4.png",
+      "bytes": 2461427
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/decision-0.6.png",
+      "bytes": 2338430
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/decision-0.91.png",
+      "bytes": 2433294
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/exit-right.png",
+      "bytes": 2416849
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/fork-approach.png",
+      "bytes": 2302049
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/fork-direct-choice.png",
+      "bytes": 2098719
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/fork-resumed.png",
+      "bytes": 2278312
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/fork-reveal.png",
+      "bytes": 2254460
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/ignored-same-lane-0.09.png",
+      "bytes": 2424501
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/ignored-same-lane-0.4.png",
+      "bytes": 2532749
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/ignored-same-lane-0.6.png",
+      "bytes": 2411869
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/mandatory-approach.png",
+      "bytes": 2436337
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/mandatory-combat.png",
+      "bytes": 1864253
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/report.json",
+      "bytes": 16196
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/transition-entry.png",
+      "bytes": 2446205
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/transition-event.png",
+      "bytes": 2418482
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/transition-focus.png",
+      "bytes": 2399264
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/transition-return.png",
+      "bytes": 311932
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/travel-return.png",
+      "bytes": 2037380
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/avoid/uncluttered-road.png",
+      "bytes": 2341742
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/clean-travel.png",
+      "bytes": 2395062
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/collect-gold.png",
+      "bytes": 2419456
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/collect-lion-ward.png",
+      "bytes": 2286388
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/collect-road-cache.png",
+      "bytes": 2374032
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/decision-0.09.png",
+      "bytes": 2357978
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/decision-0.2.png",
+      "bytes": 2391555
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/decision-0.3.png",
+      "bytes": 2450204
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/decision-0.4.png",
+      "bytes": 2462704
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/decision-0.6.png",
+      "bytes": 2338359
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/decision-0.91.png",
+      "bytes": 2345493
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/exit-right.png",
+      "bytes": 2407871
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/fork-approach.png",
+      "bytes": 2335594
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/fork-direct-choice.png",
+      "bytes": 2109913
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/fork-resumed.png",
+      "bytes": 2308582
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/fork-reveal.png",
+      "bytes": 2328581
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/ignored-same-lane-0.09.png",
+      "bytes": 2394984
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/ignored-same-lane-0.4.png",
+      "bytes": 2534469
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/ignored-same-lane-0.6.png",
+      "bytes": 2412006
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/mandatory-approach.png",
+      "bytes": 2400531
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/mandatory-combat.png",
+      "bytes": 1861166
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/report.json",
+      "bytes": 17694
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/transition-entry.png",
+      "bytes": 2444017
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/transition-event.png",
+      "bytes": 2396930
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/transition-focus.png",
+      "bytes": 2425111
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/transition-return.png",
+      "bytes": 1095175
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/travel-return.png",
+      "bytes": 2061851
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/ignore-flee/uncluttered-road.png",
+      "bytes": 2363617
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/canonical-dialogue.png",
+      "bytes": 1909457
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/clean-travel.png",
+      "bytes": 2362092
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/collect-gold.png",
+      "bytes": 2472972
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/collect-lion-ward.png",
+      "bytes": 2286904
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/collect-road-cache.png",
+      "bytes": 2450420
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/decision-0.09.png",
+      "bytes": 2357978
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/decision-0.2.png",
+      "bytes": 2391172
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/decision-0.3.png",
+      "bytes": 2450204
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/decision-0.6.png",
+      "bytes": 2338359
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/decision-0.91.png",
+      "bytes": 2433294
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/exit-right.png",
+      "bytes": 2476996
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/fork-approach.png",
+      "bytes": 2321867
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/fork-direct-choice.png",
+      "bytes": 2099266
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/fork-resumed.png",
+      "bytes": 2253642
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/fork-reveal.png",
+      "bytes": 2254405
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/journey.webm",
+      "bytes": 19194805
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/mandatory-approach.png",
+      "bytes": 2436280
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/mandatory-combat.png",
+      "bytes": 1863469
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/merchant-meet.png",
+      "bytes": 2358118
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/random-combat.png",
+      "bytes": 1866015
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/report.json",
+      "bytes": 21107
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/transition-entry.png",
+      "bytes": 2442821
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/transition-event.png",
+      "bytes": 2280420
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/transition-focus.png",
+      "bytes": 2425127
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/transition-return.png",
+      "bytes": 2335741
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/travel-return.png",
+      "bytes": 2037803
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/live-final/meet-fight/uncluttered-road.png",
+      "bytes": 2423473
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/production-disabled.png",
+      "bytes": 1053653
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/release-check.json",
+      "bytes": 751
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/review-overview.png",
+      "bytes": 1163531
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/review.html",
+      "bytes": 4355
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-depth-review.webm",
+      "bytes": 4074578
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-0-0.015.png",
+      "bytes": 2440774
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-0-0.09.png",
+      "bytes": 2417915
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-0-0.2.png",
+      "bytes": 2446523
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-0-0.3.png",
+      "bytes": 2494321
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-0-0.4.png",
+      "bytes": 2511993
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-0-0.49.png",
+      "bytes": 2453890
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-0-0.54.png",
+      "bytes": 2481545
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-0-0.6.png",
+      "bytes": 2482009
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-0-0.75.png",
+      "bytes": 2367964
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-0-0.8.png",
+      "bytes": 2395047
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-0-0.91.png",
+      "bytes": 2497947
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-1-0.015.png",
+      "bytes": 2449424
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-1-0.09.png",
+      "bytes": 2418805
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-1-0.2.png",
+      "bytes": 2449678
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-1-0.3.png",
+      "bytes": 2501638
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-1-0.4.png",
+      "bytes": 2527133
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-1-0.49.png",
+      "bytes": 2459093
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-1-0.54.png",
+      "bytes": 2488160
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-1-0.6.png",
+      "bytes": 2485323
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-1-0.75.png",
+      "bytes": 2374514
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-1-0.8.png",
+      "bytes": 2403920
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-lane-1-0.91.png",
+      "bytes": 2501200
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-qa-lower-human.png",
+      "bytes": 2497793
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-transition-toward-0.png",
+      "bytes": 2496188
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/1463-transition-toward-1.png",
+      "bytes": 2501196
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-depth-review.webm",
+      "bytes": 3243804
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-0-0.015.png",
+      "bytes": 1395723
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-0-0.09.png",
+      "bytes": 1388732
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-0-0.2.png",
+      "bytes": 1441036
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-0-0.3.png",
+      "bytes": 1441338
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-0-0.4.png",
+      "bytes": 1449287
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-0-0.49.png",
+      "bytes": 1420490
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-0-0.54.png",
+      "bytes": 1459495
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-0-0.6.png",
+      "bytes": 1479682
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-0-0.75.png",
+      "bytes": 1370868
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-0-0.8.png",
+      "bytes": 1361647
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-0-0.91.png",
+      "bytes": 1472934
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-1-0.015.png",
+      "bytes": 1400235
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-1-0.09.png",
+      "bytes": 1389323
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-1-0.2.png",
+      "bytes": 1442768
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-1-0.3.png",
+      "bytes": 1445021
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-1-0.4.png",
+      "bytes": 1458076
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-1-0.49.png",
+      "bytes": 1424214
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-1-0.54.png",
+      "bytes": 1463013
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-1-0.6.png",
+      "bytes": 1426253
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-1-0.75.png",
+      "bytes": 1365845
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-1-0.8.png",
+      "bytes": 1366684
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-lane-1-0.91.png",
+      "bytes": 1474023
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-qa-lower-human.png",
+      "bytes": 1442692
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-transition-toward-0.png",
+      "bytes": 1441994
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/960-transition-toward-1.png",
+      "bytes": 1445059
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/runtime/report.json",
+      "bytes": 27576
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/diagnostic-10450.png",
+      "bytes": 1624922
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/diagnostic-2050.png",
+      "bytes": 1715615
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/diagnostic-3250.png",
+      "bytes": 1596937
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/diagnostic-4850.png",
+      "bytes": 1651590
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/diagnostic-5250.png",
+      "bytes": 1643865
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/diagnostic-6850.png",
+      "bytes": 1718462
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/diagnostic-8050.png",
+      "bytes": 1690405
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/diagnostic-850.png",
+      "bytes": 1777167
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/diagnostic-9650.png",
+      "bytes": 1601053
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/lion-first-trial-combat-seam-10450.png",
+      "bytes": 2303956
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/lion-first-trial-combat-seam-6850.png",
+      "bytes": 2300981
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/lion-first-trial-combat-seam-8050.png",
+      "bytes": 2262701
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/lion-first-trial-combat-seam-9650.png",
+      "bytes": 2283138
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/lion-first-trial-event-seam-10450.png",
+      "bytes": 2303956
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/lion-first-trial-event-seam-6850.png",
+      "bytes": 2148346
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/lion-first-trial-event-seam-8050.png",
+      "bytes": 2225444
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/lion-first-trial-event-seam-9650.png",
+      "bytes": 2334382
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/merchant.png",
+      "bytes": 2415529
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/seam-10450.png",
+      "bytes": 2303956
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/seam-2050.png",
+      "bytes": 2327426
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/seam-3250.png",
+      "bytes": 2375700
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/seam-4850.png",
+      "bytes": 2334880
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/seam-5250.png",
+      "bytes": 2339331
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/seam-6850.png",
+      "bytes": 2391036
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/seam-8050.png",
+      "bytes": 2359127
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/seam-850.png",
+      "bytes": 2335899
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/seam-9650.png",
+      "bytes": 2294038
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/seam-scroll.webm",
+      "bytes": 6468790
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/seams/seams.json",
+      "bytes": 3260
+    },
+    {
+      "path": "tools/traversal/qa/final-convergence/wounded-person-narrow.png",
+      "bytes": 1452703
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/B-random-hostile.png",
+      "bytes": 243421
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/C-optional-mother-child.png",
+      "bytes": 206505
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/D-opening-ambush.png",
+      "bytes": 242038
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/E-fork-choice-before-sign-fix.png",
+      "bytes": 206459
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/F-after-fork.png",
+      "bytes": 212049
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/FINAL-REPORT.md",
+      "bytes": 9488
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/G-delayed-branch-event.png",
+      "bytes": 206728
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/H-travel-view.png",
+      "bytes": 12485
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/asset-audit.json",
+      "bytes": 1507
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/content-audit.md",
+      "bytes": 2969
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/end-transition.json",
+      "bytes": 22352
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/A.png",
+      "bytes": 229134
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/B.png",
+      "bytes": 244947
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/C.png",
+      "bytes": 241765
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/D.png",
+      "bytes": 230644
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/E.png",
+      "bytes": 227739
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/F.png",
+      "bytes": 244768
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/G.png",
+      "bytes": 237463
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/H.png",
+      "bytes": 241828
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/I.png",
+      "bytes": 216746
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/branch.png",
+      "bytes": 211407
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/bypass.json",
+      "bytes": 23193
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/cedric.png",
+      "bytes": 230626
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/combat-branch-bypass.png",
+      "bytes": 206284
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/console-errors.json",
+      "bytes": 2
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/destination-confirmed.png",
+      "bytes": 87921
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/end-transition.json",
+      "bytes": 32288
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/exit.gif",
+      "bytes": 17979121
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/forkChoice.png",
+      "bytes": 119316
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/live-motion.json",
+      "bytes": 85942
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/motion.gif",
+      "bytes": 13006250
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/opposite-lane.json",
+      "bytes": 41281
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/props.png",
+      "bytes": 236259
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/return-bypassed.png",
+      "bytes": 216958
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/final/return-engaged.png",
+      "bytes": 217283
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/live-motion.json",
+      "bytes": 18933
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/optional-approach.png",
+      "bytes": 214424
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/optional-merchant-paused.png",
+      "bytes": 212508
+    },
+    {
+      "path": "tools/traversal/qa/freeze/FINAL-REPORT.md",
+      "bytes": 8407
+    },
+    {
+      "path": "tools/traversal/qa/freeze/baseline/merchant.png",
+      "bytes": 2420899
+    },
+    {
+      "path": "tools/traversal/qa/freeze/baseline/seam-10450.png",
+      "bytes": 2296489
+    },
+    {
+      "path": "tools/traversal/qa/freeze/baseline/seam-2050.png",
+      "bytes": 2328201
+    },
+    {
+      "path": "tools/traversal/qa/freeze/baseline/seam-3250.png",
+      "bytes": 2347054
+    },
+    {
+      "path": "tools/traversal/qa/freeze/baseline/seam-4850.png",
+      "bytes": 2302281
+    },
+    {
+      "path": "tools/traversal/qa/freeze/baseline/seam-5250.png",
+      "bytes": 2325886
+    },
+    {
+      "path": "tools/traversal/qa/freeze/baseline/seam-6850.png",
+      "bytes": 2381896
+    },
+    {
+      "path": "tools/traversal/qa/freeze/baseline/seam-8050.png",
+      "bytes": 2314884
+    },
+    {
+      "path": "tools/traversal/qa/freeze/baseline/seam-850.png",
+      "bytes": 2334643
+    },
+    {
+      "path": "tools/traversal/qa/freeze/baseline/seam-9650.png",
+      "bytes": 2263926
+    },
+    {
+      "path": "tools/traversal/qa/freeze/baseline/seams.json",
+      "bytes": 2215
+    },
+    {
+      "path": "tools/traversal/qa/freeze/covered-narrow.png",
+      "bytes": 3525
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final-audit.json",
+      "bytes": 3692
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/diagnostic-10450.png",
+      "bytes": 1624922
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/diagnostic-2050.png",
+      "bytes": 1678051
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/diagnostic-3250.png",
+      "bytes": 1596937
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/diagnostic-4850.png",
+      "bytes": 1646460
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/diagnostic-5250.png",
+      "bytes": 1614165
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/diagnostic-6850.png",
+      "bytes": 1686684
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/diagnostic-8050.png",
+      "bytes": 1690405
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/diagnostic-850.png",
+      "bytes": 1738359
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/diagnostic-9650.png",
+      "bytes": 1601053
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/lion-first-trial-combat-seam-10450.png",
+      "bytes": 2303956
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/lion-first-trial-combat-seam-6850.png",
+      "bytes": 2320541
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/lion-first-trial-combat-seam-8050.png",
+      "bytes": 2262701
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/lion-first-trial-combat-seam-9650.png",
+      "bytes": 2283138
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/lion-first-trial-event-seam-10450.png",
+      "bytes": 2303956
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/lion-first-trial-event-seam-6850.png",
+      "bytes": 2167609
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/lion-first-trial-event-seam-8050.png",
+      "bytes": 2236376
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/lion-first-trial-event-seam-9650.png",
+      "bytes": 2344347
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/merchant.png",
+      "bytes": 2439310
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/seam-10450.png",
+      "bytes": 2303956
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/seam-2050.png",
+      "bytes": 2342425
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/seam-3250.png",
+      "bytes": 2375700
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/seam-4850.png",
+      "bytes": 2336703
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/seam-5250.png",
+      "bytes": 2356994
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/seam-6850.png",
+      "bytes": 2415483
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/seam-8050.png",
+      "bytes": 2359127
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/seam-850.png",
+      "bytes": 2353240
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/seam-9650.png",
+      "bytes": 2294038
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/seam-scroll.webm",
+      "bytes": 10319500
+    },
+    {
+      "path": "tools/traversal/qa/freeze/final/seams.json",
+      "bytes": 3296
+    },
+    {
+      "path": "tools/traversal/qa/freeze/fork-narrow.png",
+      "bytes": 1327420
+    },
+    {
+      "path": "tools/traversal/qa/freeze/full-tests.json",
+      "bytes": 807526
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/clean-travel.png",
+      "bytes": 2395335
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/collect-gold.png",
+      "bytes": 2510571
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/collect-lion-ward.png",
+      "bytes": 2304402
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/collect-road-cache.png",
+      "bytes": 2406807
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/decision-0.09.png",
+      "bytes": 2377487
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/decision-0.2.png",
+      "bytes": 2381861
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/decision-0.4.png",
+      "bytes": 2450492
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/decision-0.6.png",
+      "bytes": 2441070
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/decision-0.91.png",
+      "bytes": 2462200
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/exit-right.png",
+      "bytes": 2414084
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/fork-approach.png",
+      "bytes": 2363239
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/fork-direct-choice.png",
+      "bytes": 2076679
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/fork-resumed.png",
+      "bytes": 2270934
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/fork-reveal.png",
+      "bytes": 2229274
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/ignored-same-lane-0.09.png",
+      "bytes": 2440815
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/ignored-same-lane-0.4.png",
+      "bytes": 2516304
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/ignored-same-lane-0.6.png",
+      "bytes": 2473327
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/ignored-same-lane-0.91.png",
+      "bytes": 2527872
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/mandatory-approach.png",
+      "bytes": 2424939
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/mandatory-combat.png",
+      "bytes": 1862076
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/report.json",
+      "bytes": 13738
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/transition-entry.png",
+      "bytes": 2451271
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/transition-event.png",
+      "bytes": 2407503
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/transition-focus.png",
+      "bytes": 2433146
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/transition-return.png",
+      "bytes": 904511
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/travel-return.png",
+      "bytes": 2060092
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/avoid/uncluttered-road.png",
+      "bytes": 2355544
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/clean-travel.png",
+      "bytes": 2361443
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/collect-gold.png",
+      "bytes": 2447752
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/collect-lion-ward.png",
+      "bytes": 2302859
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/collect-road-cache.png",
+      "bytes": 2375022
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/decision-0.09.png",
+      "bytes": 2378667
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/decision-0.2.png",
+      "bytes": 2382648
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/decision-0.3.png",
+      "bytes": 2428119
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/decision-0.4.png",
+      "bytes": 2450492
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/decision-0.6.png",
+      "bytes": 2371179
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/decision-0.91.png",
+      "bytes": 2333150
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/exit-right.png",
+      "bytes": 2430204
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/fork-approach.png",
+      "bytes": 2315073
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/fork-direct-choice.png",
+      "bytes": 2085675
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/fork-resumed.png",
+      "bytes": 2291537
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/fork-reveal.png",
+      "bytes": 2329913
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/ignored-same-lane-0.09.png",
+      "bytes": 2441909
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/ignored-same-lane-0.4.png",
+      "bytes": 2481200
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/ignored-same-lane-0.6.png",
+      "bytes": 2443232
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/mandatory-approach.png",
+      "bytes": 2369764
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/mandatory-combat.png",
+      "bytes": 1858460
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/report.json",
+      "bytes": 15065
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/transition-entry.png",
+      "bytes": 2451503
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/transition-event.png",
+      "bytes": 2408039
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/transition-focus.png",
+      "bytes": 2441860
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/transition-return.png",
+      "bytes": 904928
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/travel-return.png",
+      "bytes": 2060091
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/ignore-flee/uncluttered-road.png",
+      "bytes": 2354970
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/canonical-dialogue.png",
+      "bytes": 1906839
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/clean-travel.png",
+      "bytes": 2368403
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/collect-gold.png",
+      "bytes": 2493446
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/collect-lion-ward.png",
+      "bytes": 2304453
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/collect-road-cache.png",
+      "bytes": 2395859
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/decision-0.09.png",
+      "bytes": 2378667
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/decision-0.2.png",
+      "bytes": 2382624
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/decision-0.3.png",
+      "bytes": 2428119
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/decision-0.6.png",
+      "bytes": 2371179
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/decision-0.91.png",
+      "bytes": 2462200
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/exit-right.png",
+      "bytes": 2510427
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/fork-approach.png",
+      "bytes": 2345163
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/fork-direct-choice.png",
+      "bytes": 2077294
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/fork-resumed.png",
+      "bytes": 2250645
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/fork-reveal.png",
+      "bytes": 2235329
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/journey.webm",
+      "bytes": 20398963
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/mandatory-approach.png",
+      "bytes": 2397704
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/mandatory-combat.png",
+      "bytes": 1857749
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/merchant-meet.png",
+      "bytes": 2378593
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/random-combat.png",
+      "bytes": 1861994
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/report.json",
+      "bytes": 19930
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/transition-entry.png",
+      "bytes": 2451605
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/transition-event.png",
+      "bytes": 2330781
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/transition-focus.png",
+      "bytes": 2441902
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/transition-return.png",
+      "bytes": 2356149
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/travel-return.png",
+      "bytes": 2037806
+    },
+    {
+      "path": "tools/traversal/qa/freeze/live-final/meet-fight/uncluttered-road.png",
+      "bytes": 2445364
+    },
+    {
+      "path": "tools/traversal/qa/freeze/production-disabled.png",
+      "bytes": 1128007
+    },
+    {
+      "path": "tools/traversal/qa/freeze/release-check.json",
+      "bytes": 748
+    },
+    {
+      "path": "tools/traversal/qa/freeze/review.html",
+      "bytes": 3962
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-covered.png",
+      "bytes": 5056
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-decision-0.09.png",
+      "bytes": 2414851
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-decision-0.2.png",
+      "bytes": 2439521
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-decision-0.3.png",
+      "bytes": 2487477
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-decision-0.4.png",
+      "bytes": 2498750
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-decision-0.6.png",
+      "bytes": 2523781
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-first-reveal.png",
+      "bytes": 2373330
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-passing-0.09.png",
+      "bytes": 2358848
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-passing-0.2.png",
+      "bytes": 2398904
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-passing-0.3.png",
+      "bytes": 2400217
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-passing-0.4.png",
+      "bytes": 2409132
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-passing-0.6.png",
+      "bytes": 2427523
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-pre-fork.png",
+      "bytes": 2227950
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-selection.png",
+      "bytes": 2153678
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-subject-0.09.png",
+      "bytes": 2378534
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-subject-0.2.png",
+      "bytes": 2383122
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-subject-0.3.png",
+      "bytes": 2428261
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-subject-0.4.png",
+      "bytes": 2438588
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-subject-0.6.png",
+      "bytes": 2459244
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-combat-three-seconds.png",
+      "bytes": 2367168
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-covered.png",
+      "bytes": 5056
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-decision-0.09.png",
+      "bytes": 2419456
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-decision-0.2.png",
+      "bytes": 2438842
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-decision-0.3.png",
+      "bytes": 2483740
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-decision-0.4.png",
+      "bytes": 2502018
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-decision-0.6.png",
+      "bytes": 2523781
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-first-reveal.png",
+      "bytes": 2319717
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-passing-0.09.png",
+      "bytes": 2358848
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-passing-0.2.png",
+      "bytes": 2398949
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-passing-0.3.png",
+      "bytes": 2400217
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-passing-0.4.png",
+      "bytes": 2409132
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-passing-0.6.png",
+      "bytes": 2427148
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-pre-fork.png",
+      "bytes": 2227950
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-selection.png",
+      "bytes": 2153412
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-subject-0.09.png",
+      "bytes": 2378534
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-subject-0.2.png",
+      "bytes": 2382498
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-subject-0.3.png",
+      "bytes": 2428261
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-subject-0.4.png",
+      "bytes": 2438588
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-subject-0.6.png",
+      "bytes": 2459244
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/lion-first-trial-event-three-seconds.png",
+      "bytes": 2366677
+    },
+    {
+      "path": "tools/traversal/qa/freeze/targeted/report.json",
+      "bytes": 2490
+    },
+    {
+      "path": "tools/traversal/qa/freeze/wounded-person-narrow.png",
+      "bytes": 1463339
+    },
+    {
+      "path": "tools/traversal/qa/full-tests.json",
+      "bytes": 798911
+    },
+    {
+      "path": "tools/traversal/qa/fusion/REPORT.md",
+      "bytes": 3985
+    },
+    {
+      "path": "tools/traversal/qa/fusion/branch.png",
+      "bytes": 201886
+    },
+    {
+      "path": "tools/traversal/qa/fusion/console-errors.json",
+      "bytes": 2
+    },
+    {
+      "path": "tools/traversal/qa/fusion/event-transition.json",
+      "bytes": 9916
+    },
+    {
+      "path": "tools/traversal/qa/fusion/fork-transition.json",
+      "bytes": 14794
+    },
+    {
+      "path": "tools/traversal/qa/fusion/fork.png",
+      "bytes": 204707
+    },
+    {
+      "path": "tools/traversal/qa/fusion/mandatory-before-final-height.png",
+      "bytes": 215180
+    },
+    {
+      "path": "tools/traversal/qa/fusion/mandatory.png",
+      "bytes": 224313
+    },
+    {
+      "path": "tools/traversal/qa/fusion/merchant.png",
+      "bytes": 217264
+    },
+    {
+      "path": "tools/traversal/qa/fusion/resting-place.png",
+      "bytes": 209578
+    },
+    {
+      "path": "tools/traversal/qa/fusion/return-travel.png",
+      "bytes": 212163
+    },
+    {
+      "path": "tools/traversal/qa/mandatory-refugees-paused.png",
+      "bytes": 280658
+    },
+    {
+      "path": "tools/traversal/qa/optional-enemy-paused.png",
+      "bytes": 282223
+    },
+    {
+      "path": "tools/traversal/qa/rejected-equal-grid-extraction.json",
+      "bytes": 4069
+    },
+    {
+      "path": "tools/traversal/qa/return-to-route.png",
+      "bytes": 279471
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/CONTENT-AUDIT.md",
+      "bytes": 10270
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/REPORT.md",
+      "bytes": 5345
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/REVIEW.html",
+      "bytes": 3650
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/avoid/collect-gold.png",
+      "bytes": 2301962
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/avoid/collect-lion-ward.png",
+      "bytes": 2327548
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/avoid/collect-road-cache.png",
+      "bytes": 2344361
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/avoid/decision-0.2.png",
+      "bytes": 2368874
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/avoid/decision-0.4.png",
+      "bytes": 2355556
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/avoid/decision-0.6.png",
+      "bytes": 2316447
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/avoid/decision-0.91.png",
+      "bytes": 2324802
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/avoid/fork-approach.png",
+      "bytes": 2372026
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/avoid/fork-direct-choice.png",
+      "bytes": 2095736
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/avoid/fork-resumed.png",
+      "bytes": 2298039
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/avoid/mandatory-approach.png",
+      "bytes": 2409641
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/avoid/mandatory-combat.png",
+      "bytes": 1862076
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/avoid/obstacle-avoid.png",
+      "bytes": 2287188
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/avoid/report.json",
+      "bytes": 7733
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/avoid/travel-return.png",
+      "bytes": 2060096
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/ignore-flee/collect-gold.png",
+      "bytes": 2303169
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/ignore-flee/collect-lion-ward.png",
+      "bytes": 2289749
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/ignore-flee/collect-road-cache.png",
+      "bytes": 2344298
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/ignore-flee/decision-0.09.png",
+      "bytes": 2313232
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/ignore-flee/decision-0.2.png",
+      "bytes": 2370820
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/ignore-flee/decision-0.3.png",
+      "bytes": 2389677
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/ignore-flee/decision-0.4.png",
+      "bytes": 2355853
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/ignore-flee/decision-0.6.png",
+      "bytes": 2316447
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/ignore-flee/decision-0.91.png",
+      "bytes": 2324802
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/ignore-flee/fork-approach.png",
+      "bytes": 2325753
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/ignore-flee/fork-direct-choice.png",
+      "bytes": 2095505
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/ignore-flee/fork-resumed.png",
+      "bytes": 2339625
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/ignore-flee/mandatory-approach.png",
+      "bytes": 2369487
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/ignore-flee/mandatory-combat.png",
+      "bytes": 1859236
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/ignore-flee/obstacle-avoid.png",
+      "bytes": 2287397
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/ignore-flee/report.json",
+      "bytes": 9522
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/ignore-flee/travel-return.png",
+      "bytes": 2060094
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/canonical-dialogue.png",
+      "bytes": 1906742
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/collect-gold.png",
+      "bytes": 2303169
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/collect-lion-ward.png",
+      "bytes": 2326112
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/collect-road-cache.png",
+      "bytes": 2346506
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/decision-0.09.png",
+      "bytes": 2313232
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/decision-0.2.png",
+      "bytes": 2371432
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/decision-0.3.png",
+      "bytes": 2389928
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/decision-0.4.png",
+      "bytes": 2355597
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/decision-0.6.png",
+      "bytes": 2316447
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/decision-0.91.png",
+      "bytes": 2324802
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/fork-approach.png",
+      "bytes": 2311907
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/fork-direct-choice.png",
+      "bytes": 2095757
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/fork-resumed.png",
+      "bytes": 2354827
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/mandatory-approach.png",
+      "bytes": 2342462
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/mandatory-combat.png",
+      "bytes": 1862369
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/merchant-meet.png",
+      "bytes": 2306600
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/obstacle-avoid.png",
+      "bytes": 2311818
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/random-combat.png",
+      "bytes": 980794
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/report.json",
+      "bytes": 11241
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/final/meet-fight/travel-return.png",
+      "bytes": 2037749
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/targeted/combat-variant-resumed.png",
+      "bytes": 1366992
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/targeted/enemy-seed-0.png",
+      "bytes": 1373516
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/targeted/enemy-seed-1.png",
+      "bytes": 1374401
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/targeted/enemy-seed-2.png",
+      "bytes": 1367725
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/targeted/flee-visible.png",
+      "bytes": 1472702
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/targeted/fork-full-cover.png",
+      "bytes": 3525
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/targeted/fork-narrow.png",
+      "bytes": 1253064
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/targeted/ignored-visible.png",
+      "bytes": 1375847
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/targeted/report.json",
+      "bytes": 767
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/ARCHITECTURE.md",
+      "bytes": 3357
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/PROMPTS.md",
+      "bytes": 11047
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/REPORT.md",
+      "bytes": 6635
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/ambush-cleared-runtime-environment.png",
+      "bytes": 2343217
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/ambush-cleared-runtime.png",
+      "bytes": 2379861
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/ambush-event.png",
+      "bytes": 1833419
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/ambush-gate.png",
+      "bytes": 2370630
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/ambush-route-environment.png",
+      "bytes": 2418491
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/ambush-route.png",
+      "bytes": 2371224
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/ambush-without-actors.png",
+      "bytes": 2418475
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/asset-audit.json",
+      "bytes": 3446
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/baseline-merchant.png",
+      "bytes": 2113617
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/branch-lion-first-trial-combat-environment.png",
+      "bytes": 2420797
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/branch-lion-first-trial-combat.png",
+      "bytes": 2364795
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/ambush-cleared-runtime-environment.png",
+      "bytes": 2342210
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/ambush-cleared-runtime.png",
+      "bytes": 2332523
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/ambush-route-environment.png",
+      "bytes": 2418491
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/ambush-route.png",
+      "bytes": 2371250
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/branch-lion-first-trial-combat-environment.png",
+      "bytes": 2391700
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/branch-lion-first-trial-combat.png",
+      "bytes": 2333343
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/fork-choice-environment.png",
+      "bytes": 2391976
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/fork-choice.png",
+      "bytes": 1519724
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/fork-gate-environment.png",
+      "bytes": 2391976
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/fork-gate.png",
+      "bytes": 2328323
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/merchant-route-environment.png",
+      "bytes": 2366085
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/merchant-route.png",
+      "bytes": 2313714
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/rest-gate-environment.png",
+      "bytes": 2362566
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/rest-gate.png",
+      "bytes": 2319560
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/return-travel-lion-first-trial-combat.png",
+      "bytes": 904460
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/route-lion-first-trial-combat.json",
+      "bytes": 4215
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/simple-0.3-environment.png",
+      "bytes": 2432832
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/simple-0.3.png",
+      "bytes": 2381799
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/simple-0.75-environment.png",
+      "bytes": 2359781
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-combat/simple-0.75.png",
+      "bytes": 2309939
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/ambush-cleared-runtime-environment.png",
+      "bytes": 2343217
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/ambush-cleared-runtime.png",
+      "bytes": 2377140
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/ambush-route-environment.png",
+      "bytes": 2418491
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/ambush-route.png",
+      "bytes": 2371224
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/branch-lion-first-trial-event-environment.png",
+      "bytes": 2376943
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/branch-lion-first-trial-event.png",
+      "bytes": 2324189
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/fork-choice-environment.png",
+      "bytes": 2391976
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/fork-choice.png",
+      "bytes": 1519724
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/fork-gate-environment.png",
+      "bytes": 2391976
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/fork-gate.png",
+      "bytes": 2328359
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/merchant-route-environment.png",
+      "bytes": 2366085
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/merchant-route.png",
+      "bytes": 2313705
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/rest-gate-environment.png",
+      "bytes": 2362599
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/rest-gate.png",
+      "bytes": 2319505
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/return-travel-lion-first-trial-event.png",
+      "bytes": 2060086
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/route-lion-first-trial-event.json",
+      "bytes": 4663
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/simple-0.3-environment.png",
+      "bytes": 2432832
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/simple-0.3.png",
+      "bytes": 2381815
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/simple-0.4-environment.png",
+      "bytes": 2401828
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/simple-0.4.png",
+      "bytes": 2355095
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/simple-0.75-environment.png",
+      "bytes": 2359781
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-event/simple-0.75.png",
+      "bytes": 2309906
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-merchant-960/merchant-after-interaction.png",
+      "bytes": 1219760
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-merchant-960/merchant-approach.png",
+      "bytes": 1249488
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-merchant-960/merchant-browser.json",
+      "bytes": 440
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-merchant-960/merchant-gate.png",
+      "bytes": 1160668
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-merchant-960/merchant-lead-in.png",
+      "bytes": 1272957
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-merchant-960/merchant-motion.webm",
+      "bytes": 1524918
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/final-merchant-960/merchant-without-actors.png",
+      "bytes": 1208502
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/fork-choice-environment.png",
+      "bytes": 2390825
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/fork-choice.png",
+      "bytes": 1519454
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/fork-gate-environment.png",
+      "bytes": 2390825
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/fork-gate.png",
+      "bytes": 2328185
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/full-tests-bounded.json",
+      "bytes": 805068
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/full-tests.json",
+      "bytes": 807598
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/gates-errors.json",
+      "bytes": 2
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/merchant-after-interaction.png",
+      "bytes": 2295938
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/merchant-approach.png",
+      "bytes": 2386093
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/merchant-browser.json",
+      "bytes": 436
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/merchant-gate.png",
+      "bytes": 2320818
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/merchant-lead-in.png",
+      "bytes": 2310241
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/merchant-route-environment.png",
+      "bytes": 2366085
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/merchant-route.png",
+      "bytes": 2313747
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/merchant-without-actors.png",
+      "bytes": 2373227
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/rest-gate-environment.png",
+      "bytes": 2372975
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/rest-gate.png",
+      "bytes": 2332307
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/return-travel-lion-first-trial-combat.png",
+      "bytes": 952822
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/review-page.png",
+      "bytes": 2004891
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/review.html",
+      "bytes": 4218
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/route-lion-first-trial-combat.json",
+      "bytes": 4206
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/scope-audit.json",
+      "bytes": 463
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/simple-0.3-environment.png",
+      "bytes": 2432832
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/simple-0.3.png",
+      "bytes": 2375458
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/simple-0.75-environment.png",
+      "bytes": 2358585
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/simple-0.75.png",
+      "bytes": 2313424
+    },
+    {
+      "path": "tools/traversal/taxonomy-review.html",
+      "bytes": 1248
+    },
+    {
+      "path": "tools/traversal/qa/build.log",
+      "bytes": 2379,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/convergence/avoid-final.log",
+      "bytes": 698,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/convergence/build.log",
+      "bytes": 2440,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/convergence/contacts.log",
+      "bytes": 785,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/convergence/focused-tests.log",
+      "bytes": 2521,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/convergence/full-tests.log",
+      "bytes": 23839,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/convergence/ignore-flee-final.log",
+      "bytes": 893,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/convergence/live-final.log",
+      "bytes": 2621,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/convergence/meet-fight-final.log",
+      "bytes": 1035,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/convergence/meet-final.log",
+      "bytes": 1046,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/convergence/targeted.log",
+      "bytes": 663,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/convergence-final-live.log",
+      "bytes": 1035,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/convergence-focused.log",
+      "bytes": 2643,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/convergence-live.log",
+      "bytes": 2645,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/convergence-targeted.log",
+      "bytes": 663,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/convergence-typecheck.log",
+      "bytes": 0,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/build.log",
+      "bytes": 2380,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/diff-check.log",
+      "bytes": 0,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/full-tests.log",
+      "bytes": 23556,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/forest-v4/typecheck.log",
+      "bytes": 0,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/full-tests.log",
+      "bytes": 343,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/fusion/build.log",
+      "bytes": 2379,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/fusion/diff-check.log",
+      "bytes": 0,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/fusion/full-tests.log",
+      "bytes": 23535,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/build.log",
+      "bytes": 2379,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/focused-tests.log",
+      "bytes": 1950,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/taxonomy-v1/full-tests.log",
+      "bytes": 23562,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/build.log",
+      "bytes": 2380,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/full-tests-bounded.log",
+      "bytes": 247,
+      "tracked": false
+    },
+    {
+      "path": "tools/traversal/qa/world-v1/full-tests.log",
+      "bytes": 239,
+      "tracked": false
+    }
+  ],
+  "directoriesRemoved": [
+    "tools/traversal/qa/final-convergence/isolated/live-final/ignore-flee",
+    "tools/traversal/qa/caravan-depth/live-final/avoid",
+    "tools/traversal/qa/caravan-depth/live-final/ignore-flee",
+    "tools/traversal/qa/caravan-depth/live-final/lower-review",
+    "tools/traversal/qa/caravan-depth/live-final/meet-fight",
+    "tools/traversal/qa/caravan-depth/live-final/upper-review",
+    "tools/traversal/qa/convergence/live/avoid",
+    "tools/traversal/qa/convergence/live/ignore-flee",
+    "tools/traversal/qa/convergence/live/meet-fight",
+    "tools/traversal/qa/final-convergence/caravan/processed",
+    "tools/traversal/qa/final-convergence/isolated/live-final",
+    "tools/traversal/qa/final-convergence/live-final/avoid",
+    "tools/traversal/qa/final-convergence/live-final/ignore-flee",
+    "tools/traversal/qa/final-convergence/live-final/meet-fight",
+    "tools/traversal/qa/freeze/live-final/avoid",
+    "tools/traversal/qa/freeze/live-final/ignore-flee",
+    "tools/traversal/qa/freeze/live-final/meet-fight",
+    "tools/traversal/qa/taxonomy-v1/final/avoid",
+    "tools/traversal/qa/taxonomy-v1/final/ignore-flee",
+    "tools/traversal/qa/taxonomy-v1/final/meet-fight",
+    "tools/traversal/qa/caravan-depth/candidates",
+    "tools/traversal/qa/caravan-depth/live-final",
+    "tools/traversal/qa/caravan-depth/runtime",
+    "tools/traversal/qa/caravan-depth/seams",
+    "tools/traversal/qa/caravan-depth/targeted",
+    "tools/traversal/qa/convergence/chest-processing",
+    "tools/traversal/qa/convergence/contacts",
+    "tools/traversal/qa/convergence/live",
+    "tools/traversal/qa/convergence/targeted",
+    "tools/traversal/qa/final-convergence/baseline",
+    "tools/traversal/qa/final-convergence/caravan",
+    "tools/traversal/qa/final-convergence/final",
+    "tools/traversal/qa/final-convergence/isolated",
+    "tools/traversal/qa/final-convergence/live-final",
+    "tools/traversal/qa/final-convergence/runtime",
+    "tools/traversal/qa/final-convergence/seams",
+    "tools/traversal/qa/forest-v4/final",
+    "tools/traversal/qa/freeze/baseline",
+    "tools/traversal/qa/freeze/final",
+    "tools/traversal/qa/freeze/live-final",
+    "tools/traversal/qa/freeze/targeted",
+    "tools/traversal/qa/taxonomy-v1/final",
+    "tools/traversal/qa/taxonomy-v1/targeted",
+    "tools/traversal/qa/world-v1/final-combat",
+    "tools/traversal/qa/world-v1/final-event",
+    "tools/traversal/qa/world-v1/final-merchant-960",
+    "tools/traversal/qa/caravan-depth",
+    "tools/traversal/qa/final-convergence",
+    "tools/traversal/qa/freeze",
+    "docs/reports/traversal-t0-route-checkpoints-1-browser",
+    "docs/reports/traversal-t0-route-checkpoints-1-final-browser",
+    "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser",
+    "tools/traversal/qa/convergence",
+    "tools/traversal/qa/forest-v4",
+    "tools/traversal/qa/fusion",
+    "tools/traversal/qa/taxonomy-v1",
+    "tools/traversal/qa/world-v1",
+    "tools/traversal/qa",
+    "tools/traversal"
+  ],
+  "fileCount": 1163,
+  "bytesRemoved": 2100963814
+}

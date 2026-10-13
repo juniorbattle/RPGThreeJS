@@ -1,0 +1,110 @@
+import { TRAVERSAL_T0_ASSETS } from './TraversalT0Assets';
+import { routeWorldCamera, type TraversalWorldPresentation, type TraversalWorldSection } from './TraversalWorldModel';
+
+export type { TraversalWorldSectionKind, TraversalWorldSection } from './TraversalWorldModel';
+
+const ROOT = '/assets/generated/lion-phase/traversal/t0/world-v1';
+/** Logical road units on each side of a join; presentation only, outside owned intervals. */
+export const TRAVERSAL_SECTION_OVERLAP = 60;
+export const TRAVERSAL_WORLD_ASSETS = Object.freeze({
+  forest: `${ROOT}/forest-road.png`,
+  ambush: `${ROOT}/opening-ambush.png`,
+  ambushCleared: `${ROOT}/ambush-cleared.png`,
+  fork: `${ROOT}/forest-junction.png`,
+  rest: `${ROOT}/refugee-halt.png`,
+  nomad: `${ROOT}/nomad-waystation.png`,
+  caravan: `${ROOT}/damaged-caravan.png`,
+  ruins: `${ROOT}/ruined-outpost.png`,
+});
+
+// Each section owns a whole interval, including its approach and departure terrain.
+// Alternating edge orientation joins the same painted forest boundary to itself.
+// Lot A keeps the authored checkpoint approaches but no longer presents the merchant halt.
+export const TRAVERSAL_T0_WORLD: readonly TraversalWorldSection[] = Object.freeze(
+  Array.from({ length: 10 }, (_, index): TraversalWorldSection => {
+    // Give inhabited clearings longer approaches and departures. Adjacent forest/outpost
+    // intervals absorb the spacing; the same authored boundaries still meet exactly.
+    const boundaries = [-350, 850, 2050, 3250, 4850, 5250, 6850, 8050, 9650, 10450, 11650];
+    const worldStart = boundaries[index]!;
+    const worldEnd = boundaries[index + 1]!;
+    const authored = ({
+      2: { id: 'opening-ambush', kind: 'CORRIDOR', asset: TRAVERSAL_WORLD_ASSETS.ambush },
+      3: { id: 'nomad-waystation', kind: 'ENVIRONMENT', asset: TRAVERSAL_WORLD_ASSETS.nomad },
+      5: { id: 'resting-clearing', kind: 'ENVIRONMENT', asset: TRAVERSAL_WORLD_ASSETS.rest },
+      6: { id: 'forest-junction', kind: 'TRANSITION', asset: TRAVERSAL_WORLD_ASSETS.fork },
+      7: { id: 'selected-route', kind: 'ENVIRONMENT', asset: TRAVERSAL_WORLD_ASSETS.forest },
+    } as const)[index as 2 | 3 | 5 | 6 | 7];
+    return Object.freeze({
+      id: authored?.id ?? `forest-${index}`,
+      kind: authored?.kind ?? 'FOREST',
+      worldStart, worldEnd,
+      coreStart: worldStart + (index === 6 ? 780 : (worldEnd - worldStart) * .2),
+      coreEnd: worldStart + (index === 6 ? 1080 : (worldEnd - worldStart) * .8),
+      asset: authored?.asset ?? TRAVERSAL_WORLD_ASSETS.forest,
+      mirror: index % 2 === 0,
+      ...(index === 2 ? { clearedAsset: TRAVERSAL_WORLD_ASSETS.ambushCleared } : {}),
+      ...(index === 6 ? { props: Object.freeze([Object.freeze({ id: 'junction-sign',
+        asset: TRAVERSAL_T0_ASSETS.forkSign, worldX: 7840, groundPercent: 57, vehicleHeightRatio: .68 })]) } : {}),
+      ...(index === 7 ? { variantAssets: Object.freeze({
+        'lion-first-trial-event': TRAVERSAL_WORLD_ASSETS.caravan,
+        'lion-first-trial-combat': TRAVERSAL_WORLD_ASSETS.ruins,
+      }) } : {}),
+    });
+  }),
+);
+
+/** Every active T0 Route uses checkpoint-scale forest painting without event dressing.
+ * RouteRun still owns time, speed and progress; this is presentation geography only.
+ */
+export const TRAVERSAL_T0_ROUTE_WORLD: readonly TraversalWorldSection[] = Object.freeze(
+  Array.from({ length: 14 }, (_, index): TraversalWorldSection => {
+    const worldStart = -350 + index * 1200;
+    return Object.freeze({ id: `route-forest-${index}`, kind: 'FOREST',
+      worldStart, worldEnd: worldStart + 1200,
+      coreStart: worldStart + 240, coreEnd: worldStart + 960,
+      asset: TRAVERSAL_WORLD_ASSETS.forest, mirror: index % 2 === 0 });
+  }),
+);
+
+/** The painted sections repeat after an even count so the mirrored joins keep their phase. */
+export const TRAVERSAL_T0_ROUTE_WORLD_PERIOD = TRAVERSAL_T0_ROUTE_WORLD.at(-1)!.worldEnd
+  - TRAVERSAL_T0_ROUTE_WORLD[0]!.worldStart;
+
+export function t0RouteWorldCamera(distance: number): number {
+  return routeWorldCamera(distance, TRAVERSAL_T0_ROUTE_WORLD, TRAVERSAL_T0_ROUTE_WORLD_PERIOD);
+}
+
+export function traversalLocation(id: string): TraversalWorldSection | undefined {
+  return TRAVERSAL_T0_WORLD.find(section => section.id === id);
+}
+
+/** Derive geography from the branch already committed by RunSystem. No route mutation.
+ * The fade changes camera axis: the junction and its sign do not exist on this lateral road.
+ * Keep the encounter's road coordinate/core so return-to-route and contact timing are stable.
+ */
+export function resolveTraversalWorld(presentedBranch: string): readonly TraversalWorldSection[] {
+  const selected = traversalLocation('selected-route')!;
+  const asset = selected.variantAssets?.[presentedBranch];
+  if (!asset) return TRAVERSAL_T0_WORLD;
+  const junction = traversalLocation('forest-junction')!;
+  return TRAVERSAL_T0_WORLD.map(section => {
+    if (section.id === junction.id) return Object.freeze({ ...section,
+      id: 'selected-approach', kind: 'ENVIRONMENT' as const,
+      // The human route approaches a caravan through open woods; the combat route
+      // enters the overgrown outpost perimeter. Keep authored image widths intact.
+      asset: asset === TRAVERSAL_WORLD_ASSETS.caravan ? TRAVERSAL_WORLD_ASSETS.forest : asset,
+      props: undefined,
+    });
+    return section.id === selected.id ? Object.freeze({ ...section, asset, variantAssets: undefined }) : section;
+  });
+}
+
+export const TRAVERSAL_T0_WORLD_PRESENTATION: TraversalWorldPresentation = Object.freeze({
+  checkpointSections: TRAVERSAL_T0_WORLD,
+  routeSections: TRAVERSAL_T0_ROUTE_WORLD,
+  routePeriod: TRAVERSAL_T0_ROUTE_WORLD_PERIOD,
+  forestAsset: TRAVERSAL_WORLD_ASSETS.forest,
+  sectionOverlap: TRAVERSAL_SECTION_OVERLAP,
+  directionSignPropId: 'junction-sign',
+  resolveWorld: resolveTraversalWorld,
+});

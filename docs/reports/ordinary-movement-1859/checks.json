@@ -1,0 +1,772 @@
+{
+  "TASK": "ORDINARY-COMBAT-MOVEMENT-OS-REDUCTION-1859",
+  "DOMAIN": "Combat presentation, UI, earned campaign QA",
+  "BASELINE": "dev@577ab03ad70debe6fb9ea9462348bcbc5837f094",
+  "BRANCH": "dev",
+  "HEAD": "9a4acdead9081282f5a624a575c6346adbb0860e",
+  "STATUS": "review; accepted scoped locally; public publication blocked",
+  "MERGED_IN": "NONE",
+  "SUPERSEDES": "NONE",
+  "SUPERSEDED_BY": "NONE",
+  "PRODUCTION_IMPACT": "Tagged ordinary movement suppresses decorative lift/tilt/squash with effective live reduction; native tactical completion unchanged",
+  "CANONICAL_DOCS_UPDATED": [
+    "docs/autonomy/BATTLEFIELD_KEYBOARD.md"
+  ],
+  "EVIDENCE": "docs/reports/ordinary-movement-1859/checks.json and explicitly selected root-inspected captures",
+  "recordedAt": "2026-10-08T19:43:18.405Z",
+  "contractSet": "1.1.0",
+  "immutableBaseline": "d7ca28aed5c377ffedb03202f6364b7a947d1096",
+  "checks": {
+    "focusedTests": 123,
+    "testFiles": 6,
+    "typescript": "PASS",
+    "contracts": "PASS 8/8 slots8",
+    "lockedGate": "PASS empty",
+    "protectedWorkingTree": "PASS empty",
+    "whitespace": "PASS",
+    "build": "PASS 210modules/eightMP4",
+    "combatBundle": "dist/assets/combat-CG8vRd5H.js"
+  },
+  "campaign": {
+    "acceptance": "ACCEPTED_SCOPED_EARNED_SECOND_REFUGE_1366_NORMAL",
+    "baseline": "577ab03ad70debe6fb9ea9462348bcbc5837f094",
+    "receiptPath": "tmp/demo/campaign-second-refuge-1859/qa-job.json",
+    "receiptSha256": "e7cb9293d9774496ab1e09033f9a33734396374c166e76993706a2ec21544fbf",
+    "resultPath": "tmp/demo/campaign-second-refuge-1859/results.json",
+    "resultSha256": "1eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3",
+    "provenance": {
+      "gitHead": "577ab03ad70debe6fb9ea9462348bcbc5837f094",
+      "sourceTree": "073bc44a3e2ed2b3a46ad189867994e86119254b",
+      "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "driver": {
+        "path": "tools/demo-continuous-production-qa.mjs",
+        "sha256": "68e7466e21202dc346b6763ef9bd545718e5aadc73449912ddf10b39e1576ed0"
+      },
+      "inputs": [
+        {
+          "role": "earnedSavePath",
+          "path": "tmp/demo/campaign-first-refuge-1214/earned-first-refuge-v6.json",
+          "sha256": "3f5a7391e4641bad288455df175441e8a8629dc5c4e192f5d2641fb0c737d7db"
+        },
+        {
+          "role": "priorProofPath",
+          "path": "tmp/demo/campaign-first-refuge-1214/results.json",
+          "sha256": "c82b21818668943b172dd7409f6febd146eaebbfdb3d62e04da81476e476c2b2"
+        }
+      ],
+      "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+      "build": [
+        {
+          "path": "dist/assets/ReducedMotion-CgtHztqA.js",
+          "sha256": "b1f8cbeab4c54a8c7eea48e6eeda9ac635b0fbdcb41115b9d375e98233fa0802"
+        },
+        {
+          "path": "dist/assets/combat-D7CRRhwk.js",
+          "sha256": "bb3020abc4900882616c9175fccdf2a1229c9e1a9b056f7e8d5c0db3b9d80e9e"
+        },
+        {
+          "path": "dist/assets/combat-DGLEfKFr.css",
+          "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+        },
+        {
+          "path": "dist/assets/game-3pkMo-Ir.css",
+          "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+        },
+        {
+          "path": "dist/assets/game-CfeGt3vL.js",
+          "sha256": "b059922fb1efd0bdc9944e07e83a4f75e1d1a9fd74b4db6eae90456ba2d365b4"
+        },
+        {
+          "path": "dist/assets/three-core-f0ajj1rG.js",
+          "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+        },
+        {
+          "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+          "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+        },
+        {
+          "path": "dist/assets/validation-mSkvzYyn.js",
+          "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "eb6086357447b6e5b34da2c0ffdfa1956d9e0d98472ab195b513fa1c19c32abb"
+        }
+      ]
+    },
+    "parameters": {
+      "target": "second-refuge",
+      "routePlan": "rescue",
+      "timeoutMinutes": 35,
+      "finalePlan": "serpent",
+      "defeatNodeId": "lion-village-choice",
+      "nativeDefeatWait": false,
+      "viewport": [
+        1366,
+        768
+      ],
+      "osReducedMotion": false,
+      "earnedSavePath": "tmp/demo/campaign-first-refuge-1214/earned-first-refuge-v6.json",
+      "priorProofPath": "tmp/demo/campaign-first-refuge-1214/results.json",
+      "verifySalvation": false
+    },
+    "requiredAssertions": [
+      "EARNED_LINEAGE",
+      "NATIVE_INPUTS",
+      "EXACT_RELOAD"
+    ],
+    "lineage": {
+      "savePath": "tmp/demo/campaign-first-refuge-1214/earned-first-refuge-v6.json",
+      "priorProofPath": "tmp/demo/campaign-first-refuge-1214/results.json",
+      "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+      "sha256": "3f5a7391e4641bad288455df175441e8a8629dc5c4e192f5d2641fb0c737d7db",
+      "proofSha256": "c82b21818668943b172dd7409f6febd146eaebbfdb3d62e04da81476e476c2b2"
+    },
+    "nativeRestCost": 60,
+    "nativeInputs": 17,
+    "battles": [
+      {
+        "nodeId": "lion-opening-ambush",
+        "actions": 34,
+        "round": 11,
+        "outcome": "victory"
+      },
+      {
+        "nodeId": "lion-valmir-road",
+        "actions": 42,
+        "round": 9,
+        "outcome": "victory"
+      },
+      {
+        "nodeId": "lion-village-choice",
+        "actions": 27,
+        "round": 6,
+        "outcome": "victory"
+      }
+    ],
+    "node": "lion-second-refuge",
+    "securedGold": 300,
+    "exactV6Reload": true,
+    "savePath": "tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json",
+    "saveSha256": "67d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b",
+    "nextPreparation": "Native rest75 before further combat;3KO/all5wounded",
+    "reviewers": [
+      "root",
+      "contracts-guardian"
+    ],
+    "scope": "Frozen prior build only; no movement-build/campaign ending/balance/settledStage acceptance",
+    "temporaryGold": 0
+  },
+  "movement": {
+    "status": "SUCCEEDED",
+    "acceptance": "ACCEPTED_SCOPED_ORDINARY_MOVEMENT_LIVE_OS_6_CASES",
+    "pass": true,
+    "errors": [],
+    "receiptPath": "tmp/demo/ordinary-movement-1859-v2/qa-job.json",
+    "receiptSha256": "25ff89db06708d7717a8b2c284b153d11e72d0de5bee37c42c5c864b78cde257",
+    "resultPath": "tmp/demo/ordinary-movement-1859-v2/results.json",
+    "resultSha256": "c246bdb3f872ccdf05cd197c3b9fd8ca3da2fc90aef223a867ba2997d6f4cc95",
+    "provenance": {
+      "gitHead": "577ab03ad70debe6fb9ea9462348bcbc5837f094",
+      "sourceTree": "073bc44a3e2ed2b3a46ad189867994e86119254b",
+      "sourceDiffSha256": "b8dfb8135f39cbebddbfd23cbdee2c28c15084767b3ee21fababee5e4092b57c",
+      "driver": {
+        "path": "tools/combat-battlefield-keyboard-production-qa.mjs",
+        "sha256": "54da662312c2921046ad1d0bd21ee1cf7546cf9e638a78f520b728f46916cd0c"
+      },
+      "inputs": [],
+      "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+      "build": [
+        {
+          "path": "dist/assets/ReducedMotion-CgtHztqA.js",
+          "sha256": "b1f8cbeab4c54a8c7eea48e6eeda9ac635b0fbdcb41115b9d375e98233fa0802"
+        },
+        {
+          "path": "dist/assets/combat-CG8vRd5H.js",
+          "sha256": "c1d9157621ad8c59e45f29b0d145fdf313058a98958efafc519d19dc07238474"
+        },
+        {
+          "path": "dist/assets/combat-DGLEfKFr.css",
+          "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+        },
+        {
+          "path": "dist/assets/game-3pkMo-Ir.css",
+          "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+        },
+        {
+          "path": "dist/assets/game-CfeGt3vL.js",
+          "sha256": "b059922fb1efd0bdc9944e07e83a4f75e1d1a9fd74b4db6eae90456ba2d365b4"
+        },
+        {
+          "path": "dist/assets/three-core-f0ajj1rG.js",
+          "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+        },
+        {
+          "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+          "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+        },
+        {
+          "path": "dist/assets/validation-mSkvzYyn.js",
+          "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "eb6086357447b6e5b34da2c0ffdfa1956d9e0d98472ab195b513fa1c19c32abb"
+        }
+      ]
+    },
+    "parameters": {
+      "viewports": [
+        [
+          1366,
+          768
+        ],
+        [
+          620,
+          780
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "motionModes": [
+        "no-preference",
+        "reduce"
+      ],
+      "movementMotion": true
+    },
+    "requiredAssertions": [
+      "ACTUAL_TAB_BATTLEFIELD",
+      "TRANSIENT_CURSOR_ONLY",
+      "NATIVE_INVALID_AND_LEGAL_MOVE",
+      "NATIVE_TARGET_EXECUTION",
+      "CANCEL_AND_RETURN_FOCUS",
+      "NATIVE_CONTROLS",
+      "POINTER_REGRESSION",
+      "ORDINARY_MOVE_LIVE_OS_REDUCTION",
+      "UNCHANGED_MOVEMENT_COMPLETION"
+    ],
+    "provenanceStable": true,
+    "matchesCurrentExecutionAtReview": true,
+    "physicalFreeze": {
+      "path": "tmp/autonomy/run-1859/motion-physical-freeze-v2.json",
+      "sha256": "6ccb66dcf7d81ba62028e7a0c92348f3f5e29c50dcadf3bcd0263ce371c200b7",
+      "physicalFilesMatched": 396,
+      "sourceCommitComparison": "After commit compare physical bytes; Git fingerprint changes are not identical execution"
+    },
+    "cases": [
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "initialMode": "no-preference",
+        "pass": true,
+        "checks": [
+          "Native manual keyboard deployment/removal",
+          "Actual Tab/Shift+Tab canvas entry/exit with visible focus",
+          "Grid edges/arrows preserve all tactical truth",
+          "Canvas inspection Enter/Space never ends a turn",
+          "Origin-cell Enter cannot move or spend AP",
+          "Escape restores enabled dock focus",
+          "Legal native move restores dock focus",
+          "Exactly one native reachable move",
+          "Live OS movement decoration changes without altering native completion",
+          "Native attack Enter opens submenu only",
+          "Retour restores dock focus",
+          "Native attack Space opens submenu only",
+          "Retour restores dock focus",
+          "Invalid target Enter does not resolve/spend AP",
+          "Target Escape restores native attack focus",
+          "Native target execution restores enabled dock",
+          "Native legal foe target resolves once",
+          "Pointer target resolves through shared native activation",
+          "Native Wait advances one turn"
+        ],
+        "sampleCount": 13,
+        "reducedSampleCount": 7,
+        "first": {
+          "os": false,
+          "effective": false
+        },
+        "last": {
+          "os": true,
+          "effective": true
+        },
+        "deliveryMismatchSamples": 1,
+        "path": [
+          {
+            "gx": 1,
+            "gz": 2,
+            "x": -2.9499999999999997,
+            "y": 0,
+            "z": 0.59
+          },
+          {
+            "gx": 2,
+            "gz": 2,
+            "x": -1.77,
+            "y": 0,
+            "z": 0.59
+          },
+          {
+            "gx": 3,
+            "gz": 2,
+            "x": -0.59,
+            "y": 0,
+            "z": 0.59
+          },
+          {
+            "gx": 4,
+            "gz": 2,
+            "x": 0.59,
+            "y": 0,
+            "z": 0.59
+          }
+        ],
+        "maxReducedTerrainError": 0,
+        "maxReducedTilt": 0
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "initialMode": "reduce",
+        "pass": true,
+        "checks": [
+          "Native manual keyboard deployment/removal",
+          "Actual Tab/Shift+Tab canvas entry/exit with visible focus",
+          "Grid edges/arrows preserve all tactical truth",
+          "Canvas inspection Enter/Space never ends a turn",
+          "Origin-cell Enter cannot move or spend AP",
+          "Escape restores enabled dock focus",
+          "Legal native move restores dock focus",
+          "Exactly one native reachable move",
+          "Live OS movement decoration changes without altering native completion",
+          "Native attack Enter opens submenu only",
+          "Retour restores dock focus",
+          "Native attack Space opens submenu only",
+          "Retour restores dock focus",
+          "Invalid target Enter does not resolve/spend AP",
+          "Target Escape restores native attack focus",
+          "Native target execution restores enabled dock",
+          "Native legal foe target resolves once",
+          "Pointer target resolves through shared native activation",
+          "Native Wait advances one turn"
+        ],
+        "sampleCount": 13,
+        "reducedSampleCount": 4,
+        "first": {
+          "os": true,
+          "effective": true
+        },
+        "last": {
+          "os": false,
+          "effective": false
+        },
+        "deliveryMismatchSamples": 1,
+        "path": [
+          {
+            "gx": 1,
+            "gz": 2,
+            "x": -2.9499999999999997,
+            "y": 0,
+            "z": 0.59
+          },
+          {
+            "gx": 2,
+            "gz": 2,
+            "x": -1.77,
+            "y": 0,
+            "z": 0.59
+          },
+          {
+            "gx": 3,
+            "gz": 2,
+            "x": -0.59,
+            "y": 0,
+            "z": 0.59
+          },
+          {
+            "gx": 4,
+            "gz": 2,
+            "x": 0.59,
+            "y": 0,
+            "z": 0.59
+          }
+        ],
+        "maxReducedTerrainError": 0,
+        "maxReducedTilt": 0
+      },
+      {
+        "viewport": [
+          620,
+          780
+        ],
+        "initialMode": "no-preference",
+        "pass": true,
+        "checks": [
+          "Native manual keyboard deployment/removal",
+          "Actual Tab/Shift+Tab canvas entry/exit with visible focus",
+          "Grid edges/arrows preserve all tactical truth",
+          "Canvas inspection Enter/Space never ends a turn",
+          "Origin-cell Enter cannot move or spend AP",
+          "Escape restores enabled dock focus",
+          "Legal native move restores dock focus",
+          "Exactly one native reachable move",
+          "Live OS movement decoration changes without altering native completion",
+          "Native attack Enter opens submenu only",
+          "Retour restores dock focus",
+          "Native attack Space opens submenu only",
+          "Retour restores dock focus",
+          "Invalid target Enter does not resolve/spend AP",
+          "Target Escape restores native attack focus",
+          "Native target execution restores enabled dock",
+          "Native legal foe target resolves once",
+          "Pointer target resolves through shared native activation",
+          "Native Wait advances one turn"
+        ],
+        "sampleCount": 13,
+        "reducedSampleCount": 7,
+        "first": {
+          "os": false,
+          "effective": false
+        },
+        "last": {
+          "os": true,
+          "effective": true
+        },
+        "deliveryMismatchSamples": 1,
+        "path": [
+          {
+            "gx": 1,
+            "gz": 2,
+            "x": -2.9499999999999997,
+            "y": 0,
+            "z": 0.59
+          },
+          {
+            "gx": 2,
+            "gz": 2,
+            "x": -1.77,
+            "y": 0,
+            "z": 0.59
+          },
+          {
+            "gx": 3,
+            "gz": 2,
+            "x": -0.59,
+            "y": 0,
+            "z": 0.59
+          },
+          {
+            "gx": 4,
+            "gz": 2,
+            "x": 0.59,
+            "y": 0,
+            "z": 0.59
+          }
+        ],
+        "maxReducedTerrainError": 0,
+        "maxReducedTilt": 0
+      },
+      {
+        "viewport": [
+          620,
+          780
+        ],
+        "initialMode": "reduce",
+        "pass": true,
+        "checks": [
+          "Native manual keyboard deployment/removal",
+          "Actual Tab/Shift+Tab canvas entry/exit with visible focus",
+          "Grid edges/arrows preserve all tactical truth",
+          "Canvas inspection Enter/Space never ends a turn",
+          "Origin-cell Enter cannot move or spend AP",
+          "Escape restores enabled dock focus",
+          "Legal native move restores dock focus",
+          "Exactly one native reachable move",
+          "Live OS movement decoration changes without altering native completion",
+          "Native attack Enter opens submenu only",
+          "Retour restores dock focus",
+          "Native attack Space opens submenu only",
+          "Retour restores dock focus",
+          "Invalid target Enter does not resolve/spend AP",
+          "Target Escape restores native attack focus",
+          "Native target execution restores enabled dock",
+          "Native legal foe target resolves once",
+          "Pointer target resolves through shared native activation",
+          "Native Wait advances one turn"
+        ],
+        "sampleCount": 13,
+        "reducedSampleCount": 4,
+        "first": {
+          "os": true,
+          "effective": true
+        },
+        "last": {
+          "os": false,
+          "effective": false
+        },
+        "deliveryMismatchSamples": 1,
+        "path": [
+          {
+            "gx": 1,
+            "gz": 2,
+            "x": -2.9499999999999997,
+            "y": 0,
+            "z": 0.59
+          },
+          {
+            "gx": 2,
+            "gz": 2,
+            "x": -1.77,
+            "y": 0,
+            "z": 0.59
+          },
+          {
+            "gx": 3,
+            "gz": 2,
+            "x": -0.59,
+            "y": 0,
+            "z": 0.59
+          },
+          {
+            "gx": 4,
+            "gz": 2,
+            "x": 0.59,
+            "y": 0,
+            "z": 0.59
+          }
+        ],
+        "maxReducedTerrainError": 0,
+        "maxReducedTilt": 0
+      },
+      {
+        "viewport": [
+          390,
+          844
+        ],
+        "initialMode": "no-preference",
+        "pass": true,
+        "checks": [
+          "Native manual keyboard deployment/removal",
+          "Actual Tab/Shift+Tab canvas entry/exit with visible focus",
+          "Grid edges/arrows preserve all tactical truth",
+          "Canvas inspection Enter/Space never ends a turn",
+          "Origin-cell Enter cannot move or spend AP",
+          "Escape restores enabled dock focus",
+          "Legal native move restores dock focus",
+          "Exactly one native reachable move",
+          "Live OS movement decoration changes without altering native completion",
+          "Native attack Enter opens submenu only",
+          "Retour restores dock focus",
+          "Native attack Space opens submenu only",
+          "Retour restores dock focus",
+          "Invalid target Enter does not resolve/spend AP",
+          "Target Escape restores native attack focus",
+          "Native target execution restores enabled dock",
+          "Native legal foe target resolves once",
+          "Pointer target resolves through shared native activation",
+          "Native Wait advances one turn"
+        ],
+        "sampleCount": 18,
+        "reducedSampleCount": 12,
+        "first": {
+          "os": false,
+          "effective": false
+        },
+        "last": {
+          "os": true,
+          "effective": true
+        },
+        "deliveryMismatchSamples": 1,
+        "path": [
+          {
+            "gx": 1,
+            "gz": 2,
+            "x": -2.9499999999999997,
+            "y": 0,
+            "z": 0.59
+          },
+          {
+            "gx": 2,
+            "gz": 2,
+            "x": -1.77,
+            "y": 0,
+            "z": 0.59
+          },
+          {
+            "gx": 3,
+            "gz": 2,
+            "x": -0.59,
+            "y": 0,
+            "z": 0.59
+          },
+          {
+            "gx": 4,
+            "gz": 2,
+            "x": 0.59,
+            "y": 0,
+            "z": 0.59
+          }
+        ],
+        "maxReducedTerrainError": 0,
+        "maxReducedTilt": 0
+      },
+      {
+        "viewport": [
+          390,
+          844
+        ],
+        "initialMode": "reduce",
+        "pass": true,
+        "checks": [
+          "Native manual keyboard deployment/removal",
+          "Actual Tab/Shift+Tab canvas entry/exit with visible focus",
+          "Grid edges/arrows preserve all tactical truth",
+          "Canvas inspection Enter/Space never ends a turn",
+          "Origin-cell Enter cannot move or spend AP",
+          "Escape restores enabled dock focus",
+          "Legal native move restores dock focus",
+          "Exactly one native reachable move",
+          "Live OS movement decoration changes without altering native completion",
+          "Native attack Enter opens submenu only",
+          "Retour restores dock focus",
+          "Native attack Space opens submenu only",
+          "Retour restores dock focus",
+          "Invalid target Enter does not resolve/spend AP",
+          "Target Escape restores native attack focus",
+          "Native target execution restores enabled dock",
+          "Native legal foe target resolves once",
+          "Pointer target resolves through shared native activation",
+          "Native Wait advances one turn"
+        ],
+        "sampleCount": 15,
+        "reducedSampleCount": 4,
+        "first": {
+          "os": true,
+          "effective": true
+        },
+        "last": {
+          "os": false,
+          "effective": false
+        },
+        "deliveryMismatchSamples": 1,
+        "path": [
+          {
+            "gx": 1,
+            "gz": 2,
+            "x": -2.9499999999999997,
+            "y": 0,
+            "z": 0.59
+          },
+          {
+            "gx": 2,
+            "gz": 2,
+            "x": -1.77,
+            "y": 0,
+            "z": 0.59
+          },
+          {
+            "gx": 3,
+            "gz": 2,
+            "x": -0.59,
+            "y": 0,
+            "z": 0.59
+          },
+          {
+            "gx": 4,
+            "gz": 2,
+            "x": 0.59,
+            "y": 0,
+            "z": 0.59
+          }
+        ],
+        "maxReducedTerrainError": 0,
+        "maxReducedTilt": 0
+      }
+    ],
+    "scope": "Flat ordinary move only; standalone native inputs at1366/620/390 both live OS directions; no synchronous-delivery/all-action/liveStage/campaign or live-slope smoothness claim",
+    "reviewers": [
+      "root",
+      "contracts-guardian",
+      "ui-accessibility"
+    ],
+    "sampleCount": 85,
+    "rawConcordantReducedCount": 41,
+    "stableReducedCount": 38,
+    "reviewedAt": "2026-10-08T19:46:43.159Z"
+  },
+  "failedSmoke": {
+    "jobId": "ordinary-movement-1859",
+    "resultSha256": "48f53f8327f94f4901de3ff039f757615eeecd2b96778f870bcbdcaba398d94d",
+    "acceptance": "NOT_ACCEPTED",
+    "cause": "All-samples OS/effective equality failed; absent raw probe prevents cause determination",
+    "harnessCorrectionsUsed": 1,
+    "noFurtherCorrection": true
+  },
+  "captures": [
+    {
+      "path": "docs/reports/ordinary-movement-1859/lion-first-refuge-native-rest.png",
+      "sha256": "0090d3640c4efc64d9282db93c2aca7602e443f0d7fa8d1ba55ab003f32b3036",
+      "rootInspected": true,
+      "scope": "Campaign frozen577ab03 desktop1366normal"
+    },
+    {
+      "path": "docs/reports/ordinary-movement-1859/lion-second-refuge-earned-resumed.png",
+      "sha256": "6d37622801686416f4cac60c294b05459a15ad4b57ce4f861f7c6f97771a5385",
+      "rootInspected": true,
+      "scope": "Campaign frozen577ab03 desktop1366normal"
+    },
+    {
+      "path": "docs/reports/ordinary-movement-1859/1366-no-preference-move-reduced-settled.png",
+      "sha256": "c649da472b73a5d8036f18d50e9113d707a72850a6364f402d84460d664dd280",
+      "rootInspected": true,
+      "uiReviewerInspected": true,
+      "scope": "Flat ordinary movement settled image; in-motion proof in raw samples"
+    },
+    {
+      "path": "docs/reports/ordinary-movement-1859/390-reduce-move-reduced-settled.png",
+      "sha256": "ff537432c36ec33bcf456277a51ae5a6abaa2eb9afe47b53719759e8eebdd5f3",
+      "rootInspected": true,
+      "uiReviewerInspected": true,
+      "scope": "Flat ordinary movement settled image; in-motion proof in raw samples"
+    }
+  ],
+  "limits": [
+    "Leaps, attacks and activeStage live reduction remain open",
+    "390actor framing and broader accessibility remain open",
+    "Salvation2AP, balance, endings, settledVFX and full demo remain open",
+    "Static-only OS shadow, council/refugee acceptance, approved Bois-Clair night plate and10Pursuit mappings remain open"
+  ],
+  "publication": {
+    "status": "BLOCKED_BY_ACTUAL_AUTOMATIC_APPROVAL_REVIEW",
+    "rejectedSnapshot": "49d34f84b5747235d6a077a21706f86b223cef4e",
+    "executed": false,
+    "noRetryOrWorkaround": true,
+    "selectedPaths": [
+      "src/combat/legacyCombatRuntime.js",
+      "src/combat/unitMotion.test.ts",
+      "tools/combat-battlefield-keyboard-production-qa.mjs",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
+      "docs/autonomy/handoffs/2026-10-08T1859Z-codex-ordinary-motion-second-refuge-checkpoint.md",
+      "docs/reports/ordinary-movement-1859/checks.json",
+      "docs/reports/ordinary-movement-1859/lion-first-refuge-native-rest.png",
+      "docs/reports/ordinary-movement-1859/lion-second-refuge-earned-resumed.png",
+      "docs/reports/ordinary-movement-1859/1366-no-preference-move-reduced-settled.png",
+      "docs/reports/ordinary-movement-1859/390-reduce-move-reduced-settled.png"
+    ],
+    "sourceCommit": "9a4acdead9081282f5a624a575c6346adbb0860e"
+  },
+  "sourceBytesAfterCommit": {
+    "matchedPhysicalFiles": 396,
+    "sourceCommit": "9a4acdead9081282f5a624a575c6346adbb0860e",
+    "gitExecutionFingerprintIdentical": false,
+    "limitation": "Receipt acceptance reviewed before commit; physical bytes still identical; not relabelled sameExecution"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "asset": "shadow-pursuer-run-v1.png",
+  "role": "Existing Shadow Pursuit approach and committed charge gallop; presentation only",
+  "generator": "built-in image_gen",
+  "reference": "shadow-pursuer.png",
+  "referenceSha256": "55dfad9b50076ab3cd3b30f5245d6701ef2eea03bb6707959618276b155b9fc1",
+  "rawSha256": "9dcc7342b1e9545888fb47f3ee8b7bacdb8ea3c737202ffc39169c940a387753",
+  "sheetSha256": "184a87b829fa1ab4d5d3573c59aaae15d42ba0a7f8d8b17a52c8d06913558b2d",
+  "grid": {
+    "columns": 3,
+    "rows": 2,
+    "frameWidth": 512,
+    "frameHeight": 246,
+    "frameMs": 85
+  },
+  "processing": "generate2dsprite process: 512px shared scale0.9, feet alignment, largest component+2px, magenta cleanup; common crop y260..506, no per-frame re-scaling",
+  "frames": [
+    {
+      "index": 0,
+      "alphaBounds": [
+        30,
+        12,
+        482,
+        227
+      ],
+      "feetBaseline": 227
+    },
+    {
+      "index": 1,
+      "alphaBounds": [
+        33,
+        12,
+        479,
+        226
+      ],
+      "feetBaseline": 226
+    },
+    {
+      "index": 2,
+      "alphaBounds": [
+        31,
+        12,
+        480,
+        226
+      ],
+      "feetBaseline": 226
+    },
+    {
+      "index": 3,
+      "alphaBounds": [
+        26,
+        16,
+        485,
+        227
+      ],
+      "feetBaseline": 227
+    },
+    {
+      "index": 4,
+      "alphaBounds": [
+        39,
+        19,
+        472,
+        226
+      ],
+      "feetBaseline": 226
+    },
+    {
+      "index": 5,
+      "alphaBounds": [
+        27,
+        3,
+        486,
+        226
+      ],
+      "feetBaseline": 226
+    }
+  ],
+  "acceptance": "Desktop smoke and operator visual review required; compact/mobile finalization deferred",
+  "prompt": "Create a production sprite animation sheet for RPGThreeJS. Reference image 1 defines the EXISTING Shadow pursuer identity; preserve its exact black-charcoal quadruped silhouette, red fissures, orange eyes, ragged swept-back mane, long smoky tail, claw feet and right-facing side profile. This is animation of the same creature, no new character or redesign.\nExactly SIX equal rectangular cells: THREE COLUMNS and TWO ROWS, row-major sequence. Wide sheet, each cell approximately twice as wide as tall. Same camera and same creature scale in every cell, body centered at the same x coordinate. Ground contact baseline aligned. The whole tail, claws and head stay inside each cell with safe padding. No overlap between cells.\nAnimate a vigorous articulated quadruped gallop to the RIGHT IN PLACE. Real bending knees, shoulders, elbows and hocks; feet change positions substantially. Frame1 gathered hindlegs under belly, forelegs reaching forward; frame2 front feet strike ground while rear legs push back; frame3 body rides over planted front feet and rear feet gather; frame4 airborne full extension with front legs forward and hindlegs back; frame5 rear feet land under hips and forelegs fold up; frame6 hindlegs drive off, forelegs swing forward to frame1. Torso volume, head and eye placement stay stable; tail follows gently. Avoid six copies of the same pose, bobbing-only, morphing anatomy, extra legs or sliding feet.\nModern detailed pixel-art / HD-2D fantasy sprite rendering: crisp stepped clusters, charcoal shading, restrained red/orange accents matching reference, readable at game scale. No ground plane, cast shadow, props, scenery, letters, text, grid lines, cell borders or watermark.\nBackground must be perfectly flat solid #FF00FF magenta throughout all empty pixels, with NO magenta anywhere in the creature, no gradients and no colored glow bleeding into background. Exactly one complete right-facing creature in each of the six cells.",
+  "recordedAt": "2026-10-09T22:31:59.549Z",
+  "runId": "rpgthreejs-auto-dev-90m-20261009T2223"
+}

@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin66f_alaric_audience_arrival",
+  "cinematicId": "alaric_audience_arrival",
+  "tier": "JOURNEY",
+  "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
+  "journeyGrammar": "JOURNEY_APPROACH",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin66-final-audience-v3",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG arrival at the early Lion briefing pavilion. Treat the pavilion as an art-direction and geography reference, then integrate every person into one coherent candlelit space with shared light, contact shadows, ground contact, foreground occlusion, atmospheric depth and unified paint treatment. This is an early diplomatic mandate, never the final judgement.",
+  "cast": {
+    "sceneType": "HIGH_STAKES_DIPLOMACY",
+    "dialogueId": "lion_briefing",
+    "requiredSpeakers": ["alaric", "alistair"],
+    "playerFaction": { "id": "OUR_COMPANY", "representatives": ["sage_seraphine", "maelor"] },
+    "supportingPlayerCast": ["alistair"],
+    "externalFaction": { "id": "LION", "representatives": ["alaric"] },
+    "justifiedOffscreenActors": [
+      { "id": "lion_champion", "reason": "The early briefing is Alaric-led; omitting the Champion keeps the two advisers and both speaking actors legible without crowding." }
+    ],
+    "optionalCharactersExcluded": ["cedric", "lancer"],
+    "truthBasis": "lion_briefing is spoken by Alaric and Alistair. The persistent player advisers are Sage Seraphine and Intendant Maelor; both represent the company in high-stakes diplomacy."
+  },
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Establish the two advisers and Alistair entering Alaric's audience geography as one integrated diplomatic scene.",
+      "framing": "OVER_COMPANY_TOWARD_ALARIC",
+      "environment": "public/assets/generated/lion-phase/dialogue/lion_briefing.webp",
+      "source": {
+        "type": "ROOT_SOURCE",
+        "output": "tmp/cinematics/cin4/cin66f_alaric_audience_arrival/shot_01/source.png",
+        "integration": {
+          "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+          "layoutReference": "tmp/cinematics/cin4/cin66f_alaric_audience_arrival/shot_01/layout_reference.png",
+          "referenceAssets": ["public/assets/characters/pixel/masters/sage_seraphine.png", "public/assets/characters/pixel/masters/maelor.png", "public/assets/characters/pixel/masters/alistair.png", "public/assets/characters/pixel/masters/alaric.png"],
+          "qualityGates": ["NO_COLLAGE_LOOK", "LIGHT_INTEGRATION", "GROUND_CONTACT", "DEPTH_INTEGRATION", "WORLD_INTEGRATION"]
+        }
+      },
+      "characters": [
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/masters/sage_seraphine.png", "position": { "x": 0.17, "groundY": 0.94 }, "scale": { "framing": "WIDE", "perspective": 0.78 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 40, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "maelor", "asset": "public/assets/characters/pixel/masters/maelor.png", "position": { "x": 0.31, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.82 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 30, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "alistair", "asset": "public/assets/characters/pixel/masters/alistair.png", "position": { "x": 0.43, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.76 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 20, "role": "SECONDARY", "screenRole": "SECONDARY", "factionRole": "HERO", "requiredForNarrativeRead": true, "action": "STAND", "mirrorPolicy": "ALLOW" },
+        { "id": "alaric", "asset": "public/assets/characters/pixel/masters/alaric.png", "position": { "x": 0.76, "groundY": 0.91 }, "scale": { "framing": "WIDE", "perspective": 0.88 }, "facing": "SCREEN_LEFT", "lookTarget": "PLAYER_PARTY", "depth": 10, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "FACTION_LEADER", "requiredForNarrativeRead": true, "action": "STAND", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "WIDE_HOLD" },
+      "durationSeconds": 4,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "DIPLOMATIC_GEOGRAPHY_ESTABLISHED",
+      "promptIntent": "Use a restrained reveal through a foreground pavilion element. Keep the two advisers visually distinct: Seraphine attentive and compassionate, Maelor reserved and analytical. Alistair witnesses behind them. Alaric remains the single Lion authority. Shared warm light, fabric motion, dust and depth must make this one world; no flat row, no verdict and no combat."
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Give Alaric's mandate visual authority while keeping both advisers readable as the player's diplomatic representatives.",
+      "framing": "LION_RESPONSE_WITH_ADVISER_FOREGROUND",
+      "environment": "public/assets/generated/lion-phase/dialogue/lion_briefing.webp",
+      "source": {
+        "type": "CUT_SOURCE",
+        "output": "tmp/cinematics/cin4/cin66f_alaric_audience_arrival/shot_02/source.png",
+        "integration": {
+          "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+          "layoutReference": "tmp/cinematics/cin4/cin66f_alaric_audience_arrival/shot_02/layout_reference.png",
+          "referenceAssets": ["public/assets/characters/pixel/masters/sage_seraphine.png", "public/assets/characters/pixel/masters/maelor.png", "public/assets/characters/pixel/masters/alaric.png"],
+          "qualityGates": ["NO_COLLAGE_LOOK", "LIGHT_INTEGRATION", "CONTACT_SHADOW", "ATMOSPHERIC_INTEGRATION", "WORLD_INTEGRATION"]
+        }
+      },
+      "characters": [
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/masters/sage_seraphine.png", "position": { "x": 0.18, "groundY": 0.95 }, "scale": { "framing": "MEDIUM", "perspective": 0.79 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 30, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "maelor", "asset": "public/assets/characters/pixel/masters/maelor.png", "position": { "x": 0.33, "groundY": 0.94 }, "scale": { "framing": "MEDIUM", "perspective": 0.82 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 20, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "alaric", "asset": "public/assets/characters/pixel/masters/alaric.png", "position": { "x": 0.70, "groundY": 0.93 }, "scale": { "framing": "MEDIUM", "perspective": 0.90 }, "facing": "SCREEN_LEFT", "lookTarget": "PLAYER_PARTY", "depth": 10, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "FACTION_LEADER", "requiredForNarrativeRead": true, "action": "RAISE_HAND", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "SUBJECT_FOCUS_RIGHT" },
+      "durationSeconds": 4,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "MANDATE_DELIVERED_WITHOUT_VERDICT",
+      "promptIntent": "Alaric makes one small open-handed mandate gesture and settles. Seraphine leans forward only subtly; Maelor remains measured. Preserve the audience axis, constant camera distance and integrated candlelit ground shadows. No speaking lips, sword action, threat pose, zoom or judgement."
+    },
+    {
+      "shotId": "shot_03",
+      "purpose": "Settle on a balanced integrated tableau for deterministic lion_briefing dialogue.",
+      "framing": "BALANCED_DIPLOMATIC_DIALOGUE_HOLD",
+      "environment": "public/assets/generated/lion-phase/dialogue/lion_briefing.webp",
+      "source": {
+        "type": "CUT_SOURCE",
+        "output": "tmp/cinematics/cin4/cin66f_alaric_audience_arrival/shot_03/source.png",
+        "integration": {
+          "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+          "layoutReference": "tmp/cinematics/cin4/cin66f_alaric_audience_arrival/shot_03/layout_reference.png",
+          "referenceAssets": ["public/assets/characters/pixel/masters/sage_seraphine.png", "public/assets/characters/pixel/masters/maelor.png", "public/assets/characters/pixel/masters/alistair.png", "public/assets/characters/pixel/masters/alaric.png"],
+          "qualityGates": ["NO_COLLAGE_LOOK", "LIGHT_INTEGRATION", "GROUND_CONTACT", "FOREGROUND_OCCLUSION", "DIALOGUE_SAFE_ZONE", "WORLD_INTEGRATION"]
+        }
+      },
+      "dialogueSafeZone": { "x": 0.08, "y": 0.74, "width": 0.84, "height": 0.22 },
+      "characters": [
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/masters/sage_seraphine.png", "position": { "x": 0.16, "groundY": 0.92 }, "scale": { "framing": "WIDE", "perspective": 0.77 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 40, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "STAND", "mirrorPolicy": "ALLOW" },
+        { "id": "maelor", "asset": "public/assets/characters/pixel/masters/maelor.png", "position": { "x": 0.30, "groundY": 0.91 }, "scale": { "framing": "WIDE", "perspective": 0.81 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 30, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "STAND", "mirrorPolicy": "ALLOW" },
+        { "id": "alistair", "asset": "public/assets/characters/pixel/masters/alistair.png", "position": { "x": 0.42, "groundY": 0.91 }, "scale": { "framing": "WIDE", "perspective": 0.75 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 20, "role": "SECONDARY", "screenRole": "SECONDARY", "factionRole": "HERO", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "alaric", "asset": "public/assets/characters/pixel/masters/alaric.png", "position": { "x": 0.75, "groundY": 0.90 }, "scale": { "framing": "WIDE", "perspective": 0.87 }, "facing": "SCREEN_LEFT", "lookTarget": "PLAYER_PARTY", "depth": 10, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "FACTION_LEADER", "requiredForNarrativeRead": true, "action": "STAND", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "SLOW_PULL" },
+      "durationSeconds": 4,
+      "continuityOut": "END",
+      "endIntent": "LION_BRIEFING_DIALOGUE_READY",
+      "promptIntent": "Return to the exact two-adviser, Alistair and Alaric geography. Use only subtle breathing, banner, torch, dust and layered depth motion. End sharp and still with every face and weapon above or outside the lower dialogue-safe zone. No verdict, route decision, text or added character."
+    }
+  ]
+}

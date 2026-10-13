@@ -1,0 +1,25 @@
+{
+  "task": "TRAVERSAL-T0-ROUTE-REWARD-ART-1",
+  "build": "Vite production preview",
+  "checks": [
+    {
+      "name": "default",
+      "query": "?qa=1&traversal=t0",
+      "sceneCount": 1,
+      "riskRendererCount": 1,
+      "rewardRendererCount": 0,
+      "rewardPickupCount": 0,
+      "pouchRequests": 0
+    },
+    {
+      "name": "dev-flag-in-production",
+      "query": "?qa=1&traversal=t0&traversalReward=1",
+      "sceneCount": 1,
+      "riskRendererCount": 1,
+      "rewardRendererCount": 0,
+      "rewardPickupCount": 0,
+      "pouchRequests": 0
+    }
+  ],
+  "errors": []
+}

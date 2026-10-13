@@ -1,0 +1,3210 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-03T04:29:54.164Z",
+  "runId": "rpgthreejs-auto-dev-90m-20261003T0350",
+  "baseline": "e547e316a79e08f37a4d1987cb7506ba889acc7e",
+  "pilotCommit": "770ec706fd5ffb9b2cb49cfa9259a6f41b9d783f",
+  "scope": "Native pilot telemetry and specifically reviewed recovery scenarios; not full demo/balance/single-build campaign",
+  "historicalTrialAcceptance": "726bb75/acfda8ec only; unchanged scope",
+  "pendingJobs": [],
+  "jobs": [
+    {
+      "jobId": "0350-recovery-crosier",
+      "status": "SUCCEEDED",
+      "acceptance": "ACCEPTED_SCOPED",
+      "ownerReview": {
+        "at": "2026-10-03T04:17:40.022Z",
+        "reviewer": "orchestrator and reused contracts-guardian",
+        "scope": "620x780normal native marais victory/village defeat/full ownerV6cleanup/focused departure/exact reload",
+        "driverSha256": "510c54422335f72e9234525d0c1ba8c04e7d24c7a8f328ffe50780b38b05f069",
+        "pilotCommit": "770ec706fd5ffb9b2cb49cfa9259a6f41b9d783f",
+        "limitations": "Historical1153seed ancestry; no balance, full keyboard, settledVFX or single-build full campaign acceptance"
+      },
+      "acceptanceAtReview": {
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
+      },
+      "parameters": {
+        "target": "defeat-recovery",
+        "routePlan": "rescue",
+        "timeoutMinutes": 25,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": true,
+        "viewport": [
+          620,
+          780
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/continuous-1153-fresh-final/results.json",
+        "verifySalvation": false
+      },
+      "provenance": {
+        "gitHead": "e547e316a79e08f37a4d1987cb7506ba889acc7e",
+        "sourceTree": "7f7b49e9c657b24e25c105b96f3b8186ebcbef8b",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "510c54422335f72e9234525d0c1ba8c04e7d24c7a8f328ffe50780b38b05f069"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+            "sha256": "d8b0deb62c66fc2fd3d01ec8c513fafb697021e8f9c808869277b90a250e8267"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/continuous-1153-fresh-final/results.json",
+            "sha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+          }
+        ],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-CRVF3Hlw.js",
+            "sha256": "5d4855b52058f35243501afbe6c6c6c8b00b8629a841d5f451e40e43f1369de3"
+          },
+          {
+            "path": "dist/assets/combat-CVSHPmTa.css",
+            "sha256": "9af7a139b176c9980188c4d01d126241144d0b6d5327bf1e202591302cf243b7"
+          },
+          {
+            "path": "dist/assets/game-DNVJsSmX.js",
+            "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+          },
+          {
+            "path": "dist/assets/game-Z5tVqu3k.css",
+            "sha256": "ff17df7f056304ca1c29dbf47e7b8c2821311a645dc30e83a92a564d51a9926e"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "f7e71881a1d178a7f793a64f477c1c9e899a0077aa962e05f67c2fb2f871c361"
+          }
+        ]
+      },
+      "requestMatches": true,
+      "provenanceMatches": true,
+      "provenanceStable": true,
+      "matchesCurrentExecution": true,
+      "resultDigestMatches": true,
+      "resultPath": "tmp/demo/0350-recovery-crosier/results.json",
+      "resultSha256": "78e51a9e707cda929bc36fd658ab578ebc0ec0982e1846e0cf8d0ce9717b9600",
+      "pass": true,
+      "errors": [],
+      "runtimeMutated": false,
+      "combatOutcomeInjected": false,
+      "earnedResume": {
+        "savePath": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/continuous-1153-fresh-final/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "d8b0deb62c66fc2fd3d01ec8c513fafb697021e8f9c808869277b90a250e8267",
+        "proofSha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+      },
+      "motionEvidence": {
+        "osRequested": false,
+        "gameRequested": false
+      },
+      "recoveryGeometry": [
+        {
+          "name": "native-defeat-recovered",
+          "width": 620,
+          "height": 780,
+          "overflow": 0,
+          "controls": [
+            {
+              "label": "Prendre la route",
+              "x": 194,
+              "y": 723,
+              "right": 596,
+              "bottom": 759
+            }
+          ]
+        },
+        {
+          "name": "native-defeat-recovered-resumed",
+          "width": 620,
+          "height": 780,
+          "overflow": 0,
+          "controls": [
+            {
+              "label": "Prendre la route",
+              "x": 194,
+              "y": 723,
+              "right": 596,
+              "bottom": 759
+            }
+          ]
+        }
+      ],
+      "inheritedBattleCount": 1,
+      "battles": [
+        {
+          "nodeId": "lion-valmir-road",
+          "combatId": "marsh_crossing",
+          "pass": true,
+          "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nPassage des marais\n\nOBJECTIF SÉCURISÉ\nTraversez les eaux infestées qui coupent la route de Bois-Clair.\nRÉCOMPENSES\nOr\n+90\nGemmes rouges\n+1\niron ore\n+1\nRéputation\n+1\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nDEBOUT\nElara\nK.O.\nKestrel\nDEBOUT\nCONTINUER LA CHRONIQUE",
+          "round": 6,
+          "units": [
+            {
+              "id": 1,
+              "name": "Crapaud toxique",
+              "team": "foe",
+              "gx": 4,
+              "gz": 0,
+              "hp": 0,
+              "maxhp": 108,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 2,
+              "name": "Sanglier",
+              "team": "foe",
+              "gx": 4,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 116,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 3,
+              "name": "Rat geant",
+              "team": "foe",
+              "gx": 2,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 65,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "warrior",
+              "name": "Alistair",
+              "team": "player",
+              "gx": 4,
+              "gz": 0,
+              "hp": 140,
+              "maxhp": 140,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "white_mage",
+              "name": "Marian",
+              "team": "player",
+              "gx": 4,
+              "gz": 2,
+              "hp": 78,
+              "maxhp": 100,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "dark_mage",
+              "name": "Elara",
+              "team": "player",
+              "gx": 3,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 75,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "archer",
+              "name": "Kestrel",
+              "team": "player",
+              "gx": 5,
+              "gz": 2,
+              "hp": 90,
+              "maxhp": 90,
+              "alive": true,
+              "downed": false
+            }
+          ],
+          "actions": {
+            "move": 8,
+            "attack": 10,
+            "wait": 15,
+            "move-support": 3,
+            "wait-novice-support": 2,
+            "potion": 2,
+            "crosier-heal": 6,
+            "revive_vial": 1
+          },
+          "waitReasons": {
+            "no-native-ap": 11,
+            "skill-item-attack-move-attempts-exhausted": 4,
+            "no-native-support-hit-or-better-reachable-cell": 1,
+            "retain-ap-for-ally-support": 1
+          },
+          "attackReasons": {
+            "no-native-eligible-target": 14,
+            "native-action-resolved": 16,
+            "native-attack-disabled": 3
+          },
+          "supports": [
+            {
+              "round": 2,
+              "actor": "white_mage",
+              "actorApBefore": 3,
+              "actorApAfter": 2,
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "targetId": "archer",
+              "targetBefore": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 4,
+                "gz": 2,
+                "hp": 64,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 4,
+                "gz": 2,
+                "hp": 75,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "round": 2,
+              "actor": "white_mage",
+              "actorApBefore": 2,
+              "actorApAfter": 0,
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 2,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "targetId": "archer",
+              "targetBefore": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 4,
+                "gz": 2,
+                "hp": 75,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 4,
+                "gz": 2,
+                "hp": 86,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "round": 4,
+              "actor": "white_mage",
+              "actorApBefore": 3,
+              "actorApAfter": 2,
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "targetId": "dark_mage",
+              "targetBefore": {
+                "id": "dark_mage",
+                "name": "Elara",
+                "team": "player",
+                "gx": 3,
+                "gz": 1,
+                "hp": 12,
+                "maxhp": 75,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "dark_mage",
+                "name": "Elara",
+                "team": "player",
+                "gx": 3,
+                "gz": 1,
+                "hp": 23,
+                "maxhp": 75,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "round": 4,
+              "actor": "white_mage",
+              "actorApBefore": 2,
+              "actorApAfter": 0,
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 2,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "targetId": "dark_mage",
+              "targetBefore": {
+                "id": "dark_mage",
+                "name": "Elara",
+                "team": "player",
+                "gx": 3,
+                "gz": 1,
+                "hp": 23,
+                "maxhp": 75,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "dark_mage",
+                "name": "Elara",
+                "team": "player",
+                "gx": 3,
+                "gz": 1,
+                "hp": 34,
+                "maxhp": 75,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "round": 5,
+              "actor": "white_mage",
+              "actorApBefore": 1,
+              "actorApAfter": 0,
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "targetId": "archer",
+              "targetBefore": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 4,
+                "gz": 2,
+                "hp": 70,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 4,
+                "gz": 2,
+                "hp": 81,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "round": 6,
+              "actor": "white_mage",
+              "actorApBefore": 1,
+              "actorApAfter": 0,
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "targetId": "archer",
+              "targetBefore": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 5,
+                "gz": 2,
+                "hp": 81,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 5,
+                "gz": 2,
+                "hp": 90,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              }
+            }
+          ],
+          "selectedRejectedAttempts": [
+            {
+              "round": 1,
+              "active": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 1,
+                "gz": 2,
+                "hp": 90,
+                "maxhp": 90,
+                "ap": 1,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Arc novice",
+                    "weaponType": "longbow",
+                    "min": 2,
+                    "max": 4
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": false,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "⌁AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": true,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": true,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "0",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "⌁",
+                "weaponType": "longbow",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  2,
+                  4
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.9,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 15,
+              "occupiedNativeCenters": [
+                {
+                  "gx": 0,
+                  "gz": 0,
+                  "target": {
+                    "id": "warrior",
+                    "team": "player",
+                    "alive": true,
+                    "hp": 140,
+                    "maxhp": 140
+                  }
+                },
+                {
+                  "gx": 0,
+                  "gz": 3,
+                  "target": {
+                    "id": "white_mage",
+                    "team": "player",
+                    "alive": true,
+                    "hp": 100,
+                    "maxhp": 100
+                  }
+                }
+              ],
+              "candidates": []
+            },
+            {
+              "round": 1,
+              "active": {
+                "id": "dark_mage",
+                "name": "Elara",
+                "team": "player",
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "maxhp": 75,
+                "ap": 1,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Grimoire novice",
+                    "weaponType": "grimoire",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": false,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "✦AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": true,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": true,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "0",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✦",
+                "weaponType": "grimoire",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 4,
+              "occupiedNativeCenters": [],
+              "candidates": []
+            },
+            {
+              "round": 1,
+              "active": {
+                "id": "dark_mage",
+                "name": "Elara",
+                "team": "player",
+                "gx": 3,
+                "gz": 1,
+                "hp": 75,
+                "maxhp": 75,
+                "ap": 1,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Grimoire novice",
+                    "weaponType": "grimoire",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": false,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "✦AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": true,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": true,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "0",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✦",
+                "weaponType": "grimoire",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 4,
+              "occupiedNativeCenters": [],
+              "candidates": []
+            },
+            {
+              "round": 1,
+              "active": {
+                "id": "white_mage",
+                "name": "Marian",
+                "team": "player",
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "maxhp": 100,
+                "ap": 1,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Crosse novice",
+                    "weaponType": "crosier",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": true,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "✚AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": true,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": true,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "0",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 2,
+              "occupiedNativeCenters": [],
+              "candidates": []
+            },
+            {
+              "round": 1,
+              "active": {
+                "id": "white_mage",
+                "name": "Marian",
+                "team": "player",
+                "gx": 1,
+                "gz": 2,
+                "hp": 100,
+                "maxhp": 100,
+                "ap": 1,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Crosse novice",
+                    "weaponType": "crosier",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": true,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "✚AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": true,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": true,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "0",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 4,
+              "occupiedNativeCenters": [],
+              "candidates": []
+            },
+            {
+              "round": 1,
+              "active": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "maxhp": 140,
+                "ap": 1,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Espadon novice",
+                    "weaponType": "greatsword",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": false,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "⚔AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": true,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": true,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "0",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "⚔",
+                "weaponType": "greatsword",
+                "ap": 1,
+                "type": "phys",
+                "power": 8,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.9500000000000001,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 2,
+              "occupiedNativeCenters": [],
+              "candidates": []
+            },
+            {
+              "round": 1,
+              "active": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 2,
+                "gz": 0,
+                "hp": 140,
+                "maxhp": 140,
+                "ap": 1,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Espadon novice",
+                    "weaponType": "greatsword",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": false,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "⚔AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": true,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": true,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "0",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "⚔",
+                "weaponType": "greatsword",
+                "ap": 1,
+                "type": "phys",
+                "power": 8,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.9500000000000001,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 3,
+              "occupiedNativeCenters": [],
+              "candidates": []
+            },
+            {
+              "round": 2,
+              "active": {
+                "id": "dark_mage",
+                "name": "Elara",
+                "team": "player",
+                "gx": 3,
+                "gz": 1,
+                "hp": 75,
+                "maxhp": 75,
+                "ap": 3,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Grimoire novice",
+                    "weaponType": "grimoire",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": false,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "✦AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": false,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": false,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "2",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 2,
+                "name": "Attaque++",
+                "icon": "✦",
+                "weaponType": "grimoire",
+                "ap": 3,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1.6,
+                "elanPierce": 0.5,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 4,
+              "occupiedNativeCenters": [],
+              "candidates": []
+            },
+            {
+              "round": 2,
+              "active": {
+                "id": "white_mage",
+                "name": "Marian",
+                "team": "player",
+                "gx": 1,
+                "gz": 2,
+                "hp": 100,
+                "maxhp": 100,
+                "ap": 3,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Crosse novice",
+                    "weaponType": "crosier",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": true,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "✚AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": false,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": false,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "0",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 4,
+              "occupiedNativeCenters": [],
+              "candidates": []
+            },
+            {
+              "round": 2,
+              "active": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 2,
+                "gz": 0,
+                "hp": 140,
+                "maxhp": 140,
+                "ap": 3,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Espadon novice",
+                    "weaponType": "greatsword",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": false,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "⚔AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": false,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": false,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "2",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 2,
+                "name": "Attaque++",
+                "icon": "⚔",
+                "weaponType": "greatsword",
+                "ap": 3,
+                "type": "phys",
+                "power": 8,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1.6,
+                "elanPierce": 0.5,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 3,
+              "occupiedNativeCenters": [],
+              "candidates": []
+            },
+            {
+              "round": 2,
+              "active": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 3,
+                "gz": 0,
+                "hp": 140,
+                "maxhp": 140,
+                "ap": 1,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Espadon novice",
+                    "weaponType": "greatsword",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "native-attack-disabled",
+              "support": false,
+              "buttons": [
+                {
+                  "disabled": true,
+                  "text": "⚔AttaquerÉlan · dès 2 AP",
+                  "weaponIndex": "0"
+                }
+              ]
+            },
+            {
+              "round": 3,
+              "active": {
+                "id": "white_mage",
+                "name": "Marian",
+                "team": "player",
+                "gx": 3,
+                "gz": 2,
+                "hp": 78,
+                "maxhp": 100,
+                "ap": 1,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Crosse novice",
+                    "weaponType": "crosier",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": true,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "✚AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": true,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": true,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "0",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 4,
+              "occupiedNativeCenters": [
+                {
+                  "gx": 3,
+                  "gz": 3,
+                  "target": {
+                    "id": 3,
+                    "team": "foe",
+                    "alive": true,
+                    "hp": 42,
+                    "maxhp": 65
+                  }
+                },
+                {
+                  "gx": 4,
+                  "gz": 2,
+                  "target": {
+                    "id": "archer",
+                    "team": "player",
+                    "alive": true,
+                    "hp": 86,
+                    "maxhp": 90
+                  }
+                }
+              ],
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "nodeId": "lion-village-choice",
+          "combatId": "village_defense",
+          "pass": true,
+          "resultText": "✦\n\nROUTE BRISÉE\n\nDéfaite\n\nVotre équipe a été vaincue…\n\nCHECKPOINT\nRetour au dernier refuge\nÉTAT DE LA COMPAGNIE\nAlistair\nK.O.\nMarian\nK.O.\nKestrel\nK.O.\nCedric\nK.O.\nREVENIR À LA CARTE",
+          "round": 9,
+          "units": [
+            {
+              "id": 1,
+              "name": "Pillard Serpent",
+              "team": "foe",
+              "gx": 0,
+              "gz": 2,
+              "hp": 85,
+              "maxhp": 85,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": 2,
+              "name": "Brute Serpent",
+              "team": "foe",
+              "gx": 0,
+              "gz": 1,
+              "hp": 130,
+              "maxhp": 130,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": 3,
+              "name": "Pillard Serpent",
+              "team": "foe",
+              "gx": 1,
+              "gz": 0,
+              "hp": 85,
+              "maxhp": 85,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "warrior",
+              "name": "Alistair",
+              "team": "player",
+              "gx": 0,
+              "gz": 0,
+              "hp": 0,
+              "maxhp": 140,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "white_mage",
+              "name": "Marian",
+              "team": "player",
+              "gx": 0,
+              "gz": 3,
+              "hp": 0,
+              "maxhp": 100,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "archer",
+              "name": "Kestrel",
+              "team": "player",
+              "gx": 1,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 90,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "rogue",
+              "name": "Cedric",
+              "team": "player",
+              "gx": 1,
+              "gz": 2,
+              "hp": 0,
+              "maxhp": 100,
+              "alive": false,
+              "downed": true
+            }
+          ],
+          "actions": {
+            "wait-for-native-defeat": 22
+          },
+          "waitReasons": {
+            "wait-for-native-defeat": 22
+          },
+          "attackReasons": {},
+          "supports": [],
+          "selectedRejectedAttempts": []
+        }
+      ],
+      "pointerSummary": {
+        "total": 30,
+        "clicked": 30,
+        "rejected": 0,
+        "rejectedHitTags": {}
+      },
+      "defeatRecovery": {
+        "nodeId": "lion-village-choice",
+        "pass": true,
+        "mode": "narrative",
+        "departureLabel": "Prendre la route",
+        "returnControlBounds": {
+          "x": 81,
+          "y": 506.4375,
+          "width": 458,
+          "height": 40
+        },
+        "canonicalOwnerHashes": {
+          "checkpoint": "a625b3132ad8e3011a42d7051211485fc004c8eb9fc35e02ee47966620b43042",
+          "savedBefore": "5344ebcf787d2f6642a7ed244f437278b666485bb934a57afb3c71c642700867",
+          "expected": "32bf993f7caf42a835bb5d65ff63941b98a92074813482c5b8ee38f892757140",
+          "recovered": "32bf993f7caf42a835bb5d65ff63941b98a92074813482c5b8ee38f892757140",
+          "resumed": "32bf993f7caf42a835bb5d65ff63941b98a92074813482c5b8ee38f892757140"
+        }
+      },
+      "captures": [
+        "lion-first-refuge-earned.png",
+        "lion-first-refuge-earned-resumed.png",
+        "lion-first-refuge-native-rest.png",
+        "lion-first-refuge-native-potion-stock.png",
+        "lion-first-refuge-native-potion-stock-resumed.png",
+        "combat-1-deployment.png",
+        "combat-1-actual-impact.png",
+        "combat-1-result.png",
+        "combat-2-deployment.png",
+        "combat-2-result.png",
+        "combat-2-native-defeat-return-focus.png",
+        "native-defeat-recovered.png",
+        "native-defeat-recovered-resumed.png"
+      ]
+    },
+    {
+      "jobId": "0350-recovery-mobile-os",
+      "status": "SUCCEEDED",
+      "acceptance": "ACCEPTED_SCOPED",
+      "ownerReview": {
+        "at": "2026-10-03T04:29:51.230Z",
+        "reviewer": "orchestrator and reused contracts-guardian",
+        "scope": "390x844OS reduced motion native marais victory/village defeat/full ownerV6cleanup/focused departure/exact reload",
+        "driverSha256": "510c54422335f72e9234525d0c1ba8c04e7d24c7a8f328ffe50780b38b05f069",
+        "pilotCommit": "770ec706fd5ffb9b2cb49cfa9259a6f41b9d783f",
+        "limitations": "Historical1153seed ancestry; no balance, full keyboard, settledVFX or single-build full campaign acceptance"
+      },
+      "acceptanceAtReview": {
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
+      },
+      "parameters": {
+        "target": "defeat-recovery",
+        "routePlan": "rescue",
+        "timeoutMinutes": 25,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": true,
+        "viewport": [
+          390,
+          844
+        ],
+        "osReducedMotion": true,
+        "earnedSavePath": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/continuous-1153-fresh-final/results.json",
+        "verifySalvation": false
+      },
+      "provenance": {
+        "gitHead": "770ec706fd5ffb9b2cb49cfa9259a6f41b9d783f",
+        "sourceTree": "7f7b49e9c657b24e25c105b96f3b8186ebcbef8b",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "510c54422335f72e9234525d0c1ba8c04e7d24c7a8f328ffe50780b38b05f069"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+            "sha256": "d8b0deb62c66fc2fd3d01ec8c513fafb697021e8f9c808869277b90a250e8267"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/continuous-1153-fresh-final/results.json",
+            "sha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+          }
+        ],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-CRVF3Hlw.js",
+            "sha256": "5d4855b52058f35243501afbe6c6c6c8b00b8629a841d5f451e40e43f1369de3"
+          },
+          {
+            "path": "dist/assets/combat-CVSHPmTa.css",
+            "sha256": "9af7a139b176c9980188c4d01d126241144d0b6d5327bf1e202591302cf243b7"
+          },
+          {
+            "path": "dist/assets/game-DNVJsSmX.js",
+            "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+          },
+          {
+            "path": "dist/assets/game-Z5tVqu3k.css",
+            "sha256": "ff17df7f056304ca1c29dbf47e7b8c2821311a645dc30e83a92a564d51a9926e"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "f7e71881a1d178a7f793a64f477c1c9e899a0077aa962e05f67c2fb2f871c361"
+          }
+        ]
+      },
+      "requestMatches": true,
+      "provenanceMatches": true,
+      "provenanceStable": true,
+      "matchesCurrentExecution": true,
+      "resultDigestMatches": true,
+      "resultPath": "tmp/demo/0350-recovery-mobile-os/results.json",
+      "resultSha256": "c4bf812331b219612c40ac8b3246f1d204d78085d067a749b6dd245fe1c5f208",
+      "pass": true,
+      "errors": [],
+      "runtimeMutated": false,
+      "combatOutcomeInjected": false,
+      "earnedResume": {
+        "savePath": "tmp/demo/continuous-1153-fresh-final/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/continuous-1153-fresh-final/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "d8b0deb62c66fc2fd3d01ec8c513fafb697021e8f9c808869277b90a250e8267",
+        "proofSha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+      },
+      "motionEvidence": {
+        "osRequested": true,
+        "gameRequested": false
+      },
+      "recoveryGeometry": [
+        {
+          "name": "native-defeat-recovered",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controls": [
+            {
+              "label": "Prendre la route",
+              "x": 24,
+              "y": 787,
+              "right": 366,
+              "bottom": 823
+            }
+          ]
+        },
+        {
+          "name": "native-defeat-recovered-resumed",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controls": [
+            {
+              "label": "Prendre la route",
+              "x": 24,
+              "y": 787,
+              "right": 366,
+              "bottom": 823
+            }
+          ]
+        }
+      ],
+      "inheritedBattleCount": 1,
+      "battles": [
+        {
+          "nodeId": "lion-valmir-road",
+          "combatId": "marsh_crossing",
+          "pass": true,
+          "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nPassage des marais\n\nOBJECTIF SÉCURISÉ\nTraversez les eaux infestées qui coupent la route de Bois-Clair.\nRÉCOMPENSES\nOr\n+90\nGemmes rouges\n+1\niron ore\n+1\nRéputation\n+1\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nK.O.\nElara\nK.O.\nKestrel\nK.O.\nCONTINUER LA CHRONIQUE",
+          "round": 9,
+          "units": [
+            {
+              "id": 1,
+              "name": "Crapaud toxique",
+              "team": "foe",
+              "gx": 4,
+              "gz": 0,
+              "hp": 0,
+              "maxhp": 108,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 2,
+              "name": "Sanglier",
+              "team": "foe",
+              "gx": 3,
+              "gz": 0,
+              "hp": 0,
+              "maxhp": 116,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": 3,
+              "name": "Rat geant",
+              "team": "foe",
+              "gx": 4,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 65,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "warrior",
+              "name": "Alistair",
+              "team": "player",
+              "gx": 3,
+              "gz": 1,
+              "hp": 86,
+              "maxhp": 140,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "white_mage",
+              "name": "Marian",
+              "team": "player",
+              "gx": 3,
+              "gz": 2,
+              "hp": 0,
+              "maxhp": 100,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "dark_mage",
+              "name": "Elara",
+              "team": "player",
+              "gx": 4,
+              "gz": 1,
+              "hp": 0,
+              "maxhp": 75,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "archer",
+              "name": "Kestrel",
+              "team": "player",
+              "gx": 4,
+              "gz": 2,
+              "hp": 0,
+              "maxhp": 90,
+              "alive": false,
+              "downed": true
+            }
+          ],
+          "actions": {
+            "move": 8,
+            "attack": 12,
+            "wait": 15,
+            "move-support": 4,
+            "wait-novice-support": 3,
+            "potion": 2,
+            "crosier-heal": 5,
+            "revive_vial": 1
+          },
+          "waitReasons": {
+            "no-native-ap": 11,
+            "skill-item-attack-move-attempts-exhausted": 4,
+            "no-native-support-hit-or-better-reachable-cell": 2,
+            "retain-ap-for-ally-support": 1
+          },
+          "attackReasons": {
+            "no-native-eligible-target": 13,
+            "native-action-resolved": 17,
+            "native-attack-disabled": 6
+          },
+          "supports": [
+            {
+              "round": 2,
+              "actor": "white_mage",
+              "actorApBefore": 3,
+              "actorApAfter": 2,
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "targetId": "archer",
+              "targetBefore": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 4,
+                "gz": 2,
+                "hp": 83,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 4,
+                "gz": 2,
+                "hp": 90,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "round": 3,
+              "actor": "white_mage",
+              "actorApBefore": 4,
+              "actorApAfter": 3,
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "targetId": "archer",
+              "targetBefore": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 4,
+                "gz": 2,
+                "hp": 44,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 4,
+                "gz": 2,
+                "hp": 55,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "round": 3,
+              "actor": "white_mage",
+              "actorApBefore": 3,
+              "actorApAfter": 1,
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 2,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "targetId": "archer",
+              "targetBefore": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 4,
+                "gz": 2,
+                "hp": 55,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 4,
+                "gz": 2,
+                "hp": 66,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "round": 4,
+              "actor": "white_mage",
+              "actorApBefore": 3,
+              "actorApAfter": 2,
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "targetId": "archer",
+              "targetBefore": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 4,
+                "gz": 2,
+                "hp": 46,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 4,
+                "gz": 2,
+                "hp": 57,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              }
+            },
+            {
+              "round": 4,
+              "actor": "white_mage",
+              "actorApBefore": 2,
+              "actorApAfter": 0,
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 2,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "targetId": "archer",
+              "targetBefore": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 4,
+                "gz": 2,
+                "hp": 57,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              },
+              "targetAfter": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 4,
+                "gz": 2,
+                "hp": 68,
+                "maxhp": 90,
+                "alive": true,
+                "downed": false
+              }
+            }
+          ],
+          "selectedRejectedAttempts": [
+            {
+              "round": 1,
+              "active": {
+                "id": "archer",
+                "name": "Kestrel",
+                "team": "player",
+                "gx": 1,
+                "gz": 2,
+                "hp": 90,
+                "maxhp": 90,
+                "ap": 1,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Arc novice",
+                    "weaponType": "longbow",
+                    "min": 2,
+                    "max": 4
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": false,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "⌁AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": true,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": true,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "0",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "⌁",
+                "weaponType": "longbow",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  2,
+                  4
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.9,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 15,
+              "occupiedNativeCenters": [
+                {
+                  "gx": 0,
+                  "gz": 0,
+                  "target": {
+                    "id": "warrior",
+                    "team": "player",
+                    "alive": true,
+                    "hp": 140,
+                    "maxhp": 140
+                  }
+                },
+                {
+                  "gx": 0,
+                  "gz": 3,
+                  "target": {
+                    "id": "white_mage",
+                    "team": "player",
+                    "alive": true,
+                    "hp": 100,
+                    "maxhp": 100
+                  }
+                }
+              ],
+              "candidates": []
+            },
+            {
+              "round": 1,
+              "active": {
+                "id": "dark_mage",
+                "name": "Elara",
+                "team": "player",
+                "gx": 1,
+                "gz": 1,
+                "hp": 75,
+                "maxhp": 75,
+                "ap": 1,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Grimoire novice",
+                    "weaponType": "grimoire",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": false,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "✦AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": true,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": true,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "0",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✦",
+                "weaponType": "grimoire",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 4,
+              "occupiedNativeCenters": [],
+              "candidates": []
+            },
+            {
+              "round": 1,
+              "active": {
+                "id": "dark_mage",
+                "name": "Elara",
+                "team": "player",
+                "gx": 3,
+                "gz": 1,
+                "hp": 75,
+                "maxhp": 75,
+                "ap": 1,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Grimoire novice",
+                    "weaponType": "grimoire",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": false,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "✦AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": true,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": true,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "0",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✦",
+                "weaponType": "grimoire",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 4,
+              "occupiedNativeCenters": [],
+              "candidates": []
+            },
+            {
+              "round": 1,
+              "active": {
+                "id": "white_mage",
+                "name": "Marian",
+                "team": "player",
+                "gx": 0,
+                "gz": 3,
+                "hp": 100,
+                "maxhp": 100,
+                "ap": 1,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Crosse novice",
+                    "weaponType": "crosier",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": true,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "✚AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": true,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": true,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "0",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 2,
+              "occupiedNativeCenters": [],
+              "candidates": []
+            },
+            {
+              "round": 1,
+              "active": {
+                "id": "white_mage",
+                "name": "Marian",
+                "team": "player",
+                "gx": 1,
+                "gz": 2,
+                "hp": 100,
+                "maxhp": 100,
+                "ap": 1,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Crosse novice",
+                    "weaponType": "crosier",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": true,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "✚AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": true,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": true,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "0",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 4,
+              "occupiedNativeCenters": [],
+              "candidates": []
+            },
+            {
+              "round": 1,
+              "active": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 0,
+                "gz": 0,
+                "hp": 140,
+                "maxhp": 140,
+                "ap": 1,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Espadon novice",
+                    "weaponType": "greatsword",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": false,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "⚔AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": true,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": true,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "0",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "⚔",
+                "weaponType": "greatsword",
+                "ap": 1,
+                "type": "phys",
+                "power": 8,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.9500000000000001,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 2,
+              "occupiedNativeCenters": [],
+              "candidates": []
+            },
+            {
+              "round": 1,
+              "active": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 2,
+                "gz": 0,
+                "hp": 140,
+                "maxhp": 140,
+                "ap": 1,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Espadon novice",
+                    "weaponType": "greatsword",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": false,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "⚔AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": true,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": true,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "0",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "⚔",
+                "weaponType": "greatsword",
+                "ap": 1,
+                "type": "phys",
+                "power": 8,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.9500000000000001,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 3,
+              "occupiedNativeCenters": [],
+              "candidates": []
+            },
+            {
+              "round": 2,
+              "active": {
+                "id": "dark_mage",
+                "name": "Elara",
+                "team": "player",
+                "gx": 3,
+                "gz": 1,
+                "hp": 75,
+                "maxhp": 75,
+                "ap": 3,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Grimoire novice",
+                    "weaponType": "grimoire",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": false,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "✦AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": false,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": false,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "2",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 2,
+                "name": "Attaque++",
+                "icon": "✦",
+                "weaponType": "grimoire",
+                "ap": 3,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1.6,
+                "elanPierce": 0.5,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 4,
+              "occupiedNativeCenters": [],
+              "candidates": []
+            },
+            {
+              "round": 2,
+              "active": {
+                "id": "white_mage",
+                "name": "Marian",
+                "team": "player",
+                "gx": 1,
+                "gz": 2,
+                "hp": 100,
+                "maxhp": 100,
+                "ap": 3,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Crosse novice",
+                    "weaponType": "crosier",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": true,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "✚AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": false,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": false,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "0",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 1,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 4,
+              "occupiedNativeCenters": [],
+              "candidates": []
+            },
+            {
+              "round": 2,
+              "active": {
+                "id": "white_mage",
+                "name": "Marian",
+                "team": "player",
+                "gx": 3,
+                "gz": 2,
+                "hp": 100,
+                "maxhp": 100,
+                "ap": 2,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Crosse novice",
+                    "weaponType": "crosier",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": true,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "✚AttaquerÉlan · dès 2 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 2 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": true,
+                  "text": "Attaque+ 3 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": true,
+                  "text": "Attaque++ 4 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "0",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 0,
+                "name": "Attaque",
+                "icon": "✚",
+                "weaponType": "crosier",
+                "ap": 2,
+                "type": "phys",
+                "power": 7,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1,
+                "elanPierce": 0,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 4,
+              "occupiedNativeCenters": [
+                {
+                  "gx": 4,
+                  "gz": 2,
+                  "target": {
+                    "id": "archer",
+                    "team": "player",
+                    "alive": true,
+                    "hp": 90,
+                    "maxhp": 90
+                  }
+                }
+              ],
+              "candidates": []
+            },
+            {
+              "round": 2,
+              "active": {
+                "id": "warrior",
+                "name": "Alistair",
+                "team": "player",
+                "gx": 2,
+                "gz": 0,
+                "hp": 140,
+                "maxhp": 140,
+                "ap": 3,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Espadon novice",
+                    "weaponType": "greatsword",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "no-native-eligible-target",
+              "support": false,
+              "buttons": [
+                {
+                  "disabled": false,
+                  "text": "⚔AttaquerÉlan · dès 1 AP",
+                  "weaponIndex": "0"
+                }
+              ],
+              "charges": [
+                {
+                  "charge": "0",
+                  "disabled": false,
+                  "text": "Attaque 1 AP · ×1.0"
+                },
+                {
+                  "charge": "1",
+                  "disabled": false,
+                  "text": "Attaque+ 2 AP · ×1.4"
+                },
+                {
+                  "charge": "2",
+                  "disabled": false,
+                  "text": "Attaque++ 3 AP · ×1.6 · perce 50% END · préc +10%"
+                }
+              ],
+              "selectedCharge": "2",
+              "nativeSpec": {
+                "key": "attack",
+                "wi": 0,
+                "charge": 2,
+                "name": "Attaque++",
+                "icon": "⚔",
+                "weaponType": "greatsword",
+                "ap": 3,
+                "type": "phys",
+                "power": 8,
+                "range": [
+                  1,
+                  1
+                ],
+                "radius": 0,
+                "offensive": true,
+                "self": false,
+                "acc": 0.99,
+                "crit": 0.05,
+                "elanMul": 1.6,
+                "elanPierce": 0.5,
+                "basicAttackStatus": null,
+                "extendedMelee": false
+              },
+              "nativeCenterCount": 3,
+              "occupiedNativeCenters": [],
+              "candidates": []
+            },
+            {
+              "round": 3,
+              "active": {
+                "id": "white_mage",
+                "name": "Marian",
+                "team": "player",
+                "gx": 3,
+                "gz": 2,
+                "hp": 100,
+                "maxhp": 100,
+                "ap": 1,
+                "skills": [],
+                "statuses": {},
+                "weapons": [
+                  {
+                    "name": "Crosse novice",
+                    "weaponType": "crosier",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              "reason": "native-attack-disabled",
+              "support": true,
+              "buttons": [
+                {
+                  "disabled": true,
+                  "text": "✚AttaquerÉlan · dès 3 AP",
+                  "weaponIndex": "0"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeId": "lion-village-choice",
+          "combatId": "village_defense",
+          "pass": true,
+          "resultText": "✦\n\nROUTE BRISÉE\n\nDéfaite\n\nVotre équipe a été vaincue…\n\nCHECKPOINT\nRetour au dernier refuge\nÉTAT DE LA COMPAGNIE\nAlistair\nK.O.\nCedric\nK.O.\nREVENIR À LA CARTE",
+          "round": 5,
+          "units": [
+            {
+              "id": 1,
+              "name": "Pillard Serpent",
+              "team": "foe",
+              "gx": 1,
+              "gz": 0,
+              "hp": 85,
+              "maxhp": 85,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": 2,
+              "name": "Brute Serpent",
+              "team": "foe",
+              "gx": 0,
+              "gz": 1,
+              "hp": 130,
+              "maxhp": 130,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": 3,
+              "name": "Pillard Serpent",
+              "team": "foe",
+              "gx": 1,
+              "gz": 1,
+              "hp": 85,
+              "maxhp": 85,
+              "alive": true,
+              "downed": false
+            },
+            {
+              "id": "warrior",
+              "name": "Alistair",
+              "team": "player",
+              "gx": 0,
+              "gz": 0,
+              "hp": 0,
+              "maxhp": 140,
+              "alive": false,
+              "downed": true
+            },
+            {
+              "id": "rogue",
+              "name": "Cedric",
+              "team": "player",
+              "gx": 0,
+              "gz": 3,
+              "hp": 0,
+              "maxhp": 100,
+              "alive": false,
+              "downed": true
+            }
+          ],
+          "actions": {
+            "wait-for-native-defeat": 9
+          },
+          "waitReasons": {
+            "wait-for-native-defeat": 9
+          },
+          "attackReasons": {},
+          "supports": [],
+          "selectedRejectedAttempts": []
+        }
+      ],
+      "pointerSummary": {
+        "total": 32,
+        "clicked": 32,
+        "rejected": 0,
+        "rejectedHitTags": {}
+      },
+      "defeatRecovery": {
+        "nodeId": "lion-village-choice",
+        "pass": true,
+        "mode": "narrative",
+        "departureLabel": "Prendre la route",
+        "returnControlBounds": {
+          "x": 28,
+          "y": 516.9375,
+          "width": 334,
+          "height": 40
+        },
+        "canonicalOwnerHashes": {
+          "checkpoint": "a625b3132ad8e3011a42d7051211485fc004c8eb9fc35e02ee47966620b43042",
+          "savedBefore": "74758c0152464e2d896dcffdeafed319652e31725d486ad5bba6f9eb3552d03c",
+          "expected": "aa604c55385ba9f7160c8a8e93e50e1892c451d02fe017ba65098135033fe09c",
+          "recovered": "aa604c55385ba9f7160c8a8e93e50e1892c451d02fe017ba65098135033fe09c",
+          "resumed": "aa604c55385ba9f7160c8a8e93e50e1892c451d02fe017ba65098135033fe09c"
+        }
+      },
+      "captures": [
+        "lion-first-refuge-earned.png",
+        "lion-first-refuge-earned-resumed.png",
+        "lion-first-refuge-native-rest.png",
+        "lion-first-refuge-native-potion-stock.png",
+        "lion-first-refuge-native-potion-stock-resumed.png",
+        "combat-1-deployment.png",
+        "combat-1-actual-impact.png",
+        "combat-1-result.png",
+        "combat-2-deployment.png",
+        "combat-2-result.png",
+        "combat-2-native-defeat-return-focus.png",
+        "native-defeat-recovered.png",
+        "native-defeat-recovered-resumed.png"
+      ]
+    }
+  ]
+}

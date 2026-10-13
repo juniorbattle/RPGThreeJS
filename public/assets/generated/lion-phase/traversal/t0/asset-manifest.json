@@ -1,0 +1,204 @@
+{
+  "packId": "traversal-t0-current",
+  "status": "PRODUCTION",
+  "laneModel": "TWO_LANES",
+  "routePainting": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+  "assets": [
+    {
+      "id": "foreground-ferns",
+      "path": "/assets/generated/lion-phase/traversal/t0/foreground/ferns.png",
+      "role": "foreground",
+      "width": 2017,
+      "height": 780,
+      "sha256": "26b4b35e856666cb3bd812cc34814c326efa22111851a5ad974eda02034ba533"
+    },
+    {
+      "id": "foreground-roots",
+      "path": "/assets/generated/lion-phase/traversal/t0/foreground/roots.png",
+      "role": "foreground",
+      "width": 2172,
+      "height": 724,
+      "sha256": "f5da4383e4f10da27754184e005f9694ab003b8993ad350e36c9724f8ef400c6"
+    },
+    {
+      "id": "foreground-shared-loop",
+      "path": "/assets/generated/lion-phase/traversal/t0/foreground/shared-loop.png",
+      "role": "foreground",
+      "width": 1992,
+      "height": 724,
+      "sha256": "8aee23da28c64f9334cb21ec3c9dc94702d54972be7bb22cb313ff86a0e4bfd6"
+    },
+    {
+      "id": "props-abandoned-cart",
+      "path": "/assets/generated/lion-phase/traversal/t0/props/abandoned-cart.png",
+      "role": "props",
+      "width": 576,
+      "height": 512,
+      "sha256": "2712ef99d7412a92dc21f28e6ed0b216f5341a7fe43aa69835479a57fa5fce0e"
+    },
+    {
+      "id": "props-fork-sign",
+      "path": "/assets/generated/lion-phase/traversal/t0/props/fork-sign.png",
+      "role": "props",
+      "width": 1223,
+      "height": 1286,
+      "sha256": "f8d519acac367f5c9faf9f17c6f64c504babb569a109af4913e032445ad41713"
+    },
+    {
+      "id": "pursuit-shadow-pursuer",
+      "path": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+      "role": "pursuit",
+      "width": 640,
+      "height": 336,
+      "sha256": "55dfad9b50076ab3cd3b30f5245d6701ef2eea03bb6707959618276b155b9fc1"
+    },
+    {
+      "id": "reward-coin-pouch",
+      "path": "/assets/generated/lion-phase/traversal/t0/reward/coin-pouch.png",
+      "role": "reward",
+      "width": 512,
+      "height": 459,
+      "sha256": "a1bd020956384015043eb58c43461441337e7d57b5b7605c07fc38d6bbd92113"
+    },
+    {
+      "id": "risk-boulder-a",
+      "path": "/assets/generated/lion-phase/traversal/t0/risk/boulder-a.png",
+      "role": "risk",
+      "width": 530,
+      "height": 241,
+      "sha256": "12f455732156a72d875ddd5b4d59d165593e7c73d51e7933eb660982b2e343e8"
+    },
+    {
+      "id": "risk-boulder-b",
+      "path": "/assets/generated/lion-phase/traversal/t0/risk/boulder-b.png",
+      "role": "risk",
+      "width": 490,
+      "height": 318,
+      "sha256": "ac97b427b421d84a2eb27ef3c8b4afdc690783d65a971541a1ac30e2f0e7ed95"
+    },
+    {
+      "id": "risk-fallen-branch-a",
+      "path": "/assets/generated/lion-phase/traversal/t0/risk/fallen-branch-a.png",
+      "role": "risk",
+      "width": 500,
+      "height": 248,
+      "sha256": "3e25e735590e24c909a8bb7db2a652b55bd1ce33a3db01308a5749954a2076da"
+    },
+    {
+      "id": "risk-fallen-branch-b",
+      "path": "/assets/generated/lion-phase/traversal/t0/risk/fallen-branch-b.png",
+      "role": "risk",
+      "width": 554,
+      "height": 256,
+      "sha256": "70e2f320b5aecf55f09435799a683e67390cb08b0c6ddc295412acfbf1a1e5ce"
+    },
+    {
+      "id": "risk-roadblock-a",
+      "path": "/assets/generated/lion-phase/traversal/t0/risk/roadblock-a.png",
+      "role": "risk",
+      "width": 520,
+      "height": 261,
+      "sha256": "e39ce65273eef96d41e8647849b5af96f62963a5883ed5c818c0da2408da12fc"
+    },
+    {
+      "id": "risk-roadblock-b",
+      "path": "/assets/generated/lion-phase/traversal/t0/risk/roadblock-b.png",
+      "role": "risk",
+      "width": 550,
+      "height": 209,
+      "sha256": "b47912c04831f11aa5efc2d2a0228f48e6876c7ebc5c0b2610557bb9fa0893ca"
+    },
+    {
+      "id": "vehicle-traversal-caravan-chassis",
+      "path": "/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/chassis.png",
+      "role": "vehicle",
+      "width": 1260,
+      "height": 654,
+      "sha256": "16b17208d6473f977cd14d0d122a91b876e8c3ac508edb227c7e5f0a7c912b46"
+    },
+    {
+      "id": "vehicle-traversal-caravan-wheel",
+      "path": "/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/wheel.png",
+      "role": "vehicle",
+      "width": 300,
+      "height": 300,
+      "sha256": "cd7516ff563ad47f67c87697c643149a505a040a3d5f5a6a3d4fe238f8f77a70"
+    },
+    {
+      "id": "world-v1-ambush-cleared",
+      "path": "/assets/generated/lion-phase/traversal/t0/world-v1/ambush-cleared.png",
+      "role": "world-v1",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "473188f0f500323606b58f593ed5eb244cd9caada4f2855b7037f4a464f93c41"
+    },
+    {
+      "id": "world-v1-damaged-caravan",
+      "path": "/assets/generated/lion-phase/traversal/t0/world-v1/damaged-caravan.png",
+      "role": "world-v1",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "cd6bf5375ec4d149098209d44d9a80da47268802f76b5145728d47307899bb7d"
+    },
+    {
+      "id": "world-v1-forest-junction",
+      "path": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-junction.png",
+      "role": "world-v1",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "82a708b225d0bd7c28f2b418329e6a999ebd9921dadfa5caf33ea64de9068876"
+    },
+    {
+      "id": "world-v1-forest-road",
+      "path": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+      "role": "world-v1",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "1b64195bc4cb92d5e8cd56c42a68fc85b250fe7cd64b1af7a4b4603ea8f13ccf"
+    },
+    {
+      "id": "world-v1-nomad-waystation",
+      "path": "/assets/generated/lion-phase/traversal/t0/world-v1/nomad-waystation.png",
+      "role": "world-v1",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "7010ce775a143762bb0a4dee92ed0a081842dd4540d5b66e051cd1c10252c231"
+    },
+    {
+      "id": "world-v1-opening-ambush",
+      "path": "/assets/generated/lion-phase/traversal/t0/world-v1/opening-ambush.png",
+      "role": "world-v1",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "d9445d596edf6063a4e46f57d1e90700d1f25904c7c0f353675eb9bf69bcbe58"
+    },
+    {
+      "id": "world-v1-refugee-halt",
+      "path": "/assets/generated/lion-phase/traversal/t0/world-v1/refugee-halt.png",
+      "role": "world-v1",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "232610b915a48672faaadb2aacf649df304838eeeb888e94e9ccdd94b00c3677"
+    },
+    {
+      "id": "world-v1-ruined-outpost",
+      "path": "/assets/generated/lion-phase/traversal/t0/world-v1/ruined-outpost.png",
+      "role": "world-v1",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "a25162191ee1de2c406bdc62600e22f311eb1994a0ca2ad22c3e0fb83f68cb88"
+    },
+    {
+      "id": "pursuit-shadow-pursuer-run-v1",
+      "path": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.png",
+      "role": "pursuit-animation",
+      "width": 1536,
+      "height": 492,
+      "sha256": "184a87b829fa1ab4d5d3573c59aaae15d42ba0a7f8d8b17a52c8d06913558b2d",
+      "columns": 3,
+      "rows": 2,
+      "frameMs": 85,
+      "provenance": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.json"
+    }
+  ]
+}

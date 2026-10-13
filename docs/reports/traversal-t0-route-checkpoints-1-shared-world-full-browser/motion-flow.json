@@ -1,0 +1,858 @@
+{
+  "runs": [
+    {
+      "id": "branch-a",
+      "branch": "lion-first-trial-event",
+      "helpRefugees": true,
+      "routes": {
+        "route-1": {
+          "startMs": 3436,
+          "speed": {
+            "0.1": 1.0398233801007408,
+            "0.5": 1.635374576454074,
+            "0.9": 2.2168280232707045
+          },
+          "lastProgress": 1,
+          "completedAtMs": 15982.099999964237,
+          "visibleAtMs": 3980.099999964237,
+          "motionStartMs": 4069,
+          "readyAtMs": 18113.69999998808,
+          "durationMs": 11913,
+          "routeToCheckpointDeadMs": 2132,
+          "checkpointToRouteDeadMs": 493
+        },
+        "route-2": {
+          "startMs": 28054.799999952316,
+          "speed": {
+            "0.1": 1.0386107244045633,
+            "0.5": 1.6862180409150476,
+            "0.9": 2.3161249017731587
+          },
+          "lastProgress": 1,
+          "completedAtMs": 43553.09999996424,
+          "visibleAtMs": 28547.69999998808,
+          "motionStartMs": 28645.299999952316,
+          "readyAtMs": 45707.19999998808,
+          "durationMs": 14908,
+          "routeToCheckpointDeadMs": 2154,
+          "checkpointToRouteDeadMs": 495
+        },
+        "route-3": {
+          "startMs": 50323.89999997616,
+          "speed": {
+            "0.1": 1.0394392742562368,
+            "0.5": 1.6839772647363,
+            "0.9": 2.313783324806969
+          },
+          "lastProgress": 1,
+          "completedAtMs": 65833,
+          "visibleAtMs": 50818.89999997616,
+          "motionStartMs": 50902.299999952316,
+          "readyAtMs": 67996.09999996424,
+          "durationMs": 14931,
+          "routeToCheckpointDeadMs": 2163,
+          "checkpointToRouteDeadMs": 506
+        },
+        "route-4": {
+          "startMs": 73450.39999997616,
+          "speed": {
+            "0.1": 1.093505426603069,
+            "0.5": 1.7674633893324185,
+            "0.9": 2.4118206935492523
+          },
+          "lastProgress": 1,
+          "completedAtMs": 85979.19999998808,
+          "visibleAtMs": 73956.79999995232,
+          "motionStartMs": 74046,
+          "readyAtMs": 88135.59999996424,
+          "durationMs": 11933,
+          "routeToCheckpointDeadMs": 2156,
+          "checkpointToRouteDeadMs": 491
+        },
+        "route-5a": {
+          "startMs": 89817,
+          "speed": {
+            "0.1": 1.092355379102961,
+            "0.5": 1.784627748447603,
+            "0.9": 2.461940832178378
+          },
+          "lastProgress": 1,
+          "completedAtMs": 105308.19999998808,
+          "visibleAtMs": 90308.29999995232,
+          "motionStartMs": 90402.09999996424,
+          "readyAtMs": 107470.69999998808,
+          "durationMs": 14906,
+          "routeToCheckpointDeadMs": 2163,
+          "checkpointToRouteDeadMs": 481
+        },
+        "route-6": {
+          "startMs": 111761.29999995232,
+          "speed": {
+            "0.1": 1.2426747783246392,
+            "0.5": 1.9574473912059267,
+            "0.9": 2.6606297573883078
+          },
+          "lastProgress": 1,
+          "completedAtMs": 132249.39999997616,
+          "visibleAtMs": 112242.5,
+          "motionStartMs": 112359.09999996424,
+          "durationMs": 19890,
+          "routeToCheckpointDeadMs": null,
+          "checkpointToRouteDeadMs": null
+        }
+      },
+      "transitions": [
+        {
+          "kind": "entry",
+          "durationMs": 544
+        },
+        {
+          "kind": "focus",
+          "durationMs": 983
+        },
+        {
+          "kind": "event",
+          "durationMs": 1060
+        },
+        {
+          "kind": "return",
+          "durationMs": 493
+        },
+        {
+          "kind": "focus",
+          "durationMs": 1004
+        },
+        {
+          "kind": "event",
+          "durationMs": 1090
+        },
+        {
+          "kind": "return",
+          "durationMs": 495
+        },
+        {
+          "kind": "focus",
+          "durationMs": 1000
+        },
+        {
+          "kind": "event",
+          "durationMs": 938
+        },
+        {
+          "kind": "return",
+          "durationMs": 506
+        },
+        {
+          "kind": "focus",
+          "durationMs": 992
+        },
+        {
+          "kind": "fork",
+          "durationMs": 972
+        },
+        {
+          "kind": "focus",
+          "durationMs": 979
+        },
+        {
+          "kind": "event",
+          "durationMs": 3085
+        },
+        {
+          "kind": "return",
+          "durationMs": 481
+        }
+      ],
+      "globalTransitions": [
+        {
+          "atMs": 20320.399999976158,
+          "segment": "route-1",
+          "entries": 1,
+          "exits": 0,
+          "durationMs": 4045
+        },
+        {
+          "atMs": 27572.5,
+          "segment": "route-1",
+          "entries": 1,
+          "exits": 0,
+          "durationMs": 975
+        },
+        {
+          "atMs": 49849,
+          "segment": "route-2",
+          "entries": 2,
+          "exits": 1,
+          "durationMs": 970
+        },
+        {
+          "atMs": 72988.79999995232,
+          "segment": "route-3",
+          "entries": 3,
+          "exits": 2,
+          "durationMs": 968
+        },
+        {
+          "atMs": 111304,
+          "segment": "route-5a",
+          "entries": 5,
+          "exits": 4,
+          "durationMs": 963
+        }
+      ],
+      "checkpointEvents": [
+        {
+          "kind": "entry",
+          "segment": "route-1",
+          "atMs": 16512.299999952316
+        },
+        {
+          "kind": "exit",
+          "segment": "route-2",
+          "atMs": 28054.799999952316
+        },
+        {
+          "kind": "entry",
+          "segment": "route-2",
+          "atMs": 44049.69999998808
+        },
+        {
+          "kind": "exit",
+          "segment": "route-3",
+          "atMs": 50323.89999997616
+        },
+        {
+          "kind": "entry",
+          "segment": "route-3",
+          "atMs": 66306.89999997616
+        },
+        {
+          "kind": "exit",
+          "segment": "route-4",
+          "atMs": 73450.39999997616
+        },
+        {
+          "kind": "entry",
+          "segment": "route-4",
+          "atMs": 86466.89999997616
+        },
+        {
+          "kind": "exit",
+          "segment": "route-5a",
+          "atMs": 89817
+        },
+        {
+          "kind": "entry",
+          "segment": "route-5a",
+          "atMs": 105787.29999995232
+        },
+        {
+          "kind": "exit",
+          "segment": "route-6",
+          "atMs": 111761.29999995232
+        }
+      ],
+      "laneMoves": [
+        {
+          "lane": 1,
+          "progress": 0.30415000000000003,
+          "atMs": 7611.699999988079
+        },
+        {
+          "lane": 0,
+          "progress": 0.5555249999999999,
+          "atMs": 10635
+        }
+      ],
+      "routeStates": {
+        "route-1": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.052775000000000016
+        },
+        "route-2": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.052219999999999954
+        },
+        "route-3": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.05444666666666647
+        },
+        "route-4": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.05972499999999976
+        },
+        "route-5a": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.05555999999999961
+        },
+        "route-6": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.05166500000000015
+        }
+      },
+      "frameIssues": [],
+      "maxSceneCount": 1,
+      "checkpointEntries": 5,
+      "checkpointExits": 5,
+      "arrivalCallbacks": 1,
+      "progressionErrors": [],
+      "complete": true,
+      "visitedNodeIds": [
+        "lion-camp",
+        "lion-audience",
+        "lion-opening-ambush",
+        "lion-nomad-crossroads",
+        "lion-refugees",
+        "lion-first-trial-event"
+      ],
+      "bypassedNodeIds": [],
+      "selectedBranch": "lion-first-trial-event",
+      "branchSelectionCount": 1,
+      "bypassCount": 0,
+      "clipStartMs": 46979,
+      "clipEndMs": 92960
+    },
+    {
+      "id": "branch-b",
+      "branch": "lion-first-trial-combat",
+      "helpRefugees": false,
+      "routes": {
+        "route-1": {
+          "startMs": 1257.199999988079,
+          "speed": {
+            "0.1": 1.0388441308955976,
+            "0.5": 1.6327810713165625,
+            "0.9": 2.2177385701274073
+          },
+          "lastProgress": 1,
+          "completedAtMs": 13807.600000023842,
+          "visibleAtMs": 1781,
+          "motionStartMs": 1880.6000000238419,
+          "readyAtMs": 15962.300000011921,
+          "durationMs": 11927,
+          "routeToCheckpointDeadMs": 2155,
+          "checkpointToRouteDeadMs": 459
+        },
+        "route-2": {
+          "startMs": 24376.80000001192,
+          "speed": {
+            "0.1": 1.0411054466232297,
+            "0.5": 1.679468470988247,
+            "0.9": 2.314565602372973
+          },
+          "lastProgress": 1,
+          "completedAtMs": 39861.69999998808,
+          "visibleAtMs": 24835.30000001192,
+          "motionStartMs": 24860.399999976158,
+          "readyAtMs": 42030.19999998808,
+          "durationMs": 15001,
+          "routeToCheckpointDeadMs": 2169,
+          "checkpointToRouteDeadMs": 474
+        },
+        "route-3": {
+          "startMs": 46372.39999997616,
+          "speed": {
+            "0.1": 1.0411054466232295,
+            "0.5": 1.6817094017892211,
+            "0.9": 2.314565602372973
+          },
+          "lastProgress": 1,
+          "completedAtMs": 61858,
+          "visibleAtMs": 46845.89999997616,
+          "motionStartMs": 46876.80000001192,
+          "readyAtMs": 64033.80000001192,
+          "durationMs": 14981,
+          "routeToCheckpointDeadMs": 2176,
+          "checkpointToRouteDeadMs": 938
+        },
+        "route-4": {
+          "startMs": 65253.89999997616,
+          "speed": {
+            "0.1": 1.0924015988998856,
+            "0.5": 1.7586973010777054,
+            "0.9": 2.416835897980527
+          },
+          "lastProgress": 1,
+          "completedAtMs": 77767.5,
+          "visibleAtMs": 65743.89999997616,
+          "motionStartMs": 66263.10000002384,
+          "readyAtMs": 79929.60000002384,
+          "durationMs": 11504,
+          "routeToCheckpointDeadMs": 2162,
+          "checkpointToRouteDeadMs": 499
+        },
+        "route-5b": {
+          "startMs": 80687.69999998808,
+          "speed": {
+            "0.1": 1.0932485592592593,
+            "0.5": 1.7822208938763333,
+            "0.9": 2.4636156352378373
+          },
+          "lastProgress": 1,
+          "completedAtMs": 96207.60000002384,
+          "visibleAtMs": 81186.69999998808,
+          "motionStartMs": 81279.39999997616,
+          "readyAtMs": 98400.5,
+          "durationMs": 14928,
+          "routeToCheckpointDeadMs": 2193,
+          "checkpointToRouteDeadMs": 464
+        },
+        "route-6": {
+          "startMs": 110624.19999998808,
+          "speed": {
+            "0.1": 1.242670698565453,
+            "0.5": 1.9537124865236253,
+            "0.9": 2.661283683825009
+          },
+          "lastProgress": 1,
+          "completedAtMs": 131103.69999998808,
+          "visibleAtMs": 111087.89999997616,
+          "motionStartMs": 111176.69999998808,
+          "durationMs": 19927,
+          "routeToCheckpointDeadMs": null,
+          "checkpointToRouteDeadMs": null
+        }
+      },
+      "transitions": [
+        {
+          "kind": "entry",
+          "durationMs": 524
+        },
+        {
+          "kind": "focus",
+          "durationMs": 1008
+        },
+        {
+          "kind": "event",
+          "durationMs": 986
+        },
+        {
+          "kind": "return",
+          "durationMs": 459
+        },
+        {
+          "kind": "focus",
+          "durationMs": 999
+        },
+        {
+          "kind": "event",
+          "durationMs": 1073
+        },
+        {
+          "kind": "return",
+          "durationMs": 474
+        },
+        {
+          "kind": "focus",
+          "durationMs": 1002
+        },
+        {
+          "kind": "return",
+          "durationMs": 938
+        },
+        {
+          "kind": "focus",
+          "durationMs": 980
+        },
+        {
+          "kind": "fork",
+          "durationMs": 980
+        },
+        {
+          "kind": "focus",
+          "durationMs": 1018
+        },
+        {
+          "kind": "event",
+          "durationMs": 1533
+        },
+        {
+          "kind": "return",
+          "durationMs": 464
+        }
+      ],
+      "globalTransitions": [
+        {
+          "atMs": 17808,
+          "segment": "route-1",
+          "entries": 1,
+          "exits": 0,
+          "durationMs": 3288
+        },
+        {
+          "atMs": 23890.899999976158,
+          "segment": "route-1",
+          "entries": 1,
+          "exits": 0,
+          "durationMs": 970
+        },
+        {
+          "atMs": 45901,
+          "segment": "route-2",
+          "entries": 2,
+          "exits": 1,
+          "durationMs": 976
+        },
+        {
+          "atMs": 100961.5,
+          "segment": "route-5b",
+          "entries": 5,
+          "exits": 4,
+          "durationMs": 7391
+        },
+        {
+          "atMs": 110132.60000002384,
+          "segment": "route-5b",
+          "entries": 5,
+          "exits": 4,
+          "durationMs": 955
+        }
+      ],
+      "checkpointEvents": [
+        {
+          "kind": "entry",
+          "segment": "route-1",
+          "atMs": 14317
+        },
+        {
+          "kind": "exit",
+          "segment": "route-2",
+          "atMs": 24376.80000001192
+        },
+        {
+          "kind": "entry",
+          "segment": "route-2",
+          "atMs": 40338.39999997616
+        },
+        {
+          "kind": "exit",
+          "segment": "route-3",
+          "atMs": 46372.39999997616
+        },
+        {
+          "kind": "entry",
+          "segment": "route-3",
+          "atMs": 62334.5
+        },
+        {
+          "kind": "exit",
+          "segment": "route-3",
+          "atMs": 64806.10000002384
+        },
+        {
+          "kind": "entry",
+          "segment": "route-4",
+          "atMs": 78281
+        },
+        {
+          "kind": "exit",
+          "segment": "route-5b",
+          "atMs": 80687.69999998808
+        },
+        {
+          "kind": "entry",
+          "segment": "route-5b",
+          "atMs": 96712.80000001192
+        },
+        {
+          "kind": "exit",
+          "segment": "route-6",
+          "atMs": 110624.19999998808
+        }
+      ],
+      "laneMoves": [],
+      "routeStates": {
+        "route-1": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.05138333333333332
+        },
+        "route-2": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.056666666666666664
+        },
+        "route-3": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.05555333333333353
+        },
+        "route-4": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.05138333333333261
+        },
+        "route-5b": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.05444666666666744
+        },
+        "route-6": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.05165999999999985
+        }
+      },
+      "frameIssues": [],
+      "maxSceneCount": 1,
+      "checkpointEntries": 5,
+      "checkpointExits": 5,
+      "arrivalCallbacks": 1,
+      "progressionErrors": [],
+      "complete": true,
+      "visitedNodeIds": [
+        "lion-camp",
+        "lion-audience",
+        "lion-opening-ambush",
+        "lion-nomad-crossroads",
+        "lion-first-trial-combat"
+      ],
+      "bypassedNodeIds": [
+        "lion-refugees"
+      ],
+      "selectedBranch": "lion-first-trial-combat",
+      "branchSelectionCount": 1,
+      "bypassCount": 1,
+      "clipStartMs": 78763,
+      "clipEndMs": 133557
+    }
+  ]
+}

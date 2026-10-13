@@ -1,0 +1,31 @@
+INTENDED USE
+Create one from-scratch playable Character Master for Alistair, a modern premium tactical RPG sprite. This corrected Candidate B must be an original tactical character design, not a variation of the example Knight in Image 1.
+
+REFERENCE ROLES
+Image 1 is only an abstract artistic-quality reference: use its modern pixel sharpness, adult heroic anatomy, material separation, clean value grouping, and premium finish. Ignore its Knight's costume, composition, cape, tabard, helmet, ornaments, sword pose, and silhouette completely.
+Image 2 is only the selected technical production reference: use its 128x128-compatible cluster density, tactical readability, shared-scale discipline, and animation-friendly complexity. Do not copy its Knight.
+
+SUBJECT
+Exactly one original Alistair: a broad heavy frontline knight and martial anchor. Dark neutral steel armor, restrained deep red cloth, fully closed helmet, no visible skin, large two-handed greatsword close to body height. Stable authoritative adult heroic proportions, approximately 7 to 7.5 heads tall beneath armor. No shield.
+
+CORRECTED CANDIDATE B DESIGN
+Use a smooth LOW DOMED closed sallet with a continuous horizontal black visor slit and two small rear neck plates. The helmet crown must be round and low: no point, no central ridge, no vertical crest, no face grill, no gold forehead frame. Use a broad dark-steel cuirass with three subtle vertical flutes, compact rounded shoulder shells without layered fan plates, large articulated forearms, clean oval knee cops, and straight greaves. Keep antique brass limited to tiny functional rivets only.
+
+Do not use a cloak or shoulder mantle. Deep red identity cloth appears as a fitted sleeveless ARMORED SURCOAT beneath the cuirass, visible only as two wide side panels at the ribs and two short split skirt panels from the belt to mid-thigh. No cloth across the shoulders. No central hanging tabard. No long fabric behind the legs. No brooches, medallions, heraldry, animal symbols, pale-gold embroidery, torn cape, or fur.
+
+The original greatsword has a long broad taper, shallow central fuller, compact T-shaped dark-steel guard, leather grip, and octagonal pommel. Both gauntlets hold it in a low diagonal guard across the thighs, the blade pointing down toward viewer-right, with the entire blade and tip visible above the boot line. Do not raise the blade beside the head and do not plant it vertically.
+
+POSE AND CAMERA
+Full-body neutral combat-ready stance, near-orthographic three-quarter front view, minimal perspective distortion. Feet planted wide but natural on one horizontal foot plane. Upright torso, level shoulders, neutral head. Entire helmet, all red cloth panels, sword, both hands, and both boots visible. No dramatic action, no foreshortening, no crop.
+
+PIXEL CONSTRUCTION
+True modern pixel art for later 128x128 logical reconstruction. Deliberate coherent pixel clusters, controlled stair-step contours, discrete value bands, compact highlights, no painterly gradients, isolated noise, global dithering, or fake pixel filter. Use large readable armor planes, 4-6 metal values, 3-5 cloth values, and clear animation-ready joint separations. Premium yet tactical, crisp at 400% nearest-neighbor inspection.
+
+GEOMETRY TARGET
+Square 2048x2048 source. Center the body on x=1024. Put the foot plane at y=1856. Helmet top to boot soles approximately 1344 px. Keep all equipment at least 128 px from the edge. Do not enlarge merely to fill.
+
+BACKGROUND AND OUTPUT
+Perfectly flat solid #FF00FF magenta background, edge-to-edge. No floor, shadow, horizon, gradient, texture, glow, particles, text, border, labels, duplicates, extra weapons, or scenery. One complete isolated character only.
+
+HARD EXCLUSIONS
+No legacy RPGThreeJS imagery. No old sprite reconstruction. No Image 1 Knight geometry: no peaked helmet, fur mantle, red shoulder cape, round chest brooch, central red tabard, long symmetrical cloak, pale-gold heraldic motif, vertical/high sword, copied belt, or copied plate arrangement. No painted concept art, retro/chibi anatomy, exposed face, shield, or cropped equipment.

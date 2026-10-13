@@ -1,0 +1,1479 @@
+{
+  "version": 1,
+  "source": "vfx-r3a2-sol-action-aware-naming",
+  "rules": {
+    "basicAttack": "one preset, exactly one basics spritesheet",
+    "skill": "one preset, one to N spritesheets",
+    "weaponSkill": "usually basics primaryImpact + skills secondary/status/elemental burst",
+    "pureMagicSkill": "skills only unless accent needed"
+  },
+  "basicAttackSeeds": [
+    {
+      "presetName": "basic_greatsword_hit",
+      "actionNeed": "basic_attack_greatsword",
+      "requiredFolder": "basics",
+      "spriteChain": [
+        "white_basic_slash_triple_impact_heavy"
+      ],
+      "maxSpritesheets": 1,
+      "apTierLogic": "heavy",
+      "notes": "Épée lourde; one preset, exactly one basics spritesheet. Runtime Élan tiers remain gameplay-owned and untouched."
+    },
+    {
+      "presetName": "basic_holy_mace_hit",
+      "actionNeed": "basic_attack_holy_mace",
+      "requiredFolder": "basics",
+      "spriteChain": [
+        "white_basic_smash_comet_impact_medium"
+      ],
+      "maxSpritesheets": 1,
+      "apTierLogic": "medium",
+      "notes": "Masse sacrée; one preset, exactly one basics spritesheet. Runtime Élan tiers remain gameplay-owned and untouched."
+    },
+    {
+      "presetName": "basic_scythe_hit",
+      "actionNeed": "basic_attack_scythe",
+      "requiredFolder": "basics",
+      "spriteChain": [
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "maxSpritesheets": 1,
+      "apTierLogic": "heavy",
+      "notes": "Faux; one preset, exactly one basics spritesheet. Runtime Élan tiers remain gameplay-owned and untouched."
+    },
+    {
+      "presetName": "basic_long_spear_hit",
+      "actionNeed": "basic_attack_long_spear",
+      "requiredFolder": "basics",
+      "spriteChain": [
+        "white_basic_slash_horizontal_flash_medium"
+      ],
+      "maxSpritesheets": 1,
+      "apTierLogic": "medium",
+      "notes": "Lance longue; one preset, exactly one basics spritesheet. Runtime Élan tiers remain gameplay-owned and untouched."
+    },
+    {
+      "presetName": "basic_grimoire_hit",
+      "actionNeed": "basic_attack_grimoire",
+      "requiredFolder": "basics",
+      "spriteChain": [
+        "white_basic_magic_holy_ring_burst_heavy"
+      ],
+      "maxSpritesheets": 1,
+      "apTierLogic": "medium",
+      "notes": "Grimoire; one preset, exactly one basics spritesheet. Runtime Élan tiers remain gameplay-owned and untouched."
+    },
+    {
+      "presetName": "basic_crosier_hit",
+      "actionNeed": "basic_attack_crosier",
+      "requiredFolder": "basics",
+      "spriteChain": [
+        "white_basic_magic_holy_sigil_burst_medium"
+      ],
+      "maxSpritesheets": 1,
+      "apTierLogic": "medium",
+      "notes": "Crosse; one preset, exactly one basics spritesheet. Runtime Élan tiers remain gameplay-owned and untouched."
+    },
+    {
+      "presetName": "basic_rapier_hit",
+      "actionNeed": "basic_attack_rapier",
+      "requiredFolder": "basics",
+      "spriteChain": [
+        "white_basic_slash_cross_impact_heavy"
+      ],
+      "maxSpritesheets": 1,
+      "apTierLogic": "small",
+      "notes": "Rapière; one preset, exactly one basics spritesheet. Runtime Élan tiers remain gameplay-owned and untouched."
+    },
+    {
+      "presetName": "basic_wand_hit",
+      "actionNeed": "basic_attack_wand",
+      "requiredFolder": "basics",
+      "spriteChain": [
+        "white_basic_magic_holy_sigil_burst_medium"
+      ],
+      "maxSpritesheets": 1,
+      "apTierLogic": "medium",
+      "notes": "Baguette; one preset, exactly one basics spritesheet. Runtime Élan tiers remain gameplay-owned and untouched."
+    },
+    {
+      "presetName": "basic_longbow_hit",
+      "actionNeed": "basic_attack_longbow",
+      "requiredFolder": "basics",
+      "spriteChain": [
+        "white_basic_arrow_arc_burst_heavy"
+      ],
+      "maxSpritesheets": 1,
+      "apTierLogic": "medium",
+      "notes": "Arc long; one preset, exactly one basics spritesheet. Runtime Élan tiers remain gameplay-owned and untouched."
+    },
+    {
+      "presetName": "basic_shuriken_hit",
+      "actionNeed": "basic_attack_shuriken",
+      "requiredFolder": "basics",
+      "spriteChain": [
+        "white_basic_arrow_comet_burst_heavy"
+      ],
+      "maxSpritesheets": 1,
+      "apTierLogic": "small",
+      "notes": "Shuriken; one preset, exactly one basics spritesheet. Runtime Élan tiers remain gameplay-owned and untouched."
+    },
+    {
+      "presetName": "basic_dagger_hit",
+      "actionNeed": "basic_attack_dagger",
+      "requiredFolder": "basics",
+      "spriteChain": [
+        "white_basic_slash_diagonal_cut_medium"
+      ],
+      "maxSpritesheets": 1,
+      "apTierLogic": "small",
+      "notes": "Dague; one preset, exactly one basics spritesheet. Runtime Élan tiers remain gameplay-owned and untouched."
+    },
+    {
+      "presetName": "basic_hand_cannon_hit",
+      "actionNeed": "basic_attack_hand_cannon",
+      "requiredFolder": "basics",
+      "spriteChain": [
+        "white_basic_arrow_nova_impact_heavy"
+      ],
+      "maxSpritesheets": 1,
+      "apTierLogic": "heavy",
+      "notes": "Canon à main; one preset, exactly one basics spritesheet. Runtime Élan tiers remain gameplay-owned and untouched."
+    }
+  ],
+  "skillPresetSeeds": [
+    {
+      "presetName": "r3a2_w_break_guard",
+      "actionNeed": "w_break_guard",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_slash_diagonal_cut_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Brise-Garde: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 2 AP, current preset sword_slash."
+    },
+    {
+      "presetName": "r3a2_w_charge",
+      "actionNeed": "w_charge",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_smash_comet_impact_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Charge: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 3 AP, current preset blunt_impact."
+    },
+    {
+      "presetName": "r3a2_w_whirl",
+      "actionNeed": "w_whirl",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_slash_diagonal_cut_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Tourbillon d'Acier: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 4 AP, current preset sword_slash."
+    },
+    {
+      "presetName": "r3a2_w_lion_surge",
+      "actionNeed": "w_lion_surge",
+      "presetType": "ultimateComposite",
+      "spriteChain": [
+        "white_basic_slash_triple_impact_heavy",
+        "orange_skill_solar_halo_burst_ultimate"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Déferlement du Lion: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "ultimate, 5 AP, current preset ultimate_lion_surge."
+    },
+    {
+      "presetName": "r3a2_p_holy_strike",
+      "actionNeed": "p_holy_strike",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_slash_cross_impact_heavy",
+        "gold_skill_holy_radiance_burst_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Frappe Consacrée: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "skill, 2 AP, current preset holy_strike."
+    },
+    {
+      "presetName": "r3a2_p_interpose",
+      "actionNeed": "p_interpose",
+      "presetType": "supportSingle",
+      "spriteChain": [
+        "white_basic_smash_shockwave_burst_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Interposition: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 3 AP, current preset leap_impact."
+    },
+    {
+      "presetName": "r3a2_p_oathwall",
+      "actionNeed": "p_oathwall",
+      "presetType": "supportSingle",
+      "spriteChain": [
+        "blue_skill_barrier_guard_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Rempart du Serment: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 4 AP, current preset guard_barrier."
+    },
+    {
+      "presetName": "r3a2_p_radiant_judgement",
+      "actionNeed": "p_radiant_judgement",
+      "presetType": "ultimateComposite",
+      "spriteChain": [
+        "gold_skill_holy_radiance_burst_heavy",
+        "bluegold_skill_ultimate_arcane_beam_ultimate"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Jugement Radieux: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "ultimate, 5 AP, current preset ultimate_radiant_judgement."
+    },
+    {
+      "presetName": "r3a2_d_cursed_blade",
+      "actionNeed": "d_cursed_blade",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_slash_diagonal_cut_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Lame Maudite: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 2 AP, current preset sword_slash."
+    },
+    {
+      "presetName": "r3a2_d_void_step",
+      "actionNeed": "d_void_step",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "purple_skill_void_arcane_portal_ultimate"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Pas du Néant: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 3 AP, current preset teleport_burst."
+    },
+    {
+      "presetName": "r3a2_d_blood_pact",
+      "actionNeed": "d_blood_pact",
+      "presetType": "supportSingle",
+      "spriteChain": [
+        "gold_skill_holy_sigil_burst_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Pacte de Sang: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 4 AP, current preset bless_aura."
+    },
+    {
+      "presetName": "r3a2_d_devouring_eclipse",
+      "actionNeed": "d_devouring_eclipse",
+      "presetType": "ultimateComposite",
+      "spriteChain": [
+        "purpleblack_skill_void_singularity_implosion_ultimate",
+        "purple_skill_void_arcane_portal_ultimate"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Éclipse Dévorante: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "ultimate, 5 AP, current preset ultimate_devouring_eclipse."
+    },
+    {
+      "presetName": "r3a2_l_long_thrust",
+      "actionNeed": "l_long_thrust",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_slash_horizontal_flash_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Estoc Long: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 2 AP, current preset thrust_line."
+    },
+    {
+      "presetName": "r3a2_l_haft_recoil",
+      "actionNeed": "l_haft_recoil",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_slash_horizontal_flash_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Repli de Hampe: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 3 AP, current preset thrust_line."
+    },
+    {
+      "presetName": "r3a2_l_griffon_jump",
+      "actionNeed": "l_griffon_jump",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_smash_shockwave_burst_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Saut du Griffon: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 4 AP, current preset leap_impact."
+    },
+    {
+      "presetName": "r3a2_l_firmament_lance",
+      "actionNeed": "l_firmament_lance",
+      "presetType": "ultimateComposite",
+      "spriteChain": [
+        "white_basic_slash_horizontal_flash_medium",
+        "bluegold_skill_ultimate_arcane_beam_ultimate"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Lance du Firmament: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "ultimate, 5 AP, current preset ultimate_firmament_lance."
+    },
+    {
+      "presetName": "r3a2_n_dark_bolt",
+      "actionNeed": "n_dark_bolt",
+      "presetType": "elementalComposite",
+      "spriteChain": [
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Éclair Noir: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "skill, 2 AP, current preset shadow_lightning_bolt."
+    },
+    {
+      "presetName": "r3a2_n_teleport",
+      "actionNeed": "n_teleport",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "purple_skill_void_arcane_portal_ultimate"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Téléportation: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 3 AP, current preset teleport_burst."
+    },
+    {
+      "presetName": "r3a2_n_flame_wave",
+      "actionNeed": "n_flame_wave",
+      "presetType": "elementalComposite",
+      "spriteChain": [
+        "orange_skill_fire_impact_burst_medium",
+        "orange_skill_fire_vortex_nova_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Vague de Flammes: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "skill, 4 AP, current preset shape_cone_blast."
+    },
+    {
+      "presetName": "r3a2_n_dark_meteor",
+      "actionNeed": "n_dark_meteor",
+      "presetType": "ultimateComposite",
+      "spriteChain": [
+        "orange_skill_meteor_impact_burst_heavy",
+        "purpleblack_skill_void_singularity_implosion_ultimate"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Météore Obscur: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "ultimate, 5 AP, current preset ultimate_dark_meteor."
+    },
+    {
+      "presetName": "r3a2_w_salvation",
+      "actionNeed": "w_salvation",
+      "presetType": "supportSingle",
+      "spriteChain": [
+        "whitegreen_skill_heal_blessing_bloom_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Lumière Salvatrice: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 2 AP, current preset heal_burst."
+    },
+    {
+      "presetName": "r3a2_w_purify",
+      "actionNeed": "w_purify",
+      "presetType": "supportSingle",
+      "spriteChain": [
+        "gold_skill_holy_radiance_burst_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Purification: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 3 AP, current preset support_holy_aura."
+    },
+    {
+      "presetName": "r3a2_w_sanctuary",
+      "actionNeed": "w_sanctuary",
+      "presetType": "supportSingle",
+      "spriteChain": [
+        "gold_skill_holy_radiance_burst_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Sanctuaire: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 4 AP, current preset support_holy_aura."
+    },
+    {
+      "presetName": "r3a2_w_miracle",
+      "actionNeed": "w_miracle",
+      "presetType": "ultimateComposite",
+      "spriteChain": [
+        "whitegreen_skill_heal_blessing_bloom_heavy",
+        "bluegold_skill_ultimate_arcane_invocation_ultimate"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Miracle: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "ultimate, 5 AP, current preset ultimate_miracle."
+    },
+    {
+      "presetName": "r3a2_r_arcane_blade",
+      "actionNeed": "r_arcane_blade",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_slash_diagonal_cut_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Lame Arcanique: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 2 AP, current preset sword_slash."
+    },
+    {
+      "presetName": "r3a2_r_rune_step",
+      "actionNeed": "r_rune_step",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "purple_skill_void_arcane_portal_ultimate"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Pas Runique: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 3 AP, current preset teleport_burst."
+    },
+    {
+      "presetName": "r3a2_r_scarlet_circle",
+      "actionNeed": "r_scarlet_circle",
+      "presetType": "elementalComposite",
+      "spriteChain": [
+        "orange_skill_fire_impact_burst_medium",
+        "orange_skill_fire_vortex_nova_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Cercle Écarlate: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "skill, 4 AP, current preset impact_explosion_large."
+    },
+    {
+      "presetName": "r3a2_r_perfect_duality",
+      "actionNeed": "r_perfect_duality",
+      "presetType": "ultimateComposite",
+      "spriteChain": [
+        "orange_skill_fire_energy_spiral_medium",
+        "gold_skill_holy_vortex_nova_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Dualité Parfaite: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "ultimate, 5 AP, current preset ultimate_perfect_duality."
+    },
+    {
+      "presetName": "r3a2_e_vigor_rune",
+      "actionNeed": "e_vigor_rune",
+      "presetType": "supportSingle",
+      "spriteChain": [
+        "blue_skill_arcane_sigil_burst_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Rune de Vigueur: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 2 AP, current preset support_boost_aura."
+    },
+    {
+      "presetName": "r3a2_e_transpose",
+      "actionNeed": "e_transpose",
+      "presetType": "supportSingle",
+      "spriteChain": [
+        "purple_skill_void_arcane_portal_ultimate"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Transposition: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 3 AP, current preset teleport_burst."
+    },
+    {
+      "presetName": "r3a2_e_binding_seal",
+      "actionNeed": "e_binding_seal",
+      "presetType": "skillSingle",
+      "spriteChain": [
+        "green_skill_barrier_rune_guard_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Sceau d'Entrave: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 4 AP, current preset root_vines."
+    },
+    {
+      "presetName": "r3a2_e_absolute_harmony",
+      "actionNeed": "e_absolute_harmony",
+      "presetType": "ultimateComposite",
+      "spriteChain": [
+        "bluegold_skill_ultimate_arcane_invocation_ultimate",
+        "green_skill_barrier_shield_ring_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Harmonie Absolue: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "ultimate, 5 AP, current preset ultimate_absolute_harmony."
+    },
+    {
+      "presetName": "r3a2_a_precise_shot",
+      "actionNeed": "a_precise_shot",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_arrow_arc_burst_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Tir Précis: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 2 AP, current preset arrow_shot."
+    },
+    {
+      "presetName": "r3a2_a_hawk_leap",
+      "actionNeed": "a_hawk_leap",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_smash_shockwave_burst_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Bond du Faucon: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 3 AP, current preset leap_impact."
+    },
+    {
+      "presetName": "r3a2_a_arrow_rain",
+      "actionNeed": "a_arrow_rain",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_arrow_arc_burst_heavy",
+        "white_basic_arrow_nova_impact_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Pluie de Flèches: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "skill, 4 AP, current preset arrow_rain."
+    },
+    {
+      "presetName": "r3a2_a_zenith_arrow",
+      "actionNeed": "a_zenith_arrow",
+      "presetType": "ultimateComposite",
+      "spriteChain": [
+        "white_basic_arrow_nova_impact_heavy",
+        "bluegold_skill_ultimate_arcane_beam_ultimate"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Flèche du Zénith: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "ultimate, 5 AP, current preset ultimate_zenith_arrow."
+    },
+    {
+      "presetName": "r3a2_ni_venom_blade",
+      "actionNeed": "ni_venom_blade",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_slash_diagonal_cut_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Lame Venimeuse: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 2 AP, current preset sword_slash."
+    },
+    {
+      "presetName": "r3a2_ni_shadow_step",
+      "actionNeed": "ni_shadow_step",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_crit_star_burst_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Pas d'Ombre: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 3 AP, current preset critical_hit."
+    },
+    {
+      "presetName": "r3a2_ni_smoke_bomb",
+      "actionNeed": "ni_smoke_bomb",
+      "presetType": "skillSingle",
+      "spriteChain": [
+        "orange_skill_fire_smoke_explosion_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Bombe Fumigène: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 4 AP, current preset move_smoke_burst."
+    },
+    {
+      "presetName": "r3a2_ni_silent_assassin",
+      "actionNeed": "ni_silent_assassin",
+      "presetType": "ultimateComposite",
+      "spriteChain": [
+        "white_basic_slash_diagonal_cut_medium",
+        "purple_skill_arcane_slash_burst_medium",
+        "purple_skill_void_spiral_implosion_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms secondary burst",
+        "180ms afterburst"
+      ],
+      "recommendedUse": "Assassinat Silencieux: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "ultimate, 5 AP, current preset ultimate_silent_assassin."
+    },
+    {
+      "presetName": "r3a2_ro_sneak_attack",
+      "actionNeed": "ro_sneak_attack",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_slash_diagonal_cut_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Coup Sournois: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 2 AP, current preset sword_slash."
+    },
+    {
+      "presetName": "r3a2_ro_tumble",
+      "actionNeed": "ro_tumble",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_smash_shockwave_burst_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Roulade: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 3 AP, current preset leap_impact."
+    },
+    {
+      "presetName": "r3a2_ro_jaw_trap",
+      "actionNeed": "ro_jaw_trap",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "green_skill_barrier_rune_guard_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Mâchoire à Ressort: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 4 AP, current preset root_vines."
+    },
+    {
+      "presetName": "r3a2_ro_fault_breaker",
+      "actionNeed": "ro_fault_breaker",
+      "presetType": "ultimateComposite",
+      "spriteChain": [
+        "white_basic_smash_crescent_impact_heavy",
+        "orange_skill_fire_energy_spiral_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Casse-Faille: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "ultimate, 5 AP, current preset ultimate_fault_breaker."
+    },
+    {
+      "presetName": "r3a2_ar_calibrated_shot",
+      "actionNeed": "ar_calibrated_shot",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_arrow_arc_burst_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Tir Calibré: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "skill, 2 AP, current preset arrow_shot."
+    },
+    {
+      "presetName": "r3a2_ar_explosive_retreat",
+      "actionNeed": "ar_explosive_retreat",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "orange_skill_fire_impact_burst_medium",
+        "orange_skill_fire_vortex_nova_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Repli Explosif: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "skill, 3 AP, current preset impact_explosion_large."
+    },
+    {
+      "presetName": "r3a2_ar_incendiary_grenade",
+      "actionNeed": "ar_incendiary_grenade",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "orange_skill_fire_impact_burst_medium",
+        "orange_skill_fire_vortex_nova_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Grenade Incendiaire: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "skill, 4 AP, current preset impact_explosion_large."
+    },
+    {
+      "presetName": "r3a2_ar_artillery_barrage",
+      "actionNeed": "ar_artillery_barrage",
+      "presetType": "ultimateComposite",
+      "spriteChain": [
+        "white_basic_arrow_nova_impact_heavy",
+        "orange_skill_fire_impact_burst_medium",
+        "orange_skill_fire_spark_cluster_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms secondary burst",
+        "180ms afterburst"
+      ],
+      "recommendedUse": "Barrage d'Artillerie: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "ultimate, 5 AP, current preset ultimate_artillery_barrage."
+    },
+    {
+      "presetName": "r3a2_boss_slam",
+      "actionNeed": "boss_slam",
+      "presetType": "bossComposite",
+      "spriteChain": [
+        "white_basic_smash_shockwave_burst_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Frappe Sismique: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "bossSkill, 5 AP, current preset boss_slam."
+    },
+    {
+      "presetName": "r3a2_boss_roar",
+      "actionNeed": "boss_roar",
+      "presetType": "bossComposite",
+      "spriteChain": [
+        "gold_skill_holy_vortex_nova_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Rugissement: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "bossSkill, 5 AP, current preset caster_roar."
+    },
+    {
+      "presetName": "r3a2_boss_quake",
+      "actionNeed": "boss_quake",
+      "presetType": "bossComposite",
+      "spriteChain": [
+        "white_basic_smash_shockwave_burst_heavy",
+        "orange_skill_fire_energy_spiral_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Onde de Choc: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "bossSkill, 4 AP, current preset boss_quake."
+    },
+    {
+      "presetName": "r3a2_boss_guard",
+      "actionNeed": "boss_guard",
+      "presetType": "bossComposite",
+      "spriteChain": [
+        "blue_skill_barrier_guard_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Garde: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "bossSkill, 3 AP, current preset guard_barrier."
+    },
+    {
+      "presetName": "r3a2_boss_apocalypse",
+      "actionNeed": "boss_apocalypse",
+      "presetType": "bossComposite",
+      "spriteChain": [
+        "purple_skill_void_arcane_portal_ultimate",
+        "purpleblack_skill_void_singularity_implosion_ultimate",
+        "orange_skill_fire_vortex_nova_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms secondary burst",
+        "180ms afterburst"
+      ],
+      "recommendedUse": "Apocalypse: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "bossSkill, 5 AP, current preset boss_apocalypse_v2."
+    },
+    {
+      "presetName": "r3a2_boss_regen",
+      "actionNeed": "boss_regen",
+      "presetType": "bossComposite",
+      "spriteChain": [
+        "green_skill_support_leaf_burst_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Régénération: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "bossSkill, 3 AP, current preset support_regen_aura."
+    },
+    {
+      "presetName": "r3a2_boss_fortify",
+      "actionNeed": "boss_fortify",
+      "presetType": "bossComposite",
+      "spriteChain": [
+        "gold_skill_holy_sigil_burst_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Fortification: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "bossSkill, 3 AP, current preset bless_aura."
+    },
+    {
+      "presetName": "r3a2_boss_freeze",
+      "actionNeed": "boss_freeze",
+      "presetType": "bossComposite",
+      "spriteChain": [
+        "iceblue_skill_ice_sigil_burst_medium",
+        "iceblue_skill_ice_pillar_impact_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Gel: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "bossSkill, 4 AP, current preset frost_bind."
+    },
+    {
+      "presetName": "r3a2_boss_pin",
+      "actionNeed": "boss_pin",
+      "presetType": "bossComposite",
+      "spriteChain": [
+        "white_basic_arrow_arc_burst_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Transpercement: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "bossSkill, 4 AP, current preset arrow_shot."
+    },
+    {
+      "presetName": "r3a2_boss_execution",
+      "actionNeed": "boss_execution",
+      "presetType": "bossComposite",
+      "spriteChain": [
+        "white_basic_slash_triple_impact_heavy",
+        "purple_skill_arcane_slash_burst_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Exécution: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "bossSkill, 5 AP, current preset boss_execution."
+    },
+    {
+      "presetName": "r3a2_boss_flurry",
+      "actionNeed": "boss_flurry",
+      "presetType": "bossComposite",
+      "spriteChain": [
+        "white_basic_slash_diagonal_cut_medium",
+        "orange_skill_fire_slash_combo_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Rafale Mortelle: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "bossSkill, 5 AP, current preset boss_flurry."
+    },
+    {
+      "presetName": "r3a2_boss_inferno",
+      "actionNeed": "boss_inferno",
+      "presetType": "bossComposite",
+      "spriteChain": [
+        "orange_skill_fire_vortex_nova_heavy",
+        "orange_skill_meteor_impact_burst_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Brasier Infernal: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "bossSkill, 5 AP, current preset boss_inferno."
+    },
+    {
+      "presetName": "r3a2_boss_titan_slam",
+      "actionNeed": "boss_titan_slam",
+      "presetType": "bossComposite",
+      "spriteChain": [
+        "white_basic_smash_shockwave_burst_heavy",
+        "orange_skill_fire_energy_spiral_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Frappe du Titan: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "bossSkill, 5 AP, current preset boss_titan_slam."
+    },
+    {
+      "presetName": "r3a2_enemy_heavy_strike",
+      "actionNeed": "enemy_heavy_strike",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_smash_comet_impact_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Frappe Lourde: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "enemySkill, 2 AP, current preset blunt_impact."
+    },
+    {
+      "presetName": "r3a2_enemy_crush",
+      "actionNeed": "enemy_crush",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "white_basic_smash_comet_impact_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Écrasement: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "enemySkill, 3 AP, current preset blunt_impact."
+    },
+    {
+      "presetName": "r3a2_enemy_dark_bolt",
+      "actionNeed": "enemy_dark_bolt",
+      "presetType": "elementalComposite",
+      "spriteChain": [
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Éclair Sombre: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "enemySkill, 2 AP, current preset shadow_lightning_bolt."
+    },
+    {
+      "presetName": "r3a2_enemy_hex",
+      "actionNeed": "enemy_hex",
+      "presetType": "skillSingle",
+      "spriteChain": [
+        "purple_skill_void_rune_orb_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Maléfice: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "enemySkill, 2 AP, current preset status_curse_mark."
+    },
+    {
+      "presetName": "r3a2_enemy_venom_strike",
+      "actionNeed": "enemy_venom_strike",
+      "presetType": "weaponSkillComposite",
+      "spriteChain": [
+        "green_skill_poison_maw_bite_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Frappe Venimeuse: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "enemySkill, 2 AP, current preset poison_bite."
+    },
+    {
+      "presetName": "r3a2_enemy_binding_shot",
+      "actionNeed": "enemy_binding_shot",
+      "presetType": "skillSingle",
+      "spriteChain": [
+        "green_skill_barrier_rune_guard_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Tir Entravant: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "enemySkill, 2 AP, current preset root_vines."
+    },
+    {
+      "presetName": "r3a2_enemy_smoke_veil",
+      "actionNeed": "enemy_smoke_veil",
+      "presetType": "skillSingle",
+      "spriteChain": [
+        "orange_skill_fire_smoke_explosion_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Voile de Fumée: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "enemySkill, 3 AP, current preset move_smoke_burst."
+    },
+    {
+      "presetName": "r3a2_enemy_taunt",
+      "actionNeed": "enemy_taunt",
+      "presetType": "skillSingle",
+      "spriteChain": [
+        "gold_skill_holy_vortex_nova_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Provocation: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "enemySkill, 2 AP, current preset caster_roar."
+    },
+    {
+      "presetName": "r3a2_enemy_battle_cry",
+      "actionNeed": "enemy_battle_cry",
+      "presetType": "skillSingle",
+      "spriteChain": [
+        "gold_skill_holy_vortex_nova_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Cri de Guerre: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "enemySkill, 3 AP, current preset caster_roar."
+    },
+    {
+      "presetName": "r3a2_enemy_dragon_breath",
+      "actionNeed": "enemy_dragon_breath",
+      "presetType": "elementalComposite",
+      "spriteChain": [
+        "green_skill_poison_maw_bite_heavy",
+        "orange_skill_fire_vortex_nova_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Souffle de Dragon: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "enemySkill, 3 AP, current preset enemy_dragon_breath."
+    },
+    {
+      "presetName": "r3a2_item_potion",
+      "actionNeed": "item_potion",
+      "presetType": "supportSingle",
+      "spriteChain": [
+        "whitegreen_skill_heal_blessing_bloom_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Potion: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "item, 1 AP, current preset heal_burst."
+    },
+    {
+      "presetName": "r3a2_item_ether",
+      "actionNeed": "item_ether",
+      "presetType": "supportSingle",
+      "spriteChain": [
+        "blue_skill_arcane_sigil_burst_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Éther: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "item, 1 AP, current preset heal_burst."
+    },
+    {
+      "presetName": "r3a2_item_antidote",
+      "actionNeed": "item_antidote",
+      "presetType": "supportSingle",
+      "spriteChain": [
+        "gold_skill_holy_radiance_burst_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Antidote: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "item, 1 AP, current preset support_holy_aura."
+    },
+    {
+      "presetName": "r3a2_item_bomb",
+      "actionNeed": "item_bomb",
+      "presetType": "elementalComposite",
+      "spriteChain": [
+        "orange_skill_fire_impact_burst_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Bombe: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "item, 1 AP, current preset impact_explosion_large."
+    },
+    {
+      "presetName": "r3a2_item_grenade_incendiaire",
+      "actionNeed": "item_grenade_incendiaire",
+      "presetType": "elementalComposite",
+      "spriteChain": [
+        "orange_skill_fire_impact_burst_medium",
+        "orange_skill_fire_vortex_nova_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Grenade incendiaire: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "item, 1 AP, current preset impact_explosion_large."
+    },
+    {
+      "presetName": "r3a2_item_grenade_entravante",
+      "actionNeed": "item_grenade_entravante",
+      "presetType": "elementalComposite",
+      "spriteChain": [
+        "green_skill_barrier_rune_guard_medium"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Grenade entravante: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "item, 1 AP, current preset impact_explosion_large."
+    },
+    {
+      "presetName": "r3a2_item_grenade_aveuglante",
+      "actionNeed": "item_grenade_aveuglante",
+      "presetType": "elementalComposite",
+      "spriteChain": [
+        "white_basic_crit_star_burst_heavy"
+      ],
+      "timingIdea": [
+        "0ms primary impact"
+      ],
+      "recommendedUse": "Grenade aveuglante: visual-only future preset seed.",
+      "readabilityRisk": "low",
+      "notes": "item, 1 AP, current preset impact_explosion_large."
+    },
+    {
+      "presetName": "r3a2_item_revive_vial",
+      "actionNeed": "item_revive_vial",
+      "presetType": "supportSingle",
+      "spriteChain": [
+        "whitegreen_skill_heal_blessing_bloom_heavy",
+        "bluegold_skill_ultimate_arcane_invocation_ultimate"
+      ],
+      "timingIdea": [
+        "0ms primary impact",
+        "90ms afterburst"
+      ],
+      "recommendedUse": "Fiole de résurrection: visual-only future preset seed.",
+      "readabilityRisk": "medium: stagger layers and clear quickly",
+      "notes": "item, 1 AP, current preset support_revive_pillar."
+    }
+  ],
+  "missingFamilies": [
+    {
+      "family": "basic_pierce",
+      "actionNeeds": [
+        "basic_attack_long_spear",
+        "l_long_thrust",
+        "l_firmament_lance",
+        "boss_pin"
+      ],
+      "reason": "No unambiguous true stab/pierce sheet; horizontal flash is only a proxy."
+    },
+    {
+      "family": "basic_blunt",
+      "actionNeeds": [
+        "basic_attack_holy_mace",
+        "enemy_heavy_strike",
+        "enemy_crush"
+      ],
+      "reason": "Smash/comet candidates exist, but no clearly weapon-shaped mace/blunt impact."
+    },
+    {
+      "family": "monster_basics",
+      "actionNeeds": [
+        "monster claw",
+        "monster bite",
+        "monster charge",
+        "horn ram",
+        "tail whip"
+      ],
+      "reason": "Raw basics do not yet cover neutral claw, bite, charge, horn and tail silhouettes."
+    },
+    {
+      "family": "root_vines",
+      "actionNeeds": [
+        "e_binding_seal",
+        "ro_jaw_trap",
+        "enemy_binding_shot"
+      ],
+      "reason": "Nature rune is a planning proxy, not a confident entangling-vines action sheet."
+    },
+    {
+      "family": "smoke_control",
+      "actionNeeds": [
+        "ni_smoke_bomb",
+        "enemy_smoke_veil"
+      ],
+      "reason": "The orange explosion source requires manual visual review before it can represent neutral smoke."
+    }
+  ],
+  "manualReviewRequired": [
+    {
+      "sourceFile": "white_advanced_arc_comet_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_arrow_comet_burst_heavy_5x5_25f_1280.png",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": [
+        "basic_attack_shuriken"
+      ]
+    },
+    {
+      "sourceFile": "white_advanced_beam_holy_ring_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_magic_holy_ring_beam_heavy_5x5_25f_1280.png",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": []
+    },
+    {
+      "sourceFile": "white_advanced_comet_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_smash_comet_burst_heavy_5x5_25f_1280.png",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": []
+    },
+    {
+      "sourceFile": "white_advanced_crescent_impact_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_smash_crescent_impact_heavy_5x5_25f_1280.png",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": [
+        "ro_fault_breaker"
+      ]
+    },
+    {
+      "sourceFile": "white_advanced_crescent_implosion_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_magic_crescent_implosion_heavy_5x5_25f_1280.png",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": []
+    },
+    {
+      "sourceFile": "white_advanced_holy_cross_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_magic_holy_cross_burst_heavy_5x5_25f_1280.png",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": []
+    },
+    {
+      "sourceFile": "white_advanced_holy_ring_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_magic_holy_ring_burst_heavy_5x5_25f_1280.png",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": [
+        "basic_attack_grimoire"
+      ]
+    },
+    {
+      "sourceFile": "white_advanced_holy_sigil_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_magic_holy_sigil_burst_heavy_5x5_25f_1280.png",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": []
+    },
+    {
+      "sourceFile": "white_advanced_holy_sigil_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "white_basic_magic_holy_sigil_burst_medium_5x5_25f_1280.png",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": [
+        "basic_attack_crosier",
+        "basic_attack_wand"
+      ]
+    },
+    {
+      "sourceFile": "white_basic_impact_horizontal_flash_mid_5x5_25f_1280.png",
+      "proposedFile": "white_basic_slash_horizontal_flash_medium_5x5_25f_1280.png",
+      "reason": "Folder/type is close to the convention, but intensity or semantic family needs normalization.",
+      "linkedActionNeeds": [
+        "basic_attack_long_spear",
+        "l_long_thrust",
+        "l_haft_recoil",
+        "l_firmament_lance"
+      ]
+    },
+    {
+      "sourceFile": "green_advanced_ice_starburst_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "green_skill_ice_starburst_impact_medium_5x5_25f_1280.png",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": []
+    },
+    {
+      "sourceFile": "iceblue_magic_lightpillar_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "iceblue_skill_holy_light_pillar_medium_5x5_25f_1280.png",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": []
+    },
+    {
+      "sourceFile": "magenta_basic_slashburst_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "purple_skill_arcane_slash_burst_medium_5x5_25f_1280.png",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "ni_silent_assassin",
+        "boss_execution"
+      ]
+    },
+    {
+      "sourceFile": "orange_advanced_smoke_explosion_heavy_5x5_25f_1280.png",
+      "proposedFile": "orange_skill_fire_smoke_explosion_heavy_5x5_25f_1280.png",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "ni_smoke_bomb",
+        "enemy_smoke_veil"
+      ]
+    },
+    {
+      "sourceFile": "pink_advanced_vortex_nova_heavy_5x5_25f_1280.png",
+      "proposedFile": "purple_skill_arcane_vortex_nova_heavy_5x5_25f_1280.png",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": []
+    }
+  ]
+}

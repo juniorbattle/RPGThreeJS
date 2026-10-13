@@ -1,0 +1,3971 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-02T12:13:29.765Z",
+  "runId": "rpgthreejs-auto-dev-90m-20261002T1153",
+  "implementationCommit": "8bec0c58703ab77d965b9e9b59b517083cee9c23",
+  "scope": "Refuge entry/rest durability; native potion service; fresh earned first-refuge acceptance. Full demo/balance/VFX incomplete.",
+  "validation": {
+    "focusedTests": 94,
+    "suites": 5,
+    "types": "PASS",
+    "lockedContracts": 8,
+    "productionVideoSlots": 8,
+    "build": "PASS",
+    "lockedCommittedGate": "PASS",
+    "lockedWorkingTreeGate": "PASS"
+  },
+  "rawProofs": [
+    {
+      "path": "tmp/refuge/durability-1153-final/results.json",
+      "sha256": "444875f63b4d7dc63d1e193ddb2c7d535fb47d9e2f3768d6122f6e76f7b18407"
+    },
+    {
+      "path": "tmp/refuge/potion-1153-final/results.json",
+      "sha256": "371cc662d3e8e4e858771d1d5bdffbc4834dad3a91d66f3ded1b680df71a5747"
+    },
+    {
+      "path": "tmp/refuge/durability-1153-failed-first/results.json",
+      "sha256": "4a3af069d49cfdd9c6170eb366419cb93182687e05515f7bc9270f8be785a886"
+    },
+    {
+      "path": "tmp/refuge/durability-1153-failed-second/results.json",
+      "sha256": "1426fef45e93afb38be2870517bad953e26aa232aef022e56eb20f1cc0697045"
+    },
+    {
+      "path": "tmp/demo/continuous-1153-fresh-final/results.json",
+      "sha256": "896b9a96a534428b85d6c4f4b17b4402e085334b077d2b22875f884661f5d265"
+    }
+  ],
+  "cases": [
+    {
+      "name": "lion-first-refuge-1366x768-normal",
+      "nodeId": "lion-first-refuge",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "osReduced": false,
+      "blockBackground": false,
+      "useConsumable": false,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        }
+      ],
+      "controlCount": 12,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 40.96875,
+              "y": 640.03125,
+              "right": 279.5,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 290.421875,
+              "y": 640.03125,
+              "right": 528.953125,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 539.875,
+              "y": 640.03125,
+              "right": 778.40625,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 789.328125,
+              "y": 640.03125,
+              "right": 1027.859375,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "Repos1 unité blessée · 15 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 1038.78125,
+              "y": 640.03125,
+              "right": 1325.03125,
+              "bottom": 727.03125,
+              "width": 286.25,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-first-refuge-1366x768-os-reduced",
+      "nodeId": "lion-first-refuge",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "osReduced": true,
+      "blockBackground": false,
+      "useConsumable": false,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        }
+      ],
+      "controlCount": 12,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 40.96875,
+              "y": 640.03125,
+              "right": 279.5,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 290.421875,
+              "y": 640.03125,
+              "right": 528.953125,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 539.875,
+              "y": 640.03125,
+              "right": 778.40625,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 789.328125,
+              "y": 640.03125,
+              "right": 1027.859375,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "Repos1 unité blessée · 15 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 1038.78125,
+              "y": 640.03125,
+              "right": 1325.03125,
+              "bottom": 727.03125,
+              "width": 286.25,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-second-refuge-1366x768-normal",
+      "nodeId": "lion-second-refuge",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "osReduced": false,
+      "blockBackground": false,
+      "useConsumable": false,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        }
+      ],
+      "controlCount": 12,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 40.96875,
+              "y": 640.03125,
+              "right": 279.5,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 290.421875,
+              "y": 640.03125,
+              "right": 528.953125,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 539.875,
+              "y": 640.03125,
+              "right": 778.40625,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 789.328125,
+              "y": 640.03125,
+              "right": 1027.859375,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "Repos1 unité blessée · 15 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 1038.78125,
+              "y": 640.03125,
+              "right": 1325.03125,
+              "bottom": 727.03125,
+              "width": 286.25,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-second-refuge-1366x768-os-reduced",
+      "nodeId": "lion-second-refuge",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "osReduced": true,
+      "blockBackground": false,
+      "useConsumable": false,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        }
+      ],
+      "controlCount": 12,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 40.96875,
+              "y": 640.03125,
+              "right": 279.5,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 290.421875,
+              "y": 640.03125,
+              "right": 528.953125,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 539.875,
+              "y": 640.03125,
+              "right": 778.40625,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 789.328125,
+              "y": 640.03125,
+              "right": 1027.859375,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "Repos1 unité blessée · 15 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 1038.78125,
+              "y": 640.03125,
+              "right": 1325.03125,
+              "bottom": 727.03125,
+              "width": 286.25,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-first-refuge-620x780-normal",
+      "nodeId": "lion-first-refuge",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "osReduced": false,
+      "blockBackground": false,
+      "useConsumable": false,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        }
+      ],
+      "controlCount": 12,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 14,
+              "y": 549,
+              "right": 306,
+              "bottom": 616,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 314,
+              "y": 549,
+              "right": 606,
+              "bottom": 616,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 14,
+              "y": 624,
+              "right": 306,
+              "bottom": 691,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 314,
+              "y": 624,
+              "right": 606,
+              "bottom": 691,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Repos1 unité blessée · 15 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 14,
+              "y": 699,
+              "right": 606,
+              "bottom": 766,
+              "width": 592,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-first-refuge-620x780-os-reduced",
+      "nodeId": "lion-first-refuge",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "osReduced": true,
+      "blockBackground": false,
+      "useConsumable": false,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        }
+      ],
+      "controlCount": 12,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 14,
+              "y": 549,
+              "right": 306,
+              "bottom": 616,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 314,
+              "y": 549,
+              "right": 606,
+              "bottom": 616,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 14,
+              "y": 624,
+              "right": 306,
+              "bottom": 691,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 314,
+              "y": 624,
+              "right": 606,
+              "bottom": 691,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Repos1 unité blessée · 15 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 14,
+              "y": 699,
+              "right": 606,
+              "bottom": 766,
+              "width": 592,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-second-refuge-620x780-normal",
+      "nodeId": "lion-second-refuge",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "osReduced": false,
+      "blockBackground": false,
+      "useConsumable": false,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        }
+      ],
+      "controlCount": 12,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 14,
+              "y": 549,
+              "right": 306,
+              "bottom": 616,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 314,
+              "y": 549,
+              "right": 606,
+              "bottom": 616,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 14,
+              "y": 624,
+              "right": 306,
+              "bottom": 691,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 314,
+              "y": 624,
+              "right": 606,
+              "bottom": 691,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Repos1 unité blessée · 15 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 14,
+              "y": 699,
+              "right": 606,
+              "bottom": 766,
+              "width": 592,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-second-refuge-620x780-os-reduced",
+      "nodeId": "lion-second-refuge",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "osReduced": true,
+      "blockBackground": false,
+      "useConsumable": false,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        }
+      ],
+      "controlCount": 12,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 14,
+              "y": 549,
+              "right": 306,
+              "bottom": 616,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 314,
+              "y": 549,
+              "right": 606,
+              "bottom": 616,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 14,
+              "y": 624,
+              "right": 306,
+              "bottom": 691,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 314,
+              "y": 624,
+              "right": 606,
+              "bottom": 691,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Repos1 unité blessée · 15 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 14,
+              "y": 699,
+              "right": 606,
+              "bottom": 766,
+              "width": 592,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-first-refuge-390x844-normal",
+      "nodeId": "lion-first-refuge",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "osReduced": false,
+      "blockBackground": false,
+      "useConsumable": false,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        }
+      ],
+      "controlCount": 12,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 14,
+              "y": 613,
+              "right": 191,
+              "bottom": 680,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 199,
+              "y": 613,
+              "right": 376,
+              "bottom": 680,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 14,
+              "y": 688,
+              "right": 191,
+              "bottom": 755,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 199,
+              "y": 688,
+              "right": 376,
+              "bottom": 755,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Repos1 unité blessée · 15 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 14,
+              "y": 763,
+              "right": 376,
+              "bottom": 830,
+              "width": 362,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-first-refuge-390x844-os-reduced",
+      "nodeId": "lion-first-refuge",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "osReduced": true,
+      "blockBackground": false,
+      "useConsumable": false,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        }
+      ],
+      "controlCount": 12,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 14,
+              "y": 613,
+              "right": 191,
+              "bottom": 680,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 199,
+              "y": 613,
+              "right": 376,
+              "bottom": 680,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 14,
+              "y": 688,
+              "right": 191,
+              "bottom": 755,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 199,
+              "y": 688,
+              "right": 376,
+              "bottom": 755,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Repos1 unité blessée · 15 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 14,
+              "y": 763,
+              "right": 376,
+              "bottom": 830,
+              "width": 362,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-second-refuge-390x844-normal",
+      "nodeId": "lion-second-refuge",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "osReduced": false,
+      "blockBackground": false,
+      "useConsumable": false,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        }
+      ],
+      "controlCount": 12,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 14,
+              "y": 613,
+              "right": 191,
+              "bottom": 680,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 199,
+              "y": 613,
+              "right": 376,
+              "bottom": 680,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 14,
+              "y": 688,
+              "right": 191,
+              "bottom": 755,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 199,
+              "y": 688,
+              "right": 376,
+              "bottom": 755,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Repos1 unité blessée · 15 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 14,
+              "y": 763,
+              "right": 376,
+              "bottom": 830,
+              "width": 362,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-second-refuge-390x844-os-reduced",
+      "nodeId": "lion-second-refuge",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "osReduced": true,
+      "blockBackground": false,
+      "useConsumable": false,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        }
+      ],
+      "controlCount": 12,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 14,
+              "y": 613,
+              "right": 191,
+              "bottom": 680,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 199,
+              "y": 613,
+              "right": 376,
+              "bottom": 680,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 14,
+              "y": 688,
+              "right": 191,
+              "bottom": 755,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 199,
+              "y": 688,
+              "right": 376,
+              "bottom": 755,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Repos1 unité blessée · 15 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 14,
+              "y": 763,
+              "right": 376,
+              "bottom": 830,
+              "width": 362,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-first-refuge-1366x768-normal",
+      "nodeId": "lion-first-refuge",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "osReduced": false,
+      "blockBackground": false,
+      "useConsumable": true,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        },
+        {
+          "action": "consumable",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "potion"
+          ],
+          "savedOnManagementClose": true
+        }
+      ],
+      "controlCount": 15,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [
+        {
+          "tag": "SELECT",
+          "label": "Unité à soigner avec Potion légère",
+          "rect": {
+            "x": 427.171875,
+            "y": 261.234375,
+            "right": 556.171875,
+            "bottom": 291.234375,
+            "width": 129,
+            "height": 30
+          },
+          "focusVisible": true
+        }
+      ],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 40.96875,
+              "y": 640.03125,
+              "right": 279.5,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 290.421875,
+              "y": 640.03125,
+              "right": 528.953125,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 539.875,
+              "y": 640.03125,
+              "right": 778.40625,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 789.328125,
+              "y": 640.03125,
+              "right": 1027.859375,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "Repos2 unités blessées · 30 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 1038.78125,
+              "y": 640.03125,
+              "right": 1325.03125,
+              "bottom": 727.03125,
+              "width": 286.25,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-first-refuge-1366x768-os-reduced",
+      "nodeId": "lion-first-refuge",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "osReduced": true,
+      "blockBackground": false,
+      "useConsumable": true,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        },
+        {
+          "action": "consumable",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "potion"
+          ],
+          "savedOnManagementClose": true
+        }
+      ],
+      "controlCount": 15,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [
+        {
+          "tag": "SELECT",
+          "label": "Unité à soigner avec Potion légère",
+          "rect": {
+            "x": 427.171875,
+            "y": 261.234375,
+            "right": 556.171875,
+            "bottom": 291.234375,
+            "width": 129,
+            "height": 30
+          },
+          "focusVisible": true
+        }
+      ],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 40.96875,
+              "y": 640.03125,
+              "right": 279.5,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 290.421875,
+              "y": 640.03125,
+              "right": 528.953125,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 539.875,
+              "y": 640.03125,
+              "right": 778.40625,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 789.328125,
+              "y": 640.03125,
+              "right": 1027.859375,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "Repos2 unités blessées · 30 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 1038.78125,
+              "y": 640.03125,
+              "right": 1325.03125,
+              "bottom": 727.03125,
+              "width": 286.25,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-second-refuge-1366x768-normal",
+      "nodeId": "lion-second-refuge",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "osReduced": false,
+      "blockBackground": false,
+      "useConsumable": true,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        },
+        {
+          "action": "consumable",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "potion"
+          ],
+          "savedOnManagementClose": true
+        }
+      ],
+      "controlCount": 15,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [
+        {
+          "tag": "SELECT",
+          "label": "Unité à soigner avec Potion légère",
+          "rect": {
+            "x": 427.171875,
+            "y": 261.234375,
+            "right": 556.171875,
+            "bottom": 291.234375,
+            "width": 129,
+            "height": 30
+          },
+          "focusVisible": true
+        }
+      ],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 40.96875,
+              "y": 640.03125,
+              "right": 279.5,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 290.421875,
+              "y": 640.03125,
+              "right": 528.953125,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 539.875,
+              "y": 640.03125,
+              "right": 778.40625,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 789.328125,
+              "y": 640.03125,
+              "right": 1027.859375,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "Repos2 unités blessées · 30 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 1038.78125,
+              "y": 640.03125,
+              "right": 1325.03125,
+              "bottom": 727.03125,
+              "width": 286.25,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-second-refuge-1366x768-os-reduced",
+      "nodeId": "lion-second-refuge",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "osReduced": true,
+      "blockBackground": false,
+      "useConsumable": true,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        },
+        {
+          "action": "consumable",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "potion"
+          ],
+          "savedOnManagementClose": true
+        }
+      ],
+      "controlCount": 15,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [
+        {
+          "tag": "SELECT",
+          "label": "Unité à soigner avec Potion légère",
+          "rect": {
+            "x": 427.171875,
+            "y": 261.234375,
+            "right": 556.171875,
+            "bottom": 291.234375,
+            "width": 129,
+            "height": 30
+          },
+          "focusVisible": true
+        }
+      ],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 40.96875,
+              "y": 640.03125,
+              "right": 279.5,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 290.421875,
+              "y": 640.03125,
+              "right": 528.953125,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 539.875,
+              "y": 640.03125,
+              "right": 778.40625,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 789.328125,
+              "y": 640.03125,
+              "right": 1027.859375,
+              "bottom": 727.03125,
+              "width": 238.53125,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "Repos2 unités blessées · 30 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 1038.78125,
+              "y": 640.03125,
+              "right": 1325.03125,
+              "bottom": 727.03125,
+              "width": 286.25,
+              "height": 87
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-first-refuge-620x780-normal",
+      "nodeId": "lion-first-refuge",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "osReduced": false,
+      "blockBackground": false,
+      "useConsumable": true,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        },
+        {
+          "action": "consumable",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "potion"
+          ],
+          "savedOnManagementClose": true
+        }
+      ],
+      "controlCount": 15,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [
+        {
+          "tag": "SELECT",
+          "label": "Unité à soigner avec Potion légère",
+          "rect": {
+            "x": 350.171875,
+            "y": 196,
+            "right": 479.171875,
+            "bottom": 226,
+            "width": 129,
+            "height": 30
+          },
+          "focusVisible": true
+        }
+      ],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 14,
+              "y": 549,
+              "right": 306,
+              "bottom": 616,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 314,
+              "y": 549,
+              "right": 606,
+              "bottom": 616,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 14,
+              "y": 624,
+              "right": 306,
+              "bottom": 691,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 314,
+              "y": 624,
+              "right": 606,
+              "bottom": 691,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Repos2 unités blessées · 30 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 14,
+              "y": 699,
+              "right": 606,
+              "bottom": 766,
+              "width": 592,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-first-refuge-620x780-os-reduced",
+      "nodeId": "lion-first-refuge",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "osReduced": true,
+      "blockBackground": false,
+      "useConsumable": true,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        },
+        {
+          "action": "consumable",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "potion"
+          ],
+          "savedOnManagementClose": true
+        }
+      ],
+      "controlCount": 15,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [
+        {
+          "tag": "SELECT",
+          "label": "Unité à soigner avec Potion légère",
+          "rect": {
+            "x": 350.171875,
+            "y": 196,
+            "right": 479.171875,
+            "bottom": 226,
+            "width": 129,
+            "height": 30
+          },
+          "focusVisible": true
+        }
+      ],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 14,
+              "y": 549,
+              "right": 306,
+              "bottom": 616,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 314,
+              "y": 549,
+              "right": 606,
+              "bottom": 616,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 14,
+              "y": 624,
+              "right": 306,
+              "bottom": 691,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 314,
+              "y": 624,
+              "right": 606,
+              "bottom": 691,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Repos2 unités blessées · 30 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 14,
+              "y": 699,
+              "right": 606,
+              "bottom": 766,
+              "width": 592,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-second-refuge-620x780-normal",
+      "nodeId": "lion-second-refuge",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "osReduced": false,
+      "blockBackground": false,
+      "useConsumable": true,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        },
+        {
+          "action": "consumable",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "potion"
+          ],
+          "savedOnManagementClose": true
+        }
+      ],
+      "controlCount": 15,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [
+        {
+          "tag": "SELECT",
+          "label": "Unité à soigner avec Potion légère",
+          "rect": {
+            "x": 350.171875,
+            "y": 196,
+            "right": 479.171875,
+            "bottom": 226,
+            "width": 129,
+            "height": 30
+          },
+          "focusVisible": true
+        }
+      ],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 14,
+              "y": 549,
+              "right": 306,
+              "bottom": 616,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 314,
+              "y": 549,
+              "right": 606,
+              "bottom": 616,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 14,
+              "y": 624,
+              "right": 306,
+              "bottom": 691,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 314,
+              "y": 624,
+              "right": 606,
+              "bottom": 691,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Repos2 unités blessées · 30 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 14,
+              "y": 699,
+              "right": 606,
+              "bottom": 766,
+              "width": 592,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-second-refuge-620x780-os-reduced",
+      "nodeId": "lion-second-refuge",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "osReduced": true,
+      "blockBackground": false,
+      "useConsumable": true,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        },
+        {
+          "action": "consumable",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "potion"
+          ],
+          "savedOnManagementClose": true
+        }
+      ],
+      "controlCount": 15,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [
+        {
+          "tag": "SELECT",
+          "label": "Unité à soigner avec Potion légère",
+          "rect": {
+            "x": 350.171875,
+            "y": 196,
+            "right": 479.171875,
+            "bottom": 226,
+            "width": 129,
+            "height": 30
+          },
+          "focusVisible": true
+        }
+      ],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 14,
+              "y": 549,
+              "right": 306,
+              "bottom": 616,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 314,
+              "y": 549,
+              "right": 606,
+              "bottom": 616,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 14,
+              "y": 624,
+              "right": 306,
+              "bottom": 691,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 314,
+              "y": 624,
+              "right": 606,
+              "bottom": 691,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Repos2 unités blessées · 30 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 14,
+              "y": 699,
+              "right": 606,
+              "bottom": 766,
+              "width": 592,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-first-refuge-390x844-normal",
+      "nodeId": "lion-first-refuge",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "osReduced": false,
+      "blockBackground": false,
+      "useConsumable": true,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        },
+        {
+          "action": "consumable",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "potion"
+          ],
+          "savedOnManagementClose": true
+        }
+      ],
+      "controlCount": 15,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [
+        {
+          "tag": "SELECT",
+          "label": "Unité à soigner avec Potion légère",
+          "rect": {
+            "x": 56,
+            "y": 337.90625,
+            "right": 176,
+            "bottom": 367.90625,
+            "width": 120,
+            "height": 30
+          },
+          "focusVisible": true
+        }
+      ],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 14,
+              "y": 613,
+              "right": 191,
+              "bottom": 680,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 199,
+              "y": 613,
+              "right": 376,
+              "bottom": 680,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 14,
+              "y": 688,
+              "right": 191,
+              "bottom": 755,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 199,
+              "y": 688,
+              "right": 376,
+              "bottom": 755,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Repos2 unités blessées · 30 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 14,
+              "y": 763,
+              "right": 376,
+              "bottom": 830,
+              "width": 362,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-first-refuge-390x844-os-reduced",
+      "nodeId": "lion-first-refuge",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "osReduced": true,
+      "blockBackground": false,
+      "useConsumable": true,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        },
+        {
+          "action": "consumable",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "potion"
+          ],
+          "savedOnManagementClose": true
+        }
+      ],
+      "controlCount": 15,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [
+        {
+          "tag": "SELECT",
+          "label": "Unité à soigner avec Potion légère",
+          "rect": {
+            "x": 56,
+            "y": 337.90625,
+            "right": 176,
+            "bottom": 367.90625,
+            "width": 120,
+            "height": 30
+          },
+          "focusVisible": true
+        }
+      ],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 14,
+              "y": 613,
+              "right": 191,
+              "bottom": 680,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 199,
+              "y": 613,
+              "right": 376,
+              "bottom": 680,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 14,
+              "y": 688,
+              "right": 191,
+              "bottom": 755,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 199,
+              "y": 688,
+              "right": 376,
+              "bottom": 755,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Repos2 unités blessées · 30 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 14,
+              "y": 763,
+              "right": 376,
+              "bottom": 830,
+              "width": 362,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-second-refuge-390x844-normal",
+      "nodeId": "lion-second-refuge",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "osReduced": false,
+      "blockBackground": false,
+      "useConsumable": true,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        },
+        {
+          "action": "consumable",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "potion"
+          ],
+          "savedOnManagementClose": true
+        }
+      ],
+      "controlCount": 15,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [
+        {
+          "tag": "SELECT",
+          "label": "Unité à soigner avec Potion légère",
+          "rect": {
+            "x": 56,
+            "y": 337.90625,
+            "right": 176,
+            "bottom": 367.90625,
+            "width": 120,
+            "height": 30
+          },
+          "focusVisible": true
+        }
+      ],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 14,
+              "y": 613,
+              "right": 191,
+              "bottom": 680,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 199,
+              "y": 613,
+              "right": 376,
+              "bottom": 680,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 14,
+              "y": 688,
+              "right": 191,
+              "bottom": 755,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 199,
+              "y": 688,
+              "right": 376,
+              "bottom": 755,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Repos2 unités blessées · 30 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 14,
+              "y": 763,
+              "right": 376,
+              "bottom": 830,
+              "width": 362,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-second-refuge-390x844-os-reduced",
+      "nodeId": "lion-second-refuge",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "osReduced": true,
+      "blockBackground": false,
+      "useConsumable": true,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        },
+        {
+          "action": "consumable",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "potion"
+          ],
+          "savedOnManagementClose": true
+        }
+      ],
+      "controlCount": 15,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [
+        {
+          "tag": "SELECT",
+          "label": "Unité à soigner avec Potion légère",
+          "rect": {
+            "x": 56,
+            "y": 337.90625,
+            "right": 176,
+            "bottom": 367.90625,
+            "width": 120,
+            "height": 30
+          },
+          "focusVisible": true
+        }
+      ],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "true",
+        "backgroundNaturalWidth": 1672,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 14,
+              "y": 613,
+              "right": 191,
+              "bottom": 680,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 199,
+              "y": 613,
+              "right": 376,
+              "bottom": 680,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 14,
+              "y": 688,
+              "right": 191,
+              "bottom": 755,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 199,
+              "y": 688,
+              "right": 376,
+              "bottom": 755,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Repos2 unités blessées · 30 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 14,
+              "y": 763,
+              "right": 376,
+              "bottom": 830,
+              "width": 362,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-first-refuge-390x844-os-reduced",
+      "nodeId": "lion-first-refuge",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "osReduced": true,
+      "blockBackground": true,
+      "useConsumable": false,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [
+        "http://127.0.0.1:5252/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+        "http://127.0.0.1:5252/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+        "http://127.0.0.1:5252/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+        "http://127.0.0.1:5252/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+        "http://127.0.0.1:5252/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png"
+      ],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        }
+      ],
+      "controlCount": 12,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "false",
+        "backgroundNaturalWidth": 0,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 14,
+              "y": 613,
+              "right": 191,
+              "bottom": 680,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 199,
+              "y": 613,
+              "right": 376,
+              "bottom": 680,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 14,
+              "y": 688,
+              "right": 191,
+              "bottom": 755,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 199,
+              "y": 688,
+              "right": 376,
+              "bottom": 755,
+              "width": 177,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Repos1 unité blessée · 15 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 14,
+              "y": 763,
+              "right": 376,
+              "bottom": 830,
+              "width": 362,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "lion-second-refuge-620x780-os-reduced",
+      "nodeId": "lion-second-refuge",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "osReduced": true,
+      "blockBackground": true,
+      "useConsumable": false,
+      "pass": true,
+      "errors": [],
+      "expectedAssetFailures": [
+        "http://127.0.0.1:5253/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png",
+        "http://127.0.0.1:5253/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png",
+        "http://127.0.0.1:5253/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png"
+      ],
+      "immediateEntryResumeTruthUnchanged": true,
+      "immediateRestResumeTruthUnchanged": true,
+      "departureResolved": true,
+      "restCost": 15,
+      "securedGold": 25,
+      "restGold": 363,
+      "services": [
+        {
+          "action": "clan",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "equip"
+          ],
+          "detailsAndPreviewTruthUnchanged": true,
+          "blockedAtMax": false
+        },
+        {
+          "action": "shop",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "buy-potion",
+            "buy-weapon",
+            "sell-weapon",
+            "craft"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": false
+        },
+        {
+          "action": "skills",
+          "keyboardReachable": true,
+          "ownerResolvedOperations": [
+            "upgrade-1",
+            "upgrade-2"
+          ],
+          "detailsAndPreviewTruthUnchanged": false,
+          "blockedAtMax": true
+        }
+      ],
+      "controlCount": 12,
+      "controlsAllKeyboardFocused": true,
+      "nativeSelects": [],
+      "layout": {
+        "hubCount": 1,
+        "hudCount": 1,
+        "staleSurfaces": 0,
+        "backgroundReady": "false",
+        "backgroundNaturalWidth": 0,
+        "overflowX": false,
+        "focusOwned": true,
+        "actions": [
+          {
+            "id": "clan",
+            "rect": {
+              "x": 14,
+              "y": 549,
+              "right": 306,
+              "bottom": 616,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ClanGérer la compagnie",
+            "clipped": false
+          },
+          {
+            "id": "shop",
+            "rect": {
+              "x": 314,
+              "y": 549,
+              "right": 606,
+              "bottom": 616,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "ShopÉchanger avec le marchand",
+            "clipped": false
+          },
+          {
+            "id": "skills",
+            "rect": {
+              "x": 14,
+              "y": 624,
+              "right": 306,
+              "bottom": 691,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "AméliorationRenforcer les compétences",
+            "clipped": false
+          },
+          {
+            "id": "rest",
+            "rect": {
+              "x": 314,
+              "y": 624,
+              "right": 606,
+              "bottom": 691,
+              "width": 292,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Repos1 unité blessée · 15 or",
+            "clipped": false
+          },
+          {
+            "id": "continue",
+            "rect": {
+              "x": 14,
+              "y": 699,
+              "right": 606,
+              "bottom": 766,
+              "width": 592,
+              "height": 67
+            },
+            "disabled": false,
+            "label": "Reprendre la routeQuitter le refuge",
+            "clipped": false
+          }
+        ]
+      }
+    }
+  ],
+  "earned": {
+    "method": "FRESH_PRODUCTION_CHRONICLE_NORMAL_PLAYER_INPUTS_REAL_COMBAT",
+    "fixtureStateWritten": false,
+    "combatOutcomeInjected": false,
+    "runtimeMutated": false,
+    "nodes": [
+      "lion-camp",
+      "lion-audience",
+      "lion-opening-ambush",
+      "lion-nomad-crossroads",
+      "lion-refugees",
+      "lion-first-trial-event",
+      "lion-first-refuge"
+    ],
+    "battles": [
+      {
+        "nodeId": "lion-opening-ambush",
+        "pass": true,
+        "rounds": 5,
+        "actions": 31,
+        "actionCounts": {
+          "move": 9,
+          "wait": 13,
+          "potion": 2,
+          "attack": 7
+        },
+        "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nMeute affamée\n\nOBJECTIF SÉCURISÉ\nRepoussez la meute qui encercle la compagnie.\nRÉCOMPENSES\nOr\n+80\nGemmes rouges\n+1\niron ore\n+1\nRéputation\n+1\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nDEBOUT\nElara\nK.O.\nKestrel\nDEBOUT\nCONTINUER LA CHRONIQUE"
+      }
+    ],
+    "errors": [],
+    "refugeNode": "lion-first-refuge",
+    "refugeSecured": true,
+    "temporaryLoot": {
+      "gold": 0,
+      "inventory": {
+        "consumables": {},
+        "accessories": {},
+        "materials": {},
+        "weapons": {}
+      }
+    },
+    "refugeOwnerSha256": "b4cc1f702d68a069d3f58117a536fc80d0efd8b8c14d18354c6beb83146d87f5",
+    "resumedOwnerSha256": "b4cc1f702d68a069d3f58117a536fc80d0efd8b8c14d18354c6beb83146d87f5",
+    "resumeTruthUnchanged": true,
+    "pass": true
+  },
+  "pass": true,
+  "selectedCaptures": [
+    {
+      "source": "tmp/refuge/durability-1153-final/lion-first-refuge-1366x768-normal-hub.png",
+      "path": "first-refuge-desktop.png",
+      "sha256": "f7c70de3aa6c52882a6ad55cf1619456651c29fa7ed5333a73ff5969c8c4f313"
+    },
+    {
+      "source": "tmp/refuge/durability-1153-final/lion-second-refuge-390x844-os-reduced-hub.png",
+      "path": "second-refuge-mobile-os.png",
+      "sha256": "ebd5aab6c06177f347227174b787de68e13e5853811beab0aa231d5656b36e43"
+    },
+    {
+      "source": "tmp/refuge/durability-1153-final/lion-first-refuge-390x844-os-reduced-preview-return-focus.png",
+      "path": "preview-return-mobile.png",
+      "sha256": "665b8157c11b4087016eaac286789646cc6ee62b1ffcf58cb33b01791eb6b434"
+    },
+    {
+      "source": "tmp/refuge/durability-1153-failed-second/lion-second-refuge-620x780-os-reduced-hub.png",
+      "path": "second-refuge-unavailable-620.png",
+      "sha256": "c3056510ee6464accf50289fb76be0a107b8274fdac875765b4643cd4ad97185"
+    },
+    {
+      "source": "tmp/refuge/potion-1153-final/lion-first-refuge-390x844-os-reduced-potion-owner-result.png",
+      "path": "potion-mobile-os.png",
+      "sha256": "f7158f894e33645f425337491029c08196f66a828cde80253c462f4f2fdc2be2"
+    },
+    {
+      "source": "tmp/refuge/potion-1153-final/lion-second-refuge-620x780-normal-potion-owner-result.png",
+      "path": "potion-620.png",
+      "sha256": "2923ca91e954eee199622d1c0124440f9b7872b018c681ab87a3474b91f282d4"
+    },
+    {
+      "source": "tmp/demo/continuous-1153-fresh-final/combat-0-deployment.png",
+      "path": "earned-opening-deployment.png",
+      "sha256": "c837f50dc6bd0688f78812b7101654ae8665bb97e379e4b00bdc9ac328aa87bf"
+    },
+    {
+      "source": "tmp/demo/continuous-1153-fresh-final/combat-0-result.png",
+      "path": "earned-opening-victory.png",
+      "sha256": "70cafa70fa027990e6a1c805a02b98127d318e755c20f7dd01507f403fe0d729"
+    },
+    {
+      "source": "tmp/demo/continuous-1153-fresh-final/first-refuge-earned-resumed.png",
+      "path": "earned-refuge-resumed.png",
+      "sha256": "15608255cb5c1248245261a79f81ba06c145d2c85de6e8a3cdaee60e40d59c0c"
+    }
+  ]
+}

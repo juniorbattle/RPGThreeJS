@@ -1,0 +1,29 @@
+Use case: precise identity-preserving character edit
+Asset type: DEV-only Option C Alistair DASH key-pose proportion lock
+
+Image authority:
+- Image 1 is the approved Alistair Character Master and is the sole authority for anatomy, absolute apparent body-module sizes, head-to-body ratio, helmet size, shoulder width, torso length, pelvis width, limb length and thickness, armor construction, palette, cloth construction, and greatsword geometry.
+- Image 2 is the original canonical Alistair source and may resolve identity details only. It must not change the approved master's anatomy or equipment.
+
+Primary request: repose the exact Image 1 character into a grounded dash toward screen-right. Preserve the master's anatomy and apparent scale as if the same orthographic game camera photographed the same physical model one moment later.
+
+Critical proportion lock:
+- Use a near-orthographic three-quarter game-sprite view with minimal perspective and minimal foreshortening.
+- Keep the helmet's apparent width and height, shoulder armor span, torso armor length, pelvis width, upper-arm length, forearm length, thigh length, shin length, hand size, boot size, and sword width within roughly 3 percent of Image 1.
+- Do not enlarge the head, helmet, shoulders, torso, gauntlets, thighs, knees, or boots.
+- Do not shorten the legs or thicken the body to create speed.
+- The dash may become shorter only through clearly readable joint bending and forward lean, never through anatomical compression or perspective distortion.
+- Preserve long readable thighs and shins. Show both complete feet contacting the same ground plane.
+- The helmet must remain visibly small relative to the full armored body, matching Image 1.
+
+Action: a readable running lunge toward screen-right, not a deep squat. The torso leans forward about 20 degrees. The leading leg reaches forward with a moderate knee bend; the rear leg extends backward and pushes from the ground. Both legs remain fully readable and retain the master's long armored proportions. Both hands control the greatsword, which trails diagonally behind the body. Cape and plume stream backward from momentum without becoming effects. This is dash anticipation/travel, not a jump and not an attack release.
+
+Identity invariants from Image 1: fully enclosed angular helmet with dark eye slit and vented face plate; swept burgundy plume; blackened articulated plate and mail; asymmetrical layered/spiked pauldron; burgundy/crimson scarf, mantle, cape and tabard; brown cross-body harness; restrained radial brass/old-gold ornaments; identical oversized two-handed greatsword length, blade width, guard, grip and pommel; exactly two hands and two complete armored feet.
+
+Composition: exactly one full-body Alistair on the same 2048x2048 canvas. Center by body mass. Keep the complete plume, sword, cape, tabard, hands and feet inside the frame with at least 8 percent uninterrupted background clearance on every edge. The vertical body span from helmet/plume base to lowest foot should remain approximately 88 to 92 percent of the standing master's body span; do not make a compact chibi or compressed silhouette.
+
+Background: exactly flat fully opaque RGB #FF00FF across the entire canvas; no gradient, texture, floor, shadow, halo, haze, glow, scenery, checkerboard, or antialiased color spill.
+
+Style: match Image 1 exactly: premium modern HD-2D high-density pixel-art RPG character, crisp intentional clusters, controlled colored outlines, strong material separation, selective metal highlights, matte cloth and leather, no painterly softness, no generic 3D render look.
+
+Constraints: change only the pose; preserve all identity and proportion invariants. Exactly one Alistair and one greatsword; no shield; no exposed face; no emerald; no VFX; no speed lines; no dust; no particles; no text, UI, label, logo or watermark; no duplicate limbs or weapon; no crop; no edge contact.

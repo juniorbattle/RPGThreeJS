@@ -1,0 +1,291 @@
+[VFX Preview] CartoonCoffee root: C:/Users/miche/Documents/VFX_Library/CartoonCoffeeMegaPack
+[VFX Preview] GIF bridge READY
+
+ RUN  v3.0.7 C:/Users/miche/Documents/Projects/RPGThreeJS
+
+ ✓ src/combat/vfx/VfxPresetComposer.test.ts (93 tests) 25ms
+ ✓ src/game/content.test.ts (97 tests) 115ms
+ ✓ src/combat/vfx/CombatVfxComposerPanel.test.ts (87 tests) 8746ms
+   ✓ R2C-VFX LAB V2 — Composer panel UI > 31. PLAY IN COMBAT STAGE calls playDraftInCombatStage 2381ms
+   ✓ R2C-VFX LAB V2.1.1 — Composer minimize / expand > 10. PLAY IN COMBAT STAGE still works after expanding again 2407ms
+ ✓ src/combat/vfx/VfxV2_6_2BatchPublish.test.ts (27 tests) 286ms
+ ✓ src/combat/stage/r0b3DedupKoRevive.test.ts (32 tests) 10681ms
+   ✓ R0B.3 P2 already-KO Stage proxy > already-KO target enters Stage with KO appearance (reduced opacity) 553ms
+   ✓ R0B.3 P2 already-KO Stage proxy > already-KO target enters Stage with red tint 561ms
+   ✓ R0B.3 P2 already-KO Stage proxy > living target enters normally (full opacity, white color) 457ms
+   ✓ R0B.3 P3 revive choreography > successful revive changes Stage proxy KO → alive only after authoritative resolve 922ms
+   ✓ R0B.3 P3 revive choreography > failed/non-revive does not fake resurrection (proxy stays KO) 568ms
+   ✓ R0B.3 P3 revive choreography > revive feedback appears once (RANIMÉ) 904ms
+   ✓ R0B.3 P3 revive choreography > revive target remains on correct faction side (player LEFT) 552ms
+   ✓ R0B.3 P4 KO during attack and multi-target dedup > KO feedback emitted once during Stage (not duplicated) 880ms
+   ✓ R0B.3 P4 KO during attack and multi-target dedup > status applied feedback emitted once during Stage 662ms
+   ✓ R0B.3 P4 KO during attack and multi-target dedup > status removed feedback emitted once during Stage 753ms
+   ✓ R0B.3 P4 KO during attack and multi-target dedup > multi-target feedback remains per-proxy (each target gets own feedback) 1139ms
+   ✓ R0B.3 P4 KO during attack and multi-target dedup > no duplicate Stage status/KO feedback (single emission per event) 1071ms
+   ✓ R0B.3 P5 preservation contracts > tactical return exact after revive Stage session 912ms
+   ✓ R0B.3 P5 preservation contracts > reduced graphics retains essential KO/revive/status readability 740ms
+ ✓ src/combat/stage/r0b2UltimateAftermath.test.ts (22 tests) 10820ms
+   ✓ R0B.2 resolved aftermath feedback > Stage aftermath does not perform gameplay resolution (unit state unchanged) 694ms
+   ✓ R0B.2 resolved aftermath feedback > KO state triggers Stage proxy fade (koFadeProxyCount > 0) 886ms
+   ✓ R0B.2 resolved aftermath feedback > status result triggers Stage feedback (floatText called with status name) 661ms
+   ✓ R0B.2 resolved aftermath feedback > heal/buff result does not emit duplicate Stage label (heal number comes from applyHeal) 565ms
+   ✓ R0B.2 resolved aftermath feedback > group feedback maps to individual proxies (each target gets its own floatText) 1175ms
+   ✓ R0B.2 resolved aftermath feedback > tactical state is not duplicated/mutated by Stage aftermath 1085ms
+   ✓ R0B.2 resolved aftermath feedback > tactical return remains exact after aftermath session 875ms
+   ✓ R0B.2 resolved aftermath feedback > reduced graphics still produces essential KO/status feedback 849ms
+   ✓ R0B.2 resolved aftermath feedback > aftermath with no consequences returns quickly (no hold) 472ms
+   ✓ R0B.2 resolved aftermath feedback > arena ultimate target proxy stays faction side on Stage (integration) 639ms
+   ✓ R0B.2 resolved aftermath feedback > enemy ultimate target proxy stays left on Stage (integration) 624ms
+   ✓ R0B.2 resolved aftermath feedback > Devouring Eclipse target proxy is not at arenaCenter (integration) 622ms
+   ✓ R0B.2 resolved aftermath feedback > status removal (cleanse) triggers PURIFIÉ feedback 776ms
+   ✓ R0B.2 resolved aftermath feedback > aftermathActive flag is true during aftermath and false after 889ms
+ ✓ src/ui/DialogueView.test.ts (9 tests) 65ms
+ ✓ src/traversal/TraversalT0Scene.test.ts (8 tests) 521ms
+ ✓ src/combat/stage/CombatStage.test.ts (51 tests) 17347ms
+   ✓ CombatStage > restores the tactical render pass and the exact previous tilt-shift value on exit 558ms
+   ✓ CombatStage > never mutates the tactical camera object or its transform 621ms
+   ✓ CombatStage > borrows the sprite texture without ever disposing it, while disposing its own proxy geometry/material 465ms
+   ✓ CombatStage > exposes a VFX scene/camera override only while a pilot session is active 553ms
+   ✓ CombatStage > returns a Stage-space VfxUnitLike proxy for staged participants and null for unstaged/inactive 474ms
+   ✓ CombatStage > returns phase timing only while a pilot session is active 476ms
+   ✓ CombatStage > creates separate VFX proxies for multiple targets 549ms
+   ✓ CombatStage > resolves float text anchors for multiple targets 555ms
+   ✓ CombatStage > restores tactical presentation immediately when an interrupted/forced restore occurs mid-session 331ms
+   ✓ CombatStage > activates with a generic profile passed via options 477ms
+   ✓ CombatStage > caster-inclusive ultimate support includes source proxy in target units 556ms
+   ✓ CombatStage > ultimate self-target action creates no target proxies and source is target 474ms
+   ✓ CombatStage > ultimate movement action activates Stage with just the caster 621ms
+   ✓ CombatStage > getActiveProfileInfo returns correct info for generic profiles 465ms
+   ✓ CombatStage > getActiveProfileInfo returns explicit=true for pilot profiles 479ms
+   ✓ CombatStage > reduced graphics still activates Stage with generic profile 473ms
+   ✓ CombatStage > tactical return is safe after generic profile session 463ms
+   ✓ R0C.1 player ground alignment > player attacker proxy Y is lowered by heroGroundOffset (feet sink to ground) 477ms
+   ✓ R0C.1 player ground alignment > enemy attacker proxy Y is NOT lowered (no heroGroundOffset) 473ms
+   ✓ R0C.1 player ground alignment > enemy target proxy Y is unchanged when source is player 470ms
+   ✓ R0C.1 player ground alignment > player target proxy Y is lowered in support layout (player-side targets) 541ms
+   ✓ R0C.1 player ground alignment > faction LEFT/RIGHT doctrine unchanged — player source on LEFT, enemy on RIGHT 480ms
+   ✓ R0C.1 player ground alignment > boss/elite stationary attacker position unchanged 468ms
+   ✓ R0C.1 player ground alignment > float text anchor follows proxy position (includes ground offset) 467ms
+   ✓ R0C.1B Stage vertical grounding tune > player attacker proxy is lower than pre-R0C.1B baseline 458ms
+   ✓ R0C.1B Stage vertical grounding tune > enemy attacker proxy is also lowered by the same sink 462ms
+   ✓ R0C.1B Stage vertical grounding tune > player-enemy relative Y difference is preserved (sink is uniform) 470ms
+   ✓ R0C.1B Stage vertical grounding tune > multi-target layout: all target proxies receive the sink 544ms
+   ✓ R0C.1B Stage vertical grounding tune > float text anchor remains above proxy after sink 476ms
+   ✓ R0C.2 Combat Stage visual filter parity > tilt-shift is set to reduced stage value (not zero) during active stage 465ms
+   ✓ R0C.2 Combat Stage visual filter parity > tilt-shift is restored to original value on exit 481ms
+   ✓ R0C.2 Combat Stage visual filter parity > Stage render pass uses Stage scene and camera during active session 470ms
+ ✓ src/combat/stage/factionAwareStage.test.ts (32 tests) 6016ms
+   ✓ R0B.1 faction-aware CombatStage > player source is on left (negative X) 489ms
+   ✓ R0B.1 faction-aware CombatStage > enemy source is on right (positive X) 474ms
+   ✓ R0B.1 faction-aware CombatStage > player target of enemy action stays left (negative X) 476ms
+   ✓ R0B.1 faction-aware CombatStage > enemy target of player action stays right (positive X) 480ms
+   ✓ R0B.1 faction-aware CombatStage > boss/elite can remain anchored on right (stationaryAttacker) 461ms
+   ✓ R0B.1 faction-aware CombatStage > arena ultimate remains centered regardless of source faction 629ms
+   ✓ R0B.1 faction-aware CombatStage > reduced graphics uses the same faction-side rules 480ms
+   ✓ R0B.1 faction-aware CombatStage > tactical return remains exact after enemy-source session 487ms
+   ✓ R0B.1 faction-aware CombatStage > getActiveSideAssignment returns correct sides for player offensive 467ms
+   ✓ R0B.1 faction-aware CombatStage > getActiveSideAssignment returns correct sides for enemy offensive 473ms
+   ✓ R0B.1 faction-aware CombatStage > player ultimate group support stays on player side (LEFT) 544ms
+   ✓ R0B.1 faction-aware CombatStage > enemy ultimate group support stays on enemy side (RIGHT) 552ms
+ ✓ src/cinematics/NarrativeStage.test.ts (17 tests) 4699ms
+   ✓ NarrativeStage > releases a completed video and makes the tableau primary before dialogue 483ms
+   ✓ NarrativeStage > records travel and HOLD transitions into a dialogue tableau and keeps scenic HOLD dialogue-free 963ms
+   ✓ NarrativeStage > repeated lifecycle leaves no media, canvas, listener-owned surface, or modal residue 871ms
+ ✓ src/journey/JourneyCampaignBoundary.test.ts (14 tests) 99ms
+ ✓ src/combat/vfx/PublishedVfxRegistry.test.ts (35 tests) 10ms
+ ✓ src/cinematics/NarrativeSceneSurface.test.ts (10 tests) 260ms
+ ✓ src/cinematics/NarrativePresentationRuntime.test.ts (29 tests) 46ms
+ ✓ src/combat/vfx/ChoreographyBeatsUI.test.ts (21 tests) 1218ms
+ ✓ src/cinematics/CinematicPlayer.test.ts (18 tests) 64ms
+ ✓ src/cinematics/JourneySession.test.ts (17 tests) 166ms
+ ✓ src/cinematics/CinematicOverlay.test.ts (11 tests) 32ms
+ ✓ src/combat/vfx/PublishedVfxResolver.test.ts (19 tests) 753ms
+   ✓ R2C-VFX V2.3 — Action Override Resolver > 97. published playback applies linked pose before VFX and spatial activation 745ms
+ ✓ src/combat/vfx/VfxRuntimeReadiness.test.ts (16 tests) 11ms
+ ✓ src/cinematics/JourneyOverlay.test.ts (14 tests) 35ms
+ ✓ src/combat/vfx/CasterMotionPanel.test.ts (22 tests) 1001ms
+ ✓ src/game/campaignPresentationMigration.test.ts (7 tests) 34ms
+ ✓ src/game/traversalT0ProductionRollout.test.ts (12 tests) 236ms
+ ✓ src/combat/stage/CombatStageUnitMotion.test.ts (9 tests) 243ms
+ ✓ src/game/campaignGrammarConsolidation.test.ts (16 tests) 31ms
+ ✓ src/combat/vfx/VfxV2_6_3DemoScope.test.ts (22 tests) 742ms
+ ✓ src/cinematics/NarrativeMediaTransition.test.ts (3 tests) 47ms
+ ✓ src/traversal/TraversalT0World.test.ts (5 tests) 154ms
+ ✓ src/cinematics/CinematicDialogueSession.test.ts (12 tests) 12ms
+ ✓ src/cinematics/JourneyQaScenarios.test.ts (13 tests) 151ms
+ ✓ src/combat/stage/CombatStagePose.test.ts (3 tests) 21ms
+ ✓ src/cinematics/CinematicPreloader.test.ts (10 tests) 15ms
+ ✓ src/combat/vfx/ComposerStagePlayback.test.ts (11 tests) 1399ms
+   ✓ R2C-VFX LAB V2.1 — Combat Stage playback > 9. applies same-Beat CASTER and TARGET poses before VFX activation 1280ms
+ ✓ src/combat/vfx/VfxActionCatalogue.test.ts (21 tests) 119ms
+ ✓ src/traversal/TraversalDepth.test.ts (5 tests) 40ms
+stderr | src/ui/SceneTransition.test.ts > scene transition interlude > continues to the task when an interlude fails
+[SceneTransition] Interlude failed safely. Error: media failed
+    at Object.interlude (C:\Users\miche\Documents\Projects\RPGThreeJS\src\ui\SceneTransition.test.ts:66:38)
+    at SceneTransition.run (C:\Users\miche\Documents\Projects\RPGThreeJS\src\ui\SceneTransition.ts:65:25)
+
+ ✓ src/ui/SceneTransition.test.ts (8 tests) 28ms
+ ✓ src/combat/stage/CombatStageCasterMotion.test.ts (16 tests) 5432ms
+   ✓ CombatStage — caster motion > returns the offset to zero once a returning motion has fully settled 388ms
+   ✓ CombatStage — caster motion > displaces the attacker proxy horizontally during a dash 319ms
+   ✓ CombatStage — caster motion > raises the attacker proxy vertically during a jump 318ms
+   ✓ CombatStage — caster motion > never moves the target proxies 326ms
+   ✓ CombatStage — caster motion > never moves the Stage camera 335ms
+   ✓ CombatStage — caster motion > never mutates the tactical camera 530ms
+   ✓ CombatStage — caster motion > clears motion on exit so it cannot leak into the next action 474ms
+   ✓ CombatStage — caster motion > clears motion when a new session begins 729ms
+   ✓ CombatStage — caster motion > restores the tactical render pass normally after a motion session 475ms
+ ✓ src/traversal/TraversalRunController.test.ts (3 tests) 15ms
+ ✓ src/traversal/TraversalForkOverlay.test.ts (3 tests) 19ms
+ ✓ src/ui/CharacterUiIntegration.test.ts (3 tests) 50ms
+ ✓ src/ui/design-system/CampaignUi.test.ts (4 tests) 19ms
+ ✓ src/ui/CampaignStatusHud.test.ts (2 tests) 22ms
+ ✓ src/cinematics/JourneyBackdrop.test.ts (3 tests) 8ms
+ ✓ src/ui/TraversalTravelReturn.test.ts (2 tests) 55ms
+ ✓ src/combat/vfx/VfxPlacementTransform.test.ts (118 tests) 31ms
+ ✓ src/traversal/TraversalPreviewSaves.test.ts (1 test) 5ms
+ ✓ src/combat/combatVfxPresentation.test.ts (81 tests) 66ms
+ ✓ src/game/management.test.ts (56 tests) 30ms
+ ✓ src/game/r6FullRouteIntegration.test.ts (31 tests) 263ms
+ ✓ src/combat/vfx/ChoreographyBeats.test.ts (37 tests) 30ms
+ ✓ src/combat/vfx/galleryAnimationFix.test.ts (46 tests) 140ms
+ ✓ tools/cinematics/campaign_cinematic_census.test.mjs (77 tests) 327ms
+ ✓ src/combat/stage/combatStageProfiles.test.ts (43 tests) 14ms
+warning: in the working copy of 'src/combat/legacyCombatRuntime.js', LF will be replaced by CRLF the next time Git touches it
+ ✓ tools/cinematics/cin6ea_preproduction.test.mjs (10 tests) 502ms
+ ✓ src/combat/vfx/vfxRuntimeRegistry.test.ts (42 tests) 54ms
+ ✓ src/game/reputationEventDirector.test.ts (22 tests) 112ms
+ ✓ src/combat/vfx/VfxV2_6AuthoringPolish.test.ts (34 tests) 13ms
+ ✓ src/combat/vfx/VfxResourceManager.test.ts (39 tests) 794ms
+ ✓ src/game/cin2CampaignBridge.test.ts (15 tests) 56ms
+ ✓ src/game/contextualDialogue.test.ts (17 tests) 26ms
+ ✓ src/combat/legacyCombatRuntime.hotfix.test.ts (42 tests) 17ms
+ ✓ src/combat/vfx/CasterMotionBackCompat.test.ts (27 tests) 14ms
+ ✓ src/game/lionFinale.test.ts (24 tests) 18ms
+ ✓ src/combat/vfx/DemoVfxActionScope.test.ts (37 tests) 36ms
+ ✓ src/traversal/TraversalT0Flow.test.ts (5 tests) 9599ms
+   ✓ completes T0 via confirm and lion-first-trial-event with direct fork and deferred branch entry 1940ms
+   ✓ completes T0 via skip and lion-first-trial-event with direct fork and deferred branch entry 2029ms
+   ✓ completes T0 via opposite-lane and lion-first-trial-event with direct fork and deferred branch entry 1845ms
+   ✓ completes T0 via confirm and lion-first-trial-combat with direct fork and deferred branch entry 1935ms
+   ✓ completes T0 via skip and lion-first-trial-combat with direct fork and deferred branch entry 1848ms
+ ✓ src/combat/vfx/CasterMotion.test.ts (37 tests) 58ms
+ ✓ src/game/r5NarrativeExpansion.test.ts (18 tests) 38ms
+ ✓ src/combat/vfx/VfxSpriteSheets.test.ts (12 tests) 15ms
+ ✓ src/combat/stage/r0b4KillApRouting.test.ts (42 tests) 9ms
+ ✓ src/combat/vfx/VfxV2_6_1ScreenShakeReset.test.ts (24 tests) 9ms
+ ✓ src/combat/skillPresentation.test.ts (18 tests) 22ms
+ ✓ src/combat/vfx/VfxRuntimeParity.test.ts (41 tests) 4143ms
+   ✓ V2.5.1 HITSTOP Execution > HITSTOP_LIGHT_EXECUTES: hitStop helper called with LIGHT duration (0.04s) 308ms
+   ✓ V2.5.1 HITSTOP Execution > FLASH-only does not invoke hitStop 302ms
+   ✓ V2.5.1 HITSTOP Execution > FULL_PRESET executes hitStop 304ms
+   ✓ V2.5.1 HITSTOP Execution > MISSING_HITSTOP_HELPER_SAFE: no crash when hitStop helper absent 387ms
+   ✓ V2.5.1 HITSTOP Execution > MISSING_HITSTOP_HELPER_SAFE: other effects still run 384ms
+   ✓ V2.5.1 HITSTOP Execution > legacy Technical Polish hitStop remains functional 304ms
+   ✓ V2.5.1 HITSTOP Execution > multiple impact slots schedule their own hitStop independently 952ms
+   ✓ V2.5.1 HITSTOP Execution > no duplicate execution after completion 595ms
+ ✓ src/combat/vfx/UnitMotionPose.test.ts (22 tests) 18ms
+ ✓ src/game/runSystem.test.ts (16 tests) 17ms
+warning: in the working copy of 'src/combat/legacyCombatRuntime.js', LF will be replaced by CRLF the next time Git touches it
+ ✓ tools/cinematics/cin6ea_finalization.test.mjs (5 tests) 130ms
+ ✓ src/game/cin67NarrativeStageIntegration.test.ts (11 tests) 8ms
+ ✓ src/combat/protocol.test.ts (17 tests) 9ms
+ ✓ src/cinematics/FinalPresentationModeAudit.test.ts (8 tests) 33ms
+ ✓ src/combat/stage/CombatPoseRegistry.test.ts (13 tests) 58ms
+ ✓ src/combat/vfx/DemoVfxWorkload.test.ts (18 tests) 8ms
+ ✓ src/cinematics/Cin6aPresentation.test.ts (39 tests) 7ms
+ ✓ src/combat/stage/CombatPoseVisual.test.ts (10 tests) 14ms
+ ✓ src/cinematics/FinalDialoguePresentation.test.ts (9 tests) 48ms
+ ✓ src/combat/statusPresentation.test.ts (21 tests) 11ms
+ ✓ tools/cinematics/cin6ea2_dynamic_gate.test.mjs (6 tests) 89ms
+ ✓ src/combat/stage/stageRoutingAudit.test.ts (12 tests) 5ms
+ ✓ src/combat/vfx/VfxActionRegistry.test.ts (12 tests) 23ms
+ ✓ src/game/lionVerdict.test.ts (16 tests) 9ms
+ ✓ src/combat/vfx/VfxPresets.test.ts (9 tests) 42ms
+ ✓ src/cinematics/NarrativePresentationDoctrine.test.ts (22 tests) 15ms
+ ✓ src/cinematics/DialogueStagingDirector.test.ts (6 tests) 25ms
+ ✓ src/combat/combatHudPresentation.test.ts (12 tests) 6ms
+ ✓ src/journey/JourneyRunNodeAdapter.test.ts (10 tests) 12ms
+ ✓ tools/cinematics/cin66_finalization.test.mjs (7 tests) 304ms
+ ✓ src/cinematics/NarrativeTableau.test.ts (11 tests) 8ms
+ ✓ src/cinematics/Cin673SpatialCoherence.test.ts (7 tests) 10ms
+ ✓ tools/cinematics/cin6ea3_pilot_e_regate.test.mjs (5 tests) 38ms
+ ✓ src/traversal/TraversalT0Route.test.ts (6 tests) 8ms
+ ✓ src/cinematics/NarrativeDialogueAdapter.test.ts (8 tests) 14ms
+ ✓ src/traversal/TraversalRunRuntime.test.ts (7 tests) 10ms
+ ✓ src/game/cin65CinematicDialogueIntegration.test.ts (5 tests) 41ms
+ ✓ src/qa/r7LionSimulation.test.ts (35 tests) 4100ms
+   ✓ R7 R4 deterministic distribution and hard constraints > moves hostile/helpful selection in the authored reputation direction 804ms
+   ✓ R7 R4 deterministic distribution and hard constraints > keeps all nine R5-expanded definitions reachable or explicitly eligible in the audit 378ms
+   ✓ R7 compact aggregate snapshot > stays stable for fixed fast-regression seed ranges 723ms
+ ✓ src/dev/vfxDevHelpers.test.ts (21 tests) 7ms
+ ✓ src/game/traversalRouteAuthority.test.ts (8 tests) 12ms
+ ✓ src/combat/vfx/VfxR3F.test.ts (8 tests) 10ms
+stderr | src/cinematics/CinematicRegistry.test.ts > cinematic registry > falls back to an empty registry for missing or invalid manifests
+[Cinematics] Manifest unavailable; continuing without cinematics. Error: Cinematic manifest request failed (404).
+    at C:\Users\miche\Documents\Projects\RPGThreeJS\src\cinematics\CinematicRegistry.ts:63:33
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at C:\Users\miche\Documents\Projects\RPGThreeJS\src\cinematics\CinematicRegistry.test.ts:40:5
+    at file:///C:/Users/miche/Documents/Projects/RPGThreeJS/node_modules/@vitest/runner/dist/index.js:558:22
+
+ ✓ src/cinematics/CinematicRegistry.test.ts (6 tests) 42ms
+ ✓ src/game/cin6aVerticalIntegration.test.ts (7 tests) 6ms
+ ✓ src/cinematics/FinalNarrativeContinuity.test.ts (5 tests) 9ms
+ ✓ src/journey/JourneyPresentationResolver.test.ts (9 tests) 8ms
+ ✓ src/game/lionNarrative.test.ts (21 tests) 8ms
+ ✓ tools/cinematics/cin6c_p1_production.test.mjs (5 tests) 1067ms
+   ✓ CIN-6C P1 adaptive cinematic production > decodes all eleven silent 1080p production masters 1044ms
+ ✓ tools/cinematics/cin6b_production.test.mjs (7 tests) 3290ms
+   ✓ CIN-6B P0 completion production contract > preserves the five relevant approved continuity masters byte-for-byte 304ms
+   ✓ CIN-6B P0 completion production contract > decodes every production master with its manifest duration 2890ms
+ ✓ src/combat/combatCameraFeedback.test.ts (8 tests) 6ms
+ ✓ tools/cinematics/cin66_pilot_specs.test.mjs (5 tests) 18ms
+ ✓ src/journey/JourneyPresentationPolicy.test.ts (8 tests) 6ms
+ ✓ src/game/contestResolution.test.ts (8 tests) 5ms
+ ✓ tools/cinematics/cin4_media.test.mjs (8 tests) 7ms
+ ✓ src/cinematics/RuntimePresentationStepCensus.test.ts (4 tests) 2532ms
+   ✓ OPTION-C-P0 runtime presentation coverage lock > accounts for every runtime-reachable step without a silent remainder 1294ms
+   ✓ OPTION-C-P0 runtime presentation coverage lock > fails validation when one reachable dynamic step is omitted from its exact variant plan 1233ms
+ ✓ tools/cinematics/cin4_shot_spec.test.mjs (13 tests) 24ms
+ ✓ src/cinematics/NarrativeBeatDirector.test.ts (6 tests) 5ms
+ ✓ src/journey/RouteCommitGuard.test.ts (6 tests) 6ms
+ ✓ src/combat/vfx/VfxSourceSuitability.test.ts (5 tests) 58ms
+ ✓ src/combat/vfx/spritesheetPng.test.ts (6 tests) 5087ms
+   ✓ R2C-C.1 spritesheet PNG validation — CartoonCoffee-only doctrine > R2C-C.1: megapack-runtime 4096 PNG has correct dimensions 1611ms
+   ✓ R2C-C.1 spritesheet PNG validation — CartoonCoffee-only doctrine > R2C-C.1: megapack-runtime PNG has no visible magenta background pixels 1624ms
+   ✓ R2C-C.1 spritesheet PNG validation — CartoonCoffee-only doctrine > R2C-C.1: megapack-runtime PNG has transparent pixels (alpha channel works) 1549ms
+ ✓ src/combat/combatVisualClarity.test.ts (5 tests) 6ms
+ ✓ src/combat/UnitFocusController.test.ts (4 tests) 3ms
+ ✓ src/campaign/LionCampaignTravelRelations.test.ts (7 tests) 6ms
+ ✓ src/cinematics/CinematicTriggers.test.ts (3 tests) 4ms
+ ✓ tools/cinematics/cin66_character_scale.test.mjs (4 tests) 171ms
+ ✓ src/render/CharacterVisualRegistry.test.ts (3 tests) 10ms
+ ✓ src/combat/bossIntentPresentation.test.ts (5 tests) 5ms
+ ✓ src/combat/StrategicCharacterVisual.test.ts (3 tests) 3ms
+ ✓ src/combat/combatFeel.test.ts (3 tests) 3ms
+ ✓ src/combat/stage/combatStageBackgrounds.test.ts (1 test) 6ms
+ ✓ src/combat/vfx/VfxSystem.test.ts (4 tests) 4ms
+ ✓ src/combat/unitMotion.test.ts (4 tests) 4ms
+ ✓ src/game/combatProgress.test.ts (3 tests) 4ms
+ ✓ src/combat/stage/CombatPoseQaWiring.test.ts (3 tests) 5ms
+ ✓ src/cinematics/NarrativeStagingAudit.test.ts (2 tests) 2661ms
+   ✓ Narrative dialogue staging audit > maps every reachable Lion-demo dialogue and step 1406ms
+   ✓ Narrative dialogue staging audit > keeps composition phases stable while cards may move and owns each canonical step exactly once 1255ms
+ ✓ src/combat/combatRenderLayers.test.ts (2 tests) 3ms
+ ✓ src/campaign/LionCampaignStructure.test.ts (3 tests) 4ms
+ ✓ src/cinematics/NarrativeMediaPlanning.test.ts (2 tests) 5ms
+ ✓ src/traversal/TraversalFeaturePolicy.test.ts (3 tests) 3ms
+ ✓ src/traversal/TraversalT0Assets.test.ts (1 test) 23ms
+ ✓ src/cinematics/NarrativePresentationPolicy.test.ts (3 tests) 3ms
+ ✓ src/combat/deploymentRules.test.ts (3 tests) 3ms
+ ✓ src/traversal/TraversalRoadEncounter.test.ts (1 test) 5ms
+ ✓ src/game/reputation.test.ts (3 tests) 3ms
+ ✓ tools/cinematics/cin66_visual_polish_audit.test.mjs (4 tests) 6207ms
+   ✓ CIN-6.6 production visual polish audit > covers every current production master with every required criterion 3208ms
+   ✓ CIN-6.6 production visual polish audit > rejects summary drift and duplicate coverage 2995ms
+ ✓ src/combat/unitVisualState.test.ts (2 tests) 2ms
+
+ Test Files  151 passed (151)
+      Tests  2530 passed (2530)
+   Start at  01:34:28
+   Duration  53.35s (transform 5.09s, setup 0ms, collect 19.29s, tests 114.84s, environment 28.27s, prepare 16.63s)

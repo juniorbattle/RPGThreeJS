@@ -1,0 +1,514 @@
+{
+  "geometry": [
+    {
+      "viewport": "1440x810",
+      "surface": {
+        "turnbar": {
+          "before": [
+            437,
+            58
+          ],
+          "after": [
+            491,
+            66
+          ],
+          "widthDeltaPct": 12.36,
+          "heightDeltaPct": 13.79,
+          "screenAreaBeforePct": 2.17,
+          "screenAreaAfterPct": 2.78,
+          "screenAreaDeltaPct": 0.61,
+          "surfaceAreaDeltaPct": 27.85
+        },
+        "hint": {
+          "before": [
+            218,
+            26
+          ],
+          "after": [
+            235,
+            27
+          ],
+          "widthDeltaPct": 7.8,
+          "heightDeltaPct": 3.85,
+          "screenAreaBeforePct": 0.49,
+          "screenAreaAfterPct": 0.54,
+          "screenAreaDeltaPct": 0.06,
+          "surfaceAreaDeltaPct": 11.94
+        },
+        "panel": {
+          "before": [
+            248,
+            169
+          ],
+          "after": [
+            248,
+            169
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 3.59,
+          "screenAreaAfterPct": 3.59,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        },
+        "menu": {
+          "before": [
+            376,
+            74
+          ],
+          "after": [
+            426,
+            82
+          ],
+          "widthDeltaPct": 13.3,
+          "heightDeltaPct": 10.81,
+          "screenAreaBeforePct": 2.39,
+          "screenAreaAfterPct": 2.99,
+          "screenAreaDeltaPct": 0.61,
+          "surfaceAreaDeltaPct": 25.55
+        },
+        "objective": {
+          "before": [
+            224,
+            52
+          ],
+          "after": [
+            224,
+            52
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 1,
+          "screenAreaAfterPct": 1,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        },
+        "skillmenu": {
+          "before": [
+            338,
+            191
+          ],
+          "after": [
+            338,
+            191
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 5.53,
+          "screenAreaAfterPct": 5.53,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        },
+        "action-preview": {
+          "before": [
+            187,
+            50
+          ],
+          "after": [
+            187,
+            50
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 0.8,
+          "screenAreaAfterPct": 0.8,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        }
+      },
+      "persistentHud": {
+        "before": {
+          "viewportPct": 11.16,
+          "centerPct": 0
+        },
+        "after": {
+          "viewportPct": 12.43,
+          "centerPct": 0
+        }
+      }
+    },
+    {
+      "viewport": "1366x768",
+      "surface": {
+        "turnbar": {
+          "before": [
+            437,
+            58
+          ],
+          "after": [
+            491,
+            66
+          ],
+          "widthDeltaPct": 12.36,
+          "heightDeltaPct": 13.79,
+          "screenAreaBeforePct": 2.42,
+          "screenAreaAfterPct": 3.09,
+          "screenAreaDeltaPct": 0.67,
+          "surfaceAreaDeltaPct": 27.85
+        },
+        "hint": {
+          "before": [
+            218,
+            26
+          ],
+          "after": [
+            235,
+            27
+          ],
+          "widthDeltaPct": 7.8,
+          "heightDeltaPct": 3.85,
+          "screenAreaBeforePct": 0.54,
+          "screenAreaAfterPct": 0.6,
+          "screenAreaDeltaPct": 0.06,
+          "surfaceAreaDeltaPct": 11.94
+        },
+        "panel": {
+          "before": [
+            248,
+            169
+          ],
+          "after": [
+            248,
+            169
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 4,
+          "screenAreaAfterPct": 4,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        },
+        "menu": {
+          "before": [
+            376,
+            74
+          ],
+          "after": [
+            426,
+            82
+          ],
+          "widthDeltaPct": 13.3,
+          "heightDeltaPct": 10.81,
+          "screenAreaBeforePct": 2.65,
+          "screenAreaAfterPct": 3.33,
+          "screenAreaDeltaPct": 0.68,
+          "surfaceAreaDeltaPct": 25.55
+        },
+        "objective": {
+          "before": [
+            224,
+            52
+          ],
+          "after": [
+            224,
+            52
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 1.11,
+          "screenAreaAfterPct": 1.11,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        },
+        "skillmenu": {
+          "before": [
+            338,
+            191
+          ],
+          "after": [
+            338,
+            191
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 6.15,
+          "screenAreaAfterPct": 6.15,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        },
+        "action-preview": {
+          "before": [
+            187,
+            50
+          ],
+          "after": [
+            187,
+            50
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 0.89,
+          "screenAreaAfterPct": 0.89,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        }
+      },
+      "persistentHud": {
+        "before": {
+          "viewportPct": 12.4,
+          "centerPct": 0
+        },
+        "after": {
+          "viewportPct": 13.81,
+          "centerPct": 0
+        }
+      }
+    },
+    {
+      "viewport": "620x780",
+      "surface": {
+        "turnbar": {
+          "before": [
+            564,
+            53
+          ],
+          "after": [
+            564,
+            56
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 5.66,
+          "screenAreaBeforePct": 6.18,
+          "screenAreaAfterPct": 6.53,
+          "screenAreaDeltaPct": 0.35,
+          "surfaceAreaDeltaPct": 5.66
+        },
+        "hint": {
+          "before": [
+            389,
+            37
+          ],
+          "after": [
+            389,
+            37
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 2.98,
+          "screenAreaAfterPct": 2.98,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        },
+        "panel": {
+          "before": [
+            220,
+            168
+          ],
+          "after": [
+            220,
+            168
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 7.64,
+          "screenAreaAfterPct": 7.64,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        },
+        "menu": {
+          "before": [
+            604,
+            74
+          ],
+          "after": [
+            604,
+            74
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 9.24,
+          "screenAreaAfterPct": 9.24,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        },
+        "objective": {
+          "before": [
+            205,
+            52
+          ],
+          "after": [
+            205,
+            52
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 2.2,
+          "screenAreaAfterPct": 2.2,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        },
+        "skillmenu": {
+          "before": [
+            338,
+            191
+          ],
+          "after": [
+            338,
+            191
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 13.35,
+          "screenAreaAfterPct": 13.35,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        },
+        "action-preview": {
+          "before": [
+            187,
+            50
+          ],
+          "after": [
+            187,
+            50
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 1.93,
+          "screenAreaAfterPct": 1.93,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        }
+      },
+      "persistentHud": {
+        "before": {
+          "viewportPct": 30.02,
+          "centerPct": 3.68
+        },
+        "after": {
+          "viewportPct": 30.37,
+          "centerPct": 3.68
+        }
+      }
+    },
+    {
+      "viewport": "390x844",
+      "surface": {
+        "turnbar": {
+          "before": [
+            334,
+            53
+          ],
+          "after": [
+            334,
+            53
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 5.38,
+          "screenAreaAfterPct": 5.38,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        },
+        "hint": {
+          "before": [
+            187,
+            42
+          ],
+          "after": [
+            187,
+            42
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 2.39,
+          "screenAreaAfterPct": 2.39,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        },
+        "panel": {
+          "before": [
+            190,
+            182
+          ],
+          "after": [
+            190,
+            182
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 10.51,
+          "screenAreaAfterPct": 10.51,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        },
+        "menu": {
+          "before": [
+            374,
+            70
+          ],
+          "after": [
+            374,
+            70
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 7.95,
+          "screenAreaAfterPct": 7.95,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        },
+        "objective": {
+          "before": [
+            179,
+            44
+          ],
+          "after": [
+            179,
+            44
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 2.39,
+          "screenAreaAfterPct": 2.39,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        },
+        "skillmenu": {
+          "before": [
+            374,
+            186
+          ],
+          "after": [
+            374,
+            186
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 21.13,
+          "screenAreaAfterPct": 21.13,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        },
+        "action-preview": {
+          "before": [
+            142,
+            41
+          ],
+          "after": [
+            142,
+            41
+          ],
+          "widthDeltaPct": 0,
+          "heightDeltaPct": 0,
+          "screenAreaBeforePct": 1.77,
+          "screenAreaAfterPct": 1.77,
+          "screenAreaDeltaPct": 0,
+          "surfaceAreaDeltaPct": 0
+        }
+      },
+      "persistentHud": {
+        "before": {
+          "viewportPct": 30.99,
+          "centerPct": 6.59
+        },
+        "after": {
+          "viewportPct": 30.99,
+          "centerPct": 6.59
+        }
+      }
+    }
+  ],
+  "collisionErrors": 0,
+  "qaErrors": []
+}

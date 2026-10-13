@@ -1,0 +1,456 @@
+{
+  "schemaVersion": 1,
+  "baseline": "71e2132970ed77fc957e00966681657f4e6e2b2a",
+  "policy": "PLANNING_ONLY_NO_ASSET_GENERATION",
+  "goldReferences": [
+    "alaric_audience_arrival",
+    "camp_departure",
+    "valmir_route_fork"
+  ],
+  "summary": {
+    "visualFamilies": 13,
+    "productionVideos": 31,
+    "futureHoldFrames": 25,
+    "travelStillRoles": 14,
+    "tableauBackgroundBeatRequirements": 49,
+    "livingStillCandidates": 10
+  },
+  "families": [
+    {
+      "id": "LION_CAMP",
+      "nodesAndEvents": [
+        "lion-camp"
+      ],
+      "currentVideoMasters": [
+        "camp_departure"
+      ],
+      "futureHoldFrames": [
+        "camp_departure_hold"
+      ],
+      "requiredTravelStills": [
+        "camp_to_audience"
+      ],
+      "requiredTableauBackgrounds": [
+        "acte_ouverture_tableau_bg"
+      ],
+      "lighting": "warm dawn and banked fire",
+      "timeOfDay": "dawn",
+      "cameraLanguage": "wide low eye-level departure frame",
+      "environmentLandmarks": [
+        "Lion banners",
+        "camp palisade",
+        "mountain road"
+      ],
+      "stagingContinuity": "Preserve world scale, ground contact and protected speaker/choice lanes across all roles.",
+      "environmentContinuity": "Video, hold, travel still and tableau plate must read as the same physical location and time progression."
+    },
+    {
+      "id": "ALARIC_AUDIENCE",
+      "nodesAndEvents": [
+        "lion-audience"
+      ],
+      "currentVideoMasters": [
+        "alaric_audience_arrival"
+      ],
+      "futureHoldFrames": [
+        "alaric_audience_arrival_hold"
+      ],
+      "requiredTravelStills": [],
+      "requiredTableauBackgrounds": [],
+      "lighting": "warm torchlight against deep Lion blue",
+      "timeOfDay": "interior timeless",
+      "cameraLanguage": "formal symmetrical authority frame",
+      "environmentLandmarks": [
+        "central Lion banner",
+        "dais",
+        "torch rows"
+      ],
+      "stagingContinuity": "Preserve world scale, ground contact and protected speaker/choice lanes across all roles.",
+      "environmentContinuity": "Video, hold, travel still and tableau plate must read as the same physical location and time progression."
+    },
+    {
+      "id": "FOREST_ROAD",
+      "nodesAndEvents": [
+        "lion-opening-ambush",
+        "lion-nomad-crossroads",
+        "lion-refugees",
+        "lion-first-trial-event",
+        "lion-first-trial-combat"
+      ],
+      "currentVideoMasters": [
+        "forest_journey_tension",
+        "refugees_approach",
+        "cedric_encounter",
+        "injured_merchant_encounter",
+        "abandoned_cart_reveal",
+        "spider_nest_reveal"
+      ],
+      "futureHoldFrames": [
+        "forest_journey_tension_hold",
+        "refugees_approach_hold",
+        "injured_merchant_encounter_hold",
+        "abandoned_cart_reveal_hold",
+        "spider_nest_reveal_hold"
+      ],
+      "requiredTravelStills": [
+        "audience_road_departure",
+        "forest_road_after_opening",
+        "crossroads_to_refugees"
+      ],
+      "requiredTableauBackgrounds": [
+        "ate_alaric_reports_tableau_bg",
+        "ate_serpent_scout_report_tableau_bg",
+        "ate_village_fear_tableau_bg",
+        "mystery_ambush_tableau_bg",
+        "mystery_recruit_tableau_bg",
+        "post_opening_trail_tableau_bg",
+        "post_serpent_patrol_tableau_bg",
+        "post_serpent_reprisals_tableau_bg",
+        "post_spider_nest_tableau_bg",
+        "refugee_trial_tableau_bg",
+        "rep_event_brokered_information_tableau_bg",
+        "rep_event_displaced_family_demand_tableau_bg",
+        "rep_event_fallen_banner_claimant_tableau_bg",
+        "rep_event_public_petition_tableau_bg",
+        "rep_event_roadside_intimidation_tableau_bg",
+        "rep_event_serpent_rumour_market_tableau_bg"
+      ],
+      "lighting": "filtered woodland daylight with controlled threat shadows",
+      "timeOfDay": "day",
+      "cameraLanguage": "grounded road perspective with open lower staging plane",
+      "environmentLandmarks": [
+        "forked road",
+        "forest ridge",
+        "travel markers"
+      ],
+      "stagingContinuity": "Preserve world scale, ground contact and protected speaker/choice lanes across all roles.",
+      "environmentContinuity": "Video, hold, travel still and tableau plate must read as the same physical location and time progression."
+    },
+    {
+      "id": "FIRST_REFUGE",
+      "nodesAndEvents": [
+        "lion-first-refuge"
+      ],
+      "currentVideoMasters": [
+        "first_refuge_arrival",
+        "first_refuge_departure"
+      ],
+      "futureHoldFrames": [
+        "first_refuge_arrival_hold"
+      ],
+      "requiredTravelStills": [
+        "first_trial_to_refuge",
+        "first_refuge_departure"
+      ],
+      "requiredTableauBackgrounds": [
+        "ate_first_refuge_watch_tableau_bg",
+        "rep_event_refuge_supply_offer_tableau_bg"
+      ],
+      "lighting": "sheltered amber fire against cool woods",
+      "timeOfDay": "dusk",
+      "cameraLanguage": "safe enclosure with visible exit road",
+      "environmentLandmarks": [
+        "palisade",
+        "watch fires",
+        "supply shelter"
+      ],
+      "stagingContinuity": "Preserve world scale, ground contact and protected speaker/choice lanes across all roles.",
+      "environmentContinuity": "Video, hold, travel still and tableau plate must read as the same physical location and time progression."
+    },
+    {
+      "id": "VALMIR_ROAD",
+      "nodesAndEvents": [
+        "lion-reserve-trail",
+        "lion-valmir-road",
+        "lion-second-trial-event",
+        "lion-second-trial-combat"
+      ],
+      "currentVideoMasters": [
+        "valmir_route_fork",
+        "serpent_road_tension",
+        "troll_crossing_reveal",
+        "serpent_duelist_reveal"
+      ],
+      "futureHoldFrames": [
+        "valmir_route_fork_hold",
+        "serpent_road_tension_hold",
+        "troll_crossing_reveal_hold",
+        "serpent_duelist_reveal_hold"
+      ],
+      "requiredTravelStills": [
+        "reserve_to_valmir"
+      ],
+      "requiredTableauBackgrounds": [
+        "ate_serpent_general_warning_tableau_bg",
+        "mystery_troll_crossing_tableau_bg",
+        "post_serpent_checkpoint_tableau_bg",
+        "post_serpent_duelist_trial_tableau_bg",
+        "post_troll_crossing_tableau_bg",
+        "post_valmir_road_tableau_bg",
+        "pre_valmir_road_tableau_bg",
+        "reserve_trail_tableau_bg",
+        "serpent_duelist_trial_tableau_bg"
+      ],
+      "lighting": "clear mountain light with distant smoke",
+      "timeOfDay": "late day",
+      "cameraLanguage": "wide route geography and readable directional depth",
+      "environmentLandmarks": [
+        "road fork",
+        "Valmir ridge",
+        "shrine stones"
+      ],
+      "stagingContinuity": "Preserve world scale, ground contact and protected speaker/choice lanes across all roles.",
+      "environmentContinuity": "Video, hold, travel still and tableau plate must read as the same physical location and time progression."
+    },
+    {
+      "id": "BOIS_CLAIR",
+      "nodesAndEvents": [
+        "lion-village-choice"
+      ],
+      "currentVideoMasters": [
+        "bois_clair_arrival",
+        "bois_clair_saved",
+        "bois_clair_sacrificed"
+      ],
+      "futureHoldFrames": [
+        "bois_clair_arrival_hold",
+        "bois_clair_saved_hold",
+        "bois_clair_sacrificed_hold"
+      ],
+      "requiredTravelStills": [
+        "second_trial_to_bois_clair",
+        "bois_clair_to_second_refuge"
+      ],
+      "requiredTableauBackgrounds": [
+        "ate_maelor_seal_analysis_tableau_bg",
+        "pre_village_defense_tableau_bg",
+        "pre_village_raid_tableau_bg",
+        "rep_event_bois_clair_denunciation_tableau_bg",
+        "rep_event_village_memorial_request_tableau_bg",
+        "village_defense_aftermath_tableau_bg",
+        "village_raid_aftermath_tableau_bg"
+      ],
+      "lighting": "firelit smoke with outcome-specific recovery light",
+      "timeOfDay": "late day into night",
+      "cameraLanguage": "village square and split objective geography",
+      "environmentLandmarks": [
+        "chapel",
+        "north captives route",
+        "south reserves route"
+      ],
+      "stagingContinuity": "Preserve world scale, ground contact and protected speaker/choice lanes across all roles.",
+      "environmentContinuity": "Video, hold, travel still and tableau plate must read as the same physical location and time progression."
+    },
+    {
+      "id": "SECOND_REFUGE",
+      "nodesAndEvents": [
+        "lion-second-refuge",
+        "lion-lancer-recruit"
+      ],
+      "currentVideoMasters": [
+        "second_refuge_departure",
+        "garen_encounter"
+      ],
+      "futureHoldFrames": [],
+      "requiredTravelStills": [
+        "second_refuge_departure"
+      ],
+      "requiredTableauBackgrounds": [
+        "ate_bois_clair_night_watch_tableau_bg",
+        "mystery_lancer_recruit_tableau_bg"
+      ],
+      "lighting": "low night fire transitioning to cool morning",
+      "timeOfDay": "night to morning",
+      "cameraLanguage": "intimate refuge staging opening onto the road",
+      "environmentLandmarks": [
+        "campfire",
+        "tent line",
+        "departure gate"
+      ],
+      "stagingContinuity": "Preserve world scale, ground contact and protected speaker/choice lanes across all roles.",
+      "environmentContinuity": "Video, hold, travel still and tableau plate must read as the same physical location and time progression."
+    },
+    {
+      "id": "WITNESS_ROAD",
+      "nodesAndEvents": [
+        "lion-witnesses"
+      ],
+      "currentVideoMasters": [
+        "witnesses_encounter"
+      ],
+      "futureHoldFrames": [
+        "witnesses_encounter_hold"
+      ],
+      "requiredTravelStills": [
+        "garen_to_witness_road"
+      ],
+      "requiredTableauBackgrounds": [
+        "ate_lion_council_doubt_tableau_bg",
+        "witnesses_on_road_tableau_bg"
+      ],
+      "lighting": "open neutral daylight with long road depth",
+      "timeOfDay": "day",
+      "cameraLanguage": "social encounter frame with witness lane and party lane",
+      "environmentLandmarks": [
+        "road marker",
+        "distant Bois-Clair smoke",
+        "wooded verge"
+      ],
+      "stagingContinuity": "Preserve world scale, ground contact and protected speaker/choice lanes across all roles.",
+      "environmentContinuity": "Video, hold, travel still and tableau plate must read as the same physical location and time progression."
+    },
+    {
+      "id": "SHADOW_RUINS",
+      "nodesAndEvents": [
+        "lion-final-trial-event",
+        "lion-final-trial-combat",
+        "lion-shadow-signs"
+      ],
+      "currentVideoMasters": [
+        "ruins_approach_context",
+        "shadow_signs",
+        "shrine_reveal_context",
+        "young_dragon_encounter",
+        "serpent_informant_encounter"
+      ],
+      "futureHoldFrames": [
+        "ruins_approach_context_hold",
+        "shrine_reveal_context_hold",
+        "young_dragon_encounter_hold",
+        "serpent_informant_encounter_hold"
+      ],
+      "requiredTravelStills": [
+        "final_trial_to_shadow"
+      ],
+      "requiredTableauBackgrounds": [
+        "ate_ruins_awaken_tableau_bg",
+        "ate_serpent_retreat_order_tableau_bg",
+        "post_ruins_guardians_tableau_bg",
+        "post_serpent_hunters_tableau_bg",
+        "post_young_dragon_roost_tableau_bg",
+        "pre_young_dragon_roost_tableau_bg",
+        "shadow_signs_tableau_bg"
+      ],
+      "lighting": "cool stone light with restrained violet corruption",
+      "timeOfDay": "overcast day",
+      "cameraLanguage": "monumental ruin depth with readable evidence foreground",
+      "environmentLandmarks": [
+        "inscribed stones",
+        "ruin arch",
+        "shadow veins"
+      ],
+      "stagingContinuity": "Preserve world scale, ground contact and protected speaker/choice lanes across all roles.",
+      "environmentContinuity": "Video, hold, travel still and tableau plate must read as the same physical location and time progression."
+    },
+    {
+      "id": "FINAL_REFUGE",
+      "nodesAndEvents": [
+        "lion-final-refuge"
+      ],
+      "currentVideoMasters": [
+        "final_refuge_dossier"
+      ],
+      "futureHoldFrames": [],
+      "requiredTravelStills": [
+        "shadow_to_final_refuge"
+      ],
+      "requiredTableauBackgrounds": [
+        "final_refuge_tableau_bg"
+      ],
+      "lighting": "quiet pre-judgement dusk with warm shelter edge",
+      "timeOfDay": "dusk",
+      "cameraLanguage": "reflective camp frame with dossier-safe negative space",
+      "environmentLandmarks": [
+        "final campfire",
+        "Lion road",
+        "dossier table"
+      ],
+      "stagingContinuity": "Preserve world scale, ground contact and protected speaker/choice lanes across all roles.",
+      "environmentContinuity": "Video, hold, travel still and tableau plate must read as the same physical location and time progression."
+    },
+    {
+      "id": "LION_JUDGEMENT",
+      "nodesAndEvents": [
+        "lion-final-judgement"
+      ],
+      "currentVideoMasters": [
+        "lion_judgement"
+      ],
+      "futureHoldFrames": [
+        "lion_judgement_hold"
+      ],
+      "requiredTravelStills": [
+        "final_refuge_to_judgement"
+      ],
+      "requiredTableauBackgrounds": [],
+      "lighting": "formal gold torchlight and deep blue authority",
+      "timeOfDay": "interior timeless",
+      "cameraLanguage": "symmetrical judgement frame with opposed lanes",
+      "environmentLandmarks": [
+        "Lion dais",
+        "central seal",
+        "court banners"
+      ],
+      "stagingContinuity": "Preserve world scale, ground contact and protected speaker/choice lanes across all roles.",
+      "environmentContinuity": "Video, hold, travel still and tableau plate must read as the same physical location and time progression."
+    },
+    {
+      "id": "SERPENT_FINALE",
+      "nodesAndEvents": [
+        "lion-final-judgement"
+      ],
+      "currentVideoMasters": [
+        "serpent_general_reveal",
+        "serpent_route_ending"
+      ],
+      "futureHoldFrames": [
+        "serpent_general_reveal_hold",
+        "serpent_route_ending_hold"
+      ],
+      "requiredTravelStills": [],
+      "requiredTableauBackgrounds": [
+        "serpent_general_aftermath_tableau_bg"
+      ],
+      "lighting": "cold ruin atmosphere cut by hostile Serpent red",
+      "timeOfDay": "twilight",
+      "cameraLanguage": "boss reveal and aftermath axis toward the artefact",
+      "environmentLandmarks": [
+        "ruin arena",
+        "Serpent standard",
+        "Shadow artefact"
+      ],
+      "stagingContinuity": "Preserve world scale, ground contact and protected speaker/choice lanes across all roles.",
+      "environmentContinuity": "Video, hold, travel still and tableau plate must read as the same physical location and time progression."
+    },
+    {
+      "id": "LION_TRIAL",
+      "nodesAndEvents": [
+        "lion-final-judgement"
+      ],
+      "currentVideoMasters": [
+        "lion_champion_reveal",
+        "lion_trial_route_ending"
+      ],
+      "futureHoldFrames": [
+        "lion_champion_reveal_hold",
+        "lion_trial_route_ending_hold"
+      ],
+      "requiredTravelStills": [],
+      "requiredTableauBackgrounds": [
+        "lion_trial_aftermath_tableau_bg"
+      ],
+      "lighting": "hard Lion gold against weathered stone",
+      "timeOfDay": "twilight",
+      "cameraLanguage": "ritual duel axis with Alaric authority visible in geography",
+      "environmentLandmarks": [
+        "trial circle",
+        "Lion standard",
+        "judgement terrace"
+      ],
+      "stagingContinuity": "Preserve world scale, ground contact and protected speaker/choice lanes across all roles.",
+      "environmentContinuity": "Video, hold, travel still and tableau plate must read as the same physical location and time progression."
+    }
+  ],
+  "globalContinuityRule": "Every role in a family shares physical location, palette, lighting, camera language, scale, depth, landmarks and explicit time progression.",
+  "backgroundActorRule": "STATIC_TABLEAU backgrounds contain no baked party member or state-dependent actor."
+}

@@ -1,0 +1,161 @@
+{
+  "errors": [],
+  "captures": {
+    "departure": {
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "width": 438,
+        "height": 43.734375,
+        "right": 462,
+        "bottom": 63.734375
+      },
+      "destination": null,
+      "encounter": null,
+      "departure": {
+        "x": 986,
+        "y": 676,
+        "width": 430,
+        "height": 110,
+        "right": 1416,
+        "bottom": 786
+      }
+    },
+    "normal": {
+      "hud": {
+        "x": 20,
+        "y": 18,
+        "width": 438,
+        "height": 54.234375,
+        "right": 458,
+        "bottom": 72.234375
+      },
+      "destination": {
+        "x": 1196,
+        "y": 18,
+        "width": 224,
+        "height": 68.640625,
+        "right": 1420,
+        "bottom": 86.640625
+      },
+      "encounter": null,
+      "departure": null
+    },
+    "merchant": {
+      "hud": {
+        "x": 20,
+        "y": 18,
+        "width": 438,
+        "height": 54.234375,
+        "right": 458,
+        "bottom": 72.234375
+      },
+      "destination": {
+        "x": 1196,
+        "y": 18,
+        "width": 224,
+        "height": 68.640625,
+        "right": 1420,
+        "bottom": 86.640625
+      },
+      "encounter": {
+        "x": 510,
+        "y": 91,
+        "width": 420,
+        "height": 109.53125,
+        "right": 930,
+        "bottom": 200.53125
+      },
+      "departure": null
+    },
+    "merchant-narrow": {
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "width": 340,
+        "height": 45.875,
+        "right": 350,
+        "bottom": 55.875
+      },
+      "destination": {
+        "x": 405,
+        "y": 74,
+        "width": 205,
+        "height": 62.4375,
+        "right": 610,
+        "bottom": 136.4375
+      },
+      "encounter": {
+        "x": 100,
+        "y": 145,
+        "width": 420,
+        "height": 107.53125,
+        "right": 520,
+        "bottom": 252.53125
+      },
+      "departure": null
+    },
+    "merchant-mobile": {
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "width": 340,
+        "height": 45.875,
+        "right": 350,
+        "bottom": 55.875
+      },
+      "destination": {
+        "x": 175,
+        "y": 74,
+        "width": 205,
+        "height": 62.4375,
+        "right": 380,
+        "bottom": 136.4375
+      },
+      "encounter": {
+        "x": 10,
+        "y": 145,
+        "width": 370,
+        "height": 107.53125,
+        "right": 380,
+        "bottom": 252.53125
+      },
+      "departure": null
+    }
+  },
+  "checks": {
+    "gallery-desktop": {
+      "icons": 12,
+      "frames": 3,
+      "badges": 5,
+      "buttons": 6,
+      "fontReady": true,
+      "horizontalOverflow": false,
+      "examplesVisible": true
+    },
+    "gallery-narrow": {
+      "icons": 12,
+      "frames": 3,
+      "badges": 5,
+      "buttons": 6,
+      "fontReady": true,
+      "horizontalOverflow": false,
+      "examplesVisible": true
+    },
+    "gallery-mobile": {
+      "icons": 12,
+      "frames": 3,
+      "badges": 5,
+      "buttons": 6,
+      "fontReady": true,
+      "horizontalOverflow": false,
+      "examplesVisible": true
+    },
+    "routeGoldText": "OR\n150\n+40 route\nRÉPUTATION\n30 · Méfiant",
+    "continuationWorks": true,
+    "merchant-narrow-overflow": false,
+    "merchant-mobile-overflow": false,
+    "ignoreReturnedToRoad": true,
+    "pass": true
+  }
+}

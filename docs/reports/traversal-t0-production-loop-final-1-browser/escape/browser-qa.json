@@ -1,0 +1,1274 @@
+{
+  "task": "TRAVERSAL-T0-PURSUIT-PRODUCTION-1",
+  "baseline": "4b4aad2e3b482a2b1b956f71f108c0731dc714b9",
+  "branch": "traversal-t0-production-loop-final-1",
+  "environment": "Vite production preview",
+  "pursuerRequests": [
+    "http://127.0.0.1:5222/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png"
+  ],
+  "pursuerResponses": [
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:5222/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "escape",
+      "branch": "lion-first-trial-event",
+      "complete": true,
+      "samples": [],
+      "events": [
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "result": "STARTED",
+          "pressure01": 0.2350125
+        },
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "result": "ESCAPED",
+          "pressure01": 0
+        }
+      ],
+      "segments": {
+        "route-1": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 0,
+          "rewardCollected": [
+            "t0:r1:reward-1"
+          ]
+        },
+        "route-2": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 0,
+          "rewardCollected": [
+            "t0:r2:reward-1"
+          ]
+        },
+        "route-3": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 0,
+          "rewardCollected": [
+            "t0:r3:reward-1"
+          ]
+        }
+      },
+      "collisions": [],
+      "laneMoves": [
+        {
+          "segment": "route-1",
+          "progress": 0.004174999999999992,
+          "lane": 1
+        },
+        {
+          "segment": "route-2",
+          "progress": 0,
+          "lane": 0
+        },
+        {
+          "segment": "route-3",
+          "progress": 0.0011133333333336244,
+          "lane": 1
+        },
+        {
+          "segment": "route-3",
+          "progress": 0.5010933333333334,
+          "lane": 0
+        }
+      ],
+      "transitionLeaks": [],
+      "pressureTrends": [
+        {
+          "segment": "route-3",
+          "from": 0.2350125,
+          "to": 0.2287574999999999
+        },
+        {
+          "segment": "route-3",
+          "from": 0.2287574999999999,
+          "to": 0.22251749999999956
+        },
+        {
+          "segment": "route-3",
+          "from": 0.22251749999999956,
+          "to": 0.1425149999999999
+        },
+        {
+          "segment": "route-3",
+          "from": 0.1425149999999999,
+          "to": 0.13751250000000015
+        },
+        {
+          "segment": "route-3",
+          "from": 0.13751250000000015,
+          "to": 0.13126499999999997
+        },
+        {
+          "segment": "route-3",
+          "from": 0.13126499999999997,
+          "to": 0.1250099999999999
+        },
+        {
+          "segment": "route-3",
+          "from": 0.1250099999999999,
+          "to": 0.12001500000000001
+        },
+        {
+          "segment": "route-3",
+          "from": 0.12001500000000001,
+          "to": 0.1137674999999998
+        },
+        {
+          "segment": "route-3",
+          "from": 0.1137674999999998,
+          "to": 0.10752000000000013
+        },
+        {
+          "segment": "route-3",
+          "from": 0.10752000000000013,
+          "to": 0.1025174999999998
+        },
+        {
+          "segment": "route-3",
+          "from": 0.1025174999999998,
+          "to": 0.09627000000000013
+        },
+        {
+          "segment": "route-3",
+          "from": 0.09627000000000013,
+          "to": 0.09002249999999992
+        },
+        {
+          "segment": "route-3",
+          "from": 0.09002249999999992,
+          "to": 0.08376749999999981
+        },
+        {
+          "segment": "route-3",
+          "from": 0.08376749999999981,
+          "to": 0.07876500000000004
+        },
+        {
+          "segment": "route-3",
+          "from": 0.07876500000000004,
+          "to": 0.07251749999999985
+        },
+        {
+          "segment": "route-3",
+          "from": 0.07251749999999985,
+          "to": 0.06751500000000007
+        },
+        {
+          "segment": "route-3",
+          "from": 0.06751500000000007,
+          "to": 0.06126749999999986
+        },
+        {
+          "segment": "route-3",
+          "from": 0.06126749999999986,
+          "to": 0.05502000000000018
+        },
+        {
+          "segment": "route-3",
+          "from": 0.05502000000000018,
+          "to": 0.050017499999999854
+        },
+        {
+          "segment": "route-3",
+          "from": 0.050017499999999854,
+          "to": 0.04377000000000018
+        },
+        {
+          "segment": "route-3",
+          "from": 0.04377000000000018,
+          "to": 0.03752249999999995
+        },
+        {
+          "segment": "route-3",
+          "from": 0.03752249999999995,
+          "to": 0.03252000000000017
+        },
+        {
+          "segment": "route-3",
+          "from": 0.03252000000000017,
+          "to": 0.026272499999999945
+        },
+        {
+          "segment": "route-3",
+          "from": 0.026272499999999945,
+          "to": 0.021270000000000164
+        },
+        {
+          "segment": "route-3",
+          "from": 0.021270000000000164,
+          "to": 0.015015000000000054
+        },
+        {
+          "segment": "route-3",
+          "from": 0.015015000000000054,
+          "to": 0.008767499999999836
+        },
+        {
+          "segment": "route-3",
+          "from": 0.008767499999999836,
+          "to": 0.005017499999999836
+        },
+        {
+          "segment": "route-3",
+          "from": 0.005017499999999836,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0.002290500000000573,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        }
+      ],
+      "catch": null,
+      "catchRoadSpace": [],
+      "escape": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.7844133333333336,
+        "routeElapsedMs": 11766.200000000004,
+        "routeDurationMs": 15000,
+        "lane": 0,
+        "speed": 2.188819549710778,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": true,
+        "productionTelemetryKeys": [],
+        "productionOutcomeArrayLength": 0,
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "",
+        "pressure": 0,
+        "pursuerLane": 1,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.2350125
+          },
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "ESCAPED",
+            "pressure01": 0
+          }
+        ],
+        "pursuitResolved": [
+          "t0:r3:pursuit-1"
+        ],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": true,
+        "proxyActive": false,
+        "proxyLeft": -116.72954559326172,
+        "proxyRight": 77.66107940673828,
+        "proxyTop": 567.4617309570312,
+        "proxyBottom": 660.7586059570312,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6079456606724003,
+        "spriteToVehicleHeight": 0.47994534201430755,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 200.125,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 1196,
+            "y": 18,
+            "right": 1420,
+            "bottom": 97.640625
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": true,
+        "riskEnabled": true,
+        "rewardEnabled": true,
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-1"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ],
+        "width": 1440,
+        "height": 810,
+        "campaignBefore": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}"
+      },
+      "rewardAfterCollision": null,
+      "agency": null,
+      "final": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.8310733333333338,
+        "routeElapsedMs": 12466.100000000006,
+        "routeDurationMs": 15000,
+        "lane": 0,
+        "speed": 2.2474437406465757,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": true,
+        "productionTelemetryKeys": [],
+        "productionOutcomeArrayLength": 0,
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "",
+        "pressure": 0,
+        "pursuerLane": null,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.2350125
+          },
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "ESCAPED",
+            "pressure01": 0
+          }
+        ],
+        "pursuitResolved": [
+          "t0:r3:pursuit-1"
+        ],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": false,
+        "proxyActive": false,
+        "proxyLeft": null,
+        "proxyRight": null,
+        "proxyTop": null,
+        "proxyBottom": null,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": null,
+        "spriteToVehicleHeight": null,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 200.125,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 1196,
+            "y": 18,
+            "right": 1420,
+            "bottom": 97.640625
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": false,
+        "riskEnabled": true,
+        "rewardEnabled": true,
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-1"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ],
+        "width": 1440,
+        "height": 810
+      },
+      "sampleCount": 498
+    }
+  ],
+  "captures": [
+    {
+      "file": "route-3-start.png",
+      "scenario": "escape",
+      "viewport": "1440x810",
+      "state": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.23998666666666685,
+        "routeElapsedMs": 3599.800000000003,
+        "routeDurationMs": 15000,
+        "lane": 1,
+        "speed": 1.1959355011744066,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": true,
+        "productionTelemetryKeys": [],
+        "productionOutcomeArrayLength": 0,
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "t0:r3:pursuit-1",
+        "pressure": 0.2175149999999998,
+        "pursuerLane": 0,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.2350125
+          }
+        ],
+        "pursuitResolved": [],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": true,
+        "proxyActive": true,
+        "proxyLeft": -59.3515625,
+        "proxyRight": 135.0390625,
+        "proxyTop": 437.86798095703125,
+        "proxyBottom": 531.1648559570312,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6079456606724003,
+        "spriteToVehicleHeight": 0.47994534201430755,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 200.125,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 1196,
+            "y": 18,
+            "right": 1420,
+            "bottom": 97.640625
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": false,
+        "riskEnabled": true,
+        "rewardEnabled": true,
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-1"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [
+          {
+            "id": "t0:r3:branch-1",
+            "x": 663.75
+          }
+        ],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ],
+        "width": 1440,
+        "height": 810
+      }
+    },
+    {
+      "file": "route-3-start-620.png",
+      "scenario": "escape",
+      "viewport": "620x780",
+      "state": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.27220666666666704,
+        "routeElapsedMs": 4083.100000000006,
+        "routeDurationMs": 15000,
+        "lane": 1,
+        "speed": 1.2456329080390478,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": true,
+        "productionTelemetryKeys": [],
+        "productionOutcomeArrayLength": 0,
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "t0:r3:pursuit-1",
+        "pressure": 0.18126749999999958,
+        "pursuerLane": 0,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.2350125
+          }
+        ],
+        "pursuitResolved": [],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": true,
+        "proxyActive": true,
+        "proxyLeft": -21.0625,
+        "proxyRight": 90.03125,
+        "proxyTop": 458.00079345703125,
+        "proxyBottom": 509.57891845703125,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6809692558184082,
+        "spriteToVehicleHeight": 0.5200063011972275,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 73.4296875,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 405,
+            "y": 74,
+            "right": 610,
+            "bottom": 147.4375
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": false,
+        "riskEnabled": true,
+        "rewardEnabled": true,
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-1"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [
+          {
+            "id": "t0:r3:branch-1",
+            "x": 197.8671875
+          }
+        ],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 10,
+            "y": 341,
+            "right": 54,
+            "bottom": 385
+          },
+          {
+            "x": 10,
+            "y": 395,
+            "right": 54,
+            "bottom": 439
+          }
+        ],
+        "width": 620,
+        "height": 780
+      }
+    },
+    {
+      "file": "route-3-start-390.png",
+      "scenario": "escape",
+      "viewport": "390x844",
+      "state": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.28998666666666684,
+        "routeElapsedMs": 4349.800000000003,
+        "routeDurationMs": 15000,
+        "lane": 1,
+        "speed": 1.2747324631024066,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": true,
+        "productionTelemetryKeys": [],
+        "productionOutcomeArrayLength": 0,
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "t0:r3:pursuit-1",
+        "pressure": 0.16126499999999977,
+        "pursuerLane": 0,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.2350125
+          }
+        ],
+        "pursuitResolved": [],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": true,
+        "proxyActive": true,
+        "proxyLeft": -1.109375,
+        "proxyRight": 68.765625,
+        "proxyTop": 517.7781372070312,
+        "proxyBottom": 550.2156372070312,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6808769792935444,
+        "spriteToVehicleHeight": 0.5199098422238918,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 46.1875,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 175,
+            "y": 74,
+            "right": 380,
+            "bottom": 147.4375
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": false,
+        "riskEnabled": true,
+        "rewardEnabled": true,
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-1"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [
+          {
+            "id": "t0:r3:branch-1",
+            "x": 99.3828125
+          }
+        ],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 10,
+            "y": 373,
+            "right": 54,
+            "bottom": 417
+          },
+          {
+            "x": 10,
+            "y": 427,
+            "right": 54,
+            "bottom": 471
+          }
+        ],
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "file": "route-3-escaped.png",
+      "scenario": "escape",
+      "viewport": "1440x810",
+      "state": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.7888600000000001,
+        "routeElapsedMs": 11832.900000000001,
+        "routeDurationMs": 15000,
+        "lane": 0,
+        "speed": 2.194864730639769,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": true,
+        "productionTelemetryKeys": [],
+        "productionOutcomeArrayLength": 0,
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "",
+        "pressure": 0,
+        "pursuerLane": 1,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.2350125
+          },
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "ESCAPED",
+            "pressure01": 0
+          }
+        ],
+        "pursuitResolved": [
+          "t0:r3:pursuit-1"
+        ],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": true,
+        "proxyActive": false,
+        "proxyLeft": -118.81529235839844,
+        "proxyRight": 75.57533264160156,
+        "proxyTop": 567.4617309570312,
+        "proxyBottom": 660.7586059570312,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6079456606724003,
+        "spriteToVehicleHeight": 0.47994534201430755,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 200.125,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 1196,
+            "y": 18,
+            "right": 1420,
+            "bottom": 97.640625
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": true,
+        "riskEnabled": true,
+        "rewardEnabled": true,
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-1"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ],
+        "width": 1440,
+        "height": 810
+      }
+    }
+  ],
+  "errors": []
+}

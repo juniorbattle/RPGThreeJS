@@ -1,0 +1,2661 @@
+{
+  "footprint": [
+    {
+      "state": "1440x810-normal",
+      "surface": "turnbar",
+      "before": [
+        437,
+        58
+      ],
+      "after": [
+        437,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-normal",
+      "surface": "objective",
+      "before": [
+        224,
+        52
+      ],
+      "after": [
+        224,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-normal",
+      "surface": "panel",
+      "before": [
+        248,
+        169
+      ],
+      "after": [
+        248,
+        169
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-normal",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-objective-expanded",
+      "surface": "turnbar",
+      "before": [
+        437,
+        58
+      ],
+      "after": [
+        437,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-objective-expanded",
+      "surface": "objective",
+      "before": [
+        224,
+        126
+      ],
+      "after": [
+        224,
+        126
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-objective-expanded",
+      "surface": "panel",
+      "before": [
+        248,
+        169
+      ],
+      "after": [
+        248,
+        169
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-objective-expanded",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-stats-expanded",
+      "surface": "turnbar",
+      "before": [
+        437,
+        58
+      ],
+      "after": [
+        437,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-stats-expanded",
+      "surface": "objective",
+      "before": [
+        224,
+        52
+      ],
+      "after": [
+        224,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-stats-expanded",
+      "surface": "panel",
+      "before": [
+        248,
+        230
+      ],
+      "after": [
+        248,
+        230
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-stats-expanded",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-skills",
+      "surface": "turnbar",
+      "before": [
+        437,
+        58
+      ],
+      "after": [
+        437,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-skills",
+      "surface": "objective",
+      "before": [
+        224,
+        52
+      ],
+      "after": [
+        224,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-skills",
+      "surface": "panel",
+      "before": [
+        248,
+        169
+      ],
+      "after": [
+        248,
+        169
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-skills",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-skills",
+      "surface": "skillmenu",
+      "before": [
+        338,
+        301
+      ],
+      "after": [
+        338,
+        301
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-move",
+      "surface": "turnbar",
+      "before": [
+        437,
+        58
+      ],
+      "after": [
+        437,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-move",
+      "surface": "objective",
+      "before": [
+        224,
+        52
+      ],
+      "after": [
+        224,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-move",
+      "surface": "panel",
+      "before": [
+        248,
+        169
+      ],
+      "after": [
+        248,
+        169
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-move",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-attack-menu",
+      "surface": "turnbar",
+      "before": [
+        437,
+        58
+      ],
+      "after": [
+        437,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-attack-menu",
+      "surface": "objective",
+      "before": [
+        224,
+        52
+      ],
+      "after": [
+        224,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-attack-menu",
+      "surface": "panel",
+      "before": [
+        248,
+        169
+      ],
+      "after": [
+        248,
+        169
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-attack-menu",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-attack-menu",
+      "surface": "skillmenu",
+      "before": [
+        338,
+        224
+      ],
+      "after": [
+        338,
+        224
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-normal",
+      "surface": "turnbar",
+      "before": [
+        437,
+        58
+      ],
+      "after": [
+        437,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-normal",
+      "surface": "objective",
+      "before": [
+        224,
+        52
+      ],
+      "after": [
+        224,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-normal",
+      "surface": "panel",
+      "before": [
+        248,
+        169
+      ],
+      "after": [
+        248,
+        169
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-normal",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-objective-expanded",
+      "surface": "turnbar",
+      "before": [
+        437,
+        58
+      ],
+      "after": [
+        437,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-objective-expanded",
+      "surface": "objective",
+      "before": [
+        224,
+        126
+      ],
+      "after": [
+        224,
+        126
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-objective-expanded",
+      "surface": "panel",
+      "before": [
+        248,
+        169
+      ],
+      "after": [
+        248,
+        169
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-objective-expanded",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-stats-expanded",
+      "surface": "turnbar",
+      "before": [
+        437,
+        58
+      ],
+      "after": [
+        437,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-stats-expanded",
+      "surface": "objective",
+      "before": [
+        224,
+        52
+      ],
+      "after": [
+        224,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-stats-expanded",
+      "surface": "panel",
+      "before": [
+        248,
+        230
+      ],
+      "after": [
+        248,
+        230
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-stats-expanded",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-skills",
+      "surface": "turnbar",
+      "before": [
+        437,
+        58
+      ],
+      "after": [
+        437,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-skills",
+      "surface": "objective",
+      "before": [
+        224,
+        52
+      ],
+      "after": [
+        224,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-skills",
+      "surface": "panel",
+      "before": [
+        248,
+        169
+      ],
+      "after": [
+        248,
+        169
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-skills",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-skills",
+      "surface": "skillmenu",
+      "before": [
+        338,
+        301
+      ],
+      "after": [
+        338,
+        301
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-move",
+      "surface": "turnbar",
+      "before": [
+        437,
+        58
+      ],
+      "after": [
+        437,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-move",
+      "surface": "objective",
+      "before": [
+        224,
+        52
+      ],
+      "after": [
+        224,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-move",
+      "surface": "panel",
+      "before": [
+        248,
+        169
+      ],
+      "after": [
+        248,
+        169
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-move",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-attack-menu",
+      "surface": "turnbar",
+      "before": [
+        437,
+        58
+      ],
+      "after": [
+        437,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-attack-menu",
+      "surface": "objective",
+      "before": [
+        224,
+        52
+      ],
+      "after": [
+        224,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-attack-menu",
+      "surface": "panel",
+      "before": [
+        248,
+        169
+      ],
+      "after": [
+        248,
+        169
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-attack-menu",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1366x768-attack-menu",
+      "surface": "skillmenu",
+      "before": [
+        338,
+        224
+      ],
+      "after": [
+        338,
+        224
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-normal",
+      "surface": "turnbar",
+      "before": [
+        564,
+        53
+      ],
+      "after": [
+        564,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-normal",
+      "surface": "objective",
+      "before": [
+        205,
+        52
+      ],
+      "after": [
+        205,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-normal",
+      "surface": "panel",
+      "before": [
+        220,
+        168
+      ],
+      "after": [
+        220,
+        168
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-normal",
+      "surface": "menu",
+      "before": [
+        604,
+        74
+      ],
+      "after": [
+        604,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-objective-expanded",
+      "surface": "turnbar",
+      "before": [
+        564,
+        53
+      ],
+      "after": [
+        564,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-objective-expanded",
+      "surface": "objective",
+      "before": [
+        205,
+        126
+      ],
+      "after": [
+        205,
+        126
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-objective-expanded",
+      "surface": "panel",
+      "before": [
+        220,
+        168
+      ],
+      "after": [
+        220,
+        168
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-objective-expanded",
+      "surface": "menu",
+      "before": [
+        604,
+        74
+      ],
+      "after": [
+        604,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-stats-expanded",
+      "surface": "turnbar",
+      "before": [
+        564,
+        53
+      ],
+      "after": [
+        564,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-stats-expanded",
+      "surface": "objective",
+      "before": [
+        205,
+        52
+      ],
+      "after": [
+        205,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-stats-expanded",
+      "surface": "panel",
+      "before": [
+        220,
+        229
+      ],
+      "after": [
+        220,
+        229
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-stats-expanded",
+      "surface": "menu",
+      "before": [
+        604,
+        74
+      ],
+      "after": [
+        604,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-skills",
+      "surface": "turnbar",
+      "before": [
+        564,
+        53
+      ],
+      "after": [
+        564,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-skills",
+      "surface": "objective",
+      "before": [
+        205,
+        52
+      ],
+      "after": [
+        205,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-skills",
+      "surface": "panel",
+      "before": [
+        220,
+        168
+      ],
+      "after": [
+        220,
+        168
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-skills",
+      "surface": "menu",
+      "before": [
+        604,
+        74
+      ],
+      "after": [
+        604,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-skills",
+      "surface": "skillmenu",
+      "before": [
+        338,
+        301
+      ],
+      "after": [
+        338,
+        301
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-move",
+      "surface": "turnbar",
+      "before": [
+        564,
+        53
+      ],
+      "after": [
+        564,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-move",
+      "surface": "objective",
+      "before": [
+        205,
+        52
+      ],
+      "after": [
+        205,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-move",
+      "surface": "panel",
+      "before": [
+        220,
+        168
+      ],
+      "after": [
+        220,
+        168
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-move",
+      "surface": "menu",
+      "before": [
+        604,
+        74
+      ],
+      "after": [
+        604,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-attack-menu",
+      "surface": "turnbar",
+      "before": [
+        564,
+        53
+      ],
+      "after": [
+        564,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-attack-menu",
+      "surface": "objective",
+      "before": [
+        205,
+        52
+      ],
+      "after": [
+        205,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-attack-menu",
+      "surface": "panel",
+      "before": [
+        220,
+        168
+      ],
+      "after": [
+        220,
+        168
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-attack-menu",
+      "surface": "menu",
+      "before": [
+        604,
+        74
+      ],
+      "after": [
+        604,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "620x780-attack-menu",
+      "surface": "skillmenu",
+      "before": [
+        338,
+        224
+      ],
+      "after": [
+        338,
+        224
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-normal",
+      "surface": "turnbar",
+      "before": [
+        334,
+        53
+      ],
+      "after": [
+        334,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-normal",
+      "surface": "objective",
+      "before": [
+        179,
+        44
+      ],
+      "after": [
+        179,
+        44
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-normal",
+      "surface": "panel",
+      "before": [
+        190,
+        182
+      ],
+      "after": [
+        190,
+        182
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-normal",
+      "surface": "menu",
+      "before": [
+        374,
+        70
+      ],
+      "after": [
+        374,
+        70
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-objective-expanded",
+      "surface": "turnbar",
+      "before": [
+        334,
+        53
+      ],
+      "after": [
+        334,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-objective-expanded",
+      "surface": "objective",
+      "before": [
+        179,
+        118
+      ],
+      "after": [
+        179,
+        118
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-objective-expanded",
+      "surface": "panel",
+      "before": [
+        190,
+        182
+      ],
+      "after": [
+        190,
+        182
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-objective-expanded",
+      "surface": "menu",
+      "before": [
+        374,
+        70
+      ],
+      "after": [
+        374,
+        70
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-stats-expanded",
+      "surface": "turnbar",
+      "before": [
+        334,
+        53
+      ],
+      "after": [
+        334,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-stats-expanded",
+      "surface": "objective",
+      "before": [
+        179,
+        44
+      ],
+      "after": [
+        179,
+        44
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-stats-expanded",
+      "surface": "panel",
+      "before": [
+        190,
+        243
+      ],
+      "after": [
+        190,
+        243
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-stats-expanded",
+      "surface": "menu",
+      "before": [
+        374,
+        70
+      ],
+      "after": [
+        374,
+        70
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-skills",
+      "surface": "turnbar",
+      "before": [
+        334,
+        53
+      ],
+      "after": [
+        334,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-skills",
+      "surface": "objective",
+      "before": [
+        179,
+        44
+      ],
+      "after": [
+        179,
+        44
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-skills",
+      "surface": "panel",
+      "before": [
+        190,
+        182
+      ],
+      "after": [
+        190,
+        182
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-skills",
+      "surface": "menu",
+      "before": [
+        374,
+        70
+      ],
+      "after": [
+        374,
+        70
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-skills",
+      "surface": "skillmenu",
+      "before": [
+        374,
+        295
+      ],
+      "after": [
+        374,
+        295
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-move",
+      "surface": "turnbar",
+      "before": [
+        334,
+        53
+      ],
+      "after": [
+        334,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-move",
+      "surface": "objective",
+      "before": [
+        179,
+        44
+      ],
+      "after": [
+        179,
+        44
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-move",
+      "surface": "panel",
+      "before": [
+        190,
+        182
+      ],
+      "after": [
+        190,
+        182
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-move",
+      "surface": "menu",
+      "before": [
+        374,
+        70
+      ],
+      "after": [
+        374,
+        70
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-attack-menu",
+      "surface": "turnbar",
+      "before": [
+        334,
+        53
+      ],
+      "after": [
+        334,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-attack-menu",
+      "surface": "objective",
+      "before": [
+        179,
+        44
+      ],
+      "after": [
+        179,
+        44
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-attack-menu",
+      "surface": "panel",
+      "before": [
+        190,
+        182
+      ],
+      "after": [
+        190,
+        182
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-attack-menu",
+      "surface": "menu",
+      "before": [
+        374,
+        70
+      ],
+      "after": [
+        374,
+        70
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-attack-menu",
+      "surface": "skillmenu",
+      "before": [
+        374,
+        209
+      ],
+      "after": [
+        374,
+        209
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-normal",
+      "surface": "turnbar",
+      "before": [
+        257,
+        58
+      ],
+      "after": [
+        257,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-normal",
+      "surface": "objective",
+      "before": [
+        224,
+        52
+      ],
+      "after": [
+        224,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-normal",
+      "surface": "panel",
+      "before": [
+        248,
+        239
+      ],
+      "after": [
+        248,
+        239
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-normal",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-status",
+      "surface": "turnbar",
+      "before": [
+        257,
+        58
+      ],
+      "after": [
+        257,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-status",
+      "surface": "objective",
+      "before": [
+        224,
+        52
+      ],
+      "after": [
+        224,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-status",
+      "surface": "panel",
+      "before": [
+        248,
+        272
+      ],
+      "after": [
+        248,
+        272
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-status",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-skills-enabled",
+      "surface": "turnbar",
+      "before": [
+        257,
+        58
+      ],
+      "after": [
+        257,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-skills-enabled",
+      "surface": "objective",
+      "before": [
+        224,
+        52
+      ],
+      "after": [
+        224,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-skills-enabled",
+      "surface": "panel",
+      "before": [
+        248,
+        272
+      ],
+      "after": [
+        248,
+        272
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-skills-enabled",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-skills-enabled",
+      "surface": "skillmenu",
+      "before": [
+        338,
+        191
+      ],
+      "after": [
+        338,
+        191
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-ally-preview",
+      "surface": "turnbar",
+      "before": [
+        257,
+        58
+      ],
+      "after": [
+        257,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-ally-preview",
+      "surface": "objective",
+      "before": [
+        224,
+        52
+      ],
+      "after": [
+        224,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-ally-preview",
+      "surface": "panel",
+      "before": [
+        248,
+        272
+      ],
+      "after": [
+        248,
+        272
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-ally-preview",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-ally-preview",
+      "surface": "action-preview",
+      "before": [
+        266,
+        50
+      ],
+      "after": [
+        266,
+        50
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-invalid-target",
+      "surface": "turnbar",
+      "before": [
+        257,
+        58
+      ],
+      "after": [
+        257,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-invalid-target",
+      "surface": "objective",
+      "before": [
+        224,
+        52
+      ],
+      "after": [
+        224,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-invalid-target",
+      "surface": "panel",
+      "before": [
+        248,
+        272
+      ],
+      "after": [
+        248,
+        272
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-invalid-target",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-enemy-preview",
+      "surface": "turnbar",
+      "before": [
+        257,
+        58
+      ],
+      "after": [
+        257,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-enemy-preview",
+      "surface": "objective",
+      "before": [
+        224,
+        52
+      ],
+      "after": [
+        224,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-enemy-preview",
+      "surface": "panel",
+      "before": [
+        248,
+        169
+      ],
+      "after": [
+        248,
+        169
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-enemy-preview",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-campaign-enemy-preview",
+      "surface": "action-preview",
+      "before": [
+        187,
+        50
+      ],
+      "after": [
+        187,
+        50
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-boss",
+      "surface": "turnbar",
+      "before": [
+        257,
+        58
+      ],
+      "after": [
+        257,
+        58
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-boss",
+      "surface": "objective",
+      "before": [
+        224,
+        52
+      ],
+      "after": [
+        224,
+        52
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-boss",
+      "surface": "panel",
+      "before": [
+        248,
+        239
+      ],
+      "after": [
+        248,
+        239
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "1440x810-boss",
+      "surface": "menu",
+      "before": [
+        376,
+        74
+      ],
+      "after": [
+        376,
+        74
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-normal",
+      "surface": "turnbar",
+      "before": [
+        334,
+        53
+      ],
+      "after": [
+        334,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-normal",
+      "surface": "objective",
+      "before": [
+        179,
+        44
+      ],
+      "after": [
+        179,
+        44
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-normal",
+      "surface": "panel",
+      "before": [
+        190,
+        242
+      ],
+      "after": [
+        190,
+        242
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-normal",
+      "surface": "menu",
+      "before": [
+        374,
+        70
+      ],
+      "after": [
+        374,
+        70
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-status",
+      "surface": "turnbar",
+      "before": [
+        334,
+        53
+      ],
+      "after": [
+        334,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-status",
+      "surface": "objective",
+      "before": [
+        179,
+        44
+      ],
+      "after": [
+        179,
+        44
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-status",
+      "surface": "panel",
+      "before": [
+        190,
+        272
+      ],
+      "after": [
+        190,
+        272
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-status",
+      "surface": "menu",
+      "before": [
+        374,
+        70
+      ],
+      "after": [
+        374,
+        70
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-skills-enabled",
+      "surface": "turnbar",
+      "before": [
+        334,
+        53
+      ],
+      "after": [
+        334,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-skills-enabled",
+      "surface": "objective",
+      "before": [
+        179,
+        44
+      ],
+      "after": [
+        179,
+        44
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-skills-enabled",
+      "surface": "panel",
+      "before": [
+        190,
+        272
+      ],
+      "after": [
+        190,
+        272
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-skills-enabled",
+      "surface": "menu",
+      "before": [
+        374,
+        70
+      ],
+      "after": [
+        374,
+        70
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-skills-enabled",
+      "surface": "skillmenu",
+      "before": [
+        374,
+        186
+      ],
+      "after": [
+        374,
+        186
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-ally-preview",
+      "surface": "turnbar",
+      "before": [
+        334,
+        53
+      ],
+      "after": [
+        334,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-ally-preview",
+      "surface": "objective",
+      "before": [
+        179,
+        44
+      ],
+      "after": [
+        179,
+        44
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-ally-preview",
+      "surface": "panel",
+      "before": [
+        190,
+        272
+      ],
+      "after": [
+        190,
+        272
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-ally-preview",
+      "surface": "menu",
+      "before": [
+        374,
+        70
+      ],
+      "after": [
+        374,
+        70
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-ally-preview",
+      "surface": "action-preview",
+      "before": [
+        204,
+        41
+      ],
+      "after": [
+        204,
+        41
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-invalid-target",
+      "surface": "turnbar",
+      "before": [
+        334,
+        53
+      ],
+      "after": [
+        334,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-invalid-target",
+      "surface": "objective",
+      "before": [
+        179,
+        44
+      ],
+      "after": [
+        179,
+        44
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-invalid-target",
+      "surface": "panel",
+      "before": [
+        190,
+        272
+      ],
+      "after": [
+        190,
+        272
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-invalid-target",
+      "surface": "menu",
+      "before": [
+        374,
+        70
+      ],
+      "after": [
+        374,
+        70
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-enemy-preview",
+      "surface": "turnbar",
+      "before": [
+        334,
+        53
+      ],
+      "after": [
+        334,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-enemy-preview",
+      "surface": "objective",
+      "before": [
+        179,
+        44
+      ],
+      "after": [
+        179,
+        44
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-enemy-preview",
+      "surface": "panel",
+      "before": [
+        190,
+        182
+      ],
+      "after": [
+        190,
+        182
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-enemy-preview",
+      "surface": "menu",
+      "before": [
+        374,
+        70
+      ],
+      "after": [
+        374,
+        70
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-campaign-enemy-preview",
+      "surface": "action-preview",
+      "before": [
+        142,
+        41
+      ],
+      "after": [
+        142,
+        41
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-boss",
+      "surface": "turnbar",
+      "before": [
+        334,
+        53
+      ],
+      "after": [
+        334,
+        53
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-boss",
+      "surface": "objective",
+      "before": [
+        179,
+        44
+      ],
+      "after": [
+        179,
+        44
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-boss",
+      "surface": "panel",
+      "before": [
+        190,
+        242
+      ],
+      "after": [
+        190,
+        242
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    },
+    {
+      "state": "390x844-boss",
+      "surface": "menu",
+      "before": [
+        374,
+        70
+      ],
+      "after": [
+        374,
+        70
+      ],
+      "delta": [
+        0,
+        0
+      ]
+    }
+  ],
+  "growth": []
+}

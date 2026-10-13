@@ -1,0 +1,4899 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-02T01:46:56.458Z",
+  "acceptance": "PREPARATION_AND_EXISTING_MEDIA_QA_ONLY",
+  "pass": true,
+  "videoReplacementAccepted": false,
+  "providerRequestPerformed": false,
+  "sourceProbe": {
+    "schemaVersion": 1,
+    "recordedAt": "2026-10-02T01:00:56.274Z",
+    "purpose": "READ_ONLY_EXISTING_SOURCE_AUDIT",
+    "tools": {
+      "ffmpeg": "tmp/cinematics/toolchain/node_modules/ffmpeg-static/ffmpeg.exe",
+      "ffprobe": "tmp/cinematics/toolchain/node_modules/ffprobe-static/bin/win32/x64/ffprobe.exe"
+    },
+    "slots": [
+      {
+        "id": "camp_departure",
+        "source": "public/assets/cinematics/camp_departure.mp4",
+        "sourceSha256": "a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3",
+        "sourceBytes": 14245824,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 288,
+        "measuredDurationMs": 12000,
+        "descriptorDurationMs": 12000,
+        "durationDeltaMs": 0,
+        "audioStreams": [],
+        "frameEvidence": [
+          {
+            "label": "first",
+            "decodedFrameIndex": 0,
+            "timestampSeconds": 0,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/camp_departure-first.png",
+            "sha256": "79200f294990e620b8c4e778663b72ee0ff13daf723db02feaa229f3c147ae6b",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "label": "middle",
+            "decodedFrameIndex": 144,
+            "timestampSeconds": 6,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/camp_departure-middle.png",
+            "sha256": "21a2ca864fd9d78686597a40b59f5ec885e671d02107f0a749d319e6ae9dfb29",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "label": "final",
+            "decodedFrameIndex": 287,
+            "timestampSeconds": 11.958333,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/camp_departure-final.png",
+            "sha256": "b065e543a6894e7bf0cca3d48378206581682f59f87401ef087dd19d62b6d9a7",
+            "width": 1920,
+            "height": 1080
+          }
+        ]
+      },
+      {
+        "id": "alaric_audience_arrival",
+        "source": "public/assets/cinematics/alaric_audience_arrival.mp4",
+        "sourceSha256": "b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629",
+        "sourceBytes": 12340443,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 288,
+        "measuredDurationMs": 12000,
+        "descriptorDurationMs": 12000,
+        "durationDeltaMs": 0,
+        "audioStreams": [],
+        "frameEvidence": [
+          {
+            "label": "first",
+            "decodedFrameIndex": 0,
+            "timestampSeconds": 0,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/alaric_audience_arrival-first.png",
+            "sha256": "97236e83ad6afacd1cf2a66ebe07ddbfaed997370110c9b9d92486f6941b84f7",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "label": "middle",
+            "decodedFrameIndex": 144,
+            "timestampSeconds": 6,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/alaric_audience_arrival-middle.png",
+            "sha256": "203fe5cbd87fc39482c5eb3f31c342620243a95061b8ce76d1c39c7dd79b667a",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "label": "final",
+            "decodedFrameIndex": 287,
+            "timestampSeconds": 11.958333,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/alaric_audience_arrival-final.png",
+            "sha256": "38469ebf5c4c596acd9fd97d4938bf5f68b4f5f06fecc0c5932b08612ae6e7d8",
+            "width": 1920,
+            "height": 1080
+          }
+        ]
+      },
+      {
+        "id": "bois_clair_arrival",
+        "source": "public/assets/cinematics/bois_clair_arrival.mp4",
+        "sourceSha256": "a37d397665960f8f6749d8f1ece69eaf91c7160cec68fc581ed26ea78042a699",
+        "sourceBytes": 25714244,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 480,
+        "measuredDurationMs": 20000,
+        "descriptorDurationMs": 20000,
+        "durationDeltaMs": 0,
+        "audioStreams": [],
+        "frameEvidence": [
+          {
+            "label": "first",
+            "decodedFrameIndex": 0,
+            "timestampSeconds": 0,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_arrival-first.png",
+            "sha256": "bd71be33dc05a72cd26682736d44e94023a2eca2530f3a0cadf29c1ad35d9339",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "label": "middle",
+            "decodedFrameIndex": 240,
+            "timestampSeconds": 10,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_arrival-middle.png",
+            "sha256": "571ef88e77861e293b92442eeb1d01515d41b7ae249ddf77a7f12e54c5ebea88",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "label": "final",
+            "decodedFrameIndex": 479,
+            "timestampSeconds": 19.958333,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_arrival-final.png",
+            "sha256": "325785a4c70a4a3e1a182823bc528c6fe8c78d5aa963df2e34053555e836d019",
+            "width": 1920,
+            "height": 1080
+          }
+        ]
+      },
+      {
+        "id": "bois_clair_saved",
+        "source": "public/assets/cinematics/bois_clair_saved.mp4",
+        "sourceSha256": "a57d9ef8ff2fbb26084066b057f89948bdfe59de22dc7f7770d6576900223b1f",
+        "sourceBytes": 21378564,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 432,
+        "measuredDurationMs": 18000,
+        "descriptorDurationMs": 18000,
+        "durationDeltaMs": 0,
+        "audioStreams": [],
+        "frameEvidence": [
+          {
+            "label": "first",
+            "decodedFrameIndex": 0,
+            "timestampSeconds": 0,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_saved-first.png",
+            "sha256": "6ef3aa596b1662fe8d58762b6ae81083137c59eb5887223816ba939b7f2c1726",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "label": "middle",
+            "decodedFrameIndex": 216,
+            "timestampSeconds": 9,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_saved-middle.png",
+            "sha256": "6a62060bfcc131068cf7295bd7ef10437d358ff19e425ac2e3551c167a1fd5c4",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "label": "final",
+            "decodedFrameIndex": 431,
+            "timestampSeconds": 17.958333,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_saved-final.png",
+            "sha256": "1d74b4ca7a546461646b229609e9e34bf65240d09e8133b50c37746d45e79d71",
+            "width": 1920,
+            "height": 1080
+          }
+        ]
+      },
+      {
+        "id": "bois_clair_sacrificed",
+        "source": "public/assets/cinematics/bois_clair_sacrificed.mp4",
+        "sourceSha256": "db07031a3105fb31280abe3aca026cb74e4612e2aa44f7023b5401847322f1a4",
+        "sourceBytes": 20858964,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 432,
+        "measuredDurationMs": 18000,
+        "descriptorDurationMs": 18000,
+        "durationDeltaMs": 0,
+        "audioStreams": [],
+        "frameEvidence": [
+          {
+            "label": "first",
+            "decodedFrameIndex": 0,
+            "timestampSeconds": 0,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_sacrificed-first.png",
+            "sha256": "9bb89b8ff450602a01053781b3f706ed1e02118da95f93f80ca5926c3163c7fe",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "label": "middle",
+            "decodedFrameIndex": 216,
+            "timestampSeconds": 9,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_sacrificed-middle.png",
+            "sha256": "eefd794435b3846810b160b3ac34faf78463436a215df1797fd57a47f8af7f25",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "label": "final",
+            "decodedFrameIndex": 431,
+            "timestampSeconds": 17.958333,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_sacrificed-final.png",
+            "sha256": "d935e1d95ca2c8f352a14a7025d923ccd0bb8616d9846cdb87ce996a092131ff",
+            "width": 1920,
+            "height": 1080
+          }
+        ]
+      },
+      {
+        "id": "lion_judgement",
+        "source": "public/assets/cinematics/lion_judgement.mp4",
+        "sourceSha256": "6ea5b12bb8c97deadbea2177725d7e3eb958ab7971361d34064729acf776e5f9",
+        "sourceBytes": 21565194,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 408,
+        "measuredDurationMs": 17000,
+        "descriptorDurationMs": 17000,
+        "durationDeltaMs": 0,
+        "audioStreams": [],
+        "frameEvidence": [
+          {
+            "label": "first",
+            "decodedFrameIndex": 0,
+            "timestampSeconds": 0,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/lion_judgement-first.png",
+            "sha256": "038f9998e108fcf7dca9559cd3d98db8f9ee76efc5baa7179b7de8eb8bbf463c",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "label": "middle",
+            "decodedFrameIndex": 204,
+            "timestampSeconds": 8.5,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/lion_judgement-middle.png",
+            "sha256": "da333f243aeddd75905a60a39c1c48289dc2f52f24014ae1658f4ee3a6f460a0",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "label": "final",
+            "decodedFrameIndex": 407,
+            "timestampSeconds": 16.958333,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/lion_judgement-final.png",
+            "sha256": "c566f2f301b30459fd6c051073f71a0418839a5def16047dac06a69db2295155",
+            "width": 1920,
+            "height": 1080
+          }
+        ]
+      },
+      {
+        "id": "serpent_route_ending",
+        "source": "public/assets/cinematics/serpent_route_ending.mp4",
+        "sourceSha256": "f1de1f29ccc98ca66f97da94c21060d100687e4fef39b2d0378bcdea36db395c",
+        "sourceBytes": 16058120,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 432,
+        "measuredDurationMs": 18000,
+        "descriptorDurationMs": 18000,
+        "durationDeltaMs": 0,
+        "audioStreams": [],
+        "frameEvidence": [
+          {
+            "label": "first",
+            "decodedFrameIndex": 0,
+            "timestampSeconds": 0,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/serpent_route_ending-first.png",
+            "sha256": "2d6c1db6fa57ebfd75646a463f276f1e5f246eff4e8a377e9da02c6e4e6335c5",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "label": "middle",
+            "decodedFrameIndex": 216,
+            "timestampSeconds": 9,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/serpent_route_ending-middle.png",
+            "sha256": "957abd3a704640722711399027886de80f573d713edc2c8e7c4c2714470ec7d7",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "label": "final",
+            "decodedFrameIndex": 431,
+            "timestampSeconds": 17.958333,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/serpent_route_ending-final.png",
+            "sha256": "905fe95c87c896e5d9826f4d62db8dd83bc13a3a1487c80459f32a82e2e9b185",
+            "width": 1920,
+            "height": 1080
+          }
+        ]
+      },
+      {
+        "id": "lion_trial_route_ending",
+        "source": "public/assets/cinematics/lion_trial_route_ending.mp4",
+        "sourceSha256": "34f023ac0313e622a82d53c955e63e1e56a62eb4bd3bfdef9580196fcff178b2",
+        "sourceBytes": 19773930,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 480,
+        "measuredDurationMs": 20000,
+        "descriptorDurationMs": 20000,
+        "durationDeltaMs": 0,
+        "audioStreams": [],
+        "frameEvidence": [
+          {
+            "label": "first",
+            "decodedFrameIndex": 0,
+            "timestampSeconds": 0,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/lion_trial_route_ending-first.png",
+            "sha256": "80b6b6362f777e9e0b8d17b8a9fd61d65f34e46babf6397b8151555ef9003aed",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "label": "middle",
+            "decodedFrameIndex": 240,
+            "timestampSeconds": 10,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/lion_trial_route_ending-middle.png",
+            "sha256": "1c23955789bd9a0aeed06c741ef70d3f51251fc657401c5ea935d36778451a64",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "label": "final",
+            "decodedFrameIndex": 479,
+            "timestampSeconds": 19.958333,
+            "path": "tmp/cinematics/eight-slot-remaster/source-probe/lion_trial_route_ending-final.png",
+            "sha256": "e4824db0e7b50162902042b3bbdc9f26a9897d443280ee117f2090a95cb8bea5",
+            "width": 1920,
+            "height": 1080
+          }
+        ]
+      }
+    ]
+  },
+  "protectedHashCount": 27,
+  "protectedHashesUnchanged": true,
+  "isolatedPlayer": {
+    "pass": true,
+    "cases": [
+      {
+        "id": "camp_departure-1920x1080-natural",
+        "slot": "camp_departure",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "natural",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0.3333333333333333,
+            "max": 250.66666666666666,
+            "mean": 79.30718106995813,
+            "currentTime": 0.053973,
+            "duration": 12,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.275135
+        },
+        "resultText": "Résultat : ended · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/camp_departure.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "camp_departure-390x844-hold",
+        "slot": "camp_departure",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "hold",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0.3333333333333333,
+            "max": 250.66666666666666,
+            "mean": 79.30718106995813,
+            "currentTime": 0.057569,
+            "duration": 12,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.26249500000000003,
+          "held": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 1.6666666666666667,
+            "max": 251.33333333333334,
+            "mean": 77.67783950617479,
+            "currentTime": 12,
+            "duration": 12,
+            "paused": true,
+            "framePump": "stopped",
+            "freezeSurface": "canvas",
+            "inert": true,
+            "role": "presentation",
+            "staticActors": 0
+          }
+        },
+        "resultText": "Vidéo réelle camp_departure : ended · played true · résidu DOM 0.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/camp_departure.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "camp_departure-1920x1080-skip",
+        "slot": "camp_departure",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0.3333333333333333,
+            "max": 250.66666666666666,
+            "mean": 79.30718106995813,
+            "currentTime": 0.059005,
+            "duration": 12,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.272625
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/camp_departure.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "camp_departure-1920x1080-reduced",
+        "slot": "camp_departure",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "camp_departure-1366x768-skip",
+        "slot": "camp_departure",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0.3333333333333333,
+            "max": 250.66666666666666,
+            "mean": 79.30718106995813,
+            "currentTime": 0.062101,
+            "duration": 12,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.27791499999999997
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/camp_departure.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "camp_departure-1366x768-reduced",
+        "slot": "camp_departure",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "camp_departure-620x780-skip",
+        "slot": "camp_departure",
+        "viewport": {
+          "width": 620,
+          "height": 780
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0.3333333333333333,
+            "max": 250.66666666666666,
+            "mean": 79.30718106995813,
+            "currentTime": 0.061582,
+            "duration": 12,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.25722
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/camp_departure.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "camp_departure-620x780-reduced",
+        "slot": "camp_departure",
+        "viewport": {
+          "width": 620,
+          "height": 780
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "camp_departure-390x844-skip",
+        "slot": "camp_departure",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0.3333333333333333,
+            "max": 250.66666666666666,
+            "mean": 79.30718106995813,
+            "currentTime": 0.0585,
+            "duration": 12,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.260777
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/camp_departure.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "camp_departure-390x844-reduced",
+        "slot": "camp_departure",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "camp_departure-390x844-failure",
+        "slot": "camp_departure",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "failure",
+        "measurements": {
+          "held": {
+            "width": 0,
+            "height": 0,
+            "hidden": true,
+            "min": 255,
+            "max": 0,
+            "mean": 0,
+            "currentTime": 0,
+            "duration": null,
+            "paused": true,
+            "framePump": "stopped",
+            "freezeSurface": "fallback",
+            "inert": true,
+            "role": "presentation",
+            "staticActors": 0
+          }
+        },
+        "resultText": "Vidéo réelle camp_departure : timeout · played false · résidu DOM 0.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/camp_departure.mp4"
+        ],
+        "expectedFailedRequests": 1,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "alaric_audience_arrival-1920x1080-natural",
+        "slot": "alaric_audience_arrival",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "natural",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 251.33333333333334,
+            "mean": 51.9827674897114,
+            "currentTime": 0.063227,
+            "duration": 12,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.25867700000000005
+        },
+        "resultText": "Résultat : ended · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/alaric_audience_arrival.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "alaric_audience_arrival-390x844-hold",
+        "slot": "alaric_audience_arrival",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "hold",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 251.33333333333334,
+            "mean": 51.9827674897114,
+            "currentTime": 0.064635,
+            "duration": 12,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.258886,
+          "held": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 253.66666666666666,
+            "mean": 46.377078189300214,
+            "currentTime": 12,
+            "duration": 12,
+            "paused": true,
+            "framePump": "stopped",
+            "freezeSurface": "canvas",
+            "inert": true,
+            "role": "presentation",
+            "staticActors": 0
+          }
+        },
+        "resultText": "Vidéo réelle alaric_audience_arrival : ended · played true · résidu DOM 0.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/alaric_audience_arrival.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "alaric_audience_arrival-1920x1080-skip",
+        "slot": "alaric_audience_arrival",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 251.33333333333334,
+            "mean": 51.9827674897114,
+            "currentTime": 0.054394,
+            "duration": 12,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.258235
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/alaric_audience_arrival.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "alaric_audience_arrival-1920x1080-reduced",
+        "slot": "alaric_audience_arrival",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "alaric_audience_arrival-1366x768-skip",
+        "slot": "alaric_audience_arrival",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 251.33333333333334,
+            "mean": 51.9827674897114,
+            "currentTime": 0.050433,
+            "duration": 12,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.260681
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/alaric_audience_arrival.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "alaric_audience_arrival-1366x768-reduced",
+        "slot": "alaric_audience_arrival",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "alaric_audience_arrival-620x780-skip",
+        "slot": "alaric_audience_arrival",
+        "viewport": {
+          "width": 620,
+          "height": 780
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 251.33333333333334,
+            "mean": 51.9827674897114,
+            "currentTime": 0.051087,
+            "duration": 12,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.26132900000000003
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/alaric_audience_arrival.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "alaric_audience_arrival-620x780-reduced",
+        "slot": "alaric_audience_arrival",
+        "viewport": {
+          "width": 620,
+          "height": 780
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "alaric_audience_arrival-390x844-skip",
+        "slot": "alaric_audience_arrival",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 251.33333333333334,
+            "mean": 51.9827674897114,
+            "currentTime": 0.065883,
+            "duration": 12,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.265876
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/alaric_audience_arrival.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "alaric_audience_arrival-390x844-reduced",
+        "slot": "alaric_audience_arrival",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "alaric_audience_arrival-390x844-failure",
+        "slot": "alaric_audience_arrival",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "failure",
+        "measurements": {
+          "held": {
+            "width": 0,
+            "height": 0,
+            "hidden": true,
+            "min": 255,
+            "max": 0,
+            "mean": 0,
+            "currentTime": 0,
+            "duration": null,
+            "paused": true,
+            "framePump": "stopped",
+            "freezeSurface": "fallback",
+            "inert": true,
+            "role": "presentation",
+            "staticActors": 0
+          }
+        },
+        "resultText": "Vidéo réelle alaric_audience_arrival : timeout · played false · résidu DOM 0.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/alaric_audience_arrival.mp4"
+        ],
+        "expectedFailedRequests": 1,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_arrival-1920x1080-natural",
+        "slot": "bois_clair_arrival",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "natural",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 254.66666666666666,
+            "mean": 36.95587448559634,
+            "currentTime": 0.061994,
+            "duration": 20,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.259794
+        },
+        "resultText": "Résultat : ended · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_arrival.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_arrival-390x844-hold",
+        "slot": "bois_clair_arrival",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "hold",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 254.66666666666666,
+            "mean": 36.95587448559634,
+            "currentTime": 0.060493,
+            "duration": 20,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.270246,
+          "held": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 235.66666666666666,
+            "mean": 35.41050411522654,
+            "currentTime": 20,
+            "duration": 20,
+            "paused": true,
+            "framePump": "stopped",
+            "freezeSurface": "canvas",
+            "inert": true,
+            "role": "presentation",
+            "staticActors": 0
+          }
+        },
+        "resultText": "Vidéo réelle bois_clair_arrival : ended · played true · résidu DOM 0.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_arrival.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_arrival-1920x1080-skip",
+        "slot": "bois_clair_arrival",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 254.66666666666666,
+            "mean": 36.95587448559634,
+            "currentTime": 0.063983,
+            "duration": 20,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.270779
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_arrival.mp4"
+        ],
+        "expectedFailedRequests": 1,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_arrival-1920x1080-reduced",
+        "slot": "bois_clair_arrival",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_arrival-1366x768-skip",
+        "slot": "bois_clair_arrival",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 254.66666666666666,
+            "mean": 36.95587448559634,
+            "currentTime": 0.065353,
+            "duration": 20,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.268008
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_arrival.mp4"
+        ],
+        "expectedFailedRequests": 1,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_arrival-1366x768-reduced",
+        "slot": "bois_clair_arrival",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_arrival-620x780-skip",
+        "slot": "bois_clair_arrival",
+        "viewport": {
+          "width": 620,
+          "height": 780
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 254.66666666666666,
+            "mean": 36.95587448559634,
+            "currentTime": 0.064829,
+            "duration": 20,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.27403999999999995
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_arrival.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_arrival-620x780-reduced",
+        "slot": "bois_clair_arrival",
+        "viewport": {
+          "width": 620,
+          "height": 780
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_arrival-390x844-skip",
+        "slot": "bois_clair_arrival",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 254.66666666666666,
+            "mean": 36.95587448559634,
+            "currentTime": 0.063488,
+            "duration": 20,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.26276700000000003
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_arrival.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_arrival-390x844-reduced",
+        "slot": "bois_clair_arrival",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_arrival-390x844-failure",
+        "slot": "bois_clair_arrival",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "failure",
+        "measurements": {
+          "held": {
+            "width": 0,
+            "height": 0,
+            "hidden": true,
+            "min": 255,
+            "max": 0,
+            "mean": 0,
+            "currentTime": 0,
+            "duration": null,
+            "paused": true,
+            "framePump": "stopped",
+            "freezeSurface": "fallback",
+            "inert": true,
+            "role": "presentation",
+            "staticActors": 0
+          }
+        },
+        "resultText": "Vidéo réelle bois_clair_arrival : timeout · played false · résidu DOM 0.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_arrival.mp4"
+        ],
+        "expectedFailedRequests": 1,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_saved-1920x1080-natural",
+        "slot": "bois_clair_saved",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "natural",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 229.66666666666666,
+            "mean": 40.57546296296324,
+            "currentTime": 0.062994,
+            "duration": 18,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.270065
+        },
+        "resultText": "Résultat : ended · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_saved.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_saved-390x844-hold",
+        "slot": "bois_clair_saved",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "hold",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 229.66666666666666,
+            "mean": 40.57546296296324,
+            "currentTime": 0.06628,
+            "duration": 18,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.257808,
+          "held": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 247.66666666666666,
+            "mean": 37.30412551440345,
+            "currentTime": 18,
+            "duration": 18,
+            "paused": true,
+            "framePump": "stopped",
+            "freezeSurface": "canvas",
+            "inert": true,
+            "role": "presentation",
+            "staticActors": 0
+          }
+        },
+        "resultText": "Vidéo réelle bois_clair_saved : ended · played true · résidu DOM 0.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_saved.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_saved-1920x1080-skip",
+        "slot": "bois_clair_saved",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 229.66666666666666,
+            "mean": 40.57546296296324,
+            "currentTime": 0.063075,
+            "duration": 18,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.260349
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_saved.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_saved-1920x1080-reduced",
+        "slot": "bois_clair_saved",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_saved-1366x768-skip",
+        "slot": "bois_clair_saved",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 229.66666666666666,
+            "mean": 40.57546296296324,
+            "currentTime": 0.064043,
+            "duration": 18,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.258677
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_saved.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_saved-1366x768-reduced",
+        "slot": "bois_clair_saved",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_saved-620x780-skip",
+        "slot": "bois_clair_saved",
+        "viewport": {
+          "width": 620,
+          "height": 780
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 229.66666666666666,
+            "mean": 40.57546296296324,
+            "currentTime": 0.062343,
+            "duration": 18,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.261596
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_saved.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_saved-620x780-reduced",
+        "slot": "bois_clair_saved",
+        "viewport": {
+          "width": 620,
+          "height": 780
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_saved-390x844-skip",
+        "slot": "bois_clair_saved",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 229.66666666666666,
+            "mean": 40.57546296296324,
+            "currentTime": 0.062841,
+            "duration": 18,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.261423
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_saved.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_saved-390x844-reduced",
+        "slot": "bois_clair_saved",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_saved-390x844-failure",
+        "slot": "bois_clair_saved",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "failure",
+        "measurements": {
+          "held": {
+            "width": 0,
+            "height": 0,
+            "hidden": true,
+            "min": 255,
+            "max": 0,
+            "mean": 0,
+            "currentTime": 0,
+            "duration": null,
+            "paused": true,
+            "framePump": "stopped",
+            "freezeSurface": "fallback",
+            "inert": true,
+            "role": "presentation",
+            "staticActors": 0
+          }
+        },
+        "resultText": "Vidéo réelle bois_clair_saved : timeout · played false · résidu DOM 0.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_saved.mp4"
+        ],
+        "expectedFailedRequests": 1,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_sacrificed-1920x1080-natural",
+        "slot": "bois_clair_sacrificed",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "natural",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 228.66666666666666,
+            "mean": 39.21364197530838,
+            "currentTime": 0.05777,
+            "duration": 18,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.260917
+        },
+        "resultText": "Résultat : ended · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_sacrificed.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_sacrificed-390x844-hold",
+        "slot": "bois_clair_sacrificed",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "hold",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 228.66666666666666,
+            "mean": 39.21364197530838,
+            "currentTime": 0.063293,
+            "duration": 18,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.258056,
+          "held": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 248,
+            "mean": 39.59121399176946,
+            "currentTime": 18,
+            "duration": 18,
+            "paused": true,
+            "framePump": "stopped",
+            "freezeSurface": "canvas",
+            "inert": true,
+            "role": "presentation",
+            "staticActors": 0
+          }
+        },
+        "resultText": "Vidéo réelle bois_clair_sacrificed : ended · played true · résidu DOM 0.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_sacrificed.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_sacrificed-1920x1080-skip",
+        "slot": "bois_clair_sacrificed",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 228.66666666666666,
+            "mean": 39.21364197530838,
+            "currentTime": 0.061979,
+            "duration": 18,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.25940399999999997
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_sacrificed.mp4"
+        ],
+        "expectedFailedRequests": 1,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_sacrificed-1920x1080-reduced",
+        "slot": "bois_clair_sacrificed",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_sacrificed-1366x768-skip",
+        "slot": "bois_clair_sacrificed",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 228.66666666666666,
+            "mean": 39.21364197530838,
+            "currentTime": 0.06141,
+            "duration": 18,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.271225
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_sacrificed.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_sacrificed-1366x768-reduced",
+        "slot": "bois_clair_sacrificed",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_sacrificed-620x780-skip",
+        "slot": "bois_clair_sacrificed",
+        "viewport": {
+          "width": 620,
+          "height": 780
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 228.66666666666666,
+            "mean": 39.21364197530838,
+            "currentTime": 0.061863,
+            "duration": 18,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.260623
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_sacrificed.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_sacrificed-620x780-reduced",
+        "slot": "bois_clair_sacrificed",
+        "viewport": {
+          "width": 620,
+          "height": 780
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_sacrificed-390x844-skip",
+        "slot": "bois_clair_sacrificed",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 228.66666666666666,
+            "mean": 39.21364197530838,
+            "currentTime": 0.062878,
+            "duration": 18,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.258072
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_sacrificed.mp4"
+        ],
+        "expectedFailedRequests": 1,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_sacrificed-390x844-reduced",
+        "slot": "bois_clair_sacrificed",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "bois_clair_sacrificed-390x844-failure",
+        "slot": "bois_clair_sacrificed",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "failure",
+        "measurements": {
+          "held": {
+            "width": 0,
+            "height": 0,
+            "hidden": true,
+            "min": 255,
+            "max": 0,
+            "mean": 0,
+            "currentTime": 0,
+            "duration": null,
+            "paused": true,
+            "framePump": "stopped",
+            "freezeSurface": "fallback",
+            "inert": true,
+            "role": "presentation",
+            "staticActors": 0
+          }
+        },
+        "resultText": "Vidéo réelle bois_clair_sacrificed : timeout · played false · résidu DOM 0.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/bois_clair_sacrificed.mp4"
+        ],
+        "expectedFailedRequests": 1,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_judgement-1920x1080-natural",
+        "slot": "lion_judgement",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "natural",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 243.66666666666666,
+            "mean": 38.06137860082134,
+            "currentTime": 0.063996,
+            "duration": 17,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.258297
+        },
+        "resultText": "Résultat : ended · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/lion_judgement.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_judgement-390x844-hold",
+        "slot": "lion_judgement",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "hold",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 246.33333333333334,
+            "mean": 37.71283950617149,
+            "currentTime": 0.017583,
+            "duration": 17,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.275648,
+          "held": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 249.33333333333334,
+            "mean": 43.23518518518522,
+            "currentTime": 17,
+            "duration": 17,
+            "paused": true,
+            "framePump": "stopped",
+            "freezeSurface": "canvas",
+            "inert": true,
+            "role": "presentation",
+            "staticActors": 0
+          }
+        },
+        "resultText": "Vidéo réelle lion_judgement : ended · played true · résidu DOM 0.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/lion_judgement.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_judgement-1920x1080-skip",
+        "slot": "lion_judgement",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 246.33333333333334,
+            "mean": 37.71283950617149,
+            "currentTime": 0.017392,
+            "duration": 17,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.26604099999999997
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/lion_judgement.mp4"
+        ],
+        "expectedFailedRequests": 1,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_judgement-1920x1080-reduced",
+        "slot": "lion_judgement",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_judgement-1366x768-skip",
+        "slot": "lion_judgement",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 243.66666666666666,
+            "mean": 38.06137860082134,
+            "currentTime": 0.055603,
+            "duration": 17,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.26661599999999996
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/lion_judgement.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_judgement-1366x768-reduced",
+        "slot": "lion_judgement",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_judgement-620x780-skip",
+        "slot": "lion_judgement",
+        "viewport": {
+          "width": 620,
+          "height": 780
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 243.66666666666666,
+            "mean": 38.06137860082134,
+            "currentTime": 0.057103,
+            "duration": 17,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.271655
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/lion_judgement.mp4"
+        ],
+        "expectedFailedRequests": 1,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_judgement-620x780-reduced",
+        "slot": "lion_judgement",
+        "viewport": {
+          "width": 620,
+          "height": 780
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_judgement-390x844-skip",
+        "slot": "lion_judgement",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 246.33333333333334,
+            "mean": 37.71283950617149,
+            "currentTime": 0.021902,
+            "duration": 17,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.261726
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/lion_judgement.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_judgement-390x844-reduced",
+        "slot": "lion_judgement",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_judgement-390x844-failure",
+        "slot": "lion_judgement",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "failure",
+        "measurements": {
+          "held": {
+            "width": 0,
+            "height": 0,
+            "hidden": true,
+            "min": 255,
+            "max": 0,
+            "mean": 0,
+            "currentTime": 0,
+            "duration": null,
+            "paused": true,
+            "framePump": "stopped",
+            "freezeSurface": "poster",
+            "inert": true,
+            "role": "presentation",
+            "staticActors": 0
+          }
+        },
+        "resultText": "Vidéo réelle lion_judgement : timeout · played false · résidu DOM 0.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/lion_judgement.mp4"
+        ],
+        "expectedFailedRequests": 1,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "serpent_route_ending-1920x1080-natural",
+        "slot": "serpent_route_ending",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "natural",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 242,
+            "mean": 50.90446502057637,
+            "currentTime": 0.063842,
+            "duration": 18,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.258226
+        },
+        "resultText": "Résultat : ended · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/serpent_route_ending.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "serpent_route_ending-390x844-hold",
+        "slot": "serpent_route_ending",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "hold",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 242,
+            "mean": 50.90446502057637,
+            "currentTime": 0.061791,
+            "duration": 18,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.259197,
+          "held": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 1.6666666666666667,
+            "max": 255,
+            "mean": 92.33244855967087,
+            "currentTime": 18,
+            "duration": 18,
+            "paused": true,
+            "framePump": "stopped",
+            "freezeSurface": "canvas",
+            "inert": true,
+            "role": "presentation",
+            "staticActors": 0
+          }
+        },
+        "resultText": "Vidéo réelle serpent_route_ending : ended · played true · résidu DOM 0.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/serpent_route_ending.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "serpent_route_ending-1920x1080-skip",
+        "slot": "serpent_route_ending",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 242,
+            "mean": 50.90446502057637,
+            "currentTime": 0.059616,
+            "duration": 18,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.257206
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/serpent_route_ending.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "serpent_route_ending-1920x1080-reduced",
+        "slot": "serpent_route_ending",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "serpent_route_ending-1366x768-skip",
+        "slot": "serpent_route_ending",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 242,
+            "mean": 50.90446502057637,
+            "currentTime": 0.062315,
+            "duration": 18,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.259142
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/serpent_route_ending.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "serpent_route_ending-1366x768-reduced",
+        "slot": "serpent_route_ending",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "serpent_route_ending-620x780-skip",
+        "slot": "serpent_route_ending",
+        "viewport": {
+          "width": 620,
+          "height": 780
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 242,
+            "mean": 50.90446502057637,
+            "currentTime": 0.058967,
+            "duration": 18,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.260295
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/serpent_route_ending.mp4"
+        ],
+        "expectedFailedRequests": 1,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "serpent_route_ending-620x780-reduced",
+        "slot": "serpent_route_ending",
+        "viewport": {
+          "width": 620,
+          "height": 780
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "serpent_route_ending-390x844-skip",
+        "slot": "serpent_route_ending",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 242,
+            "mean": 50.90446502057637,
+            "currentTime": 0.056039,
+            "duration": 18,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.26065499999999997
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/serpent_route_ending.mp4"
+        ],
+        "expectedFailedRequests": 1,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "serpent_route_ending-390x844-reduced",
+        "slot": "serpent_route_ending",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "serpent_route_ending-390x844-failure",
+        "slot": "serpent_route_ending",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "failure",
+        "measurements": {
+          "held": {
+            "width": 0,
+            "height": 0,
+            "hidden": true,
+            "min": 255,
+            "max": 0,
+            "mean": 0,
+            "currentTime": 0,
+            "duration": null,
+            "paused": true,
+            "framePump": "stopped",
+            "freezeSurface": "fallback",
+            "inert": true,
+            "role": "presentation",
+            "staticActors": 0
+          }
+        },
+        "resultText": "Vidéo réelle serpent_route_ending : timeout · played false · résidu DOM 0.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/serpent_route_ending.mp4"
+        ],
+        "expectedFailedRequests": 1,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_trial_route_ending-1920x1080-natural",
+        "slot": "lion_trial_route_ending",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "natural",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 242.66666666666666,
+            "mean": 51.9421707818936,
+            "currentTime": 0.055589,
+            "duration": 20,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.262638
+        },
+        "resultText": "Résultat : ended · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/lion_trial_route_ending.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_trial_route_ending-390x844-hold",
+        "slot": "lion_trial_route_ending",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "hold",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 242.66666666666666,
+            "mean": 51.9421707818936,
+            "currentTime": 0.059088,
+            "duration": 20,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.275212,
+          "held": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 248,
+            "mean": 54.004269547326466,
+            "currentTime": 20,
+            "duration": 20,
+            "paused": true,
+            "framePump": "stopped",
+            "freezeSurface": "canvas",
+            "inert": true,
+            "role": "presentation",
+            "staticActors": 0
+          }
+        },
+        "resultText": "Vidéo réelle lion_trial_route_ending : ended · played true · résidu DOM 0.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/lion_trial_route_ending.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_trial_route_ending-1920x1080-skip",
+        "slot": "lion_trial_route_ending",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 242.66666666666666,
+            "mean": 51.9421707818936,
+            "currentTime": 0.057461,
+            "duration": 20,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.260785
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/lion_trial_route_ending.mp4"
+        ],
+        "expectedFailedRequests": 1,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_trial_route_ending-1920x1080-reduced",
+        "slot": "lion_trial_route_ending",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_trial_route_ending-1366x768-skip",
+        "slot": "lion_trial_route_ending",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 242.66666666666666,
+            "mean": 51.9421707818936,
+            "currentTime": 0.05664,
+            "duration": 20,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.261934
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/lion_trial_route_ending.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_trial_route_ending-1366x768-reduced",
+        "slot": "lion_trial_route_ending",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_trial_route_ending-620x780-skip",
+        "slot": "lion_trial_route_ending",
+        "viewport": {
+          "width": 620,
+          "height": 780
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 242.66666666666666,
+            "mean": 51.9421707818936,
+            "currentTime": 0.061373,
+            "duration": 20,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.26986699999999997
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/lion_trial_route_ending.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_trial_route_ending-620x780-reduced",
+        "slot": "lion_trial_route_ending",
+        "viewport": {
+          "width": 620,
+          "height": 780
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_trial_route_ending-390x844-skip",
+        "slot": "lion_trial_route_ending",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "skip",
+        "measurements": {
+          "moving": {
+            "width": 1920,
+            "height": 1080,
+            "hidden": false,
+            "min": 0,
+            "max": 242.66666666666666,
+            "mean": 51.9421707818936,
+            "currentTime": 0.059248,
+            "duration": 20,
+            "paused": false,
+            "framePump": "video-frame",
+            "inert": false,
+            "role": "dialog",
+            "staticActors": 0
+          },
+          "clockDelta": 0.268821
+        },
+        "resultText": "Résultat : skipped · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/lion_trial_route_ending.mp4"
+        ],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_trial_route_ending-390x844-reduced",
+        "slot": "lion_trial_route_ending",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "reduced",
+        "measurements": {},
+        "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [],
+        "expectedFailedRequests": 0,
+        "errors": [],
+        "pass": true
+      },
+      {
+        "id": "lion_trial_route_ending-390x844-failure",
+        "slot": "lion_trial_route_ending",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "failure",
+        "measurements": {
+          "held": {
+            "width": 0,
+            "height": 0,
+            "hidden": true,
+            "min": 255,
+            "max": 0,
+            "mean": 0,
+            "currentTime": 0,
+            "duration": null,
+            "paused": true,
+            "framePump": "stopped",
+            "freezeSurface": "fallback",
+            "inert": true,
+            "role": "presentation",
+            "staticActors": 0
+          }
+        },
+        "resultText": "Vidéo réelle lion_trial_route_ending : timeout · played false · résidu DOM 0.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/lion_trial_route_ending.mp4"
+        ],
+        "expectedFailedRequests": 1,
+        "errors": [],
+        "pass": true
+      }
+    ],
+    "correction": "Initial 80/88 pass; eight deliberate network-abort cases expected error but player correctly returned bounded timeout. Corrected assertion accepts timeout; targeted 8/8 pass. No runtime change.",
+    "sources": [
+      "tmp/cinematics/eight-slot-remaster/media-qa/results.json",
+      "tmp/cinematics/eight-slot-remaster/media-failure-current/results.json"
+    ]
+  },
+  "neutralFallback": {
+    "schemaVersion": 1,
+    "recordedAt": "2026-10-02T01:40:15.625Z",
+    "scope": "ISOLATED_DEV_REAL_PLAYER_NOT_CAMPAIGN_ACCEPTANCE",
+    "cases": [
+      {
+        "id": "serpent_route_ending-390x844-failure",
+        "slot": "serpent_route_ending",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "mode": "failure",
+        "measurements": {
+          "held": {
+            "width": 0,
+            "height": 0,
+            "hidden": true,
+            "min": 255,
+            "max": 0,
+            "mean": 0,
+            "currentTime": 0,
+            "duration": null,
+            "paused": true,
+            "framePump": "stopped",
+            "freezeSurface": "fallback",
+            "inert": true,
+            "role": "presentation",
+            "staticActors": 0
+          },
+          "fallbackText": "Le général est vaincu et l’artefact a été récupéré."
+        },
+        "resultText": "Vidéo réelle serpent_route_ending : timeout · played false · résidu DOM 0.",
+        "residues": 0,
+        "saveBytesUnchanged": true,
+        "requests": [
+          "http://127.0.0.1:5173/assets/cinematics/serpent_route_ending.mp4"
+        ],
+        "expectedFailedRequests": 1,
+        "errors": [],
+        "pass": true
+      }
+    ],
+    "pass": true
+  },
+  "campaigns": [
+    {
+      "source": "tmp/cinematics/eight-slot-remaster/production-1366/results.json",
+      "schemaVersion": 1,
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "reducedMotion": false,
+      "blockedMedia": false,
+      "method": "BUILT_PRODUCTION_REAL_GAMEAPP_V6_COMBAT_RESULT_FIXTURE_ONLY",
+      "opening": [
+        {
+          "id": "opening-camp-audience",
+          "camp": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:camp_departure",
+            "visualFamily": "LION_CAMP",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 4,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "camp_departure",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "audience": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_briefing",
+            "visualFamily": "ALARIC_AUDIENCE",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 4,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_briefing",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "dialogues": [
+            "acte_ouverture",
+            "camp_departure",
+            "lion_briefing"
+          ],
+          "media": [
+            "camp_departure",
+            "alaric_audience_arrival"
+          ],
+          "truth": {
+            "lionMissionAccepted": true
+          },
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-audience",
+            "endingId": null,
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "pass": true
+        }
+      ],
+      "nodes": [
+        {
+          "id": "bois-clair-saved",
+          "nodeId": "lion-village-choice",
+          "settled": "journey",
+          "dialogues": [
+            "village_choice",
+            "pre_village_defense",
+            "village_defense_aftermath",
+            "ate_maelor_seal_analysis",
+            "rep_event_brokered_information"
+          ],
+          "media": [
+            "bois_clair_arrival",
+            "bois_clair_saved"
+          ],
+          "combats": 1,
+          "initialPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:village_choice",
+            "visualFamily": "BOIS_CLAIR",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 4,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "village_choice",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "missionSuccess": true,
+            "missionGreed": false
+          },
+          "capture": "bois-clair-saved.png",
+          "continuation": {
+            "available": [
+              "lion-second-refuge"
+            ],
+            "arrivalSurface": ".exploration-stop[data-refuge-node=\"lion-second-refuge\"]",
+            "traversalMounts": 0,
+            "arrivalCapture": "bois-clair-saved-arrival.png"
+          },
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-village-choice",
+            "endingId": null,
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 2,
+          "pass": true
+        },
+        {
+          "id": "bois-clair-sacrificed",
+          "nodeId": "lion-village-choice",
+          "settled": "journey",
+          "dialogues": [
+            "village_choice",
+            "pre_village_raid",
+            "village_raid_aftermath",
+            "ate_maelor_seal_analysis",
+            "rep_event_displaced_family_demand"
+          ],
+          "media": [
+            "bois_clair_sacrificed"
+          ],
+          "combats": 1,
+          "initialPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:village_choice",
+            "visualFamily": "BOIS_CLAIR",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 4,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "village_choice",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "missionSuccess": false,
+            "missionGreed": true
+          },
+          "capture": "bois-clair-sacrificed.png",
+          "continuation": null,
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-village-choice",
+            "endingId": null,
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 2,
+          "pass": true
+        }
+      ],
+      "finales": [
+        {
+          "id": "serpent-ending",
+          "settled": "journey",
+          "dialogues": [
+            "lion_finale_judgement",
+            "serpent_pursuit_pre_combat",
+            "serpent_general_aftermath",
+            "epilogue"
+          ],
+          "media": [
+            "lion_judgement",
+            "serpent_route_ending"
+          ],
+          "combats": 1,
+          "judgementPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_finale_judgement",
+            "visualFamily": "LION_JUDGEMENT",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 2,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_finale_judgement",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "serpentGeneralDefeated": true,
+            "endingId": "lion-seal-serpent-truth"
+          },
+          "capture": "serpent-ending.png",
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-final-judgement",
+            "endingId": "lion-seal-serpent-truth",
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 2,
+          "pass": true
+        },
+        {
+          "id": "voluntary-lion-trial-ending",
+          "settled": "journey",
+          "dialogues": [
+            "lion_finale_judgement",
+            "pre_lion_chief",
+            "lion_trial_aftermath",
+            "epilogue"
+          ],
+          "media": [
+            "lion_judgement",
+            "lion_trial_route_ending"
+          ],
+          "combats": 1,
+          "judgementPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_finale_judgement",
+            "visualFamily": "LION_JUDGEMENT",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 2,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_finale_judgement",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "lionTrialRequested": true,
+            "lionTrialWon": true,
+            "endingId": "lion-seal-trial-truth"
+          },
+          "capture": "voluntary-lion-trial-ending.png",
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-final-judgement",
+            "endingId": "lion-seal-trial-truth",
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 2,
+          "pass": true
+        },
+        {
+          "id": "non-voluntary-lion-trial-ending",
+          "settled": "journey",
+          "dialogues": [
+            "lion_finale_judgement",
+            "pre_lion_chief",
+            "lion_trial_aftermath",
+            "epilogue"
+          ],
+          "media": [
+            "lion_judgement",
+            "lion_trial_route_ending"
+          ],
+          "combats": 1,
+          "judgementPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_finale_judgement",
+            "visualFamily": "LION_JUDGEMENT",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 4,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_finale_judgement",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "lionTrialRequested": false,
+            "lionTrialWon": true,
+            "endingId": "lion-seal-trial"
+          },
+          "capture": "non-voluntary-lion-trial-ending.png",
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-final-judgement",
+            "endingId": "lion-seal-trial",
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 2,
+          "pass": true
+        },
+        {
+          "id": "serpent-ending-concealed",
+          "settled": "journey",
+          "dialogues": [
+            "lion_finale_judgement",
+            "serpent_pursuit_pre_combat",
+            "serpent_general_aftermath",
+            "epilogue"
+          ],
+          "media": [
+            "lion_judgement",
+            "serpent_route_ending"
+          ],
+          "combats": 1,
+          "judgementPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_finale_judgement",
+            "visualFamily": "LION_JUDGEMENT",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 2,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_finale_judgement",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "serpentGeneralDefeated": true,
+            "endingId": "lion-seal-serpent"
+          },
+          "capture": "serpent-ending-concealed.png",
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-final-judgement",
+            "endingId": "lion-seal-serpent",
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 2,
+          "pass": true
+        },
+        {
+          "id": "lion-trial-ending-concealed",
+          "settled": "journey",
+          "dialogues": [
+            "lion_finale_judgement",
+            "pre_lion_chief",
+            "lion_trial_aftermath",
+            "epilogue"
+          ],
+          "media": [
+            "lion_judgement",
+            "lion_trial_route_ending"
+          ],
+          "combats": 1,
+          "judgementPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_finale_judgement",
+            "visualFamily": "LION_JUDGEMENT",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 2,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_finale_judgement",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "lionTrialRequested": true,
+            "lionTrialWon": true,
+            "endingId": "lion-seal-trial"
+          },
+          "capture": "lion-trial-ending-concealed.png",
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-final-judgement",
+            "endingId": "lion-seal-trial",
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 2,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "source": "tmp/cinematics/eight-slot-remaster/production-390-keyboard-final/results.json",
+      "schemaVersion": 1,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "reducedMotion": true,
+      "blockedMedia": false,
+      "method": "BUILT_PRODUCTION_REAL_GAMEAPP_V6_COMBAT_RESULT_FIXTURE_ONLY",
+      "opening": [
+        {
+          "id": "opening-camp-audience",
+          "camp": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:camp_departure",
+            "visualFamily": "LION_CAMP",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 4,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "camp_departure",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "audience": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_briefing",
+            "visualFamily": "ALARIC_AUDIENCE",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 4,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_briefing",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "dialogues": [
+            "acte_ouverture",
+            "camp_departure",
+            "lion_briefing"
+          ],
+          "media": [],
+          "truth": {
+            "lionMissionAccepted": true
+          },
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-audience",
+            "endingId": null,
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "choiceBounds": [
+            {
+              "sequenceId": "lion_briefing",
+              "stepId": "3",
+              "bounds": [
+                {
+                  "label": "Accepter la mission d’Alaric.◇Serment clair devant le Lion◇Alaric observe votre conduite",
+                  "x": 18,
+                  "y": 667.5,
+                  "width": 354,
+                  "height": 79.25,
+                  "withinViewport": true
+                },
+                {
+                  "label": "Accepter, mais réclamer une avance.◇Soutien matériel immédiat◇Chaque pièce pèsera dans le jugement",
+                  "x": 18,
+                  "y": 752.75,
+                  "width": 354,
+                  "height": 79.25,
+                  "withinViewport": true
+                }
+              ],
+              "keyboardActivation": true
+            }
+          ],
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "pass": true
+        }
+      ],
+      "nodes": [
+        {
+          "id": "bois-clair-saved",
+          "nodeId": "lion-village-choice",
+          "settled": "journey",
+          "dialogues": [
+            "village_choice",
+            "pre_village_defense",
+            "village_defense_aftermath",
+            "ate_maelor_seal_analysis",
+            "rep_event_brokered_information"
+          ],
+          "media": [],
+          "combats": 1,
+          "choiceBounds": [
+            {
+              "sequenceId": "village_choice",
+              "stepId": "5",
+              "bounds": [
+                {
+                  "label": "Prendre le vieux pont et extraire les captifs.◇Captifs prioritaires◇Réserves et puits laissés au sud",
+                  "x": 18,
+                  "y": 635,
+                  "width": 354,
+                  "height": 95.5,
+                  "withinViewport": true
+                },
+                {
+                  "label": "Prendre la porte basse et sécuriser réserves et puits.◇Réserves et puits sécurisés◇Captifs laissés au nord",
+                  "x": 18,
+                  "y": 736.5,
+                  "width": 354,
+                  "height": 95.5,
+                  "withinViewport": true
+                }
+              ],
+              "keyboardActivation": true
+            },
+            {
+              "sequenceId": "village_defense_aftermath",
+              "stepId": "1",
+              "bounds": [
+                {
+                  "label": "Refuser toute récompense.◇Le village s’en souviendra◇Le clan gagne en respect",
+                  "x": 18,
+                  "y": 651.25,
+                  "width": 354,
+                  "height": 79.25,
+                  "withinViewport": true
+                },
+                {
+                  "label": "Accepter leur gratitude et leurs provisions.◇Le village s’en souviendra◇Le clan reçoit l’aide promise",
+                  "x": 18,
+                  "y": 736.5,
+                  "width": 354,
+                  "height": 95.5,
+                  "withinViewport": true
+                }
+              ],
+              "keyboardActivation": true
+            },
+            {
+              "sequenceId": "rep_event_brokered_information",
+              "stepId": "1",
+              "bounds": [
+                {
+                  "label": "Acheter le renseignement — 25 or.●310 or disponible",
+                  "x": 18,
+                  "y": 719.5,
+                  "width": 354,
+                  "height": 53.25,
+                  "withinViewport": true
+                },
+                {
+                  "label": "Décliner sans la menacer.◇Aucun coût◇L’occasion est perdue",
+                  "x": 18,
+                  "y": 778.75,
+                  "width": 354,
+                  "height": 53.25,
+                  "withinViewport": true
+                }
+              ],
+              "keyboardActivation": true
+            }
+          ],
+          "initialPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:village_choice",
+            "visualFamily": "BOIS_CLAIR",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 4,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "village_choice",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "missionSuccess": true,
+            "missionGreed": false
+          },
+          "capture": "bois-clair-saved.png",
+          "continuation": {
+            "available": [
+              "lion-second-refuge"
+            ],
+            "arrivalSurface": ".exploration-stop[data-refuge-node=\"lion-second-refuge\"]",
+            "traversalMounts": 0,
+            "arrivalCapture": "bois-clair-saved-arrival.png"
+          },
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-village-choice",
+            "endingId": null,
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 0,
+          "pass": true
+        },
+        {
+          "id": "bois-clair-sacrificed",
+          "nodeId": "lion-village-choice",
+          "settled": "journey",
+          "dialogues": [
+            "village_choice",
+            "pre_village_raid",
+            "village_raid_aftermath",
+            "ate_maelor_seal_analysis",
+            "rep_event_displaced_family_demand"
+          ],
+          "media": [],
+          "combats": 1,
+          "choiceBounds": [
+            {
+              "sequenceId": "village_choice",
+              "stepId": "5",
+              "bounds": [
+                {
+                  "label": "Prendre le vieux pont et extraire les captifs.◇Captifs prioritaires◇Réserves et puits laissés au sud",
+                  "x": 18,
+                  "y": 635,
+                  "width": 354,
+                  "height": 95.5,
+                  "withinViewport": true
+                },
+                {
+                  "label": "Prendre la porte basse et sécuriser réserves et puits.◇Réserves et puits sécurisés◇Captifs laissés au nord",
+                  "x": 18,
+                  "y": 736.5,
+                  "width": 354,
+                  "height": 95.5,
+                  "withinViewport": true
+                }
+              ],
+              "keyboardActivation": true
+            },
+            {
+              "sequenceId": "village_raid_aftermath",
+              "stepId": "1",
+              "bounds": [
+                {
+                  "label": "Laisser quelques provisions aux villageois.◇Votre conduite sera jugée◇Une part d’honneur demeure",
+                  "x": 18,
+                  "y": 635,
+                  "width": 354,
+                  "height": 95.5,
+                  "withinViewport": true
+                },
+                {
+                  "label": "Partir avec tout. Ils ne sont pas notre problème.◇Votre nom sera terni◇Maelor approuve ce calcul",
+                  "x": 18,
+                  "y": 736.5,
+                  "width": 354,
+                  "height": 95.5,
+                  "withinViewport": true
+                }
+              ],
+              "keyboardActivation": true
+            },
+            {
+              "sequenceId": "rep_event_displaced_family_demand",
+              "stepId": "1",
+              "bounds": [
+                {
+                  "label": "Verser 30 or au convoi déplacé.●570 or disponible♜Réputation +1",
+                  "x": 18,
+                  "y": 693.5,
+                  "width": 354,
+                  "height": 53.25,
+                  "withinViewport": true
+                },
+                {
+                  "label": "Reconnaître le refus sans acheter l’oubli.◇Le fait historique demeure◇Aucune récompense morale",
+                  "x": 18,
+                  "y": 752.75,
+                  "width": 354,
+                  "height": 79.25,
+                  "withinViewport": true
+                }
+              ],
+              "keyboardActivation": true
+            }
+          ],
+          "initialPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:village_choice",
+            "visualFamily": "BOIS_CLAIR",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 4,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "village_choice",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "missionSuccess": false,
+            "missionGreed": true
+          },
+          "capture": "bois-clair-sacrificed.png",
+          "continuation": null,
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-village-choice",
+            "endingId": null,
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 0,
+          "pass": true
+        }
+      ],
+      "finales": [
+        {
+          "id": "serpent-ending",
+          "settled": "journey",
+          "dialogues": [
+            "lion_finale_judgement",
+            "serpent_pursuit_pre_combat",
+            "serpent_general_aftermath",
+            "epilogue"
+          ],
+          "media": [],
+          "combats": 1,
+          "choiceBounds": [
+            {
+              "sequenceId": "lion_finale_judgement",
+              "stepId": "intent",
+              "bounds": [
+                {
+                  "label": "Assumer nos actes et réclamer le Sceau.",
+                  "x": 18,
+                  "y": 719.75,
+                  "width": 354,
+                  "height": 42,
+                  "withinViewport": true
+                },
+                {
+                  "label": "Demander l’épreuve du Lion.◇Le Sceau sera jugé par la loi martiale du Lion",
+                  "x": 18,
+                  "y": 767.75,
+                  "width": 354,
+                  "height": 64.25,
+                  "withinViewport": true
+                }
+              ],
+              "keyboardActivation": true
+            }
+          ],
+          "judgementPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_finale_judgement",
+            "visualFamily": "LION_JUDGEMENT",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 2,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_finale_judgement",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "serpentGeneralDefeated": true,
+            "endingId": "lion-seal-serpent-truth"
+          },
+          "capture": "serpent-ending.png",
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-final-judgement",
+            "endingId": "lion-seal-serpent-truth",
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 0,
+          "pass": true
+        },
+        {
+          "id": "voluntary-lion-trial-ending",
+          "settled": "journey",
+          "dialogues": [
+            "lion_finale_judgement",
+            "pre_lion_chief",
+            "lion_trial_aftermath",
+            "epilogue"
+          ],
+          "media": [],
+          "combats": 1,
+          "choiceBounds": [
+            {
+              "sequenceId": "lion_finale_judgement",
+              "stepId": "intent",
+              "bounds": [
+                {
+                  "label": "Assumer nos actes et réclamer le Sceau.",
+                  "x": 18,
+                  "y": 719.75,
+                  "width": 354,
+                  "height": 42,
+                  "withinViewport": true
+                },
+                {
+                  "label": "Demander l’épreuve du Lion.◇Le Sceau sera jugé par la loi martiale du Lion",
+                  "x": 18,
+                  "y": 767.75,
+                  "width": 354,
+                  "height": 64.25,
+                  "withinViewport": true
+                }
+              ],
+              "keyboardActivation": true
+            }
+          ],
+          "judgementPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_finale_judgement",
+            "visualFamily": "LION_JUDGEMENT",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 2,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_finale_judgement",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "lionTrialRequested": true,
+            "lionTrialWon": true,
+            "endingId": "lion-seal-trial-truth"
+          },
+          "capture": "voluntary-lion-trial-ending.png",
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-final-judgement",
+            "endingId": "lion-seal-trial-truth",
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 0,
+          "pass": true
+        },
+        {
+          "id": "non-voluntary-lion-trial-ending",
+          "settled": "journey",
+          "dialogues": [
+            "lion_finale_judgement",
+            "pre_lion_chief",
+            "lion_trial_aftermath",
+            "epilogue"
+          ],
+          "media": [],
+          "combats": 1,
+          "choiceBounds": [
+            {
+              "sequenceId": "lion_finale_judgement",
+              "stepId": "intent",
+              "bounds": [
+                {
+                  "label": "Assumer nos actes et réclamer le Sceau.",
+                  "x": 18,
+                  "y": 719.75,
+                  "width": 354,
+                  "height": 42,
+                  "withinViewport": true
+                },
+                {
+                  "label": "Demander l’épreuve du Lion.◇Le Sceau sera jugé par la loi martiale du Lion",
+                  "x": 18,
+                  "y": 767.75,
+                  "width": 354,
+                  "height": 64.25,
+                  "withinViewport": true
+                }
+              ],
+              "keyboardActivation": true
+            }
+          ],
+          "judgementPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_finale_judgement",
+            "visualFamily": "LION_JUDGEMENT",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 4,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_finale_judgement",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "lionTrialRequested": false,
+            "lionTrialWon": true,
+            "endingId": "lion-seal-trial"
+          },
+          "capture": "non-voluntary-lion-trial-ending.png",
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-final-judgement",
+            "endingId": "lion-seal-trial",
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 0,
+          "pass": true
+        },
+        {
+          "id": "serpent-ending-concealed",
+          "settled": "journey",
+          "dialogues": [
+            "lion_finale_judgement",
+            "serpent_pursuit_pre_combat",
+            "serpent_general_aftermath",
+            "epilogue"
+          ],
+          "media": [],
+          "combats": 1,
+          "choiceBounds": [
+            {
+              "sequenceId": "lion_finale_judgement",
+              "stepId": "intent",
+              "bounds": [
+                {
+                  "label": "Assumer nos actes et réclamer le Sceau.",
+                  "x": 18,
+                  "y": 719.75,
+                  "width": 354,
+                  "height": 42,
+                  "withinViewport": true
+                },
+                {
+                  "label": "Demander l’épreuve du Lion.◇Le Sceau sera jugé par la loi martiale du Lion",
+                  "x": 18,
+                  "y": 767.75,
+                  "width": 354,
+                  "height": 64.25,
+                  "withinViewport": true
+                }
+              ],
+              "keyboardActivation": true
+            }
+          ],
+          "judgementPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_finale_judgement",
+            "visualFamily": "LION_JUDGEMENT",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 2,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_finale_judgement",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "serpentGeneralDefeated": true,
+            "endingId": "lion-seal-serpent"
+          },
+          "capture": "serpent-ending-concealed.png",
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-final-judgement",
+            "endingId": "lion-seal-serpent",
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 0,
+          "pass": true
+        },
+        {
+          "id": "lion-trial-ending-concealed",
+          "settled": "journey",
+          "dialogues": [
+            "lion_finale_judgement",
+            "pre_lion_chief",
+            "lion_trial_aftermath",
+            "epilogue"
+          ],
+          "media": [],
+          "combats": 1,
+          "choiceBounds": [
+            {
+              "sequenceId": "lion_finale_judgement",
+              "stepId": "intent",
+              "bounds": [
+                {
+                  "label": "Assumer nos actes et réclamer le Sceau.",
+                  "x": 18,
+                  "y": 719.75,
+                  "width": 354,
+                  "height": 42,
+                  "withinViewport": true
+                },
+                {
+                  "label": "Demander l’épreuve du Lion.◇Le Sceau sera jugé par la loi martiale du Lion",
+                  "x": 18,
+                  "y": 767.75,
+                  "width": 354,
+                  "height": 64.25,
+                  "withinViewport": true
+                }
+              ],
+              "keyboardActivation": true
+            }
+          ],
+          "judgementPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_finale_judgement",
+            "visualFamily": "LION_JUDGEMENT",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 2,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_finale_judgement",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "lionTrialRequested": true,
+            "lionTrialWon": true,
+            "endingId": "lion-seal-trial"
+          },
+          "capture": "lion-trial-ending-concealed.png",
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-final-judgement",
+            "endingId": "lion-seal-trial",
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 0,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "source": "tmp/cinematics/eight-slot-remaster/production-390-missing/results.json",
+      "schemaVersion": 1,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "reducedMotion": false,
+      "blockedMedia": true,
+      "method": "BUILT_PRODUCTION_REAL_GAMEAPP_V6_COMBAT_RESULT_FIXTURE_ONLY",
+      "opening": [
+        {
+          "id": "opening-camp-audience",
+          "camp": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:camp_departure",
+            "visualFamily": "LION_CAMP",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 4,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "camp_departure",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "audience": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_briefing",
+            "visualFamily": "ALARIC_AUDIENCE",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 4,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_briefing",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "dialogues": [
+            "acte_ouverture",
+            "camp_departure",
+            "lion_briefing"
+          ],
+          "media": [
+            "camp_departure",
+            "alaric_audience_arrival"
+          ],
+          "truth": {
+            "lionMissionAccepted": true
+          },
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-audience",
+            "endingId": null,
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "pass": true
+        }
+      ],
+      "nodes": [
+        {
+          "id": "bois-clair-saved",
+          "nodeId": "lion-village-choice",
+          "settled": "journey",
+          "dialogues": [
+            "village_choice",
+            "pre_village_defense",
+            "village_defense_aftermath",
+            "ate_maelor_seal_analysis",
+            "rep_event_brokered_information"
+          ],
+          "media": [
+            "bois_clair_arrival",
+            "bois_clair_saved"
+          ],
+          "combats": 1,
+          "initialPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:village_choice",
+            "visualFamily": "BOIS_CLAIR",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 4,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "village_choice",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "missionSuccess": true,
+            "missionGreed": false
+          },
+          "capture": "bois-clair-saved.png",
+          "continuation": {
+            "available": [
+              "lion-second-refuge"
+            ],
+            "arrivalSurface": ".exploration-stop[data-refuge-node=\"lion-second-refuge\"]",
+            "traversalMounts": 0,
+            "arrivalCapture": "bois-clair-saved-arrival.png"
+          },
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-village-choice",
+            "endingId": null,
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 0,
+          "pass": true
+        },
+        {
+          "id": "bois-clair-sacrificed",
+          "nodeId": "lion-village-choice",
+          "settled": "journey",
+          "dialogues": [
+            "village_choice",
+            "pre_village_raid",
+            "village_raid_aftermath",
+            "ate_maelor_seal_analysis",
+            "rep_event_displaced_family_demand"
+          ],
+          "media": [
+            "bois_clair_arrival",
+            "bois_clair_sacrificed"
+          ],
+          "combats": 1,
+          "initialPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:village_choice",
+            "visualFamily": "BOIS_CLAIR",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 4,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "village_choice",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "missionSuccess": false,
+            "missionGreed": true
+          },
+          "capture": "bois-clair-sacrificed.png",
+          "continuation": null,
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-village-choice",
+            "endingId": null,
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 0,
+          "pass": true
+        }
+      ],
+      "finales": [
+        {
+          "id": "serpent-ending",
+          "settled": "journey",
+          "dialogues": [
+            "lion_finale_judgement",
+            "serpent_pursuit_pre_combat",
+            "serpent_general_aftermath",
+            "epilogue"
+          ],
+          "media": [
+            "lion_judgement",
+            "serpent_route_ending"
+          ],
+          "combats": 1,
+          "judgementPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_finale_judgement",
+            "visualFamily": "LION_JUDGEMENT",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 2,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_finale_judgement",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "serpentGeneralDefeated": true,
+            "endingId": "lion-seal-serpent-truth"
+          },
+          "capture": "serpent-ending.png",
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-final-judgement",
+            "endingId": "lion-seal-serpent-truth",
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 0,
+          "pass": true
+        },
+        {
+          "id": "voluntary-lion-trial-ending",
+          "settled": "journey",
+          "dialogues": [
+            "lion_finale_judgement",
+            "pre_lion_chief",
+            "lion_trial_aftermath",
+            "epilogue"
+          ],
+          "media": [
+            "lion_judgement",
+            "lion_trial_route_ending"
+          ],
+          "combats": 1,
+          "judgementPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_finale_judgement",
+            "visualFamily": "LION_JUDGEMENT",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 2,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_finale_judgement",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "lionTrialRequested": true,
+            "lionTrialWon": true,
+            "endingId": "lion-seal-trial-truth"
+          },
+          "capture": "voluntary-lion-trial-ending.png",
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-final-judgement",
+            "endingId": "lion-seal-trial-truth",
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 0,
+          "pass": true
+        },
+        {
+          "id": "non-voluntary-lion-trial-ending",
+          "settled": "journey",
+          "dialogues": [
+            "lion_finale_judgement",
+            "pre_lion_chief",
+            "lion_trial_aftermath",
+            "epilogue"
+          ],
+          "media": [
+            "lion_judgement",
+            "lion_trial_route_ending"
+          ],
+          "combats": 1,
+          "judgementPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_finale_judgement",
+            "visualFamily": "LION_JUDGEMENT",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 4,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_finale_judgement",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "lionTrialRequested": false,
+            "lionTrialWon": true,
+            "endingId": "lion-seal-trial"
+          },
+          "capture": "non-voluntary-lion-trial-ending.png",
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-final-judgement",
+            "endingId": "lion-seal-trial",
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 0,
+          "pass": true
+        },
+        {
+          "id": "serpent-ending-concealed",
+          "settled": "journey",
+          "dialogues": [
+            "lion_finale_judgement",
+            "serpent_pursuit_pre_combat",
+            "serpent_general_aftermath",
+            "epilogue"
+          ],
+          "media": [
+            "lion_judgement",
+            "serpent_route_ending"
+          ],
+          "combats": 1,
+          "judgementPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_finale_judgement",
+            "visualFamily": "LION_JUDGEMENT",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 2,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_finale_judgement",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "serpentGeneralDefeated": true,
+            "endingId": "lion-seal-serpent"
+          },
+          "capture": "serpent-ending-concealed.png",
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-final-judgement",
+            "endingId": "lion-seal-serpent",
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 0,
+          "pass": true
+        },
+        {
+          "id": "lion-trial-ending-concealed",
+          "settled": "journey",
+          "dialogues": [
+            "lion_finale_judgement",
+            "pre_lion_chief",
+            "lion_trial_aftermath",
+            "epilogue"
+          ],
+          "media": [
+            "lion_judgement",
+            "lion_trial_route_ending"
+          ],
+          "combats": 1,
+          "judgementPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_finale_judgement",
+            "visualFamily": "LION_JUDGEMENT",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 2,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_finale_judgement",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "lionTrialRequested": true,
+            "lionTrialWon": true,
+            "endingId": "lion-seal-trial"
+          },
+          "capture": "lion-trial-ending-concealed.png",
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-final-judgement",
+            "endingId": "lion-seal-trial",
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 0,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "source": "tmp/cinematics/eight-slot-remaster/production-serpent-neutral-final/results.json",
+      "schemaVersion": 1,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "reducedMotion": false,
+      "blockedMedia": true,
+      "method": "BUILT_PRODUCTION_REAL_GAMEAPP_V6_COMBAT_RESULT_FIXTURE_ONLY",
+      "opening": [],
+      "nodes": [],
+      "finales": [
+        {
+          "id": "serpent-ending",
+          "settled": "journey",
+          "dialogues": [
+            "lion_finale_judgement",
+            "serpent_pursuit_pre_combat",
+            "serpent_general_aftermath",
+            "epilogue"
+          ],
+          "media": [
+            "lion_judgement",
+            "serpent_route_ending"
+          ],
+          "combats": 1,
+          "choiceBounds": [
+            {
+              "sequenceId": "lion_finale_judgement",
+              "stepId": "intent",
+              "bounds": [
+                {
+                  "label": "Assumer nos actes et réclamer le Sceau.",
+                  "x": 18,
+                  "y": 721.2516479492188,
+                  "width": 354,
+                  "height": 42,
+                  "withinViewport": true
+                },
+                {
+                  "label": "Demander l’épreuve du Lion.◇Le Sceau sera jugé par la loi martiale du Lion",
+                  "x": 18,
+                  "y": 769.2516479492188,
+                  "width": 354,
+                  "height": 64.25,
+                  "withinViewport": true
+                }
+              ],
+              "keyboardActivation": true
+            }
+          ],
+          "judgementPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_finale_judgement",
+            "visualFamily": "LION_JUDGEMENT",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 2,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_finale_judgement",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "serpentGeneralDefeated": true,
+            "endingId": "lion-seal-serpent-truth"
+          },
+          "capture": "serpent-ending.png",
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-final-judgement",
+            "endingId": "lion-seal-serpent-truth",
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 0,
+          "pass": true
+        },
+        {
+          "id": "serpent-ending-concealed",
+          "settled": "journey",
+          "dialogues": [
+            "lion_finale_judgement",
+            "serpent_pursuit_pre_combat",
+            "serpent_general_aftermath",
+            "epilogue"
+          ],
+          "media": [
+            "lion_judgement",
+            "serpent_route_ending"
+          ],
+          "combats": 1,
+          "choiceBounds": [
+            {
+              "sequenceId": "lion_finale_judgement",
+              "stepId": "intent",
+              "bounds": [
+                {
+                  "label": "Assumer nos actes et réclamer le Sceau.",
+                  "x": 18,
+                  "y": 721.2501831054688,
+                  "width": 354,
+                  "height": 42,
+                  "withinViewport": true
+                },
+                {
+                  "label": "Demander l’épreuve du Lion.◇Le Sceau sera jugé par la loi martiale du Lion",
+                  "x": 18,
+                  "y": 769.2501831054688,
+                  "width": 354,
+                  "height": 64.25,
+                  "withinViewport": true
+                }
+              ],
+              "keyboardActivation": true
+            }
+          ],
+          "judgementPresentation": {
+            "mode": "CINEMATIC_HOLD",
+            "beat": "dialogue:lion_finale_judgement",
+            "visualFamily": "LION_JUDGEMENT",
+            "fallbackActive": "false",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "staticActors": 2,
+            "primarySurfaces": 1,
+            "primaryInvariant": "PASS",
+            "dialogueSequence": "lion_finale_judgement",
+            "surface": "STATIC_TABLEAU",
+            "dialogueStepsOnHold": "0",
+            "choiceStepsOnHold": "0",
+            "movingMedia": 0
+          },
+          "truth": {
+            "serpentGeneralDefeated": true,
+            "endingId": "lion-seal-serpent"
+          },
+          "capture": "serpent-ending-concealed.png",
+          "resume": {
+            "truthUnchanged": true,
+            "currentNodeId": "lion-final-judgement",
+            "endingId": "lion-seal-serpent",
+            "replayedVideos": [],
+            "combatFrames": 0,
+            "overlays": 0
+          },
+          "diagnostics": {
+            "consoleErrors": [],
+            "pageErrors": [],
+            "requestFailures": []
+          },
+          "expectedAbortedMediaRequests": 0,
+          "pass": true
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "fixtureCorrections": [
+    "Concealed endings use canonical lion-seal-serpent/lion-seal-trial IDs, not invented silence suffixes.",
+    "Production combat iframe must finish its real boot before posting existing bridge result."
+  ],
+  "unitChecks": {
+    "focusedTests": 127,
+    "passed": 127,
+    "typeScript": "PASS",
+    "contracts": "8 LOCKED / 8 slots PASS",
+    "build": "PASS"
+  }
+}

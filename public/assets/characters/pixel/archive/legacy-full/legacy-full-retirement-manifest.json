@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "status": "COMPLETE",
+  "archiveRoot": "public/assets/characters/pixel/archive/legacy-full/",
+  "retiredIdentityCount": 7,
+  "entries": [
+    {
+      "characterId": "alaric",
+      "formerPath": "public/assets/characters/pixel/full/alaric.png",
+      "archivePath": "public/assets/characters/pixel/archive/legacy-full/alaric.png",
+      "sha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b",
+      "replacementMasterPath": "public/assets/characters/pixel/masters/alaric.png",
+      "reason": "CHARACTER_SYSTEM_V2_MASTER_PROMOTION",
+      "reusedExistingByteIdenticalArchive": false
+    },
+    {
+      "characterId": "maelor",
+      "formerPath": "public/assets/characters/pixel/full/maelor.png",
+      "archivePath": "public/assets/characters/pixel/archive/legacy-full/maelor.png",
+      "sha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215",
+      "replacementMasterPath": "public/assets/characters/pixel/masters/maelor.png",
+      "reason": "CHARACTER_SYSTEM_V2_MASTER_PROMOTION",
+      "reusedExistingByteIdenticalArchive": false
+    },
+    {
+      "characterId": "sage_seraphine",
+      "formerPath": "public/assets/characters/pixel/full/sage_seraphine.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/seraphine.png",
+      "sha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
+      "replacementMasterPath": "public/assets/characters/pixel/masters/sage_seraphine.png",
+      "reason": "CHARACTER_SYSTEM_V2_MASTER_PROMOTION",
+      "reusedExistingByteIdenticalArchive": true
+    },
+    {
+      "characterId": "refugee_mother",
+      "formerPath": "public/assets/characters/pixel/full/refugee_mother.png",
+      "archivePath": "public/assets/characters/pixel/archive/legacy-full/refugee_mother.png",
+      "sha256": "819f5348ff22f1c6a6503a9e4186b2f61c1fff68b8cd16c90f4aa5eda1219e13",
+      "replacementMasterPath": "public/assets/characters/pixel/masters/refugee_mother.png",
+      "reason": "CHARACTER_SYSTEM_V2_MASTER_PROMOTION",
+      "reusedExistingByteIdenticalArchive": false
+    },
+    {
+      "characterId": "survivor",
+      "formerPath": "public/assets/characters/pixel/full/survivor.png",
+      "archivePath": "public/assets/characters/pixel/archive/legacy-full/survivor.png",
+      "sha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47",
+      "replacementMasterPath": "public/assets/characters/pixel/masters/survivor.png",
+      "reason": "CHARACTER_SYSTEM_V2_MASTER_PROMOTION",
+      "reusedExistingByteIdenticalArchive": false
+    },
+    {
+      "characterId": "villageoise",
+      "formerPath": "public/assets/characters/pixel/full/villageoise.png",
+      "archivePath": "public/assets/characters/pixel/archive/legacy-full/villageoise.png",
+      "sha256": "25a253fa81b72629087fd1701636ddbfe20347bdf8500a194092e19d1f8a9dd2",
+      "replacementMasterPath": "public/assets/characters/pixel/masters/villageoise.png",
+      "reason": "CHARACTER_SYSTEM_V2_MASTER_PROMOTION",
+      "reusedExistingByteIdenticalArchive": false
+    },
+    {
+      "characterId": "wounded_merchant",
+      "formerPath": "public/assets/characters/pixel/full/wounded_merchant.png",
+      "archivePath": "public/assets/characters/pixel/archive/legacy-full/wounded_merchant.png",
+      "sha256": "94ba6f08220e501d1f5a744b877670ca4902fdaf8ece3bd31db5b01f176a1d78",
+      "replacementMasterPath": "public/assets/characters/pixel/masters/wounded_merchant.png",
+      "reason": "CHARACTER_SYSTEM_V2_MASTER_PROMOTION",
+      "reusedExistingByteIdenticalArchive": false
+    }
+  ]
+}

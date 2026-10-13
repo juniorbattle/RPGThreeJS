@@ -1,0 +1,186 @@
+import * as THREE from 'three';
+
+export interface BackgroundLayerConfig {
+  id: string;
+  texture?: string;
+  position?: [number, number, number];
+  size?: [number, number];
+  parallax?: number;
+  opacity?: number;
+  fallback?: [string, string];
+  /** Throw on authored texture failure instead of substituting the decorative fallback. */
+  failOnError?: boolean;
+}
+
+/**
+ * Optional presentation-only grounding metadata consumed by CombatStage.
+ * BackgroundLayerSystem deliberately ignores it: the plate remains a passive
+ * image while the Stage uses these values to tune its existing contact shadow.
+ */
+export interface CombatStageGroundingConfig {
+  contactShadowOpacity?: number;
+  contactShadowScale?: number;
+  contactShadowPitch?: number;
+}
+
+export interface BackgroundSceneConfig {
+  id: string;
+  enabled: boolean;
+  layers: BackgroundLayerConfig[];
+  combatStageGrounding?: CombatStageGroundingConfig;
+}
+
+interface Layer {
+  mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.Material>;
+  texture: THREE.Texture;
+  material: THREE.Material;
+  config: BackgroundLayerConfig;
+}
+
+function fallbackTexture(colors: [string, string]): THREE.CanvasTexture {
+  const canvas = document.createElement('canvas');
+  canvas.width = 16;
+  canvas.height = 16;
+  const context = canvas.getContext('2d')!;
+  const gradient = context.createLinearGradient(0, 0, 0, 16);
+  gradient.addColorStop(0, colors[0]);
+  gradient.addColorStop(1, colors[1]);
+  context.fillStyle = gradient;
+  context.fillRect(0, 0, 16, 16);
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  return texture;
+}
+
+async function loadTexture(
+  url: string | undefined,
+  fallback: [string, string],
+  failOnError = false,
+): Promise<THREE.Texture> {
+  if (!url) return fallbackTexture(fallback);
+
+  // happy-dom does not complete TextureLoader image requests. Keep the visual
+  // fallback deterministic for the headless test environment; browsers still
+  // load the authored texture below.
+  const syntheticWindow = typeof window === 'undefined'
+    ? undefined
+    : (window as Window & { happyDOM?: unknown });
+  if (
+    !syntheticWindow
+    || syntheticWindow.happyDOM
+    || /happy-dom/i.test(syntheticWindow.navigator?.userAgent ?? '')
+  ) {
+    return fallbackTexture(fallback);
+  }
+
+  try {
+    const texture = await new THREE.TextureLoader().loadAsync(url);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.wrapS = THREE.ClampToEdgeWrapping;
+    texture.wrapT = THREE.ClampToEdgeWrapping;
+    return texture;
+  } catch (error) {
+    if (failOnError) throw error;
+    return fallbackTexture(fallback);
+  }
+}
+
+/**
+ * Decorative parallax backdrop made of stacked planes. Non-interactive by design
+ * (each layer has raycast disabled) so gameplay clicks always pass through to the
+ * scene. `reducedGraphics` keeps only the rearmost layer and freezes shader time.
+ */
+export class BackgroundLayerSystem {
+  /** Cap on simultaneously loaded layers to bound draw/overdraw cost. */
+  static readonly MAX_LAYERS = 3;
+  private readonly root = new THREE.Group();
+  private readonly layers: Layer[] = [];
+  private visible = true;
+  private origin = new THREE.Vector3();
+
+  constructor(private readonly scene: THREE.Scene) {
+    this.root.name = 'BackgroundLayers';
+    this.root.renderOrder = -100;
+    this.scene.add(this.root);
+  }
+
+  async createLayer(config: BackgroundLayerConfig): Promise<THREE.Mesh> {
+    const texture = await loadTexture(
+      config.texture,
+      config.fallback ?? ['#65828b', '#31483d'],
+      config.failOnError ?? false,
+    );
+    const material = new THREE.MeshBasicMaterial({
+      map: texture,
+      transparent: (config.opacity ?? 1) < 1,
+      opacity: config.opacity ?? 1,
+      depthTest: false,
+      depthWrite: false,
+      fog: false,
+      toneMapped: false,
+    });
+    const size = config.size ?? [32, 18];
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(size[0], size[1]), material);
+    mesh.name = config.id;
+    mesh.position.set(...(config.position ?? [0, 0, -25]));
+    mesh.frustumCulled = false;
+    mesh.renderOrder = -100 + this.layers.length;
+    mesh.raycast = () => {};
+    this.root.add(mesh);
+    this.layers.push({ mesh, texture, material, config });
+    return mesh;
+  }
+
+  async load(config: BackgroundSceneConfig): Promise<void> {
+    this.disposeLayers();
+    this.visible = config.enabled;
+    this.root.visible = config.enabled;
+    if (!config.enabled) return;
+    for (const layer of config.layers.slice(0, BackgroundLayerSystem.MAX_LAYERS)) await this.createLayer(layer);
+  }
+
+  update(deltaTime: number, camera: THREE.Camera, reducedGraphics = false): void {
+    if (!this.visible) return;
+    this.root.position.copy(camera.position);
+    this.root.quaternion.copy(camera.quaternion);
+    const elapsed = (this.root.userData.time ?? 0) + deltaTime;
+    this.root.userData.time = elapsed;
+    for (let index = 0; index < this.layers.length; index += 1) {
+      const layer = this.layers[index]!;
+      layer.mesh.visible = !reducedGraphics || index === 0;
+      const base = layer.config.position ?? [0, 0, -25];
+      const parallax = reducedGraphics ? 0 : (layer.config.parallax ?? 0);
+      layer.mesh.position.set(
+        base[0] - (camera.position.x - this.origin.x) * parallax,
+        base[1] - (camera.position.y - this.origin.y) * parallax * 0.3,
+        base[2],
+      );
+    }
+  }
+
+  setVisible(visible: boolean): void {
+    this.visible = visible;
+    this.root.visible = visible;
+  }
+
+  /** Keep the passive painted plate covering a wider presentation-only camera FOV. */
+  setViewportScale(scale: number): void {
+    const safeScale = Number.isFinite(scale) && scale > 0 ? scale : 1;
+    for (const layer of this.layers) layer.mesh.scale.set(safeScale, safeScale, 1);
+  }
+
+  dispose(): void {
+    this.disposeLayers();
+    this.root.removeFromParent();
+  }
+
+  private disposeLayers(): void {
+    for (const layer of this.layers) {
+      layer.mesh.geometry.dispose();
+      layer.material.dispose();
+      layer.texture.dispose();
+      layer.mesh.removeFromParent();
+    }
+    this.layers.length = 0;
+  }
+}

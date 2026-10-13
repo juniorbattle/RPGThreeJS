@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "baselineHead": "098b774136e6e6aee33dc532aa67eb31febc54ee",
+  "seedRanges": { "profiles": "0..31", "r4": "0..199", "equivalent": "0..199" },
+  "profiles": [
+    {
+      "profileId": "PURE_HONOUR",
+      "stanceCounts": { "respect": 32, "respect_with_reservations": 0, "uncertain": 0, "distrust": 0, "hostile": 0 },
+      "routeCounts": { "serpent_pursuit": 32, "lion_trial": 0 },
+      "eventCounts": { "brokered-information": 14, "fallen-banner-claimant": 3, "public-petition": 16, "refuge-supply-offer": 4, "roadside-intimidation": 7, "serpent-rumour-market": 7, "village-memorial-request": 9 },
+      "noEventOpportunityCount": 36,
+      "totalR4Events": 60,
+      "invariantFailureCount": 0
+    },
+    {
+      "profileId": "REAL_MIXED_PROFILE",
+      "stanceCounts": { "respect": 0, "respect_with_reservations": 32, "uncertain": 0, "distrust": 0, "hostile": 0 },
+      "routeCounts": { "serpent_pursuit": 32, "lion_trial": 0 },
+      "eventCounts": { "brokered-information": 13, "fallen-banner-claimant": 2, "public-petition": 9, "refuge-supply-offer": 7, "roadside-intimidation": 11, "serpent-rumour-market": 9, "village-memorial-request": 9 },
+      "noEventOpportunityCount": 36,
+      "totalR4Events": 60,
+      "invariantFailureCount": 0
+    },
+    {
+      "profileId": "UNCERTAIN",
+      "stanceCounts": { "respect": 0, "respect_with_reservations": 0, "uncertain": 32, "distrust": 0, "hostile": 0 },
+      "routeCounts": { "serpent_pursuit": 0, "lion_trial": 32 },
+      "eventCounts": { "brokered-information": 13, "fallen-banner-claimant": 2, "public-petition": 9, "refuge-supply-offer": 7, "roadside-intimidation": 11, "serpent-rumour-market": 9, "village-memorial-request": 9 },
+      "noEventOpportunityCount": 36,
+      "totalR4Events": 60,
+      "invariantFailureCount": 0
+    },
+    {
+      "profileId": "INFAMY",
+      "stanceCounts": { "respect": 0, "respect_with_reservations": 0, "uncertain": 0, "distrust": 0, "hostile": 32 },
+      "routeCounts": { "serpent_pursuit": 0, "lion_trial": 32 },
+      "eventCounts": { "bois-clair-denunciation": 10, "brokered-information": 7, "displaced-family-demand": 9, "fallen-banner-claimant": 2, "public-petition": 8, "refuge-supply-offer": 5, "roadside-intimidation": 16, "serpent-rumour-market": 3 },
+      "noEventOpportunityCount": 36,
+      "totalR4Events": 60,
+      "invariantFailureCount": 0
+    },
+    {
+      "profileId": "HIGH_REPUTATION_PLUS_INFAMY",
+      "stanceCounts": { "respect": 0, "respect_with_reservations": 0, "uncertain": 0, "distrust": 0, "hostile": 32 },
+      "routeCounts": { "serpent_pursuit": 0, "lion_trial": 32 },
+      "eventCounts": { "bois-clair-denunciation": 6, "brokered-information": 13, "displaced-family-demand": 4, "fallen-banner-claimant": 3, "public-petition": 17, "refuge-supply-offer": 5, "roadside-intimidation": 5, "serpent-rumour-market": 7 },
+      "noEventOpportunityCount": 36,
+      "totalR4Events": 60,
+      "invariantFailureCount": 0
+    },
+    {
+      "profileId": "LOW_REPUTATION_PLUS_HONOUR",
+      "stanceCounts": { "respect": 32, "respect_with_reservations": 0, "uncertain": 0, "distrust": 0, "hostile": 0 },
+      "routeCounts": { "serpent_pursuit": 32, "lion_trial": 0 },
+      "eventCounts": { "brokered-information": 13, "fallen-banner-claimant": 3, "public-petition": 6, "refuge-supply-offer": 5, "roadside-intimidation": 17, "serpent-rumour-market": 10, "village-memorial-request": 4 },
+      "noEventOpportunityCount": 38,
+      "totalR4Events": 58,
+      "invariantFailureCount": 0
+    },
+    {
+      "profileId": "SAVED_BOIS_CLAIR_PLUS_SILENCED_WITNESSES",
+      "stanceCounts": { "respect": 0, "respect_with_reservations": 0, "uncertain": 0, "distrust": 32, "hostile": 0 },
+      "routeCounts": { "serpent_pursuit": 0, "lion_trial": 32 },
+      "eventCounts": { "bois-clair-denunciation": 3, "brokered-information": 10, "fallen-banner-claimant": 2, "public-petition": 11, "refuge-supply-offer": 6, "roadside-intimidation": 12, "serpent-rumour-market": 8, "village-memorial-request": 8 },
+      "noEventOpportunityCount": 36,
+      "totalR4Events": 60,
+      "invariantFailureCount": 0
+    },
+    {
+      "profileId": "VOLUNTARY_LION_TRIAL",
+      "stanceCounts": { "respect": 32, "respect_with_reservations": 0, "uncertain": 0, "distrust": 0, "hostile": 0 },
+      "routeCounts": { "serpent_pursuit": 0, "lion_trial": 32 },
+      "eventCounts": { "brokered-information": 14, "fallen-banner-claimant": 3, "public-petition": 16, "refuge-supply-offer": 4, "roadside-intimidation": 7, "serpent-rumour-market": 7, "village-memorial-request": 9 },
+      "noEventOpportunityCount": 36,
+      "totalR4Events": 60,
+      "invariantFailureCount": 0
+    }
+  ],
+  "r4": [
+    {
+      "reputation": 5,
+      "categorySelections": { "hostile": 174, "helpful": 84, "neutral": 112 },
+      "noEventCount": 230,
+      "eventsPerRun": { "0": 1, "1": 28, "2": 171 },
+      "eventSelections": { "roadside-intimidation": 112, "brokered-information": 60, "public-petition": 43, "bois-clair-denunciation": 42, "refuge-supply-offer": 21, "serpent-rumour-market": 52, "fallen-banner-claimant": 7, "village-memorial-request": 13, "displaced-family-demand": 20 },
+      "invariantFailureCount": 0
+    },
+    {
+      "reputation": 50,
+      "categorySelections": { "hostile": 124, "helpful": 136, "neutral": 114 },
+      "noEventCount": 226,
+      "eventsPerRun": { "0": 1, "1": 24, "2": 175 },
+      "eventSelections": { "roadside-intimidation": 74, "brokered-information": 60, "public-petition": 72, "bois-clair-denunciation": 33, "refuge-supply-offer": 31, "serpent-rumour-market": 54, "fallen-banner-claimant": 14, "village-memorial-request": 19, "displaced-family-demand": 17 },
+      "invariantFailureCount": 0
+    },
+    {
+      "reputation": 95,
+      "categorySelections": { "hostile": 71, "helpful": 185, "neutral": 121 },
+      "noEventCount": 223,
+      "eventsPerRun": { "0": 1, "1": 21, "2": 178 },
+      "eventSelections": { "roadside-intimidation": 39, "brokered-information": 66, "public-petition": 93, "bois-clair-denunciation": 22, "refuge-supply-offer": 41, "serpent-rumour-market": 55, "fallen-banner-claimant": 25, "village-memorial-request": 26, "displaced-family-demand": 10 },
+      "invariantFailureCount": 0
+    }
+  ],
+  "equivalentFixture": { "equivalent-a": 76, "equivalent-b": 60, "equivalent-c": 64 }
+}

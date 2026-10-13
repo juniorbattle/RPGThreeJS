@@ -1,0 +1,6016 @@
+{
+  "schemaVersion": 1,
+  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "count": 125,
+  "futureRecruitLeakPolicy": "Any optional recruit not explicitly required is forbidden",
+  "manifests": [
+    {
+      "id": "cast:media:lion_judgement",
+      "beatId": "media:lion_judgement",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-judgement",
+        "edgeId": null,
+        "contentId": "lion_finale_judgement",
+        "cinematicId": "lion_judgement"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "alaric",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alaric",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "alaric"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "alaric"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "alaric",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:serpent_general_reveal",
+      "beatId": "media:serpent_general_reveal",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-judgement",
+        "edgeId": null,
+        "contentId": "serpent_captain",
+        "cinematicId": "serpent_general_reveal"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "serpent_general_boss"
+      ],
+      "allowedCharacters": [
+        "serpent_general_boss"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "serpent_general_boss"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "serpent_general_boss"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:lion_champion_reveal",
+      "beatId": "media:lion_champion_reveal",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-judgement",
+        "edgeId": null,
+        "contentId": "lion_chief",
+        "cinematicId": "lion_champion_reveal"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "lion_champion"
+      ],
+      "allowedCharacters": [
+        "lion_champion"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "lion_champion"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "lion_champion"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:forest_journey_tension",
+      "beatId": "media:forest_journey_tension",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": null,
+        "edgeId": null,
+        "contentId": null,
+        "cinematicId": "forest_journey_tension"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [],
+      "allowedCharacters": [],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:camp_departure",
+      "beatId": "media:camp_departure",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-camp",
+        "edgeId": null,
+        "contentId": "camp_departure",
+        "cinematicId": "camp_departure"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "maelor",
+        "alistair",
+        "marian"
+      ],
+      "allowedCharacters": [
+        "maelor",
+        "alistair",
+        "marian"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "maelor",
+        "alistair",
+        "marian"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "maelor",
+        "alistair",
+        "marian"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:alaric_audience_arrival",
+      "beatId": "media:alaric_audience_arrival",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-audience",
+        "edgeId": null,
+        "contentId": "lion_briefing",
+        "cinematicId": "alaric_audience_arrival"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "alaric",
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alaric",
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "alaric",
+        "alistair"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "alaric"
+      ],
+      "explicitlyOffscreen": [
+        {
+          "id": "lion_champion",
+          "reason": "The early mandate is Alaric-led; the Champion is omitted to preserve two-adviser readability and avoid a final-judgement composition."
+        }
+      ],
+      "mustRemainPhysicallyPresent": [
+        "alaric",
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:refugees_approach",
+      "beatId": "media:refugees_approach",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-refugees",
+        "edgeId": null,
+        "contentId": "refugee_trial",
+        "cinematicId": "refugees_approach"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "refugee_mother",
+        "marian"
+      ],
+      "allowedCharacters": [
+        "refugee_mother",
+        "marian"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "refugee_mother"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "refugee_mother",
+        "marian"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:first_refuge_arrival",
+      "beatId": "media:first_refuge_arrival",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-first-refuge",
+        "edgeId": null,
+        "contentId": "forest_refuge",
+        "cinematicId": "first_refuge_arrival"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "marian",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "marian",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "marian",
+        "alistair"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:first_refuge_departure",
+      "beatId": "media:first_refuge_departure",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-first-refuge",
+        "edgeId": null,
+        "contentId": "forest_refuge",
+        "cinematicId": "first_refuge_departure"
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "kestrel",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "kestrel",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:valmir_route_fork",
+      "beatId": "media:valmir_route_fork",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-valmir-road",
+        "edgeId": null,
+        "contentId": "road_to_valmir",
+        "cinematicId": "valmir_route_fork"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "kestrel"
+      ],
+      "allowedCharacters": [
+        "kestrel"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "kestrel"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:bois_clair_arrival",
+      "beatId": "media:bois_clair_arrival",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-village-choice",
+        "edgeId": null,
+        "contentId": "village_choice",
+        "cinematicId": "bois_clair_arrival"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "villageoise",
+        "serpent_raider",
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "villageoise",
+        "serpent_raider",
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "villageoise",
+        "marian",
+        "serpent_raider",
+        "kestrel",
+        "sage_seraphine",
+        "maelor",
+        "alistair"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "villageoise",
+        "serpent_raider"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "villageoise",
+        "serpent_raider",
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:bois_clair_saved",
+      "beatId": "media:bois_clair_saved",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": null,
+        "edgeId": null,
+        "contentId": null,
+        "cinematicId": "bois_clair_saved"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [],
+      "allowedCharacters": [],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:bois_clair_sacrificed",
+      "beatId": "media:bois_clair_sacrificed",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": null,
+        "edgeId": null,
+        "contentId": null,
+        "cinematicId": "bois_clair_sacrificed"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [],
+      "allowedCharacters": [],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:second_refuge_departure",
+      "beatId": "media:second_refuge_departure",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-second-refuge",
+        "edgeId": null,
+        "contentId": "forest_refuge",
+        "cinematicId": "second_refuge_departure"
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "marian",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "marian",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:witnesses_encounter",
+      "beatId": "media:witnesses_encounter",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-witnesses",
+        "edgeId": null,
+        "contentId": "witnesses_on_road",
+        "cinematicId": "witnesses_encounter"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "survivor",
+        "marian"
+      ],
+      "allowedCharacters": [
+        "survivor",
+        "marian"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "survivor"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "survivor",
+        "marian"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:ruins_approach_context",
+      "beatId": "media:ruins_approach_context",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": null,
+        "edgeId": null,
+        "contentId": null,
+        "cinematicId": "ruins_approach_context"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [],
+      "allowedCharacters": [],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:shadow_signs",
+      "beatId": "media:shadow_signs",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-shadow-signs",
+        "edgeId": null,
+        "contentId": "shadow_signs",
+        "cinematicId": "shadow_signs"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "sage_seraphine",
+        "elara"
+      ],
+      "allowedCharacters": [
+        "sage_seraphine",
+        "elara"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "sage_seraphine",
+        "elara",
+        "alistair",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [
+        {
+          "id": "alistair",
+          "reason": "Only speaks after the preserve-evidence branch is selected; the neutral pre-choice cinematic cannot preselect it."
+        },
+        {
+          "id": "maelor",
+          "reason": "Only speaks after the take-fragments branch is selected; the neutral pre-choice cinematic cannot preselect it."
+        }
+      ],
+      "mustRemainPhysicallyPresent": [
+        "sage_seraphine",
+        "elara"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:final_refuge_dossier",
+      "beatId": "media:final_refuge_dossier",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-refuge",
+        "edgeId": null,
+        "contentId": "final_refuge",
+        "cinematicId": "final_refuge_dossier"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "maelor",
+        "sage_seraphine",
+        "marian",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "maelor",
+        "sage_seraphine",
+        "marian",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "maelor",
+        "sage_seraphine",
+        "marian",
+        "alistair"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "maelor",
+        "sage_seraphine",
+        "marian",
+        "alistair"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:serpent_route_ending",
+      "beatId": "media:serpent_route_ending",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-judgement",
+        "edgeId": null,
+        "contentId": "serpent_general_aftermath",
+        "cinematicId": "serpent_route_ending"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "sage_seraphine",
+        "serpent_general_boss"
+      ],
+      "allowedCharacters": [
+        "sage_seraphine",
+        "serpent_general_boss"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "serpent_general_boss"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "sage_seraphine",
+        "serpent_general_boss"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:lion_trial_route_ending",
+      "beatId": "media:lion_trial_route_ending",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-judgement",
+        "edgeId": null,
+        "contentId": "lion_trial_aftermath",
+        "cinematicId": "lion_trial_route_ending"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "lion_champion",
+        "alaric"
+      ],
+      "allowedCharacters": [
+        "lion_champion",
+        "alaric"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "lion_champion",
+        "alaric"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "lion_champion",
+        "alaric"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:cedric_encounter",
+      "beatId": "media:cedric_encounter",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-nomad-crossroads",
+        "edgeId": null,
+        "contentId": "mystery_recruit",
+        "cinematicId": "cedric_encounter"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "cedric",
+        "kestrel"
+      ],
+      "allowedCharacters": [
+        "cedric",
+        "kestrel"
+      ],
+      "forbiddenCharacters": [
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [
+          "cedric"
+        ],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "cedric",
+        "kestrel"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:garen_encounter",
+      "beatId": "media:garen_encounter",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-lancer-recruit",
+        "edgeId": null,
+        "contentId": "mystery_lancer_recruit",
+        "cinematicId": "garen_encounter"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "lancer"
+      ],
+      "allowedCharacters": [
+        "lancer"
+      ],
+      "forbiddenCharacters": [
+        "cedric"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [
+          "lancer"
+        ],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "lancer"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:serpent_road_tension",
+      "beatId": "media:serpent_road_tension",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": null,
+        "edgeId": null,
+        "contentId": null,
+        "cinematicId": "serpent_road_tension"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [],
+      "allowedCharacters": [],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:shrine_reveal_context",
+      "beatId": "media:shrine_reveal_context",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": null,
+        "edgeId": null,
+        "contentId": null,
+        "cinematicId": "shrine_reveal_context"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [],
+      "allowedCharacters": [],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:injured_merchant_encounter",
+      "beatId": "media:injured_merchant_encounter",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-first-trial-event",
+        "edgeId": null,
+        "contentId": "mystery_help",
+        "cinematicId": "injured_merchant_encounter"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "survivor"
+      ],
+      "allowedCharacters": [
+        "survivor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "survivor"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "survivor"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:abandoned_cart_reveal",
+      "beatId": "media:abandoned_cart_reveal",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-first-trial-event",
+        "edgeId": null,
+        "contentId": "mystery_treasure",
+        "cinematicId": "abandoned_cart_reveal"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "maelor"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:spider_nest_reveal",
+      "beatId": "media:spider_nest_reveal",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-first-trial-combat",
+        "edgeId": null,
+        "contentId": "spider_nest",
+        "cinematicId": "spider_nest_reveal"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "forest_spider"
+      ],
+      "allowedCharacters": [
+        "forest_spider"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "forest_spider"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "forest_spider"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:troll_crossing_reveal",
+      "beatId": "media:troll_crossing_reveal",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-second-trial-combat",
+        "edgeId": null,
+        "contentId": "troll_crossing",
+        "cinematicId": "troll_crossing_reveal"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "forest_troll_elite"
+      ],
+      "allowedCharacters": [
+        "forest_troll_elite"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "forest_troll_elite"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "forest_troll_elite"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:serpent_duelist_reveal",
+      "beatId": "media:serpent_duelist_reveal",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-second-trial-combat",
+        "edgeId": null,
+        "contentId": "serpent_duelist_trial",
+        "cinematicId": "serpent_duelist_reveal"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "serpent_duelist_elite"
+      ],
+      "allowedCharacters": [
+        "serpent_duelist_elite"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "serpent_duelist_elite"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "serpent_duelist_elite"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:young_dragon_encounter",
+      "beatId": "media:young_dragon_encounter",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-trial-event",
+        "edgeId": null,
+        "contentId": "mystery_dragon_roost",
+        "cinematicId": "young_dragon_encounter"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "young_dragon_elite"
+      ],
+      "allowedCharacters": [
+        "young_dragon_elite"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "young_dragon_elite"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "young_dragon_elite"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:media:serpent_informant_encounter",
+      "beatId": "media:serpent_informant_encounter",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-trial-event",
+        "edgeId": null,
+        "contentId": "serpent_informant",
+        "cinematicId": "serpent_informant_encounter"
+      },
+      "semanticMode": "CINEMATIC_VIDEO",
+      "requiredCharacters": [
+        "serpent_oracle"
+      ],
+      "allowedCharacters": [
+        "serpent_oracle"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "serpent_oracle"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "serpent_oracle"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:acte_ouverture",
+      "beatId": "dialogue:acte_ouverture",
+      "dialogueIds": [
+        "acte_ouverture"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-camp",
+        "edgeId": null,
+        "contentId": "campaign:new-game-prologue",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "sage_seraphine",
+        "maelor",
+        "alistair",
+        "marian",
+        "kestrel",
+        "elara"
+      ],
+      "allowedCharacters": [
+        "sage_seraphine",
+        "maelor",
+        "alistair",
+        "marian",
+        "kestrel",
+        "elara"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "sage_seraphine",
+        "maelor",
+        "alistair",
+        "marian",
+        "kestrel",
+        "elara"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:ate_alaric_reports",
+      "beatId": "dialogue:ate_alaric_reports",
+      "dialogueIds": [
+        "ate_alaric_reports"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-opening-ambush",
+        "edgeId": null,
+        "contentId": "ate-after:lion-opening-ambush",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "lion_champion",
+        "alaric",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "lion_champion",
+        "alaric",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "lion_champion",
+        "alaric"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "lion_champion",
+        "alaric"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:ate_bois_clair_night_watch",
+      "beatId": "dialogue:ate_bois_clair_night_watch",
+      "dialogueIds": [
+        "ate_bois_clair_night_watch"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-second-refuge",
+        "edgeId": null,
+        "contentId": "ate-after:lion-second-refuge",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "villageoise",
+        "marian",
+        "alistair",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "villageoise",
+        "marian",
+        "alistair",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "villageoise",
+        "marian",
+        "alistair",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "villageoise"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:ate_first_refuge_watch",
+      "beatId": "dialogue:ate_first_refuge_watch",
+      "dialogueIds": [
+        "ate_first_refuge_watch"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-first-refuge",
+        "edgeId": null,
+        "contentId": "ate-after:lion-first-refuge",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "marian",
+        "alistair",
+        "kestrel",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "marian",
+        "alistair",
+        "kestrel",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "marian",
+        "alistair",
+        "kestrel",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:ate_lion_council_doubt",
+      "beatId": "dialogue:ate_lion_council_doubt",
+      "dialogueIds": [
+        "ate_lion_council_doubt"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-witnesses",
+        "edgeId": null,
+        "contentId": "ate-after:lion-witnesses",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "lion_champion",
+        "alaric",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "lion_champion",
+        "alaric",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "lion_champion",
+        "alaric"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "lion_champion",
+        "alaric"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:ate_maelor_seal_analysis",
+      "beatId": "dialogue:ate_maelor_seal_analysis",
+      "dialogueIds": [
+        "ate_maelor_seal_analysis"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-village-choice",
+        "edgeId": null,
+        "contentId": "ate-after:lion-village-choice",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "maelor",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "maelor",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "maelor",
+        "sage_seraphine"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:ate_ruins_awaken",
+      "beatId": "dialogue:ate_ruins_awaken",
+      "dialogueIds": [
+        "ate_ruins_awaken"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-shadow-signs",
+        "edgeId": null,
+        "contentId": "ate-after:lion-shadow-signs",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "maelor",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "maelor",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "maelor",
+        "sage_seraphine"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:ate_serpent_general_warning",
+      "beatId": "dialogue:ate_serpent_general_warning",
+      "dialogueIds": [
+        "ate_serpent_general_warning"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-valmir-road",
+        "edgeId": null,
+        "contentId": "ate-after:lion-valmir-road",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "serpent_oracle",
+        "serpent_general_boss",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "serpent_oracle",
+        "serpent_general_boss",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "serpent_oracle",
+        "serpent_general_boss"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "serpent_oracle",
+        "serpent_general_boss"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:ate_serpent_retreat_order",
+      "beatId": "dialogue:ate_serpent_retreat_order",
+      "dialogueIds": [
+        "ate_serpent_retreat_order"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-shadow-signs",
+        "edgeId": null,
+        "contentId": "ate-after:lion-shadow-signs",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "serpent_general_boss",
+        "serpent_oracle",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "serpent_general_boss",
+        "serpent_oracle",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "serpent_general_boss",
+        "serpent_oracle"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "serpent_general_boss",
+        "serpent_oracle"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:ate_serpent_scout_report",
+      "beatId": "dialogue:ate_serpent_scout_report",
+      "dialogueIds": [
+        "ate_serpent_scout_report"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-nomad-crossroads",
+        "edgeId": null,
+        "contentId": "ate-after:lion-nomad-crossroads",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "serpent_raider",
+        "serpent_oracle",
+        "serpent_general_boss",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "serpent_raider",
+        "serpent_oracle",
+        "serpent_general_boss",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "serpent_raider",
+        "serpent_oracle",
+        "serpent_general_boss"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "serpent_raider",
+        "serpent_oracle",
+        "serpent_general_boss"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:ate_village_fear",
+      "beatId": "dialogue:ate_village_fear",
+      "dialogueIds": [
+        "ate_village_fear"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-refugees",
+        "edgeId": null,
+        "contentId": "ate-after:lion-refugees",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "villageoise",
+        "refugee_mother",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "villageoise",
+        "refugee_mother",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "villageoise",
+        "refugee_mother"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "villageoise",
+        "refugee_mother"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:camp_departure",
+      "beatId": "dialogue:camp_departure",
+      "dialogueIds": [
+        "camp_departure"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-camp",
+        "edgeId": null,
+        "contentId": "node:lion-camp",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "maelor",
+        "alistair",
+        "marian",
+        "sage_seraphine",
+        "kestrel"
+      ],
+      "allowedCharacters": [
+        "maelor",
+        "alistair",
+        "marian",
+        "sage_seraphine",
+        "kestrel"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "maelor",
+        "alistair",
+        "marian",
+        "sage_seraphine",
+        "kestrel"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "maelor",
+        "alistair",
+        "marian",
+        "sage_seraphine",
+        "kestrel"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:epilogue",
+      "beatId": "dialogue:epilogue",
+      "dialogueIds": [
+        "epilogue"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-judgement",
+        "edgeId": null,
+        "contentId": "campaign:lion-route-ending",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "sage_seraphine"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "sage_seraphine"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:final_refuge",
+      "beatId": "dialogue:final_refuge",
+      "dialogueIds": [
+        "final_refuge"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-refuge",
+        "edgeId": null,
+        "contentId": "final_refuge",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "maelor",
+        "sage_seraphine",
+        "marian",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "maelor",
+        "sage_seraphine",
+        "marian",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "maelor",
+        "sage_seraphine",
+        "marian",
+        "alistair"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:lion_briefing",
+      "beatId": "dialogue:lion_briefing",
+      "dialogueIds": [
+        "lion_briefing"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-audience",
+        "edgeId": null,
+        "contentId": "lion_briefing",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "alaric",
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alaric",
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "alaric",
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "alaric"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "alaric",
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:lion_finale_judgement",
+      "beatId": "dialogue:lion_finale_judgement",
+      "dialogueIds": [
+        "lion_finale_judgement"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-judgement",
+        "edgeId": null,
+        "contentId": "lion_finale_judgement",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "alaric"
+      ],
+      "allowedCharacters": [
+        "alaric"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "alaric"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "alaric"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "alaric"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:lion_trial_aftermath",
+      "beatId": "dialogue:lion_trial_aftermath",
+      "dialogueIds": [
+        "lion_trial_aftermath"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-judgement",
+        "edgeId": null,
+        "contentId": "post-combat:lion_chief",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "alaric",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "alaric",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "alaric"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "alaric"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:mystery_ambush",
+      "beatId": "dialogue:mystery_ambush",
+      "dialogueIds": [
+        "mystery_ambush"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-first-trial-combat",
+        "edgeId": null,
+        "contentId": "campaign:reachable-content-pool",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "serpent_raider",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "serpent_raider",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "serpent_raider"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "serpent_raider"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:mystery_dragon_roost",
+      "beatId": "dialogue:mystery_dragon_roost",
+      "dialogueIds": [
+        "mystery_dragon_roost"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-trial-event",
+        "edgeId": null,
+        "contentId": "mystery_dragon_roost",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "young_dragon_elite",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "young_dragon_elite",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "young_dragon_elite",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "young_dragon_elite"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "young_dragon_elite",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:mystery_help",
+      "beatId": "dialogue:mystery_help",
+      "dialogueIds": [
+        "mystery_help"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-first-trial-event",
+        "edgeId": null,
+        "contentId": "mystery_help",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "survivor"
+      ],
+      "allowedCharacters": [
+        "survivor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "survivor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "survivor"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "survivor"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:mystery_lancer_recruit",
+      "beatId": "dialogue:mystery_lancer_recruit",
+      "dialogueIds": [
+        "mystery_lancer_recruit"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-lancer-recruit",
+        "edgeId": null,
+        "contentId": "campaign:reachable-content-pool",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "lancer",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "lancer",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric"
+      ],
+      "speakerSequence": [
+        "lancer"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [
+          "lancer"
+        ],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:mystery_recruit",
+      "beatId": "dialogue:mystery_recruit",
+      "dialogueIds": [
+        "mystery_recruit"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-nomad-crossroads",
+        "edgeId": null,
+        "contentId": "mystery_recruit",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "kestrel",
+        "cedric",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "kestrel",
+        "cedric",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "lancer"
+      ],
+      "speakerSequence": [
+        "kestrel",
+        "cedric"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [
+          "cedric"
+        ],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:mystery_shrine",
+      "beatId": "dialogue:mystery_shrine",
+      "dialogueIds": [
+        "mystery_shrine"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-trial-event",
+        "edgeId": null,
+        "contentId": "campaign:reachable-content-pool",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "shrine_apparition",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "shrine_apparition",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "shrine_apparition",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "shrine_apparition"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "shrine_apparition",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:mystery_treasure",
+      "beatId": "dialogue:mystery_treasure",
+      "dialogueIds": [
+        "mystery_treasure"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-first-trial-event",
+        "edgeId": null,
+        "contentId": "campaign:reachable-content-pool",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "maelor",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "maelor",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "maelor",
+        "sage_seraphine"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "maelor",
+        "sage_seraphine"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:mystery_troll_crossing",
+      "beatId": "dialogue:mystery_troll_crossing",
+      "dialogueIds": [
+        "mystery_troll_crossing"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-second-trial-combat",
+        "edgeId": null,
+        "contentId": "campaign:reachable-content-pool",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "forest_troll_elite",
+        "sage_seraphine",
+        "maelor",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "forest_troll_elite",
+        "sage_seraphine",
+        "maelor",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "forest_troll_elite",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "forest_troll_elite"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:old_shrine_event",
+      "beatId": "dialogue:old_shrine_event",
+      "dialogueIds": [
+        "old_shrine_event"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-second-trial-event",
+        "edgeId": null,
+        "contentId": "old_shrine_event",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "sage_seraphine",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "sage_seraphine",
+        "maelor"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:post_opening_trail",
+      "beatId": "dialogue:post_opening_trail",
+      "dialogueIds": [
+        "post_opening_trail"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-opening-ambush",
+        "edgeId": null,
+        "contentId": "post-combat:forest_ambush",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "kestrel",
+        "alistair",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "kestrel",
+        "alistair",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "kestrel",
+        "alistair",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:post_ruins_guardians",
+      "beatId": "dialogue:post_ruins_guardians",
+      "dialogueIds": [
+        "post_ruins_guardians"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-trial-combat",
+        "edgeId": null,
+        "contentId": "post-combat:ruins_guardians",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "elara",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "elara",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "elara",
+        "sage_seraphine"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:post_serpent_checkpoint",
+      "beatId": "dialogue:post_serpent_checkpoint",
+      "dialogueIds": [
+        "post_serpent_checkpoint"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-second-trial-combat",
+        "edgeId": null,
+        "contentId": "post-combat:serpent_checkpoint",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "kestrel",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "kestrel",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "kestrel",
+        "sage_seraphine"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:post_serpent_duelist_trial",
+      "beatId": "dialogue:post_serpent_duelist_trial",
+      "dialogueIds": [
+        "post_serpent_duelist_trial"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-second-trial-combat",
+        "edgeId": null,
+        "contentId": "post-combat:serpent_duelist_trial",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "serpent_duelist_elite",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "serpent_duelist_elite",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "serpent_duelist_elite",
+        "alistair"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "serpent_duelist_elite"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:post_serpent_hunters",
+      "beatId": "dialogue:post_serpent_hunters",
+      "dialogueIds": [
+        "post_serpent_hunters"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-trial-combat",
+        "edgeId": null,
+        "contentId": "post-combat:serpent_hunters",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "serpent_oracle",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "serpent_oracle",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "serpent_oracle",
+        "sage_seraphine"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "serpent_oracle"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:post_serpent_patrol",
+      "beatId": "dialogue:post_serpent_patrol",
+      "dialogueIds": [
+        "post_serpent_patrol"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-first-trial-combat",
+        "edgeId": null,
+        "contentId": "post-combat:forest_patrol",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "kestrel",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "kestrel",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "kestrel",
+        "sage_seraphine"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:post_serpent_reprisals",
+      "beatId": "dialogue:post_serpent_reprisals",
+      "dialogueIds": [
+        "post_serpent_reprisals"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-first-trial-combat",
+        "edgeId": null,
+        "contentId": "post-combat:serpent_reprisals",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "alistair",
+        "kestrel",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "kestrel",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "alistair",
+        "kestrel"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:post_spider_nest",
+      "beatId": "dialogue:post_spider_nest",
+      "dialogueIds": [
+        "post_spider_nest"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-first-trial-combat",
+        "edgeId": null,
+        "contentId": "post-combat:spider_nest",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "elara",
+        "maelor",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "elara",
+        "maelor",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "elara",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:post_troll_crossing",
+      "beatId": "dialogue:post_troll_crossing",
+      "dialogueIds": [
+        "post_troll_crossing"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-second-trial-combat",
+        "edgeId": null,
+        "contentId": "post-combat:troll_crossing",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "marian",
+        "maelor",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "marian",
+        "maelor",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "marian",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:post_valmir_road",
+      "beatId": "dialogue:post_valmir_road",
+      "dialogueIds": [
+        "post_valmir_road"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-valmir-road",
+        "edgeId": null,
+        "contentId": "post-combat:marsh_crossing",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "marian",
+        "kestrel",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "marian",
+        "kestrel",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "marian",
+        "kestrel",
+        "sage_seraphine"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:post_young_dragon_roost",
+      "beatId": "dialogue:post_young_dragon_roost",
+      "dialogueIds": [
+        "post_young_dragon_roost"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-trial-event",
+        "edgeId": null,
+        "contentId": "post-combat:young_dragon_roost",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "elara",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "elara",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "elara",
+        "sage_seraphine"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:pre_lion_chief",
+      "beatId": "dialogue:pre_lion_chief",
+      "dialogueIds": [
+        "pre_lion_chief"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-judgement",
+        "edgeId": null,
+        "contentId": "pre-combat:lion_chief",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "alaric",
+        "lion_champion"
+      ],
+      "allowedCharacters": [
+        "alaric",
+        "lion_champion"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "alaric",
+        "lion_champion"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "alaric",
+        "lion_champion"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "alaric",
+        "lion_champion"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:pre_opening_trail",
+      "beatId": "dialogue:pre_opening_trail",
+      "dialogueIds": [
+        "pre_opening_trail"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-opening-ambush",
+        "edgeId": null,
+        "contentId": "pre-combat:forest_ambush",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "sage_seraphine",
+        "kestrel",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "sage_seraphine",
+        "kestrel",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "kestrel",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "sage_seraphine",
+        "kestrel",
+        "alistair"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:pre_ruins_guardians",
+      "beatId": "dialogue:pre_ruins_guardians",
+      "dialogueIds": [
+        "pre_ruins_guardians"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-trial-combat",
+        "edgeId": null,
+        "contentId": "pre-combat:ruins_guardians",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "elara",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "elara",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "elara",
+        "sage_seraphine"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "elara",
+        "sage_seraphine"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:pre_serpent_checkpoint",
+      "beatId": "dialogue:pre_serpent_checkpoint",
+      "dialogueIds": [
+        "pre_serpent_checkpoint"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-second-trial-combat",
+        "edgeId": null,
+        "contentId": "pre-combat:serpent_checkpoint",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "kestrel",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "kestrel",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "kestrel",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "kestrel",
+        "maelor"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:pre_serpent_duelist_trial",
+      "beatId": "dialogue:pre_serpent_duelist_trial",
+      "dialogueIds": [
+        "pre_serpent_duelist_trial"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-second-trial-combat",
+        "edgeId": null,
+        "contentId": "pre-combat:serpent_duelist_trial",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "serpent_duelist_elite"
+      ],
+      "allowedCharacters": [
+        "serpent_duelist_elite"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "serpent_duelist_elite"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "serpent_duelist_elite"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "serpent_duelist_elite"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:pre_serpent_hunters",
+      "beatId": "dialogue:pre_serpent_hunters",
+      "dialogueIds": [
+        "pre_serpent_hunters"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-trial-combat",
+        "edgeId": null,
+        "contentId": "pre-combat:serpent_hunters",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "serpent_raider",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "serpent_raider",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "serpent_raider",
+        "sage_seraphine"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "serpent_raider"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "serpent_raider",
+        "sage_seraphine"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:pre_serpent_patrol",
+      "beatId": "dialogue:pre_serpent_patrol",
+      "dialogueIds": [
+        "pre_serpent_patrol"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-first-trial-combat",
+        "edgeId": null,
+        "contentId": "pre-combat:forest_patrol",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "kestrel",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "kestrel",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "kestrel",
+        "alistair"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "kestrel",
+        "alistair"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:pre_serpent_reprisals",
+      "beatId": "dialogue:pre_serpent_reprisals",
+      "dialogueIds": [
+        "pre_serpent_reprisals"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-first-trial-combat",
+        "edgeId": null,
+        "contentId": "pre-combat:serpent_reprisals",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "serpent_raider",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "serpent_raider",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "serpent_raider",
+        "alistair"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "serpent_raider"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "serpent_raider",
+        "alistair"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:pre_spider_nest",
+      "beatId": "dialogue:pre_spider_nest",
+      "dialogueIds": [
+        "pre_spider_nest"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-first-trial-combat",
+        "edgeId": null,
+        "contentId": "pre-combat:spider_nest",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "elara",
+        "marian"
+      ],
+      "allowedCharacters": [
+        "elara",
+        "marian"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "elara",
+        "marian"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "elara",
+        "marian"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:pre_troll_crossing",
+      "beatId": "dialogue:pre_troll_crossing",
+      "dialogueIds": [
+        "pre_troll_crossing"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-second-trial-combat",
+        "edgeId": null,
+        "contentId": "pre-combat:troll_crossing",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "forest_troll_elite"
+      ],
+      "allowedCharacters": [
+        "forest_troll_elite"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "forest_troll_elite"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "forest_troll_elite"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "forest_troll_elite"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:pre_valmir_road",
+      "beatId": "dialogue:pre_valmir_road",
+      "dialogueIds": [
+        "pre_valmir_road"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-valmir-road",
+        "edgeId": null,
+        "contentId": "pre-combat:marsh_crossing",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "kestrel",
+        "marian",
+        "maelor",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "kestrel",
+        "marian",
+        "maelor",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "kestrel",
+        "marian",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:pre_village_defense",
+      "beatId": "dialogue:pre_village_defense",
+      "dialogueIds": [
+        "pre_village_defense"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-village-choice",
+        "edgeId": null,
+        "contentId": "pre-combat:village_defense",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "serpent_raider",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "serpent_raider",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "serpent_raider"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "serpent_raider"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:pre_village_raid",
+      "beatId": "dialogue:pre_village_raid",
+      "dialogueIds": [
+        "pre_village_raid"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-village-choice",
+        "edgeId": null,
+        "contentId": "pre-combat:village_raid",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "serpent_brute",
+        "alistair",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "serpent_brute",
+        "alistair",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "serpent_brute"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "serpent_brute"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:pre_young_dragon_roost",
+      "beatId": "dialogue:pre_young_dragon_roost",
+      "dialogueIds": [
+        "pre_young_dragon_roost"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-trial-event",
+        "edgeId": null,
+        "contentId": "pre-combat:young_dragon_roost",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "young_dragon_elite",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "young_dragon_elite",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "young_dragon_elite"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "young_dragon_elite"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:refugee_trial",
+      "beatId": "dialogue:refugee_trial",
+      "dialogueIds": [
+        "refugee_trial"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-refugees",
+        "edgeId": null,
+        "contentId": "refugee_trial",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "kestrel",
+        "marian",
+        "refugee_mother",
+        "alistair",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "kestrel",
+        "marian",
+        "refugee_mother",
+        "alistair",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "kestrel",
+        "marian",
+        "refugee_mother",
+        "alistair",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "refugee_mother"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:rep_event_bois_clair_denunciation",
+      "beatId": "dialogue:rep_event_bois_clair_denunciation",
+      "dialogueIds": [
+        "rep_event_bois_clair_denunciation"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": null,
+        "edgeId": null,
+        "contentId": "reputation-event:bois-clair-denunciation",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "refugee_mother",
+        "alistair",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "refugee_mother",
+        "alistair",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "refugee_mother"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "refugee_mother"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:rep_event_brokered_information",
+      "beatId": "dialogue:rep_event_brokered_information",
+      "dialogueIds": [
+        "rep_event_brokered_information"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": null,
+        "edgeId": null,
+        "contentId": "reputation-event:brokered-information",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "survivor",
+        "alistair",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "survivor",
+        "alistair",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "survivor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "survivor"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:rep_event_displaced_family_demand",
+      "beatId": "dialogue:rep_event_displaced_family_demand",
+      "dialogueIds": [
+        "rep_event_displaced_family_demand"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": null,
+        "edgeId": null,
+        "contentId": "reputation-event:displaced-family-demand",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "survivor",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "survivor",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "survivor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "survivor"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:rep_event_fallen_banner_claimant",
+      "beatId": "dialogue:rep_event_fallen_banner_claimant",
+      "dialogueIds": [
+        "rep_event_fallen_banner_claimant"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": null,
+        "edgeId": null,
+        "contentId": "reputation-event:fallen-banner-claimant",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "survivor",
+        "maelor",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "survivor",
+        "maelor",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "survivor",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "survivor"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:rep_event_public_petition",
+      "beatId": "dialogue:rep_event_public_petition",
+      "dialogueIds": [
+        "rep_event_public_petition"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": null,
+        "edgeId": null,
+        "contentId": "reputation-event:public-petition",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "refugee_mother",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "refugee_mother",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "refugee_mother"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "refugee_mother"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:rep_event_refuge_supply_offer",
+      "beatId": "dialogue:rep_event_refuge_supply_offer",
+      "dialogueIds": [
+        "rep_event_refuge_supply_offer"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": null,
+        "edgeId": null,
+        "contentId": "reputation-event:refuge-supply-offer",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "survivor",
+        "alistair",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "survivor",
+        "alistair",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "survivor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "survivor"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:rep_event_roadside_intimidation",
+      "beatId": "dialogue:rep_event_roadside_intimidation",
+      "dialogueIds": [
+        "rep_event_roadside_intimidation"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": null,
+        "edgeId": null,
+        "contentId": "reputation-event:roadside-intimidation",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "serpent_raider",
+        "maelor",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "serpent_raider",
+        "maelor",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "serpent_raider",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "serpent_raider"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:rep_event_serpent_rumour_market",
+      "beatId": "dialogue:rep_event_serpent_rumour_market",
+      "dialogueIds": [
+        "rep_event_serpent_rumour_market"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": null,
+        "edgeId": null,
+        "contentId": "reputation-event:serpent-rumour-market",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "survivor",
+        "alistair",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "survivor",
+        "alistair",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "survivor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "survivor"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:rep_event_village_memorial_request",
+      "beatId": "dialogue:rep_event_village_memorial_request",
+      "dialogueIds": [
+        "rep_event_village_memorial_request"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": null,
+        "edgeId": null,
+        "contentId": "reputation-event:village-memorial-request",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "refugee_mother",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "refugee_mother",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "refugee_mother"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "refugee_mother"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:reserve_trail",
+      "beatId": "dialogue:reserve_trail",
+      "dialogueIds": [
+        "reserve_trail"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-reserve-trail",
+        "edgeId": null,
+        "contentId": "reserve_trail",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "kestrel",
+        "alistair",
+        "maelor",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "kestrel",
+        "alistair",
+        "maelor",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "kestrel",
+        "alistair",
+        "maelor",
+        "sage_seraphine"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:serpent_duelist_trial",
+      "beatId": "dialogue:serpent_duelist_trial",
+      "dialogueIds": [
+        "serpent_duelist_trial"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-second-trial-combat",
+        "edgeId": null,
+        "contentId": "campaign:reachable-content-pool",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "serpent_duelist_elite",
+        "sage_seraphine",
+        "maelor",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "serpent_duelist_elite",
+        "sage_seraphine",
+        "maelor",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "serpent_duelist_elite",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "serpent_duelist_elite"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:serpent_general_aftermath",
+      "beatId": "dialogue:serpent_general_aftermath",
+      "dialogueIds": [
+        "serpent_general_aftermath"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-judgement",
+        "edgeId": null,
+        "contentId": "post-combat:serpent_captain",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "sage_seraphine",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "sage_seraphine",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "sage_seraphine"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:serpent_informant",
+      "beatId": "dialogue:serpent_informant",
+      "dialogueIds": [
+        "serpent_informant"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-trial-event",
+        "edgeId": null,
+        "contentId": "campaign:reachable-content-pool",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "serpent_oracle",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "serpent_oracle",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "serpent_oracle",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "serpent_oracle"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "serpent_oracle",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:serpent_pursuit_pre_combat",
+      "beatId": "dialogue:serpent_pursuit_pre_combat",
+      "dialogueIds": [
+        "serpent_pursuit_pre_combat"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-judgement",
+        "edgeId": null,
+        "contentId": "pre-combat:serpent_captain",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "alaric",
+        "serpent_general_boss"
+      ],
+      "allowedCharacters": [
+        "alaric",
+        "serpent_general_boss"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "alaric",
+        "serpent_general_boss"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "alaric",
+        "serpent_general_boss"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "alaric",
+        "serpent_general_boss"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:shadow_signs",
+      "beatId": "dialogue:shadow_signs",
+      "dialogueIds": [
+        "shadow_signs"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-shadow-signs",
+        "edgeId": null,
+        "contentId": "shadow_signs",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "sage_seraphine",
+        "elara",
+        "alistair",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "sage_seraphine",
+        "elara",
+        "alistair",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "sage_seraphine",
+        "elara",
+        "alistair",
+        "maelor"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:village_choice",
+      "beatId": "dialogue:village_choice",
+      "dialogueIds": [
+        "village_choice"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-village-choice",
+        "edgeId": null,
+        "contentId": "village_choice",
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "villageoise",
+        "marian",
+        "serpent_raider",
+        "kestrel",
+        "sage_seraphine",
+        "maelor",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "villageoise",
+        "marian",
+        "serpent_raider",
+        "kestrel",
+        "sage_seraphine",
+        "maelor",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "villageoise",
+        "marian",
+        "serpent_raider",
+        "kestrel",
+        "sage_seraphine",
+        "maelor",
+        "alistair"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "villageoise",
+        "serpent_raider"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "villageoise",
+        "marian",
+        "serpent_raider",
+        "kestrel",
+        "sage_seraphine",
+        "maelor",
+        "alistair"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:village_defense_aftermath",
+      "beatId": "dialogue:village_defense_aftermath",
+      "dialogueIds": [
+        "village_defense_aftermath"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-village-choice",
+        "edgeId": null,
+        "contentId": "post-combat:village_defense",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "villageoise",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "villageoise",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "villageoise"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "villageoise"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:village_raid_aftermath",
+      "beatId": "dialogue:village_raid_aftermath",
+      "dialogueIds": [
+        "village_raid_aftermath"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-village-choice",
+        "edgeId": null,
+        "contentId": "post-combat:village_raid",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "maelor",
+        "villageoise",
+        "alistair"
+      ],
+      "allowedCharacters": [
+        "maelor",
+        "villageoise",
+        "alistair"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "maelor",
+        "villageoise"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "villageoise"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:dialogue:witnesses_on_road",
+      "beatId": "dialogue:witnesses_on_road",
+      "dialogueIds": [
+        "witnesses_on_road"
+      ],
+      "nodeContentIdentity": {
+        "nodeId": "lion-witnesses",
+        "edgeId": null,
+        "contentId": "witnesses_on_road",
+        "cinematicId": null
+      },
+      "semanticMode": "STATIC_TABLEAU",
+      "requiredCharacters": [
+        "kestrel",
+        "marian",
+        "survivor",
+        "alistair",
+        "maelor",
+        "sage_seraphine"
+      ],
+      "allowedCharacters": [
+        "kestrel",
+        "marian",
+        "survivor",
+        "alistair",
+        "maelor",
+        "sage_seraphine"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [
+        "kestrel",
+        "marian",
+        "survivor",
+        "alistair",
+        "maelor",
+        "sage_seraphine"
+      ],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [
+        "survivor"
+      ],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-camp>lion-audience",
+      "beatId": "edge:lion-camp>lion-audience",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-camp",
+        "edgeId": "lion-camp>lion-audience",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-audience>lion-opening-ambush",
+      "beatId": "edge:lion-audience>lion-opening-ambush",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-audience",
+        "edgeId": "lion-audience>lion-opening-ambush",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-opening-ambush>lion-nomad-crossroads",
+      "beatId": "edge:lion-opening-ambush>lion-nomad-crossroads",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-opening-ambush",
+        "edgeId": "lion-opening-ambush>lion-nomad-crossroads",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-nomad-crossroads>lion-refugees",
+      "beatId": "edge:lion-nomad-crossroads>lion-refugees",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-nomad-crossroads",
+        "edgeId": "lion-nomad-crossroads>lion-refugees",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-refugees>lion-first-trial-event",
+      "beatId": "edge:lion-refugees>lion-first-trial-event",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-refugees",
+        "edgeId": "lion-refugees>lion-first-trial-event",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-refugees>lion-first-trial-combat",
+      "beatId": "edge:lion-refugees>lion-first-trial-combat",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-refugees",
+        "edgeId": "lion-refugees>lion-first-trial-combat",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-first-trial-event>lion-first-refuge",
+      "beatId": "edge:lion-first-trial-event>lion-first-refuge",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-first-trial-event",
+        "edgeId": "lion-first-trial-event>lion-first-refuge",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-first-trial-combat>lion-first-refuge",
+      "beatId": "edge:lion-first-trial-combat>lion-first-refuge",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-first-trial-combat",
+        "edgeId": "lion-first-trial-combat>lion-first-refuge",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-first-refuge>lion-reserve-trail",
+      "beatId": "edge:lion-first-refuge>lion-reserve-trail",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-first-refuge",
+        "edgeId": "lion-first-refuge>lion-reserve-trail",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-reserve-trail>lion-valmir-road",
+      "beatId": "edge:lion-reserve-trail>lion-valmir-road",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-reserve-trail",
+        "edgeId": "lion-reserve-trail>lion-valmir-road",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-valmir-road>lion-second-trial-event",
+      "beatId": "edge:lion-valmir-road>lion-second-trial-event",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-valmir-road",
+        "edgeId": "lion-valmir-road>lion-second-trial-event",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-valmir-road>lion-second-trial-combat",
+      "beatId": "edge:lion-valmir-road>lion-second-trial-combat",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-valmir-road",
+        "edgeId": "lion-valmir-road>lion-second-trial-combat",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-second-trial-event>lion-village-choice",
+      "beatId": "edge:lion-second-trial-event>lion-village-choice",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-second-trial-event",
+        "edgeId": "lion-second-trial-event>lion-village-choice",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-second-trial-combat>lion-village-choice",
+      "beatId": "edge:lion-second-trial-combat>lion-village-choice",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-second-trial-combat",
+        "edgeId": "lion-second-trial-combat>lion-village-choice",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-village-choice>lion-second-refuge",
+      "beatId": "edge:lion-village-choice>lion-second-refuge",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-village-choice",
+        "edgeId": "lion-village-choice>lion-second-refuge",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-second-refuge>lion-lancer-recruit",
+      "beatId": "edge:lion-second-refuge>lion-lancer-recruit",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-second-refuge",
+        "edgeId": "lion-second-refuge>lion-lancer-recruit",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-lancer-recruit>lion-witnesses",
+      "beatId": "edge:lion-lancer-recruit>lion-witnesses",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-lancer-recruit",
+        "edgeId": "lion-lancer-recruit>lion-witnesses",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-witnesses>lion-final-trial-event",
+      "beatId": "edge:lion-witnesses>lion-final-trial-event",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-witnesses",
+        "edgeId": "lion-witnesses>lion-final-trial-event",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-witnesses>lion-final-trial-combat",
+      "beatId": "edge:lion-witnesses>lion-final-trial-combat",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-witnesses",
+        "edgeId": "lion-witnesses>lion-final-trial-combat",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "CINEMATIC_HOLD",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-final-trial-event>lion-shadow-signs",
+      "beatId": "edge:lion-final-trial-event>lion-shadow-signs",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-trial-event",
+        "edgeId": "lion-final-trial-event>lion-shadow-signs",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-final-trial-combat>lion-shadow-signs",
+      "beatId": "edge:lion-final-trial-combat>lion-shadow-signs",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-trial-combat",
+        "edgeId": "lion-final-trial-combat>lion-shadow-signs",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-shadow-signs>lion-final-refuge",
+      "beatId": "edge:lion-shadow-signs>lion-final-refuge",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-shadow-signs",
+        "edgeId": "lion-shadow-signs>lion-final-refuge",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    },
+    {
+      "id": "cast:edge:lion-final-refuge>lion-final-judgement",
+      "beatId": "edge:lion-final-refuge>lion-final-judgement",
+      "dialogueIds": [],
+      "nodeContentIdentity": {
+        "nodeId": "lion-final-refuge",
+        "edgeId": "lion-final-refuge>lion-final-judgement",
+        "contentId": null,
+        "cinematicId": null
+      },
+      "semanticMode": "TRAVEL_STILL",
+      "requiredCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "allowedCharacters": [
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "forbiddenCharacters": [
+        "cedric",
+        "lancer"
+      ],
+      "speakerSequence": [],
+      "partyState": "RESOLVE_FROM_AUTHORITATIVE_RUN_STATE_AT_BEAT",
+      "recruitmentState": {
+        "source": "RunSystem",
+        "requiredOptionalRecruits": [],
+        "futureRecruitLeakForbidden": true
+      },
+      "routeState": "RESOLVE_FROM_AUTHORITATIVE_NODE_AND_EDGE",
+      "characterNarrativeState": "RESOLVE_FROM_DIALOGUE_AND_DERIVED_NARRATIVE_STATE",
+      "requiredExternalNpcs": [],
+      "explicitlyOffscreen": [],
+      "mustRemainPhysicallyPresent": [],
+      "truthSources": [
+        "tools/cinematics/specs/final_presentation_mode_audit.json",
+        "tools/cinematics/specs/narrative_dialogue_staging.json",
+        "tools/cinematics/specs/cinematic_dialogue_cast_audit.json"
+      ]
+    }
+  ]
+}

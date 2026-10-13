@@ -1,0 +1,7458 @@
+{
+  "task": "TRAVERSAL-T0-PURSUIT-ART-1",
+  "baseline": "0e982fe40979b482e337f60435ec68e144897751",
+  "branch": "traversal-t0-pursuit-art-1",
+  "environment": "Vite DEV",
+  "pursuerRequests": [
+    "http://127.0.0.1:5221/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+    "http://127.0.0.1:5221/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+    "http://127.0.0.1:5221/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+    "http://127.0.0.1:5221/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png"
+  ],
+  "scenarios": [
+    {
+      "id": "off",
+      "branch": "lion-first-trial-event",
+      "complete": true,
+      "samples": [
+        {
+          "segment": "route-1",
+          "phase": "RUNNING",
+          "view": "route",
+          "progress": 0,
+          "lane": 0,
+          "speed": 1,
+          "transition": "entry",
+          "presentation": null,
+          "departure": null,
+          "pursuitEnabled": null,
+          "pursuitRendererCount": 0,
+          "pursuitFocusable": 0,
+          "pursuitAriaHidden": null,
+          "pursuitWindow": "",
+          "pressure": 0,
+          "pursuerLane": null,
+          "pursuitEvents": [],
+          "pursuitResolved": [],
+          "pursuitCaughtCount": 0,
+          "pursuitSpeedBefore": 0,
+          "pursuitSpeedAfter": 0,
+          "pursuitCatchElapsed": 0,
+          "pursuitCatchProgress": 0,
+          "proxyVisible": false,
+          "proxyActive": false,
+          "proxyLeft": null,
+          "proxyRight": null,
+          "proxyTop": null,
+          "proxyBottom": null,
+          "imageCount": 0,
+          "imageSrc": null,
+          "imageLoaded": false,
+          "imageNaturalSize": null,
+          "imageAlt": null,
+          "devProxyParts": 0,
+          "devProxyLabel": false,
+          "spriteToVehicleWidth": null,
+          "spriteToVehicleHeight": null,
+          "pursuitZ": 0,
+          "vehicleZ": 22,
+          "vehicleLeft": -251.25,
+          "vehicleCount": 1,
+          "hudBoxes": [
+            {
+              "x": 0,
+              "y": 0,
+              "right": 0,
+              "bottom": 0
+            },
+            {
+              "x": 1196,
+              "y": 18,
+              "right": 1420,
+              "bottom": 97.640625
+            }
+          ],
+          "catchFeedback": false,
+          "escapeFeedback": false,
+          "riskEnabled": "dev",
+          "riskCollisions": 0,
+          "riskSpeedAfter": 0,
+          "rewardGold": 0,
+          "rewardCollected": [],
+          "rewardFeedback": null,
+          "visibleRisk": [],
+          "visibleReward": [],
+          "temporaryLoot": 0,
+          "campaignSignature": "{\"gold\":150,\"reputation\":30,\"flags\":{},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90]],\"visited\":[\"lion-camp\",\"lion-audience\"],\"resolved\":[]}",
+          "fork": false,
+          "combat": false,
+          "dialogue": false,
+          "cinematic": false,
+          "optionalDecision": false,
+          "destinationAgency": false,
+          "overflow": 0,
+          "laneButtons": [
+            {
+              "x": 14,
+              "y": 371,
+              "right": 44,
+              "bottom": 401
+            },
+            {
+              "x": 14,
+              "y": 409,
+              "right": 44,
+              "bottom": 439
+            }
+          ],
+          "width": 1440,
+          "height": 810
+        }
+      ],
+      "events": [],
+      "segments": {},
+      "collisions": [],
+      "laneMoves": [],
+      "transitionLeaks": [],
+      "pressureTrends": [],
+      "catch": null,
+      "escape": null,
+      "rewardAfterCollision": null,
+      "agency": null,
+      "final": {
+        "segment": "route-1",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0,
+        "lane": 0,
+        "speed": 1,
+        "transition": "entry",
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": null,
+        "pursuitRendererCount": 0,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": null,
+        "pursuitWindow": "",
+        "pressure": 0,
+        "pursuerLane": null,
+        "pursuitEvents": [],
+        "pursuitResolved": [],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": false,
+        "proxyActive": false,
+        "proxyLeft": null,
+        "proxyRight": null,
+        "proxyTop": null,
+        "proxyBottom": null,
+        "imageCount": 0,
+        "imageSrc": null,
+        "imageLoaded": false,
+        "imageNaturalSize": null,
+        "imageAlt": null,
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": null,
+        "spriteToVehicleHeight": null,
+        "pursuitZ": 0,
+        "vehicleZ": 22,
+        "vehicleLeft": -233.609375,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 1196,
+            "y": 18,
+            "right": 1420,
+            "bottom": 97.640625
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": false,
+        "riskEnabled": "dev",
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 0,
+        "rewardCollected": [],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 0,
+        "campaignSignature": "{\"gold\":150,\"reputation\":30,\"flags\":{},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90]],\"visited\":[\"lion-camp\",\"lion-audience\"],\"resolved\":[]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ],
+        "width": 1440,
+        "height": 810
+      },
+      "sampleCount": 0
+    },
+    {
+      "id": "escape",
+      "branch": "lion-first-trial-event",
+      "complete": true,
+      "samples": [],
+      "events": [
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "result": "STARTED",
+          "pressure01": 0.24
+        },
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "result": "ESCAPED",
+          "pressure01": 0
+        }
+      ],
+      "segments": {
+        "route-1": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 0,
+          "rewardCollected": [
+            "t0:r1:reward-1"
+          ]
+        },
+        "route-2": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 0,
+          "rewardCollected": [
+            "t0:r2:reward-1"
+          ]
+        },
+        "route-3": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 0,
+          "rewardCollected": [
+            "t0:r3:reward-1"
+          ]
+        }
+      },
+      "collisions": [],
+      "laneMoves": [
+        {
+          "segment": "route-1",
+          "progress": 0.0013833333333333258,
+          "lane": 1
+        },
+        {
+          "segment": "route-2",
+          "progress": 0.002226666666666764,
+          "lane": 0
+        },
+        {
+          "segment": "route-3",
+          "progress": 0.0011133333333331393,
+          "lane": 1
+        },
+        {
+          "segment": "route-3",
+          "progress": 0.5022,
+          "lane": 0
+        }
+      ],
+      "transitionLeaks": [],
+      "pressureTrends": [
+        {
+          "segment": "route-3",
+          "from": 0.2350125,
+          "to": 0.23001000000000027
+        },
+        {
+          "segment": "route-3",
+          "from": 0.23001000000000027,
+          "to": 0.22500749999999997
+        },
+        {
+          "segment": "route-3",
+          "from": 0.22500749999999997,
+          "to": 0.16875750000000034
+        },
+        {
+          "segment": "route-3",
+          "from": 0.16875750000000034,
+          "to": 0.16376250000000048
+        },
+        {
+          "segment": "route-3",
+          "from": 0.16376250000000048,
+          "to": 0.1575075000000004
+        },
+        {
+          "segment": "route-3",
+          "from": 0.1575075000000004,
+          "to": 0.15376500000000087
+        },
+        {
+          "segment": "route-3",
+          "from": 0.15376500000000087,
+          "to": 0.14876250000000057
+        },
+        {
+          "segment": "route-3",
+          "from": 0.14876250000000057,
+          "to": 0.14251500000000095
+        },
+        {
+          "segment": "route-3",
+          "from": 0.14251500000000095,
+          "to": 0.13751250000000065
+        },
+        {
+          "segment": "route-3",
+          "from": 0.13751250000000065,
+          "to": 0.1325175000000008
+        },
+        {
+          "segment": "route-3",
+          "from": 0.1325175000000008,
+          "to": 0.1275075000000006
+        },
+        {
+          "segment": "route-3",
+          "from": 0.1275075000000006,
+          "to": 0.12126000000000095
+        },
+        {
+          "segment": "route-3",
+          "from": 0.12126000000000095,
+          "to": 0.11625750000000064
+        },
+        {
+          "segment": "route-3",
+          "from": 0.11625750000000064,
+          "to": 0.11001750000000088
+        },
+        {
+          "segment": "route-3",
+          "from": 0.11001750000000088,
+          "to": 0.10377000000000067
+        },
+        {
+          "segment": "route-3",
+          "from": 0.10377000000000067,
+          "to": 0.0987675000000009
+        },
+        {
+          "segment": "route-3",
+          "from": 0.0987675000000009,
+          "to": 0.09252000000000069
+        },
+        {
+          "segment": "route-3",
+          "from": 0.09252000000000069,
+          "to": 0.08751750000000091
+        },
+        {
+          "segment": "route-3",
+          "from": 0.08751750000000091,
+          "to": 0.08251500000000114
+        },
+        {
+          "segment": "route-3",
+          "from": 0.08251500000000114,
+          "to": 0.07626750000000095
+        },
+        {
+          "segment": "route-3",
+          "from": 0.07626750000000095,
+          "to": 0.07002000000000072
+        },
+        {
+          "segment": "route-3",
+          "from": 0.07002000000000072,
+          "to": 0.06501750000000094
+        },
+        {
+          "segment": "route-3",
+          "from": 0.06501750000000094,
+          "to": 0.058770000000000724
+        },
+        {
+          "segment": "route-3",
+          "from": 0.058770000000000724,
+          "to": 0.053767500000000946
+        },
+        {
+          "segment": "route-3",
+          "from": 0.053767500000000946,
+          "to": 0.04752000000000073
+        },
+        {
+          "segment": "route-3",
+          "from": 0.04752000000000073,
+          "to": 0.04126500000000117
+        },
+        {
+          "segment": "route-3",
+          "from": 0.04126500000000117,
+          "to": 0.03627000000000074
+        },
+        {
+          "segment": "route-3",
+          "from": 0.03627000000000074,
+          "to": 0.031267500000000954
+        },
+        {
+          "segment": "route-3",
+          "from": 0.031267500000000954,
+          "to": 0.025020000000000733
+        },
+        {
+          "segment": "route-3",
+          "from": 0.025020000000000733,
+          "to": 0.01877250000000106
+        },
+        {
+          "segment": "route-3",
+          "from": 0.01877250000000106,
+          "to": 0.013770000000000733
+        },
+        {
+          "segment": "route-3",
+          "from": 0.013770000000000733,
+          "to": 0.00751500000000117
+        },
+        {
+          "segment": "route-3",
+          "from": 0.00751500000000117,
+          "to": 0.0037725000000010606
+        },
+        {
+          "segment": "route-3",
+          "from": 0.0037725000000010606,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0.0041459999999999605,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        }
+      ],
+      "catch": null,
+      "escape": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.7844133333333332,
+        "lane": 0,
+        "speed": 2.1888195497107774,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": "dev",
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "",
+        "pressure": 0,
+        "pursuerLane": null,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.24
+          },
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "ESCAPED",
+            "pressure01": 0
+          }
+        ],
+        "pursuitResolved": [
+          "t0:r3:pursuit-1"
+        ],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": true,
+        "proxyActive": false,
+        "proxyLeft": -117.00856018066406,
+        "proxyRight": 77.38206481933594,
+        "proxyTop": 567.4617309570312,
+        "proxyBottom": 660.7586059570312,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6079456606724003,
+        "spriteToVehicleHeight": 0.47994534201430755,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 200.125,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 1196,
+            "y": 18,
+            "right": 1420,
+            "bottom": 97.640625
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": true,
+        "riskEnabled": "off",
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-1"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ],
+        "width": 1440,
+        "height": 810,
+        "campaignBefore": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}"
+      },
+      "rewardAfterCollision": null,
+      "agency": null,
+      "final": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.8333,
+        "lane": 0,
+        "speed": 2.2499624970000998,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": "dev",
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "",
+        "pressure": 0,
+        "pursuerLane": null,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.24
+          },
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "ESCAPED",
+            "pressure01": 0
+          }
+        ],
+        "pursuitResolved": [
+          "t0:r3:pursuit-1"
+        ],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": false,
+        "proxyActive": false,
+        "proxyLeft": null,
+        "proxyRight": null,
+        "proxyTop": null,
+        "proxyBottom": null,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": null,
+        "spriteToVehicleHeight": null,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 200.125,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 1196,
+            "y": 18,
+            "right": 1420,
+            "bottom": 97.640625
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": false,
+        "riskEnabled": "off",
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-1"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ],
+        "width": 1440,
+        "height": 810
+      },
+      "sampleCount": 521
+    },
+    {
+      "id": "caught",
+      "branch": "lion-first-trial-event",
+      "complete": true,
+      "samples": [],
+      "events": [
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "result": "STARTED",
+          "pressure01": 0.24
+        },
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "result": "CAUGHT",
+          "pressure01": 1
+        }
+      ],
+      "segments": {
+        "route-1": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 0,
+          "rewardCollected": [
+            "t0:r1:reward-1"
+          ]
+        },
+        "route-2": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 0,
+          "rewardCollected": [
+            "t0:r2:reward-1"
+          ]
+        },
+        "route-3": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 0,
+          "rewardCollected": [
+            "t0:r3:reward-2"
+          ]
+        }
+      },
+      "collisions": [],
+      "laneMoves": [
+        {
+          "segment": "route-1",
+          "progress": 0.0027749999999999962,
+          "lane": 1
+        },
+        {
+          "segment": "route-2",
+          "progress": 0.001113333333333382,
+          "lane": 0
+        },
+        {
+          "segment": "route-3",
+          "progress": 0.5033066666666666,
+          "lane": 1
+        }
+      ],
+      "transitionLeaks": [],
+      "pressureTrends": [],
+      "catch": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.7288533333333336,
+        "lane": 1,
+        "speed": 1.0001599165533155,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": "dev",
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "",
+        "pressure": 1,
+        "pursuerLane": null,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.24
+          },
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "CAUGHT",
+            "pressure01": 1
+          }
+        ],
+        "pursuitResolved": [
+          "t0:r3:pursuit-1"
+        ],
+        "pursuitCaughtCount": 1,
+        "pursuitSpeedBefore": 2.1042815031077753,
+        "pursuitSpeedAfter": 1,
+        "pursuitCatchElapsed": 10916.099999999999,
+        "pursuitCatchProgress": 0.7277399999999999,
+        "proxyVisible": true,
+        "proxyActive": false,
+        "proxyLeft": 6.1953125,
+        "proxyRight": 200.5859375,
+        "proxyTop": 567.4617309570312,
+        "proxyBottom": 660.7586059570312,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6079456606724003,
+        "spriteToVehicleHeight": 0.47994534201430755,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 200.125,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 1196,
+            "y": 18,
+            "right": 1420,
+            "bottom": 97.640625
+          }
+        ],
+        "catchFeedback": true,
+        "escapeFeedback": false,
+        "riskEnabled": "off",
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-2"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ],
+        "width": 1440,
+        "height": 810,
+        "campaignBefore": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}"
+      },
+      "escape": null,
+      "rewardAfterCollision": null,
+      "agency": null,
+      "final": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.7710733333333333,
+        "lane": 1,
+        "speed": 1.2110007359655326,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": "dev",
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "",
+        "pressure": 1,
+        "pursuerLane": null,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.24
+          },
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "CAUGHT",
+            "pressure01": 1
+          }
+        ],
+        "pursuitResolved": [
+          "t0:r3:pursuit-1"
+        ],
+        "pursuitCaughtCount": 1,
+        "pursuitSpeedBefore": 2.1042815031077753,
+        "pursuitSpeedAfter": 1,
+        "pursuitCatchElapsed": 10916.099999999999,
+        "pursuitCatchProgress": 0.7277399999999999,
+        "proxyVisible": false,
+        "proxyActive": false,
+        "proxyLeft": null,
+        "proxyRight": null,
+        "proxyTop": null,
+        "proxyBottom": null,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": null,
+        "spriteToVehicleHeight": null,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 200.125,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 1196,
+            "y": 18,
+            "right": 1420,
+            "bottom": 97.640625
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": false,
+        "riskEnabled": "off",
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-2"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ],
+        "width": 1440,
+        "height": 810
+      },
+      "sampleCount": 527
+    },
+    {
+      "id": "path-a",
+      "branch": "lion-first-trial-event",
+      "complete": true,
+      "samples": [],
+      "events": [
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "result": "STARTED",
+          "pressure01": 0.24
+        },
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "result": "ESCAPED",
+          "pressure01": 0
+        },
+        {
+          "windowId": "t0:r5a:pursuit-1",
+          "result": "STARTED",
+          "pressure01": 0.28
+        },
+        {
+          "windowId": "t0:r5a:pursuit-1",
+          "result": "ESCAPED",
+          "pressure01": 0
+        },
+        {
+          "windowId": "t0:r6:pursuit-1",
+          "result": "STARTED",
+          "pressure01": 0.34
+        },
+        {
+          "windowId": "t0:r6:pursuit-1",
+          "result": "ESCAPED",
+          "pressure01": 0
+        }
+      ],
+      "segments": {
+        "route-1": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 0,
+          "rewardCollected": [
+            "t0:r1:reward-1"
+          ]
+        },
+        "route-2": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 0,
+          "rewardCollected": [
+            "t0:r2:reward-1"
+          ]
+        },
+        "route-3": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 0,
+          "rewardCollected": [
+            "t0:r3:reward-1"
+          ]
+        },
+        "route-4": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 1,
+          "rewardCollected": [
+            "t0:r4:reward-1"
+          ]
+        },
+        "route-5a": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 0,
+          "rewardCollected": [
+            "t0:r5a:reward-1"
+          ]
+        },
+        "route-6": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 0,
+          "rewardCollected": [
+            "t0:r6:reward-1"
+          ]
+        }
+      },
+      "collisions": [],
+      "laneMoves": [
+        {
+          "segment": "route-1",
+          "progress": 0.0013833333333333258,
+          "lane": 1
+        },
+        {
+          "segment": "route-2",
+          "progress": 0.005553333333333285,
+          "lane": 0
+        },
+        {
+          "segment": "route-3",
+          "progress": 0.002226666666666764,
+          "lane": 1
+        },
+        {
+          "segment": "route-3",
+          "progress": 0.5044266666666668,
+          "lane": 0
+        },
+        {
+          "segment": "route-5a",
+          "progress": 0.0011066666666670548,
+          "lane": 1
+        },
+        {
+          "segment": "route-5a",
+          "progress": 0.5055266666666672,
+          "lane": 0
+        },
+        {
+          "segment": "route-6",
+          "progress": 0.004169999999999709,
+          "lane": 1
+        },
+        {
+          "segment": "route-6",
+          "progress": 0.36249000000000015,
+          "lane": 0
+        },
+        {
+          "segment": "route-6",
+          "progress": 0.6233099999999998,
+          "lane": 1
+        }
+      ],
+      "transitionLeaks": [],
+      "pressureTrends": [
+        {
+          "segment": "route-3",
+          "from": 0.2362574999999999,
+          "to": 0.23000999999999971
+        },
+        {
+          "segment": "route-3",
+          "from": 0.23000999999999971,
+          "to": 0.2237625000000001
+        },
+        {
+          "segment": "route-3",
+          "from": 0.2237625000000001,
+          "to": 0.2187599999999998
+        },
+        {
+          "segment": "route-3",
+          "from": 0.2187599999999998,
+          "to": 0.21250499999999972
+        },
+        {
+          "segment": "route-3",
+          "from": 0.21250499999999972,
+          "to": 0.2062575000000001
+        },
+        {
+          "segment": "route-3",
+          "from": 0.2062575000000001,
+          "to": 0.20126250000000023
+        },
+        {
+          "segment": "route-3",
+          "from": 0.20126250000000023,
+          "to": 0.19500750000000017
+        },
+        {
+          "segment": "route-3",
+          "from": 0.19500750000000017,
+          "to": 0.18875999999999998
+        },
+        {
+          "segment": "route-3",
+          "from": 0.18875999999999998,
+          "to": 0.18376500000000012
+        },
+        {
+          "segment": "route-3",
+          "from": 0.18376500000000012,
+          "to": 0.17876250000000038
+        },
+        {
+          "segment": "route-3",
+          "from": 0.17876250000000038,
+          "to": 0.1725075000000003
+        },
+        {
+          "segment": "route-3",
+          "from": 0.1725075000000003,
+          "to": 0.16751250000000045
+        },
+        {
+          "segment": "route-3",
+          "from": 0.16751250000000045,
+          "to": 0.1612575000000004
+        },
+        {
+          "segment": "route-3",
+          "from": 0.1612575000000004,
+          "to": 0.1550100000000002
+        },
+        {
+          "segment": "route-3",
+          "from": 0.1550100000000002,
+          "to": 0.15000750000000043
+        },
+        {
+          "segment": "route-3",
+          "from": 0.15000750000000043,
+          "to": 0.14376000000000022
+        },
+        {
+          "segment": "route-3",
+          "from": 0.14376000000000022,
+          "to": 0.1375125000000006
+        },
+        {
+          "segment": "route-3",
+          "from": 0.1375125000000006,
+          "to": 0.13251750000000018
+        },
+        {
+          "segment": "route-3",
+          "from": 0.13251750000000018,
+          "to": 0.1262625000000006
+        },
+        {
+          "segment": "route-3",
+          "from": 0.1262625000000006,
+          "to": 0.1212600000000003
+        },
+        {
+          "segment": "route-3",
+          "from": 0.1212600000000003,
+          "to": 0.11625750000000053
+        },
+        {
+          "segment": "route-3",
+          "from": 0.11625750000000053,
+          "to": 0.11001000000000032
+        },
+        {
+          "segment": "route-3",
+          "from": 0.11001000000000032,
+          "to": 0.10501500000000043
+        },
+        {
+          "segment": "route-3",
+          "from": 0.10501500000000043,
+          "to": 0.10126500000000044
+        },
+        {
+          "segment": "route-3",
+          "from": 0.10126500000000044,
+          "to": 0.09501000000000034
+        },
+        {
+          "segment": "route-3",
+          "from": 0.09501000000000034,
+          "to": 0.08876250000000069
+        },
+        {
+          "segment": "route-3",
+          "from": 0.08876250000000069,
+          "to": 0.08376750000000026
+        },
+        {
+          "segment": "route-3",
+          "from": 0.08376750000000026,
+          "to": 0.07876500000000047
+        },
+        {
+          "segment": "route-3",
+          "from": 0.07876500000000047,
+          "to": 0.07251750000000025
+        },
+        {
+          "segment": "route-3",
+          "from": 0.07251750000000025,
+          "to": 0.06627000000000059
+        },
+        {
+          "segment": "route-3",
+          "from": 0.06627000000000059,
+          "to": 0.06126750000000027
+        },
+        {
+          "segment": "route-3",
+          "from": 0.06126750000000027,
+          "to": 0.05501250000000071
+        },
+        {
+          "segment": "route-3",
+          "from": 0.05501250000000071,
+          "to": 0.04876500000000048
+        },
+        {
+          "segment": "route-3",
+          "from": 0.04876500000000048,
+          "to": 0.0437625000000007
+        },
+        {
+          "segment": "route-3",
+          "from": 0.0437625000000007,
+          "to": 0.03751500000000048
+        },
+        {
+          "segment": "route-3",
+          "from": 0.03751500000000048,
+          "to": 0.03252000000000058
+        },
+        {
+          "segment": "route-3",
+          "from": 0.03252000000000058,
+          "to": 0.027517500000000254
+        },
+        {
+          "segment": "route-3",
+          "from": 0.027517500000000254,
+          "to": 0.02126250000000069
+        },
+        {
+          "segment": "route-3",
+          "from": 0.02126250000000069,
+          "to": 0.016267500000000254
+        },
+        {
+          "segment": "route-3",
+          "from": 0.016267500000000254,
+          "to": 0.011272500000000364
+        },
+        {
+          "segment": "route-3",
+          "from": 0.011272500000000364,
+          "to": 0.0062700000000005815
+        },
+        {
+          "segment": "route-3",
+          "from": 0.0062700000000005815,
+          "to": 0.000015000000000472751
+        },
+        {
+          "segment": "route-3",
+          "from": 0.000015000000000472751,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0.004712000000000405,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.2787625,
+          "to": 0.27251499999999984
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.27251499999999984,
+          "to": 0.26626749999999966
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.26626749999999966,
+          "to": 0.2612649999999999
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.2612649999999999,
+          "to": 0.2550099999999993
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.2550099999999993,
+          "to": 0.250015
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.250015,
+          "to": 0.2437674999999998
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.2437674999999998,
+          "to": 0.23876500000000006
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.23876500000000006,
+          "to": 0.23251749999999988
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.23251749999999988,
+          "to": 0.22751500000000013
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.22751500000000013,
+          "to": 0.2212599999999995
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.2212599999999995,
+          "to": 0.21627249999999948
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.21627249999999948,
+          "to": 0.21126999999999968
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.21126999999999968,
+          "to": 0.20501500000000017
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.20501500000000017,
+          "to": 0.20001250000000043
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.20001250000000043,
+          "to": 0.19377249999999951
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.19377249999999951,
+          "to": 0.1875175
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.1875175,
+          "to": 0.1825224999999996
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.1825224999999996,
+          "to": 0.1775199999999998
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.1775199999999998,
+          "to": 0.17251750000000005
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.17251750000000005,
+          "to": 0.16626250000000053
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.16626250000000053,
+          "to": 0.1612675000000001
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.1612675000000001,
+          "to": 0.15501250000000055
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.15501250000000055,
+          "to": 0.15001750000000014
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.15001750000000014,
+          "to": 0.14376999999999995
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.14376999999999995,
+          "to": 0.13752249999999977
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.13752249999999977,
+          "to": 0.1312675000000002
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.1312675000000002,
+          "to": 0.12626500000000046
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.12626500000000046,
+          "to": 0.12001750000000025
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.12001750000000025,
+          "to": 0.11501500000000046
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.11501500000000046,
+          "to": 0.10876750000000024
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.10876750000000024,
+          "to": 0.1037724999999998
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.1037724999999998,
+          "to": 0.09751750000000023
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.09751750000000023,
+          "to": 0.09127
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.09127,
+          "to": 0.08626750000000022
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.08626750000000022,
+          "to": 0.08002
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.08002,
+          "to": 0.07376500000000043
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.07376500000000043,
+          "to": 0.07001500000000042
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.07001500000000042,
+          "to": 0.06501999999999998
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.06501999999999998,
+          "to": 0.060017500000000196
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.060017500000000196,
+          "to": 0.05377750000000042
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.05377750000000042,
+          "to": 0.048775000000000644
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.048775000000000644,
+          "to": 0.04377249999999978
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.04377249999999978,
+          "to": 0.03877
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.03877,
+          "to": 0.03377500000000066
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.03377500000000066,
+          "to": 0.028780000000000226
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.028780000000000226,
+          "to": 0.022525000000000663
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.022525000000000663,
+          "to": 0.016277500000000444
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.016277500000000444,
+          "to": 0.011267500000000227
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.011267500000000227,
+          "to": 0.005027500000000446
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.005027500000000446,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.007809000000001603,
+          "to": 0.001561500000001385
+        },
+        {
+          "segment": "route-5a",
+          "from": 0.001561500000001385,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5a",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0.33751000000000025,
+          "to": 0.33125499999999963
+        },
+        {
+          "segment": "route-6",
+          "from": 0.33125499999999963,
+          "to": 0.3262600000000003
+        },
+        {
+          "segment": "route-6",
+          "from": 0.3262600000000003,
+          "to": 0.3212575000000006
+        },
+        {
+          "segment": "route-6",
+          "from": 0.3212575000000006,
+          "to": 0.3150100000000004
+        },
+        {
+          "segment": "route-6",
+          "from": 0.3150100000000004,
+          "to": 0.3087549999999998
+        },
+        {
+          "segment": "route-6",
+          "from": 0.3087549999999998,
+          "to": 0.30375250000000004
+        },
+        {
+          "segment": "route-6",
+          "from": 0.30375250000000004,
+          "to": 0.29750499999999985
+        },
+        {
+          "segment": "route-6",
+          "from": 0.29750499999999985,
+          "to": 0.29251000000000055
+        },
+        {
+          "segment": "route-6",
+          "from": 0.29251000000000055,
+          "to": 0.2862549999999999
+        },
+        {
+          "segment": "route-6",
+          "from": 0.2862549999999999,
+          "to": 0.2800150000000002
+        },
+        {
+          "segment": "route-6",
+          "from": 0.2800150000000002,
+          "to": 0.275005
+        },
+        {
+          "segment": "route-6",
+          "from": 0.275005,
+          "to": 0.2700100000000007
+        },
+        {
+          "segment": "route-6",
+          "from": 0.2700100000000007,
+          "to": 0.2637625000000005
+        },
+        {
+          "segment": "route-6",
+          "from": 0.2637625000000005,
+          "to": 0.25876000000000077
+        },
+        {
+          "segment": "route-6",
+          "from": 0.25876000000000077,
+          "to": 0.253757500000001
+        },
+        {
+          "segment": "route-6",
+          "from": 0.253757500000001,
+          "to": 0.2487625000000006
+        },
+        {
+          "segment": "route-6",
+          "from": 0.2487625000000006,
+          "to": 0.24251500000000042
+        },
+        {
+          "segment": "route-6",
+          "from": 0.24251500000000042,
+          "to": 0.23750500000000024
+        },
+        {
+          "segment": "route-6",
+          "from": 0.23750500000000024,
+          "to": 0.23251000000000088
+        },
+        {
+          "segment": "route-6",
+          "from": 0.23251000000000088,
+          "to": 0.2262625000000007
+        },
+        {
+          "segment": "route-6",
+          "from": 0.2262625000000007,
+          "to": 0.22126000000000096
+        },
+        {
+          "segment": "route-6",
+          "from": 0.22126000000000096,
+          "to": 0.21501250000000077
+        },
+        {
+          "segment": "route-6",
+          "from": 0.21501250000000077,
+          "to": 0.20875750000000126
+        },
+        {
+          "segment": "route-6",
+          "from": 0.20875750000000126,
+          "to": 0.20376250000000085
+        },
+        {
+          "segment": "route-6",
+          "from": 0.20376250000000085,
+          "to": 0.1987600000000011
+        },
+        {
+          "segment": "route-6",
+          "from": 0.1987600000000011,
+          "to": 0.19375750000000133
+        },
+        {
+          "segment": "route-6",
+          "from": 0.19375750000000133,
+          "to": 0.1887625000000009
+        },
+        {
+          "segment": "route-6",
+          "from": 0.1887625000000009,
+          "to": 0.18376000000000112
+        },
+        {
+          "segment": "route-6",
+          "from": 0.18376000000000112,
+          "to": 0.17876500000000067
+        },
+        {
+          "segment": "route-6",
+          "from": 0.17876500000000067,
+          "to": 0.1725175000000005
+        },
+        {
+          "segment": "route-6",
+          "from": 0.1725175000000005,
+          "to": 0.16751500000000075
+        },
+        {
+          "segment": "route-6",
+          "from": 0.16751500000000075,
+          "to": 0.16126750000000056
+        },
+        {
+          "segment": "route-6",
+          "from": 0.16126750000000056,
+          "to": 0.15626500000000082
+        },
+        {
+          "segment": "route-6",
+          "from": 0.15626500000000082,
+          "to": 0.15127000000000143
+        },
+        {
+          "segment": "route-6",
+          "from": 0.15127000000000143,
+          "to": 0.14501500000000073
+        },
+        {
+          "segment": "route-6",
+          "from": 0.14501500000000073,
+          "to": 0.1387600000000012
+        },
+        {
+          "segment": "route-6",
+          "from": 0.1387600000000012,
+          "to": 0.13376500000000074
+        },
+        {
+          "segment": "route-6",
+          "from": 0.13376500000000074,
+          "to": 0.12876250000000095
+        },
+        {
+          "segment": "route-6",
+          "from": 0.12876250000000095,
+          "to": 0.12376750000000053
+        },
+        {
+          "segment": "route-6",
+          "from": 0.12376750000000053,
+          "to": 0.1175200000000014
+        },
+        {
+          "segment": "route-6",
+          "from": 0.1175200000000014,
+          "to": 0.11251750000000052
+        },
+        {
+          "segment": "route-6",
+          "from": 0.11251750000000052,
+          "to": 0.10751500000000073
+        },
+        {
+          "segment": "route-6",
+          "from": 0.10751500000000073,
+          "to": 0.10126750000000051
+        },
+        {
+          "segment": "route-6",
+          "from": 0.10126750000000051,
+          "to": 0.09626500000000072
+        },
+        {
+          "segment": "route-6",
+          "from": 0.09626500000000072,
+          "to": 0.0900175000000005
+        },
+        {
+          "segment": "route-6",
+          "from": 0.0900175000000005,
+          "to": 0.08377000000000137
+        },
+        {
+          "segment": "route-6",
+          "from": 0.08377000000000137,
+          "to": 0.07876750000000049
+        },
+        {
+          "segment": "route-6",
+          "from": 0.07876750000000049,
+          "to": 0.07252000000000136
+        },
+        {
+          "segment": "route-6",
+          "from": 0.07414600000000228,
+          "to": 0.06789100000000162
+        },
+        {
+          "segment": "route-6",
+          "from": 0.06789100000000162,
+          "to": 0.06289600000000227
+        },
+        {
+          "segment": "route-6",
+          "from": 0.06289600000000227,
+          "to": 0.05664100000000162
+        },
+        {
+          "segment": "route-6",
+          "from": 0.05664100000000162,
+          "to": 0.0503935000000025
+        },
+        {
+          "segment": "route-6",
+          "from": 0.0503935000000025,
+          "to": 0.04539850000000207
+        },
+        {
+          "segment": "route-6",
+          "from": 0.04539850000000207,
+          "to": 0.03914350000000251
+        },
+        {
+          "segment": "route-6",
+          "from": 0.03914350000000251,
+          "to": 0.0328960000000023
+        },
+        {
+          "segment": "route-6",
+          "from": 0.0328960000000023,
+          "to": 0.027893500000002517
+        },
+        {
+          "segment": "route-6",
+          "from": 0.027893500000002517,
+          "to": 0.0216460000000023
+        },
+        {
+          "segment": "route-6",
+          "from": 0.0216460000000023,
+          "to": 0.016643500000002517
+        },
+        {
+          "segment": "route-6",
+          "from": 0.016643500000002517,
+          "to": 0.0103960000000023
+        },
+        {
+          "segment": "route-6",
+          "from": 0.0103960000000023,
+          "to": 0.004148500000002082
+        },
+        {
+          "segment": "route-6",
+          "from": 0.004148500000002082,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0.005961000000001418,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        }
+      ],
+      "catch": null,
+      "escape": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.783306666666667,
+        "lane": 0,
+        "speed": 2.187300838368052,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": "dev",
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "",
+        "pressure": 0,
+        "pursuerLane": null,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.24
+          },
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "ESCAPED",
+            "pressure01": 0
+          }
+        ],
+        "pursuitResolved": [
+          "t0:r3:pursuit-1"
+        ],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": true,
+        "proxyActive": false,
+        "proxyLeft": -116.72991180419922,
+        "proxyRight": 77.66071319580078,
+        "proxyTop": 567.4617309570312,
+        "proxyBottom": 660.7586059570312,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6079456606724003,
+        "spriteToVehicleHeight": 0.47994534201430755,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 200.125,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 1196,
+            "y": 18,
+            "right": 1420,
+            "bottom": 97.640625
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": true,
+        "riskEnabled": "dev",
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-1"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ],
+        "width": 1440,
+        "height": 810,
+        "campaignBefore": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}"
+      },
+      "rewardAfterCollision": null,
+      "agency": {
+        "segment": null,
+        "phase": null,
+        "view": null,
+        "progress": 0,
+        "lane": 0,
+        "speed": 0,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": null,
+        "pursuitRendererCount": 0,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": null,
+        "pursuitWindow": "",
+        "pressure": 0,
+        "pursuerLane": null,
+        "pursuitEvents": [],
+        "pursuitResolved": [],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": false,
+        "proxyActive": false,
+        "proxyLeft": null,
+        "proxyRight": null,
+        "proxyTop": null,
+        "proxyBottom": null,
+        "imageCount": 0,
+        "imageSrc": null,
+        "imageLoaded": false,
+        "imageNaturalSize": null,
+        "imageAlt": null,
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": null,
+        "spriteToVehicleHeight": null,
+        "pursuitZ": 0,
+        "vehicleZ": 0,
+        "vehicleLeft": null,
+        "vehicleCount": 0,
+        "hudBoxes": [],
+        "catchFeedback": false,
+        "escapeFeedback": false,
+        "riskEnabled": null,
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 0,
+        "rewardCollected": [],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 5,
+        "campaignSignature": "{\"gold\":135,\"reputation\":50,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true,\"helpedRefugees\":true,\"ate:ate_village_fear\":true,\"helpedMerchant\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\",\"lion-refugees\",\"lion-first-trial-event\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\",\"lion-refugees\",\"lion-first-trial-event\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": true,
+        "overflow": 0,
+        "laneButtons": [],
+        "width": 1440,
+        "height": 810
+      },
+      "final": {
+        "segment": null,
+        "phase": null,
+        "view": null,
+        "progress": 0,
+        "lane": 0,
+        "speed": 0,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": null,
+        "pursuitRendererCount": 0,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": null,
+        "pursuitWindow": "",
+        "pressure": 0,
+        "pursuerLane": null,
+        "pursuitEvents": [],
+        "pursuitResolved": [],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": false,
+        "proxyActive": false,
+        "proxyLeft": null,
+        "proxyRight": null,
+        "proxyTop": null,
+        "proxyBottom": null,
+        "imageCount": 0,
+        "imageSrc": null,
+        "imageLoaded": false,
+        "imageNaturalSize": null,
+        "imageAlt": null,
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": null,
+        "spriteToVehicleHeight": null,
+        "pursuitZ": 0,
+        "vehicleZ": 0,
+        "vehicleLeft": null,
+        "vehicleCount": 0,
+        "hudBoxes": [],
+        "catchFeedback": false,
+        "escapeFeedback": false,
+        "riskEnabled": null,
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 0,
+        "rewardCollected": [],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 5,
+        "campaignSignature": "{\"gold\":135,\"reputation\":50,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true,\"helpedRefugees\":true,\"ate:ate_village_fear\":true,\"helpedMerchant\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\",\"lion-refugees\",\"lion-first-trial-event\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\",\"lion-refugees\",\"lion-first-trial-event\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": true,
+        "overflow": 0,
+        "laneButtons": [],
+        "width": 1440,
+        "height": 810
+      },
+      "sampleCount": 1261
+    },
+    {
+      "id": "path-b",
+      "branch": "lion-first-trial-combat",
+      "complete": true,
+      "samples": [],
+      "events": [
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "result": "STARTED",
+          "pressure01": 0.24
+        },
+        {
+          "windowId": "t0:r3:pursuit-1",
+          "result": "ESCAPED",
+          "pressure01": 0
+        },
+        {
+          "windowId": "t0:r5b:pursuit-1",
+          "result": "STARTED",
+          "pressure01": 0.32
+        },
+        {
+          "windowId": "t0:r5b:pursuit-1",
+          "result": "ESCAPED",
+          "pressure01": 0
+        },
+        {
+          "windowId": "t0:r6:pursuit-1",
+          "result": "STARTED",
+          "pressure01": 0.34
+        },
+        {
+          "windowId": "t0:r6:pursuit-1",
+          "result": "ESCAPED",
+          "pressure01": 0
+        }
+      ],
+      "segments": {
+        "route-1": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 0,
+          "rewardCollected": [
+            "t0:r1:reward-1"
+          ]
+        },
+        "route-2": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 0,
+          "rewardCollected": [
+            "t0:r2:reward-1"
+          ]
+        },
+        "route-3": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 0,
+          "rewardCollected": [
+            "t0:r3:reward-1"
+          ]
+        },
+        "route-4": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 1,
+          "rewardCollected": [
+            "t0:r4:reward-1"
+          ]
+        },
+        "route-5b": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 1,
+          "rewardCollected": [
+            "t0:r5b:reward-1",
+            "t0:r5b:reward-2"
+          ]
+        },
+        "route-6": {
+          "started": 0,
+          "escaped": 0,
+          "caught": 0,
+          "collisions": 0,
+          "rewardCollected": [
+            "t0:r6:reward-1"
+          ]
+        }
+      },
+      "collisions": [
+        {
+          "beforePressure": 0.26258599999999865,
+          "beforeProgress": 0.2666533333333335,
+          "at": {
+            "segment": "route-5b",
+            "phase": "RUNNING",
+            "view": "route",
+            "progress": 0.2711,
+            "lane": 1,
+            "speed": 1.05,
+            "transition": null,
+            "presentation": null,
+            "departure": null,
+            "pursuitEnabled": "dev",
+            "pursuitRendererCount": 1,
+            "pursuitFocusable": 0,
+            "pursuitAriaHidden": "true",
+            "pursuitWindow": "t0:r5b:pursuit-1",
+            "pressure": 0.48992299999999844,
+            "pursuerLane": 1,
+            "pursuitEvents": [
+              {
+                "windowId": "t0:r3:pursuit-1",
+                "result": "STARTED",
+                "pressure01": 0.24
+              },
+              {
+                "windowId": "t0:r3:pursuit-1",
+                "result": "ESCAPED",
+                "pressure01": 0
+              },
+              {
+                "windowId": "t0:r5b:pursuit-1",
+                "result": "STARTED",
+                "pressure01": 0.32
+              }
+            ],
+            "pursuitResolved": [],
+            "pursuitCaughtCount": 0,
+            "pursuitSpeedBefore": 0,
+            "pursuitSpeedAfter": 0,
+            "pursuitCatchElapsed": 0,
+            "pursuitCatchProgress": 0,
+            "proxyVisible": true,
+            "proxyActive": true,
+            "proxyLeft": -30.6640625,
+            "proxyRight": 163.7265625,
+            "proxyTop": 567.4617309570312,
+            "proxyBottom": 660.7586059570312,
+            "imageCount": 1,
+            "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+            "imageLoaded": true,
+            "imageNaturalSize": [
+              640,
+              336
+            ],
+            "imageAlt": "",
+            "devProxyParts": 0,
+            "devProxyLabel": false,
+            "spriteToVehicleWidth": 0.6079456606724003,
+            "spriteToVehicleHeight": 0.47994534201430755,
+            "pursuitZ": 21,
+            "vehicleZ": 22,
+            "vehicleLeft": 200.125,
+            "vehicleCount": 1,
+            "hudBoxes": [
+              {
+                "x": 0,
+                "y": 0,
+                "right": 0,
+                "bottom": 0
+              },
+              {
+                "x": 1196,
+                "y": 18,
+                "right": 1420,
+                "bottom": 97.640625
+              }
+            ],
+            "catchFeedback": false,
+            "escapeFeedback": false,
+            "riskEnabled": "dev",
+            "riskCollisions": 1,
+            "riskSpeedAfter": 1.05,
+            "rewardGold": 5,
+            "rewardCollected": [
+              "t0:r5b:reward-1"
+            ],
+            "rewardFeedback": null,
+            "visibleRisk": [
+              {
+                "id": "t0:r5b:block-1",
+                "x": 249.0625
+              }
+            ],
+            "visibleReward": [],
+            "temporaryLoot": 55,
+            "campaignSignature": "{\"gold\":150,\"reputation\":32,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true,\"ignoredRefugees\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+            "fork": false,
+            "combat": false,
+            "dialogue": false,
+            "cinematic": false,
+            "optionalDecision": false,
+            "destinationAgency": false,
+            "overflow": 0,
+            "laneButtons": [
+              {
+                "x": 14,
+                "y": 371,
+                "right": 44,
+                "bottom": 401
+              },
+              {
+                "x": 14,
+                "y": 409,
+                "right": 44,
+                "bottom": 439
+              }
+            ],
+            "width": 1440,
+            "height": 810
+          }
+        }
+      ],
+      "laneMoves": [
+        {
+          "segment": "route-1",
+          "progress": 0,
+          "lane": 1
+        },
+        {
+          "segment": "route-2",
+          "progress": 0.002226666666666764,
+          "lane": 0
+        },
+        {
+          "segment": "route-3",
+          "progress": 0.006673333333333722,
+          "lane": 1
+        },
+        {
+          "segment": "route-3",
+          "progress": 0.5055400000000004,
+          "lane": 0
+        },
+        {
+          "segment": "route-5b",
+          "progress": 0.24888000000000077,
+          "lane": 1
+        },
+        {
+          "segment": "route-5b",
+          "progress": 0.28776000000000057,
+          "lane": 0
+        },
+        {
+          "segment": "route-5b",
+          "progress": 0.4055400000000004,
+          "lane": 1
+        },
+        {
+          "segment": "route-5b",
+          "progress": 0.6121933333333339,
+          "lane": 0
+        },
+        {
+          "segment": "route-6",
+          "progress": 0.0033400000000001454,
+          "lane": 1
+        },
+        {
+          "segment": "route-6",
+          "progress": 0.36248499999999984,
+          "lane": 0
+        },
+        {
+          "segment": "route-6",
+          "progress": 0.6224800000000003,
+          "lane": 1
+        }
+      ],
+      "transitionLeaks": [],
+      "pressureTrends": [
+        {
+          "segment": "route-3",
+          "from": 0.23750249999999978,
+          "to": 0.2312549999999996
+        },
+        {
+          "segment": "route-3",
+          "from": 0.2312549999999996,
+          "to": 0.22625999999999974
+        },
+        {
+          "segment": "route-3",
+          "from": 0.22625999999999974,
+          "to": 0.2212575
+        },
+        {
+          "segment": "route-3",
+          "from": 0.2212575,
+          "to": 0.2150099999999998
+        },
+        {
+          "segment": "route-3",
+          "from": 0.2150099999999998,
+          "to": 0.21000750000000007
+        },
+        {
+          "segment": "route-3",
+          "from": 0.21000750000000007,
+          "to": 0.20500499999999977
+        },
+        {
+          "segment": "route-3",
+          "from": 0.20500499999999977,
+          "to": 0.19875750000000014
+        },
+        {
+          "segment": "route-3",
+          "from": 0.19875750000000014,
+          "to": 0.19375499999999984
+        },
+        {
+          "segment": "route-3",
+          "from": 0.19375499999999984,
+          "to": 0.18875999999999998
+        },
+        {
+          "segment": "route-3",
+          "from": 0.18875999999999998,
+          "to": 0.18250499999999992
+        },
+        {
+          "segment": "route-3",
+          "from": 0.18250499999999992,
+          "to": 0.17751000000000006
+        },
+        {
+          "segment": "route-3",
+          "from": 0.17751000000000006,
+          "to": 0.17126250000000043
+        },
+        {
+          "segment": "route-3",
+          "from": 0.17126250000000043,
+          "to": 0.16501500000000024
+        },
+        {
+          "segment": "route-3",
+          "from": 0.16501500000000024,
+          "to": 0.16000500000000006
+        },
+        {
+          "segment": "route-3",
+          "from": 0.16000500000000006,
+          "to": 0.1550100000000002
+        },
+        {
+          "segment": "route-3",
+          "from": 0.1550100000000002,
+          "to": 0.15000750000000046
+        },
+        {
+          "segment": "route-3",
+          "from": 0.15000750000000046,
+          "to": 0.14376000000000028
+        },
+        {
+          "segment": "route-3",
+          "from": 0.14376000000000028,
+          "to": 0.13875750000000053
+        },
+        {
+          "segment": "route-3",
+          "from": 0.13875750000000053,
+          "to": 0.13375500000000023
+        },
+        {
+          "segment": "route-3",
+          "from": 0.13375500000000023,
+          "to": 0.12876000000000037
+        },
+        {
+          "segment": "route-3",
+          "from": 0.12876000000000037,
+          "to": 0.1237575000000006
+        },
+        {
+          "segment": "route-3",
+          "from": 0.1237575000000006,
+          "to": 0.11876250000000073
+        },
+        {
+          "segment": "route-3",
+          "from": 0.11876250000000073,
+          "to": 0.11376000000000042
+        },
+        {
+          "segment": "route-3",
+          "from": 0.11376000000000042,
+          "to": 0.10751250000000076
+        },
+        {
+          "segment": "route-3",
+          "from": 0.10751250000000076,
+          "to": 0.10251000000000045
+        },
+        {
+          "segment": "route-3",
+          "from": 0.10251000000000045,
+          "to": 0.09751500000000057
+        },
+        {
+          "segment": "route-3",
+          "from": 0.09751500000000057,
+          "to": 0.09251250000000079
+        },
+        {
+          "segment": "route-3",
+          "from": 0.09251250000000079,
+          "to": 0.08751750000000035
+        },
+        {
+          "segment": "route-3",
+          "from": 0.08751750000000035,
+          "to": 0.08250750000000066
+        },
+        {
+          "segment": "route-3",
+          "from": 0.08250750000000066,
+          "to": 0.07626000000000047
+        },
+        {
+          "segment": "route-3",
+          "from": 0.07626000000000047,
+          "to": 0.07126500000000059
+        },
+        {
+          "segment": "route-3",
+          "from": 0.07126500000000059,
+          "to": 0.0662625000000008
+        },
+        {
+          "segment": "route-3",
+          "from": 0.0662625000000008,
+          "to": 0.061267500000000384
+        },
+        {
+          "segment": "route-3",
+          "from": 0.061267500000000384,
+          "to": 0.05501250000000082
+        },
+        {
+          "segment": "route-3",
+          "from": 0.05501250000000082,
+          "to": 0.05001000000000049
+        },
+        {
+          "segment": "route-3",
+          "from": 0.05001000000000049,
+          "to": 0.046267500000000385
+        },
+        {
+          "segment": "route-3",
+          "from": 0.046267500000000385,
+          "to": 0.0412650000000006
+        },
+        {
+          "segment": "route-3",
+          "from": 0.0412650000000006,
+          "to": 0.036262500000000815
+        },
+        {
+          "segment": "route-3",
+          "from": 0.036262500000000815,
+          "to": 0.03126000000000049
+        },
+        {
+          "segment": "route-3",
+          "from": 0.03126000000000049,
+          "to": 0.026265000000000597
+        },
+        {
+          "segment": "route-3",
+          "from": 0.026265000000000597,
+          "to": 0.02001750000000038
+        },
+        {
+          "segment": "route-3",
+          "from": 0.02001750000000038,
+          "to": 0.013762500000000817
+        },
+        {
+          "segment": "route-3",
+          "from": 0.013762500000000817,
+          "to": 0.00876000000000049
+        },
+        {
+          "segment": "route-3",
+          "from": 0.00876000000000049,
+          "to": 0.002512500000000817
+        },
+        {
+          "segment": "route-3",
+          "from": 0.002512500000000817,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0.0065674999999998165,
+          "to": 0.0015724999999999255
+        },
+        {
+          "segment": "route-3",
+          "from": 0.0015724999999999255,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-3",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.31375999999999915,
+          "to": 0.30876499999999985
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.30876499999999985,
+          "to": 0.3025099999999992
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.3025099999999992,
+          "to": 0.29626250000000015
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.29626250000000015,
+          "to": 0.2912599999999993
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.2912599999999993,
+          "to": 0.286265
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.286265,
+          "to": 0.2800174999999998
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.2800174999999998,
+          "to": 0.27501500000000006
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.27501500000000006,
+          "to": 0.2687674999999999
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.2687674999999999,
+          "to": 0.26376500000000014
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.26376500000000014,
+          "to": 0.2587699999999997
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.2587699999999997,
+          "to": 0.2525150000000002
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.2525150000000002,
+          "to": 0.2475125000000004
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.2475125000000004,
+          "to": 0.24250999999999956
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.5148384999999985,
+          "to": 0.5098359999999988
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.5098359999999988,
+          "to": 0.5035884999999988
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.5035884999999988,
+          "to": 0.49859349999999836
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.49859349999999836,
+          "to": 0.49359099999999856
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.49359099999999856,
+          "to": 0.48733599999999905
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.48733599999999905,
+          "to": 0.4810884999999988
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.4810884999999988,
+          "to": 0.47733849999999883
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.47733849999999883,
+          "to": 0.47109099999999865
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.47109099999999865,
+          "to": 0.46484349999999847
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.46484349999999847,
+          "to": 0.45984099999999867
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.45984099999999867,
+          "to": 0.4535934999999985
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.4535934999999985,
+          "to": 0.44859099999999874
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.44859099999999874,
+          "to": 0.44359599999999944
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.44359599999999944,
+          "to": 0.4373409999999988
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.4373409999999988,
+          "to": 0.43109349999999863
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.43109349999999863,
+          "to": 0.4260909999999989
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.4260909999999989,
+          "to": 0.42108849999999914
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.42108849999999914,
+          "to": 0.41484099999999896
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.41484099999999896,
+          "to": 0.4085934999999988
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.4085934999999988,
+          "to": 0.40359099999999903
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.40359099999999903,
+          "to": 0.39734349999999885
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.4051300000000014,
+          "to": 0.3988825000000012
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.3988825000000012,
+          "to": 0.393872500000001
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.393872500000001,
+          "to": 0.38762500000000083
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.38762500000000083,
+          "to": 0.3826300000000015
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.3826300000000015,
+          "to": 0.37762750000000067
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.37762750000000067,
+          "to": 0.3713800000000016
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.3713800000000016,
+          "to": 0.3651325000000014
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.3651325000000014,
+          "to": 0.36013000000000167
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.36013000000000167,
+          "to": 0.35387500000000105
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.35387500000000105,
+          "to": 0.34888000000000174
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.34888000000000174,
+          "to": 0.3438775000000009
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.3438775000000009,
+          "to": 0.3376225000000014
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.3376225000000014,
+          "to": 0.3326350000000014
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.3326350000000014,
+          "to": 0.32763250000000166
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.32763250000000166,
+          "to": 0.32137750000000104
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.32137750000000104,
+          "to": 0.3163750000000013
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.3163750000000013,
+          "to": 0.3101275000000011
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.3101275000000011,
+          "to": 0.30388750000000136
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.30388750000000136,
+          "to": 0.2988850000000016
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.2988850000000016,
+          "to": 0.29263750000000144
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.29263750000000144,
+          "to": 0.2876350000000017
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.2876350000000017,
+          "to": 0.2826250000000015
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.2826250000000015,
+          "to": 0.2776300000000022
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.2776300000000022,
+          "to": 0.271382500000002
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.271382500000002,
+          "to": 0.2663800000000023
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.2663800000000023,
+          "to": 0.2601325000000021
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.2601325000000021,
+          "to": 0.25513000000000235
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.25513000000000235,
+          "to": 0.24888250000000217
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.24888250000000217,
+          "to": 0.24263500000000196
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.24263500000000196,
+          "to": 0.23764000000000152
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.23764000000000152,
+          "to": 0.231385000000002
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.231385000000002,
+          "to": 0.22513000000000244
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.22513000000000244,
+          "to": 0.22013500000000202
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.22013500000000202,
+          "to": 0.2138800000000025
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.2138800000000025,
+          "to": 0.20763250000000227
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.20763250000000227,
+          "to": 0.20263750000000186
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.20263750000000186,
+          "to": 0.19763500000000211
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.19763500000000211,
+          "to": 0.19138750000000193
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.19138750000000193,
+          "to": 0.1863850000000022
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.18490300000000248,
+          "to": 0.17864800000000297
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.17864800000000297,
+          "to": 0.17240050000000273
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.17240050000000273,
+          "to": 0.16740550000000232
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.16740550000000232,
+          "to": 0.16240300000000255
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.16240300000000255,
+          "to": 0.1561555000000023
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.1561555000000023,
+          "to": 0.15115300000000254
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.15115300000000254,
+          "to": 0.14489800000000297
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.14489800000000297,
+          "to": 0.1399030000000025
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.1399030000000025,
+          "to": 0.13365550000000223
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.13365550000000223,
+          "to": 0.12865300000000246
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.12865300000000246,
+          "to": 0.12240550000000222
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.12240550000000222,
+          "to": 0.11615800000000309
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.11615800000000309,
+          "to": 0.11115550000000221
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.11115550000000221,
+          "to": 0.10490050000000264
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.10490050000000264,
+          "to": 0.0999055000000022
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.0999055000000022,
+          "to": 0.09490300000000242
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.09490300000000242,
+          "to": 0.08990800000000307
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.08990800000000307,
+          "to": 0.08490550000000219
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.08490550000000219,
+          "to": 0.07865800000000306
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.07865800000000306,
+          "to": 0.0724030000000024
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.0724030000000024,
+          "to": 0.06616300000000261
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.06616300000000261,
+          "to": 0.06115300000000239
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.06115300000000239,
+          "to": 0.05615800000000305
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.05615800000000305,
+          "to": 0.04991050000000284
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.04991050000000284,
+          "to": 0.044908000000003064
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.044908000000003064,
+          "to": 0.03991300000000263
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.03991300000000263,
+          "to": 0.03365800000000307
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.03365800000000307,
+          "to": 0.028663000000002634
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.028663000000002634,
+          "to": 0.023660500000002853
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.023660500000002853,
+          "to": 0.017405500000002197
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.017405500000002197,
+          "to": 0.012410500000002853
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.012410500000002853,
+          "to": 0.006155500000002198
+        },
+        {
+          "segment": "route-5b",
+          "from": 0.006155500000002198,
+          "to": 0
+        },
+        {
+          "segment": "route-5b",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5b",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-5b",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0.3337600000000003,
+          "to": 0.3287574999999994
+        },
+        {
+          "segment": "route-6",
+          "from": 0.3287574999999994,
+          "to": 0.3225024999999999
+        },
+        {
+          "segment": "route-6",
+          "from": 0.3225024999999999,
+          "to": 0.31625499999999973
+        },
+        {
+          "segment": "route-6",
+          "from": 0.31625499999999973,
+          "to": 0.3112600000000004
+        },
+        {
+          "segment": "route-6",
+          "from": 0.3112600000000004,
+          "to": 0.3050049999999998
+        },
+        {
+          "segment": "route-6",
+          "from": 0.3050049999999998,
+          "to": 0.30000250000000006
+        },
+        {
+          "segment": "route-6",
+          "from": 0.30000250000000006,
+          "to": 0.2937549999999999
+        },
+        {
+          "segment": "route-6",
+          "from": 0.2937549999999999,
+          "to": 0.28751500000000013
+        },
+        {
+          "segment": "route-6",
+          "from": 0.28751500000000013,
+          "to": 0.2825125000000004
+        },
+        {
+          "segment": "route-6",
+          "from": 0.2825125000000004,
+          "to": 0.27625749999999977
+        },
+        {
+          "segment": "route-6",
+          "from": 0.27625749999999977,
+          "to": 0.2700100000000007
+        },
+        {
+          "segment": "route-6",
+          "from": 0.2700100000000007,
+          "to": 0.26500749999999984
+        },
+        {
+          "segment": "route-6",
+          "from": 0.26500749999999984,
+          "to": 0.25876000000000077
+        },
+        {
+          "segment": "route-6",
+          "from": 0.25876000000000077,
+          "to": 0.2525125000000006
+        },
+        {
+          "segment": "route-6",
+          "from": 0.2525125000000006,
+          "to": 0.24751000000000078
+        },
+        {
+          "segment": "route-6",
+          "from": 0.24751000000000078,
+          "to": 0.24250749999999988
+        },
+        {
+          "segment": "route-6",
+          "from": 0.24250749999999988,
+          "to": 0.23751250000000054
+        },
+        {
+          "segment": "route-6",
+          "from": 0.23751250000000054,
+          "to": 0.23125749999999987
+        },
+        {
+          "segment": "route-6",
+          "from": 0.23125749999999987,
+          "to": 0.22626250000000053
+        },
+        {
+          "segment": "route-6",
+          "from": 0.22626250000000053,
+          "to": 0.2212600000000008
+        },
+        {
+          "segment": "route-6",
+          "from": 0.2212600000000008,
+          "to": 0.21626500000000037
+        },
+        {
+          "segment": "route-6",
+          "from": 0.21626500000000037,
+          "to": 0.21126250000000063
+        },
+        {
+          "segment": "route-6",
+          "from": 0.21126250000000063,
+          "to": 0.20751250000000065
+        },
+        {
+          "segment": "route-6",
+          "from": 0.20751250000000065,
+          "to": 0.20126500000000047
+        },
+        {
+          "segment": "route-6",
+          "from": 0.20126500000000047,
+          "to": 0.1950175000000003
+        },
+        {
+          "segment": "route-6",
+          "from": 0.1950175000000003,
+          "to": 0.1900075000000001
+        },
+        {
+          "segment": "route-6",
+          "from": 0.1900075000000001,
+          "to": 0.18376000000000098
+        },
+        {
+          "segment": "route-6",
+          "from": 0.18376000000000098,
+          "to": 0.17752000000000012
+        },
+        {
+          "segment": "route-6",
+          "from": 0.17752000000000012,
+          "to": 0.17376250000000082
+        },
+        {
+          "segment": "route-6",
+          "from": 0.17376250000000082,
+          "to": 0.16876000000000102
+        },
+        {
+          "segment": "route-6",
+          "from": 0.16876000000000102,
+          "to": 0.16251250000000084
+        },
+        {
+          "segment": "route-6",
+          "from": 0.16251250000000084,
+          "to": 0.15626500000000065
+        },
+        {
+          "segment": "route-6",
+          "from": 0.15626500000000065,
+          "to": 0.15251500000000068
+        },
+        {
+          "segment": "route-6",
+          "from": 0.15251500000000068,
+          "to": 0.14751250000000093
+        },
+        {
+          "segment": "route-6",
+          "from": 0.14751250000000093,
+          "to": 0.14126500000000075
+        },
+        {
+          "segment": "route-6",
+          "from": 0.14126500000000075,
+          "to": 0.13751500000000078
+        },
+        {
+          "segment": "route-6",
+          "from": 0.13751500000000078,
+          "to": 0.13251250000000103
+        },
+        {
+          "segment": "route-6",
+          "from": 0.13251250000000103,
+          "to": 0.12626500000000085
+        },
+        {
+          "segment": "route-6",
+          "from": 0.12626500000000085,
+          "to": 0.12127000000000042
+        },
+        {
+          "segment": "route-6",
+          "from": 0.12127000000000042,
+          "to": 0.11626750000000063
+        },
+        {
+          "segment": "route-6",
+          "from": 0.11626750000000063,
+          "to": 0.11002000000000041
+        },
+        {
+          "segment": "route-6",
+          "from": 0.11002000000000041,
+          "to": 0.10376500000000084
+        },
+        {
+          "segment": "route-6",
+          "from": 0.10376500000000084,
+          "to": 0.0987700000000004
+        },
+        {
+          "segment": "route-6",
+          "from": 0.0987700000000004,
+          "to": 0.0950200000000004
+        },
+        {
+          "segment": "route-6",
+          "from": 0.0950200000000004,
+          "to": 0.08876500000000083
+        },
+        {
+          "segment": "route-6",
+          "from": 0.08876500000000083,
+          "to": 0.0825175000000006
+        },
+        {
+          "segment": "route-6",
+          "from": 0.0825175000000006,
+          "to": 0.0787675000000006
+        },
+        {
+          "segment": "route-6",
+          "from": 0.0787675000000006,
+          "to": 0.07252000000000038
+        },
+        {
+          "segment": "route-6",
+          "from": 0.07414600000000238,
+          "to": 0.06789100000000171
+        },
+        {
+          "segment": "route-6",
+          "from": 0.06789100000000171,
+          "to": 0.061643500000001496
+        },
+        {
+          "segment": "route-6",
+          "from": 0.061643500000001496,
+          "to": 0.05664100000000172
+        },
+        {
+          "segment": "route-6",
+          "from": 0.05664100000000172,
+          "to": 0.05164600000000238
+        },
+        {
+          "segment": "route-6",
+          "from": 0.05164600000000238,
+          "to": 0.04664350000000151
+        },
+        {
+          "segment": "route-6",
+          "from": 0.04664350000000151,
+          "to": 0.04164100000000173
+        },
+        {
+          "segment": "route-6",
+          "from": 0.04164100000000173,
+          "to": 0.03664600000000239
+        },
+        {
+          "segment": "route-6",
+          "from": 0.03664600000000239,
+          "to": 0.031643500000001525
+        },
+        {
+          "segment": "route-6",
+          "from": 0.031643500000001525,
+          "to": 0.0253960000000024
+        },
+        {
+          "segment": "route-6",
+          "from": 0.0253960000000024,
+          "to": 0.01914850000000218
+        },
+        {
+          "segment": "route-6",
+          "from": 0.01914850000000218,
+          "to": 0.014146000000002398
+        },
+        {
+          "segment": "route-6",
+          "from": 0.014146000000002398,
+          "to": 0.00789850000000218
+        },
+        {
+          "segment": "route-6",
+          "from": 0.00789850000000218,
+          "to": 0.0028960000000023993
+        },
+        {
+          "segment": "route-6",
+          "from": 0.0028960000000023993,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0.00596100000000134,
+          "to": 0.0009660000000009047
+        },
+        {
+          "segment": "route-6",
+          "from": 0.0009660000000009047,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        },
+        {
+          "segment": "route-6",
+          "from": 0,
+          "to": 0
+        }
+      ],
+      "catch": null,
+      "escape": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.783306666666667,
+        "lane": 0,
+        "speed": 2.187300838368052,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": "dev",
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "",
+        "pressure": 0,
+        "pursuerLane": null,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.24
+          },
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "ESCAPED",
+            "pressure01": 0
+          }
+        ],
+        "pursuitResolved": [
+          "t0:r3:pursuit-1"
+        ],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": true,
+        "proxyActive": false,
+        "proxyLeft": -116.6328125,
+        "proxyRight": 77.7578125,
+        "proxyTop": 567.4617309570312,
+        "proxyBottom": 660.7586059570312,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6079456606724003,
+        "spriteToVehicleHeight": 0.47994534201430755,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 200.125,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 1196,
+            "y": 18,
+            "right": 1420,
+            "bottom": 97.640625
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": true,
+        "riskEnabled": "dev",
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-1"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ],
+        "width": 1440,
+        "height": 810,
+        "campaignBefore": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}"
+      },
+      "rewardAfterCollision": {
+        "segment": "route-5b",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.8244066666666671,
+        "lane": 0,
+        "speed": 2.381577178950085,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": "dev",
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "",
+        "pressure": 0,
+        "pursuerLane": null,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.24
+          },
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "ESCAPED",
+            "pressure01": 0
+          },
+          {
+            "windowId": "t0:r5b:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.32
+          },
+          {
+            "windowId": "t0:r5b:pursuit-1",
+            "result": "ESCAPED",
+            "pressure01": 0
+          }
+        ],
+        "pursuitResolved": [
+          "t0:r5b:pursuit-1"
+        ],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": true,
+        "proxyActive": false,
+        "proxyLeft": -140.7637939453125,
+        "proxyRight": 53.6268310546875,
+        "proxyTop": 567.4617309570312,
+        "proxyBottom": 660.7586059570312,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6079456606724003,
+        "spriteToVehicleHeight": 0.47994534201430755,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 200.125,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 1196,
+            "y": 18,
+            "right": 1420,
+            "bottom": 97.640625
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": true,
+        "riskEnabled": "dev",
+        "riskCollisions": 1,
+        "riskSpeedAfter": 1.05,
+        "rewardGold": 10,
+        "rewardCollected": [
+          "t0:r5b:reward-1",
+          "t0:r5b:reward-2"
+        ],
+        "rewardFeedback": "+5 route",
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 60,
+        "campaignSignature": "{\"gold\":150,\"reputation\":32,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true,\"ignoredRefugees\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ],
+        "width": 1440,
+        "height": 810
+      },
+      "agency": {
+        "segment": null,
+        "phase": null,
+        "view": null,
+        "progress": 0,
+        "lane": 0,
+        "speed": 0,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": null,
+        "pursuitRendererCount": 0,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": null,
+        "pursuitWindow": "",
+        "pressure": 0,
+        "pursuerLane": null,
+        "pursuitEvents": [],
+        "pursuitResolved": [],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": false,
+        "proxyActive": false,
+        "proxyLeft": null,
+        "proxyRight": null,
+        "proxyTop": null,
+        "proxyBottom": null,
+        "imageCount": 0,
+        "imageSrc": null,
+        "imageLoaded": false,
+        "imageNaturalSize": null,
+        "imageAlt": null,
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": null,
+        "spriteToVehicleHeight": null,
+        "pursuitZ": 0,
+        "vehicleZ": 0,
+        "vehicleLeft": null,
+        "vehicleCount": 0,
+        "hudBoxes": [],
+        "catchFeedback": false,
+        "escapeFeedback": false,
+        "riskEnabled": null,
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 0,
+        "rewardCollected": [],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 150,
+        "campaignSignature": "{\"gold\":150,\"reputation\":33,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true,\"ignoredRefugees\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\",\"lion-first-trial-combat\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\",\"lion-first-trial-combat\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": true,
+        "overflow": 0,
+        "laneButtons": [],
+        "width": 1440,
+        "height": 810
+      },
+      "final": {
+        "segment": null,
+        "phase": null,
+        "view": null,
+        "progress": 0,
+        "lane": 0,
+        "speed": 0,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": null,
+        "pursuitRendererCount": 0,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": null,
+        "pursuitWindow": "",
+        "pressure": 0,
+        "pursuerLane": null,
+        "pursuitEvents": [],
+        "pursuitResolved": [],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": false,
+        "proxyActive": false,
+        "proxyLeft": null,
+        "proxyRight": null,
+        "proxyTop": null,
+        "proxyBottom": null,
+        "imageCount": 0,
+        "imageSrc": null,
+        "imageLoaded": false,
+        "imageNaturalSize": null,
+        "imageAlt": null,
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": null,
+        "spriteToVehicleHeight": null,
+        "pursuitZ": 0,
+        "vehicleZ": 0,
+        "vehicleLeft": null,
+        "vehicleCount": 0,
+        "hudBoxes": [],
+        "catchFeedback": false,
+        "escapeFeedback": false,
+        "riskEnabled": null,
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 0,
+        "rewardCollected": [],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 150,
+        "campaignSignature": "{\"gold\":150,\"reputation\":33,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true,\"ignoredRefugees\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\",\"lion-first-trial-combat\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\",\"lion-first-trial-combat\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": true,
+        "overflow": 0,
+        "laneButtons": [],
+        "width": 1440,
+        "height": 810
+      },
+      "sampleCount": 1266
+    }
+  ],
+  "captures": [
+    {
+      "file": "route-3-start.png",
+      "scenario": "escape",
+      "viewport": "1440x810",
+      "state": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.23776666666666665,
+        "lane": 1,
+        "speed": 1.1926661183362999,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": "dev",
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "t0:r3:pursuit-1",
+        "pressure": 0.2200125000000001,
+        "pursuerLane": 0,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.24
+          }
+        ],
+        "pursuitResolved": [],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": true,
+        "proxyActive": true,
+        "proxyLeft": -59.0234375,
+        "proxyRight": 135.3671875,
+        "proxyTop": 437.86798095703125,
+        "proxyBottom": 531.1648559570312,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6079456606724003,
+        "spriteToVehicleHeight": 0.47994534201430755,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 200.125,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 1196,
+            "y": 18,
+            "right": 1420,
+            "bottom": 97.640625
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": false,
+        "riskEnabled": "off",
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-1"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ],
+        "width": 1440,
+        "height": 810
+      }
+    },
+    {
+      "file": "route-3-start-620.png",
+      "scenario": "escape",
+      "viewport": "620x780",
+      "state": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.25998666666666637,
+        "lane": 1,
+        "speed": 1.226304021145606,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": "dev",
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "t0:r3:pursuit-1",
+        "pressure": 0.1950150000000006,
+        "pursuerLane": 0,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.24
+          }
+        ],
+        "pursuitResolved": [],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": true,
+        "proxyActive": true,
+        "proxyLeft": -20.625,
+        "proxyRight": 90.46875,
+        "proxyTop": 458.00079345703125,
+        "proxyBottom": 509.57891845703125,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6809692558184082,
+        "spriteToVehicleHeight": 0.5200063011972275,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 73.4296875,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 405,
+            "y": 74,
+            "right": 610,
+            "bottom": 147.4375
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": false,
+        "riskEnabled": "off",
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-1"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 10,
+            "y": 341,
+            "right": 54,
+            "bottom": 385
+          },
+          {
+            "x": 10,
+            "y": 395,
+            "right": 54,
+            "bottom": 439
+          }
+        ],
+        "width": 620,
+        "height": 780
+      }
+    },
+    {
+      "file": "route-3-start-390.png",
+      "scenario": "escape",
+      "viewport": "390x844",
+      "state": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.27221333333333314,
+        "lane": 1,
+        "speed": 1.2456436060717053,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": "dev",
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "t0:r3:pursuit-1",
+        "pressure": 0.1812600000000006,
+        "pursuerLane": 0,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.24
+          }
+        ],
+        "pursuitResolved": [],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": true,
+        "proxyActive": true,
+        "proxyLeft": -0.453125,
+        "proxyRight": 69.421875,
+        "proxyTop": 517.7781372070312,
+        "proxyBottom": 550.2156372070312,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6808769792935444,
+        "spriteToVehicleHeight": 0.5199098422238918,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 46.1875,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 175,
+            "y": 74,
+            "right": 380,
+            "bottom": 147.4375
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": false,
+        "riskEnabled": "off",
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-1"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 10,
+            "y": 373,
+            "right": 54,
+            "bottom": 417
+          },
+          {
+            "x": 10,
+            "y": 427,
+            "right": 54,
+            "bottom": 471
+          }
+        ],
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "file": "route-3-escaped.png",
+      "scenario": "escape",
+      "viewport": "1440x810",
+      "state": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.7888600000000001,
+        "lane": 0,
+        "speed": 2.194864730639769,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": "dev",
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "",
+        "pressure": 0,
+        "pursuerLane": null,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.24
+          },
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "ESCAPED",
+            "pressure01": 0
+          }
+        ],
+        "pursuitResolved": [
+          "t0:r3:pursuit-1"
+        ],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": true,
+        "proxyActive": false,
+        "proxyLeft": -119.7015609741211,
+        "proxyRight": 74.6890640258789,
+        "proxyTop": 567.4617309570312,
+        "proxyBottom": 660.7586059570312,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6079456606724003,
+        "spriteToVehicleHeight": 0.47994534201430755,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 200.125,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 1196,
+            "y": 18,
+            "right": 1420,
+            "bottom": 97.640625
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": true,
+        "riskEnabled": "off",
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-1"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ],
+        "width": 1440,
+        "height": 810
+      }
+    },
+    {
+      "file": "route-3-lane-switch.png",
+      "scenario": "caught",
+      "viewport": "1440x810",
+      "state": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.5077533333333335,
+        "lane": 0,
+        "speed": 1.6906992415698028,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": "dev",
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "t0:r3:pursuit-1",
+        "pressure": 0.6932775000000008,
+        "pursuerLane": 1,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.24
+          }
+        ],
+        "pursuitResolved": [],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": true,
+        "proxyActive": true,
+        "proxyLeft": -14.3671875,
+        "proxyRight": 180.0234375,
+        "proxyTop": 493.74298095703125,
+        "proxyBottom": 587.0398559570312,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6079456606724003,
+        "spriteToVehicleHeight": 0.47994534201430755,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 200.125,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 1196,
+            "y": 18,
+            "right": 1420,
+            "bottom": 97.640625
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": false,
+        "riskEnabled": "off",
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-2"
+        ],
+        "rewardFeedback": "+5 route",
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ],
+        "width": 1440,
+        "height": 810
+      }
+    },
+    {
+      "file": "route-3-high-pressure.png",
+      "scenario": "caught",
+      "viewport": "1440x810",
+      "state": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.5988600000000001,
+        "lane": 1,
+        "speed": 1.8725827913241688,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": "dev",
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "t0:r3:pursuit-1",
+        "pressure": 0.7881035000000015,
+        "pursuerLane": 1,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.24
+          }
+        ],
+        "pursuitResolved": [],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": true,
+        "proxyActive": true,
+        "proxyLeft": -7.6015625,
+        "proxyRight": 186.7890625,
+        "proxyTop": 567.4617309570312,
+        "proxyBottom": 660.7586059570312,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6079456606724003,
+        "spriteToVehicleHeight": 0.47994534201430755,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 200.125,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 1196,
+            "y": 18,
+            "right": 1420,
+            "bottom": 97.640625
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": false,
+        "riskEnabled": "off",
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-2"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ],
+        "width": 1440,
+        "height": 810
+      }
+    },
+    {
+      "file": "route-3-caught.png",
+      "scenario": "caught",
+      "viewport": "1440x810",
+      "state": {
+        "segment": "route-3",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.7333,
+        "lane": 1,
+        "speed": 1.0039391628999779,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": "dev",
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "",
+        "pressure": 1,
+        "pursuerLane": null,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.24
+          },
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "CAUGHT",
+            "pressure01": 1
+          }
+        ],
+        "pursuitResolved": [
+          "t0:r3:pursuit-1"
+        ],
+        "pursuitCaughtCount": 1,
+        "pursuitSpeedBefore": 2.1042815031077753,
+        "pursuitSpeedAfter": 1,
+        "pursuitCatchElapsed": 10916.099999999999,
+        "pursuitCatchProgress": 0.7277399999999999,
+        "proxyVisible": true,
+        "proxyActive": false,
+        "proxyLeft": 9.976234436035156,
+        "proxyRight": 204.36685943603516,
+        "proxyTop": 567.4617309570312,
+        "proxyBottom": 660.7586059570312,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6079456606724003,
+        "spriteToVehicleHeight": 0.47994534201430755,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 200.125,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 1196,
+            "y": 18,
+            "right": 1420,
+            "bottom": 97.640625
+          }
+        ],
+        "catchFeedback": true,
+        "escapeFeedback": false,
+        "riskEnabled": "off",
+        "riskCollisions": 0,
+        "riskSpeedAfter": 0,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r3:reward-2"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 45,
+        "campaignSignature": "{\"gold\":150,\"reputation\":34,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 14,
+            "y": 371,
+            "right": 44,
+            "bottom": 401
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "right": 44,
+            "bottom": 439
+          }
+        ],
+        "width": 1440,
+        "height": 810
+      }
+    },
+    {
+      "file": "route-5b-risk-pursuit-620.png",
+      "scenario": "path-b",
+      "viewport": "620x780",
+      "state": {
+        "segment": "route-5b",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.2755400000000004,
+        "lane": 1,
+        "speed": 1.050611293027244,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": "dev",
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "t0:r5b:pursuit-1",
+        "pressure": 0.49724899999999916,
+        "pursuerLane": 1,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.24
+          },
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "ESCAPED",
+            "pressure01": 0
+          },
+          {
+            "windowId": "t0:r5b:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.32
+          }
+        ],
+        "pursuitResolved": [],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": true,
+        "proxyActive": true,
+        "proxyLeft": -13.515625,
+        "proxyRight": 97.578125,
+        "proxyTop": 582.7976684570312,
+        "proxyBottom": 634.3757934570312,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6744621961041375,
+        "spriteToVehicleHeight": 0.5066708236902377,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 67.7285385131836,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 405,
+            "y": 74,
+            "right": 610,
+            "bottom": 147.4375
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": false,
+        "riskEnabled": "dev",
+        "riskCollisions": 1,
+        "riskSpeedAfter": 1.05,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r5b:reward-1"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [
+          {
+            "id": "t0:r5b:block-1",
+            "x": 79.6484375
+          }
+        ],
+        "visibleReward": [],
+        "temporaryLoot": 55,
+        "campaignSignature": "{\"gold\":150,\"reputation\":32,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true,\"ignoredRefugees\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 10,
+            "y": 341,
+            "right": 54,
+            "bottom": 385
+          },
+          {
+            "x": 10,
+            "y": 395,
+            "right": 54,
+            "bottom": 439
+          }
+        ],
+        "width": 620,
+        "height": 780
+      }
+    },
+    {
+      "file": "route-5b-reward-pouch-390.png",
+      "scenario": "path-b",
+      "viewport": "390x844",
+      "state": {
+        "segment": "route-5b",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.8077400000000003,
+        "lane": 0,
+        "speed": 2.359816376478011,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": "dev",
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "",
+        "pressure": 0,
+        "pursuerLane": null,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.24
+          },
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "ESCAPED",
+            "pressure01": 0
+          },
+          {
+            "windowId": "t0:r5b:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.32
+          },
+          {
+            "windowId": "t0:r5b:pursuit-1",
+            "result": "ESCAPED",
+            "pressure01": 0
+          }
+        ],
+        "pursuitResolved": [
+          "t0:r5b:pursuit-1"
+        ],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": true,
+        "proxyActive": false,
+        "proxyLeft": -13.365367889404297,
+        "proxyRight": 56.5096321105957,
+        "proxyTop": 652.8093872070312,
+        "proxyBottom": 685.2468872070312,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6808769792935444,
+        "spriteToVehicleHeight": 0.5199098422238918,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 46.1875,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 175,
+            "y": 74,
+            "right": 380,
+            "bottom": 147.4375
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": true,
+        "riskEnabled": "dev",
+        "riskCollisions": 1,
+        "riskSpeedAfter": 1.05,
+        "rewardGold": 5,
+        "rewardCollected": [
+          "t0:r5b:reward-1"
+        ],
+        "rewardFeedback": null,
+        "visibleRisk": [],
+        "visibleReward": [
+          {
+            "id": "t0:r5b:reward-2",
+            "x": 106
+          }
+        ],
+        "temporaryLoot": 55,
+        "campaignSignature": "{\"gold\":150,\"reputation\":32,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true,\"ignoredRefugees\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 10,
+            "y": 373,
+            "right": 54,
+            "bottom": 417
+          },
+          {
+            "x": 10,
+            "y": 427,
+            "right": 54,
+            "bottom": 471
+          }
+        ],
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "file": "route-5b-later-reward-390.png",
+      "scenario": "path-b",
+      "viewport": "390x844",
+      "state": {
+        "segment": "route-5b",
+        "phase": "RUNNING",
+        "view": "route",
+        "progress": 0.8288533333333336,
+        "lane": 0,
+        "speed": 2.3871213158538964,
+        "transition": null,
+        "presentation": null,
+        "departure": null,
+        "pursuitEnabled": "dev",
+        "pursuitRendererCount": 1,
+        "pursuitFocusable": 0,
+        "pursuitAriaHidden": "true",
+        "pursuitWindow": "",
+        "pressure": 0,
+        "pursuerLane": null,
+        "pursuitEvents": [
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.24
+          },
+          {
+            "windowId": "t0:r3:pursuit-1",
+            "result": "ESCAPED",
+            "pressure01": 0
+          },
+          {
+            "windowId": "t0:r5b:pursuit-1",
+            "result": "STARTED",
+            "pressure01": 0.32
+          },
+          {
+            "windowId": "t0:r5b:pursuit-1",
+            "result": "ESCAPED",
+            "pressure01": 0
+          }
+        ],
+        "pursuitResolved": [
+          "t0:r5b:pursuit-1"
+        ],
+        "pursuitCaughtCount": 0,
+        "pursuitSpeedBefore": 0,
+        "pursuitSpeedAfter": 0,
+        "pursuitCatchElapsed": 0,
+        "pursuitCatchProgress": 0,
+        "proxyVisible": true,
+        "proxyActive": false,
+        "proxyLeft": -45.28776550292969,
+        "proxyRight": 24.587234497070312,
+        "proxyTop": 652.8093872070312,
+        "proxyBottom": 685.2468872070312,
+        "imageCount": 1,
+        "imageSrc": "/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+        "imageLoaded": true,
+        "imageNaturalSize": [
+          640,
+          336
+        ],
+        "imageAlt": "",
+        "devProxyParts": 0,
+        "devProxyLabel": false,
+        "spriteToVehicleWidth": 0.6808769792935444,
+        "spriteToVehicleHeight": 0.5199098422238918,
+        "pursuitZ": 21,
+        "vehicleZ": 22,
+        "vehicleLeft": 46.1875,
+        "vehicleCount": 1,
+        "hudBoxes": [
+          {
+            "x": 0,
+            "y": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          {
+            "x": 175,
+            "y": 74,
+            "right": 380,
+            "bottom": 147.4375
+          }
+        ],
+        "catchFeedback": false,
+        "escapeFeedback": true,
+        "riskEnabled": "dev",
+        "riskCollisions": 1,
+        "riskSpeedAfter": 1.05,
+        "rewardGold": 10,
+        "rewardCollected": [
+          "t0:r5b:reward-1",
+          "t0:r5b:reward-2"
+        ],
+        "rewardFeedback": "+5 route",
+        "visibleRisk": [],
+        "visibleReward": [],
+        "temporaryLoot": 60,
+        "campaignSignature": "{\"gold\":150,\"reputation\":32,\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true,\"ignoredRefugees\":true},\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"visited\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\"],\"resolved\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\"]}",
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "optionalDecision": false,
+        "destinationAgency": false,
+        "overflow": 0,
+        "laneButtons": [
+          {
+            "x": 10,
+            "y": 373,
+            "right": 54,
+            "bottom": 417
+          },
+          {
+            "x": 10,
+            "y": 427,
+            "right": 54,
+            "bottom": 471
+          }
+        ],
+        "width": 390,
+        "height": 844
+      }
+    }
+  ],
+  "errors": []
+}

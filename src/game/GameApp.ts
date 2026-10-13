@@ -1,0 +1,1716 @@
+import { combatConfigs } from './content';
+import { createInitialState, SaveRepository } from './store';
+import type { CombatConfig, CombatResult, DialogueSequence, GameState, NarrativeEffect, RunNode, UnitInstance } from './types';
+import { createUnitInstance, getItemCategory, toCombatant } from './catalog';
+import { applyCombatProgress } from './combatProgress';
+import {
+  addTemporaryLoot, enterRunNode, failRunToCheckpoint,
+  getAvailableRunNodes, getRunNode, secureRunLoot, bypassTraversalNode,
+  requestTraversalPursuitEncounter, resolveTraversalPursuitVictory, type TraversalPursuitContact,
+} from './runSystem';
+import { changeReputation, getReputationRule } from './reputation';
+import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
+import { resolveTraversalIgnoreConsequence } from './TraversalOptionalConsequencePolicy';
+import { CLAN_ANCHOR_DIALOGUES } from './campaignGrammarContent';
+import { resolveCharacterUnitId } from '../render/CharacterVisualRegistry';
+import {
+  lionBossVictoryFacts,
+  resolveLionFinaleExecution,
+  resolvePendingLionFinaleCombat,
+  resolveSelectedLionFinaleCombat,
+} from './lionFinale';
+import { ateSeenFlag } from './contextualDialogue';
+import { resolveGameAteRules, resolveGameDialogue } from './contextualDialogueContent';
+import { selectGameReputationEvent } from './reputationEventContent';
+import {
+  recordReputationEventSelection,
+  type ReputationEventSelection,
+} from './reputationEventDirector';
+import { getRestCost, getWoundedUnitCount, restUnits } from './management';
+import { CombatBridge } from '../combat/CombatBridge';
+import { DialogueView, resolveDialogueBackdrop } from '../ui/DialogueView';
+import { ManagementView } from '../ui/ManagementView';
+import { TravelView } from '../ui/TravelView';
+import { ExplorationView } from '../ui/ExplorationView';
+import { resolveRefugePresentation } from '../ui/RefugePresentation';
+import { PrologueView } from '../ui/PrologueView';
+import { sceneTransition } from '../ui/SceneTransition';
+import { TRAVERSAL_RHYTHM } from '../traversal/TraversalTransition';
+import type { TransitionVariant } from '../ui/SceneTransition';
+import { CinematicPlayer } from '../cinematics/CinematicPlayer';
+import { CinematicRegistry } from '../cinematics/CinematicRegistry';
+import { resolveVideoCinematicTrigger } from '../cinematics/CinematicTriggers';
+import type { VideoCinematicTrigger } from '../cinematics/CinematicTypes';
+import {
+  resolveCin6aBoisClairAftermath,
+  resolveCin6aJourneyTrigger,
+  resolveCin6cJourneyTrigger,
+  resolveCin6aRefugeArrival,
+  resolveCin6aSerpentEnding,
+  resolveCin6bLionTrialEnding,
+} from '../cinematics/Cin6aPresentation';
+import {
+  formatJourneyQaOutcome,
+  JOURNEY_QA_SCENARIOS,
+  runJourneyQaScenario,
+} from '../cinematics/JourneyQaScenarios';
+import { JourneyCampaignBoundary, type JourneyBoundaryRequest } from '../journey/JourneyCampaignBoundary';
+import { resolveCampaignPresentation } from '../journey/JourneyPresentationPolicy';
+import { evaluateRouteCommit } from '../journey/RouteCommitGuard';
+import { isTraversalProductionEnabledForLeg } from '../traversal/TraversalFeaturePolicy';
+import { createTraversalPresentation, hasAuthoredTraversalPresentation, type TraversalPresentationScene } from '../traversal/TraversalPresentation';
+import { TraversalPreviewSaves } from '../traversal/TraversalPreviewSaves';
+import { LION_TRAVERSAL_LEGS, type LionTraversalLeg, type LionTraversalLegId } from '../campaign/LionCampaignTravelRelations';
+import type { JourneySecondaryActionPresentation } from '../cinematics/JourneyTypes';
+import { NarrativeStage } from '../cinematics/NarrativeStage';
+import { resolveCinematicPresentation, resolveDialoguePresentation } from '../cinematics/NarrativePresentationResolver';
+import type { ResolvedPresentationBeat } from '../cinematics/NarrativePresentationMode';
+import { resolveNarrativeAuthoringMedia } from '../cinematics/NarrativePresentationPolicy';
+import { createNarrativeDialogueResolver, resolveRepresentedDialogueActors } from '../cinematics/NarrativeDialogueAdapter';
+import { applyFinalDialoguePresentationPlan } from '../cinematics/DialoguePresentationSegments';
+import { resolveCinematicReduction, shouldPlayDialoguePreludeVideo } from '../cinematics/CinematicReductionPolicy';
+import { isApprovedProductionVideo } from '../cinematics/ApprovedProductionVideos';
+import {
+  createGenericNarrativeTableau,
+  resolveNarrativeCombatTableau,
+  resolveNarrativeDialogueTableau,
+  validateDialogueCast,
+  type NarrativeTableauSpec,
+} from '../cinematics/NarrativeTableau';
+type AppMode = 'TITLE' | 'PROLOGUE' | 'TRAVEL' | 'JOURNEY' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT' | 'QA';
+
+type QaPartyMode = 'campaign' | 'full';
+type QaSkillMode = 'normal' | 'all';
+type QaApMode = 'normal' | 'full';
+type QaHpMode = 'normal' | 'restored';
+type QaInventoryMode = 'campaign' | 'qa';
+type QaGraphicsMode = 'normal' | 'reduced';
+type QaDeployMode = 'normal' | 'full';
+
+interface NarrativeDialogueOptions {
+  cinematicId?: string;
+  tableau?: NarrativeTableauSpec;
+  preserveBackdrop?: boolean;
+}
+
+interface QaParams {
+  party: QaPartyMode;
+  skills: QaSkillMode;
+  ap: QaApMode;
+  hp: QaHpMode;
+  inventory: QaInventoryMode;
+  graphics: QaGraphicsMode;
+  deployLimit: QaDeployMode;
+}
+
+const QA_FULL_CONSUMABLES: Record<string, number> = {
+  potion: 9, revive_vial: 9, ether: 9, antidote: 9,
+  bomb: 9, grenade_incendiaire: 9, grenade_entravante: 9, grenade_aveuglante: 9,
+};
+
+const QA_HERO_IDS = [
+  'warrior', 'white_mage', 'dark_mage', 'archer', 'rogue', 'lancer',
+  'paladin', 'dark_knight', 'red_mage', 'enchanter', 'ninja', 'artillerist',
+] as const;
+
+// Generic Journey secondary actions wired to the systems that already own them. CAMP is absent on
+// purpose: real refuge nodes own camp gameplay, so a fake generic entry point would be a lie.
+const JOURNEY_SECONDARY_ACTIONS: readonly JourneySecondaryActionPresentation[] = Object.freeze([
+  { id: 'COMPANY', label: 'Compagnie' },
+  { id: 'SAVE', label: 'Sauvegarder' },
+  { id: 'MENU', label: 'Menu' },
+]);
+
+/** Bounded re-presentations after a rejected commit, so a stale callback cannot spin forever. */
+const JOURNEY_MAX_REJECTIONS = 3;
+
+export class GameApp {
+  private mode: AppMode = 'TITLE';
+  private state: GameState = createInitialState();
+  private readonly statusHud = new CampaignStatusHud(() => selectCampaignStatus(this.state));
+  private readonly chrome = document.createElement('div');
+  private readonly dialogue: DialogueView;
+  private readonly management: ManagementView;
+  private readonly combat: CombatBridge;
+  private readonly travel: TravelView;
+  private readonly exploration: ExplorationView;
+  private readonly prologue: PrologueView;
+  private readonly cinematicRegistry = new CinematicRegistry();
+  private readonly cinematicPlayer = new CinematicPlayer(this.cinematicRegistry);
+  private pendingCombatId: string | null = null;
+  private traversalPursuitAbort: AbortController | null = null;
+  private pendingChapterBeatId: string | null = null;
+  // Journey/NarrativeStage is the default; TravelView is recovery or an explicit DEV override.
+  private readonly campaignPresentation = resolveCampaignPresentation({
+    search: window.location.search,
+    dev: import.meta.env.DEV,
+  });
+  private readonly narrativeMediaMode = resolveNarrativeAuthoringMedia({
+    search: window.location.search,
+    dev: import.meta.env.DEV,
+  });
+  private journeyBoundary: JourneyCampaignBoundary | null = null;
+  private activeTraversal: TraversalPresentationScene | null = null;
+  private traversalEntryInFlight = false;
+  private traversalArrivalInFlight = false;
+  private lastNarrativeCinematicBeat: ResolvedPresentationBeat | undefined;
+  private activeNarrativeStage: NarrativeStage | null = null;
+  // Latched after a catastrophic Journey failure so the fallback can never recurse into Journey.
+  private journeyUnavailable = false;
+  private routeCommitInFlight = false;
+  private readonly qaEnabled = import.meta.env.DEV
+    && new URLSearchParams(window.location.search).get('qa') === '1';
+  private readonly cinematicQaEnabled = this.qaEnabled
+    && new URLSearchParams(window.location.search).get('cinematic') === '1';
+  private readonly traversalT0QaEnabled = this.qaEnabled
+    && new URLSearchParams(window.location.search).get('traversal') === 't0';
+  private readonly saves = this.traversalT0QaEnabled ? new TraversalPreviewSaves() : new SaveRepository();
+  // Explicit DEV-only end-to-end fixture: it only exposes the existing combat QA controls while
+  // the real campaign/Journey controller continues to own route, dialogue and state progression.
+  private readonly cin6aGoldenQaEnabled = this.qaEnabled
+    && this.campaignPresentation === 'journey'
+    && new URLSearchParams(window.location.search).get('cin6a') === 'golden';
+  private qaParams: QaParams | null = null;
+
+  constructor(
+    private readonly root: HTMLElement,
+    private readonly canvas: HTMLCanvasElement,
+  ) {
+    this.chrome.className = 'game-chrome';
+    this.root.append(this.chrome);
+    this.dialogue = new DialogueView({
+      root,
+      getState: () => this.state,
+      applyEffects: (effects) => this.applyEffects(effects),
+    });
+    this.management = new ManagementView({
+      root,
+      getState: () => this.state,
+      onChange: () => {
+        this.saves.saveAuto(this.state);
+      },
+    });
+    this.combat = new CombatBridge(root);
+    this.travel = new TravelView({
+      root,
+      getState: () => this.state,
+      onSelect: (node) => this.chooseRunNode(node),
+      onOpenClan: () => void this.openManagement('clan'),
+      onSave: () => this.saves.saveManual(this.state),
+      onOpenMenu: () => this.renderTitle(),
+    });
+    this.exploration = new ExplorationView({ root, statusHud: this.statusHud });
+    this.prologue = new PrologueView(root);
+  }
+
+  async start(): Promise<void> {
+    await this.cinematicRegistry.load();
+    if (this.traversalT0QaEnabled) await this.startTraversalT0Qa();
+    else if (this.cinematicQaEnabled) this.renderCinematicQa();
+    else this.renderTitle();
+  }
+
+  dispose(): void {
+    this.disposeTraversal();
+    this.disposeJourney();
+    this.disposeNarrativeStage();
+    this.cinematicPlayer.dispose();
+    this.combat.dispose();
+    this.travel.close();
+    this.exploration.close();
+    this.prologue.close();
+  }
+
+  private renderTitle(): void {
+    this.disposeTraversal();
+    this.disposeJourney();
+    this.disposeNarrativeStage();
+    this.setMode('TITLE');
+    this.travel.close();
+    this.exploration.close();
+    this.prologue.close();
+    this.combat.close();
+    this.canvas.hidden = true;
+    this.chrome.innerHTML = `
+      <section class="title-screen">
+        <div class="title-screen__sigil">✦</div>
+        <p class="eyebrow">Chroniques d'Élyndra</p>
+        <h1>La Voie<br><span>des Sceaux</span></h1>
+        <p class="title-screen__lead">Un RPG tactique HD-2D où chaque serment laisse une trace.</p>
+        <div class="title-screen__actions">
+          <button type="button" data-action="new">Nouvelle chronique</button>
+          <button type="button" data-action="continue" ${this.saves.hasSave() ? '' : 'disabled'}>Continuer</button>
+          ${this.qaEnabled ? '<button type="button" class="title-screen__qa" data-action="qa">QA rencontres</button>' : ''}
+        </div>
+        <nav class="title-screen__nav">
+          <span class="title-screen__nav-link">⚙ Options</span>
+          <span class="title-screen__nav-sep"></span>
+          <span class="title-screen__nav-link">📖 Crédits</span>
+          <span class="title-screen__nav-sep"></span>
+          <span class="title-screen__nav-link">◆ Feuille de route</span>
+        </nav>
+      </section>
+    `;
+    this.chrome.querySelector('[data-action="new"]')?.addEventListener('click', () => void this.startNewChronicle());
+    this.chrome.querySelector('[data-action="continue"]')?.addEventListener('click', () => void this.continueChronicle());
+    this.chrome.querySelector('[data-action="qa"]')?.addEventListener('click', () => this.renderQaLab());
+  }
+
+  /** Isolated DEV proof. It consumes the real T0 relation and RunSystem without opening rollout. */
+  private async startTraversalT0Qa(): Promise<void> {
+    if (!this.traversalT0QaEnabled) {
+      this.renderTitle();
+      return;
+    }
+    const leg = LION_TRAVERSAL_LEGS.find((candidate) => candidate.id === 'T0');
+    if (!leg) throw new Error('Canonical Traversal leg T0 is missing.');
+    this.disposeTraversal();
+    this.disposeJourney();
+    this.disposeNarrativeStage();
+    this.travel.close();
+    this.exploration.close();
+    this.prologue.close();
+    this.combat.close();
+    this.state = createInitialState();
+    this.state.run.currentNodeId = leg.originNodeId;
+    this.state.currentNodeId = leg.originNodeId;
+    this.state.run.visitedNodeIds = [...new Set([...this.state.run.visitedNodeIds, leg.originNodeId])];
+    this.state.run.revealedNodeIds = [...new Set([...this.state.run.revealedNodeIds, leg.originNodeId])];
+    this.state.visitedNodeIds = [...new Set([...this.state.visitedNodeIds, leg.originNodeId])];
+    // Show the real Travel surface before the isolated preview's covered departure.
+    this.showTravel();
+    await this.enterTraversal(leg, false);
+  }
+
+  /** Shared mount only; QA alone manufactures a state and uses its isolated save repository. */
+  private async enterTraversal(leg: LionTraversalLeg, saveOrigin = true): Promise<void> {
+    if (this.activeTraversal || this.traversalEntryInFlight) return;
+    this.traversalEntryInFlight = true;
+    this.activeNarrativeStage?.prepareGlobalHandoff();
+    try {
+      if (saveOrigin) {
+        let departure!: ReturnType<JourneyCampaignBoundary['present']>;
+        const destinationLabel = getRunNode(this.state.run, leg.destinationNodeId)?.label ?? 'Prochaine destination';
+        const departureRequest: JourneyBoundaryRequest = {
+          currentNodeId: leg.originNodeId,
+          available: getAvailableRunNodes(this.state),
+          secondary: JOURNEY_SECONDARY_ACTIONS,
+          reducedMotion: this.state.settings.reducedGraphics,
+          presentationOnly: {
+            eyebrow: 'Départ',
+            title: `Vers ${destinationLabel}`,
+            continueLabel: 'Prendre la route',
+          },
+        };
+        await sceneTransition.run({ variant: 'travel', holdMs: 0, task: async () => {
+          this.disposeNarrativeStage();
+          this.travel.close();
+          this.setMode('NARRATIVE');
+          this.canvas.hidden = true;
+          this.chrome.replaceChildren();
+          // The resolved origin is durable; watching the departure is intentionally not persisted.
+          this.saves.saveAuto(this.state);
+          const boundary = this.ensureJourneyBoundary();
+          departure = boundary.present(departureRequest);
+          await Promise.race([boundary.waitUntilSurfaceReady(), departure]);
+        } });
+        let outcome = await departure;
+        while (outcome.kind === 'secondary' && outcome.id && this.mode === 'NARRATIVE') {
+          if (!await this.handleJourneySecondary(outcome.id)) return;
+          // A committed overlay is single-use. Rebuild the same local agency from unchanged truth.
+          outcome = await this.ensureJourneyBoundary().present(departureRequest);
+        }
+        if (outcome.kind !== 'presentation-continue' || this.mode !== 'NARRATIVE') return;
+      }
+      await sceneTransition.run({ variant: 'traversal', holdMs: 0, task: async () => {
+        this.disposeNarrativeStage();
+        this.disposeJourney();
+        this.travel.close();
+        this.combat.close();
+        // Journey already establishes NARRATIVE as the authorized presentation mode for a mounted
+        // campaign surface. The explicit activeTraversal owner distinguishes this playable surface.
+        this.setMode('NARRATIVE');
+        document.body.dataset.campaignSurface = 'traversal';
+        this.canvas.hidden = true;
+        this.chrome.replaceChildren();
+        const traversal = createTraversalPresentation({
+          root: this.root,
+          leg,
+          getState: () => this.state,
+          getAvailableNodes: () => getAvailableRunNodes(this.state),
+          statusHud: this.statusHud,
+          onRouteRewardPickup: reward => this.acceptTraversalRouteReward(reward),
+          onOptionalIgnore: nodeId => this.ignoreTraversalOptionalNode(nodeId),
+          onPursuitContact: contact => this.startTraversalPursuitCombat(contact),
+          onNodeHandoff: async (node) => { await this.commitRunNodeChoice(node.id); },
+          onArrival: async (destinationNodeId) => { await this.completeTraversalArrival(destinationNodeId); },
+          onMenu: () => this.renderTitle(),
+        });
+        this.activeTraversal = traversal;
+        // No physical session is persisted. Until final arrival this remains the durable boundary.
+        traversal.open();
+      } });
+    } catch (error) {
+      await this.failJourneyToTravel(error);
+    } finally {
+      this.traversalEntryInFlight = false;
+    }
+  }
+
+  private ignoreTraversalOptionalNode(nodeId: string): { accepted: boolean; feedback?: string } {
+    const traversal = this.activeTraversal;
+    if (!traversal || this.state.run.visitedNodeIds.includes(nodeId)
+      || this.state.run.bypassedRouteNodeIds?.includes(nodeId)) return { accepted: false };
+    const node = getAvailableRunNodes(this.state).find(candidate => candidate.id === nodeId);
+    if (!traversal || traversal.session.phase !== 'RUNNING' || !node
+      || !traversal.route.beats.some(beat => beat.campaignNodeIds.includes(nodeId))
+      || !bypassTraversalNode(this.state.run, traversal.session.legId, nodeId)) return { accepted: false };
+    const consequence = resolveTraversalIgnoreConsequence(traversal.session.legId, node);
+    if (consequence) {
+      changeReputation(this.state, consequence.reputation, `traversal-ignore:${node.id}`);
+      this.state.flags[consequence.flag] = true;
+      this.statusHud?.refresh();
+    }
+    return { accepted: true, feedback: consequence?.feedback };
+  }
+
+  private acceptTraversalRouteReward(reward: { readonly id: string; readonly gold: number }): boolean {
+    const traversal = this.activeTraversal;
+    if (!traversal || !isTraversalProductionEnabledForLeg(traversal.session.legId)
+      || !hasAuthoredTraversalPresentation(traversal.session.legId) || traversal.session.phase !== 'RUNNING'
+      || !Number.isInteger(reward.gold) || reward.gold <= 0) return false;
+    addTemporaryLoot(this.state.run, { gold: reward.gold });
+    this.statusHud.refresh();
+    return true;
+  }
+
+  /** Incidental road combat reuses tactical authority without resolving a campaign node. */
+  private async startTraversalPursuitCombat(contact: TraversalPursuitContact): Promise<void> {
+    const traversal = this.activeTraversal;
+    if (!traversal || this.traversalPursuitAbort || this.mode !== 'NARRATIVE'
+      || traversal.session.phase !== 'DECISION' || traversal.session.pendingBeatId !== contact.windowId
+      || traversal.session.legId !== contact.legId) return;
+    const request = requestTraversalPursuitEncounter(this.state, contact);
+    if (!request) {
+      console.error('[Traversal] Ineligible Pursuit collision mapping.', contact);
+      return; // A rejected contact remains pending, never becomes a fabricated miss.
+    }
+    const owner = new AbortController();
+    this.traversalPursuitAbort = owner;
+    try {
+      let session!: ReturnType<CombatBridge['start']>;
+      await sceneTransition.run({ variant: 'traversal', label: request.config.encounterLabel, task: async () => {
+        if (this.activeTraversal !== traversal) return;
+        this.disposeJourney(); this.disposeNarrativeStage(); this.travel.close();
+        this.setMode('COMBAT'); this.chrome.replaceChildren();
+        session = this.combat.start({ config: request.config,
+          clan: this.state.clan.members.filter(unit => unit.currentHealth > 0).map(unit => toCombatant(unit)),
+          inventory: this.state.inventory.consumables, preferredUnitIds: this.state.deployment.unitIds,
+          reducedGraphics: this.state.settings.reducedGraphics,
+          devQa: this.cin6aGoldenQaEnabled || this.traversalT0QaEnabled });
+        await session.ready;
+      } });
+      if (!session || this.activeTraversal !== traversal) return;
+      const result = await Promise.race([session.result, new Promise<null>(resolve => {
+        if (owner.signal.aborted) resolve(null);
+        else owner.signal.addEventListener('abort', () => resolve(null), { once: true });
+      })]);
+      if (!result || this.activeTraversal !== traversal) return;
+      if (!result.victory) {
+        this.disposeTraversal();
+        this.state = this.saves.loadAuto() ?? this.state;
+        failRunToCheckpoint(this.state); this.saves.saveAuto(this.state);
+        await sceneTransition.run({ variant: 'result', label: 'Défaite', task: async () => {} });
+        await this.enterCampaignPresentation();
+        return;
+      }
+      if (!resolveTraversalPursuitVictory(this.state, request, result)) throw new Error('Stale Pursuit combat result.');
+      // Existing canonical autosave cadence remains intact. Reload abandons the ephemeral
+      // battle/road and resumes that saved boundary, never a serialized physical Pursuit.
+      await sceneTransition.run({ variant: 'traversal', task: async () => {
+        if (this.activeTraversal !== traversal) return;
+        this.combat.close(); this.setMode('NARRATIVE');
+        document.body.dataset.campaignSurface = 'traversal'; this.chrome.replaceChildren();
+        if (!traversal.resumeRoadCombat(contact.windowId)) throw new Error('Pursuit road return mismatch.');
+        this.statusHud.refresh();
+      } });
+      if (this.activeTraversal === traversal && !owner.signal.aborted && this.mode === 'NARRATIVE') {
+        traversal.focusRoadControls();
+      }
+    } catch (error) {
+      console.error('[Traversal] Pursuit combat handoff failed.', error);
+      if (this.activeTraversal === traversal) await this.failJourneyToTravel(error);
+    } finally { if (this.traversalPursuitAbort === owner) this.traversalPursuitAbort = null; }
+  }
+
+  private async completeTraversalArrival(destinationNodeId: string): Promise<void> {
+    const traversal = this.activeTraversal;
+    if (!traversal || traversal.session.phase !== 'ARRIVING'
+      || traversal.route.destinationNodeId !== destinationNodeId || this.traversalArrivalInFlight) return;
+    // Arrival completes the physical leg, not the next canonical node.
+    // The canonical boundary presents authoritative options for explicit player confirmation.
+    this.traversalArrivalInFlight = true;
+    try {
+      await this.enterCampaignPresentation();
+    } finally {
+      this.traversalArrivalInFlight = false;
+    }
+  }
+
+  private disposeTraversal(): void {
+    this.traversalPursuitAbort?.abort();
+    this.traversalPursuitAbort = null;
+    this.activeTraversal?.dispose();
+    this.activeTraversal = null;
+    if (document.body.dataset.campaignSurface === 'traversal') {
+      delete document.body.dataset.campaignSurface;
+    }
+  }
+
+  private renderQaLab(message = ''): void {
+    if (!this.qaEnabled) {
+      this.renderTitle();
+      return;
+    }
+    if (!this.qaParams) {
+      this.qaParams = {
+        party: 'campaign',
+        skills: 'normal',
+        ap: 'normal',
+        hp: 'normal',
+        inventory: 'campaign',
+        graphics: this.state.settings.reducedGraphics ? 'reduced' : 'normal',
+        deployLimit: 'normal',
+      };
+    }
+    const p = this.qaParams;
+    this.disposeJourney();
+    this.setMode('QA');
+    this.travel.close();
+    this.exploration.close();
+    this.prologue.close();
+    this.combat.close();
+    this.canvas.hidden = true;
+    const encounterCards = [...combatConfigs.values()].map((config) => `
+      <button type="button" class="qa-lab__encounter qa-lab__encounter--${config.encounterRank}" data-qa-combat="${config.id}">
+        <span>${config.encounterRank}</span>
+        <b>${config.encounterLabel}</b>
+        <small>${config.objective}</small>
+      </button>
+    `).join('');
+    const radio = (group: string, value: string, label: string, checked: boolean) =>
+      `<label class="qa-lab__radio${checked ? ' is-checked' : ''}"><input type="radio" name="qa-${group}" value="${value}" ${checked ? 'checked' : ''}>${label}</label>`;
+    this.chrome.innerHTML = `
+      <section class="qa-lab ui-screen" aria-label="Laboratoire QA de combat">
+        <header class="qa-lab__header">
+          <div><p class="eyebrow">Développement local</p><h1>Laboratoire de combat</h1></div>
+          <button type="button" data-qa-back>Retour au titre</button>
+        </header>
+        <p class="qa-lab__lead">Mode QA isolé : aucun résultat, récompense, PV ou objet consommé n'est appliqué à la chronique.</p>
+        ${message ? `<p class="qa-lab__result">${message}</p>` : ''}
+        <div class="qa-lab__params">
+          <fieldset>
+            <legend>Groupe</legend>
+            ${radio('party', 'campaign', 'Party actuelle', p.party === 'campaign')}
+            ${radio('party', 'full', 'Full roster QA', p.party === 'full')}
+          </fieldset>
+          <fieldset>
+            <legend>Compétences</legend>
+            ${radio('skills', 'normal', 'Déblocage normal', p.skills === 'normal')}
+            ${radio('skills', 'all', 'Toutes compétences', p.skills === 'all')}
+          </fieldset>
+          <fieldset>
+            <legend>PA</legend>
+            ${radio('ap', 'normal', 'AP normal', p.ap === 'normal')}
+            ${radio('ap', 'full', 'AP plein', p.ap === 'full')}
+          </fieldset>
+          <fieldset>
+            <legend>PV</legend>
+            ${radio('hp', 'normal', 'PV actuels', p.hp === 'normal')}
+            ${radio('hp', 'restored', 'PV restaurés', p.hp === 'restored')}
+          </fieldset>
+          <fieldset>
+            <legend>Inventaire</legend>
+            ${radio('inventory', 'campaign', 'Inventaire campagne', p.inventory === 'campaign')}
+            ${radio('inventory', 'qa', 'Inventaire QA complet ×9', p.inventory === 'qa')}
+          </fieldset>
+          <fieldset>
+            <legend>Graphismes</legend>
+            ${radio('graphics', 'normal', 'Normal', p.graphics === 'normal')}
+            ${radio('graphics', 'reduced', 'Réduit', p.graphics === 'reduced')}
+          </fieldset>
+          <fieldset>
+            <legend>Déploiement</legend>
+            ${radio('deployLimit', 'normal', 'Limite normale', p.deployLimit === 'normal')}
+            ${radio('deployLimit', 'full', 'Tous les héros QA', p.deployLimit === 'full')}
+          </fieldset>
+        </div>
+        <div class="qa-lab__grid">${encounterCards}</div>
+      </section>
+    `;
+    this.chrome.querySelector('[data-qa-back]')?.addEventListener('click', () => this.renderTitle());
+    this.chrome.querySelectorAll<HTMLInputElement>('input[type="radio"]').forEach((input) => {
+      input.addEventListener('change', () => {
+        const group = input.name.split('qa-')[1] as keyof QaParams | undefined;
+        if (group && this.qaParams) {
+          this.qaParams[group] = input.value as never;
+          this.renderQaLab(message);
+        }
+      });
+    });
+    this.chrome.querySelectorAll<HTMLButtonElement>('[data-qa-combat]').forEach((button) => {
+      button.addEventListener('click', () => void this.startQaCombat(button.dataset.qaCombat ?? ''));
+    });
+  }
+
+  private renderCinematicQa(message = ''): void {
+    if (!this.cinematicQaEnabled) {
+      this.renderTitle();
+      return;
+    }
+    this.disposeJourney();
+    this.setMode('QA');
+    this.travel.close();
+    this.exploration.close();
+    this.prologue.close();
+    this.combat.close();
+    this.canvas.hidden = true;
+    const requestedRealId = new URLSearchParams(window.location.search).get('real') ?? 'camp_departure';
+    const selectedRealId = this.cinematicRegistry.get(requestedRealId) ? requestedRealId : 'camp_departure';
+    const selectedDialogueId = [
+      'lion_briefing', 'village_choice', 'shadow_signs', 'final_refuge',
+      'mystery_recruit', 'mystery_lancer_recruit', 'mystery_help', 'mystery_treasure',
+      'old_shrine_event', 'mystery_shrine', 'mystery_dragon_roost', 'serpent_informant',
+    ].find((dialogueId) => (
+      resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId })
+        ?? resolveCin6cJourneyTrigger({ hook: 'beforeDialogue', dialogueId }, { flags: this.state.flags })
+    ) === selectedRealId);
+    this.chrome.innerHTML = `
+      <section class="qa-lab cinematic-qa ui-screen" aria-label="Laboratoire QA cinématique">
+        <header class="qa-lab__header">
+          <div><p class="eyebrow">Développement local</p><h1>Laboratoire cinématique</h1></div>
+          <button type="button" data-cinematic-back>Retour au titre</button>
+        </header>
+        <p class="qa-lab__lead">Lecteur isolé : aucune donnée de chronique, de combat ou de sauvegarde n'est modifiée.</p>
+        <p class="qa-lab__lead" data-cinematic-registry>Registre chargé : ${this.cinematicRegistry.values().map((entry) => entry.id).join(', ') || 'vide'}.</p>
+        ${message ? `<p class="qa-lab__result">${message}</p>` : ''}
+        <h2 class="qa-lab__section">Lecteur autonome</h2>
+        <div class="cinematic-qa__grid">
+          <button type="button" data-cinematic-qa="placeholder"><b>Placeholder</b><span>Lecture, Continuer et nettoyage</span></button>
+          <button type="button" data-cinematic-qa="missing"><b>ID absent</b><span>Fallback immédiat sans blocage</span></button>
+          <button type="button" data-cinematic-qa="reduced"><b>Mouvement réduit</b><span>Continuation immédiate</span></button>
+          <button type="button" data-cinematic-qa="abort"><b>Annulation</b><span>Abort et règlement exact</span></button>
+          <button type="button" data-cinematic-qa="transition"><b>Transition</b><span>Interlude couvert et interactif</span></button>
+          <button type="button" data-cinematic-qa="real-selected"><b>Vidéo CIN-6A sélectionnée</b><span>${selectedRealId} — fin naturelle, Skip et nettoyage</span></button>
+          <button type="button" data-cinematic-qa="real-selected-hold"><b>Hold CIN-6A sélectionné</b><span>${selectedRealId} — frame finale Chromium, Release et nettoyage</span></button>
+          ${selectedDialogueId ? `<button type="button" data-cinematic-qa="real-selected-dialogue"><b>Dialogue CIN-6.5 sélectionné</b><span>${selectedRealId} → ${selectedDialogueId}</span></button>` : ''}
+          <button type="button" data-cinematic-qa="real-hold"><b>Vidéo réelle + hold</b><span>lion_judgement naturel, frame finale, Release et nettoyage</span></button>
+          <button type="button" data-cinematic-qa="real-dialogue"><b>Flux Lion réel</b><span>lion_judgement → lion_finale_judgement</span></button>
+          <button type="button" data-cinematic-qa="reduced-dialogue"><b>Flux Lion réduit</b><span>Bypass mouvement → lion_finale_judgement</span></button>
+          <button type="button" data-cinematic-qa="failure-dialogue"><b>Échec média + dialogue</b><span>ID absent → lion_finale_judgement</span></button>
+        </div>
+        <h2 class="qa-lab__section">Runtime Cinematic Journey (CIN-1)</h2>
+        <p class="qa-lab__lead">Registre cinématique en mémoire, isolé du manifeste de production. Les scénarios interactifs attendent un vrai clic.</p>
+        <div class="cinematic-qa__grid">
+          ${JOURNEY_QA_SCENARIOS.map((scenario) => `
+            <button type="button" data-cinematic-qa="${scenario.id}"><b>${scenario.title}</b><span>${scenario.summary}</span></button>
+          `).join('')}
+        </div>
+      </section>
+    `;
+    this.chrome.querySelector('[data-cinematic-back]')?.addEventListener('click', () => this.renderTitle());
+    this.chrome.querySelectorAll<HTMLButtonElement>('[data-cinematic-qa]').forEach((button) => {
+      button.addEventListener('click', () => void this.runCinematicQa(button.dataset.cinematicQa ?? ''));
+    });
+  }
+
+  private async runCinematicQa(scenario: string): Promise<void> {
+    if (scenario.startsWith('journey-')) {
+      const outcome = await runJourneyQaScenario(scenario);
+      this.renderCinematicQa(`${scenario} — ${formatJourneyQaOutcome(outcome)}`);
+      return;
+    }
+    if (scenario === 'real-dialogue') {
+      await this.playDialogue('lion_finale_judgement');
+      return;
+    }
+    if (scenario === 'real-selected-dialogue') {
+      const requestedRealId = new URLSearchParams(window.location.search).get('real') ?? '';
+      const selectedDialogueId = [
+        'lion_briefing', 'village_choice', 'shadow_signs', 'final_refuge',
+        'mystery_recruit', 'mystery_lancer_recruit', 'mystery_help', 'mystery_treasure',
+        'old_shrine_event', 'mystery_shrine', 'mystery_dragon_roost', 'serpent_informant',
+      ].find((dialogueId) => (
+        resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId })
+          ?? resolveCin6cJourneyTrigger({ hook: 'beforeDialogue', dialogueId }, { flags: this.state.flags })
+      ) === requestedRealId);
+      if (!selectedDialogueId) {
+        this.renderCinematicQa(`Aucun dialogue Journey CIN-6.5 n'est associé à ${requestedRealId || '<absent>'}.`);
+        return;
+      }
+      await this.playDialogue(selectedDialogueId);
+      return;
+    }
+    if (scenario === 'reduced-dialogue') {
+      const previous = this.state.settings.reducedGraphics;
+      this.state.settings.reducedGraphics = true;
+      try {
+        await this.playDialogue('lion_finale_judgement');
+      } finally {
+        this.state.settings.reducedGraphics = previous;
+      }
+      return;
+    }
+    if (scenario === 'failure-dialogue') {
+      const resolved = resolveGameDialogue('lion_finale_judgement', this.state);
+      if (!resolved) throw new Error("Missing dialogue 'lion_finale_judgement'.");
+      await sceneTransition.run({
+        variant: 'dialogue',
+        label: resolved.sequence.title ?? '',
+        interlude: () => this.cinematicPlayer.play('cin3-controlled-missing', { reducedMotion: false }),
+        task: async () => {
+          this.setMode('NARRATIVE');
+          void this.dialogue.play(resolved.sequence);
+        },
+        holdMs: 0,
+      });
+      return;
+    }
+    let result: Awaited<ReturnType<CinematicPlayer['play']>> | undefined;
+    const requestedRealId = new URLSearchParams(window.location.search).get('real') ?? 'camp_departure';
+    const selectedRealId = this.cinematicRegistry.get(requestedRealId) ? requestedRealId : 'camp_departure';
+    const selectedDuration = this.cinematicRegistry.get(selectedRealId)?.durationMs ?? 0;
+    if (scenario === 'real-hold' || scenario === 'real-selected-hold') {
+      const heldId = scenario === 'real-hold' ? 'lion_judgement' : selectedRealId;
+      const heldDuration = this.cinematicRegistry.get(heldId)?.durationMs ?? 0;
+      const held = await this.cinematicPlayer.playHeld(heldId, {
+        allowSkip: false,
+        muted: true,
+        reducedMotion: false,
+        timeoutMs: Math.max(12_000, heldDuration + 5_000),
+        stallTimeoutMs: 5_000,
+      });
+      result = held.result;
+      if (held.surface) {
+        const freezeFrame = held.surface.querySelector<HTMLCanvasElement>('.cinematic-overlay__freeze-frame');
+        if (freezeFrame && held.result.reason === 'ended' && !freezeFrame.hidden) {
+          const context = freezeFrame.getContext('2d', { willReadFrequently: true });
+          if (context) {
+            const pixels = context.getImageData(0, 0, freezeFrame.width, freezeFrame.height).data;
+            let minimum = 255;
+            let maximum = 0;
+            let total = 0;
+            for (let index = 0; index < pixels.length; index += 4) {
+              const luminance = Math.round((pixels[index]! + pixels[index + 1]! + pixels[index + 2]!) / 3);
+              minimum = Math.min(minimum, luminance);
+              maximum = Math.max(maximum, luminance);
+              total += luminance;
+            }
+            freezeFrame.dataset.luminance = `${minimum}/${Math.round(total / (pixels.length / 4))}/${maximum}`;
+          }
+        }
+        const release = document.createElement('button');
+        release.type = 'button';
+        release.className = 'cinematic-overlay__control';
+        release.dataset.cinematicRelease = 'true';
+        release.textContent = 'Continuer / Release';
+        // The frozen cinematic is deliberately inert. Keep this DEV-only QA affordance as a
+        // sibling above it so a human can exercise the real release path without weakening the
+        // production surface's passive accessibility contract.
+        release.style.cssText = 'position:fixed;right:clamp(18px,4vw,56px);bottom:clamp(18px,4vw,48px);z-index:9300';
+        release.addEventListener('click', () => {
+          release.remove();
+          held.release();
+          const residue = document.querySelectorAll('.cinematic-overlay, .cinematic-overlay__video, .cinematic-overlay__freeze-frame, [data-cinematic-release]').length;
+          this.renderCinematicQa(`Vidéo réelle ${heldId} : ${held.result.reason} · played ${held.result.played} · résidu DOM ${residue}.`);
+        }, { once: true });
+        document.body.append(release);
+        release.focus();
+        return;
+      }
+    } else if (scenario === 'real-selected') result = await this.cinematicPlayer.play(selectedRealId, {
+      muted: true,
+      reducedMotion: false,
+      timeoutMs: Math.max(12_000, selectedDuration + 5_000),
+      stallTimeoutMs: 5_000,
+    });
+    else if (scenario === 'missing') result = await this.cinematicPlayer.play('missing-cinematic', { reducedMotion: false });
+    else if (scenario === 'reduced') result = await this.cinematicPlayer.play(selectedRealId, { reducedMotion: true });
+    else if (scenario === 'abort') {
+      const controller = new AbortController();
+      window.setTimeout(() => controller.abort(), 180);
+      result = await this.cinematicPlayer.play('qa-placeholder', { signal: controller.signal, reducedMotion: false, placeholderDurationMs: 5_000 });
+    } else if (scenario === 'transition') {
+      let transitionResult;
+      await sceneTransition.run({
+        variant: 'fade',
+        label: 'Interlude cinématique',
+        interlude: async () => { transitionResult = await this.cinematicPlayer.play('qa-placeholder', { reducedMotion: false, placeholderDurationMs: 5_000 }); },
+        task: async () => undefined,
+        holdMs: 0,
+      });
+      result = transitionResult;
+    } else result = await this.cinematicPlayer.play('qa-placeholder', { reducedMotion: false, placeholderDurationMs: 5_000 });
+    this.renderCinematicQa(`Résultat : ${result?.reason ?? 'inconnu'} · overlay ${document.querySelector('.cinematic-overlay') ? 'actif' : 'nettoyé'}.`);
+  }
+
+  private cinematicInterlude(trigger: VideoCinematicTrigger): (() => Promise<unknown>) | undefined {
+    const id = resolveVideoCinematicTrigger(trigger)
+      ?? (this.usesJourneyPresentation()
+        ? resolveCin6aJourneyTrigger(trigger) ?? resolveCin6cJourneyTrigger(trigger, { flags: this.state.flags })
+        : undefined);
+    if (!id || !isApprovedProductionVideo(id)) return undefined;
+    if (this.usesJourneyPresentation()) {
+      const tableau = trigger.hook === 'beforeCombat' ? resolveNarrativeCombatTableau(trigger.combatId) : undefined;
+      return () => this.playNarrativeCinematic(id, tableau);
+    }
+    return () => this.cinematicPlayer.play(id, { reducedMotion: this.state.settings.reducedGraphics });
+  }
+
+  private async playNarrativeCinematic(id: string, tableau?: NarrativeTableauSpec): Promise<unknown> {
+    if (!isApprovedProductionVideo(id)) return undefined;
+    const stage = this.createNarrativeStage(tableau);
+    try {
+      const beat = resolveCinematicPresentation(id);
+      const result = beat
+        ? await stage.presentCinematicBeat(beat, { reducedMotion: this.state.settings.reducedGraphics })
+        : await stage.presentCinematic(id, { reducedMotion: this.state.settings.reducedGraphics });
+      this.lastNarrativeCinematicBeat = beat;
+      this.ensureJourneyBoundary().markCinematicPresented(id);
+      return result;
+    } finally {
+      this.disposeNarrativeStage(stage);
+    }
+  }
+
+  private async playJourneyCinematic(id: string | undefined, label = ''): Promise<void> {
+    if (!id || !isApprovedProductionVideo(id) || !this.usesJourneyPresentation()) return;
+    await sceneTransition.run({
+      variant: 'fade',
+      label,
+      interlude: () => this.playNarrativeCinematic(id),
+      task: async () => undefined,
+      holdMs: 0,
+    });
+  }
+
+  private async playStandaloneCinematic(trigger: VideoCinematicTrigger, label = ''): Promise<void> {
+    const interlude = this.cinematicInterlude(trigger);
+    if (!interlude) return;
+    await sceneTransition.run({ variant: 'fade', label, interlude, task: async () => undefined, holdMs: 0 });
+  }
+
+  private buildQaSquad(): UnitInstance[] {
+    return QA_HERO_IDS.map((id) => createUnitInstance(id));
+  }
+
+  private async startQaCombat(combatId: string): Promise<void> {
+    if (!this.qaEnabled || !this.qaParams) return;
+    const config = combatConfigs.get(combatId);
+    if (!config) return;
+    const p = this.qaParams;
+    const narrativeCinematicId = this.usesJourneyPresentation()
+      ? resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId })
+        ?? resolveCin6aJourneyTrigger({ hook: 'beforeCombat', combatId })
+        ?? resolveCin6cJourneyTrigger({ hook: 'beforeCombat', combatId }, { flags: this.state.flags })
+      : undefined;
+    if (narrativeCinematicId && config.preCombatDialogueId) {
+      await this.playDialogue(config.preCombatDialogueId, config.encounterLabel, {
+        cinematicId: narrativeCinematicId,
+        tableau: resolveNarrativeCombatTableau(combatId),
+        preserveBackdrop: false,
+      });
+    } else {
+      const cinematicInterlude = this.cinematicInterlude({ hook: 'beforeCombat', combatId });
+      if (cinematicInterlude) {
+        await sceneTransition.run({
+          variant: config.encounterRank === 'boss' ? 'boss' : 'combat',
+          label: config.encounterLabel,
+          interlude: cinematicInterlude,
+          task: async () => undefined,
+          holdMs: 0,
+        });
+      }
+    }
+    this.activeNarrativeStage?.prepareGlobalHandoff();
+    this.disposeNarrativeStage();
+    this.setMode('COMBAT');
+    this.chrome.replaceChildren();
+    const squad = p.party === 'full'
+      ? this.buildQaSquad()
+      : this.state.clan.members.filter((unit) => unit.currentHealth > 0);
+    const clan = squad.map((unit) => {
+      const combatant = toCombatant(unit, { qaUnlockAllSkills: p.skills === 'all' });
+      if (p.hp === 'restored') combatant.currentHealth = combatant.stats.maxHealth;
+      return combatant;
+    });
+    const inventory = p.inventory === 'qa'
+      ? { ...QA_FULL_CONSUMABLES }
+      : { ...this.state.inventory.consumables };
+    try {
+      const result = await this.combat.play({
+        config,
+        clan,
+        inventory,
+        preferredUnitIds: p.party === 'full' ? [] : this.state.deployment.unitIds,
+        reducedGraphics: p.graphics === 'reduced',
+        devQa: true,
+        qaFullAp: p.ap === 'full',
+        qaDeployAll: p.party === 'full' && p.deployLimit === 'full',
+      });
+      this.renderQaLab(`${config.encounterLabel} — ${result.victory ? 'victoire de test' : 'défaite de test'}.`);
+    } catch (error) {
+      this.combat.close();
+      const message = error instanceof Error ? error.message : String(error);
+      this.renderQaLab(`${config.encounterLabel} — erreur QA : ${message}`);
+    }
+  }
+
+  /**
+   * The single semantic campaign-presentation boundary.
+   *
+   * Every flow that used to return to TravelView returns here instead. It decides only HOW the
+   * current campaign boundary is presented — never what the campaign is.
+   */
+  private async enterCampaignPresentation(): Promise<void> {
+    if (this.resumeActiveTraversalIfReady()) return;
+    if (this.traversalEntryInFlight) return;
+    // An existing owner may only leave through final arrival, never through another entry.
+    if (this.activeTraversal && this.activeTraversal.session.phase !== 'ARRIVING') return;
+    const leg = !this.activeTraversal && this.state.run.status === 'active'
+      ? LION_TRAVERSAL_LEGS.find(candidate => candidate.originNodeId === this.state.run.currentNodeId
+        && this.state.resolvedNodeIds.includes(candidate.originNodeId)
+        && this.usesTraversalPresentation(candidate.id)
+        && getAvailableRunNodes(this.state).some(node => candidate.stages[0]?.nodeIds.includes(node.id)))
+      : undefined;
+    if (leg) {
+      await this.enterTraversal(leg);
+      return;
+    }
+    if (this.usesJourneyPresentation()) {
+      await this.enterJourney();
+      return;
+    }
+    await this.enterTravel();
+  }
+
+  private resumeActiveTraversalIfReady(): boolean {
+    const traversal = this.activeTraversal;
+    const nodeId = traversal?.activeNodeId;
+    if (!traversal || !nodeId || !traversal.canResumeNode(nodeId)) return false;
+    if (!this.state.resolvedNodeIds.includes(nodeId)) return false;
+    void sceneTransition.run({ variant: 'traversal', holdMs: TRAVERSAL_RHYTHM.hold * 1000, task: async () => {
+      if (this.activeTraversal !== traversal) return;
+      // The transition timer can finish before its opacity reaches 1 on a busy frame.
+      // Keep the checkpoint surface until the Route swap is actually covered.
+      await new Promise<void>(resolve => {
+        const waitForCover = () => {
+          const cover = document.querySelector<HTMLElement>('.scene-transition--traversal');
+          if (import.meta.env.DEV || document.hidden || !cover
+            || Number(getComputedStyle(cover).opacity) >= .999) resolve();
+          else requestAnimationFrame(waitForCover);
+        };
+        waitForCover();
+      });
+      if (this.activeTraversal !== traversal) return;
+      this.activeNarrativeStage?.prepareGlobalHandoff();
+      this.disposeNarrativeStage();
+      this.disposeJourney();
+      this.travel.close();
+      this.combat.close();
+      this.setMode('NARRATIVE');
+      document.body.dataset.campaignSurface = 'traversal';
+      this.canvas.hidden = true;
+      this.chrome.replaceChildren();
+      traversal.resumeNode(nodeId);
+    } });
+    return true;
+  }
+
+  private usesJourneyPresentation(): boolean {
+    return this.campaignPresentation === 'journey' && !this.journeyUnavailable;
+  }
+
+  /**
+   * Production-safe Traversal gate. This is deliberately fail-closed and is not wired
+   * to query params, DEV mode or automatic asset detection.
+   */
+  private usesTraversalPresentation(legId: LionTraversalLegId): boolean {
+    return isTraversalProductionEnabledForLeg(legId) && hasAuthoredTraversalPresentation(legId);
+  }
+
+  private async enterTravel(): Promise<void> {
+    this.activeNarrativeStage?.prepareGlobalHandoff();
+    const arrivingTraversal = this.activeTraversal?.session.phase === 'ARRIVING' ? this.activeTraversal : null;
+    await sceneTransition.run({
+      variant: arrivingTraversal ? 'traversal' : 'travel',
+      task: async () => {
+        // Legacy/debug or recovery arrival still completes physically under cover, without entry.
+        arrivingTraversal?.completeArrival();
+        this.showTravel();
+        this.saves.saveAuto(this.state);
+      },
+    });
+  }
+
+  private showTravel(): void {
+    this.disposeTraversal();
+    this.disposeJourney();
+    this.disposeNarrativeStage();
+    this.setMode('TRAVEL');
+    this.canvas.hidden = true;
+    this.chrome.replaceChildren();
+    this.travel.open();
+  }
+
+  private async enterJourney(): Promise<void> {
+    this.activeNarrativeStage?.prepareGlobalHandoff();
+    const arrivingTraversal = this.activeTraversal?.session.phase === 'ARRIVING' ? this.activeTraversal : null;
+    let boundaryPromise: Promise<void> | null = null;
+    try {
+      await sceneTransition.run({
+        variant: arrivingTraversal ? 'traversal' : 'travel',
+        task: async () => {
+          // Final physical completion and unmount happen only once the shared cover is opaque.
+          arrivingTraversal?.completeArrival();
+          this.disposeTraversal();
+          this.disposeNarrativeStage();
+          this.travel.close();
+          this.setMode('NARRATIVE');
+          this.canvas.hidden = true;
+          this.chrome.replaceChildren();
+          this.saves.saveAuto(this.state);
+          const boundary = this.ensureJourneyBoundary();
+          boundaryPromise = this.runJourneyBoundary();
+          await Promise.race([boundary.waitUntilSurfaceReady(), boundaryPromise]);
+        },
+      });
+      await boundaryPromise;
+    } catch (error) {
+      // Recovery must start after SceneTransition releases its lock, including pre-ready failure.
+      await this.failJourneyToTravel(error);
+    }
+  }
+
+  /**
+   * Presents the current campaign boundary through the Journey runtime until the player either
+   * commits a route, leaves for the title, or the presentation itself fails.
+   */
+  private async runJourneyBoundary(): Promise<void> {
+    let rejections = 0;
+    while (this.mode === 'NARRATIVE') {
+      const current = getRunNode(this.state.run);
+      const available = getAvailableRunNodes(this.state);
+      const outcome = await this.ensureJourneyBoundary().present({
+        currentNodeId: current?.id ?? null,
+        currentContentId: current?.contentId ?? null,
+        ...(current?.label ? { currentLabel: current.label } : {}),
+        available,
+        secondary: JOURNEY_SECONDARY_ACTIONS,
+        reducedMotion: this.state.settings.reducedGraphics,
+      });
+      if (outcome.kind === 'node' && outcome.id) {
+        if (await this.commitRunNodeChoice(outcome.id)) return;
+        rejections += 1;
+        if (rejections >= JOURNEY_MAX_REJECTIONS) {
+          throw new Error('Journey route commit repeatedly rejected.');
+        }
+        continue;
+      }
+      if (outcome.kind === 'secondary' && outcome.id) {
+        if (await this.handleJourneySecondary(outcome.id)) continue;
+        return;
+      }
+      if (outcome.kind === 'terminal') {
+        this.renderTitle();
+        return;
+      }
+      return;
+    }
+  }
+
+  /**
+   * Journey system failure — distinct from a missing clip, which CIN-1 already degrades safely.
+   * Journey is latched off for the rest of the session so the fallback cannot recurse.
+   */
+  private async failJourneyToTravel(error: unknown): Promise<void> {
+    console.error('[Journey] Presentation failed; falling back to TravelView.', error);
+    this.disposeJourney();
+    this.journeyUnavailable = true;
+    await this.enterTravel();
+  }
+
+  private ensureJourneyBoundary(): JourneyCampaignBoundary {
+    this.journeyBoundary ??= new JourneyCampaignBoundary({
+      player: this.cinematicPlayer,
+      statusHud: this.statusHud,
+      registry: this.cinematicRegistry,
+      mediaMode: this.narrativeMediaMode,
+      dev: import.meta.env.DEV,
+    });
+    return this.journeyBoundary;
+  }
+
+  private disposeJourney(): void {
+    this.journeyBoundary?.dispose();
+    this.journeyBoundary = null;
+  }
+
+  private createNarrativeStage(tableau?: NarrativeTableauSpec): NarrativeStage {
+    this.disposeNarrativeStage();
+    const stage = new NarrativeStage({
+      player: this.cinematicPlayer,
+      statusHud: this.statusHud,
+      registry: this.cinematicRegistry,
+      mediaMode: this.narrativeMediaMode,
+      dev: import.meta.env.DEV,
+      reducedMotion: this.state.settings.reducedGraphics,
+    });
+    if (tableau) stage.setTableau(tableau);
+    this.activeNarrativeStage = stage;
+    return stage;
+  }
+
+  private disposeNarrativeStage(stage: NarrativeStage | null = this.activeNarrativeStage): void {
+    if (!stage) return;
+    stage.dispose();
+    if (this.activeNarrativeStage === stage) this.activeNarrativeStage = null;
+  }
+
+  /** Returns true when the same Journey boundary should be presented again. */
+  private async handleJourneySecondary(actionId: string): Promise<boolean> {
+    if (actionId === 'SAVE') {
+      this.saves.saveManual(this.state);
+      return true;
+    }
+    if (actionId === 'COMPANY') {
+      // Option B: the boundary is deterministically rebuilt from unchanged route state afterwards.
+      await this.openManagement('clan', undefined, 'temporary', false);
+      if (this.mode !== 'NARRATIVE') this.setMode('NARRATIVE');
+      return true;
+    }
+    if (actionId === 'MENU') {
+      this.renderTitle();
+      return false;
+    }
+    return true;
+  }
+
+  private async chooseRunNode(node: RunNode): Promise<void> {
+    await this.commitRunNodeChoice(node.id);
+  }
+
+  /**
+   * THE authoritative route commit path. TravelView and Journey both enter here, and neither may
+   * duplicate any of these operations. Returns true only when a node was actually entered.
+   */
+  private async commitRunNodeChoice(nodeId: string): Promise<boolean> {
+    // Re-verified against RunSystem, never against the DOM: a stale or unavailable node is refused.
+    const decision = evaluateRouteCommit({
+      mode: this.mode,
+      commitInFlight: this.routeCommitInFlight,
+      nodeId,
+      listAvailable: () => getAvailableRunNodes(this.state),
+    });
+    if (!decision.authorized) {
+      console.warn(`[Campaign] Refused route commit '${nodeId}' (${decision.rejection}).`);
+      return false;
+    }
+    const node = decision.node;
+    const traversalHandoff = this.activeTraversal?.session.phase === 'NODE_HANDOFF'
+      ? this.activeTraversal
+      : null;
+    let entered: RunNode | null = null;
+    this.routeCommitInFlight = true;
+    try {
+      this.travel.close();
+      this.disposeJourney();
+      this.setMode('RESULT');
+      entered = enterRunNode(this.state.run, node.id);
+      if (entered) {
+        this.state.currentNodeId = entered.id;
+        this.state.visitedNodeIds = [...this.state.run.visitedNodeIds];
+        if (
+          ['event', 'mystery', 'recruitment'].includes(entered.type)
+          && !this.state.seenUniqueEvents.includes(entered.contentId)
+        ) {
+          this.state.seenUniqueEvents.push(entered.contentId);
+        }
+        this.state.stepCounter += 1;
+        if (traversalHandoff?.activeNodeId === entered.id) {
+          traversalHandoff.beginNodeResolution(entered.id);
+        }
+      }
+    } finally {
+      // The mutex protects only the single authoritative RunSystem mutation. Holding it while
+      // `resolveRunNode` awaits the next Journey boundary would reject that legitimate next choice.
+      this.routeCommitInFlight = false;
+    }
+    if (!entered) {
+      await this.enterCampaignPresentation();
+      return false;
+    }
+    await this.resolveRunNode(entered, false);
+    return true;
+  }
+
+  private async resolveRunNode(node: RunNode, initial: boolean): Promise<void> {
+    if (node.type === 'refuge') {
+      const presentation = resolveRefugePresentation(node);
+      if (!presentation) throw new Error(`Missing interactive refuge presentation for ${node.id}`);
+      const refugeBackground = this.exploration.prepareBackground(presentation.background);
+      const securedFlag = `refugeSecured:${node.id}`;
+      if (!this.state.flags[securedFlag]) {
+        await this.playJourneyCinematic(resolveCin6aRefugeArrival(node.id), node.label);
+      }
+      let securedGold = 0;
+      if (!this.state.flags[securedFlag]) {
+        if (getReputationRule(this.state.reputation).min >= 60) {
+          addTemporaryLoot(this.state.run, { category: 'consumables', itemId: 'potion', quantity: 1 });
+        }
+        securedGold = secureRunLoot(this.state).gold;
+        this.state.flags[securedFlag] = true;
+      }
+      const gatheringId = CLAN_ANCHOR_DIALOGUES[node.id];
+      const gatheringFlag = `clanArrival:${node.id}`;
+      if (gatheringId && !this.state.flags[gatheringFlag]) {
+        const sequence = resolveGameDialogue(gatheringId, this.state)!.sequence;
+        const speakingActors = new Set(sequence.steps.map(step => step.actorId).filter((id): id is string => Boolean(id)));
+        const clanActors = this.state.clan.members.map(member => resolveCharacterUnitId(member.definitionId))
+          .filter((id): id is string => typeof id === 'string' && !speakingActors.has(id))
+          .slice(0, Math.max(0, 4 - speakingActors.size));
+        await this.playDialogue(gatheringId, node.label, {
+          tableau: createGenericNarrativeTableau(sequence, clanActors),
+        });
+        this.state.flags[gatheringFlag] = true;
+      }
+      await refugeBackground;
+      this.disposeNarrativeStage();
+      this.statusHud?.hide();
+      this.saves.saveAuto(this.state);
+      let refugeMessage = '';
+      while (true) {
+        this.setMode('NARRATIVE');
+        const restCost = getRestCost(this.state);
+        const woundedCount = getWoundedUnitCount(this.state);
+        const action = await this.exploration.open(presentation, getReputationRule(this.state.reputation).label, securedGold, {
+          cost: restCost,
+          woundedCount,
+          canRest: woundedCount > 0 && this.state.gold >= restCost,
+          message: refugeMessage,
+        });
+        refugeMessage = '';
+        securedGold = 0;
+        if (action === 'continue') break;
+        if (action === 'rest') {
+          const costBeforeRest = getRestCost(this.state);
+          const rested = restUnits(this.state);
+          if (rested) this.saves.saveAuto(this.state);
+          refugeMessage = rested
+            ? `Repos effectu&eacute; : ${costBeforeRest} or d&eacute;pens&eacute;.`
+            : getWoundedUnitCount(this.state) === 0
+              ? 'Aucune unit&eacute; bless&eacute;e : le repos est inutile.'
+              : 'Or insuffisant pour soigner la compagnie.';
+          continue;
+        }
+        this.setMode('RESULT');
+        if (action === 'shop') await this.openManagement('shop', 'valmir', 'permanent', false);
+        if (action === 'clan') await this.openManagement('clan', undefined, 'temporary', false);
+        if (action === 'skills') await this.openManagement('skills', undefined, 'temporary', false);
+      }
+      this.markResolved(node.id);
+      if (await this.playPostNodeNarrative(node.id, node)) return;
+      await this.enterCampaignPresentation();
+      return;
+    }
+    if (node.type === 'shop') {
+      await this.openManagement('shop', node.contentId, 'temporary', false);
+      this.markResolved(node.id);
+      await this.enterCampaignPresentation();
+      return;
+    }
+    if (node.type === 'boss') {
+      const pendingFinaleCombat = resolvePendingLionFinaleCombat(this.state.flags);
+      if (pendingFinaleCombat) {
+        await this.startCombat(pendingFinaleCombat, node);
+        return;
+      }
+    }
+    if (node.type === 'combat' || node.type === 'boss') {
+      if (!combatConfigs.has(node.contentId)) {
+        await this.playDialogue(node.contentId, node.label);
+        if (this.pendingCombatId) await this.flushPendingCombat(node);
+        else {
+          this.markResolved(node.id);
+          if (await this.playPostNodeNarrative(node.id, node)) return;
+          await this.enterCampaignPresentation();
+        }
+        return;
+      }
+      await this.startCombat(node.contentId, node);
+      return;
+    }
+    if (!initial && this.state.resolvedNodeIds.includes(node.id)) {
+      await this.enterCampaignPresentation();
+      return;
+    }
+    await this.playDialogue(node.contentId, node.label);
+    if (this.pendingCombatId) {
+      await this.flushPendingCombat(node);
+    } else {
+      this.markResolved(node.id);
+      if (await this.playPostNodeNarrative(node.id, node)) return;
+      await this.enterCampaignPresentation();
+    }
+  }
+
+  private async playDialogue(
+    dialogueId: string,
+    fallbackLabel?: string,
+    narrativeOptions: NarrativeDialogueOptions = {},
+  ): Promise<void> {
+    const resolved = resolveGameDialogue(dialogueId, this.state);
+    if (!resolved) throw new Error(`Missing dialogue '${dialogueId}'.`);
+    const { sequence } = resolved;
+
+    // Dialogue staging also uses NarrativeStage directly, independently of the campaign boundary,
+    // while dialogue truth and route semantics retain their existing owners.
+    await this.playNarrativeDialogue(sequence, {
+      ...narrativeOptions,
+      cinematicId: narrativeOptions.cinematicId
+        ?? resolveVideoCinematicTrigger({ hook: 'beforeDialogue', dialogueId })
+        ?? resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId })
+        ?? resolveCin6cJourneyTrigger({ hook: 'beforeDialogue', dialogueId }, { flags: this.state.flags }),
+      tableau: narrativeOptions.tableau ?? resolveNarrativeDialogueTableau(dialogueId, sequence),
+    });
+
+    const chapterBeatId = this.pendingChapterBeatId;
+    this.pendingChapterBeatId = null;
+    if (chapterBeatId) await this.playStandaloneCinematic({ hook: 'chapterBeat', beatId: chapterBeatId }, sequence.title ?? fallbackLabel ?? '');
+  }
+
+  private async playNarrativeDialogue(
+    sequence: DialogueSequence,
+    options: NarrativeDialogueOptions,
+  ): Promise<void> {
+    let tableau = applyFinalDialoguePresentationPlan(sequence, options.tableau);
+    const presentationBeat = resolveDialoguePresentation(sequence.id);
+    let stepPresentation = createNarrativeDialogueResolver(sequence, tableau, {
+      mediaMode: 'STILL',
+      hasMovingMedia: false,
+    });
+    let alignment = validateDialogueCast(
+      tableau,
+      sequence,
+      resolveRepresentedDialogueActors(sequence, stepPresentation),
+    );
+    if (alignment.status === 'FAIL') {
+      console.warn(`[NarrativeStage] Rebuilding ${tableau.id} with canonical generic Tableau staging: ${alignment.unresolved.join(', ')}`);
+      tableau = applyFinalDialoguePresentationPlan(sequence, createGenericNarrativeTableau(sequence));
+      stepPresentation = createNarrativeDialogueResolver(sequence, tableau, {
+        mediaMode: 'STILL',
+        hasMovingMedia: false,
+      });
+      alignment = validateDialogueCast(
+        tableau,
+        sequence,
+        resolveRepresentedDialogueActors(sequence, stepPresentation),
+      );
+      if (alignment.status === 'FAIL') {
+        throw new Error(`[NarrativeStage] Canonical Tableau staging failed for ${sequence.id}: ${alignment.unresolved.join(', ')}`);
+      }
+    }
+    const stage = this.createNarrativeStage(tableau);
+    stage.bindDialogue(sequence);
+    stage.element.dataset.dialogueCastAlignment = alignment.status;
+    const openDialogue = async () => {
+      this.setMode('NARRATIVE');
+      await this.dialogue.play(sequence, {
+        mode: 'narrative-stage',
+        root: stage.dialogueLayer,
+        stepPresentation,
+        beforeStepChange: (step, presentation) => stage.activateDialogueStep(
+          step.id,
+          presentation.mode,
+          presentation.anchorId,
+          presentation.phaseId,
+          step.actorId,
+          presentation.presentationStrategy,
+          presentation.layoutProfile,
+          presentation.layoutPlacement,
+          presentation.dialogueSurfaceMode,
+          presentation.speakerFacing,
+          presentation.speakerLookTarget,
+          presentation.addressedTo,
+          presentation.addressResolution,
+        ),
+        reducedMotion: this.state.settings.reducedGraphics,
+      });
+    };
+    let completed = false;
+    try {
+      let tableauTransitionSource: 'NONE' | 'VIDEO' = 'NONE';
+      const cinematicDecision = options.cinematicId ? resolveCinematicReduction(options.cinematicId) : undefined;
+      if (cinematicDecision) stage.element.dataset.cinematicReduction = cinematicDecision.classification;
+      if (
+        options.cinematicId
+        && this.narrativeMediaMode === 'VIDEO'
+        && shouldPlayDialoguePreludeVideo(options.cinematicId)
+      ) {
+        const videoBeat = resolveCinematicPresentation(options.cinematicId);
+        if (videoBeat) await stage.presentCinematicBeat(videoBeat, { reducedMotion: this.state.settings.reducedGraphics, passive: true });
+        else await stage.presentCinematic(options.cinematicId, { reducedMotion: this.state.settings.reducedGraphics, passive: true });
+        this.ensureJourneyBoundary().markCinematicPresented(options.cinematicId);
+        this.lastNarrativeCinematicBeat = videoBeat;
+        tableauTransitionSource = 'VIDEO';
+      }
+      if (presentationBeat) stage.setPresentationBeat(presentationBeat);
+      const firstPresentation = stepPresentation(sequence.steps[0]!);
+      await stage.presentDialogueTableau(
+        tableau?.stillImage ?? resolveDialogueBackdrop(sequence),
+        firstPresentation.phaseId,
+        tableauTransitionSource,
+      );
+      await openDialogue();
+      if (options.preserveBackdrop === true && stage.frozenSurface) {
+        this.ensureJourneyBoundary().captureBackdrop(stage.frozenSurface);
+      }
+      completed = true;
+    } finally {
+      if (!completed) this.disposeNarrativeStage(stage);
+    }
+  }
+
+  private async maybePlayATEs(nodeId: string): Promise<void> {
+    for (const rule of resolveGameAteRules(nodeId, this.state)) {
+      await this.playDialogue(rule.dialogueId);
+      if (rule.once) this.state.flags[ateSeenFlag(rule)] = true;
+    }
+  }
+
+  private async maybePlayReputationEvent(nodeId: string): Promise<ReputationEventSelection | null> {
+    const selection = selectGameReputationEvent(nodeId, this.state);
+    if (!selection?.selectedEvent) return selection;
+    await this.playDialogue(selection.selectedEvent.dialogueId);
+    recordReputationEventSelection(this.state, selection);
+    return selection;
+  }
+
+  private async playPostNodeNarrative(nodeId: string, node: RunNode): Promise<boolean> {
+    await this.maybePlayATEs(nodeId);
+    if (this.pendingCombatId) {
+      await this.flushPendingCombat(node);
+      return true;
+    }
+    await this.maybePlayReputationEvent(nodeId);
+    if (this.pendingCombatId) {
+      await this.flushPendingCombat(node);
+      return true;
+    }
+    return false;
+  }
+
+  private async applyEffects(effects: NarrativeEffect[]): Promise<void> {
+    for (const effect of effects) {
+      if (effect.delayMs) await new Promise((resolve) => window.setTimeout(resolve, effect.delayMs));
+      switch (effect.type) {
+        case 'setFlag':
+          this.state.flags[effect.key] = effect.value;
+          break;
+        case 'addGold':
+          if (effect.amount >= 0) {
+            addTemporaryLoot(this.state.run, { gold: effect.amount });
+          } else {
+            const cost = Math.abs(effect.amount);
+            const fromLoot = Math.min(cost, this.state.run.temporaryLoot.gold);
+            this.state.run.temporaryLoot.gold -= fromLoot;
+            this.state.gold = Math.max(0, this.state.gold - (cost - fromLoot));
+          }
+          break;
+        case 'addReputation':
+          changeReputation(this.state, effect.amount, 'narrative');
+          break;
+        case 'addItem':
+          {
+            const category = getItemCategory(effect.itemId) ?? 'consumables';
+            addTemporaryLoot(this.state.run, {
+              category,
+              itemId: effect.itemId,
+              quantity: effect.quantity,
+            });
+          }
+          break;
+        case 'recruitUnit':
+          {
+            const coreIds = new Set(['warrior', 'white_mage', 'dark_mage', 'archer']);
+            const chapterRecruits = this.state.clan.members.filter((m) => !coreIds.has(m.definitionId)).length;
+            if (
+              chapterRecruits < 2
+              && this.state.clan.members.length < this.state.clan.maxSize
+              && !this.state.clan.members.some((unit) => unit.id === effect.unitId)
+            ) {
+              this.state.clan.members.push(createUnitInstance(effect.unitId));
+            }
+          }
+          break;
+        case 'startCombat':
+          this.pendingCombatId = effect.combatId;
+          break;
+        case 'resolveLionFinale':
+          {
+            const existingCombat = resolveSelectedLionFinaleCombat(this.state.flags);
+            if (existingCombat) {
+              this.pendingCombatId = existingCombat;
+              break;
+            }
+            const execution = resolveLionFinaleExecution(this.state, effect.intent);
+            Object.assign(this.state.flags, execution.flagChanges);
+            if (execution.reputationDelta !== 0) {
+              changeReputation(this.state, execution.reputationDelta, `lion-finale:${execution.trialCause ?? execution.route}`);
+            }
+            this.pendingCombatId = execution.combatId;
+            // Route selection is a durable boundary. A reload can now resume
+            // the selected boss without replaying judgement or its effects.
+            this.saves.saveAuto(this.state);
+          }
+          break;
+        case 'finishChapter':
+          this.state.endingId = effect.endingId;
+          this.pendingChapterBeatId = effect.endingId;
+          break;
+      }
+    }
+  }
+
+  private async flushPendingCombat(node: RunNode): Promise<void> {
+    const combatId = this.pendingCombatId;
+    this.pendingCombatId = null;
+    if (combatId) await this.startCombat(combatId, node);
+    else await this.enterCampaignPresentation();
+  }
+
+  private async startCombat(combatId: string, node: RunNode): Promise<void> {
+    // A dialogue may have prepared a passive Journey snapshot. Combat never owns that backdrop.
+    this.disposeJourney();
+    this.disposeNarrativeStage();
+    const config = combatConfigs.get(combatId);
+    if (!config) throw new Error(`Missing combat '${combatId}'.`);
+    const narrativeTableau = this.usesJourneyPresentation() ? resolveNarrativeCombatTableau(combatId) : undefined;
+    const narrativeCinematicId = this.usesJourneyPresentation()
+      ? resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId })
+        ?? resolveCin6aJourneyTrigger({ hook: 'beforeCombat', combatId })
+        ?? resolveCin6cJourneyTrigger(
+          { hook: 'beforeCombat', combatId },
+          { flags: this.state.flags, boundaryResolved: this.state.resolvedNodeIds.includes(node.id) },
+        )
+      : undefined;
+    if (config.preCombatDialogueId) {
+      await this.playDialogue(config.preCombatDialogueId, node.label, {
+        ...(narrativeCinematicId ? { cinematicId: narrativeCinematicId } : {}),
+        ...(narrativeTableau ? { tableau: narrativeTableau } : {}),
+        preserveBackdrop: false,
+      });
+      if (this.pendingCombatId) {
+        await this.flushPendingCombat(node);
+        return;
+      }
+    }
+    const variant: TransitionVariant = this.activeTraversal ? 'traversal'
+      : config.encounterRank === 'boss' ? 'boss' : 'combat';
+    const combatants = this.state.clan.members.filter((unit) => unit.currentHealth > 0).map((unit) => toCombatant(unit));
+    let resolveCombatStart!: (session: ReturnType<CombatBridge['start']>) => void;
+    const combatStarted = new Promise<ReturnType<CombatBridge['start']>>((resolve) => {
+      resolveCombatStart = resolve;
+    });
+    const interlude = narrativeCinematicId && config.preCombatDialogueId
+      ? undefined
+      : this.cinematicInterlude({ hook: 'beforeCombat', combatId });
+    this.activeNarrativeStage?.prepareGlobalHandoff();
+    await sceneTransition.run({
+      variant,
+      label: config.encounterLabel,
+      interlude,
+      ...(interlude ? { holdMs: 0 } : {}),
+      task: async () => {
+        this.disposeJourney();
+        this.disposeNarrativeStage();
+        this.setMode('COMBAT');
+        this.travel.close();
+        this.chrome.replaceChildren();
+        const combatSession = this.combat.start({
+          config,
+          clan: combatants,
+          inventory: this.state.inventory.consumables,
+          preferredUnitIds: this.state.deployment.unitIds,
+          reducedGraphics: this.state.settings.reducedGraphics,
+          devQa: this.cin6aGoldenQaEnabled || this.traversalT0QaEnabled,
+        });
+        resolveCombatStart(combatSession);
+        await combatSession.ready;
+      },
+    });
+    const combatSession = await combatStarted;
+    const result = await combatSession.result;
+    await this.resolveCombat(result, node, config.rewards);
+  }
+
+  private async resolveCombat(
+    result: CombatResult,
+    node: RunNode,
+    rewards: CombatConfig['rewards'],
+  ): Promise<void> {
+    await this.playStandaloneCinematic({ hook: 'afterCombat', combatId: result.combatId, outcome: result.victory ? 'victory' : 'defeat' }, result.victory ? 'Victoire' : 'Défaite');
+    if (!result.victory) {
+      this.disposeTraversal();
+      this.state = this.saves.loadAuto() ?? this.state;
+      failRunToCheckpoint(this.state);
+      this.saves.saveAuto(this.state);
+      await sceneTransition.run({
+        variant: 'result',
+        label: 'Défaite',
+        task: async () => {},
+      });
+      await this.enterCampaignPresentation();
+      return;
+    }
+    const encounterLimit = combatConfigs.get(result.combatId)?.maxPlayerUnits ?? 4;
+    applyCombatProgress(this.state, result, encounterLimit);
+    this.state.currentNodeId = node.id;
+    addTemporaryLoot(this.state.run, { gold: rewards.gold });
+    for (const [itemId, quantity] of Object.entries(rewards.materials ?? {})) {
+      addTemporaryLoot(this.state.run, { category: 'materials', itemId, quantity });
+    }
+    changeReputation(this.state, rewards.reputation, `combat:${result.combatId}`);
+    Object.assign(this.state.flags, lionBossVictoryFacts(result.combatId));
+    this.markResolved(node.id);
+    await this.playJourneyCinematic(
+      resolveCin6aBoisClairAftermath(result.combatId, result.victory, this.state.flags),
+      result.victory ? 'Conséquence' : 'Défaite',
+    );
+    if (node.type === 'boss') {
+      this.state.run.status = 'completed';
+      secureRunLoot(this.state);
+      const bossConfig = combatConfigs.get(result.combatId);
+      if (bossConfig?.postCombatDialogueId) {
+        await this.playDialogue(bossConfig.postCombatDialogueId, node.label);
+        if (this.pendingCombatId) {
+          await this.flushPendingCombat(node);
+          return;
+        }
+      }
+      await this.playJourneyCinematic(
+        resolveCin6bLionTrialEnding(result.combatId, result.victory, this.state.flags)
+          ?? resolveCin6aSerpentEnding(result.combatId, result.victory, this.state.flags),
+        'Épilogue',
+      );
+      await this.playDialogue('epilogue');
+      await this.enterCampaignPresentation();
+      return;
+    }
+    const combatConfig = combatConfigs.get(result.combatId);
+    if (combatConfig?.postCombatDialogueId) {
+      await this.playDialogue(combatConfig.postCombatDialogueId, node.label);
+      if (this.pendingCombatId) {
+        await this.flushPendingCombat(node);
+        return;
+      }
+    }
+    if (await this.playPostNodeNarrative(node.id, node)) return;
+    await this.enterCampaignPresentation();
+  }
+
+  private markResolved(nodeId: string): void {
+    if (!this.state.resolvedNodeIds.includes(nodeId)) this.state.resolvedNodeIds.push(nodeId);
+  }
+
+  private async openManagement(
+    tab: 'clan' | 'inventory' | 'shop' | 'skills',
+    shopId?: string,
+    shopWallet: 'temporary' | 'permanent' = 'temporary',
+    returnToTravel = true,
+  ): Promise<void> {
+    if (this.mode !== 'RESULT' && this.mode !== 'TRAVEL' && this.mode !== 'JOURNEY' && this.mode !== 'NARRATIVE') return;
+    this.setMode('MANAGEMENT');
+    await this.management.open(tab, shopId, shopWallet);
+    this.saves.saveAuto(this.state);
+    if (returnToTravel) {
+      // Only TravelView's own Company button reaches this branch; Journey rebuilds its boundary.
+      this.showTravel();
+      this.saves.saveAuto(this.state);
+    }
+  }
+
+  private async startNewChronicle(): Promise<void> {
+    let prologuePromise: Promise<void> | null = null;
+    await sceneTransition.run({
+      variant: 'launch',
+      label: 'Une chronique s’éveille',
+      task: async () => {
+        this.saves.clear();
+        this.state = createInitialState();
+        this.state.flags.prologueSeen = false;
+        try {
+          localStorage.removeItem('rpg-tutorial-seen');
+          localStorage.removeItem('rpg-boss-tutorial-seen');
+        } catch {}
+        this.saves.saveAuto(this.state);
+        this.chrome.replaceChildren();
+        this.setMode('PROLOGUE');
+        this.canvas.hidden = true;
+        prologuePromise = this.prologue.open();
+      },
+    });
+    await prologuePromise;
+    this.state.flags.prologueSeen = true;
+    await this.playDialogue('acte_ouverture');
+    if (this.usesJourneyPresentation()) {
+      await this.playDialogue('camp_departure', 'Camp du Lion', { cinematicId: 'camp_departure' });
+    }
+    await this.enterCampaignPresentation();
+  }
+
+  private async continueChronicle(): Promise<void> {
+    let current: RunNode | undefined;
+    await sceneTransition.run({
+      variant: 'launch',
+      label: 'La chronique reprend',
+      task: async () => {
+        this.state = this.saves.loadAuto() ?? this.saves.loadManual() ?? createInitialState();
+        this.prologue.close();
+        this.exploration.close();
+        this.combat.close();
+        this.travel.close();
+        this.disposeJourney();
+        this.disposeTraversal();
+        // Neutral holding mode: the presentation is chosen only after the resume profile is known,
+        // so a reload never mounts a campaign surface it is about to replace.
+        this.setMode('RESULT');
+        this.canvas.hidden = true;
+        this.chrome.replaceChildren();
+        current = getRunNode(this.state.run);
+      },
+    });
+    const pendingFinaleCombat = resolvePendingLionFinaleCombat(this.state.flags);
+    if (
+      current
+      && current.depth > 0
+      && (pendingFinaleCombat !== null || !this.state.resolvedNodeIds.includes(current.id))
+    ) {
+      // Unresolved node or a durable pending finale boss: resume gameplay directly, never replay a
+      // committed route choice just to show a cinematic.
+      await this.resolveRunNode(current, true);
+      return;
+    }
+    await this.enterCampaignPresentation();
+  }
+
+  private setMode(mode: AppMode): void {
+    if (mode !== 'NARRATIVE' && mode !== 'JOURNEY') this.statusHud?.hide();
+    this.mode = mode;
+    document.body.dataset.mode = mode.toLowerCase();
+    document.body.classList.remove('mode-entering');
+    void document.body.offsetWidth;
+    document.body.classList.add('mode-entering');
+  }
+
+}

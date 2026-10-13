@@ -1,0 +1,285 @@
+{
+  "schemaVersion": 1,
+  "baseline": "57ba69cf718ea630cc9306c4122666fd6b58420f",
+  "pilots": [
+    {
+      "id": "A",
+      "name": "ROYAL_AUDIENCE_TABLEAU",
+      "families": [
+        "ALARIC_AUDIENCE"
+      ],
+      "beatIds": [
+        "media:alaric_audience_arrival",
+        "dialogue:lion_briefing"
+      ],
+      "authoritativeModes": [
+        "CINEMATIC_VIDEO",
+        "CINEMATIC_HOLD"
+      ],
+      "validationSurface": "DEV_ONLY_STATIC_TABLEAU_BACKGROUND_COMPOSITE_WITH_EXISTING_ALARIC_AUDIENCE_TABLEAU",
+      "outputs": [
+        "tableau family reference",
+        "two background candidates",
+        "NarrativeStage composite at two viewports"
+      ],
+      "references": [
+        "alaric_audience_arrival"
+      ],
+      "purpose": [
+        "complex interior",
+        "multiple actors",
+        "dialogue UI",
+        "choice geometry"
+      ],
+      "note": "The canonical lion_briefing mode remains CINEMATIC_HOLD; the tableau composite is a preproduction background-fit harness only.",
+      "castManifestIds": [
+        "cast:media:alaric_audience_arrival",
+        "cast:dialogue:lion_briefing"
+      ],
+      "status": "OPERATOR_APPROVED",
+      "imageAttempts": 2,
+      "videoAttempts": 0,
+      "retries": 0,
+      "pass": true,
+      "operatorDecision": "OPERATOR_APPROVED",
+      "selectedAssets": [
+        "pilot_a_static_tableau_background_b"
+      ]
+    },
+    {
+      "id": "B",
+      "name": "FOREST_ROAD_CROSS_MODE",
+      "families": [
+        "FOREST_ROAD"
+      ],
+      "beatIds": [
+        "edge:lion-audience>lion-opening-ambush",
+        "dialogue:post_opening_trail"
+      ],
+      "authoritativeModes": [
+        "TRAVEL_STILL",
+        "STATIC_TABLEAU"
+      ],
+      "outputs": [
+        "family master",
+        "two travel-still candidates",
+        "two tableau-background candidates",
+        "runtime composite",
+        "continuity board"
+      ],
+      "references": [
+        "valmir_route_fork",
+        "camp_departure"
+      ],
+      "purpose": [
+        "cross-mode family continuity",
+        "responsive crop",
+        "reverse-composed tableau"
+      ],
+      "castManifestIds": [
+        "cast:edge:lion-audience>lion-opening-ambush",
+        "cast:dialogue:post_opening_trail"
+      ],
+      "status": "OPERATOR_APPROVED",
+      "imageAttempts": 3,
+      "videoAttempts": 0,
+      "retries": 0,
+      "pass": true,
+      "operatorDecision": "OPERATOR_APPROVED",
+      "selectedAssets": [
+        "forest_road_master_a",
+        "pilot_b_travel_still_a",
+        "pilot_b_static_tableau_background_a"
+      ]
+    },
+    {
+      "id": "C",
+      "name": "CAMP_CONTINUOUS_SHOT",
+      "families": [
+        "LION_CAMP"
+      ],
+      "beatIds": [
+        "media:camp_departure",
+        "dialogue:camp_departure"
+      ],
+      "authoritativeModes": [
+        "CINEMATIC_VIDEO",
+        "CINEMATIC_HOLD"
+      ],
+      "outputs": [
+        "two integrated keyframes",
+        "one sequential H3 pilot",
+        "final-frame hold extraction",
+        "contact sheet"
+      ],
+      "references": [
+        "camp_departure"
+      ],
+      "purpose": [
+        "multi-character identity",
+        "relative height",
+        "zero cuts",
+        "clean endpoint"
+      ],
+      "castManifestIds": [
+        "cast:media:camp_departure",
+        "cast:dialogue:camp_departure"
+      ],
+      "status": "OPERATOR_APPROVED",
+      "imageAttempts": 2,
+      "videoAttempts": 1,
+      "retries": 0,
+      "pass": true,
+      "operatorDecision": "OPERATOR_APPROVED",
+      "selectedAssets": [
+        "pilot_c_cinematic_keyframe_b"
+      ]
+    },
+    {
+      "id": "D",
+      "name": "SECOND_REFUGE_TABLEAU",
+      "families": [
+        "SECOND_REFUGE"
+      ],
+      "beatIds": [
+        "dialogue:ate_bois_clair_night_watch"
+      ],
+      "authoritativeModes": [
+        "STATIC_TABLEAU"
+      ],
+      "outputs": [
+        "two character-free backgrounds",
+        "NarrativeStage composite at two viewports"
+      ],
+      "references": [
+        "camp_departure",
+        "valmir_route_fork"
+      ],
+      "purpose": [
+        "human-built environment",
+        "props",
+        "NPC-compatible space",
+        "UI safe zones"
+      ],
+      "castManifestIds": [
+        "cast:dialogue:ate_bois_clair_night_watch"
+      ],
+      "status": "OPERATOR_APPROVED",
+      "imageAttempts": 1,
+      "videoAttempts": 0,
+      "retries": 0,
+      "pass": true,
+      "operatorDecision": "OPERATOR_APPROVED",
+      "selectedAssets": [
+        "pilot_d_static_tableau_background_a"
+      ]
+    },
+    {
+      "id": "E",
+      "name": "CEDRIC_ENCOUNTER_TRANSITION",
+      "families": [
+        "FOREST_ROAD"
+      ],
+      "beatIds": [
+        "media:cedric_encounter",
+        "dialogue:mystery_recruit"
+      ],
+      "authoritativeModes": [
+        "CINEMATIC_VIDEO",
+        "STATIC_TABLEAU"
+      ],
+      "outputs": [
+        "two integrated keyframes",
+        "one sequential H3 pilot",
+        "two tableau backgrounds",
+        "transition board"
+      ],
+      "references": [
+        "valmir_route_fork"
+      ],
+      "purpose": [
+        "external identity",
+        "VIDEO to TABLEAU continuity",
+        "recruit state",
+        "future recruit exclusion"
+      ],
+      "chosenOver": "Garen; Cedric requires a larger authoritative party/dialogue cast and therefore stresses continuity more strongly.",
+      "castManifestIds": [
+        "cast:media:cedric_encounter",
+        "cast:dialogue:mystery_recruit"
+      ],
+      "status": "OPERATOR_APPROVED",
+      "imageAttempts": 4,
+      "videoAttempts": 2,
+      "retries": 1,
+      "pass": true,
+      "operatorDecision": "OPERATOR_APPROVED",
+      "selectedAssets": [
+        "pilot_e_cinematic_keyframe_c",
+        "pilot_e_static_tableau_background_a"
+      ]
+    },
+    {
+      "id": "F",
+      "name": "SHADOW_SIGNS_LOW_LIGHT",
+      "families": [
+        "SHADOW_RUINS"
+      ],
+      "beatIds": [
+        "media:shadow_signs",
+        "dialogue:shadow_signs"
+      ],
+      "authoritativeModes": [
+        "CINEMATIC_VIDEO",
+        "STATIC_TABLEAU"
+      ],
+      "outputs": [
+        "two integrated low-light keyframes",
+        "one sequential H3 pilot",
+        "two tableau backgrounds",
+        "low-light continuity board"
+      ],
+      "references": [
+        "valmir_route_fork"
+      ],
+      "purpose": [
+        "night readability",
+        "identity under low light",
+        "foreground/background separation",
+        "controlled corruption"
+      ],
+      "castManifestIds": [
+        "cast:media:shadow_signs",
+        "cast:dialogue:shadow_signs"
+      ],
+      "status": "OPERATOR_APPROVED",
+      "imageAttempts": 2,
+      "videoAttempts": 1,
+      "retries": 0,
+      "pass": true,
+      "operatorDecision": "OPERATOR_APPROVED",
+      "selectedAssets": [
+        "pilot_f_cinematic_keyframe_a",
+        "pilot_f_static_tableau_background_a"
+      ]
+    }
+  ],
+  "summary": {
+    "planned": 6,
+    "executed": 6,
+    "passed": 6,
+    "blocked": 0,
+    "imageAttempts": 14,
+    "miniMaxAttempts": 4,
+    "retries": 1
+  },
+  "preproductionBaseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "finalDecision": {
+    "SAME_GAME_VISUAL_IDENTITY": "PASS",
+    "DYNAMIC_VIDEO_GATE": "YES",
+    "VISUAL_PRODUCTION_LOCK": "YES",
+    "HUMAN_VISUAL_REVIEW": "APPROVED",
+    "READY_FOR_CIN_6E_B": "YES",
+    "CIN_6E_B_STARTED": false
+  }
+}

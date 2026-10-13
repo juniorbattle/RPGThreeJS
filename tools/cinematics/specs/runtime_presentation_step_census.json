@@ -1,0 +1,4566 @@
+{
+  "schemaVersion": 1,
+  "baseline": "ff743b08fb239d55e11ac5cd682950032a06e2e1",
+  "contract": "RUNTIME_REACHABLE_PRESENTATION_STEPS == PLANNED_PRESENTATION_STEPS + EXPLICIT_LEGITIMATE_RUNTIME_ONLY_STEPS",
+  "summary": {
+    "stateScenarios": 320,
+    "runtimePresentationVariants": 123,
+    "canonicalDialogueSteps": 247,
+    "runtimeReachablePresentationSteps": 270,
+    "plannedRuntimePresentationSteps": 270,
+    "explicitLegitimateRuntimeOnlySteps": 0,
+    "missingFromPlan": 0,
+    "deadOrUnreachable": 2,
+    "unknown": 0
+  },
+  "explicitLegitimateRuntimeOnlyStepKeys": [],
+  "missingRuntimeStepKeys": [],
+  "deadOrUnreachableStepKeys": [
+    "lion_finale_judgement:1",
+    "pre_lion_chief:4"
+  ],
+  "deadOrUnreachableStepReasons": {
+    "lion_finale_judgement:1": "Static registry placeholder superseded by the state-built Lion judgement sequence.",
+    "pre_lion_chief:4": "Legacy static registry tail superseded by the state-built three-step Lion Trial sequence."
+  },
+  "unknownStepKeys": [],
+  "entries": [
+    {
+      "key": "acte_ouverture:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "acte_ouverture:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "acte_ouverture:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "acte_ouverture:4",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "acte_ouverture:5",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "acte_ouverture:6",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "acte_ouverture:7",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "acte_ouverture:8",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "acte_ouverture:9",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_alaric_reports:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_alaric_reports:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_alaric_reports:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_bois_clair_night_watch:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_bois_clair_night_watch:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_bois_clair_night_watch:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_bois_clair_night_watch:4",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_first_refuge_watch:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_first_refuge_watch:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_first_refuge_watch:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_first_refuge_watch:4",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_first_refuge_watch:r5-cedric-first-watch",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_lion_council_doubt:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_lion_council_doubt:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_lion_council_doubt:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_maelor_seal_analysis:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_maelor_seal_analysis:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_maelor_seal_analysis:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_ruins_awaken:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_ruins_awaken:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_ruins_awaken:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_serpent_general_warning:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_serpent_general_warning:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_serpent_general_warning:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_serpent_retreat_order:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_serpent_retreat_order:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_serpent_retreat_order:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_serpent_scout_report:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_serpent_scout_report:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_serpent_scout_report:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_village_fear:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_village_fear:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "ate_village_fear:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "camp_departure:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "camp_departure:1a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "camp_departure:1b",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "camp_departure:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "camp_departure:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "camp_departure:4",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "camp_departure:5",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "epilogue:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "epilogue:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "epilogue:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "final_refuge:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "final_refuge:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "final_refuge:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "final_refuge:4",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "final_refuge:5",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "final_refuge:6",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "final_refuge:r3-cedric-continuity",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "final_refuge:r5-garen-final-pledge",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_briefing:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_briefing:1a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_briefing:1b",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_briefing:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_briefing:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_briefing:4",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_briefing:5",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_finale_judgement:1",
+      "classification": "DEAD_OR_UNREACHABLE"
+    },
+    {
+      "key": "lion_finale_judgement:breaches",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_finale_judgement:intent",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_finale_judgement:lie-rebuked",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_finale_judgement:merits",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_finale_judgement:open",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_finale_judgement:outcome",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_finale_judgement:record",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_finale_judgement:shadow",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_finale_judgement:stains",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_finale_judgement:witnesses",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_trial_aftermath:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "lion_trial_aftermath:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_ambush:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_dragon_roost:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_dragon_roost:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_dragon_roost:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_help:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_help:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_help:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_lancer_recruit:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_lancer_recruit:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_lancer_recruit:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_lancer_recruit:4",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_recruit:0a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_recruit:0b",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_recruit:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_recruit:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_recruit:2a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_recruit:2b",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_recruit:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_recruit:3a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_recruit:3b",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_shrine:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_shrine:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_shrine:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_treasure:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_treasure:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_treasure:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_troll_crossing:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_troll_crossing:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "mystery_troll_crossing:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "old_shrine_event:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "old_shrine_event:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "old_shrine_event:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_opening_trail:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_opening_trail:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_opening_trail:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_ruins_guardians:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_ruins_guardians:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_serpent_checkpoint:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_serpent_checkpoint:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_serpent_duelist_trial:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_serpent_duelist_trial:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_serpent_hunters:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_serpent_hunters:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_serpent_patrol:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_serpent_patrol:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_serpent_reprisals:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_serpent_reprisals:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_spider_nest:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_spider_nest:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_troll_crossing:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_troll_crossing:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_valmir_road:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_valmir_road:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_valmir_road:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_young_dragon_roost:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "post_young_dragon_roost:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_lion_chief:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_lion_chief:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_lion_chief:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_lion_chief:4",
+      "classification": "DEAD_OR_UNREACHABLE"
+    },
+    {
+      "key": "pre_opening_trail:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_opening_trail:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_opening_trail:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_ruins_guardians:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_ruins_guardians:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_serpent_checkpoint:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_serpent_checkpoint:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_serpent_duelist_trial:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_serpent_duelist_trial:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_serpent_duelist_trial:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_serpent_hunters:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_serpent_hunters:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_serpent_hunters:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_serpent_patrol:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_serpent_patrol:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_serpent_reprisals:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_serpent_reprisals:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_spider_nest:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_spider_nest:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_troll_crossing:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_troll_crossing:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_valmir_road:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_valmir_road:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_valmir_road:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_village_defense:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_village_defense:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_village_raid:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_village_raid:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_young_dragon_roost:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "pre_young_dragon_roost:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "refugee_trial:0a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "refugee_trial:0b",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "refugee_trial:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "refugee_trial:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "refugee_trial:2a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "refugee_trial:2b",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "refugee_trial:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "refugee_trial:3a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "refugee_trial:3b",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "refugee_trial:r5-cedric-refugee-route",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_bois_clair_denunciation:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_bois_clair_denunciation:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_bois_clair_denunciation:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_brokered_information:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_brokered_information:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_brokered_information:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_displaced_family_demand:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_displaced_family_demand:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_displaced_family_demand:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_fallen_banner_claimant:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_fallen_banner_claimant:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_fallen_banner_claimant:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_public_petition:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_public_petition:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_public_petition:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_refuge_supply_offer:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_refuge_supply_offer:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_refuge_supply_offer:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_roadside_intimidation:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_roadside_intimidation:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_roadside_intimidation:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_serpent_rumour_market:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_serpent_rumour_market:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_serpent_rumour_market:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_village_memorial_request:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_village_memorial_request:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "rep_event_village_memorial_request:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "reserve_trail:0a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "reserve_trail:0b",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "reserve_trail:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "reserve_trail:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "reserve_trail:2a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "reserve_trail:2b",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "reserve_trail:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "reserve_trail:3a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "reserve_trail:3b",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "reserve_trail:r5-cedric-convoy-reading",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "serpent_duelist_trial:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "serpent_duelist_trial:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "serpent_duelist_trial:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "serpent_general_aftermath:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "serpent_general_aftermath:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "serpent_general_aftermath:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "serpent_informant:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "serpent_informant:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "serpent_informant:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "serpent_pursuit_pre_combat:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "serpent_pursuit_pre_combat:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "serpent_pursuit_pre_combat:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "shadow_signs:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "shadow_signs:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "shadow_signs:2a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "shadow_signs:2b",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "shadow_signs:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "shadow_signs:3a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "shadow_signs:3b",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "shadow_signs:r5-cedric-shadow-evidence",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "shadow_signs:r5-cedric-shadow-fragments",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "shadow_signs:r5-garen-shadow-evidence",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "shadow_signs:r5-garen-shadow-fragments",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_choice:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_choice:1a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_choice:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_choice:2a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_choice:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_choice:4",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_choice:4a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_choice:5",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_choice:6",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_choice:6a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_choice:6b",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_choice:7",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_choice:7a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_choice:7b",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_defense_aftermath:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_defense_aftermath:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_defense_aftermath:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_raid_aftermath:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_raid_aftermath:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "village_raid_aftermath:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "witnesses_on_road:0a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "witnesses_on_road:0b",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "witnesses_on_road:1",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "witnesses_on_road:2",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "witnesses_on_road:2a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "witnesses_on_road:2b",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "witnesses_on_road:3",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "witnesses_on_road:3a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "witnesses_on_road:3b",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "witnesses_on_road:4",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "witnesses_on_road:4a",
+      "classification": "VALID_PLANNED"
+    },
+    {
+      "key": "witnesses_on_road:4b",
+      "classification": "VALID_PLANNED"
+    }
+  ],
+  "variants": [
+    {
+      "dialogueId": "acte_ouverture",
+      "signature": "1@sage_seraphine@0|2@maelor@0|3@alistair@0|4@marian@0|5@kestrel@0|6@elara@0|7@maelor@0|8@sage_seraphine@0|9@alistair@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "speakers": [
+        "sage_seraphine",
+        "maelor",
+        "alistair",
+        "marian",
+        "kestrel",
+        "elara",
+        "maelor",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "ate_alaric_reports",
+      "signature": "1@lion_champion@0|2@alaric@0|3@alaric@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "lion_champion",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "ate_bois_clair_night_watch",
+      "signature": "1@villageoise@0|2@marian@0|3@alistair@0|4@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "speakers": [
+        "villageoise",
+        "marian",
+        "alistair",
+        "maelor"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "ate_first_refuge_watch",
+      "signature": "1@marian@0|2@alistair@0|3@kestrel@0|4@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "speakers": [
+        "marian",
+        "alistair",
+        "kestrel",
+        "maelor"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 160,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "ate_first_refuge_watch",
+      "signature": "1@marian@0|2@alistair@0|3@kestrel@0|r5-cedric-first-watch@cedric@0|4@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3",
+        "r5-cedric-first-watch",
+        "4"
+      ],
+      "speakers": [
+        "marian",
+        "alistair",
+        "kestrel",
+        "cedric",
+        "maelor"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 160,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "ate_lion_council_doubt",
+      "signature": "1@lion_champion@0|2@alaric@0|3@lion_champion@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "lion_champion",
+        "alaric",
+        "lion_champion"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "ate_maelor_seal_analysis",
+      "signature": "1@maelor@0|2@sage_seraphine@0|3@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "maelor",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "ate_ruins_awaken",
+      "signature": "1@maelor@0|2@sage_seraphine@0|3@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "maelor",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "ate_serpent_general_warning",
+      "signature": "1@serpent_oracle@0|2@serpent_general_boss@0|3@serpent_general_boss@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "serpent_oracle",
+        "serpent_general_boss",
+        "serpent_general_boss"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "ate_serpent_retreat_order",
+      "signature": "1@serpent_general_boss@0|2@serpent_oracle@0|3@serpent_general_boss@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "serpent_general_boss",
+        "serpent_oracle",
+        "serpent_general_boss"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "ate_serpent_scout_report",
+      "signature": "1@serpent_raider@0|2@serpent_oracle@0|3@serpent_general_boss@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "serpent_raider",
+        "serpent_oracle",
+        "serpent_general_boss"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "ate_village_fear",
+      "signature": "1@villageoise@0|2@refugee_mother@0|3@villageoise@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "villageoise",
+        "refugee_mother",
+        "villageoise"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "camp_departure",
+      "signature": "1@maelor@0|1a@alistair@0|1b@marian@0|2@sage_seraphine@0|3@maelor@0|4@kestrel@0|5@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "1a",
+        "1b",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "speakers": [
+        "maelor",
+        "alistair",
+        "marian",
+        "sage_seraphine",
+        "maelor",
+        "kestrel",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "epilogue",
+      "signature": "1@sage_seraphine@0|2@maelor@0|3@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "sage_seraphine",
+        "maelor",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "final_refuge",
+      "signature": "1@maelor@0|2@sage_seraphine@0|3@maelor@0|4@marian@0|5@alistair@0|6@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "speakers": [
+        "maelor",
+        "sage_seraphine",
+        "maelor",
+        "marian",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 80,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "final_refuge",
+      "signature": "1@maelor@0|2@sage_seraphine@0|3@maelor@0|4@marian@0|r5-garen-final-pledge@lancer@0|5@alistair@0|6@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "r5-garen-final-pledge",
+        "5",
+        "6"
+      ],
+      "speakers": [
+        "maelor",
+        "sage_seraphine",
+        "maelor",
+        "marian",
+        "lancer",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 80,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+garen+shadow-none"
+    },
+    {
+      "dialogueId": "final_refuge",
+      "signature": "1@maelor@0|r3-cedric-continuity@cedric@0|2@sage_seraphine@0|3@maelor@0|4@marian@0|5@alistair@0|6@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "r3-cedric-continuity",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "speakers": [
+        "maelor",
+        "cedric",
+        "sage_seraphine",
+        "maelor",
+        "marian",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 80,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "final_refuge",
+      "signature": "1@maelor@0|r3-cedric-continuity@cedric@0|2@sage_seraphine@0|3@maelor@0|4@marian@0|r5-garen-final-pledge@lancer@0|5@alistair@0|6@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "r3-cedric-continuity",
+        "2",
+        "3",
+        "4",
+        "r5-garen-final-pledge",
+        "5",
+        "6"
+      ],
+      "speakers": [
+        "maelor",
+        "cedric",
+        "sage_seraphine",
+        "maelor",
+        "marian",
+        "lancer",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 80,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+cedric+garen+shadow-none"
+    },
+    {
+      "dialogueId": "lion_briefing",
+      "signature": "1@alaric@0|1a@alaric@0|1b@alistair@0|2@sage_seraphine@0|3@maelor@2|4@alaric@0|5@alaric@0",
+      "stepIds": [
+        "1",
+        "1a",
+        "1b",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "alistair",
+        "sage_seraphine",
+        "maelor",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|breaches@lion_champion@0|stains@maelor@0|witnesses@alaric@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "breaches",
+        "stains",
+        "witnesses",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "maelor",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 8,
+      "witnessScenario": "no-merit+no-breach+stain+lied+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|breaches@lion_champion@0|stains@maelor@0|witnesses@alaric@0|shadow@alaric@2|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "breaches",
+        "stains",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "maelor",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "witnessScenarioCount": 8,
+      "witnessScenario": "no-merit+no-breach+stain+lied+no-cedric+no-garen+shadow-evidence-undecided"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|breaches@lion_champion@0|stains@maelor@0|witnesses@alaric@0|shadow@sage_seraphine@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "breaches",
+        "stains",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "maelor",
+        "alaric",
+        "sage_seraphine",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 24,
+      "witnessScenario": "no-merit+no-breach+no-stain+lied+no-cedric+no-garen+shadow-fragments"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|breaches@lion_champion@0|witnesses@alaric@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "breaches",
+        "witnesses",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 8,
+      "witnessScenario": "no-merit+no-breach+no-stain+lied+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|breaches@lion_champion@0|witnesses@alaric@0|shadow@alaric@2|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "breaches",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "witnessScenarioCount": 8,
+      "witnessScenario": "no-merit+no-breach+no-stain+lied+no-cedric+no-garen+shadow-evidence-undecided"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|breaches@lion_champion@0|witnesses@alaric@0|shadow@sage_seraphine@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "breaches",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "sage_seraphine",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 8,
+      "witnessScenario": "no-merit+no-breach+no-stain+lied+no-cedric+no-garen+shadow-evidence-concealed"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|stains@maelor@0|witnesses@alaric@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "merits",
+        "breaches",
+        "stains",
+        "witnesses",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "sage_seraphine",
+        "lion_champion",
+        "maelor",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 8,
+      "witnessScenario": "merit+no-breach+stain+lied+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|stains@maelor@0|witnesses@alaric@0|shadow@alaric@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "merits",
+        "breaches",
+        "stains",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "sage_seraphine",
+        "lion_champion",
+        "maelor",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 16,
+      "witnessScenario": "no-merit+no-breach+stain+lied+no-cedric+no-garen+shadow-evidence-revealed"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|stains@maelor@0|witnesses@alaric@0|shadow@alaric@2|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "merits",
+        "breaches",
+        "stains",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "sage_seraphine",
+        "lion_champion",
+        "maelor",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "witnessScenarioCount": 8,
+      "witnessScenario": "merit+no-breach+stain+lied+no-cedric+no-garen+shadow-evidence-undecided"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|stains@maelor@0|witnesses@alaric@0|shadow@sage_seraphine@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "merits",
+        "breaches",
+        "stains",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "sage_seraphine",
+        "lion_champion",
+        "maelor",
+        "alaric",
+        "sage_seraphine",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 24,
+      "witnessScenario": "merit+no-breach+no-stain+lied+no-cedric+no-garen+shadow-fragments"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|witnesses@alaric@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "merits",
+        "breaches",
+        "witnesses",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "sage_seraphine",
+        "lion_champion",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 8,
+      "witnessScenario": "merit+no-breach+no-stain+lied+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|witnesses@alaric@0|shadow@alaric@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "merits",
+        "breaches",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "sage_seraphine",
+        "lion_champion",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 16,
+      "witnessScenario": "no-merit+no-breach+no-stain+lied+no-cedric+no-garen+shadow-evidence-revealed"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|witnesses@alaric@0|shadow@alaric@2|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "merits",
+        "breaches",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "sage_seraphine",
+        "lion_champion",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "witnessScenarioCount": 8,
+      "witnessScenario": "merit+no-breach+no-stain+lied+no-cedric+no-garen+shadow-evidence-undecided"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|witnesses@alaric@0|shadow@sage_seraphine@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "merits",
+        "breaches",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "sage_seraphine",
+        "lion_champion",
+        "alaric",
+        "sage_seraphine",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 8,
+      "witnessScenario": "merit+no-breach+no-stain+lied+no-cedric+no-garen+shadow-evidence-concealed"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|witnesses@alaric@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "merits",
+        "witnesses",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "sage_seraphine",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|witnesses@alaric@0|shadow@alaric@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "merits",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "sage_seraphine",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 8,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-evidence-revealed"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|witnesses@alaric@0|shadow@alaric@2|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "merits",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "sage_seraphine",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-evidence-undecided"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|witnesses@alaric@0|shadow@sage_seraphine@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "merits",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "sage_seraphine",
+        "alaric",
+        "sage_seraphine",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-evidence-concealed"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|witnesses@alaric@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "witnesses",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|witnesses@alaric@0|shadow@alaric@2|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-evidence-undecided"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|outcome@alaric@0|witnesses@alaric@0|shadow@sage_seraphine@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "outcome",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "alaric",
+        "sage_seraphine",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-evidence-concealed"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|breaches@lion_champion@0|stains@maelor@0|witnesses@alaric@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "breaches",
+        "stains",
+        "witnesses",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "lion_champion",
+        "maelor",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "no-merit+breach+stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|breaches@lion_champion@0|stains@maelor@0|witnesses@alaric@0|shadow@alaric@2|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "breaches",
+        "stains",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "lion_champion",
+        "maelor",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "no-merit+breach+stain+truthful+no-cedric+no-garen+shadow-evidence-undecided"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|breaches@lion_champion@0|stains@maelor@0|witnesses@alaric@0|shadow@sage_seraphine@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "breaches",
+        "stains",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "lion_champion",
+        "maelor",
+        "alaric",
+        "sage_seraphine",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 12,
+      "witnessScenario": "no-merit+breach+no-stain+truthful+no-cedric+no-garen+shadow-fragments"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|breaches@lion_champion@0|witnesses@alaric@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "breaches",
+        "witnesses",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "no-merit+breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|breaches@lion_champion@0|witnesses@alaric@0|shadow@alaric@2|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "breaches",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "no-merit+breach+no-stain+truthful+no-cedric+no-garen+shadow-evidence-undecided"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|breaches@lion_champion@0|witnesses@alaric@0|shadow@sage_seraphine@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "breaches",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "sage_seraphine",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "no-merit+breach+no-stain+truthful+no-cedric+no-garen+shadow-evidence-concealed"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|stains@maelor@0|witnesses@alaric@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "merits",
+        "breaches",
+        "stains",
+        "witnesses",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "sage_seraphine",
+        "lion_champion",
+        "maelor",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "merit+breach+stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|stains@maelor@0|witnesses@alaric@0|shadow@alaric@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "merits",
+        "breaches",
+        "stains",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "sage_seraphine",
+        "lion_champion",
+        "maelor",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 8,
+      "witnessScenario": "no-merit+breach+stain+truthful+no-cedric+no-garen+shadow-evidence-revealed"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|stains@maelor@0|witnesses@alaric@0|shadow@alaric@2|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "merits",
+        "breaches",
+        "stains",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "sage_seraphine",
+        "lion_champion",
+        "maelor",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "merit+breach+stain+truthful+no-cedric+no-garen+shadow-evidence-undecided"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|stains@maelor@0|witnesses@alaric@0|shadow@sage_seraphine@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "merits",
+        "breaches",
+        "stains",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "sage_seraphine",
+        "lion_champion",
+        "maelor",
+        "alaric",
+        "sage_seraphine",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 12,
+      "witnessScenario": "merit+breach+no-stain+truthful+no-cedric+no-garen+shadow-fragments"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|witnesses@alaric@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "merits",
+        "breaches",
+        "witnesses",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "sage_seraphine",
+        "lion_champion",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "merit+breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|witnesses@alaric@0|shadow@alaric@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "merits",
+        "breaches",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "sage_seraphine",
+        "lion_champion",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 8,
+      "witnessScenario": "no-merit+breach+no-stain+truthful+no-cedric+no-garen+shadow-evidence-revealed"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|witnesses@alaric@0|shadow@alaric@2|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "merits",
+        "breaches",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "sage_seraphine",
+        "lion_champion",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "merit+breach+no-stain+truthful+no-cedric+no-garen+shadow-evidence-undecided"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|witnesses@alaric@0|shadow@sage_seraphine@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "merits",
+        "breaches",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "sage_seraphine",
+        "lion_champion",
+        "alaric",
+        "sage_seraphine",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "merit+breach+no-stain+truthful+no-cedric+no-garen+shadow-evidence-concealed"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|merits@sage_seraphine@0|stains@maelor@0|witnesses@alaric@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "merits",
+        "stains",
+        "witnesses",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "sage_seraphine",
+        "maelor",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "merit+no-breach+stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|merits@sage_seraphine@0|stains@maelor@0|witnesses@alaric@0|shadow@alaric@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "merits",
+        "stains",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "sage_seraphine",
+        "maelor",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 8,
+      "witnessScenario": "no-merit+no-breach+stain+truthful+no-cedric+no-garen+shadow-evidence-revealed"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|merits@sage_seraphine@0|stains@maelor@0|witnesses@alaric@0|shadow@alaric@2|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "merits",
+        "stains",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "sage_seraphine",
+        "maelor",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "merit+no-breach+stain+truthful+no-cedric+no-garen+shadow-evidence-undecided"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|merits@sage_seraphine@0|stains@maelor@0|witnesses@alaric@0|shadow@sage_seraphine@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "merits",
+        "stains",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "sage_seraphine",
+        "maelor",
+        "alaric",
+        "sage_seraphine",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 12,
+      "witnessScenario": "merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-fragments"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|stains@maelor@0|witnesses@alaric@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "stains",
+        "witnesses",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "maelor",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "no-merit+no-breach+stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|stains@maelor@0|witnesses@alaric@0|shadow@alaric@2|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "stains",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "maelor",
+        "alaric",
+        "alaric",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "witnessScenarioCount": 4,
+      "witnessScenario": "no-merit+no-breach+stain+truthful+no-cedric+no-garen+shadow-evidence-undecided"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "signature": "open@alaric@0|record@alaric@2|lie-rebuked@lion_champion@0|outcome@alaric@0|stains@maelor@0|witnesses@alaric@0|shadow@sage_seraphine@0|intent@alaric@2",
+      "stepIds": [
+        "open",
+        "record",
+        "lie-rebuked",
+        "outcome",
+        "stains",
+        "witnesses",
+        "shadow",
+        "intent"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "alaric",
+        "maelor",
+        "alaric",
+        "sage_seraphine",
+        "alaric"
+      ],
+      "choiceCounts": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "witnessScenarioCount": 12,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-fragments"
+    },
+    {
+      "dialogueId": "lion_trial_aftermath",
+      "signature": "1@alaric@0|2@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "alaric",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "mystery_ambush",
+      "signature": "1@serpent_raider@0",
+      "stepIds": [
+        "1"
+      ],
+      "speakers": [
+        "serpent_raider"
+      ],
+      "choiceCounts": [
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "mystery_dragon_roost",
+      "signature": "1@young_dragon_elite@2|2@sage_seraphine@0|3@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "young_dragon_elite",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "mystery_help",
+      "signature": "1@survivor@2|2@survivor@0|3@survivor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "survivor",
+        "survivor",
+        "survivor"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "mystery_lancer_recruit",
+      "signature": "1@lancer@2|2@lancer@0|3@lancer@0|4@lancer@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "speakers": [
+        "lancer",
+        "lancer",
+        "lancer",
+        "lancer"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "mystery_recruit",
+      "signature": "0a@kestrel@0|0b@cedric@0|1@cedric@2|2@cedric@0|2a@kestrel@0|2b@cedric@0|3@cedric@0|3a@cedric@0|3b@kestrel@0",
+      "stepIds": [
+        "0a",
+        "0b",
+        "1",
+        "2",
+        "2a",
+        "2b",
+        "3",
+        "3a",
+        "3b"
+      ],
+      "speakers": [
+        "kestrel",
+        "cedric",
+        "cedric",
+        "cedric",
+        "kestrel",
+        "cedric",
+        "cedric",
+        "cedric",
+        "kestrel"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "mystery_shrine",
+      "signature": "1@shrine_apparition@2|2@sage_seraphine@0|3@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "shrine_apparition",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "mystery_treasure",
+      "signature": "1@maelor@2|2@sage_seraphine@0|3@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "maelor",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "mystery_troll_crossing",
+      "signature": "1@forest_troll_elite@2|2@sage_seraphine@0|3@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "forest_troll_elite",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "old_shrine_event",
+      "signature": "1@sage_seraphine@2|2@sage_seraphine@0|3@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "sage_seraphine",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "post_opening_trail",
+      "signature": "1@kestrel@0|2@alistair@0|3@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "kestrel",
+        "alistair",
+        "maelor"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "post_ruins_guardians",
+      "signature": "1@elara@0|2@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "elara",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "post_serpent_checkpoint",
+      "signature": "1@kestrel@0|2@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "kestrel",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "post_serpent_duelist_trial",
+      "signature": "1@serpent_duelist_elite@0|2@alistair@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "serpent_duelist_elite",
+        "alistair"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "post_serpent_hunters",
+      "signature": "1@serpent_oracle@0|2@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "serpent_oracle",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "post_serpent_patrol",
+      "signature": "1@kestrel@0|2@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "kestrel",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "post_serpent_reprisals",
+      "signature": "1@alistair@0|2@kestrel@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "alistair",
+        "kestrel"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "post_spider_nest",
+      "signature": "1@elara@0|2@maelor@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "elara",
+        "maelor"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "post_troll_crossing",
+      "signature": "1@marian@0|2@maelor@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "marian",
+        "maelor"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "post_valmir_road",
+      "signature": "1@marian@0|2@kestrel@0|3@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "marian",
+        "kestrel",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "post_young_dragon_roost",
+      "signature": "1@elara@0|2@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "elara",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "pre_lion_chief",
+      "signature": "1@alaric@0|2@alaric@0|3@lion_champion@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "alaric",
+        "alaric",
+        "lion_champion"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "pre_opening_trail",
+      "signature": "1@kestrel@0|2@alistair@0|3@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "kestrel",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "pre_ruins_guardians",
+      "signature": "1@elara@0|2@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "elara",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "pre_serpent_checkpoint",
+      "signature": "1@kestrel@0|2@maelor@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "kestrel",
+        "maelor"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "pre_serpent_duelist_trial",
+      "signature": "1@serpent_duelist_elite@0|2@serpent_duelist_elite@0|3@serpent_duelist_elite@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "serpent_duelist_elite",
+        "serpent_duelist_elite",
+        "serpent_duelist_elite"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "pre_serpent_hunters",
+      "signature": "1@serpent_raider@0|2@sage_seraphine@0|3@serpent_raider@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "serpent_raider",
+        "sage_seraphine",
+        "serpent_raider"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "pre_serpent_patrol",
+      "signature": "1@kestrel@0|2@alistair@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "kestrel",
+        "alistair"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "pre_serpent_reprisals",
+      "signature": "1@serpent_raider@0|2@alistair@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "serpent_raider",
+        "alistair"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "pre_spider_nest",
+      "signature": "1@elara@0|2@marian@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "elara",
+        "marian"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "pre_troll_crossing",
+      "signature": "1@forest_troll_elite@0|2@forest_troll_elite@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "forest_troll_elite",
+        "forest_troll_elite"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "pre_valmir_road",
+      "signature": "1@kestrel@0|2@marian@0|3@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "kestrel",
+        "marian",
+        "maelor"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "pre_village_defense",
+      "signature": "1@serpent_raider@0|2@serpent_raider@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "serpent_raider",
+        "serpent_raider"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "pre_village_raid",
+      "signature": "1@serpent_brute@0|2@serpent_brute@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "serpent_brute",
+        "serpent_brute"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "pre_young_dragon_roost",
+      "signature": "1@young_dragon_elite@0|2@young_dragon_elite@0",
+      "stepIds": [
+        "1",
+        "2"
+      ],
+      "speakers": [
+        "young_dragon_elite",
+        "young_dragon_elite"
+      ],
+      "choiceCounts": [
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "refugee_trial",
+      "signature": "0a@kestrel@0|0b@marian@0|1@refugee_mother@2|2@refugee_mother@0|2a@marian@0|2b@alistair@0|3@maelor@0|3a@marian@0|3b@kestrel@0",
+      "stepIds": [
+        "0a",
+        "0b",
+        "1",
+        "2",
+        "2a",
+        "2b",
+        "3",
+        "3a",
+        "3b"
+      ],
+      "speakers": [
+        "kestrel",
+        "marian",
+        "refugee_mother",
+        "refugee_mother",
+        "marian",
+        "alistair",
+        "maelor",
+        "marian",
+        "kestrel"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 160,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "refugee_trial",
+      "signature": "0a@kestrel@0|0b@marian@0|r5-cedric-refugee-route@cedric@0|1@refugee_mother@2|2@refugee_mother@0|2a@marian@0|2b@alistair@0|3@maelor@0|3a@marian@0|3b@kestrel@0",
+      "stepIds": [
+        "0a",
+        "0b",
+        "r5-cedric-refugee-route",
+        "1",
+        "2",
+        "2a",
+        "2b",
+        "3",
+        "3a",
+        "3b"
+      ],
+      "speakers": [
+        "kestrel",
+        "marian",
+        "cedric",
+        "refugee_mother",
+        "refugee_mother",
+        "marian",
+        "alistair",
+        "maelor",
+        "marian",
+        "kestrel"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 160,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "rep_event_bois_clair_denunciation",
+      "signature": "1@refugee_mother@2|2@refugee_mother@0|3@refugee_mother@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "refugee_mother",
+        "refugee_mother",
+        "refugee_mother"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "rep_event_brokered_information",
+      "signature": "1@survivor@2|2@survivor@0|3@survivor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "survivor",
+        "survivor",
+        "survivor"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "rep_event_displaced_family_demand",
+      "signature": "1@survivor@2|2@survivor@0|3@survivor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "survivor",
+        "survivor",
+        "survivor"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "rep_event_fallen_banner_claimant",
+      "signature": "1@survivor@2|2@survivor@0|3@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "survivor",
+        "survivor",
+        "maelor"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "rep_event_public_petition",
+      "signature": "1@refugee_mother@2|2@refugee_mother@0|3@refugee_mother@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "refugee_mother",
+        "refugee_mother",
+        "refugee_mother"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "rep_event_refuge_supply_offer",
+      "signature": "1@survivor@2|2@survivor@0|3@survivor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "survivor",
+        "survivor",
+        "survivor"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "rep_event_roadside_intimidation",
+      "signature": "1@serpent_raider@2|2@maelor@0|3@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "serpent_raider",
+        "maelor",
+        "maelor"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "rep_event_serpent_rumour_market",
+      "signature": "1@survivor@2|2@survivor@0|3@survivor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "survivor",
+        "survivor",
+        "survivor"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "rep_event_village_memorial_request",
+      "signature": "1@refugee_mother@2|2@refugee_mother@0|3@refugee_mother@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "refugee_mother",
+        "refugee_mother",
+        "refugee_mother"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "reserve_trail",
+      "signature": "0a@kestrel@0|0b@alistair@0|1@maelor@2|2@maelor@0|2a@kestrel@0|2b@sage_seraphine@0|3@sage_seraphine@0|3a@kestrel@0|3b@maelor@0",
+      "stepIds": [
+        "0a",
+        "0b",
+        "1",
+        "2",
+        "2a",
+        "2b",
+        "3",
+        "3a",
+        "3b"
+      ],
+      "speakers": [
+        "kestrel",
+        "alistair",
+        "maelor",
+        "maelor",
+        "kestrel",
+        "sage_seraphine",
+        "sage_seraphine",
+        "kestrel",
+        "maelor"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 160,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "reserve_trail",
+      "signature": "0a@kestrel@0|0b@alistair@0|r5-cedric-convoy-reading@cedric@0|1@maelor@2|2@maelor@0|2a@kestrel@0|2b@sage_seraphine@0|3@sage_seraphine@0|3a@kestrel@0|3b@maelor@0",
+      "stepIds": [
+        "0a",
+        "0b",
+        "r5-cedric-convoy-reading",
+        "1",
+        "2",
+        "2a",
+        "2b",
+        "3",
+        "3a",
+        "3b"
+      ],
+      "speakers": [
+        "kestrel",
+        "alistair",
+        "cedric",
+        "maelor",
+        "maelor",
+        "kestrel",
+        "sage_seraphine",
+        "sage_seraphine",
+        "kestrel",
+        "maelor"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 160,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "serpent_duelist_trial",
+      "signature": "1@serpent_duelist_elite@2|2@sage_seraphine@0|3@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "serpent_duelist_elite",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "serpent_general_aftermath",
+      "signature": "1@sage_seraphine@0|2@alaric@0|3@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "sage_seraphine",
+        "alaric",
+        "maelor"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 128,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-evidence-revealed"
+    },
+    {
+      "dialogueId": "serpent_general_aftermath",
+      "signature": "1@sage_seraphine@2|2@alaric@0|3@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "sage_seraphine",
+        "alaric",
+        "maelor"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 192,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "serpent_informant",
+      "signature": "1@serpent_oracle@2|2@sage_seraphine@0|3@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "serpent_oracle",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "serpent_pursuit_pre_combat",
+      "signature": "1@alaric@0|2@serpent_general_boss@0|3@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "alaric",
+        "serpent_general_boss",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "shadow_signs",
+      "signature": "1@sage_seraphine@2|2@sage_seraphine@0|2a@elara@0|2b@alistair@0|3@maelor@0|3a@elara@0|3b@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "2",
+        "2a",
+        "2b",
+        "3",
+        "3a",
+        "3b"
+      ],
+      "speakers": [
+        "sage_seraphine",
+        "sage_seraphine",
+        "elara",
+        "alistair",
+        "maelor",
+        "elara",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 80,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "shadow_signs",
+      "signature": "1@sage_seraphine@2|2@sage_seraphine@0|2a@elara@0|r5-cedric-shadow-evidence@cedric@0|2b@alistair@0|3@maelor@0|3a@elara@0|r5-cedric-shadow-fragments@cedric@0|3b@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "2",
+        "2a",
+        "r5-cedric-shadow-evidence",
+        "2b",
+        "3",
+        "3a",
+        "r5-cedric-shadow-fragments",
+        "3b"
+      ],
+      "speakers": [
+        "sage_seraphine",
+        "sage_seraphine",
+        "elara",
+        "cedric",
+        "alistair",
+        "maelor",
+        "elara",
+        "cedric",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 80,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "shadow_signs",
+      "signature": "1@sage_seraphine@2|2@sage_seraphine@0|2a@elara@0|r5-cedric-shadow-evidence@cedric@0|r5-garen-shadow-evidence@lancer@0|2b@alistair@0|3@maelor@0|3a@elara@0|r5-cedric-shadow-fragments@cedric@0|r5-garen-shadow-fragments@lancer@0|3b@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "2",
+        "2a",
+        "r5-cedric-shadow-evidence",
+        "r5-garen-shadow-evidence",
+        "2b",
+        "3",
+        "3a",
+        "r5-cedric-shadow-fragments",
+        "r5-garen-shadow-fragments",
+        "3b"
+      ],
+      "speakers": [
+        "sage_seraphine",
+        "sage_seraphine",
+        "elara",
+        "cedric",
+        "lancer",
+        "alistair",
+        "maelor",
+        "elara",
+        "cedric",
+        "lancer",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 80,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+cedric+garen+shadow-none"
+    },
+    {
+      "dialogueId": "shadow_signs",
+      "signature": "1@sage_seraphine@2|2@sage_seraphine@0|2a@elara@0|r5-garen-shadow-evidence@lancer@0|2b@alistair@0|3@maelor@0|3a@elara@0|r5-garen-shadow-fragments@lancer@0|3b@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "2",
+        "2a",
+        "r5-garen-shadow-evidence",
+        "2b",
+        "3",
+        "3a",
+        "r5-garen-shadow-fragments",
+        "3b"
+      ],
+      "speakers": [
+        "sage_seraphine",
+        "sage_seraphine",
+        "elara",
+        "lancer",
+        "alistair",
+        "maelor",
+        "elara",
+        "lancer",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 80,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+garen+shadow-none"
+    },
+    {
+      "dialogueId": "village_choice",
+      "signature": "1@villageoise@0|1a@marian@0|2@serpent_raider@0|2a@cedric@0|3@sage_seraphine@0|4@maelor@0|4a@alistair@0|5@villageoise@2|6@villageoise@0|6a@alistair@0|6b@maelor@0|7@villageoise@0|7a@maelor@0|7b@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "1a",
+        "2",
+        "2a",
+        "3",
+        "4",
+        "4a",
+        "5",
+        "6",
+        "6a",
+        "6b",
+        "7",
+        "7a",
+        "7b"
+      ],
+      "speakers": [
+        "villageoise",
+        "marian",
+        "serpent_raider",
+        "cedric",
+        "sage_seraphine",
+        "maelor",
+        "alistair",
+        "villageoise",
+        "villageoise",
+        "alistair",
+        "maelor",
+        "villageoise",
+        "maelor",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 160,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "village_choice",
+      "signature": "1@villageoise@0|1a@marian@0|2@serpent_raider@0|2a@kestrel@0|3@sage_seraphine@0|4@maelor@0|4a@alistair@0|5@villageoise@2|6@villageoise@0|6a@alistair@0|6b@maelor@0|7@villageoise@0|7a@maelor@0|7b@sage_seraphine@0",
+      "stepIds": [
+        "1",
+        "1a",
+        "2",
+        "2a",
+        "3",
+        "4",
+        "4a",
+        "5",
+        "6",
+        "6a",
+        "6b",
+        "7",
+        "7a",
+        "7b"
+      ],
+      "speakers": [
+        "villageoise",
+        "marian",
+        "serpent_raider",
+        "kestrel",
+        "sage_seraphine",
+        "maelor",
+        "alistair",
+        "villageoise",
+        "villageoise",
+        "alistair",
+        "maelor",
+        "villageoise",
+        "maelor",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 160,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "village_defense_aftermath",
+      "signature": "1@villageoise@2|2@villageoise@0|3@villageoise@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "villageoise",
+        "villageoise",
+        "villageoise"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "village_raid_aftermath",
+      "signature": "1@maelor@2|2@villageoise@0|3@maelor@0",
+      "stepIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "speakers": [
+        "maelor",
+        "villageoise",
+        "maelor"
+      ],
+      "choiceCounts": [
+        2,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    },
+    {
+      "dialogueId": "witnesses_on_road",
+      "signature": "0a@kestrel@0|0b@marian@0|1@survivor@2|2@survivor@0|2a@alistair@0|2b@survivor@0|3@maelor@0|3a@marian@0|3b@survivor@0|4@survivor@0|4a@kestrel@0|4b@sage_seraphine@0",
+      "stepIds": [
+        "0a",
+        "0b",
+        "1",
+        "2",
+        "2a",
+        "2b",
+        "3",
+        "3a",
+        "3b",
+        "4",
+        "4a",
+        "4b"
+      ],
+      "speakers": [
+        "kestrel",
+        "marian",
+        "survivor",
+        "survivor",
+        "alistair",
+        "survivor",
+        "maelor",
+        "marian",
+        "survivor",
+        "survivor",
+        "kestrel",
+        "sage_seraphine"
+      ],
+      "choiceCounts": [
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "witnessScenarioCount": 320,
+      "witnessScenario": "no-merit+no-breach+no-stain+truthful+no-cedric+no-garen+shadow-none"
+    }
+  ]
+}

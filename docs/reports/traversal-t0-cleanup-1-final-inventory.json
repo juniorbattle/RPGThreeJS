@@ -1,0 +1,4841 @@
+{
+  "phase": "final",
+  "baseline": "e1be7d0261d699aee27079e256291826b7b78f1e",
+  "entries": [
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/asset-sheet-t0-world-reference.png",
+      "bytes": 4194011,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/asset-sheet-t1-bois-clair.png",
+      "bytes": 4026273,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/asset-sheet-t3-t4-final.png",
+      "bytes": 3927904,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/bois-clair-current-01-approach.png",
+      "bytes": 1724947,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/bois-clair-current-01b-approach-after-combat.png",
+      "bytes": 1725323,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/bois-clair-current-03-dialogue-390.png",
+      "bytes": 509957,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/bois-clair-current-03-dialogue.png",
+      "bytes": 1708855,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/bois-clair-current-04-choice.png",
+      "bytes": 1636704,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/bois-clair-current-05-combat.png",
+      "bytes": 1828045,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/bois-clair-current-07-handoff-to-second-refuge.png",
+      "bytes": 1724082,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/final-boss-current.png",
+      "bytes": 1849211,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/final-refuge-current.png",
+      "bytes": 1671996,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/final-refuge-departure-current.png",
+      "bytes": 1726011,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/final-refuge-dialogue-current-390.png",
+      "bytes": 485296,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/final-refuge-dialogue-current.png",
+      "bytes": 1671996,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-cinematic-final-judgement-lion_judgement.png",
+      "bytes": 1477130,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-cinematic-final-judgement-serpent_general_reveal.png",
+      "bytes": 1644463,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-cinematic-final-trial-event-young_dragon_encounter.png",
+      "bytes": 2060170,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-cinematic-second-trial-event-shrine_reveal_context.png",
+      "bytes": 1172480,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-cinematic-valmir-road-valmir_route_fork.png",
+      "bytes": 1697835,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-cinematic-village-choice-bois_clair_arrival.png",
+      "bytes": 1606089,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-cinematic-witnesses-witnesses_encounter.png",
+      "bytes": 1370879,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-dialogue-final-judgement-serpent_pursuit_pre_combat.png",
+      "bytes": 1747327,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-dialogue-final-refuge-rep_event_village_memorial_request.png",
+      "bytes": 1607635,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-dialogue-final-trial-event-mystery_dragon_roost.png",
+      "bytes": 1718262,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-dialogue-final-trial-event-post_young_dragon_roost.png",
+      "bytes": 1716538,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-dialogue-final-trial-event-pre_young_dragon_roost.png",
+      "bytes": 1706845,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-dialogue-second-refuge-ate_bois_clair_night_watch.png",
+      "bytes": 1694450,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-dialogue-shadow-signs-ate_ruins_awaken.png",
+      "bytes": 1727546,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-dialogue-shadow-signs-ate_serpent_retreat_order.png",
+      "bytes": 1821606,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-dialogue-valmir-road-ate_serpent_general_warning.png",
+      "bytes": 1698377,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-dialogue-valmir-road-post_valmir_road.png",
+      "bytes": 1843857,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-dialogue-valmir-road-pre_valmir_road.png",
+      "bytes": 1832281,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-dialogue-village-choice-ate_maelor_seal_analysis.png",
+      "bytes": 1728318,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-dialogue-village-choice-post_serpent_reprisals.png",
+      "bytes": 1794833,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-dialogue-village-choice-pre_serpent_reprisals.png",
+      "bytes": 1786687,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-dialogue-village-choice-pre_village_defense.png",
+      "bytes": 1596382,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-dialogue-village-choice-rep_event_roadside_intimidation.png",
+      "bytes": 1791969,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-dialogue-village-choice-village_defense_aftermath.png",
+      "bytes": 1662334,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/flow-dialogue-witnesses-ate_lion_council_doubt.png",
+      "bytes": 1704483,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/gallery-index.json",
+      "bytes": 144277,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/index.html",
+      "bytes": 35269,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/index.md",
+      "bytes": 6540,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/judgement-choice-current.png",
+      "bytes": 1689985,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/judgement-current-390.png",
+      "bytes": 524939,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/judgement-current.png",
+      "bytes": 1773264,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/second-refuge-current-02-hub-390.png",
+      "bytes": 476546,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/second-refuge-current-02-hub.png",
+      "bytes": 1722258,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/second-refuge-current-04-departure.png",
+      "bytes": 1715275,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/shadow-signs-after-combat-branch.png",
+      "bytes": 1761336,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/shadow-signs-current.png",
+      "bytes": 1757648,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/shadow-signs-dialogue-current.png",
+      "bytes": 1757648,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/shadow-signs-evidence-choice-current.png",
+      "bytes": 1695260,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t0-reference-arrival-agency.png",
+      "bytes": 1724763,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t0-reference-arrival.png",
+      "bytes": 2356396,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t0-reference-canonical-dialogue-return.png",
+      "bytes": 2341102,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t0-reference-canonical-dialogue.png",
+      "bytes": 1843961,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t0-reference-combat-return.png",
+      "bytes": 2240561,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t0-reference-combat.png",
+      "bytes": 1893982,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t0-reference-departure-journey.png",
+      "bytes": 1776503,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t0-reference-dialogue-return.png",
+      "bytes": 2263302,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t0-reference-fork-390.png",
+      "bytes": 542432,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t0-reference-fork.png",
+      "bytes": 2027525,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t0-reference-local-dialogue.png",
+      "bytes": 1846318,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t0-reference-mandatory-interrupt-390.png",
+      "bytes": 609955,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t0-reference-mandatory-interrupt.png",
+      "bytes": 2261037,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t0-reference-normal-travel-390.png",
+      "bytes": 623240,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t0-reference-normal-travel.png",
+      "bytes": 2288597,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t0-reference-optional-canonical-interrupt.png",
+      "bytes": 2317455,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t0-reference-optional-interrupt.png",
+      "bytes": 2242991,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t1-current-01-first-refuge-departure-390.png",
+      "bytes": 443965,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t1-current-01-first-refuge-departure.png",
+      "bytes": 1729145,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t1-current-02-reserve-trail.png",
+      "bytes": 1912204,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t1-current-03-reserve-trail-choice.png",
+      "bytes": 1849609,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t1-current-04-valmir-road-departure.png",
+      "bytes": 1725537,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t1-current-05-valmir-road-combat.png",
+      "bytes": 1892772,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t1-current-06-second-trial-fork-390.png",
+      "bytes": 489956,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t1-current-06-second-trial-fork.png",
+      "bytes": 1697835,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t1-current-06b-second-trial-fork-combat-run.png",
+      "bytes": 1700246,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t1-current-07-second-trial-event.png",
+      "bytes": 1902819,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t1-current-07b-second-trial-combat.png",
+      "bytes": 1899436,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t1c-cinematic-second-trial-combat-serpent_road_tension.png",
+      "bytes": 1843869,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t1c-cinematic-valmir-road-valmir_route_fork.png",
+      "bytes": 1700246,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t1c-dialogue-second-trial-combat-post_serpent_checkpoint.png",
+      "bytes": 1803423,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t1c-dialogue-second-trial-combat-pre_serpent_checkpoint.png",
+      "bytes": 1799437,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t3-final-combat-current.png",
+      "bytes": 1833846,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t3-final-event-combat-current.png",
+      "bytes": 1853984,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t3-final-event-current.png",
+      "bytes": 1718262,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t3-final-fork-combat-run.png",
+      "bytes": 1370413,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t3-final-fork-current-390.png",
+      "bytes": 331345,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t3-final-fork-current.png",
+      "bytes": 1370879,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t3-garen-choice-current.png",
+      "bytes": 1738531,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t3-garen-current.png",
+      "bytes": 1805948,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t3-shadow-approach-after-combat-current.png",
+      "bytes": 1726317,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t3-shadow-approach-current.png",
+      "bytes": 1727426,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t3-witness-road-departure-current.png",
+      "bytes": 1729343,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t3-witnesses-current-390.png",
+      "bytes": 534490,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t3-witnesses-current.png",
+      "bytes": 1888662,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t3-witnesses-decision-current.png",
+      "bytes": 1805071,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t3c-cinematic-witnesses-witnesses_encounter.png",
+      "bytes": 1370413,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t3c-dialogue-final-trial-combat-post_ruins_guardians.png",
+      "bytes": 1714342,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t3c-dialogue-final-trial-combat-pre_ruins_guardians.png",
+      "bytes": 1724707,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1-browser/t4-current-handoff.png",
+      "bytes": 1726475,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1.json",
+      "bytes": 42263,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [
+        "tools/traversal-remaining-legs-audit-1-inventory.mjs"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-remaining-legs-audit-1.md",
+      "bytes": 42126,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Independent future-leg audit, outside this T0 cleanup."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/01-route-1-early.png",
+      "bytes": 2291696,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/04-refugees-aider-390.png",
+      "bytes": 602067,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/04-refugees-aider.png",
+      "bytes": 2314674,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/04-route-3-early-390.png",
+      "bytes": 637854,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/04-route-3-early-620.png",
+      "bytes": 938006,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/04-route-3-early.png",
+      "bytes": 2301357,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/06-cp5a-branch-checkpoint.png",
+      "bytes": 2314530,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/06-route-5a-390.png",
+      "bytes": 632311,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/06-route-5a-620.png",
+      "bytes": 946753,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/06-route-5a.png",
+      "bytes": 2326915,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/08-route-6-rush.png",
+      "bytes": 2244574,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/09-arrival-390.png",
+      "bytes": 669943,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/09-arrival-620.png",
+      "bytes": 1009320,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/09-arrival.png",
+      "bytes": 2360693,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/09-route-6-coast.png",
+      "bytes": 2327018,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/10-destination-agency.png",
+      "bytes": 1724662,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/11-arrival-b-390.png",
+      "bytes": 648856,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/11-arrival-b-620.png",
+      "bytes": 977184,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/11-arrival-b.png",
+      "bytes": 2353522,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/11-cp5b-branch-checkpoint.png",
+      "bytes": 2302650,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/11-route-5b-390.png",
+      "bytes": 610656,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/11-route-5b-620.png",
+      "bytes": 942474,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/11-route-5b.png",
+      "bytes": 2321852,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/11-route-6-rush-b-390.png",
+      "bytes": 614234,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/11-route-6-rush-b-620.png",
+      "bytes": 934089,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/11-route-6-rush-b.png",
+      "bytes": 2322234,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/12-refugees-passer-390.png",
+      "bytes": 604399,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/12-refugees-passer.png",
+      "bytes": 2308163,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/browser-qa.json",
+      "bytes": 52638,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/cp1-b-black.png",
+      "bytes": 5274,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/cp1-c-after-reveal-390.png",
+      "bytes": 654213,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/cp1-c-after-reveal-620.png",
+      "bytes": 980824,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/cp1-c-after-reveal.png",
+      "bytes": 2267199,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/fork-a-black.png",
+      "bytes": 5274,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/fork-b-checkpoint-390.png",
+      "bytes": 530287,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/fork-b-checkpoint-620.png",
+      "bytes": 797847,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/fork-b-checkpoint.png",
+      "bytes": 2165900,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/gallery-index.json",
+      "bytes": 216152,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/index.html",
+      "bytes": 5442,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/motion-flow.json",
+      "bytes": 111268,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/passer-departure-390.png",
+      "bytes": 618834,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/passer-departure.png",
+      "bytes": 2312843,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/refugees-b-return-black.png",
+      "bytes": 5274,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-browser/responsive-route-3-refugees-black-390.png",
+      "bytes": 2737,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-deletions.json",
+      "bytes": 145076,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+      "bytes": 185199,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+      "bytes": 598989,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-cleanup-1.md",
+      "bytes": 8048,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/A-route3-refugees-aider-route4.webm",
+      "bytes": 1754941,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "docs/reports/traversal-t0-motion-handoff-polish-1-browser/telemetry.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/B-refugees-passer-route4.webm",
+      "bytes": 711622,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "docs/reports/traversal-t0-motion-handoff-polish-1-browser/telemetry.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/C-fork-route5a.webm",
+      "bytes": 728411,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "docs/reports/traversal-t0-motion-handoff-polish-1-browser/telemetry.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/D-branch-checkpoint-route6.webm",
+      "bytes": 1193990,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "docs/reports/traversal-t0-motion-handoff-polish-1-browser/telemetry.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/E-route6-arrival-journey.webm",
+      "bytes": 897475,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "docs/reports/traversal-t0-motion-handoff-polish-1-browser/telemetry.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/aider-branch-a-arrival-desktop-1440.png",
+      "bytes": 2343183,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/aider-branch-a-arrival-mobile-390.png",
+      "bytes": 650851,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/aider-branch-a-arrival-tablet-620.png",
+      "bytes": 997393,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/aider-branch-a-branch-checkpoint-1440.png",
+      "bytes": 2254270,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/aider-branch-a-fork-before-620.png",
+      "bytes": 855161,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/aider-branch-a-fork-black-620.png",
+      "bytes": 2926,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/aider-branch-a-fork-departure-620.png",
+      "bytes": 948325,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/aider-branch-a-motion-frames.json",
+      "bytes": 421392,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/aider-branch-a-route3-black-1440.png",
+      "bytes": 5274,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/aider-branch-a-route6-rush-1440.png",
+      "bytes": 2248048,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/aider-branch-a-route6-rush-mobile-390.png",
+      "bytes": 624274,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/aider-branch-a-route6-rush-tablet-620.png",
+      "bytes": 976135,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/index.html",
+      "bytes": 2569,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/passer-branch-b-motion-frames.json",
+      "bytes": 447316,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/passer-branch-b-passer-before-390.png",
+      "bytes": 630419,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/passer-branch-b-passer-black-390.png",
+      "bytes": 2737,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/passer-branch-b-passer-departure-390.png",
+      "bytes": 648877,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/telemetry.json",
+      "bytes": 11102,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-motion-handoff-polish-1.md",
+      "bytes": 6380,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/01-route-1-early.png",
+      "bytes": 2332027,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/02-route-1-rush-390.png",
+      "bytes": 623349,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/02-route-1-rush.png",
+      "bytes": 2286764,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/03-route-2.png",
+      "bytes": 2251776,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/04-refugees-aider-390.png",
+      "bytes": 604430,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/04-refugees-aider.png",
+      "bytes": 2308173,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/04-refugees-route-4-black.png",
+      "bytes": 5274,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/04-route-3-early-390.png",
+      "bytes": 611854,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/04-route-3-early-620.png",
+      "bytes": 957018,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/04-route-3-early.png",
+      "bytes": 2255730,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/04-route-3-refugees-black.png",
+      "bytes": 5274,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/04-route-3-rush.png",
+      "bytes": 2303435,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/05-route-4-early-390.png",
+      "bytes": 628169,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/05-route-4-early-620.png",
+      "bytes": 932008,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/05-route-4-early.png",
+      "bytes": 2324641,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/05-route-4-rush.png",
+      "bytes": 2255019,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/05-route-4.png",
+      "bytes": 2322541,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/06-branch-route-6-black.png",
+      "bytes": 5274,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/06-cp5a-branch-checkpoint.png",
+      "bytes": 2263107,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/06-cp5a-canonical-dialogue.png",
+      "bytes": 1918813,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/06-route-5a-390.png",
+      "bytes": 635353,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/06-route-5a-620.png",
+      "bytes": 962213,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/06-route-5a-checkpoint-black.png",
+      "bytes": 5274,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/06-route-5a.png",
+      "bytes": 2285731,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/07-route-6-early-390.png",
+      "bytes": 632562,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/07-route-6-early-620.png",
+      "bytes": 936415,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/07-route-6-early.png",
+      "bytes": 2257747,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/08-route-6-rush.png",
+      "bytes": 2244465,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/09-arrival-390.png",
+      "bytes": 656533,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/09-arrival-620.png",
+      "bytes": 992013,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/09-arrival.png",
+      "bytes": 2339074,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/10-destination-agency.png",
+      "bytes": 1724662,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/11-arrival-b-390.png",
+      "bytes": 652846,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/11-arrival-b-620.png",
+      "bytes": 991542,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/11-arrival-b.png",
+      "bytes": 2353624,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/11-branch-route-6-black.png",
+      "bytes": 5274,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/11-cp5b-branch-checkpoint.png",
+      "bytes": 2302393,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/11-cp5b-canonical-combat.png",
+      "bytes": 1902680,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/11-route-5b-390.png",
+      "bytes": 611608,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/11-route-5b-620.png",
+      "bytes": 937512,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/11-route-5b-checkpoint-black.png",
+      "bytes": 5274,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/11-route-5b.png",
+      "bytes": 2279048,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/11-route-6-rush-b-390.png",
+      "bytes": 612811,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/11-route-6-rush-b-620.png",
+      "bytes": 972815,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/11-route-6-rush-b.png",
+      "bytes": 2293936,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/12-refugees-passer-390.png",
+      "bytes": 597987,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/12-refugees-passer.png",
+      "bytes": 2366479,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/browser-qa.json",
+      "bytes": 56599,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/cp1-a-before-fade.png",
+      "bytes": 2251307,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/cp1-b-black.png",
+      "bytes": 5274,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/cp1-c-after-reveal-390.png",
+      "bytes": 646803,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/cp1-c-after-reveal-620.png",
+      "bytes": 991990,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/cp1-c-after-reveal.png",
+      "bytes": 2267098,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/cp1-d-checkpoint-before-content.png",
+      "bytes": 2309139,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/cp1-e-return-black.png",
+      "bytes": 5274,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/cp1-f-route-2-after-reveal.png",
+      "bytes": 2256666,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/fork-a-black.png",
+      "bytes": 5274,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/fork-b-checkpoint-390.png",
+      "bytes": 528898,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/fork-b-checkpoint-620.png",
+      "bytes": 795712,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/fork-b-checkpoint.png",
+      "bytes": 2181549,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/fork-c-return-black.png",
+      "bytes": 5274,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/gallery-index.json",
+      "bytes": 171557,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/index.html",
+      "bytes": 9048,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/motion-flow.json",
+      "bytes": 24862,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/refugees-b-return-black.png",
+      "bytes": 5274,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/refugees-c-route-4-after-reveal.png",
+      "bytes": 2246143,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/regression-comparison.html",
+      "bytes": 2310,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/responsive-route-3-refugees-black-390.png",
+      "bytes": 2737,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/video-qa.json",
+      "bytes": 771,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/webm-a-contact.png",
+      "bytes": 704296,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/webm-a-route-3-refugees-fork-route-5a.webm",
+      "bytes": 17302940,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/webm-b-contact.png",
+      "bytes": 603248,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/webm-b-fork-route-5b-combat-route-6-arrival.webm",
+      "bytes": 16490448,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-generalization.md",
+      "bytes": 7033,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP",
+      "reason": "Accepted Lot A report or cleanup evidence."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json",
+      "bytes": 4665,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [
+        "src/traversal/TraversalT0Assets.test.ts"
+      ],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1.md"
+      ],
+      "action": "KEEP",
+      "reason": "Current asset integrity manifest."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/foreground/ferns.png",
+      "bytes": 1835284,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [
+        "src/traversal/TraversalDepth.ts",
+        "src/traversal/TraversalSpriteBounds.json"
+      ],
+      "testRefs": [
+        "src/traversal/TraversalT0Assets.test.ts"
+      ],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json"
+      ],
+      "action": "KEEP",
+      "reason": "Shared camera-side foreground fern occluder.",
+      "approvedBrowserFlow": "route or checkpoint flow"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/foreground/roots.png",
+      "bytes": 1187082,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [
+        "src/traversal/TraversalDepth.ts",
+        "src/traversal/TraversalSpriteBounds.json"
+      ],
+      "testRefs": [
+        "src/traversal/TraversalT0Assets.test.ts"
+      ],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json"
+      ],
+      "action": "KEEP",
+      "reason": "Shared camera-side foreground root occluder.",
+      "approvedBrowserFlow": "route or checkpoint flow"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/foreground/shared-loop.png",
+      "bytes": 1650470,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [
+        "src/styles/traversal.css",
+        "src/traversal/TraversalT0Assets.ts",
+        "src/traversal/TraversalT0Scene.ts"
+      ],
+      "testRefs": [
+        "src/traversal/TraversalT0Assets.test.ts"
+      ],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json"
+      ],
+      "action": "KEEP",
+      "reason": "Approved repeating foreground texture in route and checkpoint views.",
+      "approvedBrowserFlow": "route or checkpoint flow"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/props/abandoned-cart.png",
+      "bytes": 425189,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [
+        "src/traversal/TraversalSpriteBounds.json",
+        "src/traversal/TraversalT0Assets.ts",
+        "src/traversal/TraversalT0Route.ts"
+      ],
+      "testRefs": [
+        "src/traversal/TraversalT0Assets.test.ts"
+      ],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json"
+      ],
+      "action": "KEEP",
+      "reason": "Conditional branch A actor when RunSystem assigns mystery_treasure.",
+      "approvedBrowserFlow": "conditional mystery_treasure assignment"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/props/fork-sign.png",
+      "bytes": 1523730,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [
+        "src/traversal/TraversalSpriteBounds.json",
+        "src/traversal/TraversalT0Assets.ts",
+        "src/traversal/TraversalT0World.ts"
+      ],
+      "testRefs": [
+        "src/traversal/TraversalT0Assets.test.ts"
+      ],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json"
+      ],
+      "action": "KEEP",
+      "reason": "Persistent sign at the authored fork checkpoint.",
+      "approvedBrowserFlow": "route or checkpoint flow"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/chassis.png",
+      "bytes": 1354782,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [
+        "src/traversal/TraversalCaravan.ts"
+      ],
+      "testRefs": [
+        "src/traversal/TraversalT0Assets.test.ts"
+      ],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json"
+      ],
+      "action": "KEEP",
+      "reason": "Approved current caravan chassis.",
+      "approvedBrowserFlow": "route or checkpoint flow"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/wheel.png",
+      "bytes": 136790,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [
+        "src/traversal/TraversalCaravan.ts"
+      ],
+      "testRefs": [
+        "src/traversal/TraversalT0Assets.test.ts"
+      ],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json"
+      ],
+      "action": "KEEP",
+      "reason": "Approved current rotating caravan wheel.",
+      "approvedBrowserFlow": "route or checkpoint flow"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/ambush-cleared.png",
+      "bytes": 3352545,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [
+        "src/traversal/TraversalT0World.ts",
+        "src/traversal/TraversalWorldRenderer.ts"
+      ],
+      "testRefs": [
+        "src/traversal/TraversalT0Assets.test.ts"
+      ],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-browser/gallery-index.json",
+        "docs/reports/traversal-t0-cleanup-1-browser/motion-flow.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json"
+      ],
+      "action": "KEEP",
+      "reason": "Opening Ambush painting after its canonical resolution.",
+      "approvedBrowserFlow": "route or checkpoint flow"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/damaged-caravan.png",
+      "bytes": 3557085,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [
+        "src/traversal/TraversalT0World.ts",
+        "src/traversal/TraversalWorldRenderer.ts"
+      ],
+      "testRefs": [
+        "src/traversal/TraversalT0Assets.test.ts"
+      ],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-browser/browser-qa.json",
+        "docs/reports/traversal-t0-cleanup-1-browser/gallery-index.json",
+        "docs/reports/traversal-t0-cleanup-1-browser/motion-flow.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json"
+      ],
+      "action": "KEEP",
+      "reason": "Branch A authored consequence painting.",
+      "approvedBrowserFlow": "route or checkpoint flow"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-junction.png",
+      "bytes": 3386487,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [
+        "src/traversal/TraversalT0World.ts",
+        "src/traversal/TraversalWorldRenderer.ts"
+      ],
+      "testRefs": [
+        "src/traversal/TraversalT0Assets.test.ts"
+      ],
+      "toolRefs": [
+        "tools/traversal-remaining-legs-audit-1-contact-sheet.mjs",
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-browser/browser-qa.json",
+        "docs/reports/traversal-t0-cleanup-1-browser/gallery-index.json",
+        "docs/reports/traversal-t0-cleanup-1-browser/motion-flow.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json"
+      ],
+      "action": "KEEP",
+      "reason": "Fork checkpoint painting.",
+      "approvedBrowserFlow": "route or checkpoint flow"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+      "bytes": 3615142,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [
+        "src/traversal/TraversalT0World.ts",
+        "src/traversal/TraversalWorldRenderer.ts"
+      ],
+      "testRefs": [
+        "src/traversal/TraversalT0Assets.test.ts"
+      ],
+      "toolRefs": [
+        "tools/traversal-remaining-legs-audit-1-contact-sheet.mjs",
+        "tools/traversal-t0-browser-qa.mjs",
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-browser/browser-qa.json",
+        "docs/reports/traversal-t0-cleanup-1-browser/gallery-index.json",
+        "docs/reports/traversal-t0-cleanup-1-browser/motion-flow.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1.md",
+        "docs/reports/traversal-t0-motion-handoff-polish-1.md",
+        "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/browser-qa.json",
+        "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/gallery-index.json",
+        "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-browser/motion-flow.json",
+        "docs/reports/traversal-t0-route-checkpoints-1-shared-world-full-generalization.md",
+        "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json"
+      ],
+      "action": "KEEP",
+      "reason": "The single painted forest Route 1-6 surface and checkpoint seam margins.",
+      "approvedBrowserFlow": "route or checkpoint flow"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/nomad-waystation.png",
+      "bytes": 3687493,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [
+        "src/traversal/TraversalT0World.ts",
+        "src/traversal/TraversalWorldRenderer.ts"
+      ],
+      "testRefs": [
+        "src/traversal/TraversalT0Assets.test.ts"
+      ],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-browser/browser-qa.json",
+        "docs/reports/traversal-t0-cleanup-1-browser/gallery-index.json",
+        "docs/reports/traversal-t0-cleanup-1-browser/motion-flow.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json"
+      ],
+      "action": "KEEP",
+      "reason": "Cedric checkpoint painting.",
+      "approvedBrowserFlow": "route or checkpoint flow"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/opening-ambush.png",
+      "bytes": 3511807,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [
+        "src/traversal/TraversalT0World.ts",
+        "src/traversal/TraversalWorldRenderer.ts"
+      ],
+      "testRefs": [
+        "src/traversal/TraversalT0Assets.test.ts"
+      ],
+      "toolRefs": [
+        "tools/traversal-remaining-legs-audit-1-contact-sheet.mjs",
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-browser/browser-qa.json",
+        "docs/reports/traversal-t0-cleanup-1-browser/gallery-index.json",
+        "docs/reports/traversal-t0-cleanup-1-browser/motion-flow.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json"
+      ],
+      "action": "KEEP",
+      "reason": "Opening Ambush checkpoint painting.",
+      "approvedBrowserFlow": "route or checkpoint flow"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/refugee-halt.png",
+      "bytes": 3530030,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [
+        "src/traversal/TraversalT0World.ts",
+        "src/traversal/TraversalWorldRenderer.ts"
+      ],
+      "testRefs": [
+        "src/traversal/TraversalT0Assets.test.ts"
+      ],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-browser/browser-qa.json",
+        "docs/reports/traversal-t0-cleanup-1-browser/gallery-index.json",
+        "docs/reports/traversal-t0-cleanup-1-browser/motion-flow.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json"
+      ],
+      "action": "KEEP",
+      "reason": "Refugees checkpoint painting.",
+      "approvedBrowserFlow": "route or checkpoint flow"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/ruined-outpost.png",
+      "bytes": 3422466,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [
+        "src/traversal/TraversalT0World.ts",
+        "src/traversal/TraversalWorldRenderer.ts"
+      ],
+      "testRefs": [
+        "src/traversal/TraversalT0Assets.test.ts"
+      ],
+      "toolRefs": [
+        "tools/traversal-remaining-legs-audit-1-contact-sheet.mjs",
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-browser/browser-qa.json",
+        "docs/reports/traversal-t0-cleanup-1-browser/gallery-index.json",
+        "docs/reports/traversal-t0-cleanup-1-browser/motion-flow.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json"
+      ],
+      "action": "KEEP",
+      "reason": "Branch B authored consequence painting.",
+      "approvedBrowserFlow": "route or checkpoint flow"
+    },
+    {
+      "path": "src/styles/traversal.css",
+      "bytes": 24029,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "docs/reports/ui-kit-system-1.md",
+        "docs/reports/ui-visual-direction-system-1.md",
+        "docs/reports/ui-visual-direction-system-2.md"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalCaravan.ts",
+      "bytes": 3692,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalDepth.test.ts",
+      "bytes": 4430,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/t0-campaign-grammar-tests.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalDepth.ts",
+      "bytes": 3504,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalFeaturePolicy.test.ts",
+      "bytes": 1240,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/t0-campaign-grammar-tests.json",
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalFeaturePolicy.ts",
+      "bytes": 1522,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [
+        "src/game/cin2CampaignBridge.test.ts"
+      ],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/campaign-presentation-migration-1.md",
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-remaining-legs-audit-1.md",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalForkOverlay.test.ts",
+      "bytes": 3444,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/t0-campaign-grammar-symbol-audit.json",
+        "docs/reports/t0-campaign-grammar-tests.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalForkOverlay.ts",
+      "bytes": 3825,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalInteractionGrammar.ts",
+      "bytes": 423,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/t0-campaign-grammar-consolidation-1.md",
+        "docs/reports/t0-campaign-grammar-final-status.json",
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalPreviewSaves.test.ts",
+      "bytes": 1060,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/t0-campaign-grammar-symbol-audit.json",
+        "docs/reports/t0-campaign-grammar-tests.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalPreviewSaves.ts",
+      "bytes": 873,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/t0-campaign-grammar-symbol-audit.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalRoadSpace.ts",
+      "bytes": 888,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalRouteRenderer.ts",
+      "bytes": 765,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalRouteRun.test.ts",
+      "bytes": 3710,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalRouteRun.ts",
+      "bytes": 3357,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalRunController.test.ts",
+      "bytes": 3897,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/t0-campaign-grammar-symbol-audit.json",
+        "docs/reports/t0-campaign-grammar-tests.json",
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalRunController.ts",
+      "bytes": 6088,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalRunRuntime.test.ts",
+      "bytes": 5915,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/t0-campaign-grammar-symbol-audit.json",
+        "docs/reports/t0-campaign-grammar-tests.json",
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalRunRuntime.ts",
+      "bytes": 11707,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/t0-campaign-grammar-symbol-audit.json",
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalSprite.ts",
+      "bytes": 1178,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalSpriteBounds.json",
+      "bytes": 7270,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalT0Assets.test.ts",
+      "bytes": 3546,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/t0-campaign-grammar-tests.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalT0Assets.ts",
+      "bytes": 310,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalT0CheckpointRoute.ts",
+      "bytes": 2262,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalT0Flow.test.ts",
+      "bytes": 7389,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/campaign-presentation-migration-1.md",
+        "docs/reports/t0-campaign-grammar-final-status.json",
+        "docs/reports/t0-campaign-grammar-symbol-audit.json",
+        "docs/reports/t0-campaign-grammar-tests.json",
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalT0Route.test.ts",
+      "bytes": 4138,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/t0-campaign-grammar-final-status.json",
+        "docs/reports/t0-campaign-grammar-tests.json",
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalT0Route.ts",
+      "bytes": 11959,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/t0-campaign-grammar-final-status.json",
+        "docs/reports/t0-campaign-grammar-symbol-audit.json",
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalT0Scene.test.ts",
+      "bytes": 8429,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/campaign-presentation-migration-1.md",
+        "docs/reports/t0-campaign-grammar-symbol-audit.json",
+        "docs/reports/t0-campaign-grammar-tests.json",
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "docs/reports/ui-visual-direction-system-1.md"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalT0Scene.ts",
+      "bytes": 50070,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/t0-campaign-grammar-final-status.json",
+        "docs/reports/t0-campaign-grammar-symbol-audit.json",
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-remaining-legs-audit-1.md",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json",
+        "docs/reports/ui-kit-system-1.md",
+        "docs/reports/ui-visual-direction-system-1.md"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalT0World.test.ts",
+      "bytes": 9582,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/t0-campaign-grammar-symbol-audit.json",
+        "docs/reports/t0-campaign-grammar-tests.json",
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalT0World.ts",
+      "bytes": 6199,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalTransition.ts",
+      "bytes": 318,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/traversal/TraversalWorldRenderer.ts",
+      "bytes": 8343,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [
+        "tools/traversal-t0-cleanup-inventory.py"
+      ],
+      "docRefs": [
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "src/ui/TraversalTravelReturn.test.ts",
+      "bytes": 1693,
+      "classification": "ACTIVE_CANONICAL",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/campaign-presentation-migration-1.md",
+        "docs/reports/t0-campaign-grammar-final-status.json",
+        "docs/reports/t0-campaign-grammar-symbol-audit.json",
+        "docs/reports/t0-campaign-grammar-tests.json",
+        "docs/reports/traversal-remaining-legs-audit-1.json",
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1-initial-inventory.json"
+      ],
+      "action": "KEEP_OR_SIMPLIFY",
+      "reason": "Current Traversal source, style or invariant test; audit dead branches without removing active contract."
+    },
+    {
+      "path": "tools/traversal-t0-browser-qa.mjs",
+      "bytes": 36312,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1.md"
+      ],
+      "action": "KEEP",
+      "reason": "Current canonical T0 inventory or browser regression."
+    },
+    {
+      "path": "tools/traversal-t0-cleanup-inventory.py",
+      "bytes": 12193,
+      "classification": "DEVELOPMENT_REQUIRED",
+      "runtimeRefs": [],
+      "testRefs": [],
+      "toolRefs": [],
+      "docRefs": [
+        "docs/reports/traversal-t0-cleanup-1-final-inventory.json",
+        "docs/reports/traversal-t0-cleanup-1.md"
+      ],
+      "action": "KEEP",
+      "reason": "Current canonical T0 inventory or browser regression."
+    }
+  ],
+  "retainedRuntimeAssets": [
+    "public/assets/generated/lion-phase/traversal/t0/foreground/ferns.png",
+    "public/assets/generated/lion-phase/traversal/t0/foreground/roots.png",
+    "public/assets/generated/lion-phase/traversal/t0/foreground/shared-loop.png",
+    "public/assets/generated/lion-phase/traversal/t0/props/abandoned-cart.png",
+    "public/assets/generated/lion-phase/traversal/t0/props/fork-sign.png",
+    "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/chassis.png",
+    "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/wheel.png",
+    "public/assets/generated/lion-phase/traversal/t0/world-v1/ambush-cleared.png",
+    "public/assets/generated/lion-phase/traversal/t0/world-v1/damaged-caravan.png",
+    "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-junction.png",
+    "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+    "public/assets/generated/lion-phase/traversal/t0/world-v1/nomad-waystation.png",
+    "public/assets/generated/lion-phase/traversal/t0/world-v1/opening-ambush.png",
+    "public/assets/generated/lion-phase/traversal/t0/world-v1/refugee-halt.png",
+    "public/assets/generated/lion-phase/traversal/t0/world-v1/ruined-outpost.png"
+  ],
+  "retainedDevelopmentAssets": [
+    "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json"
+  ],
+  "promotedAssets": [
+    {
+      "from": "public/assets/generated/lion-phase/traversal/t0/depth-v1/clearance/damaged-caravan.png",
+      "to": "public/assets/generated/lion-phase/traversal/t0/world-v1/damaged-caravan.png",
+      "sha256": "cd6bf5375ec4d149098209d44d9a80da47268802f76b5145728d47307899bb7d"
+    },
+    {
+      "from": "public/assets/generated/lion-phase/traversal/t0/depth-v1/clearance/refugee-halt.png",
+      "to": "public/assets/generated/lion-phase/traversal/t0/world-v1/refugee-halt.png",
+      "sha256": "232610b915a48672faaadb2aacf649df304838eeeb888e94e9ccdd94b00c3677"
+    },
+    {
+      "from": "public/assets/generated/lion-phase/traversal/t0/depth-v1/foreground/ferns.png",
+      "to": "public/assets/generated/lion-phase/traversal/t0/foreground/ferns.png",
+      "sha256": "26b4b35e856666cb3bd812cc34814c326efa22111851a5ad974eda02034ba533"
+    },
+    {
+      "from": "public/assets/generated/lion-phase/traversal/t0/depth-v1/foreground/roots.png",
+      "to": "public/assets/generated/lion-phase/traversal/t0/foreground/roots.png",
+      "sha256": "f5da4383e4f10da27754184e005f9694ab003b8993ad350e36c9724f8ef400c6"
+    },
+    {
+      "from": "public/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/abandoned-cart.png",
+      "to": "public/assets/generated/lion-phase/traversal/t0/props/abandoned-cart.png",
+      "sha256": "2712ef99d7412a92dc21f28e6ed0b216f5341a7fe43aa69835479a57fa5fce0e"
+    },
+    {
+      "from": "public/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png",
+      "to": "public/assets/generated/lion-phase/traversal/t0/foreground/shared-loop.png",
+      "sha256": "8aee23da28c64f9334cb21ec3c9dc94702d54972be7bb22cb313ff86a0e4bfd6"
+    },
+    {
+      "from": "public/assets/generated/lion-phase/traversal/t0/forest-v4/fork-sign.png",
+      "to": "public/assets/generated/lion-phase/traversal/t0/props/fork-sign.png",
+      "sha256": "f8d519acac367f5c9faf9f17c6f64c504babb569a109af4913e032445ad41713"
+    },
+    {
+      "from": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/closed-v1/chassis.png",
+      "to": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/chassis.png",
+      "sha256": "16b17208d6473f977cd14d0d122a91b876e8c3ac508edb227c7e5f0a7c912b46"
+    },
+    {
+      "from": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/closed-v1/wheel.png",
+      "to": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/wheel.png",
+      "sha256": "cd7516ff563ad47f67c87697c643149a505a040a3d5f5a6a3d4fe238f8f77a70"
+    },
+    {
+      "from": "public/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/nomad-waystation.png",
+      "to": "public/assets/generated/lion-phase/traversal/t0/world-v1/nomad-waystation.png",
+      "sha256": "7010ce775a143762bb0a4dee92ed0a081842dd4540d5b66e051cd1c10252c231"
+    }
+  ],
+  "deletedAssets": [
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/background/t0-far-panorama-loop.png",
+      "bytes": 5464823,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/background/t0-far-panorama.png",
+      "bytes": 2774202,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/depth-v1/clearance/merchant-halt.png",
+      "bytes": 3369968,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/entities/chest-v4/closed.png",
+      "bytes": 487692,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/entities/chest-v4/open.png",
+      "bytes": 716911,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/entities/merchant-caravan/clean.png",
+      "bytes": 513911,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/entities/merchant-caravan/pipeline-meta.json",
+      "bytes": 380,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/entities/merchant-caravan/prompt-used.txt",
+      "bytes": 68,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/entities/merchant-caravan/raw.png",
+      "bytes": 1369123,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/barricade.png",
+      "bytes": 417901,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/chest.png",
+      "bytes": 293793,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/debris.png",
+      "bytes": 364407,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/extraction-qa.json",
+      "bytes": 1081,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/foreground.png",
+      "bytes": 389322,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/raw-sheet.png",
+      "bytes": 2202550,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/waystone.png",
+      "bytes": 317822,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/forest-v4/assembly.json",
+      "bytes": 1094,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/forest-v4/crossroads-ground.png",
+      "bytes": 1463044,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/forest-v4/far.png",
+      "bytes": 2700539,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-source.png",
+      "bytes": 1788784,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/forest-v4/merchant-camp.png",
+      "bytes": 2135543,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/forest-v4/provenance.md",
+      "bytes": 3746,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/forest-v4/resting-place.png",
+      "bytes": 1884936,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png",
+      "bytes": 2839992,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/forest-v4/road-source.png",
+      "bytes": 3123135,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/forest-v4/ruined-outpost.png",
+      "bytes": 1878223,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png",
+      "bytes": 2561846,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/forest-v4/trees-source.png",
+      "bytes": 2742383,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/forest-v4/woodland-blockade.png",
+      "bytes": 1968000,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/prompts-used.md",
+      "bytes": 4501,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/road/t0-wide-road-loop.png",
+      "bytes": 4053381,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/road/t0-wide-road.png",
+      "bytes": 2093713,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/candidates/armored.png",
+      "bytes": 2144617,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/candidates/expedition.png",
+      "bytes": 2007857,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/candidates/mechanical.png",
+      "bytes": 1920986,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/chassis.png",
+      "bytes": 1524983,
+      "result": "replaced-by-promoted-chassis"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/wooden-4x4/clean.png",
+      "bytes": 548180,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/wooden-4x4/fantasy-truck-v3.png",
+      "bytes": 1503627,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/wooden-4x4/pipeline-meta.json",
+      "bytes": 389,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/wooden-4x4/prompt-used.txt",
+      "bytes": 77,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/wooden-4x4/raw.png",
+      "bytes": 1378150,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/merchant-halt.png",
+      "bytes": 3383058,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/damaged-caravan.png",
+      "bytes": 3702807,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/merchant-halt.png",
+      "bytes": 3474136,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/refugee-halt.png",
+      "bytes": 3725058,
+      "result": "deleted"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/resting-clearing.png",
+      "bytes": 3385912,
+      "result": "deleted"
+    }
+  ],
+  "t0BytesBefore": 114812012,
+  "t0BytesAfter": 36181047,
+  "qaToolReportDeletions": {
+    "files": 1163,
+    "bytes": 2100963814,
+    "directories": [
+      "tools/traversal/qa/final-convergence/isolated/live-final/ignore-flee",
+      "tools/traversal/qa/caravan-depth/live-final/avoid",
+      "tools/traversal/qa/caravan-depth/live-final/ignore-flee",
+      "tools/traversal/qa/caravan-depth/live-final/lower-review",
+      "tools/traversal/qa/caravan-depth/live-final/meet-fight",
+      "tools/traversal/qa/caravan-depth/live-final/upper-review",
+      "tools/traversal/qa/convergence/live/avoid",
+      "tools/traversal/qa/convergence/live/ignore-flee",
+      "tools/traversal/qa/convergence/live/meet-fight",
+      "tools/traversal/qa/final-convergence/caravan/processed",
+      "tools/traversal/qa/final-convergence/isolated/live-final",
+      "tools/traversal/qa/final-convergence/live-final/avoid",
+      "tools/traversal/qa/final-convergence/live-final/ignore-flee",
+      "tools/traversal/qa/final-convergence/live-final/meet-fight",
+      "tools/traversal/qa/freeze/live-final/avoid",
+      "tools/traversal/qa/freeze/live-final/ignore-flee",
+      "tools/traversal/qa/freeze/live-final/meet-fight",
+      "tools/traversal/qa/taxonomy-v1/final/avoid",
+      "tools/traversal/qa/taxonomy-v1/final/ignore-flee",
+      "tools/traversal/qa/taxonomy-v1/final/meet-fight",
+      "tools/traversal/qa/caravan-depth/candidates",
+      "tools/traversal/qa/caravan-depth/live-final",
+      "tools/traversal/qa/caravan-depth/runtime",
+      "tools/traversal/qa/caravan-depth/seams",
+      "tools/traversal/qa/caravan-depth/targeted",
+      "tools/traversal/qa/convergence/chest-processing",
+      "tools/traversal/qa/convergence/contacts",
+      "tools/traversal/qa/convergence/live",
+      "tools/traversal/qa/convergence/targeted",
+      "tools/traversal/qa/final-convergence/baseline",
+      "tools/traversal/qa/final-convergence/caravan",
+      "tools/traversal/qa/final-convergence/final",
+      "tools/traversal/qa/final-convergence/isolated",
+      "tools/traversal/qa/final-convergence/live-final",
+      "tools/traversal/qa/final-convergence/runtime",
+      "tools/traversal/qa/final-convergence/seams",
+      "tools/traversal/qa/forest-v4/final",
+      "tools/traversal/qa/freeze/baseline",
+      "tools/traversal/qa/freeze/final",
+      "tools/traversal/qa/freeze/live-final",
+      "tools/traversal/qa/freeze/targeted",
+      "tools/traversal/qa/taxonomy-v1/final",
+      "tools/traversal/qa/taxonomy-v1/targeted",
+      "tools/traversal/qa/world-v1/final-combat",
+      "tools/traversal/qa/world-v1/final-event",
+      "tools/traversal/qa/world-v1/final-merchant-960",
+      "tools/traversal/qa/caravan-depth",
+      "tools/traversal/qa/final-convergence",
+      "tools/traversal/qa/freeze",
+      "docs/reports/traversal-t0-route-checkpoints-1-browser",
+      "docs/reports/traversal-t0-route-checkpoints-1-final-browser",
+      "docs/reports/traversal-t0-route-checkpoints-1-shared-world-browser",
+      "tools/traversal/qa/convergence",
+      "tools/traversal/qa/forest-v4",
+      "tools/traversal/qa/fusion",
+      "tools/traversal/qa/taxonomy-v1",
+      "tools/traversal/qa/world-v1",
+      "tools/traversal/qa",
+      "tools/traversal"
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+node_modules/
+.pnpm-store/
+dist/
+.vite/
+coverage/
+*.log
+
+# VFX development artifacts (raw AI sources + validation reports)
+public/assets/vfx/raw/
+public/assets/vfx/validation/
+public/assets/vfx/archive/
+public/assets/vfx/normalized_candidates/
+
+# VFX diagnostic evidence (PNG/GIF/JSON QC artifacts — too heavy for git)
+docs/reports/evidence/
+
+# VFX megapack runtime — commercial CartoonCoffee PNGs (synced locally, never committed)
+public/assets/vfx/megapack-runtime/
+
+# Python cache
+__pycache__/
+
+# Temporary QC artifacts
+tmp/
+
+# QA screenshots (local evidence only, never committed)
+tools/qa-shots/
+
+# Playwright persistent browser profiles (QA only)
+.playwright/
+.playwright-*/
+
+# Local environment files (machine-local, never committed)
+.env.local
+.env.*.local
+
+# Local IDE config
+.devin/

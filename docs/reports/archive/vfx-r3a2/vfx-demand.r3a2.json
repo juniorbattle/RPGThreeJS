@@ -1,0 +1,1899 @@
+{
+  "version": 1,
+  "source": "vfx-r3a2-sol-action-aware-naming",
+  "actions": [
+    {
+      "actionId": "basic_attack_greatsword",
+      "displayName": "Attaque de base — Épée lourde",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "basicAttack",
+      "weaponFamily": "greatsword",
+      "apCost": 1,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "dynamic_basic_attack",
+      "currentSpritesheets": [],
+      "recommendedPresetType": "basicSingle",
+      "recommendedSpriteChain": [
+        "white_basic_slash_triple_impact_heavy"
+      ],
+      "notes": "Weapon catalog type: greatsword. Élan changes AP cost from 1 to 3 at runtime; the planning baseline records the first 1 AP attack. Exactly one basics sheet is required."
+    },
+    {
+      "actionId": "basic_attack_holy_mace",
+      "displayName": "Attaque de base — Masse sacrée",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "basicAttack",
+      "weaponFamily": "mace",
+      "apCost": 1,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "holy",
+      "currentPresetId": "dynamic_basic_attack",
+      "currentSpritesheets": [],
+      "recommendedPresetType": "basicSingle",
+      "recommendedSpriteChain": [
+        "white_basic_smash_comet_impact_medium"
+      ],
+      "notes": "Weapon catalog type: holy_mace. Élan changes AP cost from 1 to 3 at runtime; the planning baseline records the first 1 AP attack. Exactly one basics sheet is required."
+    },
+    {
+      "actionId": "basic_attack_scythe",
+      "displayName": "Attaque de base — Faux",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "basicAttack",
+      "weaponFamily": "axe",
+      "apCost": 1,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "dynamic_basic_attack",
+      "currentSpritesheets": [],
+      "recommendedPresetType": "basicSingle",
+      "recommendedSpriteChain": [
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "notes": "Weapon catalog type: scythe. Élan changes AP cost from 1 to 3 at runtime; the planning baseline records the first 1 AP attack. Exactly one basics sheet is required."
+    },
+    {
+      "actionId": "basic_attack_long_spear",
+      "displayName": "Attaque de base — Lance longue",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "basicAttack",
+      "weaponFamily": "spear",
+      "apCost": 1,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "dynamic_basic_attack",
+      "currentSpritesheets": [],
+      "recommendedPresetType": "basicSingle",
+      "recommendedSpriteChain": [
+        "white_basic_slash_horizontal_flash_medium"
+      ],
+      "notes": "Weapon catalog type: long_spear. Élan changes AP cost from 1 to 3 at runtime; the planning baseline records the first 1 AP attack. Exactly one basics sheet is required."
+    },
+    {
+      "actionId": "basic_attack_grimoire",
+      "displayName": "Attaque de base — Grimoire",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "basicAttack",
+      "weaponFamily": "grimoire",
+      "apCost": 1,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "arcane",
+      "currentPresetId": "dynamic_basic_attack",
+      "currentSpritesheets": [],
+      "recommendedPresetType": "basicSingle",
+      "recommendedSpriteChain": [
+        "white_basic_magic_holy_ring_burst_heavy"
+      ],
+      "notes": "Weapon catalog type: grimoire. Élan changes AP cost from 1 to 3 at runtime; the planning baseline records the first 1 AP attack. Exactly one basics sheet is required."
+    },
+    {
+      "actionId": "basic_attack_crosier",
+      "displayName": "Attaque de base — Crosse",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "basicAttack",
+      "weaponFamily": "crosier",
+      "apCost": 1,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "holy",
+      "currentPresetId": "dynamic_basic_attack",
+      "currentSpritesheets": [],
+      "recommendedPresetType": "basicSingle",
+      "recommendedSpriteChain": [
+        "white_basic_magic_holy_sigil_burst_medium"
+      ],
+      "notes": "Weapon catalog type: crosier. Élan changes AP cost from 1 to 3 at runtime; the planning baseline records the first 1 AP attack. Exactly one basics sheet is required."
+    },
+    {
+      "actionId": "basic_attack_rapier",
+      "displayName": "Attaque de base — Rapière",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "basicAttack",
+      "weaponFamily": "rapier",
+      "apCost": 1,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "dynamic_basic_attack",
+      "currentSpritesheets": [],
+      "recommendedPresetType": "basicSingle",
+      "recommendedSpriteChain": [
+        "white_basic_slash_cross_impact_heavy"
+      ],
+      "notes": "Weapon catalog type: rapier. Élan changes AP cost from 1 to 3 at runtime; the planning baseline records the first 1 AP attack. Exactly one basics sheet is required."
+    },
+    {
+      "actionId": "basic_attack_wand",
+      "displayName": "Attaque de base — Baguette",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "basicAttack",
+      "weaponFamily": "wand",
+      "apCost": 1,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "arcane",
+      "currentPresetId": "dynamic_basic_attack",
+      "currentSpritesheets": [],
+      "recommendedPresetType": "basicSingle",
+      "recommendedSpriteChain": [
+        "white_basic_magic_holy_sigil_burst_medium"
+      ],
+      "notes": "Weapon catalog type: wand. Élan changes AP cost from 1 to 3 at runtime; the planning baseline records the first 1 AP attack. Exactly one basics sheet is required."
+    },
+    {
+      "actionId": "basic_attack_longbow",
+      "displayName": "Attaque de base — Arc long",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "basicAttack",
+      "weaponFamily": "bow",
+      "apCost": 1,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "dynamic_basic_attack",
+      "currentSpritesheets": [],
+      "recommendedPresetType": "basicSingle",
+      "recommendedSpriteChain": [
+        "white_basic_arrow_arc_burst_heavy"
+      ],
+      "notes": "Weapon catalog type: longbow. Élan changes AP cost from 1 to 3 at runtime; the planning baseline records the first 1 AP attack. Exactly one basics sheet is required."
+    },
+    {
+      "actionId": "basic_attack_shuriken",
+      "displayName": "Attaque de base — Shuriken",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "basicAttack",
+      "weaponFamily": "dagger",
+      "apCost": 1,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "dynamic_basic_attack",
+      "currentSpritesheets": [],
+      "recommendedPresetType": "basicSingle",
+      "recommendedSpriteChain": [
+        "white_basic_arrow_comet_burst_heavy"
+      ],
+      "notes": "Weapon catalog type: shuriken. Élan changes AP cost from 1 to 3 at runtime; the planning baseline records the first 1 AP attack. Exactly one basics sheet is required."
+    },
+    {
+      "actionId": "basic_attack_dagger",
+      "displayName": "Attaque de base — Dague",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "basicAttack",
+      "weaponFamily": "dagger",
+      "apCost": 1,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "dynamic_basic_attack",
+      "currentSpritesheets": [],
+      "recommendedPresetType": "basicSingle",
+      "recommendedSpriteChain": [
+        "white_basic_slash_diagonal_cut_medium"
+      ],
+      "notes": "Weapon catalog type: dagger. Élan changes AP cost from 1 to 3 at runtime; the planning baseline records the first 1 AP attack. Exactly one basics sheet is required."
+    },
+    {
+      "actionId": "basic_attack_hand_cannon",
+      "displayName": "Attaque de base — Canon à main",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "basicAttack",
+      "weaponFamily": "bow",
+      "apCost": 1,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "dynamic_basic_attack",
+      "currentSpritesheets": [],
+      "recommendedPresetType": "basicSingle",
+      "recommendedSpriteChain": [
+        "white_basic_arrow_nova_impact_heavy"
+      ],
+      "notes": "Weapon catalog type: hand_cannon. Élan changes AP cost from 1 to 3 at runtime; the planning baseline records the first 1 AP attack. Exactly one basics sheet is required."
+    },
+    {
+      "actionId": "w_break_guard",
+      "displayName": "Brise-Garde",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "greatsword",
+      "apCost": 2,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "shadow",
+      "currentPresetId": "sword_slash",
+      "currentSpritesheets": [
+        "slash_arc"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_slash_diagonal_cut_medium"
+      ],
+      "notes": "Alistair / Guerrier / greatsword. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "w_charge",
+      "displayName": "Charge",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "greatsword",
+      "apCost": 3,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "blunt_impact",
+      "currentSpritesheets": [
+        "small_impact"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_smash_comet_impact_medium"
+      ],
+      "notes": "Alistair / Guerrier / greatsword. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "w_whirl",
+      "displayName": "Tourbillon d'Acier",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "greatsword",
+      "apCost": 4,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "sword_slash",
+      "currentSpritesheets": [
+        "slash_arc"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_slash_diagonal_cut_medium"
+      ],
+      "notes": "Alistair / Guerrier / greatsword. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "w_lion_surge",
+      "displayName": "Déferlement du Lion",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "ultimate",
+      "weaponFamily": "greatsword",
+      "apCost": 5,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "shadow",
+      "currentPresetId": "ultimate_lion_surge",
+      "currentSpritesheets": [
+        "slash_arc"
+      ],
+      "recommendedPresetType": "ultimateComposite",
+      "recommendedSpriteChain": [
+        "white_basic_slash_triple_impact_heavy",
+        "orange_skill_solar_halo_burst_ultimate"
+      ],
+      "notes": "Alistair / Guerrier / greatsword. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "p_holy_strike",
+      "displayName": "Frappe Consacrée",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "mace",
+      "apCost": 2,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "barrier",
+      "currentPresetId": "holy_strike",
+      "currentSpritesheets": [
+        "slash_arc",
+        "holy_aura"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_slash_cross_impact_heavy",
+        "gold_skill_holy_radiance_burst_heavy"
+      ],
+      "notes": "Aldric / Paladin / holy_mace. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "p_interpose",
+      "displayName": "Interposition",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "mace",
+      "apCost": 3,
+      "targeting": "area",
+      "gameplayRole": "support",
+      "elementFamily": "barrier",
+      "currentPresetId": "leap_impact",
+      "currentSpritesheets": [
+        "leap_impact"
+      ],
+      "recommendedPresetType": "supportSingle",
+      "recommendedSpriteChain": [
+        "white_basic_smash_shockwave_burst_heavy"
+      ],
+      "notes": "Aldric / Paladin / holy_mace. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "p_oathwall",
+      "displayName": "Rempart du Serment",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "mace",
+      "apCost": 4,
+      "targeting": "area",
+      "gameplayRole": "buff",
+      "elementFamily": "barrier",
+      "currentPresetId": "guard_barrier",
+      "currentSpritesheets": [
+        "barrier_shell"
+      ],
+      "recommendedPresetType": "supportSingle",
+      "recommendedSpriteChain": [
+        "blue_skill_barrier_guard_heavy"
+      ],
+      "notes": "Aldric / Paladin / holy_mace. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "p_radiant_judgement",
+      "displayName": "Jugement Radieux",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "ultimate",
+      "weaponFamily": "mace",
+      "apCost": 5,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "holy",
+      "currentPresetId": "ultimate_radiant_judgement",
+      "currentSpritesheets": [
+        "holy_aura"
+      ],
+      "recommendedPresetType": "ultimateComposite",
+      "recommendedSpriteChain": [
+        "gold_skill_holy_radiance_burst_heavy",
+        "bluegold_skill_ultimate_arcane_beam_ultimate"
+      ],
+      "notes": "Aldric / Paladin / holy_mace. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "d_cursed_blade",
+      "displayName": "Lame Maudite",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "axe",
+      "apCost": 2,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "shadow",
+      "currentPresetId": "sword_slash",
+      "currentSpritesheets": [
+        "slash_arc"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_slash_diagonal_cut_medium"
+      ],
+      "notes": "Morvan / Chevalier noir / scythe. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "d_void_step",
+      "displayName": "Pas du Néant",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "axe",
+      "apCost": 3,
+      "targeting": "area",
+      "gameplayRole": "utility",
+      "elementFamily": "void",
+      "currentPresetId": "teleport_burst",
+      "currentSpritesheets": [
+        "teleport_burst"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "purple_skill_void_arcane_portal_ultimate"
+      ],
+      "notes": "Morvan / Chevalier noir / scythe. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "d_blood_pact",
+      "displayName": "Pacte de Sang",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "axe",
+      "apCost": 4,
+      "targeting": "self",
+      "gameplayRole": "buff",
+      "elementFamily": "blood",
+      "currentPresetId": "bless_aura",
+      "currentSpritesheets": [
+        "buff_pulse"
+      ],
+      "recommendedPresetType": "supportSingle",
+      "recommendedSpriteChain": [
+        "gold_skill_holy_sigil_burst_medium"
+      ],
+      "notes": "Morvan / Chevalier noir / scythe. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "d_devouring_eclipse",
+      "displayName": "Éclipse Dévorante",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "ultimate",
+      "weaponFamily": "axe",
+      "apCost": 5,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "shadow",
+      "currentPresetId": "ultimate_devouring_eclipse",
+      "currentSpritesheets": [
+        "apocalypse_field"
+      ],
+      "recommendedPresetType": "ultimateComposite",
+      "recommendedSpriteChain": [
+        "purpleblack_skill_void_singularity_implosion_ultimate",
+        "purple_skill_void_arcane_portal_ultimate"
+      ],
+      "notes": "Morvan / Chevalier noir / scythe. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "l_long_thrust",
+      "displayName": "Estoc Long",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "spear",
+      "apCost": 2,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "thrust_line",
+      "currentSpritesheets": [
+        "thrust_line"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_slash_horizontal_flash_medium"
+      ],
+      "notes": "Garen / Lancier / long_spear. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "l_haft_recoil",
+      "displayName": "Repli de Hampe",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "spear",
+      "apCost": 3,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "thrust_line",
+      "currentSpritesheets": [
+        "thrust_line"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_slash_horizontal_flash_medium"
+      ],
+      "notes": "Garen / Lancier / long_spear. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "l_griffon_jump",
+      "displayName": "Saut du Griffon",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "spear",
+      "apCost": 4,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "leap_impact",
+      "currentSpritesheets": [
+        "leap_impact"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_smash_shockwave_burst_heavy"
+      ],
+      "notes": "Garen / Lancier / long_spear. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "l_firmament_lance",
+      "displayName": "Lance du Firmament",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "ultimate",
+      "weaponFamily": "spear",
+      "apCost": 5,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "ultimate_firmament_lance",
+      "currentSpritesheets": [
+        "thrust_line"
+      ],
+      "recommendedPresetType": "ultimateComposite",
+      "recommendedSpriteChain": [
+        "white_basic_slash_horizontal_flash_medium",
+        "bluegold_skill_ultimate_arcane_beam_ultimate"
+      ],
+      "notes": "Garen / Lancier / long_spear. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "n_dark_bolt",
+      "displayName": "Éclair Noir",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "grimoire",
+      "apCost": 2,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "lightning",
+      "currentPresetId": "shadow_lightning_bolt",
+      "currentSpritesheets": [
+        "shadow_lightning_bolt"
+      ],
+      "recommendedPresetType": "elementalComposite",
+      "recommendedSpriteChain": [
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "notes": "Elara / Mage noir / grimoire. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "n_teleport",
+      "displayName": "Téléportation",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "grimoire",
+      "apCost": 3,
+      "targeting": "singleTarget",
+      "gameplayRole": "utility",
+      "elementFamily": "neutral",
+      "currentPresetId": "teleport_burst",
+      "currentSpritesheets": [
+        "teleport_burst"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "purple_skill_void_arcane_portal_ultimate"
+      ],
+      "notes": "Elara / Mage noir / grimoire. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "n_flame_wave",
+      "displayName": "Vague de Flammes",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "grimoire",
+      "apCost": 4,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "fire",
+      "currentPresetId": "shape_cone_blast",
+      "currentSpritesheets": [
+        "cone_blast"
+      ],
+      "recommendedPresetType": "elementalComposite",
+      "recommendedSpriteChain": [
+        "orange_skill_fire_impact_burst_medium",
+        "orange_skill_fire_vortex_nova_heavy"
+      ],
+      "notes": "Elara / Mage noir / grimoire. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "n_dark_meteor",
+      "displayName": "Météore Obscur",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "ultimate",
+      "weaponFamily": "grimoire",
+      "apCost": 5,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "fire",
+      "currentPresetId": "ultimate_dark_meteor",
+      "currentSpritesheets": [
+        "meteor_fall"
+      ],
+      "recommendedPresetType": "ultimateComposite",
+      "recommendedSpriteChain": [
+        "orange_skill_meteor_impact_burst_heavy",
+        "purpleblack_skill_void_singularity_implosion_ultimate"
+      ],
+      "notes": "Elara / Mage noir / grimoire. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "w_salvation",
+      "displayName": "Lumière Salvatrice",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "crosier",
+      "apCost": 2,
+      "targeting": "ally",
+      "gameplayRole": "heal",
+      "elementFamily": "heal",
+      "currentPresetId": "heal_burst",
+      "currentSpritesheets": [
+        "heal_touch"
+      ],
+      "recommendedPresetType": "supportSingle",
+      "recommendedSpriteChain": [
+        "whitegreen_skill_heal_blessing_bloom_heavy"
+      ],
+      "notes": "Marian / Mage blanc / crosier. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "w_purify",
+      "displayName": "Purification",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "crosier",
+      "apCost": 3,
+      "targeting": "ally",
+      "gameplayRole": "heal",
+      "elementFamily": "holy",
+      "currentPresetId": "support_holy_aura",
+      "currentSpritesheets": [
+        "holy_aura"
+      ],
+      "recommendedPresetType": "supportSingle",
+      "recommendedSpriteChain": [
+        "gold_skill_holy_radiance_burst_heavy"
+      ],
+      "notes": "Marian / Mage blanc / crosier. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "w_sanctuary",
+      "displayName": "Sanctuaire",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "crosier",
+      "apCost": 4,
+      "targeting": "area",
+      "gameplayRole": "heal",
+      "elementFamily": "heal",
+      "currentPresetId": "support_holy_aura",
+      "currentSpritesheets": [
+        "holy_aura"
+      ],
+      "recommendedPresetType": "supportSingle",
+      "recommendedSpriteChain": [
+        "gold_skill_holy_radiance_burst_heavy"
+      ],
+      "notes": "Marian / Mage blanc / crosier. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "w_miracle",
+      "displayName": "Miracle",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "ultimate",
+      "weaponFamily": "crosier",
+      "apCost": 5,
+      "targeting": "area",
+      "gameplayRole": "heal",
+      "elementFamily": "heal",
+      "currentPresetId": "ultimate_miracle",
+      "currentSpritesheets": [
+        "holy_aura"
+      ],
+      "recommendedPresetType": "ultimateComposite",
+      "recommendedSpriteChain": [
+        "whitegreen_skill_heal_blessing_bloom_heavy",
+        "bluegold_skill_ultimate_arcane_invocation_ultimate"
+      ],
+      "notes": "Marian / Mage blanc / crosier. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "r_arcane_blade",
+      "displayName": "Lame Arcanique",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "rapier",
+      "apCost": 2,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "arcane",
+      "currentPresetId": "sword_slash",
+      "currentSpritesheets": [
+        "slash_arc"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_slash_diagonal_cut_medium"
+      ],
+      "notes": "Lyra / Mage rouge / rapier. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "r_rune_step",
+      "displayName": "Pas Runique",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "rapier",
+      "apCost": 3,
+      "targeting": "singleTarget",
+      "gameplayRole": "utility",
+      "elementFamily": "arcane",
+      "currentPresetId": "teleport_burst",
+      "currentSpritesheets": [
+        "teleport_burst"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "purple_skill_void_arcane_portal_ultimate"
+      ],
+      "notes": "Lyra / Mage rouge / rapier. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "r_scarlet_circle",
+      "displayName": "Cercle Écarlate",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "rapier",
+      "apCost": 4,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "impact_explosion_large",
+      "currentSpritesheets": [
+        "explosion_large"
+      ],
+      "recommendedPresetType": "elementalComposite",
+      "recommendedSpriteChain": [
+        "orange_skill_fire_impact_burst_medium",
+        "orange_skill_fire_vortex_nova_heavy"
+      ],
+      "notes": "Lyra / Mage rouge / rapier. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "r_perfect_duality",
+      "displayName": "Dualité Parfaite",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "ultimate",
+      "weaponFamily": "rapier",
+      "apCost": 5,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "barrier",
+      "currentPresetId": "ultimate_perfect_duality",
+      "currentSpritesheets": [
+        "explosion_large"
+      ],
+      "recommendedPresetType": "ultimateComposite",
+      "recommendedSpriteChain": [
+        "orange_skill_fire_energy_spiral_medium",
+        "gold_skill_holy_vortex_nova_heavy"
+      ],
+      "notes": "Lyra / Mage rouge / rapier. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "e_vigor_rune",
+      "displayName": "Rune de Vigueur",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "wand",
+      "apCost": 2,
+      "targeting": "ally",
+      "gameplayRole": "buff",
+      "elementFamily": "arcane",
+      "currentPresetId": "support_boost_aura",
+      "currentSpritesheets": [
+        "boost_aura"
+      ],
+      "recommendedPresetType": "supportSingle",
+      "recommendedSpriteChain": [
+        "blue_skill_arcane_sigil_burst_medium"
+      ],
+      "notes": "Eldwin / Enchanteur / wand. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "e_transpose",
+      "displayName": "Transposition",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "wand",
+      "apCost": 3,
+      "targeting": "ally",
+      "gameplayRole": "support",
+      "elementFamily": "neutral",
+      "currentPresetId": "teleport_burst",
+      "currentSpritesheets": [
+        "teleport_burst"
+      ],
+      "recommendedPresetType": "supportSingle",
+      "recommendedSpriteChain": [
+        "purple_skill_void_arcane_portal_ultimate"
+      ],
+      "notes": "Eldwin / Enchanteur / wand. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "e_binding_seal",
+      "displayName": "Sceau d'Entrave",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "wand",
+      "apCost": 4,
+      "targeting": "area",
+      "gameplayRole": "debuff",
+      "elementFamily": "neutral",
+      "currentPresetId": "root_vines",
+      "currentSpritesheets": [
+        "root_vines"
+      ],
+      "recommendedPresetType": "skillSingle",
+      "recommendedSpriteChain": [
+        "green_skill_barrier_rune_guard_medium"
+      ],
+      "notes": "Eldwin / Enchanteur / wand. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "e_absolute_harmony",
+      "displayName": "Harmonie Absolue",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "ultimate",
+      "weaponFamily": "wand",
+      "apCost": 5,
+      "targeting": "area",
+      "gameplayRole": "buff",
+      "elementFamily": "arcane",
+      "currentPresetId": "ultimate_absolute_harmony",
+      "currentSpritesheets": [
+        "holy_aura"
+      ],
+      "recommendedPresetType": "ultimateComposite",
+      "recommendedSpriteChain": [
+        "bluegold_skill_ultimate_arcane_invocation_ultimate",
+        "green_skill_barrier_shield_ring_medium"
+      ],
+      "notes": "Eldwin / Enchanteur / wand. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "a_precise_shot",
+      "displayName": "Tir Précis",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "bow",
+      "apCost": 2,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "arrow_shot",
+      "currentSpritesheets": [
+        "projectile_shot"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_arrow_arc_burst_heavy"
+      ],
+      "notes": "Kestrel / Archère / longbow. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "a_hawk_leap",
+      "displayName": "Bond du Faucon",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "bow",
+      "apCost": 3,
+      "targeting": "singleTarget",
+      "gameplayRole": "utility",
+      "elementFamily": "barrier",
+      "currentPresetId": "leap_impact",
+      "currentSpritesheets": [
+        "leap_impact"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_smash_shockwave_burst_heavy"
+      ],
+      "notes": "Kestrel / Archère / longbow. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "a_arrow_rain",
+      "displayName": "Pluie de Flèches",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "bow",
+      "apCost": 4,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "arrow_rain",
+      "currentSpritesheets": [
+        "projectile_shot"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_arrow_arc_burst_heavy",
+        "white_basic_arrow_nova_impact_heavy"
+      ],
+      "notes": "Kestrel / Archère / longbow. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "a_zenith_arrow",
+      "displayName": "Flèche du Zénith",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "ultimate",
+      "weaponFamily": "bow",
+      "apCost": 5,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "ultimate_zenith_arrow",
+      "currentSpritesheets": [
+        "projectile_shot"
+      ],
+      "recommendedPresetType": "ultimateComposite",
+      "recommendedSpriteChain": [
+        "white_basic_arrow_nova_impact_heavy",
+        "bluegold_skill_ultimate_arcane_beam_ultimate"
+      ],
+      "notes": "Kestrel / Archère / longbow. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "ni_venom_blade",
+      "displayName": "Lame Venimeuse",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "dagger",
+      "apCost": 2,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "poison",
+      "currentPresetId": "sword_slash",
+      "currentSpritesheets": [
+        "slash_arc"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_slash_diagonal_cut_medium"
+      ],
+      "notes": "Talon / Ninja / shuriken. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "ni_shadow_step",
+      "displayName": "Pas d'Ombre",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "dagger",
+      "apCost": 3,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "shadow",
+      "currentPresetId": "critical_hit",
+      "currentSpritesheets": [
+        "slash_arc"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_crit_star_burst_heavy"
+      ],
+      "notes": "Talon / Ninja / shuriken. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "ni_smoke_bomb",
+      "displayName": "Bombe Fumigène",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "dagger",
+      "apCost": 4,
+      "targeting": "area",
+      "gameplayRole": "debuff",
+      "elementFamily": "neutral",
+      "currentPresetId": "move_smoke_burst",
+      "currentSpritesheets": [
+        "smoke_burst"
+      ],
+      "recommendedPresetType": "skillSingle",
+      "recommendedSpriteChain": [
+        "orange_skill_fire_smoke_explosion_heavy"
+      ],
+      "notes": "Talon / Ninja / shuriken. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "ni_silent_assassin",
+      "displayName": "Assassinat Silencieux",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "ultimate",
+      "weaponFamily": "dagger",
+      "apCost": 5,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "ultimate_silent_assassin",
+      "currentSpritesheets": [
+        "teleport_burst",
+        "slash_arc"
+      ],
+      "recommendedPresetType": "ultimateComposite",
+      "recommendedSpriteChain": [
+        "white_basic_slash_diagonal_cut_medium",
+        "purple_skill_arcane_slash_burst_medium",
+        "purple_skill_void_spiral_implosion_medium"
+      ],
+      "notes": "Talon / Ninja / shuriken. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "ro_sneak_attack",
+      "displayName": "Coup Sournois",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "dagger",
+      "apCost": 2,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "sword_slash",
+      "currentSpritesheets": [
+        "slash_arc"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_slash_diagonal_cut_medium"
+      ],
+      "notes": "Cedric / Voleur / dagger. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "ro_tumble",
+      "displayName": "Roulade",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "dagger",
+      "apCost": 3,
+      "targeting": "singleTarget",
+      "gameplayRole": "utility",
+      "elementFamily": "barrier",
+      "currentPresetId": "leap_impact",
+      "currentSpritesheets": [
+        "leap_impact"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_smash_shockwave_burst_heavy"
+      ],
+      "notes": "Cedric / Voleur / dagger. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "ro_jaw_trap",
+      "displayName": "Mâchoire à Ressort",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "dagger",
+      "apCost": 4,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "root_vines",
+      "currentSpritesheets": [
+        "root_vines"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "green_skill_barrier_rune_guard_medium"
+      ],
+      "notes": "Cedric / Voleur / dagger. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "ro_fault_breaker",
+      "displayName": "Casse-Faille",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "ultimate",
+      "weaponFamily": "dagger",
+      "apCost": 5,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "ultimate_fault_breaker",
+      "currentSpritesheets": [
+        "slash_arc"
+      ],
+      "recommendedPresetType": "ultimateComposite",
+      "recommendedSpriteChain": [
+        "white_basic_smash_crescent_impact_heavy",
+        "orange_skill_fire_energy_spiral_medium"
+      ],
+      "notes": "Cedric / Voleur / dagger. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "ar_calibrated_shot",
+      "displayName": "Tir Calibré",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "bow",
+      "apCost": 2,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "arrow_shot",
+      "currentSpritesheets": [
+        "projectile_shot"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_arrow_arc_burst_heavy"
+      ],
+      "notes": "Gunnar / Artilleur / hand_cannon. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "ar_explosive_retreat",
+      "displayName": "Repli Explosif",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "bow",
+      "apCost": 3,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "impact_explosion_large",
+      "currentSpritesheets": [
+        "explosion_large"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "orange_skill_fire_impact_burst_medium",
+        "orange_skill_fire_vortex_nova_heavy"
+      ],
+      "notes": "Gunnar / Artilleur / hand_cannon. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "ar_incendiary_grenade",
+      "displayName": "Grenade Incendiaire",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "skill",
+      "weaponFamily": "bow",
+      "apCost": 4,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "fire",
+      "currentPresetId": "impact_explosion_large",
+      "currentSpritesheets": [
+        "explosion_large"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "orange_skill_fire_impact_burst_medium",
+        "orange_skill_fire_vortex_nova_heavy"
+      ],
+      "notes": "Gunnar / Artilleur / hand_cannon. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "ar_artillery_barrage",
+      "displayName": "Barrage d'Artillerie",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "ultimate",
+      "weaponFamily": "bow",
+      "apCost": 5,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "fire",
+      "currentPresetId": "ultimate_artillery_barrage",
+      "currentSpritesheets": [
+        "artillery_barrage"
+      ],
+      "recommendedPresetType": "ultimateComposite",
+      "recommendedSpriteChain": [
+        "white_basic_arrow_nova_impact_heavy",
+        "orange_skill_fire_impact_burst_medium",
+        "orange_skill_fire_spark_cluster_medium"
+      ],
+      "notes": "Gunnar / Artilleur / hand_cannon. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "boss_slam",
+      "displayName": "Frappe Sismique",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "bossSkill",
+      "weaponFamily": "monster",
+      "apCost": 5,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "boss_slam",
+      "currentSpritesheets": [
+        "leap_impact"
+      ],
+      "recommendedPresetType": "bossComposite",
+      "recommendedSpriteChain": [
+        "white_basic_smash_shockwave_burst_heavy"
+      ],
+      "notes": "Boss. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "boss_roar",
+      "displayName": "Rugissement",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "bossSkill",
+      "weaponFamily": "monster",
+      "apCost": 5,
+      "targeting": "area",
+      "gameplayRole": "debuff",
+      "elementFamily": "neutral",
+      "currentPresetId": "caster_roar",
+      "currentSpritesheets": [
+        "shockwave_ring"
+      ],
+      "recommendedPresetType": "bossComposite",
+      "recommendedSpriteChain": [
+        "gold_skill_holy_vortex_nova_heavy"
+      ],
+      "notes": "Boss. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "boss_quake",
+      "displayName": "Onde de Choc",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "bossSkill",
+      "weaponFamily": "monster",
+      "apCost": 4,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "shadow",
+      "currentPresetId": "boss_quake",
+      "currentSpritesheets": [
+        "shockwave_ring"
+      ],
+      "recommendedPresetType": "bossComposite",
+      "recommendedSpriteChain": [
+        "white_basic_smash_shockwave_burst_heavy",
+        "orange_skill_fire_energy_spiral_medium"
+      ],
+      "notes": "Boss. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "boss_guard",
+      "displayName": "Garde",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "bossSkill",
+      "weaponFamily": "monster",
+      "apCost": 3,
+      "targeting": "self",
+      "gameplayRole": "buff",
+      "elementFamily": "barrier",
+      "currentPresetId": "guard_barrier",
+      "currentSpritesheets": [
+        "barrier_shell"
+      ],
+      "recommendedPresetType": "bossComposite",
+      "recommendedSpriteChain": [
+        "blue_skill_barrier_guard_heavy"
+      ],
+      "notes": "Boss. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "boss_apocalypse",
+      "displayName": "Apocalypse",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "bossSkill",
+      "weaponFamily": "monster",
+      "apCost": 5,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "shadow",
+      "currentPresetId": "boss_apocalypse_v2",
+      "currentSpritesheets": [
+        "apocalypse_field"
+      ],
+      "recommendedPresetType": "bossComposite",
+      "recommendedSpriteChain": [
+        "purple_skill_void_arcane_portal_ultimate",
+        "purpleblack_skill_void_singularity_implosion_ultimate",
+        "orange_skill_fire_vortex_nova_heavy"
+      ],
+      "notes": "Boss. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "boss_regen",
+      "displayName": "Régénération",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "bossSkill",
+      "weaponFamily": "monster",
+      "apCost": 3,
+      "targeting": "self",
+      "gameplayRole": "heal",
+      "elementFamily": "heal",
+      "currentPresetId": "support_regen_aura",
+      "currentSpritesheets": [
+        "regen_aura"
+      ],
+      "recommendedPresetType": "bossComposite",
+      "recommendedSpriteChain": [
+        "green_skill_support_leaf_burst_medium"
+      ],
+      "notes": "Boss. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "boss_fortify",
+      "displayName": "Fortification",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "bossSkill",
+      "weaponFamily": "monster",
+      "apCost": 3,
+      "targeting": "self",
+      "gameplayRole": "buff",
+      "elementFamily": "barrier",
+      "currentPresetId": "bless_aura",
+      "currentSpritesheets": [
+        "buff_pulse"
+      ],
+      "recommendedPresetType": "bossComposite",
+      "recommendedSpriteChain": [
+        "gold_skill_holy_sigil_burst_medium"
+      ],
+      "notes": "Boss. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "boss_freeze",
+      "displayName": "Gel",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "bossSkill",
+      "weaponFamily": "monster",
+      "apCost": 4,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "ice",
+      "currentPresetId": "frost_bind",
+      "currentSpritesheets": [
+        "frost_bind"
+      ],
+      "recommendedPresetType": "bossComposite",
+      "recommendedSpriteChain": [
+        "iceblue_skill_ice_sigil_burst_medium",
+        "iceblue_skill_ice_pillar_impact_heavy"
+      ],
+      "notes": "Boss. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "boss_pin",
+      "displayName": "Transpercement",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "bossSkill",
+      "weaponFamily": "monster",
+      "apCost": 4,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "arrow_shot",
+      "currentSpritesheets": [
+        "projectile_shot"
+      ],
+      "recommendedPresetType": "bossComposite",
+      "recommendedSpriteChain": [
+        "white_basic_arrow_arc_burst_heavy"
+      ],
+      "notes": "Boss. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "boss_execution",
+      "displayName": "Exécution",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "bossSkill",
+      "weaponFamily": "monster",
+      "apCost": 5,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "shadow",
+      "currentPresetId": "boss_execution",
+      "currentSpritesheets": [
+        "heavy_execution"
+      ],
+      "recommendedPresetType": "bossComposite",
+      "recommendedSpriteChain": [
+        "white_basic_slash_triple_impact_heavy",
+        "purple_skill_arcane_slash_burst_medium"
+      ],
+      "notes": "Boss. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "boss_flurry",
+      "displayName": "Rafale Mortelle",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "bossSkill",
+      "weaponFamily": "monster",
+      "apCost": 5,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "boss_flurry",
+      "currentSpritesheets": [
+        "slash_arc",
+        "slash_arc",
+        "slash_arc"
+      ],
+      "recommendedPresetType": "bossComposite",
+      "recommendedSpriteChain": [
+        "white_basic_slash_diagonal_cut_medium",
+        "orange_skill_fire_slash_combo_heavy"
+      ],
+      "notes": "Boss. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "boss_inferno",
+      "displayName": "Brasier Infernal",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "bossSkill",
+      "weaponFamily": "monster",
+      "apCost": 5,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "fire",
+      "currentPresetId": "boss_inferno",
+      "currentSpritesheets": [
+        "explosion_large"
+      ],
+      "recommendedPresetType": "bossComposite",
+      "recommendedSpriteChain": [
+        "orange_skill_fire_vortex_nova_heavy",
+        "orange_skill_meteor_impact_burst_heavy"
+      ],
+      "notes": "Boss. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "boss_titan_slam",
+      "displayName": "Frappe du Titan",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "bossSkill",
+      "weaponFamily": "monster",
+      "apCost": 5,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "boss_titan_slam",
+      "currentSpritesheets": [
+        "titan_slam"
+      ],
+      "recommendedPresetType": "bossComposite",
+      "recommendedSpriteChain": [
+        "white_basic_smash_shockwave_burst_heavy",
+        "orange_skill_fire_energy_spiral_medium"
+      ],
+      "notes": "Boss. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "enemy_heavy_strike",
+      "displayName": "Frappe Lourde",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "enemySkill",
+      "weaponFamily": "monster",
+      "apCost": 2,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "blunt_impact",
+      "currentSpritesheets": [
+        "small_impact"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_smash_comet_impact_medium"
+      ],
+      "notes": "Enemy. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "enemy_crush",
+      "displayName": "Écrasement",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "enemySkill",
+      "weaponFamily": "monster",
+      "apCost": 3,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "blunt_impact",
+      "currentSpritesheets": [
+        "small_impact"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "white_basic_smash_comet_impact_medium"
+      ],
+      "notes": "Enemy. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "enemy_dark_bolt",
+      "displayName": "Éclair Sombre",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "enemySkill",
+      "weaponFamily": "monster",
+      "apCost": 2,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "lightning",
+      "currentPresetId": "shadow_lightning_bolt",
+      "currentSpritesheets": [
+        "shadow_lightning_bolt"
+      ],
+      "recommendedPresetType": "elementalComposite",
+      "recommendedSpriteChain": [
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "notes": "Enemy. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "enemy_hex",
+      "displayName": "Maléfice",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "enemySkill",
+      "weaponFamily": "monster",
+      "apCost": 2,
+      "targeting": "singleTarget",
+      "gameplayRole": "debuff",
+      "elementFamily": "ice",
+      "currentPresetId": "status_curse_mark",
+      "currentSpritesheets": [
+        "curse_mark"
+      ],
+      "recommendedPresetType": "skillSingle",
+      "recommendedSpriteChain": [
+        "purple_skill_void_rune_orb_medium"
+      ],
+      "notes": "Enemy. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "enemy_venom_strike",
+      "displayName": "Frappe Venimeuse",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "enemySkill",
+      "weaponFamily": "monster",
+      "apCost": 2,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "poison",
+      "currentPresetId": "poison_bite",
+      "currentSpritesheets": [
+        "slash_arc"
+      ],
+      "recommendedPresetType": "weaponSkillComposite",
+      "recommendedSpriteChain": [
+        "green_skill_poison_maw_bite_heavy"
+      ],
+      "notes": "Enemy. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "enemy_binding_shot",
+      "displayName": "Tir Entravant",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "enemySkill",
+      "weaponFamily": "monster",
+      "apCost": 2,
+      "targeting": "singleTarget",
+      "gameplayRole": "debuff",
+      "elementFamily": "neutral",
+      "currentPresetId": "root_vines",
+      "currentSpritesheets": [
+        "root_vines"
+      ],
+      "recommendedPresetType": "skillSingle",
+      "recommendedSpriteChain": [
+        "green_skill_barrier_rune_guard_medium"
+      ],
+      "notes": "Enemy. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "enemy_smoke_veil",
+      "displayName": "Voile de Fumée",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "enemySkill",
+      "weaponFamily": "monster",
+      "apCost": 3,
+      "targeting": "area",
+      "gameplayRole": "debuff",
+      "elementFamily": "neutral",
+      "currentPresetId": "move_smoke_burst",
+      "currentSpritesheets": [
+        "smoke_burst"
+      ],
+      "recommendedPresetType": "skillSingle",
+      "recommendedSpriteChain": [
+        "orange_skill_fire_smoke_explosion_heavy"
+      ],
+      "notes": "Enemy. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "enemy_taunt",
+      "displayName": "Provocation",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "enemySkill",
+      "weaponFamily": "monster",
+      "apCost": 2,
+      "targeting": "singleTarget",
+      "gameplayRole": "debuff",
+      "elementFamily": "neutral",
+      "currentPresetId": "caster_roar",
+      "currentSpritesheets": [
+        "shockwave_ring"
+      ],
+      "recommendedPresetType": "skillSingle",
+      "recommendedSpriteChain": [
+        "gold_skill_holy_vortex_nova_heavy"
+      ],
+      "notes": "Enemy. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "enemy_battle_cry",
+      "displayName": "Cri de Guerre",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "enemySkill",
+      "weaponFamily": "monster",
+      "apCost": 3,
+      "targeting": "area",
+      "gameplayRole": "debuff",
+      "elementFamily": "neutral",
+      "currentPresetId": "caster_roar",
+      "currentSpritesheets": [
+        "shockwave_ring"
+      ],
+      "recommendedPresetType": "skillSingle",
+      "recommendedSpriteChain": [
+        "gold_skill_holy_vortex_nova_heavy"
+      ],
+      "notes": "Enemy. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "enemy_dragon_breath",
+      "displayName": "Souffle de Dragon",
+      "sourceFile": "src/game/skills.ts",
+      "actionType": "enemySkill",
+      "weaponFamily": "monster",
+      "apCost": 3,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "fire",
+      "currentPresetId": "enemy_dragon_breath",
+      "currentSpritesheets": [
+        "dragon_breath"
+      ],
+      "recommendedPresetType": "elementalComposite",
+      "recommendedSpriteChain": [
+        "green_skill_poison_maw_bite_heavy",
+        "orange_skill_fire_vortex_nova_heavy"
+      ],
+      "notes": "Enemy. Raw planning chain uses normalized IDs only."
+    },
+    {
+      "actionId": "item_potion",
+      "displayName": "Potion",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "item",
+      "weaponFamily": "unknown",
+      "apCost": 1,
+      "targeting": "ally",
+      "gameplayRole": "heal",
+      "elementFamily": "heal",
+      "currentPresetId": "heal_burst",
+      "currentSpritesheets": [
+        "heal_touch"
+      ],
+      "recommendedPresetType": "supportSingle",
+      "recommendedSpriteChain": [
+        "whitegreen_skill_heal_blessing_bloom_heavy"
+      ],
+      "notes": "Existing consumable; this document plans visual demand only and does not change item behavior."
+    },
+    {
+      "actionId": "item_ether",
+      "displayName": "Éther",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "item",
+      "weaponFamily": "unknown",
+      "apCost": 1,
+      "targeting": "ally",
+      "gameplayRole": "support",
+      "elementFamily": "arcane",
+      "currentPresetId": "heal_burst",
+      "currentSpritesheets": [
+        "heal_touch"
+      ],
+      "recommendedPresetType": "supportSingle",
+      "recommendedSpriteChain": [
+        "blue_skill_arcane_sigil_burst_medium"
+      ],
+      "notes": "Existing consumable; this document plans visual demand only and does not change item behavior."
+    },
+    {
+      "actionId": "item_antidote",
+      "displayName": "Antidote",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "item",
+      "weaponFamily": "unknown",
+      "apCost": 1,
+      "targeting": "ally",
+      "gameplayRole": "support",
+      "elementFamily": "heal",
+      "currentPresetId": "support_holy_aura",
+      "currentSpritesheets": [
+        "holy_aura"
+      ],
+      "recommendedPresetType": "supportSingle",
+      "recommendedSpriteChain": [
+        "gold_skill_holy_radiance_burst_heavy"
+      ],
+      "notes": "Existing consumable; this document plans visual demand only and does not change item behavior."
+    },
+    {
+      "actionId": "item_bomb",
+      "displayName": "Bombe",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "item",
+      "weaponFamily": "unknown",
+      "apCost": 1,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "fire",
+      "currentPresetId": "impact_explosion_large",
+      "currentSpritesheets": [
+        "explosion_large"
+      ],
+      "recommendedPresetType": "elementalComposite",
+      "recommendedSpriteChain": [
+        "orange_skill_fire_impact_burst_medium"
+      ],
+      "notes": "Existing consumable; this document plans visual demand only and does not change item behavior."
+    },
+    {
+      "actionId": "item_grenade_incendiaire",
+      "displayName": "Grenade incendiaire",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "item",
+      "weaponFamily": "unknown",
+      "apCost": 1,
+      "targeting": "area",
+      "gameplayRole": "damage",
+      "elementFamily": "fire",
+      "currentPresetId": "impact_explosion_large",
+      "currentSpritesheets": [
+        "explosion_large"
+      ],
+      "recommendedPresetType": "elementalComposite",
+      "recommendedSpriteChain": [
+        "orange_skill_fire_impact_burst_medium",
+        "orange_skill_fire_vortex_nova_heavy"
+      ],
+      "notes": "Existing consumable; this document plans visual demand only and does not change item behavior."
+    },
+    {
+      "actionId": "item_grenade_entravante",
+      "displayName": "Grenade entravante",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "item",
+      "weaponFamily": "unknown",
+      "apCost": 1,
+      "targeting": "area",
+      "gameplayRole": "status",
+      "elementFamily": "arcane",
+      "currentPresetId": "impact_explosion_large",
+      "currentSpritesheets": [
+        "explosion_large"
+      ],
+      "recommendedPresetType": "elementalComposite",
+      "recommendedSpriteChain": [
+        "green_skill_barrier_rune_guard_medium"
+      ],
+      "notes": "Existing consumable; this document plans visual demand only and does not change item behavior."
+    },
+    {
+      "actionId": "item_grenade_aveuglante",
+      "displayName": "Grenade aveuglante",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "item",
+      "weaponFamily": "unknown",
+      "apCost": 1,
+      "targeting": "area",
+      "gameplayRole": "status",
+      "elementFamily": "white",
+      "currentPresetId": "impact_explosion_large",
+      "currentSpritesheets": [
+        "explosion_large"
+      ],
+      "recommendedPresetType": "elementalComposite",
+      "recommendedSpriteChain": [
+        "white_basic_crit_star_burst_heavy"
+      ],
+      "notes": "Existing consumable; this document plans visual demand only and does not change item behavior."
+    },
+    {
+      "actionId": "item_revive_vial",
+      "displayName": "Fiole de résurrection",
+      "sourceFile": "src/game/catalog.ts + src/combat/legacyCombatRuntime.js",
+      "actionType": "item",
+      "weaponFamily": "unknown",
+      "apCost": 1,
+      "targeting": "ally",
+      "gameplayRole": "heal",
+      "elementFamily": "holy",
+      "currentPresetId": "support_revive_pillar",
+      "currentSpritesheets": [
+        "revive_pillar"
+      ],
+      "recommendedPresetType": "supportSingle",
+      "recommendedSpriteChain": [
+        "whitegreen_skill_heal_blessing_bloom_heavy",
+        "bluegold_skill_ultimate_arcane_invocation_ultimate"
+      ],
+      "notes": "Existing consumable; this document plans visual demand only and does not change item behavior."
+    },
+    {
+      "actionId": "generic_hit",
+      "displayName": "Impact générique",
+      "sourceFile": "src/combat/vfx/VfxActionRegistry.ts",
+      "actionType": "unknown",
+      "weaponFamily": "unknown",
+      "apCost": 0,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "generic_hit",
+      "currentSpritesheets": [
+        "small_impact"
+      ],
+      "recommendedPresetType": "skillSingle",
+      "recommendedSpriteChain": [
+        "white_basic_smash_comet_impact_medium"
+      ],
+      "notes": "Combat feedback/fallback action; no gameplay semantics are changed."
+    },
+    {
+      "actionId": "critical_hit",
+      "displayName": "Impact critique",
+      "sourceFile": "src/combat/vfx/VfxActionRegistry.ts",
+      "actionType": "unknown",
+      "weaponFamily": "unknown",
+      "apCost": 0,
+      "targeting": "singleTarget",
+      "gameplayRole": "damage",
+      "elementFamily": "neutral",
+      "currentPresetId": "critical_hit",
+      "currentSpritesheets": [
+        "slash_arc"
+      ],
+      "recommendedPresetType": "skillSingle",
+      "recommendedSpriteChain": [
+        "white_basic_crit_star_burst_heavy"
+      ],
+      "notes": "Combat feedback/fallback action; no gameplay semantics are changed."
+    },
+    {
+      "actionId": "kill_spark",
+      "displayName": "Éclat de K.O.",
+      "sourceFile": "src/combat/vfx/VfxActionRegistry.ts",
+      "actionType": "unknown",
+      "weaponFamily": "unknown",
+      "apCost": 0,
+      "targeting": "singleTarget",
+      "gameplayRole": "utility",
+      "elementFamily": "arcane",
+      "currentPresetId": "kill_spark",
+      "currentSpritesheets": [
+        "small_impact"
+      ],
+      "recommendedPresetType": "skillSingle",
+      "recommendedSpriteChain": [
+        "blue_skill_arcane_starburst_small"
+      ],
+      "notes": "Combat feedback/fallback action; no gameplay semantics are changed."
+    }
+  ]
+}

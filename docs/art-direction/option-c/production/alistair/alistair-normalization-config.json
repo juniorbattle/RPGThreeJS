@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "contract": {
+    "frameSize": 512,
+    "pivotX": 256,
+    "footBaseline": 470,
+    "targetBodyHeight": 326,
+    "scaleAuthorityPose": "master",
+    "minimumEdgeMargin": 16,
+    "resamplingPositionTolerancePx": 2,
+    "footBandFraction": 0.25,
+    "resampling": "premultiplied-alpha Lanczos"
+  },
+  "poses": {
+    "master": {
+      "input": "public/assets/dev/option-c/phase4c/alistair/master/alistair-master-candidate-a003-isolated.png",
+      "output": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-master.png",
+      "provenance": "public/assets/dev/option-c/phase4c/alistair/provenance/alistair-master-candidate-a003-chroma.json",
+      "sourceHeadTop": 266,
+      "headReferenceSource": [820, 430],
+      "bodyCenterSource": [960, 1040],
+      "weaponTipSource": [1840, 110],
+      "weaponGripSource": [800, 850],
+      "weaponPommelSource": [550, 1050]
+    },
+    "idle": {
+      "input": "public/assets/dev/option-c/phase4c/alistair/poses/idle/alistair-idle-key-pose-a001-isolated.png",
+      "output": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-idle.png",
+      "provenance": "public/assets/dev/option-c/phase4c/alistair/provenance/alistair-idle-key-pose-a001.json",
+      "sourceHeadTop": 227,
+      "headReferenceSource": [850, 450],
+      "bodyCenterSource": [940, 1050],
+      "weaponTipSource": [1800, 110],
+      "weaponGripSource": [810, 860],
+      "weaponPommelSource": [560, 1050]
+    },
+    "dash": {
+      "input": "public/assets/dev/option-c/phase4c/alistair/poses/dash/alistair-dash-key-pose-a003-isolated.png",
+      "output": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-dash.png",
+      "provenance": "public/assets/dev/option-c/phase4c/alistair/provenance/alistair-dash-key-pose-a003.json",
+      "sourceHeadTop": 330,
+      "headReferenceSource": [1250, 430],
+      "bodyCenterSource": [1090, 1000],
+      "weaponTipSource": [40, 1000],
+      "weaponGripSource": [830, 820],
+      "weaponPommelSource": [1010, 820]
+    },
+    "attack": {
+      "input": "public/assets/dev/option-c/phase4c/alistair/poses/attack/alistair-attack-key-pose-a001-isolated.png",
+      "output": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-attack.png",
+      "provenance": "public/assets/dev/option-c/phase4c/alistair/provenance/alistair-attack-key-pose-a001.json",
+      "sourceHeadTop": 277,
+      "headReferenceSource": [770, 490],
+      "bodyCenterSource": [800, 1000],
+      "weaponTipSource": [1935, 560],
+      "weaponGripSource": [700, 780],
+      "weaponPommelSource": [450, 800]
+    },
+    "skill": {
+      "input": "public/assets/dev/option-c/phase4c/alistair/poses/skill/alistair-skill-key-pose-a001-isolated.png",
+      "output": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-skill.png",
+      "provenance": "public/assets/dev/option-c/phase4c/alistair/provenance/alistair-skill-key-pose-a001.json",
+      "sourceHeadTop": 313,
+      "headReferenceSource": [840, 500],
+      "bodyCenterSource": [900, 1000],
+      "weaponTipSource": [1935, 720],
+      "weaponGripSource": [720, 670],
+      "weaponPommelSource": [340, 650]
+    }
+  }
+}

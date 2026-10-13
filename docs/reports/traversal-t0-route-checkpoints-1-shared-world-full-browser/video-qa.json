@@ -1,0 +1,26 @@
+{
+  "clips": [
+    {
+      "file": "webm-a-route-3-refugees-fork-route-5a.webm",
+      "run": "branch-a",
+      "sequence": "Route 3 → Refugees Aider → Route 4 → Fork → Route 5A",
+      "sourceStartSeconds": 44.979,
+      "requestedDurationSeconds": 55.981,
+      "durationSeconds": 56,
+      "codec": "vp9",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "file": "webm-b-fork-route-5b-combat-route-6-arrival.webm",
+      "run": "branch-b",
+      "sequence": "Fork → Route 5B → branch combat → Route 6 → Arrival → Journey agency",
+      "sourceStartSeconds": 76.763,
+      "requestedDurationSeconds": 64.794,
+      "durationSeconds": 59.72,
+      "codec": "vp9",
+      "width": 960,
+      "height": 540
+    }
+  ]
+}

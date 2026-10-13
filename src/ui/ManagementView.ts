@@ -1,0 +1,1002 @@
+import {
+  craftRecipes, getFinalStats, getInnateGift, getLockedSkillReason, getResolvedSkills, getWeaponProfileLabel, getWeaponSkillUnlockLabel,
+  isSkillUnlockedForHero, itemById, items, unitById, weaponById, weapons,
+} from '../game/catalog';
+import {
+  buyItem, canCraftItem, craftItem, equipAccessory, equipWeapon, excludeUnit,
+  getSkillUpgradeCost, sellItem, upgradeSkill, useConsumable,
+} from '../game/management';
+import { getReputationRule, getShopPrice } from '../game/reputation';
+import { assets } from '../render/assetManifest';
+import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
+import { skills as SKILL_DEFS } from '../game/skills';
+import type { GameState, InnateGiftModifier, ItemCategory, ItemDefinition, UnitDefinition, UnitInstance, WeaponDefinition } from '../game/types';
+
+type ManagementTab = 'clan' | 'inventory' | 'shop' | 'skills';
+type ControlFocusKey = { tag: string; attributes: Array<[string, string]> };
+
+function escapeAttribute(value: string): string {
+  return value.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+const STATUS_LABELS: Record<string, string> = {
+  burn: 'Brûlure',
+  poison: 'Poison',
+  slow: 'Ralenti',
+  root: 'Entravé',
+  blind: 'Aveuglé',
+  weak: 'Affaibli',
+  curse: 'Malédic.',
+};
+
+function formatWeaponAffix(weapon: WeaponDefinition): string | null {
+  const affix = weapon.basicAttackStatus;
+  if (!affix) return null;
+  const label = STATUS_LABELS[affix.status] ?? affix.status;
+  return `${Math.round(affix.chance * 100)}% ${label} (attaque basique, ${affix.turns}T)`;
+}
+
+function formatWeaponAffixShort(weapon: WeaponDefinition): string | null {
+  const affix = weapon.basicAttackStatus;
+  if (!affix) return null;
+  const label = STATUS_LABELS[affix.status] ?? affix.status;
+  return `${Math.round(affix.chance * 100)}% ${label}`;
+}
+
+interface ManagementViewOptions {
+  root: HTMLElement;
+  getState: () => GameState;
+  onChange: () => void;
+}
+
+const categoryLabels: Record<ItemCategory, string> = {
+  consumables: 'Consommables',
+  accessories: 'Accessoires',
+  materials: 'Matériaux',
+  weapons: 'Armes',
+};
+
+interface CharacterAssetProfile {
+  full: string;
+  ui: string;
+  uiCropMode: string;
+}
+
+function characterProfile(definition: UnitDefinition): CharacterAssetProfile | undefined {
+  const profiles = assets.characterProfiles as Record<string, CharacterAssetProfile>;
+  return profiles[definition.visualProfileId];
+}
+
+function unitFullPortrait(definition: UnitDefinition): string {
+  return characterProfile(definition)?.full ?? definition.portrait;
+}
+
+function unitUiPortrait(definition: UnitDefinition): string {
+  return characterProfile(definition)?.ui ?? definition.portrait;
+}
+
+function unitUiCropMode(definition: UnitDefinition): string {
+  return characterProfile(definition)?.uiCropMode ?? 'contain';
+}
+
+const skillPresentation: Record<string, { name: string; description: string; ap?: number }> = Object.fromEntries(
+  SKILL_DEFS.map((s) => [s.id, { name: s.name, description: s.description, ap: s.ap }]),
+);
+// Legacy fallbacks for enemy/boss skills still used in combat
+Object.assign(skillPresentation, {
+  whirl: { name: 'Coup Tournoyant', ap: 2, description: 'Frappe en cercle autour de soi.' },
+  bulwark: { name: 'Rempart', ap: 2, description: 'Renforce les alliés proches avec une barrière défensive.' },
+  provoke: { name: 'Provocation', ap: 1, description: 'Force les ennemis proches à concentrer leur attention.' },
+  weaken: { name: 'Flèche Affaiblissante', ap: 1, description: 'Tir précis qui ralentit la cible.' },
+  blind_shot: { name: 'Tir Aveuglant', ap: 2, description: 'Réduit la précision de la cible.' },
+  pierce_shot: { name: 'Tir Perçant', ap: 2, description: 'Flèche traversante alignée sur la cible.' },
+  fireball: { name: 'Boule de Feu', ap: 3, description: 'Explosion magique de feu en zone.' },
+  flame_wave: { name: 'Vague de Flammes', ap: 3, description: 'Cône de feu devant le lanceur.' },
+  bolt: { name: 'Éclair Sombre', ap: 3, description: 'Décharge magique en zone.' },
+  curse: { name: 'Malédiction', ap: 2, description: 'Affaiblit la défense des ennemis touchés.' },
+  heal: { name: 'Lumière Salvatrice', ap: 2, description: 'Soigne les alliés dans la zone.' },
+  regen: { name: 'Régénération', ap: 2, description: 'Régénère les PV des alliés chaque tour.' },
+  bless: { name: 'Bénédiction', ap: 2, description: 'Augmente la force et la magie des alliés.' },
+  revive: { name: 'Résurrection', ap: 4, description: 'Relève un allié tombé au combat.' },
+  heavy: { name: 'Coup Lourd', ap: 2, description: 'Choc puissant qui peut ralentir.' },
+  blink: { name: 'Clignotement', ap: 2, description: 'Repositionnement instantané sur une case libre.' },
+  leap: { name: 'Bond', ap: 1, description: 'Déplacement rapide vers une case libre.' },
+  charge: { name: 'Charge', ap: 2, description: 'Fonce en ligne droite et perturbe l\u2019arrivée.' },
+});
+
+export class ManagementView {
+  private overlay: HTMLElement | null = null;
+  private selectedUnitId = '';
+  private activeItemId: string | null = null;
+  private activeEquipSlot: { type: 'weapon' | 'accessory'; slot: number } | null = null;
+  private previewItemId: string | null = null;
+  private tab: ManagementTab = 'clan';
+  private shopId = 'valmir';
+  private shopMode: 'buy' | 'sell' | 'craft' = 'buy';
+  private shopEnabled = false;
+  private shopOnly = false;
+  private skillsEnabled = false;
+  private shopWallet: 'temporary' | 'permanent' = 'temporary';
+  private returnFocus: HTMLElement | null = null;
+  private readonly inertSiblings = new Map<HTMLElement, boolean>();
+  private modalReturnFocus: ControlFocusKey | null = null;
+
+  constructor(private readonly options: ManagementViewOptions) {}
+
+  open(initialTab: ManagementTab = 'clan', shopId?: string, shopWallet: 'temporary' | 'permanent' = 'temporary'): Promise<void> {
+    this.close();
+    this.returnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    this.shopEnabled = shopId !== undefined;
+    this.shopOnly = initialTab === 'shop' && this.shopEnabled;
+    this.skillsEnabled = initialTab === 'skills';
+    this.tab = initialTab === 'shop' && !this.shopEnabled
+      ? 'clan'
+      : initialTab === 'skills' && !this.skillsEnabled
+        ? 'clan'
+        : initialTab;
+    this.shopId = shopId ?? 'valmir';
+    this.shopWallet = shopWallet;
+    this.selectedUnitId = this.options.getState().clan.members[0]?.id ?? '';
+    this.overlay = document.createElement('section');
+    this.overlay.className = `management ui-screen ui-screen--dialog${this.shopOnly ? ' management--shop-only' : ''}`;
+    applyScreenEnvironment(this.overlay, 'management');
+    this.overlay.setAttribute('role', 'dialog');
+    this.overlay.setAttribute('aria-modal', 'true');
+    this.overlay.setAttribute('aria-label', 'Registre de Compagnie');
+    this.options.root.append(this.overlay);
+    for (const sibling of this.options.root.children) {
+      if (sibling instanceof HTMLElement && sibling !== this.overlay) {
+        this.inertSiblings.set(sibling, sibling.inert);
+        sibling.inert = true;
+      }
+    }
+    this.overlay.addEventListener('keydown', (event) => this.handleKeydown(event));
+    this.render();
+    return new Promise((resolve) => {
+      this.overlay?.addEventListener('management:close', () => resolve(), { once: true });
+    });
+  }
+
+  close(): void {
+    if (!this.overlay) return;
+    this.overlay.dispatchEvent(new Event('management:close'));
+    this.overlay.remove();
+    this.overlay = null;
+    for (const [sibling, wasInert] of this.inertSiblings) sibling.inert = wasInert;
+    this.inertSiblings.clear();
+    if (this.returnFocus?.isConnected && !this.returnFocus.closest('[inert]')) this.returnFocus.focus({ preventScroll: true });
+    this.returnFocus = null;
+    this.activeItemId = null;
+    this.activeEquipSlot = null;
+    this.previewItemId = null;
+    this.modalReturnFocus = null;
+  }
+
+  private render(): void {
+    if (!this.overlay) return;
+    const active = document.activeElement;
+    const focusKey = active instanceof HTMLElement && this.overlay.contains(active)
+      ? this.controlFocusKey(active) : null;
+    const hadModal = Boolean(this.overlay.querySelector('.item-modal'));
+    const scrollEls = this.overlay.querySelectorAll<HTMLElement>('.ui-scroll-panel, .shop-view, .inventory-grid, .inventory-view');
+    const savedScrolls = Array.from(scrollEls).map((el) => el.scrollTop);
+    const state = this.options.getState();
+    const gems = state.inventory.materials.red_gem ?? 0;
+    this.overlay.innerHTML = `
+      <div class="management__veil"></div>
+      <div class="ui-environment-layer ui-environment-layer--fog" aria-hidden="true"></div>
+      <div class="management__shell ui-shell ui-shell--management ui-panel">
+        <header class="management__header ui-hud">
+          <div class="management__brand">
+            <span class="management__sigil" aria-hidden="true">✥</span>
+            <div><p class="eyebrow ui-eyebrow">Camp du Lion</p><h2>Registre de Compagnie</h2><small>Organisation, équipement et préparation de la compagnie.</small></div>
+          </div>
+          <div class="management__resources">
+            <div class="management__resource ui-chip"><span>Or</span><strong>${state.gold}</strong></div>
+            <div class="management__resource ui-chip"><span>Gemmes</span><strong>${gems}</strong></div>
+            <div class="management__resource ui-chip"><span>Capacité</span><strong>${state.clan.members.length}/${state.clan.maxSize}</strong></div>
+          </div>
+          <button class="icon-button ui-icon-button" type="button" data-action="close" aria-label="Fermer">×</button>
+        </header>
+        <nav class="management__tabs">
+          ${this.skillsEnabled
+            ? this.tabButton('skills', 'Amélioration')
+            : `${this.tabButton('clan', 'Clan')}
+              ${this.tabButton('inventory', 'Inventaire')}
+              ${this.shopEnabled ? this.tabButton('shop', 'Boutique') : ''}`}
+        </nav>
+        <div class="management__content">${this.renderContent()}</div>
+      </div>
+      ${this.activeItemId ? this.renderItemModal() : ''}
+      ${this.activeEquipSlot ? this.renderEquipSlotModal() : ''}
+    `;
+    this.bind();
+    this.overlay.querySelectorAll<HTMLElement>('.ui-scroll-panel, .shop-view, .inventory-grid, .inventory-view')
+      .forEach((el, i) => { if (savedScrolls[i] !== undefined) el.scrollTop = savedScrolls[i]; });
+    const hasModal = Boolean(this.overlay.querySelector('.item-modal'));
+    if (hasModal && !hadModal) this.modalReturnFocus = focusKey;
+    const shell = this.overlay.querySelector<HTMLElement>('.management__shell');
+    if (shell) shell.inert = hasModal;
+    const restoreKey = hadModal && !hasModal ? this.modalReturnFocus : focusKey;
+    const controls = this.focusableControls();
+    const restore = restoreKey && controls.find(control => control.tagName === restoreKey.tag
+      && restoreKey.attributes.every(([name, value]) => control.getAttribute(name) === value));
+    (restore || controls[0])?.focus({ preventScroll: true });
+    if (!hasModal) this.modalReturnFocus = null;
+  }
+
+  private controlFocusKey(control: HTMLElement): ControlFocusKey | null {
+    const attributes = [...control.attributes].filter(attribute => attribute.name.startsWith('data-'))
+      .map(attribute => [attribute.name, attribute.value] as [string, string]);
+    return attributes.length ? { tag: control.tagName, attributes } : null;
+  }
+
+  private focusableControls(): HTMLElement[] {
+    const scope = this.overlay?.querySelector<HTMLElement>('.item-modal') ?? this.overlay;
+    return [...scope?.querySelectorAll<HTMLElement>('button,input,select,textarea,a[href],[tabindex]') ?? []]
+      .filter(control => control.tabIndex >= 0 && !control.matches(':disabled') && !control.closest('[inert]')
+        && !control.hidden && getComputedStyle(control).display !== 'none' && getComputedStyle(control).visibility !== 'hidden');
+  }
+
+  private handleKeydown(event: KeyboardEvent): void {
+    if (event.key === 'Escape') {
+      event.preventDefault(); event.stopPropagation();
+      if (this.activeEquipSlot) { this.activeEquipSlot = null; this.previewItemId = null; this.render(); }
+      else if (this.activeItemId) { this.activeItemId = null; this.render(); }
+      else this.close();
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    const controls = this.focusableControls();
+    const first = controls[0], last = controls.at(-1);
+    if (!first || !last) { event.preventDefault(); return; }
+    const active = document.activeElement;
+    if (!controls.includes(active as HTMLElement) || event.shiftKey && active === first || !event.shiftKey && active === last) {
+      event.preventDefault(); (event.shiftKey ? last : first).focus();
+    }
+  }
+
+  private tabButton(tab: ManagementTab, label: string): string {
+    return `<button type="button" data-tab="${tab}" class="ui-tab ${this.tab === tab ? 'is-active' : ''}">${label}</button>`;
+  }
+
+  private renderContent(): string {
+    if (this.tab === 'inventory') return this.renderInventory();
+    if (this.tab === 'shop') return this.renderShop();
+    if (this.tab === 'skills') return this.renderSkillUpgrades();
+    return this.renderClan();
+  }
+
+  private renderClan(): string {
+    const state = this.options.getState();
+    const selected = state.clan.members.find((unit) => unit.id === this.selectedUnitId) ?? state.clan.members[0];
+    if (!selected) return '<p class="empty-copy">Aucune unité.</p>';
+    const definition = unitById.get(selected.definitionId)!;
+    const stats = getFinalStats(selected);
+    const roster = state.clan.members.map((unit) => {
+      const def = unitById.get(unit.definitionId)!;
+      const maxHp = getFinalStats(unit).maxHealth;
+      const hpClass = unit.currentHealth === 0 ? ' is-fallen' : unit.currentHealth < maxHp ? ' is-wounded' : '';
+      return `
+        <button type="button" class="roster-card ui-panel ui-panel--dense${hpClass} ${unit.id === selected.id ? 'is-active' : ''}" data-unit="${unit.id}">
+          <span class="roster-card__portrait" data-ui-crop="${unitUiCropMode(def)}"><img src="${unitUiPortrait(def)}" alt=""></span>
+          <span class="roster-card__body"><strong>${unit.name}</strong><small>${def.className}</small></span>
+          <span class="roster-card__hp">${unit.currentHealth}/${maxHp}</span>
+          ${unit.narrativeLocked ? '<i title="Unité narrative">◆</i>' : ''}
+        </button>`;
+    }).join('');
+    return `
+      <div class="clan-layout ui-split">
+        <aside class="roster ui-scroll-panel">
+          <div class="roster__header"><div class="section-title ui-section-title">Compagnie</div><span>Membres ${state.clan.members.length}/${state.clan.maxSize}</span></div>
+          <div class="roster__list">${roster}</div>
+        </aside>
+        <section class="unit-stage" data-feature-presentation="MASTER_SHOWCASE" aria-label="Personnage sélectionné">
+          <div class="unit-stage__banner" aria-hidden="true"><span>⚜</span></div>
+          <div class="unit-stage__aura" aria-hidden="true"></div>
+          <div class="unit-stage__figure" data-asset-ownership="MASTER_FULL_BODY"><img src="${unitFullPortrait(definition)}" alt="${selected.name}"></div>
+          <div class="unit-stage__base" aria-hidden="true"></div>
+          <div class="unit-stage__caption"><span>Unité active</span><strong>${selected.name}</strong></div>
+        </section>
+        <article class="unit-sheet ui-scroll-panel">
+          <div class="unit-sheet__identity">
+            <p class="eyebrow ui-eyebrow">${definition.className}</p>
+            <h3>${selected.name}</h3>
+            <p class="unit-sheet__description">${this.unitDescription(definition)}</p>
+          </div>
+          <div class="stat-grid">
+            ${this.stat('PV', `${selected.currentHealth}/${stats.maxHealth}`)}${this.stat('FOR', stats.strength)}${this.stat('MAG', stats.magic)}
+            ${this.stat('END', stats.endurance)}${this.stat('DEX', stats.dexterity)}${this.stat('CHA', stats.charisma)}
+            ${this.stat('DÉPLAC.', stats.moveRange)}
+          </div>
+          <div class="equipment">
+            <div class="section-title ui-section-title">Équipement</div>
+            ${this.equipmentSlot(selected, 'weapon', 0)}
+            ${([0, 1] as const).map((slot) => this.equipmentSlot(selected, 'accessory', slot)).join('')}
+          </div>
+          <div class="skills">
+            <div class="section-title ui-section-title">Capacités de combat</div>
+            ${this.renderSkills(selected)}
+          </div>
+        </article>
+      </div>`;
+  }
+
+  private equipmentSlot(unit: UnitInstance, type: 'weapon' | 'accessory', slot: number): string {
+    const currentId = type === 'weapon'
+      ? unit.equipment.weaponIds[slot]!
+      : unit.equipment.accessoryIds[slot as 0 | 1] ?? null;
+    const item = currentId ? itemById.get(currentId) : null;
+    const label = type === 'weapon' ? 'Arme' : `Accessoire ${slot + 1}`;
+    const icon = item?.icon ?? (type === 'weapon' ? '⚔' : '◇');
+    const name = item?.name ?? 'Emplacement vide';
+    return `<button type="button" class="equipment-slot ui-panel ui-panel--dense" data-equip-slot="${type}" data-equip-slot-index="${slot}">
+      <span class="equipment-slot__icon">${icon}</span>
+      <span class="equipment-slot__body"><span class="equipment-slot__label">${label}</span><strong>${name}</strong></span>
+      ${item ? `<span class="equipment-slot__hint">⚙</span>` : '<span class="equipment-slot__hint">+</span>'}
+    </button>`;
+  }
+
+  private renderEquipSlotModal(): string {
+    const slot = this.activeEquipSlot!;
+    const state = this.options.getState();
+    const unit = state.clan.members.find((u) => u.id === this.selectedUnitId);
+    if (!unit) return '';
+    const currentId = slot.type === 'weapon'
+      ? unit.equipment.weaponIds[slot.slot]!
+      : unit.equipment.accessoryIds[slot.slot as 0 | 1] ?? null;
+    const currentItem = currentId ? itemById.get(currentId) : null;
+    const currentWeapon = currentItem?.category === 'weapons' ? weaponById.get(currentItem.id) ?? null : null;
+    const previewItem = this.previewItemId ? itemById.get(this.previewItemId) : null;
+    const available = this.getAvailableItemsForSlot(unit, slot.type, currentId);
+    const isWeaponSlot = slot.type === 'weapon';
+    const slotLabel = isWeaponSlot ? 'Arme' : `Accessoire ${slot.slot + 1}`;
+    const statsClass = (item: ItemDefinition) => item.category === 'weapons' ? 'item-modal__weapon-details' : 'item-modal__stats';
+    return `<div class="item-modal-overlay" data-equip-slot-close>
+      <div class="item-modal ui-panel weapon-modal" role="dialog" aria-modal="true" aria-label="Équipement">
+        <button type="button" class="icon-button ui-icon-button" data-equip-slot-close aria-label="Fermer">×</button>
+        ${previewItem ? `
+          <div class="weapon-modal__header">
+            <span class="item-row__icon ui-chip">${previewItem.icon}</span>
+            <div class="weapon-modal__title-block">
+              <h3 class="weapon-modal__title">${previewItem.name}</h3>
+              <small class="weapon-modal__subtitle">${previewItem.description}</small>
+            </div>
+          </div>
+          <div class="${statsClass(previewItem)}">${this.itemStatRows(previewItem, currentWeapon ?? undefined, unit)}</div>
+          <div class="weapon-modal__actions">
+            <button type="button" class="ui-button ui-button--secondary" data-preview-back>← Retour</button>
+            <button type="button" class="ui-button" data-equip-confirm="${previewItem.id}" aria-label="${escapeAttribute(`Équiper ${previewItem.name} pour ${unit.name}`)}">Équiper</button>
+          </div>
+        ` : `
+          <div class="weapon-modal__header">
+            <span class="item-row__icon ui-chip">${currentItem?.icon ?? '◇'}</span>
+            <div class="weapon-modal__title-block">
+              <h3 class="weapon-modal__title">${currentItem ? currentItem.name : slotLabel}</h3>
+              ${currentItem
+                ? `<small class="weapon-modal__status">${isWeaponSlot ? 'Arme équipée' : 'Accessoire équipé'}</small>`
+                : '<small class="weapon-modal__subtitle">Emplacement vide</small>'}
+            </div>
+          </div>
+          ${currentItem ? `<div class="${statsClass(currentItem)}">${this.itemStatRows(currentItem, undefined, unit)}</div>` : '<p class="empty-copy">Aucun objet équipé.</p>'}
+          ${!isWeaponSlot && currentItem ? `<button type="button" class="ui-button ui-button--secondary" data-equip-unequip="${slot.type}" data-equip-unequip-slot="${slot.slot}">Retirer</button>` : ''}
+          <div class="weapon-modal__replacement-section">
+            <div class="weapon-modal__section-title">Remplacer par</div>
+            ${available.length > 0
+              ? `<div class="weapon-replacement-list">${available.map((item) => this.renderReplacementCard(item, currentWeapon, isWeaponSlot ? unit : null)).join('')}</div>`
+              : '<p class="empty-copy">Aucun objet disponible dans l\'inventaire.</p>'}
+          </div>
+        `}
+      </div>
+    </div>`;
+  }
+
+  private weaponStatRow(label: string, value: string, delta?: number): string {
+    const deltaHtml = delta !== undefined && delta !== 0
+      ? `<span class="weapon-modal__stat-delta ${delta > 0 ? 'weapon-modal__stat-delta--positive' : 'weapon-modal__stat-delta--negative'}">${delta > 0 ? '+' : ''}${delta}</span>`
+      : '';
+    return `<div class="weapon-modal__stat-row"><span class="weapon-modal__stat-label">${label}</span><span class="weapon-modal__stat-value">${value}</span>${deltaHtml}</div>`;
+  }
+
+  private getWeaponSkillName(weapon: WeaponDefinition, unit: UnitInstance): string | null {
+    const tier = weapon.tier ?? 0;
+    if (tier <= 0) {
+      const initialId = unitById.get(unit.definitionId)?.skillIds[0];
+      const unequipped = { ...unit, equipment: { ...unit.equipment, weaponIds: [] } };
+      return initialId && isSkillUnlockedForHero(unequipped, initialId)
+        ? skillPresentation[initialId]?.name ?? null : null;
+    }
+    const targetAp = tier + 1;
+    const skillIds = getResolvedSkills(unit);
+    for (const id of skillIds) {
+      const s = skillPresentation[id];
+      if (s && s.ap === targetAp) return s.name;
+    }
+    return null;
+  }
+
+  private getWeaponProgressionLabel(weapon: WeaponDefinition, unit?: UnitInstance): string {
+    if (unit) {
+      const skillName = this.getWeaponSkillName(weapon, unit);
+      if (skillName) {
+        const ap = Math.max(2, (weapon.tier ?? 0) + 1);
+        const availableInitially = weapon.tier <= 1
+          && this.getWeaponSkillName({ ...weapon, tier: 0 }, unit) === skillName;
+        return `${availableInitially ? 'Disponible' : 'Débloque'} : ${skillName} — ${ap} PA`;
+      }
+    }
+    return getWeaponSkillUnlockLabel(weapon);
+  }
+
+  private renderReplacementCard(item: ItemDefinition, currentWeapon: WeaponDefinition | null, unit: UnitInstance | null): string {
+    if (item.category === 'weapons' && unit) {
+      const weapon = weaponById.get(item.id);
+      if (!weapon) return '';
+      const tierLabel = `T${weapon.tier ?? 0}`;
+      const profileLabel = getWeaponProfileLabel(weapon);
+      const skillName = this.getWeaponSkillName(weapon, unit);
+      const skillShort = skillName ? `${skillName} ${Math.max(2, (weapon.tier ?? 0) + 1)} PA` : getWeaponSkillUnlockLabel(weapon);
+      const metaParts: string[] = [`${tierLabel} · ${profileLabel}`];
+      if (skillShort) metaParts.push(skillShort);
+      if (currentWeapon) {
+        const dDmg = weapon.damage - currentWeapon.damage;
+        const dHp = (weapon.healthBonus ?? 0) - (currentWeapon.healthBonus ?? 0);
+        const dAcc = weapon.accuracyBonus - currentWeapon.accuracyBonus;
+        if (dDmg !== 0) metaParts.push(`${dDmg > 0 ? '+' : ''}${dDmg} Puiss.`);
+        if (dHp !== 0) metaParts.push(`${dHp > 0 ? '+' : ''}${dHp} PV`);
+        if (dAcc !== 0) metaParts.push(`${dAcc > 0 ? '+' : ''}${dAcc} Précis.`);
+      }
+      const affixShort = formatWeaponAffixShort(weapon);
+      if (affixShort) metaParts.push(affixShort);
+      return `<button type="button" class="weapon-replacement-row" data-preview-item="${item.id}">
+        <span class="item-row__icon ui-chip">${item.icon}</span>
+        <span class="weapon-replacement-main">
+          <strong>${item.name}</strong>
+          <small class="weapon-replacement-meta">${metaParts.join(' · ')}</small>
+        </span>
+      </button>`;
+    }
+    if (item.category === 'accessories') {
+      const metaParts: string[] = [];
+      const modifiers = item.modifiers ?? {};
+      const labels: Record<string, string> = { maxHealth: 'PV', strength: 'FOR', magic: 'MAG', endurance: 'END', dexterity: 'DEX', charisma: 'CHA', moveRange: 'DÉPLAC.' };
+      for (const [key, value] of Object.entries(modifiers)) {
+        metaParts.push(`+${value} ${labels[key] ?? key}`);
+      }
+      const granted = item.skillModifier?.grants ?? [];
+      if (granted.length > 0) {
+        metaParts.push(granted.map((id) => skillPresentation[id]?.name ?? id).join(', '));
+      }
+      if (item.innateGiftModifier) {
+        metaParts.push(`Améliore ${item.innateGiftModifier.label}`);
+      }
+      return `<button type="button" class="weapon-replacement-row" data-preview-item="${item.id}">
+        <span class="item-row__icon ui-chip">${item.icon}</span>
+        <span class="weapon-replacement-main">
+          <strong>${item.name}</strong>
+          <small class="weapon-replacement-meta">${metaParts.join(' · ') || 'Aucun bonus'}</small>
+        </span>
+      </button>`;
+    }
+    return `<button type="button" class="weapon-replacement-row" data-preview-item="${item.id}"><span class="item-row__icon ui-chip">${item.icon}</span><span class="weapon-replacement-main"><strong>${item.name}</strong><small class="weapon-replacement-meta">${item.description}</small></span></button>`;
+  }
+
+  private getAvailableItemsForSlot(unit: UnitInstance, type: 'weapon' | 'accessory', currentId: string | null): ItemDefinition[] {
+    const state = this.options.getState();
+    if (type === 'weapon') {
+      const definition = unitById.get(unit.definitionId)!;
+      const equipped = new Set(unit.equipment.weaponIds);
+      return weapons.filter((w) =>
+        definition.allowedWeaponIds.includes(w.id)
+        && !equipped.has(w.id)
+        && (state.inventory.weapons[w.id] ?? 0) > 0);
+    }
+    return items.filter((item) =>
+      item.category === 'accessories'
+      && item.id !== currentId
+      && (state.inventory.accessories[item.id] ?? 0) > 0);
+  }
+
+  private stat(label: string, value: number | string): string {
+    return `<div class="ui-stat"><span>${label}</span><strong>${value}</strong></div>`;
+  }
+
+  private renderSkills(unit: UnitInstance): string {
+    const skillIds = getResolvedSkills(unit);
+    const apt = getInnateGift(unit.definitionId);
+
+    const activeSkills = skillIds.filter((id) => {
+      const s = skillPresentation[id];
+      return s && s.ap !== undefined && s.ap < 5 && isSkillUnlockedForHero(unit, id);
+    }).sort((a, b) => (skillPresentation[a]?.ap ?? 0) - (skillPresentation[b]?.ap ?? 0));
+    const activeCards = activeSkills.map((id) => {
+      const s = skillPresentation[id]!;
+      return `<article class="skill-card skill-card--active"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p></article>`;
+    }).join('');
+    const actionsSection = `<div class="unit-skill-section">
+      <div class="unit-skill-section__title">Action de base</div>
+      <div class="skill-list">
+        <article class="skill-card skill-card--active"><div><strong>Attaque de base</strong><span>1 PA</span></div><p>Frappe avec l'arme équipée.</p></article>
+      </div>
+    </div>`;
+
+    const innateSection = apt ? `<div class="unit-skill-section">
+      <div class="unit-skill-section__title">Don inné</div>
+      <article class="skill-card skill-card--passive">
+        <div><strong>${apt.name}</strong><span class="skill-badge--passive">Passif</span></div>
+        <p>${apt.description}</p>
+        <small class="skill-card__hint">Disponible dès le début</small>
+      </article>
+    </div>` : '';
+
+    const lockedSkills = skillIds.filter((id) => {
+      const s = skillPresentation[id];
+      return s && s.ap !== undefined && s.ap < 5 && !isSkillUnlockedForHero(unit, id);
+    }).sort((a, b) => (skillPresentation[a]?.ap ?? 0) - (skillPresentation[b]?.ap ?? 0));
+    const lockedRows = lockedSkills.map((id) => {
+      const s = skillPresentation[id]!;
+      const reason = getLockedSkillReason(unit, id);
+      return `<div class="unit-skill-locked-row"><strong>${s.name}</strong><span>${s.ap} PA</span><small>${reason}</small></div>`;
+    }).join('');
+    const unlockedCards = activeSkills.map((id) => {
+      const s = skillPresentation[id]!;
+      return `<article class="skill-card skill-card--active"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p></article>`;
+    }).join('');
+    const hasTechniques = activeSkills.length > 0 || lockedSkills.length > 0;
+    const techniquesSection = hasTechniques ? `<div class="unit-skill-section">
+      <div class="unit-skill-section__title">Compétences</div>
+      ${activeSkills.length > 0 ? `<div class="skill-list">${unlockedCards}</div>` : ''}
+      ${lockedSkills.length > 0 ? `<div class="unit-skill-locked-list">${lockedRows}</div>` : ''}
+    </div>` : '';
+
+    const ultimateSkills = skillIds.filter((id) => {
+      const s = skillPresentation[id];
+      return s && s.ap !== undefined && s.ap >= 5;
+    });
+    const ultimateCards = ultimateSkills.map((id) => {
+      const s = skillPresentation[id]!;
+      return `<article class="skill-card skill-card--ultimate"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p><small class="skill-card__lock">Éveil spécial requis</small></article>`;
+    }).join('');
+    const ultimateSection = ultimateSkills.length > 0 ? `<div class="unit-skill-section">
+      <div class="unit-skill-section__title">Ultimate</div>
+      <div class="skill-list">${ultimateCards}</div>
+    </div>` : '';
+
+    return actionsSection + innateSection + techniquesSection + ultimateSection;
+  }
+
+  private renderSkillUpgrades(): string {
+    const state = this.options.getState();
+    const selected = state.clan.members.find((unit) => unit.id === this.selectedUnitId) ?? state.clan.members[0];
+    if (!selected) return '<p class="empty-copy">Aucune unité.</p>';
+    const definition = unitById.get(selected.definitionId)!;
+    const skills = getResolvedSkills(selected).filter((id) => isSkillUnlockedForHero(selected, id));
+    const gems = state.inventory.materials.red_gem ?? 0;
+    const rows = skills.map((skillId) => {
+      const skill = skillPresentation[skillId] ?? { name: skillId, description: 'Compétence disponible en combat.' };
+      const level = Math.max(0, Math.min(2, selected.skillUpgrades[skillId] ?? 0));
+      const cost = getSkillUpgradeCost(level);
+      const disabled = cost === null || gems < cost;
+      const effect = this.skillUpgradeEffect(skillId, level);
+      const next = cost === null ? 'Niveau maximal atteint.' : this.skillUpgradeEffect(skillId, level + 1);
+      return `<article class="skill-upgrade-card ui-panel ui-panel--soft">
+        <div class="skill-upgrade-card__head">
+          <div><strong>${skill.name}</strong><small>${skill.description}</small></div>
+          <span class="ui-chip">Niv. ${level}/2</span>
+        </div>
+        <div class="skill-upgrade-card__body">
+          <p><b>Actuel</b> ${effect}</p>
+          <p><b>Prochain</b> ${next}</p>
+        </div>
+        <button type="button" class="ui-button ui-button--secondary" data-upgrade-skill="${skillId}" aria-label="${escapeAttribute(`Améliorer ${skill.name} pour ${selected.name} · ${cost === null ? 'niveau maximal atteint' : `${cost} gemme${cost > 1 ? 's' : ''}`}`)}" ${disabled ? 'disabled' : ''}>
+          ${cost === null ? 'Amélioration max' : `Améliorer · ${cost} gemme${cost > 1 ? 's' : ''}`}
+        </button>
+      </article>`;
+    }).join('');
+    return `<div class="skills-view">
+      <aside class="roster ui-scroll-panel">
+        <div class="roster__header"><div class="section-title ui-section-title">Compagnie</div><span>Gemmes ${gems}</span></div>
+        <div class="roster__list">${state.clan.members.map((unit) => {
+          const def = unitById.get(unit.definitionId)!;
+          return `<button type="button" class="roster-card ui-panel ui-panel--dense ${unit.id === selected.id ? 'is-active' : ''}" data-unit="${unit.id}">
+            <span class="roster-card__portrait" data-ui-crop="${unitUiCropMode(def)}"><img src="${unitUiPortrait(def)}" alt=""></span>
+            <span class="roster-card__body"><strong>${unit.name}</strong><small>${def.className}</small></span>
+          </button>`;
+        }).join('')}</div>
+      </aside>
+      <section class="skills-view__tree ui-scroll-panel">
+        <div class="unit-sheet__identity">
+          <p class="eyebrow ui-eyebrow">${definition.className}</p>
+          <h3>${selected.name}</h3>
+          <p class="unit-sheet__description">Dépense des gemmes rouges pour renforcer les compétences résolues par la classe et l’équipement.</p>
+        </div>
+        <div class="skill-upgrade-list">${rows || '<p class="empty-copy">Aucune compétence à améliorer.</p>'}</div>
+      </section>
+    </div>`;
+  }
+
+  private skillUpgradeEffect(skillId: string, level: number): string {
+    if (level <= 0) return 'Effet de base.';
+    const def = SKILL_DEFS.find((s) => s.id === skillId);
+    if (def) {
+      const up = level === 1 ? def.upgradeLevel1 : def.upgradeLevel2;
+      if (up) return up.description;
+    }
+    // Legacy fallback
+    const damageSkills = new Set(['whirl', 'weaken', 'blind_shot', 'pierce_shot', 'fireball', 'flame_wave', 'bolt', 'heavy', 'charge']);
+    if (damageSkills.has(skillId)) return `Puissance +${level === 1 ? 2 : 4}.`;
+    if (skillId === 'heal') return `Soins +${level === 1 ? 10 : 20}%.`;
+    if (skillId === 'revive') return `Relève à ${level === 1 ? 60 : 70}% PV.`;
+    if (['blink', 'leap'].includes(skillId)) return `Portée maximale +${level}${level >= 2 ? ', coût optimisé si possible' : ''}.`;
+    return level === 1 ? 'Durée +1 tour si applicable.' : 'Durée +1 tour et efficacité légèrement renforcée.';
+  }
+
+  private unitDescription(definition: UnitDefinition): string {
+    const descriptions: Record<UnitDefinition['combatKind'], string> = {
+      knight: 'Combattant de première ligne robuste et défenseur loyal. Protège ses alliés et contrôle le champ de bataille.',
+      cleric: 'Soutien spirituel de la compagnie. Préserve l’escouade et renforce les lignes fragiles.',
+      mage: 'Arcaniste à haute pression. Excelle dans les dégâts magiques et le contrôle tactique.',
+      archer: 'Tireur mobile et précis. Harcèle les cibles clés depuis les lignes sûres.',
+      rogue: 'Éclaireur furtif à dextérité supérieure. Repère, affaiblit et frappe les cibles vulnérables.',
+    };
+    return descriptions[definition.combatKind];
+  }
+
+  private renderInventory(): string {
+    const state = this.options.getState();
+    return `<div class="inventory-view">${(Object.keys(categoryLabels) as ItemCategory[]).map((category) => {
+      const rows = Object.entries(state.inventory[category]).filter(([, quantity]) => quantity > 0);
+      return `<section class="inventory-group ui-panel ui-panel--soft"><div class="section-title ui-section-title">${categoryLabels[category]}</div>
+        ${rows.length ? rows.map(([id, quantity]) => this.itemRow(id, quantity, category === 'consumables' ? this.consumableAction(id) : '')).join('') : '<p class="empty-copy">Aucun objet.</p>'}
+      </section>`;
+    }).join('')}</div>`;
+  }
+
+  private consumableAction(itemId: string): string {
+    const state = this.options.getState();
+    if (itemId === 'revive_vial') {
+      const fallen = state.clan.members.filter((unit) => unit.currentHealth === 0);
+      if (fallen.length === 0) return '';
+      const options = fallen.map((unit) => {
+        const maxHealth = getFinalStats(unit).maxHealth;
+        return `<option value="${unit.id}">${unit.name} (0/${maxHealth})</option>`;
+      }).join('');
+      return `<span class="item-row__action"><select data-use-unit="${itemId}" aria-label="Unité à ranimer avec ${escapeAttribute(itemById.get(itemId)!.name)}"><option value="">— Ranimer —</option>${options}</select><button type="button" class="ui-button ui-button--secondary" data-use-item="${itemId}" aria-label="Utiliser ${escapeAttribute(itemById.get(itemId)!.name)} sur l’unité sélectionnée">Utiliser</button></span>`;
+    }
+    if (itemId === 'potion') {
+      const wounded = state.clan.members.filter((unit) => unit.currentHealth > 0 && unit.currentHealth < getFinalStats(unit).maxHealth);
+      if (wounded.length === 0) return '';
+      const options = wounded.map((unit) => {
+        const maxHealth = getFinalStats(unit).maxHealth;
+        return `<option value="${unit.id}">${unit.name} (${unit.currentHealth}/${maxHealth})</option>`;
+      }).join('');
+      return `<span class="item-row__action"><select data-use-unit="${itemId}" aria-label="Unité à soigner avec ${escapeAttribute(itemById.get(itemId)!.name)}"><option value="">— Soigner —</option>${options}</select><button type="button" class="ui-button ui-button--secondary" data-use-item="${itemId}" aria-label="Utiliser ${escapeAttribute(itemById.get(itemId)!.name)} sur l’unité sélectionnée">Utiliser</button></span>`;
+    }
+    return '';
+  }
+
+  private itemRow(id: string, quantity: number, action = ''): string {
+    const item = itemById.get(id);
+    if (!item) return '';
+    const hasDetails = item.category === 'weapons' || item.category === 'accessories';
+    const detailsClass = hasDetails ? ' item-row--details' : '';
+    const content = `<span class="item-row__icon ui-chip" aria-hidden="true">${item.icon}</span>
+      <span class="item-row__body"><strong>${item.name}</strong><small>${item.description}</small></span>`;
+    return `<div class="item-row ui-panel ui-panel--dense${detailsClass}">
+      ${hasDetails ? `<button type="button" class="item-row__details" data-item-details="${id}" aria-label="${escapeAttribute(`Voir les détails de ${item.name}`)}">${content}</button>` : content}
+      <b>×${quantity}</b>${action}
+    </div>`;
+  }
+
+  private renderItemModal(): string {
+    const item = this.activeItemId ? itemById.get(this.activeItemId) : null;
+    if (!item) return '';
+    return `<div class="item-modal-overlay" data-item-modal-close>
+      <div class="item-modal ui-panel weapon-modal" role="dialog" aria-modal="true" aria-label="Détails de l’objet">
+        <button type="button" class="icon-button ui-icon-button" data-item-modal-close aria-label="Fermer">×</button>
+        <div class="weapon-modal__header">
+          <span class="item-row__icon ui-chip">${item.icon}</span>
+          <div class="weapon-modal__title-block">
+            <h3 class="weapon-modal__title">${item.name}</h3>
+            <small class="weapon-modal__subtitle">${item.description}</small>
+          </div>
+        </div>
+        <div class="${item.category === 'weapons' ? 'item-modal__weapon-details' : 'item-modal__stats'}">
+          ${this.itemStatRows(item)}
+        </div>
+      </div>
+    </div>`;
+  }
+
+  private itemStatRows(item: ItemDefinition, comparisonWeapon?: WeaponDefinition, unit?: UnitInstance): string {
+    if (item.category === 'weapons') {
+      return this.renderWeaponDetails(item, comparisonWeapon, unit);
+    }
+    if (item.category === 'accessories') {
+      return this.renderAccessoryDetails(item);
+    }
+    return '';
+  }
+
+  private renderAccessoryDetails(item: ItemDefinition): string {
+    const modifiers = item.modifiers ?? {};
+    const labels: Record<string, string> = {
+      maxHealth: 'PV', strength: 'FOR', magic: 'MAG', endurance: 'END',
+      dexterity: 'DEX', charisma: 'CHA', moveRange: 'DÉPLAC.',
+    };
+    const statRows = Object.entries(modifiers).map(([key, value]) =>
+      this.weaponStatRow(labels[key] ?? key, `+${value}`)
+    ).join('');
+    const granted = item.skillModifier?.grants ?? [];
+    const grantedLabel = granted.length > 0
+      ? granted.map((id) => skillPresentation[id]?.name ?? id).join(', ')
+      : '';
+    const innate = item.innateGiftModifier;
+    return `<div class="weapon-modal__body">
+      ${statRows ? `<div class="weapon-modal__stat-list">${statRows}</div>` : '<p class="empty-copy">Aucun bonus statistique.</p>'}
+      ${grantedLabel ? `<div class="weapon-modal__progression"><span class="weapon-modal__progression-label">Effet spécial</span><p>${grantedLabel}</p></div>` : ''}
+      ${innate ? this.renderInnateGiftModifierSection(innate) : ''}
+    </div>`;
+  }
+
+  private renderInnateGiftModifierSection(modifier: InnateGiftModifier): string {
+    return `<div class="weapon-modal__innate-modifier">
+      <span class="weapon-modal__innate-modifier-label">Améliore le don inné</span>
+      <strong>${modifier.label}</strong>
+      <p>${modifier.description}</p>
+    </div>`;
+  }
+
+  private renderWeaponDetails(item: ItemDefinition, comparisonWeapon?: WeaponDefinition, unit?: UnitInstance): string {
+    const weapon = weaponById.get(item.id);
+    if (!weapon) return '';
+    const tierLabel = `T${weapon.tier ?? 0}`;
+    const profileLabel = getWeaponProfileLabel(weapon);
+    const progressionLabel = this.getWeaponProgressionLabel(weapon, unit);
+    const rangeLabel = weapon.minRange ? `${weapon.minRange}–${weapon.range}` : `${weapon.range}`;
+    const showRange = weapon.range > 1 || weapon.minRange;
+    const cmp = comparisonWeapon;
+    const statRows = [
+      this.weaponStatRow('Puissance', `${weapon.damage}`, cmp ? weapon.damage - cmp.damage : undefined),
+      weapon.healthBonus ? this.weaponStatRow('PV', `+${weapon.healthBonus}`, cmp ? weapon.healthBonus - (cmp.healthBonus ?? 0) : undefined) : '',
+      showRange ? this.weaponStatRow('Portée', rangeLabel) : '',
+      this.weaponStatRow('Précision', `+${weapon.accuracyBonus}`, cmp ? weapon.accuracyBonus - cmp.accuracyBonus : undefined),
+      this.weaponStatRow('Critique', `+${weapon.critBonus}`, cmp ? weapon.critBonus - cmp.critBonus : undefined),
+    ].filter(Boolean).join('');
+    const affixText = formatWeaponAffix(weapon);
+    return `<div class="weapon-modal__body">
+      <div class="weapon-modal__badges">
+        <span class="weapon-modal__tier-badge">${tierLabel}</span>
+        <span class="weapon-modal__profile-badge">${profileLabel}</span>
+      </div>
+      <div class="weapon-modal__stat-list">${statRows}</div>
+      ${affixText ? `<div class="weapon-modal__affix"><span class="weapon-modal__progression-label">Altération</span><p>${affixText}</p></div>` : ''}
+      <div class="weapon-modal__progression">
+        <span class="weapon-modal__progression-label">Progression</span>
+        <p>${progressionLabel}</p>
+      </div>
+    </div>`;
+  }
+
+  private renderShop(): string {
+    const state = this.options.getState();
+    if (this.shopMode === 'craft') return this.renderForge();
+    const source = this.shopMode === 'buy'
+      ? Object.entries(state.shops[this.shopId]?.stock ?? {})
+      : (Object.keys(categoryLabels) as ItemCategory[]).flatMap((category) => Object.entries(state.inventory[category]));
+    const rows = source.filter(([, quantity]) => quantity > 0).map(([id, quantity]) => {
+      const item = itemById.get(id);
+      if (!item) return '';
+      const price = this.shopMode === 'buy' ? getShopPrice(item.price, state.reputation) : Math.floor(item.price / 2);
+      const availableGold = this.shopWallet === 'temporary' ? state.run.temporaryLoot.gold : state.gold;
+      const disabled = this.shopMode === 'buy' && availableGold < price;
+      const action = `<button type="button" class="ui-button ui-button--secondary" data-trade="${this.shopMode}" data-item="${id}" aria-label="${escapeAttribute(`${this.shopMode === 'buy' ? 'Acheter' : 'Vendre'} ${item.name} · ${price} or`)}" ${disabled ? 'disabled' : ''}>${price} or</button>`;
+      return this.itemRow(id, quantity, action);
+    }).join('');
+    return `<div class="shop-view">
+      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Échoppe de Valmir · ${getReputationRule(state.reputation).label}</p><h3>Le Comptoir du Cerf</h3><small>Les achats utilisent ${this.shopWallet === 'temporary' ? 'le butin non sécurisé' : 'le coffre permanent'}.</small></div>
+        <div class="shop-toggle">
+          <button type="button" data-shop-mode="buy" class="ui-tab ${this.shopMode === 'buy' ? 'is-active' : ''}">Acheter</button>
+          <button type="button" data-shop-mode="sell" class="ui-tab ${this.shopMode === 'sell' ? 'is-active' : ''}">Vendre</button>
+          <button type="button" data-shop-mode="craft" class="ui-tab">Forge</button>
+        </div>
+      </div>
+      <div class="shop-list">${rows || '<p class="empty-copy">Aucun article disponible.</p>'}</div>
+    </div>`;
+  }
+
+  private renderForge(): string {
+    const state = this.options.getState();
+    const rows = craftRecipes.map((recipe) => {
+      const output = itemById.get(recipe.output.itemId);
+      const disabled = !canCraftItem(state, recipe.id);
+      const ingredients = [
+        ...Object.entries(recipe.inputs.weapons ?? {}).map(([id, quantity]) => this.ingredientLabel('weapons', id, quantity)),
+        ...Object.entries(recipe.inputs.accessories ?? {}).map(([id, quantity]) => this.ingredientLabel('accessories', id, quantity)),
+      ].join('');
+      return `<article class="craft-recipe ui-panel ui-panel--soft">
+        <div class="craft-recipe__output">
+          <span class="item-row__icon ui-chip">${output?.icon ?? '✦'}</span>
+          <div>
+            <strong>${recipe.name}</strong>
+            <small>${recipe.description}</small>
+          </div>
+        </div>
+        <div class="craft-recipe__meta">
+          <p><b>Créé</b> ${output?.name ?? recipe.output.itemId} ×${recipe.output.quantity}</p>
+          <p><b>Effet</b> ${recipe.preview}</p>
+        </div>
+        <div class="craft-recipe__ingredients">${ingredients}<span class="ui-chip">${recipe.inputs.gold} or</span></div>
+        <button type="button" class="ui-button ui-button--secondary" data-craft="${recipe.id}" aria-label="${escapeAttribute(`Forger ${output?.name ?? recipe.output.itemId} · ${recipe.inputs.gold} or`)}" ${disabled ? 'disabled' : ''}>Forger</button>
+      </article>`;
+    }).join('');
+    return `<div class="shop-view shop-view--forge">
+      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Forge de Valmir · ${getReputationRule(state.reputation).label}</p><h3>Artisan du refuge</h3><small>Les recettes consomment vos objets permanents et l’or du coffre.</small></div>
+        <div class="shop-toggle">
+          <button type="button" data-shop-mode="buy" class="ui-tab ${this.shopMode === 'buy' ? 'is-active' : ''}">Acheter</button>
+          <button type="button" data-shop-mode="sell" class="ui-tab ${this.shopMode === 'sell' ? 'is-active' : ''}">Vendre</button>
+          <button type="button" data-shop-mode="craft" class="ui-tab ${this.shopMode === 'craft' ? 'is-active' : ''}">Forge</button>
+        </div>
+      </div>
+      <div class="craft-list">${rows}</div>
+    </div>`;
+  }
+
+  private ingredientLabel(category: 'weapons' | 'accessories', itemId: string, quantity: number): string {
+    const state = this.options.getState();
+    const item = itemById.get(itemId);
+    const owned = state.inventory[category][itemId] ?? 0;
+    return `<span class="ui-chip ${owned >= quantity ? '' : 'is-missing'}">${item?.name ?? itemId} ${owned}/${quantity}</span>`;
+  }
+
+  private bind(): void {
+    if (!this.overlay) return;
+    this.overlay.querySelector('[data-action="close"]')?.addEventListener('click', () => this.close());
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-tab]').forEach((button) => {
+      button.addEventListener('click', () => {
+        this.tab = button.dataset.tab as ManagementTab;
+        this.render();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-unit]').forEach((button) => {
+      button.addEventListener('click', () => {
+        this.selectedUnitId = button.dataset.unit ?? '';
+        this.render();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-equip-slot]').forEach((button) => {
+      button.addEventListener('click', () => {
+        this.activeEquipSlot = {
+          type: button.dataset.equipSlot as 'weapon' | 'accessory',
+          slot: Number(button.dataset.equipSlotIndex),
+        };
+        this.previewItemId = null;
+        this.render();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLElement>('[data-equip-slot-close]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        if (e.target === el) {
+          this.activeEquipSlot = null;
+          this.previewItemId = null;
+          this.render();
+        }
+      });
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-equip-unequip]').forEach((button) => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const type = button.dataset.equipUnequip as 'weapon' | 'accessory';
+        const slot = Number(button.dataset.equipUnequipSlot);
+        if (type === 'accessory') {
+          if (equipAccessory(this.options.getState(), this.selectedUnitId, slot as 0 | 1, null)) {
+            this.activeEquipSlot = null;
+            this.previewItemId = null;
+            this.changed();
+          }
+        }
+      });
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-preview-item]').forEach((button) => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.previewItemId = button.dataset.previewItem ?? null;
+        this.render();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-preview-back]').forEach((button) => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const itemId = this.previewItemId;
+        this.previewItemId = null;
+        this.render();
+        const replacement = [...this.overlay?.querySelectorAll<HTMLButtonElement>('[data-preview-item]') ?? []]
+          .find(control => control.dataset.previewItem === itemId);
+        replacement?.focus();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-equip-confirm]').forEach((button) => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const itemId = button.dataset.equipConfirm ?? '';
+        const slot = this.activeEquipSlot!;
+        if (slot.type === 'weapon') {
+          if (equipWeapon(this.options.getState(), this.selectedUnitId, itemId)) {
+            this.activeEquipSlot = null;
+            this.previewItemId = null;
+            this.changed();
+          }
+        } else {
+          if (equipAccessory(this.options.getState(), this.selectedUnitId, slot.slot as 0 | 1, itemId)) {
+            this.activeEquipSlot = null;
+            this.previewItemId = null;
+            this.changed();
+          }
+        }
+      });
+    });
+    this.overlay.querySelector('[data-action="exclude"]')?.addEventListener('click', () => {
+      const unit = this.options.getState().clan.members.find((candidate) => candidate.id === this.selectedUnitId);
+      if (!unit || !window.confirm(`Exclure ${unit.name} du clan ? Son équipement retournera à l’inventaire.`)) return;
+      if (excludeUnit(this.options.getState(), unit.id)) {
+        this.selectedUnitId = this.options.getState().clan.members[0]?.id ?? '';
+        this.changed();
+      }
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-shop-mode]').forEach((button) => {
+      button.addEventListener('click', () => {
+        this.shopMode = button.dataset.shopMode as 'buy' | 'sell' | 'craft';
+        this.render();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-trade]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const itemId = button.dataset.item ?? '';
+        const ok = button.dataset.trade === 'buy'
+          ? buyItem(this.options.getState(), this.shopId, itemId, this.shopWallet === 'temporary')
+          : sellItem(this.options.getState(), this.shopId, itemId, this.shopWallet === 'temporary');
+        if (ok) this.changed();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-craft]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const recipeId = button.dataset.craft ?? '';
+        if (craftItem(this.options.getState(), recipeId)) this.changed();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-upgrade-skill]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const skillId = button.dataset.upgradeSkill ?? '';
+        if (upgradeSkill(this.options.getState(), this.selectedUnitId, skillId)) this.changed();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-use-item]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const itemId = button.dataset.useItem ?? '';
+        const select = this.overlay?.querySelector<HTMLSelectElement>(`[data-use-unit="${itemId}"]`);
+        const unitId = select?.value ?? '';
+        if (!unitId) return;
+        if (useConsumable(this.options.getState(), unitId, itemId)) this.changed();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLElement>('[data-item-details]').forEach((row) => {
+      row.addEventListener('click', () => {
+        this.activeItemId = row.dataset.itemDetails ?? null;
+        this.render();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLElement>('[data-item-modal-close]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        if (e.target === el) {
+          this.activeItemId = null;
+          this.render();
+        }
+      });
+    });
+  }
+
+  private changed(): void {
+    this.options.onChange();
+    this.render();
+  }
+}

@@ -1,0 +1,79 @@
+.ui-screen {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  color: var(--ui-color-cream);
+}
+
+.ui-screen--dialog {
+  display: grid;
+  place-items: center;
+  padding: clamp(14px, 3vw, 42px);
+  pointer-events: auto;
+}
+
+.ui-shell {
+  position: relative;
+  width: min(1180px, 100%);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.ui-shell--management {
+  height: min(780px, 100%);
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+}
+
+.ui-hud {
+  display: grid;
+  align-items: center;
+  gap: var(--ui-space-4);
+  pointer-events: auto;
+}
+
+.ui-hud__section {
+  min-width: 0;
+}
+
+.ui-hud__stats,
+.ui-hud__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+}
+
+.ui-hud__actions {
+  justify-content: flex-end;
+}
+
+.ui-stack {
+  display: grid;
+  gap: var(--ui-space-3);
+}
+
+.ui-split {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 330px 1fr;
+}
+
+.ui-scroll-panel {
+  min-height: 0;
+  overflow: auto;
+}
+
+@media (max-width: 800px) {
+  .ui-screen--dialog {
+    padding: 0;
+  }
+
+  .ui-shell--management {
+    height: 100%;
+    border: 0;
+  }
+
+  .ui-split {
+    grid-template-columns: 1fr;
+  }
+}

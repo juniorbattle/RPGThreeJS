@@ -1,0 +1,431 @@
+{
+  "schemaVersion": 1,
+  "TASK": "DEMO-QA-POLISH_STANDALONE_KEYBOARD_MODIFIERS",
+  "DOMAIN": "combat/UI/accessibility/QA",
+  "BASELINE": "dev@14358d8a2005793ca457080e59f3f0fddd8f798a",
+  "BRANCH": "dev",
+  "HEAD": "14358d8a2005793ca457080e59f3f0fddd8f798a (execution source; working-tree driver SHA below)",
+  "STATUS": "ACCEPTED_SCOPED_STANDALONE_NATIVE_KEYBOARD_MODIFIERS_1366_620_390_NORMAL_OS",
+  "MERGED_IN": "NONE",
+  "SUPERSEDES": "NONE",
+  "SUPERSEDED_BY": "NONE",
+  "PRODUCTION_IMPACT": "NONE this run: verifies previously delivered Ctrl/Alt/Meta guard; QA driver only",
+  "CANONICAL_DOCS_UPDATED": [
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
+  ],
+  "runId": "rpgthreejs-auto-dev-90m-20261009T0613",
+  "recordedAt": "2026-10-09T06:51:23.750Z",
+  "acceptanceScope": "Standalone built combat: native Tab/ShiftTab, cursor, invalid/legal movement/target, modifier ownership, native controls/cancel/focus and pointer;1366/620/390 normal and OS-only",
+  "method": "ACTUAL_TAB_NATIVE_BUILT_STANDALONE",
+  "receipt": {
+    "jobId": "keyboard-0613",
+    "path": "tmp/demo/keyboard-0613/qa-job.json",
+    "sha256": "3c135b97cdcc63eec0d8d5da1454988e85b9da4fdfef3afe69762f386dde8701",
+    "startedAt": "2026-10-09T06:19:58.105Z",
+    "endedAt": "2026-10-09T06:46:18.222Z",
+    "resultPath": "tmp/demo/keyboard-0613/results.json",
+    "resultSha256": "3c3269d90cd81a2d440ce678ad2de778a49ca95ec4dfa68a0bc7350183ac03d7"
+  },
+  "provenance": {
+    "gitHead": "14358d8a2005793ca457080e59f3f0fddd8f798a",
+    "sourceTree": "d7cd1fe743138c5e860af098a371d27164cdf59c",
+    "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "driver": {
+      "path": "tools/combat-battlefield-keyboard-production-qa.mjs",
+      "sha256": "fbfa5123ac6bf78201803bcf3cb6da92d22737375e22616ef7d70d6e6eb5b134"
+    },
+    "inputs": [],
+    "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+    "build": [
+      {
+        "path": "dist/assets/ReducedMotion-CgtHztqA.js",
+        "sha256": "b1f8cbeab4c54a8c7eea48e6eeda9ac635b0fbdcb41115b9d375e98233fa0802"
+      },
+      {
+        "path": "dist/assets/combat-CR5R5JG5.js",
+        "sha256": "535f7d429b8fa72318b73aafef98c979393f27bc89de26d06820d6b38f1dfe50"
+      },
+      {
+        "path": "dist/assets/combat-DGLEfKFr.css",
+        "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+      },
+      {
+        "path": "dist/assets/game-3pkMo-Ir.css",
+        "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+      },
+      {
+        "path": "dist/assets/game-CfeGt3vL.js",
+        "sha256": "b059922fb1efd0bdc9944e07e83a4f75e1d1a9fd74b4db6eae90456ba2d365b4"
+      },
+      {
+        "path": "dist/assets/three-core-f0ajj1rG.js",
+        "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+      },
+      {
+        "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+        "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+      },
+      {
+        "path": "dist/assets/validation-mSkvzYyn.js",
+        "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "eb6086357447b6e5b34da2c0ffdfa1956d9e0d98472ab195b513fa1c19c32abb"
+      }
+    ]
+  },
+  "physicalFreeze": {
+    "path": "tmp/autonomy/physical-freeze-0613.json",
+    "sha256": "d3ad8300e0f8b2cd02ccbd28505c03334db87831adb8c87a14348e92fc521671",
+    "files": 395,
+    "build": 10,
+    "includesStandaloneHtml": true,
+    "allStableThroughTerminal": true
+  },
+  "cases": [
+    {
+      "viewport": [
+        1366,
+        768
+      ],
+      "osReducedMotion": false,
+      "gameReducedMotion": false,
+      "pass": true,
+      "deliveredModifierChords": 140,
+      "checks": [
+        "Deployment occupied cell modifier chords preserve native state/cursor/action/focus",
+        "Native manual keyboard deployment/removal",
+        "Actual Tab/Shift+Tab canvas entry/exit with visible focus",
+        "Grid edges/arrows preserve all tactical truth",
+        "Canvas inspection Enter/Space never ends a turn",
+        "Menu inspection modifier chords preserve native state/cursor/action/focus",
+        "Origin-cell Enter cannot move or spend AP",
+        "Escape restores enabled dock focus",
+        "Legal move cursor modifier chords preserve native state/cursor/action/focus",
+        "Legal native move restores dock focus",
+        "Exactly one native reachable move",
+        "Native attack Enter opens submenu only",
+        "Retour restores dock focus",
+        "Native attack Space opens submenu only",
+        "Retour restores dock focus",
+        "Invalid target Enter does not resolve/spend AP",
+        "Target Escape restores native attack focus",
+        "Legal attack target modifier chords preserve native state/cursor/action/focus",
+        "Native target execution restores enabled dock",
+        "Native legal foe target resolves once",
+        "Pointer target resolves through shared native activation",
+        "Native Wait advances one turn"
+      ],
+      "captures": [
+        "1366-no-preference-inspection-focus.png",
+        "1366-no-preference-move-cursor.png",
+        "1366-no-preference-target-preview.png",
+        "1366-no-preference-target-resolved.png"
+      ]
+    },
+    {
+      "viewport": [
+        1366,
+        768
+      ],
+      "osReducedMotion": true,
+      "gameReducedMotion": false,
+      "pass": true,
+      "deliveredModifierChords": 140,
+      "checks": [
+        "Deployment occupied cell modifier chords preserve native state/cursor/action/focus",
+        "Native manual keyboard deployment/removal",
+        "Actual Tab/Shift+Tab canvas entry/exit with visible focus",
+        "Grid edges/arrows preserve all tactical truth",
+        "Canvas inspection Enter/Space never ends a turn",
+        "Menu inspection modifier chords preserve native state/cursor/action/focus",
+        "Origin-cell Enter cannot move or spend AP",
+        "Escape restores enabled dock focus",
+        "Legal move cursor modifier chords preserve native state/cursor/action/focus",
+        "Legal native move restores dock focus",
+        "Exactly one native reachable move",
+        "Native attack Enter opens submenu only",
+        "Retour restores dock focus",
+        "Native attack Space opens submenu only",
+        "Retour restores dock focus",
+        "Invalid target Enter does not resolve/spend AP",
+        "Target Escape restores native attack focus",
+        "Legal attack target modifier chords preserve native state/cursor/action/focus",
+        "Native target execution restores enabled dock",
+        "Native legal foe target resolves once",
+        "Pointer target resolves through shared native activation",
+        "Native Wait advances one turn"
+      ],
+      "captures": [
+        "1366-reduce-inspection-focus.png",
+        "1366-reduce-move-cursor.png",
+        "1366-reduce-target-preview.png",
+        "1366-reduce-target-resolved.png"
+      ]
+    },
+    {
+      "viewport": [
+        620,
+        780
+      ],
+      "osReducedMotion": false,
+      "gameReducedMotion": false,
+      "pass": true,
+      "deliveredModifierChords": 140,
+      "checks": [
+        "Deployment occupied cell modifier chords preserve native state/cursor/action/focus",
+        "Native manual keyboard deployment/removal",
+        "Actual Tab/Shift+Tab canvas entry/exit with visible focus",
+        "Grid edges/arrows preserve all tactical truth",
+        "Canvas inspection Enter/Space never ends a turn",
+        "Menu inspection modifier chords preserve native state/cursor/action/focus",
+        "Origin-cell Enter cannot move or spend AP",
+        "Escape restores enabled dock focus",
+        "Legal move cursor modifier chords preserve native state/cursor/action/focus",
+        "Legal native move restores dock focus",
+        "Exactly one native reachable move",
+        "Native attack Enter opens submenu only",
+        "Retour restores dock focus",
+        "Native attack Space opens submenu only",
+        "Retour restores dock focus",
+        "Invalid target Enter does not resolve/spend AP",
+        "Target Escape restores native attack focus",
+        "Legal attack target modifier chords preserve native state/cursor/action/focus",
+        "Native target execution restores enabled dock",
+        "Native legal foe target resolves once",
+        "Pointer target resolves through shared native activation",
+        "Native Wait advances one turn"
+      ],
+      "captures": [
+        "620-no-preference-inspection-focus.png",
+        "620-no-preference-move-cursor.png",
+        "620-no-preference-target-preview.png",
+        "620-no-preference-target-resolved.png"
+      ]
+    },
+    {
+      "viewport": [
+        620,
+        780
+      ],
+      "osReducedMotion": true,
+      "gameReducedMotion": false,
+      "pass": true,
+      "deliveredModifierChords": 140,
+      "checks": [
+        "Deployment occupied cell modifier chords preserve native state/cursor/action/focus",
+        "Native manual keyboard deployment/removal",
+        "Actual Tab/Shift+Tab canvas entry/exit with visible focus",
+        "Grid edges/arrows preserve all tactical truth",
+        "Canvas inspection Enter/Space never ends a turn",
+        "Menu inspection modifier chords preserve native state/cursor/action/focus",
+        "Origin-cell Enter cannot move or spend AP",
+        "Escape restores enabled dock focus",
+        "Legal move cursor modifier chords preserve native state/cursor/action/focus",
+        "Legal native move restores dock focus",
+        "Exactly one native reachable move",
+        "Native attack Enter opens submenu only",
+        "Retour restores dock focus",
+        "Native attack Space opens submenu only",
+        "Retour restores dock focus",
+        "Invalid target Enter does not resolve/spend AP",
+        "Target Escape restores native attack focus",
+        "Legal attack target modifier chords preserve native state/cursor/action/focus",
+        "Native target execution restores enabled dock",
+        "Native legal foe target resolves once",
+        "Pointer target resolves through shared native activation",
+        "Native Wait advances one turn"
+      ],
+      "captures": [
+        "620-reduce-inspection-focus.png",
+        "620-reduce-move-cursor.png",
+        "620-reduce-target-preview.png",
+        "620-reduce-target-resolved.png"
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "osReducedMotion": false,
+      "gameReducedMotion": false,
+      "pass": true,
+      "deliveredModifierChords": 140,
+      "checks": [
+        "Deployment occupied cell modifier chords preserve native state/cursor/action/focus",
+        "Native manual keyboard deployment/removal",
+        "Actual Tab/Shift+Tab canvas entry/exit with visible focus",
+        "Grid edges/arrows preserve all tactical truth",
+        "Canvas inspection Enter/Space never ends a turn",
+        "Menu inspection modifier chords preserve native state/cursor/action/focus",
+        "Origin-cell Enter cannot move or spend AP",
+        "Escape restores enabled dock focus",
+        "Legal move cursor modifier chords preserve native state/cursor/action/focus",
+        "Legal native move restores dock focus",
+        "Exactly one native reachable move",
+        "Native attack Enter opens submenu only",
+        "Retour restores dock focus",
+        "Native attack Space opens submenu only",
+        "Retour restores dock focus",
+        "Invalid target Enter does not resolve/spend AP",
+        "Target Escape restores native attack focus",
+        "Legal attack target modifier chords preserve native state/cursor/action/focus",
+        "Native target execution restores enabled dock",
+        "Native legal foe target resolves once",
+        "Pointer target resolves through shared native activation",
+        "Native Wait advances one turn"
+      ],
+      "captures": [
+        "390-no-preference-inspection-focus.png",
+        "390-no-preference-move-cursor.png",
+        "390-no-preference-target-preview.png",
+        "390-no-preference-target-resolved.png"
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "osReducedMotion": true,
+      "gameReducedMotion": false,
+      "pass": true,
+      "deliveredModifierChords": 140,
+      "checks": [
+        "Deployment occupied cell modifier chords preserve native state/cursor/action/focus",
+        "Native manual keyboard deployment/removal",
+        "Actual Tab/Shift+Tab canvas entry/exit with visible focus",
+        "Grid edges/arrows preserve all tactical truth",
+        "Canvas inspection Enter/Space never ends a turn",
+        "Menu inspection modifier chords preserve native state/cursor/action/focus",
+        "Origin-cell Enter cannot move or spend AP",
+        "Escape restores enabled dock focus",
+        "Legal move cursor modifier chords preserve native state/cursor/action/focus",
+        "Legal native move restores dock focus",
+        "Exactly one native reachable move",
+        "Native attack Enter opens submenu only",
+        "Retour restores dock focus",
+        "Native attack Space opens submenu only",
+        "Retour restores dock focus",
+        "Invalid target Enter does not resolve/spend AP",
+        "Target Escape restores native attack focus",
+        "Legal attack target modifier chords preserve native state/cursor/action/focus",
+        "Native target execution restores enabled dock",
+        "Native legal foe target resolves once",
+        "Pointer target resolves through shared native activation",
+        "Native Wait advances one turn"
+      ],
+      "captures": [
+        "390-reduce-inspection-focus.png",
+        "390-reduce-move-cursor.png",
+        "390-reduce-target-preview.png",
+        "390-reduce-target-resolved.png"
+      ]
+    }
+  ],
+  "totalDeliveredModifierChords": 840,
+  "exactModifierFlagsReviewed": true,
+  "runtimeMutated": false,
+  "outcomeInjected": false,
+  "fixtureStateWritten": false,
+  "campaignAcceptance": false,
+  "EVIDENCE": [
+    {
+      "path": "docs/reports/demo-keyboard-modifiers-0613-browser/1366-no-preference-target-preview.png",
+      "sha256": "4ec66d8b24330182582fbb11106d7eb8fa8b12c060354618df09eedb669d5d29"
+    },
+    {
+      "path": "docs/reports/demo-keyboard-modifiers-0613-browser/620-no-preference-inspection-focus.png",
+      "sha256": "d4bb12068bf6aaa9d9e4c20e12c73d07ee46322b1baf34f0daa8ec4dedcdfb1c"
+    },
+    {
+      "path": "docs/reports/demo-keyboard-modifiers-0613-browser/390-reduce-target-resolved.png",
+      "sha256": "3d6663b253ea50acc7b6ce675fb9fb62aed0fd1c936eff6f7dae1e47e6e06465"
+    }
+  ],
+  "capturesInspected": [
+    {
+      "path": "tmp/demo/keyboard-0613/1366-no-preference-inspection-focus.png",
+      "sha256": "fd045b2571273d556f7ea1151a90388c09e92750f64dcf0ce1fa0d445c30e0bb"
+    },
+    {
+      "path": "tmp/demo/keyboard-0613/1366-no-preference-move-cursor.png",
+      "sha256": "663c5aaf4f013aafcb06e8d52d550d131ef8210b53b9e437b109912bb4f0cbc2"
+    },
+    {
+      "path": "tmp/demo/keyboard-0613/1366-no-preference-target-preview.png",
+      "sha256": "4ec66d8b24330182582fbb11106d7eb8fa8b12c060354618df09eedb669d5d29"
+    },
+    {
+      "path": "tmp/demo/keyboard-0613/1366-reduce-move-cursor.png",
+      "sha256": "69d29da4a6080f2e96d9f873b037e51c784107348b7707f691bc88df952e9261"
+    },
+    {
+      "path": "tmp/demo/keyboard-0613/620-no-preference-inspection-focus.png",
+      "sha256": "d4bb12068bf6aaa9d9e4c20e12c73d07ee46322b1baf34f0daa8ec4dedcdfb1c"
+    },
+    {
+      "path": "tmp/demo/keyboard-0613/620-reduce-target-resolved.png",
+      "sha256": "addf0fb368f075eb2d2f8afa02c371276c0a824b368bb2e7ea9f6694b8eb8537"
+    },
+    {
+      "path": "tmp/demo/keyboard-0613/390-no-preference-inspection-focus.png",
+      "sha256": "e6362ad62079f8e11c7f4f61a30b1b20e6cbadd98bc50b537f26dfa697bae479"
+    },
+    {
+      "path": "tmp/demo/keyboard-0613/390-reduce-target-resolved.png",
+      "sha256": "3d6663b253ea50acc7b6ce675fb9fb62aed0fd1c936eff6f7dae1e47e6e06465"
+    }
+  ],
+  "mechanical": {
+    "focusedTests": 59,
+    "keyboard": 24,
+    "motion": 25,
+    "rng": 6,
+    "reduced": 4,
+    "types": "PASS",
+    "validator": "8contracts8slots PASS",
+    "build": "210modules8MP4 PASS",
+    "immutableGate": "EMPTY",
+    "whitespace": "PASS"
+  },
+  "contractSetVersion": "1.1.0",
+  "noLockedRuleChanged": true,
+  "guardian": "PASS final scoped proof review",
+  "uiReview": "OK_STANDALONE_CONDITIONS_CLOSED;390OS capture reviewed",
+  "limits": [
+    "Standalone proof never certifies campaign iframe focus/V6 or full demo",
+    "AT, actual OS/AltGraph layouts and browser-reserved shortcuts outside delivered headless chords remain open",
+    "keyboardInput transient bookkeeping before eligibility and Shift-arrow behavior unchanged",
+    "390px actor edge cropping remains OPEN; no actor/Stage/VFX/art/balance acceptance",
+    "Exact2AP-start Salvation, other endings, single-build fresh fullcampaign and external narrative/asset/canonical blockers remain open"
+  ],
+  "contractsRead": [
+    "GAME_CONSTITUTION",
+    "index",
+    "manifest",
+    "COMBAT_AND_VFX",
+    "UI_AND_ACCESSIBILITY",
+    "AUTHORING_AND_QA",
+    "CAMPAIGN_AND_STATE",
+    "AUTONOMOUS_WORK_PROTOCOL",
+    "PRESENTATION_AND_MEDIA"
+  ],
+  "compliance": {
+    "GAME_CONSTITUTION": "PASS native authority preserved",
+    "ART_DIRECTION": "N/A no assets changed",
+    "CHARACTERS": "N/A actor framing remains OPEN",
+    "ENVIRONMENTS": "N/A",
+    "NARRATIVE_CAMPAIGN": "PASS no campaign writes or acceptance",
+    "NARRATIVE_PRESENTATION": "N/A",
+    "TRAVERSAL": "N/A",
+    "COMBAT": "PASS native legality/AP/resolution; keyboard and pointer resolve once",
+    "SAVE": "PASS schema/IDs unchanged; campaign iframe/V6 proof remains OPEN",
+    "UI_ACCESSIBILITY": "PASS scoped native keyboard/focus/controls six cases; AT and broader motion remain OPEN",
+    "QA_EVIDENCE": "PASS exact840delivered modifiers, digest,395physicalfiles/10build and selected captures",
+    "REPOSITORY_GOVERNANCE": "PASS owned dev/single writer/empty LOCKED gates"
+  }
+}

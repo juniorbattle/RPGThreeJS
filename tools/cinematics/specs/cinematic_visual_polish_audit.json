@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 2,
+  "reviewProtocol": {
+    "samples": ["first", "p25", "p50", "p75", "last"],
+    "source": "current local production masters from public/assets/cinematics/manifest.json",
+    "doctrine": "INTEGRATED_KEYFRAME_V3",
+    "decisionRule": "Human-visible scene integration, narrative function and reusable Journey grammar determine classification; structural media validity alone does not justify KEEP."
+  },
+  "criteriaOrder": ["NARRATIVE_CLARITY", "DIALOGUE_CAST_ALIGNMENT", "PLAYER_GROUP_PRESENCE", "TRAVEL_GRAMMAR", "INTEGRATED_SCENE", "NO_COLLAGE_LOOK", "CAMERA_DISTANCE", "CHARACTER_SCALE", "GROUNDING", "LOCOMOTION", "ENVIRONMENT_MOTION", "PARALLAX", "WORLD_INTEGRATION", "SAFE_ZONE", "FINAL_FRAME", "CROSS_VIDEO_CONTINUITY"],
+  "scoreLegend": ["PASS", "WARN", "FAIL", "NOT_APPLICABLE"],
+  "summary": { "totalProductionMasters": 31, "keep": 14, "runtimePolish": 0, "remaster": 12, "replaceWithFamily": 5, "cin6cBlockers": 0 },
+  "entries": [
+    {
+      "runtimeId": "lion_judgement", "sha256": "6ea5b12bb8c97deadbea2177725d7e3eb958ab7971361d34064729acf776e5f9", "durationSeconds": 17,
+      "classification": "REMASTER", "issues": ["DIALOGUE_CAST_ALIGNMENT", "PLAYER_GROUP_MISSING", "NO_COLLAGE_LOOK"], "severity": "HIGH",
+      "criteriaScores": ["PASS", "FAIL", "FAIL", "NOT_APPLICABLE", "FAIL", "FAIL", "PASS", "PASS", "WARN", "NOT_APPLICABLE", "PASS", "WARN", "FAIL", "PASS", "PASS", "WARN"],
+      "recommendedAction": "Future authorized integrated remaster should preserve Alaric and Lion authority while representing the guaranteed company side at judgement.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "serpent_general_reveal", "sha256": "e8c918d292693e4bc7f612fc6f4fbcdb283c6d2f8095c805db287692e561a682", "durationSeconds": 8,
+      "classification": "REMASTER", "issues": ["NO_COLLAGE_LOOK", "STATIC_WALLPAPER"], "severity": "MEDIUM",
+      "criteriaScores": ["PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "NOT_APPLICABLE", "FAIL", "FAIL", "PASS", "PASS", "WARN", "NOT_APPLICABLE", "WARN", "WARN", "FAIL", "PASS", "PASS", "WARN"],
+      "recommendedAction": "Retain the reveal semantics but integrate the Serpent General into the ruin light, ground and atmosphere in a future media pass.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "lion_champion_reveal", "sha256": "2d581e76e5cc0a37d4633fd6d7166210780da55475f54abadfd90aedaf30b04c", "durationSeconds": 8,
+      "classification": "REMASTER", "issues": ["NO_COLLAGE_LOOK", "STATIC_WALLPAPER"], "severity": "MEDIUM",
+      "criteriaScores": ["PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "NOT_APPLICABLE", "FAIL", "FAIL", "PASS", "PASS", "WARN", "NOT_APPLICABLE", "WARN", "WARN", "FAIL", "PASS", "PASS", "WARN"],
+      "recommendedAction": "Retain the focused champion reveal but rebuild it from an integrated Lion-ruin keyframe when that route is next remastered.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "forest_journey_tension", "sha256": "385f5f9b99b22d9710ef1ef7a89fd21a8b59e392664a51a2480eab6167511fac", "durationSeconds": 9,
+      "classification": "REPLACE_WITH_FAMILY", "issues": ["CAMERA_SCALE_INFLATION", "SINGLE_CHARACTER_TRAVEL", "NO_COLLAGE_LOOK", "NEEDS_FOREST_THREAT_FAMILY"], "severity": "HIGH",
+      "criteriaScores": ["WARN", "NOT_APPLICABLE", "FAIL", "FAIL", "FAIL", "FAIL", "FAIL", "FAIL", "WARN", "WARN", "PASS", "PASS", "FAIL", "WARN", "PASS", "WARN"],
+      "recommendedAction": "Replace with an integrated forest-threat family showing a guaranteed company group, short grounded motion and creature-neutral pressure.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "camp_departure", "sha256": "a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3", "durationSeconds": 12,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the integrated V3 departure grammar and Maelor, Marian, Alistair cast.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "alaric_audience_arrival", "sha256": "b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629", "durationSeconds": 12,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "PASS", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the integrated V3 diplomatic staging with both advisers, Alistair and Alaric.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "refugees_approach", "sha256": "5f1d76f8686c2bf2f9775576da6d50649cb33e1c5157b46e6d3f9d5b719e5a28", "durationSeconds": 12,
+      "classification": "REMASTER", "issues": ["NO_COLLAGE_LOOK", "PLAYER_GROUP_UNDERREPRESENTED", "APPROACH_GRAMMAR_WEAK"], "severity": "MEDIUM",
+      "criteriaScores": ["PASS", "WARN", "WARN", "FAIL", "FAIL", "FAIL", "PASS", "PASS", "WARN", "WARN", "PASS", "WARN", "FAIL", "PASS", "PASS", "WARN"],
+      "recommendedAction": "Rebuild as an integrated company-and-refugee approach that preserves the unresolved help/exploit agency.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "first_refuge_arrival", "sha256": "31b4a50f678d6d7431a855d7056bbcee66f44f8a623081be972b79986a55c56e", "durationSeconds": 10,
+      "classification": "REPLACE_WITH_FAMILY", "issues": ["NO_COLLAGE_LOOK", "STATIC_REFUGE_STAGING", "NEEDS_REFUGE_ARRIVAL_FAMILY"], "severity": "MEDIUM",
+      "criteriaScores": ["PASS", "NOT_APPLICABLE", "PASS", "FAIL", "FAIL", "FAIL", "PASS", "PASS", "WARN", "WARN", "WARN", "WARN", "FAIL", "PASS", "PASS", "WARN"],
+      "recommendedAction": "Replace with an integrated refuge-arrival family that leaves management gameplay authoritative.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "first_refuge_departure", "sha256": "a3078c6e149c02f78be58063d9f884004a7d3b0265ba29481506fe138d194425", "durationSeconds": 12,
+      "classification": "REPLACE_WITH_FAMILY", "issues": ["NO_COLLAGE_LOOK", "CONDITIONAL_CAST_RISK", "NEEDS_FOREST_SINGLE_ROUTE_FAMILY"], "severity": "HIGH",
+      "criteriaScores": ["PASS", "NOT_APPLICABLE", "WARN", "FAIL", "FAIL", "FAIL", "PASS", "PASS", "WARN", "WARN", "PASS", "WARN", "FAIL", "PASS", "PASS", "WARN"],
+      "recommendedAction": "Replace with a guaranteed-core forest single-route family; do not encode optional recruits in reusable travel media.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "valmir_route_fork", "sha256": "63a4a0c3793d6e29ce8fd94b1478dfab59e40f856d53a01915e47fb9a6343261", "durationSeconds": 10,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the integrated V3 two-path grammar, stable guaranteed cast and left-shrine/right-roadblock geography.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "bois_clair_arrival", "sha256": "a37d397665960f8f6749d8f1ece69eaf91c7160cec68fc581ed26ea78042a699", "durationSeconds": 20,
+      "classification": "REMASTER", "issues": ["NO_COLLAGE_LOOK", "PLAYER_GROUP_CONTINUITY", "SHOT_CAST_FRAGMENTATION"], "severity": "HIGH",
+      "criteriaScores": ["PASS", "WARN", "WARN", "PASS", "FAIL", "FAIL", "PASS", "PASS", "WARN", "PASS", "PASS", "PASS", "FAIL", "PASS", "PASS", "WARN"],
+      "recommendedAction": "Preserve the approach-to-threat progression but integrate the company, civilians and Serpent pressure into coherent shared shots.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "bois_clair_saved", "sha256": "a57d9ef8ff2fbb26084066b057f89948bdfe59de22dc7f7770d6576900223b1f", "durationSeconds": 18,
+      "classification": "REMASTER", "issues": ["NO_COLLAGE_LOOK", "AFTERMATH_CAST_FRAGMENTATION"], "severity": "MEDIUM",
+      "criteriaScores": ["PASS", "WARN", "PASS", "NOT_APPLICABLE", "FAIL", "FAIL", "PASS", "PASS", "WARN", "PASS", "PASS", "WARN", "FAIL", "PASS", "PASS", "WARN"],
+      "recommendedAction": "Rebuild the saved aftermath as one integrated damaged-but-surviving scene while retaining state-conditional selection.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "bois_clair_sacrificed", "sha256": "db07031a3105fb31280abe3aca026cb74e4612e2aa44f7023b5401847322f1a4", "durationSeconds": 18,
+      "classification": "REMASTER", "issues": ["NO_COLLAGE_LOOK", "AFTERMATH_CAST_FRAGMENTATION"], "severity": "MEDIUM",
+      "criteriaScores": ["PASS", "WARN", "PASS", "NOT_APPLICABLE", "FAIL", "FAIL", "PASS", "PASS", "WARN", "PASS", "PASS", "WARN", "FAIL", "PASS", "PASS", "WARN"],
+      "recommendedAction": "Rebuild the sacrificed aftermath as an integrated loss scene paired compositionally with the saved variant.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "second_refuge_departure", "sha256": "a7d4210b8223a6ef3946fc63bdb138310ed61168f6d902bfc0eb4f74dbe9be3d", "durationSeconds": 10,
+      "classification": "REPLACE_WITH_FAMILY", "issues": ["NO_COLLAGE_LOOK", "NEEDS_NEUTRAL_SINGLE_ROUTE_FAMILY"], "severity": "MEDIUM",
+      "criteriaScores": ["PASS", "NOT_APPLICABLE", "PASS", "FAIL", "FAIL", "FAIL", "PASS", "PASS", "WARN", "WARN", "PASS", "WARN", "FAIL", "PASS", "PASS", "WARN"],
+      "recommendedAction": "Replace with a neutral guaranteed-cast single-route family compatible with either Bois-Clair outcome.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "witnesses_encounter", "sha256": "de8f577bb18dc4ce30e0ec3d902fe7f27c4778154ade2e6e1a14eeec99ac4b98", "durationSeconds": 12,
+      "classification": "REMASTER", "issues": ["NO_COLLAGE_LOOK", "PLAYER_GROUP_UNDERREPRESENTED", "FORK_PREPARATION_WEAK"], "severity": "MEDIUM",
+      "criteriaScores": ["PASS", "WARN", "WARN", "FAIL", "FAIL", "FAIL", "PASS", "PASS", "WARN", "WARN", "PASS", "WARN", "FAIL", "PASS", "PASS", "WARN"],
+      "recommendedAction": "Use integrated company/witness staging and a final frame that prepares the real witness route agency without deciding it.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "ruins_approach_context", "sha256": "adf235b6d84889cf80059ae314e7472f2c07e9dcd2f7e9cf99cf7f936bebe525", "durationSeconds": 10,
+      "classification": "REPLACE_WITH_FAMILY", "issues": ["NO_COLLAGE_LOOK", "SINGLE_CHARACTER_APPROACH", "NEEDS_RUINS_APPROACH_FAMILY"], "severity": "MEDIUM",
+      "criteriaScores": ["PASS", "NOT_APPLICABLE", "FAIL", "FAIL", "FAIL", "FAIL", "PASS", "PASS", "WARN", "WARN", "PASS", "PASS", "FAIL", "PASS", "PASS", "WARN"],
+      "recommendedAction": "Replace with a reusable integrated ruins-approach family using guaranteed company members and neutral ancient unease.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "shadow_signs", "sha256": "141d5e04d3573a1827cff7dbdc9efacb024d8a3ecab32a985b700da75a56f4c2", "durationSeconds": 20,
+      "classification": "REMASTER", "issues": ["NO_COLLAGE_LOOK", "WORLD_INTEGRATION_WEAK"], "severity": "MEDIUM",
+      "criteriaScores": ["PASS", "PASS", "PASS", "NOT_APPLICABLE", "FAIL", "FAIL", "PASS", "PASS", "WARN", "PASS", "PASS", "PASS", "FAIL", "PASS", "PASS", "WARN"],
+      "recommendedAction": "Retain mystery and disclosure neutrality but integrate Seraphine, Elara and the Shadow evidence into one coherent ruin world.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "final_refuge_dossier", "sha256": "fa821768883d1afd897216c60c81f979c998db0b1437e1c7eb74f098b58f5ca2", "durationSeconds": 18,
+      "classification": "REMASTER", "issues": ["DIALOGUE_CAST_ALIGNMENT", "MARIAN_MISSING", "NO_COLLAGE_LOOK"], "severity": "HIGH",
+      "criteriaScores": ["PASS", "FAIL", "WARN", "NOT_APPLICABLE", "FAIL", "FAIL", "PASS", "PASS", "WARN", "PASS", "PASS", "WARN", "FAIL", "PASS", "PASS", "WARN"],
+      "recommendedAction": "Future dossier remaster should include Marian or justify her counter-shot while preserving story-only final-refuge behavior.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "serpent_route_ending", "sha256": "f1de1f29ccc98ca66f97da94c21060d100687e4fef39b2d0378bcdea36db395c", "durationSeconds": 18,
+      "classification": "REMASTER", "issues": ["NO_COLLAGE_LOOK", "PLAYER_GROUP_UNDERREPRESENTED"], "severity": "MEDIUM",
+      "criteriaScores": ["PASS", "WARN", "WARN", "NOT_APPLICABLE", "FAIL", "FAIL", "PASS", "PASS", "WARN", "PASS", "PASS", "PASS", "FAIL", "PASS", "PASS", "WARN"],
+      "recommendedAction": "Retain the recovered-object truth but stage the company aftermath as an integrated route-ending composition.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "lion_trial_route_ending", "sha256": "34f023ac0313e622a82d53c955e63e1e56a62eb4bd3bfdef9580196fcff178b2", "durationSeconds": 20,
+      "classification": "REMASTER", "issues": ["DIALOGUE_CAST_ALIGNMENT", "PLAYER_GROUP_MISSING", "NO_COLLAGE_LOOK"], "severity": "HIGH",
+      "criteriaScores": ["PASS", "FAIL", "FAIL", "NOT_APPLICABLE", "FAIL", "FAIL", "PASS", "PASS", "WARN", "PASS", "PASS", "WARN", "FAIL", "PASS", "PASS", "WARN"],
+      "recommendedAction": "Future integrated ending should preserve Lion recognition while showing a guaranteed company representative owning the earned outcome.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "cedric_encounter", "sha256": "aa41a28e8b8829eb9c1c4122184ace9756f01676c2bbc903899e2f366e819a82", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "PASS", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the unresolved Cedric and Kestrel encounter staging before the recruitment choice.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "garen_encounter", "sha256": "2d9bb62eba5bc8c17a84beebe81ffd916d805a9063398054d424865fff5646a7", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the stable Garen reveal and restrained lance pose before the recruitment decision.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "serpent_road_tension", "sha256": "33be67338637de8413738789b8a0fa067007ff65bae06081b229870817f56412", "durationSeconds": 8,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain this neutral Serpent-road family reveal for the four census-approved combat IDs.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "shrine_reveal_context", "sha256": "e28a9ceb996e16291594f99e2905b25da35b316b0aafe1c058dfe5818d09f48c", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the intact shrine and Seraphine reveal before any preserve or desecrate outcome.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "injured_merchant_encounter", "sha256": "a1e6de8c63d1d83d5ee51c5de6548a62b068392fdcd746a948f231d253405892", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the living injured merchant and broken-cart staging before the aid decision.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "abandoned_cart_reveal", "sha256": "535b70307fa5aebadd846dc91f1bbcebbc8ad8f845c7c4d61823808def7a57f8", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the current-truth chariot composition and unresolved ownership of its provisions.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "spider_nest_reveal", "sha256": "7f98991ba6ae91f7904355736875d822c70b5af48ebeeef64598730405e57b0b", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the grounded spider reveal as the unique pre-combat presentation for spider_nest.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "troll_crossing_reveal", "sha256": "6ddb0044b5259870bbad78d31a57ab77dc7d47268310514ef8d7e00a2a6d3281", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the unique troll roadblock reveal before the confrontation handoff.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "serpent_duelist_reveal", "sha256": "9bf2e927a0940b5b0b3d116a7dbb692bf00c1371b19fa985f154bf08527c2560", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the dedicated duelist reveal so unique presentation continues to win over Serpent-family reuse.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "young_dragon_encounter", "sha256": "a9cf74c8372981aeb7afdde9efa2a8e5222284fe098b6be5f03223d2d22bdc91", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the living young dragon and neutral nest framing before the final adaptive choice.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "serpent_informant_encounter", "sha256": "5a1a79ed2c9c07f1da13aa2ed872be8823de7223324dba6faa2c7dc60507c069", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain candidate 2 as the most restrained informant presentation within the three-attempt ceiling.", "cin6cBlocker": false
+    }
+  ]
+}

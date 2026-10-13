@@ -1,0 +1,31 @@
+{
+  "fullSuite": {
+    "command": "node node_modules/vitest/vitest.mjs run --maxWorkers=2 --minWorkers=1",
+    "success": true,
+    "tests": 2508,
+    "passed": 2508,
+    "failed": 0,
+    "files": 149,
+    "durationSeconds": 82.71
+  },
+  "focused": {
+    "files": 10,
+    "passed": 95
+  },
+  "typescript": "PASS: standalone tsc --noEmit and final build",
+  "build": "PASS including operator CombatStage extension",
+  "diffCheck": "PASS",
+  "lint": "No lint script configured",
+  "browser": {
+    "productionRoad": "PASS from before audience to refuge management; visible UI combat",
+    "finalDepartureMerchant": "PASS at 1366x768 and 540x800",
+    "arrivalCheckpointReplay": "PASS on unmodified save; gathering, management, later ATE, peaceful event, Journey with no T1",
+    "combatBorder": "PASS fresh production normal attack",
+    "evidence": [
+      "t0-campaign-grammar-browser/completion.json",
+      "t0-campaign-grammar-browser/final-presentation/result.json",
+      "t0-campaign-grammar-browser/combat-visual.json"
+    ]
+  },
+  "intermediateFailures": "Concurrent asset checks exceeded 5000ms; stopped browser load. Historical CIN-6 source guard required explicitly authorized combatPresentationConfig path for operator border request. Final suite has no failures or test exclusions."
+}

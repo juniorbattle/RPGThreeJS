@@ -1,0 +1,50 @@
+{
+  "phase": "R2C-C.1",
+  "title": "Legacy 1280/5×5/25f Sprite Sheet Retirement",
+  "date": "2025-01-18",
+  "doctrine": "CartoonCoffee-only production VFX. Legacy assets deleted from disk are retired from the runtime registry. Generic variable-grid engine support is preserved. Actions with no CartoonCoffee replacement are UNRESOLVED.",
+  "summary": {
+    "legacySheetCount": 46,
+    "nativeSheetCount": 15,
+    "legacySheetsInRegistry": 0,
+    "nativeSheetsInRegistry": 15,
+    "pilotPresetsUsingNativeSheets": 12,
+    "productionPresetsUsingLegacySheets": "many (now unresolved at runtime)",
+    "runtimeBehavior": "VfxSystem skips unresolved spriteSheet steps with DEV warning; non-sprite steps (screenShake, hitStop, screenFlash) still play"
+  },
+  "changes": [
+    {
+      "file": "src/combat/vfx/VfxSpriteSheets.ts",
+      "change": "Removed _legacySheetDefinitions spread from VFX_SPRITE_SHEETS. Only _nativeSheetDefinitions are included. LEGACY_SPRITE_SHEET_IDS export retained for reference. Generic engine UV math (getVfxSpriteSheetFrameUv, setVfxSpriteSheetFrame) unchanged."
+    },
+    {
+      "file": "src/combat/vfx/VfxSystem.ts",
+      "change": "Added unresolved-definition guard to playSpriteSheetBillboard, playSpriteSheetProjectile, and playSpriteSheetSkyDescent. When VFX_SPRITE_SHEETS[id] is undefined, logs DEV warning and returns early — no texture load, no sprite creation."
+    },
+    {
+      "file": "src/combat/vfx/CombatVfxLab.ts",
+      "change": "resolveSourceStatus now returns UNRESOLVED for steps with spriteSheetId but no resolvable definition. LEGACY status removed from production path."
+    },
+    {
+      "file": "src/combat/vfx/VfxResourceManager.ts",
+      "change": "resolveSheetSource already returns null for unknown sheet IDs — no change needed. Legacy IDs naturally resolve to null."
+    }
+  ],
+  "testsUpdated": [
+    "src/combat/vfx/VfxSpriteSheets.test.ts — removed legacy PNG file checks; added R2C-C.1 doctrine tests",
+    "src/combat/vfx/vfxRuntimeRegistry.test.ts — replaced legacy invariant tests with retirement tests; generic engine UV tested with synthetic definitions",
+    "src/combat/vfx/VfxResourceManager.test.ts — test 26 uses native sheet; added 26b for legacy null resolution",
+    "src/combat/vfx/VfxActionRegistry.test.ts — audit row tests accept legacy IDs as not-in-registry; runtime filenames allow empty for legacy",
+    "src/combat/vfx/spritesheetPng.test.ts — replaced legacy PNG tests with megapack-runtime PNG tests",
+    "src/combat/vfx/VfxR3F.test.ts — effective scale minimums adjusted for retired legacy sheets",
+    "src/combat/combatVfxPresentation.test.ts — boss_inferno layer check handles undefined definition"
+  ],
+  "preserved": [
+    "LegacyVfxSpriteSheetId type union (backward compatibility)",
+    "_legacySheetDefinitions object (historical reference, not in runtime registry)",
+    "Generic variable-grid UV engine (1280/2048/4096, 4×4/5×5/8×8)",
+    "All pilot presets with native megapack sheet references",
+    "VfxResourceManager cache, LRU, and dedup architecture",
+    "resolveCandidateSource and resolveCandidateAvailability for DEV preview"
+  ]
+}

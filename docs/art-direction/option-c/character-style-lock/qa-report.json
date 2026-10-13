@@ -1,0 +1,295 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "contractStatus": "CHARACTER_STYLE_CONTRACT_LOCKED_FOR_PREPRODUCTION",
+  "productionApproved": false,
+  "activeCharacters": [
+    "warrior",
+    "white_mage",
+    "dark_mage"
+  ],
+  "checksPassed": 17,
+  "checksFailed": 0,
+  "checks": [
+    {
+      "name": "native-pixel-construction",
+      "status": "PASS",
+      "evidence": {
+        "logicalCanvas": [
+          128,
+          128
+        ],
+        "deliveryCanvas": [
+          512,
+          512
+        ],
+        "integerExportScale": 4,
+        "resampling": "nearest-neighbor",
+        "deliveryMode": "RGBA",
+        "generationBackground": "#FF00FF",
+        "pivotLogical": [
+          64,
+          116
+        ],
+        "pivotDelivery": [
+          256,
+          464
+        ],
+        "bottomMarginLogical": 12,
+        "bottomMarginDelivery": 48,
+        "perPoseScale": 1.0,
+        "independentPoseScalingAllowed": false,
+        "bodyHeightFamilyLogical": [
+          82,
+          86
+        ],
+        "nominalBodyHeightLogical": 84,
+        "reviewHeightsPx": [
+          96,
+          160,
+          320,
+          512
+        ]
+      }
+    },
+    {
+      "name": "shared-pivot-and-baseline",
+      "status": "PASS",
+      "evidence": {
+        "pivotLogical": [
+          64,
+          116
+        ],
+        "pivotDelivery": [
+          256,
+          464
+        ],
+        "perPoseScale": 1.0,
+        "independentPoseScalingAllowed": false
+      }
+    },
+    {
+      "name": "model-lock",
+      "status": "PASS",
+      "evidence": {
+        "model": "gpt-image-2.5-sunburst-2026-09-08",
+        "quality": "max",
+        "fallbackAllowed": false
+      }
+    },
+    {
+      "name": "approved-style-reference-v1",
+      "status": "PASS",
+      "evidence": {
+        "path": "docs/art-direction/option-c/character-style-lock/references/character-style-reference-v1.png",
+        "declaredSha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+        "actualSha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+        "approvedStyleReferenceInputCount": 1,
+        "legacyCharacterImageInputCount": 0
+      }
+    },
+    {
+      "name": "preproduction-boundary",
+      "status": "PASS",
+      "evidence": {
+        "productionApproved": false,
+        "massGenerationAuthorized": false,
+        "runtimeIntegrationAuthorized": false
+      }
+    },
+    {
+      "name": "fresh-base-source-policy",
+      "status": "PASS",
+      "evidence": {
+        "buildFromScratch": true,
+        "legacyCharacterImagesAsModelInputs": false,
+        "legacyAnimationFramesAsModelInputs": false,
+        "legacyDerivedCandidatesAsModelInputs": false,
+        "legacyTracingOrRepaintingAllowed": false,
+        "freshRosterStyleSeedRequired": true,
+        "freshCharacterMasterRequired": true,
+        "styleSeedGenerationMode": "TEXT_PLUS_APPROVED_STYLE_REFERENCE",
+        "allowedStyleSeedInputs": [
+          "written-global-doctrine",
+          "character-style-reference-v1"
+        ],
+        "allowedInitialMasterInputs": [
+          "written-semantic-contract",
+          "character-style-reference-v1",
+          "approved-fresh-roster-style-seed"
+        ],
+        "allowedPoseInputs": [
+          "accepted-fresh-character-master",
+          "geometry-only-layout-guide"
+        ]
+      }
+    },
+    {
+      "name": "active-roster",
+      "status": "PASS",
+      "evidence": [
+        "archer",
+        "dark_mage",
+        "warrior",
+        "white_mage"
+      ]
+    },
+    {
+      "name": "canonical-warrior",
+      "status": "PASS",
+      "evidence": {
+        "path": "public/assets/characters/pixel/full/alistair.png",
+        "sha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
+        "dimensions": [
+          640,
+          768
+        ],
+        "mode": "RGBA",
+        "alphaBBox": [
+          57,
+          84,
+          581,
+          735
+        ]
+      }
+    },
+    {
+      "name": "canonical-white_mage",
+      "status": "PASS",
+      "evidence": {
+        "path": "public/assets/characters/pixel/full/marian.png",
+        "sha256": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191",
+        "dimensions": [
+          640,
+          768
+        ],
+        "mode": "RGBA",
+        "alphaBBox": [
+          57,
+          84,
+          583,
+          736
+        ]
+      }
+    },
+    {
+      "name": "canonical-dark_mage",
+      "status": "PASS",
+      "evidence": {
+        "path": "public/assets/characters/pixel/full/elara.png",
+        "sha256": "fc9a38e614b466c2258becac7b0f39618058b02a9b4ebdcaced541d2ebe99b74",
+        "dimensions": [
+          640,
+          768
+        ],
+        "mode": "RGBA",
+        "alphaBBox": [
+          50,
+          99,
+          590,
+          735
+        ]
+      }
+    },
+    {
+      "name": "canonical-archer",
+      "status": "PASS",
+      "evidence": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ],
+        "mode": "RGBA",
+        "alphaBBox": [
+          87,
+          84,
+          552,
+          736
+        ]
+      }
+    },
+    {
+      "name": "deliverables-warrior",
+      "status": "PASS",
+      "evidence": {
+        "path": "docs/art-direction/option-c/character-style-lock/alistair.md",
+        "requiredHeadings": true,
+        "keyPoseTerms": true,
+        "surfaceTerms": true
+      }
+    },
+    {
+      "name": "deliverables-white_mage",
+      "status": "PASS",
+      "evidence": {
+        "path": "docs/art-direction/option-c/character-style-lock/marian.md",
+        "requiredHeadings": true,
+        "keyPoseTerms": true,
+        "surfaceTerms": true
+      }
+    },
+    {
+      "name": "deliverables-dark_mage",
+      "status": "PASS",
+      "evidence": {
+        "path": "docs/art-direction/option-c/character-style-lock/elara.md",
+        "requiredHeadings": true,
+        "keyPoseTerms": true,
+        "surfaceTerms": true
+      }
+    },
+    {
+      "name": "required-artifacts",
+      "status": "PASS",
+      "evidence": [
+        "README.md",
+        "alistair.md",
+        "elara.md",
+        "generation-gate.md",
+        "kestrel-benchmark.md",
+        "marian.md",
+        "qa-report.json",
+        "roster-contract.json"
+      ]
+    },
+    {
+      "name": "kestrel-structural-boundary",
+      "status": "PASS",
+      "evidence": {
+        "displayName": "Kestrel",
+        "status": "STRUCTURAL_GOLD_REFERENCE_ONLY",
+        "legacyReference": "public/assets/characters/pixel/full/kestrel.png",
+        "legacyReferenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "visualInputAllowed": false,
+        "weapon": "longbow",
+        "role": "agile-ranger",
+        "currentBaselineDelivery": 466,
+        "futureRemasterBaselineDelivery": 464,
+        "modifiedInThisPhase": false,
+        "contract": "kestrel-benchmark.md"
+      }
+    },
+    {
+      "name": "legacy-alistair-classification",
+      "status": "PASS",
+      "evidence": {
+        "existingAlistairSunburstPack": "LEGACY_DERIVED_REJECTED_FOR_NEW_PIPELINE",
+        "allowedUse": "historical-process-and-rejection-evidence-only",
+        "allowedAsVisualBase": false,
+        "reason": "its generation lineage includes legacy character imagery and its rendering remains too close to illustrated cutout art",
+        "deleted": false,
+        "productionPromoted": false,
+        "newAlistairMasters": {
+          "A": "MASTER_CANDIDATE",
+          "B": "MASTER_CANDIDATE",
+          "C": "MASTER_CANDIDATE"
+        },
+        "recommendedAlistairMaster": "B",
+        "alistairCharacterMasterSelected": false,
+        "poseGenerationAuthorized": false
+      }
+    }
+  ]
+}

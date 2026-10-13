@@ -1,0 +1,546 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-02T23:07:00.598Z",
+  "baseline": "122ffe6feffd3d6ae4df678bbd13e6421596e4ea",
+  "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
+  "scope": "NATIVE_INSPECTION_FOCUS_SCROLL_STATUS_APTITUDE",
+  "campaignAcceptance": false,
+  "pass": true,
+  "errors": [],
+  "focusRetentionAccepted": true,
+  "runtimeMutationInjected": false,
+  "limits": [
+    "Standalone native tactical inputs, not continuous campaign acceptance",
+    "Initial controls focused by driver; Tab reachability, keyboard-only grid and keyboard scrolling not certified",
+    "Card may scroll header outside cap; simultaneous all-content visibility not claimed"
+  ],
+  "files": [
+    {
+      "path": "src/combat/legacyCombatRuntime.js",
+      "sha256": "8efed9de5307fe35cf5e43b41552a75465e5b2e1dec06da4655199bc4750acd0"
+    },
+    {
+      "path": "tools/combat-card-scroll-production-qa.mjs",
+      "sha256": "6befdf9d5054c8532b6d9ce50b8cfad390b767d7942cd22d4aef529fb3328bc4"
+    },
+    {
+      "path": "tools/demo-continuous-production-qa.mjs",
+      "sha256": "97ffed606c26ee8d3d2ec3a3cee4fa8b4559e62d8e50ecffc3cc137521f90128"
+    }
+  ],
+  "raw": {
+    "results": {
+      "path": "tmp/demo/2252-card-focus-labels/results.json",
+      "sha256": "53483b0d5b65cd27d4a4f3fdb58cee8cf894e1dca124bce1660ce5f4cf45a940"
+    },
+    "receipt": {
+      "path": "tmp/demo/2252-card-focus-labels/qa-job.json",
+      "sha256": "0da300bffdda199aee126e084bd3ca097295f1c2ebb77cefc9c66ec1fc484aa6"
+    }
+  },
+  "receipt": {
+    "schemaVersion": 1,
+    "jobId": "2252-card-focus-labels",
+    "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
+    "status": "SUCCEEDED",
+    "startedAt": "2026-10-02T23:01:08.332Z",
+    "endedAt": "2026-10-02T23:04:09.345Z",
+    "pid": 29220,
+    "port": 5268,
+    "output": "tmp/demo/2252-card-focus-labels",
+    "command": [
+      "node",
+      "tools/combat-card-scroll-production-qa.mjs"
+    ],
+    "parameters": {
+      "cases": [
+        [
+          390,
+          844,
+          "no-preference"
+        ],
+        [
+          390,
+          844,
+          "reduce"
+        ],
+        [
+          390,
+          600,
+          "no-preference"
+        ],
+        [
+          560,
+          780,
+          "no-preference"
+        ],
+        [
+          620,
+          780,
+          "no-preference"
+        ],
+        [
+          620,
+          780,
+          "reduce"
+        ],
+        [
+          1366,
+          768,
+          "no-preference"
+        ],
+        [
+          1366,
+          768,
+          "reduce"
+        ]
+      ],
+      "campaignAcceptance": false
+    },
+    "requiredAssertions": [
+      "NATIVE_CARD_SCROLL",
+      "NATIVE_TOGGLE_FOCUS_RETENTION",
+      "FOCUSED_TOGGLE_VISIBLE",
+      "CARD_PREVIEW_PRESERVES_TACTICAL_TRUTH",
+      "NATIVE_STATUS_AND_APTITUDE_CONTENT"
+    ],
+    "provenance": {
+      "gitHead": "122ffe6feffd3d6ae4df678bbd13e6421596e4ea",
+      "sourceTree": "87d808e01f7834248e795bbc5276d5eb7389121b",
+      "sourceDiffSha256": "3487bf9cdd153d2066b6325ddd0d65fb44cfda1c53ebbb37de34d3ee6b99b514",
+      "driver": {
+        "path": "tools/combat-card-scroll-production-qa.mjs",
+        "sha256": "6befdf9d5054c8532b6d9ce50b8cfad390b767d7942cd22d4aef529fb3328bc4"
+      },
+      "inputs": [],
+      "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+      "build": [
+        {
+          "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+          "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+        },
+        {
+          "path": "dist/assets/combat-CRVF3Hlw.js",
+          "sha256": "5d4855b52058f35243501afbe6c6c6c8b00b8629a841d5f451e40e43f1369de3"
+        },
+        {
+          "path": "dist/assets/combat-CVSHPmTa.css",
+          "sha256": "9af7a139b176c9980188c4d01d126241144d0b6d5327bf1e202591302cf243b7"
+        },
+        {
+          "path": "dist/assets/game-DNVJsSmX.js",
+          "sha256": "0d84dc2913176f54a2f3209865211da0ceead4d389a173ad3138dfc8636ffa69"
+        },
+        {
+          "path": "dist/assets/game-Z5tVqu3k.css",
+          "sha256": "ff17df7f056304ca1c29dbf47e7b8c2821311a645dc30e83a92a564d51a9926e"
+        },
+        {
+          "path": "dist/assets/three-core-f0ajj1rG.js",
+          "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+        },
+        {
+          "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+          "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+        },
+        {
+          "path": "dist/assets/validation-mSkvzYyn.js",
+          "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "f7e71881a1d178a7f793a64f477c1c9e899a0077aa962e05f67c2fb2f871c361"
+        }
+      ]
+    },
+    "acceptance": "NOT_ACCEPTED",
+    "provenanceStable": true,
+    "exitCode": 0,
+    "resultPath": "tmp/demo/2252-card-focus-labels/results.json",
+    "resultSha256": "53483b0d5b65cd27d4a4f3fdb58cee8cf894e1dca124bce1660ce5f4cf45a940"
+  },
+  "cases": [
+    {
+      "width": 390,
+      "height": 844,
+      "motion": "no-preference",
+      "pass": true,
+      "focusAfterNativeToggle": {
+        "tag": "BUTTON",
+        "statsToggle": true
+      },
+      "focusedToggle": {
+        "focused": true,
+        "top": 388,
+        "bottom": 414,
+        "left": 16,
+        "right": 190,
+        "panelTop": 240,
+        "panelBottom": 425.671875
+      },
+      "panel": {
+        "x": 8,
+        "y": 240,
+        "width": 190,
+        "height": 185.671875,
+        "overflowY": "auto",
+        "scrollHeight": 241,
+        "clientHeight": 184
+      },
+      "lastStat": {
+        "text": "◆MOV3",
+        "top": 406,
+        "bottom": 418,
+        "panelTop": 240,
+        "panelBottom": 425.671875,
+        "scrollTop": 57
+      },
+      "exhausted": {
+        "ap": 0,
+        "started": true,
+        "statusLabels": [
+          "Essoufflé"
+        ]
+      },
+      "aptitude": "Don innéMain BienveillanteSoigne les alliés au lieu de les blesser, inflige des dégâts aux ennemis."
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "motion": "reduce",
+      "pass": true,
+      "focusAfterNativeToggle": {
+        "tag": "BUTTON",
+        "statsToggle": true
+      },
+      "focusedToggle": {
+        "focused": true,
+        "top": 388,
+        "bottom": 414,
+        "left": 16,
+        "right": 190,
+        "panelTop": 240,
+        "panelBottom": 425.671875
+      },
+      "panel": {
+        "x": 8,
+        "y": 240,
+        "width": 190,
+        "height": 185.671875,
+        "overflowY": "auto",
+        "scrollHeight": 241,
+        "clientHeight": 184
+      },
+      "lastStat": {
+        "text": "◆MOV3",
+        "top": 406,
+        "bottom": 418,
+        "panelTop": 240,
+        "panelBottom": 425.671875,
+        "scrollTop": 57
+      },
+      "exhausted": {
+        "ap": 0,
+        "started": true,
+        "statusLabels": [
+          "Essoufflé"
+        ]
+      },
+      "aptitude": "Don innéMain BienveillanteSoigne les alliés au lieu de les blesser, inflige des dégâts aux ennemis."
+    },
+    {
+      "width": 390,
+      "height": 600,
+      "motion": "no-preference",
+      "pass": true,
+      "focusAfterNativeToggle": {
+        "tag": "BUTTON",
+        "statsToggle": true
+      },
+      "focusedToggle": {
+        "focused": true,
+        "top": 270,
+        "bottom": 296,
+        "left": 16,
+        "right": 190,
+        "panelTop": 160,
+        "panelBottom": 304
+      },
+      "panel": {
+        "x": 8,
+        "y": 160,
+        "width": 190,
+        "height": 144,
+        "overflowY": "auto",
+        "scrollHeight": 241,
+        "clientHeight": 142
+      },
+      "lastStat": {
+        "text": "◆MOV3",
+        "top": 284,
+        "bottom": 296,
+        "panelTop": 160,
+        "panelBottom": 304,
+        "scrollTop": 99
+      },
+      "exhausted": {
+        "ap": 0,
+        "started": true,
+        "statusLabels": [
+          "Essoufflé"
+        ]
+      },
+      "aptitude": "Don innéMain BienveillanteSoigne les alliés au lieu de les blesser, inflige des dégâts aux ennemis."
+    },
+    {
+      "width": 560,
+      "height": 780,
+      "motion": "no-preference",
+      "pass": true,
+      "focusAfterNativeToggle": {
+        "tag": "BUTTON",
+        "statsToggle": true
+      },
+      "focusedToggle": {
+        "focused": true,
+        "top": 385,
+        "bottom": 411,
+        "left": 16,
+        "right": 190,
+        "panelTop": 240,
+        "panelBottom": 411.59375
+      },
+      "panel": {
+        "x": 8,
+        "y": 240,
+        "width": 190,
+        "height": 171.59375,
+        "overflowY": "auto",
+        "scrollHeight": 241,
+        "clientHeight": 170
+      },
+      "lastStat": {
+        "text": "◆MOV3",
+        "top": 392,
+        "bottom": 404,
+        "panelTop": 240,
+        "panelBottom": 411.59375,
+        "scrollTop": 71
+      },
+      "exhausted": {
+        "ap": 0,
+        "started": true,
+        "statusLabels": [
+          "Essoufflé"
+        ]
+      },
+      "aptitude": "Don innéMain BienveillanteSoigne les alliés au lieu de les blesser, inflige des dégâts aux ennemis."
+    },
+    {
+      "width": 620,
+      "height": 780,
+      "motion": "no-preference",
+      "pass": true,
+      "focusAfterNativeToggle": {
+        "tag": "BUTTON",
+        "statsToggle": true
+      },
+      "focusedToggle": {
+        "focused": true,
+        "top": 292,
+        "bottom": 318,
+        "left": 19,
+        "right": 217,
+        "panelTop": 160,
+        "panelBottom": 389
+      },
+      "panel": {
+        "x": 8,
+        "y": 160,
+        "width": 220,
+        "height": 229,
+        "overflowY": "auto",
+        "scrollHeight": 227,
+        "clientHeight": 227
+      },
+      "lastStat": {
+        "text": "◆MOV3",
+        "top": 367,
+        "bottom": 379,
+        "panelTop": 160,
+        "panelBottom": 389,
+        "scrollTop": 0
+      },
+      "exhausted": {
+        "ap": 0,
+        "started": true,
+        "statusLabels": [
+          "Essoufflé"
+        ]
+      },
+      "aptitude": "Don innéMain BienveillanteSoigne les alliés au lieu de les blesser, inflige des dégâts aux ennemis."
+    },
+    {
+      "width": 620,
+      "height": 780,
+      "motion": "reduce",
+      "pass": true,
+      "focusAfterNativeToggle": {
+        "tag": "BUTTON",
+        "statsToggle": true
+      },
+      "focusedToggle": {
+        "focused": true,
+        "top": 292,
+        "bottom": 318,
+        "left": 19,
+        "right": 217,
+        "panelTop": 160,
+        "panelBottom": 389
+      },
+      "panel": {
+        "x": 8,
+        "y": 160,
+        "width": 220,
+        "height": 229,
+        "overflowY": "auto",
+        "scrollHeight": 227,
+        "clientHeight": 227
+      },
+      "lastStat": {
+        "text": "◆MOV3",
+        "top": 367,
+        "bottom": 379,
+        "panelTop": 160,
+        "panelBottom": 389,
+        "scrollTop": 0
+      },
+      "exhausted": {
+        "ap": 0,
+        "started": true,
+        "statusLabels": [
+          "Essoufflé"
+        ]
+      },
+      "aptitude": "Don innéMain BienveillanteSoigne les alliés au lieu de les blesser, inflige des dégâts aux ennemis."
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "motion": "no-preference",
+      "pass": true,
+      "focusAfterNativeToggle": {
+        "tag": "BUTTON",
+        "statsToggle": true
+      },
+      "focusedToggle": {
+        "focused": true,
+        "top": 657,
+        "bottom": 683,
+        "left": 25,
+        "right": 251,
+        "panelTop": 524,
+        "panelBottom": 754
+      },
+      "panel": {
+        "x": 14,
+        "y": 524,
+        "width": 248,
+        "height": 230,
+        "overflowY": "auto",
+        "scrollHeight": 228,
+        "clientHeight": 228
+      },
+      "lastStat": {
+        "text": "◆MOV3",
+        "top": 732,
+        "bottom": 744,
+        "panelTop": 524,
+        "panelBottom": 754,
+        "scrollTop": 0
+      },
+      "exhausted": {
+        "ap": 0,
+        "started": true,
+        "statusLabels": [
+          "Essoufflé"
+        ]
+      },
+      "aptitude": "Don innéMain BienveillanteSoigne les alliés au lieu de les blesser, inflige des dégâts aux ennemis."
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "motion": "reduce",
+      "pass": true,
+      "focusAfterNativeToggle": {
+        "tag": "BUTTON",
+        "statsToggle": true
+      },
+      "focusedToggle": {
+        "focused": true,
+        "top": 657,
+        "bottom": 683,
+        "left": 25,
+        "right": 251,
+        "panelTop": 524,
+        "panelBottom": 754
+      },
+      "panel": {
+        "x": 14,
+        "y": 524,
+        "width": 248,
+        "height": 230,
+        "overflowY": "auto",
+        "scrollHeight": 228,
+        "clientHeight": 228
+      },
+      "lastStat": {
+        "text": "◆MOV3",
+        "top": 732,
+        "bottom": 744,
+        "panelTop": 524,
+        "panelBottom": 754,
+        "scrollTop": 0
+      },
+      "exhausted": {
+        "ap": 0,
+        "started": true,
+        "statusLabels": [
+          "Essoufflé"
+        ]
+      },
+      "aptitude": "Don innéMain BienveillanteSoigne les alliés au lieu de les blesser, inflige des dégâts aux ennemis."
+    }
+  ],
+  "selected": [
+    {
+      "path": "docs/reports/combat-stats-focus-retention-1/390-844-no-preference-aptitude.png",
+      "sha256": "4d996dded490f5d94f46befff4e80743e7f347b634a8cc97b526fb768b874f60"
+    },
+    {
+      "path": "docs/reports/combat-stats-focus-retention-1/390-844-no-preference-status.png",
+      "sha256": "e1347d4a7fdfa6fc0372ec36cd7f9c8189d6abdc346268c3c1630ed22a4fbe98"
+    },
+    {
+      "path": "docs/reports/combat-stats-focus-retention-1/390-600-no-preference-scrolled.png",
+      "sha256": "7ede13520826f7151f1234fb45ea023120c5eac2dc8c10401ae5db4538e7ade2"
+    },
+    {
+      "path": "docs/reports/combat-stats-focus-retention-1/620-780-no-preference-status.png",
+      "sha256": "f04cf0aa60906745d45407fcd1016d052c65512616ef04d79a00815b82cab91f"
+    },
+    {
+      "path": "docs/reports/combat-stats-focus-retention-1/620-780-reduce-scrolled.png",
+      "sha256": "0a7295cf75b5964223292f0f265bce3b33909aa05e4c4a50fab1e81520f32706"
+    },
+    {
+      "path": "docs/reports/combat-stats-focus-retention-1/1366-768-reduce-aptitude.png",
+      "sha256": "4c87ba7f779a8ce7e6202241f619ec11e43484392baf90d78317f4e697f69879"
+    }
+  ],
+  "reviews": {
+    "contracts": "contracts_focus: scoped PASS; native legality and tactical authority preserved; campaign proof outstanding",
+    "ui": "focus_ui: scoped PASS; visible focus/readable status/aptitude; Tab/full grid/screenreader outside scope"
+  }
+}

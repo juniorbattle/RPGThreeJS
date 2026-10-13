@@ -1,0 +1,167 @@
+[VFX Preview] CartoonCoffee root: C:/Users/miche/Documents/VFX_Library/CartoonCoffeeMegaPack
+[VFX Preview] GIF bridge READY
+
+ RUN  v3.0.7 C:/Users/miche/Documents/Projects/RPGThreeJS
+
+ ✓ src/combat/vfx/VfxPlacementTransform.test.ts (118 tests) 26ms
+ ✓ src/combat/vfx/ChoreographyBeats.test.ts (37 tests) 24ms
+ ✓ src/combat/combatVfxPresentation.test.ts (81 tests) 59ms
+ ✓ src/combat/stage/combatStageProfiles.test.ts (43 tests) 11ms
+ ✓ src/combat/vfx/galleryAnimationFix.test.ts (46 tests) 169ms
+ ✓ src/combat/vfx/vfxRuntimeRegistry.test.ts (42 tests) 49ms
+ ✓ src/combat/vfx/VfxV2_6AuthoringPolish.test.ts (34 tests) 11ms
+ ✓ src/combat/legacyCombatRuntime.hotfix.test.ts (42 tests) 14ms
+ ✓ src/combat/vfx/CasterMotionBackCompat.test.ts (27 tests) 12ms
+ ✓ src/combat/vfx/CasterMotion.test.ts (37 tests) 51ms
+ ✓ src/combat/vfx/DemoVfxActionScope.test.ts (37 tests) 29ms
+ ✓ src/combat/vfx/VfxResourceManager.test.ts (39 tests) 839ms
+   ✓ VfxResourceManager — Cache Weight & Budget > 12. cache remains inside configured budget 307ms
+ ✓ src/combat/vfx/VfxSpriteSheets.test.ts (12 tests) 13ms
+ ✓ src/combat/stage/r0b4KillApRouting.test.ts (42 tests) 7ms
+ ✓ src/combat/skillPresentation.test.ts (18 tests) 16ms
+ ✓ src/combat/vfx/VfxV2_6_1ScreenShakeReset.test.ts (24 tests) 7ms
+ ✓ src/combat/vfx/UnitMotionPose.test.ts (22 tests) 16ms
+ ✓ src/combat/combatHudPresentation.test.ts (14 tests) 18ms
+ ✓ src/combat/protocol.test.ts (17 tests) 9ms
+ ✓ src/combat/vfx/DemoVfxWorkload.test.ts (18 tests) 8ms
+ ✓ src/combat/stage/CombatPoseRegistry.test.ts (13 tests) 66ms
+ ✓ src/combat/stage/CombatPoseVisual.test.ts (10 tests) 11ms
+ ✓ src/combat/statusPresentation.test.ts (21 tests) 8ms
+ ✓ src/combat/vfx/VfxActionRegistry.test.ts (12 tests) 19ms
+ ✓ src/combat/stage/stageRoutingAudit.test.ts (12 tests) 5ms
+ ✓ src/combat/vfx/VfxPresets.test.ts (9 tests) 34ms
+ ✓ src/combat/vfx/VfxR3F.test.ts (8 tests) 8ms
+ ✓ src/combat/combatCameraFeedback.test.ts (8 tests) 5ms
+ ✓ src/combat/combatVisualClarity.test.ts (5 tests) 4ms
+ ✓ src/combat/vfx/VfxSourceSuitability.test.ts (5 tests) 52ms
+ ✓ src/combat/UnitFocusController.test.ts (4 tests) 3ms
+ ✓ src/combat/StrategicCharacterVisual.test.ts (3 tests) 3ms
+ ✓ src/combat/bossIntentPresentation.test.ts (5 tests) 3ms
+ ✓ src/combat/combatFeel.test.ts (3 tests) 3ms
+ ✓ src/combat/vfx/VfxRuntimeParity.test.ts (41 tests) 4136ms
+   ✓ V2.5.1 HITSTOP Execution > HITSTOP_LIGHT_EXECUTES: hitStop helper called with LIGHT duration (0.04s) 303ms
+   ✓ V2.5.1 HITSTOP Execution > FLASH-only does not invoke hitStop 307ms
+   ✓ V2.5.1 HITSTOP Execution > FULL_PRESET executes hitStop 307ms
+   ✓ V2.5.1 HITSTOP Execution > MISSING_HITSTOP_HELPER_SAFE: no crash when hitStop helper absent 390ms
+   ✓ V2.5.1 HITSTOP Execution > MISSING_HITSTOP_HELPER_SAFE: other effects still run 388ms
+   ✓ V2.5.1 HITSTOP Execution > multiple impact slots schedule their own hitStop independently 947ms
+   ✓ V2.5.1 HITSTOP Execution > no duplicate execution after completion 589ms
+ ✓ src/combat/stage/combatStageBackgrounds.test.ts (1 test) 4ms
+ ✓ src/combat/unitMotion.test.ts (4 tests) 4ms
+ ✓ src/combat/vfx/VfxSystem.test.ts (4 tests) 4ms
+ ✓ src/combat/stage/CombatPoseQaWiring.test.ts (3 tests) 2ms
+ ✓ src/combat/deploymentRules.test.ts (3 tests) 3ms
+ ✓ src/combat/combatRenderLayers.test.ts (2 tests) 4ms
+ ✓ src/combat/unitVisualState.test.ts (2 tests) 2ms
+ ✓ src/combat/vfx/VfxPresetComposer.test.ts (93 tests) 23ms
+ ✓ src/combat/vfx/spritesheetPng.test.ts (6 tests) 5766ms
+   ✓ R2C-C.1 spritesheet PNG validation — CartoonCoffee-only doctrine > R2C-C.1: megapack-runtime 4096 PNG has correct dimensions 1437ms
+   ✓ R2C-C.1 spritesheet PNG validation — CartoonCoffee-only doctrine > R2C-C.1: megapack-runtime PNG has no visible magenta background pixels 1694ms
+   ✓ R2C-C.1 spritesheet PNG validation — CartoonCoffee-only doctrine > R2C-C.1: megapack-runtime PNG has transparent pixels (alpha channel works) 2412ms
+ ✓ src/combat/vfx/CombatVfxComposerPanel.test.ts (87 tests) 9404ms
+   ✓ R2C-VFX LAB V2 — Composer panel UI > 31. PLAY IN COMBAT STAGE calls playDraftInCombatStage 2426ms
+   ✓ R2C-VFX LAB V2.1.1 — Composer minimize / expand > 10. PLAY IN COMBAT STAGE still works after expanding again 2422ms
+ ✓ src/combat/vfx/VfxV2_6_2BatchPublish.test.ts (27 tests) 264ms
+ ✓ src/combat/stage/r0b3DedupKoRevive.test.ts (32 tests) 10721ms
+   ✓ R0B.3 P2 already-KO Stage proxy > already-KO target enters Stage with KO appearance (reduced opacity) 558ms
+   ✓ R0B.3 P2 already-KO Stage proxy > already-KO target enters Stage with red tint 561ms
+   ✓ R0B.3 P2 already-KO Stage proxy > living target enters normally (full opacity, white color) 463ms
+   ✓ R0B.3 P3 revive choreography > successful revive changes Stage proxy KO → alive only after authoritative resolve 912ms
+   ✓ R0B.3 P3 revive choreography > failed/non-revive does not fake resurrection (proxy stays KO) 554ms
+   ✓ R0B.3 P3 revive choreography > revive feedback appears once (RANIMÉ) 901ms
+   ✓ R0B.3 P3 revive choreography > revive target remains on correct faction side (player LEFT) 546ms
+   ✓ R0B.3 P4 KO during attack and multi-target dedup > KO feedback emitted once during Stage (not duplicated) 873ms
+   ✓ R0B.3 P4 KO during attack and multi-target dedup > status applied feedback emitted once during Stage 668ms
+   ✓ R0B.3 P4 KO during attack and multi-target dedup > status removed feedback emitted once during Stage 764ms
+   ✓ R0B.3 P4 KO during attack and multi-target dedup > multi-target feedback remains per-proxy (each target gets own feedback) 1163ms
+   ✓ R0B.3 P4 KO during attack and multi-target dedup > no duplicate Stage status/KO feedback (single emission per event) 1068ms
+   ✓ R0B.3 P5 preservation contracts > tactical return exact after revive Stage session 919ms
+   ✓ R0B.3 P5 preservation contracts > reduced graphics retains essential KO/revive/status readability 766ms
+ ✓ src/combat/vfx/ChoreographyBeatsUI.test.ts (21 tests) 1170ms
+ ✓ src/combat/stage/r0b2UltimateAftermath.test.ts (22 tests) 10782ms
+   ✓ R0B.2 resolved aftermath feedback > Stage aftermath does not perform gameplay resolution (unit state unchanged) 694ms
+   ✓ R0B.2 resolved aftermath feedback > KO state triggers Stage proxy fade (koFadeProxyCount > 0) 871ms
+   ✓ R0B.2 resolved aftermath feedback > status result triggers Stage feedback (floatText called with status name) 669ms
+   ✓ R0B.2 resolved aftermath feedback > heal/buff result does not emit duplicate Stage label (heal number comes from applyHeal) 561ms
+   ✓ R0B.2 resolved aftermath feedback > group feedback maps to individual proxies (each target gets its own floatText) 1167ms
+   ✓ R0B.2 resolved aftermath feedback > tactical state is not duplicated/mutated by Stage aftermath 1074ms
+   ✓ R0B.2 resolved aftermath feedback > tactical return remains exact after aftermath session 869ms
+   ✓ R0B.2 resolved aftermath feedback > reduced graphics still produces essential KO/status feedback 831ms
+   ✓ R0B.2 resolved aftermath feedback > aftermath with no consequences returns quickly (no hold) 465ms
+   ✓ R0B.2 resolved aftermath feedback > arena ultimate target proxy stays faction side on Stage (integration) 642ms
+   ✓ R0B.2 resolved aftermath feedback > enemy ultimate target proxy stays left on Stage (integration) 658ms
+   ✓ R0B.2 resolved aftermath feedback > Devouring Eclipse target proxy is not at arenaCenter (integration) 638ms
+   ✓ R0B.2 resolved aftermath feedback > status removal (cleanse) triggers PURIFIÉ feedback 766ms
+   ✓ R0B.2 resolved aftermath feedback > aftermathActive flag is true during aftermath and false after 869ms
+ ✓ src/combat/vfx/PublishedVfxRegistry.test.ts (35 tests) 9ms
+ ✓ src/combat/vfx/PublishedVfxResolver.test.ts (19 tests) 764ms
+   ✓ R2C-VFX V2.3 — Action Override Resolver > 97. published playback applies linked pose before VFX and spatial activation 758ms
+ ✓ src/combat/vfx/CasterMotionPanel.test.ts (22 tests) 829ms
+ ✓ src/combat/vfx/VfxRuntimeReadiness.test.ts (16 tests) 11ms
+ ✓ src/combat/stage/CombatStageUnitMotion.test.ts (9 tests) 245ms
+ ✓ src/combat/stage/CombatStage.test.ts (51 tests) 17293ms
+   ✓ CombatStage > restores the tactical render pass and the exact previous tilt-shift value on exit 545ms
+   ✓ CombatStage > never mutates the tactical camera object or its transform 621ms
+   ✓ CombatStage > borrows the sprite texture without ever disposing it, while disposing its own proxy geometry/material 479ms
+   ✓ CombatStage > exposes a VFX scene/camera override only while a pilot session is active 538ms
+   ✓ CombatStage > returns a Stage-space VfxUnitLike proxy for staged participants and null for unstaged/inactive 465ms
+   ✓ CombatStage > returns phase timing only while a pilot session is active 462ms
+   ✓ CombatStage > creates separate VFX proxies for multiple targets 558ms
+   ✓ CombatStage > resolves float text anchors for multiple targets 559ms
+   ✓ CombatStage > restores tactical presentation immediately when an interrupted/forced restore occurs mid-session 345ms
+   ✓ CombatStage > activates with a generic profile passed via options 480ms
+   ✓ CombatStage > caster-inclusive ultimate support includes source proxy in target units 559ms
+   ✓ CombatStage > ultimate self-target action creates no target proxies and source is target 467ms
+   ✓ CombatStage > ultimate movement action activates Stage with just the caster 653ms
+   ✓ CombatStage > getActiveProfileInfo returns correct info for generic profiles 467ms
+   ✓ CombatStage > getActiveProfileInfo returns explicit=true for pilot profiles 465ms
+   ✓ CombatStage > reduced graphics still activates Stage with generic profile 465ms
+   ✓ CombatStage > tactical return is safe after generic profile session 463ms
+   ✓ R0C.1 player ground alignment > player attacker proxy Y is lowered by heroGroundOffset (feet sink to ground) 463ms
+   ✓ R0C.1 player ground alignment > enemy attacker proxy Y is NOT lowered (no heroGroundOffset) 469ms
+   ✓ R0C.1 player ground alignment > enemy target proxy Y is unchanged when source is player 468ms
+   ✓ R0C.1 player ground alignment > player target proxy Y is lowered in support layout (player-side targets) 533ms
+   ✓ R0C.1 player ground alignment > faction LEFT/RIGHT doctrine unchanged — player source on LEFT, enemy on RIGHT 467ms
+   ✓ R0C.1 player ground alignment > boss/elite stationary attacker position unchanged 467ms
+   ✓ R0C.1 player ground alignment > float text anchor follows proxy position (includes ground offset) 468ms
+   ✓ R0C.1B Stage vertical grounding tune > player attacker proxy is lower than pre-R0C.1B baseline 467ms
+   ✓ R0C.1B Stage vertical grounding tune > enemy attacker proxy is also lowered by the same sink 463ms
+   ✓ R0C.1B Stage vertical grounding tune > player-enemy relative Y difference is preserved (sink is uniform) 467ms
+   ✓ R0C.1B Stage vertical grounding tune > multi-target layout: all target proxies receive the sink 561ms
+   ✓ R0C.1B Stage vertical grounding tune > float text anchor remains above proxy after sink 466ms
+   ✓ R0C.2 Combat Stage visual filter parity > tilt-shift is set to reduced stage value (not zero) during active stage 473ms
+   ✓ R0C.2 Combat Stage visual filter parity > tilt-shift is restored to original value on exit 465ms
+   ✓ R0C.2 Combat Stage visual filter parity > Stage render pass uses Stage scene and camera during active session 466ms
+ ✓ src/combat/stage/factionAwareStage.test.ts (32 tests) 5965ms
+   ✓ R0B.1 faction-aware CombatStage > player source is on left (negative X) 470ms
+   ✓ R0B.1 faction-aware CombatStage > enemy source is on right (positive X) 468ms
+   ✓ R0B.1 faction-aware CombatStage > player target of enemy action stays left (negative X) 469ms
+   ✓ R0B.1 faction-aware CombatStage > enemy target of player action stays right (positive X) 468ms
+   ✓ R0B.1 faction-aware CombatStage > boss/elite can remain anchored on right (stationaryAttacker) 464ms
+   ✓ R0B.1 faction-aware CombatStage > arena ultimate remains centered regardless of source faction 654ms
+   ✓ R0B.1 faction-aware CombatStage > reduced graphics uses the same faction-side rules 468ms
+   ✓ R0B.1 faction-aware CombatStage > tactical return remains exact after enemy-source session 466ms
+   ✓ R0B.1 faction-aware CombatStage > getActiveSideAssignment returns correct sides for player offensive 467ms
+   ✓ R0B.1 faction-aware CombatStage > getActiveSideAssignment returns correct sides for enemy offensive 463ms
+   ✓ R0B.1 faction-aware CombatStage > player ultimate group support stays on player side (LEFT) 560ms
+   ✓ R0B.1 faction-aware CombatStage > enemy ultimate group support stays on enemy side (RIGHT) 544ms
+ ✓ src/combat/vfx/VfxV2_6_3DemoScope.test.ts (22 tests) 646ms
+ ✓ src/combat/vfx/ComposerStagePlayback.test.ts (11 tests) 1398ms
+   ✓ R2C-VFX LAB V2.1 — Combat Stage playback > 9. applies same-Beat CASTER and TARGET poses before VFX activation 1280ms
+ ✓ src/combat/stage/CombatStagePose.test.ts (3 tests) 23ms
+ ✓ src/combat/stage/CombatStageCasterMotion.test.ts (16 tests) 5320ms
+   ✓ CombatStage — caster motion > returns the offset to zero once a returning motion has fully settled 374ms
+   ✓ CombatStage — caster motion > displaces the attacker proxy horizontally during a dash 323ms
+   ✓ CombatStage — caster motion > raises the attacker proxy vertically during a jump 311ms
+   ✓ CombatStage — caster motion > never moves the target proxies 311ms
+   ✓ CombatStage — caster motion > never moves the Stage camera 320ms
+   ✓ CombatStage — caster motion > never mutates the tactical camera 506ms
+   ✓ CombatStage — caster motion > clears motion on exit so it cannot leak into the next action 466ms
+   ✓ CombatStage — caster motion > clears motion when a new session begins 714ms
+   ✓ CombatStage — caster motion > restores the tactical render pass normally after a motion session 467ms
+ ✓ src/combat/vfx/VfxActionCatalogue.test.ts (21 tests) 96ms
+
+ Test Files  61 passed (61)
+      Tests  1473 passed (1473)
+   Start at  14:03:37
+   Duration  31.15s (transform 2.50s, setup 0ms, collect 8.04s, tests 76.50s, environment 8.57s, prepare 5.92s)

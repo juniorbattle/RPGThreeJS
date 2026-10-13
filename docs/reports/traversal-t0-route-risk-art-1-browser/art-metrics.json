@@ -1,0 +1,68 @@
+{
+  "task": "TRAVERSAL-T0-ROUTE-RISK-ART-1",
+  "viewports": [
+    "1440x810",
+    "390x844",
+    "620x780"
+  ],
+  "captures": 16,
+  "assets": [
+    {
+      "name": "boulder-a.png",
+      "width": 524,
+      "height": 257,
+      "mode": "RGBA",
+      "bytes": 202348
+    },
+    {
+      "name": "boulder-b.png",
+      "width": 496,
+      "height": 281,
+      "mode": "RGBA",
+      "bytes": 222797
+    },
+    {
+      "name": "fallen-branch-a.png",
+      "width": 500,
+      "height": 248,
+      "mode": "RGBA",
+      "bytes": 177212
+    },
+    {
+      "name": "fallen-branch-b.png",
+      "width": 554,
+      "height": 256,
+      "mode": "RGBA",
+      "bytes": 197004
+    },
+    {
+      "name": "roadblock-a.png",
+      "width": 501,
+      "height": 254,
+      "mode": "RGBA",
+      "bytes": 223215
+    },
+    {
+      "name": "roadblock-b.png",
+      "width": 537,
+      "height": 226,
+      "mode": "RGBA",
+      "bytes": 202485
+    }
+  ],
+  "obstacleSamples": 12,
+  "allObstacleImagesLoaded": true,
+  "maxObstacleToVehicleWidthRatio": 0.815,
+  "minOppositeLaneClearancePx": 28.15,
+  "maxGroundAlignmentErrorPx": 6.71,
+  "highSpeedWarningCaptures": [
+    "risk-r6-telegraph-390.png",
+    "risk-r6-telegraph-620.png",
+    "risk-r6-telegraph.png"
+  ],
+  "route6WarningLeadMs": 2684,
+  "route1CollisionSpeedBefore": 1.4052773886651837,
+  "route1CollisionSpeedAfter": 1,
+  "riskFailures": [],
+  "browserErrors": []
+}

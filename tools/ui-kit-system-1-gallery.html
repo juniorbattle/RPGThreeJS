@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>UI-KIT-SYSTEM-1 · QA</title>
+  <style>
+    @import '/src/styles/app.css';
+    html,body { height: auto; min-height: 100%; overflow: visible; }
+    body { margin: 0; min-width: 0; background: radial-gradient(ellipse at 70% 0,#172e49,#07131f 52%,#030a13); color: var(--campaign-ivory); font-family: var(--campaign-data-font); }
+    .kit-board { box-sizing: border-box; max-width: 1480px; margin: auto; padding: 14px; display: grid; gap: 12px; }
+    .kit-masthead { position: relative; min-height: 120px; padding: 13px 24px; border-bottom: 2px solid var(--campaign-brass); background: radial-gradient(ellipse at 80% 0,#294568,#102742 50%,#06111d); }
+    .kit-masthead h1 { margin: 0; color: var(--campaign-gold-light); font: 700 clamp(34px,5vw,58px)/.95 var(--campaign-title-font); letter-spacing: .04em; }
+    .kit-masthead p { margin: 5px 0; font: 600 21px/1.1 var(--campaign-title-font); }
+    .kit-masthead small { color: var(--campaign-muted); letter-spacing: .08em; }
+    .kit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .kit-section { min-width: 0; }
+    .kit-section--wide { grid-column: 1 / -1; }
+    .kit-section h2 { margin: 0 0 5px; padding: 0 3px 4px; border-bottom: 1px solid var(--campaign-brass); color: var(--campaign-gold-light); font: 600 15px/1.1 var(--campaign-title-font); letter-spacing: .09em; text-transform: uppercase; }
+    .kit-section h2::before { content: '◇'; margin-right: 7px; }
+    .kit-frame { min-height: 118px; padding: 14px; }
+    .kit-type-grid { display: grid; grid-template-columns: 120px minmax(0,1fr); gap: 6px 12px; align-items: baseline; }
+    .kit-type-grid span:nth-child(odd) { color: var(--campaign-muted); font: 400 11px var(--campaign-data-font); }
+    .kit-type-grid p { margin: 0; }
+    .kit-frames { display: grid; grid-template-columns: .8fr 1fr 1.2fr; gap: 15px; align-items: center; }
+    .kit-frame-example { min-width: 0; text-align: center; }
+    .kit-frame-example p { margin: 8px 0 0; color: var(--campaign-muted); }
+    .kit-icons { display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); gap: 4px; text-align: center; }
+    .kit-icon-cell { display: grid; justify-items: center; gap: 2px; min-width: 0; font: 600 11px var(--campaign-title-font); }
+    .kit-icon-cell .campaign-ui-icon { width: 38px; height: 38px; }
+    .kit-icon-cell span:last-child { overflow-wrap: anywhere; }
+    .kit-row { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .kit-buttons .campaign-ui-button { min-width: 120px; }
+    .kit-buttons .campaign-ui-button--hover-proof { filter: brightness(1.18); box-shadow: inset 0 0 0 2px rgba(9,17,26,.7),inset 0 0 0 3px rgba(255,229,171,.34),0 0 18px #d5a85b55; }
+    .kit-buttons .campaign-ui-button--focus-proof { outline: 2px solid var(--campaign-ivory); outline-offset: 3px; }
+    .kit-ornaments .campaign-ui-divider--horizontal,.kit-ornaments .campaign-ui-divider--horizontal-compact { flex-basis: 100%; }
+    .kit-ornaments .campaign-ui-frame__corner { position: static; display: block; transform: none; }
+    .kit-examples { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .kit-example { min-width: 0; }
+    .kit-example h3 { margin: 0 0 7px; color: var(--campaign-muted); font: 600 12px var(--campaign-title-font); }
+    .kit-example .campaign-status-hud { position: relative; inset: auto; max-width: 438px; }
+    .kit-example .traversal-hud--progress,.kit-example .traversal-event-panel { position: relative; inset: auto; left: auto; right: auto; top: auto; transform: none; margin: 0; }
+    .kit-example .journey-overlay { position: relative; inset: auto; width: 100%; height: auto; min-height: 0; display: flex; justify-content: flex-start; align-items: flex-start; background: none; padding: 0; }
+    .kit-example .journey-overlay::before { display: none; }
+    .kit-example .journey-overlay__panel { position: relative; inset: auto; transform: none; margin: 0; }
+    .kit-example .journey-overlay--single .journey-overlay__panel { margin: 0 auto 0 0; }
+    .kit-example .traversal-event-panel { display: grid; }
+    @media(max-width:700px) { .kit-grid,.kit-examples { grid-template-columns: 1fr; } .kit-section--wide { grid-column: auto; } .kit-frames { grid-template-columns: 1fr; } .kit-icons { grid-template-columns: repeat(4,1fr); } .kit-board { padding: 8px; } .kit-masthead { padding: 10px; } }
+  </style>
+</head>
+<body><main class="kit-board">
+  <header class="kit-masthead"><h1>UI-KIT-SYSTEM-1</h1><p>Ligne directrice UI / HUD global</p><small>Bleu nuit · Or antique · Ivoire · Compact · Premium</small></header>
+  <div class="kit-grid">
+    <section class="kit-section"><h2>01. Typographie</h2><div class="kit-frame campaign-ui-frame" id="kit-type"></div></section>
+    <section class="kit-section"><h2>02. Système de cadres</h2><div class="kit-frames" id="kit-frames"></div></section>
+    <section class="kit-section kit-section--wide"><h2>03. Icônes</h2><div class="kit-frame campaign-ui-frame kit-icons" id="kit-icons"></div></section>
+    <section class="kit-section"><h2>04. Boutons</h2><div class="kit-frame campaign-ui-frame kit-row kit-buttons" id="kit-buttons"></div></section>
+    <section class="kit-section"><h2>05. Badges / tags</h2><div class="kit-frame campaign-ui-frame kit-row" id="kit-badges"></div></section>
+    <section class="kit-section kit-section--wide"><h2>06. Séparateurs / ornements</h2><div class="kit-frame campaign-ui-frame kit-row kit-ornaments" id="kit-ornaments"></div></section>
+    <section class="kit-section kit-section--wide"><h2>07. Aperçus de composants</h2><div class="kit-examples" id="kit-examples"></div></section>
+  </div>
+</main><script type="module" src="/tools/ui-kit-system-1-gallery.ts"></script></body>
+</html>

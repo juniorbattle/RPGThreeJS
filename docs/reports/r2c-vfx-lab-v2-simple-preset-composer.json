@@ -1,0 +1,282 @@
+{
+  "reportId": "r2c-vfx-lab-v2-simple-preset-composer",
+  "generatedAt": "2026-08-13T04:05:00.000Z",
+  "mission": "R2C-VFX LAB V2 — Simple Preset Composer Architecture",
+  "status": "COMPLETE",
+
+  "oldWorkflow": {
+    "description": "Low-level numeric QA calibration per action-step.",
+    "userFacingParameters": ["scale", "duration", "opacity", "fadeIn", "fadeOut", "offsetX", "offsetY", "anchor", "layer", "blending", "direction", "startTime"],
+    "mentalModel": "USE AS QA SOURCE -> tune 11 numeric fields -> VALIDATE -> APPLY -> VERIFY",
+    "problems": [
+      "Automated numeric calibration produced animations perceived only as flashes",
+      "Spritesheets effectively invisible after all runtime multipliers stacked",
+      "fadeOut semantics misread as a duration instead of a normalized progress position",
+      "Timing compressed too aggressively against native cadence",
+      "Scale required repeated manual tuning per action and per AP tier",
+      "Visual spritesheet count was treated as immutable, requiring TypeScript edits",
+      "Technical effects (screenFlash/screenShake/hitStop) were indistinguishable from the actual spritesheet during review"
+    ]
+  },
+
+  "newWorkflow": {
+    "description": "Semantic authoring. The author picks meaning; the resolver produces numbers.",
+    "userFacingConfiguration": ["SIZE", "TIMING", "PLACEMENT", "CHOREOGRAPHY", "TECHNICAL POLISH"],
+    "runtimeFacingConfiguration": ["scale", "duration", "fadeIn", "fadeOut", "opacity", "anchor", "layer", "blending", "orientation", "startTime"],
+    "steps": [
+      "select action / skill",
+      "its dedicated preset opens automatically (migrated on first open)",
+      "visual spritesheet slots are shown as cards",
+      "ADD / REMOVE / REPLACE / MOVE UP / MOVE DOWN spritesheets from the CartoonCoffee library",
+      "choose SIZE (LOW/MID/BIG), TIMING (QUICK/NORMAL/LONG), PLACEMENT (AUTO/TARGET/CASTER/GROUND) per slot",
+      "choose COMPOSITION (TOGETHER / SEQUENCE / PAIR THEN LAST)",
+      "choose TECHNICAL POLISH (AUTO / OFF / LIGHT / STRONG)",
+      "PLAY VISUALS ONLY to isolate the spritesheet",
+      "PLAY FULL PRESET to evaluate the complete action",
+      "SAVE DRAFT"
+    ],
+    "doctrine": "1 action = 1 dedicated preset = 0..N visual CartoonCoffee spritesheets + optional technical polish. Visual slot count is editable without touching TypeScript."
+  },
+
+  "draftSchema": {
+    "version": 1,
+    "VfxPresetDraft": {
+      "actionKey": "string",
+      "presetId": "string",
+      "visualSlots": "VfxVisualSlot[]",
+      "choreography": "TOGETHER | SEQUENCE | PAIR_THEN_LAST",
+      "technicalPolish": "AUTO | OFF | LIGHT | STRONG",
+      "autoPlacement": "TARGET | CASTER | GROUND (derived hint for PLACEMENT=AUTO)",
+      "tier": "number (1..6, drives TECHNICAL POLISH=AUTO)",
+      "updatedAt": "number"
+    },
+    "VfxVisualSlot": {
+      "id": "string",
+      "candidateId": "string",
+      "sizeProfile": "LOW | MID | BIG",
+      "timingProfile": "QUICK | NORMAL | LONG",
+      "placementProfile": "AUTO | TARGET | CASTER | GROUND",
+      "advanced": "VfxSlotAdvancedOverride (optional, exceptional cases only)"
+    },
+    "note": "No large collection of arbitrary numeric QA overrides is used as the primary authoring representation."
+  },
+
+  "sizeResolver": {
+    "principle": "Resolve to a PREDICTABLE final displayed height by dividing out every runtime multiplier. No double scaling.",
+    "runtimeScaleEquation": "finalHeight = stepScale x slotScale x intensity x reducedFactor x contextPresentationScale x targetSizeMultiplier",
+    "runtimeEquationSource": "VfxSystem.playLabSpriteSheet (lines 485-490) and playSpriteSheet (lines 903-908)",
+    "resolverFormula": "slotScale = targetHeight / (stepScale x intensity x reducedFactor x contextPresentationScale x targetSizeMultiplier)",
+    "targetHeights": { "LOW": 1.55, "MID": 2.20, "BIG": 3.00 },
+    "lowJustification": "1.55 is the P0.1B human-accepted readability value on the basic tier. LOW is therefore clearly visible by construction and never means 'tiny'.",
+    "tierVerification": "Verified identical final height for LOW/MID/BIG across basic (1.00), 2ap (1.05), 3ap (1.12), 4ap (1.30) and 5ap_ultimate (1.55) presentation scales.",
+    "clamp": { "min": 0.05, "max": 12 }
+  },
+
+  "timingResolver": {
+    "principle": "Timing derives from native candidate cadence, never fixed AP duration constants. The authored frame sequence is always preserved.",
+    "nativeDuration": "frameCount x frameDurationMs / 1000",
+    "multipliers": { "QUICK": 1.00, "NORMAL": 1.30, "LONG": 1.75 },
+    "normalJustification": "P0.1B human calibration accepted 1.60s and 1.70s for a 1.28s native source (1.25x-1.33x). NORMAL = 1.30x sits inside that accepted band.",
+    "fallbackNativeDuration": 1.28,
+    "clamp": { "min": 0.10, "max": 6.0 },
+    "examples": {
+      "4096px_64f_20ms": { "native": 1.28, "QUICK": 1.28, "NORMAL": 1.664, "LONG": 2.24 },
+      "2048px_16f_50ms": { "native": 0.80, "QUICK": 0.80, "NORMAL": 1.04, "LONG": 1.40 }
+    }
+  },
+
+  "visibilityDefaults": {
+    "principle": "Fade controls are NOT exposed in the standard UI. Safe defaults are applied automatically.",
+    "opacity": 1.0,
+    "fadeIn": 0.02,
+    "fadeOutByTiming": { "QUICK": 0.88, "NORMAL": 0.90, "LONG": 0.92 },
+    "minSafeFadeOut": 0.85,
+    "fadeOutSemantics": "Normalized progress position where the fade BEGINS (VfxSystem.spriteSheetEnvelope). Higher = later = more visible.",
+    "a1RegressionGuard": "Values 0.08 / 0.10 / 0.18 can never be produced by the resolver."
+  },
+
+  "placementResolver": {
+    "TARGET": { "anchor": "target", "layer": "impact", "orientation": "face_target" },
+    "CASTER": { "anchor": "source", "layer": "impact", "orientation": "none" },
+    "GROUND": { "anchor": "groundTarget", "layer": "ground", "orientation": "center_on_aoe_origin" },
+    "AUTO": "Derived from the action's already-authored anchors/layer at migration time; defaults to TARGET for direct hits.",
+    "manualOffsets": "Not exposed in the normal Composer UI. Available only under ADVANCED."
+  },
+
+  "choreographyResolver": {
+    "principle": "The user never enters startTime. The Composer computes every start time.",
+    "TOGETHER": "All slots start at 0.",
+    "SEQUENCE": "Cumulative durations: slot N starts when slot N-1 ends.",
+    "PAIR_THEN_LAST": "Slots 1 and 2 start at 0; remaining slots follow sequentially after max(d1, d2). Requires >= 3 slots; below that it is disabled with an explanation.",
+    "extensibility": "Start times are produced by a single pure function keyed on the template, so additional templates can be added without touching compilation or playback.",
+    "example_three_slots_1.664s_each": { "TOGETHER": [0, 0, 0], "SEQUENCE": [0, 1.664, 3.328], "PAIR_THEN_LAST": [0, 0, 1.664] }
+  },
+
+  "technicalPolishSeparation": {
+    "principle": "Technical effects are NOT visual slots. They never appear in the spritesheet list.",
+    "effects": ["screenFlash", "screenShake", "hitStop"],
+    "levels": { "OFF": "no effects", "LIGHT": "flash 0.16 / shake 0.10 / hitStop 0.04", "STRONG": "flash 0.30 / shake 0.22 / hitStop 0.08", "AUTO": "tier 1-3 -> LIGHT, tier 4+ -> STRONG" },
+    "valuesExposed": false,
+    "playVisualsOnly": "Compiles with includeTechnical=false. Technical array is guaranteed empty.",
+    "playFullPreset": "Compiles with includeTechnical=true. Visual slots are byte-identical between the two modes."
+  },
+
+  "migrationStrategy": {
+    "function": "createDraftFromAction(MigrationSource)",
+    "sources": ["existing QA candidate (getQaSourceId) when present", "else the preset step sourceCandidateId", "else the production spriteSheetId"],
+    "preserved": ["candidate selections", "A1/A1.3 reports", "P0 checkpoints", "production mappings", "validated/production infrastructure"],
+    "deleted": [],
+    "candidateLocking": "NONE. Seeded candidates are freely removable and replaceable — source selection is now manual.",
+    "unplayableSourceHandling": "A migrated slot referencing a legacy production sheet id (not a CartoonCoffee inventory candidate) is flagged 'NOT A CARTOONCOFFEE SOURCE — REPLACE TO PREVIEW' on the card plus a warning above the preview buttons, instead of silently rendering nothing."
+  },
+
+  "durableState": {
+    "model": "portable JSON bundle -> explicit import -> in-memory store -> SAVE DRAFT -> localStorage cache for THAT browser",
+    "localStorageKey": "r2c-vfx-composer-drafts",
+    "isolatedFromLegacyLabKey": "r2c-combat-vfx-lab-state",
+    "operations": ["SAVE DRAFT", "EXPORT DRAFTS", "IMPORT DRAFTS"],
+    "bundleFormat": { "schemaVersion": 1, "createdAt": "ISO string", "drafts": "Record<actionKey, VfxPresetDraft>" },
+    "resilience": "Bundle import skips individual invalid drafts instead of failing wholesale. Corrupt store data degrades to an empty store."
+  },
+
+  "uiLayout": {
+    "order": ["ACTION SELECT + PRESET ID", "VISUAL SPRITESHEETS (slot cards + ADD SPRITESHEET)", "COMPOSITION", "TECHNICAL POLISH", "PLAY VISUALS ONLY / PLAY FULL PRESET / SAVE DRAFT", "ADVANCED / DEBUG (collapsed)"],
+    "slotCardShows": ["slot number", "candidateId", "GIF preview", "source filename", "SIZE profile", "TIMING profile", "PLACEMENT profile", "REMOVE", "REPLACE", "MOVE UP", "MOVE DOWN"],
+    "removedFromNormalWorkflow": ["work queue CONFIGURE/APPLY/VERIFY", "artistic/production lifecycle", "fingerprints", "validated snapshots", "raw presentation numeric matrix", "manual startTime", "manual fade", "manual opacity", "manual offsets", "manual blending", "manual layer"],
+    "legacyInfrastructure": "Preserved intact in CombatVfxLabWorkbench under SYSTEM / DEBUG TOOLS. Nothing was destroyed.",
+    "readOnlyTimeline": "Computed choreography start times are displayed but have no input controls."
+  },
+
+  "rendererInvariantsPreserved": [
+    "CartoonCoffee native source",
+    "VfxResourceManager acquire/release reference counting",
+    "frame UV handling via setVfxSpriteSheetFrame",
+    "half-texel inset",
+    "flipY behavior",
+    "texture filtering",
+    "bottom pivot via configureVfxSpriteSheetPivot",
+    "Combat Stage",
+    "Tactical gameplay routes"
+  ],
+  "rendererRewritten": false,
+  "playbackPath": "VfxSystem.playLabSpriteSheet — the existing, unmodified candidate playback entry point.",
+
+  "tests": {
+    "total": 1881,
+    "passed": 1881,
+    "newFiles": [
+      { "path": "src/combat/vfx/VfxPresetComposer.test.ts", "tests": 85 },
+      { "path": "src/combat/vfx/CombatVfxComposerPanel.test.ts", "tests": 39 }
+    ],
+    "coverage": {
+      "semanticSizeResolver": "tests 1-9 (incl. predictable final height across all 5 AP tiers, no double scaling from intensity / target size / step scale / reducedGraphics)",
+      "nativeTimingProfiles": "tests 10-16",
+      "visibilityDefaults": "tests 17-20",
+      "placementProfiles": "tests 21-26",
+      "addRemoveReorderReplace": "tests 27-34",
+      "TOGETHER": "tests 35-37",
+      "SEQUENCE": "tests 38-40",
+      "PAIR_THEN_LAST": "tests 41-47",
+      "technicalPolishSeparation": "tests 48-53",
+      "visualOnlyVsFullPlayback": "tests 54-57",
+      "compilation": "tests 58-61",
+      "draftSerializationAndRestore": "tests 62-69",
+      "durablePortableStore": "tests 70-76 (incl. fresh-profile portability)",
+      "migration": "tests 77-81",
+      "productionUnchanged": "tests 82-85",
+      "uiPanel": "panel tests 1-39"
+    }
+  },
+
+  "manualBrowserQa": {
+    "url": "http://localhost:5173/legacy-combat.html?campaign=1&qa=1&vfxlab=1",
+    "tool": "Playwright persistent contexts (.playwright-composer-a and a FRESH .playwright-composer-b)",
+    "acceptanceSteps": {
+      "1-3_select_action_preset_opens_slots_shown": "PASS",
+      "4_remove_one_slot": "PASS",
+      "5_add_cartooncoffee_candidate": "PASS",
+      "6_set_SIZE_MID_TIMING_NORMAL_PLACEMENT_TARGET": "PASS",
+      "7_add_second_candidate": "PASS",
+      "8_choose_TOGETHER": "PASS",
+      "9_play_visuals_only": "PASS",
+      "10_change_to_SEQUENCE": "PASS",
+      "11_play_visuals_only": "PASS",
+      "12_three_slot_PAIR_THEN_LAST_first_two_together_third_after": "PASS",
+      "13-14_reload_draft_state_remains": "PASS",
+      "15-16_export_import_into_fresh_browser_context_same_composition": "PASS"
+    },
+    "observedValues": {
+      "TOGETHER_startTimes": [0, 0],
+      "SEQUENCE_startTimes": [0, 1.664],
+      "PAIR_THEN_LAST_startTimes": [0, 0, 1.664],
+      "playVisualsOnly_status": "Played visuals only: 3 slot(s), 0 technical effects",
+      "playFullPreset_status": "Played full preset: 3 slot(s), 3 technical effect(s)",
+      "freshProfile_beforeImport": "EMPTY",
+      "freshProfile_afterImport": "3 slots, PAIR THEN LAST, STRONG, startTimes [0,0,1.664]"
+    },
+    "darkBoltDebuggingCase": {
+      "playVisualsOnly": "Played visuals only: 1 slot(s), 0 technical effects",
+      "playFullPreset": "Played full preset: 1 slot(s), 3 technical effect(s)",
+      "conclusion": "The distinction between the CartoonCoffee spritesheet and technical flash/shake/hitStop is now trivially observable."
+    },
+    "screenshots": [
+      "docs/reports/r2c-vfx-lab-v2-composer.png",
+      "docs/reports/r2c-vfx-lab-v2-composer-fresh-profile.png"
+    ]
+  },
+
+  "scopeCompliance": {
+    "p02Started": false,
+    "globalRecalibrationRun": false,
+    "heroPresetsRewritten": false,
+    "basicGreatswordNumericallyRescued": false,
+    "darkBoltNumericallyRescued": false,
+    "validated": 0,
+    "applied": 0,
+    "verified": 0,
+    "productionPresetsModified": 0,
+    "productionSpriteSheetsRegistered": 0,
+    "gameplayModified": false,
+    "committed": false,
+    "pushed": false
+  },
+
+  "filesChanged": {
+    "new": [
+      "src/combat/vfx/VfxPresetComposer.ts",
+      "src/combat/vfx/VfxComposerPlayback.ts",
+      "src/combat/vfx/CombatVfxComposerPanel.ts",
+      "src/combat/vfx/VfxPresetComposer.test.ts",
+      "src/combat/vfx/CombatVfxComposerPanel.test.ts",
+      "docs/reports/r2c-vfx-lab-v2-simple-preset-composer.md",
+      "docs/reports/r2c-vfx-lab-v2-simple-preset-composer.json"
+    ],
+    "modified": [
+      "src/combat/legacyCombatRuntime.js (install + dispose the Composer panel alongside the legacy Lab)"
+    ]
+  },
+
+  "technical": {
+    "tests": "1881/1881 PASS",
+    "build": "PASS",
+    "typecheck": "PASS (tsc --noEmit clean)",
+    "gitDiffCheck": "PASS",
+    "commit": "NO",
+    "push": "NO"
+  },
+
+  "finalGates": {
+    "R2C_VFX_COMPOSER_SIMPLE_ACTION_PRESET_FLOW": "YES",
+    "R2C_VFX_COMPOSER_ADD_REMOVE_SPRITESHEET": "YES",
+    "R2C_VFX_COMPOSER_REORDER_SPRITESHEET": "YES",
+    "R2C_VFX_COMPOSER_SIZE_PROFILES": "YES",
+    "R2C_VFX_COMPOSER_TIMING_PROFILES": "YES",
+    "R2C_VFX_COMPOSER_TOGETHER": "YES",
+    "R2C_VFX_COMPOSER_SEQUENCE": "YES",
+    "R2C_VFX_COMPOSER_PAIR_THEN_LAST": "YES",
+    "R2C_VFX_COMPOSER_VISUAL_ONLY_PLAYBACK": "YES",
+    "R2C_VFX_COMPOSER_FULL_PLAYBACK": "YES",
+    "R2C_VFX_COMPOSER_PORTABLE_DRAFT": "YES",
+    "R2C_VFX_PRODUCTION_UNCHANGED": "YES"
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 1,
+  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "extractionTool": "tools/cinematics/cin6ea_media_qa.mjs",
+  "references": [
+    {
+      "id": "alaric_audience_arrival",
+      "source": "public/assets/cinematics/alaric_audience_arrival.mp4",
+      "sourceSha256": "b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629",
+      "technicalProfile": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 24,
+        "codec": "h264",
+        "profile": "High",
+        "pixelFormat": "yuv420p",
+        "silent": true,
+        "durationSeconds": 12
+      },
+      "extractedFrameSet": "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/selected_frames.png",
+      "uniformFrameStrip": "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/uniform_strip.png",
+      "analysisData": "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/analysis.json",
+      "cameraHeight": "eye level to slightly low, strengthening Alaric and the pavilion scale",
+      "cameraAngle": "formal frontal axis with two deliberate reframings",
+      "apparentFocalLanguage": "moderate wide lens with restrained perspective compression",
+      "horizonPlacement": "implicit near lower-middle behind actor plane",
+      "foregroundMidgroundBackground": "soft dark furniture foreground; cast and carpet midground; table, torches and banners background",
+      "groundPlane": "continuous patterned carpet with readable contact shadows",
+      "characterToFrameScale": "roughly 31–46% of frame height",
+      "relativeCharacterHeights": "Alaric tallest; armored Alistair broadest; advisers smaller",
+      "characterSpacing": "formal separated lanes with Alaric isolated on the right",
+      "environmentDensity": "high but controlled by symmetry",
+      "lightingDirection": "warm overhead and side torchlight",
+      "lightingTemperature": "amber-gold with deep blue cloth contrast",
+      "contrast": "high local character contrast, protected dark edges",
+      "palette": [
+        "deep blue",
+        "burnished gold",
+        "amber",
+        "red accents",
+        "dark umber"
+      ],
+      "atmosphericDepth": "dust and haze separate banners, table and cast",
+      "materialRendering": "painted cloth, brass, carpet and polished armor",
+      "silhouetteReadability": "strong, except overlaps around the armored center figure",
+      "negativeSpace": "central/right upper space supports authority but not all dialogue placements",
+      "visualHierarchy": "Alaric and the four-character audience geography",
+      "environmentCharacterIntegration": "shared carpet, occlusion, warm light and depth read as one place",
+      "finalFrameSuitability": "visually stable and sharp but returns to a composition containing the full cast",
+      "continuityWeaknesses": [
+        "two editorial reframings reset cast composition",
+        "central armored figure disappears during the middle composition",
+        "camera/cast return near the end rather than remaining one continuous shot"
+      ],
+      "whatWeKeep": [
+        "formal symmetry",
+        "Lion banner identity",
+        "warm/cool palette",
+        "carpet grounding",
+        "scene density"
+      ],
+      "whatWeImprove": [
+        "one continuous camera path",
+        "constant cast existence",
+        "clean dialogue-safe endpoint"
+      ],
+      "whatWeMustNeverReproduce": [
+        "cast reset between angles",
+        "unexplained character disappearance",
+        "reconstructed alternate shot"
+      ]
+    },
+    {
+      "id": "camp_departure",
+      "source": "public/assets/cinematics/camp_departure.mp4",
+      "sourceSha256": "a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3",
+      "technicalProfile": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 24,
+        "codec": "h264",
+        "profile": "High",
+        "pixelFormat": "yuv420p",
+        "silent": true,
+        "durationSeconds": 12
+      },
+      "extractedFrameSet": "tmp/cinematics/cin6ea/gold/camp_departure/selected_frames.png",
+      "uniformFrameStrip": "tmp/cinematics/cin6ea/gold/camp_departure/uniform_strip.png",
+      "analysisData": "tmp/cinematics/cin6ea/gold/camp_departure/analysis.json",
+      "cameraHeight": "low eye level on the company road",
+      "cameraAngle": "wide three-quarter departure view",
+      "apparentFocalLanguage": "wide environmental lens with deep mountain recession",
+      "horizonPlacement": "upper-middle mountain horizon",
+      "foregroundMidgroundBackground": "tent/crate edge foreground; company and wet road midground; camp, pines and mountains background",
+      "groundPlane": "wet rutted road with strong reflected dawn light",
+      "characterToFrameScale": "roughly 31–40% of frame height",
+      "relativeCharacterHeights": "Alistair largest; Maelor and Marian slightly smaller",
+      "characterSpacing": "tight coherent travelling group left of center",
+      "environmentDensity": "rich camp detail with an open road corridor",
+      "lightingDirection": "low rear sunrise from center-right",
+      "lightingTemperature": "warm gold against cool mountains",
+      "contrast": "bright horizon, darker framing edges and readable cast",
+      "palette": [
+        "sunrise gold",
+        "Lion blue",
+        "pine green",
+        "wet earth",
+        "mountain grey"
+      ],
+      "atmosphericDepth": "strong layered haze across camp and mountains",
+      "materialRendering": "wet earth, canvas, timber and metal share the same warm response",
+      "silhouetteReadability": "strong; sword and staff remain distinctive",
+      "negativeSpace": "road and sky carry motion and destination",
+      "visualHierarchy": "company first, luminous road second, mountain destination third",
+      "environmentCharacterIntegration": "contact shadows and reflected ground light bind cast to road",
+      "finalFrameSuitability": "sharp, balanced and hold-friendly",
+      "continuityWeaknesses": [
+        "hard composition cut detected at 6.0s",
+        "group spacing and background framing reset at the cut"
+      ],
+      "whatWeKeep": [
+        "wet-road grounding",
+        "dawn palette",
+        "mountain depth",
+        "integrated equipment silhouettes",
+        "clear travel direction"
+      ],
+      "whatWeImprove": [
+        "zero-cut camera movement",
+        "stable relative spacing",
+        "endpoint planned from the initial keyframe"
+      ],
+      "whatWeMustNeverReproduce": [
+        "hard cut",
+        "formation reset",
+        "camera teleport"
+      ]
+    },
+    {
+      "id": "valmir_route_fork",
+      "source": "public/assets/cinematics/valmir_route_fork.mp4",
+      "sourceSha256": "63a4a0c3793d6e29ce8fd94b1478dfab59e40f856d53a01915e47fb9a6343261",
+      "technicalProfile": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 24,
+        "codec": "h264",
+        "profile": "High",
+        "pixelFormat": "yuv420p",
+        "silent": true,
+        "durationSeconds": 10
+      },
+      "extractedFrameSet": "tmp/cinematics/cin6ea/gold/valmir_route_fork/selected_frames.png",
+      "uniformFrameStrip": "tmp/cinematics/cin6ea/gold/valmir_route_fork/uniform_strip.png",
+      "analysisData": "tmp/cinematics/cin6ea/gold/valmir_route_fork/analysis.json",
+      "cameraHeight": "low-to-normal eye level above the wet junction",
+      "cameraAngle": "wide frontal fork geography",
+      "apparentFocalLanguage": "wide lens with deep equal route corridors",
+      "horizonPlacement": "upper third behind dark conifers and mountain silhouettes",
+      "foregroundMidgroundBackground": "dark foliage vignette foreground; company and fork midground; shrine, palisade and mountains background",
+      "groundPlane": "wet fork with reflections linking both routes",
+      "characterToFrameScale": "roughly 27–36% of frame height",
+      "relativeCharacterHeights": "Alistair tallest and broadest at center; advisers smaller",
+      "characterSpacing": "compact central-bottom group leaving both route lanes open",
+      "environmentDensity": "dense nocturnal forest with controlled route openings",
+      "lightingDirection": "cool moon from upper-left and warm route practicals",
+      "lightingTemperature": "cool blue with small amber anchors",
+      "contrast": "dark but readable; cast held above black crush",
+      "palette": [
+        "moon blue",
+        "pine black-green",
+        "wet slate",
+        "warm amber",
+        "muted red"
+      ],
+      "atmosphericDepth": "mist and value separation sustain long route depth",
+      "materialRendering": "wet soil, moss, cloth and armor share cool reflections",
+      "silhouetteReadability": "strong central group and equipment outlines",
+      "negativeSpace": "left and right route corridors remain UI-readable",
+      "visualHierarchy": "fork geography first, company second, destination cues third",
+      "environmentCharacterIntegration": "reflected ground, mist and matched cool light prevent flat compositing",
+      "finalFrameSuitability": "sharp and route-safe with stable three-character group",
+      "continuityWeaknesses": [
+        "mid-sequence dissolve/reframe shifts the junction composition",
+        "the world is visually continuous but the shot is editorial rather than physically continuous"
+      ],
+      "whatWeKeep": [
+        "two-route legibility",
+        "wet ground",
+        "cool/warm night contrast",
+        "central low cast",
+        "foreground depth"
+      ],
+      "whatWeImprove": [
+        "single physical camera move",
+        "unchanged fork geometry",
+        "endpoint identical to route-choice hold"
+      ],
+      "whatWeMustNeverReproduce": [
+        "route privilege",
+        "camera reset",
+        "labels or baked arrows"
+      ]
+    }
+  ],
+  "sharedDna": {
+    "worldIntegration": "characters and environment share perspective, ground, occlusion, light, atmosphere and material response",
+    "camera": "grounded eye-level wides with clear narrative geography and controlled foreground framing",
+    "depth": "three readable planes plus atmospheric recession",
+    "materialLanguage": "premium painted HD-2D with tactile cloth, stone, timber, wet ground and controlled metal highlights",
+    "characterScale": "environmental cinematic scale, never miniature and never detached",
+    "colorRelationships": "one dominant warm/cool relationship per family with faction colors retained",
+    "keep": [
+      "grounded cast",
+      "dense physical world",
+      "readable silhouette",
+      "cinematic negative space",
+      "family landmarks"
+    ],
+    "improve": [
+      "zero-cut continuity",
+      "cast persistence",
+      "identity stability over time",
+      "purpose-built hold endpoint"
+    ],
+    "never": [
+      "pasted sprite look in integrated modes",
+      "editorial reset",
+      "cast disappearance",
+      "unmotivated light or scale reset",
+      "baked text"
+    ]
+  }
+}

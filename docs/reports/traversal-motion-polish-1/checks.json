@@ -1,0 +1,2938 @@
+{
+  "reviewedAt": "2026-10-03T13:21:54.542Z",
+  "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+  "historical39Unchanged": true,
+  "deferredTaskUnchanged": true,
+  "deferredBlobsUnchanged": true,
+  "jobs": [
+    {
+      "jobId": "motion-1002-v3-normal",
+      "output": "tmp/traversal/motion-1002-v3-normal",
+      "status": "SUCCEEDED",
+      "resultSha256": "db2da3ca1362298a706b86caca189a30f51ef007e70c8a3dac5ecacce3ca0814",
+      "provenance": {
+        "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+        "sourceTree": "80a784c7aa8ab30850ebc629147e0fc5a1a2cebf",
+        "sourceDiffSha256": "3ac022b9d6adb915210f0fe50af76cf296c22515cd1577f113472e545d95cd8e",
+        "driver": {
+          "path": "tools/traversal-motion-production-qa.mjs",
+          "sha256": "f248923c3e0a5ab3b687d0c479a726982f8977ae64f08f12ac82d0da747bb151"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-BztuXMkj.css",
+            "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+          },
+          {
+            "path": "dist/assets/game-D8fui7sl.js",
+            "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+          }
+        ]
+      },
+      "assertions": [
+        "continuous-departure",
+        "opaque-swap",
+        "reveal-momentum",
+        "clock-zero-during-reveal",
+        "full-exit-before-arrival",
+        "single-canonical-arrival",
+        "native-keyboard-focus",
+        "responsive-controls",
+        "forward-exit-and-resize"
+      ],
+      "runs": [
+        {
+          "leg": "T0",
+          "viewport": {
+            "width": 1440,
+            "height": 810
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "return",
+              "checkpointFrames": 37,
+              "revealFrames": 11,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0583011808410534,
+              "displacement": 194.02969343173234
+            },
+            {
+              "serial": 2,
+              "kind": "fork",
+              "checkpointFrames": 39,
+              "revealFrames": 13,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0611374176284065,
+              "displacement": 201.38085014120708
+            }
+          ],
+          "returns": [
+            {
+              "segment": "route-2",
+              "speed": 1.0000049564205633,
+              "elapsed": 16.599999999998545,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-3",
+              "speed": 1.0000050162940295,
+              "elapsed": 16.700000000004366,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-6",
+              "speed": 1.200012461165236,
+              "elapsed": 33.30000000000291,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-first-refuge",
+              "left": 1837.09375,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-first-trial-event",
+              "resolved": false
+            }
+          ],
+          "resize": {
+            "from": 1440,
+            "to": 1800,
+            "left": 1279.9609375,
+            "viewport": 1800,
+            "arrivals": 0
+          },
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 30,
+              "height": 30,
+              "x": 14,
+              "y": 409,
+              "right": 44,
+              "bottom": 439
+            },
+            {
+              "label": "optional return",
+              "focused": true,
+              "outline": "solid",
+              "width": 173,
+              "height": 32,
+              "x": 742,
+              "y": 155.03125,
+              "right": 915,
+              "bottom": 187.03125
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 280,
+              "height": 58,
+              "x": 1101.8125,
+              "y": 267.171875,
+              "right": 1381.8125,
+              "bottom": 325.171875
+            }
+          ]
+        },
+        {
+          "leg": "T0",
+          "viewport": {
+            "width": 620,
+            "height": 780
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "return",
+              "checkpointFrames": 45,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.058301180841051,
+              "displacement": 83.55566202901818
+            },
+            {
+              "serial": 2,
+              "kind": "fork",
+              "checkpointFrames": 45,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.061182898999995,
+              "displacement": 87.73945254263374
+            }
+          ],
+          "returns": [
+            {
+              "segment": "route-2",
+              "speed": 1.0000049564205633,
+              "elapsed": 16.600000000002183,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-3",
+              "speed": 1.0000049564205633,
+              "elapsed": 16.599999999998545,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-6",
+              "speed": 1.200003061127953,
+              "elapsed": 16.5,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-first-refuge",
+              "left": 799.6015625,
+              "width": 163.140625,
+              "viewport": 620,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-first-trial-event",
+              "resolved": false
+            }
+          ],
+          "resize": {
+            "from": 620,
+            "to": 1440,
+            "left": 1025.078125,
+            "viewport": 1440,
+            "arrivals": 0
+          },
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 44,
+              "height": 44,
+              "x": 10,
+              "y": 395,
+              "right": 54,
+              "bottom": 439
+            },
+            {
+              "label": "optional return",
+              "focused": true,
+              "outline": "solid",
+              "width": 175,
+              "height": 44,
+              "x": 332,
+              "y": 208.03125,
+              "right": 507,
+              "bottom": 252.03125
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 267.5937194824219,
+              "height": 58,
+              "x": 326.9981994628906,
+              "y": 629,
+              "right": 594.5919189453125,
+              "bottom": 687
+            }
+          ]
+        },
+        {
+          "leg": "T0",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "return",
+              "checkpointFrames": 45,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.058301180841051,
+              "displacement": 52.55920468459324
+            },
+            {
+              "serial": 2,
+              "kind": "fork",
+              "checkpointFrames": 45,
+              "revealFrames": 15,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0611374176284134,
+              "displacement": 55.187163674780884
+            }
+          ],
+          "returns": [
+            {
+              "segment": "route-2",
+              "speed": 1.0000049564205633,
+              "elapsed": 16.599999999998545,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-3",
+              "speed": 1.0000050765266943,
+              "elapsed": 16.80000000000291,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-6",
+              "speed": 1.200003098334639,
+              "elapsed": 16.60000000000582,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-first-refuge",
+              "left": 502.96875,
+              "width": 102.625,
+              "viewport": 390,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-first-trial-event",
+              "resolved": false
+            }
+          ],
+          "resize": {
+            "from": 390,
+            "to": 1440,
+            "left": 1062.28125,
+            "viewport": 1440,
+            "arrivals": 0
+          },
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 44,
+              "height": 44,
+              "x": 10,
+              "y": 427,
+              "right": 54,
+              "bottom": 471
+            },
+            {
+              "label": "optional return",
+              "focused": true,
+              "outline": "solid",
+              "width": 150,
+              "height": 44,
+              "x": 217,
+              "y": 208.03125,
+              "right": 367,
+              "bottom": 252.03125
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 157.18751525878906,
+              "height": 74,
+              "x": 207.4070281982422,
+              "y": 662,
+              "right": 364.59454345703125,
+              "bottom": 736
+            }
+          ]
+        },
+        {
+          "leg": "T1",
+          "viewport": {
+            "width": 1440,
+            "height": 810
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 42,
+              "revealFrames": 11,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0611374176284134,
+              "displacement": 206.0553865478109
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t1-route-2",
+              "speed": 1,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-3",
+              "speed": 1.05,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 0.999894
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-village-choice",
+              "left": 1837.09375,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-second-trial-event",
+              "resolved": false
+            }
+          ],
+          "resize": {
+            "from": 1440,
+            "to": 1800,
+            "left": 1279.9609375,
+            "viewport": 1800,
+            "arrivals": 0
+          },
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 30,
+              "height": 30,
+              "x": 14,
+              "y": 409,
+              "right": 44,
+              "bottom": 439
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 280,
+              "height": 58,
+              "x": 1101.4058837890625,
+              "y": 267.859375,
+              "right": 1381.4058837890625,
+              "bottom": 325.859375
+            }
+          ]
+        },
+        {
+          "leg": "T1",
+          "viewport": {
+            "width": 620,
+            "height": 780
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 46,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0611374176284067,
+              "displacement": 88.71897596322697
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t1-route-2",
+              "speed": 1,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-3",
+              "speed": 1.05,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-village-choice",
+              "left": 799.6015625,
+              "width": 163.140625,
+              "viewport": 620,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-second-trial-event",
+              "resolved": false
+            }
+          ],
+          "resize": {
+            "from": 620,
+            "to": 1440,
+            "left": 1025.15625,
+            "viewport": 1440,
+            "arrivals": 0
+          },
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 44,
+              "height": 44,
+              "x": 10,
+              "y": 395,
+              "right": 54,
+              "bottom": 439
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 267.5937194824219,
+              "height": 58,
+              "x": 326.1483459472656,
+              "y": 629,
+              "right": 593.7420654296875,
+              "bottom": 687
+            }
+          ]
+        },
+        {
+          "leg": "T1",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 46,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0611374176284134,
+              "displacement": 55.807098715696696
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t1-route-2",
+              "speed": 1,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-3",
+              "speed": 1.05,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-village-choice",
+              "left": 502.96875,
+              "width": 102.625,
+              "viewport": 390,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-second-trial-event",
+              "resolved": false
+            }
+          ],
+          "resize": {
+            "from": 390,
+            "to": 1440,
+            "left": 1012.71875,
+            "viewport": 1440,
+            "arrivals": 0
+          },
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 44,
+              "height": 44,
+              "x": 10,
+              "y": 427,
+              "right": 54,
+              "bottom": 471
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 157.1875,
+              "height": 74,
+              "x": 207.40960693359375,
+              "y": 662,
+              "right": 364.59710693359375,
+              "bottom": 736
+            }
+          ]
+        },
+        {
+          "leg": "T3",
+          "viewport": {
+            "width": 1440,
+            "height": 810
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 45,
+              "revealFrames": 13,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0610920190550406,
+              "displacement": 206.09253337097175
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t3-route-2",
+              "speed": 1,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-3",
+              "speed": 1.05,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-shadow-signs",
+              "left": 1837.171875,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-final-trial-event",
+              "resolved": false
+            }
+          ],
+          "resize": {
+            "from": 1440,
+            "to": 1800,
+            "left": 1264.5234375,
+            "viewport": 1800,
+            "arrivals": 0
+          },
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 30,
+              "height": 30,
+              "x": 14,
+              "y": 409,
+              "right": 44,
+              "bottom": 439
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 280,
+              "height": 58,
+              "x": 1101.4052734375,
+              "y": 267.859375,
+              "right": 1381.4052734375,
+              "bottom": 325.859375
+            }
+          ]
+        },
+        {
+          "leg": "T3",
+          "viewport": {
+            "width": 620,
+            "height": 780
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 46,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0611828989999983,
+              "displacement": 88.73429822025724
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t3-route-2",
+              "speed": 1,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-3",
+              "speed": 1.05,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-shadow-signs",
+              "left": 799.6015625,
+              "width": 163.140625,
+              "viewport": 620,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-final-trial-event",
+              "resolved": false
+            }
+          ],
+          "resize": {
+            "from": 620,
+            "to": 1440,
+            "left": 1049.921875,
+            "viewport": 1440,
+            "arrivals": 0
+          },
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 44,
+              "height": 44,
+              "x": 10,
+              "y": 395,
+              "right": 54,
+              "bottom": 439
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 267.59375,
+              "height": 58,
+              "x": 327.40625,
+              "y": 629,
+              "right": 595,
+              "bottom": 687
+            }
+          ]
+        },
+        {
+          "leg": "T3",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 46,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.06113741762841,
+              "displacement": 55.79745111057802
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t3-route-2",
+              "speed": 1,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-3",
+              "speed": 1.05,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-shadow-signs",
+              "left": 502.96875,
+              "width": 102.625,
+              "viewport": 390,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-final-trial-event",
+              "resolved": false
+            }
+          ],
+          "resize": {
+            "from": 390,
+            "to": 1440,
+            "left": 1049.921875,
+            "viewport": 1440,
+            "arrivals": 0
+          },
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 44,
+              "height": 44,
+              "x": 10,
+              "y": 427,
+              "right": 54,
+              "bottom": 471
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 157.18748474121094,
+              "height": 74,
+              "x": 206.55043029785156,
+              "y": 662,
+              "right": 363.7379150390625,
+              "bottom": 736
+            }
+          ]
+        }
+      ],
+      "captures": [
+        {
+          "file": "T0-1440-departure-visible.png",
+          "leg": "T0",
+          "viewport": {
+            "width": 1440,
+            "height": 810
+          },
+          "motion": "normal",
+          "label": "departure-visible",
+          "sha256": "fc1b866fbec1447b64736e4ff547361faca395a6f27a5da2c2c5ea84b93d0ed5"
+        },
+        {
+          "file": "T0-1440-reveal-moving.png",
+          "leg": "T0",
+          "viewport": {
+            "width": 1440,
+            "height": 810
+          },
+          "motion": "normal",
+          "label": "reveal-moving",
+          "sha256": "73d0c13b6f68dabd83ad3ee9075e0dce26157713ea405d99a27a1011ed0ad95b"
+        },
+        {
+          "file": "T0-390-reveal-moving.png",
+          "leg": "T0",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "motion": "normal",
+          "label": "reveal-moving",
+          "sha256": "5691a90075166e011a5c1496b0a088bdf862487c9b14938fe411e2a8a495fea3"
+        },
+        {
+          "file": "T1-620-arrival-visible.png",
+          "leg": "T1",
+          "viewport": {
+            "width": 620,
+            "height": 780
+          },
+          "motion": "normal",
+          "label": "arrival-visible",
+          "sha256": "84264deca227410d2b3fe00119b2c169bbee735730232f62979d0190b37f6641"
+        },
+        {
+          "file": "T3-1440-arrival-exited.png",
+          "leg": "T3",
+          "viewport": {
+            "width": 1440,
+            "height": 810
+          },
+          "motion": "normal",
+          "label": "arrival-exited",
+          "sha256": "46b0caaf8ec14f00e6b75a0b6ef28ce7017093e02e370f7881ef837783b261bc"
+        }
+      ],
+      "totalCaptureCount": 36
+    },
+    {
+      "jobId": "motion-1002-v3-os",
+      "output": "tmp/traversal/motion-1002-v3-os",
+      "status": "SUCCEEDED",
+      "resultSha256": "76a980fd3aadb23cb11f60396a06f522a96cf55b3113924653f6f891b27581e2",
+      "provenance": {
+        "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+        "sourceTree": "80a784c7aa8ab30850ebc629147e0fc5a1a2cebf",
+        "sourceDiffSha256": "3ac022b9d6adb915210f0fe50af76cf296c22515cd1577f113472e545d95cd8e",
+        "driver": {
+          "path": "tools/traversal-motion-production-qa.mjs",
+          "sha256": "f248923c3e0a5ab3b687d0c479a726982f8977ae64f08f12ac82d0da747bb151"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-BztuXMkj.css",
+            "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+          },
+          {
+            "path": "dist/assets/game-D8fui7sl.js",
+            "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+          }
+        ]
+      },
+      "assertions": [
+        "continuous-departure",
+        "opaque-swap",
+        "reveal-momentum",
+        "clock-zero-during-reveal",
+        "full-exit-before-arrival",
+        "single-canonical-arrival",
+        "native-keyboard-focus",
+        "responsive-controls",
+        "os-covered-exit"
+      ],
+      "runs": [
+        {
+          "leg": "T0",
+          "viewport": {
+            "width": 1440,
+            "height": 810
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "return",
+              "checkpointFrames": 40,
+              "revealFrames": 13,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.058301180841051,
+              "displacement": 0
+            },
+            {
+              "serial": 2,
+              "kind": "fork",
+              "checkpointFrames": 41,
+              "revealFrames": 8,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.069832258851334,
+              "displacement": 0
+            }
+          ],
+          "returns": [
+            {
+              "segment": "route-2",
+              "speed": 1.0000050162940295,
+              "elapsed": 16.69999999999709,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-3",
+              "speed": 1.0000050765266943,
+              "elapsed": 16.80000000000291,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-6",
+              "speed": 1.200003098334639,
+              "elapsed": 16.59999999999127,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-first-refuge",
+              "left": 1495.96875,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-first-trial-event",
+              "resolved": false
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 30,
+              "height": 30,
+              "x": 14,
+              "y": 409,
+              "right": 44,
+              "bottom": 439
+            },
+            {
+              "label": "optional return",
+              "focused": true,
+              "outline": "solid",
+              "width": 173,
+              "height": 32,
+              "x": 742,
+              "y": 158.53125,
+              "right": 915,
+              "bottom": 190.53125
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 280,
+              "height": 58,
+              "x": 1097.8125,
+              "y": 273.171875,
+              "right": 1377.8125,
+              "bottom": 331.171875
+            }
+          ]
+        },
+        {
+          "leg": "T0",
+          "viewport": {
+            "width": 620,
+            "height": 780
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "return",
+              "checkpointFrames": 45,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0582673433950638,
+              "displacement": 0
+            },
+            {
+              "serial": 2,
+              "kind": "fork",
+              "checkpointFrames": 45,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0611374176284067,
+              "displacement": 0
+            }
+          ],
+          "returns": [
+            {
+              "segment": "route-2",
+              "speed": 1.0000049564205633,
+              "elapsed": 16.600000000002183,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-3",
+              "speed": 1.0000049564205633,
+              "elapsed": 16.599999999998545,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-6",
+              "speed": 1.2000031357659513,
+              "elapsed": 16.69999999999709,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-first-refuge",
+              "left": 652.4921875,
+              "width": 163.140625,
+              "viewport": 620,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-first-trial-event",
+              "resolved": false
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 44,
+              "height": 44,
+              "x": 10,
+              "y": 395,
+              "right": 54,
+              "bottom": 439
+            },
+            {
+              "label": "optional return",
+              "focused": true,
+              "outline": "solid",
+              "width": 175,
+              "height": 44,
+              "x": 332,
+              "y": 211.53125,
+              "right": 507,
+              "bottom": 255.53125
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 267.59375,
+              "height": 58,
+              "x": 323.40625,
+              "y": 629,
+              "right": 591,
+              "bottom": 687
+            }
+          ]
+        },
+        {
+          "leg": "T0",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "return",
+              "checkpointFrames": 45,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0582673433950613,
+              "displacement": 0
+            },
+            {
+              "serial": 2,
+              "kind": "fork",
+              "checkpointFrames": 45,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0611374176284134,
+              "displacement": 0
+            }
+          ],
+          "returns": [
+            {
+              "segment": "route-2",
+              "speed": 1.0000050162940295,
+              "elapsed": 16.700000000000728,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-3",
+              "speed": 1.0000050765266943,
+              "elapsed": 16.80000000000291,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-6",
+              "speed": 1.2000031357659513,
+              "elapsed": 16.69999999999709,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-first-refuge",
+              "left": 413.390625,
+              "width": 102.625,
+              "viewport": 390,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-first-trial-event",
+              "resolved": false
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 44,
+              "height": 44,
+              "x": 10,
+              "y": 427,
+              "right": 54,
+              "bottom": 471
+            },
+            {
+              "label": "optional return",
+              "focused": true,
+              "outline": "solid",
+              "width": 150,
+              "height": 44,
+              "x": 217,
+              "y": 211.53125,
+              "right": 367,
+              "bottom": 255.53125
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 157.1875,
+              "height": 74,
+              "x": 203.8125,
+              "y": 662,
+              "right": 361,
+              "bottom": 736
+            }
+          ]
+        },
+        {
+          "leg": "T1",
+          "viewport": {
+            "width": 1440,
+            "height": 810
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 42,
+              "revealFrames": 12,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0697738939392338,
+              "displacement": 0
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t1-route-2",
+              "speed": 1,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-3",
+              "speed": 1.05,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-village-choice",
+              "left": 1495.96875,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-second-trial-event",
+              "resolved": false
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 30,
+              "height": 30,
+              "x": 14,
+              "y": 409,
+              "right": 44,
+              "bottom": 439
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 280,
+              "height": 58,
+              "x": 1097.8125,
+              "y": 273.171875,
+              "right": 1377.8125,
+              "bottom": 331.171875
+            }
+          ]
+        },
+        {
+          "leg": "T1",
+          "viewport": {
+            "width": 620,
+            "height": 780
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 46,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0611374176284067,
+              "displacement": 0
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t1-route-2",
+              "speed": 1,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-3",
+              "speed": 1.05,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-village-choice",
+              "left": 652.4921875,
+              "width": 163.140625,
+              "viewport": 620,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-second-trial-event",
+              "resolved": false
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 44,
+              "height": 44,
+              "x": 10,
+              "y": 395,
+              "right": 54,
+              "bottom": 439
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 267.59375,
+              "height": 58,
+              "x": 323.40625,
+              "y": 629,
+              "right": 591,
+              "bottom": 687
+            }
+          ]
+        },
+        {
+          "leg": "T1",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 46,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.06113741762841,
+              "displacement": 0
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t1-route-2",
+              "speed": 1,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-3",
+              "speed": 1.05,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-village-choice",
+              "left": 413.390625,
+              "width": 102.625,
+              "viewport": 390,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-second-trial-event",
+              "resolved": false
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 44,
+              "height": 44,
+              "x": 10,
+              "y": 427,
+              "right": 54,
+              "bottom": 471
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 157.1875,
+              "height": 74,
+              "x": 203.8125,
+              "y": 662,
+              "right": 361,
+              "bottom": 736
+            }
+          ]
+        },
+        {
+          "leg": "T3",
+          "viewport": {
+            "width": 1440,
+            "height": 810
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 43,
+              "revealFrames": 12,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0611374176284067,
+              "displacement": 0
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t3-route-2",
+              "speed": 1,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-3",
+              "speed": 1.05,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-shadow-signs",
+              "left": 1495.96875,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-final-trial-event",
+              "resolved": false
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 30,
+              "height": 30,
+              "x": 14,
+              "y": 409,
+              "right": 44,
+              "bottom": 439
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 280,
+              "height": 58,
+              "x": 1097.8125,
+              "y": 273.171875,
+              "right": 1377.8125,
+              "bottom": 331.171875
+            }
+          ]
+        },
+        {
+          "leg": "T3",
+          "viewport": {
+            "width": 620,
+            "height": 780
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 46,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0610920190550406,
+              "displacement": 0
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t3-route-2",
+              "speed": 1,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-3",
+              "speed": 1.05,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-shadow-signs",
+              "left": 652.4921875,
+              "width": 163.140625,
+              "viewport": 620,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-final-trial-event",
+              "resolved": false
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 44,
+              "height": 44,
+              "x": 10,
+              "y": 395,
+              "right": 54,
+              "bottom": 439
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 267.59375,
+              "height": 58,
+              "x": 323.40625,
+              "y": 629,
+              "right": 591,
+              "bottom": 687
+            }
+          ]
+        },
+        {
+          "leg": "T3",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 46,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0611374176284067,
+              "displacement": 0
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t3-route-2",
+              "speed": 1,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-3",
+              "speed": 1.05,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-shadow-signs",
+              "left": 413.390625,
+              "width": 102.625,
+              "viewport": 390,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-final-trial-event",
+              "resolved": false
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 44,
+              "height": 44,
+              "x": 10,
+              "y": 427,
+              "right": 54,
+              "bottom": 471
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 157.1875,
+              "height": 74,
+              "x": 203.8125,
+              "y": 662,
+              "right": 361,
+              "bottom": 736
+            }
+          ]
+        }
+      ],
+      "captures": [
+        {
+          "file": "T3-390-arrival-exited.png",
+          "leg": "T3",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "motion": "os",
+          "label": "arrival-exited",
+          "sha256": "b3e5a8ee09aabb518edfe9a512dc3830f291b55c6673b494f7fa01582fc34963"
+        }
+      ],
+      "totalCaptureCount": 31
+    },
+    {
+      "jobId": "motion-1002-probe-v2",
+      "output": "tmp/traversal/motion-1002-probe-v2",
+      "status": "SUCCEEDED",
+      "resultSha256": "9f0115edbc74f23e8d35c76f390812fb6e829054a72924be64ca06986331562c",
+      "provenance": {
+        "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+        "sourceTree": "80a784c7aa8ab30850ebc629147e0fc5a1a2cebf",
+        "sourceDiffSha256": "3ac022b9d6adb915210f0fe50af76cf296c22515cd1577f113472e545d95cd8e",
+        "driver": {
+          "path": "tools/traversal-motion-fallback-qa.mjs",
+          "sha256": "6f7c628c0f5d7f1e8c8ceaae67cc39f1d7f65d9435c727f0eafc6e90ecd4ff26"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-BztuXMkj.css",
+            "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+          },
+          {
+            "path": "dist/assets/game-D8fui7sl.js",
+            "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+          }
+        ]
+      },
+      "assertions": [
+        "game-setting-reduction",
+        "lane-keyboard-focus",
+        "hit-targets",
+        "missing-art-handoff-return",
+        "engaged-return"
+      ],
+      "cases": [
+        {
+          "mode": "game",
+          "returnMomentum": {
+            "speed": 1.0002434518861631,
+            "min": 1,
+            "elapsed": 116.60000000000218,
+            "gameReduced": true
+          },
+          "combatId": "forest_ambush",
+          "views": [
+            {
+              "viewport": {
+                "width": 1440,
+                "height": 810
+              },
+              "file": "game-route-1440.png",
+              "gameReduced": true,
+              "osReduced": false
+            },
+            {
+              "viewport": {
+                "width": 620,
+                "height": 780
+              },
+              "file": "game-route-620.png",
+              "gameReduced": true,
+              "osReduced": false
+            },
+            {
+              "viewport": {
+                "width": 390,
+                "height": 844
+              },
+              "file": "game-route-390.png",
+              "gameReduced": true,
+              "osReduced": false
+            }
+          ]
+        },
+        {
+          "mode": "missing-shadow",
+          "returnMomentum": {
+            "speed": 1.0001792,
+            "min": 1,
+            "elapsed": 100,
+            "gameReduced": false
+          },
+          "combatId": "wolf_pack",
+          "views": [
+            {
+              "viewport": {
+                "width": 1440,
+                "height": 810
+              },
+              "file": "missing-shadow-route-1440.png",
+              "gameReduced": false,
+              "osReduced": false
+            },
+            {
+              "viewport": {
+                "width": 620,
+                "height": 780
+              },
+              "file": "missing-shadow-route-620.png",
+              "gameReduced": false,
+              "osReduced": false
+            },
+            {
+              "viewport": {
+                "width": 390,
+                "height": 844
+              },
+              "file": "missing-shadow-route-390.png",
+              "gameReduced": false,
+              "osReduced": false
+            }
+          ]
+        },
+        {
+          "mode": "missing-ground",
+          "returnMomentum": {
+            "speed": 1.0000447207788008,
+            "min": 1,
+            "elapsed": 49.900000000001455,
+            "gameReduced": false
+          },
+          "combatId": "forest_ambush",
+          "views": [
+            {
+              "viewport": {
+                "width": 1440,
+                "height": 810
+              },
+              "file": "missing-ground-route-1440.png",
+              "gameReduced": false,
+              "osReduced": false
+            },
+            {
+              "viewport": {
+                "width": 620,
+                "height": 780
+              },
+              "file": "missing-ground-route-620.png",
+              "gameReduced": false,
+              "osReduced": false
+            },
+            {
+              "viewport": {
+                "width": 390,
+                "height": 844
+              },
+              "file": "missing-ground-route-390.png",
+              "gameReduced": false,
+              "osReduced": false
+            }
+          ]
+        }
+      ],
+      "captures": [
+        {
+          "file": "missing-shadow-route-390.png",
+          "mode": "missing-shadow",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "sha256": "9ab72438eab3877aa2feab84c36d492a98458fac99c72f6eb500e021e71c7415"
+        },
+        {
+          "file": "missing-ground-route-620.png",
+          "mode": "missing-ground",
+          "viewport": {
+            "width": 620,
+            "height": 780
+          },
+          "sha256": "90fe4bf97d83e72a1893408ff04ce313b013e96d5d732f590daeb98108004b3e"
+        }
+      ],
+      "totalCaptureCount": 9
+    },
+    {
+      "jobId": "motion-1300-game",
+      "output": "tmp/traversal/motion-1300-game",
+      "status": "SUCCEEDED",
+      "resultSha256": "e9079573e59248283f52d127fc3492a5fc1030f9a8b46e19714929ceb3c24d6c",
+      "provenance": {
+        "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+        "sourceTree": "80a784c7aa8ab30850ebc629147e0fc5a1a2cebf",
+        "sourceDiffSha256": "3ac022b9d6adb915210f0fe50af76cf296c22515cd1577f113472e545d95cd8e",
+        "driver": {
+          "path": "tools/traversal-game-motion-production-qa.mjs",
+          "sha256": "2bb9550e8d929d497829c307a039c3a8fc2724c1737fff6df862bd1baca5a2a7"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-BztuXMkj.css",
+            "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+          },
+          {
+            "path": "dist/assets/game-D8fui7sl.js",
+            "sha256": "225dbf88d80baa2267062c3747c4a17945e0fe97cfafb34fdb6cd7fbff1d3089"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "61148ba1c2b15ab41bebf405ec9e76b1098a24bf54e78826cc45e443d8bd9dc3"
+          }
+        ]
+      },
+      "assertions": [
+        "continuous-departure",
+        "opaque-swap",
+        "reveal-momentum",
+        "clock-zero-during-reveal",
+        "full-exit-before-arrival",
+        "single-canonical-arrival",
+        "native-keyboard-focus",
+        "responsive-controls",
+        "game-covered-exit"
+      ],
+      "runs": [
+        {
+          "leg": "T0",
+          "viewport": {
+            "width": 1440,
+            "height": 810
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "return",
+              "checkpointFrames": 45,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0582673433950638,
+              "displacement": 0
+            },
+            {
+              "serial": 2,
+              "kind": "fork",
+              "checkpointFrames": 45,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0611374176284067,
+              "displacement": 0
+            }
+          ],
+          "returns": [
+            {
+              "segment": "route-2",
+              "speed": 1.0000049564205633,
+              "elapsed": 16.600000000002183,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-3",
+              "speed": 1.0000050162940295,
+              "elapsed": 16.69999999999709,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-6",
+              "speed": 1.2000031357659513,
+              "elapsed": 16.69999999999709,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-first-refuge",
+              "left": 1495.96875,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-first-trial-event",
+              "resolved": false
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 30,
+              "height": 30,
+              "x": 14,
+              "y": 409,
+              "right": 44,
+              "bottom": 439
+            },
+            {
+              "label": "optional return",
+              "focused": true,
+              "outline": "solid",
+              "width": 173,
+              "height": 32,
+              "x": 742,
+              "y": 153.21875,
+              "right": 915,
+              "bottom": 185.21875
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 280,
+              "height": 58,
+              "x": 1101.8125,
+              "y": 267.171875,
+              "right": 1381.8125,
+              "bottom": 325.171875
+            }
+          ]
+        },
+        {
+          "leg": "T0",
+          "viewport": {
+            "width": 620,
+            "height": 780
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "return",
+              "checkpointFrames": 45,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.058301180841051,
+              "displacement": 0
+            },
+            {
+              "serial": 2,
+              "kind": "fork",
+              "checkpointFrames": 45,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0611374176284067,
+              "displacement": 0
+            }
+          ],
+          "returns": [
+            {
+              "segment": "route-2",
+              "speed": 1.0000050162940295,
+              "elapsed": 16.700000000000728,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-3",
+              "speed": 1.0000049564205633,
+              "elapsed": 16.599999999998545,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-6",
+              "speed": 1.2000031357659513,
+              "elapsed": 16.69999999999709,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-first-refuge",
+              "left": 652.4921875,
+              "width": 163.140625,
+              "viewport": 620,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-first-trial-event",
+              "resolved": false
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 44,
+              "height": 44,
+              "x": 10,
+              "y": 395,
+              "right": 54,
+              "bottom": 439
+            },
+            {
+              "label": "optional return",
+              "focused": true,
+              "outline": "solid",
+              "width": 175,
+              "height": 44,
+              "x": 332,
+              "y": 207.453125,
+              "right": 507,
+              "bottom": 251.453125
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 267.59375,
+              "height": 58,
+              "x": 327.40625,
+              "y": 629,
+              "right": 595,
+              "bottom": 687
+            }
+          ]
+        },
+        {
+          "leg": "T0",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "return",
+              "checkpointFrames": 45,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0583011808410485,
+              "displacement": 0
+            },
+            {
+              "serial": 2,
+              "kind": "fork",
+              "checkpointFrames": 45,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.061182898999995,
+              "displacement": 0
+            }
+          ],
+          "returns": [
+            {
+              "segment": "route-2",
+              "speed": 1.0000050162940295,
+              "elapsed": 16.69999999999709,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-3",
+              "speed": 1.0000049564205633,
+              "elapsed": 16.60000000000582,
+              "globalCover": 1
+            },
+            {
+              "segment": "route-6",
+              "speed": 1.2000031357659513,
+              "elapsed": 16.69999999999709,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-first-refuge",
+              "left": 413.390625,
+              "width": 102.625,
+              "viewport": 390,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-first-trial-event",
+              "resolved": false
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 44,
+              "height": 44,
+              "x": 10,
+              "y": 427,
+              "right": 54,
+              "bottom": 471
+            },
+            {
+              "label": "optional return",
+              "focused": true,
+              "outline": "solid",
+              "width": 150,
+              "height": 44,
+              "x": 217,
+              "y": 206.21875,
+              "right": 367,
+              "bottom": 250.21875
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 157.1875,
+              "height": 74,
+              "x": 205.66217041015625,
+              "y": 662,
+              "right": 362.84967041015625,
+              "bottom": 736
+            }
+          ]
+        },
+        {
+          "leg": "T1",
+          "viewport": {
+            "width": 1440,
+            "height": 810
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 46,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0611828990000016,
+              "displacement": 0
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t1-route-2",
+              "speed": 1,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-3",
+              "speed": 1.05,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-village-choice",
+              "left": 1495.96875,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-second-trial-event",
+              "resolved": false
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 30,
+              "height": 30,
+              "x": 14,
+              "y": 409,
+              "right": 44,
+              "bottom": 439
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 280,
+              "height": 58,
+              "x": 1101.8125,
+              "y": 267.171875,
+              "right": 1381.8125,
+              "bottom": 325.171875
+            }
+          ]
+        },
+        {
+          "leg": "T1",
+          "viewport": {
+            "width": 620,
+            "height": 780
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 46,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.06113741762841,
+              "displacement": 0
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t1-route-2",
+              "speed": 1,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-3",
+              "speed": 1.05,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-village-choice",
+              "left": 652.4921875,
+              "width": 163.140625,
+              "viewport": 620,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-second-trial-event",
+              "resolved": false
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 44,
+              "height": 44,
+              "x": 10,
+              "y": 395,
+              "right": 54,
+              "bottom": 439
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 267.5937194824219,
+              "height": 58,
+              "x": 326.1523742675781,
+              "y": 629,
+              "right": 593.74609375,
+              "bottom": 687
+            }
+          ]
+        },
+        {
+          "leg": "T1",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 46,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0611374176284067,
+              "displacement": 0
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t1-route-2",
+              "speed": 1,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-3",
+              "speed": 1.05,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t1-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-village-choice",
+              "left": 413.390625,
+              "width": 102.625,
+              "viewport": 390,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-second-trial-event",
+              "resolved": false
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 44,
+              "height": 44,
+              "x": 10,
+              "y": 427,
+              "right": 54,
+              "bottom": 471
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 157.1875,
+              "height": 74,
+              "x": 207.8125,
+              "y": 662,
+              "right": 365,
+              "bottom": 736
+            }
+          ]
+        },
+        {
+          "leg": "T3",
+          "viewport": {
+            "width": 1440,
+            "height": 810
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 46,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0611374176284067,
+              "displacement": 0
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t3-route-2",
+              "speed": 1,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-3",
+              "speed": 1.05,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-shadow-signs",
+              "left": 1495.96875,
+              "width": 319.75,
+              "viewport": 1440,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-final-trial-event",
+              "resolved": false
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 30,
+              "height": 30,
+              "x": 14,
+              "y": 409,
+              "right": 44,
+              "bottom": 439
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 280,
+              "height": 58,
+              "x": 1101.8125,
+              "y": 267.171875,
+              "right": 1381.8125,
+              "bottom": 325.171875
+            }
+          ]
+        },
+        {
+          "leg": "T3",
+          "viewport": {
+            "width": 620,
+            "height": 780
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 46,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0611374176284067,
+              "displacement": 0
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t3-route-2",
+              "speed": 1,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-3",
+              "speed": 1.05,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-shadow-signs",
+              "left": 652.4921875,
+              "width": 163.140625,
+              "viewport": 620,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-final-trial-event",
+              "resolved": false
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 44,
+              "height": 44,
+              "x": 10,
+              "y": 395,
+              "right": 54,
+              "bottom": 439
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 267.59375,
+              "height": 58,
+              "x": 326.15185546875,
+              "y": 629,
+              "right": 593.74560546875,
+              "bottom": 687
+            }
+          ]
+        },
+        {
+          "leg": "T3",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "departures": [
+            {
+              "serial": 1,
+              "kind": "fork",
+              "checkpointFrames": 46,
+              "revealFrames": 16,
+              "clockStayedZero": true,
+              "minRevealSpeed": 1.0611374176284067,
+              "displacement": 0
+            }
+          ],
+          "returns": [
+            {
+              "segment": "t3-route-2",
+              "speed": 1,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-3",
+              "speed": 1.05,
+              "elapsed": 0,
+              "globalCover": 1
+            },
+            {
+              "segment": "t3-route-5",
+              "speed": 1.2,
+              "elapsed": 0,
+              "globalCover": 1
+            }
+          ],
+          "arrivals": [
+            {
+              "destination": "lion-shadow-signs",
+              "left": 413.390625,
+              "width": 102.625,
+              "viewport": 390,
+              "speed": 2.7,
+              "fade": 1,
+              "node": "lion-final-trial-event",
+              "resolved": false
+            }
+          ],
+          "keyboard": [
+            {
+              "label": "lower lane",
+              "focused": true,
+              "outline": "solid",
+              "width": 44,
+              "height": 44,
+              "x": 10,
+              "y": 427,
+              "right": 54,
+              "bottom": 471
+            },
+            {
+              "label": "authored fork",
+              "focused": true,
+              "outline": "solid",
+              "width": 157.18748474121094,
+              "height": 74,
+              "x": 207.4071807861328,
+              "y": 662,
+              "right": 364.59466552734375,
+              "bottom": 736
+            }
+          ]
+        }
+      ],
+      "captures": [
+        {
+          "file": "T1-620-reveal-moving.png",
+          "leg": "T1",
+          "viewport": {
+            "width": 620,
+            "height": 780
+          },
+          "motion": "game",
+          "label": "reveal-moving",
+          "sha256": "5bfa4a0c5238555e9198f6322051c93023e475ee602f5983fb31f95d006f206b"
+        },
+        {
+          "file": "T3-390-arrival-exited.png",
+          "leg": "T3",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "motion": "game",
+          "label": "arrival-exited",
+          "sha256": "b3e5a8ee09aabb518edfe9a512dc3830f291b55c6673b494f7fa01582fc34963"
+        }
+      ],
+      "totalCaptureCount": 30
+    }
+  ],
+  "selectedCaptures": [
+    {
+      "source": "tmp/traversal/motion-1002-v3-normal/T0-1440-departure-visible.png",
+      "path": "docs/reports/traversal-motion-polish-1/motion-1002-v3-normal-T0-1440-departure-visible.png",
+      "sha256": "fc1b866fbec1447b64736e4ff547361faca395a6f27a5da2c2c5ea84b93d0ed5"
+    },
+    {
+      "source": "tmp/traversal/motion-1002-v3-normal/T0-1440-reveal-moving.png",
+      "path": "docs/reports/traversal-motion-polish-1/motion-1002-v3-normal-T0-1440-reveal-moving.png",
+      "sha256": "73d0c13b6f68dabd83ad3ee9075e0dce26157713ea405d99a27a1011ed0ad95b"
+    },
+    {
+      "source": "tmp/traversal/motion-1002-v3-normal/T0-390-reveal-moving.png",
+      "path": "docs/reports/traversal-motion-polish-1/motion-1002-v3-normal-T0-390-reveal-moving.png",
+      "sha256": "5691a90075166e011a5c1496b0a088bdf862487c9b14938fe411e2a8a495fea3"
+    },
+    {
+      "source": "tmp/traversal/motion-1002-v3-normal/T1-620-arrival-visible.png",
+      "path": "docs/reports/traversal-motion-polish-1/motion-1002-v3-normal-T1-620-arrival-visible.png",
+      "sha256": "84264deca227410d2b3fe00119b2c169bbee735730232f62979d0190b37f6641"
+    },
+    {
+      "source": "tmp/traversal/motion-1002-v3-normal/T3-1440-arrival-exited.png",
+      "path": "docs/reports/traversal-motion-polish-1/motion-1002-v3-normal-T3-1440-arrival-exited.png",
+      "sha256": "46b0caaf8ec14f00e6b75a0b6ef28ce7017093e02e370f7881ef837783b261bc"
+    },
+    {
+      "source": "tmp/traversal/motion-1002-v3-os/T3-390-arrival-exited.png",
+      "path": "docs/reports/traversal-motion-polish-1/motion-1002-v3-os-T3-390-arrival-exited.png",
+      "sha256": "b3e5a8ee09aabb518edfe9a512dc3830f291b55c6673b494f7fa01582fc34963"
+    },
+    {
+      "source": "tmp/traversal/motion-1002-probe-v2/missing-ground-route-620.png",
+      "path": "docs/reports/traversal-motion-polish-1/motion-1002-probe-v2-missing-ground-route-620.png",
+      "sha256": "90fe4bf97d83e72a1893408ff04ce313b013e96d5d732f590daeb98108004b3e"
+    },
+    {
+      "source": "tmp/traversal/motion-1002-probe-v2/missing-shadow-route-390.png",
+      "path": "docs/reports/traversal-motion-polish-1/motion-1002-probe-v2-missing-shadow-route-390.png",
+      "sha256": "9ab72438eab3877aa2feab84c36d492a98458fac99c72f6eb500e021e71c7415"
+    },
+    {
+      "source": "tmp/traversal/motion-1300-game/T1-620-reveal-moving.png",
+      "path": "docs/reports/traversal-motion-polish-1/motion-1300-game-T1-620-reveal-moving.png",
+      "sha256": "5bfa4a0c5238555e9198f6322051c93023e475ee602f5983fb31f95d006f206b"
+    },
+    {
+      "source": "tmp/traversal/motion-1300-game/T3-390-arrival-exited.png",
+      "path": "docs/reports/traversal-motion-polish-1/motion-1300-game-T3-390-arrival-exited.png",
+      "sha256": "b3e5a8ee09aabb518edfe9a512dc3830f291b55c6673b494f7fa01582fc34963"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "src/traversal/TraversalRoadScene.ts",
+      "sha256": "2ae11088c923064ad2ac81164660e2f03f81efb993f7ff6123d670641ece299c",
+      "gitBlob": "c0364752de6a88a626fc45e2abe9eb6a0e6b8cef"
+    },
+    {
+      "path": "src/traversal/TraversalForkOverlay.ts",
+      "sha256": "8a00d22e62d5bcb2b692aa5b7efe509a96d4c773e7b4ab845eaaa66fc9759199",
+      "gitBlob": "da48e40d6c0588ab6dcc2dcae79c8bc77ed2dfe9"
+    },
+    {
+      "path": "src/traversal/TraversalRunController.ts",
+      "sha256": "64df8ff94ffe5f8626155ce229c6360258058beb7d7c6eb544fd2b793834fb37",
+      "gitBlob": "7ed736dce790cf7c25bd198589c932d3bcf8c60f"
+    },
+    {
+      "path": "src/traversal/TraversalRoadMotion.test.ts",
+      "sha256": "4f455e60ed4e62a2aa57db68f0a4ba249a5869db9b8398dd0bc92d579f19227b",
+      "gitBlob": "f0fd7ff98aa8f38fc9b66bf711761553331bca6b"
+    },
+    {
+      "path": "src/traversal/TraversalRunController.test.ts",
+      "sha256": "b937e90e3bb1d5abd74a64dd9f556d70a89e7d0ab5e4067a5e9b47147c172642",
+      "gitBlob": "18174146bc9ef7475bf803bfc1a8742afd19c53f"
+    },
+    {
+      "path": "src/styles/traversal.css",
+      "sha256": "003373d0b2f05af922d9e80c91285a2e1c28056cda80766deb890f181e6307a2",
+      "gitBlob": "f5a5f6d4c3238c91f5ee3c89c120dfd27a4cc06c"
+    },
+    {
+      "path": "tools/traversal-motion-production-qa.mjs",
+      "sha256": "f248923c3e0a5ab3b687d0c479a726982f8977ae64f08f12ac82d0da747bb151",
+      "gitBlob": "a30aa08ab3ad92d7fd84e431d3228c49dc9bc91f"
+    },
+    {
+      "path": "tools/traversal-motion-fallback-qa.mjs",
+      "sha256": "6f7c628c0f5d7f1e8c8ceaae67cc39f1d7f65d9435c727f0eafc6e90ecd4ff26",
+      "gitBlob": "c0038a412f83707c6de429d3d807b4038150d8f6"
+    },
+    {
+      "path": "tools/traversal-game-motion-production-qa.mjs",
+      "sha256": "2bb9550e8d929d497829c307a039c3a8fc2724c1737fff6df862bd1baca5a2a7",
+      "gitBlob": "8ea4d7f5143a258e13bf2f969319a4d79f02bda7"
+    },
+    {
+      "path": "legacy-combat.html",
+      "sha256": "8dc5c7a4d4abb7f15942d90a8b9c94a3d3ab01aa97310f2cc9a7ef984576403b",
+      "gitBlob": "1a49cd0e44116fd215d34bb448e89943736908c6"
+    },
+    {
+      "path": "src/combat/combatKeyboard.test.ts",
+      "sha256": "8f831709404663bffd0d03f9746c94482aa994deef4e0add69d15af076931935",
+      "gitBlob": "ea17c82429b377811937c3e226fd8cafcf706922"
+    },
+    {
+      "path": "src/combat/combatKeyboard.ts",
+      "sha256": "b7a0694ebf8af469b5c99a83076a2ff2dde1ec1b5ac74db0649ceb7cb0b03eb4",
+      "gitBlob": "c8c41388618805fc92baee138aec17d5c94112df"
+    },
+    {
+      "path": "src/combat/legacyCombatRuntime.js",
+      "sha256": "7679492a3b3bd18a7dc6abef04964cd45435f2138b422522dc4979c376d584c9",
+      "gitBlob": "e4c8dfe9c1ce0caf2f0f1a9d2cb08d93034707f2"
+    },
+    {
+      "path": "src/styles/combat-shell.css",
+      "sha256": "15da29c7e700363b77b6e293357712eddb917f186b7819ae6fa3ef5321d7fbbc",
+      "gitBlob": "ae9d24d6f1dea23c99dff938235ba6fcca458f16"
+    },
+    {
+      "path": "tools/combat-battlefield-keyboard-production-qa.mjs",
+      "sha256": "fe89fa120b03de4683f94348a5e1cf3fd456d4f06c9e8de9e281ae43138ff60c",
+      "gitBlob": "bfd2cd6a3f81e4d67645dabf29cc7c93ddd50321"
+    }
+  ],
+  "scope": "SCOPED_PRESENTATION:27native-clock event-branch journeys;V6origins/combat outcomes fixtures;not earned campaign,tactical,battlefield keyboard,demo",
+  "build": "Original1002production build reused byte-identically;includes6unaccepted deferred keyboard files;not rebuilt1300",
+  "tests": {
+    "traversal": {
+      "suites": 26,
+      "passed": 143
+    },
+    "receipts": {
+      "passed": 16
+    },
+    "types": true,
+    "contracts": 8,
+    "slots": 8,
+    "immutableGate": "empty",
+    "protectedStatus": "empty",
+    "whitespace": true
+  },
+  "acceptanceAtReview": {
+    "runId": "rpgthreejs-auto-dev-90m-20261003T1300",
+    "sourceSnapshot": "292a35f9f01ff2eb9dfcee1689693ebc92a88431",
+    "gitHead": "21398e4b02f92908a5378403e612b660006f336e",
+    "reviewedAt": "2026-10-03T13:27:12.862Z",
+    "reviewers": [
+      "contracts-guardian",
+      "traversal-engineer"
+    ],
+    "gameReview": "PASS; exact terminal receipt/assertions reviewed by reused contracts-guardian;root selected capture/hash verification",
+    "implementationCommit": "b9949123941ec13630ff3c398e4bb2551d68d50f",
+    "executionIdentityNote": "Original receipt Git representation retained. Postcommit all15rawsource/driver/deferred files and9build hashes verified exact; unwired candidate created only after final QA worker exit."
+  },
+  "candidate": {
+    "commit": "b6996366ccb1650f037a5b338af477b4da809b6c",
+    "scope": "Unwired model only;not visual/production/Pursuit acceptance",
+    "testsPassed": 7,
+    "types": true,
+    "imports": "typeTraversalLane only",
+    "runtimeConsumers": 0,
+    "files": [
+      {
+        "path": "src/traversal/TraversalPursuitCharge.ts",
+        "sha256": "37b32a80728e408a299d4e605c200a82552974fe1776383ce35e6fa9a5dd5fb2"
+      },
+      {
+        "path": "src/traversal/TraversalPursuitCharge.test.ts",
+        "sha256": "30f1cf8ba749b53925c99fac2f202de040e6a1c72a2d5b0ee15a1935ea2d3abd"
+      }
+    ],
+    "review": "contracts-guardian PASS after offscreen-target/arithmetic guards"
+  },
+  "postCandidateBuild": {
+    "at": "2026-10-03T13:39:56.340Z",
+    "byteIdenticalToQaBuild": true,
+    "files": 9,
+    "slots": 8
+  },
+  "auditCorrection": "PowerShell JSON roundtrip shortened historical timestamp precision; ALL47inherited objects restored from71cee262 and original39/deferredTask/sixblobs reverified exactly before commit."
+}

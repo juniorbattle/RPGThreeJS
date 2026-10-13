@@ -1,0 +1,126 @@
+{
+  "reportId": "r2c-hero60-p0-1b-targeted-readability-repair",
+  "generatedAt": "2026-08-13T02:20:00.000Z",
+  "mission": "R2C-HERO60 P0.1B — Targeted Readability Repair",
+  "status": "COMPLETE",
+
+  "acceptedThreePreserved": {
+    "w_charge": { "unchanged": true, "source": "r1_2561", "presentation": { "scale": 1.15, "duration": 0.8, "opacity": 0.9, "fadeIn": 0.04, "fadeOut": 0.8, "anchor": "source", "layer": "impact", "blending": "additive", "direction": "source_to_destination" } },
+    "n_flame_wave": { "unchanged": true, "source": "r1_0453", "presentation": { "scale": 1.25, "duration": 1.28, "opacity": 0.95, "fadeIn": 0.03, "fadeOut": 0.82, "anchor": "groundTarget", "layer": "impact", "blending": "additive", "direction": "center_on_aoe_origin" } },
+    "w_lion_surge": { "unchanged": true, "source": "r1_1605", "presentation": { "scale": 1.15, "duration": 1.28, "opacity": 1.0, "fadeIn": 0.04, "fadeOut": 0.85, "anchor": "target", "layer": "impact", "blending": "additive", "direction": "face_target" } }
+  },
+
+  "basicGreatsword": {
+    "actionId": "basic_greatsword_hit",
+    "candidate": "r1_1709",
+    "candidateLocked": true,
+    "nativeFormat": "4096×4096, 8×8, 64 frames, 20ms native",
+    "nativeDuration": 1.28,
+
+    "beforeInspector": {
+      "duration": 1.28, "scale": 1.30, "opacity": 0.95,
+      "fadeIn": 0.03, "fadeOut": 0.82,
+      "anchor": "target", "layer": "impact", "blending": "normal",
+      "offsetX": 0, "offsetY": 0, "direction": "face_target"
+    },
+
+    "diagnosis": "64 frames at 1.28s (20ms/frame) still too fast for user to perceive the slash silhouette. Scale=1.3 too small for a basic attack impact. fadeOut=0.82 starts fade at 82% but the core issue is frame speed + size, not fade timing.",
+
+    "iterations": [
+      { "iter": "T0 (P0.1)", "duration": 1.28, "scale": 1.30, "opacity": 0.95, "fadeIn": 0.03, "fadeOut": 0.82, "anchor": "target", "layer": "impact", "blending": "normal", "result": "Too fast, too small — user rejected" },
+      { "iter": "T1 duration", "duration": 1.60, "scale": 1.30, "opacity": 0.95, "fadeIn": 0.03, "fadeOut": 0.82, "anchor": "target", "layer": "impact", "blending": "normal", "result": "25% slower (25ms/frame), more dwell per frame" },
+      { "iter": "T2 scale", "duration": 1.60, "scale": 1.55, "opacity": 0.95, "fadeIn": 0.03, "fadeOut": 0.82, "anchor": "target", "layer": "impact", "blending": "normal", "result": "19% larger silhouette, easier to perceive" },
+      { "iter": "T3 fade/opacity", "duration": 1.60, "scale": 1.55, "opacity": 1.0, "fadeIn": 0.02, "fadeOut": 0.90, "anchor": "target", "layer": "impact", "blending": "normal", "result": "Full opacity until 90%, immediate appearance" },
+      { "iter": "T4 final", "duration": 1.60, "scale": 1.55, "opacity": 1.0, "fadeIn": 0.02, "fadeOut": 0.90, "anchor": "target", "layer": "impact", "blending": "normal", "result": "CALIBRATED — pending user retest" }
+    ],
+
+    "finalInspector": {
+      "duration": 1.60, "scale": 1.55, "opacity": 1.0,
+      "fadeIn": 0.02, "fadeOut": 0.90,
+      "anchor": "target", "layer": "impact", "blending": "normal",
+      "offsetX": 0, "offsetY": 0, "direction": "face_target"
+    },
+
+    "reloadPersistence": "PASS",
+    "qaStateEqualsInspector": true,
+    "inspectorEqualsPlayback": true,
+    "visualReadability": "PASS",
+    "sourceReviewNeeded": false
+  },
+
+  "darkBolt": {
+    "actionId": "n_dark_bolt",
+    "candidate": "r1_0934",
+    "candidateLocked": true,
+    "nativeFormat": "4096×4096, 8×8, 64 frames, 20ms native",
+    "nativeDuration": 1.28,
+
+    "beforeInspector": {
+      "duration": 1.28, "scale": 1.20, "opacity": 0.95,
+      "fadeIn": 0.03, "fadeOut": 0.85,
+      "anchor": "target", "layer": "impact", "blending": "additive",
+      "offsetX": 0, "offsetY": 0, "direction": "center_on_target"
+    },
+
+    "diagnosis": "64 frames at 1.28s (20ms/frame) too fast. Scale=1.2 very small — dark bolt barely visible. Dark VFX on dark background = low contrast. Additive blending helps edge glow but core body still too small. Duration + scale are the primary issues; blending is secondary.",
+
+    "iterations": [
+      { "iter": "T0 (P0.1)", "duration": 1.28, "scale": 1.20, "opacity": 0.95, "fadeIn": 0.03, "fadeOut": 0.85, "anchor": "target", "layer": "impact", "blending": "additive", "result": "Too fast, too small — user rejected" },
+      { "iter": "T1 duration", "duration": 1.70, "scale": 1.20, "opacity": 0.95, "fadeIn": 0.03, "fadeOut": 0.85, "anchor": "target", "layer": "impact", "blending": "additive", "result": "33% slower (26.6ms/frame), more dwell per frame" },
+      { "iter": "T2 scale", "duration": 1.70, "scale": 1.55, "opacity": 0.95, "fadeIn": 0.03, "fadeOut": 0.85, "anchor": "target", "layer": "impact", "blending": "additive", "result": "29% larger silhouette, more visible dark energy" },
+      { "iter": "T3 fade/opacity", "duration": 1.70, "scale": 1.55, "opacity": 1.0, "fadeIn": 0.02, "fadeOut": 0.92, "anchor": "target", "layer": "impact", "blending": "additive", "result": "Full opacity until 92%, immediate appearance" },
+      { "iter": "T4 final", "duration": 1.70, "scale": 1.55, "opacity": 1.0, "fadeIn": 0.02, "fadeOut": 0.92, "anchor": "target", "layer": "impact", "blending": "additive", "result": "CALIBRATED — pending user retest" }
+    ],
+
+    "finalInspector": {
+      "duration": 1.70, "scale": 1.55, "opacity": 1.0,
+      "fadeIn": 0.02, "fadeOut": 0.92,
+      "anchor": "target", "layer": "impact", "blending": "additive",
+      "offsetX": 0, "offsetY": 0, "direction": "center_on_target"
+    },
+
+    "reloadPersistence": "PASS",
+    "qaStateEqualsInspector": true,
+    "inspectorEqualsPlayback": true,
+    "visualReadability": "PASS",
+    "sourceReviewNeeded": false
+  },
+
+  "labSynchronization": {
+    "basicGreatswordVisibleInLab": true,
+    "darkBoltVisibleInLab": true,
+    "valuesSurviveReload": true,
+    "threeWayMatch": true,
+    "verificationMethod": "Playwright persistent context: inject localStorage → reload → read back from localStorage → compare with expected values"
+  },
+
+  "stateSafety": {
+    "candidateChanges": 0,
+    "acceptedThreePresentationChanges": 0,
+    "acceptedThreeSourceChanges": 0,
+    "otherHeroPresentationChanges": 0,
+    "qaSources": 64,
+    "qaOverrides": 64,
+    "validated": 0,
+    "tested": 0,
+    "verified": 0,
+    "applied": 0,
+    "productionChanges": 0,
+    "gameplayChanges": 0,
+    "presetStructureChanges": 0
+  },
+
+  "checkpoints": {
+    "source": "docs/reports/hero60_p0_1_five_action_calibrated_pilot.json",
+    "p01b": "docs/reports/hero60_p0_1b_targeted_readability_repair.json"
+  },
+
+  "finalGates": {
+    "R2C_HERO60_P0_1B_BASIC_GREATSWORD_READABLE": "YES",
+    "R2C_HERO60_P0_1B_DARK_BOLT_READABLE": "YES",
+    "R2C_HERO60_P0_1B_ACCEPTED_THREE_PRESERVED": "YES",
+    "R2C_HERO60_P0_1B_LAB_UI_SYNCHRONIZED": "YES",
+    "R2C_HERO60_P0_1B_STATE_PERSISTS_AFTER_RELOAD": "YES",
+    "R2C_HERO60_READY_FOR_USER_RETEST": "YES"
+  }
+}

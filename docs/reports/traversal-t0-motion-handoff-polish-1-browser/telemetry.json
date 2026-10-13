@@ -1,0 +1,368 @@
+{
+  "summaries": [
+    {
+      "id": "aider-branch-a",
+      "complete": true,
+      "frameCount": 6845,
+      "route3Approach": {
+        "startMs": 1790535082660,
+        "fadeMs": 1790535083098,
+        "preFadeWorldMovement": 196.08134760672328
+      },
+      "refugeeDeparture": null,
+      "aiderReturn": {
+        "mountedMs": 1790535090712,
+        "mountedUnderGlobalCover": true,
+        "revealMs": 1790535091224,
+        "additionalLocalTransition": false,
+        "checkpointRevisit": false,
+        "departureRevisit": false
+      },
+      "forkDeparture": {
+        "startMs": 1790535105384,
+        "movingMs": 1790535105467,
+        "fadeMs": 1790535105802,
+        "blackMs": 1790535106138,
+        "revealMs": 1790535106614,
+        "beforeFadeMs": 335,
+        "beforeBlackMs": 671,
+        "movingOffset": 1.5051890105575552,
+        "movingWheelAngle": "188.36193968312145rad",
+        "movingDustOpacity": 0.0349685
+      },
+      "branchReturn": {
+        "mountedMs": 1790535126862,
+        "mountedUnderGlobalCover": true,
+        "revealMs": 1790535127368,
+        "additionalLocalTransition": false,
+        "checkpointRevisit": false,
+        "departureRevisit": false
+      },
+      "arrival": {
+        "atMs": 1790535146837,
+        "samples": [
+          {
+            "elapsedMs": 0,
+            "canonicalProgress": 1,
+            "sessionProgress": 1,
+            "worldDistance": 44553.7119903154,
+            "visualSpeed": 2.7,
+            "vehicleOffset": 0,
+            "vehicleRight": 519.875,
+            "viewport": 1440,
+            "dustOpacity": 0.271034
+          },
+          {
+            "elapsedMs": 361,
+            "canonicalProgress": 1,
+            "sessionProgress": 1,
+            "worldDistance": 44822.23998199085,
+            "visualSpeed": 2.5372700478119645,
+            "vehicleOffset": 130.86839238865034,
+            "vehicleRight": 367.4296875,
+            "viewport": 620,
+            "dustOpacity": 0.257007
+          },
+          {
+            "elapsedMs": 1211,
+            "canonicalProgress": 1,
+            "sessionProgress": 1,
+            "worldDistance": 45306.99165157039,
+            "visualSpeed": 1.231606635514363,
+            "vehicleOffset": 852.6528496502193,
+            "vehicleRight": 1372.515625,
+            "viewport": 1440,
+            "dustOpacity": 0.245762
+          },
+          {
+            "elapsedMs": 2011,
+            "canonicalProgress": 1,
+            "sessionProgress": 1,
+            "worldDistance": 45414.40780366492,
+            "visualSpeed": 0.002900560812231324,
+            "vehicleOffset": 974.2394168877934,
+            "vehicleRight": 1494.109375,
+            "viewport": 1440,
+            "dustOpacity": 0.0943687
+          }
+        ],
+        "callbackCount": 1,
+        "destinationAgency": true,
+        "canonicalDestinationUnvisited": true,
+        "travelView": false
+      },
+      "branch": "lion-first-trial-event",
+      "bypassedRefugees": false,
+      "visitedRefugees": true
+    },
+    {
+      "id": "passer-branch-b",
+      "complete": true,
+      "frameCount": 6881,
+      "route3Approach": {
+        "startMs": 1790535214732,
+        "fadeMs": 1790535215190,
+        "preFadeWorldMovement": 196.05994353715505
+      },
+      "refugeeDeparture": {
+        "startMs": 1790535217464,
+        "movingMs": 1790535217579,
+        "fadeMs": 1790535217880,
+        "blackMs": 1790535218214,
+        "revealMs": 1790535218684,
+        "beforeFadeMs": 301,
+        "beforeBlackMs": 635,
+        "movingOffset": 1.2392758558739896,
+        "movingWheelAngle": "167.43244251441607rad",
+        "movingDustOpacity": 0.0146871
+      },
+      "aiderReturn": null,
+      "forkDeparture": {
+        "startMs": 1790535233496,
+        "movingMs": 1790535233540,
+        "fadeMs": 1790535233913,
+        "blackMs": 1790535234257,
+        "revealMs": 1790535234716,
+        "beforeFadeMs": 373,
+        "beforeBlackMs": 717,
+        "movingOffset": 1.6919109129248995,
+        "movingWheelAngle": "202.15332280420293rad",
+        "movingDustOpacity": 0.0163297
+      },
+      "branchReturn": {
+        "mountedMs": 1790535258321,
+        "mountedUnderGlobalCover": true,
+        "revealMs": 1790535258829,
+        "additionalLocalTransition": false,
+        "checkpointRevisit": false,
+        "departureRevisit": false
+      },
+      "arrival": {
+        "atMs": 1790535278303,
+        "samples": [
+          {
+            "elapsedMs": 0,
+            "canonicalProgress": 1,
+            "sessionProgress": 1,
+            "worldDistance": 44551.634042395446,
+            "visualSpeed": 2.7,
+            "vehicleOffset": 0,
+            "vehicleRight": 519.875,
+            "viewport": 1440,
+            "dustOpacity": 0.265369
+          },
+          {
+            "elapsedMs": 358,
+            "canonicalProgress": 1,
+            "sessionProgress": 1,
+            "worldDistance": 44820.162002536366,
+            "visualSpeed": 2.5372700478119663,
+            "vehicleOffset": 303.9523595306472,
+            "vehicleRight": 823.8125,
+            "viewport": 1440,
+            "dustOpacity": 0.270824
+          },
+          {
+            "elapsedMs": 1206,
+            "canonicalProgress": 1,
+            "sessionProgress": 1,
+            "worldDistance": 45304.87918896982,
+            "visualSpeed": 1.2318304907645927,
+            "vehicleOffset": 852.6137817683684,
+            "vehicleRight": 1372.484375,
+            "viewport": 1440,
+            "dustOpacity": 0.241757
+          },
+          {
+            "elapsedMs": 2011,
+            "canonicalProgress": 1,
+            "sessionProgress": 1,
+            "worldDistance": 45412.329833576056,
+            "visualSpeed": 0.0029005608122316053,
+            "vehicleOffset": 974.2393917942823,
+            "vehicleRight": 1494.109375,
+            "viewport": 1440,
+            "dustOpacity": 0.0954646
+          }
+        ],
+        "callbackCount": 1,
+        "destinationAgency": true,
+        "canonicalDestinationUnvisited": true,
+        "travelView": false
+      },
+      "branch": "lion-first-trial-combat",
+      "bypassedRefugees": true,
+      "visitedRefugees": false
+    }
+  ],
+  "checks": {
+    "runsComplete": true,
+    "clips": true,
+    "passerBeforeFade": true,
+    "passerBeforeBlack": true,
+    "forkBeforeBlack": true,
+    "aiderSingleReturn": true,
+    "branchSingleReturn": true,
+    "approachBeforeFade": true,
+    "arrivalCoast": true,
+    "arrivalScreenExit": true,
+    "callbackOnce": true,
+    "agency": true,
+    "blackViewport": true,
+    "noPageErrors": true
+  },
+  "clips": [
+    {
+      "file": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/A-route3-refugees-aider-route4.webm",
+      "startMs": 1790535080112,
+      "endMs": 1790535092601,
+      "durationSeconds": 14.889000000000001
+    },
+    {
+      "file": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/B-refugees-passer-route4.webm",
+      "startMs": 1790535217338,
+      "endMs": 1790535220513,
+      "durationSeconds": 5.574999999999999
+    },
+    {
+      "file": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/C-fork-route5a.webm",
+      "startMs": 1790535105331,
+      "endMs": 1790535109058,
+      "durationSeconds": 6.127
+    },
+    {
+      "file": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/D-branch-checkpoint-route6.webm",
+      "startMs": 1790535122963,
+      "endMs": 1790535130033,
+      "durationSeconds": 9.47
+    },
+    {
+      "file": "docs/reports/traversal-t0-motion-handoff-polish-1-browser/E-route6-arrival-journey.webm",
+      "startMs": 1790535275108,
+      "endMs": 1790535281542,
+      "durationSeconds": 8.834
+    }
+  ],
+  "responsive": [
+    {
+      "file": "aider-branch-a-fork-before-620.png",
+      "atMs": 1790535105331,
+      "viewport": "620x780",
+      "segment": "route-4",
+      "phase": "FORK_OVERLAY",
+      "view": "checkpoint"
+    },
+    {
+      "file": "aider-branch-a-fork-departure-620.png",
+      "atMs": 1790535105611,
+      "viewport": "620x780",
+      "segment": "route-4",
+      "phase": "FORK_OVERLAY",
+      "view": "checkpoint",
+      "departure": "fork"
+    },
+    {
+      "file": "aider-branch-a-branch-checkpoint-1440.png",
+      "atMs": 1790535123234,
+      "viewport": "1440x810",
+      "segment": "route-5a",
+      "phase": "RUNNING",
+      "view": "checkpoint"
+    },
+    {
+      "file": "aider-branch-a-route6-rush-1440.png",
+      "atMs": 1790535143574,
+      "viewport": "1440x810",
+      "segment": "route-6",
+      "phase": "RUNNING",
+      "view": "route"
+    },
+    {
+      "file": "aider-branch-a-route6-rush-tablet-620.png",
+      "atMs": 1790535143735,
+      "viewport": "620x780",
+      "segment": "route-6",
+      "phase": "RUNNING",
+      "view": "route"
+    },
+    {
+      "file": "aider-branch-a-route6-rush-mobile-390.png",
+      "atMs": 1790535143871,
+      "viewport": "390x844",
+      "segment": "route-6",
+      "phase": "RUNNING",
+      "view": "route"
+    },
+    {
+      "file": "aider-branch-a-arrival-desktop-1440.png",
+      "atMs": 1790535147147,
+      "viewport": "1440x810",
+      "segment": "route-6",
+      "phase": "ARRIVING",
+      "view": "route"
+    },
+    {
+      "file": "aider-branch-a-arrival-tablet-620.png",
+      "atMs": 1790535147291,
+      "viewport": "620x780",
+      "segment": "route-6",
+      "phase": "ARRIVING",
+      "view": "route"
+    },
+    {
+      "file": "aider-branch-a-arrival-mobile-390.png",
+      "atMs": 1790535147417,
+      "viewport": "390x844",
+      "segment": "route-6",
+      "phase": "ARRIVING",
+      "view": "route"
+    },
+    {
+      "file": "passer-branch-b-passer-before-390.png",
+      "atMs": 1790535217338,
+      "viewport": "390x844",
+      "segment": "route-3",
+      "phase": "DECISION",
+      "view": "checkpoint"
+    },
+    {
+      "file": "passer-branch-b-passer-departure-390.png",
+      "atMs": 1790535217666,
+      "viewport": "390x844",
+      "segment": "route-3",
+      "phase": "RUNNING",
+      "view": "checkpoint",
+      "departure": "return"
+    }
+  ],
+  "black": [
+    {
+      "file": "aider-branch-a-route3-black-1440.png",
+      "atMs": 1790535083524,
+      "viewport": "1440x810",
+      "segment": "route-3",
+      "phase": "RUNNING",
+      "view": "checkpoint",
+      "blackPixelRatio": 1
+    },
+    {
+      "file": "aider-branch-a-fork-black-620.png",
+      "atMs": 1790535106188,
+      "viewport": "620x780",
+      "segment": "route-5a",
+      "phase": "RUNNING",
+      "view": "route",
+      "blackPixelRatio": 1
+    },
+    {
+      "file": "passer-branch-b-passer-black-390.png",
+      "atMs": 1790535218263,
+      "viewport": "390x844",
+      "segment": "route-4",
+      "phase": "RUNNING",
+      "view": "route",
+      "blackPixelRatio": 1
+    }
+  ],
+  "errors": []
+}

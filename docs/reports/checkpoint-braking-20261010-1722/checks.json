@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-10T17:35:48.262Z",
+  "runId": "rpgthreejs-auto-dev-90m-20261010T1722",
+  "baseline": "a4b582fc569b033b34f7234dd99ddd7b2bcde6b7",
+  "disposition": "ACCEPTED_SCOPED_T0_CHECKPOINT_BRAKING_WHEEL_GROUND_1440_NORMAL",
+  "receiptAcceptance": "NOT_ACCEPTED",
+  "job": {
+    "jobId": "checkpoint-braking-1722",
+    "status": "SUCCEEDED",
+    "startedAt": "2026-10-10T17:30:20.586Z",
+    "endedAt": "2026-10-10T17:32:32.278Z",
+    "resultSha256": "782a72dedbb9d3d323d469560a4fb4262aaeb42d8a9e16dec7f132ef03a1fcb7",
+    "parameters": {
+      "motion": "normal",
+      "viewports": [
+        "1440x810"
+      ],
+      "legs": [
+        "T0"
+      ],
+      "branch": "event",
+      "gameReducedMotion": false,
+      "pursuitCheck": false,
+      "gaitCheck": false,
+      "reducedChargeCheck": false,
+      "scope": "native production motion with V6-origin/combat-result fixtures; not earned campaign"
+    },
+    "requiredAssertions": [
+      "continuous-checkpoint-braking",
+      "checkpoint-wheel-ground-travel",
+      "continuous-departure",
+      "opaque-swap",
+      "reveal-momentum",
+      "clock-zero-during-reveal",
+      "full-exit-before-arrival",
+      "single-canonical-arrival",
+      "native-keyboard-focus",
+      "responsive-controls",
+      "forward-exit-and-resize",
+      "accelerating-arrival"
+    ],
+    "provenance": {
+      "gitHead": "a4b582fc569b033b34f7234dd99ddd7b2bcde6b7",
+      "sourceTree": "7a91b152b3cec984592c7e454f1efe68612147c9",
+      "sourceDiffSha256": "1e5d0b9c100bc26d57ceabdc3743af83c4e395d64a48c184761c582ebbcd6d7c",
+      "driver": {
+        "path": "tools/traversal-motion-production-qa.mjs",
+        "sha256": "1a9e47fabe663c52db7a47f346018e03d5554bef4ed02e2b4a95c3bedf4f31c8"
+      },
+      "inputs": [],
+      "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+      "build": [
+        {
+          "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+          "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+        },
+        {
+          "path": "dist/assets/combat-B0LaJhFj.js",
+          "sha256": "a035b6bec0f2d91a969ea6d32358ac625dd8cffc8de6562129c20b51ece5a875"
+        },
+        {
+          "path": "dist/assets/combat-DGLEfKFr.css",
+          "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+        },
+        {
+          "path": "dist/assets/game-CdUsLhii.css",
+          "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+        },
+        {
+          "path": "dist/assets/game-EarLSl_Z.js",
+          "sha256": "e5b669f0e93f991ece7d2efd533df955f96cb4d46933beb1fe1c530bcab6b0cc"
+        },
+        {
+          "path": "dist/assets/three-core-f0ajj1rG.js",
+          "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+        },
+        {
+          "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+          "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+        },
+        {
+          "path": "dist/assets/validation-mSkvzYyn.js",
+          "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "1ee0e1b79e25dfa25d3d716965c86b49b6687499eae7f29efc6ab0eef12a0aaf"
+        }
+      ]
+    }
+  },
+  "reviewChecks": {
+    "requestMatches": true,
+    "provenanceMatches": true,
+    "provenanceStable": true,
+    "matchesCurrentExecutionAtReview": true,
+    "resultDigestMatches": true
+  },
+  "sourceHashes": [
+    {
+      "path": "src/traversal/TraversalRoadMotion.test.ts",
+      "sha256": "581c8d4ad1326670744ecbf0aaab1b686dbf9648db786af1dfd7fb9719871366"
+    },
+    {
+      "path": "src/traversal/TraversalRoadScene.ts",
+      "sha256": "381b58127b7f2348fd141e1a94d6c919ce6bd76f3f9f189dcd9ebcada6752922"
+    }
+  ],
+  "frozenSourceFiles": 393,
+  "assertions": {
+    "continuous-checkpoint-braking": true,
+    "checkpoint-wheel-ground-travel": true,
+    "continuous-departure": true,
+    "opaque-swap": true,
+    "reveal-momentum": true,
+    "clock-zero-during-reveal": true,
+    "full-exit-before-arrival": true,
+    "single-canonical-arrival": true,
+    "native-keyboard-focus": true,
+    "responsive-controls": true,
+    "forward-exit-and-resize": true,
+    "accelerating-arrival": true
+  },
+  "braking": [
+    {
+      "segment": "route-1",
+      "frames": 124,
+      "carriedSpeed": 0.7568999989049785,
+      "stopped": true,
+      "wheelPairs": 69
+    },
+    {
+      "segment": "route-2",
+      "frames": 123,
+      "carriedSpeed": 0.9233156309163633,
+      "stopped": true,
+      "wheelPairs": 69
+    },
+    {
+      "segment": "route-3",
+      "frames": 124,
+      "carriedSpeed": 1.1484108937964161,
+      "stopped": true,
+      "wheelPairs": 69
+    },
+    {
+      "segment": "route-4",
+      "frames": 123,
+      "carriedSpeed": 1.4260037075741088,
+      "stopped": true,
+      "wheelPairs": 69
+    },
+    {
+      "segment": "route-5a",
+      "frames": 123,
+      "carriedSpeed": 1.1625162922014147,
+      "stopped": true,
+      "wheelPairs": 69
+    }
+  ],
+  "departures": [
+    {
+      "serial": 1,
+      "kind": "return",
+      "checkpointFrames": 45,
+      "revealFrames": 16,
+      "clockStayedZero": true,
+      "minRevealSpeed": 1.8167195214405623,
+      "displacement": 194.04415083036145
+    },
+    {
+      "serial": 2,
+      "kind": "fork",
+      "checkpointFrames": 45,
+      "revealFrames": 16,
+      "clockStayedZero": true,
+      "minRevealSpeed": 1.4514178017397343,
+      "displacement": 203.74636812552052
+    }
+  ],
+  "sampleFrames": 930,
+  "errors": [],
+  "failures": [],
+  "mechanical": {
+    "currentUniqueTests": 23,
+    "typescript": "PASS",
+    "contracts": 8,
+    "videoSlots": 8,
+    "buildModules": 214,
+    "build": "PASS",
+    "lockedGates": "PASS",
+    "whitespace": "PASS"
+  },
+  "selectedCaptures": [
+    {
+      "path": "T0-1440-checkpoint-route-1.png",
+      "sha256": "447f7e3a1947174676229572c6a375d4251ff6fc66af79d402daaa8574a8bf6a",
+      "inspectedBy": [
+        "root",
+        "traversal-engineer",
+        "contracts-guardian"
+      ]
+    },
+    {
+      "path": "T0-1440-departure-visible.png",
+      "sha256": "7b33bf0d0e5b3b15cdfcae805dfa7a83500ef662ffccc8eadebd3ddbb87d1a3b",
+      "inspectedBy": [
+        "root",
+        "traversal-engineer",
+        "contracts-guardian"
+      ]
+    },
+    {
+      "path": "T0-1440-reveal-moving.png",
+      "sha256": "9971b55026ce40a1e2a9bc16d1fa449ac659785fa20433bf8cb5e19af4f40678",
+      "inspectedBy": [
+        "root",
+        "traversal-engineer",
+        "contracts-guardian"
+      ]
+    }
+  ],
+  "compliance": {
+    "GAME_CONSTITUTION": "PASS",
+    "ART_DIRECTION": "N/A",
+    "CHARACTERS": "N/A",
+    "ENVIRONMENTS": "N/A",
+    "NARRATIVE_CAMPAIGN": "PASS",
+    "NARRATIVE_PRESENTATION": "PASS",
+    "TRAVERSAL": "PASS_SCOPED_T0_NORMAL_1440",
+    "COMBAT": "N/A_FIXTURE",
+    "SAVE": "PASS_NO_SCHEMA_CHANGE",
+    "UI_ACCESSIBILITY": "PASS_SOURCE_NORMAL_SMOKE_OS_OPEN",
+    "QA_EVIDENCE": "PASS_SCOPED",
+    "REPOSITORY_GOVERNANCE": "PASS"
+  },
+  "limits": [
+    "T1/T3 and OS/game-reduced checkpoint browser acceptance open",
+    "Delayed focus readiness and long-frame behavior source-reviewed, not separately tested",
+    "V6 origin and injected combat result fixtures; no earned campaign or balance acceptance",
+    "Operator manual visual acceptance, broader scenery and full demo remain open"
+  ],
+  "reviewCost": {
+    "traversalReviewerPasses": 3,
+    "guardianPasses": 2,
+    "browserScenarios": 1,
+    "quotaSavingClaim": false
+  }
+}

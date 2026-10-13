@@ -1,0 +1,904 @@
+{
+  "schemaVersion": 1,
+  "task": "SCENE-TRANSITION-COPY",
+  "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
+  "recordedAt": "2026-10-08T05:38:28.195Z",
+  "baseline": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+  "method": "BUILT_PRODUCTION_REAL_GAMEAPP_NODE_SAVE_AND_COMBAT_RESULT_FIXTURES",
+  "runtimeSourceChange": [
+    "src/styles/app.css"
+  ],
+  "authoredCopyChanged": false,
+  "canonChanged": false,
+  "campaignAcceptance": false,
+  "acceptedScope": "Authored ATE captions visible in bounded inspected tableau captures; mounted transition labels contain no standalone ellipsis placeholder; source cascade corrected",
+  "mechanics": {
+    "focusedTests": 49,
+    "testFiles": 3,
+    "types": "PASS",
+    "contracts": "8 LOCKED / 8 slots",
+    "build": "game-JS_oFiz8.js / game-3pkMo-Ir.css",
+    "immutableGate": "PASS",
+    "mp4Count": 8
+  },
+  "cases": [
+    {
+      "jobId": "copy-0514-v2-390-normal",
+      "parameters": {
+        "viewport": "390x844",
+        "osReducedMotion": false,
+        "gameReducedMotion": false,
+        "production": true,
+        "transitionCopy": true,
+        "scenarios": "bois-clair-saved,bois-clair-sacrificed,shadow-evidence"
+      },
+      "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+      "resultPath": "tmp/cinematics/copy-0514-v2-390-normal/results.json",
+      "resultSha256": "53862022b1f2323de4e8e54a455ac84c35565bedb1add3a8b8235a94bdf02acf",
+      "provenance": {
+        "gitHead": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+        "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+        "sourceDiffSha256": "f8d46b24602c1ea80a618b1b895f6acf8f1133e57c48a7059315480dc843b625",
+        "driver": {
+          "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "sha256": "ec44494c1f959ee20b87ad43b415b31fa4df27392415517a299749714732d1b9"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-3pkMo-Ir.css",
+            "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+          },
+          {
+            "path": "dist/assets/game-JS_oFiz8.js",
+            "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "f895fee0579a12a0418dfbb741b610ad6bd8340f992be06e96279a2a75d16d6b"
+          }
+        ]
+      },
+      "startedAt": "2026-10-08T05:29:37.127Z",
+      "endedAt": "2026-10-08T05:30:49.019Z",
+      "nodes": [
+        {
+          "id": "bois-clair-saved",
+          "pass": true,
+          "transitionLabels": [
+            "La chronique reprend",
+            "Défense de Bois-Clair",
+            "Conséquence"
+          ],
+          "ateCopy": [
+            {
+              "sequenceId": "ate_maelor_seal_analysis",
+              "title": "Ailleurs…",
+              "bounds": {
+                "x": 18,
+                "y": 18,
+                "width": 63.140625,
+                "height": 12
+              },
+              "fitsViewport": true,
+              "nextEnabled": true,
+              "capture": "bois-clair-saved-ate_maelor_seal_analysis-copy.png"
+            }
+          ],
+          "osProof": null
+        },
+        {
+          "id": "bois-clair-sacrificed",
+          "pass": true,
+          "transitionLabels": [
+            "La chronique reprend",
+            "Raid sur Bois-Clair",
+            "Conséquence"
+          ],
+          "ateCopy": [
+            {
+              "sequenceId": "ate_maelor_seal_analysis",
+              "title": "Ailleurs…",
+              "bounds": {
+                "x": 18,
+                "y": 18,
+                "width": 63.140625,
+                "height": 12
+              },
+              "fitsViewport": true,
+              "nextEnabled": true,
+              "capture": "bois-clair-sacrificed-ate_maelor_seal_analysis-copy.png"
+            }
+          ],
+          "osProof": null
+        },
+        {
+          "id": "shadow-evidence",
+          "pass": true,
+          "transitionLabels": [
+            "La chronique reprend"
+          ],
+          "ateCopy": [
+            {
+              "sequenceId": "ate_ruins_awaken",
+              "title": "Pendant ce temps…",
+              "bounds": {
+                "x": 18,
+                "y": 18,
+                "width": 122.71875,
+                "height": 12
+              },
+              "fitsViewport": true,
+              "nextEnabled": true,
+              "capture": "shadow-evidence-ate_ruins_awaken-copy.png"
+            },
+            {
+              "sequenceId": "ate_serpent_retreat_order",
+              "title": "Lignes Serpent",
+              "bounds": {
+                "x": 18,
+                "y": 18,
+                "width": 97.265625,
+                "height": 12
+              },
+              "fitsViewport": true,
+              "nextEnabled": true,
+              "capture": "shadow-evidence-ate_serpent_retreat_order-copy.png"
+            }
+          ],
+          "osProof": null
+        }
+      ]
+    },
+    {
+      "jobId": "copy-0514-v2-390-os",
+      "parameters": {
+        "viewport": "390x844",
+        "osReducedMotion": true,
+        "gameReducedMotion": false,
+        "production": true,
+        "transitionCopy": true,
+        "scenarios": "bois-clair-saved,bois-clair-sacrificed"
+      },
+      "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+      "resultPath": "tmp/cinematics/copy-0514-v2-390-os/results.json",
+      "resultSha256": "4e9ece8ee717f011da01fbdd5cc748467f169516e9d10768ab60ae576c4815d2",
+      "provenance": {
+        "gitHead": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+        "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+        "sourceDiffSha256": "f8d46b24602c1ea80a618b1b895f6acf8f1133e57c48a7059315480dc843b625",
+        "driver": {
+          "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "sha256": "ec44494c1f959ee20b87ad43b415b31fa4df27392415517a299749714732d1b9"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-3pkMo-Ir.css",
+            "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+          },
+          {
+            "path": "dist/assets/game-JS_oFiz8.js",
+            "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "f895fee0579a12a0418dfbb741b610ad6bd8340f992be06e96279a2a75d16d6b"
+          }
+        ]
+      },
+      "startedAt": "2026-10-08T05:31:30.234Z",
+      "endedAt": "2026-10-08T05:32:21.956Z",
+      "nodes": [
+        {
+          "id": "bois-clair-saved",
+          "pass": true,
+          "transitionLabels": [
+            "La chronique reprend",
+            "Défense de Bois-Clair",
+            "Conséquence"
+          ],
+          "ateCopy": [
+            {
+              "sequenceId": "ate_maelor_seal_analysis",
+              "title": "Ailleurs…",
+              "bounds": {
+                "x": 18,
+                "y": 18,
+                "width": 63.140625,
+                "height": 12
+              },
+              "fitsViewport": true,
+              "nextEnabled": true,
+              "capture": "bois-clair-saved-ate_maelor_seal_analysis-copy.png"
+            }
+          ],
+          "osProof": {
+            "osReduced": true,
+            "reducedGraphics": false,
+            "activeVideos": 0
+          }
+        },
+        {
+          "id": "bois-clair-sacrificed",
+          "pass": true,
+          "transitionLabels": [
+            "La chronique reprend",
+            "Raid sur Bois-Clair",
+            "Conséquence"
+          ],
+          "ateCopy": [
+            {
+              "sequenceId": "ate_maelor_seal_analysis",
+              "title": "Ailleurs…",
+              "bounds": {
+                "x": 18,
+                "y": 18,
+                "width": 63.140625,
+                "height": 12
+              },
+              "fitsViewport": true,
+              "nextEnabled": true,
+              "capture": "bois-clair-sacrificed-ate_maelor_seal_analysis-copy.png"
+            }
+          ],
+          "osProof": {
+            "osReduced": true,
+            "reducedGraphics": false,
+            "activeVideos": 0
+          }
+        }
+      ]
+    },
+    {
+      "jobId": "copy-0514-v2-620-normal",
+      "parameters": {
+        "viewport": "620x780",
+        "osReducedMotion": false,
+        "gameReducedMotion": false,
+        "production": true,
+        "transitionCopy": true,
+        "scenarios": "bois-clair-saved,bois-clair-sacrificed,shadow-evidence"
+      },
+      "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+      "resultPath": "tmp/cinematics/copy-0514-v2-620-normal/results.json",
+      "resultSha256": "60100a05d367bf8eb228f23d515e729105a5113dc14817a77464c2b59dd97731",
+      "provenance": {
+        "gitHead": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+        "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+        "sourceDiffSha256": "f8d46b24602c1ea80a618b1b895f6acf8f1133e57c48a7059315480dc843b625",
+        "driver": {
+          "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "sha256": "ec44494c1f959ee20b87ad43b415b31fa4df27392415517a299749714732d1b9"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-3pkMo-Ir.css",
+            "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+          },
+          {
+            "path": "dist/assets/game-JS_oFiz8.js",
+            "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "f895fee0579a12a0418dfbb741b610ad6bd8340f992be06e96279a2a75d16d6b"
+          }
+        ]
+      },
+      "startedAt": "2026-10-08T05:31:30.251Z",
+      "endedAt": "2026-10-08T05:32:45.549Z",
+      "nodes": [
+        {
+          "id": "bois-clair-saved",
+          "pass": true,
+          "transitionLabels": [
+            "La chronique reprend",
+            "Défense de Bois-Clair",
+            "Conséquence"
+          ],
+          "ateCopy": [
+            {
+              "sequenceId": "ate_maelor_seal_analysis",
+              "title": "Ailleurs…",
+              "bounds": {
+                "x": 18,
+                "y": 18,
+                "width": 63.140625,
+                "height": 12
+              },
+              "fitsViewport": true,
+              "nextEnabled": true,
+              "capture": "bois-clair-saved-ate_maelor_seal_analysis-copy.png"
+            }
+          ],
+          "osProof": null
+        },
+        {
+          "id": "bois-clair-sacrificed",
+          "pass": true,
+          "transitionLabels": [
+            "La chronique reprend",
+            "Raid sur Bois-Clair",
+            "Conséquence"
+          ],
+          "ateCopy": [
+            {
+              "sequenceId": "ate_maelor_seal_analysis",
+              "title": "Ailleurs…",
+              "bounds": {
+                "x": 18,
+                "y": 18,
+                "width": 63.140625,
+                "height": 12
+              },
+              "fitsViewport": true,
+              "nextEnabled": true,
+              "capture": "bois-clair-sacrificed-ate_maelor_seal_analysis-copy.png"
+            }
+          ],
+          "osProof": null
+        },
+        {
+          "id": "shadow-evidence",
+          "pass": true,
+          "transitionLabels": [
+            "La chronique reprend"
+          ],
+          "ateCopy": [
+            {
+              "sequenceId": "ate_ruins_awaken",
+              "title": "Pendant ce temps…",
+              "bounds": {
+                "x": 18,
+                "y": 18,
+                "width": 122.71875,
+                "height": 12
+              },
+              "fitsViewport": true,
+              "nextEnabled": true,
+              "capture": "shadow-evidence-ate_ruins_awaken-copy.png"
+            },
+            {
+              "sequenceId": "ate_serpent_retreat_order",
+              "title": "Lignes Serpent",
+              "bounds": {
+                "x": 18,
+                "y": 18,
+                "width": 97.265625,
+                "height": 12
+              },
+              "fitsViewport": true,
+              "nextEnabled": true,
+              "capture": "shadow-evidence-ate_serpent_retreat_order-copy.png"
+            }
+          ],
+          "osProof": null
+        }
+      ]
+    },
+    {
+      "jobId": "copy-0514-v2-620-os",
+      "parameters": {
+        "viewport": "620x780",
+        "osReducedMotion": true,
+        "gameReducedMotion": false,
+        "production": true,
+        "transitionCopy": true,
+        "scenarios": "bois-clair-saved,bois-clair-sacrificed"
+      },
+      "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+      "resultPath": "tmp/cinematics/copy-0514-v2-620-os/results.json",
+      "resultSha256": "cf21056a23b02ba767b2a4ef7e0e245370b6f032cb52d8a64869947dd1c88d23",
+      "provenance": {
+        "gitHead": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+        "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+        "sourceDiffSha256": "f8d46b24602c1ea80a618b1b895f6acf8f1133e57c48a7059315480dc843b625",
+        "driver": {
+          "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "sha256": "ec44494c1f959ee20b87ad43b415b31fa4df27392415517a299749714732d1b9"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-3pkMo-Ir.css",
+            "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+          },
+          {
+            "path": "dist/assets/game-JS_oFiz8.js",
+            "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "f895fee0579a12a0418dfbb741b610ad6bd8340f992be06e96279a2a75d16d6b"
+          }
+        ]
+      },
+      "startedAt": "2026-10-08T05:32:45.552Z",
+      "endedAt": "2026-10-08T05:33:39.034Z",
+      "nodes": [
+        {
+          "id": "bois-clair-saved",
+          "pass": true,
+          "transitionLabels": [
+            "La chronique reprend",
+            "Défense de Bois-Clair",
+            "Conséquence"
+          ],
+          "ateCopy": [
+            {
+              "sequenceId": "ate_maelor_seal_analysis",
+              "title": "Ailleurs…",
+              "bounds": {
+                "x": 18,
+                "y": 18,
+                "width": 63.140625,
+                "height": 12
+              },
+              "fitsViewport": true,
+              "nextEnabled": true,
+              "capture": "bois-clair-saved-ate_maelor_seal_analysis-copy.png"
+            }
+          ],
+          "osProof": {
+            "osReduced": true,
+            "reducedGraphics": false,
+            "activeVideos": 0
+          }
+        },
+        {
+          "id": "bois-clair-sacrificed",
+          "pass": true,
+          "transitionLabels": [
+            "La chronique reprend",
+            "Raid sur Bois-Clair",
+            "Conséquence"
+          ],
+          "ateCopy": [
+            {
+              "sequenceId": "ate_maelor_seal_analysis",
+              "title": "Ailleurs…",
+              "bounds": {
+                "x": 18,
+                "y": 18,
+                "width": 63.140625,
+                "height": 12
+              },
+              "fitsViewport": true,
+              "nextEnabled": true,
+              "capture": "bois-clair-sacrificed-ate_maelor_seal_analysis-copy.png"
+            }
+          ],
+          "osProof": {
+            "osReduced": true,
+            "reducedGraphics": false,
+            "activeVideos": 0
+          }
+        }
+      ]
+    },
+    {
+      "jobId": "copy-0514-v2-1440-normal",
+      "parameters": {
+        "viewport": "1440x810",
+        "osReducedMotion": false,
+        "gameReducedMotion": false,
+        "production": true,
+        "transitionCopy": true,
+        "scenarios": "bois-clair-saved,bois-clair-sacrificed,shadow-evidence"
+      },
+      "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+      "resultPath": "tmp/cinematics/copy-0514-v2-1440-normal/results.json",
+      "resultSha256": "c670acc9babd16fac06ebd1b44f5c6945d16b9e36d5e8e9298c9b02843d873bb",
+      "provenance": {
+        "gitHead": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+        "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+        "sourceDiffSha256": "f8d46b24602c1ea80a618b1b895f6acf8f1133e57c48a7059315480dc843b625",
+        "driver": {
+          "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "sha256": "ec44494c1f959ee20b87ad43b415b31fa4df27392415517a299749714732d1b9"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-3pkMo-Ir.css",
+            "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+          },
+          {
+            "path": "dist/assets/game-JS_oFiz8.js",
+            "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "f895fee0579a12a0418dfbb741b610ad6bd8340f992be06e96279a2a75d16d6b"
+          }
+        ]
+      },
+      "startedAt": "2026-10-08T05:32:45.570Z",
+      "endedAt": "2026-10-08T05:34:12.288Z",
+      "nodes": [
+        {
+          "id": "bois-clair-saved",
+          "pass": true,
+          "transitionLabels": [
+            "La chronique reprend",
+            "Défense de Bois-Clair",
+            "Conséquence"
+          ],
+          "ateCopy": [
+            {
+              "sequenceId": "ate_maelor_seal_analysis",
+              "title": "Ailleurs…",
+              "bounds": {
+                "x": 34.546875,
+                "y": 31.671875,
+                "width": 77.171875,
+                "height": 15
+              },
+              "fitsViewport": true,
+              "nextEnabled": true,
+              "capture": "bois-clair-saved-ate_maelor_seal_analysis-copy.png"
+            }
+          ],
+          "osProof": null
+        },
+        {
+          "id": "bois-clair-sacrificed",
+          "pass": true,
+          "transitionLabels": [
+            "La chronique reprend",
+            "Raid sur Bois-Clair",
+            "Conséquence"
+          ],
+          "ateCopy": [
+            {
+              "sequenceId": "ate_maelor_seal_analysis",
+              "title": "Ailleurs…",
+              "bounds": {
+                "x": 34.546875,
+                "y": 31.671875,
+                "width": 77.171875,
+                "height": 15
+              },
+              "fitsViewport": true,
+              "nextEnabled": true,
+              "capture": "bois-clair-sacrificed-ate_maelor_seal_analysis-copy.png"
+            }
+          ],
+          "osProof": null
+        },
+        {
+          "id": "shadow-evidence",
+          "pass": true,
+          "transitionLabels": [
+            "La chronique reprend"
+          ],
+          "ateCopy": [
+            {
+              "sequenceId": "ate_ruins_awaken",
+              "title": "Pendant ce temps…",
+              "bounds": {
+                "x": 34.546875,
+                "y": 31.671875,
+                "width": 149.984375,
+                "height": 15
+              },
+              "fitsViewport": true,
+              "nextEnabled": true,
+              "capture": "shadow-evidence-ate_ruins_awaken-copy.png"
+            },
+            {
+              "sequenceId": "ate_serpent_retreat_order",
+              "title": "Lignes Serpent",
+              "bounds": {
+                "x": 34.546875,
+                "y": 31.671875,
+                "width": 118.890625,
+                "height": 15
+              },
+              "fitsViewport": true,
+              "nextEnabled": true,
+              "capture": "shadow-evidence-ate_serpent_retreat_order-copy.png"
+            }
+          ],
+          "osProof": null
+        }
+      ]
+    },
+    {
+      "jobId": "copy-0514-v2-1440-os",
+      "parameters": {
+        "viewport": "1440x810",
+        "osReducedMotion": true,
+        "gameReducedMotion": false,
+        "production": true,
+        "transitionCopy": true,
+        "scenarios": "bois-clair-saved,bois-clair-sacrificed"
+      },
+      "receiptKind": "OWNER_SUPERVISED_CHILD_NOT_DRIVER_RECEIPT",
+      "resultPath": "tmp/cinematics/copy-0514-v2-1440-os/results.json",
+      "resultSha256": "2a95f495e32e12069e4e6defd723fdeeffef1215c0f2ea08a58927fcd29155d7",
+      "provenance": {
+        "gitHead": "6bcc566c9ba4b8e6f8fe0265cb91634c08e00641",
+        "sourceTree": "7a55c74a3460bb28c6b8150e2f35f498923520e1",
+        "sourceDiffSha256": "f8d46b24602c1ea80a618b1b895f6acf8f1133e57c48a7059315480dc843b625",
+        "driver": {
+          "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+          "sha256": "ec44494c1f959ee20b87ad43b415b31fa4df27392415517a299749714732d1b9"
+        },
+        "inputs": [],
+        "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+        "build": [
+          {
+            "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+            "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+          },
+          {
+            "path": "dist/assets/combat-DSUtGYdZ.js",
+            "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+          },
+          {
+            "path": "dist/assets/combat-s2FWu0a6.css",
+            "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+          },
+          {
+            "path": "dist/assets/game-3pkMo-Ir.css",
+            "sha256": "97eb5e3c0e5ddbbf23a36198cac32f9096dbd9cb92fd0fc38fb8419db9c07a42"
+          },
+          {
+            "path": "dist/assets/game-JS_oFiz8.js",
+            "sha256": "f2b47b2ea772cf23faac57ed8083d4ed4a384b209e37c554fa8e35c82586d0c3"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "f895fee0579a12a0418dfbb741b610ad6bd8340f992be06e96279a2a75d16d6b"
+          }
+        ]
+      },
+      "startedAt": "2026-10-08T05:34:12.292Z",
+      "endedAt": "2026-10-08T05:35:07.915Z",
+      "nodes": [
+        {
+          "id": "bois-clair-saved",
+          "pass": true,
+          "transitionLabels": [
+            "La chronique reprend",
+            "Défense de Bois-Clair",
+            "Conséquence"
+          ],
+          "ateCopy": [
+            {
+              "sequenceId": "ate_maelor_seal_analysis",
+              "title": "Ailleurs…",
+              "bounds": {
+                "x": 34.546875,
+                "y": 31.671875,
+                "width": 77.171875,
+                "height": 15
+              },
+              "fitsViewport": true,
+              "nextEnabled": true,
+              "capture": "bois-clair-saved-ate_maelor_seal_analysis-copy.png"
+            }
+          ],
+          "osProof": {
+            "osReduced": true,
+            "reducedGraphics": false,
+            "activeVideos": 0
+          }
+        },
+        {
+          "id": "bois-clair-sacrificed",
+          "pass": true,
+          "transitionLabels": [
+            "La chronique reprend",
+            "Raid sur Bois-Clair",
+            "Conséquence"
+          ],
+          "ateCopy": [
+            {
+              "sequenceId": "ate_maelor_seal_analysis",
+              "title": "Ailleurs…",
+              "bounds": {
+                "x": 34.546875,
+                "y": 31.671875,
+                "width": 77.171875,
+                "height": 15
+              },
+              "fitsViewport": true,
+              "nextEnabled": true,
+              "capture": "bois-clair-sacrificed-ate_maelor_seal_analysis-copy.png"
+            }
+          ],
+          "osProof": {
+            "osReduced": true,
+            "reducedGraphics": false,
+            "activeVideos": 0
+          }
+        }
+      ]
+    }
+  ],
+  "selected": [
+    {
+      "source": "tmp/cinematics/copy-0514-v2-390-normal/bois-clair-saved-ate_maelor_seal_analysis-copy.png",
+      "path": "docs/reports/scene-transition-copy-0514/ailleurs-390-normal.png",
+      "sha256": "c677e946d3de27fe4897ddb45d7a9e16eb54616fab56293f3b5a3dff9e2e36b1",
+      "inspection": "Root inspected actual final capture; no caption/dialogue/control overlap observed"
+    },
+    {
+      "source": "tmp/cinematics/copy-0514-v2-390-os/bois-clair-saved-ate_maelor_seal_analysis-copy.png",
+      "path": "docs/reports/scene-transition-copy-0514/ailleurs-390-os.png",
+      "sha256": "71435321f4f70cc1f9ef7aed8ff60f94841201faf64c12ef3800dc0e81aa916b",
+      "inspection": "Root inspected actual final capture; no caption/dialogue/control overlap observed"
+    },
+    {
+      "source": "tmp/cinematics/copy-0514-v2-620-normal/shadow-evidence-ate_serpent_retreat_order-copy.png",
+      "path": "docs/reports/scene-transition-copy-0514/serpent-620-normal.png",
+      "sha256": "e085b6d553bba8ee804e3bf78d8b2b4b201edcfc82c810ddb2f976b4fbb5b4d4",
+      "inspection": "Root inspected actual final capture; no caption/dialogue/control overlap observed"
+    },
+    {
+      "source": "tmp/cinematics/copy-0514-v2-1440-normal/shadow-evidence-ate_ruins_awaken-copy.png",
+      "path": "docs/reports/scene-transition-copy-0514/pendant-1440-normal.png",
+      "sha256": "976303b92c41fdd2a281d0a1edcdb0b18cec49be8a76fd4ed4d922b58bdc3b2d",
+      "inspection": "Root inspected actual final capture; no caption/dialogue/control overlap observed"
+    }
+  ],
+  "physicalInventory": {
+    "path": "tmp/autonomy/physical-0514-terminal.json",
+    "sha256": "779b8642d51b1a2b11acde7640cf7b2d5526981ba81b8eb02b78573d026fc82d",
+    "files": 391,
+    "observation": "Frozen at terminal after all six receipts matched current execution; source commit changes Git representation, physical comparison remains explicit"
+  },
+  "limitations": [
+    "Static-only OS shadow-evidence not run: unchanged existing approved-video-attempt guard has no eligible attempt; no assertion weakened or diagnostic accepted",
+    "First390normal machine PASS remains NOT_ACCEPTED: captures taken during initial dialogue appearance; one minimal settle-wait correction before final six cases",
+    "Mounted labels are DOM observations, not certified visible opacity; title rects are positive viewport bounds, not a global clipping/overlap algorithm",
+    "Six inherited unaccepted keyboard files are physically in build, excluded from this source checkpoint",
+    "No earned campaign, full V6, whole-demo, all ATE contexts or environment acceptance"
+  ],
+  "reviewerStatus": {
+    "guardian": "PASS_SCOPED; full task BLOCKED static-only OS-shadow",
+    "narrative": "PASS source and selected390normal captures; no canon change",
+    "root": "Selected captures inspected across widths/modes; exact scoped limitations preserved"
+  }
+}

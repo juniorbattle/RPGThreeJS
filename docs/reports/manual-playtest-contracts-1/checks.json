@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "task": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
+  "runId": "codex-manual-playtest-20261003T0735",
+  "recordedAt": "2026-10-03T07:58:05.429Z",
+  "startingCommit": "cad2b603d7938641f9efc1ad580b5420583feb82",
+  "contractSetVersion": "1.1.0",
+  "immutableContractCommit": "d7ca28aed5c377ffedb03202f6364b7a947d1096",
+  "operatorDecision": "OD-2026-10-03-A",
+  "scope": "Dedicated documentary contract amendment and operational adoption; no runtime acceptance",
+  "validator": {
+    "command": "node tools/contracts/validate-contracts.mjs",
+    "exitCode": 0,
+    "lockedContracts": 8,
+    "videoSlots": 8
+  },
+  "reviews": {
+    "reviewer": "contracts-guardian",
+    "preAmendment": "PASS advisory",
+    "realContractDiff": "PASS documentary",
+    "operationalBaselineAndPreservation": "PASS; explicit protocol SHA reference then added"
+  },
+  "automation": {
+    "status": "PASS",
+    "allOtherAutomationFieldsPreserved": true,
+    "statusPreserved": "ACTIVE",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "cadenceMinutes": 90,
+    "promptChars": 6596,
+    "promptSha256": "4eefc16fd15e31e8a69bfe3c0fe7749f5de07d701d209ad29ac5b1cd9c7d6866",
+    "codexProfilesParsed": 7,
+    "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
+  },
+  "preservation": {
+    "inheritedSnapshot": "5f89ea4179b36eca001decef92cfa4ff83fc5575",
+    "sourceBlobs": 6,
+    "historicalQaDispositions": 33,
+    "allUnchanged": true,
+    "keyboardProductionAcceptance": "INCOMPLETE; deferred"
+  },
+  "profiles": {
+    "tomlParsed": 7,
+    "existingModelAndSandboxPreserved": true,
+    "traversalEngineerSandbox": "read-only",
+    "traversalEngineerReasoning": "medium",
+    "runtimeInvocation": "NOT_TESTED; skill fallback documented"
+  },
+  "skillValidation": {
+    "status": "PASS strict two-field format/name/description/body checks",
+    "bundledQuickValidator": "UNAVAILABLE; PyYAML absent, no dependency installed"
+  },
+  "compliance": [
+    {
+      "contract": "GAME_CONSTITUTION",
+      "status": "PASS",
+      "evidence": "Unchanged"
+    },
+    {
+      "contract": "ART_DIRECTION",
+      "status": "PASS",
+      "evidence": "Existing direction protected"
+    },
+    {
+      "contract": "CHARACTERS",
+      "status": "PASS",
+      "evidence": "Canonical art and four-visible-actor cap preserved"
+    },
+    {
+      "contract": "ENVIRONMENTS",
+      "status": "PASS",
+      "evidence": "Narrative-context target locked, runtime QA pending"
+    },
+    {
+      "contract": "NARRATIVE / CAMPAIGN",
+      "status": "PASS",
+      "evidence": "Mandatory preparation/fact acknowledgements bounded by existing truth"
+    },
+    {
+      "contract": "NARRATIVE_PRESENTATION",
+      "status": "PASS",
+      "evidence": "Relational staging/transition doctrine; exactly8slots"
+    },
+    {
+      "contract": "TRAVERSAL",
+      "status": "PASS",
+      "evidence": "Explicit reset-only/no-road-combat supersession and canonical mapping limit"
+    },
+    {
+      "contract": "COMBAT",
+      "status": "PASS",
+      "evidence": "Tactical authority unchanged; no invented formation/outcome"
+    },
+    {
+      "contract": "SAVE",
+      "status": "PASS",
+      "evidence": "No V6/schema/ID change or transient-state persistence"
+    },
+    {
+      "contract": "UI / ACCESSIBILITY",
+      "status": "PASS",
+      "evidence": "Responsive/focus/OS-only motion target locked, new visual proof pending"
+    },
+    {
+      "contract": "QA_EVIDENCE",
+      "status": "PASS",
+      "evidence": "Manual findings reopen acceptance; historic proofs not overwritten"
+    },
+    {
+      "contract": "REPOSITORY_GOVERNANCE",
+      "status": "PASS",
+      "evidence": "Dedicated reviewed amendment; current immutable Git baseline; one writer/dev only"
+    }
+  ],
+  "authorizedLockedChanges": [
+    "TRAVERSAL",
+    "CAMPAIGN_AND_STATE",
+    "PRESENTATION_AND_MEDIA",
+    "WORLD_AND_CHARACTERS",
+    "UI_AND_ACCESSIBILITY",
+    "AUTHORING_AND_QA",
+    "README/manifest version"
+  ],
+  "protectedFilesUnchanged": [
+    "GAME_CONSTITUTION",
+    "COMBAT_AND_VFX",
+    "AUTONOMOUS_WORK_PROTOCOL"
+  ],
+  "runtimeCorrectionsAccepted": false,
+  "remaining": [
+    "New T0/T1/T3 ground/checkpoint/clan/shadow visual acceptance",
+    "Departure/final-exit motion and pursuit canonical charge/collision/miss acceptance",
+    "Road rock/reward spawn lifetime/depth/spacing and owner-boundary checks",
+    "Pre-judgement campfire/save-resume/agency and fact-consistent dialogue",
+    "Relational tableau/cast/facing/ATE/contextual environments with desktop/intermediate/narrow OS-motion variants",
+    "Deferred battlefield keyboard and original DEMO-QA-POLISH acceptance (exact details in deferredDemoTask)"
+  ]
+}

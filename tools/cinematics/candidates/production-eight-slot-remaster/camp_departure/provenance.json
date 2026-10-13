@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-02T01:22:43.325Z",
+  "slot": "camp_departure",
+  "status": "CANDIDATE_ONLY_NOT_RUNTIME",
+  "generationTool": "BUILT_IN_IMAGE_GEN",
+  "originalOutput": "C:/Users/miche/.codex/generated_images/01a0fa1d-2669-7781-b774-4a418c3d2813/exec-aeaecfb6-e534-46ed-b510-937921d2f5e0.png",
+  "output": "tools/cinematics/candidates/production-eight-slot-remaster/camp_departure/keyframe-v1.png",
+  "sha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+  "bytes": 2811305,
+  "width": 1672,
+  "height": 941,
+  "requestedWidth": 1920,
+  "requestedHeight": 1080,
+  "nativeOutputPreserved": true,
+  "sourceReferences": [
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+      "role": "CANONICAL_ENVIRONMENT",
+      "sha256": "7e2eaba3b2d18d409fb0126a0e4ad9361caa5f61148f2a145b4cd2fbec379c32"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/white_mage.png",
+      "role": "IMMUTABLE_V2_IDENTITY",
+      "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/maelor.png",
+      "role": "IMMUTABLE_V2_IDENTITY",
+      "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/alistair.png",
+      "role": "IMMUTABLE_V2_IDENTITY",
+      "sha256": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be"
+    }
+  ],
+  "imagePrompt": "Create ONE new integrated 1920x1080, 16:9 full-bleed cinematic starting keyframe for the approved camp_departure slot of RPGThreeJS. This is a new cinematic candidate, not a character redesign. Reference image 1 is the exact canonical Lion camp environment and modern pixel-art/HD-2D construction language: preserve the moonlit navy mountain valley, distant arched aqueduct and lit castle, river, encircling trees, tent street, warm lanterns and modest supplies, banner symbols. References 2,3,4 are immutable canonical Character System V2 identities: Marian (white_mage), Maelor, Alistair. Preserve each reference's exact helmet/hood/face concealment, silhouette, colors, robes/armor, weapon/staff/book, accessories and proportions. Marian has white-gold closed/veiled head and star staff; Maelor is the hooded purple-gold masked steward with his book and dagger, NOT the old exposed black-haired sorcerer; Alistair is the enclosed steel helmet, small red crest, red lion tabard/cape, greatsword. No exposed invented faces. Compose a premium wide theatrical establishing departure shot: all three readable actors integrated on the camp street in the middle ground, preparing to walk toward the road leading right/deeper toward the valley; Marian left, Maelor central slightly behind, Alistair right guiding the physical movement. Characters around 35-40 percent of frame height, not giant foreground cutouts. Share ground plane, grounded contact shadows, perspective, warm fire rim-light from lower-left and cool moonlight, consistent pixel clusters and stepped edge detail with the world; natural spatial depth, no pasted sprite/collage look, no blurred portrait rendering. Preserve tent/road geography and recognizable landmarks. The world must dominate, with a grand sense of the small vulnerable company and the route ahead. Allow a future gentle rightward tracking camera, cloth/banner movement, firelight and one coherent departure motion; do not bake motion blur into this sharp still. Exactly these three characters in this composition; no duplicated actors, optional recruited characters, new character, victory, extra battle, added loot, magic spectacle or new story event. Preserve the night lighting of canonical camp reference; do not substitute sunrise. Leave lower 15 percent free of faces or important identifying props for compact runtime controls, while no dialogue text or UI is drawn. Intentional modern pixel-art/HD-2D, not photorealism, smooth generic 3D, generic anime, watercolor, or cartoon outline. No baked text, subtitles, frame, logos or watermark. Full landscape image, exactly 1920x1080.",
+  "videoSpec": "tools/cinematics/specs/production_camp_departure_v1.json",
+  "compiledVideoPrompt": "Modern pixel-art/HD-2D. Canonical moonlit Lion camp and protected V2 identities; final silent authored motion must pass separate visual/runtime acceptance. Shot shot_01: A rare major departure: the small company physically starts toward the existing route through the grand camp/valley environment. Framing: WIDE_GROUNDED_CAMP_COMPANY. Camera intent: TRACK_SMALL_RIGHT with conservative amplitude. Staging: marian is SECONDARY/SECONDARY, already facing SCREEN_RIGHT, attending to ENVIRONMENT:camp_road, with action WALK_SLOW (MODERATE risk); maelor is PRIMARY/PRIMARY, already facing SCREEN_RIGHT, attending to CHARACTER:alistair, with action STEP_FORWARD (MODERATE risk); alistair is PRIMARY/PRIMARY, already facing SCREEN_RIGHT, attending to ENVIRONMENT:camp_road, with action WALK_SLOW (MODERATE risk). Action intent: One physical Lion camp, one continuous shot, zero hidden or editorial cuts. Preserve the exact supplied V2 helmets, closed/veiled faces, Maelor’s purple hood and mask, Alistair’s armor/tabard/greatsword, Marian’s veil and star staff, all accessories and relative scale. The three actors coherently begin moving screen-right along the existing camp road, with a gently tracking camera revealing the authored valley depth. Animate physical walking, grounded contact, minor cloth and banner movement, firelight and atmospheric depth. Preserve the canonical night, moon, distant castle/aqueduct, river and tent street. No new actor, action outcome, loot, combat, lip sync, speech, text, UI or magical spectacle. No sunrise, redesign, visible invented face, side swap, teleport, disappearance, sprite collage or world reset. Motion must develop the departure, not merely zoom a still. Final second naturally settles into a sharp readable composition before the existing preparation dialogue transfers to STATIC_TABLEAU. No dialogue or player choice occurs on this video/hold. The supplied first frame is authoritative. Preserve exactly every character identity, face or head, hair or helmet, armor, clothing, cape or tabard, weapon, body proportions, color palette, facing direction, spatial relationship, and environment identity. Animate the existing composition; do not redesign it. Preserve the exact facing direction already shown in the first frame. Do not turn either character around, reverse screen direction, rotate a body 180 degrees, cross the established axis, or swap character sides. End-state intent: READABLE_STABLE_DEPARTURE_THEN_COVERED_STATIC_TABLEAU. Finish stable, sharp, nonblank, nonverdict, and suitable for an editorial cut or deterministic dialogue handoff. No speech, lip sync, subtitles, text, UI, watermark, photorealism, live action, realistic 3D conversion, extra characters, duplicated limbs, duplicated weapons, anatomy melting, combat, attack, projectile, explosion, camera orbit, whip pan, large rotation, aggressive zoom, heavy blur, black ending, white ending, or style drift.",
+  "agentReview": {
+    "modernPixelFamily": "PASS_CANDIDATE",
+    "canonicalMasksAndEquipment": "PASS_CANDIDATE",
+    "moonlitEnvironmentContinuity": "PASS_CANDIDATE",
+    "castCount": 3,
+    "noBakedUi": true,
+    "motionAcceptance": "PENDING_NOT_GENERATED",
+    "runtimeAcceptance": "PENDING_NO_EXISTING_SOURCE_REPLACEMENT"
+  },
+  "blocker": "BLOCKED_EXTERNAL_PROVIDER_APPROVAL: automatic approval review rejected MiniMax credential use; no request/generation performed."
+}

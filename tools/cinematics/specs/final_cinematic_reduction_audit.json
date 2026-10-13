@@ -1,0 +1,495 @@
+{
+  "schemaVersion": 2,
+  "baseline": "ff743b08fb239d55e11ac5cd682950032a06e2e1",
+  "policy": "Video is reserved for physical action, major reveals, world change, important entrances, rescue/failure outcomes, climaxes and spectacle. Talking begins only after transition to STATIC_TABLEAU.",
+  "summary": {
+    "manifestSlots": 32,
+    "productionVideoSlots": 31,
+    "classifiedProductionVideoSlots": 31,
+    "classifications": {
+      "LEGACY_UNUSED": 1,
+      "KEEP_MAJOR_VIDEO": 8,
+      "COMBAT_OWNED": 6,
+      "CONVERT_TO_TRAVEL_STILL": 4,
+      "OPTIONAL_VIDEO": 5,
+      "CONVERT_TO_STATIC_TABLEAU": 7,
+      "CONVERT_TO_HOLD_STILL": 1
+    },
+    "CURRENT_VIDEO_SLOT_COUNT": 31,
+    "PROPOSED_CIN6EB_VIDEO_COUNT": 13,
+    "RUNTIME_VIDEO_SLOTS_AFTER_WITH_COMBAT": 19,
+    "normalDialogueDuringVideo": 0,
+    "dialogueStepsOnHold": 0,
+    "choiceStepsOnHold": 0,
+    "existingMediaDeleted": 0
+  },
+  "revisedCin6eBRequirements": {
+    "VIDEOS_BEFORE": 31,
+    "VIDEOS_AFTER": 13,
+    "PROPOSED_CIN6EB_VIDEO_COUNT": 13,
+    "RUNTIME_VIDEO_SLOTS_AFTER_WITH_COMBAT": 19,
+    "COMBAT_OWNED_OUTSIDE_CIN6EB": 6,
+    "STATIC_TABLEAU_BACKGROUND_REQUIREMENTS": {
+      "dialogueContexts": 71,
+      "visualSegments": 78,
+      "existingPlanningRecords": 49,
+      "reusableWithoutNewProduction": 2,
+      "adaptationOrProductionRequired": 69,
+      "characterPolicy": "CHARACTER_FREE_ENVIRONMENT_PLATE_WITH_CANONICAL_RUNTIME_SPRITES"
+    },
+    "HOLD_STILL_REQUIREMENTS": {
+      "scenicDialogueFreeSlots": 1,
+      "sourceSlots": [
+        "ruins_approach_context"
+      ],
+      "legacyDialogueHoldEndpointRecords": 25,
+      "dialogueSteps": 0,
+      "choiceSteps": 0,
+      "preferredCharacterPolicy": "CHARACTER_FREE"
+    },
+    "TRAVEL_STILL_REQUIREMENTS": {
+      "connectiveAssetsAlreadyPlanned": 14,
+      "convertedVideoSlots": 4,
+      "sourceSlots": [
+        "forest_journey_tension",
+        "first_refuge_departure",
+        "valmir_route_fork",
+        "second_refuge_departure"
+      ],
+      "conversationBoundary": "TRAVEL_STILL_TO_STATIC_TABLEAU"
+    },
+    "REUSABLE_ENVIRONMENT_PLATES": [
+      {
+        "assetId": "acte_ouverture_tableau_bg",
+        "sourceReferences": [
+          "/assets/generated/lion-phase/dialogue/camp_departure.webp",
+          "camp_departure"
+        ]
+      },
+      {
+        "assetId": "post_opening_trail_tableau_bg",
+        "sourceReferences": [
+          "/assets/generated/lion-phase/dialogue/forest_fork.webp",
+          "valmir_route_fork",
+          "camp_departure"
+        ]
+      }
+    ]
+  },
+  "entries": [
+    {
+      "cinematicId": "qa-placeholder",
+      "title": "Chronique cinématique",
+      "sources": [],
+      "hasProductionVideo": false,
+      "classification": "LEGACY_UNUSED",
+      "criterion": "LEGACY",
+      "justification": "Manifest-only QA placeholder with no production video source.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "lion_judgement",
+      "title": "Le Jugement du Lion",
+      "sources": [
+        "/assets/cinematics/lion_judgement.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "KEEP_MAJOR_VIDEO",
+      "criterion": "CLIMAX",
+      "justification": "Major judgement and route-climax ceremony.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "serpent_general_reveal",
+      "title": "Le Général du Serpent",
+      "sources": [
+        "/assets/cinematics/serpent_general_reveal.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "COMBAT_OWNED",
+      "criterion": "IMPORTANT_ENTRANCE",
+      "justification": "Boss entrance belongs to the combat handoff, never to dialogue.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "lion_champion_reveal",
+      "title": "Le Champion du Lion",
+      "sources": [
+        "/assets/cinematics/lion_champion_reveal.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "COMBAT_OWNED",
+      "criterion": "IMPORTANT_ENTRANCE",
+      "justification": "Champion entrance belongs to the combat handoff, never to dialogue.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "forest_journey_tension",
+      "title": "Pression sous les frondaisons",
+      "sources": [
+        "/assets/cinematics/forest_journey_tension.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "CONVERT_TO_TRAVEL_STILL",
+      "criterion": "TRAVEL",
+      "justification": "Atmospheric movement is route texture rather than a major story action.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "camp_departure",
+      "title": "Le départ du camp",
+      "sources": [
+        "/assets/cinematics/camp_departure.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "KEEP_MAJOR_VIDEO",
+      "criterion": "IMPORTANT_ENTRANCE",
+      "justification": "Opening departure establishes the company and begins the Lion chapter.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "alaric_audience_arrival",
+      "title": "L’audience d’Alaric",
+      "sources": [
+        "/assets/cinematics/alaric_audience_arrival.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "KEEP_MAJOR_VIDEO",
+      "criterion": "IMPORTANT_ENTRANCE",
+      "justification": "Major court entrance and Audience ceremony; all dialogue starts afterward.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "refugees_approach",
+      "title": "Les réfugiés sur la route",
+      "sources": [
+        "/assets/cinematics/refugees_approach.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "OPTIONAL_VIDEO",
+      "criterion": "IMPORTANT_ENTRANCE",
+      "justification": "The refugee arrival can retain motion as a brief encounter reveal before tableau dialogue.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "first_refuge_arrival",
+      "title": "Le premier refuge",
+      "sources": [
+        "/assets/cinematics/first_refuge_arrival.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "OPTIONAL_VIDEO",
+      "criterion": "WORLD_CHANGE",
+      "justification": "Arrival establishes a new refuge location before management and dialogue.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "first_refuge_departure",
+      "title": "Vers la piste de la réserve",
+      "sources": [
+        "/assets/cinematics/first_refuge_departure.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "CONVERT_TO_TRAVEL_STILL",
+      "criterion": "TRAVEL",
+      "justification": "Route departure is travel continuity, not a dramatic action beat.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "valmir_route_fork",
+      "title": "La route de Valmir",
+      "sources": [
+        "/assets/cinematics/valmir_route_fork.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "CONVERT_TO_TRAVEL_STILL",
+      "criterion": "TRAVEL",
+      "justification": "The fork is persistent route geography best held as a travel still.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "bois_clair_arrival",
+      "title": "Bois-Clair sous les flammes",
+      "sources": [
+        "/assets/cinematics/bois_clair_arrival.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "KEEP_MAJOR_VIDEO",
+      "criterion": "WORLD_CHANGE",
+      "justification": "Bois-Clair burning is a major physical event and world-state reveal.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "bois_clair_saved",
+      "title": "Bois-Clair sauvée",
+      "sources": [
+        "/assets/cinematics/bois_clair_saved.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "KEEP_MAJOR_VIDEO",
+      "criterion": "MAJOR_RESCUE_FAILURE",
+      "justification": "Major rescue outcome visibly changes the village state.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "bois_clair_sacrificed",
+      "title": "Le prix de Bois-Clair",
+      "sources": [
+        "/assets/cinematics/bois_clair_sacrificed.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "KEEP_MAJOR_VIDEO",
+      "criterion": "MAJOR_RESCUE_FAILURE",
+      "justification": "Major failure outcome visibly changes the village and refugee state.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "second_refuge_departure",
+      "title": "La marche reprend",
+      "sources": [
+        "/assets/cinematics/second_refuge_departure.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "CONVERT_TO_TRAVEL_STILL",
+      "criterion": "TRAVEL",
+      "justification": "Route departure is travel continuity, not a major dramatic action.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "witnesses_encounter",
+      "title": "Les témoins de la route",
+      "sources": [
+        "/assets/cinematics/witnesses_encounter.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "CONVERT_TO_STATIC_TABLEAU",
+      "criterion": "TALKING",
+      "justification": "The beat is witness testimony and decision context.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "ruins_approach_context",
+      "title": "L’approche des ruines",
+      "sources": [
+        "/assets/cinematics/ruins_approach_context.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "CONVERT_TO_HOLD_STILL",
+      "criterion": "SCENIC_PUNCTUATION",
+      "justification": "The ruins approach is dialogue-free environmental punctuation before danger.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "shadow_signs",
+      "title": "Les signes des Ombres",
+      "sources": [
+        "/assets/cinematics/shadow_signs.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "CONVERT_TO_STATIC_TABLEAU",
+      "criterion": "TALKING",
+      "justification": "The core content is Seraphine and Elara interpreting evidence.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "final_refuge_dossier",
+      "title": "Le dernier dossier",
+      "sources": [
+        "/assets/cinematics/final_refuge_dossier.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "CONVERT_TO_STATIC_TABLEAU",
+      "criterion": "TALKING",
+      "justification": "The dossier is a sustained company discussion and evidence review.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "serpent_route_ending",
+      "title": "La chute du Général Serpent",
+      "sources": [
+        "/assets/cinematics/serpent_route_ending.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "KEEP_MAJOR_VIDEO",
+      "criterion": "CLIMAX",
+      "justification": "Route climax and ending-state spectacle.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "lion_trial_route_ending",
+      "title": "Le Sceau par l’épreuve",
+      "sources": [
+        "/assets/cinematics/lion_trial_route_ending.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "KEEP_MAJOR_VIDEO",
+      "criterion": "CLIMAX",
+      "justification": "Route climax and Lion recognition ceremony.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "cedric_encounter",
+      "title": "Cedric au carrefour",
+      "sources": [
+        "/assets/cinematics/cedric_encounter.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "CONVERT_TO_STATIC_TABLEAU",
+      "criterion": "TALKING",
+      "justification": "Recruitment negotiation is character dialogue.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "garen_encounter",
+      "title": "La lance de Garen",
+      "sources": [
+        "/assets/cinematics/garen_encounter.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "CONVERT_TO_STATIC_TABLEAU",
+      "criterion": "TALKING",
+      "justification": "Recruitment negotiation is character dialogue.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "serpent_road_tension",
+      "title": "Pression des Serpents",
+      "sources": [
+        "/assets/cinematics/serpent_road_tension.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "COMBAT_OWNED",
+      "criterion": "IMPORTANT_ENTRANCE",
+      "justification": "Enemy reveal belongs to the following tactical-combat handoff.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "shrine_reveal_context",
+      "title": "Le sanctuaire intact",
+      "sources": [
+        "/assets/cinematics/shrine_reveal_context.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "OPTIONAL_VIDEO",
+      "criterion": "MAJOR_REVEAL",
+      "justification": "The intact shrine is a compact environmental reveal before a tableau choice.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "injured_merchant_encounter",
+      "title": "Le marchand blessé",
+      "sources": [
+        "/assets/cinematics/injured_merchant_encounter.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "CONVERT_TO_STATIC_TABLEAU",
+      "criterion": "TALKING",
+      "justification": "The player-facing content is a conversation and aid decision.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "abandoned_cart_reveal",
+      "title": "Le chariot abandonné",
+      "sources": [
+        "/assets/cinematics/abandoned_cart_reveal.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "OPTIONAL_VIDEO",
+      "criterion": "MAJOR_REVEAL",
+      "justification": "The marked cart is a compact physical clue reveal before inspection dialogue.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "spider_nest_reveal",
+      "title": "Le nid venimeux",
+      "sources": [
+        "/assets/cinematics/spider_nest_reveal.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "COMBAT_OWNED",
+      "criterion": "SPECTACLE",
+      "justification": "Creature reveal belongs to the tactical-combat setup.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "troll_crossing_reveal",
+      "title": "Le passage du troll",
+      "sources": [
+        "/assets/cinematics/troll_crossing_reveal.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "COMBAT_OWNED",
+      "criterion": "IMPORTANT_ENTRANCE",
+      "justification": "Blocking creature entrance belongs to the tactical-combat setup.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "serpent_duelist_reveal",
+      "title": "Le duelliste Serpent",
+      "sources": [
+        "/assets/cinematics/serpent_duelist_reveal.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "COMBAT_OWNED",
+      "criterion": "IMPORTANT_ENTRANCE",
+      "justification": "Duelist entrance belongs to the tactical-combat setup.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "young_dragon_encounter",
+      "title": "Le jeune dragon",
+      "sources": [
+        "/assets/cinematics/young_dragon_encounter.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "OPTIONAL_VIDEO",
+      "criterion": "MAJOR_REVEAL",
+      "justification": "The living dragon and nest are an important reveal before the choice tableau.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    },
+    {
+      "cinematicId": "serpent_informant_encounter",
+      "title": "L’informateur traqué",
+      "sources": [
+        "/assets/cinematics/serpent_informant_encounter.mp4"
+      ],
+      "hasProductionVideo": true,
+      "classification": "CONVERT_TO_STATIC_TABLEAU",
+      "criterion": "TALKING",
+      "justification": "The informant beat is interrogation and protection/betrayal dialogue.",
+      "existingMediaPreserved": true,
+      "normalDialogueDuringVideo": 0
+    }
+  ]
+}

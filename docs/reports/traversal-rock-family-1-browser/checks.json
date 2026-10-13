@@ -1,0 +1,1968 @@
+{
+  "scope": "real built-game first-road rock-only visuals; V6 origins and combat-result fixtures; no earned/combat/lifetime/depth acceptance",
+  "baseline": "f3fee793dde2d77d0241e9730ecf61be39ffb345",
+  "jobId": "rock-1430-production",
+  "resultSha256": "decf5631fd29f4c878c62aa4a37445d69555f525b126fd88a92b2ac4898959d8",
+  "parameters": {
+    "legs": [
+      "T0",
+      "T1",
+      "T3"
+    ],
+    "viewports": [
+      "1440x810",
+      "620x780",
+      "390x844"
+    ],
+    "motion": [
+      "normal",
+      "os"
+    ],
+    "scope": "real built-game first-road rock-only visuals; V6 origins and combat-result fixtures; no earned/combat/lifetime/depth acceptance"
+  },
+  "assertions": [
+    {
+      "id": "rock-only-active-art",
+      "pass": true
+    },
+    {
+      "id": "authored-leg-inputs",
+      "pass": true
+    },
+    {
+      "id": "real-first-road-visible",
+      "pass": true
+    },
+    {
+      "id": "normal-os-responsive-focus",
+      "pass": true
+    }
+  ],
+  "source": [
+    {
+      "path": "src/traversal/TraversalRouteRiskVisual.ts",
+      "sha256": "69c1c5371327027db4de3235d09adafdeb692ff889accbba74032552b5fb882d"
+    },
+    {
+      "path": "src/traversal/TraversalRouteRisk.test.ts",
+      "sha256": "547f3529d79612aafb709ebe8de34f79efaaf4eb66ff2fb2e3f3d439cfc4c2d4"
+    },
+    {
+      "path": "tools/traversal-rock-production-qa.mjs",
+      "sha256": "9887a3d9ac3025060f59c446f0bb006b06f0d57de33e78f410b1126e9831a920"
+    }
+  ],
+  "preserved": [
+    {
+      "path": "src/traversal/TraversalT0Risk.ts",
+      "sha256": "d315348374a6dfd7aa7358d0e0defddebd18ea73755bae6ccbeec8859538d7c6"
+    },
+    {
+      "path": "src/traversal/TraversalRouteRisk.ts",
+      "sha256": "11baa5dfaabd2b6d115cf38299232fe2793014fbacd0bdb438664c87670cb6ba"
+    },
+    {
+      "path": "src/traversal/TraversalT0Authoring.ts",
+      "sha256": "65a1627f896ea012a79e61ffc4d4713abe7193c6665cadc8fc941f6cc8bd4f47"
+    },
+    {
+      "path": "src/traversal/TraversalT1Authoring.ts",
+      "sha256": "0de9bd7605a80ebf5f668dc865d9b7cd5e240e2edb5fd40786ac395a3d305ece"
+    },
+    {
+      "path": "src/traversal/TraversalT3Authoring.ts",
+      "sha256": "937cd713e642ea647b2e4f647b15ef8c104015d307c36ec7629b822e5b69ecd2"
+    },
+    {
+      "path": "src/traversal/TraversalRouteReward.ts",
+      "sha256": "cbc14eecf62b1d69feeb77f13f26fbe3d52f454c072f30db7024841176e78259"
+    },
+    {
+      "path": "src/traversal/TraversalRoadScene.ts",
+      "sha256": "2ae11088c923064ad2ac81164660e2f03f81efb993f7ff6123d670641ece299c"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/risk/boulder-a.png",
+      "sha256": "12f455732156a72d875ddd5b4d59d165593e7c73d51e7933eb660982b2e343e8"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/risk/boulder-b.png",
+      "sha256": "ac97b427b421d84a2eb27ef3c8b4afdc690783d65a971541a1ac30e2f0e7ed95"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/risk/fallen-branch-a.png",
+      "sha256": "3e25e735590e24c909a8bb7db2a652b55bd1ce33a3db01308a5749954a2076da"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/risk/fallen-branch-b.png",
+      "sha256": "70e2f320b5aecf55f09435799a683e67390cb08b0c6ddc295412acfbf1a1e5ce"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/risk/roadblock-a.png",
+      "sha256": "e39ce65273eef96d41e8647849b5af96f62963a5883ed5c818c0da2408da12fc"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/risk/roadblock-b.png",
+      "sha256": "b47912c04831f11aa5efc2d2a0228f48e6876c7ebc5c0b2610557bb9fa0893ca"
+    }
+  ],
+  "provenance": {
+    "gitHead": "f3fee793dde2d77d0241e9730ecf61be39ffb345",
+    "sourceTree": "639ba764f4a7a62461edc5057bd5075d39f0ae48",
+    "sourceDiffSha256": "2ed9680a76c1272d68973f5d08b07a9d34cdd067671fed8bbfa71d8c45d35e02",
+    "driver": {
+      "path": "tools/traversal-rock-production-qa.mjs",
+      "sha256": "9887a3d9ac3025060f59c446f0bb006b06f0d57de33e78f410b1126e9831a920"
+    },
+    "inputs": [],
+    "receiptToolSha256": "a3130e26d0b3eb9b4322f34ca514c7805e1fbe87882dfeb122f5ae08fbc5013f",
+    "build": [
+      {
+        "path": "dist/assets/assetManifest-Bffm0Y2y.js",
+        "sha256": "0a67746c1a17ac9b92d9646097913f5ff1dde452617184aa1eeb9791b6d53554"
+      },
+      {
+        "path": "dist/assets/combat-DSUtGYdZ.js",
+        "sha256": "8b1e05e54477b74c714db4724de20176e6620c0f1d73d6b0c45ac332144552a7"
+      },
+      {
+        "path": "dist/assets/combat-s2FWu0a6.css",
+        "sha256": "55a4fb534bf816acd4fd540b542c06935c3bec1b023ed8da8323d495758317db"
+      },
+      {
+        "path": "dist/assets/game-BztuXMkj.css",
+        "sha256": "24ee1610f3bfcc8bba8dec2efb885658567929a8c0ee22ed60cdfc24b66511ed"
+      },
+      {
+        "path": "dist/assets/game-CMMiTj92.js",
+        "sha256": "0b694c2eff8a26a244eb0dc505acedac4b3e39f3234d3611bcfccef0a4a1ea31"
+      },
+      {
+        "path": "dist/assets/three-core-f0ajj1rG.js",
+        "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+      },
+      {
+        "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+        "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+      },
+      {
+        "path": "dist/assets/validation-mSkvzYyn.js",
+        "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "152cc0ba84985b7720349d9bb1a92b14c1a6d5c6f95ea926c5d2ab61597b81fa"
+      }
+    ]
+  },
+  "captures": [
+    {
+      "file": "T0-1440-normal-rock.png",
+      "sha256": "efe7c2084681e0277564185288b9f282825672088365744c33064c4a84a957dc"
+    },
+    {
+      "file": "T0-620-normal-rock.png",
+      "sha256": "0c9248751d23a75cf32c4ce6d9590f0c2cf3771e9a22dff77c739516bce6ad3f"
+    },
+    {
+      "file": "T0-390-normal-rock.png",
+      "sha256": "5552922a803adfd8b238afec88188098dda7174e643b9605e9a4172811d07f97"
+    },
+    {
+      "file": "T1-620-normal-rock.png",
+      "sha256": "cc48960394b6264d3cdcc6a8ee20d7deab2c8017d9f6dff5d0505cbe0af36df0"
+    },
+    {
+      "file": "T3-390-normal-rock.png",
+      "sha256": "5fe30351712dde96eef4a9f7c8c93c6fa2c44545b7a18649f2218cb30ed98b8b"
+    },
+    {
+      "file": "T3-390-os-rock.png",
+      "sha256": "72c480dd776b71963cbe753c38b3bb5124d5caad38770d62c561872fbfc00dd6"
+    }
+  ],
+  "runs": [
+    {
+      "leg": "T0",
+      "segment": "route-1",
+      "gameReduced": false,
+      "osReduced": false,
+      "hazards": [
+        {
+          "id": "t0:r1:branch-1",
+          "segmentId": "route-1",
+          "progress01": 0.38,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r2:branch-1",
+          "segmentId": "route-2",
+          "progress01": 0.48,
+          "lane": 1,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r3:branch-1",
+          "segmentId": "route-3",
+          "progress01": 0.32,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r3:block-2",
+          "segmentId": "route-3",
+          "progress01": 0.68,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t0:r4:block-1",
+          "segmentId": "route-4",
+          "progress01": 0.31,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t0:r4:branch-2",
+          "segmentId": "route-4",
+          "progress01": 0.68,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r6:branch-1",
+          "segmentId": "route-6",
+          "progress01": 0.24,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r6:block-2",
+          "segmentId": "route-6",
+          "progress01": 0.49,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 2
+        },
+        {
+          "id": "t0:r6:branch-3",
+          "segmentId": "route-6",
+          "progress01": 0.75,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 2
+        }
+      ],
+      "marks": [
+        {
+          "id": "t0:r1:branch-1",
+          "lane": "0",
+          "visual": "boulder-a",
+          "src": "/assets/generated/lion-phase/traversal/t0/risk/boulder-a.png",
+          "hidden": false,
+          "decoded": true,
+          "left": 1196.234375,
+          "right": 1386.734375,
+          "top": 445.0871887207031,
+          "bottom": 531.696533203125
+        }
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "motion": "normal",
+      "focus": {
+        "focused": true,
+        "outline": "solid",
+        "width": 30,
+        "height": 30,
+        "left": 14,
+        "right": 44,
+        "bottom": 439
+      },
+      "fixtureCombats": 0
+    },
+    {
+      "leg": "T0",
+      "segment": "route-1",
+      "gameReduced": false,
+      "osReduced": false,
+      "hazards": [
+        {
+          "id": "t0:r1:branch-1",
+          "segmentId": "route-1",
+          "progress01": 0.38,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r2:branch-1",
+          "segmentId": "route-2",
+          "progress01": 0.48,
+          "lane": 1,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r3:branch-1",
+          "segmentId": "route-3",
+          "progress01": 0.32,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r3:block-2",
+          "segmentId": "route-3",
+          "progress01": 0.68,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t0:r4:block-1",
+          "segmentId": "route-4",
+          "progress01": 0.31,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t0:r4:branch-2",
+          "segmentId": "route-4",
+          "progress01": 0.68,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r6:branch-1",
+          "segmentId": "route-6",
+          "progress01": 0.24,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r6:block-2",
+          "segmentId": "route-6",
+          "progress01": 0.49,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 2
+        },
+        {
+          "id": "t0:r6:branch-3",
+          "segmentId": "route-6",
+          "progress01": 0.75,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 2
+        }
+      ],
+      "marks": [
+        {
+          "id": "t0:r1:branch-1",
+          "lane": "0",
+          "visual": "boulder-a",
+          "src": "/assets/generated/lion-phase/traversal/t0/risk/boulder-a.png",
+          "hidden": false,
+          "decoded": true,
+          "left": 495.6953125,
+          "right": 620.6796875,
+          "top": 453.5815734863281,
+          "bottom": 510.4096984863281
+        }
+      ],
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "motion": "normal",
+      "focus": {
+        "focused": true,
+        "outline": "solid",
+        "width": 44,
+        "height": 44,
+        "left": 10,
+        "right": 54,
+        "bottom": 439
+      },
+      "fixtureCombats": 0
+    },
+    {
+      "leg": "T0",
+      "segment": "route-1",
+      "gameReduced": false,
+      "osReduced": false,
+      "hazards": [
+        {
+          "id": "t0:r1:branch-1",
+          "segmentId": "route-1",
+          "progress01": 0.38,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r2:branch-1",
+          "segmentId": "route-2",
+          "progress01": 0.48,
+          "lane": 1,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r3:branch-1",
+          "segmentId": "route-3",
+          "progress01": 0.32,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r3:block-2",
+          "segmentId": "route-3",
+          "progress01": 0.68,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t0:r4:block-1",
+          "segmentId": "route-4",
+          "progress01": 0.31,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t0:r4:branch-2",
+          "segmentId": "route-4",
+          "progress01": 0.68,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r6:branch-1",
+          "segmentId": "route-6",
+          "progress01": 0.24,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r6:block-2",
+          "segmentId": "route-6",
+          "progress01": 0.49,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 2
+        },
+        {
+          "id": "t0:r6:branch-3",
+          "segmentId": "route-6",
+          "progress01": 0.75,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 2
+        }
+      ],
+      "marks": [
+        {
+          "id": "t0:r1:branch-1",
+          "lane": "0",
+          "visual": "boulder-a",
+          "src": "/assets/generated/lion-phase/traversal/t0/risk/boulder-a.png",
+          "hidden": false,
+          "decoded": true,
+          "left": 311.8046875,
+          "right": 390.4140625,
+          "top": 515.00341796875,
+          "bottom": 550.73779296875
+        }
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "motion": "normal",
+      "focus": {
+        "focused": true,
+        "outline": "solid",
+        "width": 44,
+        "height": 44,
+        "left": 10,
+        "right": 54,
+        "bottom": 471
+      },
+      "fixtureCombats": 0
+    },
+    {
+      "leg": "T1",
+      "segment": "t1-route-1",
+      "gameReduced": false,
+      "osReduced": false,
+      "hazards": [
+        {
+          "id": "t1:t0:r1:branch-1",
+          "segmentId": "t1-route-1",
+          "progress01": 0.38,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r2:branch-1",
+          "segmentId": "t1-route-2",
+          "progress01": 0.48,
+          "lane": 1,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r4:block-1",
+          "segmentId": "t1-route-3",
+          "progress01": 0.31,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r4:branch-2",
+          "segmentId": "t1-route-3",
+          "progress01": 0.68,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r6:branch-1",
+          "segmentId": "t1-route-5",
+          "progress01": 0.24,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r6:block-2",
+          "segmentId": "t1-route-5",
+          "progress01": 0.49,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 2
+        },
+        {
+          "id": "t1:t0:r6:branch-3",
+          "segmentId": "t1-route-5",
+          "progress01": 0.75,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 2
+        }
+      ],
+      "marks": [
+        {
+          "id": "t1:t0:r1:branch-1",
+          "lane": "0",
+          "visual": "boulder-b",
+          "src": "/assets/generated/lion-phase/traversal/t0/risk/boulder-b.png",
+          "hidden": false,
+          "decoded": true,
+          "left": 1206.09375,
+          "right": 1396.59375,
+          "top": 410.2925109863281,
+          "bottom": 533.91748046875
+        }
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "motion": "normal",
+      "focus": {
+        "focused": true,
+        "outline": "solid",
+        "width": 30,
+        "height": 30,
+        "left": 14,
+        "right": 44,
+        "bottom": 439
+      },
+      "fixtureCombats": 0
+    },
+    {
+      "leg": "T1",
+      "segment": "t1-route-1",
+      "gameReduced": false,
+      "osReduced": false,
+      "hazards": [
+        {
+          "id": "t1:t0:r1:branch-1",
+          "segmentId": "t1-route-1",
+          "progress01": 0.38,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r2:branch-1",
+          "segmentId": "t1-route-2",
+          "progress01": 0.48,
+          "lane": 1,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r4:block-1",
+          "segmentId": "t1-route-3",
+          "progress01": 0.31,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r4:branch-2",
+          "segmentId": "t1-route-3",
+          "progress01": 0.68,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r6:branch-1",
+          "segmentId": "t1-route-5",
+          "progress01": 0.24,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r6:block-2",
+          "segmentId": "t1-route-5",
+          "progress01": 0.49,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 2
+        },
+        {
+          "id": "t1:t0:r6:branch-3",
+          "segmentId": "t1-route-5",
+          "progress01": 0.75,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 2
+        }
+      ],
+      "marks": [
+        {
+          "id": "t1:t0:r1:branch-1",
+          "lane": "0",
+          "visual": "boulder-b",
+          "src": "/assets/generated/lion-phase/traversal/t0/risk/boulder-b.png",
+          "hidden": false,
+          "decoded": true,
+          "left": 493.5546875,
+          "right": 618.5390625,
+          "top": 430.7572021484375,
+          "bottom": 511.8665771484375
+        }
+      ],
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "motion": "normal",
+      "focus": {
+        "focused": true,
+        "outline": "solid",
+        "width": 44,
+        "height": 44,
+        "left": 10,
+        "right": 54,
+        "bottom": 439
+      },
+      "fixtureCombats": 0
+    },
+    {
+      "leg": "T1",
+      "segment": "t1-route-1",
+      "gameReduced": false,
+      "osReduced": false,
+      "hazards": [
+        {
+          "id": "t1:t0:r1:branch-1",
+          "segmentId": "t1-route-1",
+          "progress01": 0.38,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r2:branch-1",
+          "segmentId": "t1-route-2",
+          "progress01": 0.48,
+          "lane": 1,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r4:block-1",
+          "segmentId": "t1-route-3",
+          "progress01": 0.31,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r4:branch-2",
+          "segmentId": "t1-route-3",
+          "progress01": 0.68,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r6:branch-1",
+          "segmentId": "t1-route-5",
+          "progress01": 0.24,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r6:block-2",
+          "segmentId": "t1-route-5",
+          "progress01": 0.49,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 2
+        },
+        {
+          "id": "t1:t0:r6:branch-3",
+          "segmentId": "t1-route-5",
+          "progress01": 0.75,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 2
+        }
+      ],
+      "marks": [
+        {
+          "id": "t1:t0:r1:branch-1",
+          "lane": "0",
+          "visual": "boulder-b",
+          "src": "/assets/generated/lion-phase/traversal/t0/risk/boulder-b.png",
+          "hidden": false,
+          "decoded": true,
+          "left": 313.1484375,
+          "right": 391.7578125,
+          "top": 500.6390686035156,
+          "bottom": 551.6546630859375
+        }
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "motion": "normal",
+      "focus": {
+        "focused": true,
+        "outline": "solid",
+        "width": 44,
+        "height": 44,
+        "left": 10,
+        "right": 54,
+        "bottom": 471
+      },
+      "fixtureCombats": 0
+    },
+    {
+      "leg": "T3",
+      "segment": "t3-route-1",
+      "gameReduced": false,
+      "osReduced": false,
+      "hazards": [
+        {
+          "id": "t3:t0:r1:branch-1",
+          "segmentId": "t3-route-1",
+          "progress01": 0.38,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r2:branch-1",
+          "segmentId": "t3-route-2",
+          "progress01": 0.48,
+          "lane": 1,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r4:block-1",
+          "segmentId": "t3-route-3",
+          "progress01": 0.31,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r4:branch-2",
+          "segmentId": "t3-route-3",
+          "progress01": 0.68,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r6:branch-1",
+          "segmentId": "t3-route-5",
+          "progress01": 0.24,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r6:block-2",
+          "segmentId": "t3-route-5",
+          "progress01": 0.49,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 2
+        },
+        {
+          "id": "t3:t0:r6:branch-3",
+          "segmentId": "t3-route-5",
+          "progress01": 0.75,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 2
+        }
+      ],
+      "marks": [
+        {
+          "id": "t3:t0:r1:branch-1",
+          "lane": "0",
+          "visual": "boulder-a",
+          "src": "/assets/generated/lion-phase/traversal/t0/risk/boulder-a.png",
+          "hidden": false,
+          "decoded": true,
+          "left": 1196.265625,
+          "right": 1386.765625,
+          "top": 445.0871887207031,
+          "bottom": 531.696533203125
+        }
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "motion": "normal",
+      "focus": {
+        "focused": true,
+        "outline": "solid",
+        "width": 30,
+        "height": 30,
+        "left": 14,
+        "right": 44,
+        "bottom": 439
+      },
+      "fixtureCombats": 0
+    },
+    {
+      "leg": "T3",
+      "segment": "t3-route-1",
+      "gameReduced": false,
+      "osReduced": false,
+      "hazards": [
+        {
+          "id": "t3:t0:r1:branch-1",
+          "segmentId": "t3-route-1",
+          "progress01": 0.38,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r2:branch-1",
+          "segmentId": "t3-route-2",
+          "progress01": 0.48,
+          "lane": 1,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r4:block-1",
+          "segmentId": "t3-route-3",
+          "progress01": 0.31,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r4:branch-2",
+          "segmentId": "t3-route-3",
+          "progress01": 0.68,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r6:branch-1",
+          "segmentId": "t3-route-5",
+          "progress01": 0.24,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r6:block-2",
+          "segmentId": "t3-route-5",
+          "progress01": 0.49,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 2
+        },
+        {
+          "id": "t3:t0:r6:branch-3",
+          "segmentId": "t3-route-5",
+          "progress01": 0.75,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 2
+        }
+      ],
+      "marks": [
+        {
+          "id": "t3:t0:r1:branch-1",
+          "lane": "0",
+          "visual": "boulder-a",
+          "src": "/assets/generated/lion-phase/traversal/t0/risk/boulder-a.png",
+          "hidden": false,
+          "decoded": true,
+          "left": 495.6953125,
+          "right": 620.6796875,
+          "top": 453.5815734863281,
+          "bottom": 510.4096984863281
+        }
+      ],
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "motion": "normal",
+      "focus": {
+        "focused": true,
+        "outline": "solid",
+        "width": 44,
+        "height": 44,
+        "left": 10,
+        "right": 54,
+        "bottom": 439
+      },
+      "fixtureCombats": 0
+    },
+    {
+      "leg": "T3",
+      "segment": "t3-route-1",
+      "gameReduced": false,
+      "osReduced": false,
+      "hazards": [
+        {
+          "id": "t3:t0:r1:branch-1",
+          "segmentId": "t3-route-1",
+          "progress01": 0.38,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r2:branch-1",
+          "segmentId": "t3-route-2",
+          "progress01": 0.48,
+          "lane": 1,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r4:block-1",
+          "segmentId": "t3-route-3",
+          "progress01": 0.31,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r4:branch-2",
+          "segmentId": "t3-route-3",
+          "progress01": 0.68,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r6:branch-1",
+          "segmentId": "t3-route-5",
+          "progress01": 0.24,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r6:block-2",
+          "segmentId": "t3-route-5",
+          "progress01": 0.49,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 2
+        },
+        {
+          "id": "t3:t0:r6:branch-3",
+          "segmentId": "t3-route-5",
+          "progress01": 0.75,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 2
+        }
+      ],
+      "marks": [
+        {
+          "id": "t3:t0:r1:branch-1",
+          "lane": "0",
+          "visual": "boulder-a",
+          "src": "/assets/generated/lion-phase/traversal/t0/risk/boulder-a.png",
+          "hidden": false,
+          "decoded": true,
+          "left": 313.1484375,
+          "right": 391.7578125,
+          "top": 515.00341796875,
+          "bottom": 550.73779296875
+        }
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "motion": "normal",
+      "focus": {
+        "focused": true,
+        "outline": "solid",
+        "width": 44,
+        "height": 44,
+        "left": 10,
+        "right": 54,
+        "bottom": 471
+      },
+      "fixtureCombats": 0
+    },
+    {
+      "leg": "T0",
+      "segment": "route-1",
+      "gameReduced": false,
+      "osReduced": true,
+      "hazards": [
+        {
+          "id": "t0:r1:branch-1",
+          "segmentId": "route-1",
+          "progress01": 0.38,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r2:branch-1",
+          "segmentId": "route-2",
+          "progress01": 0.48,
+          "lane": 1,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r3:branch-1",
+          "segmentId": "route-3",
+          "progress01": 0.32,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r3:block-2",
+          "segmentId": "route-3",
+          "progress01": 0.68,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t0:r4:block-1",
+          "segmentId": "route-4",
+          "progress01": 0.31,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t0:r4:branch-2",
+          "segmentId": "route-4",
+          "progress01": 0.68,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r6:branch-1",
+          "segmentId": "route-6",
+          "progress01": 0.24,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r6:block-2",
+          "segmentId": "route-6",
+          "progress01": 0.49,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 2
+        },
+        {
+          "id": "t0:r6:branch-3",
+          "segmentId": "route-6",
+          "progress01": 0.75,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 2
+        }
+      ],
+      "marks": [
+        {
+          "id": "t0:r1:branch-1",
+          "lane": "0",
+          "visual": "boulder-a",
+          "src": "/assets/generated/lion-phase/traversal/t0/risk/boulder-a.png",
+          "hidden": false,
+          "decoded": true,
+          "left": 1201.15625,
+          "right": 1391.65625,
+          "top": 445.0871887207031,
+          "bottom": 531.696533203125
+        }
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "motion": "os",
+      "focus": {
+        "focused": true,
+        "outline": "solid",
+        "width": 30,
+        "height": 30,
+        "left": 14,
+        "right": 44,
+        "bottom": 439
+      },
+      "fixtureCombats": 0
+    },
+    {
+      "leg": "T0",
+      "segment": "route-1",
+      "gameReduced": false,
+      "osReduced": true,
+      "hazards": [
+        {
+          "id": "t0:r1:branch-1",
+          "segmentId": "route-1",
+          "progress01": 0.38,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r2:branch-1",
+          "segmentId": "route-2",
+          "progress01": 0.48,
+          "lane": 1,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r3:branch-1",
+          "segmentId": "route-3",
+          "progress01": 0.32,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r3:block-2",
+          "segmentId": "route-3",
+          "progress01": 0.68,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t0:r4:block-1",
+          "segmentId": "route-4",
+          "progress01": 0.31,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t0:r4:branch-2",
+          "segmentId": "route-4",
+          "progress01": 0.68,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r6:branch-1",
+          "segmentId": "route-6",
+          "progress01": 0.24,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r6:block-2",
+          "segmentId": "route-6",
+          "progress01": 0.49,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 2
+        },
+        {
+          "id": "t0:r6:branch-3",
+          "segmentId": "route-6",
+          "progress01": 0.75,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 2
+        }
+      ],
+      "marks": [
+        {
+          "id": "t0:r1:branch-1",
+          "lane": "0",
+          "visual": "boulder-a",
+          "src": "/assets/generated/lion-phase/traversal/t0/risk/boulder-a.png",
+          "hidden": false,
+          "decoded": true,
+          "left": 495.6953125,
+          "right": 620.6796875,
+          "top": 453.5815734863281,
+          "bottom": 510.4096984863281
+        }
+      ],
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "motion": "os",
+      "focus": {
+        "focused": true,
+        "outline": "solid",
+        "width": 44,
+        "height": 44,
+        "left": 10,
+        "right": 54,
+        "bottom": 439
+      },
+      "fixtureCombats": 0
+    },
+    {
+      "leg": "T0",
+      "segment": "route-1",
+      "gameReduced": false,
+      "osReduced": true,
+      "hazards": [
+        {
+          "id": "t0:r1:branch-1",
+          "segmentId": "route-1",
+          "progress01": 0.38,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r2:branch-1",
+          "segmentId": "route-2",
+          "progress01": 0.48,
+          "lane": 1,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r3:branch-1",
+          "segmentId": "route-3",
+          "progress01": 0.32,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r3:block-2",
+          "segmentId": "route-3",
+          "progress01": 0.68,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t0:r4:block-1",
+          "segmentId": "route-4",
+          "progress01": 0.31,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t0:r4:branch-2",
+          "segmentId": "route-4",
+          "progress01": 0.68,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r6:branch-1",
+          "segmentId": "route-6",
+          "progress01": 0.24,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t0:r6:block-2",
+          "segmentId": "route-6",
+          "progress01": 0.49,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 2
+        },
+        {
+          "id": "t0:r6:branch-3",
+          "segmentId": "route-6",
+          "progress01": 0.75,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 2
+        }
+      ],
+      "marks": [
+        {
+          "id": "t0:r1:branch-1",
+          "lane": "0",
+          "visual": "boulder-a",
+          "src": "/assets/generated/lion-phase/traversal/t0/risk/boulder-a.png",
+          "hidden": false,
+          "decoded": true,
+          "left": 313.1484375,
+          "right": 391.7578125,
+          "top": 515.00341796875,
+          "bottom": 550.73779296875
+        }
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "motion": "os",
+      "focus": {
+        "focused": true,
+        "outline": "solid",
+        "width": 44,
+        "height": 44,
+        "left": 10,
+        "right": 54,
+        "bottom": 471
+      },
+      "fixtureCombats": 0
+    },
+    {
+      "leg": "T1",
+      "segment": "t1-route-1",
+      "gameReduced": false,
+      "osReduced": true,
+      "hazards": [
+        {
+          "id": "t1:t0:r1:branch-1",
+          "segmentId": "t1-route-1",
+          "progress01": 0.38,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r2:branch-1",
+          "segmentId": "t1-route-2",
+          "progress01": 0.48,
+          "lane": 1,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r4:block-1",
+          "segmentId": "t1-route-3",
+          "progress01": 0.31,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r4:branch-2",
+          "segmentId": "t1-route-3",
+          "progress01": 0.68,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r6:branch-1",
+          "segmentId": "t1-route-5",
+          "progress01": 0.24,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r6:block-2",
+          "segmentId": "t1-route-5",
+          "progress01": 0.49,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 2
+        },
+        {
+          "id": "t1:t0:r6:branch-3",
+          "segmentId": "t1-route-5",
+          "progress01": 0.75,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 2
+        }
+      ],
+      "marks": [
+        {
+          "id": "t1:t0:r1:branch-1",
+          "lane": "0",
+          "visual": "boulder-b",
+          "src": "/assets/generated/lion-phase/traversal/t0/risk/boulder-b.png",
+          "hidden": false,
+          "decoded": true,
+          "left": 1196.265625,
+          "right": 1386.765625,
+          "top": 410.2925109863281,
+          "bottom": 533.91748046875
+        }
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "motion": "os",
+      "focus": {
+        "focused": true,
+        "outline": "solid",
+        "width": 30,
+        "height": 30,
+        "left": 14,
+        "right": 44,
+        "bottom": 439
+      },
+      "fixtureCombats": 0
+    },
+    {
+      "leg": "T1",
+      "segment": "t1-route-1",
+      "gameReduced": false,
+      "osReduced": true,
+      "hazards": [
+        {
+          "id": "t1:t0:r1:branch-1",
+          "segmentId": "t1-route-1",
+          "progress01": 0.38,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r2:branch-1",
+          "segmentId": "t1-route-2",
+          "progress01": 0.48,
+          "lane": 1,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r4:block-1",
+          "segmentId": "t1-route-3",
+          "progress01": 0.31,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r4:branch-2",
+          "segmentId": "t1-route-3",
+          "progress01": 0.68,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r6:branch-1",
+          "segmentId": "t1-route-5",
+          "progress01": 0.24,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r6:block-2",
+          "segmentId": "t1-route-5",
+          "progress01": 0.49,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 2
+        },
+        {
+          "id": "t1:t0:r6:branch-3",
+          "segmentId": "t1-route-5",
+          "progress01": 0.75,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 2
+        }
+      ],
+      "marks": [
+        {
+          "id": "t1:t0:r1:branch-1",
+          "lane": "0",
+          "visual": "boulder-b",
+          "src": "/assets/generated/lion-phase/traversal/t0/risk/boulder-b.png",
+          "hidden": false,
+          "decoded": true,
+          "left": 495.6953125,
+          "right": 620.6796875,
+          "top": 430.7572021484375,
+          "bottom": 511.8665771484375
+        }
+      ],
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "motion": "os",
+      "focus": {
+        "focused": true,
+        "outline": "solid",
+        "width": 44,
+        "height": 44,
+        "left": 10,
+        "right": 54,
+        "bottom": 439
+      },
+      "fixtureCombats": 0
+    },
+    {
+      "leg": "T1",
+      "segment": "t1-route-1",
+      "gameReduced": false,
+      "osReduced": true,
+      "hazards": [
+        {
+          "id": "t1:t0:r1:branch-1",
+          "segmentId": "t1-route-1",
+          "progress01": 0.38,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r2:branch-1",
+          "segmentId": "t1-route-2",
+          "progress01": 0.48,
+          "lane": 1,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r4:block-1",
+          "segmentId": "t1-route-3",
+          "progress01": 0.31,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r4:branch-2",
+          "segmentId": "t1-route-3",
+          "progress01": 0.68,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r6:branch-1",
+          "segmentId": "t1-route-5",
+          "progress01": 0.24,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t1:t0:r6:block-2",
+          "segmentId": "t1-route-5",
+          "progress01": 0.49,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 2
+        },
+        {
+          "id": "t1:t0:r6:branch-3",
+          "segmentId": "t1-route-5",
+          "progress01": 0.75,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 2
+        }
+      ],
+      "marks": [
+        {
+          "id": "t1:t0:r1:branch-1",
+          "lane": "0",
+          "visual": "boulder-b",
+          "src": "/assets/generated/lion-phase/traversal/t0/risk/boulder-b.png",
+          "hidden": false,
+          "decoded": true,
+          "left": 313.1484375,
+          "right": 391.7578125,
+          "top": 500.6390686035156,
+          "bottom": 551.6546630859375
+        }
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "motion": "os",
+      "focus": {
+        "focused": true,
+        "outline": "solid",
+        "width": 44,
+        "height": 44,
+        "left": 10,
+        "right": 54,
+        "bottom": 471
+      },
+      "fixtureCombats": 0
+    },
+    {
+      "leg": "T3",
+      "segment": "t3-route-1",
+      "gameReduced": false,
+      "osReduced": true,
+      "hazards": [
+        {
+          "id": "t3:t0:r1:branch-1",
+          "segmentId": "t3-route-1",
+          "progress01": 0.38,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r2:branch-1",
+          "segmentId": "t3-route-2",
+          "progress01": 0.48,
+          "lane": 1,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r4:block-1",
+          "segmentId": "t3-route-3",
+          "progress01": 0.31,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r4:branch-2",
+          "segmentId": "t3-route-3",
+          "progress01": 0.68,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r6:branch-1",
+          "segmentId": "t3-route-5",
+          "progress01": 0.24,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r6:block-2",
+          "segmentId": "t3-route-5",
+          "progress01": 0.49,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 2
+        },
+        {
+          "id": "t3:t0:r6:branch-3",
+          "segmentId": "t3-route-5",
+          "progress01": 0.75,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 2
+        }
+      ],
+      "marks": [
+        {
+          "id": "t3:t0:r1:branch-1",
+          "lane": "0",
+          "visual": "boulder-a",
+          "src": "/assets/generated/lion-phase/traversal/t0/risk/boulder-a.png",
+          "hidden": false,
+          "decoded": true,
+          "left": 1206.09375,
+          "right": 1396.59375,
+          "top": 445.0871887207031,
+          "bottom": 531.696533203125
+        }
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "motion": "os",
+      "focus": {
+        "focused": true,
+        "outline": "solid",
+        "width": 30,
+        "height": 30,
+        "left": 14,
+        "right": 44,
+        "bottom": 439
+      },
+      "fixtureCombats": 0
+    },
+    {
+      "leg": "T3",
+      "segment": "t3-route-1",
+      "gameReduced": false,
+      "osReduced": true,
+      "hazards": [
+        {
+          "id": "t3:t0:r1:branch-1",
+          "segmentId": "t3-route-1",
+          "progress01": 0.38,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r2:branch-1",
+          "segmentId": "t3-route-2",
+          "progress01": 0.48,
+          "lane": 1,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r4:block-1",
+          "segmentId": "t3-route-3",
+          "progress01": 0.31,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r4:branch-2",
+          "segmentId": "t3-route-3",
+          "progress01": 0.68,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r6:branch-1",
+          "segmentId": "t3-route-5",
+          "progress01": 0.24,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r6:block-2",
+          "segmentId": "t3-route-5",
+          "progress01": 0.49,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 2
+        },
+        {
+          "id": "t3:t0:r6:branch-3",
+          "segmentId": "t3-route-5",
+          "progress01": 0.75,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 2
+        }
+      ],
+      "marks": [
+        {
+          "id": "t3:t0:r1:branch-1",
+          "lane": "0",
+          "visual": "boulder-a",
+          "src": "/assets/generated/lion-phase/traversal/t0/risk/boulder-a.png",
+          "hidden": false,
+          "decoded": true,
+          "left": 497.8203125,
+          "right": 622.8046875,
+          "top": 453.5815734863281,
+          "bottom": 510.4096984863281
+        }
+      ],
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "motion": "os",
+      "focus": {
+        "focused": true,
+        "outline": "solid",
+        "width": 44,
+        "height": 44,
+        "left": 10,
+        "right": 54,
+        "bottom": 439
+      },
+      "fixtureCombats": 0
+    },
+    {
+      "leg": "T3",
+      "segment": "t3-route-1",
+      "gameReduced": false,
+      "osReduced": true,
+      "hazards": [
+        {
+          "id": "t3:t0:r1:branch-1",
+          "segmentId": "t3-route-1",
+          "progress01": 0.38,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r2:branch-1",
+          "segmentId": "t3-route-2",
+          "progress01": 0.48,
+          "lane": 1,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r4:block-1",
+          "segmentId": "t3-route-3",
+          "progress01": 0.31,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r4:branch-2",
+          "segmentId": "t3-route-3",
+          "progress01": 0.68,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r6:branch-1",
+          "segmentId": "t3-route-5",
+          "progress01": 0.24,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 1
+        },
+        {
+          "id": "t3:t0:r6:block-2",
+          "segmentId": "t3-route-5",
+          "progress01": 0.49,
+          "lane": 1,
+          "kind": "roadblock",
+          "severity": 2
+        },
+        {
+          "id": "t3:t0:r6:branch-3",
+          "segmentId": "t3-route-5",
+          "progress01": 0.75,
+          "lane": 0,
+          "kind": "fallen-branch",
+          "severity": 2
+        }
+      ],
+      "marks": [
+        {
+          "id": "t3:t0:r1:branch-1",
+          "lane": "0",
+          "visual": "boulder-a",
+          "src": "/assets/generated/lion-phase/traversal/t0/risk/boulder-a.png",
+          "hidden": false,
+          "decoded": true,
+          "left": 310.4609375,
+          "right": 389.0703125,
+          "top": 515.00341796875,
+          "bottom": 550.73779296875
+        }
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "motion": "os",
+      "focus": {
+        "focused": true,
+        "outline": "solid",
+        "width": 44,
+        "height": 44,
+        "left": 10,
+        "right": 54,
+        "bottom": 471
+      },
+      "fixtureCombats": 0
+    }
+  ],
+  "reviewedAt": "2026-10-03T15:12:58.371Z",
+  "reviewers": [
+    "root",
+    "contracts-guardian",
+    "traversal-engineer"
+  ],
+  "limitations": [
+    "First road visuals only; other authored hazard descriptors covered by selector/unit tests",
+    "Fixture V6 origins/T0 QA bootstrap; no earned campaign/tactical/save acceptance",
+    "Lifetime/depth/spacing/reaction/temporary-loot acceptance still open",
+    "Six deferred keyboard files preserved unaccepted"
+  ]
+}

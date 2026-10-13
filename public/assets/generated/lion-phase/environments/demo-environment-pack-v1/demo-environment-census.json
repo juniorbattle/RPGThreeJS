@@ -1,0 +1,1863 @@
+{
+  "schemaVersion": 1,
+  "sourceOfTruth": "local worktree",
+  "sourcesInspected": [
+    "src/game/content.ts",
+    "src/render/assetManifest.ts",
+    "src/render/combatBackgrounds.ts",
+    "src/combat/stage/combatStageBackgrounds.ts",
+    "src/cinematics/NarrativePresentationDoctrine.ts",
+    "src/cinematics/",
+    "docs/art-direction/option-c/",
+    "docs/reports/",
+    "public/assets/dev/option-c/phase4b/environment/"
+  ],
+  "authoritativeVisualFamilies": [
+    "LION_CAMP",
+    "ALARIC_AUDIENCE",
+    "FOREST_ROAD",
+    "FIRST_REFUGE",
+    "VALMIR_ROAD",
+    "BOIS_CLAIR",
+    "SECOND_REFUGE",
+    "WITNESS_ROAD",
+    "SHADOW_RUINS",
+    "FINAL_REFUGE",
+    "LION_JUDGEMENT",
+    "SERPENT_FINALE",
+    "LION_TRIAL"
+  ],
+  "additionalCurrentVisualFamiliesFound": [],
+  "runtimeCombatSceneFamilies": [
+    "bois_clair_burning",
+    "forest_route",
+    "lion_sanctum"
+  ],
+  "doctrineBeatCount": 110,
+  "dialogueIdCount": 71,
+  "campaignEdgeCount": 22,
+  "mappedContextCount": 165,
+  "censusRowCount": 182,
+  "entries": [
+    {
+      "beatOrCombatId": "media:camp_departure",
+      "visualFamily": "LION_CAMP",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "lion_camp_cinematic_source",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "dialogue:acte_ouverture",
+      "visualFamily": "LION_CAMP",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "lion_camp_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:camp_departure",
+      "visualFamily": "LION_CAMP",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "lion_camp_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "media:alaric_audience_arrival",
+      "visualFamily": "ALARIC_AUDIENCE",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "alaric_audience_cinematic_source",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "dialogue:lion_briefing",
+      "visualFamily": "ALARIC_AUDIENCE",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "alaric_audience_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "media:forest_journey_tension",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-travel.png",
+      "targetPlate": "forest_road_travel",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "combat:forest_ambush",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-strategic.png",
+      "targetPlate": "forest_route_strategic",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:forest_ambush",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "COMBAT_STAGE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-combat-stage.png",
+      "targetPlate": "forest_route_stage",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:wolf_pack",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-strategic.png",
+      "targetPlate": "forest_route_strategic",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:wolf_pack",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "COMBAT_STAGE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-combat-stage.png",
+      "targetPlate": "forest_route_stage",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "dialogue:post_opening_trail",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "media:cedric_encounter",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "forest_crossroads_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "dialogue:mystery_recruit",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "forest_crossroads_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "media:refugees_approach",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "refugee_road_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "dialogue:refugee_trial",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "refugee_road_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:mystery_help",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "roadside_event_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "media:injured_merchant_encounter",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "roadside_event_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "dialogue:mystery_treasure",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "abandoned_cart_area_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "media:abandoned_cart_reveal",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "abandoned_cart_area_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "combat:forest_patrol",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-strategic.png",
+      "targetPlate": "forest_route_strategic",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:forest_patrol",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "COMBAT_STAGE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-combat-stage.png",
+      "targetPlate": "forest_route_stage",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:spider_nest",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-strategic.png",
+      "targetPlate": "forest_route_strategic",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:spider_nest",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "COMBAT_STAGE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-combat-stage.png",
+      "targetPlate": "forest_route_stage",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "media:spider_nest_reveal",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "forest_ambush_area_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "dialogue:post_spider_nest",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "combat:serpent_reprisals",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-strategic.png",
+      "targetPlate": "forest_route_strategic",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:serpent_reprisals",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "COMBAT_STAGE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-combat-stage.png",
+      "targetPlate": "forest_route_stage",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "dialogue:post_serpent_reprisals",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:post_serpent_patrol",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "media:first_refuge_arrival",
+      "visualFamily": "FIRST_REFUGE",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "first_refuge_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "media:first_refuge_departure",
+      "visualFamily": "FIRST_REFUGE",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "first_refuge_travel",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "dialogue:forest_refuge",
+      "visualFamily": "FIRST_REFUGE",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "first_refuge_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "media:valmir_route_fork",
+      "visualFamily": "VALMIR_ROAD",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "valmir_road_travel",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "combat:marsh_crossing",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-strategic.png",
+      "targetPlate": "forest_route_strategic",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:marsh_crossing",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "COMBAT_STAGE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-combat-stage.png",
+      "targetPlate": "forest_route_stage",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:road_to_valmir",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-strategic.png",
+      "targetPlate": "forest_route_strategic",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:road_to_valmir",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "COMBAT_STAGE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-combat-stage.png",
+      "targetPlate": "forest_route_stage",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "media:bois_clair_arrival",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_tableau_burning",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "dialogue:village_choice",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_tableau_burning",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "combat:village_defense",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_burning_strategic",
+      "generationNeeded": true,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:village_defense",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "COMBAT_STAGE",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_burning_stage",
+      "generationNeeded": true,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:village_raid",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_burning_strategic",
+      "generationNeeded": true,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:village_raid",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "COMBAT_STAGE",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_burning_stage",
+      "generationNeeded": true,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "media:bois_clair_saved",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_tableau_aftermath_saved",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "media:bois_clair_sacrificed",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_tableau_aftermath_sacrificed",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "combat:serpent_checkpoint",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-strategic.png",
+      "targetPlate": "forest_route_strategic",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:serpent_checkpoint",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "COMBAT_STAGE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-combat-stage.png",
+      "targetPlate": "forest_route_stage",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "dialogue:post_serpent_checkpoint",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "combat:serpent_duelist_trial",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-strategic.png",
+      "targetPlate": "forest_route_strategic",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:serpent_duelist_trial",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "COMBAT_STAGE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-combat-stage.png",
+      "targetPlate": "forest_route_stage",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "media:serpent_duelist_reveal",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "forest_ambush_area_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "dialogue:post_serpent_duelist_trial",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "forest_ambush_area_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "combat:troll_crossing",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-strategic.png",
+      "targetPlate": "forest_route_strategic",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:troll_crossing",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "COMBAT_STAGE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-combat-stage.png",
+      "targetPlate": "forest_route_stage",
+      "generationNeeded": false,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "media:troll_crossing_reveal",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "forest_ambush_area_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "dialogue:mystery_troll_crossing",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "forest_ambush_area_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "media:garen_encounter",
+      "visualFamily": "WITNESS_ROAD",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "witness_road_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "dialogue:mystery_lancer_recruit",
+      "visualFamily": "WITNESS_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "witness_road_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:mystery_shrine",
+      "visualFamily": "VALMIR_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "old_shrine_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "media:shrine_reveal_context",
+      "visualFamily": "VALMIR_ROAD",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "old_shrine_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "dialogue:old_shrine_event",
+      "visualFamily": "VALMIR_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "old_shrine_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:mystery_dragon_roost",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "dragon_roost_area",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "media:young_dragon_encounter",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "dragon_roost_area",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "combat:young_dragon_roost",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "existingAsset": null,
+      "targetPlate": "lion_sanctum_strategic",
+      "generationNeeded": true,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:young_dragon_roost",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "COMBAT_STAGE",
+      "existingAsset": null,
+      "targetPlate": "lion_sanctum_stage",
+      "generationNeeded": true,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:ruins_guardians",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "existingAsset": null,
+      "targetPlate": "lion_sanctum_strategic",
+      "generationNeeded": true,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:ruins_guardians",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "COMBAT_STAGE",
+      "existingAsset": null,
+      "targetPlate": "lion_sanctum_stage",
+      "generationNeeded": true,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "dialogue:post_ruins_guardians",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "shadow_ruins_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "combat:serpent_hunters",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "existingAsset": null,
+      "targetPlate": "lion_sanctum_strategic",
+      "generationNeeded": true,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:serpent_hunters",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "COMBAT_STAGE",
+      "existingAsset": null,
+      "targetPlate": "lion_sanctum_stage",
+      "generationNeeded": true,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "dialogue:post_serpent_hunters",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "media:shadow_signs",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "shadow_ruins_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "media:witnesses_encounter",
+      "visualFamily": "WITNESS_ROAD",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "witness_road_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "media:ruins_approach_context",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "shadow_ruins_approach",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "media:final_refuge_dossier",
+      "visualFamily": "FINAL_REFUGE",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "final_refuge_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "dialogue:final_refuge",
+      "visualFamily": "FINAL_REFUGE",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "final_refuge_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "media:lion_judgement",
+      "visualFamily": "LION_JUDGEMENT",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "lion_judgement_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "dialogue:lion_finale_judgement",
+      "visualFamily": "LION_JUDGEMENT",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "lion_judgement_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "media:serpent_general_reveal",
+      "visualFamily": "SERPENT_FINALE",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "serpent_finale_cinematic_source",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "media:lion_champion_reveal",
+      "visualFamily": "LION_TRIAL",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "lion_trial_cinematic_source",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "combat:serpent_captain",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "existingAsset": null,
+      "targetPlate": "lion_sanctum_strategic",
+      "generationNeeded": true,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:serpent_captain",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "COMBAT_STAGE",
+      "existingAsset": null,
+      "targetPlate": "lion_sanctum_stage",
+      "generationNeeded": true,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:lion_chief",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "existingAsset": null,
+      "targetPlate": "lion_sanctum_strategic",
+      "generationNeeded": true,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "combat:lion_chief",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "COMBAT_STAGE",
+      "existingAsset": null,
+      "targetPlate": "lion_sanctum_stage",
+      "generationNeeded": true,
+      "reuseAllowed": false,
+      "sourceKind": "runtime-combat"
+    },
+    {
+      "beatOrCombatId": "media:serpent_route_ending",
+      "visualFamily": "SERPENT_FINALE",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "serpent_finale_cinematic_source",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "media:lion_trial_route_ending",
+      "visualFamily": "LION_TRIAL",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "existingAsset": null,
+      "targetPlate": "lion_trial_cinematic_source",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "dialogue:lion_trial_aftermath",
+      "visualFamily": "LION_TRIAL",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "lion_trial_tableau_aftermath",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:serpent_general_aftermath",
+      "visualFamily": "SERPENT_FINALE",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "serpent_finale_tableau_aftermath",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:epilogue",
+      "visualFamily": "LION_JUDGEMENT",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "lion_judgement_epilogue_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:ate_alaric_reports",
+      "visualFamily": "LION_JUDGEMENT",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "lion_judgement_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:ate_bois_clair_night_watch",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_tableau_burning",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:ate_first_refuge_watch",
+      "visualFamily": "FIRST_REFUGE",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "first_refuge_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:ate_lion_council_doubt",
+      "visualFamily": "LION_JUDGEMENT",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "lion_judgement_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:ate_maelor_seal_analysis",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "shadow_ruins_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:ate_ruins_awaken",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "shadow_ruins_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:ate_serpent_general_warning",
+      "visualFamily": "SERPENT_FINALE",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "serpent_finale_tableau_aftermath",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:ate_serpent_retreat_order",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:ate_serpent_scout_report",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:ate_village_fear",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_tableau_burning",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:rep_event_bois_clair_denunciation",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_tableau_burning",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:rep_event_brokered_information",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:rep_event_displaced_family_demand",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:rep_event_fallen_banner_claimant",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:rep_event_public_petition",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:rep_event_refuge_supply_offer",
+      "visualFamily": "SECOND_REFUGE",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "second_refuge_night_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:rep_event_roadside_intimidation",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:rep_event_serpent_rumour_market",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:rep_event_village_memorial_request",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_tableau_burning",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "edge:lion-camp>lion-audience",
+      "visualFamily": "LION_CAMP",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "lion_camp_travel",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-audience>lion-opening-ambush",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-travel.png",
+      "targetPlate": "forest_road_travel",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-opening-ambush>lion-nomad-crossroads",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-travel.png",
+      "targetPlate": "forest_road_travel",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-nomad-crossroads>lion-refugees",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-travel.png",
+      "targetPlate": "forest_road_travel",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-refugees>lion-first-trial-event",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "forest_crossroads_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-refugees>lion-first-trial-combat",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "forest_crossroads_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-first-trial-event>lion-first-refuge",
+      "visualFamily": "FIRST_REFUGE",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "first_refuge_travel",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-first-trial-combat>lion-first-refuge",
+      "visualFamily": "FIRST_REFUGE",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "first_refuge_travel",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-first-refuge>lion-reserve-trail",
+      "visualFamily": "FIRST_REFUGE",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "first_refuge_travel",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-reserve-trail>lion-valmir-road",
+      "visualFamily": "VALMIR_ROAD",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "valmir_road_travel",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "media:serpent_road_tension",
+      "visualFamily": "VALMIR_ROAD",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "valmir_road_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "media:second_refuge_departure",
+      "visualFamily": "SECOND_REFUGE",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "second_refuge_morning_travel",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "media:serpent_informant_encounter",
+      "visualFamily": "WITNESS_ROAD",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "witness_road_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "media:qa-placeholder",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "presentation-doctrine"
+    },
+    {
+      "beatOrCombatId": "dialogue:mystery_ambush",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "forest_ambush_area_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:mystery_troll_crossing_legacy",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "forest_ambush_area_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:serpent_duelist_trial_legacy",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "forest_ambush_area_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:witnesses_on_road",
+      "visualFamily": "WITNESS_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "witness_road_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:shadow_signs",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "shadow_ruins_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:reserve_trail",
+      "visualFamily": "VALMIR_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "valmir_road_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:serpent_duelist_trial",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "forest_ambush_area_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:serpent_informant",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:pre_serpent_hunters",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:serpent_pursuit_pre_combat",
+      "visualFamily": "SERPENT_FINALE",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "serpent_finale_tableau_aftermath",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:village_defense_aftermath",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_tableau_aftermath_saved",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:village_raid_aftermath",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_tableau_aftermath_sacrificed",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:pre_village_defense",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_tableau_burning",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:pre_village_raid",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_tableau_burning",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:pre_serpent_duelist_trial",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "forest_ambush_area_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:pre_troll_crossing",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "forest_ambush_area_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:pre_young_dragon_roost",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "shadow_ruins_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:pre_lion_chief",
+      "visualFamily": "LION_TRIAL",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "lion_trial_tableau_aftermath",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:pre_opening_trail",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:pre_valmir_road",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:post_valmir_road",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:pre_serpent_patrol",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:pre_spider_nest",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:pre_serpent_reprisals",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:pre_serpent_checkpoint",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:pre_ruins_guardians",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "shadow_ruins_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:post_troll_crossing",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "forest_ambush_area_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "dialogue:post_young_dragon_roost",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "STATIC_TABLEAU",
+      "existingAsset": null,
+      "targetPlate": "shadow_ruins_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "runtime-dialogue"
+    },
+    {
+      "beatOrCombatId": "edge:lion-valmir-road>lion-second-trial-event",
+      "visualFamily": "VALMIR_ROAD",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "valmir_road_travel",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-valmir-road>lion-second-trial-combat",
+      "visualFamily": "VALMIR_ROAD",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "valmir_road_travel",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-second-trial-event>lion-village-choice",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_travel",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-second-trial-combat>lion-village-choice",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_travel",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-village-choice>lion-second-refuge",
+      "visualFamily": "SECOND_REFUGE",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "second_refuge_morning_travel",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-second-refuge>lion-witnesses",
+      "visualFamily": "SECOND_REFUGE",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "second_refuge_morning_travel",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-witnesses>lion-final-trial-event",
+      "visualFamily": "WITNESS_ROAD",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "witness_road_travel",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-witnesses>lion-final-trial-combat",
+      "visualFamily": "WITNESS_ROAD",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "witness_road_travel",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-final-trial-event>lion-shadow-signs",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "shadow_ruins_approach",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-final-trial-combat>lion-shadow-signs",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "shadow_ruins_approach",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-shadow-signs>lion-final-refuge",
+      "visualFamily": "FINAL_REFUGE",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "final_refuge_travel",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "edge:lion-final-refuge>lion-final-judgement",
+      "visualFamily": "LION_JUDGEMENT",
+      "surfaceRole": "TRAVEL",
+      "existingAsset": null,
+      "targetPlate": "lion_judgement_travel_or_approach",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-edge"
+    },
+    {
+      "beatOrCombatId": "node:lion-camp",
+      "visualFamily": "LION_CAMP",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "lion_camp_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-audience",
+      "visualFamily": "ALARIC_AUDIENCE",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "alaric_audience_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-opening-ambush",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-nomad-crossroads",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-refugees",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-first-trial-event",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-first-trial-combat",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-first-refuge",
+      "visualFamily": "FIRST_REFUGE",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "first_refuge_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-reserve-trail",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-valmir-road",
+      "visualFamily": "VALMIR_ROAD",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "valmir_road_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-second-trial-event",
+      "visualFamily": "VALMIR_ROAD",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "old_shrine_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-second-trial-combat",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-village-choice",
+      "visualFamily": "BOIS_CLAIR",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "bois_clair_tableau_burning",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-second-refuge",
+      "visualFamily": "SECOND_REFUGE",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "second_refuge_night_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-witnesses",
+      "visualFamily": "WITNESS_ROAD",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "witness_road_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-final-trial-event",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "dragon_roost_area",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-final-trial-combat",
+      "visualFamily": "FOREST_ROAD",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": "public/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "targetPlate": "forest_road_tableau",
+      "generationNeeded": false,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-shadow-signs",
+      "visualFamily": "SHADOW_RUINS",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "shadow_ruins_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-final-refuge",
+      "visualFamily": "FINAL_REFUGE",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "final_refuge_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    },
+    {
+      "beatOrCombatId": "node:lion-final-judgement",
+      "visualFamily": "LION_JUDGEMENT",
+      "surfaceRole": "HOLD_SOURCE",
+      "existingAsset": null,
+      "targetPlate": "lion_judgement_tableau",
+      "generationNeeded": true,
+      "reuseAllowed": true,
+      "sourceKind": "campaign-node"
+    }
+  ]
+}

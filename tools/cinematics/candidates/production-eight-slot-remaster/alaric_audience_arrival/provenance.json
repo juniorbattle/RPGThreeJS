@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-02T02:19:24.258Z",
+  "slot": "alaric_audience_arrival",
+  "status": "CANDIDATE_ONLY_NOT_RUNTIME",
+  "generationTool": "BUILT_IN_IMAGE_GEN",
+  "originalOutput": "C:/Users/miche/.codex/generated_images/01a0fa5f-1876-77a2-9223-625963f5e668/exec-4c910e69-15b0-435f-81f5-d58412c1157a.png",
+  "output": "tools/cinematics/candidates/production-eight-slot-remaster/alaric_audience_arrival/keyframe-v1.png",
+  "sha256": "bbb37404b513a091b04f5a8c79a19745e1cead5567c4fe777f7e2da09741768f",
+  "bytes": 2679007,
+  "width": 1672,
+  "height": 941,
+  "sourceReferences": [
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/alaric-audience-cinematic-source.png",
+      "sha256": "1214cc5627b41456f8540e9c0f043fb45edda7ddd502cf01cebc4c4f8325f13b"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/alaric.png",
+      "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/sage_seraphine.png",
+      "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/maelor.png",
+      "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/alistair.png",
+      "sha256": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be"
+    }
+  ],
+  "imagePrompt": "Use case: compositing / identity-preserve. Produce ONE integrated landscape cinematic starting keyframe for RPGThreeJS alaric_audience_arrival, modern pixel-art / HD-2D, 16:9 full-bleed 1920x1080 requested. Reference 1 is the canonical audience hall: keep its exact diagonal red lion carpet leading upstage-right to throne and paired stone lions, gold stained windows, tall gothic pillars, navy/brass/red banners, warm amber light, reflective stone floor and authored intentional pixel clusters. References 2-5 are immutable V2 Alaric, Seraphine, Maelor, Alistair. Preserve exact silhouettes, concealed heads, palette, cape/robes/tabard, weapons and accessories: Alaric has the crowned gold lion helmet and blue-gold/red regal cape, great gold sword and ornate staff; Seraphine white veiled hood, sage-green gold robes and purple-gold lantern staff; Maelor purple hood and masked face, book against torso and dagger; Alistair closed steel helm red crest, red lion tabard/cape, greatsword. No exposed invented face. Stage exactly these four actors as a formal arrival, without accepting mission, gold, Seal or judgement. The world dominates: full bodies readable, company trio midground lower-left of the carpet beginning to advance diagonally screen-right/upstage, Alistair in lead at x .51 ground .80 approx height .36 frame, Maelor at x .34 ground .80 height .35, Seraphine at x .20 ground .79 height .35. They retain recognizable three-quarter screen-right identities and weapons safely carried clear of the floor, with poses capable of physical walking and equipment inertia. Alaric stands on the established authority plane beside throne at x .74 ground .51 height .24, attending to the arriving delegation, regal full-body silhouette with no duplicated weapons. Shared perspective, real foot contact and warm window lighting, true world integration rather than pasted sprites; do not flatten all four into a foreground lineup. Keep the carpet approach and throne axis legible for purposeful lateral camera parallax and physical arrival. Preserve the hall geography and exact location family; no new stairs/rooms, new court actors, combat, magic, loot or plot event. Crisp intentional pixel clusters and stepped contours, no photorealism, anime, watercolor, smooth generic 3D, portrait softness, motion blur, collage outline. No baked text/UI/watermark. Lower 15 percent contains no face or important identifying item. Generate a sharp starting frame with actors already alive in stance; candidate only, do not modify original canonical media.",
+  "videoSpec": "tools/cinematics/specs/production-eight-slot-remaster/alaric_audience_arrival.json",
+  "agentReview": {
+    "integratedEnvironment": "PASS_CANDIDATE",
+    "concealedHeadsAndEquipment": "PASS_CANDIDATE_PURPLE_STAFF_DETAIL_RECHECK_IN_MOTION",
+    "castCount": 4,
+    "framing": "PASS_CANDIDATE_WORLD_DOMINANT_DIAGONAL_AUTHORITY_AXIS",
+    "motionAcceptance": "PENDING",
+    "runtimeAcceptance": "PENDING"
+  }
+}
