@@ -1,6 +1,6 @@
 # Native Valmir and mounted refusal — run1828
 
-Run: rpgthreejs-auto-dev-90m-20261013T1828. Ended: 2026-10-13T19:27:49.266Z.958Z. Branch: dev. Parent: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat. Status: IN_PROGRESS; requested PC second-refuge goal remains OPEN.
+Run: rpgthreejs-auto-dev-90m-20261013T1828. Ended: 10/13/2026 19:27:49. Branch: dev. Parent: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat. Status: IN_PROGRESS; requested PC second-refuge goal remains OPEN.
 
 Product changed: game source0; one existing pilot selects authored20gold payment and first resumed keyboard check. After terminal, visible-charge opposite-lane input for progression prepared/static-reviewed only. No injected combat or weakened assertion/new QA tool.
 
