@@ -29880,5 +29880,20 @@
       "status": "PAUSED",
       "onlyPromptAndUpdatedAtChanged": true
     }
+  },
+  "nextScheduledExecutionDirective": {
+    "decision": "OD-2026-10-13-B",
+    "path": "docs/autonomy/PLAYABLE_DEMO_EXECUTION_DIRECTIVE_2026-10-13.md",
+    "status": "READY_FOR_NEXT_SCHEDULED_RUN",
+    "operatorChat": "01a0f5ba-db22-7412-b3ad-a3429d76cad6",
+    "configurationChatDoesNotExecuteProduct": true,
+    "automationRemainsPaused": true,
+    "planUnchanged": "OD-2026-10-13-A",
+    "investigationLimitAppliesOnlyWhenNoUsefulProgress": true,
+    "operatorReportFormat": "directive section10",
+    "productSourceModified": 0,
+    "newBrowserScenarios": 0,
+    "qaProofAdded": 0,
+    "workflowFilesModified": 5
   }
 }

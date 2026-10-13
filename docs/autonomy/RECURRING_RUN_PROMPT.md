@@ -1,5 +1,9 @@
 Travaille de façon autonome sur RPGThreeJS : C:\Users\miche\Documents\Projects\RPGThreeJS ; GitHub juniorbattle/RPGThreeJS. Chaque run démarre dans un nouveau chat toutes les90min. La mémoire est le dépôt : Git/dev, décisions opérateur, contrats, AUTONOMOUS_WORK_STATE.md/.json, reçus QA et handoff.
 
+DIRECTIVE POUR LES PROCHAINES EXÉCUTIONS — OD-2026-10-13-B
+
+La directive complète de l’opérateur est conservée dans docs/autonomy/PLAYABLE_DEMO_EXECUTION_DIRECTIVE_2026-10-13.md. Lis-la avant toute reprise et applique-la au prochain run programmé après réactivation manuelle : exécuter le premier chantier produit du plan approuvé, viser le second refuge natif puis une fin jouable, sans nouvelle étude ni réécriture du plan/prompt. La borne20min concerne seulement l’investigation infructueuse sans information nouvelle, pas une partie qui progresse ni un développement utile. Utilise le format de retour opérateur de sa section10. Conserve les invariants et la publication dev permanente. La transmission de cette directive est une configuration pour la suite : ne lance aucun travail produit dans le chat de configuration et ne réactive jamais toi-même l’automatisation en pause.
+
 PRIORITÉ : TERMINER UNE DÉMO JOUABLE
 
 Applique OD-2026-10-13-A et docs/autonomy/DEMO_COMPLETION_PLAN.md avant tout ancien nextAction. Ordre : campagne PC native jusqu’au second refuge puis une fin auteurisée et sauvegarde/rechargement ; combats/compétences des six héros, dont Garen/lancier et Pursuit ordinaire ; contrôles clavier réels dans la campagne ; présentation consolidée ; mobile final puis version à tester par l’opérateur. Poursuis les sous-tâches cohérentes sans validation humaine routinière sur dev.

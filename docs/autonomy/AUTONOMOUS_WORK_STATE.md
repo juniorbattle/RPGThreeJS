@@ -1260,3 +1260,7 @@ Checkpoint f07a0ef572b0eaf06d01c58dfbebc1d7d64154e8 normally published/live veri
 ## Publication verified - 2026-10-13T01:43:01.772Z
 
 Checkpoint 652c5aed64ea21723e7f9d19cc8600dbc56a96f3 published normally and verified on origin/dev under OD-2026-10-12-A. Main00b96f1 is unchanged. Both owned workers and listener5395 are absent; inherited Vite29856 is preserved. Owned WIP72b1d3f remains local/remote, with no cleanup attempt. Scoped rendered arrival acceptance and the exact next action are unchanged; broader demo criteria remain open. Final metadata closure, clean parity and lock archival are recorded in automation memory and the ignored final audit.
+
+## Directive transmise aux prochains runs — OD-2026-10-13-B
+
+La directive opérateur complète est dans PLAYABLE_DEMO_EXECUTION_DIRECTIVE_2026-10-13.md. Appliquer au prochain run après réactivation manuelle ; ce chat prépare seulement la suite. Plan OD13A, tâche/nextAction/file,214reçus et travaux différés inchangés. Aucun lancement de campagne/navigateur ni changement produit. Plafond20min pour investigation infructueuse uniquement ; format de retour section10. Automatisation PAUSED conservée. Compteurs : produit0, QA/preuves0, workflow5.
