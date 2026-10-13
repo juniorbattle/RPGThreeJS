@@ -55,7 +55,7 @@ const report = {schemaVersion:1, recordedAt:new Date().toISOString(), method:'FR
 report.qaJobReceipt=qaJob.receiptPath;
 Object.assign(report,{target,routePlan,finalePlan,defeatNodeId,nativeDefeatWait,viewport:{width:viewport[0],height:viewport[1]},
   osReducedMotion:process.env.DEMO_QA_OS_MOTION==='1',observationHook:'Built bootstrap exposes GameApp for read-only snapshots; no owner method invoked',refuges:[],choices:[]});
-report.nativeTacticalPolicy='Champion Salvation policy retained; novice crosier uses native lowest-charge ally attacks and follows wounded allies, or native offensive inputs when no ally needs healing; non-Champion potions below half health; read-only rejection telemetry; all actions use existing native controls';
+report.nativeTacticalPolicy='Champion Salvation policy retained; novice crosier uses native lowest-charge ally attacks and follows wounded allies; non-Champion potions below half health; read-only rejection telemetry; all actions use existing native controls';
 report.nativePreparationPolicy=target==='defeat-recovery'?'Four affordable first-refuge potions through native shop; exact secured wallet/inventory/stock transaction and reload':'Existing refuge preparation';
 report.driverSha256=createHash('sha256').update(await readFile('tools/demo-continuous-production-qa.mjs')).digest('hex');
 report.productionBundles=await Promise.all((await readdir('dist/assets')).filter(name=>/^(game|combat)-.*\.js$/.test(name))
@@ -460,13 +460,13 @@ async function battle(){
       }
       if(await attack(frame,entry,{support:true}))continue;
       if(await heal(frame,entry))continue;
-      // Native crosiers can damage foes. Do not idle for support when no ally needs healing.
+      // Native crosiers can damage foes. A lone survivor must not wait only for ally support.
       const loneSurvivor=!current.units.some(u=>u.team==='player'&&u.alive&&u.id!==current.active.id);
-      const wounded=current.units.some(u=>u.team==='player'&&u.alive&&u.id!==current.active.id&&u.hp<u.maxhp*.95);
-      if(loneSurvivor||!wounded){
+      if(loneSurvivor){
         if(await attack(frame,entry))continue;
         if(await move(frame,entry))continue;
       }
+      const wounded=current.units.some(u=>u.team==='player'&&u.alive&&u.id!==current.active.id&&u.hp<u.maxhp*.95);
       if(wounded&&await move(frame,entry,{support:true,supportRange:current.active.weapons[0].max}))continue;
       await frame.locator('#menu [data-a="wait"]').click();entry.actions.push({kind:'wait-novice-support',reason:wounded?'no-native-support-hit-or-better-reachable-cell':'retain-ap-for-ally-support',before:current});continue;
     }

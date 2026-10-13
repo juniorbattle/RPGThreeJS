@@ -2149,6 +2149,11 @@ function hoverBattlefieldCell(c){ const hoveredUnit=(c&&c.occupant&&c.occupant.a
   else if(G.mode==='menu'||G.mode==='idle')restoreInspection(); }
 function onPointerMove(ev){ if(G.busy||G.over)return; const c=pickCell(ev); if(c)keyboardCell={gx:c.gx,gz:c.gz}; hoverBattlefieldCell(c); }
 async function onClick(ev){ if(G.over)return; if(ev.button!==0){ cancelToMenu(); return; } if(G.busy)return; await activateBattlefieldCell(pickCell(ev)); }
+function announceBattlefieldRejection(action,c){
+  if(!keyboardInput)return;
+  const status=byId('combat-cell-status');
+  if(status)status.textContent=(c?'Case '+(c.gx+1)+', '+(c.gz+1)+' — ':'')+action+' refusé — choisissez une case disponible';
+}
 async function activateBattlefieldCell(c){ if(G.over||G.busy||G.stage)return;
   if(G.mode==='deploy'){ if(c&&inZone(c.gx,c.gz)){
     if(c.occupant&&c.occupant.team==='player'){
@@ -2158,8 +2163,8 @@ async function activateBattlefieldCell(c){ if(G.over||G.busy||G.stage)return;
     } else if(!c.occupant&&G.selectedDeployId){ const nu=deployUnit(c.gx,c.gz); if(nu)selectUnit(nu); }
     drawDeployZone(); openDeployMenu(); setHint(G.deployedUnits.length+' / '+playerDeployLimit()+' unités placées');
   } return; }
-  if(G.mode==='move'){ if(c&&(c.gx!==G.active.gx||c.gz!==G.active.gz)&&G.reach.list.some(t=>t.gx===c.gx&&t.gz===c.gz)){ G.movedThisTurn=true; await moveAlong(G.active,buildPath(G.reach.prev,G.active,c.gx,c.gz)); afterSub(); } return; }
-  if(G.mode==='target'){ const sp=G.pending.spec; if(sp.self){ await doExecute(sp,G.active.gx,G.active.gz); return; } if(c&&G.pending.keys.has(c.gx+','+c.gz)) await doExecute(sp,c.gx,c.gz); return; }
+  if(G.mode==='move'){ if(c&&(c.gx!==G.active.gx||c.gz!==G.active.gz)&&G.reach.list.some(t=>t.gx===c.gx&&t.gz===c.gz)){ G.movedThisTurn=true; await moveAlong(G.active,buildPath(G.reach.prev,G.active,c.gx,c.gz)); afterSub(); } else announceBattlefieldRejection('Déplacement',c); return; }
+  if(G.mode==='target'){ const sp=G.pending.spec; if(sp.self){ await doExecute(sp,G.active.gx,G.active.gz); return; } if(c&&G.pending.keys.has(c.gx+','+c.gz)) await doExecute(sp,c.gx,c.gz); else announceBattlefieldRejection('Ciblage',c); return; }
   if((G.mode==='menu'||G.mode==='idle')&&c&&c.occupant){ G.pinnedUnit=c.occupant.alive?c.occupant:null; selectUnit(c.occupant); }
 }
 

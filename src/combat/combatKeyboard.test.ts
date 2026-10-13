@@ -1,5 +1,6 @@
 // @vitest-environment happy-dom
-import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { describe, expect, it, vi } from 'vitest';
 import { nextCombatCursor, shouldHandleCombatShortcut, shouldPreventCombatWheel } from './combatKeyboard';
 
 function routed(key: string, target: EventTarget, defaultPrevented = false): boolean {
@@ -101,5 +102,77 @@ describe('combat wheel ownership', () => {
   });
   it('blocks unrecognized event targets', () => {
     expect(shouldPreventCombatWheel({ target: null })).toBe(true);
+  });
+});
+
+describe('native battlefield rejection feedback', () => {
+  const runtime = readFileSync('src/combat/legacyCombatRuntime.js', 'utf8');
+  const activation = runtime.slice(runtime.indexOf('async function activateBattlefieldCell('), runtime.indexOf('\nfunction bindInput('));
+  const announcementStart = runtime.indexOf('function announceBattlefieldRejection(');
+  const announcement = announcementStart < 0 ? '' : runtime.slice(announcementStart, runtime.indexOf('async function activateBattlefieldCell('));
+
+  function nativeInput(mode: 'move' | 'target', keyboard = true, self = false) {
+    const status = document.createElement('div');
+    status.id = 'combat-cell-status';
+    status.textContent = 'Case 8, 4 — indisponible';
+    const canvas = document.createElement('canvas');
+    canvas.tabIndex = 0;
+    document.body.replaceChildren(status, canvas);
+    canvas.focus();
+    const game = {
+      mode, busy: false, over: false, stage: false, movedThisTurn: false,
+      active: { id: 'warrior', gx: 0, gz: 0, ap: 3, hp: 140 },
+      reach: { list: [{ gx: 0, gz: 0 }, { gx: 1, gz: 0 }], prev: {} },
+      pending: { spec: { key: 'attack', self }, keys: new Set(['1,0']) },
+    };
+    const move = vi.fn(async () => undefined), execute = vi.fn(async () => undefined), after = vi.fn();
+    const activate = new Function('G', 'keyboardInput', 'byId', 'moveAlong', 'buildPath', 'afterSub', 'doExecute',
+      `${announcement}\n${activation}\nreturn activateBattlefieldCell;`)(
+      game, keyboard, (id: string) => document.getElementById(id), move, () => ['native path'], after, execute,
+    ) as (cell: { gx: number; gz: number } | null) => Promise<void>;
+    return { game, status, canvas, move, execute, after, activate };
+  }
+
+  it.each(['move', 'target'] as const)('confirms rejected %s input without spending AP or changing focus', async mode => {
+    const input = nativeInput(mode), before = structuredClone(input.game);
+    await input.activate({ gx: 7, gz: 3 });
+    expect(input.status.textContent).toBe(`Case 8, 4 — ${mode === 'move' ? 'Déplacement' : 'Ciblage'} refusé — choisissez une case disponible`);
+    expect(input.game).toEqual(before);
+    expect(document.activeElement).toBe(input.canvas);
+    expect(input.move).not.toHaveBeenCalled();
+    expect(input.execute).not.toHaveBeenCalled();
+    expect(input.after).not.toHaveBeenCalled();
+  });
+
+  it('rejects the current movement cell rather than committing a zero-distance move', async () => {
+    const input = nativeInput('move'), before = structuredClone(input.game);
+    await input.activate({ gx: 0, gz: 0 });
+    expect(input.status.textContent).toContain('Déplacement refusé');
+    expect(input.game).toEqual(before);
+    expect(input.move).not.toHaveBeenCalled();
+  });
+
+  it.each(['move', 'target'] as const)('keeps pointer rejection and busy %s input outside keyboard feedback', async mode => {
+    const pointer = nativeInput(mode, false), original = pointer.status.textContent;
+    await pointer.activate({ gx: 7, gz: 3 });
+    expect(pointer.status.textContent).toBe(original);
+    const busy = nativeInput(mode);
+    busy.game.busy = true;
+    await busy.activate({ gx: 7, gz: 3 });
+    expect(busy.status.textContent).toBe(original);
+  });
+
+  it('preserves legal movement and target execution through their native owners', async () => {
+    const movement = nativeInput('move');
+    await movement.activate({ gx: 1, gz: 0 });
+    expect(movement.move).toHaveBeenCalledWith(movement.game.active, ['native path']);
+    expect(movement.game.movedThisTurn).toBe(true);
+    expect(movement.after).toHaveBeenCalledTimes(1);
+    const target = nativeInput('target');
+    await target.activate({ gx: 1, gz: 0 });
+    expect(target.execute).toHaveBeenCalledWith(target.game.pending.spec, 1, 0);
+    const self = nativeInput('target', true, true);
+    await self.activate(null);
+    expect(self.execute).toHaveBeenCalledWith(self.game.pending.spec, 0, 0);
   });
 });
