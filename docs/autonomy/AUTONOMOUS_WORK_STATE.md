@@ -1,5 +1,7 @@
 # Current native campaign and keyboard checkpoint - run0552
 
+Checkpoint: ead32f86f120a11e8efa8fd61b1c5eb9bb854cb0 published/remote verified; runtime work ended 2026-10-13T06:41:22.684Z. Worker14324/port5396 absent. WIPa355d95 retained for reverted-trial/repair provenance. Final metadata publication precedes owned lock release.
+
 Status: IN_PROGRESS. Owner: rpgthreejs-auto-dev-90m-20261013T0552. Product changed: rejected keyboard move/target activation announces general refusal through existing polite atomic status only; valid legality/owner calls, AP/focus/saves unchanged.97focused tests/build/types/contracts/LOCKED/whitespace green; guardian mechanically PASS. Mounted/AT/native control acceptance OPEN.
 
 Campaign0552 FAILED native Serpent defeat: round7/36actions, four heroes KO, stable digest7a9af388/no mutation/injection. No new playable campaign milestone; last independently accepted input is first-refuge0603 with exact V6 entry/reload. Pilot experiment reverted exactly. No failure-causation proof, so no second browser scenario; all failed outputs unseedable.

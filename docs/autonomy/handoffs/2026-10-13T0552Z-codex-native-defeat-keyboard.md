@@ -14,3 +14,5 @@ Counts: product1/test1/QA0/proof0/workflow3; operator manualAlistair assets excl
 Snapshot incident: unchecked TEMP-index write failure produced empty WIP6840132; complete tree restored via non-force descendant0506a3e then snapshot7c0b1a8. Dev/main unaffected. Use .git temporary indexes, fail on every native exit, verify exact selected paths before publication.
 
 Publication: normal origin/dev permanently authorized OD-2026-10-12-A; selected source/test/MD/JSON/handoff only. No secret/ignored output/operator art staged. Final SHA/remote and lock archive recorded in paired state/live closure.
+
+Implementation checkpoint: ead32f86f120a11e8efa8fd61b1c5eb9bb854cb0 published/remote verified. Work ended 2026-10-13T06:41:22.684Z; worker14324/port5396 absent; metadata closure precedes owned lock release. WIPa355d95 retained for reverted-trial/repair provenance.

@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-13T05:49:59.7650975Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-13T06:41:22.684Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "DEMO-PC-CONTROLS: native keyboard refusal feedback, campaign defeat preserved",
   "activeSubtask": "Implement missing invalid movement/target keyboard feedback; mounted acceptance pending",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "652c5aed64ea21723e7f9d19cc8600dbc56a96f3",
-  "lastPushedCommit": "652c5aed64ea21723e7f9d19cc8600dbc56a96f3",
+  "lastKnownGoodCommit": "ead32f86f120a11e8efa8fd61b1c5eb9bb854cb0",
+  "lastPushedCommit": "ead32f86f120a11e8efa8fd61b1c5eb9bb854cb0",
   "completedThisRun": [
     "Verified independent0603 native first-refuge seed and exact reload lineage",
     "One minimal support-policy trial failed in native combat; reverted; no failed-save reuse",
@@ -207,7 +207,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261013T0552",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-13T06:30:52.514Z",
+  "lastHeartbeat": "2026-10-13T06:41:22.684Z",
   "wip": {
     "branch": "wip/rpgthreejs-auto-dev-90m-20261013T0552",
     "sha": "a355d957a42cb672e89260a3ecc2ec8c02898e0a",
@@ -217,7 +217,7 @@
     "lastGreenCheck": "97current tests/build/types/contracts/immutable/whitespace; guardian PASSmechanics; browseracceptanceOPEN"
   },
   "live": {
-    "lastHeartbeat": "2026-10-13T06:30:52.514Z",
+    "lastHeartbeat": "2026-10-13T06:41:22.684Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -23395,22 +23395,15 @@
       "docs/autonomy/handoffs/2026-10-13T0552Z-codex-native-defeat-keyboard.md"
     ],
     "publication": {
-      "status": "VERIFIED_REMOTE_DEV",
-      "checkpoint": "652c5aed64ea21723e7f9d19cc8600dbc56a96f3",
-      "verifiedAt": "2026-10-13T01:43:01.772Z",
+      "sha": "ead32f86f120a11e8efa8fd61b1c5eb9bb854cb0",
       "destination": "origin/dev",
+      "normalNonForce": true,
+      "verified": true,
       "authorization": "OD-2026-10-12-A",
-      "paths": [
-        "tools/traversal-motion-production-qa.mjs",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-13T0127Z-codex-arrival-temporal-proof.md"
-      ],
-      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "automaticReviewRefusal": null
+      "operatorArtCommitPreserved": "b4e890af6fa61287818430b12eed21b4cc2f91fd"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-13T06:41:22.684Z",
+    "writerStopped": true,
     "metadataPublication": {
       "status": "CLOSURE_NEXT_AUTHORIZED_NORMAL_DEV_PUSH",
       "paths": [
@@ -27548,7 +27541,7 @@
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-13T05:49:59.7650975Z",
     "activePhase": "DEMO-PC-CONTROLS: native keyboard refusal feedback, campaign defeat preserved",
-    "heartbeat": "2026-10-13T06:30:52.514Z",
+    "heartbeat": "2026-10-13T06:41:22.684Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-13T0552Z-codex-native-defeat-keyboard.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -28570,6 +28563,24 @@
         "second-refuge-native-desktop-0552/combat-2-deployment.png",
         "second-refuge-native-desktop-0552/failure-state.png"
       ]
+    },
+    "closeout0552": {
+      "at": "2026-10-13T06:41:22.684Z",
+      "implementation": "ead32f86f120a11e8efa8fd61b1c5eb9bb854cb0",
+      "worker14324Absent": true,
+      "port5396Absent": true,
+      "cleanAtImplementation": true,
+      "lockArchive": ".git/codex-autonomy.completed-20261013T0552.json",
+      "source": 1,
+      "tests": 1,
+      "qa": 0,
+      "proof": 0,
+      "workflow": 3,
+      "nativeScenario": 1,
+      "acceptedNewCampaignMilestones": 0,
+      "wipRetained": "a355d957a42cb672e89260a3ecc2ec8c02898e0a preserves reverted trial and snapshot repair provenance",
+      "autoReviewRefusal": false,
+      "scopedDisposition": "Guardian PASS mechanical keyboard code; nativecampaignFAILED/mountedUIOPEN; demoIN_PROGRESS"
     }
   },
   "previousInterruptedRun": {
@@ -28777,7 +28788,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "Only three selected workflow publication-closure paths pending metadata commit; final clean-tree/live-parity verification recorded in automation memory and ignored final audit.",
+  "uncommittedWork": [],
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
@@ -28941,7 +28952,7 @@
     "preparation": "Native rest/revival before further combat;130gold/rest60",
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
-  "implementationCommit": "1d763e639085c2e83a1b491038058900c261fd07",
+  "implementationCommit": "ead32f86f120a11e8efa8fd61b1c5eb9bb854cb0",
   "authorizedWorkContinuation": "First obtain exact-payload public dev publication approval for run1859 local checkpoint; automatic review rejected the public WIP state push and no workaround is authorized. Inspect clean Git/local commits, owned writerStopped lock and preserved receipts. After approved normal push/remote parity and lock resolution, continue DEMO-QA-POLISH with existing tools/demo-continuous-production-qa.mjs from earnedSavePath tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json (SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b) and priorProofPath tmp/demo/campaign-second-refuge-1859/results.json (SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3). Rescue/serpent/ending1366normal, native rest75 first (3KO/5wounded,300gold), existing native shop/equip preparation, register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID, unique ignored output/free strict port and bounded deadline. Verify current physical source/driver/build identities; do not relabel old frozen577 campaign proof as new build acceptance. Inspect terminal receipt, genuine combats/T1/T3/temporaryloot/exactV6/ending/Salvation2AP and selected captures. Do not repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices; keep live leap/attack/Stage, live-slope smoothness,390framing/broadaccessibility/balance/settledVFX/fullending gates open. Preserve152historicaljobs/exact deferredDemoTask and pendingNarrativeTask.",
   "publication1214History": {
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
@@ -29929,7 +29940,9 @@
     "qaAdded": 0,
     "proofAdded": 0,
     "workflowFiles": 3,
-    "browserScenarios": 1
+    "browserScenarios": 1,
+    "closedAt": "2026-10-13T06:41:22.684Z",
+    "elapsedMinutes": 51.38
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",
