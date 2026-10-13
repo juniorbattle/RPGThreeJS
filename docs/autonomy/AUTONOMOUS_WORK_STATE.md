@@ -1,3 +1,26 @@
+# Scoped rendered arrival checkpoint - 2026-10-13T01:40:17.019Z
+
+Task: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat
+Run: rpgthreejs-auto-dev-90m-20261013T0127
+Status: IN_PROGRESS
+Subtask: T0 OS1366 rendered gentle arrival fade accepted; normal computed/perceived movement remains open
+
+The existing production motion driver now skips coverage-mode arrival screenshots and records that policy in public parameters. All assertions, RAF sampling, original midpoint invocation, fixtures and product source remain unchanged. The previous screenshot occupied the full short fade; its coarse recording did not demonstrate a runtime defect.
+
+One registered attempt failed before browser launch because the sandbox Playwright cache was absent. Its FAILED receipt is preserved. The verified host cache then executed the sole T0 OS1366 production scenario: SUCCEEDED,15 assertions,747 samples,seven captures,zero errors. Result SHA 8174185c591c97a71c9c4419f1e98c0028c3213b9c3b0a255566b1b716adb73d; source637f91ee,driver50a72e09,helper and nine unchanged physical build files match.
+
+The inspected native strip shows several intermediate darkening states at video PTS122.84–123.12: mean grayscale46.87,40.05,34.22,27.45,16.85,9.76,2.34,0.32. Container frame timestamps are verified; duplicated encoded frames do not imply independent paints. Computed fade interval122981.2–123345.9ms; sole unresolved lion-first-refuge callback123472.4ms under cover1,caravan left1419.48 beyond viewport1366. Native PTS is not absolutely aligned to performance.now, so exact painted fade/hold durations remain unverified.
+
+Guardian and traversal reviewers accept ACCEPTED_SCOPED_RENDERED_ARRIVAL_FADE_T0_OS1366. This closes only the rendered arrival-fade criterion for this fixture-assisted desktop OS-only flow. Full checkpoint momentum,other legs/settings/viewports,earned campaign,combat,Pursuit,V6/reload and demo acceptance remain open. No source defect or speculative product edit; no tracked evidence promotion.
+
+Verification:20 focused tests/three files,TypeScript,eight LOCKED contracts/eight slots,driver syntax,immutable/working-copy/whitespace PASS. Build reused after exact physical-hash verification. Counts:source0,test0,existingQA1,newQA0,promotedProof0,workflow3,inheritedWIP0,browser1,registered2 (one pre-browser environment failure),reviewers2/three passes,assertionCorrections0. Exact parent,taskQueue,deferred keyboard,pendingNarrative and212 historical QA requests preserved;214 total. WIP refs retained; no cleanup attempt or quota-savings claim.
+
+Compliance set1.1.0: no LOCKED rule changed. PASS for scoped authority/save/combat/QA/governance; broader Traversal/UI acceptance remains BLOCKED by the named gaps.
+
+Exact next action: Read-only autonomy preflight and exclusive lock. Reuse motion-t0-os-temporal-0127-host terminal receipt/result8174185c, source637f91ee, driver50a72e09, receipt helper and nine physical build hashes, plus scoped guardian/domain reviews. T0 OS1366 rendered gentle arrival fade is accepted only for this fixture-assisted presentation flow. Do not repeat unchanged accepted T0 OS numerical/computed/rendered proof or campaign deadline-only runs. Next unresolved desktop boundary: T0 normal computed coverage and perceived continuous checkpoint departure/accelerating final exit. Register ONE existing tools/traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --pursuit-check=0 --coverage-check=1 --port=<verified-free-port> --output=<unique-ignored-path>, identical --register arguments, 15 retained assertions; inspect native video at return/fork and final arrival. This adds unproved computed/rendered coverage to previously numerical-only normal evidence; no speculative product edit or instrumentation rewrite. Native video PTS remains unsynchronized with performance.now, so exact painted fade/hold durations remain open. T1/T3 coverage, game-only reduction and mobileLAST remain later gaps. Preserve exact parent all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo, deferred keyboard, pendingNarrative and taskQueue; never seed FAILED1521 partial outputs.
+
+---
+
 # Current autonomous checkpoint - 2026-10-12T21:01:25.101Z
 
 TASK: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat

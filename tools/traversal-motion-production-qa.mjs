@@ -21,7 +21,7 @@ assert.ok(!reducedChargeCheck||(pursuitCheck&&motion==='normal'&&legs.length===1
 assert.ok(viewports.every(value=>/^\d+x\d+$/.test(value)&&value.split('x').every(n=>Number(n)>0)),'Invalid viewports');
 const parameters={motion,viewports,legs,branch:'event',gameReducedMotion:false,pursuitCheck,
   gaitCheck,reducedChargeCheck,
-  ...(coverageCheck?{coverageCheck:true}:{}),
+  ...(coverageCheck?{coverageCheck:true,arrivalCapturePolicy:'native-video-without-arrival-screenshots'}:{}),
   scope:'native production motion with V6-origin/combat-result fixtures; not earned campaign'};
 const requiredAssertions=['continuous-checkpoint-braking','checkpoint-wheel-ground-travel','continuous-departure','opaque-swap','reveal-momentum','reveal-driving-velocity-continuity','clock-zero-during-reveal','full-exit-before-arrival','single-canonical-arrival','native-keyboard-focus','responsive-controls',
   ...(motion==='os'?['os-covered-exit']:['forward-exit-and-resize','accelerating-arrival'])];
@@ -262,9 +262,10 @@ try{
       if(s.departure&&s.view==='checkpoint'&&s.opacity<.5)await capture('departure-visible');
       if(s.departure&&s.view==='route'&&s.opacity<.8&&s.opacity>.02)await capture('reveal-moving');
       if(s.view==='checkpoint'&&s.opacity<.02&&!s.transition)await capture(`checkpoint-${s.segment}`);
-      if(s.phase==='ARRIVING'&&s.fade===0&&s.left<width)await capture('arrival-visible');
-      if(s.phase==='ARRIVING'&&s.left>=width)await capture('arrival-exited');
-      if(coverageCheck&&s.phase==='ARRIVING'&&s.fade>0&&s.fade<1)await capture(`arrival-fade-${Math.min(3,Math.floor(s.fade*4))}`);
+      // Screenshots can occupy the whole short reduced arrival fade; use the
+      // existing native recording for coverage runs without interrupting it.
+      if(!coverageCheck&&s.phase==='ARRIVING'&&s.fade===0&&s.left<width)await capture('arrival-visible');
+      if(!coverageCheck&&s.phase==='ARRIVING'&&s.left>=width)await capture('arrival-exited');
       if(pursuitCheck&&s.phase==='RUNNING'&&s.view==='route'&&!s.transition){
         const desired=s.segment==='route-3'||s.segment==='route-6'?1:0;
         if(s.lane!==desired)await page.keyboard.press(desired?'ArrowDown':'ArrowUp');
