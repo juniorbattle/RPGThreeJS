@@ -1,6 +1,6 @@
 # Native Valmir and mounted refusal — run1828
 
-Run: rpgthreejs-auto-dev-90m-20261013T1828. Ended: 2026-10-13T19:24:14.958Z. Branch: dev. Parent: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat. Status: IN_PROGRESS; requested PC second-refuge goal remains OPEN.
+Run: rpgthreejs-auto-dev-90m-20261013T1828. Ended: 2026-10-13T19:27:49.266Z.958Z. Branch: dev. Parent: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat. Status: IN_PROGRESS; requested PC second-refuge goal remains OPEN.
 
 Product changed: game source0; one existing pilot selects authored20gold payment and first resumed keyboard check. After terminal, visible-charge opposite-lane input for progression prepared/static-reviewed only. No injected combat or weakened assertion/new QA tool.
 
@@ -13,3 +13,5 @@ Gates:30keyboard tests/types/8contracts/8slots/syntax/immutable/workingcopy/whit
 Next single product action: Read-only preflight/exclusive lock; resume native PC second-refuge using independently reverified successful0603 exact earned save/proof (d0fc5c11/03eab0e5), unchanged current9-file build. Existing pilot now selects native opposite lane during visible CHARGING for second-refuge/ending; static guardian PASS only, effectiveness PENDING_NATIVE. Register ONE new targetsecond-refuge1366normal/rescue/serpent/VERIFY_SALVATION1/35min scenario at a verified free port/new ignored output/hostcache. Retain exact2→0 Salvation, owner/resource/reload/collision assertions and intentional pursuit-victory controls; no deadline-only extension. Inspect terminal provenance/assertions/captures and exact earned lion-second-refuge V6 reload; then earned ending continuation. Never use FAILED1828/0552/1521 partial saves, repeat unchanged collision-blind policy or T0 diagnostics.
 
 All216historical requests+current217, exact deferred keyboard/narrative/parent/queue preserved. Legal action/full return/spokenAT, Garen/all-six, balance, nightBoisClair external, consolidated presentation/mobileLAST/operator acceptance remainOPEN. Counts product0/test0/existingQA1/newQA0/proof0/workflow3/inherited0/browser1. Worker18264/port5401 absent before release. Scheduler remains PAUSED; no reactivation. Owned WIP retained for original frozen driver provenance. Normal dev publication permanently authorized OD12; final SHA Git/automation memory after push.
+
+Coherent checkpoint 1c1de18d481b6460cde0533af95ac4509affe77a normally published/remote verified. Final metadata closure reconciles terminalFAILED/current-driver mismatch and all live aliases; final metadata SHA in Git/automation memory. Worker stopped, source0/QA1/workflow3; owned WIP retained for frozen original driver.

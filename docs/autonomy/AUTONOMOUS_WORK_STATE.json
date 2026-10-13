@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-13T18:20:44.5385169Z",
-  "runEndedAt": "2026-10-13T19:24:14.958Z",
+  "runEndedAt": "2026-10-13T19:27:49.266Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
   "activePhase": "Valmir and mounted keyboard observed; native second-refuge aggregate timed out",
   "activeSubtask": "Native opposite-lane steering prepared; second-refuge and exact2APSalvation still pending",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "0b4eb9bdc9fd25cfcd774eaab978712b9e9f1f78",
-  "lastPushedCommit": "2a87b7af1d0adaf031481d5b52dd8ced1d5150a6",
+  "lastPushedCommit": "1c1de18d481b6460cde0533af95ac4509affe77a",
   "completedThisRun": [
     "Reused0708 matched terminal evidence: independent final scoped recovery/T0return/precombatV6 review accepted without replay",
     "Historical0603 native lineage/digests/exact resumedV6 compatibility independently verified on current build",
@@ -119,7 +119,7 @@
       "REPOSITORY_GOVERNANCE": "PASS selected paths/ownedlock/WIP/normaldev authorization/mainLOCKED protected; final push verification pending"
     }
   },
-  "commitReferenceScope": "lastKnownGoodCommit refers published product0b4eb9b; lastPushedCommit refers verified pre-run base2a87b7a. Final QA/workflow run1828 publication SHA is recorded by Git and automation memory after push; no self-reference claim.",
+  "commitReferenceScope": "lastKnownGoodCommit denotes unchanged published product0b4eb9b; lastPushedCommit denotes verified coherent1828 checkpoint1c1de18. Final metadata closure SHA is in Git and automation memory; no self-reference.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -222,7 +222,7 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261013T1828",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-13T19:24:14.958Z",
+  "lastHeartbeat": "2026-10-13T19:27:49.266Z",
   "wip": {
     "branch": "wip/codex-early-combat-20261013T0708",
     "sha": "ca9fa01b75176e33f80962de105f3624797e1612",
@@ -232,7 +232,7 @@
     "lastGreenCheck": "195 tests/types/build/contracts/LOCKED/whitespace; guardian actualdiff PASS mechanical"
   },
   "live": {
-    "lastHeartbeat": "2026-10-13T19:24:14.958Z",
+    "lastHeartbeat": "2026-10-13T19:27:49.266Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -23644,57 +23644,50 @@
     ],
     "wip": {
       "branch": "wip/rpgthreejs-auto-dev-90m-20261013T1828",
-      "sha": "7424c826ee2363671c5efdd93416636ba02d4259",
-      "status": "GREEN",
-      "dirtyFiles": [
+      "sha": "40d4cd6d9bee9376d77457e0cff2fb87792403ec",
+      "status": "GREEN_PUBLISHED_COHERENT_CHECKPOINT",
+      "dirtyFiles": [],
+      "lastGreenCheck": "30keyboard/types/8contracts/8slots/syntax/LOCKED/whitespace/static guardian PASS; campaign aggregateFAILED preserved",
+      "at": "2026-10-13T19:25:56.8794332Z",
+      "remoteVerified": true,
+      "capturedFiles": [
         "tools/demo-continuous-production-qa.mjs",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
-      ],
-      "lastGreenCheck": "30keyboard/types/8contracts/8slots/syntax/LOCKED/whitespace/static guardian PASS; campaign aggregateFAILED preserved",
-      "at": "2026-10-13T19:24:14.958Z",
-      "remoteVerified": true
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/handoffs/2026-10-13T1828Z-codex-native-second-refuge.md"
+      ]
     },
     "nextAction": "Read-only preflight/exclusive lock; resume native PC second-refuge using independently reverified successful0603 exact earned save/proof (d0fc5c11/03eab0e5), unchanged current9-file build. Existing pilot now selects native opposite lane during visible CHARGING for second-refuge/ending; static guardian PASS only, effectiveness PENDING_NATIVE. Register ONE new targetsecond-refuge1366normal/rescue/serpent/VERIFY_SALVATION1/35min scenario at a verified free port/new ignored output/hostcache. Retain exact2→0 Salvation, owner/resource/reload/collision assertions and intentional pursuit-victory controls; no deadline-only extension. Inspect terminal provenance/assertions/captures and exact earned lion-second-refuge V6 reload; then earned ending continuation. Never use FAILED1828/0552/1521 partial saves, repeat unchanged collision-blind policy or T0 diagnostics.",
     "runMetrics": {
-      "runId": "codex-early-combat-20261013T0708",
-      "runtimeSourceFilesModified": 4,
-      "testFilesModified": 3,
-      "existingQaFilesModified": 1,
-      "newQaFilesAdded": 0,
-      "promotedProofFiles": 0,
-      "workflowDocs": 5,
-      "inheritedWipFiles": 0,
-      "browserScenarios": 1,
-      "registeredJobs": 1,
-      "reviewers": 1,
-      "reviewerPasses": 2,
-      "rootCapturesInspected": 4,
-      "finalReviewerCreditFailures": 1
+      "product": 0,
+      "test": 0,
+      "existingQA": 1,
+      "newQA": 0,
+      "promotedProof": 0,
+      "workflow": 3,
+      "inheritedWip": 0,
+      "browser": 1,
+      "reviewer": 1,
+      "runId": "rpgthreejs-auto-dev-90m-20261013T1828",
+      "sourceFilesModified": 0,
+      "qaFilesModified": 1,
+      "qaProofFilesAdded": 0,
+      "workflowFilesModified": 3
     },
     "checkpointPaths": [
-      "src/game/combatProgress.ts",
-      "src/game/combatProgress.test.ts",
-      "src/game/content.ts",
-      "src/game/content.test.ts",
-      "src/game/runSystem.ts",
-      "src/game/runSystem.test.ts",
-      "src/campaign/LionTraversalPursuitEncounters.ts",
       "tools/demo-continuous-production-qa.mjs",
-      "docs/autonomy/EARLY_COMBAT_RECOVERY_OPERATOR_DECISION_2026-10-13.md",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
+      "docs/autonomy/handoffs/2026-10-13T1828Z-codex-native-second-refuge.md"
     ],
     "publication": {
-      "sha": "0b4eb9bdc9fd25cfcd774eaab978712b9e9f1f78",
+      "branch": "dev",
+      "sha": "1c1de18d481b6460cde0533af95ac4509affe77a",
+      "at": "2026-10-13T19:26:01.1351224Z",
       "remoteVerified": true,
-      "at": "2026-10-13T07:37:31.7198801Z",
-      "destination": "origin/dev",
-      "authorization": "OD-2026-10-12-A + direct commit/push request",
-      "sourceEquivalenceVerified": true
+      "metadataClosureSha": "Git and automation memory after final push"
     },
-    "runEndedAt": "2026-10-13T19:24:14.958Z",
+    "runEndedAt": "2026-10-13T19:27:49.266Z",
     "writerStopped": true,
     "metadataPublication": {
       "status": "CLOSURE_NEXT_AUTHORIZED_NORMAL_DEV_PUSH",
@@ -27833,7 +27826,7 @@
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-13T18:20:44.5385169Z",
     "activePhase": "Valmir and mounted keyboard observed; native second-refuge aggregate timed out",
-    "heartbeat": "2026-10-13T19:24:14.958Z",
+    "heartbeat": "2026-10-13T19:27:49.266Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-13T1828Z-codex-native-second-refuge.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -28193,9 +28186,11 @@
       "aliasReconciliation": "Current generic live aliases reconciled with run1617; prior values retained, no parent/queue/QA request edits"
     },
     "lastSnapshot": {
-      "at": "2026-10-13T18:29:23.815Z",
-      "sha": "523259c7c2c21bf998ee4de86707e6906fb6c6bf",
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261013T1828"
+      "sha": "40d4cd6d9bee9376d77457e0cff2fb87792403ec",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261013T1828",
+      "at": "2026-10-13T19:25:56.8794332Z",
+      "remoteVerified": true,
+      "retainedForFrozenDriver": true
     },
     "motion1648": {
       "jobId": "motion-t3-native-desktop-1648",
@@ -29072,14 +29067,19 @@
       },
       "lastHeartbeat": "2026-10-13T19:00:04.510Z",
       "currentJob": {
-        "status": "RUNNING",
+        "status": "FAILED",
         "pid": 18264,
         "port": 5401,
         "output": "tmp/demo/second-refuge-native-desktop-1828",
-        "provenanceMatches": true,
-        "requestMatches": true
+        "endedAt": "2026-10-13T19:01:55.885Z",
+        "resultSha256": "faf09be2a068e7eb533b5fd8e5d6bb74f2dc848a9686ba85cdebf68c79940361",
+        "provenanceStable": true,
+        "resultDigestMatches": true,
+        "matchesCurrentExecution": false,
+        "acceptance": "NOT_ACCEPTED",
+        "workerStopped": true
       },
-      "endedAt": "2026-10-13T19:24:14.958Z",
+      "endedAt": "2026-10-13T19:27:49.266Z",
       "status": "IN_PROGRESS_SAFE_CHECKPOINT",
       "nativeAggregate": "FAILED_NOT_ACCEPTED",
       "review1828": {
@@ -29120,7 +29120,52 @@
         "originalFrozen1828ProofRetained": true
       },
       "childCleanup": "worker18264/port5401 checked absent before lock release",
-      "wipRetention": "Retain owned WIP lineage: original tested driver9b3347ef exists in first snapshot and differs from newly prepared steering policy; historical proof source not yet identical on dev"
+      "wipRetention": "Retain owned WIP lineage: original tested driver9b3347ef exists in first snapshot and differs from newly prepared steering policy; historical proof source not yet identical on dev",
+      "priorLiveAliases": {
+        "runMetrics": {
+          "runId": "codex-early-combat-20261013T0708",
+          "runtimeSourceFilesModified": 4,
+          "testFilesModified": 3,
+          "existingQaFilesModified": 1,
+          "newQaFilesAdded": 0,
+          "promotedProofFiles": 0,
+          "workflowDocs": 5,
+          "inheritedWipFiles": 0,
+          "browserScenarios": 1,
+          "registeredJobs": 1,
+          "reviewers": 1,
+          "reviewerPasses": 2,
+          "rootCapturesInspected": 4,
+          "finalReviewerCreditFailures": 1
+        },
+        "checkpointPaths": [
+          "src/game/combatProgress.ts",
+          "src/game/combatProgress.test.ts",
+          "src/game/content.ts",
+          "src/game/content.test.ts",
+          "src/game/runSystem.ts",
+          "src/game/runSystem.test.ts",
+          "src/campaign/LionTraversalPursuitEncounters.ts",
+          "tools/demo-continuous-production-qa.mjs",
+          "docs/autonomy/EARLY_COMBAT_RECOVERY_OPERATOR_DECISION_2026-10-13.md",
+          "docs/autonomy/OPERATOR_DECISIONS.md",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
+        ],
+        "publication": {
+          "sha": "0b4eb9bdc9fd25cfcd774eaab978712b9e9f1f78",
+          "remoteVerified": true,
+          "at": "2026-10-13T07:37:31.7198801Z",
+          "destination": "origin/dev",
+          "authorization": "OD-2026-10-12-A + direct commit/push request",
+          "sourceEquivalenceVerified": true
+        },
+        "lastSnapshot": {
+          "at": "2026-10-13T18:29:23.815Z",
+          "sha": "523259c7c2c21bf998ee4de86707e6906fb6c6bf",
+          "branch": "wip/rpgthreejs-auto-dev-90m-20261013T1828"
+        }
+      }
     },
     "threadId": "01a1367c-ada6-7e02-a5c9-7f842bdf02f6",
     "writerStoppedMeaning": "Production and QA worker stopped; owned lock retained through workflow publication"

@@ -1,6 +1,6 @@
 # Native Valmir and mounted refusal checkpoint — run1828
 
-Run: rpgthreejs-auto-dev-90m-20261013T1828. Started: 2026-10-13T18:20:44.5385169Z. Ended: 2026-10-13T19:24:14.958Z. Status: IN_PROGRESS. Product source unchanged; no new second-refuge/ending checkpoint.
+Run: rpgthreejs-auto-dev-90m-20261013T1828. Started: 2026-10-13T18:20:44.5385169Z. Ended: 2026-10-13T19:27:49.266Z.958Z. Status: IN_PROGRESS. Product source unchanged; no new second-refuge/ending checkpoint.
 
 Existing pilot paid authored20gold, then native Valmir victory4round34actions; rawCedric0→owner1. Mounted Tab/ShiftTab/illegalmove+target refusal/Escape focus observed with tactical/AP/owner/autosave unchanged. Subsequent native potionCedric1→58/AP1→0/stock5→4. Guardian independently accepted these narrow observations plus exact first-refuge reload/native rest210→180/all5full. Salvation5→3/heal107→140 is not exact2→0 proof.
 
@@ -1328,3 +1328,5 @@ Checkpoint 652c5aed64ea21723e7f9d19cc8600dbc56a96f3 published normally and verif
 ## Directive transmise aux prochains runs — OD-2026-10-13-B
 
 La directive opérateur complète est dans PLAYABLE_DEMO_EXECUTION_DIRECTIVE_2026-10-13.md. Appliquer au prochain run après réactivation manuelle ; ce chat prépare seulement la suite. Plan OD13A, tâche/nextAction/file,214reçus et travaux différés inchangés. Aucun lancement de campagne/navigateur ni changement produit. Plafond20min pour investigation infructueuse uniquement ; format de retour section10. Automatisation PAUSED conservée. Compteurs : produit0, QA/preuves0, workflow5.
+
+Coherent checkpoint 1c1de18d481b6460cde0533af95ac4509affe77a normally published/remote verified. Final metadata closure reconciles terminalFAILED/current-driver mismatch and all live aliases; final metadata SHA in Git/automation memory. Worker stopped, source0/QA1/workflow3; owned WIP retained for frozen original driver.
