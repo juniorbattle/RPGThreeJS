@@ -1,12 +1,15 @@
-# Active OD-2026-10-13-C product correction
+# OD13C published product checkpoint — 2026-10-13T10:30:10.712Z
 
-Run: codex-early-combat-20261013T0708. Original parent: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat. Operator minimum2 clarified. Product: post-victory KO participants1HP; early authored groups2; PursuitT0=2,T1=2–3,T3=3–4 random ordinary types/mixed groups; enemy stats/rewards/defeat/V6 unchanged.195focused tests/types/build/contracts/immutable/whitespace PASS; native verification PENDING. No task/demo acceptance yet.
+Run: codex-early-combat-20261013T0708. Status: PAUSED_FOR_CREDITS for final independent evidence review only. Product published/remote verified:0b4eb9bdc9fd25cfcd774eaab978712b9e9f1f78. User minimum2 respected: early authored groups2; PursuitT0=2,T1=2–3,T3=3–4, random ordinary types; KO participants recover1HP after victory. Enemy stats/raw tactical results/bench/defeat/rewards/V6/10bindings protected.
 
-Next action: Finish OD13C post-victory1HP recovery and random Pursuit/count-only early balance. Source4/test3 implemented,195focused/types green; review sensitive exactdiff/QA expectations, build, run ONE registered existing native pursuit-victory1366normal smoke. Countsminimum2:T0two,T1two-three,T3three-four; enemy stats unchanged. No seed from FAILED0552/1521. Keep campaignsecondrefuge/ending, previous mountedkeyboard, visual/mobile/deferred work OPEN.
+195focused tests/types/build/eight contracts/eight videos/immutable/whitespace PASS. Guardian actualdiff mechanical/prelaunch PASS. One fresh native smoke SUCCEEDED: opening3round17actions rawarcher0→owner1; T0two badgers88HP victorious3round25actions; same-road/temporaryrewardonce/bench/focus/precombatV6 assertions pass; zero errors/mutations/injections. Digest8e7a18f1897055d86d252c0241963d454ce6a0fd831d412d6ab7475e4f9c0187 stable source/driver/helper/build/input and published-source equivalence verified. Four captures inspected, none promoted. Reload returns exactly prior autosave at lion-audience; no immediate postvictory recovery/reward persistence claim.
 
-Existing native driver alone adapted to inspect actual roster and compare raw tacticalHP with authorized1HP recovery; all graph/reward/same-road/V6 assertions retained. No new QA tool. WIP20dcab807663c89017048df44e242ee63f7482bc remote verified.
+Final independent evidence review failed usage_limit_exceeded; native NOT_ACCEPTED pending that review. No replay/longer deadline or global difficulty/demo PASS. Worker12480/port5397 absent. Original frozen localHEAD retained during publication/test, then dev safely adopted published commit without working-file changes. State preserves original lineage and explicit published-code equivalence.
 
-All prior215QA jobs, exact deferred keyboard/narrative/taskQueue and unfinished campaign remain preserved.
+Next action: Resume SAME OD13C native evidence review after credits: reuse early-combat-native-pursuit-0708 SUCCEEDED results8e7a18f1897055d86d252c0241963d454ce6a0fd831d412d6ab7475e4f9c0187 and verified-result-summary; no replay. Guardian actualdiff/mechanical PASS retained; final independent evidence review interrupted usage_limit_exceeded. Verify original frozen HEAD3982b7a/sourceDiff996326f3/driverfc7d1f52/helper/build lineage and exact published-source equivalence0b4eb9b, then scope recovery archer0→1 and T0two-badger victory/same-road/precombatV6 only. Next product: resume approved native second-refuge campaign with separately reverified compatible successful0603 earned save, original targetsecond-refuge existing pilot payment/keyboard nextAction retained in closeout0552/handoff0552; never FAILED0552/1521/currentpartial seeds or repeatedT0. T1/T3/human mixed native diversity, full beginner balance, secondrefuge/ending, mountedkeyboard/AT, narrative/nightasset/mobile/operator remain OPEN. Automation stays manually paused.
+
+Counts:source4,test3,existingQA1,newQA0,promotedProof0,workflow5,inheritedWIP0,browser1,registered1. Parent/exact deferred keyboard/narrative/taskQueue/testsRemaining/remainingWork and all215 historical QA requests retained;216 total. Automation remains paused; no LOCKED/main/media/audio/stat changes.
+
 
 ---
 
@@ -1221,7 +1224,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - motion-t0-os-temporal-0127: FAILED; port 5395; receipt `tmp/traversal/motion-t0-os-temporal-0127/qa-job.json`; NOT_ACCEPTED
 - motion-t0-os-temporal-0127-host: SUCCEEDED; port 5395; receipt `tmp/traversal/motion-t0-os-temporal-0127-host/qa-job.json`; NOT_ACCEPTED
 - second-refuge-native-desktop-0552: FAILED; port 5396; receipt `tmp/demo/second-refuge-native-desktop-0552/qa-job.json`; NOT_ACCEPTED
-- early-combat-native-pursuit-0708: RUNNING; port 5397; receipt `tmp/demo/early-combat-native-pursuit-0708/qa-job.json`; NOT_ACCEPTED
+- early-combat-native-pursuit-0708: SUCCEEDED; port 5397; receipt `tmp/demo/early-combat-native-pursuit-0708/qa-job.json`; NOT_ACCEPTED; NOT_ACCEPTED_FINAL_INDEPENDENT_REVIEW_PAUSED_FOR_CREDITS
 <!-- QA_JOBS_END -->
 
 

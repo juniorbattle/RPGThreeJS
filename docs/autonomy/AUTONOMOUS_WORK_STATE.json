@@ -1,36 +1,50 @@
 {
-  "status": "IN_PROGRESS",
+  "status": "PAUSED_FOR_CREDITS",
   "runStartedAt": "2026-10-13T07:09:01.9273009Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-13T10:30:10.712Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-  "activePhase": "OD13C native random-Pursuit victory verification",
-  "activeSubtask": "Implement1HP KO victory recovery, two-enemy opening, varied leg-bounded random formations",
+  "activePhase": "OD13C product published; native evidence final review paused for credits",
+  "activeSubtask": "Early recovery/random counts implemented; native smoke successful, final independent evidence review pending",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "ead32f86f120a11e8efa8fd61b1c5eb9bb854cb0",
-  "lastPushedCommit": "ead32f86f120a11e8efa8fd61b1c5eb9bb854cb0",
-  "completedThisRun": [],
+  "lastKnownGoodCommit": "0b4eb9bdc9fd25cfcd774eaab978712b9e9f1f78",
+  "lastPushedCommit": "0b4eb9bdc9fd25cfcd774eaab978712b9e9f1f78",
+  "completedThisRun": [
+    "OD13C participantKO victory recovery1HP; raw result/bench/defeat preserved",
+    "Early ordinary authored groups2; PursuitT0two,T1two-three,T3three-four with independent ordinary-type draws",
+    "195 focused tests/types/build/8contracts/8slots/immutable/whitespace; guardian actualdiff mechanical PASS",
+    "Native fresh opening victory3rounds17actions archer0→owner1; randomT0two badgers victory3rounds25actions; same-road/rewardonce/precombatV6 assertions pass; no mutation/injection/errors",
+    "Published selected coherent checkpoint0b4eb9b before native completion on operator request; final review hit credit limit, no rerun"
+  ],
   "filesChanged": [
     "src/game/combatProgress.ts",
-    "src/game/content.ts",
-    "src/game/runSystem.ts",
-    "src/campaign/LionTraversalPursuitEncounters.ts",
     "src/game/combatProgress.test.ts",
-    "src/game/runSystem.test.ts",
+    "src/game/content.ts",
     "src/game/content.test.ts",
-    "docs/autonomy/OPERATOR_DECISIONS.md",
+    "src/game/runSystem.ts",
+    "src/game/runSystem.test.ts",
+    "src/campaign/LionTraversalPursuitEncounters.ts",
+    "tools/demo-continuous-production-qa.mjs",
     "docs/autonomy/EARLY_COMBAT_RECOVERY_OPERATOR_DECISION_2026-10-13.md",
+    "docs/autonomy/OPERATOR_DECISIONS.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/handoffs/2026-10-13T0708Z-codex-early-combat-recovery.md"
   ],
   "testsRun": [
-    "60 current deployment/management tests (plus60ignored historical copies unintentionally included)",
-    "97 current keyboard30/hotfix42/unitMotion25 tests with tmpexcluded",
-    "Keyboard red regression:3fail/27pass before fix; URL harness setup issue corrected before behavioral run",
-    "npm run build:tsc+Vite PASS",
-    "contracts:validate8/slots8; immutable+working-copy gates empty; diffcheck clean",
-    "ONE registered native campaign FAILED actual Serpent defeat; stable receipt/hash/request, no mutation;3captures inspected"
+    "vitest --exclude tmp/** combatProgress/runSystem/management/content:195 across4 suites",
+    "tsc --noEmit",
+    "npm run build",
+    "npm run contracts:validate",
+    "node --check tools/demo-continuous-production-qa.mjs",
+    "git diff --check + immutable and working LOCKED gates",
+    "ONE registered fresh native pursuit-victory1366x768 normal rescue25min"
   ],
-  "testsPassed": false,
+  "testsPassed": [
+    "195 tests",
+    "TypeScript/build/contracts/gates",
+    "guardian actualdiff mechanical/prelaunch",
+    "native machine smoke SUCCEEDED, digest/provenance/source-equivalence/rootcapture checks PASS"
+  ],
   "testsRemaining": [
     "Native PC first/second refuge and authored ending on compatible current product, exact checkpoint/ending reload; no failed seeds",
     "Missing six-hero/lancer and native Pursuit victory/defeat/return assertions; tactical balance remains observed/open",
@@ -69,7 +83,7 @@
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest",
     "1521: five fresh novice classes and capped40percent Salvation2to0 scoped accepted; sixth/lancer, earned second-refuge reload, ending, fullV6, balance and fresh random-Pursuit breadth remain OPEN"
   ],
-  "nextAction": "Finish OD13C post-victory1HP recovery and random Pursuit/count-only early balance. Source4/test3 implemented,195focused/types green; review sensitive exactdiff/QA expectations, build, run ONE registered existing native pursuit-victory1366normal smoke. Countsminimum2:T0two,T1two-three,T3three-four; enemy stats unchanged. No seed from FAILED0552/1521. Keep campaignsecondrefuge/ending, previous mountedkeyboard, visual/mobile/deferred work OPEN.",
+  "nextAction": "Resume SAME OD13C native evidence review after credits: reuse early-combat-native-pursuit-0708 SUCCEEDED results8e7a18f1897055d86d252c0241963d454ce6a0fd831d412d6ab7475e4f9c0187 and verified-result-summary; no replay. Guardian actualdiff/mechanical PASS retained; final independent evidence review interrupted usage_limit_exceeded. Verify original frozen HEAD3982b7a/sourceDiff996326f3/driverfc7d1f52/helper/build lineage and exact published-source equivalence0b4eb9b, then scope recovery archer0→1 and T0two-badger victory/same-road/precombatV6 only. Next product: resume approved native second-refuge campaign with separately reverified compatible successful0603 earned save, original targetsecond-refuge existing pilot payment/keyboard nextAction retained in closeout0552/handoff0552; never FAILED0552/1521/currentpartial seeds or repeatedT0. T1/T3/human mixed native diversity, full beginner balance, secondrefuge/ending, mountedkeyboard/AT, narrative/nightasset/mobile/operator remain OPEN. Automation stays manually paused.",
   "taskQueue": [
     "DEMO-PC-CAMPAIGN: ACTIVE; native second refuge then authored ending/exact reload; full acceptance OPEN",
     "DEMO-COMBAT-SKILLS: PENDING_MISSING_CRITERIA_ONLY; six heroes/lancer, native victory/defeat and ordinary Pursuit return",
@@ -77,7 +91,7 @@
     "DEMO-PRESENTATION-FINAL: PENDING_CONSOLIDATED_MILESTONE; known visual/manual findings remain OPEN; Bois-Clair night asset EXTERNAL",
     "DEMO-MOBILE-AND-TESTER-HANDOFF: PENDING_AFTER_PC_STABLE; operator final acceptance OPEN"
   ],
-  "creditStatus": "AVAILABLE_THIS_RUN",
+  "creditStatus": "FINAL_GUARDIAN_REVIEW_USAGE_LIMIT_EXCEEDED",
   "contractComplianceStatus": {
     "contractSetVersion": "1.1.0",
     "lockedRulesChanged": false,
@@ -98,15 +112,15 @@
       "ENVIRONMENTS": "N/A scenes unchanged",
       "NARRATIVE_CAMPAIGN": "PASS branches/IDs/rewards/once guard preserved; secondrefuge/ending acceptanceOPEN",
       "NARRATIVE_PRESENTATION": "N/A unchanged",
-      "TRAVERSAL": "PASS10bindings/same-road lifecycle preserved; native pending",
+      "TRAVERSAL": "PASS10bindings/lifecycle mechanically; nativeT0 observations rootverified, final independent review pending; broader gapsOPEN",
       "COMBAT": "PASS authorized participant recovery1HP victory only; defeat/stats unchanged",
-      "SAVE": "PASS unchangedV6 with focused exact reload; native reload pending",
+      "SAVE": "PASS unchangedV6/focused reload/nativeprecombatV6 assertions; no immediate reward/recovery persistence claim",
       "UI_ACCESSIBILITY": "PASS incidental generic metadata; previous mountedkeyboard/AT OPEN",
-      "QA_EVIDENCE": "PASS195/types/build/gate/guardian; native receipt pending",
-      "REPOSITORY_GOVERNANCE": "PASS ownedlock/selectedWIP permanentdev publication; no main/LOCKED change"
+      "QA_EVIDENCE": "PASS195/build/validator/native rootverified; BLOCKED final independent evidence acceptance by credits",
+      "REPOSITORY_GOVERNANCE": "PASS selected owned paths/non-force origin/dev verified/mainLOCKED preserved; safe credit checkpoint"
     }
   },
-  "commitReferenceScope": "Published workflow checkpoint; final metadata closure identified by Git and automation memory",
+  "commitReferenceScope": "Implementation0b4eb9b remote verified; final metadata commit identifiable in Git and automation memory; no self-reference claim",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -209,7 +223,7 @@
   },
   "runId": "codex-early-combat-20261013T0708",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-13T07:35:02.242Z",
+  "lastHeartbeat": "2026-10-13T10:30:10.712Z",
   "wip": {
     "branch": "wip/codex-early-combat-20261013T0708",
     "sha": "ca9fa01b75176e33f80962de105f3624797e1612",
@@ -219,7 +233,7 @@
     "lastGreenCheck": "195 tests/types/build/contracts/LOCKED/whitespace; guardian actualdiff PASS mechanical"
   },
   "live": {
-    "lastHeartbeat": "2026-10-13T07:35:02.242Z",
+    "lastHeartbeat": "2026-10-13T10:30:10.712Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -23364,7 +23378,7 @@
         "schemaVersion": 1,
         "jobId": "early-combat-native-pursuit-0708",
         "runId": "codex-early-combat-20261013T0708",
-        "status": "RUNNING",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-13T07:33:09.700Z",
         "pid": 12480,
         "port": 5397,
@@ -23446,14 +23460,28 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "NOT_ACCEPTED_FINAL_INDEPENDENT_REVIEW_PAUSED_FOR_CREDITS",
         "startedAt": "2026-10-13T07:33:24.498Z",
-        "endedAt": null,
+        "endedAt": "2026-10-13T07:58:14.452Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
-        "resultDigestMatches": false,
-        "eligibleForReview": false
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 0,
+        "resultPath": "tmp/demo/early-combat-native-pursuit-0708/results.json",
+        "resultSha256": "8e7a18f1897055d86d252c0241963d454ce6a0fd831d412d6ab7475e4f9c0187",
+        "provenanceStable": true,
+        "reviewedAt": "2026-10-13T10:30:10.712Z",
+        "reviewedFrozenExecution": {
+          "requestMatches": true,
+          "provenanceMatches": true,
+          "provenanceStable": true,
+          "matchesCurrentExecution": true,
+          "resultDigestMatches": true,
+          "eligibleForReview": true
+        },
+        "currentExecutionNote": "Local dev adopted published checkpoint after terminal frozen-execution review; Git sourceTree/diff identity changed. Exact published source/test/driver blob equivalence verified; original matched lineage preserved above. No assertion weakened."
       }
     ],
     "wip": {
@@ -23464,7 +23492,7 @@
       "status": "GREEN",
       "lastGreenCheck": "195 tests/types/build/contracts/LOCKED/whitespace; guardian actualdiff PASS mechanical"
     },
-    "nextAction": "Finish OD13C post-victory1HP recovery and random Pursuit/count-only early balance. Source4/test3 implemented,195focused/types green; review sensitive exactdiff/QA expectations, build, run ONE registered existing native pursuit-victory1366normal smoke. Countsminimum2:T0two,T1two-three,T3three-four; enemy stats unchanged. No seed from FAILED0552/1521. Keep campaignsecondrefuge/ending, previous mountedkeyboard, visual/mobile/deferred work OPEN.",
+    "nextAction": "Resume SAME OD13C native evidence review after credits: reuse early-combat-native-pursuit-0708 SUCCEEDED results8e7a18f1897055d86d252c0241963d454ce6a0fd831d412d6ab7475e4f9c0187 and verified-result-summary; no replay. Guardian actualdiff/mechanical PASS retained; final independent evidence review interrupted usage_limit_exceeded. Verify original frozen HEAD3982b7a/sourceDiff996326f3/driverfc7d1f52/helper/build lineage and exact published-source equivalence0b4eb9b, then scope recovery archer0→1 and T0two-badger victory/same-road/precombatV6 only. Next product: resume approved native second-refuge campaign with separately reverified compatible successful0603 earned save, original targetsecond-refuge existing pilot payment/keyboard nextAction retained in closeout0552/handoff0552; never FAILED0552/1521/currentpartial seeds or repeatedT0. T1/T3/human mixed native diversity, full beginner balance, secondrefuge/ending, mountedkeyboard/AT, narrative/nightasset/mobile/operator remain OPEN. Automation stays manually paused.",
     "runMetrics": {
       "runId": "codex-early-combat-20261013T0708",
       "runtimeSourceFilesModified": 4,
@@ -23472,12 +23500,14 @@
       "existingQaFilesModified": 1,
       "newQaFilesAdded": 0,
       "promotedProofFiles": 0,
-      "workflowDocs": 4,
+      "workflowDocs": 5,
       "inheritedWipFiles": 0,
       "browserScenarios": 1,
       "registeredJobs": 1,
       "reviewers": 1,
-      "reviewerPasses": 2
+      "reviewerPasses": 2,
+      "rootCapturesInspected": 4,
+      "finalReviewerCreditFailures": 1
     },
     "checkpointPaths": [
       "src/game/combatProgress.ts",
@@ -23494,15 +23524,15 @@
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
     ],
     "publication": {
-      "sha": "ead32f86f120a11e8efa8fd61b1c5eb9bb854cb0",
+      "sha": "0b4eb9bdc9fd25cfcd774eaab978712b9e9f1f78",
+      "remoteVerified": true,
+      "at": "2026-10-13T07:37:31.7198801Z",
       "destination": "origin/dev",
-      "normalNonForce": true,
-      "verified": true,
-      "authorization": "OD-2026-10-12-A",
-      "operatorArtCommitPreserved": "b4e890af6fa61287818430b12eed21b4cc2f91fd"
+      "authorization": "OD-2026-10-12-A + direct commit/push request",
+      "sourceEquivalenceVerified": true
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-13T10:30:10.712Z",
+    "writerStopped": true,
     "metadataPublication": {
       "status": "CLOSURE_NEXT_AUTHORIZED_NORMAL_DEV_PUSH",
       "paths": [
@@ -24303,7 +24333,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-    "activeSubtask": "Implement1HP KO victory recovery, two-enemy opening, varied leg-bounded random formations",
+    "activeSubtask": "Early recovery/random counts implemented; native smoke successful, final independent evidence review pending",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -27637,11 +27667,11 @@
     },
     "runId": "codex-early-combat-20261013T0708",
     "agent": "codex",
-    "status": "IN_PROGRESS",
+    "status": "PAUSED_FOR_CREDITS",
     "runStartedAt": "2026-10-13T07:09:01.9273009Z",
-    "activePhase": "OD13C native random-Pursuit victory verification",
-    "heartbeat": "2026-10-13T07:35:02.242Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-13T0552Z-codex-native-defeat-keyboard.md",
+    "activePhase": "OD13C product published; native evidence final review paused for credits",
+    "heartbeat": "2026-10-13T10:30:10.712Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-13T0708Z-codex-early-combat-recovery.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -28702,7 +28732,7 @@
       "enemyStatsChanged": false,
       "mechanicalTests": 195,
       "types": "PASS",
-      "nativeAcceptance": "RUNNING; no acceptance yet",
+      "nativeAcceptance": "SUCCEEDED_ROOT_VERIFIED_NOT_INDEPENDENTLY_ACCEPTED_FINAL_REVIEW_PAUSED_FOR_CREDITS",
       "randomness": "Independent validated fresh draws within ordinary leg pools, existing injected source; no V6 transient data",
       "newQaTools": 0,
       "build": "PASS",
@@ -28720,7 +28750,34 @@
         "Native maxhp recorded without baseline comparison; source stat owners unchanged",
         "BenchHP native assertion applies to Pursuit; authored bench covered focused unit tests",
         "All-legs/random-distribution/fullcampaign difficulty and demo readiness remain OPEN"
-      ]
+      ],
+      "publication": {
+        "sha": "0b4eb9bdc9fd25cfcd774eaab978712b9e9f1f78",
+        "at": "2026-10-13T07:37:31.7198801Z",
+        "remoteVerified": true,
+        "localHeadFrozenForRunningQa": "3982b7a825c88a8d1ffa5fdcc053c02a9d843755"
+      },
+      "finalGuardian": "usage_limit_exceeded; do not retry this run or replay QA",
+      "resultSha256": "8e7a18f1897055d86d252c0241963d454ce6a0fd831d412d6ab7475e4f9c0187",
+      "provenanceStable": true,
+      "publishedSourceEquivalent": true,
+      "originalFrozenHead": "3982b7a825c88a8d1ffa5fdcc053c02a9d843755",
+      "reviewedAt": "2026-10-13T10:30:10.712Z",
+      "rootObservations": [
+        "archer raw tactical0 => victory owner1; surviving140/100/4 unchanged",
+        "T0 t0:r3:pursuit-1 two forest_badger88HP; real3round25action victory",
+        "Same mounted road/window cleared/route3/stage2/consumed/rewardonce/benchHP retained; native visible lane focus2px bounds checked",
+        "Reload exactly existing precombatV6 autosave nodelion-audience; no immediate victory-reward/recovery persistence claim"
+      ],
+      "rootCapturesInspected": [
+        "combat-0-deployment.png",
+        "combat-1-deployment.png",
+        "combat-1-pursuit-return-focus.png",
+        "pursuit-v6-reloaded.png"
+      ],
+      "capturedProofPromoted": 0,
+      "qaWorkerAbsentAtCloseout": true,
+      "qaListenerAbsentAtCloseout": true
     }
   },
   "previousInterruptedRun": {
@@ -28768,7 +28825,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-13T0552Z-codex-native-defeat-keyboard.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-13T0708Z-codex-early-combat-recovery.md",
   "runMeasurement": {
     "runId": "rpgthreejs-auto-dev-90m-20261013T0127",
     "runtimeSourceFilesModified": 0,
@@ -29092,7 +29149,7 @@
     "preparation": "Native rest/revival before further combat;130gold/rest60",
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
-  "implementationCommit": "ead32f86f120a11e8efa8fd61b1c5eb9bb854cb0",
+  "implementationCommit": "0b4eb9bdc9fd25cfcd774eaab978712b9e9f1f78",
   "authorizedWorkContinuation": "First obtain exact-payload public dev publication approval for run1859 local checkpoint; automatic review rejected the public WIP state push and no workaround is authorized. Inspect clean Git/local commits, owned writerStopped lock and preserved receipts. After approved normal push/remote parity and lock resolution, continue DEMO-QA-POLISH with existing tools/demo-continuous-production-qa.mjs from earnedSavePath tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json (SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b) and priorProofPath tmp/demo/campaign-second-refuge-1859/results.json (SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3). Rescue/serpent/ending1366normal, native rest75 first (3KO/5wounded,300gold), existing native shop/equip preparation, register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID, unique ignored output/free strict port and bounded deadline. Verify current physical source/driver/build identities; do not relabel old frozen577 campaign proof as new build acceptance. Inspect terminal receipt, genuine combats/T1/T3/temporaryloot/exactV6/ending/Salvation2AP and selected captures. Do not repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices; keep live leap/attack/Stage, live-slope smoothness,390framing/broadaccessibility/balance/settledVFX/fullending gates open. Preserve152historicaljobs/exact deferredDemoTask and pendingNarrativeTask.",
   "publication1214History": {
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
@@ -30078,12 +30135,14 @@
     "existingQaFilesModified": 1,
     "newQaFilesAdded": 0,
     "promotedProofFiles": 0,
-    "workflowDocs": 4,
+    "workflowDocs": 5,
     "inheritedWipFiles": 0,
     "browserScenarios": 1,
     "registeredJobs": 1,
     "reviewers": 1,
-    "reviewerPasses": 2
+    "reviewerPasses": 2,
+    "rootCapturesInspected": 4,
+    "finalReviewerCreditFailures": 1
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",

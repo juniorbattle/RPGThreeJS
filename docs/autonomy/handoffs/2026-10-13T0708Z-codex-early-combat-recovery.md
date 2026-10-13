@@ -1,0 +1,15 @@
+# OD13C early combat recovery and random formations
+
+Run: codex-early-combat-20261013T0708. Agent: codex. Ended: 2026-10-13T10:30:10.712Z. Branch: dev. Status: PAUSED_FOR_CREDITS final review. Operator: direct gameplay request/minimum2 and permanent publication OD12A.
+
+Product checkpoint:0b4eb9bdc9fd25cfcd774eaab978712b9e9f1f78, remote verified before test completion on explicit request. Four product files, three test files, one existing QA driver; no new QA tool/evidence promotion/inherited WIP. Final workflow5.
+
+Victory KO participants1HP; bench/raw tactical result/defeat unchanged. Early ordinary authored groups2. PursuitT0two/T1two-three/T3three-four with independent existing ordinary types/mixed and duplicate groups. Stats/rewards/10bindings/baseIDs/V6/once/same-road/eight videos/canon/main protected.
+
+195focused tests/types/build/contracts/immutable/whitespace PASS; guardian actualdiff PASS mechanical/prelaunch. Native job early-combat-native-pursuit-0708 SUCCEEDED, digest 8e7a18f1897055d86d252c0241963d454ce6a0fd831d412d6ab7475e4f9c0187, stable original frozen source/driver/helper/build/input identity, exact published-source blobs verified. Opening victory3round17actions archerraw0→owner1. RandomT0two forest_badger88HP victory3round25actions; native roster==config, no elite/boss, benchHP/rewardsonce/graph/same mounted road/focus assertions pass. Reload equals precombatV6 autosave at lion-audience, not immediate postvictory reward/recovery persistence. Four named captures inspected, not promoted; root observations in live.earlyCombat0708 and ignored verified-result-summary.
+
+Final guardian evidence review hit usage_limit_exceeded. Native NOT_ACCEPTED pending independent review; no global balance/demo claim. Worker12480/port5397 stopped. All215 original QA requests + current216 retained; failed0552/1521/any partial outputs remain unseedable. Deferred narrative/keyboard and remaining campaign preserved exactly.
+
+Next: Resume SAME OD13C native evidence review after credits: reuse early-combat-native-pursuit-0708 SUCCEEDED results8e7a18f1897055d86d252c0241963d454ce6a0fd831d412d6ab7475e4f9c0187 and verified-result-summary; no replay. Guardian actualdiff/mechanical PASS retained; final independent evidence review interrupted usage_limit_exceeded. Verify original frozen HEAD3982b7a/sourceDiff996326f3/driverfc7d1f52/helper/build lineage and exact published-source equivalence0b4eb9b, then scope recovery archer0→1 and T0two-badger victory/same-road/precombatV6 only. Next product: resume approved native second-refuge campaign with separately reverified compatible successful0603 earned save, original targetsecond-refuge existing pilot payment/keyboard nextAction retained in closeout0552/handoff0552; never FAILED0552/1521/currentpartial seeds or repeatedT0. T1/T3/human mixed native diversity, full beginner balance, secondrefuge/ending, mountedkeyboard/AT, narrative/nightasset/mobile/operator remain OPEN. Automation stays manually paused.
+
+Closeout normal dev metadata publication, runEndedAt coherent, then owned lock release. Automation remains manually paused.
