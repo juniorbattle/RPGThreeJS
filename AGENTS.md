@@ -78,6 +78,8 @@ Codex starts subagents only when authorized. The recurring instruction authorize
 
 ## Active manual-playtest priority
 
+OD-2026-10-13-A / `docs/autonomy/DEMO_COMPLETION_PLAN.md` is the current execution priority: playable PC campaign and concrete product blockers, combat/skills, campaign keyboard, remaining presentation, then mobile/tester handoff. It supersedes diagnostic-only nextAction chains, not acceptance targets. Do not resume the isolated T0 normal coverage loop. Keep pending visual criteria explicit for the consolidated milestone. Bound unchanged-boundary diagnosis, reuse existing runners and move to independent authorized functionality when blocked; no speculative code or false PASS.
+
 Apply OD-2026-10-04-A / `docs/autonomy/PRODUCTION_FOCUS_OPERATOR_DECISION_2026-10-04.md`: product code first, existing QA runners, one browser smoke per run and wider acceptance only at queue milestones. Keep sensitive guardian triggers, snapshot green WIP within15min, and count source versus added QA/proof files at closeout. External canonical-mapping blockers do not consume recurring runs.
 
 Read OD-2026-10-03-A and MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md before resuming a stale nextAction. Its ordered remediation queue takes priority over generic DEMO-QA-POLISH; battlefield keyboard WIP is deferred and preserved. Prior automated PASS cannot invalidate the operator visual finding. The contract amendment is complete at the baseline above; runtime corrections require fresh acceptance. Eight videos, temporary-gold authority, Alaric climax and the four-actor cap remain protected. Only an explicitly dedicated operator-approved task may amend contracts or move the immutable baseline.

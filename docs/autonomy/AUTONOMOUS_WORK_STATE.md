@@ -1,3 +1,31 @@
+# Current priority: playable PC demo — OD-2026-10-13-A
+
+Configuration maintenance only; no new product implementation or acceptance. Original parent task: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat. Current directive: [demo completion plan](DEMO_COMPLETION_PLAN.md). It supersedes the historical isolated T0 normal coverage nextAction below.
+
+## Ordered remaining work
+
+1. Native PC first/second refuge, authored ending and exact save/reload; correct demonstrated blockers.
+2. Missing six-hero/lancer, native combat/recovery/Pursuit return checks and actual gameplay problems.
+3. Mounted campaign battlefield keyboard and focus; preserve deferred WIP and standalone acceptance.
+4. Consolidated remaining presentation/manual findings; night Bois-Clair asset external. T0 normal/per-frame gaps deferred, not accepted.
+5. Final mobile after PC stabilization, then candidate build/instructions/short limits list for operator playtest.
+
+## Exact next product action
+
+Apply OD-2026-10-13-A / docs/autonomy/DEMO_COMPLETION_PLAN.md before historical handoffs. Read-only preflight/exclusive lock. Resume native PC first-to-second-refuge gameplay: inspect FAILED second-refuge-native-desktop-1521 receipt/results and last actual native actions; never seed its partial saves or repeat an unchanged35/45min timeout. Verify reward-label-native-desktop-0603 successful first-refuge save/proof lineage, assertions, exact resumed equality and current owner/build compatibility. Within about20min establish a demonstrated product issue or the smallest supported native-input pilot correction, retaining assertions and sensitive review; then one existing registered target=second-refuge1366normal rescue smoke with verified inputs/freeport/cache, followed by native ending continuation from a separately verified successful checkpoint when budget permits. If no warranted correction/input is established, record the precise blocker and implement independent missing campaign keyboard/gameplay work during the same run. Do not fall back to T0 normal/per-frame motion diagnostics. Preserve six-hero/lancer/Pursuit/V6/ending/visual/focus acceptance gaps, all214 historical QA jobs, narrative/deferred keyboard WIP and failed outputs. Report product changed/new playable step/blocker/next product action; keep mobile final and automatic normal dev publication authorized.
+
+## Anti-loop and preservation
+
+About20min maximum diagnosis of an unchanged boundary; without a justified product/input correction, precise blocker then independent authorized functionality in this run. After two QA/workflow-only product runs without playable advancement, do not schedule another diagnostic-only run. No speculative code, weakened assertions, injected outcomes or falsely closed visual criteria. Four report facts: product changed; new playable step; blocker; next product action.
+
+All214 historical QA jobs, original parent, narrative and deferred keyboard preserved exactly. Prior taskQueue/nextAction/testsRemaining retained in JSON demoCompletionFocus.supersededOperationalContinuation; historical evidence below remains unchanged. Current queue replaces obsolete execution priorities, not contract targets.
+
+Counts for this configuration: source0, QA/proofAdded0, workflow7. Model gpt-6.1-sol/high/90min and scheduler PAUSED preserved. Normal origin/dev publication authorized; main/LOCKED/V6/canon protected.
+
+---
+
+## Historical checkpoints — their priorities are superseded by the current directive
+
 # Scoped rendered arrival checkpoint - 2026-10-13T01:40:17.019Z
 
 Task: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat
