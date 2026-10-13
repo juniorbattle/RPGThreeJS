@@ -377,6 +377,15 @@ async function battle(){
       config:structuredClone(app.combat.session.config)};
   });
   assert.equal(await frame.evaluate(()=>typeof window.__qaHelpers.teleportActiveUnitNextToEnemy),'undefined','Production mutation helper present');
+  if(entry.pursuit){
+    entry.pursuit.nativeRoster=await frame.evaluate(()=>G.units.filter(u=>u.team==='foe')
+      .map(u=>({id:u.combatPoseUnitId,name:u.name,maxhp:u.maxhp,boss:!!u.boss,elite:!!u.elite})));
+    assert.deepEqual(entry.pursuit.nativeRoster.map(u=>u.id),entry.pursuit.config.enemyVisualIds,
+      'Native Pursuit roster differs from the campaign-selected random formation');
+    const [minimum,maximum]=entry.pursuit.legId==='T0'?[2,2]:entry.pursuit.legId==='T1'?[2,3]:[3,4];
+    assert.ok(entry.pursuit.nativeRoster.length>=minimum&&entry.pursuit.nativeRoster.length<=maximum);
+    assert.ok(entry.pursuit.nativeRoster.every(u=>!u.boss&&!u.elite));
+  }
   for(const selector of ['#tutorial:not(.hidden) [data-action="skip"]','#boss-tutorial:not(.hidden) [data-action="start"]']){
     if(await frame.locator(selector).isVisible().catch(()=>false))await frame.locator(selector).click();
   }
@@ -554,6 +563,8 @@ async function battle(){
   assert.equal(entry.result.units.filter(u=>u.team==='foe'&&u.alive).length,0);
   assert.ok(entry.actions.some(a=>a.kind==='attack'));entry.pass=true;
   entry.outcome='victory';
+  entry.nativeVictoryHealth=await frame.evaluate(()=>Object.fromEntries(G.deployedUnits
+    .map(u=>[u.campaignId||u.name,Math.max(0,Math.round(u.alive?u.hp:0))])));
   if(entry.pursuit){
     entry.pursuit.nativePayload=await frame.evaluate(()=>({
       participants:G.deployedUnits.map(u=>u.campaignId||u.name),
@@ -579,7 +590,9 @@ async function battle(){
     assert.deepEqual(after.inventory.consumables,entry.result.inventory,'Native consumed items were not retained');
     for(const unit of before.clan.members){
       const nativeHealth=entry.pursuit.nativePayload.unitHealth[unit.id];
-      assert.equal(after.clan.members.find(u=>u.id===unit.id).currentHealth,nativeHealth??unit.currentHealth,'Native participant HP or nonparticipant health changed');
+      assert.equal(after.clan.members.find(u=>u.id===unit.id).currentHealth,
+        nativeHealth===undefined?unit.currentHealth:Math.max(1,nativeHealth),
+        'Post-victory participant recovery or unchanged bench health differs from native result');
     }
     assert.deepEqual(after.deployment.unitIds,entry.pursuit.nativePayload.participants.slice(0,entry.pursuit.config.maxPlayerUnits));
     const reputation=Math.max(0,Math.min(100,before.reputation+Math.trunc(rewards.reputation)));
@@ -624,6 +637,10 @@ async function battle(){
     await frame.locator('#combat-result-action').click();await element.waitFor({state:'detached',timeout:30000});
   }
   entry.ownerAfter=await state();
+  for(const [id,hp] of Object.entries(entry.nativeVictoryHealth)){
+    assert.equal(entry.ownerAfter.clan.members.find(u=>u.id===id)?.currentHealth,Math.max(1,hp),
+      'Authored victory did not preserve living HP or recover a KO fighter at exactly1HP');
+  }
   assert.ok(entry.ownerAfter.resolvedNodeIds.includes(entry.nodeId));
   console.log(JSON.stringify({battle:entry.nodeId,realVictory:true,rounds:entry.result.round,actions:entry.actions.length}));
 }

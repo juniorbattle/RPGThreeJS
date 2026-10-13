@@ -6,7 +6,8 @@ import {
   getLionConductScore, getLionConductTier, secureRunLoot,
   enterRunNode, selectTraversalBranch, requestTraversalPursuitEncounter, resolveTraversalPursuitVictory,
 } from './runSystem';
-import { LION_PURSUIT_ENCOUNTER_BINDINGS } from '../campaign/LionTraversalPursuitEncounters';
+import { LION_PURSUIT_ENCOUNTER_BINDINGS, LION_PURSUIT_ENEMY_COUNTS,
+  LION_PURSUIT_ENEMY_POOLS } from '../campaign/LionTraversalPursuitEncounters';
 import type { GameState } from './types';
 
 function choicesAt(state: GameState, nodeId: string) {
@@ -50,6 +51,17 @@ describe('campaign-owned incidental Pursuit combat', () => {
     const selected = [0, .34, .99].map(draw => requestTraversalPursuitEncounter(state, binding, () => draw)!);
     expect(selected.map(request => request.config.id)).toEqual(['forest_patrol', 'forest_ambush', 'wolf_pack']);
     expect(selected.every(request => request.config.encounterRank === 'normal' && !request.config.bossVisualId && !request.config.isBoss)).toBe(true);
+    const [minimum, maximum] = LION_PURSUIT_ENEMY_COUNTS[binding.legId];
+    expect(selected.map(request => request.config.enemyVisualIds.length)).toEqual([minimum, minimum, maximum]);
+    for (const request of selected) {
+      expect(request.config.enemyVisualIds.every(id => LION_PURSUIT_ENEMY_POOLS[binding.legId].includes(id))).toBe(true);
+      expect(request.config).not.toBe(combatConfigs.get(request.config.id));
+      expect(request.config.rewards).toEqual(combatConfigs.get(request.config.id)!.rewards);
+      expect(request.config.rewards).not.toBe(combatConfigs.get(request.config.id)!.rewards);
+      expect(request.config.preCombatDialogueId).toBeUndefined();
+      expect(request.config.postCombatDialogueId).toBeUndefined();
+      expect(request.config.encounterLabel).toBe('Rencontre imprévue');
+    }
     expect(state).toEqual(before);
     expect(requestTraversalPursuitEncounter(state, { ...binding, segmentId: 'wrong' })).toBeNull();
     expect(requestTraversalPursuitEncounter(state, binding, () => 1)).toBeNull();
@@ -57,11 +69,41 @@ describe('campaign-owned incidental Pursuit combat', () => {
     expect(requestTraversalPursuitEncounter(state, binding)).toBeNull();
   });
 
+  it('can mix ordinary humans and monsters without changing the authored registry', () => {
+    const binding = LION_PURSUIT_ENCOUNTER_BINDINGS[0]!, state = pursuitState(binding);
+    const registry = [...combatConfigs.values()].map(config => structuredClone(config));
+    const draws = [0, .99, 0, .4];
+    const request = requestTraversalPursuitEncounter(state, binding, () => draws.shift()!)!;
+    expect(request.config.enemyVisualIds).toEqual(['serpent_raider', 'cave_rat']);
+    expect(Object.isFrozen(request.config)).toBe(true);
+    expect(Object.isFrozen(request.config.enemyVisualIds)).toBe(true);
+    expect([...combatConfigs.values()]).toEqual(registry);
+  });
+
+  it.each(['T0', 'T1', 'T3'] as const)('can select every eligible ordinary type in %s, including duplicates', legId => {
+    const binding = LION_PURSUIT_ENCOUNTER_BINDINGS.find(candidate => candidate.legId === legId)!;
+    const state = pursuitState(binding), pool = LION_PURSUIT_ENEMY_POOLS[legId];
+    for (const [index, type] of pool.entries()) {
+      const count = LION_PURSUIT_ENEMY_COUNTS[legId][1];
+      const draws = [0, .99, ...Array(count).fill((index + .5) / pool.length)];
+      const request = requestTraversalPursuitEncounter(state, binding, () => draws.shift()!)!;
+      expect(request.config.enemyVisualIds).toEqual(Array(count).fill(type));
+    }
+  });
+
+  it.each([NaN, Infinity, -1, 1])('rejects invalid count/type draw %s without touching campaign state', invalid => {
+    const binding = LION_PURSUIT_ENCOUNTER_BINDINGS[0]!, state = pursuitState(binding), before = structuredClone(state);
+    for (const draws of [[0, invalid], [0, .99, 0, invalid]]) {
+      expect(requestTraversalPursuitEncounter(state, binding, () => draws.shift()!)).toBeNull();
+      expect(state).toEqual(before);
+    }
+  });
+
   it('applies one tactical victory to existing temporary loot/HP without resolving nodes or changing forks; V6 stays compatible', () => {
     const binding = LION_PURSUIT_ENCOUNTER_BINDINGS[1]!, state = pursuitState(binding);
     const before = structuredClone(state), request = requestTraversalPursuitEncounter(state, binding, () => .99)!;
     const hero = state.clan.members[0]!;
-    const result = { victory: true, combatId: request.config.id, participants: [hero.id], unitHealth: { [hero.id]: 73 }, consumables: { potion: 1 } };
+    const result = { victory: true, combatId: request.config.id, participants: [hero.id], unitHealth: { [hero.id]: 0 }, consumables: { potion: 1 } };
     expect(resolveTraversalPursuitVictory(state, request, { ...result, combatId: 'lion_chief' })).toBe(false);
     expect(resolveTraversalPursuitVictory(state, request, result)).toBe(true);
     expect(state.gold).toBe(before.gold);
@@ -71,7 +113,7 @@ describe('campaign-owned incidental Pursuit combat', () => {
     expect(state.run.traversalBranches).toEqual(before.run.traversalBranches);
     expect(state.flags).toEqual(before.flags);
     expect(state.run.temporaryLoot.gold).toBe(before.run.temporaryLoot.gold + request.config.rewards.gold);
-    expect(hero.currentHealth).toBe(73);
+    expect(hero.currentHealth).toBe(1);
     const won = structuredClone(state);
     expect(resolveTraversalPursuitVictory(state, request, result)).toBe(false);
     expect(state).toEqual(won);

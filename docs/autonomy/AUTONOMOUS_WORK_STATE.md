@@ -1,3 +1,15 @@
+# Active OD-2026-10-13-C product correction
+
+Run: codex-early-combat-20261013T0708. Original parent: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat. Operator minimum2 clarified. Product: post-victory KO participants1HP; early authored groups2; PursuitT0=2,T1=2–3,T3=3–4 random ordinary types/mixed groups; enemy stats/rewards/defeat/V6 unchanged.195focused tests/types/build/contracts/immutable/whitespace PASS; native verification PENDING. No task/demo acceptance yet.
+
+Next action: Finish OD13C post-victory1HP recovery and random Pursuit/count-only early balance. Source4/test3 implemented,195focused/types green; review sensitive exactdiff/QA expectations, build, run ONE registered existing native pursuit-victory1366normal smoke. Countsminimum2:T0two,T1two-three,T3three-four; enemy stats unchanged. No seed from FAILED0552/1521. Keep campaignsecondrefuge/ending, previous mountedkeyboard, visual/mobile/deferred work OPEN.
+
+Existing native driver alone adapted to inspect actual roster and compare raw tacticalHP with authorized1HP recovery; all graph/reward/same-road/V6 assertions retained. No new QA tool. WIP20dcab807663c89017048df44e242ee63f7482bc remote verified.
+
+All prior215QA jobs, exact deferred keyboard/narrative/taskQueue and unfinished campaign remain preserved.
+
+---
+
 # Current native campaign and keyboard checkpoint - run0552
 
 Checkpoint: ead32f86f120a11e8efa8fd61b1c5eb9bb854cb0 published/remote verified; runtime work ended 2026-10-13T06:41:22.684Z. Worker14324/port5396 absent. WIPa355d95 retained for reverted-trial/repair provenance. Final metadata publication precedes owned lock release.
@@ -1209,6 +1221,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - motion-t0-os-temporal-0127: FAILED; port 5395; receipt `tmp/traversal/motion-t0-os-temporal-0127/qa-job.json`; NOT_ACCEPTED
 - motion-t0-os-temporal-0127-host: SUCCEEDED; port 5395; receipt `tmp/traversal/motion-t0-os-temporal-0127-host/qa-job.json`; NOT_ACCEPTED
 - second-refuge-native-desktop-0552: FAILED; port 5396; receipt `tmp/demo/second-refuge-native-desktop-0552/qa-job.json`; NOT_ACCEPTED
+- early-combat-native-pursuit-0708: RUNNING; port 5397; receipt `tmp/demo/early-combat-native-pursuit-0708/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

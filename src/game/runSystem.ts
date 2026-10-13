@@ -3,7 +3,8 @@ import type {
 } from './types';
 import { getLionConductTier, type LionConductTier } from './lionNarrative';
 import { LION_TRAVERSAL_LEGS } from '../campaign/LionCampaignTravelRelations';
-import { LION_PURSUIT_ENCOUNTER_BINDINGS, type LionPursuitEncounterBinding } from '../campaign/LionTraversalPursuitEncounters';
+import { LION_PURSUIT_ENCOUNTER_BINDINGS, LION_PURSUIT_ENEMY_POOLS, rollLionPursuitEnemyFormation,
+  type LionPursuitEncounterBinding } from '../campaign/LionTraversalPursuitEncounters';
 import { combatConfigs } from './content';
 import { applyCombatProgress } from './combatProgress';
 import { changeReputation } from './reputation';
@@ -758,7 +759,7 @@ function pursuitContextEligible(state: GameState, binding: LionPursuitEncounterB
     && (run.currentNodeId === selected || Boolean(run.bypassedRouteNodeIds?.includes(selected)));
 }
 
-/** Campaign-owned selection from explicitly authored ordinary formations. No graph mutation. */
+/** Campaign-owned ordinary encounter and leg-bounded random roster. No graph mutation. */
 export function requestTraversalPursuitEncounter(state: GameState, contact: TraversalPursuitContact,
   random: () => number = Math.random): TraversalPursuitEncounterRequest | null {
   const binding = LION_PURSUIT_ENCOUNTER_BINDINGS.find(candidate => candidate.legId === contact.legId
@@ -767,12 +768,24 @@ export function requestTraversalPursuitEncounter(state: GameState, contact: Trav
   const eligible = binding.combatIds.map(id => combatConfigs.get(id)).filter((config): config is CombatConfig =>
     Boolean(config && config.encounterRank === 'normal' && !config.isBoss && !config.bossVisualId
       && config.sceneId === 'forest_route' && config.enemyVisualIds.length > 0
-      && config.enemyVisualIds.every(id => ['serpent_raider', 'serpent_brute', 'wolf', 'cave_rat'].includes(id))));
+      && config.enemyVisualIds.every(id => LION_PURSUIT_ENEMY_POOLS.T3.includes(id))));
   if (!eligible.length) return null;
   const draw = random();
   if (!Number.isFinite(draw) || draw < 0 || draw >= 1) return null;
+  const enemyVisualIds = rollLionPursuitEnemyFormation(binding.legId, random);
+  if (!enemyVisualIds) return null;
+  const base = eligible[Math.floor(draw * eligible.length)]!;
+  const config = { ...base, enemyVisualIds, escortVisualIds: [...base.escortVisualIds],
+    rewards: { ...base.rewards, materials: { ...base.rewards.materials } },
+    encounterLabel: 'Rencontre imprévue', objective: 'Repoussez les ennemis et reprenez la route.',
+    preCombatDialogueId: undefined, postCombatDialogueId: undefined };
+  Object.freeze(config.enemyVisualIds);
+  Object.freeze(config.escortVisualIds);
+  Object.freeze(config.rewards.materials);
+  Object.freeze(config.rewards);
+  Object.freeze(config);
   const request = Object.freeze({ ...contact, currentNodeId: state.run.currentNodeId,
-    branchNodeId: state.run.traversalBranches?.[binding.legId] ?? null, config: eligible[Math.floor(draw * eligible.length)]! });
+    branchNodeId: state.run.traversalBranches?.[binding.legId] ?? null, config });
   pendingPursuitRequests.set(request, state);
   return request;
 }

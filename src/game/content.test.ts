@@ -13,6 +13,7 @@ import characterQc from '../../public/assets/characters/pixel/canonical-characte
 import { DialogueView } from '../ui/DialogueView';
 import { createInitialState } from './store';
 import { buildLionFinaleJudgement, resolveLionFinaleExecution } from './lionFinale';
+import { LION_PURSUIT_ENEMY_POOLS } from '../campaign/LionTraversalPursuitEncounters';
 
 interface CharacterAssetProfile {
   full: string;
@@ -90,6 +91,25 @@ function collectTextStrings(value: unknown, output: string[] = []): string[] {
 }
 
 describe('campaign content integrity', () => {
+  it('keeps early authored groups at two enemies and the later ordinary encounters at three or four', () => {
+    for (const id of ['forest_ambush', 'wolf_pack', 'forest_patrol', 'spider_nest',
+      'marsh_crossing', 'serpent_reprisals', 'road_to_valmir']) {
+      expect(combatConfigs.get(id)!.enemyVisualIds, id).toHaveLength(2);
+    }
+    expect(combatConfigs.get('village_defense')!.enemyVisualIds).toHaveLength(3);
+    for (const id of ['village_raid', 'witness_road_clash', 'serpent_checkpoint', 'ruins_guardians', 'serpent_hunters']) {
+      expect(combatConfigs.get(id)!.enemyVisualIds.length, id).toBeGreaterThanOrEqual(3);
+      expect(combatConfigs.get(id)!.enemyVisualIds.length, id).toBeLessThanOrEqual(4);
+    }
+  });
+
+  it('uses existing ordinary character assets for every randomized Pursuit enemy', () => {
+    const profiles = assets.characterProfiles as Record<string, CharacterAssetProfile>;
+    for (const id of new Set(Object.values(LION_PURSUIT_ENEMY_POOLS).flat())) {
+      expect(profiles[id] ?? resolveCharacterVisualProfile(id), id).toBeTruthy();
+      expect(id).not.toMatch(/elite|boss|champion/);
+    }
+  });
   it('only references existing nodes, dialogues and combats', () => {
     const nodeIds = new Set(campaignNodes.map((node) => node.id));
 

@@ -1,24 +1,26 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-13T05:49:59.7650975Z",
-  "runEndedAt": "2026-10-13T06:41:22.684Z",
+  "runStartedAt": "2026-10-13T07:09:01.9273009Z",
+  "runEndedAt": null,
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-  "activePhase": "DEMO-PC-CONTROLS: native keyboard refusal feedback, campaign defeat preserved",
-  "activeSubtask": "Implement missing invalid movement/target keyboard feedback; mounted acceptance pending",
+  "activePhase": "OD13C native random-Pursuit victory verification",
+  "activeSubtask": "Implement1HP KO victory recovery, two-enemy opening, varied leg-bounded random formations",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "ead32f86f120a11e8efa8fd61b1c5eb9bb854cb0",
   "lastPushedCommit": "ead32f86f120a11e8efa8fd61b1c5eb9bb854cb0",
-  "completedThisRun": [
-    "Verified independent0603 native first-refuge seed and exact reload lineage",
-    "One minimal support-policy trial failed in native combat; reverted; no failed-save reuse",
-    "Implemented independent missing keyboard action-refusal confirmation;97focusedtests green; mounted acceptance pending"
-  ],
+  "completedThisRun": [],
   "filesChanged": [
-    "src/combat/legacyCombatRuntime.js",
-    "src/combat/combatKeyboard.test.ts",
+    "src/game/combatProgress.ts",
+    "src/game/content.ts",
+    "src/game/runSystem.ts",
+    "src/campaign/LionTraversalPursuitEncounters.ts",
+    "src/game/combatProgress.test.ts",
+    "src/game/runSystem.test.ts",
+    "src/game/content.test.ts",
+    "docs/autonomy/OPERATOR_DECISIONS.md",
+    "docs/autonomy/EARLY_COMBAT_RECOVERY_OPERATOR_DECISION_2026-10-13.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/handoffs/2026-10-13T0552Z-codex-native-defeat-keyboard.md"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
   ],
   "testsRun": [
     "60 current deployment/management tests (plus60ignored historical copies unintentionally included)",
@@ -67,7 +69,7 @@
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest",
     "1521: five fresh novice classes and capped40percent Salvation2to0 scoped accepted; sixth/lancer, earned second-refuge reload, ending, fullV6, balance and fresh random-Pursuit breadth remain OPEN"
   ],
-  "nextAction": "Read-only preflight/exclusive lock. Reverify independent reward-label-native-desktop-0603 result/save digest, native lineage and exact entry/resumed equality against current unchanged campaign/combat/save owners. In existing tools/demo-continuous-production-qa.mjs choose(), explicitly select authored rep_event_roadside_intimidation step1/index1 ONLY for targetsecond-refuge (native enabled20gold payment); no canon/reward/balance change. Reuse campaignBattlefieldKeyboard in FIRST NEW RESUMED combat (current index0&&!priorProof excludes continuation), add native illegal-move/target refusal observation to existing helper, retain all tactical/owner/autosave/Salvation/reload assertions; guardian review exact policy/assertion diff. Build current sources, register ONE targetsecond-refuge1366x768/normal/rescue/serpent/verifySalvation1, valid0603 inputs,35min/freeport/uniqueignoredoutput/hostcache. Inspect terminal digest/provenance/native actions/refusal status/captures and exact lion-second-refuge V6 reload before acceptance; then earned ending continuation. Never seed FAILED0552/1521, repeat default optional Serpent refusal fight/deadline-only campaign or T0 diagnostics. Keep keyboard mounted/AT, all-six/lancer/ordinary Pursuit/ending/visual/mobileLAST/operator criteria open and deferred narratives/keyboard exact.",
+  "nextAction": "Finish OD13C post-victory1HP recovery and random Pursuit/count-only early balance. Source4/test3 implemented,195focused/types green; review sensitive exactdiff/QA expectations, build, run ONE registered existing native pursuit-victory1366normal smoke. Countsminimum2:T0two,T1two-three,T3three-four; enemy stats unchanged. No seed from FAILED0552/1521. Keep campaignsecondrefuge/ending, previous mountedkeyboard, visual/mobile/deferred work OPEN.",
   "taskQueue": [
     "DEMO-PC-CAMPAIGN: ACTIVE; native second refuge then authored ending/exact reload; full acceptance OPEN",
     "DEMO-COMBAT-SKILLS: PENDING_MISSING_CRITERIA_ONLY; six heroes/lancer, native victory/defeat and ordinary Pursuit return",
@@ -90,18 +92,18 @@
       "AUTHORING_AND_QA"
     ],
     "matrix": {
-      "GAME_CONSTITUTION": "PASS tactical authority unchanged",
-      "ART_DIRECTION": "N/A operator art work excluded",
-      "CHARACTERS": "N/A operator manualassets preserved",
-      "ENVIRONMENTS": "N/A unchanged",
-      "NARRATIVE_CAMPAIGN": "PASS unchanged authorship/owners; BLOCKED campaign secondrefuge/ending native acceptance",
+      "GAME_CONSTITUTION": "PASS authority remains combatProgress/RunSystem",
+      "ART_DIRECTION": "N/A assets unchanged",
+      "CHARACTERS": "PASS existing ordinary templates only; stats unchanged",
+      "ENVIRONMENTS": "N/A scenes unchanged",
+      "NARRATIVE_CAMPAIGN": "PASS branches/IDs/rewards/once guard preserved; secondrefuge/ending acceptanceOPEN",
       "NARRATIVE_PRESENTATION": "N/A unchanged",
-      "TRAVERSAL": "N/A unchanged; prior presentation gaps retained",
-      "COMBAT": "PASS unchanged legality/owner resolution; native defeat not product defect or accepted victory",
-      "SAVE": "PASS no schema/ID/save writes; exact independent0603 seed verified; no new refuge proof",
-      "UI_ACCESSIBILITY": "PASS mechanical keyboard refusal; OPEN mounted/AT/native campaign coverage",
-      "QA_EVIDENCE": "PASS97tests/build scoped; BLOCKED campaign receiptFAILED and mounted acceptanceOPEN",
-      "REPOSITORY_GOVERNANCE": "PASS selected owned paths/lock/permanentdev authority; no second scenario"
+      "TRAVERSAL": "PASS10bindings/same-road lifecycle preserved; native pending",
+      "COMBAT": "PASS authorized participant recovery1HP victory only; defeat/stats unchanged",
+      "SAVE": "PASS unchangedV6 with focused exact reload; native reload pending",
+      "UI_ACCESSIBILITY": "PASS incidental generic metadata; previous mountedkeyboard/AT OPEN",
+      "QA_EVIDENCE": "PASS195/types/build/gate/guardian; native receipt pending",
+      "REPOSITORY_GOVERNANCE": "PASS ownedlock/selectedWIP permanentdev publication; no main/LOCKED change"
     }
   },
   "commitReferenceScope": "Published workflow checkpoint; final metadata closure identified by Git and automation memory",
@@ -205,19 +207,19 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "rpgthreejs-auto-dev-90m-20261013T0552",
+  "runId": "codex-early-combat-20261013T0708",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-13T06:41:22.684Z",
+  "lastHeartbeat": "2026-10-13T07:35:02.242Z",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261013T0552",
-    "sha": "a355d957a42cb672e89260a3ecc2ec8c02898e0a",
-    "at": "2026-10-13T06:38:19.5907745Z",
+    "branch": "wip/codex-early-combat-20261013T0708",
+    "sha": "ca9fa01b75176e33f80962de105f3624797e1612",
+    "at": "2026-10-13T07:32:41.4590523Z",
     "remoteVerified": true,
     "status": "GREEN",
-    "lastGreenCheck": "97current tests/build/types/contracts/immutable/whitespace; guardian PASSmechanics; browseracceptanceOPEN"
+    "lastGreenCheck": "195 tests/types/build/contracts/LOCKED/whitespace; guardian actualdiff PASS mechanical"
   },
   "live": {
-    "lastHeartbeat": "2026-10-13T06:41:22.684Z",
+    "lastHeartbeat": "2026-10-13T07:35:02.242Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -23357,42 +23359,139 @@
         "resultPath": "tmp/demo/second-refuge-native-desktop-0552/results.json",
         "resultSha256": "7a9af388f97a1704bb87f0670abf03adbaa096067b7c67f9a936e7aeb2f36362",
         "provenanceStable": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "early-combat-native-pursuit-0708",
+        "runId": "codex-early-combat-20261013T0708",
+        "status": "RUNNING",
+        "registeredAt": "2026-10-13T07:33:09.700Z",
+        "pid": 12480,
+        "port": 5397,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "pursuit-victory",
+          "routePlan": "rescue",
+          "timeoutMinutes": 25,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": null,
+          "priorProofPath": null,
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "NATIVE_PURSUIT_VICTORY",
+          "SAME_MOUNTED_ROAD_RETURN",
+          "TEMPORARY_REWARD_ONCE",
+          "SETTLED_LANE_FOCUS",
+          "PERSISTED_V6_RELOAD"
+        ],
+        "output": "tmp/demo/early-combat-native-pursuit-0708",
+        "receiptPath": "tmp/demo/early-combat-native-pursuit-0708/qa-job.json",
+        "provenance": {
+          "gitHead": "3982b7a825c88a8d1ffa5fdcc053c02a9d843755",
+          "sourceTree": "cb8af31ff5a9297bc9d3bc0acca8d5cd4b7ba30b",
+          "sourceDiffSha256": "996326f360f1ddb50bddb0d2b91b6f406aa6045c39668c78d62e21d88833699e",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "fc7d1f52a36363117e38f4fd4ca641d25af137583963d3cd3911ed3518b36bc7"
+          },
+          "inputs": [],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-DtiatkY9.js",
+              "sha256": "d39f95fda6d01d73fddc37bbd89463ffc973104b01d7821812f66e4a7f2763e2"
+            },
+            {
+              "path": "dist/assets/combat-C_Okyjda.js",
+              "sha256": "9f02fd73e4da5c79f33f7dc3ff4f5ac044e714c28ed0d3cbebab5d1121549147"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-B4zy_W2o.js",
+              "sha256": "95e0f8c050037d8943f2cede9b56e3c72de16612df0328dbca92475d76265258"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "0b46a0edd9fabc7248d4c7966ffeaf937f1acc740239dc6c32a651a11c73ead2"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-13T07:33:24.498Z",
+        "endedAt": null,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": false,
+        "eligibleForReview": false
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261013T0552",
-      "sha": "a355d957a42cb672e89260a3ecc2ec8c02898e0a",
-      "at": "2026-10-13T06:38:19.5907745Z",
+      "branch": "wip/codex-early-combat-20261013T0708",
+      "sha": "ca9fa01b75176e33f80962de105f3624797e1612",
+      "at": "2026-10-13T07:32:41.4590523Z",
       "remoteVerified": true,
       "status": "GREEN",
-      "lastGreenCheck": "97current tests/build/types/contracts/immutable/whitespace; guardian PASSmechanics; browseracceptanceOPEN"
+      "lastGreenCheck": "195 tests/types/build/contracts/LOCKED/whitespace; guardian actualdiff PASS mechanical"
     },
-    "nextAction": "Read-only preflight/exclusive lock. Reverify independent reward-label-native-desktop-0603 result/save digest, native lineage and exact entry/resumed equality against current unchanged campaign/combat/save owners. In existing tools/demo-continuous-production-qa.mjs choose(), explicitly select authored rep_event_roadside_intimidation step1/index1 ONLY for targetsecond-refuge (native enabled20gold payment); no canon/reward/balance change. Reuse campaignBattlefieldKeyboard in FIRST NEW RESUMED combat (current index0&&!priorProof excludes continuation), add native illegal-move/target refusal observation to existing helper, retain all tactical/owner/autosave/Salvation/reload assertions; guardian review exact policy/assertion diff. Build current sources, register ONE targetsecond-refuge1366x768/normal/rescue/serpent/verifySalvation1, valid0603 inputs,35min/freeport/uniqueignoredoutput/hostcache. Inspect terminal digest/provenance/native actions/refusal status/captures and exact lion-second-refuge V6 reload before acceptance; then earned ending continuation. Never seed FAILED0552/1521, repeat default optional Serpent refusal fight/deadline-only campaign or T0 diagnostics. Keep keyboard mounted/AT, all-six/lancer/ordinary Pursuit/ending/visual/mobileLAST/operator criteria open and deferred narratives/keyboard exact.",
+    "nextAction": "Finish OD13C post-victory1HP recovery and random Pursuit/count-only early balance. Source4/test3 implemented,195focused/types green; review sensitive exactdiff/QA expectations, build, run ONE registered existing native pursuit-victory1366normal smoke. Countsminimum2:T0two,T1two-three,T3three-four; enemy stats unchanged. No seed from FAILED0552/1521. Keep campaignsecondrefuge/ending, previous mountedkeyboard, visual/mobile/deferred work OPEN.",
     "runMetrics": {
-      "runId": "rpgthreejs-auto-dev-90m-20261013T0127",
-      "runtimeSourceFilesModified": 0,
-      "testFilesModified": 0,
+      "runId": "codex-early-combat-20261013T0708",
+      "runtimeSourceFilesModified": 4,
+      "testFilesModified": 3,
       "existingQaFilesModified": 1,
       "newQaFilesAdded": 0,
       "promotedProofFiles": 0,
-      "workflowDocs": 3,
+      "workflowDocs": 4,
       "inheritedWipFiles": 0,
       "browserScenarios": 1,
-      "registeredJobs": 2,
-      "preBrowserEnvironmentFailures": 1,
-      "reviewers": 2,
-      "reviewerPasses": 3,
-      "rootSequenceStripsInspected": 2,
-      "harnessAssertionCorrections": 0,
-      "capturePolicyCorrections": 1,
-      "quotaSavingsClaim": "NONE"
+      "registeredJobs": 1,
+      "reviewers": 1,
+      "reviewerPasses": 2
     },
     "checkpointPaths": [
-      "src/combat/legacyCombatRuntime.js",
-      "src/combat/combatKeyboard.test.ts",
+      "src/game/combatProgress.ts",
+      "src/game/combatProgress.test.ts",
+      "src/game/content.ts",
+      "src/game/content.test.ts",
+      "src/game/runSystem.ts",
+      "src/game/runSystem.test.ts",
+      "src/campaign/LionTraversalPursuitEncounters.ts",
+      "tools/demo-continuous-production-qa.mjs",
+      "docs/autonomy/EARLY_COMBAT_RECOVERY_OPERATOR_DECISION_2026-10-13.md",
+      "docs/autonomy/OPERATOR_DECISIONS.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/handoffs/2026-10-13T0552Z-codex-native-defeat-keyboard.md"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
     ],
     "publication": {
       "sha": "ead32f86f120a11e8efa8fd61b1c5eb9bb854cb0",
@@ -23402,8 +23501,8 @@
       "authorization": "OD-2026-10-12-A",
       "operatorArtCommitPreserved": "b4e890af6fa61287818430b12eed21b4cc2f91fd"
     },
-    "runEndedAt": "2026-10-13T06:41:22.684Z",
-    "writerStopped": true,
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "status": "CLOSURE_NEXT_AUTHORIZED_NORMAL_DEV_PUSH",
       "paths": [
@@ -24204,7 +24303,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-    "activeSubtask": "Implement missing invalid movement/target keyboard feedback; mounted acceptance pending",
+    "activeSubtask": "Implement1HP KO victory recovery, two-enemy opening, varied leg-bounded random formations",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -27536,12 +27635,12 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "rpgthreejs-auto-dev-90m-20261013T0552",
+    "runId": "codex-early-combat-20261013T0708",
     "agent": "codex",
     "status": "IN_PROGRESS",
-    "runStartedAt": "2026-10-13T05:49:59.7650975Z",
-    "activePhase": "DEMO-PC-CONTROLS: native keyboard refusal feedback, campaign defeat preserved",
-    "heartbeat": "2026-10-13T06:41:22.684Z",
+    "runStartedAt": "2026-10-13T07:09:01.9273009Z",
+    "activePhase": "OD13C native random-Pursuit victory verification",
+    "heartbeat": "2026-10-13T07:35:02.242Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-13T0552Z-codex-native-defeat-keyboard.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -28581,6 +28680,47 @@
       "wipRetained": "a355d957a42cb672e89260a3ecc2ec8c02898e0a preserves reverted trial and snapshot repair provenance",
       "autoReviewRefusal": false,
       "scopedDisposition": "Guardian PASS mechanical keyboard code; nativecampaignFAILED/mountedUIOPEN; demoIN_PROGRESS"
+    },
+    "earlyCombat0708": {
+      "decision": "OD-2026-10-13-C",
+      "minimumEnemies": 2,
+      "counts": {
+        "T0": [
+          2,
+          2
+        ],
+        "T1": [
+          2,
+          3
+        ],
+        "T3": [
+          3,
+          4
+        ]
+      },
+      "recovery": "KO victory participants1HP; defeat checkpoint unchanged; bench unchanged",
+      "enemyStatsChanged": false,
+      "mechanicalTests": 195,
+      "types": "PASS",
+      "nativeAcceptance": "RUNNING; no acceptance yet",
+      "randomness": "Independent validated fresh draws within ordinary leg pools, existing injected source; no V6 transient data",
+      "newQaTools": 0,
+      "build": "PASS",
+      "contracts": "PASS 8 contracts/8 videos; immutable and working gates clear",
+      "existingQaDriverChanged": 1,
+      "qaJustification": "Existing native campaign driver records actual foe roster and raw deployed victory HP; expected owner HP follows directly authorized1HP recovery. No new QA tool or weakened save/graph/reward/return assertion.",
+      "visibleOutcome": "Native opening two foes then Shadow collision with two ordinary random foes, victory returns same mounted road; observed KO participants recover1HP and persisted owner matches native rawHP capped minimum1.",
+      "exitCondition": "One existing native Pursuit-victory scenario with all original graph/reward/road/V6 assertions plus actual roster/recovery; terminal failures remain NOT_ACCEPTED. No unchanged retry.",
+      "guardian": "PASS actualdiff mechanical/prélaunch; no LOCKED conflict; global native/demo not accepted",
+      "qaJobId": "early-combat-native-pursuit-0708",
+      "qaPid": 12480,
+      "qaPort": 5397,
+      "limitations": [
+        "No native1HP acceptance unless an actual tactical KO is observed",
+        "Native maxhp recorded without baseline comparison; source stat owners unchanged",
+        "BenchHP native assertion applies to Pursuit; authored bench covered focused unit tests",
+        "All-legs/random-distribution/fullcampaign difficulty and demo readiness remain OPEN"
+      ]
     }
   },
   "previousInterruptedRun": {
@@ -29932,17 +30072,18 @@
     "fullDemoComplete": false
   },
   "currentRunMeasurement": {
-    "runId": "rpgthreejs-auto-dev-90m-20261013T0552",
-    "runStartedAt": "2026-10-13T05:49:59.7650975Z",
-    "at": "2026-10-13T06:38:10.847Z",
-    "sourceFiles": 1,
-    "testFiles": 1,
-    "qaAdded": 0,
-    "proofAdded": 0,
-    "workflowFiles": 3,
+    "runId": "codex-early-combat-20261013T0708",
+    "runtimeSourceFilesModified": 4,
+    "testFilesModified": 3,
+    "existingQaFilesModified": 1,
+    "newQaFilesAdded": 0,
+    "promotedProofFiles": 0,
+    "workflowDocs": 4,
+    "inheritedWipFiles": 0,
     "browserScenarios": 1,
-    "closedAt": "2026-10-13T06:41:22.684Z",
-    "elapsedMinutes": 51.38
+    "registeredJobs": 1,
+    "reviewers": 1,
+    "reviewerPasses": 2
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",
