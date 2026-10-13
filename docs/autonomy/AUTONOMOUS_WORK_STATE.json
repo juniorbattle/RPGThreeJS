@@ -200,15 +200,16 @@
   },
   "runId": "rpgthreejs-auto-dev-90m-20261013T0552",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-13T05:55:30.800Z",
+  "lastHeartbeat": "2026-10-13T06:08:31.034Z",
   "wip": {
-    "branch": "wip/rpgthreejs-auto-dev-90m-20261013T0127",
-    "sha": "72b1d3f6047b84968978b4e9c57ed31256a182e0",
-    "at": "2026-10-13T01:40:51.2423415Z",
-    "remoteVerified": true
+    "branch": "wip/rpgthreejs-auto-dev-90m-20261013T0552",
+    "sha": "0506a3eea1d9bec75ae5c3fb0aca01eb14db7531",
+    "at": "2026-10-13T05:59:09.088Z",
+    "status": "GREEN",
+    "remoteVerified": false
   },
   "live": {
-    "lastHeartbeat": "2026-10-13T05:55:30.800Z",
+    "lastHeartbeat": "2026-10-13T06:08:31.034Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -22157,9 +22158,9 @@
         "endedAt": "2026-10-12T06:28:55.475Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "exitCode": 0,
         "resultPath": "tmp/demo/reward-label-native-desktop-0603/results.json",
         "resultSha256": "03eab0e5a83eea0f40c962cd7ce741df4e88cd4757ff331197f2f9f595bfc9f0",
@@ -22278,7 +22279,7 @@
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": false,
         "eligibleForReview": false,
         "orchestratorDisposition": "INTERRUPTED_ORPHANED_NO_RESULT_NOT_ACCEPTED",
@@ -22384,7 +22385,7 @@
         "endedAt": "2026-10-12T15:59:45.637Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "exitCode": 1,
@@ -23240,12 +23241,117 @@
           "Video PTS lacks absolute synchronization with performance.now; exact painted fade/hold durations and independent paint cadence remain unverified",
           "Full perceived checkpoint momentum, other legs/settings/viewports and demo acceptance remain open"
         ]
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "second-refuge-native-desktop-0552",
+        "runId": "rpgthreejs-auto-dev-90m-20261013T0552",
+        "status": "RUNNING",
+        "registeredAt": "2026-10-13T05:59:09.350Z",
+        "pid": 14324,
+        "port": 5396,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "second-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 35,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/reward-label-native-desktop-0603/results.json",
+          "verifySalvation": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/second-refuge-native-desktop-0552",
+        "receiptPath": "tmp/demo/second-refuge-native-desktop-0552/qa-job.json",
+        "provenance": {
+          "gitHead": "31861e672ffbb93dfdd932271bab059510863df2",
+          "sourceTree": "637f91ee993a3ac5f745a0b73975c4d252d62a86",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "13b1a6d08f12da3fa9fc41bdb65e27d4ffc47b99aea7789d7d17a3c785053a0e"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json",
+              "sha256": "d0fc5c11f8263316c071c4d859982f60a8be97b6d35ea024b7a960c93b5fd656"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/reward-label-native-desktop-0603/results.json",
+              "sha256": "03eab0e5a83eea0f40c962cd7ce741df4e88cd4757ff331197f2f9f595bfc9f0"
+            }
+          ],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BCwaRxyQ.js",
+              "sha256": "9f39a0ddba6d0c6fd2e1d582369e81cc6c16aebb1c79df3f30c7b451dd742004"
+            },
+            {
+              "path": "dist/assets/combat-CP2whCOz.js",
+              "sha256": "a537d8a7a218115f4afe53bda13f59bea47a330285f65beb956d9694e3c3dd01"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-C2zvqMPX.js",
+              "sha256": "e30054e5f7e7e0d4b472b4117e419cd7a4b7824d500170168955e8112dace0d4"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "2ccb3efb6a34d4518df1fb4b4afe832000523a257d1af3c1e048037c84f985af"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-13T05:59:30.346Z",
+        "endedAt": null,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": false,
+        "eligibleForReview": false
       }
     ],
     "wip": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261013T0127",
-      "sha": "72b1d3f6047b84968978b4e9c57ed31256a182e0",
-      "at": "2026-10-13T01:40:51.2423415Z",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261013T0552",
+      "sha": "0506a3eea1d9bec75ae5c3fb0aca01eb14db7531",
+      "at": "2026-10-13T05:59:09.088Z",
+      "status": "GREEN",
       "remoteVerified": true
     },
     "nextAction": "Run ONE registered corrected native second-refuge1366normal/rescue35min smoke from verified reward-label0603; Marian uses native offensive input when no ally needs healing. Keep all assertions; inspect exact earned second-refuge/reload or quarantine failure then independent product keyboard work. No unchanged campaign/T0 replay.",
@@ -27428,7 +27534,7 @@
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-13T05:49:59.7650975Z",
     "activePhase": "DEMO-PC-CAMPAIGN: native first-to-second-refuge segment, then authored ending and exact reload",
-    "heartbeat": "2026-10-13T05:55:30.800Z",
+    "heartbeat": "2026-10-13T06:08:31.034Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-13T0127Z-codex-arrival-temporal-proof.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -27788,15 +27894,11 @@
       "aliasReconciliation": "Current generic live aliases reconciled with run1617; prior values retained, no parent/queue/QA request edits"
     },
     "lastSnapshot": {
-      "sha": "72b1d3f6047b84968978b4e9c57ed31256a182e0",
-      "paths": [
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "tools/traversal-motion-production-qa.mjs",
-        "docs/autonomy/handoffs/2026-10-13T0127Z-codex-arrival-temporal-proof.md"
-      ],
-      "remoteVerified": true,
-      "at": "2026-10-13T01:40:51.2423415Z"
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261013T0552",
+      "sha": "0506a3eea1d9bec75ae5c3fb0aca01eb14db7531",
+      "at": "2026-10-13T05:59:09.088Z",
+      "status": "GREEN",
+      "remoteVerified": false
     },
     "motion1648": {
       "jobId": "motion-t3-native-desktop-1648",
@@ -28398,6 +28500,28 @@
         "newQa": 0,
         "proofAdded": 0,
         "inheritedWip": 0
+      },
+      "operatorAssetWork": {
+        "authorizedContinuation": true,
+        "message": "Operator manually correcting Alistair images, says continue without alert",
+        "paths": [
+          "public/assets/characters/pixel/masters/alistair.png",
+          "public/assets/characters/pixel/combat/alistair/attack.png"
+        ],
+        "handling": "Preserved, excluded from owned commit/snapshot; no visual acceptance claim"
+      },
+      "guardian": "PASS prelaunch minimal native policy; all assertions and truth intact",
+      "snapshotCorrection": {
+        "initial": "68401325ef0d15f2b43e3dd82dc917247e0dafdb",
+        "cause": "Temporary index write failed; unchecked native exit codes allowed empty-tree WIP publication",
+        "corrected": "0506a3eea1d9bec75ae5c3fb0aca01eb14db7531",
+        "disposition": "Restored complete tree via non-force descendant; verified only3selected paths differ from dev; no dev/main change",
+        "prevention": "Use .git temporary index with per-command exit checks, compare selected changed paths before commit/push"
+      },
+      "presentationClockObservation": {
+        "mechanism": "animate clamps dt at.05 then feeds awaited tween completion",
+        "disposition": "Potential lowRAF prolongation confirmed in source; actual RAF/busy timing not measured. No product defect claim or source change; worker frozen",
+        "guardian": "Conditional ordinary presentation-clock correction only after measured defect, preserving truth/sequence/cancellation"
       }
     }
   },

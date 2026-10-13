@@ -1188,6 +1188,9 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - motion-t3-os-desktop-1821: SUCCEEDED; port 5392; receipt `tmp/traversal/motion-t3-os-desktop-1821/qa-job.json`; NOT_ACCEPTED
 - motion-t0-os-desktop-1848: SUCCEEDED; port 5393; receipt `tmp/traversal/motion-t0-os-desktop-1848/qa-job.json`; NOT_ACCEPTED
 - motion-t0-os-coverage-2045: SUCCEEDED; port 5394; receipt `tmp/traversal/motion-t0-os-coverage-2045/qa-job.json`; NOT_ACCEPTED
+- motion-t0-os-temporal-0127: FAILED; port 5395; receipt `tmp/traversal/motion-t0-os-temporal-0127/qa-job.json`; NOT_ACCEPTED
+- motion-t0-os-temporal-0127-host: SUCCEEDED; port 5395; receipt `tmp/traversal/motion-t0-os-temporal-0127-host/qa-job.json`; NOT_ACCEPTED
+- second-refuge-native-desktop-0552: RUNNING; port 5396; receipt `tmp/demo/second-refuge-native-desktop-0552/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
