@@ -57,6 +57,8 @@ Object.assign(report,{target,routePlan,finalePlan,defeatNodeId,nativeDefeatWait,
   osReducedMotion:process.env.DEMO_QA_OS_MOTION==='1',observationHook:'Built bootstrap exposes GameApp for read-only snapshots; no owner method invoked',refuges:[],choices:[]});
 report.nativeTacticalPolicy='Champion Salvation policy retained; novice crosier uses native lowest-charge ally attacks and follows wounded allies; non-Champion potions below half health; read-only rejection telemetry; all actions use existing native controls';
 report.nativePreparationPolicy=target==='defeat-recovery'?'Four affordable first-refuge potions through native shop; exact secured wallet/inventory/stock transaction and reload':'Existing refuge preparation';
+report.nativeTraversalPolicy=target==='pursuit-victory'?'Native same-lane charge collision':
+  ['second-refuge','ending'].includes(target)?'Native opposite-lane steering during visible charge; any collision still resolves through actual combat':'Existing native traversal inputs';
 report.driverSha256=createHash('sha256').update(await readFile('tools/demo-continuous-production-qa.mjs')).digest('hex');
 report.productionBundles=await Promise.all((await readdir('dist/assets')).filter(name=>/^(game|combat)-.*\.js$/.test(name))
   .map(async name=>({path:`dist/assets/${name}`,sha256:createHash('sha256').update(await readFile(`dist/assets/${name}`)).digest('hex')})));
@@ -90,6 +92,7 @@ async function choose(){
     serpent_informant:{'1':routePlan==='rescue'?0:1},mystery_lancer_recruit:{'1':routePlan==='rescue'?0:1},
     witnesses_on_road:{'1':routePlan==='rescue'?0:1},shadow_signs:{'1':0},
     lion_finale_judgement:{record:0,shadow:0,intent:finalePlan==='serpent'?0:1}};
+  if(target==='second-refuge')plans.rep_event_roadside_intimidation={'1':1};
   const index=plans[sequence]?.[step]??0;
   const button=dialogue.locator('.dialogue-choice:visible').nth(index);
   assert.equal(await button.isEnabled(),true,`Authored choice disabled: ${sequence}/${step}/${index}`);
@@ -126,7 +129,37 @@ async function campaignBattlefieldKeyboard(frame,entry){
   assert.ok(cursor.gx>=0&&cursor.gx<8&&cursor.gz>=0&&cursor.gz<4,'Campaign inspection cursor outside native grid');
   assert.deepEqual(cursor,{gx:Math.min(7,cursorBefore.gx+1),gz:cursorBefore.gz},'Campaign ArrowRight must move or clamp at the grid edge');
   assert.ok((await frame.locator('#combat-cell-status').textContent()).trim(),'Campaign cursor status empty');
+  const moveCursor=async cell=>{
+    const current=await canvas.evaluate(e=>({gx:Number(e.dataset.cursorGx),gz:Number(e.dataset.cursorGz)}));
+    for(let x=current.gx;x!==cell.gx;x+=Math.sign(cell.gx-x))await key(cell.gx>x?'ArrowRight':'ArrowLeft');
+    for(let z=current.gz;z!==cell.gz;z+=Math.sign(cell.gz-z))await key(cell.gz>z?'ArrowDown':'ArrowUp');
+    assert.deepEqual(await canvas.evaluate(e=>({gx:Number(e.dataset.cursorGx),gz:Number(e.dataset.cursorGz)})),cell);
+  };
   await key('m');assert.equal((await combatState(frame)).mode,'move');
+  await moveCursor({gx:before.active.gx,gz:before.active.gz});
+  await key('Enter');
+  const moveRejected=await frame.locator('#combat-cell-status').textContent();
+  assert.ok(moveRejected.includes('Déplacement refusé'),'Campaign illegal move must announce refusal');
+  assert.equal((await combatState(frame)).mode,'move','Illegal move must retain selection');
+  await key('Escape');
+  const attackButton=frame.locator('#menu [data-a="attack"]:not(:disabled)').first();
+  assert.equal(await attackButton.count(),1,'Native attack control required for refusal proof');
+  await attackButton.focus();await key('Enter');
+  const charge=frame.locator('#skillmenu [data-ch]:not([data-ch="_back"]):not(:disabled)').first();
+  assert.equal(await charge.count(),1,'Native attack charge required for refusal proof');
+  await charge.focus();await key('Enter');
+  assert.equal((await combatState(frame)).mode,'target');
+  const invalidTarget=await frame.evaluate(()=>{
+    if(G.pending.spec.self)return null;
+    for(const column of G.grid)for(const cell of column)if(!G.pending.keys.has(cell.gx+','+cell.gz))return {gx:cell.gx,gz:cell.gz};
+    return null;
+  });
+  assert.ok(invalidTarget,'Native attack must expose an illegal target');
+  assert.equal(await canvas.evaluate(e=>e===document.activeElement),true,'Native target entry must focus battlefield');
+  await moveCursor(invalidTarget);await key('Enter');
+  const targetRejected=await frame.locator('#combat-cell-status').textContent();
+  assert.ok(targetRejected.includes('Ciblage refusé'),'Campaign illegal target must announce refusal');
+  assert.equal((await combatState(frame)).mode,'target','Illegal target must retain selection');
   await key('Escape');
   const restored=await frame.evaluate(()=>{const e=document.activeElement,r=e.getBoundingClientRect();return{dock:e.matches('#menu button:not(:disabled)'),x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};});
   assert.equal(restored.dock,true,'Campaign Escape must restore enabled dock focus');
@@ -138,7 +171,7 @@ async function campaignBattlefieldKeyboard(frame,entry){
   assert.deepEqual(ownerAfter,ownerBefore,'Campaign keyboard inspection/cancel changed owner V6 truth');
   assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),autosaveBefore,'Campaign keyboard inspection/cancel wrote autosave');
   await capture(`combat-${entry.index}-native-keyboard-return`);
-  entry.battlefieldKeyboard={method:'ACTUAL_TAB_FRESH_CAMPAIGN_IFRAME',inputs,focus,cursorBefore,cursor,restored,before,after,renderDiagnosticsExcludedFromTruth:true,ownerUnchanged:true,autosaveUnchanged:true,pass:true};
+  entry.battlefieldKeyboard={method:'ACTUAL_TAB_CAMPAIGN_IFRAME_NATIVE_REFUSALS',inputs,focus,cursorBefore,cursor,moveRejected,targetRejected,restored,before,after,renderDiagnosticsExcludedFromTruth:true,ownerUnchanged:true,autosaveUnchanged:true,pass:true};
 }
 async function campaignParentKeyboardReturn(entry){
   assert.equal(entry.nodeId,'lion-opening-ambush','Parent keyboard proof is scoped to fresh opening aftermath');
@@ -441,7 +474,7 @@ async function battle(){
     for(const [id,skill] of Object.entries({warrior:'w_break_guard',white_mage:'w_salvation',dark_mage:'n_dark_bolt',archer:'a_precise_shot'}))
       assert.deepEqual(entry.initialRoster.find(u=>u.id===id)?.skills,[skill],`Initial native skill: ${id}`);
   }
-  if(entry.index===0&&!priorProof)await campaignBattlefieldKeyboard(frame,entry);
+  if(entry.index===(report.inheritedBattleCount??0))await campaignBattlefieldKeyboard(frame,entry);
   for(let index=0;index<300&&Date.now()<deadline;index++){
     if(index%5===0){console.log(`BATTLE ${entry.nodeId} iteration ${index}, actions ${entry.actions.length}`);
       await writeFile(resolve(output,'progress.json'),JSON.stringify({at:new Date().toISOString(),nodeId:entry.nodeId,combat:await combatState(frame),actions:entry.actions.map(a=>a.kind)},null,2)+'\n');}
@@ -774,10 +807,13 @@ try{
       assert.deepEqual(report.errors,[]);report.pass=true;break;
     }
     if(await page.locator('iframe.combat-frame').count()){await battle();if(report.defeatRecovery?.pass||report.pass)break;continue;}
-    if(target==='pursuit-victory'){
+    if(['pursuit-victory','second-refuge','ending'].includes(target)){
       const charge=page.locator('.traversal-pursuit-charge[data-phase="CHARGING"]:visible');
       if(await charge.count()){
-        const lane=await charge.getAttribute('data-lane'),button=page.locator(`[data-traversal-lane="${lane}"]:visible:not(:disabled)`);
+        const chargeLane=await charge.getAttribute('data-lane');
+        assert.ok(chargeLane==='0'||chargeLane==='1','Visible Pursuit charge must identify a native lane');
+        const lane=target==='pursuit-victory'?chargeLane:String(1-Number(chargeLane));
+        const button=page.locator(`[data-traversal-lane="${lane}"]:visible:not(:disabled)`);
         if(await button.count())await keyboardActivate(`[data-traversal-lane="${lane}"]:visible:not(:disabled)`);
       }
     }

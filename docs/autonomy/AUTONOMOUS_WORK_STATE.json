@@ -1,49 +1,45 @@
 {
-  "status": "PAUSED_FOR_CREDITS",
-  "runStartedAt": "2026-10-13T07:09:01.9273009Z",
-  "runEndedAt": "2026-10-13T10:30:10.712Z",
+  "status": "IN_PROGRESS",
+  "runStartedAt": "2026-10-13T18:20:44.5385169Z",
+  "runEndedAt": "2026-10-13T19:24:14.958Z",
   "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-  "activePhase": "OD13C product published; native evidence final review paused for credits",
-  "activeSubtask": "Early recovery/random counts implemented; native smoke successful, final independent evidence review pending",
+  "activePhase": "Valmir and mounted keyboard observed; native second-refuge aggregate timed out",
+  "activeSubtask": "Native opposite-lane steering prepared; second-refuge and exact2APSalvation still pending",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "0b4eb9bdc9fd25cfcd774eaab978712b9e9f1f78",
-  "lastPushedCommit": "0b4eb9bdc9fd25cfcd774eaab978712b9e9f1f78",
+  "lastPushedCommit": "2a87b7af1d0adaf031481d5b52dd8ced1d5150a6",
   "completedThisRun": [
-    "OD13C participantKO victory recovery1HP; raw result/bench/defeat preserved",
-    "Early ordinary authored groups2; PursuitT0two,T1two-three,T3three-four with independent ordinary-type draws",
-    "195 focused tests/types/build/8contracts/8slots/immutable/whitespace; guardian actualdiff mechanical PASS",
-    "Native fresh opening victory3rounds17actions archer0→owner1; randomT0two badgers victory3rounds25actions; same-road/rewardonce/precombatV6 assertions pass; no mutation/injection/errors",
-    "Published selected coherent checkpoint0b4eb9b before native completion on operator request; final review hit credit limit, no rerun"
+    "Reused0708 matched terminal evidence: independent final scoped recovery/T0return/precombatV6 review accepted without replay",
+    "Historical0603 native lineage/digests/exact resumedV6 compatibility independently verified on current build",
+    "Existing native20gold payment selected; Valmir victory4round34actions/rawCedric0→owner1 observed",
+    "Mounted native keyboard illegal move/target refusal and Escape focus independently accepted1366normal, without tactical/AP/owner/autosave mutation",
+    "Native subsequent potion1→58/AP1→0/stock5→4 observed; current aggregateFAILED at35min ordinaryT1Pursuit12actions, all failed partial saves quarantined",
+    "Small existing pilot opposite-lane native steering prepared after terminal receipt; static guardian PASS, no second scenario or runtime avoidance acceptance"
   ],
   "filesChanged": [
-    "src/game/combatProgress.ts",
-    "src/game/combatProgress.test.ts",
-    "src/game/content.ts",
-    "src/game/content.test.ts",
-    "src/game/runSystem.ts",
-    "src/game/runSystem.test.ts",
-    "src/campaign/LionTraversalPursuitEncounters.ts",
     "tools/demo-continuous-production-qa.mjs",
-    "docs/autonomy/EARLY_COMBAT_RECOVERY_OPERATOR_DECISION_2026-10-13.md",
-    "docs/autonomy/OPERATOR_DECISIONS.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/handoffs/2026-10-13T0708Z-codex-early-combat-recovery.md"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    "docs/autonomy/handoffs/2026-10-13T1828Z-codex-native-second-refuge.md"
   ],
   "testsRun": [
-    "vitest --exclude tmp/** combatProgress/runSystem/management/content:195 across4 suites",
+    "vitest combatKeyboard --exclude tmp/**:30 tests",
     "tsc --noEmit",
-    "npm run build",
-    "npm run contracts:validate",
-    "node --check tools/demo-continuous-production-qa.mjs",
-    "git diff --check + immutable and working LOCKED gates",
-    "ONE registered fresh native pursuit-victory1366x768 normal rescue25min"
+    "contracts:validate8/contracts8/slots",
+    "Existing campaign driver node syntax and git diff --check",
+    "Immutable/working LOCKED gates empty",
+    "Reused original9-file production build independently matched",
+    "ONE registered second-refuge1366normal35min native scenario:FAILED bounded incompleteT1fight",
+    "One guardian reused for0708 final proof/current1828 observations/current static steering policy"
   ],
   "testsPassed": [
-    "195 tests",
-    "TypeScript/build/contracts/gates",
-    "guardian actualdiff mechanical/prelaunch",
-    "native machine smoke SUCCEEDED, digest/provenance/source-equivalence/rootcapture checks PASS"
+    "vitest combatKeyboard --exclude tmp/**:30 tests",
+    "tsc --noEmit",
+    "contracts:validate8/contracts8/slots",
+    "Existing campaign driver node syntax and git diff --check",
+    "Immutable/working LOCKED gates empty",
+    "Reused original9-file production build independently matched",
+    "One guardian reused for0708 final proof/current1828 observations/current static steering policy"
   ],
   "testsRemaining": [
     "Native PC first/second refuge and authored ending on compatible current product, exact checkpoint/ending reload; no failed seeds",
@@ -69,7 +65,8 @@
     "Historical T0 OS computed swap gap closed by2045; rendered arrival fade accepted scoped0127. Normal/T1/T3 computed coverage and broader perceived checkpoint motion remain OPEN.",
     "Historical1848 reviewer credit interruption resolved by2045 scoped review. T0 OS1366 computed and rendered arrival accepted0127; exact painted timing, wider modes/legs/viewports and full temporal continuity remain OPEN.",
     "campaign0552: native Serpent defeat; second refuge/ending not accepted; no change-caused failure proof so no second scenario",
-    "keyboard refusal: mounted production announcement/native legal and invalid controls remain pending after mechanical implementation"
+    "keyboard refusal: mounted production announcement/native legal and invalid controls remain pending after mechanical implementation",
+    "1828: Native Valmir victory/refusal/recovery/potion scoped accepted; targetsecond-refuge FAILED35min at T1ordinaryPursuit12actions. Opposite-lane policy prepared static-only, no new scenario/secondrefuge/ending/exact2APSalvation acceptance."
   ],
   "remainingWork": [
     "Six fresh novice cast/AP coverage and same-round healthy setup3to2/Salvation2to0 capped40percent reviewed2012; fullcampaign aggregate/ending/reload OPEN after skill-menu click timeout",
@@ -83,7 +80,7 @@
     "Mobile finalization after desktop gameplay/visual structure; operator final demo playtest",
     "1521: five fresh novice classes and capped40percent Salvation2to0 scoped accepted; sixth/lancer, earned second-refuge reload, ending, fullV6, balance and fresh random-Pursuit breadth remain OPEN"
   ],
-  "nextAction": "Resume SAME OD13C native evidence review after credits: reuse early-combat-native-pursuit-0708 SUCCEEDED results8e7a18f1897055d86d252c0241963d454ce6a0fd831d412d6ab7475e4f9c0187 and verified-result-summary; no replay. Guardian actualdiff/mechanical PASS retained; final independent evidence review interrupted usage_limit_exceeded. Verify original frozen HEAD3982b7a/sourceDiff996326f3/driverfc7d1f52/helper/build lineage and exact published-source equivalence0b4eb9b, then scope recovery archer0→1 and T0two-badger victory/same-road/precombatV6 only. Next product: resume approved native second-refuge campaign with separately reverified compatible successful0603 earned save, original targetsecond-refuge existing pilot payment/keyboard nextAction retained in closeout0552/handoff0552; never FAILED0552/1521/currentpartial seeds or repeatedT0. T1/T3/human mixed native diversity, full beginner balance, secondrefuge/ending, mountedkeyboard/AT, narrative/nightasset/mobile/operator remain OPEN. Automation stays manually paused.",
+  "nextAction": "Read-only preflight/exclusive lock; resume native PC second-refuge using independently reverified successful0603 exact earned save/proof (d0fc5c11/03eab0e5), unchanged current9-file build. Existing pilot now selects native opposite lane during visible CHARGING for second-refuge/ending; static guardian PASS only, effectiveness PENDING_NATIVE. Register ONE new targetsecond-refuge1366normal/rescue/serpent/VERIFY_SALVATION1/35min scenario at a verified free port/new ignored output/hostcache. Retain exact2→0 Salvation, owner/resource/reload/collision assertions and intentional pursuit-victory controls; no deadline-only extension. Inspect terminal provenance/assertions/captures and exact earned lion-second-refuge V6 reload; then earned ending continuation. Never use FAILED1828/0552/1521 partial saves, repeat unchanged collision-blind policy or T0 diagnostics.",
   "taskQueue": [
     "DEMO-PC-CAMPAIGN: ACTIVE; native second refuge then authored ending/exact reload; full acceptance OPEN",
     "DEMO-COMBAT-SKILLS: PENDING_MISSING_CRITERIA_ONLY; six heroes/lancer, native victory/defeat and ordinary Pursuit return",
@@ -91,7 +88,7 @@
     "DEMO-PRESENTATION-FINAL: PENDING_CONSOLIDATED_MILESTONE; known visual/manual findings remain OPEN; Bois-Clair night asset EXTERNAL",
     "DEMO-MOBILE-AND-TESTER-HANDOFF: PENDING_AFTER_PC_STABLE; operator final acceptance OPEN"
   ],
-  "creditStatus": "FINAL_GUARDIAN_REVIEW_USAGE_LIMIT_EXCEEDED",
+  "creditStatus": "AVAILABLE",
   "contractComplianceStatus": {
     "contractSetVersion": "1.1.0",
     "lockedRulesChanged": false,
@@ -102,25 +99,27 @@
       "AUTONOMOUS_WORK_PROTOCOL",
       "CAMPAIGN_AND_STATE",
       "COMBAT_AND_VFX",
+      "TRAVERSAL",
+      "PRESENTATION_AND_MEDIA",
       "UI_AND_ACCESSIBILITY",
       "AUTHORING_AND_QA"
     ],
     "matrix": {
-      "GAME_CONSTITUTION": "PASS authority remains combatProgress/RunSystem",
-      "ART_DIRECTION": "N/A assets unchanged",
-      "CHARACTERS": "PASS existing ordinary templates only; stats unchanged",
-      "ENVIRONMENTS": "N/A scenes unchanged",
-      "NARRATIVE_CAMPAIGN": "PASS branches/IDs/rewards/once guard preserved; secondrefuge/ending acceptanceOPEN",
-      "NARRATIVE_PRESENTATION": "N/A unchanged",
-      "TRAVERSAL": "PASS10bindings/lifecycle mechanically; nativeT0 observations rootverified, final independent review pending; broader gapsOPEN",
-      "COMBAT": "PASS authorized participant recovery1HP victory only; defeat/stats unchanged",
-      "SAVE": "PASS unchangedV6/focused reload/nativeprecombatV6 assertions; no immediate reward/recovery persistence claim",
-      "UI_ACCESSIBILITY": "PASS incidental generic metadata; previous mountedkeyboard/AT OPEN",
-      "QA_EVIDENCE": "PASS195/build/validator/native rootverified; BLOCKED final independent evidence acceptance by credits",
-      "REPOSITORY_GOVERNANCE": "PASS selected owned paths/non-force origin/dev verified/mainLOCKED preserved; safe credit checkpoint"
+      "GAME_CONSTITUTION": "PASS existing owners unchanged",
+      "ART_DIRECTION": "N/A",
+      "CHARACTERS": "N/A",
+      "ENVIRONMENTS": "N/A",
+      "NARRATIVE_CAMPAIGN": "PASS existing native authored20gold choice/route",
+      "NARRATIVE_PRESENTATION": "N/A",
+      "TRAVERSAL": "PASS static native lane controls/owner handoffs; current T1fight and future avoidance runtime OPEN",
+      "COMBAT": "PASS unchanged tactical owners; native Valmir/recovery/potion scoped observations",
+      "SAVE": "PASS exact original/current first-refugeV6 reload only; second/ending OPEN",
+      "UI_ACCESSIBILITY": "PASS mounted1366normal invalid refusals/cancel/focus scope; legalaction/spokenAT/wider viewports OPEN",
+      "QA_EVIDENCE": "BLOCKED requested second-refuge aggregateFAILED; original provenance preserved; scoped observations reviewed; future policy PENDING_NATIVE",
+      "REPOSITORY_GOVERNANCE": "PASS selected paths/ownedlock/WIP/normaldev authorization/mainLOCKED protected; final push verification pending"
     }
   },
-  "commitReferenceScope": "Implementation0b4eb9b remote verified; final metadata commit identifiable in Git and automation memory; no self-reference claim",
+  "commitReferenceScope": "lastKnownGoodCommit refers published product0b4eb9b; lastPushedCommit refers verified pre-run base2a87b7a. Final QA/workflow run1828 publication SHA is recorded by Git and automation memory after push; no self-reference claim.",
   "operatorAuthorization": {
     "status": "AUTHORIZED_BY_OPERATOR",
     "receivedLocalDate": "2026-10-01",
@@ -221,9 +220,9 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "codex-early-combat-20261013T0708",
+  "runId": "rpgthreejs-auto-dev-90m-20261013T1828",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-13T10:30:10.712Z",
+  "lastHeartbeat": "2026-10-13T19:24:14.958Z",
   "wip": {
     "branch": "wip/codex-early-combat-20261013T0708",
     "sha": "ca9fa01b75176e33f80962de105f3624797e1612",
@@ -233,7 +232,7 @@
     "lastGreenCheck": "195 tests/types/build/contracts/LOCKED/whitespace; guardian actualdiff PASS mechanical"
   },
   "live": {
-    "lastHeartbeat": "2026-10-13T10:30:10.712Z",
+    "lastHeartbeat": "2026-10-13T19:24:14.958Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -23460,7 +23459,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED_FINAL_INDEPENDENT_REVIEW_PAUSED_FOR_CREDITS",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-13T07:33:24.498Z",
         "endedAt": "2026-10-13T07:58:14.452Z",
         "provenanceMatches": true,
@@ -23481,18 +23480,182 @@
           "resultDigestMatches": true,
           "eligibleForReview": true
         },
-        "currentExecutionNote": "Local dev adopted published checkpoint after terminal frozen-execution review; Git sourceTree/diff identity changed. Exact published source/test/driver blob equivalence verified; original matched lineage preserved above. No assertion weakened."
+        "currentExecutionNote": "Local dev adopted published checkpoint after terminal frozen-execution review; Git sourceTree/diff identity changed. Exact published source/test/driver blob equivalence verified; original matched lineage preserved above. No assertion weakened.",
+        "independentReview1828": {
+          "at": "2026-10-13T18:26:17.700Z",
+          "reviewer": "contracts-guardian /root/guardian",
+          "verdict": "PASS_SCOPED",
+          "resultSha256": "8e7a18f1897055d86d252c0241963d454ce6a0fd831d412d6ab7475e4f9c0187",
+          "claims": [
+            "native archer raw0→campaign1 after victory",
+            "native T0two forest_badger88HP victory/same mounted road/lane focus",
+            "temporary gold40→120 with secured150 unchanged",
+            "exact precombatV6 at lion-audience reload"
+          ],
+          "limits": [
+            "No immediate postvictory persistence",
+            "Duplicate callback rejection mechanically verified only",
+            "T1/T3/human diversity/balance/secondrefuge/ending/accessibility/mobile/visual remainOPEN"
+          ],
+          "frozenIdentity": "Result/sourcepatch996326f3/reconstructeddriverfc7d1f52/helper/all9 physical build hashes match",
+          "capturesInspected": 4,
+          "seed0603": "PASS exact digest/native/old resumedV6; native rest/current resume required",
+          "prelaunchDriver": "PASS actual minimal existing payment and native refusal patch; no weakened assertion"
+        }
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "second-refuge-native-desktop-1828",
+        "runId": "rpgthreejs-auto-dev-90m-20261013T1828",
+        "status": "FAILED",
+        "registeredAt": "2026-10-13T18:26:28.733Z",
+        "pid": 18264,
+        "port": 5401,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "second-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 35,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/reward-label-native-desktop-0603/results.json",
+          "verifySalvation": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/second-refuge-native-desktop-1828",
+        "receiptPath": "tmp/demo/second-refuge-native-desktop-1828/qa-job.json",
+        "provenance": {
+          "gitHead": "2a87b7af1d0adaf031481d5b52dd8ced1d5150a6",
+          "sourceTree": "ebf76246002ed5e54c2cb9a235d2653166096f91",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "9b3347ef77741590b3a03a55e793f0118aeef27c27f215738702033db24cc8f9"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json",
+              "sha256": "d0fc5c11f8263316c071c4d859982f60a8be97b6d35ea024b7a960c93b5fd656"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/reward-label-native-desktop-0603/results.json",
+              "sha256": "03eab0e5a83eea0f40c962cd7ce741df4e88cd4757ff331197f2f9f595bfc9f0"
+            }
+          ],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-DtiatkY9.js",
+              "sha256": "d39f95fda6d01d73fddc37bbd89463ffc973104b01d7821812f66e4a7f2763e2"
+            },
+            {
+              "path": "dist/assets/combat-C_Okyjda.js",
+              "sha256": "9f02fd73e4da5c79f33f7dc3ff4f5ac044e714c28ed0d3cbebab5d1121549147"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-B4zy_W2o.js",
+              "sha256": "95e0f8c050037d8943f2cede9b56e3c72de16612df0328dbca92475d76265258"
+            },
+            {
+              "path": "dist/assets/game-CdUsLhii.css",
+              "sha256": "0f80b2f0ba3f842d4178633fd4980389040f0f01eb2bab067bda90b13e23cf43"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "0b46a0edd9fabc7248d4c7966ffeaf937f1acc740239dc6c32a651a11c73ead2"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-13T18:26:45.512Z",
+        "endedAt": "2026-10-13T19:01:55.885Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/second-refuge-native-desktop-1828/results.json",
+        "resultSha256": "faf09be2a068e7eb533b5fd8e5d6bb74f2dc848a9686ba85cdebf68c79940361",
+        "provenanceStable": true,
+        "independentScopedReview1828": {
+          "at": "2026-10-13T19:24:14.958Z",
+          "reviewer": "/root/guardian",
+          "verdict": "PASS_SCOPED_OBSERVATIONS_BLOCKED_SECOND_REFUGE",
+          "resultSha256": "faf09be2a068e7eb533b5fd8e5d6bb74f2dc848a9686ba85cdebf68c79940361",
+          "frozenDriver": "9b3347ef77741590b3a03a55e793f0118aeef27c27f215738702033db24cc8f9",
+          "frozenDriverWip": "523259c7c2c21bf998ee4de86707e6906fb6c6bf",
+          "matchingAtReview": "Result/source/driver/helper/bothinputs/all9build matched independently before terminal driver edit",
+          "claims": [
+            "Exact current-build first-refuge reload and native rest210→180/all5fighters full",
+            "Valmir native victory4rounds34actions; rawCedric0→owner1 and bencharcher90 retained",
+            "Mounted Tab/ShiftTab/illegalmove+target refusal/Escape focus; tactical/AP/owner/autosave unchanged",
+            "Native potion afterward: Cedric1→58/AP1→0/potion5→4"
+          ],
+          "limits": [
+            "AggregateFAILED/NOT_ACCEPTED/allpartialoutputs unseedable",
+            "T1toad108/spider68 battle unfinished12actions at35min; no T1victory/return/reward/reload",
+            "Salvation AP5→3/heal107→140 only; no exact2→0 proof",
+            "No secondrefuge/ending/Garen/fullsix/balance/AT/mobile/full-demo acceptance"
+          ],
+          "capturesRootInspected": [
+            "lion-first-refuge-native-rest.png",
+            "combat-2-native-keyboard-return.png",
+            "combat-3-deployment.png",
+            "combat-2-result.png",
+            "failure-state.png"
+          ],
+          "capturesGuardianInspected": 4
+        },
+        "currentDriverAfterTerminalEdit": "Expected mismatch; frozen original9b3347ef verified before prepared correction; never relabel aggregate as current PASS"
       }
     ],
     "wip": {
-      "branch": "wip/codex-early-combat-20261013T0708",
-      "sha": "ca9fa01b75176e33f80962de105f3624797e1612",
-      "at": "2026-10-13T07:32:41.4590523Z",
-      "remoteVerified": true,
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261013T1828",
+      "sha": "7424c826ee2363671c5efdd93416636ba02d4259",
       "status": "GREEN",
-      "lastGreenCheck": "195 tests/types/build/contracts/LOCKED/whitespace; guardian actualdiff PASS mechanical"
+      "dirtyFiles": [
+        "tools/demo-continuous-production-qa.mjs",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
+      ],
+      "lastGreenCheck": "30keyboard/types/8contracts/8slots/syntax/LOCKED/whitespace/static guardian PASS; campaign aggregateFAILED preserved",
+      "at": "2026-10-13T19:24:14.958Z",
+      "remoteVerified": true
     },
-    "nextAction": "Resume SAME OD13C native evidence review after credits: reuse early-combat-native-pursuit-0708 SUCCEEDED results8e7a18f1897055d86d252c0241963d454ce6a0fd831d412d6ab7475e4f9c0187 and verified-result-summary; no replay. Guardian actualdiff/mechanical PASS retained; final independent evidence review interrupted usage_limit_exceeded. Verify original frozen HEAD3982b7a/sourceDiff996326f3/driverfc7d1f52/helper/build lineage and exact published-source equivalence0b4eb9b, then scope recovery archer0→1 and T0two-badger victory/same-road/precombatV6 only. Next product: resume approved native second-refuge campaign with separately reverified compatible successful0603 earned save, original targetsecond-refuge existing pilot payment/keyboard nextAction retained in closeout0552/handoff0552; never FAILED0552/1521/currentpartial seeds or repeatedT0. T1/T3/human mixed native diversity, full beginner balance, secondrefuge/ending, mountedkeyboard/AT, narrative/nightasset/mobile/operator remain OPEN. Automation stays manually paused.",
+    "nextAction": "Read-only preflight/exclusive lock; resume native PC second-refuge using independently reverified successful0603 exact earned save/proof (d0fc5c11/03eab0e5), unchanged current9-file build. Existing pilot now selects native opposite lane during visible CHARGING for second-refuge/ending; static guardian PASS only, effectiveness PENDING_NATIVE. Register ONE new targetsecond-refuge1366normal/rescue/serpent/VERIFY_SALVATION1/35min scenario at a verified free port/new ignored output/hostcache. Retain exact2→0 Salvation, owner/resource/reload/collision assertions and intentional pursuit-victory controls; no deadline-only extension. Inspect terminal provenance/assertions/captures and exact earned lion-second-refuge V6 reload; then earned ending continuation. Never use FAILED1828/0552/1521 partial saves, repeat unchanged collision-blind policy or T0 diagnostics.",
     "runMetrics": {
       "runId": "codex-early-combat-20261013T0708",
       "runtimeSourceFilesModified": 4,
@@ -23531,7 +23694,7 @@
       "authorization": "OD-2026-10-12-A + direct commit/push request",
       "sourceEquivalenceVerified": true
     },
-    "runEndedAt": "2026-10-13T10:30:10.712Z",
+    "runEndedAt": "2026-10-13T19:24:14.958Z",
     "writerStopped": true,
     "metadataPublication": {
       "status": "CLOSURE_NEXT_AUTHORIZED_NORMAL_DEV_PUSH",
@@ -24333,7 +24496,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-    "activeSubtask": "Early recovery/random counts implemented; native smoke successful, final independent evidence review pending",
+    "activeSubtask": "Native opposite-lane steering prepared; second-refuge and exact2APSalvation still pending",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -27665,13 +27828,13 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-early-combat-20261013T0708",
+    "runId": "rpgthreejs-auto-dev-90m-20261013T1828",
     "agent": "codex",
-    "status": "PAUSED_FOR_CREDITS",
-    "runStartedAt": "2026-10-13T07:09:01.9273009Z",
-    "activePhase": "OD13C product published; native evidence final review paused for credits",
-    "heartbeat": "2026-10-13T10:30:10.712Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-13T0708Z-codex-early-combat-recovery.md",
+    "status": "IN_PROGRESS",
+    "runStartedAt": "2026-10-13T18:20:44.5385169Z",
+    "activePhase": "Valmir and mounted keyboard observed; native second-refuge aggregate timed out",
+    "heartbeat": "2026-10-13T19:24:14.958Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-13T1828Z-codex-native-second-refuge.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -28030,12 +28193,9 @@
       "aliasReconciliation": "Current generic live aliases reconciled with run1617; prior values retained, no parent/queue/QA request edits"
     },
     "lastSnapshot": {
-      "branch": "wip/rpgthreejs-auto-dev-90m-20261013T0552",
-      "sha": "a355d957a42cb672e89260a3ecc2ec8c02898e0a",
-      "at": "2026-10-13T06:38:19.5907745Z",
-      "remoteVerified": true,
-      "status": "GREEN",
-      "lastGreenCheck": "97current tests/build/types/contracts/immutable/whitespace; guardian PASSmechanics; browseracceptanceOPEN"
+      "at": "2026-10-13T18:29:23.815Z",
+      "sha": "523259c7c2c21bf998ee4de86707e6906fb6c6bf",
+      "branch": "wip/rpgthreejs-auto-dev-90m-20261013T1828"
     },
     "motion1648": {
       "jobId": "motion-t3-native-desktop-1648",
@@ -28732,7 +28892,7 @@
       "enemyStatsChanged": false,
       "mechanicalTests": 195,
       "types": "PASS",
-      "nativeAcceptance": "SUCCEEDED_ROOT_VERIFIED_NOT_INDEPENDENTLY_ACCEPTED_FINAL_REVIEW_PAUSED_FOR_CREDITS",
+      "nativeAcceptance": "ACCEPTED_SCOPED_REVIEW1828; original machine receipt NOT_ACCEPTED retained",
       "randomness": "Independent validated fresh draws within ordinary leg pools, existing injected source; no V6 transient data",
       "newQaTools": 0,
       "build": "PASS",
@@ -28777,8 +28937,193 @@
       ],
       "capturedProofPromoted": 0,
       "qaWorkerAbsentAtCloseout": true,
-      "qaListenerAbsentAtCloseout": true
-    }
+      "qaListenerAbsentAtCloseout": true,
+      "independentReview1828": {
+        "at": "2026-10-13T18:26:17.700Z",
+        "reviewer": "contracts-guardian /root/guardian",
+        "verdict": "PASS_SCOPED",
+        "resultSha256": "8e7a18f1897055d86d252c0241963d454ce6a0fd831d412d6ab7475e4f9c0187",
+        "claims": [
+          "native archer raw0→campaign1 after victory",
+          "native T0two forest_badger88HP victory/same mounted road/lane focus",
+          "temporary gold40→120 with secured150 unchanged",
+          "exact precombatV6 at lion-audience reload"
+        ],
+        "limits": [
+          "No immediate postvictory persistence",
+          "Duplicate callback rejection mechanically verified only",
+          "T1/T3/human diversity/balance/secondrefuge/ending/accessibility/mobile/visual remainOPEN"
+        ],
+        "frozenIdentity": "Result/sourcepatch996326f3/reconstructeddriverfc7d1f52/helper/all9 physical build hashes match",
+        "capturesInspected": 4,
+        "seed0603": "PASS exact digest/native/old resumedV6; native rest/current resume required",
+        "prelaunchDriver": "PASS actual minimal existing payment and native refusal patch; no weakened assertion"
+      }
+    },
+    "run1828": {
+      "startedAt": "2026-10-13T18:20:44.5385169Z",
+      "priorNextAction": "Resume SAME OD13C native evidence review after credits: reuse early-combat-native-pursuit-0708 SUCCEEDED results8e7a18f1897055d86d252c0241963d454ce6a0fd831d412d6ab7475e4f9c0187 and verified-result-summary; no replay. Guardian actualdiff/mechanical PASS retained; final independent evidence review interrupted usage_limit_exceeded. Verify original frozen HEAD3982b7a/sourceDiff996326f3/driverfc7d1f52/helper/build lineage and exact published-source equivalence0b4eb9b, then scope recovery archer0→1 and T0two-badger victory/same-road/precombatV6 only. Next product: resume approved native second-refuge campaign with separately reverified compatible successful0603 earned save, original targetsecond-refuge existing pilot payment/keyboard nextAction retained in closeout0552/handoff0552; never FAILED0552/1521/currentpartial seeds or repeatedT0. T1/T3/human mixed native diversity, full beginner balance, secondrefuge/ending, mountedkeyboard/AT, narrative/nightasset/mobile/operator remain OPEN. Automation stays manually paused.",
+      "priorSummary": {
+        "status": "PAUSED_FOR_CREDITS",
+        "runStartedAt": "2026-10-13T07:09:01.9273009Z",
+        "runEndedAt": "2026-10-13T10:30:10.712Z",
+        "activePhase": "OD13C product published; native evidence final review paused for credits",
+        "activeSubtask": "Early recovery/random counts implemented; native smoke successful, final independent evidence review pending",
+        "completedThisRun": [
+          "OD13C participantKO victory recovery1HP; raw result/bench/defeat preserved",
+          "Early ordinary authored groups2; PursuitT0two,T1two-three,T3three-four with independent ordinary-type draws",
+          "195 focused tests/types/build/8contracts/8slots/immutable/whitespace; guardian actualdiff mechanical PASS",
+          "Native fresh opening victory3rounds17actions archer0→owner1; randomT0two badgers victory3rounds25actions; same-road/rewardonce/precombatV6 assertions pass; no mutation/injection/errors",
+          "Published selected coherent checkpoint0b4eb9b before native completion on operator request; final review hit credit limit, no rerun"
+        ],
+        "filesChanged": [
+          "src/game/combatProgress.ts",
+          "src/game/combatProgress.test.ts",
+          "src/game/content.ts",
+          "src/game/content.test.ts",
+          "src/game/runSystem.ts",
+          "src/game/runSystem.test.ts",
+          "src/campaign/LionTraversalPursuitEncounters.ts",
+          "tools/demo-continuous-production-qa.mjs",
+          "docs/autonomy/EARLY_COMBAT_RECOVERY_OPERATOR_DECISION_2026-10-13.md",
+          "docs/autonomy/OPERATOR_DECISIONS.md",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+          "docs/autonomy/handoffs/2026-10-13T0708Z-codex-early-combat-recovery.md"
+        ],
+        "testsRun": [
+          "vitest --exclude tmp/** combatProgress/runSystem/management/content:195 across4 suites",
+          "tsc --noEmit",
+          "npm run build",
+          "npm run contracts:validate",
+          "node --check tools/demo-continuous-production-qa.mjs",
+          "git diff --check + immutable and working LOCKED gates",
+          "ONE registered fresh native pursuit-victory1366x768 normal rescue25min"
+        ],
+        "testsPassed": [
+          "195 tests",
+          "TypeScript/build/contracts/gates",
+          "guardian actualdiff mechanical/prelaunch",
+          "native machine smoke SUCCEEDED, digest/provenance/source-equivalence/rootcapture checks PASS"
+        ],
+        "creditStatus": "FINAL_GUARDIAN_REVIEW_USAGE_LIMIT_EXCEEDED"
+      },
+      "seed": {
+        "jobId": "reward-label-native-desktop-0603",
+        "resultSha256": "03eab0e5a83eea0f40c962cd7ce741df4e88cd4757ff331197f2f9f595bfc9f0",
+        "saveSha256": "d0fc5c11f8263316c071c4d859982f60a8be97b6d35ea024b7a960c93b5fd656",
+        "historicalScope": "Native first-refuge V6 exact resumed owner state; does not reaccept current opening difficulty",
+        "checks": "SUCCESS/no failure/no errors/no fixture/no mutation/no injection/exact resumed6 verified; native rest required for prior KO members"
+      },
+      "visibleOutcome": "Reach lion-second-refuge using authored rescue/native20gold tribute, actual combat, mounted keyboard refusals, exact V6 save/reload",
+      "exitCondition": "ONE registered second-refuge1366normal35min scenario; terminal provenance/assertions/captures and exact reload reviewed. Failure remains unseedable.",
+      "qaJustification": "Existing pilot default refusal invoked optional Serpent battle and prior native defeat; targetsecond-refuge now selects existing enabled20gold payment. Existing keyboard helper runs first new resumed battle and checks native illegal move/target announcements; no owner injection or weakened assertion.",
+      "scheduler": "PAUSED preserved; this invocation does not reactivate automation",
+      "review": {
+        "at": "2026-10-13T18:26:17.700Z",
+        "reviewer": "contracts-guardian /root/guardian",
+        "verdict": "PASS_SCOPED",
+        "resultSha256": "8e7a18f1897055d86d252c0241963d454ce6a0fd831d412d6ab7475e4f9c0187",
+        "claims": [
+          "native archer raw0→campaign1 after victory",
+          "native T0two forest_badger88HP victory/same mounted road/lane focus",
+          "temporary gold40→120 with secured150 unchanged",
+          "exact precombatV6 at lion-audience reload"
+        ],
+        "limits": [
+          "No immediate postvictory persistence",
+          "Duplicate callback rejection mechanically verified only",
+          "T1/T3/human diversity/balance/secondrefuge/ending/accessibility/mobile/visual remainOPEN"
+        ],
+        "frozenIdentity": "Result/sourcepatch996326f3/reconstructeddriverfc7d1f52/helper/all9 physical build hashes match",
+        "capturesInspected": 4,
+        "seed0603": "PASS exact digest/native/old resumedV6; native rest/current resume required",
+        "prelaunchDriver": "PASS actual minimal existing payment and native refusal patch; no weakened assertion"
+      },
+      "counts": {
+        "product": 0,
+        "test": 0,
+        "existingQA": 1,
+        "newQA": 0,
+        "promotedProof": 0,
+        "workflow": 3,
+        "inheritedWip": 0,
+        "browser": 1,
+        "reviewer": 1
+      },
+      "gates": "30focusedkeyboard/types/contracts8/slots8/syntax/immutable/working/diffcheck PASS",
+      "productionBuild": "Reused exact unchanged9-file frozen0708 build, independently hashed; source remains published0b4eb9b",
+      "jobId": "second-refuge-native-desktop-1828",
+      "parameters": {
+        "target": "second-refuge",
+        "routePlan": "rescue",
+        "timeoutMinutes": 35,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/reward-label-native-desktop-0603/results.json",
+        "verifySalvation": true
+      },
+      "lastHeartbeat": "2026-10-13T19:00:04.510Z",
+      "currentJob": {
+        "status": "RUNNING",
+        "pid": 18264,
+        "port": 5401,
+        "output": "tmp/demo/second-refuge-native-desktop-1828",
+        "provenanceMatches": true,
+        "requestMatches": true
+      },
+      "endedAt": "2026-10-13T19:24:14.958Z",
+      "status": "IN_PROGRESS_SAFE_CHECKPOINT",
+      "nativeAggregate": "FAILED_NOT_ACCEPTED",
+      "review1828": {
+        "at": "2026-10-13T19:24:14.958Z",
+        "reviewer": "/root/guardian",
+        "verdict": "PASS_SCOPED_OBSERVATIONS_BLOCKED_SECOND_REFUGE",
+        "resultSha256": "faf09be2a068e7eb533b5fd8e5d6bb74f2dc848a9686ba85cdebf68c79940361",
+        "frozenDriver": "9b3347ef77741590b3a03a55e793f0118aeef27c27f215738702033db24cc8f9",
+        "frozenDriverWip": "523259c7c2c21bf998ee4de86707e6906fb6c6bf",
+        "matchingAtReview": "Result/source/driver/helper/bothinputs/all9build matched independently before terminal driver edit",
+        "claims": [
+          "Exact current-build first-refuge reload and native rest210→180/all5fighters full",
+          "Valmir native victory4rounds34actions; rawCedric0→owner1 and bencharcher90 retained",
+          "Mounted Tab/ShiftTab/illegalmove+target refusal/Escape focus; tactical/AP/owner/autosave unchanged",
+          "Native potion afterward: Cedric1→58/AP1→0/potion5→4"
+        ],
+        "limits": [
+          "AggregateFAILED/NOT_ACCEPTED/allpartialoutputs unseedable",
+          "T1toad108/spider68 battle unfinished12actions at35min; no T1victory/return/reward/reload",
+          "Salvation AP5→3/heal107→140 only; no exact2→0 proof",
+          "No secondrefuge/ending/Garen/fullsix/balance/AT/mobile/full-demo acceptance"
+        ],
+        "capturesRootInspected": [
+          "lion-first-refuge-native-rest.png",
+          "combat-2-native-keyboard-return.png",
+          "combat-3-deployment.png",
+          "combat-2-result.png",
+          "failure-state.png"
+        ],
+        "capturesGuardianInspected": 4
+      },
+      "blocker": "Collision-blind native progression policy entered ordinary T1Pursuit near village approach; battle12actions incomplete at35min. Not defeat or proven gameplay defect.",
+      "preparedCorrection": {
+        "driverSha256": "dd9d82f8faf889916f595e0c81b61d3d5aa272aea7a25c3c4bc4718add46007a",
+        "status": "STATIC_GUARDIAN_PASS_PENDING_NATIVE",
+        "behavior": "Existing enabled opposite-lane key activation for second-refuge/ending CHARGING; pursuit-victory same-lane retained",
+        "nativeReplayCount": 0,
+        "originalFrozen1828ProofRetained": true
+      },
+      "childCleanup": "worker18264/port5401 checked absent before lock release",
+      "wipRetention": "Retain owned WIP lineage: original tested driver9b3347ef exists in first snapshot and differs from newly prepared steering policy; historical proof source not yet identical on dev"
+    },
+    "threadId": "01a1367c-ada6-7e02-a5c9-7f842bdf02f6",
+    "writerStoppedMeaning": "Production and QA worker stopped; owned lock retained through workflow publication"
   },
   "previousInterruptedRun": {
     "runId": "rpgthreejs-auto-dev-90m-20261009T0011",
