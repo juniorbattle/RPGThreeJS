@@ -1,3 +1,21 @@
+# Native second-refuge continuation — run1828
+
+Run: rpgthreejs-auto-dev-90m-20261013T1828. Started: 2026-10-13T18:20:44.5385169Z. Status: IN_PROGRESS. Parent all-demo-skills/random-Pursuit task and deferred work preserved.
+
+Visible goal: reach lion-second-refuge through native rescue route, existing20gold tributary choice, actual tactical combat and exact V6 reload. Existing keyboard helper checks invalid move/target refusal in first newly played resumed battle. ONE registered1366normal35min scenario only after guardian/gates; FAILED outputs never seeds.
+
+Historical0603 result03eab0e5/save d0fc5c11 exact V6 resumed first refuge verified; rest prepares prior KO members. Existing pilot minimal native input correction only; game source unchanged. Pending0708 final independent review reuses terminal proof without replay. Scheduler PAUSED preserved; no reactivation.
+
+Next action: Finish guardian preserved0708 evidence review and current pilot diff review; focused checks then ONE registered existing targetsecond-refuge1366normal/rescue/serpent/verifySalvation1/35min with verified0603 seed, free5401 and hostcache. Keep tested source/driver/build frozen; inspect terminal receipt/assertions/captures and exact earned second-refuge V6 reload, never failed partial seeds or unchangedT0 loops.
+
+Counts: product0/test0/existingQA1/newQA0/promotion0/workflow3/inherited0/browser0. All216 historical QA records retained; no new global demo acceptance.
+
+30keyboard tests/types/8contracts/8slots/syntax/LOCKED/diffcheck PASS. Exact unchanged9-file physical build reused. Independent guardian final0708 PASS scoped: rawarcher0→owner1/T0two-badger victory/same-road/temp80/precombatV6; broad gaps retained. Current minimal policy/refusal diff and historical0603 compatibility prelaunch PASS. No0708 replay.
+
+Current next action: Register and execute ONE current existing native second-refuge1366normal/rescue/serpent/verifySalvation1/35min with verified0603 earnedsave/proof, port5401/hostcache. Freeze source/driver/helper/build, sync receipt at heartbeat, inspect terminal assertions/captures/exact second-refugeV6 before acceptance; failed outputs unseedable. Ending continuation next only from successful proof.
+
+---
+
 # OD13C published product checkpoint — 2026-10-13T10:30:10.712Z
 
 Run: codex-early-combat-20261013T0708. Status: PAUSED_FOR_CREDITS for final independent evidence review only. Product published/remote verified:0b4eb9bdc9fd25cfcd774eaab978712b9e9f1f78. User minimum2 respected: early authored groups2; PursuitT0=2,T1=2–3,T3=3–4, random ordinary types; KO participants recover1HP after victory. Enemy stats/raw tactical results/bench/defeat/rewards/V6/10bindings protected.
