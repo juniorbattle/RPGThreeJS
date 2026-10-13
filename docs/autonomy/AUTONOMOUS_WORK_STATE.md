@@ -1,3 +1,29 @@
+# Current native campaign and keyboard checkpoint - run0552
+
+Status: IN_PROGRESS. Owner: rpgthreejs-auto-dev-90m-20261013T0552. Product changed: rejected keyboard move/target activation announces general refusal through existing polite atomic status only; valid legality/owner calls, AP/focus/saves unchanged.97focused tests/build/types/contracts/LOCKED/whitespace green; guardian mechanically PASS. Mounted/AT/native control acceptance OPEN.
+
+Campaign0552 FAILED native Serpent defeat: round7/36actions, four heroes KO, stable digest7a9af388/no mutation/injection. No new playable campaign milestone; last independently accepted input is first-refuge0603 with exact V6 entry/reload. Pilot experiment reverted exactly. No failure-causation proof, so no second browser scenario; all failed outputs unseedable.
+
+Next product action: Read-only preflight/exclusive lock. Reverify independent reward-label-native-desktop-0603 result/save digest, native lineage and exact entry/resumed equality against current unchanged campaign/combat/save owners. In existing tools/demo-continuous-production-qa.mjs choose(), explicitly select authored rep_event_roadside_intimidation step1/index1 ONLY for targetsecond-refuge (native enabled20gold payment); no canon/reward/balance change. Reuse campaignBattlefieldKeyboard in FIRST NEW RESUMED combat (current index0&&!priorProof excludes continuation), add native illegal-move/target refusal observation to existing helper, retain all tactical/owner/autosave/Salvation/reload assertions; guardian review exact policy/assertion diff. Build current sources, register ONE targetsecond-refuge1366x768/normal/rescue/serpent/verifySalvation1, valid0603 inputs,35min/freeport/uniqueignoredoutput/hostcache. Inspect terminal digest/provenance/native actions/refusal status/captures and exact lion-second-refuge V6 reload before acceptance; then earned ending continuation. Never seed FAILED0552/1521, repeat default optional Serpent refusal fight/deadline-only campaign or T0 diagnostics. Keep keyboard mounted/AT, all-six/lancer/ordinary Pursuit/ending/visual/mobileLAST/operator criteria open and deferred narratives/keyboard exact.
+
+Counts: product1,test1,existingQA0,newQA0,proof0,workflow3,browser1; inherited0. Operator-authorized manual Alistair assets preserved/excluded. Original parent, exact deferred keyboard/narrative, taskqueue and214 historical jobs retained;215 total. All broader demo criteria OPEN. No global PASS. No LOCKED rule changed (set1.1.0).
+
+WIP repair: initial temporary-index failure published an empty-tree WIP only; complete tree restored in non-force descendant0506a3e, subsequent7c0b1a8 snapshot verified; dev/main untouched by that error. All snapshot commands now stop on native exit failure and verify selected paths.
+
+---
+
+Active native PC continuation - run0552
+
+WIP: 7c0b1a81c1011ff17e2a0f53c6f52c8dda3fc3eb (remote verified); native QA job second-refuge-native-desktop-0552 RUNNING, PID14324/port5396.
+
+Status: IN_PROGRESS. Owner: rpgthreejs-auto-dev-90m-20261013T0552. Product source unchanged. Verified successful0603 first-refuge V6 seed; FAILED1521 timed out after two further native victories, no gameplay defect established. Existing pilot corrected once: novice Marian attempts native offensive attack/move when no living ally needs healing. All engine/AP/outcome and assertions preserved.
+
+Next action: Run ONE registered corrected native second-refuge1366normal/rescue35min smoke from verified reward-label0603; Marian uses native offensive input when no ally needs healing. Keep all assertions; inspect exact earned second-refuge/reload or quarantine failure then independent product keyboard work. No unchanged campaign/T0 replay.
+
+Counts: product0, existingQA1, newQA0, proof0; workflow updated separately. Original parent, deferred keyboard/narrative, task queue and214 jobs preserved.
+
+---
+
 # Current priority: playable PC demo — OD-2026-10-13-A
 
 Configuration maintenance only; no new product implementation or acceptance. Original parent task: OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat. Current directive: [demo completion plan](DEMO_COMPLETION_PLAN.md). It supersedes the historical isolated T0 normal coverage nextAction below.
@@ -1178,6 +1204,9 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - motion-t3-os-desktop-1821: SUCCEEDED; port 5392; receipt `tmp/traversal/motion-t3-os-desktop-1821/qa-job.json`; NOT_ACCEPTED
 - motion-t0-os-desktop-1848: SUCCEEDED; port 5393; receipt `tmp/traversal/motion-t0-os-desktop-1848/qa-job.json`; NOT_ACCEPTED
 - motion-t0-os-coverage-2045: SUCCEEDED; port 5394; receipt `tmp/traversal/motion-t0-os-coverage-2045/qa-job.json`; NOT_ACCEPTED
+- motion-t0-os-temporal-0127: FAILED; port 5395; receipt `tmp/traversal/motion-t0-os-temporal-0127/qa-job.json`; NOT_ACCEPTED
+- motion-t0-os-temporal-0127-host: SUCCEEDED; port 5395; receipt `tmp/traversal/motion-t0-os-temporal-0127-host/qa-job.json`; NOT_ACCEPTED
+- second-refuge-native-desktop-0552: FAILED; port 5396; receipt `tmp/demo/second-refuge-native-desktop-0552/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
