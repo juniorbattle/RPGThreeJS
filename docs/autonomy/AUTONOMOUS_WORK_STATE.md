@@ -1,8 +1,16 @@
-# POI map first-slice verification — codex-poi-migration-20261013
+# POI map first slice accepted — codex-poi-migration-20261013
 
-Status: IN_PROGRESS. Active task: POI-MAP-FIRST-SLICE. Decision OD-2026-10-13-D; set1.2.0; immutable baseline692829f. Product1449090 and correction596e390 published on origin/dev. Guardian amendment/source reviews PASS;54 focused tests, final types/build,8contracts/8videos and immutable/whitespace gates PASS. Fresh job0057 SUCCEEDED/stable, scoped native opening→first-refuge/revisit/hub/exactV6 independently reviewed. Job0037 FAILED and0127 INTERRUPTED harness-entry error: both unseedable/NOT_ACCEPTED. New corrected shortcut and actual pre-migration0603 continuations pending. No new QA runner. Old Traversal retained; subsequent campaign/fins/mobile unaccepted. Scheduler PAUSED observed, unchanged.
+Run started:2026-10-14T00:17:46.2829154Z; closeout:2026-10-14T01:42:17.438Z. Status:IN_PROGRESS overall migration; first slice ACCEPTED_SCOPED. Next active task:POI-MAP-LION-CONTINUATION. Decision OD-2026-10-13-D; set1.2.0; immutable baseline692829f. Initial product1449090/correction596e390/final executable5f3605d published on dev. Final evidence/state/handoff SHA is recorded by Git, without a self-reference.
 
-Next action: Freeze corrected first-refuge resume entry in existing driver, then register short native0057 shortcut and authenticated pre-migration0603 V6 continuations under source596e390/new build. Never seed FAILED0037 or INTERRUPTED0127. Finish scoped review and publish first-slice closure.
+Playable:Audience→real opening victory→Cedric→optional refugees bypass−2 and actual revisit→selected trial/neutralized alternative→first refuge. Native corrected shortcut works both ways, pointer/keyboard, no replay or repeated consequences. Fresh0057 and pre-migration0603→0131 real hub/reload are exactV6; legacy authored tribute210→190 and flags preserved. Exactly8videos/V2/canon/temporaryloot owners remain. Old Traversal retained pending later replacement/reference audit.
+
+Verification:54 focused tests, finaltypes/build/eightMP4,8contracts8slots, empty immutable/workingLOCKED andwhitespace gates PASS. Independent amendment/final12-row guardian matrix PASS scoped1366desktopnormal. Accepted0057/0125/0131;0124 hubonly;0037FAILED,0127INTERRUPTED,0128FAILED unseedable/nonaccepted. Zero new combat inshort continuations; inherited nativebattles explicit.5 inspected captures+1 compact result promoted;0newQA tools. Remaining firstcombat alternative/native defeat/otherV6/laterLion/fins/reducedmotion/mobile/operatoracceptance OPEN.
+
+Counts:product6/test3/existingQA1/newQA0/proof6/workflow26/inherited0/browser7/reviewer1. All218 historical jobs plus7 current retained (225 total), original0603 acceptance and deferred work preserved. Owned WIPe725 incorporated indev; only this branch can retire. All owned workers/previews stopped; initially inherited Vite29856 left untouched, absent at closeout; product preview127.0.0.1:5175/PID60640 deliberately available. Scheduler PAUSED observed, unchanged.
+
+Report:[first-slice scoped acceptance](../reports/poi-map-first-slice-2026-10-13.md). Handoff:[next product boundary](handoffs/2026-10-14T0138Z-codex-poi-first-slice.md).
+
+Next action:Read-only preflight, acquire exclusive lock, verify authenticated successful0057 first-refuge save/proof (or0131 exact resumed pair with preserved parent lineage) and current source/build. Continue POI selection through reserve-trail, Valmir, second exclusive trial and Bois-Clair to the second refuge; preserve actual reputation events, existing tactical configurations/rewards and native exactV6 reload. Reuse existing campaign driver; no physical-road polish, no failed0037/0127/0128 seed. After second refuge, verify formerT2/T4 narrative continuations and both endings; retire physical Traversal only after full replacement/reference audit. Scheduler remains PAUSED as observed.
 
 ## Preserved previous checkpoint
 # Native campaign and deployment focus checkpoint — run1944
@@ -1269,8 +1277,12 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - second-refuge-native-desktop-1828: FAILED; port 5401; receipt `tmp/demo/second-refuge-native-desktop-1828/qa-job.json`; NOT_ACCEPTED
 - second-refuge-native-desktop-1944: FAILED; port 5403; receipt `tmp/demo/second-refuge-native-desktop-1944/qa-job.json`; NOT_ACCEPTED
 - poi-native-first-refuge-0037: FAILED; port 5407; receipt `tmp/demo/poi-native-first-refuge-0037/qa-job.json`; NOT_ACCEPTED
-- poi-native-first-refuge-0057: RUNNING; port 5407; receipt `tmp/demo/poi-native-first-refuge-0057/qa-job.json`; NOT_ACCEPTED
-- poi-shortcut-native-0127: PLANNED; port 5409; receipt `tmp/demo/poi-shortcut-native-0127/qa-job.json`; NOT_ACCEPTED
+- poi-native-first-refuge-0057: SUCCEEDED; port 5407; receipt `tmp/demo/poi-native-first-refuge-0057/qa-job.json`; ACCEPTED_SCOPED
+- poi-shortcut-native-0127: INTERRUPTED; port 5409; receipt `tmp/demo/poi-shortcut-native-0127/qa-job.json`; NOT_ACCEPTED
+- poi-shortcut-native-0125: SUCCEEDED; port 5409; receipt `tmp/demo/poi-shortcut-native-0125/qa-job.json`; ACCEPTED_SCOPED
+- poi-legacy-v6-native-0124: SUCCEEDED; port 5411; receipt `tmp/demo/poi-legacy-v6-native-0124/qa-job.json`; ACCEPTED_SCOPED
+- poi-legacy-map-native-0128: FAILED; port 5411; receipt `tmp/demo/poi-legacy-map-native-0128/qa-job.json`; NOT_ACCEPTED
+- poi-legacy-map-native-0131: SUCCEEDED; port 5411; receipt `tmp/demo/poi-legacy-map-native-0131/qa-job.json`; ACCEPTED_SCOPED
 <!-- QA_JOBS_END -->
 
 

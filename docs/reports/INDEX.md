@@ -1,9 +1,12 @@
 # Report authority index
 
+Current navigation authority: [OD-2026-10-13-D](../autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md), contract set1.2.0 and [production POI navigation](../project/POI_NAVIGATION.md). Earlier physical-road reports below remain historical.
+
 Baseline for this index: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. Reports remain historical even when their outcome was merged. Current contracts: [project status](../project/CURRENT_STATUS.md), [T0](../traversal/T0_PRODUCTION_CONTRACT.md), [remaining legs](../traversal/LEGS_ROADMAP.md), and [demo content](../content/DEMO_CONTENT_MAP.md).
 
 | Report | Historical role | Current authority |
 | --- | --- | --- |
+| [Playable POI first slice](poi-map-first-slice-2026-10-13.md) | Native Audience→first-refuge, reversible shortcut and authentic oldV6 scoped desktop acceptance,2026-10-13; later Lion/fins/mobile OPEN | [Production POI navigation](../project/POI_NAVIGATION.md),current contracts and paired autonomy state |
 | [Late-reset frozen camera contact](traversal-road-late-reset-3.md) | Bounded cached presentation forecast and fresh scoped proof,2026-10-04; complete road/demo acceptance OPEN | [Road elements status](../autonomy/TRAVERSAL_ROAD_ELEMENTS.md) and paired autonomy state |
 | [Road entry and late-reset checkpoint](traversal-road-lifetime-entry-2.md) | Unseen entry fix and scoped native proof,2026-10-03; late-reset contact/full acceptance OPEN | [Road elements status](../autonomy/TRAVERSAL_ROAD_ELEMENTS.md) and paired autonomy state |
 | [Physical road anchors and depth](traversal-road-anchor-depth-1.md) | Shared anchor/lifetime/depth implementation checkpoint,2026-10-03; expanded production acceptance remains open | [Road elements status](../autonomy/TRAVERSAL_ROAD_ELEMENTS.md) and paired autonomy state |
