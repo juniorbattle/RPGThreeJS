@@ -7,7 +7,7 @@
 | BASELINE | dev @ 41132a2868ba84835f8c58ab0d044dde24c03f32; first slice already published |
 | BRANCH | dev |
 | HEAD | 733737d2bc93c8556950df895f1f2aad9fba0b46 — final executable/source-and-runner checkpoint; closure publication identity follows Git |
-| STATUS | REVIEWED — ACCEPTED_SCOPED desktop rescue through second refuge; documentation closure ready for publication |
+| STATUS | REVIEWED — ACCEPTED_SCOPED desktop rescue through second refuge; product/evidence/project documentation published on dev at f597e3b181b6dc97a6bdee45978716a654ccbf35 |
 | MERGED_IN | NONE — direct dev checkpoints |
 | SUPERSEDES | NONE — extends the first-slice scope; historical evidence retained |
 | SUPERSEDED_BY | NONE |
@@ -32,7 +32,7 @@ Product correction **f7ab12493481dfae768a19d9870bacd15f6d0b67** resolves a compl
 | Bois-Clair | Authored rescue choices and actual village_defense victory,10rounds/50native actions; existing reward160gold/2red gems/2iron/10reputation; raw Elara/Kestrel0HP becomes campaign1HP |
 | Mission/reputation | missionSuccess=true, missionGreed=false; authored reward refusal/memorial choice and existing reputation history preserved |
 | Second refuge | Existing arrival/securing owner, checkpoint lion-second-refuge;280secured gold/85reputation/zero temporary loot; actual departure ATE completed before final map/save |
-| Reuse and V6 | Both real refuge hubs reopened, no repeated securing bonus; exact saved bytes/owner reload; earned second-refuge save equals report.resumed |
+| Reuse and V6 | Both real refuge hubs reopened, no repeated securing bonus; exact V6/owner reload by structural equality; earned second-refuge save equals report.resumed |
 
 Successful execution **poi-second-refuge-manual-0645**, `2026-10-14T06:44:49.522Z`→`07:26:18.759Z`, desktop **1366×768**, normal motion, rescue route. `SUCCEEDED`, exit0, stable provenance, native inputs, no fixture state, outcome injection, runtime mutation or browser errors. Result SHA256 **0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868**. Earned V6 SHA256 **f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a**; exact equality to `resumed` independently reviewed.
 
@@ -66,6 +66,8 @@ Five broader JourneyCampaignBoundary failures reproduce exactly at pre-correctio
 Guardian read constitution/eight contracts and relevant authorities, reviewed actual source/helper changes, final native lineage and five selected current captures. **No LOCKED rule changed in this continuation or closure.** The second-refuge pair is admissible for a future authentic continuation after current provenance/compatibility revalidation.
 
 The browser/context/server close in the driver's `finally` before writing the terminal receipt, and exec returned exit0. A later independent PID7520/port5409 CIM check was **not executed**: automatic approval review could not complete because its reviewer quota was exhausted. Do not claim live process inspection or bypass that refusal. The separately retained product preview at http://127.0.0.1:5175/ remains available; operator browser storage was untouched. Publication/lock-release status follows the current paired state and handoff, rather than an inferred success.
+
+Closure publication: **f597e3b181b6dc97a6bdee45978716a654ccbf35**, normal non-force `origin/dev`, verified live parity at2026-10-14T18:45:02Z; remote `main` remains00b96f1b502539618790b1c0d8d642f86d3dcf7f. The distinct publication operation passed automatic review; the refused CIM query was never rerun or bypassed. Final state/handoff metadata publication and owned-lock release follow this checkpoint and are verified at execution, with final commit identity read from Git.
 
 ## Selected current captures
 

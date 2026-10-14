@@ -440,6 +440,15 @@
     "Production chest catalogue empty; no approved new placement; audio deferred; Bois-Clair night art external",
     "Five JourneyCampaignBoundary failures reproduce unchanged at pre-fix e61 baseline; full suite not claimed green",
     "Independent live PID/port absence query was not executed due automatic approval reviewer quota; cleanup is evidenced by finally-before-receipt and terminal exit0",
-    "Selected proof/docs publication and lock release pending guarded closeout; executable source already published through733737d"
-  ]
+    "Product/proof/project docs published ondev atf597e3b; final metadata push and owned-lock release follow guarded execution"
+  ],
+  "documentationPublication": {
+    "commit": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
+    "verifiedRemoteDev": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
+    "verifiedRemoteMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+    "nonForce": true,
+    "publishedAt": "2026-10-14T18:45:02.5129679+00:00",
+    "nativeAssertionsUnchanged": true,
+    "refugeEqualityScope": "Structural exact V6/owner reload; no byte-identity assertion at refuge boundary"
+  }
 }

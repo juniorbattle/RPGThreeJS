@@ -1,6 +1,6 @@
 # POI integration closeout — codex-poi-continuation-20261014
 
-Prepared:2026-10-14T18:41:20.017Z. Status:READY_FOR_PUBLICATION; functional scope ACCEPTED_SCOPED Audience→Second refuge, rescue, desktop1366×768 normal. Operator requests closure of this pass; no new ending job. Executable/runner733737d and source4d7244 already published; selected proof/docs publication and owned-lock release pending guarded operation.
+Closed scoped:2026-10-14T18:47:05.843Z. Status:COMPLETE_SCOPED; accepted Audience→Second refuge rescue on desktop1366×768 normal. Product/proof/project docs publishedf597e3b, remote parity verified; final metadata push/owned-lock release follows guarded execution. No additional ending job.
 
 Product:f7ab corrects completed ending to existing terminal Journey/focused title, with pending-finale ownership preserved. Map drives existing canon/tactical/refuge owners;21IDs/V6 unchanged. No lore, hub, reward, parallel tactic or hidden road invented. Terminal native acceptance remains open.
 
@@ -10,13 +10,13 @@ Verification:67current focused tests,18QA continuity/authority tests, tsc/build,
 
 All229jobs retained; all225pre-continuation records and deferredDemoTask/pendingNarrativeTask exact.0451/0540FAILED village timeout,0643FAILED pre-game cache:unseedable/nonaccepted. Raw receipts unchanged; selected0645 disposition reviewed separately. ManualOD-2026-10-14-A budget exception scoped to named interactive run; normalQA1–45/default25 and scheduler unchanged/PAUSED as observed.
 
-Closeout blocker:automatic approval review could not execute latest read-only PID7520/port5409 query because reviewer quota exhausted; action not executed and no bypass. Driver finally closes browser/server before terminalreceipt and exec0; independent live absence not claimed. Product preview5175 deliberately retained/user storage untouched. Guarded commit/push/remote parity and owned-lock release still pending.
+Publication:f597e3b181b6dc97a6bdee45978716a654ccbf35 normally published origin/dev, live parity verified2026-10-14T18:45:02Z; remote main00b96f1 unchanged. Earlier independent process query remains non-executed due reviewer quota; distinct publication passed review, no bypass. Cleanup evidenced by finally-before-receipt and exit0; preview5175 retained/user storage untouched. Final metadata/parity/owned-lock release follows this checkpoint.
 
 Counts:product1/test1/existingQA2/existingQAtest1/newQA0/promotedproof6(5captures)/workflow12/inherited0/registered4/gameplay3/pre-gamefailure1/reviewer1. First-slice counts/history unchanged.
 
 Report:[scoped integration](../reports/poi-map-integration-2026-10-14.md); Handoff:[closure and future boundary](handoffs/2026-10-14T1841Z-codex-poi-integration.md).
 
-Next:Finish guarded explicit-path POI documentation/proof publication on origin/dev and owned-lock release; actual automatic-review quota refusal must never be bypassed. Current pass functionally accepted throughSecond refuge; launch no ending job. A future resumed pass revalidates successful0645 pair/current source/build before native pre-judgement/both endings/terminal menu/reload, alternatives/defeat/motion/mobile/operator testing; no physical-road polish.
+Next:Current POI pass closed scoped throughSecond refuge; launch no additional QA here. At a future separately resumed pass: read-only preflight/exclusive lock, revalidate successful0645 native save/proof/current source/build, then pre-judgement preparation/both endings/native terminal-menu/reload; later alternatives/defeat/OS motion/mobile/operator testing and safe physical-reference audit. Scheduler remains PAUSED as observed; no physical-road polish.
 
 Remaining migration:native pre-judgement/both endings/terminal/menu/reload, other routes/defeat/V6, inherited Journey tests, OS reduced motion/mobile/operator final demo; physical Traversal reference audit/removal only after complete replacement. Sharedtiming/durablefork/save references are retained.
 

@@ -1,13 +1,13 @@
 {
-  "status": "READY_FOR_PUBLICATION",
+  "status": "COMPLETE_SCOPED",
   "runStartedAt": "2026-10-14T04:40:17.8624482Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-14T18:47:05.843Z",
   "activeTask": "POI-INTEGRATION-CLOSEOUT",
-  "activePhase": "SCOPED_ACCEPTED_PUBLICATION_PENDING",
-  "activeSubtask": "POI Audience→Second refuge verified; scoped docs/evidence ready; final guarded publication pending",
+  "activePhase": "CLOSED_POI_FIRST_SECOND_REFUGE",
+  "activeSubtask": "Current POI pass accepted throughSecond refuge; product/proof/project docs published, final metadata closeout",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "733737d2bc93c8556950df895f1f2aad9fba0b46",
-  "lastPushedCommit": "733737d2bc93c8556950df895f1f2aad9fba0b46",
+  "lastKnownGoodCommit": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
+  "lastPushedCommit": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
   "completedThisRun": [
     "Production terminal Journey/title correction with canonical pending-finale protection, mechanical exact-save regression coverage",
     "Existing native pilot prepares company through real backtracking/paid rest; no game-truth/tactical/balance change",
@@ -56,18 +56,16 @@
     "Other optional/exclusive routes/native POI defeat/broader V6",
     "Five inherited JourneyBoundary failures, OS reduced motion/mobile/operator full demo"
   ],
-  "blockers": [
-    "Automatic approval reviewer quota exhausted for last independent process query (not executed); guarded publication/lock release still pending, no bypass"
-  ],
+  "blockers": [],
   "remainingWork": [
     "Native pre-judgement/both endings/terminal menu/reload",
     "Other optional/exclusive routes/native POI defeat/broader V6",
     "Five inherited JourneyBoundary failures, OS reduced motion/mobile/operator full demo",
     "Safe physical Traversal retirement only after full replacement and complete reference inventory"
   ],
-  "nextAction": "Finish guarded explicit-path POI documentation/proof publication on origin/dev and owned-lock release; actual automatic-review quota refusal must never be bypassed. Current pass functionally accepted throughSecond refuge; launch no ending job. A future resumed pass revalidates successful0645 pair/current source/build before native pre-judgement/both endings/terminal menu/reload, alternatives/defeat/motion/mobile/operator testing; no physical-road polish.",
+  "nextAction": "Current POI pass closed scoped throughSecond refuge; launch no additional QA here. At a future separately resumed pass: read-only preflight/exclusive lock, revalidate successful0645 native save/proof/current source/build, then pre-judgement preparation/both endings/native terminal-menu/reload; later alternatives/defeat/OS motion/mobile/operator testing and safe physical-reference audit. Scheduler remains PAUSED as observed; no physical-road polish.",
   "taskQueue": [
-    "POI-INTEGRATION-CLOSEOUT: functional scope ACCEPTED throughSecond refuge; reviewed docs/evidence publication pending; no new ending QA in this pass",
+    "POI-INTEGRATION-CLOSEOUT: COMPLETE_SCOPED Audience→Second refuge/rescue/desktop1366normal; full campaign remains open; final metadata follows publishedf597e3b",
     "DEMO-PC-CAMPAIGN: native Audience→Second refuge rescue accepted scoped; later pre-judgement/both endings/terminal/reload OPEN for future separate pass",
     "DEMO-COMBAT-SKILLS: PENDING_MISSING_CRITERIA_ONLY; six heroes/lancer, native victory/defeat and ordinary Pursuit return",
     "DEMO-CAMPAIGN-KEYBOARD: PENDING; preserve standalone scoped acceptance and deferred work; mounted campaign targets/focus OPEN",
@@ -113,7 +111,7 @@
       "REPOSITORY_GOVERNANCE": "PASS scoped Audience→Second refuge desktop1366 normal; preservation/broader limits in integration report"
     }
   },
-  "commitReferenceScope": "Executable/runner733737d and immutable source4d7244 already published; subsequent selected-proof/docs closure identity follows Git, not a self-referential SHA",
+  "commitReferenceScope": "Published product/proof/project docs checkpointf597e3b at source4d7244; final metadata commit and lock-release outcome follow Git and guarded execution, avoiding self-reference",
   "operatorAuthorization": "Explicit current POI migration/LOCKED amendment request and attachments, registered OD-2026-10-13-D; normal origin/dev publication permanently authorized OD-2026-10-12-A",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -205,10 +203,10 @@
   },
   "runId": "codex-poi-continuation-20261014",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-14T18:41:20.017Z",
+  "lastHeartbeat": "2026-10-14T18:47:05.843Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-14T18:41:20.017Z",
+    "lastHeartbeat": "2026-10-14T18:47:05.843Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -24925,7 +24923,7 @@
       }
     ],
     "wip": null,
-    "nextAction": "Finish guarded explicit-path POI documentation/proof publication on origin/dev and owned-lock release; actual automatic-review quota refusal must never be bypassed. Current pass functionally accepted throughSecond refuge; launch no ending job. A future resumed pass revalidates successful0645 pair/current source/build before native pre-judgement/both endings/terminal menu/reload, alternatives/defeat/motion/mobile/operator testing; no physical-road polish.",
+    "nextAction": "Current POI pass closed scoped throughSecond refuge; launch no additional QA here. At a future separately resumed pass: read-only preflight/exclusive lock, revalidate successful0645 native save/proof/current source/build, then pre-judgement preparation/both endings/native terminal-menu/reload; later alternatives/defeat/OS motion/mobile/operator testing and safe physical-reference audit. Scheduler remains PAUSED as observed; no physical-road polish.",
     "runMetrics": {
       "runId": "codex-poi-continuation-20261014",
       "runtimeSourceFilesModified": 1,
@@ -24943,20 +24941,10 @@
       "workflowDocs": 12
     },
     "checkpointPaths": [
-      "docs/README.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
       "docs/autonomy/handoffs/2026-10-14T1841Z-codex-poi-integration.md",
-      "docs/project/CURRENT_STATUS.md",
-      "docs/project/POI_NAVIGATION.md",
-      "docs/reports/INDEX.md",
       "docs/reports/poi-map-integration-2026-10-14.md",
-      "docs/reports/poi-map-integration-2026-10-14/01-second-panel-reserves.png",
-      "docs/reports/poi-map-integration-2026-10-14/02-native-paid-rest.png",
-      "docs/reports/poi-map-integration-2026-10-14/03-native-village-victory.png",
-      "docs/reports/poi-map-integration-2026-10-14/04-second-refuge-map.png",
-      "docs/reports/poi-map-integration-2026-10-14/05-second-refuge-reloaded.png",
       "docs/reports/poi-map-integration-2026-10-14/results.json"
     ],
     "publication": {
@@ -24973,11 +24961,15 @@
       "sourceTree": "4d7244c191ad9a58d53d9e74c24830cde40c3631",
       "target": "origin/dev",
       "authorization": "OD-2026-10-12-A and direct operator closeout request",
-      "status": "PENDING_GUARDED_OPERATION",
-      "finalClosure": "Selected explicit paths reviewed; commit/push/parity/owned lock release not yet executed"
+      "status": "PUBLISHED_PRODUCT_PROOF_PROJECT_DOCS",
+      "finalClosure": "Final metadata commit identity follows Git; owned-lock release only after verified normal push",
+      "productEvidenceCheckpoint": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
+      "verifiedRemoteDev": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
+      "verifiedRemoteMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "publishedAt": "2026-10-14T18:45:02.5129679+00:00"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-14T18:47:05.843Z",
+    "writerStopped": true,
     "metadataPublication": {
       "status": "FINAL_SELECTED_CLOSURE",
       "shaIn": "Git/automation memory after push"
@@ -25774,7 +25766,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "POI-INTEGRATION-CLOSEOUT",
-    "activeSubtask": "POI Audience→Second refuge verified; scoped docs/evidence ready; final guarded publication pending",
+    "activeSubtask": "Current POI pass accepted throughSecond refuge; product/proof/project docs published, final metadata closeout",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -29108,10 +29100,10 @@
     },
     "runId": "codex-poi-continuation-20261014",
     "agent": "codex",
-    "status": "READY_FOR_PUBLICATION",
+    "status": "COMPLETE_SCOPED",
     "runStartedAt": "2026-10-14T04:40:17.8624482Z",
-    "activePhase": "SCOPED_ACCEPTED_PUBLICATION_PENDING",
-    "heartbeat": "2026-10-14T18:41:20.017Z",
+    "activePhase": "CLOSED_POI_FIRST_SECOND_REFUGE",
+    "heartbeat": "2026-10-14T18:47:05.843Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-14T1841Z-codex-poi-integration.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -30452,7 +30444,7 @@
       }
     },
     "threadId": "01a136cb-21ed-7cc2-b87e-31dde647e502",
-    "writerStoppedMeaning": "Continuation run active under exclusive lock; shared writes only by orchestrator",
+    "writerStoppedMeaning": "Product/QA writer finished; only final metadata publication/parity/owned-lock release remains under this run",
     "run1944": {
       "startedAt": "2026-10-13T19:45:46.4541492Z",
       "seedAudit": "tmp/autonomy/run-1944/seed-audit.json",
@@ -30840,7 +30832,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "733737d2bc93c8556950df895f1f2aad9fba0b46",
+    "lastPushedCommit": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
     "productPreview": {
       "url": "http://127.0.0.1:5175/",
       "pid": 60640,
@@ -31053,25 +31045,15 @@
     }
   },
   "uncommittedWork": {
-    "status": "REVIEWED_CLOSURE_READY_FOR_PUBLICATION",
+    "status": "FINAL_METADATA_ONLY",
     "files": [
-      "docs/README.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
       "docs/autonomy/handoffs/2026-10-14T1841Z-codex-poi-integration.md",
-      "docs/project/CURRENT_STATUS.md",
-      "docs/project/POI_NAVIGATION.md",
-      "docs/reports/INDEX.md",
       "docs/reports/poi-map-integration-2026-10-14.md",
-      "docs/reports/poi-map-integration-2026-10-14/01-second-panel-reserves.png",
-      "docs/reports/poi-map-integration-2026-10-14/02-native-paid-rest.png",
-      "docs/reports/poi-map-integration-2026-10-14/03-native-village-victory.png",
-      "docs/reports/poi-map-integration-2026-10-14/04-second-refuge-map.png",
-      "docs/reports/poi-map-integration-2026-10-14/05-second-refuge-reloaded.png",
       "docs/reports/poi-map-integration-2026-10-14/results.json"
     ],
-    "workflowClosure": "Selected proof/docs/paired state reviewed; no uncommitted product/driver change; publication operation pending"
+    "workflowClosure": "Product/proof/project docs publishedf597e3b; final metadata publication and owned-lock release pending guarded execution"
   },
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
@@ -31247,7 +31229,7 @@
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
   "implementationCommit": "f7ab12493481dfae768a19d9870bacd15f6d0b67",
-  "authorizedWorkContinuation": "First obtain exact-payload public dev publication approval for run1859 local checkpoint; automatic review rejected the public WIP state push and no workaround is authorized. Inspect clean Git/local commits, owned writerStopped lock and preserved receipts. After approved normal push/remote parity and lock resolution, continue DEMO-QA-POLISH with existing tools/demo-continuous-production-qa.mjs from earnedSavePath tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json (SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b) and priorProofPath tmp/demo/campaign-second-refuge-1859/results.json (SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3). Rescue/serpent/ending1366normal, native rest75 first (3KO/5wounded,300gold), existing native shop/equip preparation, register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID, unique ignored output/free strict port and bounded deadline. Verify current physical source/driver/build identities; do not relabel old frozen577 campaign proof as new build acceptance. Inspect terminal receipt, genuine combats/T1/T3/temporaryloot/exactV6/ending/Salvation2AP and selected captures. Do not repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices; keep live leap/attack/Stage, live-slope smoothness,390framing/broadaccessibility/balance/settledVFX/fullending gates open. Preserve152historicaljobs/exact deferredDemoTask and pendingNarrativeTask.",
+  "authorizedWorkContinuation": "Standing OD-2026-10-12-A non-force dev publication and direct POI closeout request apply; product/proof/docs publishedf597e3b; final metadata/parity/owned-lock release only. No new ending job in this pass.",
   "publication1214History": {
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
     "reviewedCheckpoint": "b73f0bedf1b5c6b6ec909ed6918a35362e08339a",
@@ -31330,7 +31312,7 @@
     "preparation": "Native rest75;3KO/5wounded/300gold",
     "scope": "Scoped1366normal rescue secondrefuge on prior frozen build"
   },
-  "lastAcceptedProductionCommit": "0b7fb9d80d52da46d6b2b8269af837ea4aafdcba",
+  "lastAcceptedProductionCommit": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
   "operatorFeedback1748": {
     "previous": {
       "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
@@ -32609,11 +32591,11 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-14T18:41:20.017Z",
+  "heartbeat": "2026-10-14T18:47:05.843Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
-    "status": "ACCEPTED_SCOPED_PUBLICATION_PENDING",
-    "phase": "POI_INTEGRATION_CLOSEOUT",
+    "status": "COMPLETE_SCOPED",
+    "phase": "CLOSED_POI_FIRST_SECOND_REFUGE",
     "startedAt": "2026-10-14T04:40:17.8624482Z",
     "previousCheckpoint": {
       "runId": "codex-poi-migration-20261013",
@@ -32800,7 +32782,7 @@
       "lockedGateEmpty": true
     },
     "currentProof": "docs/reports/poi-map-integration-2026-10-14.md",
-    "nextAction": "Publish the reviewed current POI closure only, verify dev parity and release owned lock when the guarded action is permitted. No further campaign/ending job in this pass.",
+    "nextAction": "Current POI pass closed scoped throughSecond refuge; launch no additional QA here. At a future separately resumed pass: read-only preflight/exclusive lock, revalidate successful0645 native save/proof/current source/build, then pre-judgement preparation/both endings/native terminal-menu/reload; later alternatives/defeat/OS motion/mobile/operator testing and safe physical-reference audit. Scheduler remains PAUSED as observed; no physical-road polish.",
     "activeJobId": null,
     "pendingFinalPresentation": {
       "status": "IMPLEMENTED_MECHANICAL_PASS_NATIVE_PENDING",
@@ -32928,9 +32910,11 @@
       "Physical Traversal remains pending full replacement/reference inventory; shared production timing and durable fork/save references are retained",
       "Production chest catalogue empty; no approved new placement; audio deferred; Bois-Clair night art external",
       "Five JourneyCampaignBoundary failures reproduce unchanged at pre-fix e61 baseline; full suite not claimed green",
-      "Independent live PID/port absence query was not executed due automatic approval reviewer quota; cleanup is evidenced by finally-before-receipt and terminal exit0",
-      "Selected proof/docs publication and lock release pending guarded closeout; executable source already published through733737d"
-    ]
+      "Independent live PID/port absence query was not executed due automatic approval reviewer quota; cleanup is evidenced by finally-before-receipt and terminal exit0"
+    ],
+    "completedAt": "2026-10-14T18:47:05.843Z",
+    "publicationCommit": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
+    "publishedAt": "2026-10-14T18:45:02.5129679+00:00"
   },
   "manualExecutionAuthorization": {
     "id": "OD-2026-10-14-A",
@@ -32945,7 +32929,7 @@
     "preparedAt": "2026-10-14T18:41:20.017Z",
     "operatorScope": "Finalize current POI pass and update dev/project contract; no further ending job",
     "functionalStatus": "ACCEPTED_SCOPED_POI_RESCUE_SECOND_REFUGE_DESKTOP1366_NORMAL",
-    "publicationStatus": "PENDING_GUARDED_OPERATION",
+    "publicationStatus": "PUBLISHED_PRODUCT_PROOF_PROJECT_DOCS",
     "report": "docs/reports/poi-map-integration-2026-10-14.md",
     "evidence": "docs/reports/poi-map-integration-2026-10-14/results.json",
     "handoff": "docs/autonomy/handoffs/2026-10-14T1841Z-codex-poi-integration.md",
@@ -32979,9 +32963,20 @@
       "General combat balance, complete six-hero skills, broader keyboard/OS reduced motion/mobile/operator final demo testing remain open",
       "Physical Traversal remains pending full replacement/reference inventory; shared production timing and durable fork/save references are retained",
       "Production chest catalogue empty; no approved new placement; audio deferred; Bois-Clair night art external",
-      "Five JourneyCampaignBoundary failures reproduce unchanged at pre-fix e61 baseline; full suite not claimed green",
-      "Independent live PID/port absence query was not executed due automatic approval reviewer quota; cleanup is evidenced by finally-before-receipt and terminal exit0",
-      "Selected proof/docs publication and lock release pending guarded closeout; executable source already published through733737d"
-    ]
+      "Five JourneyCampaignBoundary failures reproduce unchanged at pre-fix e61 baseline; full suite not claimed green"
+    ],
+    "status": "COMPLETE_SCOPED",
+    "completedAt": "2026-10-14T18:47:05.843Z",
+    "publicationCommit": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
+    "remoteDevVerified": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
+    "remoteMainVerified": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+    "finalMetadata": "Subsequent metadata commit identity and owned-lock release verified after normal push; no self-referential SHA",
+    "priorApprovalFailure": {
+      "action": "Read-only CIM checkPID7520/port5409",
+      "executed": false,
+      "reason": "Automatic approval reviewer quota exhausted",
+      "bypassed": false,
+      "publicationDistinctActionPassedReview": true
+    }
   }
 }
