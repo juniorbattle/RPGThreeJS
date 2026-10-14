@@ -724,7 +724,7 @@ function unlockedPoiIds(state: GameState): Set<string> {
     changed = false;
     for (const node of state.run.graph.nodes) {
       const cleared = node.depth === 0 || state.resolvedNodeIds.includes(node.id)
-        || Boolean(state.run.bypassedRouteNodeIds?.includes(node.id));
+        || Boolean(poiOptionalLeg(node.id) && state.run.bypassedRouteNodeIds?.includes(node.id));
       if (!unlocked.has(node.id) || !cleared || isPoiNeutralized(state, node.id)) continue;
       for (const id of node.links) if (!unlocked.has(id)) { unlocked.add(id); changed = true; }
     }
@@ -749,8 +749,17 @@ export function selectPoiMap(state: GameState): PoiMapModel {
     ...state.run.graph.nodes.filter(n => n.links.includes(state.run.currentNodeId)).map(n => n.id),
   ]);
   // An authored bypass contracts that optional edge, while the POI itself remains revisitable.
-  const bypassEdges = getAvailableRunEdges(state.run).filter(edge=>state.run.bypassedRouteNodeIds?.includes(edge.fromNodeId));
-  for (const edge of bypassEdges) neighbors.add(edge.toNodeId);
+  const legitimateBypasses = (state.run.bypassedRouteNodeIds ?? []).filter(id=>poiOptionalLeg(id) && !isPoiNeutralized(state,id));
+  // Geography is derived from durable bypass facts, never from the direction of the current
+  // successor query. Each contracted connection remains available from either endpoint.
+  const bypassEdges = state.run.graph.nodes.flatMap(origin=>getAvailableRunEdges({
+    ...state.run, currentNodeId:origin.id, bypassedRouteNodeIds:legitimateBypasses,
+  }).filter(edge=>edge.fromNodeId!==origin.id && legitimateBypasses.includes(edge.fromNodeId))
+    .map(edge=>({fromNodeId:origin.id,toNodeId:edge.toNodeId})));
+  for (const edge of bypassEdges) {
+    if(edge.fromNodeId===state.run.currentNodeId)neighbors.add(edge.toNodeId);
+    if(edge.toNodeId===state.run.currentNodeId)neighbors.add(edge.fromNodeId);
+  }
   const nodes = state.run.graph.nodes.map(raw => {
     const active = state.run.status === 'active';
     const node = active && unlocked.has(raw.id) ? resolveAdaptiveNode(state, raw) : raw;
@@ -771,7 +780,7 @@ export function selectPoiMap(state: GameState): PoiMapModel {
   return {currentNodeId:state.run.currentNodeId, gold:state.gold, temporaryGold:state.run.temporaryLoot.gold,
     reputation:state.reputation, nodes,
     edges:[...state.run.graph.nodes.flatMap(n=>n.links.map(id=>({from:n.id,to:id,unlocked:unlocked.has(n.id)&&unlocked.has(id)}))),
-      ...bypassEdges.map(edge=>({from:state.run.currentNodeId,to:edge.toNodeId,unlocked:unlocked.has(edge.toNodeId)}))],
+      ...bypassEdges.map(edge=>({from:edge.fromNodeId,to:edge.toNodeId,unlocked:unlocked.has(edge.fromNodeId)&&unlocked.has(edge.toNodeId)}))],
   };
 }
 

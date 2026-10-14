@@ -17,6 +17,21 @@ function crossroads(): GameState {
 const node=(s:GameState,id:string)=>selectPoiMap(s).nodes.find(n=>n.id===id)!;
 
 describe('authoritative connected POI navigation',()=>{
+  it('preserves both directions of a legitimate bypass connection without replay or mandatory shortcuts',()=>{
+    const state=crossroads();expect(bypassPoi(state,'lion-refugees')).not.toBeNull();
+    resolveFixture(state,'lion-first-trial-event');
+    const before={flags:structuredClone(state.flags),resolved:[...state.resolvedNodeIds],steps:state.stepCounter,
+      gold:state.gold,loot:structuredClone(state.run.temporaryLoot),reputation:state.reputation};
+    expect(node(state,'lion-nomad-crossroads').canMove).toBe(true);
+    expect(enterPoi(state,'lion-nomad-crossroads')?.activate).toBe(false);
+    expect(node(state,'lion-first-trial-event').canMove).toBe(true);
+    expect(enterPoi(state,'lion-first-trial-event')?.activate).toBe(false);
+    expect({flags:state.flags,resolved:state.resolvedNodeIds,steps:state.stepCounter,gold:state.gold,
+      loot:state.run.temporaryLoot,reputation:state.reputation}).toEqual(before);
+    const invalid=createInitialState();invalid.run.bypassedRouteNodeIds=['lion-audience','lion-opening-ambush'];
+    expect(selectPoiMap(invalid).edges.some(e=>e.from==='lion-camp'&&e.to==='lion-nomad-crossroads')).toBe(false);
+    expect(node(invalid,'lion-nomad-crossroads').status).toBe('locked');
+  });
   it('refuses movement and bypass after the campaign has ended',()=>{
     const state=crossroads();resolveFixture(state,'lion-refugees');state.mysteryAssignments={};state.run.status='completed';
     const before=structuredClone(state);

@@ -203,18 +203,24 @@ async function campaignParentKeyboardReturn(entry){
   entry.parentKeyboardReturn={method:'NATIVE_RESULT_ENTER_AUTOMATIC_PARENT_FOCUS',focus,tabAway,ownerBefore,ownerAfter,autosaveUnchanged:true,pass:true};
   await capture(`combat-${entry.index}-native-parent-keyboard-return`);
 }
-async function poiMove(id){
+async function poiMove(id,pointer=false){
   const marker=`.poi-map [data-poi-id="${id}"]`;
   assert.equal(await page.locator(marker).getAttribute('data-poi-reachable'),'true','POI move must use an unlocked adjacent edge');
-  await keyboardActivate(marker);
-  await keyboardActivate('.poi-map [data-poi-action="move"]:not(:disabled)');
+  if(pointer){
+    await page.locator(marker).click();
+    assert.equal(await page.locator(marker).getAttribute('aria-pressed'),'true');
+    await page.locator('.poi-map [data-poi-action="move"]:not(:disabled)').click();
+  }else{
+    await keyboardActivate(marker);
+    await keyboardActivate('.poi-map [data-poi-action="move"]:not(:disabled)');
+  }
   await page.waitForFunction(id=>window.__demoQaApp.state.currentNodeId===id,id);
-  report.inputs.push({action:'native POI adjacent movement',id});
+  report.inputs.push({action:pointer?'native POI adjacent pointer movement':'native POI adjacent movement',id});
 }
-async function poiNoReplayPath(ids){
+async function poiNoReplayPath(ids,mixedInputs=false){
   const before=await state();
-  for(const id of ids){
-    await poiMove(id);await page.locator('.poi-map:visible').waitFor();
+  for(const [index,id] of ids.entries()){
+    await poiMove(id,mixedInputs&&index%2===0);await page.locator('.poi-map:visible').waitFor();
     assert.equal(await page.locator('.dialogue:visible,iframe.combat-frame,.cinematic-overlay:visible').count(),0,'Resolved POI replayed content');
   }
   const after=await state();
@@ -769,6 +775,20 @@ try{
         await keyboardActivate('.exploration-stop [data-action="continue"]');
         await returnToPoiMap();
         const completed=await state();assert.ok(completed.resolvedNodeIds.includes(nodeId));
+        if(priorProof&&nodeId==='lion-first-refuge'){
+          const branch=completed.run.traversalBranches.T0;
+          assert.ok(completed.resolvedNodeIds.includes(branch));
+          const shortcut=completed.run.bypassedRouteNodeIds?.includes('lion-refugees');
+          const path=shortcut?[branch,'lion-nomad-crossroads',branch]
+            :[branch,'lion-refugees','lion-nomad-crossroads','lion-opening-ambush','lion-audience',
+              'lion-opening-ambush','lion-nomad-crossroads','lion-refugees',branch];
+          report.poi??={native:true};
+          report.poi.compatibilityBacktracking=await poiNoReplayPath(path,true);
+          report.poi.compatibilityBacktracking.contractedBothDirections=Boolean(shortcut);
+          await poiMove(nodeId,true);await hub.waitFor({state:'visible'});
+          assert.deepEqual(await state(),completed,'Returning to reusable refuge changed completed V6 truth');
+          await keyboardActivate('.exploration-stop [data-action="continue"]');await returnToPoiMap();
+        }
         await keyboardActivate(`.poi-map [data-poi-id="${nodeId}"]`);
         await keyboardActivate('.poi-map [data-poi-action="move"]');await hub.waitFor({state:'visible'});
         assert.deepEqual(await state(),completed,'Refuge revisit repeated arrival, reward or changed resources');
