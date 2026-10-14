@@ -1,84 +1,33 @@
 {
   "status": "IN_PROGRESS",
-  "runStartedAt": "2026-10-14T00:17:46.2829154Z",
-  "runEndedAt": "2026-10-14T01:44:59.122Z",
+  "runStartedAt": "2026-10-14T04:40:17.8624482Z",
+  "runEndedAt": null,
   "activeTask": "POI-MAP-LION-CONTINUATION",
-  "activePhase": "FIRST_SLICE_ACCEPTED_NEXT_SECOND_REFUGE",
-  "activeSubtask": "First slice accepted scoped; next playable boundary is second refuge via POI navigation",
+  "activePhase": "SECOND_REFUGE_NATIVE",
+  "activeSubtask": "Prepare actual first-refuge party, then earn second-refuge with new native Valmir and Bois-Clair battles",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
   "lastPushedCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
   "completedThisRun": [
-    "Read both operator attachments completely; honored dedicated contract amendment first and preserved one-writer stale-lock takeover protocol",
-    "OD-2026-10-13-D / PRODUCTION-CONTRACTS-POI-NAVIGATION-1, set1.2.0, independent guardian review and immutable baseline692829f published before runtime code",
-    "Connected geographical production POI map: authority revalidation, reversible raw/optional bypass paths, mandatory unlocks, stable adaptive assignments, exclusive neutralization, optional revisit, no resolved content replay",
-    "Existing narrative/dialogue/real tactical/refuge/management handoffs and historicalV6 graph/IDs/schema retained; future chest/elite seams fail closed with no invented placements",
-    "Fresh native opening3round17actions, Cedric, refugees ignored−2 then truly resolved, selected trial event/excluded combat, first refuge, reusable services and exactV6 accepted0057",
-    "Final source shortcut both directions pointer/keyboard/no replay/exact consequences accepted0125; authenticated pre-migration0603 native payment210to190 then nine map moves/reusable refuge/exactV6 accepted0131",
-    "54 focused tests, final types/build,8contracts/8slots/eightMP4, immutable and workingLOCKED/whitespace gates PASS; independent final matrix PASS scoped",
-    "Five inspected captures/one compact summary explicitly promoted; all historical QA/deferred work preserved, failed and interrupted outputs quarantined; old Traversal retained, scheduler PAUSED unchanged"
+    "Read-only fresh preflight clean41132a2/remote parity, no previous lock or worker; exclusive new lock",
+    "Authenticated successful0057 exact save/proof and all nine current built bundles verified; reuse first-slice source9ba3d96d",
+    "Existing runner adapted to POI nonterminal refuge preparation and exact completed second-refuge seed; no game source/tactical/canon/V6 schema change"
   ],
   "filesChanged": [
-    ".agents/skills/autonomy-handoff/SKILL.md",
-    ".agents/skills/contracts-compliance/SKILL.md",
-    "AGENTS.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-    "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
-    "docs/autonomy/OPERATOR_DECISIONS.md",
-    "docs/autonomy/POI_NAVIGATION_AMENDMENT_REVIEW_2026-10-13.md",
-    "docs/autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md",
-    "docs/autonomy/RPGThreeJS_CONTRAT_OPERATEUR_CARTE_POI_V1_2026-10-13.md",
-    "docs/autonomy/RPGThreeJS_PROMPT_CODEX_MIGRATION_POI_V1_2026-10-13.md",
-    "docs/contracts/AUTHORING_AND_QA.md",
-    "docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md",
-    "docs/contracts/CAMPAIGN_AND_STATE.md",
-    "docs/contracts/PRESENTATION_AND_MEDIA.md",
-    "docs/contracts/README.md",
-    "docs/contracts/TRAVERSAL.md",
-    "docs/contracts/UI_AND_ACCESSIBILITY.md",
-    "docs/contracts/WORLD_AND_CHARACTERS.md",
-    "docs/contracts/contracts.manifest.json",
-    "docs/game/GAME_CONSTITUTION.md",
-    "docs/project/POI_NAVIGATION.md",
-    "src/campaign/LionPoiMap.ts",
-    "src/game/GameApp.ts",
-    "src/game/GameAppPoi.test.ts",
-    "src/game/poiContentAdapters.test.ts",
-    "src/game/poiContentAdapters.ts",
-    "src/game/poiNavigation.test.ts",
-    "src/game/runSystem.ts",
-    "src/ui/PoiMapView.ts",
-    "src/ui/poi-map.css",
     "tools/demo-continuous-production-qa.mjs",
-    "docs/reports/INDEX.md",
-    "docs/reports/poi-map-first-slice-2026-10-13.md",
-    "docs/autonomy/handoffs/2026-10-14T0138Z-codex-poi-first-slice.md",
-    "docs/reports/poi-map-first-slice-2026-10-13/01-opening-narrative.png",
-    "docs/reports/poi-map-first-slice-2026-10-13/02-native-combat-victory.png",
-    "docs/reports/poi-map-first-slice-2026-10-13/03-poi-map-neutralization.png",
-    "docs/reports/poi-map-first-slice-2026-10-13/04-native-bidirectional-map.png",
-    "docs/reports/poi-map-first-slice-2026-10-13/05-refuge-v6-reloaded.png",
-    "docs/reports/poi-map-first-slice-2026-10-13/results.json"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
   ],
   "testsRun": [
-    "npx vitest run src/game/runSystem.test.ts src/game/poiNavigation.test.ts src/game/GameAppPoi.test.ts src/game/GameAppRouteReward.test.ts src/game/poiContentAdapters.test.ts —54PASS; final9 navigation rerun PASS",
-    "npm run build (tsc+vite), exact8MP4, npm run contracts:validate (8/8), immutable/workingLOCKED and git diff --check",
-    "Existing tools/demo-continuous-production-qa.mjs:7 registered executions (2fresh,5continuation attempts); accepted scopes0057/0125/0131,0124 hubonly;0037FAILED,0127INTERRUPTED,0128FAILED"
+    "node --check current existing driver; whitespace/immutable gate; prior54 focused/types/build unchanged boundaries reused by hashes"
   ],
   "testsPassed": [
-    "54focused tests; finaltypes/build/eightMP4 and8contracts8slots",
-    "Fresh actual native first slice and exactV6; final corrected bidirectional shortcut no replay/exactfacts",
-    "Authenticated old0603 V6 hub/departure canonicalpayment/roundtrip/reusablehub/reload; zero new battles in short continuations",
-    "Guardian amendment and final scope matrix PASS, receipt hashes/input/build/source/driver/save lineage verified,5 selectedcaptures inspected"
+    "Driver syntax and whitespace PASS; immutable gate empty; authenticated seed and current source/all9build hashes match"
   ],
   "testsRemaining": [
-    "Earned POI second refuge and both endings, later optional/exclusive choices and formerT2/T4 narrative continuity",
-    "Fresh new-map exclusive combat alternative and native defeat/checkpoint recovery, other historicalV6 interruption boundaries",
-    "Six-hero skill/campaign keyboard/presentation outstanding non-navigation criteria preserved in previousCheckpoint/deferred tasks",
-    "Desktop broader reduced-motion/asset-fallback/accessibility matrices, mobile then operator final demo acceptance",
-    "Full Traversal reference inventory and retirement after verified replacement; future approved chest/elite placements"
+    "New native Valmir and Bois-Clair victories, reserve/T1 stage resolution and exclusive neutralization",
+    "Actual second-refuge entry, loot securing, resolution, reusable hub and exactV6 reload",
+    "Later POI narrative continuations and both endings; remaining first-slice broader criteria preserved"
   ],
   "blockers": [],
   "remainingWork": [
@@ -88,7 +37,7 @@
     "Desktop broader reduced-motion/asset-fallback/accessibility matrices, mobile then operator final demo acceptance",
     "Full Traversal reference inventory and retirement after verified replacement; future approved chest/elite placements"
   ],
-  "nextAction": "Read-only preflight, acquire exclusive lock, verify authenticated successful0057 first-refuge save/proof (or0131 exact resumed pair with preserved parent lineage) and current source/build. Continue POI selection through reserve-trail, Valmir, second exclusive trial and Bois-Clair to the second refuge; preserve actual reputation events, existing tactical configurations/rewards and native exactV6 reload. Reuse existing campaign driver; no physical-road polish, no failed0037/0127/0128 seed. After second refuge, verify formerT2/T4 narrative continuations and both endings; retire physical Traversal only after full replacement/reference audit. Scheduler remains PAUSED as observed.",
+  "nextAction": "Guardian review actual existing runner/assertion diff; freeze/publish, register ONE desktop1366normal targetsecond-refuge/rescue/serpent bounded35min scenario from authenticated0057 save/proof with six authentic potions. Native first-hub rest/management, POI adjacency/stage choices, new Valmir/village victories, missionflags, secureloot and exact completed second-refugeV6. Keep any failed output unseedable; correct demonstrated source defect before further migration. Preserve preview5175 and all historical/deferred work.",
   "taskQueue": [
     "POI-MAP-LION-CONTINUATION: ACTIVE_NEXT; first slice accepted scoped, earn second refuge using POI then later narrative/fins and full reference audit",
     "DEMO-PC-CAMPAIGN: ACTIVE; native second refuge then authored ending/exact reload; full acceptance OPEN",
@@ -226,18 +175,12 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "codex-poi-migration-20261013",
+  "runId": "codex-poi-continuation-20261014",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-14T01:44:59.122Z",
-  "wip": {
-    "branch": "wip/codex-poi-migration-20261013",
-    "sha": "e7256e9a6cac74c4ab11dd3385585f0ad308dfd1",
-    "status": "RETIRED_AFTER_PUBLISHED_CONTENT_AND_PARITY",
-    "retirement": "Owned local/remote wip/codex-poi-migration-20261013 deleted after dev8ce7071 parity, retained-path review and incorporation; older WIP branches untouched",
-    "retiredAt": "2026-10-14T01:44:59.122Z"
-  },
+  "lastHeartbeat": "2026-10-14T04:46:10.172Z",
+  "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-14T01:44:59.122Z",
+    "lastHeartbeat": "2026-10-14T04:46:10.172Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -24506,14 +24449,8 @@
         "guardianReview": "PASS independent terminal/hash/input/capture review, limited to recorded scope"
       }
     ],
-    "wip": {
-      "branch": "wip/codex-poi-migration-20261013",
-      "sha": "e7256e9a6cac74c4ab11dd3385585f0ad308dfd1",
-      "status": "RETIRED_AFTER_PUBLISHED_CONTENT_AND_PARITY",
-      "retirement": "Owned local/remote wip/codex-poi-migration-20261013 deleted after dev8ce7071 parity, retained-path review and incorporation; older WIP branches untouched",
-      "retiredAt": "2026-10-14T01:44:59.122Z"
-    },
-    "nextAction": "Read-only preflight, acquire exclusive lock, verify authenticated successful0057 first-refuge save/proof (or0131 exact resumed pair with preserved parent lineage) and current source/build. Continue POI selection through reserve-trail, Valmir, second exclusive trial and Bois-Clair to the second refuge; preserve actual reputation events, existing tactical configurations/rewards and native exactV6 reload. Reuse existing campaign driver; no physical-road polish, no failed0037/0127/0128 seed. After second refuge, verify formerT2/T4 narrative continuations and both endings; retire physical Traversal only after full replacement/reference audit. Scheduler remains PAUSED as observed.",
+    "wip": null,
+    "nextAction": "Guardian review actual existing runner/assertion diff; freeze/publish, register ONE desktop1366normal targetsecond-refuge/rescue/serpent bounded35min scenario from authenticated0057 save/proof with six authentic potions. Native first-hub rest/management, POI adjacency/stage choices, new Valmir/village victories, missionflags, secureloot and exact completed second-refugeV6. Keep any failed output unseedable; correct demonstrated source defect before further migration. Preserve preview5175 and all historical/deferred work.",
     "runMetrics": {
       "runId": "codex-poi-migration-20261013",
       "runtimeSourceFilesModified": 6,
@@ -24546,8 +24483,8 @@
       "productEvidenceCheckpoint": "8ce70717fbceece50b6406234a1f81b11bc34b40",
       "verifiedRemoteDev": "8ce70717fbceece50b6406234a1f81b11bc34b40"
     },
-    "runEndedAt": "2026-10-14T01:44:59.122Z",
-    "writerStopped": true,
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "status": "FINAL_SELECTED_CLOSURE",
       "shaIn": "Git/automation memory after push"
@@ -25344,7 +25281,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "POI-MAP-LION-CONTINUATION",
-    "activeSubtask": "First slice accepted scoped; next playable boundary is second refuge via POI navigation",
+    "activeSubtask": "Prepare actual first-refuge party, then earn second-refuge with new native Valmir and Bois-Clair battles",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -28676,12 +28613,12 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-poi-migration-20261013",
+    "runId": "codex-poi-continuation-20261014",
     "agent": "codex",
     "status": "IN_PROGRESS",
-    "runStartedAt": "2026-10-14T00:17:46.2829154Z",
-    "activePhase": "FIRST_SLICE_ACCEPTED_NEXT_SECOND_REFUGE",
-    "heartbeat": "2026-10-14T01:44:59.122Z",
+    "runStartedAt": "2026-10-14T04:40:17.8624482Z",
+    "activePhase": "SECOND_REFUGE_NATIVE",
+    "heartbeat": "2026-10-14T04:46:10.172Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-14T0138Z-codex-poi-first-slice.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -30022,7 +29959,7 @@
       }
     },
     "threadId": "01a136cb-21ed-7cc2-b87e-31dde647e502",
-    "writerStoppedMeaning": "Current run closeout checkpoint; execution lock released only after final dev publication/parity",
+    "writerStoppedMeaning": "Continuation run active under exclusive lock; shared writes only by orchestrator",
     "run1944": {
       "startedAt": "2026-10-13T19:45:46.4541492Z",
       "seedAudit": "tmp/autonomy/run-1944/seed-audit.json",
@@ -32157,5 +32094,197 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-14T01:44:59.122Z"
+  "heartbeat": "2026-10-14T04:46:10.172Z",
+  "poiContinuation": {
+    "runId": "codex-poi-continuation-20261014",
+    "status": "IN_PROGRESS",
+    "phase": "SECOND_REFUGE_NATIVE",
+    "startedAt": "2026-10-14T04:40:17.8624482Z",
+    "previousCheckpoint": {
+      "runId": "codex-poi-migration-20261013",
+      "agent": "codex",
+      "runStartedAt": "2026-10-14T00:17:46.2829154Z",
+      "runEndedAt": "2026-10-14T01:44:59.122Z",
+      "activeTask": "POI-MAP-LION-CONTINUATION",
+      "activeSubtask": "First slice accepted scoped; next playable boundary is second refuge via POI navigation",
+      "activePhase": "FIRST_SLICE_ACCEPTED_NEXT_SECOND_REFUGE",
+      "nextAction": "Read-only preflight, acquire exclusive lock, verify authenticated successful0057 first-refuge save/proof (or0131 exact resumed pair with preserved parent lineage) and current source/build. Continue POI selection through reserve-trail, Valmir, second exclusive trial and Bois-Clair to the second refuge; preserve actual reputation events, existing tactical configurations/rewards and native exactV6 reload. Reuse existing campaign driver; no physical-road polish, no failed0037/0127/0128 seed. After second refuge, verify formerT2/T4 narrative continuations and both endings; retire physical Traversal only after full replacement/reference audit. Scheduler remains PAUSED as observed.",
+      "completedThisRun": [
+        "Read both operator attachments completely; honored dedicated contract amendment first and preserved one-writer stale-lock takeover protocol",
+        "OD-2026-10-13-D / PRODUCTION-CONTRACTS-POI-NAVIGATION-1, set1.2.0, independent guardian review and immutable baseline692829f published before runtime code",
+        "Connected geographical production POI map: authority revalidation, reversible raw/optional bypass paths, mandatory unlocks, stable adaptive assignments, exclusive neutralization, optional revisit, no resolved content replay",
+        "Existing narrative/dialogue/real tactical/refuge/management handoffs and historicalV6 graph/IDs/schema retained; future chest/elite seams fail closed with no invented placements",
+        "Fresh native opening3round17actions, Cedric, refugees ignored−2 then truly resolved, selected trial event/excluded combat, first refuge, reusable services and exactV6 accepted0057",
+        "Final source shortcut both directions pointer/keyboard/no replay/exact consequences accepted0125; authenticated pre-migration0603 native payment210to190 then nine map moves/reusable refuge/exactV6 accepted0131",
+        "54 focused tests, final types/build,8contracts/8slots/eightMP4, immutable and workingLOCKED/whitespace gates PASS; independent final matrix PASS scoped",
+        "Five inspected captures/one compact summary explicitly promoted; all historical QA/deferred work preserved, failed and interrupted outputs quarantined; old Traversal retained, scheduler PAUSED unchanged"
+      ],
+      "filesChanged": [
+        ".agents/skills/autonomy-handoff/SKILL.md",
+        ".agents/skills/contracts-compliance/SKILL.md",
+        "AGENTS.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+        "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
+        "docs/autonomy/OPERATOR_DECISIONS.md",
+        "docs/autonomy/POI_NAVIGATION_AMENDMENT_REVIEW_2026-10-13.md",
+        "docs/autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md",
+        "docs/autonomy/RPGThreeJS_CONTRAT_OPERATEUR_CARTE_POI_V1_2026-10-13.md",
+        "docs/autonomy/RPGThreeJS_PROMPT_CODEX_MIGRATION_POI_V1_2026-10-13.md",
+        "docs/contracts/AUTHORING_AND_QA.md",
+        "docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md",
+        "docs/contracts/CAMPAIGN_AND_STATE.md",
+        "docs/contracts/PRESENTATION_AND_MEDIA.md",
+        "docs/contracts/README.md",
+        "docs/contracts/TRAVERSAL.md",
+        "docs/contracts/UI_AND_ACCESSIBILITY.md",
+        "docs/contracts/WORLD_AND_CHARACTERS.md",
+        "docs/contracts/contracts.manifest.json",
+        "docs/game/GAME_CONSTITUTION.md",
+        "docs/project/POI_NAVIGATION.md",
+        "src/campaign/LionPoiMap.ts",
+        "src/game/GameApp.ts",
+        "src/game/GameAppPoi.test.ts",
+        "src/game/poiContentAdapters.test.ts",
+        "src/game/poiContentAdapters.ts",
+        "src/game/poiNavigation.test.ts",
+        "src/game/runSystem.ts",
+        "src/ui/PoiMapView.ts",
+        "src/ui/poi-map.css",
+        "tools/demo-continuous-production-qa.mjs",
+        "docs/reports/INDEX.md",
+        "docs/reports/poi-map-first-slice-2026-10-13.md",
+        "docs/autonomy/handoffs/2026-10-14T0138Z-codex-poi-first-slice.md",
+        "docs/reports/poi-map-first-slice-2026-10-13/01-opening-narrative.png",
+        "docs/reports/poi-map-first-slice-2026-10-13/02-native-combat-victory.png",
+        "docs/reports/poi-map-first-slice-2026-10-13/03-poi-map-neutralization.png",
+        "docs/reports/poi-map-first-slice-2026-10-13/04-native-bidirectional-map.png",
+        "docs/reports/poi-map-first-slice-2026-10-13/05-refuge-v6-reloaded.png",
+        "docs/reports/poi-map-first-slice-2026-10-13/results.json"
+      ],
+      "testsRun": [
+        "npx vitest run src/game/runSystem.test.ts src/game/poiNavigation.test.ts src/game/GameAppPoi.test.ts src/game/GameAppRouteReward.test.ts src/game/poiContentAdapters.test.ts —54PASS; final9 navigation rerun PASS",
+        "npm run build (tsc+vite), exact8MP4, npm run contracts:validate (8/8), immutable/workingLOCKED and git diff --check",
+        "Existing tools/demo-continuous-production-qa.mjs:7 registered executions (2fresh,5continuation attempts); accepted scopes0057/0125/0131,0124 hubonly;0037FAILED,0127INTERRUPTED,0128FAILED"
+      ],
+      "testsPassed": [
+        "54focused tests; finaltypes/build/eightMP4 and8contracts8slots",
+        "Fresh actual native first slice and exactV6; final corrected bidirectional shortcut no replay/exactfacts",
+        "Authenticated old0603 V6 hub/departure canonicalpayment/roundtrip/reusablehub/reload; zero new battles in short continuations",
+        "Guardian amendment and final scope matrix PASS, receipt hashes/input/build/source/driver/save lineage verified,5 selectedcaptures inspected"
+      ],
+      "testsRemaining": [
+        "Earned POI second refuge and both endings, later optional/exclusive choices and formerT2/T4 narrative continuity",
+        "Fresh new-map exclusive combat alternative and native defeat/checkpoint recovery, other historicalV6 interruption boundaries",
+        "Six-hero skill/campaign keyboard/presentation outstanding non-navigation criteria preserved in previousCheckpoint/deferred tasks",
+        "Desktop broader reduced-motion/asset-fallback/accessibility matrices, mobile then operator final demo acceptance",
+        "Full Traversal reference inventory and retirement after verified replacement; future approved chest/elite placements"
+      ],
+      "remainingWork": [
+        "Earned POI second refuge and both endings, later optional/exclusive choices and formerT2/T4 narrative continuity",
+        "Fresh new-map exclusive combat alternative and native defeat/checkpoint recovery, other historicalV6 interruption boundaries",
+        "Six-hero skill/campaign keyboard/presentation outstanding non-navigation criteria preserved in previousCheckpoint/deferred tasks",
+        "Desktop broader reduced-motion/asset-fallback/accessibility matrices, mobile then operator final demo acceptance",
+        "Full Traversal reference inventory and retirement after verified replacement; future approved chest/elite placements"
+      ],
+      "blockers": [],
+      "wip": {
+        "branch": "wip/codex-poi-migration-20261013",
+        "sha": "e7256e9a6cac74c4ab11dd3385585f0ad308dfd1",
+        "status": "RETIRED_AFTER_PUBLISHED_CONTENT_AND_PARITY",
+        "retirement": "Owned local/remote wip/codex-poi-migration-20261013 deleted after dev8ce7071 parity, retained-path review and incorporation; older WIP branches untouched",
+        "retiredAt": "2026-10-14T01:44:59.122Z"
+      },
+      "contractComplianceStatus": {
+        "contractSetVersion": "1.2.0",
+        "immutableBaseline": "692829f32d735ad890182eea6b5e5e195551bbbf",
+        "lockedRulesChanged": false,
+        "approvedDedicatedAmendment": {
+          "task": "PRODUCTION-CONTRACTS-POI-NAVIGATION-1",
+          "decision": "OD-2026-10-13-D",
+          "rulesChanged": "Navigation doctrine only and directly affected navigation authoring/state/UI/ownership clauses",
+          "review": "PASS independent guardian before integration"
+        },
+        "contractsRead": [
+          "GAME_CONSTITUTION",
+          "README",
+          "contracts.manifest.json",
+          "AUTONOMOUS_WORK_PROTOCOL",
+          "WORLD_AND_CHARACTERS",
+          "CAMPAIGN_AND_STATE",
+          "COMBAT_AND_VFX",
+          "TRAVERSAL",
+          "PRESENTATION_AND_MEDIA",
+          "UI_AND_ACCESSIBILITY",
+          "AUTHORING_AND_QA"
+        ],
+        "matrix": {
+          "GAME_CONSTITUTION": "PASS authorities preserved",
+          "ART_DIRECTION": "PASS preservation; full art finish excluded",
+          "CHARACTERS": "PASS V2 preserved",
+          "ENVIRONMENTS": "PASS selected desktop map/hub captures",
+          "NARRATIVE_CAMPAIGN": "PASS native Audience-to-first-refuge, later Lion/fins OPEN",
+          "NARRATIVE_PRESENTATION": "PASS existing content/handoffs",
+          "TRAVERSAL_POI": "PASS first slice and final bidirectional optional shortcut",
+          "COMBAT": "PASS real native opening; general balance/alternative branch excluded",
+          "SAVE": "PASS fresh0057 and authenticated pre-migration0603-to0131 boundaries; broaderV6 OPEN",
+          "UI_ACCESSIBILITY": "PASS desktop1366normal native pointer/keyboard only",
+          "QA_EVIDENCE": "PASS scoped composites, inherited battles explicit; failed outputs never seeded",
+          "REPOSITORY_GOVERNANCE": "PASS owned lock, selected source/proofs/docs, dev only, final publication/parity then release"
+        }
+      },
+      "currentHandoff": "docs/autonomy/handoffs/2026-10-14T0138Z-codex-poi-first-slice.md",
+      "lastPushedCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
+      "lastKnownGoodCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
+      "runStatistics": {
+        "runId": "codex-poi-migration-20261013",
+        "runtimeSourceFilesModified": 6,
+        "testFilesModified": 3,
+        "existingQaFilesModified": 1,
+        "newQaFilesAdded": 0,
+        "promotedProofFiles": 6,
+        "promotedCaptures": 5,
+        "workflowDocs": 26,
+        "inheritedWipFiles": 0,
+        "browserScenarios": 7,
+        "registeredJobs": 7,
+        "reviewers": 1
+      },
+      "currentRunMeasurement": {
+        "runId": "codex-poi-migration-20261013",
+        "runtimeSourceFilesModified": 6,
+        "testFilesModified": 3,
+        "existingQaFilesModified": 1,
+        "newQaFilesAdded": 0,
+        "promotedProofFiles": 6,
+        "promotedCaptures": 5,
+        "workflowDocs": 26,
+        "inheritedWipFiles": 0,
+        "browserScenarios": 7,
+        "registeredJobs": 7,
+        "reviewers": 1
+      }
+    },
+    "inheritedFirstSlice": "docs/reports/poi-map-first-slice-2026-10-13.md",
+    "seed": {
+      "path": "tmp/demo/poi-native-first-refuge-0057/earned-first-refuge-v6.json",
+      "proofPath": "tmp/demo/poi-native-first-refuge-0057/results.json",
+      "sha256": "4cf082db1fd5569d27ecf3e2062f3d8bbe81fac5457d7c6943cd76edf5561716",
+      "proofSha256": "61791ccf1b79766beb62c0c37a585da0788d9be3ff082969e64055a39eb45fa5",
+      "authenticated": true
+    },
+    "sourceTree": "9ba3d96d33f3b9dd2ef057f6f7ecf5c95b5ee3d0",
+    "buildVerifiedAt": "2026-10-14T04:46:10.172Z",
+    "preflight": {
+      "head": "41132a2868ba84835f8c58ab0d044dde24c03f32",
+      "clean": true,
+      "remoteParity": true,
+      "noLock": true,
+      "noWorker": true,
+      "lockedGateEmpty": true
+    },
+    "currentProof": "Pending native new Valmir/village victories and exact earned second-refugeV6; no inheritance-only claim",
+    "nextAction": "Guardian review actual existing runner/assertion diff; freeze/publish, register ONE desktop1366normal targetsecond-refuge/rescue/serpent bounded35min scenario from authenticated0057 save/proof with six authentic potions. Native first-hub rest/management, POI adjacency/stage choices, new Valmir/village victories, missionflags, secureloot and exact completed second-refugeV6. Keep any failed output unseedable; correct demonstrated source defect before further migration. Preserve preview5175 and all historical/deferred work."
+  }
 }

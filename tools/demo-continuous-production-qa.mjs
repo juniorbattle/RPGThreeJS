@@ -735,7 +735,7 @@ try{
     await page.evaluate(text=>localStorage.setItem('rpg-threejs:autosave:v6',text),earnedText);
     await page.reload({waitUntil:'networkidle'});await click('.title-screen [data-action="continue"]');
     await page.waitForFunction(nodeId=>window.__demoQaApp?.state.currentNodeId===nodeId,JSON.parse(earnedText).currentNodeId);
-    if(target==='first-refuge'){
+    if(['first-refuge','second-refuge','ending'].includes(target)){
       await page.waitForFunction(()=>[...document.querySelectorAll('.poi-map,.exploration-stop')]
         .some(e=>e.getClientRects().length&&!e.closest('[inert]')));
       if(await page.locator('.poi-map:visible').count()){
@@ -776,9 +776,18 @@ try{
       assert.equal(live.flags[`refugeSecured:${nodeId}`],true);assert.equal(live.run.temporaryLoot.gold,0);
       if(nodeId==='lion-second-refuge'){
         assert.ok(live.resolvedNodeIds.includes('lion-village-choice'));
+        assert.ok(live.resolvedNodeIds.includes('lion-reserve-trail'));
+        assert.ok(live.resolvedNodeIds.includes('lion-valmir-road'));
+        assert.ok(live.resolvedNodeIds.includes('lion-second-trial-event'));
+        assert.ok(!live.resolvedNodeIds.includes('lion-second-trial-combat'));
         assert.equal(live.run.traversalBranches.T1,'lion-second-trial-event');
         assert.equal(live.flags.missionSuccess,routePlan==='rescue');
         assert.equal(Boolean(live.flags.missionGreed),routePlan==='sacrifice');
+        if(target==='second-refuge')for(const [id,combatId] of [['lion-valmir-road','road_to_valmir'],
+          ['lion-village-choice',routePlan==='rescue'?'village_defense':'village_raid']]){
+          assert.ok(report.battles.slice(report.inheritedBattleCount??0).some(b=>b.nodeId===id&&b.combatId===combatId&&b.pass),
+            `Second refuge requires new native ${combatId} victory at ${id}`);
+        }
       }
       const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
       assert.deepEqual(JSON.parse(saved),live,'Earned refuge agency precedes durable owner truth');
@@ -797,6 +806,14 @@ try{
         await keyboardActivate('.exploration-stop [data-action="continue"]');
         await returnToPoiMap();
         const completed=await state();assert.ok(completed.resolvedNodeIds.includes(nodeId));
+        if(nodeId==='lion-second-refuge'){
+          assert.ok((await page.locator('.poi-map [data-poi-id="lion-second-trial-combat"]').getAttribute('class')).includes('poi-marker--neutralized'));
+          assert.equal(completed.run.checkpointNodeId,nodeId);
+          report.poi??={native:true};report.poi.secondRefuge={resolved:true,checkpointExact:true,exclusiveAlternativeNeutralized:true,
+            missionSuccess:completed.flags.missionSuccess,missionGreed:Boolean(completed.flags.missionGreed)};
+          await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked'));
+          await capture('poi-second-refuge-resolved');
+        }
         if(priorProof&&nodeId==='lion-first-refuge'){
           const branch=completed.run.traversalBranches.T0;
           assert.ok(completed.resolvedNodeIds.includes(branch));
@@ -822,23 +839,27 @@ try{
         await keyboardActivate('.poi-map [data-poi-action="move"]');await hub.waitFor({state:'visible'});
         assert.deepEqual(await state(),completed,'Refuge services after reload changed V6 without an action');
         report.refuges.push({nodeId,entry:live,resumed:report.resumed,reusable:true,exactV6:true});
+        await writeFile(resolve(output,`earned-${nodeId}-v6.json`),JSON.stringify(completed)+'\n');
         if(nodeId==='lion-first-refuge')await writeFile(resolve(output,'earned-first-refuge-v6.json'),JSON.stringify(completed)+'\n');
         await capture(`${nodeId}-poi-reusable-reloaded`);
         if(stop){assert.deepEqual(report.errors,[]);report.pass=true;break;}
-        await keyboardActivate('.exploration-stop [data-action="continue"]');continue;
+      }else{
+        await page.reload({waitUntil:'networkidle'});await click('.title-screen [data-action="continue"]');
+        await page.locator(`.exploration-stop[data-refuge-node="${nodeId}"]:visible:not([inert])`).waitFor({timeout:30000});
+        report.resumed=await state();assert.deepEqual(report.resumed,live,'Earned refuge reload changed V6 truth');
+        assert.equal(await page.locator('iframe.combat-frame').count(),0);await capture(`${nodeId}-earned-resumed`);
+        report.refuges.push({nodeId,entry:live,resumed:report.resumed});
+        if(stop){assert.deepEqual(report.errors,[]);report.pass=true;break;}
       }
-      await page.reload({waitUntil:'networkidle'});await click('.title-screen [data-action="continue"]');
-      await page.locator(`.exploration-stop[data-refuge-node="${nodeId}"]:visible:not([inert])`).waitFor({timeout:30000});
-      report.resumed=await state();assert.deepEqual(report.resumed,live,'Earned refuge reload changed V6 truth');
-      assert.equal(await page.locator('iframe.combat-frame').count(),0);await capture(`${nodeId}-earned-resumed`);
-      report.refuges.push({nodeId,entry:live,resumed:report.resumed});
-      if(stop){assert.deepEqual(report.errors,[]);report.pass=true;break;}
+      // A nonterminal POI refuge reaches the same native preparation as a historic arrival.
+      const servicesBefore=await state();
       const rest=page.locator('.exploration-stop [data-action="rest"]:not(:disabled)');
       if(await rest.count()){
         await keyboardActivate('.exploration-stop [data-action="rest"]:not(:disabled)');
         await hub.waitFor({state:'visible'});await page.waitForTimeout(150);
-        const rested=await state();assert.ok(rested.gold<live.gold,'Native rest did not debit owner gold');
+        const rested=await state();assert.ok(rested.gold<servicesBefore.gold,'Native rest did not debit owner gold');
         assert.ok(rested.clan.members.every(u=>u.currentHealth>0),'Native rest left downed clan member');
+        assert.deepEqual(rested.run.temporaryLoot,servicesBefore.run.temporaryLoot,'Native rest changed temporary loot');
         report.refuges.at(-1).rested=rested;await capture(`${nodeId}-native-rest`);
       }
       if(nodeId==='lion-first-refuge'&&target==='defeat-recovery'){
@@ -921,6 +942,11 @@ try{
     }
     if(await page.locator('.poi-map:visible').count()){
       report.poi??={native:true};
+      if(live.currentNodeId==='lion-reserve-trail'&&!report.poi.secondSection){
+        await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked'));
+        await capture('poi-second-section-reserves');report.poi.secondSection={currentNodeId:live.currentNodeId,resolved:true};
+        assert.ok(live.resolvedNodeIds.includes(live.currentNodeId));
+      }
       if(live.currentNodeId==='lion-nomad-crossroads'&&!report.poi.backtracking){
         await capture('poi-after-cedric');
         report.poi.backtracking=await poiNoReplayPath(['lion-opening-ambush','lion-audience','lion-opening-ambush','lion-nomad-crossroads']);

@@ -1,3 +1,13 @@
+# POI continuation to second refuge — codex-poi-continuation-20261014
+
+Status:IN_PROGRESS; started:2026-10-14T04:40:17.8624482Z. Preflight clean41132a2=origin/dev,no oldlock/stash/QAworker; exclusive current lock. Set1.2.0/baseline692829f unchanged. First slice remains accepted scoped in preserved checkpoint below. Successful0057 exact earned seed/proof authenticated; source9ba3d96d/all9 current build bundles match prior accepted production. Product preview60640/5175 stays available, no browser storage modified.
+
+Next:Guardian review actual existing runner/assertion diff; freeze/publish, register ONE desktop1366normal targetsecond-refuge/rescue/serpent bounded35min scenario from authenticated0057 save/proof with six authentic potions. Native first-hub rest/management, POI adjacency/stage choices, new Valmir/village victories, missionflags, secureloot and exact completed second-refugeV6. Keep any failed output unseedable; correct demonstrated source defect before further migration. Preserve preview5175 and all historical/deferred work.
+
+Current change:existing QA runner only; current game already exposes connected next-section POIs. Actual new victories, second refuge and V6 remain PENDING. No newrunner, media, canon, stats or LOCKED change. All225 prior jobs and exact deferred work preserved.
+
+## Preserved first-slice checkpoint
+
 # POI map first slice accepted — codex-poi-migration-20261013
 
 Run started:2026-10-14T00:17:46.2829154Z; closeout:2026-10-14T01:44:59.122Z; first slice ACCEPTED_SCOPED. Next active task:POI-MAP-LION-CONTINUATION. Decision OD-2026-10-13-D; set1.2.0; immutable baseline692829f. Initial product1449090/correction596e390/final executable5f3605d published on dev. Product/evidence/handoff8ce7071 is published and remote verified; final metadata SHA follows Git, without a self-reference.
