@@ -96,7 +96,7 @@ export interface JourneyCampaignBoundaryOptions {
   root?: HTMLElement;
   presentationMap?: JourneyPresentationMap;
   /** Injectable so tests can prove catastrophic Journey failure drops back to TravelView. */
-  createSession?: () => JourneyPresentationSession;
+  createSession?: (reducedMotion?: boolean) => JourneyPresentationSession;
   mediaMode?: NarrativeAuthoringMedia;
   /** Test/host timing override; production keeps NarrativeStage's campaign reveal duration. */
   transitionRevealMs?: number;
@@ -105,7 +105,7 @@ export interface JourneyCampaignBoundaryOptions {
 
 export class JourneyCampaignBoundary {
   private readonly presentationMap: JourneyPresentationMap;
-  private readonly createSession: () => JourneyPresentationSession;
+  private readonly createSession: (reducedMotion?: boolean) => JourneyPresentationSession;
   private session: JourneyPresentationSession | null = null;
   private pendingBackdrop: HTMLElement | null = null;
   private readonly presentedKeys = new Set<string>();
@@ -114,12 +114,13 @@ export class JourneyCampaignBoundary {
 
   constructor(options: JourneyCampaignBoundaryOptions) {
     this.presentationMap = options.presentationMap ?? JOURNEY_PRESENTATION_MAP;
-    this.createSession = options.createSession ?? (() => new NarrativeStage({
+    this.createSession = options.createSession ?? ((reducedMotion) => new NarrativeStage({
       player: options.player,
       registry: options.registry,
       statusHud: options.statusHud,
       mediaMode: options.mediaMode ?? 'VIDEO',
       dev: options.dev ?? false,
+      reducedMotion,
       ...(options.transitionRevealMs === undefined ? {} : { transitionRevealMs: options.transitionRevealMs }),
       ...(options.root ? { root: options.root } : {}),
     }));
@@ -149,7 +150,7 @@ export class JourneyCampaignBoundary {
     const playId = cinematicId && !this.presentedKeys.has(key) ? cinematicId : undefined;
     const resolvedPresentationBeat = resolveBoundaryPrimaryPresentation(context, playId);
     const presentationCandidates = resolveBoundaryPresentationCandidates(context);
-    const session = this.createSession();
+    const session = this.createSession(request.reducedMotion);
     this.session = session;
     const tableau = resolveNarrativeBoundaryTableau(key) ?? createGenericBoundaryTableau(key, plan.kind);
     // A local departure uses its reviewed cast tableau; ordinary travel agency retains its still.

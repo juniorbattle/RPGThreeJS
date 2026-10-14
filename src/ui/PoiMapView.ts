@@ -9,6 +9,7 @@ interface PoiMapOptions {
   onCompany: () => void;
   onSave: () => void;
   onMenu: () => void;
+  onReducedMotion: () => void;
 }
 const escape = (s: string) => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
 const statusLabels = {available:'Disponible', locked:'Verrouillé', resolved:'Résolu', neutralized:'Neutralisé'};
@@ -20,7 +21,7 @@ export class PoiMapView {
   private selectedId = '';
   constructor(private readonly options: PoiMapOptions) {}
 
-  open(model: PoiMapModel, focusId = model.currentNodeId): void {
+  open(model: PoiMapModel, focusId = model.currentNodeId, reducedMotion = false): void {
     this.close();
     this.selectedId = focusId;
     const current = model.nodes.find(n => n.id === model.currentNodeId)!;
@@ -45,6 +46,9 @@ export class PoiMapView {
       ${nodes.map(n=>{const [x,y]=positions.get(n.id)!;return `<button class="poi-marker poi-marker--${n.status} ${n.id===model.currentNodeId?'poi-marker--current':''}" data-poi-id="${escape(n.id)}" data-poi-reachable="${n.canMove}" style="left:${x/9.6}%;top:${y/5.2}%" aria-label="${escape(n.label)}, ${kindLabels[n.kind]}, ${statusLabels[n.status]}${n.reusable?', refuge réutilisable':''}"><span class="poi-marker__icon">${escape(n.icon)}</span><span class="poi-marker__name">${escape(n.label)}</span>${n.status==='resolved'?'<span class="poi-marker__check" aria-hidden="true">✓</span>':''}</button>`;}).join('')}</div></div>
       <footer class="poi-map__footer"><div class="poi-map__detail" aria-live="polite"></div><p class="poi-map__legend">◇ Rencontre · ⚔ Combat · ⌂ Refuge · ✓ Résolu<br>Les chemins ouverts se parcourent dans les deux sens.</p></footer>`;
     this.options.root.append(element); this.element=element;
+    const motion=document.createElement('button');motion.type='button';motion.dataset.poiAction='motion';
+    motion.textContent='Mouvement réduit';motion.setAttribute('aria-pressed',String(reducedMotion));
+    element.querySelector('nav')!.append(motion);
     const update=()=>{
       const n=model.nodes.find(n=>n.id===this.selectedId)??current;
       const canMove=n.canMove || (n.id===model.currentNodeId && n.canActivate);
@@ -60,6 +64,7 @@ export class PoiMapView {
         case'company':this.options.onCompany();break;
         case'save':this.options.onSave();break;
         case'menu':this.options.onMenu();break;
+        case'motion':this.options.onReducedMotion();break;
       }
     });
     element.addEventListener('keydown',event=>{

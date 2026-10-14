@@ -209,6 +209,11 @@ export class GameApp {
       onCompany: () => void this.openPoiCompany(),
       onSave: () => this.saves.saveManual(this.state),
       onMenu: () => this.renderTitle(),
+      onReducedMotion: () => {
+        this.state.settings.reducedGraphics = !this.state.settings.reducedGraphics;
+        this.showPoiMap();
+        this.root.querySelector<HTMLButtonElement>('[data-poi-action="motion"]')?.focus();
+      },
     });
     this.prologue = new PrologueView(root);
   }
@@ -901,6 +906,16 @@ export class GameApp {
       await this.enterJourney();
       return;
     }
+    // Rebuild the authored campfire from durable facts on arrival and reload. Its local
+    // continuation returns to POI navigation; preparation neither enters nor resolves a node.
+    if (!this.traversalT0QaEnabled && !this.journeyUnavailable
+      && this.state.run.currentNodeId === 'lion-final-refuge'
+      && this.state.resolvedNodeIds.includes('lion-final-refuge')) {
+      this.poiMap.close();
+      delete document.body.dataset.campaignSurface;
+      await this.enterJourney();
+      return;
+    }
     // Production POI navigation owns selection only. The physical road remains retained for
     // historical DEV QA; no road session is invisibly driven by the production map.
     if (!this.traversalT0QaEnabled) {
@@ -1010,7 +1025,7 @@ export class GameApp {
     this.chrome.replaceChildren();
     const model = selectPoiMap(this.state);
     this.saves.saveAuto(this.state);
-    this.poiMap.open(model, focusId);
+    this.poiMap.open(model, focusId, this.state.settings.reducedGraphics);
   }
 
   private async choosePoi(nodeId: string): Promise<void> {
@@ -1090,7 +1105,14 @@ export class GameApp {
         available,
         secondary: JOURNEY_SECONDARY_ACTIONS,
         reducedMotion: this.state.settings.reducedGraphics,
+        ...(!this.traversalT0QaEnabled && current?.id === 'lion-final-refuge'
+          ? { presentationOnly: { eyebrow: 'Préparation', title: 'Avant le jugement', continueLabel: 'Carte de campagne' } }
+          : {}),
       });
+      if (outcome.kind === 'presentation-continue') {
+        this.showPoiMap();
+        return;
+      }
       if (outcome.kind === 'node' && outcome.id) {
         if (await this.commitRunNodeChoice(outcome.id)) return;
         rejections += 1;

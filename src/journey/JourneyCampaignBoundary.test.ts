@@ -52,6 +52,7 @@ describe('journey campaign boundary', () => {
       const boundary = createBoundary();
       const pending = boundary.present({ currentNodeId: state.currentNodeId,
         currentContentId: 'final_refuge', available, secondary: SECONDARY, reducedMotion });
+      await boundary.waitUntilSurfaceReady();
       await flush();
       expect(document.querySelector<HTMLElement>('.narrative-stage')?.dataset.narrativeTableau)
         .toBe('FINAL_REFUGE_PREPARATION_TABLEAU');
@@ -90,6 +91,7 @@ describe('journey campaign boundary', () => {
     const boundary = createBoundary();
     const pending = boundary.present({ currentNodeId: 'lion-audience', available,
       presentationOnly: { eyebrow: 'Départ', title: 'Vers Refuge du Lion', continueLabel: 'Prendre la route' } });
+    await boundary.waitUntilSurfaceReady();
     await flush();
     expect(document.querySelector<HTMLElement>('.narrative-stage')?.dataset.narrativeTableau)
       .toBe('AUDIENCE_ROAD_DEPARTURE_TABLEAU');
@@ -115,6 +117,7 @@ describe('journey campaign boundary', () => {
     const request = { currentNodeId: 'lion-audience', available, secondary: SECONDARY,
       presentationOnly: { eyebrow: 'Départ', title: 'Vers Refuge du Lion', continueLabel: 'Prendre la route' } };
     const pending = boundary.present(request);
+    await boundary.waitUntilSurfaceReady();
     await flush();
     expect([...document.querySelectorAll<HTMLButtonElement>('.narrative-utility-dock [data-journey-secondary]')]
       .map(button => button.dataset.journeySecondary)).toEqual(['COMPANY', 'SAVE', 'MENU']);
@@ -126,6 +129,7 @@ describe('journey campaign boundary', () => {
     expect(state).toEqual(before);
 
     const restored = boundary.present(request);
+    await boundary.waitUntilSurfaceReady();
     await flush();
     expect(document.querySelectorAll('.narrative-stage, .narrative-utility-dock')).toHaveLength(2);
     click('[data-journey-continue]');
@@ -217,6 +221,7 @@ describe('journey campaign boundary', () => {
   it('presents a terminal boundary that can never commit a route', async () => {
     const boundary = createBoundary();
     const pending = boundary.present({ currentNodeId: 'lion-final-judgement', available: [], secondary: SECONDARY, reducedMotion: false });
+    await boundary.waitUntilSurfaceReady();
     await flush();
     expect(document.querySelectorAll('[data-journey-choice]')).toHaveLength(0);
     expect(document.querySelector('[data-journey-continue]')?.textContent).toBe('Retour au menu');

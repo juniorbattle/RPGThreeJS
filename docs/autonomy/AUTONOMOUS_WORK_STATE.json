@@ -1,10 +1,10 @@
 {
-  "status": "COMPLETE_SCOPED",
-  "runStartedAt": "2026-10-14T04:40:17.8624482Z",
-  "runEndedAt": "2026-10-14T18:47:05.843Z",
-  "activeTask": "POI-INTEGRATION-CLOSEOUT",
-  "activePhase": "CLOSED_POI_FIRST_SECOND_REFUGE",
-  "activeSubtask": "Current POI pass accepted throughSecond refuge; product/proof/project docs published, final metadata closeout",
+  "status": "IN_PROGRESS",
+  "runStartedAt": "2026-10-14T20:08:10.9502211Z",
+  "runEndedAt": null,
+  "activeTask": "POI-MAP-FINALIZATION",
+  "activePhase": "PRODUCT_AND_NATIVE_ACCEPTANCE",
+  "activeSubtask": "Final-refuge preparation, Journey async boundaries and remaining native POI acceptance",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
   "lastPushedCommit": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
@@ -63,7 +63,7 @@
     "Five inherited JourneyBoundary failures, OS reduced motion/mobile/operator full demo",
     "Safe physical Traversal retirement only after full replacement and complete reference inventory"
   ],
-  "nextAction": "Current POI pass closed scoped throughSecond refuge; launch no additional QA here. At a future separately resumed pass: read-only preflight/exclusive lock, revalidate successful0645 native save/proof/current source/build, then pre-judgement preparation/both endings/native terminal-menu/reload; later alternatives/defeat/OS motion/mobile/operator testing and safe physical-reference audit. Scheduler remains PAUSED as observed; no physical-road polish.",
+  "nextAction": "Freeze green source/build; authenticate successful0645; native final-refuge preparation then both endings, alternatives, defeat and motion/mobile matrix.",
   "taskQueue": [
     "POI-INTEGRATION-CLOSEOUT: COMPLETE_SCOPED Audience→Second refuge/rescue/desktop1366normal; full campaign remains open; final metadata follows publishedf597e3b",
     "DEMO-PC-CAMPAIGN: native Audience→Second refuge rescue accepted scoped; later pre-judgement/both endings/terminal/reload OPEN for future separate pass",
@@ -201,12 +201,12 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "codex-poi-continuation-20261014",
+  "runId": "codex-poi-finalization-20261014",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-14T18:47:05.843Z",
+  "lastHeartbeat": "2026-10-14T20:15:10.303Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-14T18:47:05.843Z",
+    "lastHeartbeat": "2026-10-14T20:15:10.303Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -24923,7 +24923,7 @@
       }
     ],
     "wip": null,
-    "nextAction": "Current POI pass closed scoped throughSecond refuge; launch no additional QA here. At a future separately resumed pass: read-only preflight/exclusive lock, revalidate successful0645 native save/proof/current source/build, then pre-judgement preparation/both endings/native terminal-menu/reload; later alternatives/defeat/OS motion/mobile/operator testing and safe physical-reference audit. Scheduler remains PAUSED as observed; no physical-road polish.",
+    "nextAction": "Freeze green source/build; authenticate successful0645; native final-refuge preparation then both endings, alternatives, defeat and motion/mobile matrix.",
     "runMetrics": {
       "runId": "codex-poi-continuation-20261014",
       "runtimeSourceFilesModified": 1,
@@ -24968,8 +24968,8 @@
       "verifiedRemoteMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
       "publishedAt": "2026-10-14T18:45:02.5129679+00:00"
     },
-    "runEndedAt": "2026-10-14T18:47:05.843Z",
-    "writerStopped": true,
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "status": "FINAL_SELECTED_CLOSURE",
       "shaIn": "Git/automation memory after push"
@@ -25765,8 +25765,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "POI-INTEGRATION-CLOSEOUT",
-    "activeSubtask": "Current POI pass accepted throughSecond refuge; product/proof/project docs published, final metadata closeout",
+    "activeTask": "POI-MAP-FINALIZATION",
+    "activeSubtask": "Final-refuge preparation, Journey async boundaries and remaining native POI acceptance",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -29098,10 +29098,10 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-poi-continuation-20261014",
+    "runId": "codex-poi-finalization-20261014",
     "agent": "codex",
-    "status": "COMPLETE_SCOPED",
-    "runStartedAt": "2026-10-14T04:40:17.8624482Z",
+    "status": "IN_PROGRESS",
+    "runStartedAt": "2026-10-14T20:08:10.9502211Z",
     "activePhase": "CLOSED_POI_FIRST_SECOND_REFUGE",
     "heartbeat": "2026-10-14T18:47:05.843Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-14T1841Z-codex-poi-integration.md",
@@ -32977,6 +32977,38 @@
       "reason": "Automatic approval reviewer quota exhausted",
       "bypassed": false,
       "publicationDistinctActionPassedReview": true
+    }
+  },
+  "poiFinalization": {
+    "startedAt": "2026-10-14T20:15:10.303Z",
+    "baseline": "5b7a67c736d7b3bc7071d5376a65b4c272dd2781",
+    "previous": {
+      "status": "COMPLETE_SCOPED",
+      "runId": "codex-poi-continuation-20261014",
+      "activeTask": "POI-INTEGRATION-CLOSEOUT",
+      "activePhase": "CLOSED_POI_FIRST_SECOND_REFUGE",
+      "activeSubtask": "Current POI pass accepted throughSecond refuge; product/proof/project docs published, final metadata closeout",
+      "nextAction": "Current POI pass closed scoped throughSecond refuge; launch no additional QA here. At a future separately resumed pass: read-only preflight/exclusive lock, revalidate successful0645 native save/proof/current source/build, then pre-judgement preparation/both endings/native terminal-menu/reload; later alternatives/defeat/OS motion/mobile/operator testing and safe physical-reference audit. Scheduler remains PAUSED as observed; no physical-road polish.",
+      "runStartedAt": "2026-10-14T04:40:17.8624482Z",
+      "runEndedAt": "2026-10-14T18:47:05.843Z"
+    },
+    "scope": [
+      "both native endings",
+      "authored alternatives",
+      "native POI defeat",
+      "reduced motion",
+      "mobile",
+      "five inherited Journey failures",
+      "retained physical Traversal audit"
+    ],
+    "historicalJobCount": 229,
+    "mechanical": {
+      "focused": 109,
+      "journeyBoundary": 18,
+      "inheritedJourneyFailuresClosed": 5,
+      "contracts": 8,
+      "slots": 8,
+      "types": true
     }
   }
 }

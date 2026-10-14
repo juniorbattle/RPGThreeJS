@@ -2,7 +2,7 @@
 .poi-map button{min-width:44px;min-height:44px;border:1px solid #b6a16c;border-radius:5px;background:#1c2b34;color:#f3e9ce;padding:8px 14px;cursor:pointer;font:inherit}
 .poi-map button:disabled{opacity:.5;cursor:default}.poi-map button:focus-visible{outline:3px solid #ffe09a;outline-offset:4px}
 .poi-map__header{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 28px;border-bottom:1px solid #a59161;background:#111d29}
-.poi-map__header span{font-size:12px;color:#c9b582;letter-spacing:.15em}.poi-map__header h1{font-size:22px;margin:3px 0}.poi-map__header p{font-size:14px}.poi-map nav{display:flex;gap:8px}
+.poi-map__header span{font-size:12px;color:#c9b582;letter-spacing:.15em}.poi-map__header h1{font-size:22px;margin:3px 0}.poi-map__header p{font-size:14px}.poi-map nav{display:flex;flex-wrap:wrap;gap:8px}.poi-map [data-poi-action="motion"][aria-pressed=true]{background:#f1d596;color:#12232c}
 .poi-map__land{flex:1;min-height:320px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#263e34}
 .poi-map__canvas{position:relative;width:min(100%,1100px);aspect-ratio:960/520;isolation:isolate}.poi-map__canvas svg{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 4px 8px #0005)}
 .poi-path{fill:none;stroke:#b2a57b;stroke-width:7;stroke-linecap:round;stroke-dasharray:4 10;opacity:.45}.poi-path--open{stroke:#e8cf96;opacity:.95;stroke-dasharray:none;stroke-width:8}

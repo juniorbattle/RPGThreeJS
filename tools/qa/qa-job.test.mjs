@@ -47,6 +47,15 @@ test('receipt preserves early worker failure after the parent stops waiting',t=>
   assert.throws(()=>execFileSync(process.execPath,['--input-type=module','-e',script],{stdio:'pipe'}),e=>e.status===17);
   const receipt=JSON.parse(readFileSync(resolve(job.root,job.output,'qa-job.json')));assert.equal(receipt.status,'FAILED');assert.equal(receipt.exitCode,17);
 });
+
+test('sync preserves the reviewed disposition of previous runs exactly',t=>{
+  const job=fixture(t);registerJob(job);
+  const file=resolve(job.root,'docs/autonomy/AUTONOMOUS_WORK_STATE.json');
+  const state=JSON.parse(readFileSync(file));
+  const historical={...structuredClone(state.live.qaJobs[0]),runId:'previous',jobId:'old',output:'tmp/old',acceptance:'ACCEPTED_SCOPED',reviewedAt:'2026-10-14'};
+  state.live.qaJobs.unshift(historical);writeFileSync(file,JSON.stringify(state));
+  assert.deepEqual(syncAsOwner(job)[0],historical);
+});
 test('sync rejects reuse after result tampering or assertions changing',t=>{
   const job=fixture(t);registerJob(job);const worker=beginJob(job);worker.finish(result(job));
   writeFileSync(resolve(job.root,job.output,'results.json'),'{}');assert.equal(syncAsOwner(job)[0].eligibleForReview,false);

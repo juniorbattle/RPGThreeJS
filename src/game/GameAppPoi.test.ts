@@ -22,6 +22,19 @@ function fixture() {
   owner.state=createInitialState();return {app,owner};
 }
 describe('GameApp POI owner handoffs',()=>{
+  it('rebuilds final-refuge preparation on exact V6 reload without opening a hub or securing loot',async()=>{
+    const {app,owner}=fixture();
+    owner.state.run.currentNodeId=owner.state.currentNodeId='lion-final-refuge';
+    owner.state.resolvedNodeIds.push('lion-final-refuge');owner.state.run.temporaryLoot.gold=17;
+    new SaveRepository().saveAuto(owner.state);const before=structuredClone(owner.state);
+    vi.spyOn(sceneTransition,'run').mockImplementation(async options=>{await options.task();});
+    const preparation=vi.spyOn(owner,'enterJourney').mockResolvedValue();
+    const resolve=vi.spyOn(owner,'resolveRunNode').mockResolvedValue();
+    await owner.continueChronicle();
+    expect(preparation).toHaveBeenCalledOnce();expect(resolve).not.toHaveBeenCalled();
+    expect(document.querySelector('.poi-map,.exploration-stop')).toBeNull();
+    expect(owner.state).toEqual(before);expect(new SaveRepository().loadAuto()).toEqual(before);app.dispose();
+  });
   it('presents a completed ending through its terminal agency on reload without replay or changing V6',async()=>{
     const {app,owner}=fixture();
     owner.state.run.currentNodeId=owner.state.currentNodeId='lion-final-judgement';

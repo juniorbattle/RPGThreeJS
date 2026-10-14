@@ -1,3 +1,13 @@
+# POI finalization — codex-poi-finalization-20261014
+
+IN_PROGRESS: operator requests both endings, authored alternatives, native POI defeat, reduced motion/mobile and five inherited Journey failures. Preflight clean dev5b7a67c/live origin parity; no inherited lock or dirty paths. Set1.2.0/baseline692829f protected. Scheduler unchanged.
+
+Product: rebuild authored final-refuge preparation on arrival/reload, local return to map; no new hub/securing. Carry game reduction into Journey tableaux and expose existing setting through a native POI button. Five Journey test timing failures closed without changed expectations. Native acceptance pending;109focused/types/8contracts green. Reuse existing runner, normal45minute per-job watchdog; no old Traversal retirement.
+
+Next: Freeze green source/build; authenticate successful0645; native final-refuge preparation then both endings, alternatives, defeat and motion/mobile matrix.
+
+## Preserved preceding closeout
+
 # POI integration closeout — codex-poi-continuation-20261014
 
 Closed scoped:2026-10-14T18:47:05.843Z. Status:COMPLETE_SCOPED; accepted Audience→Second refuge rescue on desktop1366×768 normal. Product/proof/project docs publishedf597e3b, remote parity verified; final metadata push/owned-lock release follows guarded execution. No additional ending job.
