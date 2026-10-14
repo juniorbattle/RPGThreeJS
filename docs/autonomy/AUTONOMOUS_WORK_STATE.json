@@ -1,13 +1,13 @@
 {
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-14T00:17:46.2829154Z",
-  "runEndedAt": "2026-10-14T01:42:17.438Z",
+  "runEndedAt": "2026-10-14T01:44:59.122Z",
   "activeTask": "POI-MAP-LION-CONTINUATION",
   "activePhase": "FIRST_SLICE_ACCEPTED_NEXT_SECOND_REFUGE",
   "activeSubtask": "First slice accepted scoped; next playable boundary is second refuge via POI navigation",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "5f3605d2c14e6b71965cf24f31deed6e0133c4c7",
-  "lastPushedCommit": "5f3605d2c14e6b71965cf24f31deed6e0133c4c7",
+  "lastKnownGoodCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
+  "lastPushedCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
   "completedThisRun": [
     "Read both operator attachments completely; honored dedicated contract amendment first and preserved one-writer stale-lock takeover protocol",
     "OD-2026-10-13-D / PRODUCTION-CONTRACTS-POI-NAVIGATION-1, set1.2.0, independent guardian review and immutable baseline692829f published before runtime code",
@@ -136,7 +136,7 @@
       "REPOSITORY_GOVERNANCE": "PASS owned lock, selected source/proofs/docs, dev only, final publication/parity then release"
     }
   },
-  "commitReferenceScope": "Commit aliases reference the last verified published executable checkpoint5f3605d; source owner correction596e390. Final evidence/state/handoff publication SHA is obtained from Git, avoiding a self-referential commit hash.",
+  "commitReferenceScope": "Last verified published product/evidence/handoff checkpoint8ce7071; executable/driver5f3605d and source9ba3d96d are immutable proof references. Subsequent metadata commit identity is obtained from Git, avoiding a self-reference.",
   "operatorAuthorization": "Explicit current POI migration/LOCKED amendment request and attachments, registered OD-2026-10-13-D; normal origin/dev publication permanently authorized OD-2026-10-12-A",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -228,15 +228,16 @@
   },
   "runId": "codex-poi-migration-20261013",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-14T01:42:17.438Z",
+  "lastHeartbeat": "2026-10-14T01:44:59.122Z",
   "wip": {
     "branch": "wip/codex-poi-migration-20261013",
     "sha": "e7256e9a6cac74c4ab11dd3385585f0ad308dfd1",
-    "status": "COHERENT_CONTENT_INCORPORATED_IN_DEV",
-    "retirement": "Delete only this owned WIP branch at closeout once final publication/parity is confirmed; older unique WIP branches remain preserved"
+    "status": "RETIRED_AFTER_PUBLISHED_CONTENT_AND_PARITY",
+    "retirement": "Owned local/remote wip/codex-poi-migration-20261013 deleted after dev8ce7071 parity, retained-path review and incorporation; older WIP branches untouched",
+    "retiredAt": "2026-10-14T01:44:59.122Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-14T01:42:17.438Z",
+    "lastHeartbeat": "2026-10-14T01:44:59.122Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -24508,8 +24509,9 @@
     "wip": {
       "branch": "wip/codex-poi-migration-20261013",
       "sha": "e7256e9a6cac74c4ab11dd3385585f0ad308dfd1",
-      "status": "COHERENT_CONTENT_INCORPORATED_IN_DEV",
-      "retirement": "Delete only this owned WIP branch at closeout once final publication/parity is confirmed; older unique WIP branches remain preserved"
+      "status": "RETIRED_AFTER_PUBLISHED_CONTENT_AND_PARITY",
+      "retirement": "Owned local/remote wip/codex-poi-migration-20261013 deleted after dev8ce7071 parity, retained-path review and incorporation; older WIP branches untouched",
+      "retiredAt": "2026-10-14T01:44:59.122Z"
     },
     "nextAction": "Read-only preflight, acquire exclusive lock, verify authenticated successful0057 first-refuge save/proof (or0131 exact resumed pair with preserved parent lineage) and current source/build. Continue POI selection through reserve-trail, Valmir, second exclusive trial and Bois-Clair to the second refuge; preserve actual reputation events, existing tactical configurations/rewards and native exactV6 reload. Reuse existing campaign driver; no physical-road polish, no failed0037/0127/0128 seed. After second refuge, verify formerT2/T4 narrative continuations and both endings; retire physical Traversal only after full replacement/reference audit. Scheduler remains PAUSED as observed.",
     "runMetrics": {
@@ -24540,9 +24542,11 @@
       "sourceCorrection": "596e390d3288ea0814316381429a32b1e822a327",
       "target": "origin/dev",
       "authorization": "OD-2026-10-12-A",
-      "finalClosure": "Git HEAD/remote after selected evidence/state/handoff publication"
+      "finalClosure": "Subsequent metadata-only closeout commit follows Git HEAD/remote; execution lock released after verified push",
+      "productEvidenceCheckpoint": "8ce70717fbceece50b6406234a1f81b11bc34b40",
+      "verifiedRemoteDev": "8ce70717fbceece50b6406234a1f81b11bc34b40"
     },
-    "runEndedAt": "2026-10-14T01:42:17.438Z",
+    "runEndedAt": "2026-10-14T01:44:59.122Z",
     "writerStopped": true,
     "metadataPublication": {
       "status": "FINAL_SELECTED_CLOSURE",
@@ -28677,7 +28681,7 @@
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-14T00:17:46.2829154Z",
     "activePhase": "FIRST_SLICE_ACCEPTED_NEXT_SECOND_REFUGE",
-    "heartbeat": "2026-10-14T01:42:17.438Z",
+    "heartbeat": "2026-10-14T01:44:59.122Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-14T0138Z-codex-poi-first-slice.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -30406,7 +30410,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "5f3605d2c14e6b71965cf24f31deed6e0133c4c7",
+    "lastPushedCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "productPreview": {
       "url": "http://127.0.0.1:5175/",
       "pid": 60640,
@@ -32149,7 +32153,9 @@
     "evidence": "docs/reports/poi-map-first-slice-2026-10-13/results.json",
     "finalExecutableCheckpoint": "5f3605d2c14e6b71965cf24f31deed6e0133c4c7",
     "finalSourceTree": "9ba3d96d33f3b9dd2ef057f6f7ecf5c95b5ee3d0",
-    "guardianFinalReview": "PASS all12 rows scoped; fresh/native shortcut/legacyV6 reviewed; no fullcampaign claim"
+    "guardianFinalReview": "PASS all12 rows scoped; fresh/native shortcut/legacyV6 reviewed; no fullcampaign claim",
+    "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
+    "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-14T01:42:17.438Z"
+  "heartbeat": "2026-10-14T01:44:59.122Z"
 }
