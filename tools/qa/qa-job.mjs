@@ -160,7 +160,7 @@ export function demoJobOptions(env=process.env) {
   assert.ok(Number.isInteger(timeoutMinutes)&&timeoutMinutes>=1&&timeoutMinutes<=maximum,`QA timeout must be an integer from 1 to ${maximum} minutes`);
   return {driver:'tools/demo-continuous-production-qa.mjs',output:env.DEMO_QA_OUTPUT??'tmp/demo/continuous-production',port:Number(env.DEMO_QA_PORT??5249),
     parameters:{target,routePlan,timeoutMinutes,...(timeoutAuthority===undefined?{}:{timeoutAuthority}),finalePlan:env.DEMO_QA_FINALE??(routePlan==='rescue'?'serpent':'trial'),defeatNodeId:env.DEMO_QA_DEFEAT_NODE??'lion-village-choice',
-      nativeDefeatWait:env.DEMO_QA_DEFEAT_WAIT==='1',trialPlan:env.DEMO_QA_TRIALS??'event',gameReducedMotion:env.DEMO_QA_GAME_MOTION==='1',viewport:(env.DEMO_QA_VIEWPORT??'1366x768').split('x').map(Number),osReducedMotion:env.DEMO_QA_OS_MOTION==='1',
+      nativeDefeatWait:env.DEMO_QA_DEFEAT_WAIT==='1',touchInput:env.DEMO_QA_TOUCH==='1',nativeEquipment:env.DEMO_QA_EQUIPMENT==='steel',trialPlan:env.DEMO_QA_TRIALS??'event',gameReducedMotion:env.DEMO_QA_GAME_MOTION==='1',viewport:(env.DEMO_QA_VIEWPORT??'1366x768').split('x').map(Number),osReducedMotion:env.DEMO_QA_OS_MOTION==='1',
       earnedSavePath:env.DEMO_QA_EARNED_SAVE??null,priorProofPath:env.DEMO_QA_PRIOR_PROOF??null,verifySalvation:env.DEMO_QA_VERIFY_SALVATION==='1'},
     requiredAssertions:target==='pursuit-victory'?['NATIVE_PURSUIT_VICTORY','SAME_MOUNTED_ROAD_RETURN','TEMPORARY_REWARD_ONCE','SETTLED_LANE_FOCUS','PERSISTED_V6_RELOAD']:
       target==='defeat-recovery'?['EXACT_V6_CHECKPOINT_RECOVERY','NATIVE_POI_CHECKPOINT_RETURN','EXACT_RELOAD']:['EARNED_LINEAGE','NATIVE_INPUTS','EXACT_RELOAD']};

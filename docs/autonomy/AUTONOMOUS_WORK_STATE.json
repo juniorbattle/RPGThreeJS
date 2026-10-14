@@ -33930,6 +33930,28 @@
       "nativeGamePreference": true,
       "gold": 205,
       "reputation": 44
+    },
+    "trialEndingReview": {
+      "jobId": "poi-ending-trial-mobile-2022",
+      "reviewedBy": [
+        "root",
+        "contracts-guardian"
+      ],
+      "scope": "390x844 normal viewport mouse/keyboard only",
+      "endingId": "lion-seal-trial-truth",
+      "rounds": 32,
+      "nativeActions": 168,
+      "exactV6": true,
+      "terminalMenuSavedBytesUnchanged": true,
+      "gold": 435,
+      "reputation": 98
+    },
+    "failedSerpent": {
+      "jobId": "poi-ending-serpent-2022",
+      "status": "FAILED",
+      "reason": "45min watchdog, native battle incomplete after67actions",
+      "seedAdmissible": false,
+      "next": "Distinct native equipment/controls preparation from authenticated0645; no partial seed"
     }
   }
 }
