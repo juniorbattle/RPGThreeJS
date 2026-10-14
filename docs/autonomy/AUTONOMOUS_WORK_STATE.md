@@ -1,3 +1,10 @@
+# POI map first-slice verification — codex-poi-migration-20261013
+
+Status: IN_PROGRESS. Active task: POI-MAP-FIRST-SLICE. Active subtask: native production first-refuge verification on frozen source/driver/build. Decision OD-2026-10-13-D; set1.2.0; immutable baseline692829f; product1449090 on origin/dev. Dedicated guardian amendment and source/assertion reviews PASS;53focused tests,tsc,build,8contracts/8videos and LOCKED/whitespace gates PASS. Native job poi-native-first-refuge-0037 RUNNING, acceptance NOT_ACCEPTED until terminal receipt, exact save pair and capture review. No new QA runner. Old Traversal retained; subsequent campaign/fins/mobile unaccepted. Scheduler PAUSED observed, unchanged.
+
+Next action: inspect that registered job; finish real playable first slice and exact V6 proof, correct a demonstrated regression if necessary, then close out and migrate later Lion sections. Historical QA and deferred work below are preserved; physical-road priorities are superseded on navigation only.
+
+## Preserved previous checkpoint
 # Native campaign and deployment focus checkpoint — run1944
 
 Run: rpgthreejs-auto-dev-90m-20261013T1944. Started: 2026-10-13T19:45:46.4541492Z. Ended: 2026-10-13T20:40:52.044Z. Status: IN_PROGRESS. Active subtask: Deployment keyboard focus corrected; native exact2AP Salvation verified scoped; second refuge remains unverified.
@@ -1261,6 +1268,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - early-combat-native-pursuit-0708: SUCCEEDED; port 5397; receipt `tmp/demo/early-combat-native-pursuit-0708/qa-job.json`; NOT_ACCEPTED
 - second-refuge-native-desktop-1828: FAILED; port 5401; receipt `tmp/demo/second-refuge-native-desktop-1828/qa-job.json`; NOT_ACCEPTED
 - second-refuge-native-desktop-1944: FAILED; port 5403; receipt `tmp/demo/second-refuge-native-desktop-1944/qa-job.json`; NOT_ACCEPTED
+- poi-native-first-refuge-0037: PLANNED; port 5407; receipt `tmp/demo/poi-native-first-refuge-0037/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

@@ -1,5 +1,7 @@
 # Demo completion plan
 
+Navigation priority update: [OD-2026-10-13-D](POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md) supersedes physical Traversal navigation and same-road Pursuit acceptance in this earlier plan. Execute the playable POI Audience→first-refuge slice, then generalize the existing Lion graph through second refuge, pre-judgement and authored endings. Preserve combat/skills, campaign keyboard, narrative/manual findings, V6 and final mobile/testing requirements. The earlier route-motion targets remain historical, not a reason to resume physical-road polish.
+
 Status: **ACTIVE PRIORITY**, not production acceptance. Decision **OD-2026-10-13-A**. Source: operator feedback in chat `01a0f5ba-db22-7412-b3ad-a3429d76cad6`: the autonomous task is looping and must advance toward a ready demo, with a concrete remaining-work report. This consolidates existing authorized work, not new game design.
 
 ## Verified starting point
