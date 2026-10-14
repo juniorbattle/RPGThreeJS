@@ -1,8 +1,8 @@
 # POI map first-slice verification — codex-poi-migration-20261013
 
-Status: IN_PROGRESS. Active task: POI-MAP-FIRST-SLICE. Active subtask: native production first-refuge verification on frozen source/driver/build. Decision OD-2026-10-13-D; set1.2.0; immutable baseline692829f; product1449090 on origin/dev. Dedicated guardian amendment and source/assertion reviews PASS;53focused tests,tsc,build,8contracts/8videos and LOCKED/whitespace gates PASS. Native job poi-native-first-refuge-0037 RUNNING, acceptance NOT_ACCEPTED until terminal receipt, exact save pair and capture review. No new QA runner. Old Traversal retained; subsequent campaign/fins/mobile unaccepted. Scheduler PAUSED observed, unchanged.
+Status: IN_PROGRESS. Active task: POI-MAP-FIRST-SLICE. Decision OD-2026-10-13-D; set1.2.0; immutable baseline692829f. Product1449090 and correction596e390 published on origin/dev. Guardian amendment/source reviews PASS;54 focused tests, final types/build,8contracts/8videos and immutable/whitespace gates PASS. Fresh job0057 SUCCEEDED/stable, scoped native opening→first-refuge/revisit/hub/exactV6 independently reviewed. Job0037 FAILED and0127 INTERRUPTED harness-entry error: both unseedable/NOT_ACCEPTED. New corrected shortcut and actual pre-migration0603 continuations pending. No new QA runner. Old Traversal retained; subsequent campaign/fins/mobile unaccepted. Scheduler PAUSED observed, unchanged.
 
-Next action: inspect that registered job; finish real playable first slice and exact V6 proof, correct a demonstrated regression if necessary, then close out and migrate later Lion sections. Historical QA and deferred work below are preserved; physical-road priorities are superseded on navigation only.
+Next action: Freeze corrected first-refuge resume entry in existing driver, then register short native0057 shortcut and authenticated pre-migration0603 V6 continuations under source596e390/new build. Never seed FAILED0037 or INTERRUPTED0127. Finish scoped review and publish first-slice closure.
 
 ## Preserved previous checkpoint
 # Native campaign and deployment focus checkpoint — run1944
@@ -1268,7 +1268,9 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - early-combat-native-pursuit-0708: SUCCEEDED; port 5397; receipt `tmp/demo/early-combat-native-pursuit-0708/qa-job.json`; NOT_ACCEPTED
 - second-refuge-native-desktop-1828: FAILED; port 5401; receipt `tmp/demo/second-refuge-native-desktop-1828/qa-job.json`; NOT_ACCEPTED
 - second-refuge-native-desktop-1944: FAILED; port 5403; receipt `tmp/demo/second-refuge-native-desktop-1944/qa-job.json`; NOT_ACCEPTED
-- poi-native-first-refuge-0037: PLANNED; port 5407; receipt `tmp/demo/poi-native-first-refuge-0037/qa-job.json`; NOT_ACCEPTED
+- poi-native-first-refuge-0037: FAILED; port 5407; receipt `tmp/demo/poi-native-first-refuge-0037/qa-job.json`; NOT_ACCEPTED
+- poi-native-first-refuge-0057: RUNNING; port 5407; receipt `tmp/demo/poi-native-first-refuge-0057/qa-job.json`; NOT_ACCEPTED
+- poi-shortcut-native-0127: PLANNED; port 5409; receipt `tmp/demo/poi-shortcut-native-0127/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

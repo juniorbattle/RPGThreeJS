@@ -725,6 +725,18 @@ try{
     await page.evaluate(text=>localStorage.setItem('rpg-threejs:autosave:v6',text),earnedText);
     await page.reload({waitUntil:'networkidle'});await click('.title-screen [data-action="continue"]');
     await page.waitForFunction(nodeId=>window.__demoQaApp?.state.currentNodeId===nodeId,JSON.parse(earnedText).currentNodeId);
+    if(target==='first-refuge'){
+      await page.waitForFunction(()=>[...document.querySelectorAll('.poi-map,.exploration-stop')]
+        .some(e=>e.getClientRects().length&&!e.closest('[inert]')));
+      if(await page.locator('.poi-map:visible').count()){
+        const current=JSON.parse(earnedText).currentNodeId;
+        assert.equal((await state()).currentNodeId,current);
+        await page.locator(`.poi-map [data-poi-id="${current}"]`).click();
+        await page.locator('.poi-map [data-poi-action="move"]:not(:disabled)').click();
+        report.inputs.push({action:'native current refuge pointer reopening',id:current});
+        await page.locator('.exploration-stop:visible:not([inert])').waitFor({state:'visible'});
+      }
+    }
   }else await click('.title-screen [data-action="new"]');
   report.motionEvidence=await page.evaluate(()=>({
     osRequested:matchMedia('(prefers-reduced-motion: reduce)').matches,
