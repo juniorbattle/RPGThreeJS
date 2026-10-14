@@ -1,6 +1,6 @@
 # Documentation authority
 
-The [game constitution](game/GAME_CONSTITUTION.md) and [locked production contracts](contracts/README.md) record the operator's approved target from `PRODUCTION-CONTRACTS-LOCK-1`. This index's older baseline, `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`, remains the source audit baseline. Read the contracts before using an older task report.
+The [game constitution](game/GAME_CONSTITUTION.md) and [locked production contracts](contracts/README.md) record the operator's approved target. Current set **1.2.0**, approved dedicated amendment **PRODUCTION-CONTRACTS-POI-NAVIGATION-1 / OD-2026-10-13-D**, uses immutable baseline `692829f32d735ad890182eea6b5e5e195551bbbf`: the POI map permanently replaces playable Traversal. The original lock and this index's older `main@6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0` source audit remain historical. Read current contracts before using older reports.
 
 1. **Explicit operator decisions and locked contracts are the approved target.** Current source describes implementation and may still drift from that target.
 2. **Production source and runtime are executable evidence.** Verify current behavior against checked-out source and a production run.
@@ -12,7 +12,7 @@ The [game constitution](game/GAME_CONSTITUTION.md) and [locked production contra
 ## Start here
 
 - [Current project status](project/CURRENT_STATUS.md), [demo roadmap](project/DEMO_ROADMAP.md), [post-demo roadmap](project/POST_DEMO_ROADMAP.md), and [engineering rules](project/ENGINEERING_RULES.md).
-- [Traversal authority](traversal/README.md), [T0 production contract](traversal/T0_PRODUCTION_CONTRACT.md), and [remaining legs](traversal/LEGS_ROADMAP.md).
+- [Production POI navigation](project/POI_NAVIGATION.md) and [current scoped integration](reports/poi-map-integration-2026-10-14.md). The [Traversal reference](traversal/README.md), [old T0 contract](traversal/T0_PRODUCTION_CONTRACT.md) and [leg audit](traversal/LEGS_ROADMAP.md) remain historical navigation/compatibility references under the current LOCKED POI successor doctrine.
 - [Content map](content/README.md) and [demo content map](content/DEMO_CONTENT_MAP.md).
 - [Historical reports](reports/README.md) and [report index](reports/INDEX.md).
 - [Repository inventory and proposed cleanup](audits/project-continuity-audit-1.md). No deletion is authorized by the plan alone.

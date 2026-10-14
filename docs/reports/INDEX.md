@@ -6,6 +6,7 @@ Baseline for this index: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. Repo
 
 | Report | Historical role | Current authority |
 | --- | --- | --- |
+| [POI integration through second refuge](poi-map-integration-2026-10-14.md) | Earned native rescue continuation, Valmir/Bois-Clair victories, paid return/rest, reusable second refuge and exact V6; desktop1366 normal; endings/mobile OPEN | [Production POI navigation](../project/POI_NAVIGATION.md), set1.2.0 and paired autonomy state |
 | [Playable POI first slice](poi-map-first-slice-2026-10-13.md) | Native Audience→first-refuge, reversible shortcut and authentic oldV6 scoped desktop acceptance,2026-10-13; later Lion/fins/mobile OPEN | [Production POI navigation](../project/POI_NAVIGATION.md),current contracts and paired autonomy state |
 | [Late-reset frozen camera contact](traversal-road-late-reset-3.md) | Bounded cached presentation forecast and fresh scoped proof,2026-10-04; complete road/demo acceptance OPEN | [Road elements status](../autonomy/TRAVERSAL_ROAD_ELEMENTS.md) and paired autonomy state |
 | [Road entry and late-reset checkpoint](traversal-road-lifetime-entry-2.md) | Unseen entry fix and scoped native proof,2026-10-03; late-reset contact/full acceptance OPEN | [Road elements status](../autonomy/TRAVERSAL_ROAD_ELEMENTS.md) and paired autonomy state |

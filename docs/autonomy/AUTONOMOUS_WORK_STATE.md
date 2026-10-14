@@ -1,14 +1,24 @@
-# Exceptional manual POI campaign — codex-poi-continuation-20261014
+# POI integration closeout — codex-poi-continuation-20261014
 
-Status:IN_PROGRESS; started:2026-10-14T04:40:17.8624482Z; owned exclusive lock. OD-2026-10-14-A directly authorizes continuing this manual task beyond scheduled/earlier35min bounds; next scenario120min, namedrun/authority/lock checked, normalQA1–45unchanged. Scheduler PAUSED unchanged; preview60640/5175 available; user storage untouched.
+Prepared:2026-10-14T18:41:20.017Z. Status:READY_FOR_PUBLICATION; functional scope ACCEPTED_SCOPED Audience→Second refuge, rescue, desktop1366×768 normal. Operator requests closure of this pass; no new ending job. Executable/runner733737d and source4d7244 already published; selected proof/docs publication and owned-lock release pending guarded operation.
 
-Product:f7ab ending terminal/menu fallback correction;67current focused tests/types/build PASS. Five broader JourneyBoundary failures reproduce exactly on e61 baseline.18QA continuity tests pass elevated after sandbox temporaryGit denial. Native ending assertions now include Enter menu/focused title/exact owner+save bytes; ending verify0 native prepared deployment/equipment/rest use existing owners. Guardian actualdiff PASS, no ending acceptance.
+Product:f7ab corrects completed ending to existing terminal Journey/focused title, with pending-finale ownership preserved. Map drives existing canon/tactical/refuge owners;21IDs/V6 unchanged. No lore, hub, reward, parallel tactic or hidden road invented. Terminal native acceptance remains open.
 
-Current0540:FAILED/stable35min, digest8666ed94bedb9c8ea42679f5d2bf1f1a70bd01144946a73f0cc5a5657cd808af. Native Valmir5round42actions; paid post-Valmir rest60to30, temporaryloot90/checkpoint/no-replay/exactautosave preserved. Village unfinished7round37actions; browsererrors0/no injection. All outputs unseedable; original source/driver/helper/all9build archived and hashes verified; worker9064/port5409 absent. Prior0451 similarly FAILED/unseedable. Second refuge remains unaccepted.
+New playable step:successful0645 earns native Valmir5round42actions then Bois-Clair10round50actions, with actual return/rest30gold (60→30,loot90/checkpoint retained), existing shrine/rescue/reputation aftermath, Second refuge280gold/85rep/loot0, reusable services/exactV6. Inherited0057 opening battle counted separately. Result0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868; earnedSavef0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a=resumed exact. SUCCEEDED/exit0/stable/no errors/fixture/injection. Original source/driver/helper/nine bundles frozen in tmp/autonomy/poi-native-0645-original.
 
-All225 historical jobs plus0451/0540 retained (227); exact deferred work preserved. Legacy successful1859 second-refuge pair independently verified by guardian for compatibility only; no historical acceptance changed. Set1.2.0/baseline692829f/eightvideos/canon/V6/temporaryloot/main protection unchanged.
+Verification:67current focused tests,18QA continuity/authority tests, tsc/build,8contracts8slots/eightMP4/LOCKED/whitespace PASS. Five broader JourneyBoundary failures reproduce exactly on pre-fix e61 and remain OPEN. Guardian actualdiff/final12-row scope PASS; five current captures independently reviewed and promoted with compact result. Set1.2.0/baseline692829f; no further LOCKED amendment.
 
-Next:Publish coherent manual exception/checkpoint, freeze source4d7244/build/driver/helper and register native second-refuge120min from successful0057 under OD-2026-10-14-A. Preserve failed0451/0540 as non-seedable. Finish actual village combat then second-refuge agency/reusablehub/exactV6. Use new successful second-refuge pair for native narrative/ending/Return-to-menu, then authored alternative ending and safe Traversal reference audit.
+All229jobs retained; all225pre-continuation records and deferredDemoTask/pendingNarrativeTask exact.0451/0540FAILED village timeout,0643FAILED pre-game cache:unseedable/nonaccepted. Raw receipts unchanged; selected0645 disposition reviewed separately. ManualOD-2026-10-14-A budget exception scoped to named interactive run; normalQA1–45/default25 and scheduler unchanged/PAUSED as observed.
+
+Closeout blocker:automatic approval review could not execute latest read-only PID7520/port5409 query because reviewer quota exhausted; action not executed and no bypass. Driver finally closes browser/server before terminalreceipt and exec0; independent live absence not claimed. Product preview5175 deliberately retained/user storage untouched. Guarded commit/push/remote parity and owned-lock release still pending.
+
+Counts:product1/test1/existingQA2/existingQAtest1/newQA0/promotedproof6(5captures)/workflow12/inherited0/registered4/gameplay3/pre-gamefailure1/reviewer1. First-slice counts/history unchanged.
+
+Report:[scoped integration](../reports/poi-map-integration-2026-10-14.md); Handoff:[closure and future boundary](handoffs/2026-10-14T1841Z-codex-poi-integration.md).
+
+Next:Finish guarded explicit-path POI documentation/proof publication on origin/dev and owned-lock release; actual automatic-review quota refusal must never be bypassed. Current pass functionally accepted throughSecond refuge; launch no ending job. A future resumed pass revalidates successful0645 pair/current source/build before native pre-judgement/both endings/terminal menu/reload, alternatives/defeat/motion/mobile/operator testing; no physical-road polish.
+
+Remaining migration:native pre-judgement/both endings/terminal/menu/reload, other routes/defeat/V6, inherited Journey tests, OS reduced motion/mobile/operator final demo; physical Traversal reference audit/removal only after complete replacement. Sharedtiming/durablefork/save references are retained.
 
 ## Preserved first-slice checkpoint
 
@@ -1298,7 +1308,9 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - poi-legacy-map-native-0128: FAILED; port 5411; receipt `tmp/demo/poi-legacy-map-native-0128/qa-job.json`; NOT_ACCEPTED
 - poi-legacy-map-native-0131: SUCCEEDED; port 5411; receipt `tmp/demo/poi-legacy-map-native-0131/qa-job.json`; ACCEPTED_SCOPED
 - poi-second-refuge-native-0451: FAILED; port 5409; receipt `tmp/demo/poi-second-refuge-native-0451/qa-job.json`; NOT_ACCEPTED
-- poi-second-refuge-prepared-0540: PLANNED; port 5409; receipt `tmp/demo/poi-second-refuge-prepared-0540/qa-job.json`; NOT_ACCEPTED
+- poi-second-refuge-prepared-0540: FAILED; port 5409; receipt `tmp/demo/poi-second-refuge-prepared-0540/qa-job.json`; NOT_ACCEPTED
+- poi-second-refuge-manual-0643: FAILED; port 5409; receipt `tmp/demo/poi-second-refuge-manual-0643/qa-job.json`; NOT_ACCEPTED
+- poi-second-refuge-manual-0645: PLANNED; port 5409; receipt `tmp/demo/poi-second-refuge-manual-0645/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

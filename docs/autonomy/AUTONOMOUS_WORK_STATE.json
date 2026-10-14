@@ -1,31 +1,45 @@
 {
-  "status": "IN_PROGRESS",
+  "status": "READY_FOR_PUBLICATION",
   "runStartedAt": "2026-10-14T04:40:17.8624482Z",
   "runEndedAt": null,
-  "activeTask": "POI-MAP-LION-CONTINUATION",
-  "activePhase": "MANUAL_EXTENDED_CAMPAIGN_PREPARATION",
-  "activeSubtask": "Operator-authorized manual campaign duration; earned second refuge and actual ending remain in progress",
+  "activeTask": "POI-INTEGRATION-CLOSEOUT",
+  "activePhase": "SCOPED_ACCEPTED_PUBLICATION_PENDING",
+  "activeSubtask": "POI Audience→Second refuge verified; scoped docs/evidence ready; final guarded publication pending",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
-  "lastPushedCommit": "e61b118dc926f202f893f9c28c8cbb822d004c44",
+  "lastKnownGoodCommit": "733737d2bc93c8556950df895f1f2aad9fba0b46",
+  "lastPushedCommit": "733737d2bc93c8556950df895f1f2aad9fba0b46",
   "completedThisRun": [
-    "Authenticated first-slice0057 save/proof and preflight/remote/lock; first-slice remains accepted",
-    "GameApp completed-ending terminal/menu fallback correction published f7ab;67currentfocused tests/types/build PASS",
-    "Native Valmir5round42actions and paid first-refuge return/rest60to30, temporaryloot90/checkpoint/one-shot facts preserved; secondrefuge not yet earned in0451/0540",
-    "Direct operator OD-2026-10-14-A extends this exceptional manual task beyond scheduled/bounded QA duration; scheduler unchanged",
-    "18QA continuity tests PASS elevated after sandbox refused temporaryGit fixtures; normalshape/bounds and effective manual run/lock enforced"
+    "Production terminal Journey/title correction with canonical pending-finale protection, mechanical exact-save regression coverage",
+    "Existing native pilot prepares company through real backtracking/paid rest; no game-truth/tactical/balance change",
+    "Earned native Valmir and Bois-Clair victories reach actual second checkpoint; securing/reuse/exactV6 reviewed",
+    "Exceptional named manual authority/run/lock checks added to existing QA helper; normal budgets/scheduler unchanged",
+    "Independent guardian final scoped matrix PASS; five current inspected captures/compact result selected; all historical jobs/deferred work exact",
+    "Canonical project/docs/plan reflect POI set1.2.0 and accepted first/second scope; no further LOCKED amendment; user requests closure without more ending QA"
   ],
   "filesChanged": [
+    "docs/README.md",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+    "docs/autonomy/OPERATOR_DECISIONS.md",
+    "docs/autonomy/POI_MANUAL_EXECUTION_OPERATOR_DECISION_2026-10-14.md",
+    "docs/autonomy/QA_JOB_CONTINUITY.md",
+    "docs/autonomy/handoffs/2026-10-14T1841Z-codex-poi-integration.md",
+    "docs/project/CURRENT_STATUS.md",
+    "docs/project/POI_NAVIGATION.md",
+    "docs/reports/INDEX.md",
+    "docs/reports/poi-map-integration-2026-10-14.md",
+    "docs/reports/poi-map-integration-2026-10-14/01-second-panel-reserves.png",
+    "docs/reports/poi-map-integration-2026-10-14/02-native-paid-rest.png",
+    "docs/reports/poi-map-integration-2026-10-14/03-native-village-victory.png",
+    "docs/reports/poi-map-integration-2026-10-14/04-second-refuge-map.png",
+    "docs/reports/poi-map-integration-2026-10-14/05-second-refuge-reloaded.png",
+    "docs/reports/poi-map-integration-2026-10-14/results.json",
     "src/game/GameApp.ts",
     "src/game/GameAppPoi.test.ts",
     "tools/demo-continuous-production-qa.mjs",
     "tools/qa/qa-job.mjs",
-    "tools/qa/qa-job.test.mjs",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/OPERATOR_DECISIONS.md",
-    "docs/autonomy/POI_MANUAL_EXECUTION_OPERATOR_DECISION_2026-10-14.md",
-    "docs/autonomy/QA_JOB_CONTINUITY.md"
+    "tools/qa/qa-job.test.mjs"
   ],
   "testsRun": [
     "67 current focused game/POI/Journey adapter tests, tsc+Vite onf7ab; five broader JourneyBoundary failures reproduce exactly one61 baseline",
@@ -38,22 +52,23 @@
     "8contracts8slots, immutable and whitespace gates, driver/helper syntax"
   ],
   "testsRemaining": [
-    "Native second-refuge completion/reusablehub/exactV6 under manual duration",
-    "Native later narrative/ending/reload/Return-to-menu and authored alternative ending",
-    "Broader first-slice/defeat/reducedmotion/mobile/operator acceptance retained"
+    "Native pre-judgement/both endings/terminal menu/reload",
+    "Other optional/exclusive routes/native POI defeat/broader V6",
+    "Five inherited JourneyBoundary failures, OS reduced motion/mobile/operator full demo"
   ],
-  "blockers": [],
+  "blockers": [
+    "Automatic approval reviewer quota exhausted for last independent process query (not executed); guarded publication/lock release still pending, no bypass"
+  ],
   "remainingWork": [
-    "Earned POI second refuge and both endings, later optional/exclusive choices and formerT2/T4 narrative continuity",
-    "Fresh new-map exclusive combat alternative and native defeat/checkpoint recovery, other historicalV6 interruption boundaries",
-    "Six-hero skill/campaign keyboard/presentation outstanding non-navigation criteria preserved in previousCheckpoint/deferred tasks",
-    "Desktop broader reduced-motion/asset-fallback/accessibility matrices, mobile then operator final demo acceptance",
-    "Full Traversal reference inventory and retirement after verified replacement; future approved chest/elite placements"
+    "Native pre-judgement/both endings/terminal menu/reload",
+    "Other optional/exclusive routes/native POI defeat/broader V6",
+    "Five inherited JourneyBoundary failures, OS reduced motion/mobile/operator full demo",
+    "Safe physical Traversal retirement only after full replacement and complete reference inventory"
   ],
-  "nextAction": "Publish coherent manual exception/checkpoint, freeze source4d7244/build/driver/helper and register native second-refuge120min from successful0057 under OD-2026-10-14-A. Preserve failed0451/0540 as non-seedable. Finish actual village combat then second-refuge agency/reusablehub/exactV6. Use new successful second-refuge pair for native narrative/ending/Return-to-menu, then authored alternative ending and safe Traversal reference audit.",
+  "nextAction": "Finish guarded explicit-path POI documentation/proof publication on origin/dev and owned-lock release; actual automatic-review quota refusal must never be bypassed. Current pass functionally accepted throughSecond refuge; launch no ending job. A future resumed pass revalidates successful0645 pair/current source/build before native pre-judgement/both endings/terminal menu/reload, alternatives/defeat/motion/mobile/operator testing; no physical-road polish.",
   "taskQueue": [
-    "POI-MAP-LION-CONTINUATION: ACTIVE_NEXT; first slice accepted scoped, earn second refuge using POI then later narrative/fins and full reference audit",
-    "DEMO-PC-CAMPAIGN: ACTIVE; native second refuge then authored ending/exact reload; full acceptance OPEN",
+    "POI-INTEGRATION-CLOSEOUT: functional scope ACCEPTED throughSecond refuge; reviewed docs/evidence publication pending; no new ending QA in this pass",
+    "DEMO-PC-CAMPAIGN: native Audience→Second refuge rescue accepted scoped; later pre-judgement/both endings/terminal/reload OPEN for future separate pass",
     "DEMO-COMBAT-SKILLS: PENDING_MISSING_CRITERIA_ONLY; six heroes/lancer, native victory/defeat and ordinary Pursuit return",
     "DEMO-CAMPAIGN-KEYBOARD: PENDING; preserve standalone scoped acceptance and deferred work; mounted campaign targets/focus OPEN",
     "DEMO-PRESENTATION-FINAL: PENDING_CONSOLIDATED_MILESTONE; known visual/manual findings remain OPEN; Bois-Clair night asset EXTERNAL",
@@ -84,21 +99,21 @@
       "AUTHORING_AND_QA"
     ],
     "matrix": {
-      "GAME_CONSTITUTION": "PASS authorities preserved",
-      "ART_DIRECTION": "PASS preservation; full art finish excluded",
-      "CHARACTERS": "PASS V2 preserved",
-      "ENVIRONMENTS": "PASS selected desktop map/hub captures",
-      "NARRATIVE_CAMPAIGN": "PASS native Audience-to-first-refuge, later Lion/fins OPEN",
-      "NARRATIVE_PRESENTATION": "PASS existing content/handoffs",
-      "TRAVERSAL_POI": "PASS first slice and final bidirectional optional shortcut",
-      "COMBAT": "PASS real native opening; general balance/alternative branch excluded",
-      "SAVE": "PASS fresh0057 and authenticated pre-migration0603-to0131 boundaries; broaderV6 OPEN",
-      "UI_ACCESSIBILITY": "PASS desktop1366normal native pointer/keyboard only",
-      "QA_EVIDENCE": "PASS scoped composites, inherited battles explicit; failed outputs never seeded",
-      "REPOSITORY_GOVERNANCE": "PASS owned lock, selected source/proofs/docs, dev only, final publication/parity then release"
+      "GAME_CONSTITUTION": "PASS scoped Audience→Second refuge desktop1366 normal; preservation/broader limits in integration report",
+      "ART_DIRECTION": "PASS scoped Audience→Second refuge desktop1366 normal; preservation/broader limits in integration report",
+      "CHARACTERS": "PASS scoped Audience→Second refuge desktop1366 normal; preservation/broader limits in integration report",
+      "ENVIRONMENTS": "PASS scoped Audience→Second refuge desktop1366 normal; preservation/broader limits in integration report",
+      "NARRATIVE / CAMPAIGN": "PASS scoped Audience→Second refuge desktop1366 normal; preservation/broader limits in integration report",
+      "NARRATIVE_PRESENTATION": "PASS scoped Audience→Second refuge desktop1366 normal; preservation/broader limits in integration report",
+      "TRAVERSAL / POI": "PASS scoped Audience→Second refuge desktop1366 normal; preservation/broader limits in integration report",
+      "COMBAT": "PASS scoped Audience→Second refuge desktop1366 normal; preservation/broader limits in integration report",
+      "SAVE": "PASS scoped Audience→Second refuge desktop1366 normal; preservation/broader limits in integration report",
+      "UI / ACCESSIBILITY": "PASS scoped Audience→Second refuge desktop1366 normal; preservation/broader limits in integration report",
+      "QA_EVIDENCE": "PASS scoped Audience→Second refuge desktop1366 normal; preservation/broader limits in integration report",
+      "REPOSITORY_GOVERNANCE": "PASS scoped Audience→Second refuge desktop1366 normal; preservation/broader limits in integration report"
     }
   },
-  "commitReferenceScope": "Last verified published product/evidence/handoff checkpoint8ce7071; executable/driver5f3605d and source9ba3d96d are immutable proof references. Subsequent metadata commit identity is obtained from Git, avoiding a self-reference.",
+  "commitReferenceScope": "Executable/runner733737d and immutable source4d7244 already published; subsequent selected-proof/docs closure identity follows Git, not a self-referential SHA",
   "operatorAuthorization": "Explicit current POI migration/LOCKED amendment request and attachments, registered OD-2026-10-13-D; normal origin/dev publication permanently authorized OD-2026-10-12-A",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -190,10 +205,10 @@
   },
   "runId": "codex-poi-continuation-20261014",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-14T06:40:39.449Z",
+  "lastHeartbeat": "2026-10-14T18:41:20.017Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-14T06:40:39.449Z",
+    "lastHeartbeat": "2026-10-14T18:41:20.017Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -24682,41 +24697,284 @@
         "failedOutputsSeedable": false,
         "auditArchive": "tmp/autonomy/poi-native-0540-original",
         "observed": "Valmir native5round42actions; paid post-Valmir refuge return60to30 with temporaryloot90 intact; village unfinished7round37actions at35min; no browser errors/injection"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-second-refuge-manual-0643",
+        "runId": "codex-poi-continuation-20261014",
+        "status": "FAILED",
+        "registeredAt": "2026-10-14T06:42:57.608Z",
+        "pid": 53608,
+        "port": 5409,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "second-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 120,
+          "timeoutAuthority": "OD-2026-10-14-A",
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/poi-native-first-refuge-0057/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/poi-native-first-refuge-0057/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-second-refuge-manual-0643",
+        "receiptPath": "tmp/demo/poi-second-refuge-manual-0643/qa-job.json",
+        "provenance": {
+          "gitHead": "733737d2bc93c8556950df895f1f2aad9fba0b46",
+          "sourceTree": "4d7244c191ad9a58d53d9e74c24830cde40c3631",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "4927ac3de345ef1736fa13cb40907f726c2ce88ec5c2a12c97c0198fe4297d96"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-native-first-refuge-0057/earned-first-refuge-v6.json",
+              "sha256": "4cf082db1fd5569d27ecf3e2062f3d8bbe81fac5457d7c6943cd76edf5561716"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-native-first-refuge-0057/results.json",
+              "sha256": "61791ccf1b79766beb62c0c37a585da0788d9be3ff082969e64055a39eb45fa5"
+            }
+          ],
+          "receiptToolSha256": "2ca9771feffbdae4c296fd768771c0d988a9a6cab399cef4c54e27889994568c",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+              "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+            },
+            {
+              "path": "dist/assets/combat-BL64qO_z.js",
+              "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CbyOqBjG.css",
+              "sha256": "b80061cf0341b9f8dc3b2dd97df816dcf240075fdd3c5a2e1d767ca52abbb735"
+            },
+            {
+              "path": "dist/assets/game-tC30pJco.js",
+              "sha256": "2a28e41ad2e058a30eb38e73e685d42f4905a43a4ed18c476c57751b6f8483c0"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "01c54bc038933897e30dc57b256949e6fde4f37a21f3f61defdc15e7bbb7d6bd"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-14T06:42:58.645Z",
+        "endedAt": "2026-10-14T06:42:58.925Z",
+        "exitCode": 1,
+        "failureType": "ENVIRONMENT_BROWSER_CACHE_MISSING",
+        "nativeInputsStarted": false,
+        "processStopped": true,
+        "failedOutputsSeedable": false,
+        "eligibleForReview": false,
+        "reason": "Worker exited before final result/cleanup"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-second-refuge-manual-0645",
+        "runId": "codex-poi-continuation-20261014",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-14T06:44:48.499Z",
+        "pid": 7520,
+        "port": 5409,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "second-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 120,
+          "timeoutAuthority": "OD-2026-10-14-A",
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/poi-native-first-refuge-0057/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/poi-native-first-refuge-0057/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-second-refuge-manual-0645",
+        "receiptPath": "tmp/demo/poi-second-refuge-manual-0645/qa-job.json",
+        "provenance": {
+          "gitHead": "733737d2bc93c8556950df895f1f2aad9fba0b46",
+          "sourceTree": "4d7244c191ad9a58d53d9e74c24830cde40c3631",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "4927ac3de345ef1736fa13cb40907f726c2ce88ec5c2a12c97c0198fe4297d96"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-native-first-refuge-0057/earned-first-refuge-v6.json",
+              "sha256": "4cf082db1fd5569d27ecf3e2062f3d8bbe81fac5457d7c6943cd76edf5561716"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-native-first-refuge-0057/results.json",
+              "sha256": "61791ccf1b79766beb62c0c37a585da0788d9be3ff082969e64055a39eb45fa5"
+            }
+          ],
+          "receiptToolSha256": "2ca9771feffbdae4c296fd768771c0d988a9a6cab399cef4c54e27889994568c",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+              "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+            },
+            {
+              "path": "dist/assets/combat-BL64qO_z.js",
+              "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CbyOqBjG.css",
+              "sha256": "b80061cf0341b9f8dc3b2dd97df816dcf240075fdd3c5a2e1d767ca52abbb735"
+            },
+            {
+              "path": "dist/assets/game-tC30pJco.js",
+              "sha256": "2a28e41ad2e058a30eb38e73e685d42f4905a43a4ed18c476c57751b6f8483c0"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "01c54bc038933897e30dc57b256949e6fde4f37a21f3f61defdc15e7bbb7d6bd"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_POI_RESCUE_SECOND_REFUGE_DESKTOP1366_NORMAL",
+        "startedAt": "2026-10-14T06:44:49.522Z",
+        "endedAt": "2026-10-14T07:26:18.759Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+        "resultSha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868",
+        "provenanceStable": true,
+        "eligibleForReview": true,
+        "resultDigestMatches": true,
+        "reviewedAt": "2026-10-14T18:41:20.017Z",
+        "reviewedBy": [
+          "root",
+          "contracts-guardian"
+        ],
+        "scope": "Authentic earned Audience→Second refuge rescue lineage; native Valmir/village, reversible resolved navigation, paid rest, securing/reuse and exact V6; desktop1366×768 normal motion only",
+        "earnedSave": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+        "earnedSaveSha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a",
+        "earnedSaveEqualsResumed": true,
+        "evidence": "docs/reports/poi-map-integration-2026-10-14/results.json",
+        "processStoppedEvidence": "finally-before-terminal-receipt and exec exit0; independent CIM refusal not executed",
+        "independentProcessAbsenceVerified": false
       }
     ],
     "wip": null,
-    "nextAction": "Publish coherent manual exception/checkpoint, freeze source4d7244/build/driver/helper and register native second-refuge120min from successful0057 under OD-2026-10-14-A. Preserve failed0451/0540 as non-seedable. Finish actual village combat then second-refuge agency/reusablehub/exactV6. Use new successful second-refuge pair for native narrative/ending/Return-to-menu, then authored alternative ending and safe Traversal reference audit.",
+    "nextAction": "Finish guarded explicit-path POI documentation/proof publication on origin/dev and owned-lock release; actual automatic-review quota refusal must never be bypassed. Current pass functionally accepted throughSecond refuge; launch no ending job. A future resumed pass revalidates successful0645 pair/current source/build before native pre-judgement/both endings/terminal menu/reload, alternatives/defeat/motion/mobile/operator testing; no physical-road polish.",
     "runMetrics": {
-      "runId": "codex-poi-migration-20261013",
-      "runtimeSourceFilesModified": 6,
-      "testFilesModified": 3,
-      "existingQaFilesModified": 1,
+      "runId": "codex-poi-continuation-20261014",
+      "runtimeSourceFilesModified": 1,
+      "testFilesModified": 1,
+      "existingQaFilesModified": 2,
+      "existingQaTestFilesModified": 1,
       "newQaFilesAdded": 0,
       "promotedProofFiles": 6,
       "promotedCaptures": 5,
-      "workflowDocs": 26,
       "inheritedWipFiles": 0,
-      "browserScenarios": 7,
-      "registeredJobs": 7,
-      "reviewers": 1
+      "browserScenarios": 3,
+      "registeredJobs": 4,
+      "preGameplayEnvironmentFailures": 1,
+      "reviewers": 1,
+      "workflowDocs": 12
     },
     "checkpointPaths": [
-      "src/combat/combatKeyboard.ts",
-      "src/combat/legacyCombatRuntime.js",
-      "src/combat/combatKeyboard.test.ts",
-      "tools/combat-battlefield-keyboard-production-qa.mjs",
+      "docs/README.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-13T1944Z-codex-native-second-refuge.md"
+      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+      "docs/autonomy/handoffs/2026-10-14T1841Z-codex-poi-integration.md",
+      "docs/project/CURRENT_STATUS.md",
+      "docs/project/POI_NAVIGATION.md",
+      "docs/reports/INDEX.md",
+      "docs/reports/poi-map-integration-2026-10-14.md",
+      "docs/reports/poi-map-integration-2026-10-14/01-second-panel-reserves.png",
+      "docs/reports/poi-map-integration-2026-10-14/02-native-paid-rest.png",
+      "docs/reports/poi-map-integration-2026-10-14/03-native-village-victory.png",
+      "docs/reports/poi-map-integration-2026-10-14/04-second-refuge-map.png",
+      "docs/reports/poi-map-integration-2026-10-14/05-second-refuge-reloaded.png",
+      "docs/reports/poi-map-integration-2026-10-14/results.json"
     ],
     "publication": {
-      "executableCheckpoint": "5f3605d2c14e6b71965cf24f31deed6e0133c4c7",
-      "sourceCorrection": "596e390d3288ea0814316381429a32b1e822a327",
+      "previousFirstSlice": {
+        "executableCheckpoint": "5f3605d2c14e6b71965cf24f31deed6e0133c4c7",
+        "sourceCorrection": "596e390d3288ea0814316381429a32b1e822a327",
+        "target": "origin/dev",
+        "authorization": "OD-2026-10-12-A",
+        "finalClosure": "Subsequent metadata-only closeout commit follows Git HEAD/remote; execution lock released after verified push",
+        "productEvidenceCheckpoint": "8ce70717fbceece50b6406234a1f81b11bc34b40",
+        "verifiedRemoteDev": "8ce70717fbceece50b6406234a1f81b11bc34b40"
+      },
+      "executableCheckpoint": "733737d2bc93c8556950df895f1f2aad9fba0b46",
+      "sourceTree": "4d7244c191ad9a58d53d9e74c24830cde40c3631",
       "target": "origin/dev",
-      "authorization": "OD-2026-10-12-A",
-      "finalClosure": "Subsequent metadata-only closeout commit follows Git HEAD/remote; execution lock released after verified push",
-      "productEvidenceCheckpoint": "8ce70717fbceece50b6406234a1f81b11bc34b40",
-      "verifiedRemoteDev": "8ce70717fbceece50b6406234a1f81b11bc34b40"
+      "authorization": "OD-2026-10-12-A and direct operator closeout request",
+      "status": "PENDING_GUARDED_OPERATION",
+      "finalClosure": "Selected explicit paths reviewed; commit/push/parity/owned lock release not yet executed"
     },
     "runEndedAt": null,
     "writerStopped": false,
@@ -25515,8 +25773,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "POI-MAP-LION-CONTINUATION",
-    "activeSubtask": "Operator-authorized manual campaign duration; earned second refuge and actual ending remain in progress",
+    "activeTask": "POI-INTEGRATION-CLOSEOUT",
+    "activeSubtask": "POI Audience→Second refuge verified; scoped docs/evidence ready; final guarded publication pending",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -28850,11 +29108,11 @@
     },
     "runId": "codex-poi-continuation-20261014",
     "agent": "codex",
-    "status": "IN_PROGRESS",
+    "status": "READY_FOR_PUBLICATION",
     "runStartedAt": "2026-10-14T04:40:17.8624482Z",
-    "activePhase": "MANUAL_EXTENDED_CAMPAIGN_PREPARATION",
-    "heartbeat": "2026-10-14T06:40:39.449Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-14T0138Z-codex-poi-first-slice.md",
+    "activePhase": "SCOPED_ACCEPTED_PUBLICATION_PENDING",
+    "heartbeat": "2026-10-14T18:41:20.017Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-14T1841Z-codex-poi-integration.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -30582,7 +30840,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "e61b118dc926f202f893f9c28c8cbb822d004c44",
+    "lastPushedCommit": "733737d2bc93c8556950df895f1f2aad9fba0b46",
     "productPreview": {
       "url": "http://127.0.0.1:5175/",
       "pid": 60640,
@@ -30637,20 +30895,22 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-14T0138Z-codex-poi-first-slice.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-14T1841Z-codex-poi-integration.md",
   "runMeasurement": {
-    "runId": "codex-poi-migration-20261013",
-    "runtimeSourceFilesModified": 6,
-    "testFilesModified": 3,
-    "existingQaFilesModified": 1,
+    "runId": "codex-poi-continuation-20261014",
+    "runtimeSourceFilesModified": 1,
+    "testFilesModified": 1,
+    "existingQaFilesModified": 2,
+    "existingQaTestFilesModified": 1,
     "newQaFilesAdded": 0,
     "promotedProofFiles": 6,
     "promotedCaptures": 5,
-    "workflowDocs": 26,
     "inheritedWipFiles": 0,
-    "browserScenarios": 7,
-    "registeredJobs": 7,
-    "reviewers": 1
+    "browserScenarios": 3,
+    "registeredJobs": 4,
+    "preGameplayEnvironmentFailures": 1,
+    "reviewers": 1,
+    "workflowDocs": 12
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -30793,9 +31053,25 @@
     }
   },
   "uncommittedWork": {
-    "status": "NO_DELIBERATE_SOURCE_WIP",
-    "files": [],
-    "workflowClosure": "Three selected metadata files committed with this record"
+    "status": "REVIEWED_CLOSURE_READY_FOR_PUBLICATION",
+    "files": [
+      "docs/README.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+      "docs/autonomy/handoffs/2026-10-14T1841Z-codex-poi-integration.md",
+      "docs/project/CURRENT_STATUS.md",
+      "docs/project/POI_NAVIGATION.md",
+      "docs/reports/INDEX.md",
+      "docs/reports/poi-map-integration-2026-10-14.md",
+      "docs/reports/poi-map-integration-2026-10-14/01-second-panel-reserves.png",
+      "docs/reports/poi-map-integration-2026-10-14/02-native-paid-rest.png",
+      "docs/reports/poi-map-integration-2026-10-14/03-native-village-victory.png",
+      "docs/reports/poi-map-integration-2026-10-14/04-second-refuge-map.png",
+      "docs/reports/poi-map-integration-2026-10-14/05-second-refuge-reloaded.png",
+      "docs/reports/poi-map-integration-2026-10-14/results.json"
+    ],
+    "workflowClosure": "Selected proof/docs/paired state reviewed; no uncommitted product/driver change; publication operation pending"
   },
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
@@ -30932,20 +31208,22 @@
     }
   },
   "runStatistics": {
-    "runId": "codex-poi-migration-20261013",
-    "runtimeSourceFilesModified": 6,
-    "testFilesModified": 3,
-    "existingQaFilesModified": 1,
+    "runId": "codex-poi-continuation-20261014",
+    "runtimeSourceFilesModified": 1,
+    "testFilesModified": 1,
+    "existingQaFilesModified": 2,
+    "existingQaTestFilesModified": 1,
     "newQaFilesAdded": 0,
     "promotedProofFiles": 6,
     "promotedCaptures": 5,
-    "workflowDocs": 26,
     "inheritedWipFiles": 0,
-    "browserScenarios": 7,
-    "registeredJobs": 7,
-    "reviewers": 1
+    "browserScenarios": 3,
+    "registeredJobs": 4,
+    "preGameplayEnvironmentFailures": 1,
+    "reviewers": 1,
+    "workflowDocs": 12
   },
-  "qaToolingJustification": "No new QA tool/runner/framework. Existing pilot experiment reverted; actual runtime keyboard regression tested in existing combatKeyboard suite.",
+  "qaToolingJustification": "Zero new QA runners/frameworks; existing campaign pilot and receipt helper extended with original owner/assertion/provenance checks; manual timeout exception scoped to the directly authorized named run",
   "retainedRunArtifacts": {
     "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
     "physicalFreeze": "tmp/autonomy/final-physical-0514.json",
@@ -30968,7 +31246,7 @@
     "preparation": "Native rest/revival before further combat;130gold/rest60",
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
-  "implementationCommit": "44761a642d5b27f4b385ef40fdc597d05ea8575e",
+  "implementationCommit": "f7ab12493481dfae768a19d9870bacd15f6d0b67",
   "authorizedWorkContinuation": "First obtain exact-payload public dev publication approval for run1859 local checkpoint; automatic review rejected the public WIP state push and no workaround is authorized. Inspect clean Git/local commits, owned writerStopped lock and preserved receipts. After approved normal push/remote parity and lock resolution, continue DEMO-QA-POLISH with existing tools/demo-continuous-production-qa.mjs from earnedSavePath tmp/demo/campaign-second-refuge-1859/earned-lion-second-refuge-v6.json (SHA25667d45285113f0c1c2846d0c629736ce289e08e6e8e82ef5c8e60f85536c5b14b) and priorProofPath tmp/demo/campaign-second-refuge-1859/results.json (SHA2561eb51e83d29364be29e6b96fbe1e4ad62544ac2802b06b377d2988026a5369f3). Rescue/serpent/ending1366normal, native rest75 first (3KO/5wounded,300gold), existing native shop/equip preparation, register-demo with AUTONOMY_RUN_ID/DEMO_QA_JOB_ID, unique ignored output/free strict port and bounded deadline. Verify current physical source/driver/build identities; do not relabel old frozen577 campaign proof as new build acceptance. Inspect terminal receipt, genuine combats/T1/T3/temporaryloot/exactV6/ending/Salvation2AP and selected captures. Do not repeat compatible ROAD/CAMPFIRE/tableau/COPY/keyboard matrices; keep live leap/attack/Stage, live-slope smoothness,390framing/broadaccessibility/balance/settledVFX/fullending gates open. Preserve152historicaljobs/exact deferredDemoTask and pendingNarrativeTask.",
   "publication1214History": {
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
@@ -31948,18 +32226,20 @@
     "fullDemoComplete": false
   },
   "currentRunMeasurement": {
-    "runId": "codex-poi-migration-20261013",
-    "runtimeSourceFilesModified": 6,
-    "testFilesModified": 3,
-    "existingQaFilesModified": 1,
+    "runId": "codex-poi-continuation-20261014",
+    "runtimeSourceFilesModified": 1,
+    "testFilesModified": 1,
+    "existingQaFilesModified": 2,
+    "existingQaTestFilesModified": 1,
     "newQaFilesAdded": 0,
     "promotedProofFiles": 6,
     "promotedCaptures": 5,
-    "workflowDocs": 26,
     "inheritedWipFiles": 0,
-    "browserScenarios": 7,
-    "registeredJobs": 7,
-    "reviewers": 1
+    "browserScenarios": 3,
+    "registeredJobs": 4,
+    "preGameplayEnvironmentFailures": 1,
+    "reviewers": 1,
+    "workflowDocs": 12
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",
@@ -32329,11 +32609,11 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-14T06:40:39.449Z",
+  "heartbeat": "2026-10-14T18:41:20.017Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
-    "status": "IN_PROGRESS",
-    "phase": "MANUAL_EXTENDED_CAMPAIGN_PREPARATION",
+    "status": "ACCEPTED_SCOPED_PUBLICATION_PENDING",
+    "phase": "POI_INTEGRATION_CLOSEOUT",
     "startedAt": "2026-10-14T04:40:17.8624482Z",
     "previousCheckpoint": {
       "runId": "codex-poi-migration-20261013",
@@ -32519,8 +32799,8 @@
       "noWorker": true,
       "lockedGateEmpty": true
     },
-    "currentProof": "Native Valmir and paid retreat observed; first-to-second is not yet accepted. Full real battle will continue in new manually authorized120min scenario from successful0057.",
-    "nextAction": "Publish coherent manual exception/checkpoint, freeze source4d7244/build/driver/helper and register native second-refuge120min from successful0057 under OD-2026-10-14-A. Preserve failed0451/0540 as non-seedable. Finish actual village combat then second-refuge agency/reusablehub/exactV6. Use new successful second-refuge pair for native narrative/ending/Return-to-menu, then authored alternative ending and safe Traversal reference audit.",
+    "currentProof": "docs/reports/poi-map-integration-2026-10-14.md",
+    "nextAction": "Publish the reviewed current POI closure only, verify dev parity and release owned lock when the guarded action is permitted. No further campaign/ending job in this pass.",
     "activeJobId": null,
     "pendingFinalPresentation": {
       "status": "IMPLEMENTED_MECHANICAL_PASS_NATIVE_PENDING",
@@ -32531,29 +32811,12 @@
       "next": "Verify real earned ending and native return-to-menu after second refuge"
     },
     "observedProgress": {
-      "at": "2026-10-14T06:14:00.762Z",
-      "jobId": "poi-second-refuge-prepared-0540",
-      "source": "Terminal FAILED/stable receipt, exact parsed result and inspected captures",
-      "valmir": {
-        "victory": true,
-        "rounds": 5,
-        "actions": 42
-      },
-      "paidRest": {
-        "cost": 30,
-        "goldBefore": 60,
-        "goldAfter": 30,
-        "temporaryLoot": 90,
-        "checkpointUnchanged": true,
-        "autosaveExact": true
-      },
-      "village": {
-        "finished": false,
-        "round": 7,
-        "actions": 37
-      },
-      "acceptance": "NOT_ACCEPTED",
-      "outputsSeedable": false
+      "at": "2026-10-14T07:26:18.759Z",
+      "jobId": "poi-second-refuge-manual-0645",
+      "nodeId": "lion-second-refuge",
+      "status": "SUCCEEDED",
+      "acceptance": "ACCEPTED_SCOPED_POI_RESCUE_SECOND_REFUGE_DESKTOP1366_NORMAL",
+      "scope": "Authentic earned Audience→Second refuge rescue lineage; native Valmir/village, reversible resolved navigation, paid rest, securing/reuse and exact V6; desktop1366×768 normal motion only"
     },
     "implementationCommit": "f7ab12493481dfae768a19d9870bacd15f6d0b67",
     "driverSha256": "4927ac3de345ef1736fa13cb40907f726c2ce88ec5c2a12c97c0198fe4297d96",
@@ -32579,7 +32842,95 @@
       "authority": "OD-2026-10-14-A",
       "review": "Actual diff/helper/effective-run/lock/normal-shape/ending native equipment and menu reviewed; corrected canonical serpent_captain trigger",
       "nativeAcceptance": "PENDING"
-    }
+    },
+    "environmentRetry": {
+      "failedJob": "poi-second-refuge-manual-0643",
+      "existingHostBrowserCache": "C:/Users/miche/AppData/Local/ms-playwright",
+      "sourceDriverBuildUnchanged": true,
+      "playerInputsStarted": false
+    },
+    "executionProvenance": {
+      "gitHead": "733737d2bc93c8556950df895f1f2aad9fba0b46",
+      "sourceTree": "4d7244c191ad9a58d53d9e74c24830cde40c3631",
+      "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "driver": {
+        "path": "tools/demo-continuous-production-qa.mjs",
+        "sha256": "4927ac3de345ef1736fa13cb40907f726c2ce88ec5c2a12c97c0198fe4297d96"
+      },
+      "inputs": [
+        {
+          "role": "earnedSavePath",
+          "path": "tmp/demo/poi-native-first-refuge-0057/earned-first-refuge-v6.json",
+          "sha256": "4cf082db1fd5569d27ecf3e2062f3d8bbe81fac5457d7c6943cd76edf5561716"
+        },
+        {
+          "role": "priorProofPath",
+          "path": "tmp/demo/poi-native-first-refuge-0057/results.json",
+          "sha256": "61791ccf1b79766beb62c0c37a585da0788d9be3ff082969e64055a39eb45fa5"
+        }
+      ],
+      "receiptToolSha256": "2ca9771feffbdae4c296fd768771c0d988a9a6cab399cef4c54e27889994568c",
+      "build": [
+        {
+          "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+          "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+        },
+        {
+          "path": "dist/assets/combat-BL64qO_z.js",
+          "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+        },
+        {
+          "path": "dist/assets/combat-DGLEfKFr.css",
+          "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+        },
+        {
+          "path": "dist/assets/game-CbyOqBjG.css",
+          "sha256": "b80061cf0341b9f8dc3b2dd97df816dcf240075fdd3c5a2e1d767ca52abbb735"
+        },
+        {
+          "path": "dist/assets/game-tC30pJco.js",
+          "sha256": "2a28e41ad2e058a30eb38e73e685d42f4905a43a4ed18c476c57751b6f8483c0"
+        },
+        {
+          "path": "dist/assets/three-core-f0ajj1rG.js",
+          "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+        },
+        {
+          "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+          "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+        },
+        {
+          "path": "dist/assets/validation-mSkvzYyn.js",
+          "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "01c54bc038933897e30dc57b256949e6fde4f37a21f3f61defdc15e7bbb7d6bd"
+        }
+      ]
+    },
+    "acceptedJob": "poi-second-refuge-manual-0645",
+    "earnedSave": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+    "earnedSaveSha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a",
+    "resultSha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868",
+    "acceptance": "ACCEPTED_SCOPED_POI_RESCUE_SECOND_REFUGE_DESKTOP1366_NORMAL",
+    "acceptedAt": "2026-10-14T18:41:20.017Z",
+    "scope": "Authentic earned Audience→Second refuge rescue lineage; native Valmir/village, reversible resolved navigation, paid rest, securing/reuse and exact V6; desktop1366×768 normal motion only",
+    "guardianFinalReview": "PASS scoped twelve-row matrix; verified native lineage/provenance/exact save and selected captures",
+    "report": "docs/reports/poi-map-integration-2026-10-14.md",
+    "evidence": "docs/reports/poi-map-integration-2026-10-14/results.json",
+    "functionalScopeComplete": true,
+    "fullCampaignComplete": false,
+    "limits": [
+      "Native pre-judgement/ending/terminal/menu/reload and both authored finales remain open; terminal product correction has mechanical coverage only",
+      "Other trial alternatives/optional routes, native POI defeat and broader legacy interruption cases remain open",
+      "General combat balance, complete six-hero skills, broader keyboard/OS reduced motion/mobile/operator final demo testing remain open",
+      "Physical Traversal remains pending full replacement/reference inventory; shared production timing and durable fork/save references are retained",
+      "Production chest catalogue empty; no approved new placement; audio deferred; Bois-Clair night art external",
+      "Five JourneyCampaignBoundary failures reproduce unchanged at pre-fix e61 baseline; full suite not claimed green",
+      "Independent live PID/port absence query was not executed due automatic approval reviewer quota; cleanup is evidenced by finally-before-receipt and terminal exit0",
+      "Selected proof/docs publication and lock release pending guarded closeout; executable source already published through733737d"
+    ]
   },
   "manualExecutionAuthorization": {
     "id": "OD-2026-10-14-A",
@@ -32589,5 +32940,48 @@
     "scope": "Exceptional manual POI task; scheduler and regular budgets unchanged",
     "nextTimeoutMinutes": 120,
     "maximumScenarioWatchdogMinutes": 180
+  },
+  "poiIntegrationCloseout": {
+    "preparedAt": "2026-10-14T18:41:20.017Z",
+    "operatorScope": "Finalize current POI pass and update dev/project contract; no further ending job",
+    "functionalStatus": "ACCEPTED_SCOPED_POI_RESCUE_SECOND_REFUGE_DESKTOP1366_NORMAL",
+    "publicationStatus": "PENDING_GUARDED_OPERATION",
+    "report": "docs/reports/poi-map-integration-2026-10-14.md",
+    "evidence": "docs/reports/poi-map-integration-2026-10-14/results.json",
+    "handoff": "docs/autonomy/handoffs/2026-10-14T1841Z-codex-poi-integration.md",
+    "counts": {
+      "runId": "codex-poi-continuation-20261014",
+      "runtimeSourceFilesModified": 1,
+      "testFilesModified": 1,
+      "existingQaFilesModified": 2,
+      "existingQaTestFilesModified": 1,
+      "newQaFilesAdded": 0,
+      "promotedProofFiles": 6,
+      "promotedCaptures": 5,
+      "inheritedWipFiles": 0,
+      "browserScenarios": 3,
+      "registeredJobs": 4,
+      "preGameplayEnvironmentFailures": 1,
+      "reviewers": 1,
+      "workflowDocs": 12
+    },
+    "cleanup": {
+      "driverFinallyClosesBeforeTerminalReceipt": true,
+      "terminalExecExitCode": 0,
+      "independentlyVerifiedAbsentPidPort": false,
+      "refusedCheckReason": "Automatic approval review could not complete: reviewer usage quota exhausted; command not executed; no bypass",
+      "productPreviewRetained": "http://127.0.0.1:5175/",
+      "operatorStorageUntouched": true
+    },
+    "laterMigrationOpen": [
+      "Native pre-judgement/ending/terminal/menu/reload and both authored finales remain open; terminal product correction has mechanical coverage only",
+      "Other trial alternatives/optional routes, native POI defeat and broader legacy interruption cases remain open",
+      "General combat balance, complete six-hero skills, broader keyboard/OS reduced motion/mobile/operator final demo testing remain open",
+      "Physical Traversal remains pending full replacement/reference inventory; shared production timing and durable fork/save references are retained",
+      "Production chest catalogue empty; no approved new placement; audio deferred; Bois-Clair night art external",
+      "Five JourneyCampaignBoundary failures reproduce unchanged at pre-fix e61 baseline; full suite not claimed green",
+      "Independent live PID/port absence query was not executed due automatic approval reviewer quota; cleanup is evidenced by finally-before-receipt and terminal exit0",
+      "Selected proof/docs publication and lock release pending guarded closeout; executable source already published through733737d"
+    ]
   }
 }
