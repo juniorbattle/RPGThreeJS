@@ -8,6 +8,15 @@ import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
+// Explicit manual POI mission only; the scheduled campaign budget remains unchanged.
+const MANUAL_POI_TIMEOUT = { authority: 'OD-2026-10-14-A', runId: 'codex-poi-continuation-20261014', maximum: 180 };
+function validateTimeoutAuthority(runId, parameters) {
+  if (parameters.timeoutAuthority === undefined) return;
+  assert.equal(parameters.timeoutAuthority, MANUAL_POI_TIMEOUT.authority, 'Unknown campaign timeout authority');
+  assert.equal(runId, MANUAL_POI_TIMEOUT.runId, 'Campaign timeout authority requires the named manual run');
+  assert.ok(Number.isInteger(parameters.timeoutMinutes) && parameters.timeoutMinutes >= 1 && parameters.timeoutMinutes <= MANUAL_POI_TIMEOUT.maximum,
+    'Manual campaign timeout must be an integer from 1 to 180 minutes');
+}
 const inside = (parent, child) => { const r = relative(parent, child); return r !== '..' && !r.startsWith(`..${process.platform === 'win32' ? '\\' : '/'}`) && !isAbsolute(r); };
 export function ignoredOutput(root, output) {
   const tmp = resolve(root, 'tmp'), path = resolve(root, output);
@@ -72,6 +81,7 @@ function writeJobs(root, state) {
   writeFileSync(mdPath,next);
 }
 export function registerJob({root=process.cwd(),runId,jobId,output,driver,port,parameters={},requiredAssertions=[]}) {
+  validateTimeoutAuthority(runId, parameters);
   assert.match(jobId,/^[a-zA-Z0-9][a-zA-Z0-9_-]{0,95}$/,'Invalid job ID');
   assert.ok(Number.isInteger(port)&&port>=1024&&port<=65535,'Invalid QA port');
   const path=ignoredOutput(root,output);
@@ -104,6 +114,7 @@ export function syncJobs({root=process.cwd(),runId}) {
   writeJobs(root,state);return state.live.qaJobs;
 }
 export function beginJob({root=process.cwd(),runId=process.env.AUTONOMY_RUN_ID??null,jobId=process.env.DEMO_QA_JOB_ID??`manual-${randomUUID()}`,output,driver,port,parameters={},requiredAssertions=[]}) {
+  validateTimeoutAuthority(runId, parameters);
   const path=ignoredOutput(root,output), receipt=resolve(path,'qa-job.json');
   const start=provenance(root,driver,parameters);
   if(runId) {
@@ -142,9 +153,12 @@ export function beginJob({root=process.cwd(),runId=process.env.AUTONOMY_RUN_ID??
 export function demoJobOptions(env=process.env) {
   const target=env.DEMO_QA_TARGET??'first-refuge',routePlan=env.DEMO_QA_ROUTE??'rescue';
   const timeoutMinutes=Number(env.DEMO_QA_TIMEOUT_MINUTES??25);
-  assert.ok(Number.isInteger(timeoutMinutes)&&timeoutMinutes>=1&&timeoutMinutes<=45,'QA timeout must be an integer from 1 to 45 minutes');
+  const timeoutAuthority=env.DEMO_QA_TIMEOUT_AUTHORITY;
+  if(timeoutAuthority!==undefined)validateTimeoutAuthority(env.AUTONOMY_RUN_ID,{timeoutAuthority,timeoutMinutes});
+  const maximum=timeoutAuthority===undefined?45:MANUAL_POI_TIMEOUT.maximum;
+  assert.ok(Number.isInteger(timeoutMinutes)&&timeoutMinutes>=1&&timeoutMinutes<=maximum,`QA timeout must be an integer from 1 to ${maximum} minutes`);
   return {driver:'tools/demo-continuous-production-qa.mjs',output:env.DEMO_QA_OUTPUT??'tmp/demo/continuous-production',port:Number(env.DEMO_QA_PORT??5249),
-    parameters:{target,routePlan,timeoutMinutes,finalePlan:env.DEMO_QA_FINALE??(routePlan==='rescue'?'serpent':'trial'),defeatNodeId:env.DEMO_QA_DEFEAT_NODE??'lion-village-choice',
+    parameters:{target,routePlan,timeoutMinutes,...(timeoutAuthority===undefined?{}:{timeoutAuthority}),finalePlan:env.DEMO_QA_FINALE??(routePlan==='rescue'?'serpent':'trial'),defeatNodeId:env.DEMO_QA_DEFEAT_NODE??'lion-village-choice',
       nativeDefeatWait:env.DEMO_QA_DEFEAT_WAIT==='1',viewport:(env.DEMO_QA_VIEWPORT??'1366x768').split('x').map(Number),osReducedMotion:env.DEMO_QA_OS_MOTION==='1',
       earnedSavePath:env.DEMO_QA_EARNED_SAVE??null,priorProofPath:env.DEMO_QA_PRIOR_PROOF??null,verifySalvation:env.DEMO_QA_VERIFY_SALVATION==='1'},
     requiredAssertions:target==='pursuit-victory'?['NATIVE_PURSUIT_VICTORY','SAME_MOUNTED_ROAD_RETURN','TEMPORARY_REWARD_ONCE','SETTLED_LANE_FOCUS','PERSISTED_V6_RELOAD']:

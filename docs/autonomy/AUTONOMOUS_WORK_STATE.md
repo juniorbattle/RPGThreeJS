@@ -1,12 +1,14 @@
-# POI continuation to second refuge — codex-poi-continuation-20261014
+# Exceptional manual POI campaign — codex-poi-continuation-20261014
 
-Status:IN_PROGRESS; started:2026-10-14T04:40:17.8624482Z. Preflight clean41132a2=origin/dev,no oldlock/stash/QAworker; exclusive current lock. Set1.2.0/baseline692829f unchanged. First slice remains accepted scoped in preserved checkpoint below. Successful0057 exact earned seed/proof authenticated; source9ba3d96d/all9 current build bundles match prior accepted production. Product preview60640/5175 stays available, no browser storage modified.
+Status:IN_PROGRESS; started:2026-10-14T04:40:17.8624482Z; owned exclusive lock. OD-2026-10-14-A directly authorizes continuing this manual task beyond scheduled/earlier35min bounds; next scenario120min, namedrun/authority/lock checked, normalQA1–45unchanged. Scheduler PAUSED unchanged; preview60640/5175 available; user storage untouched.
 
-Next:Guardian review actual existing runner/assertion diff; freeze/publish, register ONE desktop1366normal targetsecond-refuge/rescue/serpent bounded35min scenario from authenticated0057 save/proof with six authentic potions. Native first-hub rest/management, POI adjacency/stage choices, new Valmir/village victories, missionflags, secureloot and exact completed second-refugeV6. Keep any failed output unseedable; correct demonstrated source defect before further migration. Preserve preview5175 and all historical/deferred work.
+Product:f7ab ending terminal/menu fallback correction;67current focused tests/types/build PASS. Five broader JourneyBoundary failures reproduce exactly on e61 baseline.18QA continuity tests pass elevated after sandbox temporaryGit denial. Native ending assertions now include Enter menu/focused title/exact owner+save bytes; ending verify0 native prepared deployment/equipment/rest use existing owners. Guardian actualdiff PASS, no ending acceptance.
 
-Current change:existing QA runner only; current game already exposes connected next-section POIs. Actual new victories, second refuge and V6 remain PENDING. No newrunner, media, canon, stats or LOCKED change. All225 prior jobs and exact deferred work preserved.
+Current0540:FAILED/stable35min, digest8666ed94bedb9c8ea42679f5d2bf1f1a70bd01144946a73f0cc5a5657cd808af. Native Valmir5round42actions; paid post-Valmir rest60to30, temporaryloot90/checkpoint/no-replay/exactautosave preserved. Village unfinished7round37actions; browsererrors0/no injection. All outputs unseedable; original source/driver/helper/all9build archived and hashes verified; worker9064/port5409 absent. Prior0451 similarly FAILED/unseedable. Second refuge remains unaccepted.
 
-Current0451:FAILED/stable35min; Valmir actual5round42actions, village unfinished8round39actions, no browser errors/injection. No outputs seedable. Final presentation source correction and67currenttests/types/build PASS; five JourneyBoundary failures match exact e61baseline, not introduced. New native preparation returns to first refuge after Valmir for paid healing; no loot securing/rewards/replay/reroll. Second refuge and endings remain unaccepted.
+All225 historical jobs plus0451/0540 retained (227); exact deferred work preserved. Legacy successful1859 second-refuge pair independently verified by guardian for compatibility only; no historical acceptance changed. Set1.2.0/baseline692829f/eightvideos/canon/V6/temporaryloot/main protection unchanged.
+
+Next:Publish coherent manual exception/checkpoint, freeze source4d7244/build/driver/helper and register native second-refuge120min from successful0057 under OD-2026-10-14-A. Preserve failed0451/0540 as non-seedable. Finish actual village combat then second-refuge agency/reusablehub/exactV6. Use new successful second-refuge pair for native narrative/ending/Return-to-menu, then authored alternative ending and safe Traversal reference audit.
 
 ## Preserved first-slice checkpoint
 
@@ -1295,7 +1297,8 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - poi-legacy-v6-native-0124: SUCCEEDED; port 5411; receipt `tmp/demo/poi-legacy-v6-native-0124/qa-job.json`; ACCEPTED_SCOPED
 - poi-legacy-map-native-0128: FAILED; port 5411; receipt `tmp/demo/poi-legacy-map-native-0128/qa-job.json`; NOT_ACCEPTED
 - poi-legacy-map-native-0131: SUCCEEDED; port 5411; receipt `tmp/demo/poi-legacy-map-native-0131/qa-job.json`; ACCEPTED_SCOPED
-- poi-second-refuge-native-0451: FAILED; port5409; receipt `tmp/demo/poi-second-refuge-native-0451/qa-job.json`; NOT_ACCEPTED/unseedable
+- poi-second-refuge-native-0451: FAILED; port 5409; receipt `tmp/demo/poi-second-refuge-native-0451/qa-job.json`; NOT_ACCEPTED
+- poi-second-refuge-prepared-0540: PLANNED; port 5409; receipt `tmp/demo/poi-second-refuge-prepared-0540/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

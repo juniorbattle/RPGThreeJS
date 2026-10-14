@@ -61,6 +61,30 @@ test('bounded campaign timeout is recorded and invalid budgets are rejected',()=
   assert.equal(demoJobOptions({DEMO_QA_TIMEOUT_MINUTES:'35'}).parameters.timeoutMinutes,35);
   for(const value of ['0','46','Infinity','3.5','bad'])assert.throws(()=>demoJobOptions({DEMO_QA_TIMEOUT_MINUTES:value}),/timeout/);
 });
+test('manual POI timeout requires exact operator authority and the named run',()=>{
+  const env={AUTONOMY_RUN_ID:'codex-poi-continuation-20261014',DEMO_QA_TIMEOUT_AUTHORITY:'OD-2026-10-14-A'};
+  for(const minutes of ['120','180']){
+    const options=demoJobOptions({...env,DEMO_QA_TIMEOUT_MINUTES:minutes});
+    assert.equal(options.parameters.timeoutMinutes,Number(minutes));
+    assert.equal(options.parameters.timeoutAuthority,env.DEMO_QA_TIMEOUT_AUTHORITY);
+  }
+  assert.equal('timeoutAuthority' in demoJobOptions({}).parameters,false,'Normal parameter shape must remain unchanged');
+  for(const value of ['0','181','Infinity','3.5'])assert.throws(()=>demoJobOptions({...env,DEMO_QA_TIMEOUT_MINUTES:value}),/timeout/);
+  assert.throws(()=>demoJobOptions({...env,AUTONOMY_RUN_ID:'rpgthreejs-auto-dev-90m',DEMO_QA_TIMEOUT_MINUTES:'120'}),/named manual run/);
+  assert.throws(()=>demoJobOptions({...env,DEMO_QA_TIMEOUT_AUTHORITY:'unapproved'}),/Unknown campaign timeout authority/);
+});
+test('registration and worker cannot borrow a manual ENV authority for another effective run',t=>{
+  const job=fixture(t);
+  const parameters=demoJobOptions({AUTONOMY_RUN_ID:'codex-poi-continuation-20261014',DEMO_QA_TIMEOUT_AUTHORITY:'OD-2026-10-14-A',DEMO_QA_TIMEOUT_MINUTES:'120'}).parameters;
+  assert.throws(()=>registerJob({...job,parameters}),/named manual run/);
+  assert.throws(()=>beginJob({...job,parameters}),/named manual run/);
+  const runId='codex-poi-continuation-20261014';
+  assert.throws(()=>registerJob({...job,runId,parameters}),/lock holder/);
+  writeFileSync(resolve(job.root,'.git/codex-autonomy.lock'),JSON.stringify({runId}));
+  registerJob({...job,runId,parameters});
+  const worker=beginJob({...job,runId,parameters}),receipt=worker.finish(result(job));
+  assert.equal(receipt.status,'SUCCEEDED');assert.deepEqual(receipt.parameters,parameters);
+});
 test('failed proof and changed build cannot become successful receipts',t=>{
   // A failure remains a failure after JSON normalization of optional observations.
   const job=fixture(t);registerJob(job);const worker=beginJob(job);writeFileSync(resolve(job.root,'dist/assets/game.js'),'// changed build\n');

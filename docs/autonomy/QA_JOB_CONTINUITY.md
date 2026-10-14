@@ -46,6 +46,9 @@ Generic `register` supports existing `tools/*.mjs` drivers with explicit public 
 
 ## Restart after interruption
 
+Manual POI exception: [OD-2026-10-14-A](POI_MANUAL_EXECUTION_OPERATOR_DECISION_2026-10-14.md) authorizes `DEMO_QA_TIMEOUT_AUTHORITY=OD-2026-10-14-A` for `codex-poi-continuation-20261014` only, with an integer1–180minute watchdog. ENV, effective registration/worker run and owner lock must agree. The public authority is compared between planned and actual parameters. Normal/scheduled jobs keep1–45minutes and their previous parameter shape; assertions/provenance/failed-seed rules are unchanged. This is a manual scenario duration, not a scheduled-run or task deadline.
+
+
 1. Perform read-only preflight, inspect the old turn terminal event, heartbeat and running QA/Git/build jobs. An error `usage_limit_exceeded` proves the turn stopped, not its child processes.
 2. Apply the105-minute rule and all takeover conditions; acquire the exclusive lock before snapshot or shared-state edits.
 3. Read receipts/progress/results before relaunching. Preserve completed output, distinguish timeout/assertion/environment failures and ensure ports are free.

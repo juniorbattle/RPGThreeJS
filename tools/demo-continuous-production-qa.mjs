@@ -72,6 +72,7 @@ page.on('pageerror',error=>report.errors.push(error.message));
 page.on('console',message=>{if(message.type()==='error'&&!message.text().includes('[VFX Preview]'))report.errors.push(message.text());});
 page.on('requestfailed',request=>{if(request.failure()?.errorText!=='net::ERR_ABORTED')report.errors.push(`${request.url()}: ${request.failure()?.errorText}`);});
 report.timeoutMinutes=jobOptions.parameters.timeoutMinutes;
+if(jobOptions.parameters.timeoutAuthority)report.timeoutAuthority=jobOptions.parameters.timeoutAuthority;
 const deadline=Date.now()+report.timeoutMinutes*60*1000;
 async function capture(name){await page.screenshot({path:resolve(output,`${name}.png`)});report.captures.push(`${name}.png`);
   report.geometry??=[];report.geometry.push(await page.evaluate(name=>{
@@ -500,7 +501,9 @@ async function battle(){
   await frame.locator('#menu [data-d="auto"]').click();
   entry.deployed=await frame.evaluate(()=>window.G.deployedUnits.length);assert.ok(entry.deployed>0&&entry.deployed<=4,'Deployment exceeds the existing four-unit cap');
   entry.ownerBefore=await state();
-  if(process.env.DEMO_QA_VERIFY_SALVATION==='1'){
+  const preparedEndingParty=target==='ending'&&process.env.DEMO_QA_VERIFY_SALVATION!=='1'
+    &&['serpent_captain','lion_chief'].includes(entry.combatId);
+  if(process.env.DEMO_QA_VERIFY_SALVATION==='1'||preparedEndingParty){
     entry.availableRoster=await frame.evaluate(()=>G.rosterDefs.map(u=>({id:u.campaignId||u.id,skills:[...u.skills]})));
     const initialSkills={warrior:'w_break_guard',white_mage:'w_salvation',dark_mage:'n_dark_bolt',archer:'a_precise_shot',rogue:'ro_sneak_attack',lancer:'l_long_thrust'};
     entry.initialEquipmentSkills=[];
@@ -517,8 +520,14 @@ async function battle(){
     const missing=entry.initialEquipmentSkills.filter(u=>!observed.has(u.id))
       .sort((a,b)=>Number(['rogue','lancer'].includes(b.definitionId))-Number(['rogue','lancer'].includes(a.definitionId)));
     const available=new Set(entry.availableRoster.map(u=>u.id));
-    const picks=[...new Set(['white_mage','warrior',...missing.map(u=>u.id),...available])]
-      .filter(id=>available.has(id)).slice(0,4);
+    const limit=Number((await frame.locator('#menu .deploy-head b').innerText()).match(/\d+\s*\/\s*(\d+)/)?.[1]);
+    assert.ok(Number.isInteger(limit)&&limit>=1&&limit<=4,'Native encounter deployment limit invalid');
+    const preferred=preparedEndingParty?['white_mage','warrior','lancer','rogue']:['white_mage','warrior',...missing.map(u=>u.id)];
+    const picks=[...new Set([...preferred,...available])].filter(id=>available.has(id)
+      &&(!preparedEndingParty||entry.ownerBefore.clan.members.some(u=>u.id===id&&u.currentHealth>0)))
+      .slice(0,preparedEndingParty?limit:4);
+    assert.ok(picks.length>0&&picks.length<=limit,'Native party must fit the encounter');
+    if(preparedEndingParty)entry.preparedEndingParty={preferred,picks,limit,existingLivingClanOnly:true};
     await frame.locator('#menu [data-d="reset"]').click();
     for(const id of picks){
       const selector=`#menu [data-unit="${id}"]`;
@@ -882,7 +891,7 @@ try{
       // A nonterminal POI refuge reaches the same native preparation as a historic arrival.
       const servicesBefore=await state();
       const rest=page.locator('.exploration-stop [data-action="rest"]:not(:disabled)');
-      if(await rest.count()){
+      if(await rest.count()&&!(nodeId==='lion-second-refuge'&&target==='ending'&&process.env.DEMO_QA_VERIFY_SALVATION!=='1')){
         await keyboardActivate('.exploration-stop [data-action="rest"]:not(:disabled)');
         await hub.waitFor({state:'visible'});await page.waitForTimeout(150);
         const rested=await state();assert.ok(rested.gold<servicesBefore.gold,'Native rest did not debit owner gold');
@@ -925,26 +934,51 @@ try{
         const buy='.management [data-trade="buy"][data-item="sacred_crosier"]';
         await page.locator(buy).waitFor({state:'visible'});assert.equal(await page.locator(buy).isEnabled(),true);
         const before=await state(),price=Number.parseInt(await page.locator(buy).innerText(),10);
-        await keyboardActivate(buy);const bought=await state();assert.equal(bought.gold,before.gold-price);
-        assert.equal(bought.inventory.weapons.sacred_crosier,(before.inventory.weapons.sacred_crosier??0)+1);
+        assert.ok(Number.isInteger(price)&&price>0&&before.gold>=price,'Native crosier purchase is not affordable');
+        await keyboardActivate(buy);const bought=await state(),expected=structuredClone(before);
+        expected.gold-=price;expected.inventory.weapons.sacred_crosier=(before.inventory.weapons.sacred_crosier??0)+1;
+        expected.shops.valmir.stock.sacred_crosier-=1;
+        assert.deepEqual(bought,expected,'Native crosier purchase changed unrelated V6 truth');
         report.refuges.at(-1).purchase={itemId:'sacred_crosier',price,before,after:bought};
         await page.keyboard.press('Escape');await hub.waitFor({state:'visible'});
       }
       await keyboardActivate('.exploration-stop [data-action="clan"]');
       await page.locator('.management [data-action="close"]').waitFor({state:'visible'});
       if(nodeId==='lion-second-refuge'&&target==='ending'&&process.env.DEMO_QA_VERIFY_SALVATION!=='1'){
+        const before=await state(),previous=before.clan.members.find(u=>u.id==='white_mage').equipment.weaponIds[0];
+        assert.ok((before.inventory.weapons.sacred_crosier??0)>0,'Native crosier equipment requires actual inventory');
         await keyboardActivate('.management [data-unit="white_mage"]');
         await keyboardActivate('.management [data-equip-slot="weapon"]');
         await keyboardActivate('.management [data-preview-item="sacred_crosier"]');
         await keyboardActivate('.management [data-equip-confirm="sacred_crosier"]');
-        const equipped=await state();assert.deepEqual(equipped.clan.members.find(u=>u.id==='white_mage').equipment.weaponIds,['sacred_crosier']);
+        const equipped=await state(),expected=structuredClone(before);
+        expected.inventory.weapons[previous]=(expected.inventory.weapons[previous]??0)+1;
+        expected.inventory.weapons.sacred_crosier-=1;
+        expected.clan.members.find(u=>u.id==='white_mage').equipment.weaponIds[0]='sacred_crosier';
+        assert.deepEqual(equipped,expected,'Native crosier equipment changed unrelated V6 truth');
+        assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),equipped);
         report.refuges.at(-1).equipped=equipped;await capture(`${nodeId}-native-sacred-crosier`);
       }
       await page.keyboard.press('Escape');await hub.waitFor({state:'visible'});
+      // Equip first in this ending case so one paid rest also restores weapon-bonus HP.
+      if(nodeId==='lion-second-refuge'&&target==='ending'&&process.env.DEMO_QA_VERIFY_SALVATION!=='1'&&await rest.count()){
+        const before=await state(),cost=Number((await rest.innerText()).match(/(\d+)\s*or/i)?.[1]);
+        assert.ok(Number.isInteger(cost)&&cost>0&&before.gold>=cost,'Native equipped-party rest is not affordable');
+        await keyboardActivate('.exploration-stop [data-action="rest"]:not(:disabled)');await hub.waitFor({state:'visible'});
+        const rested=await state(),expected=structuredClone(before);expected.gold-=cost;
+        for(const unit of expected.clan.members)unit.currentHealth=rested.clan.members.find(u=>u.id===unit.id).currentHealth;
+        assert.deepEqual(rested,expected,'Native equipped-party rest changed unrelated V6 truth');
+        assert.ok(rested.clan.members.every(u=>u.currentHealth>0));assert.equal(await rest.count(),0,'Native rest must restore full party');
+        assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),rested);
+        report.refuges.at(-1).rested=rested;report.refuges.at(-1).equippedRest={cost,exactSavedOwner:true};
+        await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked'));
+        await capture(`${nodeId}-native-equipped-rest`);
+      }
       await keyboardActivate('.exploration-stop [data-action="continue"]');continue;
     }
     if(target==='ending'&&live.endingId&&await page.locator('.journey-overlay--terminal:visible').count()){
-      report.ending=live;await capture(`ending-${live.endingId}`);
+      report.ending=live;await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked'));
+      await capture(`ending-${live.endingId}`);
       assert.equal(live.run.status,'completed');assert.ok(live.resolvedNodeIds.includes('lion-final-judgement'));
       assert.equal(live.run.temporaryLoot.gold,0);
       assert.equal(live.endingId,finalePlan==='serpent'?'lion-seal-serpent-truth':'lion-seal-trial-truth');
@@ -954,7 +988,21 @@ try{
       await page.waitForFunction(id=>window.__demoQaApp?.state.endingId===id,live.endingId);
       await page.locator('.journey-overlay--terminal:visible').waitFor({timeout:30000});
       assert.equal(await page.locator('.dialogue:visible,iframe.combat-frame,.traversal-road:visible').count(),0);
-      report.resumed=await state();assert.deepEqual(report.resumed,live);await capture(`ending-${live.endingId}-resumed`);
+      report.resumed=await state();assert.deepEqual(report.resumed,live);
+      await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked'));
+      await capture(`ending-${live.endingId}-resumed`);
+      const menu=page.locator('.journey-overlay--terminal [data-journey-continue]');
+      assert.equal((await menu.textContent()).trim(),'Retour au menu');
+      const menuSave=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+      await keyboardActivate('.journey-overlay--terminal [data-journey-continue]');
+      await page.locator('.title-screen:visible').waitFor({timeout:30000});
+      assert.equal(await page.locator('.poi-map:visible,.traversal-road:visible,.journey-overlay:visible,.dialogue:visible,iframe.combat-frame').count(),0);
+      const focused=await page.locator('.title-screen [data-action="continue"]:not(:disabled)').evaluate(e=>e===document.activeElement);
+      assert.equal(focused,true,'Terminal return must focus native title Continue');
+      assert.deepEqual(await state(),live,'Terminal return changed ending owner');
+      assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),menuSave,'Terminal return changed save bytes');
+      report.terminalMenu={nativeKeyboard:true,titleVisible:true,continueFocused:true,ownerUnchanged:true,savedBytesUnchanged:true};
+      await capture(`ending-${live.endingId}-native-menu`);
       assert.deepEqual(report.errors,[]);report.pass=true;break;
     }
     if(await page.locator('iframe.combat-frame').count()){await battle();if(report.defeatRecovery?.pass||report.pass)break;continue;}
