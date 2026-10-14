@@ -92,12 +92,21 @@ async function choose(){
     serpent_informant:{'1':routePlan==='rescue'?0:1},mystery_lancer_recruit:{'1':routePlan==='rescue'?0:1},
     witnesses_on_road:{'1':routePlan==='rescue'?0:1},shadow_signs:{'1':0},
     lion_finale_judgement:{record:0,shadow:0,intent:finalePlan==='serpent'?0:1}};
-  if(target==='second-refuge')plans.rep_event_roadside_intimidation={'1':1};
+  if(target==='second-refuge'||target==='first-refuge'&&priorProof)plans.rep_event_roadside_intimidation={'1':1};
   const index=plans[sequence]?.[step]??0;
   const button=dialogue.locator('.dialogue-choice:visible').nth(index);
   assert.equal(await button.isEnabled(),true,`Authored choice disabled: ${sequence}/${step}/${index}`);
   const text=await button.innerText();report.choices.push({sequence,step,index,text});
+  const tribute=target==='first-refuge'&&priorProof&&sequence==='rep_event_roadside_intimidation'&&step==='1'&&index===1
+    ?await state():null;
   await button.focus();await page.keyboard.press('Enter');report.inputs.push({action:'keyboard choice',sequence,step,index,text});
+  if(tribute){
+    await page.waitForFunction(gold=>window.__demoQaApp.state.gold===gold-20&&window.__demoQaApp.state.flags.r4PaidRoadsideTribute===true,tribute.gold);
+    const paid=await state();assert.equal(paid.gold,tribute.gold-20);
+    assert.deepEqual(paid.run.temporaryLoot,tribute.run.temporaryLoot);
+    report.poi??={native:true};report.poi.legacyDepartureChoice={sequence,step,index,text,goldBefore:tribute.gold,goldAfter:paid.gold,
+      authoredCost:20,temporaryLootUnchanged:true,paidFlag:true};
+  }
 }
 async function cancel(frame){await frame.locator('body').press('Escape');}
 async function combatState(frame){return frame.evaluate(()=>{const g=window.G;return{round:g.round,turnIdx:g.turnIdx,mode:g.mode,busy:g.busy,
