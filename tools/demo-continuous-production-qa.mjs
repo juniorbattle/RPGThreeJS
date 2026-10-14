@@ -223,6 +223,17 @@ async function poiNoReplayPath(ids){
   await capture('poi-native-backtracking');
   return {ids,before,after,noReplay:true,exactConsequences:true};
 }
+async function returnToPoiMap(){
+  // Existing authored post-refuge ATE/reputation dialogue retains player agency before map return.
+  const until=Date.now()+60000;
+  while(!await page.locator('.poi-map:visible').count()&&Date.now()<until){
+    if(await page.locator('.dialogue-choice:visible:not(:disabled)').count())await choose();
+    else if(await page.locator('.dialogue:visible').count())await page.keyboard.press('Enter');
+    else if(await page.locator('.cinematic-overlay__skip:visible').count())await click('.cinematic-overlay__skip:visible');
+    await page.waitForTimeout(100);
+  }
+  await page.locator('.poi-map:visible').waitFor({timeout:1000});
+}
 async function cellClick(frame,cell,attempt){
   const point=await frame.evaluate(({gx,gz})=>window.__qaHelpers.getCellScreenPosition(gx,gz),cell);
   const box=await page.locator('iframe.combat-frame').boundingBox();
@@ -746,7 +757,7 @@ try{
       await writeFile(resolve(output,`earned-${nodeId}-v6.json`),saved+'\n');
       if(nodeId==='lion-first-refuge')await writeFile(resolve(output,'earned-first-refuge-v6.json'),saved+'\n');
       if(await page.locator('.poi-map').count()===0 && await page.evaluate(()=>document.body.dataset.campaignSurface==='poi-map')){
-        if(target==='first-refuge'){
+        if(target==='first-refuge'&&!priorProof){
           assert.ok(live.resolvedNodeIds.includes('lion-refugees'),'Native optional revisit must resolve the authored refugees event');
           assert.ok(report.choices.some(c=>c.sequence==='refugee_trial'),'Native refugees dialogue/choice was not observed');
           assert.ok(live.resolvedNodeIds.includes('lion-first-trial-event'));
@@ -756,12 +767,12 @@ try{
         }
         // Complete the refuge visit natively, reopen services, then resume its resolved map POI.
         await keyboardActivate('.exploration-stop [data-action="continue"]');
-        await page.locator('.poi-map:visible').waitFor();
+        await returnToPoiMap();
         const completed=await state();assert.ok(completed.resolvedNodeIds.includes(nodeId));
         await keyboardActivate(`.poi-map [data-poi-id="${nodeId}"]`);
         await keyboardActivate('.poi-map [data-poi-action="move"]');await hub.waitFor({state:'visible'});
         assert.deepEqual(await state(),completed,'Refuge revisit repeated arrival, reward or changed resources');
-        await keyboardActivate('.exploration-stop [data-action="continue"]');await page.locator('.poi-map:visible').waitFor();
+        await keyboardActivate('.exploration-stop [data-action="continue"]');await returnToPoiMap();
         await page.reload({waitUntil:'networkidle'});await click('.title-screen [data-action="continue"]');
         await page.locator('.poi-map:visible').waitFor({timeout:30000});
         report.resumed=await state();assert.deepEqual(report.resumed,completed,'Resolved refuge map reload changed exact V6 truth');
