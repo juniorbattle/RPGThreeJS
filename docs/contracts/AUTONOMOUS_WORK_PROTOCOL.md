@@ -14,7 +14,11 @@ Keep one durable truth in `docs/autonomy/AUTONOMOUS_WORK_STATE.md` (optionally J
 
 Commit coherent checkpoints and push regularly to `origin/dev`, including before a run ends. Never push to `main`, merge `dev` into `main`, or force push `main`. Do not open a PR to main automatically. If credits or development tools become unavailable, record `PAUSED_FOR_CREDITS`, commit/push any coherent checkpoint possible, and retry availability first on the next run without dropping or narrowing the task.
 
-## Ordered initial queue
+## Current navigation amendment — OD-2026-10-13-D
+
+Dedicated `PRODUCTION-CONTRACTS-POI-NAVIGATION-1` / [OD-2026-10-13-D](../autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md), set 1.2.0 supersedes the physical Traversal production queue below on navigation only. Execute the dedicated amendment and committed baseline first, then the real Audience→first-refuge POI slice; generalize remaining Lion continuity/branches/endings, then retire old road code/media/tools only after verified replacement and reference inventory. Keep gameplay/combat/keyboard work and non-navigation acceptance. Audio remains DEFERRED until narrative/presentation/cinematics/POI navigation are stable. Do not reactivate the scheduler.
+
+## Historical ordered initial queue
 
 1. `PRODUCTION-CONTRACTS-LOCK-1` and this protocol.
 2. Contract drift audit and safe canonical-document correction.

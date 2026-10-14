@@ -2,6 +2,12 @@
 
 Status: **LOCKED**.
 
+## POI navigation amendment — OD-2026-10-13-D
+
+Dedicated `PRODUCTION-CONTRACTS-POI-NAVIGATION-1` / [OD-2026-10-13-D](../autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md), set 1.2.0 supersedes physical navigation. RunSystem validates connected bidirectional movement and activation with mandatory causal ordering. Preserve authored IDs, content and effects. Resolved POIs replay no content/rewards. Neutralized derives from canonical incompatibility and is never completed/victorious/rewarded. Compatible optional events remain revisitable; preserve authored bypass consequences. Visit/bypass is not resolution. Unlocked refuges reuse existing services and costs without arrival replay; final narrative refuge unchanged.
+
+Eligible variable assignments remain stable per run/POI across reload/revisit; no farming. Chest catalogue/quantities and elite configurations need content approval before placement. Temporary/secured loot and defeat remain with existing owners. Audit V6 current/checkpoint IDs, branches, visited/resolved and assignments; derive status from existing facts and explicitly test required durable extensions. Resume old roads at canonical POIs without invented outcomes, cleared progress or visual map state.
+
 The Lion campaign is authored. Keep existing dialogue, nodes, branch identities, causal consequences, and route order unless an explicit narrative task changes them. Do not invent new canonical choices, encounters, stages, outcomes, or rewards to fill a presentation gap. `LionCampaignStructure`, travel relations, `RunSystem`, and combat authorities decide eligibility and consequences; `GameApp` coordinates lifecycle and handoff.
 
 Progression has no level or XP. The current progression channels are equipment, weapon tiers, accessories, skill upgrades, recruitment, and materials. A party member equips one weapon and two accessories. Ultimates stay out of scope until explicitly activated by an operator decision.

@@ -2,6 +2,10 @@
 
 Status: **LOCKED**.
 
+## POI migration acceptance — OD-2026-10-13-D
+
+Dedicated `PRODUCTION-CONTRACTS-POI-NAVIGATION-1` / [OD-2026-10-13-D](../autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md), set 1.2.0: verify connected movement/backtracking, mandatory/future locks, once-only resolution/rewards, neutralized distinct from completed, compatible optional bypass/revisits and reusable refuge. Test new/old V6 resume at audience, secondary resolution, chosen branch, refuge, completed/lost combat and old road interruptions; preserve directed historical graph for recovery. Inspect actual geographical map captures, native keyboard/pointer, real narrative/tactical/refuge returns and exact reload. Injected outcomes prove wiring only, not played campaign. Physical-road criteria remain historical; remove old runtime/assets/QA only after verified replacement and dependency inventory. Preserve all non-navigation QA and manual findings.
+
 Author content against existing campaign IDs and explicit presentation roles. Record the location, canonical beat, cast, choice/safe zones, environment family, asset provenance, and fallback. A presentation brief may not mint canonical dialogue, choices, stages, or consequences. Promote approved media deliberately; audit all references before retirement.
 
 Tests should target the authority boundary being changed. For visual work, run a production or representative browser flow and record machine-readable viewport/state results plus a compact screenshot selection. Validate failed asset loads, console errors, transitions, resume boundaries, and reduced motion where affected. Name inherited baseline failures precisely and distinguish them from new regressions.

@@ -7,7 +7,7 @@
 | [WORLD_AND_CHARACTERS](WORLD_AND_CHARACTERS.md) | Art direction, Character System V2, environments |
 | [CAMPAIGN_AND_STATE](CAMPAIGN_AND_STATE.md) | Narrative, campaign, progression, refuges, state, saves |
 | [PRESENTATION_AND_MEDIA](PRESENTATION_AND_MEDIA.md) | NarrativeStage, dialogue, cinematic slots, Journey, audio |
-| [TRAVERSAL](TRAVERSAL.md) | T0 reference and T1/T3 target grammar |
+| [TRAVERSAL](TRAVERSAL.md) | Campaign POI navigation; historical contract ID retained |
 | [COMBAT_AND_VFX](COMBAT_AND_VFX.md) | Tactical gameplay, Combat Stage, VFX |
 | [UI_AND_ACCESSIBILITY](UI_AND_ACCESSIBILITY.md) | UI/UX and accessibility |
 | [AUTHORING_AND_QA](AUTHORING_AND_QA.md) | Content authoring, evidence, repository governance |
@@ -20,3 +20,5 @@ Status terms: **LOCKED** means the decision is binding; **implemented** means so
 ## Approved amendment history
 
 Contract set **1.1.0** retains the original eight contracts and constitution. Dedicated `PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1`, explicitly approved by [OD-2026-10-03-A](../autonomy/MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md), amends TRAVERSAL, CAMPAIGN_AND_STATE, PRESENTATION_AND_MEDIA, WORLD_AND_CHARACTERS, UI_AND_ACCESSIBILITY and AUTHORING_AND_QA. The original `b1e8858` lock remains historical; normal-task Git protection uses the approved amendment commit recorded in AGENTS.md and the contracts-compliance skill. No normal task may advance that baseline or edit a LOCKED rule. COMBAT_AND_VFX, AUTONOMOUS_WORK_PROTOCOL, constitution and the eight video IDs are unchanged. DIALOGUE_STAGING is a section of PRESENTATION_AND_MEDIA, not an additional contract.
+
+Contract set **1.2.0** / `PRODUCTION-CONTRACTS-POI-NAVIGATION-1` / [OD-2026-10-13-D](../autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md) supersedes playable physical Traversal navigation with connected POI navigation. TRAVERSAL retains its historical ID within the eight contracts. Constitution and seven contracts change only on navigation, compatibility and acceptance; COMBAT_AND_VFX, eight video IDs and non-navigation invariants remain unchanged. The amendment commit becomes the immutable baseline through the following operational checkpoint; 1.1.0/d7ca28a remains historical. Runtime and V6 acceptance remain pending until demonstrated.

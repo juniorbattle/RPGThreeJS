@@ -10,7 +10,7 @@ The final visual direction is modern pixel art / HD-2D fantasy JRPG and tactical
 
 ## Campaign and play
 
-Journey is the campaign continuity outside Traversal. `TravelView` is a fallback/development surface. Traversal T0 is the production reference; future playable legs are T1 and T3. T2 and T4 are removed as playable Traversal plans, without automatic renumbering or deletion of durable IDs. Campaign and `RunSystem` retain route and consequence authority.
+Under OD-2026-10-13-D / `PRODUCTION-CONTRACTS-POI-NAVIGATION-1`, set 1.2.0, the illustrated connected POI map is the sole final production navigation. Playable Traversal T0/T1/T3 is superseded on navigation only. Preserve authored content, T0–T4 durable identities, required causal ordering and V6 compatibility. Temporary internal migration compatibility never becomes a permanent second player mode. Campaign and RunSystem revalidate connected movement, backtracking and activation. Resolved POIs replay no effects; neutralized is distinct from resolved; unlocked refuges reuse existing services.
 
 Tactical Combat resolves gameplay. Combat Stage and VFX present resolved events and never calculate or duplicate damage, AP, statuses, or outcomes. Refuges consolidate and prepare; route loot remains temporary until secured by the existing game rules.
 
@@ -18,7 +18,7 @@ Progression currently has no level or XP. Equipment, weapon tiers, two accessory
 
 ## Narrative and media
 
-`STATIC_TABLEAU` is the normal interactive narrative language: staged actors with position, facing, look target, depth, focus, and restaging. Prefer readable compositions, currently up to four visible actors. Video is reserved for exactly eight major production slots named in [the media contract](../contracts/PRESENTATION_AND_MEDIA.md). `MAIN_EVENT => CINEMATIC_REQUIRED` is superseded. Audio is **DEFERRED** until narrative, presentation, cinematics, and Traversal structure are demonstrably locked and stable.
+`STATIC_TABLEAU` is the normal interactive narrative language: staged actors with position, facing, look target, depth, focus, and restaging. Prefer readable compositions, currently up to four visible actors. Video is reserved for exactly eight major production slots named in [the media contract](../contracts/PRESENTATION_AND_MEDIA.md). `MAIN_EVENT => CINEMATIC_REQUIRED` is superseded. Audio is **DEFERRED** until narrative, presentation, cinematics, and POI navigation structure are demonstrably locked and stable.
 
 ## Durable boundaries
 
