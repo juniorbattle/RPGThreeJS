@@ -5,7 +5,7 @@ RPGThreeJS is a narrative tactical RPG with an authored campaign (Vite, TypeScri
 ## Authority and reading order
 
 1. Explicit operator decisions: `docs/autonomy/OPERATOR_DECISIONS.md` and the files it links.
-2. `docs/game/GAME_CONSTITUTION.md` and the eight LOCKED contracts (`docs/contracts/README.md`, `contracts.manifest.json`, then every contract relevant to the task). Contract set 1.1.0: approved amendment `PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1` / OD-2026-10-03-A, immutable baseline `d7ca28aed5c377ffedb03202f6364b7a947d1096`. Original lock `PRODUCTION-CONTRACTS-LOCK-1` / `b1e8858` remains historical.
+2. `docs/game/GAME_CONSTITUTION.md` and the eight LOCKED contracts (`docs/contracts/README.md`, `contracts.manifest.json`, then every contract relevant to the task). Contract set 1.2.0: approved amendment `PRODUCTION-CONTRACTS-POI-NAVIGATION-1` / OD-2026-10-13-D, immutable baseline `692829f32d735ad890182eea6b5e5e195551bbbf`. Original lock `PRODUCTION-CONTRACTS-LOCK-1` / `b1e8858` remains historical.
 3. Current source: it states what is implemented today.
 4. Canonical docs (`docs/project/`, `docs/traversal/`, `docs/content/`), then dated reports in `docs/reports/`. Reports are historical evidence, never doctrine.
 
@@ -13,7 +13,7 @@ The code adapts to a LOCKED contract, never the reverse. On a conflict: record i
 
 ## Red lines
 
-- Never edit `docs/contracts/**` or `docs/game/GAME_CONSTITUTION.md` in a normal task. Gate (must print nothing): `git diff --exit-code d7ca28aed5c377ffedb03202f6364b7a947d1096 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md`.
+- Never edit `docs/contracts/**` or `docs/game/GAME_CONSTITUTION.md` in a normal task. Gate (must print nothing): `git diff --exit-code 692829f32d735ad890182eea6b5e5e195551bbbf HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md`.
 - Presentation never creates or changes game truth (route, outcome, resource, save). Truth owners: `RunSystem` and campaign relations, versioned saves, tactical combat. `GameApp` coordinates lifecycle and handoffs only.
 - Exactly eight video slots (`src/cinematics/ApprovedProductionVideos.ts`). No ninth slot, no enemy-reveal or routine video. A prologue or first-refuge video needs a dedicated contract task first.
 - Recurring runs never generate or poll video or keyframes (no MiniMax) and never replace an MP4. Media remaster is an external manual workstream.
@@ -76,7 +76,11 @@ Codex starts subagents only when authorized. The recurring instruction authorize
 - Ordinary QA writes to ignored paths (`tmp/`, `docs/reports/evidence/`, `tools/qa-shots/`). Tracked evidence is promoted explicitly and never overwritten.
 - New task reports follow `docs/reports/README.md`.
 
-## Active manual-playtest priority
+## Active POI migration priority
+
+OD-2026-10-13-D / `docs/autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md` supersedes physical Traversal navigation. The dedicated set1.2.0 amendment is complete at the baseline above. Implement the playable connected Audience→first-refuge POI slice with existing contents, backtracking, once-only effects, neutralization, reusable refuge and V6 acceptance before retirement. Preserve non-navigation manual findings and deferred work; do not resume physical-road polish or reactivate automation.
+
+## Preserved manual-playtest priority
 
 OD-2026-10-13-A / `docs/autonomy/DEMO_COMPLETION_PLAN.md` is the current execution priority: playable PC campaign and concrete product blockers, combat/skills, campaign keyboard, remaining presentation, then mobile/tester handoff. It supersedes diagnostic-only nextAction chains, not acceptance targets. Do not resume the isolated T0 normal coverage loop. Keep pending visual criteria explicit for the consolidated milestone. Bound unchanged-boundary diagnosis, reuse existing runners and move to independent authorized functionality when blocked; no speculative code or false PASS.
 

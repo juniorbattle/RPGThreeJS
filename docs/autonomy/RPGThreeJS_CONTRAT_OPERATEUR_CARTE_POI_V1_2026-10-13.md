@@ -1,8 +1,8 @@
 # RPGThreeJS — Contrat opérateur de navigation par carte POI
 
-**Version :** 1.0 — décision de conception approuvée dans la conversation du 13 octobre 2026  
-**Statut :** décision opérateur à enregistrer dans le dépôt ; **pas encore amendement GitHub effectif**  
-**Périmètre :** campagne Lion, navigation, points d'intérêt, transitions et sauvegardes  
+**Version :** 1.0 — décision de conception approuvée dans la conversation du 13 octobre 2026
+**Statut :** décision opérateur à enregistrer dans le dépôt ; **pas encore amendement GitHub effectif**
+**Périmètre :** campagne Lion, navigation, points d'intérêt, transitions et sauvegardes
 **Objectif :** remplacer intégralement le Traversal jouable, sans refondre les contenus narratifs ni tactiques existants.
 
 ## 1. Décision fondamentale

@@ -1351,3 +1351,7 @@ La directive opérateur complète est dans PLAYABLE_DEMO_EXECUTION_DIRECTIVE_202
 Coherent checkpoint 1c1de18d481b6460cde0533af95ac4509affe77a normally published/remote verified. Final metadata closure reconciles terminalFAILED/current-driver mismatch and all live aliases; final metadata SHA in Git/automation memory. Worker stopped, source0/QA1/workflow3; owned WIP retained for frozen original driver.
 
 Coherent focus checkpoint 44761a642d5b27f4b385ef40fdc597d05ea8575e normally published and remote verified. Product/QA ended 2026-10-13T20:40:52.044Z; metadata closure SHA is in Git/automation memory. Owned1944 WIP content is on dev; retire only after final verified closure. Prior1828 unique driver WIP retained.
+
+## Active POI migration — OD-2026-10-13-D
+
+Run codex-poi-migration-20261013. IN_PROGRESS: dedicated `PRODUCTION-CONTRACTS-POI-NAVIGATION-1` amendment before real Audience→first-refuge implementation. Prior activeTask/subtask/nextAction preserved in JSON poiMigration; physical road priorities superseded only on navigation. Historical QA/deferred combat/keyboard/narrative preserved. Next: exact guardian review, validation, dedicated contract commit, operational baseline commit, actual POI slice. Automation PAUSED observed; no worker associated with archived stale2114 lock; inherited Vite29856 retained.

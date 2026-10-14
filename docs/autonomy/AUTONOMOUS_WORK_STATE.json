@@ -2,9 +2,9 @@
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-13T19:45:46.4541492Z",
   "runEndedAt": "2026-10-13T20:40:52.044Z",
-  "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
+  "activeTask": "POI-MAP-FIRST-SLICE",
   "activePhase": "DEMO-CAMPAIGN-KEYBOARD_PRODUCT_CHECKPOINT",
-  "activeSubtask": "Deployment keyboard focus corrected; native exact2AP Salvation verified scoped; second refuge remains unverified",
+  "activeSubtask": "Authoritative map navigation and real narrative/combat/refuge handoffs",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "0b4eb9bdc9fd25cfcd774eaab978712b9e9f1f78",
   "lastPushedCommit": "44761a642d5b27f4b385ef40fdc597d05ea8575e",
@@ -85,7 +85,7 @@
     "1944: fresh same-cast uncapped Salvation2to0 accepted scoped on frozen pre-focus build; no aggregate/all-six/Garen/second-refuge/ending acceptance",
     "1944: deployment focus product correction implemented/35DOM/build green, exact native browser scope remains OPEN before return to campaign continuation"
   ],
-  "nextAction": "Read-only preflight/exclusive lock; verify current focus build and actual runner fa3049ac. Register ONE existing tools/combat-battlefield-keyboard-production-qa.mjs native standalone1366x768/normal smoke with BATTLEFIELD_QA_VIEWPORT=1366x768, BATTLEFIELD_QA_OS_MOTION=0, BATTLEFIELD_QA_MOVEMENT=0, matching recorded parameters/assertions, new ignored output/job/verified free port/host cache. Retain visible enabled roster replacement, refusal, legalmove/target, cancellation, pointer, tactical truth assertions. Inspect focus capture/terminal digest/provenance and accept only this desktop native control scope; no six-cell/mobile/campaign/AT claim. Then return approved PC campaign using separately reverified successful0603 only; do not seed FAILED1944/1828/0552/1521 or replay ineffective opposite-lane policy/35min unchanged. Preserve exact deferred keyboard/narrative and historical proofs; no T0 diagnostic return.",
+  "nextAction": "Implement authoritative connected POI navigation and map; verify first slice and old V6 resumes",
   "taskQueue": [
     "DEMO-PC-CAMPAIGN: ACTIVE; native second refuge then authored ending/exact reload; full acceptance OPEN",
     "DEMO-COMBAT-SKILLS: PENDING_MISSING_CRITERIA_ONLY; six heroes/lancer, native victory/defeat and ordinary Pursuit return",
@@ -23789,7 +23789,7 @@
       "lastGreenCheck": "Current35DOM, fresh types/build,8contracts8slots,syntax/LOCKED/whitespace, guardian/UI actualdiff PASS; browser OPEN",
       "retirement": "Owned1944 branch may retire after final metadata publication;1828 unique frozen driver retained"
     },
-    "nextAction": "Read-only preflight/exclusive lock; verify current focus build and actual runner fa3049ac. Register ONE existing tools/combat-battlefield-keyboard-production-qa.mjs native standalone1366x768/normal smoke with BATTLEFIELD_QA_VIEWPORT=1366x768, BATTLEFIELD_QA_OS_MOTION=0, BATTLEFIELD_QA_MOVEMENT=0, matching recorded parameters/assertions, new ignored output/job/verified free port/host cache. Retain visible enabled roster replacement, refusal, legalmove/target, cancellation, pointer, tactical truth assertions. Inspect focus capture/terminal digest/provenance and accept only this desktop native control scope; no six-cell/mobile/campaign/AT claim. Then return approved PC campaign using separately reverified successful0603 only; do not seed FAILED1944/1828/0552/1521 or replay ineffective opposite-lane policy/35min unchanged. Preserve exact deferred keyboard/narrative and historical proofs; no T0 diagnostic return.",
+    "nextAction": "Implement authoritative connected POI navigation and map; verify first slice and old V6 resumes",
     "runMetrics": {
       "runId": "rpgthreejs-auto-dev-90m-20261013T1944",
       "runtimeSourceFilesModified": 2,
@@ -24626,8 +24626,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
-    "activeSubtask": "Deployment keyboard focus corrected; native exact2AP Salvation verified scoped; second refuge remains unverified",
+    "activeTask": "POI-MAP-FIRST-SLICE",
+    "activeSubtask": "Authoritative map navigation and real narrative/combat/refuge handoffs",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -27959,12 +27959,12 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "rpgthreejs-auto-dev-90m-20261013T1944",
+    "runId": "codex-poi-migration-20261013",
     "agent": "codex",
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-13T19:45:46.4541492Z",
     "activePhase": "DEMO-CAMPAIGN-KEYBOARD_PRODUCT_CHECKPOINT",
-    "heartbeat": "2026-10-13T20:40:52.044Z",
+    "heartbeat": "2026-10-14T00:20:15.520Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-13T1944Z-codex-native-second-refuge.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -31197,5 +31197,19 @@
     },
     "appliedRunId": "rpgthreejs-auto-dev-90m-20261013T0552",
     "schedulerObservation": "ACTIVE after manual reactivation; no scheduler mutation by this run"
+  },
+  "poiMigration": {
+    "operatorDecisionId": "OD-2026-10-13-D",
+    "taskId": "PRODUCTION-CONTRACTS-POI-NAVIGATION-1",
+    "phase": "PLAYABLE_SLICE_IMPLEMENTATION",
+    "status": "IN_PROGRESS",
+    "previousActiveTask": "OPERATOR-FEEDBACK: all demo hero skills and random Pursuit combat",
+    "previousActiveSubtask": "Deployment keyboard focus corrected; native exact2AP Salvation verified scoped; second refuge remains unverified",
+    "previousNextAction": "Read-only preflight/exclusive lock; verify current focus build and actual runner fa3049ac. Register ONE existing tools/combat-battlefield-keyboard-production-qa.mjs native standalone1366x768/normal smoke with BATTLEFIELD_QA_VIEWPORT=1366x768, BATTLEFIELD_QA_OS_MOTION=0, BATTLEFIELD_QA_MOVEMENT=0, matching recorded parameters/assertions, new ignored output/job/verified free port/host cache. Retain visible enabled roster replacement, refusal, legalmove/target, cancellation, pointer, tactical truth assertions. Inspect focus capture/terminal digest/provenance and accept only this desktop native control scope; no six-cell/mobile/campaign/AT claim. Then return approved PC campaign using separately reverified successful0603 only; do not seed FAILED1944/1828/0552/1521 or replay ineffective opposite-lane policy/35min unchanged. Preserve exact deferred keyboard/narrative and historical proofs; no T0 diagnostic return.",
+    "startedAt": "2026-10-14T00:20:15.518Z",
+    "nextAction": "Implement authoritative connected POI navigation and map; verify first slice and old V6 resumes",
+    "contractBaseline": "692829f32d735ad890182eea6b5e5e195551bbbf",
+    "contractSetVersion": "1.2.0",
+    "contractReview": "PASS /root/guardian dedicated amendment"
   }
 }
