@@ -6,6 +6,8 @@ Next:Guardian review actual existing runner/assertion diff; freeze/publish, regi
 
 Current change:existing QA runner only; current game already exposes connected next-section POIs. Actual new victories, second refuge and V6 remain PENDING. No newrunner, media, canon, stats or LOCKED change. All225 prior jobs and exact deferred work preserved.
 
+Current0451:FAILED/stable35min; Valmir actual5round42actions, village unfinished8round39actions, no browser errors/injection. No outputs seedable. Final presentation source correction and67currenttests/types/build PASS; five JourneyBoundary failures match exact e61baseline, not introduced. New native preparation returns to first refuge after Valmir for paid healing; no loot securing/rewards/replay/reroll. Second refuge and endings remain unaccepted.
+
 ## Preserved first-slice checkpoint
 
 # POI map first slice accepted — codex-poi-migration-20261013
@@ -1293,6 +1295,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - poi-legacy-v6-native-0124: SUCCEEDED; port 5411; receipt `tmp/demo/poi-legacy-v6-native-0124/qa-job.json`; ACCEPTED_SCOPED
 - poi-legacy-map-native-0128: FAILED; port 5411; receipt `tmp/demo/poi-legacy-map-native-0128/qa-job.json`; NOT_ACCEPTED
 - poi-legacy-map-native-0131: SUCCEEDED; port 5411; receipt `tmp/demo/poi-legacy-map-native-0131/qa-job.json`; ACCEPTED_SCOPED
+- poi-second-refuge-native-0451: FAILED; port5409; receipt `tmp/demo/poi-second-refuge-native-0451/qa-job.json`; NOT_ACCEPTED/unseedable
 <!-- QA_JOBS_END -->
 
 

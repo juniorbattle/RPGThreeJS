@@ -226,7 +226,7 @@ async function poiMove(id,pointer=false){
   await page.waitForFunction(id=>window.__demoQaApp.state.currentNodeId===id,id);
   report.inputs.push({action:pointer?'native POI adjacent pointer movement':'native POI adjacent movement',id});
 }
-async function poiNoReplayPath(ids,mixedInputs=false){
+async function poiNoReplayPath(ids,mixedInputs=false,captureName='poi-native-backtracking'){
   const before=await state();
   for(const [index,id] of ids.entries()){
     await poiMove(id,mixedInputs&&index%2===0);await page.locator('.poi-map:visible').waitFor();
@@ -236,7 +236,7 @@ async function poiNoReplayPath(ids,mixedInputs=false){
   const expected=structuredClone(before);expected.currentNodeId=ids.at(-1);expected.run.currentNodeId=ids.at(-1);
   assert.deepEqual(after,expected,'Resolved backtracking changed canonical facts/resources/assignments');
   await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked'));
-  await capture('poi-native-backtracking');
+  await capture(captureName);
   return {ids,before,after,noReplay:true,exactConsequences:true};
 }
 async function returnToPoiMap(){
@@ -249,6 +249,34 @@ async function returnToPoiMap(){
     await page.waitForTimeout(100);
   }
   await page.locator('.poi-map:visible').waitFor({timeout:1000});
+}
+async function preparePoiCompanyAfterValmir(){
+  const before=await state();
+  assert.ok(before.resolvedNodeIds.includes('lion-valmir-road'));
+  const returnPath=await poiNoReplayPath(['lion-reserve-trail'],true,'poi-after-valmir-return-path');
+  await poiMove('lion-first-refuge',true);
+  const hub=page.locator('.exploration-stop:visible:not([inert])');await hub.waitFor({state:'visible'});
+  const arrival=await state(),expectedArrival=structuredClone(before);
+  expectedArrival.currentNodeId=expectedArrival.run.currentNodeId='lion-first-refuge';
+  assert.deepEqual(arrival,expectedArrival,'Reopened refuge changed earned Valmir facts, loot or checkpoint');
+  const rest=page.locator('.exploration-stop [data-action="rest"]:not(:disabled)');
+  const cost=Number((await rest.innerText()).match(/(\d+)\s*or/i)?.[1]);
+  assert.ok(Number.isInteger(cost)&&cost>0&&arrival.gold>=cost,'Native post-Valmir rest must be affordable and paid');
+  await keyboardActivate('.exploration-stop [data-action="rest"]:not(:disabled)');
+  await hub.waitFor({state:'visible'});
+  const rested=await state(),expectedRest=structuredClone(arrival);
+  expectedRest.gold-=cost;
+  for(const [i,member] of expectedRest.clan.members.entries())member.currentHealth=rested.clan.members[i].currentHealth;
+  assert.deepEqual(rested,expectedRest,'Native post-Valmir rest changed unrelated earned truth');
+  assert.equal(await rest.count(),0,'Native rest did not restore the full party');
+  assert.ok(rested.clan.members.every(u=>u.currentHealth>0));
+  assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),rested,'Paid post-Valmir rest was not persisted exactly');
+  await capture('poi-after-valmir-paid-rest');
+  await keyboardActivate('.exploration-stop [data-action="continue"]');await returnToPoiMap();
+  assert.deepEqual(await state(),rested,'Resolved refuge departure repeated a one-shot effect');
+  const onward=await poiNoReplayPath(['lion-reserve-trail','lion-valmir-road'],true,'poi-after-valmir-prepared-return');
+  report.poi.valmirRefugePreparation={before,arrival,rested,nativeCost:cost,lootUnchanged:true,checkpointUnchanged:true,
+    returnPath,onward,paidRestPersistedExactly:true};
 }
 async function cellClick(frame,cell,attempt){
   const point=await frame.evaluate(({gx,gz})=>window.__qaHelpers.getCellScreenPosition(gx,gz),cell);
@@ -942,6 +970,10 @@ try{
     }
     if(await page.locator('.poi-map:visible').count()){
       report.poi??={native:true};
+      if(target==='second-refuge'&&live.currentNodeId==='lion-valmir-road'
+        &&live.resolvedNodeIds.includes(live.currentNodeId)&&!report.poi.valmirRefugePreparation){
+        await preparePoiCompanyAfterValmir();continue;
+      }
       if(live.currentNodeId==='lion-reserve-trail'&&!report.poi.secondSection){
         await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked'));
         await capture('poi-second-section-reserves');report.poi.secondSection={currentNodeId:live.currentNodeId,resolved:true};

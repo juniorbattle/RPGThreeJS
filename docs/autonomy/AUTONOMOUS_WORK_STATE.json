@@ -4,10 +4,10 @@
   "runEndedAt": null,
   "activeTask": "POI-MAP-LION-CONTINUATION",
   "activePhase": "SECOND_REFUGE_NATIVE",
-  "activeSubtask": "Prepare actual first-refuge party, then earn second-refuge with new native Valmir and Bois-Clair battles",
+  "activeSubtask": "Ending presentation corrected; native paid post-Valmir preparation before next second-refuge attempt",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
-  "lastPushedCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
+  "lastPushedCommit": "e61b118dc926f202f893f9c28c8cbb822d004c44",
   "completedThisRun": [
     "Read-only fresh preflight clean41132a2/remote parity, no previous lock or worker; exclusive new lock",
     "Authenticated successful0057 exact save/proof and all nine current built bundles verified; reuse first-slice source9ba3d96d",
@@ -19,10 +19,14 @@
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
   ],
   "testsRun": [
-    "node --check current existing driver; whitespace/immutable gate; prior54 focused/types/build unchanged boundaries reused by hashes"
+    "67 current focused tests PASS (exclude tmp archives)",
+    "JourneyBoundary13/18 with5matching failures on exact e61baseline and unchanged current source",
+    "tsc+Vite production build PASS,8MP4,8contracts8slots,syntax/whitespace gates",
+    "Native0451 FAILED at35min, stable digest1cb2b3a, all outputs unseedable"
   ],
   "testsPassed": [
-    "Driver syntax and whitespace PASS; immutable gate empty; authenticated seed and current source/all9build hashes match"
+    "67current focused, finaltypes/build/8MP4/8contracts8slots PASS",
+    "Three actual GameApp terminal/reload/fallback regression tests PASS; native ending acceptance pending"
   ],
   "testsRemaining": [
     "New native Valmir and Bois-Clair victories, reserve/T1 stage resolution and exclusive neutralization",
@@ -37,7 +41,7 @@
     "Desktop broader reduced-motion/asset-fallback/accessibility matrices, mobile then operator final demo acceptance",
     "Full Traversal reference inventory and retirement after verified replacement; future approved chest/elite placements"
   ],
-  "nextAction": "Guardian review actual existing runner/assertion diff; freeze/publish, register ONE desktop1366normal targetsecond-refuge/rescue/serpent bounded35min scenario from authenticated0057 save/proof with six authentic potions. Native first-hub rest/management, POI adjacency/stage choices, new Valmir/village victories, missionflags, secureloot and exact completed second-refugeV6. Keep any failed output unseedable; correct demonstrated source defect before further migration. Preserve preview5175 and all historical/deferred work.",
+  "nextAction": "Guardian actualdiff review; publish corrected terminal presentation and native paid post-Valmir rest assertions. Freeze new source/driver/build; register new bounded35min targetsecond-refuge from authenticated0057, actual return to reusable first-refuge and paid rest between Valmir/Bois-Clair. Never use failed0451 partial state. Then true second-refuge exactV6, later narrative and both endings.",
   "taskQueue": [
     "POI-MAP-LION-CONTINUATION: ACTIVE_NEXT; first slice accepted scoped, earn second refuge using POI then later narrative/fins and full reference audit",
     "DEMO-PC-CAMPAIGN: ACTIVE; native second refuge then authored ending/exact reload; full acceptance OPEN",
@@ -177,10 +181,10 @@
   },
   "runId": "codex-poi-continuation-20261014",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-14T04:46:10.172Z",
+  "lastHeartbeat": "2026-10-14T05:15:44.051Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-14T04:46:10.172Z",
+    "lastHeartbeat": "2026-10-14T05:15:44.051Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -24447,10 +24451,120 @@
         "ownerReviewedAt": "2026-10-14T01:42:17.438Z",
         "scopeReview": "Authenticated pre-migration0603, native canonical payment210to190/flag/tempLoot intact, nine pointer/keyboard map movements without replay/changed facts, real refuge reopening and exactV6; zero new battles, two0603 inherited.",
         "guardianReview": "PASS independent terminal/hash/input/capture review, limited to recorded scope"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-second-refuge-native-0451",
+        "runId": "codex-poi-continuation-20261014",
+        "status": "FAILED",
+        "registeredAt": "2026-10-14T04:47:29.242Z",
+        "pid": 55668,
+        "port": 5409,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "second-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 35,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/poi-native-first-refuge-0057/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/poi-native-first-refuge-0057/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-second-refuge-native-0451",
+        "receiptPath": "tmp/demo/poi-second-refuge-native-0451/qa-job.json",
+        "provenance": {
+          "gitHead": "e61b118dc926f202f893f9c28c8cbb822d004c44",
+          "sourceTree": "9ba3d96d33f3b9dd2ef057f6f7ecf5c95b5ee3d0",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "25aec43c20031b5b388a8004e12469e9c2532a1dbeb0013d148505a67cc535d0"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-native-first-refuge-0057/earned-first-refuge-v6.json",
+              "sha256": "4cf082db1fd5569d27ecf3e2062f3d8bbe81fac5457d7c6943cd76edf5561716"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-native-first-refuge-0057/results.json",
+              "sha256": "61791ccf1b79766beb62c0c37a585da0788d9be3ff082969e64055a39eb45fa5"
+            }
+          ],
+          "receiptToolSha256": "5dedab6fa63e37ef70ed2ce97cc4a0aacc5263f7e4b60c97cfd4c30fe10a07b1",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+              "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+            },
+            {
+              "path": "dist/assets/combat-BL64qO_z.js",
+              "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-CbyOqBjG.css",
+              "sha256": "b80061cf0341b9f8dc3b2dd97df816dcf240075fdd3c5a2e1d767ca52abbb735"
+            },
+            {
+              "path": "dist/assets/game-DsoDmniH.js",
+              "sha256": "f6e6249f63770b251727abe601249b6d0308eaa06fe9dd7ad16c5b77e641af5d"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f303bac5c56bd7c983cc1634558870f289244a2dede03317eb75925ba6581129"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-14T04:47:30.277Z",
+        "endedAt": "2026-10-14T05:23:13.881Z",
+        "lastObservedAt": "2026-10-14T04:57:53.480Z",
+        "processConfirmedLive": true,
+        "provenanceStable": true,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/poi-second-refuge-native-0451/results.json",
+        "resultSha256": "1cb2b3a27a799201fa3b3d7a05b32cada65cfb4139bf1543da910a0c6034b416",
+        "processConfirmedStopped": true,
+        "failedOutputsSeedable": false,
+        "scope": "Valmir native victory5round42actions observed; village_defense incomplete8round39actions at35min. AggregateFAILED; no second-refuge/ending acceptance",
+        "originalFrozenDriverBuild": "tmp/autonomy/poi-native-0451-original",
+        "originalSourceCommit": "e61b118dc926f202f893f9c28c8cbb822d004c44"
       }
     ],
     "wip": null,
-    "nextAction": "Guardian review actual existing runner/assertion diff; freeze/publish, register ONE desktop1366normal targetsecond-refuge/rescue/serpent bounded35min scenario from authenticated0057 save/proof with six authentic potions. Native first-hub rest/management, POI adjacency/stage choices, new Valmir/village victories, missionflags, secureloot and exact completed second-refugeV6. Keep any failed output unseedable; correct demonstrated source defect before further migration. Preserve preview5175 and all historical/deferred work.",
+    "nextAction": "Guardian actualdiff review; publish corrected terminal presentation and native paid post-Valmir rest assertions. Freeze new source/driver/build; register new bounded35min targetsecond-refuge from authenticated0057, actual return to reusable first-refuge and paid rest between Valmir/Bois-Clair. Never use failed0451 partial state. Then true second-refuge exactV6, later narrative and both endings.",
     "runMetrics": {
       "runId": "codex-poi-migration-20261013",
       "runtimeSourceFilesModified": 6,
@@ -25281,7 +25395,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "POI-MAP-LION-CONTINUATION",
-    "activeSubtask": "Prepare actual first-refuge party, then earn second-refuge with new native Valmir and Bois-Clair battles",
+    "activeSubtask": "Ending presentation corrected; native paid post-Valmir preparation before next second-refuge attempt",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -28618,7 +28732,7 @@
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-14T04:40:17.8624482Z",
     "activePhase": "SECOND_REFUGE_NATIVE",
-    "heartbeat": "2026-10-14T04:46:10.172Z",
+    "heartbeat": "2026-10-14T05:15:44.051Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-14T0138Z-codex-poi-first-slice.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -30347,7 +30461,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
+    "lastPushedCommit": "e61b118dc926f202f893f9c28c8cbb822d004c44",
     "productPreview": {
       "url": "http://127.0.0.1:5175/",
       "pid": 60640,
@@ -32094,11 +32208,11 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-14T04:46:10.172Z",
+  "heartbeat": "2026-10-14T05:15:44.051Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "IN_PROGRESS",
-    "phase": "SECOND_REFUGE_NATIVE",
+    "phase": "TERMINAL_PRESENTATION_FIX_AND_NATIVE_PREPARATION",
     "startedAt": "2026-10-14T04:40:17.8624482Z",
     "previousCheckpoint": {
       "runId": "codex-poi-migration-20261013",
@@ -32285,6 +32399,24 @@
       "lockedGateEmpty": true
     },
     "currentProof": "Pending native new Valmir/village victories and exact earned second-refugeV6; no inheritance-only claim",
-    "nextAction": "Guardian review actual existing runner/assertion diff; freeze/publish, register ONE desktop1366normal targetsecond-refuge/rescue/serpent bounded35min scenario from authenticated0057 save/proof with six authentic potions. Native first-hub rest/management, POI adjacency/stage choices, new Valmir/village victories, missionflags, secureloot and exact completed second-refugeV6. Keep any failed output unseedable; correct demonstrated source defect before further migration. Preserve preview5175 and all historical/deferred work."
+    "nextAction": "Guardian actualdiff review; publish corrected terminal presentation and native paid post-Valmir rest assertions. Freeze new source/driver/build; register new bounded35min targetsecond-refuge from authenticated0057, actual return to reusable first-refuge and paid rest between Valmir/Bois-Clair. Never use failed0451 partial state. Then true second-refuge exactV6, later narrative and both endings.",
+    "activeJobId": null,
+    "pendingFinalPresentation": {
+      "status": "CONFIRMED_DEFECT_BEYOND_SECOND_REFUGE",
+      "source": "GameApp.enterCampaignPresentation always map even completed ending",
+      "review": "Guardian confirmed",
+      "next": "After terminal0451, reuse existing terminal Journey only for completed ending with no pending finale and no successors; fallback title, active navigation remains POI; source/driver/build currently frozen"
+    },
+    "observedProgress": {
+      "at": "2026-10-14T05:15:44.051Z",
+      "source": "Native worker stdout and inspected captures",
+      "valmir": {
+        "victory": true,
+        "rounds": 5,
+        "actions": 42
+      },
+      "current": "Native village_defense in progress",
+      "acceptance": "PENDING_TERMINAL_RECEIPT_REVIEW"
+    }
   }
 }

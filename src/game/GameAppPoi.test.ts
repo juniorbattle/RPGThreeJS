@@ -16,11 +16,49 @@ function fixture() {
     choosePoi(id:string):Promise<void>;ignorePoi(id:string):void;
     enterCampaignPresentation():Promise<void>;startCombat(id:string,node:RunNode):Promise<void>;
     continueChronicle():Promise<void>;
+    enterJourney():Promise<void>;failJourneyToTravel(error:unknown):Promise<void>;
     playDialogue(...args:unknown[]):Promise<void>;
   };
   owner.state=createInitialState();return {app,owner};
 }
 describe('GameApp POI owner handoffs',()=>{
+  it('presents a completed ending through its terminal agency on reload without replay or changing V6',async()=>{
+    const {app,owner}=fixture();
+    owner.state.run.currentNodeId=owner.state.currentNodeId='lion-final-judgement';
+    owner.state.resolvedNodeIds.push('lion-final-judgement');
+    owner.state.run.status='completed';owner.state.endingId='lion-seal-serpent-truth';
+    owner.state.flags.serpentGeneralDefeated=true;
+    new SaveRepository().saveAuto(owner.state);const before=structuredClone(owner.state);
+    document.body.dataset.campaignSurface='poi-map';
+    vi.spyOn(sceneTransition,'run').mockImplementation(async options=>{await options.task();});
+    const terminal=vi.spyOn(owner,'enterJourney').mockResolvedValue();
+    const resolve=vi.spyOn(owner,'resolveRunNode').mockResolvedValue();
+    await owner.continueChronicle();
+    expect(terminal).toHaveBeenCalledOnce();expect(resolve).not.toHaveBeenCalled();
+    expect(document.querySelector('.poi-map')).toBeNull();expect(document.body.dataset.campaignSurface).toBeUndefined();
+    expect(owner.state).toEqual(before);expect(new SaveRepository().loadAuto()).toEqual(before);app.dispose();
+  });
+  it('keeps active and incomplete completed boundaries on the map without fabricating an ending',async()=>{
+    const {app,owner}=fixture();const terminal=vi.spyOn(owner,'enterJourney').mockResolvedValue();
+    await owner.enterCampaignPresentation();expect(document.querySelector('.poi-map')).not.toBeNull();
+    owner.state.run.currentNodeId=owner.state.currentNodeId='lion-final-judgement';
+    owner.state.run.status='completed';
+    await owner.enterCampaignPresentation();expect(terminal).not.toHaveBeenCalled();
+    owner.state.endingId='lion-seal-serpent-truth';owner.state.flags.lionFinaleSerpentPursuitSelected=true;
+    await owner.enterCampaignPresentation();expect(terminal).not.toHaveBeenCalled();app.dispose();
+  });
+  it('restores focused title agency after a failed terminal presentation, retaining the exact ending save',async()=>{
+    const {app,owner}=fixture();
+    owner.state.run.currentNodeId=owner.state.currentNodeId='lion-final-judgement';
+    owner.state.run.status='completed';owner.state.endingId='lion-seal-trial-truth';
+    new SaveRepository().saveAuto(owner.state);const before=structuredClone(owner.state);
+    document.body.dataset.campaignSurface='poi-map';vi.spyOn(console,'error').mockImplementation(()=>{});
+    await owner.failJourneyToTravel(new Error('terminal fixture failure'));
+    expect(document.querySelector('.title-screen')).not.toBeNull();expect(document.querySelector('.poi-map')).toBeNull();
+    expect(document.body.dataset.campaignSurface).toBeUndefined();
+    expect(document.activeElement?.getAttribute('data-action')).toBe('continue');
+    expect(owner.state).toEqual(before);expect(new SaveRepository().loadAuto()).toEqual(before);app.dispose();
+  });
   it('reloads an old bypassed optional current POI onto the map without activating it',async()=>{
     const {app,owner}=fixture();
     owner.state.run.currentNodeId='lion-refugees';owner.state.currentNodeId='lion-refugees';

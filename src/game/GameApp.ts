@@ -234,6 +234,7 @@ export class GameApp {
 
   private renderTitle(): void {
     this.poiMap.close();
+    delete document.body.dataset.campaignSurface;
     this.disposeTraversal();
     this.disposeJourney();
     this.disposeNarrativeStage();
@@ -266,6 +267,8 @@ export class GameApp {
     this.chrome.querySelector('[data-action="new"]')?.addEventListener('click', () => void this.startNewChronicle());
     this.chrome.querySelector('[data-action="continue"]')?.addEventListener('click', () => void this.continueChronicle());
     this.chrome.querySelector('[data-action="qa"]')?.addEventListener('click', () => this.renderQaLab());
+    (this.chrome.querySelector<HTMLButtonElement>('[data-action="continue"]:not(:disabled)')
+      ?? this.chrome.querySelector<HTMLButtonElement>('[data-action="new"]'))?.focus();
   }
 
   /** Isolated DEV proof. It consumes the real T0 relation and RunSystem without opening rollout. */
@@ -884,7 +887,20 @@ export class GameApp {
    * Every flow that used to return to TravelView returns here instead. It decides only HOW the
    * current campaign boundary is presented — never what the campaign is.
    */
+  private hasCompletedPoiChronicle(): boolean {
+    return this.state.run.status === 'completed' && Boolean(this.state.endingId)
+      && getRunNode(this.state.run)?.links.length === 0
+      && resolvePendingLionFinaleCombat(this.state.flags) === null;
+  }
+
   private async enterCampaignPresentation(): Promise<void> {
+    // Existing ending agency is a terminal presentation, never another navigation path.
+    if (!this.traversalT0QaEnabled && this.hasCompletedPoiChronicle()) {
+      this.poiMap.close();
+      delete document.body.dataset.campaignSurface;
+      await this.enterJourney();
+      return;
+    }
     // Production POI navigation owns selection only. The physical road remains retained for
     // historical DEV QA; no road session is invisibly driven by the production map.
     if (!this.traversalT0QaEnabled) {
@@ -1100,9 +1116,14 @@ export class GameApp {
    * Journey is latched off for the rest of the session so the fallback cannot recurse.
    */
   private async failJourneyToTravel(error: unknown): Promise<void> {
-    console.error('[Journey] Presentation failed; falling back to TravelView.', error);
+    console.error('[Journey] Presentation failed; restoring safe campaign surface.', error);
     this.disposeJourney();
     this.journeyUnavailable = true;
+    if (!this.traversalT0QaEnabled) {
+      if (this.hasCompletedPoiChronicle()) this.renderTitle();
+      else this.showPoiMap();
+      return;
+    }
     await this.enterTravel();
   }
 
