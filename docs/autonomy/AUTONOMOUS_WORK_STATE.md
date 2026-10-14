@@ -1320,7 +1320,14 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - poi-second-refuge-native-0451: FAILED; port 5409; receipt `tmp/demo/poi-second-refuge-native-0451/qa-job.json`; NOT_ACCEPTED
 - poi-second-refuge-prepared-0540: FAILED; port 5409; receipt `tmp/demo/poi-second-refuge-prepared-0540/qa-job.json`; NOT_ACCEPTED
 - poi-second-refuge-manual-0643: FAILED; port 5409; receipt `tmp/demo/poi-second-refuge-manual-0643/qa-job.json`; NOT_ACCEPTED
-- poi-second-refuge-manual-0645: PLANNED; port 5409; receipt `tmp/demo/poi-second-refuge-manual-0645/qa-job.json`; NOT_ACCEPTED
+- poi-second-refuge-manual-0645: SUCCEEDED; port 5409; receipt `tmp/demo/poi-second-refuge-manual-0645/qa-job.json`; ACCEPTED_SCOPED_POI_RESCUE_SECOND_REFUGE_DESKTOP1366_NORMAL
+- poi-preparation-desktop-2019: SUCCEEDED; port 5410; receipt `tmp/demo/poi-preparation-desktop-2019/qa-job.json`; NOT_ACCEPTED
+- poi-preparation-mobile-os-2020: SUCCEEDED; port 5411; receipt `tmp/demo/poi-preparation-mobile-os-2020/qa-job.json`; NOT_ACCEPTED
+- poi-defeat-finaltrial-2020: FAILED; port 5412; receipt `tmp/demo/poi-defeat-finaltrial-2020/qa-job.json`; NOT_ACCEPTED
+- poi-ending-serpent-2022: RUNNING; port 5413; receipt `tmp/demo/poi-ending-serpent-2022/qa-job.json`; NOT_ACCEPTED
+- poi-ending-trial-mobile-2022: RUNNING; port 5414; receipt `tmp/demo/poi-ending-trial-mobile-2022/qa-job.json`; NOT_ACCEPTED
+- poi-preparation-intermediate-game-2027: RUNNING; port 5415; receipt `tmp/demo/poi-preparation-intermediate-game-2027/qa-job.json`; NOT_ACCEPTED
+- poi-first-trial-combat-game-2029: RUNNING; port 5416; receipt `tmp/demo/poi-first-trial-combat-game-2029/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
