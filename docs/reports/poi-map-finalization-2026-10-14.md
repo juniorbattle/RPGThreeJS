@@ -29,7 +29,8 @@ Journey now supplies the existing game reduction preference to its NarrativeStag
 - `poi-preparation-mobile-os-2020`: same authored continuation and exact V6 on390×844, OS reduce with normal game graphics. Root and guardian inspected preparation and selected map captures; recorded controls fit the viewport.
 - `poi-defeat-finaltrial-2020`: FAILED,60second enemy-turn wait. Nonaccepted and unseedable; no tactical/balance defect inferred from the timeout. Original result/receipt/capture preserved.
 - `poi-preparation-intermediate-game-2027`: INTERRUPTED by the owner after a runner race passed the preparation objective into judgement. Only its verified worker67616 and descendants were stopped; original receipt and owner-interruption sidecar retained. No acceptance or reusable seed.
-- Both native endings and fresh first-trial-combat case are still active. No ending, alternative victory or native defeat PASS is inferred.
+- `poi-first-trial-combat-game-2029`: SUCCEEDED/stable; guardian accepted scoped and authentic seed admissible. Two fresh native victories: opening3rounds/17actions, first-trial combat4rounds/29actions. The event alternative is neutralized/not resolved, optional refugees bypass/revisit remains functional, native game reduction persists through exact V6 reload and reusable First refuge. Final205gold/44reputation/zero temporary loot. Root and guardian inspected the neutralization map and reloaded services; measured controls fit1366×768.
+- Both native endings and `poi-second-combat-sacrifice-game-2051` remain active on the frozen executable/driver. No ending, T1/sacrifice victory or native defeat PASS is inferred.
 
 Guardian independently accepted only the two preparation scopes above; reduction-game/intermediate and full mobile/dynamic acceptance remain open. Raw receipts retain NOT_ACCEPTED; reviewed dispositions are recorded separately.
 

@@ -4,7 +4,9 @@ IN_PROGRESS: operator requests both endings, authored alternatives, native POI d
 
 Product: rebuild authored final-refuge preparation on arrival/reload, local return to map; no new hub/securing. Carry game reduction into Journey tableaux and expose existing setting through a native POI button. Five Journey test timing failures closed without changed expectations. Native acceptance pending;109focused/types/8contracts green. Reuse existing runner, normal45minute per-job watchdog; no old Traversal retirement.
 
-Next: Freeze green source/build; authenticate successful0645; native final-refuge preparation then both endings, alternatives, defeat and motion/mobile matrix.
+Next: Finish frozen native endings and fresh T0 combat; then one runner synchronization/native defeat/touch correction and remaining T1/sacrifice/T3/motion matrix.
+
+Fresh T0 combat accepted scoped: real opening3round17actions and first-trial4round29actions; optional bypass/revisit, neutralized event, native game reduction and exact reusable-refuge V6.205gold/44rep. Both endings and T1 combat/sacrifice still running; failed/interrupted cases remain nonaccepted.
 
 ## Preserved preceding closeout
 
@@ -1327,7 +1329,8 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - poi-ending-serpent-2022: RUNNING; port 5413; receipt `tmp/demo/poi-ending-serpent-2022/qa-job.json`; NOT_ACCEPTED
 - poi-ending-trial-mobile-2022: RUNNING; port 5414; receipt `tmp/demo/poi-ending-trial-mobile-2022/qa-job.json`; NOT_ACCEPTED
 - poi-preparation-intermediate-game-2027: RUNNING; port 5415; receipt `tmp/demo/poi-preparation-intermediate-game-2027/qa-job.json`; NOT_ACCEPTED
-- poi-first-trial-combat-game-2029: RUNNING; port 5416; receipt `tmp/demo/poi-first-trial-combat-game-2029/qa-job.json`; NOT_ACCEPTED
+- poi-first-trial-combat-game-2029: SUCCEEDED; port 5416; receipt `tmp/demo/poi-first-trial-combat-game-2029/qa-job.json`; NOT_ACCEPTED
+- poi-second-combat-sacrifice-game-2051: RUNNING; port 5417; receipt `tmp/demo/poi-second-combat-sacrifice-game-2051/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
