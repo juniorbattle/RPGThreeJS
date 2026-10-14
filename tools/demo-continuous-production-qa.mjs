@@ -226,6 +226,7 @@ async function poiNoReplayPath(ids,mixedInputs=false){
   const after=await state();
   const expected=structuredClone(before);expected.currentNodeId=ids.at(-1);expected.run.currentNodeId=ids.at(-1);
   assert.deepEqual(after,expected,'Resolved backtracking changed canonical facts/resources/assignments');
+  await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked'));
   await capture('poi-native-backtracking');
   return {ids,before,after,noReplay:true,exactConsequences:true};
 }
@@ -774,7 +775,7 @@ try{
       assert.deepEqual(JSON.parse(saved),live,'Earned refuge agency precedes durable owner truth');
       await writeFile(resolve(output,`earned-${nodeId}-v6.json`),saved+'\n');
       if(nodeId==='lion-first-refuge')await writeFile(resolve(output,'earned-first-refuge-v6.json'),saved+'\n');
-      if(await page.locator('.poi-map').count()===0 && await page.evaluate(()=>document.body.dataset.campaignSurface==='poi-map')){
+      if(target==='first-refuge'||await page.locator('.poi-map').count()===0 && await page.evaluate(()=>document.body.dataset.campaignSurface==='poi-map')){
         if(target==='first-refuge'&&!priorProof){
           assert.ok(live.resolvedNodeIds.includes('lion-refugees'),'Native optional revisit must resolve the authored refugees event');
           assert.ok(report.choices.some(c=>c.sequence==='refugee_trial'),'Native refugees dialogue/choice was not observed');
