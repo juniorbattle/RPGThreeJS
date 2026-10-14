@@ -7,6 +7,7 @@ import {
   addTemporaryLoot, enterRunNode, failRunToCheckpoint,
   getAvailableRunNodes, getRunNode, secureRunLoot, bypassTraversalNode,
   requestTraversalPursuitEncounter, resolveTraversalPursuitVictory, type TraversalPursuitContact,
+  selectPoiMap, enterPoi, bypassPoi, isPoiNeutralized,
 } from './runSystem';
 import { changeReputation, getReputationRule } from './reputation';
 import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
@@ -31,6 +32,7 @@ import { CombatBridge } from '../combat/CombatBridge';
 import { DialogueView, resolveDialogueBackdrop } from '../ui/DialogueView';
 import { ManagementView } from '../ui/ManagementView';
 import { TravelView } from '../ui/TravelView';
+import { PoiMapView } from '../ui/PoiMapView';
 import { ExplorationView } from '../ui/ExplorationView';
 import { resolveRefugePresentation } from '../ui/RefugePresentation';
 import { PrologueView } from '../ui/PrologueView';
@@ -133,6 +135,7 @@ export class GameApp {
   private readonly management: ManagementView;
   private readonly combat: CombatBridge;
   private readonly travel: TravelView;
+  private readonly poiMap: PoiMapView;
   private readonly exploration: ExplorationView;
   private readonly prologue: PrologueView;
   private readonly cinematicRegistry = new CinematicRegistry();
@@ -200,6 +203,13 @@ export class GameApp {
       onOpenMenu: () => this.renderTitle(),
     });
     this.exploration = new ExplorationView({ root, statusHud: this.statusHud });
+    this.poiMap = new PoiMapView({root,
+      onMove: id => this.choosePoi(id),
+      onBypass: id => this.ignorePoi(id),
+      onCompany: () => void this.openPoiCompany(),
+      onSave: () => this.saves.saveManual(this.state),
+      onMenu: () => this.renderTitle(),
+    });
     this.prologue = new PrologueView(root);
   }
 
@@ -211,6 +221,7 @@ export class GameApp {
   }
 
   dispose(): void {
+    this.poiMap.close();
     this.disposeTraversal();
     this.disposeJourney();
     this.disposeNarrativeStage();
@@ -222,6 +233,7 @@ export class GameApp {
   }
 
   private renderTitle(): void {
+    this.poiMap.close();
     this.disposeTraversal();
     this.disposeJourney();
     this.disposeNarrativeStage();
@@ -873,6 +885,12 @@ export class GameApp {
    * current campaign boundary is presented — never what the campaign is.
    */
   private async enterCampaignPresentation(): Promise<void> {
+    // Production POI navigation owns selection only. The physical road remains retained for
+    // historical DEV QA; no road session is invisibly driven by the production map.
+    if (!this.traversalT0QaEnabled) {
+      this.showPoiMap();
+      return;
+    }
     if (this.resumeActiveTraversalIfReady()) return;
     if (this.traversalEntryInFlight) return;
     // An existing owner may only leave through final arrival, never through another entry.
@@ -961,6 +979,54 @@ export class GameApp {
     this.canvas.hidden = true;
     this.chrome.replaceChildren();
     this.travel.open();
+  }
+
+  private showPoiMap(focusId = this.state.run.currentNodeId): void {
+    this.activeNarrativeStage?.prepareGlobalHandoff();
+    this.disposeTraversal();
+    this.disposeJourney();
+    this.disposeNarrativeStage();
+    this.travel.close();
+    this.exploration.close();
+    this.setMode('TRAVEL');
+    document.body.dataset.campaignSurface = 'poi-map';
+    this.canvas.hidden = true;
+    this.chrome.replaceChildren();
+    const model = selectPoiMap(this.state);
+    this.saves.saveAuto(this.state);
+    this.poiMap.open(model, focusId);
+  }
+
+  private async choosePoi(nodeId: string): Promise<void> {
+    if (this.mode !== 'TRAVEL' || this.routeCommitInFlight) return;
+    this.routeCommitInFlight = true;
+    const entered = enterPoi(this.state, nodeId);
+    this.routeCommitInFlight = false;
+    if (!entered) {this.showPoiMap();return;}
+    this.saves.saveAuto(this.state);
+    if (!entered.activate) {this.showPoiMap(nodeId);return;}
+    this.poiMap.close();
+    this.setMode('RESULT');
+    await this.resolveRunNode(entered.node, false);
+  }
+
+  private ignorePoi(nodeId: string): void {
+    if (this.mode !== 'TRAVEL' || this.routeCommitInFlight) return;
+    const result = bypassPoi(this.state, nodeId);
+    if (!result) return;
+    const consequence = resolveTraversalIgnoreConsequence(result.legId, result.node);
+    if (consequence && !this.state.flags[consequence.flag]) {
+      changeReputation(this.state, consequence.reputation, `traversal-ignore:${result.node.id}`);
+      this.state.flags[consequence.flag] = true;
+    }
+    this.showPoiMap(nodeId);
+  }
+
+  private async openPoiCompany(): Promise<void> {
+    if (this.mode !== 'TRAVEL') return;
+    this.poiMap.close();
+    await this.openManagement('clan', undefined, 'temporary', false);
+    this.showPoiMap();
   }
 
   private async enterJourney(): Promise<void> {
@@ -1155,6 +1221,14 @@ export class GameApp {
   }
 
   private async resolveRunNode(node: RunNode, initial: boolean): Promise<void> {
+    // Pending canonical finale combat survives a resolved story node. Ordinary resolved combats
+    // and neutralized branches must be refused before any tactical or narrative entry.
+    const pendingFinale = node.type === 'boss' ? resolvePendingLionFinaleCombat(this.state.flags) : null;
+    if (node.type !== 'refuge' && !pendingFinale
+      && (this.state.resolvedNodeIds.includes(node.id) || isPoiNeutralized(this.state, node.id))) {
+      await this.enterCampaignPresentation();
+      return;
+    }
     if (node.type === 'refuge') {
       const presentation = resolveRefugePresentation(node);
       if (!presentation) throw new Error(`Missing interactive refuge presentation for ${node.id}`);
@@ -1635,7 +1709,7 @@ export class GameApp {
     this.saves.saveAuto(this.state);
     if (returnToTravel) {
       // Only TravelView's own Company button reaches this branch; Journey rebuilds its boundary.
-      this.showTravel();
+      this.showPoiMap();
       this.saves.saveAuto(this.state);
     }
   }
@@ -1680,6 +1754,7 @@ export class GameApp {
         this.exploration.close();
         this.combat.close();
         this.travel.close();
+        this.poiMap.close();
         this.disposeJourney();
         this.disposeTraversal();
         // Neutral holding mode: the presentation is chosen only after the resume profile is known,
@@ -1694,7 +1769,9 @@ export class GameApp {
     if (
       current
       && current.depth > 0
-      && (pendingFinaleCombat !== null || !this.state.resolvedNodeIds.includes(current.id))
+      && (pendingFinaleCombat !== null || (!this.state.resolvedNodeIds.includes(current.id)
+        && !isPoiNeutralized(this.state, current.id)
+        && !this.state.run.bypassedRouteNodeIds?.includes(current.id)))
     ) {
       // Unresolved node or a durable pending finale boss: resume gameplay directly, never replay a
       // committed route choice just to show a cinematic.

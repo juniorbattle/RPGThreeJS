@@ -681,6 +681,141 @@ export function enterRunNode(run: RunState, nodeId: string): RunNode | null {
   return next;
 }
 
+export type PoiStatus = 'available' | 'locked' | 'resolved' | 'neutralized';
+export type PoiKind = 'primary' | 'mystery' | 'combat' | 'elite' | 'chest' | 'refuge';
+export interface PoiMapNode extends RunNode {
+  status: PoiStatus;
+  kind: PoiKind;
+  reusable: boolean;
+  canMove: boolean;
+  canActivate: boolean;
+  canBypass: boolean;
+}
+export interface PoiMapModel {
+  currentNodeId: string;
+  gold: number;
+  temporaryGold: number;
+  reputation: number;
+  nodes: PoiMapNode[];
+  edges: { from: string; to: string; unlocked: boolean }[];
+}
+
+function poiForkChoice(state: GameState, leg: typeof LION_TRAVERSAL_LEGS[number], ids: readonly string[]): string | undefined {
+  // A mere historical visit survives defeat and is not an irrevocable branch fact.
+  return state.run.traversalBranches?.[leg.id]
+    ?? ids.find(id => state.resolvedNodeIds.includes(id))
+    // Old V6 interruptions may predate traversalBranches. Preserve their actual active encounter.
+    ?? (ids.includes(state.run.currentNodeId) ? state.run.currentNodeId : undefined);
+}
+
+export function isPoiNeutralized(state: GameState, nodeId: string): boolean {
+  return LION_TRAVERSAL_LEGS.some(leg => leg.stages.some(stage => {
+    if (stage.mode !== 'IN_TRAVERSAL_FORK' || !stage.nodeIds.includes(nodeId)) return false;
+    const choice = poiForkChoice(state, leg, stage.nodeIds);
+    return Boolean(choice && stage.nodeIds.includes(choice) && choice !== nodeId);
+  }));
+}
+
+/** Directed progression is preserved; this set does not use the reversible presentation edges. */
+function unlockedPoiIds(state: GameState): Set<string> {
+  const unlocked = new Set(state.run.graph.nodes.filter(n => n.depth === 0).map(n => n.id));
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const node of state.run.graph.nodes) {
+      const cleared = node.depth === 0 || state.resolvedNodeIds.includes(node.id)
+        || Boolean(state.run.bypassedRouteNodeIds?.includes(node.id));
+      if (!unlocked.has(node.id) || !cleared || isPoiNeutralized(state, node.id)) continue;
+      for (const id of node.links) if (!unlocked.has(id)) { unlocked.add(id); changed = true; }
+    }
+  }
+  // Preserve an authentic old interrupted encounter, never infer its outcome.
+  unlocked.add(state.run.currentNodeId);
+  return unlocked;
+}
+
+function poiOptionalLeg(nodeId: string): typeof LION_TRAVERSAL_LEGS[number] | undefined {
+  return LION_TRAVERSAL_LEGS.find(leg => leg.stages.some(stage => stage.nodeIds.includes(nodeId)
+    && (stage.mode === 'OPTIONAL_INTERRUPT' || stage.branchEncounterMode === 'OPTIONAL_INTERRUPT'
+      || stage.optionalBranchNodeIds?.includes(nodeId))));
+}
+
+/** Read model uses existing authoritative adaptive assignments, never a presentation-owned variant. */
+export function selectPoiMap(state: GameState): PoiMapModel {
+  const unlocked = unlockedPoiIds(state);
+  const current = getRunNode(state.run);
+  const neighbors = new Set([
+    ...(current?.links ?? []),
+    ...state.run.graph.nodes.filter(n => n.links.includes(state.run.currentNodeId)).map(n => n.id),
+  ]);
+  // An authored bypass contracts that optional edge, while the POI itself remains revisitable.
+  const bypassEdges = getAvailableRunEdges(state.run).filter(edge=>state.run.bypassedRouteNodeIds?.includes(edge.fromNodeId));
+  for (const edge of bypassEdges) neighbors.add(edge.toNodeId);
+  const nodes = state.run.graph.nodes.map(raw => {
+    const active = state.run.status === 'active';
+    const node = active && unlocked.has(raw.id) ? resolveAdaptiveNode(state, raw) : raw;
+    const neutralized = isPoiNeutralized(state, node.id);
+    const status: PoiStatus = state.resolvedNodeIds.includes(node.id) ? 'resolved'
+      : neutralized ? 'neutralized' : unlocked.has(node.id) ? 'available' : 'locked';
+    const reusable = node.type === 'refuge' && Boolean(state.flags[`refugeSecured:${node.id}`]);
+    const kind: PoiKind = node.type === 'refuge' ? 'refuge'
+      : node.type === 'combat' ? (ELITE_ROUTE_CONTENT_IDS.has(node.contentId) ? 'elite' : 'combat')
+      : node.type === 'story' || node.type === 'boss' ? 'primary' : 'mystery';
+    const canMove = active && node.id !== state.run.currentNodeId && neighbors.has(node.id) && unlocked.has(node.id);
+    return { ...node, status, kind, reusable, canMove,
+      canActivate: active && !neutralized && unlocked.has(node.id) && node.depth > 0 && (status === 'available' || reusable),
+      canBypass: active && Boolean(poiOptionalLeg(node.id)) && !neutralized && status === 'available'
+        && !state.run.bypassedRouteNodeIds?.includes(node.id) && (canMove || node.id === state.run.currentNodeId),
+    };
+  });
+  return {currentNodeId:state.run.currentNodeId, gold:state.gold, temporaryGold:state.run.temporaryLoot.gold,
+    reputation:state.reputation, nodes,
+    edges:[...state.run.graph.nodes.flatMap(n=>n.links.map(id=>({from:n.id,to:id,unlocked:unlocked.has(n.id)&&unlocked.has(id)}))),
+      ...bypassEdges.map(edge=>({from:state.run.currentNodeId,to:edge.toNodeId,unlocked:unlocked.has(edge.toNodeId)}))],
+  };
+}
+
+/** Revalidated native movement/activation. Never changes resolution, loot, combat or narrative effects. */
+export function enterPoi(state: GameState, nodeId: string): { node: RunNode; activate: boolean } | null {
+  if (state.run.status !== 'active') return null;
+  const selected = selectPoiMap(state).nodes.find(n => n.id === nodeId);
+  if (!selected || state.run.status !== 'active'
+    || (!selected.canMove && !(nodeId === state.run.currentNodeId && selected.canActivate))) return null;
+  const node = getRunNode(state.run, nodeId)!;
+  if (!isPoiNeutralized(state, nodeId)) {
+    for (const leg of LION_TRAVERSAL_LEGS) for (const stage of leg.stages) {
+      if (stage.mode === 'IN_TRAVERSAL_FORK' && stage.nodeIds.includes(nodeId)
+        && !state.run.traversalBranches?.[leg.id]) {
+        state.run.traversalBranches = {...state.run.traversalBranches, [leg.id]:nodeId};
+      }
+    }
+  }
+  state.run.currentNodeId = nodeId;
+  state.currentNodeId = nodeId;
+  if (!state.run.visitedNodeIds.includes(nodeId)) state.run.visitedNodeIds.push(nodeId);
+  state.visitedNodeIds = [...state.run.visitedNodeIds];
+  for (const id of [nodeId,...node.links]) if (!state.run.revealedNodeIds.includes(id)) state.run.revealedNodeIds.push(id);
+  if (selected.canActivate && selected.status === 'available') {
+    state.stepCounter += 1;
+    if (['event','mystery','recruitment'].includes(node.type) && !state.seenUniqueEvents.includes(node.contentId)) state.seenUniqueEvents.push(node.contentId);
+  }
+  return {node, activate:selected.canActivate};
+}
+
+/** Only authored optional events may be bypassed; the caller applies the existing consequence policy. */
+export function bypassPoi(state: GameState, nodeId: string): { legId: string; node: RunNode } | null {
+  if (state.run.status !== 'active') return null;
+  const model = selectPoiMap(state);
+  if (!model.nodes.find(n=>n.id===nodeId)?.canBypass) return null;
+  const leg = poiOptionalLeg(nodeId)!;
+  const node = getRunNode(state.run,nodeId)!;
+  const fork = leg.stages.find(s=>s.mode==='IN_TRAVERSAL_FORK' && s.nodeIds.includes(nodeId));
+  if (fork && !state.run.traversalBranches?.[leg.id]) state.run.traversalBranches={...state.run.traversalBranches,[leg.id]:nodeId};
+  state.run.bypassedRouteNodeIds=[...new Set([...(state.run.bypassedRouteNodeIds??[]),nodeId])];
+  for(const id of node.links) if(!state.run.revealedNodeIds.includes(id))state.run.revealedNodeIds.push(id);
+  return {legId:leg.id,node};
+}
+
 export function addTemporaryLoot(
   run: RunState,
   loot: { gold?: number; itemId?: string; category?: keyof InventoryState; quantity?: number },

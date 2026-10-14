@@ -203,6 +203,26 @@ async function campaignParentKeyboardReturn(entry){
   entry.parentKeyboardReturn={method:'NATIVE_RESULT_ENTER_AUTOMATIC_PARENT_FOCUS',focus,tabAway,ownerBefore,ownerAfter,autosaveUnchanged:true,pass:true};
   await capture(`combat-${entry.index}-native-parent-keyboard-return`);
 }
+async function poiMove(id){
+  const marker=`.poi-map [data-poi-id="${id}"]`;
+  assert.equal(await page.locator(marker).getAttribute('data-poi-reachable'),'true','POI move must use an unlocked adjacent edge');
+  await keyboardActivate(marker);
+  await keyboardActivate('.poi-map [data-poi-action="move"]:not(:disabled)');
+  await page.waitForFunction(id=>window.__demoQaApp.state.currentNodeId===id,id);
+  report.inputs.push({action:'native POI adjacent movement',id});
+}
+async function poiNoReplayPath(ids){
+  const before=await state();
+  for(const id of ids){
+    await poiMove(id);await page.locator('.poi-map:visible').waitFor();
+    assert.equal(await page.locator('.dialogue:visible,iframe.combat-frame,.cinematic-overlay:visible').count(),0,'Resolved POI replayed content');
+  }
+  const after=await state();
+  const expected=structuredClone(before);expected.currentNodeId=ids.at(-1);expected.run.currentNodeId=ids.at(-1);
+  assert.deepEqual(after,expected,'Resolved backtracking changed canonical facts/resources/assignments');
+  await capture('poi-native-backtracking');
+  return {ids,before,after,noReplay:true,exactConsequences:true};
+}
 async function cellClick(frame,cell,attempt){
   const point=await frame.evaluate(({gx,gz})=>window.__qaHelpers.getCellScreenPosition(gx,gz),cell);
   const box=await page.locator('iframe.combat-frame').boundingBox();
@@ -725,6 +745,35 @@ try{
       assert.deepEqual(JSON.parse(saved),live,'Earned refuge agency precedes durable owner truth');
       await writeFile(resolve(output,`earned-${nodeId}-v6.json`),saved+'\n');
       if(nodeId==='lion-first-refuge')await writeFile(resolve(output,'earned-first-refuge-v6.json'),saved+'\n');
+      if(await page.locator('.poi-map').count()===0 && await page.evaluate(()=>document.body.dataset.campaignSurface==='poi-map')){
+        if(target==='first-refuge'){
+          assert.ok(live.resolvedNodeIds.includes('lion-refugees'),'Native optional revisit must resolve the authored refugees event');
+          assert.ok(report.choices.some(c=>c.sequence==='refugee_trial'),'Native refugees dialogue/choice was not observed');
+          assert.ok(live.resolvedNodeIds.includes('lion-first-trial-event'));
+          assert.ok(!live.resolvedNodeIds.includes('lion-first-trial-combat'));
+          assert.equal(live.run.traversalBranches.T0,'lion-first-trial-event');
+          report.poi.optionalRevisit={resolved:true,dialogueObserved:true};
+        }
+        // Complete the refuge visit natively, reopen services, then resume its resolved map POI.
+        await keyboardActivate('.exploration-stop [data-action="continue"]');
+        await page.locator('.poi-map:visible').waitFor();
+        const completed=await state();assert.ok(completed.resolvedNodeIds.includes(nodeId));
+        await keyboardActivate(`.poi-map [data-poi-id="${nodeId}"]`);
+        await keyboardActivate('.poi-map [data-poi-action="move"]');await hub.waitFor({state:'visible'});
+        assert.deepEqual(await state(),completed,'Refuge revisit repeated arrival, reward or changed resources');
+        await keyboardActivate('.exploration-stop [data-action="continue"]');await page.locator('.poi-map:visible').waitFor();
+        await page.reload({waitUntil:'networkidle'});await click('.title-screen [data-action="continue"]');
+        await page.locator('.poi-map:visible').waitFor({timeout:30000});
+        report.resumed=await state();assert.deepEqual(report.resumed,completed,'Resolved refuge map reload changed exact V6 truth');
+        await keyboardActivate(`.poi-map [data-poi-id="${nodeId}"]`);
+        await keyboardActivate('.poi-map [data-poi-action="move"]');await hub.waitFor({state:'visible'});
+        assert.deepEqual(await state(),completed,'Refuge services after reload changed V6 without an action');
+        report.refuges.push({nodeId,entry:live,resumed:report.resumed,reusable:true,exactV6:true});
+        if(nodeId==='lion-first-refuge')await writeFile(resolve(output,'earned-first-refuge-v6.json'),JSON.stringify(completed)+'\n');
+        await capture(`${nodeId}-poi-reusable-reloaded`);
+        if(stop){assert.deepEqual(report.errors,[]);report.pass=true;break;}
+        await keyboardActivate('.exploration-stop [data-action="continue"]');continue;
+      }
       await page.reload({waitUntil:'networkidle'});await click('.title-screen [data-action="continue"]');
       await page.locator(`.exploration-stop[data-refuge-node="${nodeId}"]:visible:not([inert])`).waitFor({timeout:30000});
       report.resumed=await state();assert.deepEqual(report.resumed,live,'Earned refuge reload changed V6 truth');
@@ -816,6 +865,32 @@ try{
         const button=page.locator(`[data-traversal-lane="${lane}"]:visible:not(:disabled)`);
         if(await button.count())await keyboardActivate(`[data-traversal-lane="${lane}"]:visible:not(:disabled)`);
       }
+    }
+    if(await page.locator('.poi-map:visible').count()){
+      report.poi??={native:true};
+      if(live.currentNodeId==='lion-nomad-crossroads'&&!report.poi.backtracking){
+        await capture('poi-after-cedric');
+        report.poi.backtracking=await poiNoReplayPath(['lion-opening-ambush','lion-audience','lion-opening-ambush','lion-nomad-crossroads']);
+        await keyboardActivate('.poi-map [data-poi-id="lion-refugees"]');
+        const before=await state();await keyboardActivate('.poi-map [data-poi-action="bypass"]');
+        const after=await state();assert.equal(after.reputation,before.reputation-2);
+        assert.equal(after.flags.ignoredRefugees,true);assert.ok(!after.resolvedNodeIds.includes('lion-refugees'));
+        report.poi.optionalBypass={before,after};await capture('poi-refugees-bypassed');
+      }
+      if(live.currentNodeId==='lion-first-trial-event'&&live.resolvedNodeIds.includes(live.currentNodeId)&&!report.poi.optionalRevisitRequested){
+        assert.equal(await page.locator('[data-poi-id="lion-first-trial-combat"]').getAttribute('class').then(c=>c.includes('poi-marker--neutralized')),true);
+        assert.ok(!live.resolvedNodeIds.includes('lion-first-trial-combat'));
+        report.poi.neutralization={selected:'lion-first-trial-event',excluded:'lion-first-trial-combat',notResolved:true};
+        await capture('poi-exclusive-neutralization');report.poi.optionalRevisitRequested=true;
+        await poiMove('lion-refugees');continue;
+      }
+      const mapState=await state();
+      const current=mapState.run.graph.nodes.find(n=>n.id===mapState.currentNodeId);
+      const choices=current.links.filter(id=>!id.endsWith('-combat'));
+      let next=live.currentNodeId==='lion-nomad-crossroads'&&report.poi.optionalBypass&&!report.poi.optionalRevisitRequested?'lion-first-trial-event':null;
+      if(!next)for(const id of choices)if(await page.locator(`.poi-map [data-poi-id="${id}"][data-poi-reachable="true"]`).count()){next=id;break;}
+      if(!next&&live.currentNodeId==='lion-nomad-crossroads'&&report.poi.optionalBypass)next='lion-first-trial-event';
+      if(next){await poiMove(next);continue;}
     }
     if(await page.locator('.prologue-view').count()){await page.keyboard.press('Enter');}
     else if(await page.locator('.cinematic-overlay__skip:visible').count()){await click('.cinematic-overlay__skip:visible');}
