@@ -8,6 +8,8 @@ import { LION_PURSUIT_ENCOUNTER_BINDINGS, LION_PURSUIT_ENEMY_POOLS, rollLionPurs
 import { combatConfigs } from './content';
 import { applyCombatProgress } from './combatProgress';
 import { changeReputation } from './reputation';
+import { LION_FIRST_TRIAL, LION_OPENING_LOCAL_ROUTES, openingLocalRoutesUnlocked } from '../campaign/LionPoiTopology';
+import { resolveOptionalEncounterIgnoreConsequence } from './OptionalEncounterConsequencePolicy';
 
 export { getLionConductScore, getLionConductTier } from './lionNarrative';
 export type { LionConductTier } from './lionNarrative';
@@ -719,6 +721,13 @@ export function isPoiNeutralized(state: GameState, nodeId: string): boolean {
 /** Directed progression is preserved; this set does not use the reversible presentation edges. */
 function unlockedPoiIds(state: GameState): Set<string> {
   const unlocked = new Set(state.run.graph.nodes.filter(n => n.depth === 0).map(n => n.id));
+  // A legitimately earned old refuge stays earned, including pre-V2 optional-trial saves.
+  for (const id of ['lion-first-refuge','lion-second-refuge']) {
+    if (state.flags[`refugeSecured:${id}`] || state.resolvedNodeIds.includes(id)) unlocked.add(id);
+  }
+  if (openingLocalRoutesUnlocked(state.resolvedNodeIds)) {
+    for (const edge of LION_OPENING_LOCAL_ROUTES) unlocked.add(edge.to);
+  }
   let changed = true;
   while (changed) {
     changed = false;
@@ -726,7 +735,10 @@ function unlockedPoiIds(state: GameState): Set<string> {
       const cleared = node.depth === 0 || state.resolvedNodeIds.includes(node.id)
         || Boolean(poiOptionalLeg(node.id) && state.run.bypassedRouteNodeIds?.includes(node.id));
       if (!unlocked.has(node.id) || !cleared || isPoiNeutralized(state, node.id)) continue;
-      for (const id of node.links) if (!unlocked.has(id)) { unlocked.add(id); changed = true; }
+      for (const id of node.links) {
+        if (id === 'lion-first-refuge' && !LION_FIRST_TRIAL.some(trial=>state.resolvedNodeIds.includes(trial))) continue;
+        if (!unlocked.has(id)) { unlocked.add(id); changed = true; }
+      }
     }
   }
   // Preserve an authentic old interrupted encounter, never infer its outcome.
@@ -735,6 +747,9 @@ function unlockedPoiIds(state: GameState): Set<string> {
 }
 
 function poiOptionalLeg(nodeId: string): typeof LION_TRAVERSAL_LEGS[number] | undefined {
+  // V2 requires an actual trial. The historical optional-trial bypass field is kept in V6
+  // but cannot open the refuge or create a new bypass intent.
+  if (LION_FIRST_TRIAL.includes(nodeId)) return undefined;
   return LION_TRAVERSAL_LEGS.find(leg => leg.stages.some(stage => stage.nodeIds.includes(nodeId)
     && (stage.mode === 'OPTIONAL_INTERRUPT' || stage.branchEncounterMode === 'OPTIONAL_INTERRUPT'
       || stage.optionalBranchNodeIds?.includes(nodeId))));
@@ -748,6 +763,12 @@ export function selectPoiMap(state: GameState): PoiMapModel {
     ...(current?.links ?? []),
     ...state.run.graph.nodes.filter(n => n.links.includes(state.run.currentNodeId)).map(n => n.id),
   ]);
+  const localEdges = LION_OPENING_LOCAL_ROUTES.map(edge=>({...edge,
+    unlocked:openingLocalRoutesUnlocked(state.resolvedNodeIds)}));
+  for (const edge of localEdges.filter(e=>e.unlocked)) {
+    if (edge.from===state.run.currentNodeId) neighbors.add(edge.to);
+    if (edge.to===state.run.currentNodeId) neighbors.add(edge.from);
+  }
   // An authored bypass contracts that optional edge, while the POI itself remains revisitable.
   const legitimateBypasses = (state.run.bypassedRouteNodeIds ?? []).filter(id=>poiOptionalLeg(id) && !isPoiNeutralized(state,id));
   // Geography is derived from durable bypass facts, never from the direction of the current
@@ -780,16 +801,21 @@ export function selectPoiMap(state: GameState): PoiMapModel {
   return {currentNodeId:state.run.currentNodeId, gold:state.gold, temporaryGold:state.run.temporaryLoot.gold,
     reputation:state.reputation, nodes,
     edges:[...state.run.graph.nodes.flatMap(n=>n.links.map(id=>({from:n.id,to:id,unlocked:unlocked.has(n.id)&&unlocked.has(id)}))),
-      ...bypassEdges.map(edge=>({from:edge.fromNodeId,to:edge.toNodeId,unlocked:unlocked.has(edge.fromNodeId)&&unlocked.has(edge.toNodeId)}))],
+      ...bypassEdges.map(edge=>({from:edge.fromNodeId,to:edge.toNodeId,unlocked:unlocked.has(edge.fromNodeId)&&unlocked.has(edge.toNodeId)})),
+      ...localEdges.filter(edge=>!bypassEdges.some(b=>b.fromNodeId===edge.from&&b.toNodeId===edge.to))],
   };
 }
 
-/** Revalidated native movement/activation. Never changes resolution, loot, combat or narrative effects. */
+/** Revalidated movement/activation with authored optional bypass. Never grants resolution, loot or combat results. */
 export function enterPoi(state: GameState, nodeId: string): { node: RunNode; activate: boolean } | null {
   if (state.run.status !== 'active') return null;
   const selected = selectPoiMap(state).nodes.find(n => n.id === nodeId);
   if (!selected || state.run.status !== 'active'
     || (!selected.canMove && !(nodeId === state.run.currentNodeId && selected.canActivate))) return null;
+  // Choosing a direct local trial route ignores the compatible refugee encounter.
+  // Its authored consequence belongs to this truth owner and is never a UI effect.
+  if (state.run.currentNodeId==='lion-nomad-crossroads' && LION_FIRST_TRIAL.includes(nodeId)
+    && !state.resolvedNodeIds.includes('lion-refugees')) bypassPoi(state,'lion-refugees');
   const node = getRunNode(state.run, nodeId)!;
   if (!isPoiNeutralized(state, nodeId)) {
     for (const leg of LION_TRAVERSAL_LEGS) for (const stage of leg.stages) {
@@ -811,7 +837,7 @@ export function enterPoi(state: GameState, nodeId: string): { node: RunNode; act
   return {node, activate:selected.canActivate};
 }
 
-/** Only authored optional events may be bypassed; the caller applies the existing consequence policy. */
+/** Only authored optional events may be bypassed; this owner applies their existing once-only consequence. */
 export function bypassPoi(state: GameState, nodeId: string): { legId: string; node: RunNode } | null {
   if (state.run.status !== 'active') return null;
   const model = selectPoiMap(state);
@@ -821,6 +847,11 @@ export function bypassPoi(state: GameState, nodeId: string): { legId: string; no
   const fork = leg.stages.find(s=>s.mode==='IN_TRAVERSAL_FORK' && s.nodeIds.includes(nodeId));
   if (fork && !state.run.traversalBranches?.[leg.id]) state.run.traversalBranches={...state.run.traversalBranches,[leg.id]:nodeId};
   state.run.bypassedRouteNodeIds=[...new Set([...(state.run.bypassedRouteNodeIds??[]),nodeId])];
+  const consequence=resolveOptionalEncounterIgnoreConsequence(leg.id,node);
+  if (consequence && !state.flags[consequence.flag]) {
+    changeReputation(state,consequence.reputation,`traversal-ignore:${node.id}`);
+    state.flags[consequence.flag]=true;
+  }
   for(const id of node.links) if(!state.run.revealedNodeIds.includes(id))state.run.revealedNodeIds.push(id);
   return {legId:leg.id,node};
 }

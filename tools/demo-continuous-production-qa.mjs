@@ -1274,11 +1274,15 @@ try{
       if(live.currentNodeId==='lion-nomad-crossroads'&&!report.poi.backtracking){
         await capture('poi-after-cedric');
         report.poi.backtracking=await poiNoReplayPath(['lion-opening-ambush','lion-audience','lion-opening-ambush','lion-nomad-crossroads']);
-        await keyboardActivate('.poi-map [data-poi-id="lion-refugees"]');
-        const before=await state();await keyboardActivate('.poi-map [data-poi-action="bypass"]');
+        const localRoutes=['lion-refugees','lion-first-trial-event','lion-first-trial-combat'];
+        for(const id of localRoutes)assert.equal(await page.locator(`.poi-map [data-poi-id="${id}"]`).getAttribute('data-poi-reachable'),'true',
+          'All three V2 local routes must be reachable after the mandatory crossroads');
+        report.poi.localRoutes=localRoutes;await capture('poi-v2-three-local-routes');
+        const before=await state();await poiMove(`lion-first-trial-${trialPlan}`);
         const after=await state();assert.equal(after.reputation,before.reputation-2);
         assert.equal(after.flags.ignoredRefugees,true);assert.ok(!after.resolvedNodeIds.includes('lion-refugees'));
-        report.poi.optionalBypass={before,after};await capture('poi-refugees-bypassed');
+        assert.ok(!after.resolvedNodeIds.includes(`lion-first-trial-${trialPlan}`),'Moving cannot resolve the trial');
+        report.poi.optionalBypass={before,after,method:'NATIVE_DIRECT_LOCAL_ROUTE'};continue;
       }
       if(live.currentNodeId===`lion-first-trial-${trialPlan}`&&live.resolvedNodeIds.includes(live.currentNodeId)&&!report.poi.optionalRevisitRequested){
         const excluded=`lion-first-trial-${trialPlan==='event'?'combat':'event'}`;

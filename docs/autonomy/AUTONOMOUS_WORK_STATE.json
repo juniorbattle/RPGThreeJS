@@ -4,7 +4,7 @@
   "runEndedAt": null,
   "activeTask": "POI-V2-AND-TRAVERSAL-RETIREMENT",
   "activePhase": "A",
-  "activeSubtask": "Dedicated set1.3.0 amendment review, then playable local branches",
+  "activeSubtask": "Lot A runtime ready: 36current focused tests, types/build/contracts pass. Await guardian actualdiff then commit frozen source and run native first-refuge direct local route on1366 normal.",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "804ba18d51620ba1d07cd4b91f14a3504b1dfd41",
   "lastPushedCommit": "804ba18d51620ba1d07cd4b91f14a3504b1dfd41",
@@ -70,7 +70,7 @@
     "Old Traversal retained; static669paths/350referencefiles inventory is not retirement acceptance",
     "Audio DEFERRED; eight videos unchanged; Bois-Clair night art external"
   ],
-  "nextAction": "Commit reviewed POI V2 amendment, establish immutable baseline, implement and natively play first-phase local branches before retirement.",
+  "nextAction": "Lot A runtime ready: 36current focused tests, types/build/contracts pass. Await guardian actualdiff then commit frozen source and run native first-refuge direct local route on1366 normal.",
   "taskQueue": [
     "POI-MAP-FINALIZATION: requested implementation/native milestones REVIEWED_SCOPED; operator final playtest remains",
     "DEMO-PC-CAMPAIGN: both native truth endings, T0/T1/T3 alternatives, rescue/sacrifice, defeat and exact V6 accepted in recorded scopes",
@@ -176,7 +176,7 @@
   "lastHeartbeat": "2026-10-15T06:29:56.404Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-15T07:43:11.623Z",
+    "lastHeartbeat": "2026-10-15T07:49:04.737Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -27819,7 +27819,7 @@
       }
     ],
     "wip": null,
-    "nextAction": "Commit reviewed POI V2 amendment, establish immutable baseline, implement and natively play first-phase local branches before retirement.",
+    "nextAction": "Lot A runtime ready: 36current focused tests, types/build/contracts pass. Await guardian actualdiff then commit frozen source and run native first-refuge direct local route on1366 normal.",
     "runMetrics": {
       "runId": "codex-poi-finalization-20261014",
       "runtimeSourceFilesModified": 5,

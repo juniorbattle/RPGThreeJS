@@ -17,6 +17,54 @@ function crossroads(): GameState {
 const node=(s:GameState,id:string)=>selectPoiMap(s).nodes.find(n=>n.id===id)!;
 
 describe('authoritative connected POI navigation',()=>{
+  it('opens three real local routes only after the mandatory corridor, with the old recovery graph intact',()=>{
+    const state=createInitialState();const graph=structuredClone(state.run.graph);
+    for(const id of ['lion-audience','lion-opening-ambush']) {
+      resolveFixture(state,id);
+      for(const trial of ['lion-first-trial-event','lion-first-trial-combat']) {
+        expect(node(state,trial).canMove).toBe(false);expect(enterPoi(state,trial)).toBeNull();
+      }
+    }
+    resolveFixture(state,'lion-nomad-crossroads');
+    expect(selectPoiMap(state).nodes.filter(n=>n.canMove).map(n=>n.id)).toEqual(expect.arrayContaining([
+      'lion-refugees','lion-first-trial-event','lion-first-trial-combat',
+    ]));
+    expect(enterPoi(state,'lion-first-refuge')).toBeNull();
+    expect(state.run.graph.nodes.map(n=>({id:n.id,links:n.links})))
+      .toEqual(graph.nodes.map(n=>({id:n.id,links:n.links})));
+  });
+  it('takes either direct trial route, applies the authored refugee bypass once, and requires real trial resolution',()=>{
+    for(const trial of ['lion-first-trial-event','lion-first-trial-combat']) {
+      const state=crossroads();const reputation=state.reputation;
+      expect(enterPoi(state,trial)?.activate).toBe(true);
+      expect(state.reputation).toBe(reputation-2);expect(state.flags.ignoredRefugees).toBe(true);
+      expect(state.run.bypassedRouteNodeIds).toContain('lion-refugees');
+      expect(state.resolvedNodeIds).not.toContain('lion-refugees');
+      expect(bypassPoi(state,trial)).toBeNull();expect(enterPoi(state,'lion-first-refuge')).toBeNull();
+      expect(enterPoi(state,'lion-nomad-crossroads')?.activate).toBe(false);
+      expect(enterPoi(state,trial)?.activate).toBe(true);expect(state.reputation).toBe(reputation-2);
+      state.resolvedNodeIds.push(trial);
+      expect(enterPoi(state,'lion-refugees')?.activate).toBe(true);
+      state.resolvedNodeIds.push('lion-refugees');
+      expect(enterPoi(state,trial)?.activate).toBe(false);
+      expect(enterPoi(state,'lion-first-refuge')?.activate).toBe(true);
+    }
+  });
+  it('keeps legacy trial bypass saves resumable without granting a new trial success or clearing an earned refuge',()=>{
+    const state=crossroads();state.run.bypassedRouteNodeIds=['lion-refugees','lion-first-trial-event'];
+    state.run.traversalBranches={T0:'lion-first-trial-event'};
+    state.run.currentNodeId=state.currentNodeId='lion-first-trial-event';
+    const saves=new SaveRepository();saves.saveAuto(state);const loaded=saves.loadAuto()!;
+    expect(loaded).toEqual(state);expect(node(loaded,'lion-first-refuge').status).toBe('locked');
+    expect(enterPoi(loaded,'lion-first-trial-event')?.activate).toBe(true);
+    expect(loaded.resolvedNodeIds).not.toContain('lion-first-trial-event');
+    state.run.currentNodeId=state.currentNodeId='lion-first-refuge';
+    state.resolvedNodeIds.push('lion-first-refuge');state.flags['refugeSecured:lion-first-refuge']=true;
+    saves.saveAuto(state);const earned=saves.loadAuto()!;
+    expect(earned).toEqual(state);expect(node(earned,'lion-first-refuge').reusable).toBe(true);
+    expect(enterPoi(earned,'lion-first-trial-event')?.activate).toBe(true);
+    expect(node(earned,'lion-first-refuge').status).toBe('resolved');
+  });
   it('preserves both directions of a legitimate bypass connection without replay or mandatory shortcuts',()=>{
     const state=crossroads();expect(bypassPoi(state,'lion-refugees')).not.toBeNull();
     resolveFixture(state,'lion-first-trial-event');

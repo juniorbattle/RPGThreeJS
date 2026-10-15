@@ -1045,11 +1045,6 @@ export class GameApp {
     if (this.mode !== 'TRAVEL' || this.routeCommitInFlight) return;
     const result = bypassPoi(this.state, nodeId);
     if (!result) return;
-    const consequence = resolveTraversalIgnoreConsequence(result.legId, result.node);
-    if (consequence && !this.state.flags[consequence.flag]) {
-      changeReputation(this.state, consequence.reputation, `traversal-ignore:${result.node.id}`);
-      this.state.flags[consequence.flag] = true;
-    }
     this.showPoiMap(nodeId);
   }
 

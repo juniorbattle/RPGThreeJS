@@ -2,7 +2,7 @@
 
 IN_PROGRESS. OD-2026-10-15-A explicitly authorizes dedicated contract amendment, playable A/B, Option C art C and definitive physical retirement D. No scheduled budget applies; scheduler unchanged. Starting clean dev/live origin b79063b; main00b96f1. No inherited WIP.
 
-Current: independent amendment review before runtime. Next: Commit reviewed POI V2 amendment, establish immutable baseline, implement and natively play first-phase local branches before retirement.
+Current: Lot A runtime ready: 36current focused tests, types/build/contracts pass. Await guardian actualdiff then commit frozen source and run native first-refuge direct local route on1366 normal.
 
 All historical QA/deferred task objects are preserved in JSON and preceding closeout below. No new runtime/art/native acceptance claimed.
 
