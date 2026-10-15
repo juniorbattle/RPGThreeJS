@@ -100,26 +100,10 @@ const hud = new CampaignStatusHud(() => ({ gold: 150, routeGold: 40, reputation:
 hud.refresh();
 example('7.1 CampaignStatusHud (compact)', hud.element);
 
-const next = panel('compact', '<div class="traversal-hud__destination-icon"></div><div class="traversal-hud__destination-copy"><p class="campaign-ui-type--eyebrow">Prochain arrêt</p><strong class="campaign-ui-type--compact-title" data-traversal-next>Piste des Bêtes</strong><span class="campaign-ui-type--metadata" data-traversal-distance>~ 3.6 km</span></div><div class="traversal-route-rail"></div>');
-next.classList.add('traversal-hud', 'traversal-hud--progress');
-next.querySelector('.traversal-hud__destination-icon')!.append(createCampaignIcon('destination'));
-example('7.2 Prochain arrêt', next);
-
 const departure = new JourneyOverlay(
   { mode: 'single', eyebrow: 'Départ', title: 'Vers Refuge du Lion', continueLabel: 'Prendre la route', choices: [] },
   { onCommit: () => undefined },
 );
-example('7.3 Départ', departure.element);
+example('7.2 Départ', departure.element);
 
-const merchant = panel('standard', '<span class="traversal-event-panel__marker"></span><div><small class="campaign-ui-type--eyebrow">Rencontre facultative</small><strong class="campaign-ui-type--title">Marchande itinérante</strong><p class="campaign-ui-type--body">Une marchande a installé son étal à l’abri des arbres.</p><div class="traversal-event-panel__actions"></div></div>');
-merchant.classList.add('traversal-event-panel');
-merchant.querySelector('.traversal-event-panel__marker')!.append(createCampaignIcon('merchant'));
-for (const [label, variant] of [['Rencontrer', 'primary'], ['Ignorer', 'secondary']] as const) {
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.textContent = label;
-  if (variant === 'secondary') button.dataset.traversalSkip = 'true';
-  merchant.querySelector('.traversal-event-panel__actions')!.append(decorateCampaignButton(button, variant));
-}
-example('7.4 Marchande itinérante', merchant);
 document.documentElement.dataset.kitReady = 'true';

@@ -1,11 +1,12 @@
 # Report authority index
 
-Current navigation authority: [OD-2026-10-13-D](../autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md), contract set1.2.0 and [production POI navigation](../project/POI_NAVIGATION.md). Earlier physical-road reports below remain historical.
+Current navigation authority: [OD-2026-10-15-A](../autonomy/POI_V2_OPERATOR_DECISION_2026-10-15.md), contract set1.3.0 and [production POI navigation](../project/POI_NAVIGATION.md). Earlier physical-road reports below remain historical.
 
 Baseline for this index: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. Reports remain historical even when their outcome was merged. Current contracts: [project status](../project/CURRENT_STATUS.md), [T0](../traversal/T0_PRODUCTION_CONTRACT.md), [remaining legs](../traversal/LEGS_ROADMAP.md), and [demo content](../content/DEMO_CONTENT_MAP.md).
 
 | Report | Historical role | Current authority |
 | --- | --- | --- |
+| [POI V2 and definitive engine retirement](poi-v2-retirement-2026-10-15.md) | Three local routes after the mandatory opening, three illustrated atlases, physical engine removal, current V6/native scopes and preserved failures | [POI V2 decision](../autonomy/POI_V2_OPERATOR_DECISION_2026-10-15.md), set1.3.0, current source and paired state |
 | [POI campaign finalization](poi-map-finalization-2026-10-14.md) | Both native truth endings, T0/T1/T3 alternatives, rescue/sacrifice, positive-loot defeat, reduction/touch and five Journey fixes; reviewed scoped candidate, human full-demo acceptance open | [Production POI navigation](../project/POI_NAVIGATION.md), current contracts and paired autonomy state |
 | [POI integration through second refuge](poi-map-integration-2026-10-14.md) | Earned native rescue continuation, Valmir/Bois-Clair victories, paid return/rest, reusable second refuge and exact V6; desktop1366 normal; endings/mobile OPEN | [Production POI navigation](../project/POI_NAVIGATION.md), set1.2.0 and paired autonomy state |
 | [Playable POI first slice](poi-map-first-slice-2026-10-13.md) | Native Audience→first-refuge, reversible shortcut and authentic oldV6 scoped desktop acceptance,2026-10-13; later Lion/fins/mobile OPEN | [Production POI navigation](../project/POI_NAVIGATION.md),current contracts and paired autonomy state |

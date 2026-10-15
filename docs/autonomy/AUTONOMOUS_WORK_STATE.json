@@ -4,7 +4,7 @@
   "runEndedAt": null,
   "activeTask": "POI-V2-AND-TRAVERSAL-RETIREMENT",
   "activePhase": "D",
-  "activeSubtask": "Finish two native combat routes; then correct preparation44px and capture three decoded atlas regions on final build.",
+  "activeSubtask": "Preserve failed fresh1230-style roadside-refusal proof; complete live second-refuge job, then apply44px/marker/readiness and bounded native-choice corrections and verify final build.",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "d104e214c363f0c7da6ec44b407f00062407db7e",
   "lastPushedCommit": "d104e214c363f0c7da6ec44b407f00062407db7e",
@@ -249,7 +249,7 @@
     "Correct preparation continue42to44px, stabilize desktop art captures after image decode, then one corrected-build native smoke",
     "Operator art/full-demo/balance and physical-device acceptance separate; unrelated six-hero/mounted-keyboard/narrative work preserved"
   ],
-  "nextAction": "Finish two native combat routes; then correct preparation44px and capture three decoded atlas regions on final build.",
+  "nextAction": "Preserve failed fresh1230-style roadside-refusal proof; complete live second-refuge job, then apply44px/marker/readiness and bounded native-choice corrections and verify final build.",
   "taskQueue": [
     "POI-MAP-FINALIZATION: requested implementation/native milestones REVIEWED_SCOPED; operator final playtest remains",
     "DEMO-PC-CAMPAIGN: both native truth endings, T0/T1/T3 alternatives, rescue/sacrifice, defeat and exact V6 accepted in recorded scopes",
@@ -355,7 +355,7 @@
   "lastHeartbeat": "2026-10-15T06:29:56.404Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-15T16:33:37.986Z",
+    "lastHeartbeat": "2026-10-15T16:57:10.490Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -28203,7 +28203,7 @@
         "schemaVersion": 1,
         "jobId": "poi-v2-D-opening-combat-1220",
         "runId": "codex-poi-v2-20261015",
-        "status": "RUNNING",
+        "status": "FAILED",
         "registeredAt": "2026-10-15T16:17:45.736Z",
         "pid": 28364,
         "port": 5442,
@@ -28289,12 +28289,16 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-15T16:17:47.571Z",
-        "endedAt": null,
+        "endedAt": "2026-10-15T16:52:50.858Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": true,
-        "resultDigestMatches": false,
-        "eligibleForReview": false
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/poi-v2-D-opening-combat-1220/results.json",
+        "resultSha256": "f0db25cdaff3f8313e741bdb20a9bd5ca732f2bee317a41a570bd66cbacb131a",
+        "provenanceStable": true
       },
       {
         "schemaVersion": 1,
@@ -28860,9 +28864,9 @@
         "schemaVersion": 1,
         "jobId": "poi-v2-D-defeat-touch-1229",
         "runId": "codex-poi-v2-20261015",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-15T16:20:46.247Z",
-        "pid": null,
+        "pid": 856,
         "port": 5446,
         "command": [
           "node",
@@ -28955,15 +28959,26 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-15T16:20:47.701Z",
+        "endedAt": "2026-10-15T16:22:09.463Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/poi-v2-D-defeat-touch-1229/results.json",
+        "resultSha256": "3b2715d675e78a364c81b466051fdf05f11056f4d17f0676f7802a041609cc89",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
       },
       {
         "schemaVersion": 1,
         "jobId": "poi-v2-D-terminal-trial-touch-1230",
         "runId": "codex-poi-v2-20261015",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-15T16:21:16.260Z",
-        "pid": null,
+        "pid": 33656,
         "port": 5445,
         "command": [
           "node",
@@ -29056,15 +29071,26 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-15T16:21:18.568Z",
+        "endedAt": "2026-10-15T16:21:35.283Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/poi-v2-D-terminal-trial-touch-1230/results.json",
+        "resultSha256": "305bba1c8edcb9240e575ce86aa07558b698699b65bbd28acbdd6e05615e6dca",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
       },
       {
         "schemaVersion": 1,
         "jobId": "poi-v2-D-second-refuge-1232",
         "runId": "codex-poi-v2-20261015",
-        "status": "PLANNED",
+        "status": "RUNNING",
         "registeredAt": "2026-10-15T16:21:44.892Z",
-        "pid": null,
+        "pid": 24164,
         "port": 5447,
         "command": [
           "node",
@@ -29157,15 +29183,22 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-15T16:21:46.717Z",
+        "endedAt": null,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": false,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
         "jobId": "poi-v2-D-legacy0603-1231",
         "runId": "codex-poi-v2-20261015",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-15T16:30:15.580Z",
-        "pid": null,
+        "pid": 18052,
         "port": 5448,
         "command": [
           "node",
@@ -29258,11 +29291,22 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-15T16:30:17.375Z",
+        "endedAt": "2026-10-15T16:30:35.696Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/poi-v2-D-legacy0603-1231/results.json",
+        "resultSha256": "32b20290d0654d98f5d3c8524a5dca0a790092a45f284fd0c1fdec38a9de0456",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
       }
     ],
     "wip": null,
-    "nextAction": "Finish two native combat routes; then correct preparation44px and capture three decoded atlas regions on final build.",
+    "nextAction": "Preserve failed fresh1230-style roadside-refusal proof; complete live second-refuge job, then apply44px/marker/readiness and bounded native-choice corrections and verify final build.",
     "runMetrics": {
       "runId": "codex-poi-finalization-20261014",
       "runtimeSourceFilesModified": 5,

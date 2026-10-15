@@ -1996,7 +1996,76 @@
       "existsAfterRetirement": true,
       "removed": false,
       "currentStaticImporters": []
+    },
+    {
+      "path": "tools/narrative-stage-utility-consistency-1-qa.mjs",
+      "classification": "HISTORICAL_EVIDENCE",
+      "baselineImporters": "Standalone historical QA",
+      "destination": "docs/project/retired-traversal/qa/narrative-stage-utility-consistency-1-qa.mjs.txt",
+      "sha256": "31d963054ee723223efabc7731073dc71ef9926d610e82bc157ae215271ed699",
+      "evidence": "Positive physical Traversal mount/phase expectation; existing narrative/POI lifecycle and native campaign verification replaces this obsolete mixed runner.",
+      "existsAfterRetirement": false,
+      "removed": true,
+      "currentStaticImporters": []
+    },
+    {
+      "path": "tools/cinematics/run_cin6d6_browser_qa.mjs",
+      "classification": "HISTORICAL_EVIDENCE",
+      "baselineImporters": "Standalone historical QA",
+      "destination": "docs/project/retired-traversal/qa/run_cin6d6_browser_qa.mjs.txt",
+      "sha256": "f5b1d845b236f185937a77d6d0b1d4d164cd61198812344bf746ee8a759f1756",
+      "evidence": "Positive physical Traversal mount/phase expectation; existing narrative/POI lifecycle and native campaign verification replaces this obsolete mixed runner.",
+      "existsAfterRetirement": false,
+      "removed": true,
+      "currentStaticImporters": []
+    },
+    {
+      "path": "tools/ui-kit-system-1-gallery.ts",
+      "classification": "REHOME_SHARED",
+      "destination": "Shared gallery retained; original frozen at docs/project/retired-traversal/qa/ui-kit-system-1-gallery.ts.txt",
+      "sha256": "f828465658c8466360475f26b551ac09036845383820e036018723ec63cbae37",
+      "evidence": "Keep primitives, real CampaignStatusHud/JourneyOverlay; remove orphan physical HUD/event mocks and their two CSS rules.",
+      "existsAfterRetirement": true,
+      "removed": false,
+      "currentStaticImporters": []
+    },
+    {
+      "path": "tools/ui-kit-system-1-gallery.html",
+      "classification": "REHOME_SHARED",
+      "destination": "Shared gallery retained; original frozen at docs/project/retired-traversal/qa/ui-kit-system-1-gallery.html.txt",
+      "sha256": "3ced4a29b0e75c4f014820bfcddce20d3d8578459b9f69f9bd0e85518b49b686",
+      "evidence": "Keep primitives, real CampaignStatusHud/JourneyOverlay; remove orphan physical HUD/event mocks and their two CSS rules.",
+      "existsAfterRetirement": true,
+      "removed": false,
+      "currentStaticImporters": []
+    },
+    {
+      "path": "tools/refuge-production-accessibility-qa.mjs",
+      "classification": "REHOME_SHARED",
+      "destination": "Retain services/accessibility/V6 assertions; current POI return plus physical absence guard",
+      "evidence": "Old positive surface wait accepted only Journey/Traversal/dialogue; POI is now the normal return. Resolution and exact-state assertions unchanged.",
+      "existsAfterRetirement": true,
+      "removed": false,
+      "currentStaticImporters": []
+    },
+    {
+      "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+      "classification": "KEEP_DURABLE_COMPAT",
+      "destination": "Existing narrative/media QA",
+      "evidence": "Expanded scan confirms absence-only Traversal guard or narrative road screenshot names, no positive physical consumer.",
+      "existsAfterRetirement": true,
+      "removed": false,
+      "currentStaticImporters": []
+    },
+    {
+      "path": "tools/cinematics/run_cin6d_browser_qa.mjs",
+      "classification": "KEEP_DURABLE_COMPAT",
+      "destination": "Existing narrative/media QA",
+      "evidence": "Expanded scan confirms absence-only Traversal guard or narrative road screenshot names, no positive physical consumer.",
+      "existsAfterRetirement": true,
+      "removed": false,
+      "currentStaticImporters": []
     }
   ],
-  "retirementReviewedAt": "2026-10-15T16:13:41.089Z"
+  "retirementReviewedAt": "2026-10-15T16:55:32.854Z"
 }

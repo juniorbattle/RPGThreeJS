@@ -359,7 +359,8 @@ async function run(nodeId, viewport, osReduced) {
     assertGeometry(await geometry(page));
     await activate(page, '.exploration-stop [data-action="continue"]');
     await page.waitForFunction(() => !document.querySelector('.exploration-stop') &&
-      document.querySelector('.journey-overlay,.traversal-t0,.dialogue'));
+      document.querySelector('.poi-map,.journey-overlay,.dialogue'));
+    assert.equal(await page.locator('.traversal-t0,.traversal-road').count(),0,'Retired physical scene mounted after refuge');
     assert.ok((await truth(page)).resolved.includes(nodeId));
     assert.deepEqual(errors, []);
     return { name, nodeId, viewport, osReduced, blockBackground, useConsumable, expectedAssetFailures, layout, focus, controls, services, restCost,

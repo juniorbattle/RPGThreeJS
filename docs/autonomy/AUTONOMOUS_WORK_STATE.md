@@ -2,7 +2,7 @@
 
 IN_PROGRESS. OD-2026-10-15-A explicitly authorizes dedicated contract amendment, playable A/B, Option C art C and definitive physical retirement D. No scheduled budget applies; scheduler unchanged. Starting clean dev/live origin b79063b; main00b96f1. No inherited WIP.
 
-Current: Finish two native combat routes; then correct preparation44px and capture three decoded atlas regions on final build.
+Current: Preserve failed fresh1230-style roadside-refusal proof; complete live second-refuge job, then apply44px/marker/readiness and bounded native-choice corrections and verify final build.
 
 All historical QA/deferred task objects are preserved in JSON and preceding closeout below. No new runtime/art/native acceptance claimed.
 
@@ -1360,16 +1360,16 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - poi-sacrifice-event-route-final: SUCCEEDED; port 5434; receipt `tmp/demo/poi-sacrifice-event-route-final/qa-job.json`; ACCEPTED_SCOPED_NATIVE_T1_SHRINE_RAID_SECOND_REFUGE_EXACT_V6
 - poi-v2-first-refuge-0752: FAILED; port 5440; receipt `tmp/demo/poi-v2-first-refuge-0752/qa-job.json`; NOT_ACCEPTED
 - poi-v2-first-refuge-0810: SUCCEEDED; port 5441; receipt `tmp/demo/poi-v2-first-refuge-0810/qa-job.json`; NOT_ACCEPTED
-- poi-v2-D-opening-combat-1220: RUNNING; port 5442; receipt `tmp/demo/poi-v2-D-opening-combat-1220/qa-job.json`; NOT_ACCEPTED
+- poi-v2-D-opening-combat-1220: FAILED; port 5442; receipt `tmp/demo/poi-v2-D-opening-combat-1220/qa-job.json`; NOT_ACCEPTED
 - poi-v2-D-preparation-touch-1221: FAILED; port 5443; receipt `tmp/demo/poi-v2-D-preparation-touch-1221/qa-job.json`; NOT_ACCEPTED
 - poi-v2-D-preparation-touch-os-1223: SUCCEEDED; port 5443; receipt `tmp/demo/poi-v2-D-preparation-touch-os-1223/qa-job.json`; NOT_ACCEPTED
 - poi-v2-D-atlas-game620-1224: FAILED; port 5444; receipt `tmp/demo/poi-v2-D-atlas-game620-1224/qa-job.json`; NOT_ACCEPTED
 - poi-v2-D-atlas-saved-game620-1226: SUCCEEDED; port 5444; receipt `tmp/demo/poi-v2-D-atlas-saved-game620-1226/qa-job.json`; NOT_ACCEPTED
 - poi-v2-D-terminal-serpent-1227: SUCCEEDED; port 5445; receipt `tmp/demo/poi-v2-D-terminal-serpent-1227/qa-job.json`; NOT_ACCEPTED
-- poi-v2-D-defeat-touch-1229: PLANNED; port 5446; receipt `tmp/demo/poi-v2-D-defeat-touch-1229/qa-job.json`; NOT_ACCEPTED
-- poi-v2-D-terminal-trial-touch-1230: PLANNED; port 5445; receipt `tmp/demo/poi-v2-D-terminal-trial-touch-1230/qa-job.json`; NOT_ACCEPTED
-- poi-v2-D-second-refuge-1232: PLANNED; port 5447; receipt `tmp/demo/poi-v2-D-second-refuge-1232/qa-job.json`; NOT_ACCEPTED
-- poi-v2-D-legacy0603-1231: PLANNED; port 5448; receipt `tmp/demo/poi-v2-D-legacy0603-1231/qa-job.json`; NOT_ACCEPTED
+- poi-v2-D-defeat-touch-1229: SUCCEEDED; port 5446; receipt `tmp/demo/poi-v2-D-defeat-touch-1229/qa-job.json`; NOT_ACCEPTED
+- poi-v2-D-terminal-trial-touch-1230: SUCCEEDED; port 5445; receipt `tmp/demo/poi-v2-D-terminal-trial-touch-1230/qa-job.json`; NOT_ACCEPTED
+- poi-v2-D-second-refuge-1232: RUNNING; port 5447; receipt `tmp/demo/poi-v2-D-second-refuge-1232/qa-job.json`; NOT_ACCEPTED
+- poi-v2-D-legacy0603-1231: SUCCEEDED; port 5448; receipt `tmp/demo/poi-v2-D-legacy0603-1231/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
