@@ -2,6 +2,7 @@
 /// <reference types="vite/client" />
 
 import { describe, expect, it } from 'vitest';
+import {LOT_E_ELITES} from '../campaign/LionPoiAuthoring';
 import { campaignNodes, combatConfigs, dialogues } from './content';
 import { dialogueChoiceSchema } from './types';
 import { assets } from '../render/assetManifest';
@@ -269,6 +270,9 @@ describe('campaign content integrity', () => {
       if (combat.id === 'witness_road_clash') {
         expect(combat.rewards.materials).toEqual({});
         expect(combat.rewards.gold).toBe(0);
+      } else if(LOT_E_ELITES.some(elite=>elite.combat.id===combat.id)) {
+        const approved=LOT_E_ELITES.find(elite=>elite.combat.id===combat.id)!.combat.rewards;
+        expect(combat.rewards).toEqual({gold:approved.temporaryGold,reputation:approved.reputation,materials:approved.materials});
       } else {
         expect(combat.rewards.materials.red_gem, combat.id).toBeGreaterThanOrEqual(minGemRewards[combat.encounterRank]);
       }

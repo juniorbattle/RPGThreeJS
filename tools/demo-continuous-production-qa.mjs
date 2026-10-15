@@ -19,6 +19,10 @@ const nativeDefeatWait=process.env.DEMO_QA_DEFEAT_WAIT==='1';
 const touchInput=process.env.DEMO_QA_TOUCH==='1';
 const nativeEquipment=process.env.DEMO_QA_EQUIPMENT==='steel';
 const trialPlan=process.env.DEMO_QA_TRIALS??'event';
+const explorationPlan=process.env.DEMO_QA_EXPLORATION??'direct';
+assert.ok(['direct','moderate','complete'].includes(explorationPlan),'Unknown Lot E native exploration strategy');
+assert.ok(!(explorationPlan==='complete'&&target==='valmir'),'Complete region II exploration requires target second-refuge or later');
+const lotE=JSON.parse(await readFile('docs/project/RPGThreeJS_LOT_E_MANIFEST_AUTHORING_FINAL_2026-10-15.json','utf8'));
 const viewport=(process.env.DEMO_QA_VIEWPORT??'1366x768').split('x').map(Number);
 const preparationContinue='[data-narrative-tableau="FINAL_REFUGE_PREPARATION_TABLEAU"] [data-journey-continue]:visible:not(:disabled)';
 const genericJourneyContinue='[data-journey-continue]:visible:not(:disabled):not([data-narrative-tableau="FINAL_REFUGE_PREPARATION_TABLEAU"] [data-journey-continue])';
@@ -26,7 +30,8 @@ assert.ok(viewport.length===2&&viewport.every(n=>Number.isInteger(n)&&n>0),'Inva
 assert.ok(['first-refuge','second-refuge','second-trial','valmir','preparation','ending','terminal','defeat-recovery'].includes(target),'Unknown bounded target');
 assert.ok(['event','combat'].includes(trialPlan),'Unknown authored trial alternative');
 assert.ok(!(process.env.DEMO_QA_OS_MOTION==='1'&&process.env.DEMO_QA_GAME_MOTION==='1'),'OS-only and native game reduction are separate acceptance cases');
-if(target==='defeat-recovery')assert.ok(['lion-village-choice','lion-second-trial-combat','lion-final-trial-combat'].includes(defeatNodeId),'Unknown authored refuge-checkpoint defeat boundary');
+if(target==='defeat-recovery')assert.ok(['lion-village-choice','lion-second-trial-combat','lion-final-trial-combat',
+  ...lotE.fixedPoiCandidates.filter(poi=>poi.combat&&poi.region>0).map(poi=>poi.id)].includes(defeatNodeId),'Unknown authored refuge-checkpoint defeat boundary');
 assert.ok(!nativeDefeatWait||target==='defeat-recovery','Native defeat wait requires the recovery target');
 assert.ok(['rescue','sacrifice'].includes(routePlan),'Unknown authored route plan');
 assert.ok(['serpent','trial'].includes(finalePlan),'Unknown authored finale intent');
@@ -74,6 +79,7 @@ const page = await context.newPage();
 const report = {schemaVersion:1, recordedAt:new Date().toISOString(), method:'FRESH_PRODUCTION_CHRONICLE_NORMAL_PLAYER_INPUTS_REAL_COMBAT',
   fixtureStateWritten:false, combatOutcomeInjected:false, runtimeMutated:false, inputs:[], nodes:[], battles:[], captures:[], errors:[], pass:false};
 report.qaJobReceipt=qaJob.receiptPath;report.touchInput=touchInput;report.nativeEquipment=nativeEquipment;
+report.expedition={strategy:explorationPlan,phases:{},chests:[],interceptions:[],waits:[],intents:[]};
 report.trustedTouch=[];
 if(touchInput){
   await context.exposeBinding('__recordQaTouch',(_source,event)=>report.trustedTouch.push(event));
@@ -271,7 +277,19 @@ async function campaignParentKeyboardReturn(entry){
   entry.parentKeyboardReturn={method:'NATIVE_RESULT_ENTER_AUTOMATIC_PARENT_FOCUS',focus,tabAway,ownerBefore,ownerAfter,autosaveUnchanged:true,pass:true};
   await capture(`combat-${entry.index}-native-parent-keyboard-return`);
 }
+let pendingExpeditionProof;
+async function verifyExpeditionSettlement(){
+  if(!pendingExpeditionProof)return;
+  const after=await state();if(after.run.poiExpedition.pendingStep)return;
+  const {before,battleCount}=pendingExpeditionProof;
+  const victories=report.battles.slice(battleCount).filter(b=>b.pass&&b.outcome==='victory'&&b.eliteId).map(b=>b.eliteId);
+  assertExpeditionStep(before,after,1,{victories});
+  (report.expedition.settlements??=[]).push({from:before.currentNodeId,to:after.currentNodeId,turn:after.run.poiExpedition.turn,pass:true});
+  pendingExpeditionProof=undefined;
+}
 async function poiMove(id,pointer=false){
+  await verifyExpeditionSettlement();assert.equal(pendingExpeditionProof,undefined,'A new movement preceded the prior native activity settlement');
+  const before=await state();
   const marker=`.poi-map [data-poi-id="${id}"]`;
   assert.equal(await page.locator(marker).getAttribute('data-poi-reachable'),'true','POI move must use an unlocked adjacent edge');
   if(pointer){
@@ -282,21 +300,164 @@ async function poiMove(id,pointer=false){
     await keyboardActivate(marker);
     await keyboardActivate('.poi-map [data-poi-action="move"]:not(:disabled)');
   }
-  await page.waitForFunction(id=>window.__demoQaApp.state.currentNodeId===id,id);
+  await page.waitForFunction(id=>window.__demoQaApp.state.currentNodeId===id
+    ||window.__demoQaApp.state.run.poiExpedition?.encounter?.targetNodeId===id,id);
+  const after=await state();
+  const intercepted=after.currentNodeId===before.currentNodeId&&after.run.poiExpedition?.encounter?.kind==='front';
+  assertExpeditionStep(before,after,intercepted||id===before.currentNodeId?0:1,{pending:true});
+  if(!intercepted&&id!==before.currentNodeId)pendingExpeditionProof={before,battleCount:report.battles.length};
+  report.expedition.intents.push({id,from:before.currentNodeId,to:after.currentNodeId,turnBefore:before.run.poiExpedition?.turn,
+    turnAfter:after.run.poiExpedition?.turn,intercepted:!!after.run.poiExpedition?.encounter,
+    economyBefore:{gold:before.gold,loot:structuredClone(before.run.temporaryLoot),reputation:before.reputation},
+    previouslyResolved:before.resolvedNodeIds.includes(id)});
   report.inputs.push({action:pointer?'native POI adjacent pointer movement':'native POI adjacent movement',id});
+}
+function assertExpeditionStep(before,after,delta,{pending=false,victories=[]}={}){
+  const prior=before.run.poiExpedition,next=after.run.poiExpedition;
+  assert.equal(next.turn,prior.turn+delta,'Native expedition turn disagrees with accepted movement/Wait');
+  if(!pending)assert.equal(next.pendingStep,undefined,'A closed native activity retained a pending map turn');
+  const edges=lotE.fixedPoiCandidates.flatMap(poi=>poi.edges.map(to=>[poi.id,to]));
+  for(const def of lotE.mobileEliteActors){
+    const a=prior.elites[def.id],b=next.elites[def.id];
+    assert.equal(b.defeated,victories.includes(def.id)?true:a.defeated,'Movement changed elite victory without a verified native result');
+    assert.ok(def.allowedPositions.includes(b.positionId),'Threat escaped its authored zone');
+    assert.ok(b.positionId===a.positionId||edges.some(([from,to])=>from===a.positionId&&to===b.positionId||to===a.positionId&&from===b.positionId),
+      'A threat moved more than one approved edge');
+    assert.ok(b.lastStep>=a.lastStep&&b.lastStep<=next.turn,'Threat step marker invalid');
+  }
+}
+function assertCanonicalMatch(actual,expected,message){
+  const a=structuredClone(actual),b=structuredClone(expected);
+  delete a.run.poiExpedition;delete b.run.poiExpedition;assert.deepEqual(a,b,message);
 }
 async function poiNoReplayPath(ids,mixedInputs=false,captureName='poi-native-backtracking'){
   const before=await state();
   for(const [index,id] of ids.entries()){
+    const stepBefore=await state();
     await poiMove(id,mixedInputs&&index%2===0);await page.locator('.poi-map:visible').waitFor();
-    assert.equal(await page.locator('.dialogue:visible,iframe.combat-frame,.cinematic-overlay:visible').count(),0,'Resolved POI replayed content');
+    assert.equal(await page.locator('.dialogue:visible,iframe.combat-frame,.cinematic-overlay:visible,.poi-dialog-backdrop:visible').count(),0,'Inert POI path opened an activity or interception');
+    assertExpeditionStep(stepBefore,await state(),1);
   }
   const after=await state();
   const expected=structuredClone(before);expected.currentNodeId=ids.at(-1);expected.run.currentNodeId=ids.at(-1);
-  assert.deepEqual(after,expected,'Resolved backtracking changed canonical facts/resources/assignments');
+  assert.equal(after.run.poiExpedition.turn,before.run.poiExpedition.turn+ids.length,'Resolved movement must count each accepted map edge once');
+  assert.equal(after.run.poiExpedition.pendingStep,undefined,'Inert passage must settle the deferred turn');
+  assertCanonicalMatch(after,expected,'Resolved backtracking changed canonical facts/resources/assignments');
   await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked'));
   await capture(captureName);
   return {ids,before,after,noReplay:true,exactConsequences:true};
+}
+
+async function navigateExpedition(target){
+  const live=await state();if(live.currentNodeId===target)return false;
+  const available=new Set(await page.locator('.poi-marker:not(.poi-marker--locked)').evaluateAll(elements=>elements.map(e=>e.dataset.poiId)));
+  const edges=[...live.run.graph.nodes.flatMap(node=>node.links.map(to=>({from:node.id,to}))),
+    ...lotE.fixedPoiCandidates.flatMap(poi=>poi.edges.map(to=>({from:poi.id,to}))),
+    {from:'lion-nomad-crossroads',to:'lion-first-trial-event'},{from:'lion-nomad-crossroads',to:'lion-first-trial-combat'}];
+  const queue=[[live.currentNodeId]],seen=new Set([live.currentNodeId]);let path;
+  for(let index=0;index<queue.length;index++){
+    const route=queue[index],last=route.at(-1);if(last===target){path=route;break;}
+    for(const edge of edges){const next=edge.from===last?edge.to:edge.to===last?edge.from:null;
+      if(next&&available.has(next)&&!seen.has(next)){seen.add(next);queue.push([...route,next]);}}
+  }
+  assert.ok(path?.length>1,`No native geographical route from ${live.currentNodeId} to ${target}`);
+  await poiMove(path[1],report.expedition.intents.length%2===0);return true;
+}
+let expeditionWaitPending=false;
+async function handleExpeditionDialog(){
+  const dialog=page.locator('.poi-dialog-backdrop:visible');if(!await dialog.count())return false;
+  const live=await state(),encounter=live.run.poiExpedition?.encounter;
+  if(!encounter){
+    const def=lotE.fixedPoiCandidates.find(poi=>poi.id===live.currentNodeId&&poi.chestLoot);
+    assert.ok(def&&live.resolvedNodeIds.includes(def.id),'Chest popup must follow an actual unique owner attribution');
+    const intent=report.expedition.intents.findLast(intent=>intent.id===def.id);
+    assert.ok(intent&&!intent.previouslyResolved,'A resolved chest must not replay its popup');
+    assert.equal(live.gold,intent.economyBefore.gold,'Chest credited secured gold');
+    assert.equal(live.run.temporaryLoot.gold,intent.economyBefore.loot.gold+def.chestLoot.temporaryGold);
+    const expected=structuredClone(intent.economyBefore.loot.inventory);
+    for(const [id,count] of Object.entries(def.chestLoot.temporaryItems))expected.consumables[id]=(expected.consumables[id]??0)+count;
+    assert.deepEqual(live.run.temporaryLoot.inventory,expected);
+    assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),live,'Chest must save before popup acknowledgement');
+    report.expedition.chests.push({id:def.id,gold:def.chestLoot.temporaryGold,items:def.chestLoot.temporaryItems,temporary:true,turn:live.run.poiExpedition.turn});
+    await capture(`chest-${def.id}`);await keyboardActivate('[data-poi-dialog-action="close"]');return true;
+  }
+  const def=lotE.mobileEliteActors.find(elite=>elite.id===encounter.eliteId);assert.ok(def);
+  const prior=report.expedition.interceptions.filter(entry=>entry.eliteId===def.id&&entry.choice==='retreat');
+  const retreat=explorationPlan!=='complete'||(encounter.kind==='front'&&!prior.some(entry=>entry.kind==='front'))
+    ||(encounter.kind==='rear'&&!prior.some(entry=>entry.kind==='rear'));
+  await capture(`elite-${def.id}-${encounter.kind}-${retreat?'retreat':'fight'}-${report.expedition.interceptions.length}`);
+  await keyboardActivate(`[data-poi-dialog-action="${retreat?'retreat':'fight'}"]`);
+  if(retreat){
+    await page.locator('.poi-dialog-backdrop').waitFor({state:'detached'});
+    const after=await state(),expected=structuredClone(live);
+    delete expected.run.poiExpedition.encounter;
+    if(encounter.kind==='rear'){
+      assert.ok(encounter.safeReturnNodeId,'Rear retreat must offer a real safe return');
+      expected.currentNodeId=expected.run.currentNodeId=encounter.safeReturnNodeId;
+      delete expected.run.poiExpedition.previousSafeNodeId;
+    }
+    assert.deepEqual(after,expected,'Native retreat changed facts beyond its exact safe cancellation/return');
+    report.expedition.interceptions.push({eliteId:def.id,kind:encounter.kind,choice:'retreat',before:live,after,pass:true});
+    if(encounter.kind==='front'&&(def.region===1||explorationPlan==='complete'))expeditionWaitPending=true;
+  }else report.expedition.interceptions.push({eliteId:def.id,kind:encounter.kind,choice:'fight',encounterId:encounter.id,pass:true});
+  return true;
+}
+async function explorePoiStep(live){
+  if(explorationPlan==='direct')return false;
+  if(expeditionWaitPending){
+    await verifyExpeditionSettlement();assert.equal(pendingExpeditionProof,undefined);
+    const before=await state();await keyboardActivate('.poi-map [data-poi-action="wait"]');
+    await page.waitForFunction(turn=>window.__demoQaApp.state.run.poiExpedition.turn===turn+1,before.run.poiExpedition.turn);
+    const after=await state();assertExpeditionStep(before,after,1);
+    report.expedition.waits.push({before,after,explicit:true,pass:true});expeditionWaitPending=false;return true;
+  }
+  const region=Number(await page.locator('.poi-map').getAttribute('data-region'));
+  if(explorationPlan==='moderate'&&region===1&&live.resolvedNodeIds.includes('lion-valmir-road')){
+    const elite=live.run.poiExpedition.elites['lion-elite-valley-sentinel'];
+    const seen=report.expedition.interceptions.some(entry=>entry.eliteId==='lion-elite-valley-sentinel');
+    if(elite.active&&!seen){await navigateExpedition(elite.positionId);return true;}
+  }
+  if(explorationPlan==='moderate'&&region===2&&live.resolvedNodeIds.includes('lion-witnesses')){
+    const elite=live.run.poiExpedition.elites['lion-elite-seal-warden'];
+    const seen=report.expedition.interceptions.some(entry=>entry.eliteId==='lion-elite-seal-warden');
+    if(elite.active&&!seen){await navigateExpedition(elite.positionId);return true;}
+  }
+  if(explorationPlan==='complete'&&region>0){
+    const def=lotE.mobileEliteActors.find(elite=>elite.region===region),elite=live.run.poiExpedition.elites[def.id];
+    const ordinaryDone=region===1?['lion-poi-valley-bridge-cache','lion-poi-valley-serpent'].every(id=>live.resolvedNodeIds.includes(id))
+      :report.expedition.interceptions.some(entry=>entry.eliteId===def.id&&entry.kind==='rear'&&entry.choice==='retreat');
+    if(elite.active&&!elite.defeated&&ordinaryDone){
+      const challenge=page.locator(`.poi-map [data-poi-action="elite-fight"][data-elite-id="${def.id}"]:not(:disabled)`);
+      if(await challenge.count())await keyboardActivate(`.poi-map [data-poi-action="elite-fight"][data-elite-id="${def.id}"]`);
+      else await navigateExpedition(elite.positionId);
+      return true;
+    }
+  }
+  const complete=explorationPlan==='complete';
+  const phases=[
+    {id:'opening',region:0,gate:'lion-nomad-crossroads',optional:complete?['lion-poi-opening-supplies','lion-poi-opening-patrol','lion-poi-opening-wolves','lion-poi-opening-cache']:['lion-poi-opening-wolves','lion-poi-opening-cache'],
+      route:complete?['lion-poi-opening-supplies','lion-poi-opening-patrol','lion-refugees','lion-nomad-crossroads','lion-poi-opening-wolves','lion-poi-opening-cache','lion-nomad-crossroads']:['lion-poi-opening-wolves','lion-poi-opening-cache','lion-nomad-crossroads']},
+    {id:'valley-before',region:1,gate:'lion-reserve-trail',optional:['lion-poi-valley-supplies','lion-poi-valley-marsh'],route:['lion-poi-valley-supplies','lion-poi-valley-marsh','lion-valmir-road']},
+    ...(complete?[{id:'valley-after',region:1,gate:'lion-valmir-road',optional:['lion-poi-valley-bridge-cache','lion-poi-valley-serpent'],route:['lion-poi-valley-bridge-cache','lion-poi-valley-serpent','lion-valmir-road']}]:[]),
+    {id:'seal-before',region:2,gate:'lion-lancer-recruit',optional:['lion-poi-seal-witness-supplies'],route:['lion-poi-seal-witness-supplies','lion-witnesses']},
+    {id:'seal-after',region:2,gate:'lion-witnesses',optional:complete?['lion-poi-seal-ruin-encounter','lion-poi-seal-hunters']:['lion-poi-seal-hunters'],
+      route:complete?['lion-poi-seal-ruin-encounter','lion-witnesses','lion-poi-seal-hunters',`lion-final-trial-${trialPlan}`]:['lion-poi-seal-hunters',`lion-final-trial-${trialPlan}`]},
+    ...(complete?[{id:'seal-late',region:2,gate:'lion-shadow-signs',optional:['lion-poi-seal-ruin-supplies'],route:['lion-poi-seal-ruin-supplies','lion-shadow-signs']}]:[]),
+  ];
+  const phase=phases.find(phase=>phase.region===region&&live.resolvedNodeIds.includes(phase.gate)
+    &&!report.expedition.phases[phase.id]?.complete
+    &&(report.expedition.phases[phase.id]||phase.optional.some(id=>!live.resolvedNodeIds.includes(id))));
+  if(!phase)return false;
+  if(region===0&&!priorProof&&!report.poi?.backtracking)return false;
+  const progress=report.expedition.phases[phase.id]??={cursor:0,route:phase.route,optional:phase.optional};
+  while(progress.cursor<phase.route.length){
+    const next=phase.route[progress.cursor];
+    if(next===live.currentNodeId&&live.resolvedNodeIds.includes(next)
+      ||next.startsWith('lion-poi-')&&live.resolvedNodeIds.includes(next))progress.cursor++;
+    else break;
+  }
+  if(progress.cursor===phase.route.length){progress.complete=true;return false;}
+  await navigateExpedition(phase.route[progress.cursor]);return true;
 }
 async function inspectPoiAtlas(){
   if(report.atlas)return;
@@ -371,7 +532,9 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
   const hub=page.locator('.exploration-stop:visible:not([inert])');await hub.waitFor({state:'visible'});
   const arrival=await state(),expectedArrival=structuredClone(before);
   expectedArrival.currentNodeId=expectedArrival.run.currentNodeId='lion-first-refuge';
-  assert.deepEqual(arrival,expectedArrival,'Reopened refuge changed earned Valmir facts, loot or checkpoint');
+  assertCanonicalMatch(arrival,expectedArrival,'Reopened refuge changed earned Valmir facts, loot or checkpoint');
+  assert.equal(arrival.run.poiExpedition.turn,before.run.poiExpedition.turn+(postTrial?3:2));
+  assert.equal(arrival.run.poiExpedition.pendingStep?.toNodeId,'lion-first-refuge');
   const rest=page.locator('.exploration-stop [data-action="rest"]:not(:disabled)');
   const cost=Number((await page.locator('.exploration-stop [data-action="rest"]').innerText()).match(/(\d+)\s*or/i)?.[1]??0);
   const funding=[];
@@ -449,8 +612,12 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
     assert.deepEqual(event.before,prepared,'Refuge departure changed truth before the fresh canonical petition');
     const completedEvent=structuredClone(event.after);
     completedEvent.seenUniqueEvents.push(`reputation-director-event|${rested.stepCounter}|lion-social-window-1|public-petition|public-expectation`);
-    assert.deepEqual(departed,completedEvent,'Native departure differs from the completed petition and its exact once-only marker');
-  }else assert.deepEqual(departed,prepared,'Resolved refuge departure repeated a one-shot effect');
+    assertCanonicalMatch(departed,completedEvent,'Native departure differs from the completed petition and its exact once-only marker');
+    assertExpeditionStep(completedEvent,departed,0);
+  }else {
+    assertCanonicalMatch(departed,prepared,'Resolved refuge departure repeated a one-shot effect');
+    assertExpeditionStep(prepared,departed,0);
+  }
   const onward=await poiNoReplayPath(['lion-reserve-trail','lion-valmir-road',...(postTrial?[milestone]:[])],true,`poi-after-${prefix}-prepared-return`);
   report.poi[postTrial?'trialRefugePreparation':'valmirRefugePreparation']={before,arrival,funding,restBefore,rested,prepared,supplyPurchase,departed,departureEvents:events,nativeCost:cost,servicesTemporaryLootUnchanged:true,checkpointUnchanged:true,
     returnPath,onward,paidRestPersistedExactly:cost>0,skippedAlreadyHealthy:cost===0,exactSavedOwner:true};
@@ -718,7 +885,9 @@ async function battle(){
   const element=page.locator('iframe.combat-frame');await element.waitFor({state:'attached'});
   const frame=await(await element.elementHandle()).contentFrame();
   await frame.waitForFunction(()=>window.__BOOTED===true,null,{timeout:60000});
-  const entry={index:report.battles.length,nodeId:(await state()).currentNodeId,
+  const ownerBefore=await state();
+  const entry={index:report.battles.length,nodeId:ownerBefore.currentNodeId,eliteId:ownerBefore.run.poiExpedition?.encounter?.eliteId,
+    ownerBefore,
     combatId:await page.evaluate(()=>window.__demoQaApp.combat.session?.config.id),actions:[],pass:false}; report.battles.push(entry);
   assert.equal(await frame.evaluate(()=>typeof window.__qaHelpers.teleportActiveUnitNextToEnemy),'undefined','Production mutation helper present');
   for(const selector of ['#tutorial:not(.hidden) [data-action="skip"]','#boss-tutorial:not(.hidden) [data-action="start"]']){
@@ -726,6 +895,12 @@ async function battle(){
   }
   await activateControl(frame.locator('#menu [data-d="auto"]'));
   entry.deployed=await frame.evaluate(()=>window.G.deployedUnits.length);assert.ok(entry.deployed>0&&entry.deployed<=4,'Deployment exceeds the existing four-unit cap');
+  const nativeConfig=await page.evaluate(()=>window.__demoQaApp.combat.session.config);
+  assert.ok(entry.deployed<=nativeConfig.maxPlayerUnits,'Native deployment exceeds this actual encounter limit');
+  if(entry.eliteId||entry.nodeId.startsWith('lion-poi-')){
+    entry.nativeEnemyVisualIds=await frame.evaluate(()=>G.units.filter(unit=>unit.team==='foe').map(unit=>unit.combatPoseUnitId));
+    assert.deepEqual(entry.nativeEnemyVisualIds,[...nativeConfig.enemyVisualIds],'Native Lot E formation differs from its approved actual config');
+  }
   entry.ownerBefore=await state();
   const preparedEndingParty=target==='ending'&&process.env.DEMO_QA_VERIFY_SALVATION!=='1'
     &&['serpent_captain','lion_chief'].includes(entry.combatId);
@@ -890,6 +1065,7 @@ async function battle(){
     for(const category of Object.keys(expected.run.temporaryLoot.inventory))expected.run.temporaryLoot.inventory[category]={};
     if(expected.run.bypassedRouteNodeIds)expected.run.bypassedRouteNodeIds=expected.run.bypassedRouteNodeIds.filter(id=>!downstream.has(id));
     if(expected.run.traversalBranches)expected.run.traversalBranches=Object.fromEntries(Object.entries(expected.run.traversalBranches).filter(([,id])=>!downstream.has(id)));
+    if(expected.run.poiExpedition){delete expected.run.poiExpedition.pendingStep;delete expected.run.poiExpedition.encounter;delete expected.run.poiExpedition.previousSafeNodeId;}
     assert.deepEqual(recovered,expected,'Full recovery differs from the existing checkpoint rule');
     assert.equal(recovered.currentNodeId,savedBefore.run.checkpointNodeId);
     assert.equal(recovered.run.currentNodeId,savedBefore.run.checkpointNodeId);
@@ -942,7 +1118,26 @@ async function battle(){
     assert.equal(entry.ownerAfter.clan.members.find(u=>u.id===id)?.currentHealth,Math.max(1,hp),
       'Authored victory did not preserve living HP or recover a KO fighter at exactly1HP');
   }
-  assert.ok(entry.ownerAfter.resolvedNodeIds.includes(entry.nodeId));
+  if(entry.eliteId){
+    const def=lotE.mobileEliteActors.find(elite=>elite.id===entry.eliteId);
+    assert.equal(entry.combatId,def.combat.id);
+    assert.equal(entry.ownerAfter.run.poiExpedition.elites[entry.eliteId].defeated,true);
+    assert.deepEqual(entry.ownerAfter.resolvedNodeIds,entry.ownerBefore.resolvedNodeIds,'Elite victory resolved an underlying POI');
+    assert.equal(entry.ownerAfter.run.poiExpedition.encounter,undefined);
+  }else assert.ok(entry.ownerAfter.resolvedNodeIds.includes(entry.nodeId));
+  const lotEDef=entry.eliteId?lotE.mobileEliteActors.find(def=>def.id===entry.eliteId):lotE.fixedPoiCandidates.find(def=>def.id===entry.nodeId);
+  if(lotEDef?.combat){
+    const rewards=lotEDef.combat.rewards,before=entry.ownerBefore,after=entry.ownerAfter;
+    assert.equal(after.gold,before.gold,'Lot E combat credited secured gold');
+    assert.equal(after.run.temporaryLoot.gold,before.run.temporaryLoot.gold+rewards.temporaryGold);
+    assert.equal(after.reputation,Math.min(100,Math.max(0,before.reputation+rewards.reputation)));
+    const materials={...before.run.temporaryLoot.inventory.materials};
+    for(const [id,count] of Object.entries(rewards.materials))materials[id]=(materials[id]??0)+count;
+    assert.deepEqual(after.run.temporaryLoot.inventory.materials,materials,'Native Lot E material reward differs from the approved exact amount');
+    assert.deepEqual(after.flags,before.flags,'Lot E combat fired a canonical flag');
+    assert.equal(after.run.poiExpedition.turn,before.run.poiExpedition.turn,'Combat itself advanced a threat turn');
+    entry.exactLotERewards={...rewards,temporary:true,pass:true};
+  }
   console.log(JSON.stringify({battle:entry.nodeId,realVictory:true,rounds:entry.result.round,actions:entry.actions.length}));
 }
 try{
@@ -956,6 +1151,12 @@ try{
     await page.evaluate(text=>localStorage.setItem('rpg-threejs:autosave:v6',text),earnedText);
     await page.reload({waitUntil:'networkidle'});await click('.title-screen [data-action="continue"]');
     await page.waitForFunction(nodeId=>window.__demoQaApp?.state.currentNodeId===nodeId,JSON.parse(earnedText).currentNodeId);
+    const original=JSON.parse(earnedText),resumed=await state(),preserved=structuredClone(resumed);
+    const originalIds=new Set(original.run.graph.nodes.map(node=>node.id));
+    preserved.run.graph.nodes=preserved.run.graph.nodes.filter(node=>originalIds.has(node.id));
+    if(!original.run.poiExpedition)delete preserved.run.poiExpedition;
+    assert.deepEqual(preserved,original,'Additive V6 load changed an existing canonical fact');
+    report.earnedResume.additiveMigration={originalNodes:original.run.graph.nodes.length,currentNodes:resumed.run.graph.nodes.length,canonicalFactsExact:true};
     if(['first-refuge','second-refuge','valmir','preparation','ending'].includes(target)&&['lion-first-refuge','lion-second-refuge'].includes(JSON.parse(earnedText).currentNodeId)){
       await page.waitForFunction(()=>[...document.querySelectorAll('.poi-map,.exploration-stop')]
         .some(e=>e.getClientRects().length&&!e.closest('[inert]')));
@@ -984,6 +1185,8 @@ try{
   assert.equal(report.motionEvidence.osRequested,report.osReducedMotion,'OS motion emulation does not match the requested scenario');
   if(report.osReducedMotion)assert.equal(report.motionEvidence.gameRequested,false,'OS-only motion proof requires normal game graphics');
   for(let index=0;index<12000&&Date.now()<deadline;index++){
+    await verifyExpeditionSettlement();
+    if(await handleExpeditionDialog())continue;
     let live=await state();if(report.nodes.at(-1)!==live.currentNodeId){report.nodes.push(live.currentNodeId);console.log(`NODE ${live.currentNodeId}`);}
     if(target==='preparation'){
       assert.notEqual(live.currentNodeId,'lion-final-judgement','Preparation target overrun into judgement');
@@ -1199,6 +1402,9 @@ try{
       await inspectPoiAtlas();
       live=await state();
       report.poi??={native:true};
+      const needsValmirPreparation=(['second-refuge','valmir'].includes(target)||explorationPlan!=='direct'&&target==='ending')
+        &&live.currentNodeId==='lion-valmir-road'&&live.resolvedNodeIds.includes(live.currentNodeId)&&!report.poi.valmirRefugePreparation;
+      if(!needsValmirPreparation&&await explorePoiStep(live))continue;
       if(target==='second-trial'&&live.currentNodeId==='lion-second-trial-combat'&&live.resolvedNodeIds.includes(live.currentNodeId)){
         assert.ok(report.battles.slice(report.inheritedBattleCount??0).some(b=>b.nodeId===live.currentNodeId&&b.pass&&b.outcome==='victory'));
         assert.ok(live.resolvedNodeIds.includes('lion-first-refuge'));assert.equal(live.flags['refugeSecured:lion-first-refuge'],true);
@@ -1218,7 +1424,7 @@ try{
         assert.deepEqual(changed,expected,'Native motion preference changed unrelated V6 truth');
         report.motionEvidence.gameRequested=true;report.motionEvidence.nativeGameControl=true;continue;
       }
-      if(['second-refuge','valmir'].includes(target)&&live.currentNodeId==='lion-valmir-road'
+      if((['second-refuge','valmir'].includes(target)||explorationPlan!=='direct'&&target==='ending')&&live.currentNodeId==='lion-valmir-road'
         &&live.resolvedNodeIds.includes(live.currentNodeId)&&!report.poi.valmirRefugePreparation){
         await preparePoiCompanyAfterValmir();
         if(target==='valmir'){
@@ -1255,6 +1461,7 @@ try{
         for(const id of localRoutes)assert.equal(await page.locator(`.poi-map [data-poi-id="${id}"]`).getAttribute('data-poi-reachable'),'true',
           'All three V2 local routes must be reachable after the mandatory crossroads');
         report.poi.localRoutes=localRoutes;await capture('poi-v2-three-local-routes');
+        if(explorationPlan!=='direct')continue;
         const before=await state();await poiMove(`lion-first-trial-${trialPlan}`);
         const after=await state();assert.equal(after.reputation,before.reputation-2);
         assert.equal(after.flags.ignoredRefugees,true);assert.ok(!after.resolvedNodeIds.includes('lion-refugees'));
@@ -1286,6 +1493,14 @@ try{
     await page.waitForTimeout(100);
   }
   assert.equal(report.pass,true,`Did not reach earned ${target} before the bounded deadline`);
+  const final=await state();
+  report.expedition.economy={gold:final.gold,temporaryLoot:final.run.temporaryLoot,reputation:final.reputation,
+    inventory:final.inventory,heroes:final.clan.members.map(unit=>({id:unit.definitionId,hp:unit.currentHealth})),checkpoint:final.run.checkpointNodeId};
+  if(explorationPlan==='complete'&&target!=='defeat-recovery'){
+    const upTo=target==='first-refuge'?0:['second-refuge','valmir','second-trial'].includes(target)?1:2;
+    for(const poi of lotE.fixedPoiCandidates.filter(poi=>poi.region<=upTo))assert.ok(final.resolvedNodeIds.includes(poi.id),`Complete native exploration missed ${poi.id}`);
+    for(const elite of lotE.mobileEliteActors.filter(elite=>elite.region<=upTo))assert.equal(final.run.poiExpedition.elites[elite.id].defeated,true,`Complete native exploration missed elite ${elite.id}`);
+  }
   if(touchInput){assert.ok(report.trustedTouch.length>0,'No trusted native touch observed');assert.equal(await page.evaluate(()=>navigator.maxTouchPoints>0),true);}
   if(process.env.DEMO_QA_GAME_MOTION==='1')assert.equal((await state()).settings.reducedGraphics,true,'Requested game motion reduction was never activated');
   report.salvationVerified=report.battles.slice(report.inheritedBattleCount??0).some(b=>b.actions.some(a=>a.verifiedHealing));

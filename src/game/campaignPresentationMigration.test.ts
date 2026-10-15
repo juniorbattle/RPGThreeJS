@@ -81,6 +81,7 @@ describe('POI campaign presentation lifecycle after physical retirement',()=>{
     expect(resolve).toHaveBeenCalledOnce();expect(owner.state.stepCounter).toBe(steps+1);
     expect(document.querySelector('.poi-map')).not.toBeNull();const before=structuredClone(owner.state);
     await owner.choosePoi('lion-audience');await owner.choosePoi('lion-camp');await owner.choosePoi('lion-audience');
-    expect(resolve).toHaveBeenCalledOnce();expect(owner.state).toEqual(before);
+    const expected=structuredClone(before);expected.run.poiExpedition!.turn+=2;
+    expect(resolve).toHaveBeenCalledOnce();expect(owner.state).toEqual(expected);
   });
 });

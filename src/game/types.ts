@@ -191,7 +191,7 @@ export const deploymentSchema = z.object({
 export type Deployment = z.infer<typeof deploymentSchema>;
 
 export const runNodeTypeSchema = z.enum([
-  'combat', 'event', 'mystery', 'recruitment', 'shop', 'refuge', 'story', 'boss',
+  'combat', 'event', 'mystery', 'recruitment', 'shop', 'refuge', 'story', 'boss', 'chest',
 ]);
 export type RunNodeType = z.infer<typeof runNodeTypeSchema>;
 
@@ -224,6 +224,25 @@ export const runLootSchema = z.object({
 });
 export type RunLoot = z.infer<typeof runLootSchema>;
 
+const poiEliteStateSchema = z.object({
+  active: z.boolean(), positionId: z.string(), patrolIndex: z.number().int().nonnegative(),
+  mode: z.enum(['cyclic_patrol','bounded_one_edge_graph_chase']),
+  lastStep: z.number().int().nonnegative(), defeated: z.boolean(),
+});
+export const poiEliteEncounterSchema = z.object({
+  id: z.string(), eliteId: z.string(), kind: z.enum(['front','rear','contested']),
+  originNodeId: z.string(), targetNodeId: z.string(), safeReturnNodeId: z.string().optional(),
+  phase: z.enum(['choice','combat']),
+});
+export type PoiEliteEncounter = z.infer<typeof poiEliteEncounterSchema>;
+export const poiExpeditionSchema = z.object({
+  version: z.literal(1), turn: z.number().int().nonnegative(),
+  elites: z.record(poiEliteStateSchema), previousSafeNodeId: z.string().optional(),
+  pendingStep: z.object({step: z.number().int().nonnegative(), fromNodeId: z.string(), toNodeId: z.string()}).optional(),
+  encounter: poiEliteEncounterSchema.optional(),
+});
+export type PoiExpeditionState = z.infer<typeof poiExpeditionSchema>;
+
 export const runStateSchema = z.object({
   id: z.string(),
   seed: z.number().int(),
@@ -237,6 +256,7 @@ export const runStateSchema = z.object({
   // Optional fields preserve existing V6 saves. Bypass is not a visit or a resolution.
   bypassedRouteNodeIds: z.array(z.string()).optional(),
   traversalBranches: z.record(z.string(), z.string()).optional(),
+  poiExpedition: poiExpeditionSchema.optional(),
   graph: runGraphSchema,
 });
 export type RunState = z.infer<typeof runStateSchema>;

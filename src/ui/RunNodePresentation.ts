@@ -27,6 +27,7 @@ export const RUN_NODE_TYPE_PRESENTATION: Readonly<Record<RunNodeType, { label: s
   refuge: { label: 'Refuge', risk: 0, reward: 1 },
   story: { label: 'Récit', risk: 1, reward: 2 },
   boss: { label: 'Boss', risk: 3, reward: 3 },
+  chest: { label: 'Coffre', risk: 0, reward: 2 },
 });
 
 export const RUN_NODE_DIFFICULTY_LABELS: Readonly<Record<NonNullable<RunNode['difficulty']>, string>> = Object.freeze({

@@ -1,13 +1,18 @@
 import { combatConfigs } from './content';
 import { createInitialState, SaveRepository } from './store';
 import type { CombatConfig, CombatResult, DialogueSequence, GameState, NarrativeEffect, RunNode, UnitInstance } from './types';
-import { createUnitInstance, getItemCategory, toCombatant } from './catalog';
+import { createUnitInstance, getItemCategory, toCombatant, itemById } from './catalog';
 import { applyCombatProgress } from './combatProgress';
 import {
   addTemporaryLoot, enterRunNode, failRunToCheckpoint,
   getAvailableRunNodes, getRunNode, secureRunLoot,
-  selectPoiMap, enterPoi, bypassPoi, isPoiNeutralized,
+  selectPoiMap, enterPoi, bypassPoi, isPoiNeutralized, settlePoiNavigation,
+  commitPoiEliteFight, resolvePoiEliteVictory,
 } from './runSystem';
+import { createPoiChestAdapter } from './poiContentAdapters';
+import { beginPoiEliteEncounter, retreatPoiElite, waitPoiTurn } from './poiExpedition';
+import { LOT_E_ELITES } from '../campaign/LionPoiAuthoring';
+import { PoiEncounterView } from '../ui/PoiEncounterView';
 import { changeReputation, getReputationRule } from './reputation';
 import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
 import { CLAN_ANCHOR_DIALOGUES } from './campaignGrammarContent';
@@ -127,6 +132,7 @@ export class GameApp {
   private readonly management: ManagementView;
   private readonly combat: CombatBridge;
   private readonly poiMap: PoiMapView;
+  private readonly poiEncounter: PoiEncounterView;
   private readonly exploration: ExplorationView;
   private readonly prologue: PrologueView;
   private readonly cinematicRegistry = new CinematicRegistry();
@@ -180,8 +186,11 @@ export class GameApp {
     });
     this.combat = new CombatBridge(root);
     this.exploration = new ExplorationView({ root, statusHud: this.statusHud });
+    this.poiEncounter = new PoiEncounterView(root);
     this.poiMap = new PoiMapView({root,
       onMove: id => this.choosePoi(id),
+      onWait: () => this.waitOnPoi(),
+      onFightElite: id => this.challengePoiElite(id),
       onBypass: id => this.ignorePoi(id),
       onCompany: () => void this.openPoiCompany(),
       onSave: () => this.saves.saveManual(this.state),
@@ -202,6 +211,7 @@ export class GameApp {
   }
 
   dispose(): void {
+    this.poiEncounter.close();
     this.poiMap.close();
 
     this.disposeJourney();
@@ -213,6 +223,7 @@ export class GameApp {
   }
 
   private renderTitle(): void {
+    this.poiEncounter.close();
     this.poiMap.close();
     delete document.body.dataset.campaignSurface;
 
@@ -660,6 +671,8 @@ export class GameApp {
   }
 
   private async enterCampaignPresentation(): Promise<void> {
+    settlePoiNavigation(this.state);
+    if(this.state.run.poiExpedition?.encounter){await this.presentPoiElite();return;}
     // Existing terminal and preparation presentation retain agency; navigation stays on the map.
     if (this.hasCompletedPoiChronicle()) {
       this.poiMap.close(); delete document.body.dataset.campaignSurface;
@@ -699,10 +712,72 @@ export class GameApp {
     this.routeCommitInFlight = false;
     if (!entered) {this.showPoiMap();return;}
     this.saves.saveAuto(this.state);
-    if (!entered.activate) {this.showPoiMap(nodeId);return;}
+    if (entered.interception) {await this.presentPoiElite();return;}
+    if (!entered.activate) {await this.enterCampaignPresentation();return;}
     this.poiMap.close();
     this.setMode('RESULT');
     await this.resolveRunNode(entered.node, false);
+  }
+
+  private async waitOnPoi(): Promise<void> {
+    if(this.mode!=='TRAVEL'||this.routeCommitInFlight)return;
+    if(!waitPoiTurn(this.state,selectPoiMap(this.state)))return;
+    this.saves.saveAuto(this.state);
+    await this.enterCampaignPresentation();
+  }
+
+  private async challengePoiElite(eliteId:string): Promise<void> {
+    if(this.mode!=='TRAVEL'||this.routeCommitInFlight)return;
+    const threat=selectPoiMap(this.state).threats.find(threat=>threat.id===eliteId&&threat.canFight);
+    if(!threat||!beginPoiEliteEncounter(this.state,eliteId,'contested',threat.positionId))return;
+    this.saves.saveAuto(this.state);await this.presentPoiElite();
+  }
+
+  private async presentPoiElite(): Promise<void> {
+    const encounter=this.state.run.poiExpedition?.encounter;
+    if(!encounter)return;
+    if(encounter.phase==='combat'){await this.fightPoiElite(encounter.id);return;}
+    const def=LOT_E_ELITES.find(def=>def.id===encounter.eliteId)!;
+    this.showPoiMap(encounter.targetNodeId);this.setMode('RESULT');
+    this.saves.saveAuto(this.state);
+    const choice=await this.poiEncounter.choose({title:def.label,
+      description:encounter.kind==='rear'?'La menace a rejoint votre position. Combattez ou regagnez le point sûr précédent.'
+        :'Ce passage est occupé. Combattez ou restez à votre position sûre.',
+      lines:['Combat d’élite · Déploiement : 3 unités maximum.',
+        `${def.combat.rewards.temporaryGold} or de butin temporaire à la victoire. Le lieu conserve son propre contenu.`]});
+    if(this.state.run.poiExpedition?.encounter?.id!==encounter.id)return;
+    if(choice==='retreat'){
+      if(!retreatPoiElite(this.state,selectPoiMap(this.state)))throw new Error('Unavailable safe elite retreat');
+      this.saves.saveAuto(this.state);this.showPoiMap(this.state.run.currentNodeId);return;
+    }
+    await this.fightPoiElite(encounter.id);
+  }
+
+  private async fightPoiElite(encounterId:string): Promise<void> {
+    if(this.routeCommitInFlight)return;
+    const combatId=commitPoiEliteFight(this.state,encounterId);
+    if(!combatId)return;
+    this.routeCommitInFlight=true;
+    this.saves.saveAuto(this.state);
+    this.poiMap.close();this.disposeJourney();this.disposeNarrativeStage();
+    const config=combatConfigs.get(combatId)!;
+    try{
+      let session:ReturnType<CombatBridge['start']>|undefined;
+      await sceneTransition.run({variant:'combat',label:config.encounterLabel,task:async()=>{
+        this.setMode('COMBAT');this.chrome.replaceChildren();
+        session=this.combat.start({config,clan:this.state.clan.members.filter(unit=>unit.currentHealth>0).map(unit=>toCombatant(unit)),
+          inventory:this.state.inventory.consumables,preferredUnitIds:this.state.deployment.unitIds,
+          reducedGraphics:this.state.settings.reducedGraphics});
+        await session.ready;
+      }});
+      const result=await session!.result;
+      this.combat.close();
+      if(!result.victory){this.state=this.saves.loadAuto()??this.state;failRunToCheckpoint(this.state);}
+      else if(!resolvePoiEliteVictory(this.state,encounterId,result))throw new Error('Stale elite combat result');
+      // Durable reward and defeated fact commit together before any presentation can be interrupted.
+      this.saves.saveAuto(this.state);
+    }finally{this.routeCommitInFlight=false;}
+    await this.enterCampaignPresentation();
   }
 
   private ignorePoi(nodeId: string): void {
@@ -907,6 +982,15 @@ export class GameApp {
       && (this.state.resolvedNodeIds.includes(node.id) || isPoiNeutralized(this.state, node.id))) {
       await this.enterCampaignPresentation();
       return;
+    }
+    if (node.type === 'chest') {
+      const loot=createPoiChestAdapter()(this.state,node.id);
+      if(loot){
+        this.setMode('RESULT');this.saves.saveAuto(this.state);
+        await this.poiEncounter.reward({title:'Coffre ouvert',description:'Ces réserves rejoignent votre butin temporaire. Elles seront sécurisées au refuge.',
+          lines:[...(loot.gold?[`${loot.gold} or`]:[]),...Object.entries(loot.items).map(([id,count])=>`${count} × ${itemById.get(id)?.name??id}`)]});
+      }
+      await this.enterCampaignPresentation();return;
     }
     if (node.type === 'refuge') {
       const presentation = resolveRefugePresentation(node);
@@ -1441,6 +1525,7 @@ export class GameApp {
         current = getRunNode(this.state.run);
       },
     });
+    if(this.state.run.poiExpedition?.encounter){await this.presentPoiElite();return;}
     const pendingFinaleCombat = resolvePendingLionFinaleCombat(this.state.flags);
     if (
       current

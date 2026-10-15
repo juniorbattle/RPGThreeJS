@@ -7,6 +7,7 @@
 } from './types';
 import { R5_ADDITIONAL_DIALOGUES } from './r5NarrativeContent';
 import { CAMPAIGN_GRAMMAR_DIALOGUES } from './campaignGrammarContent';
+import { lotECombatConfigs } from '../campaign/LionPoiAuthoring';
 
 type RawCombatConfig = Omit<CombatConfig, 'enemyVisualIds' | 'escortVisualIds'> &
   Partial<Pick<CombatConfig, 'enemyVisualIds' | 'escortVisualIds'>>;
@@ -1339,7 +1340,7 @@ const rawDialogues = [
 ];
 
 export const campaignNodes = rawNodes.map((node) => campaignNodeSchema.parse(node));
-export const combatConfigs = new Map(rawCombats.map((combat) => {
+export const combatConfigs = new Map([...rawCombats, ...lotECombatConfigs()].map((combat) => {
   const parsed = combatConfigSchema.parse({ ...combat, ...combatVisualComposition[combat.id] });
   return [parsed.id, parsed];
 }));

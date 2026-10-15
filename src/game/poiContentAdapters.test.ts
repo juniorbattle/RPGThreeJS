@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { createInitialState, migrateState } from './store';
-import { createPoiChestAdapter, poiCombatPayload } from './poiContentAdapters';
+import { createPoiChestAdapter, poiCombatPayload, APPROVED_POI_CHESTS } from './poiContentAdapters';
 import { getRunNode } from './runSystem';
 
-describe('future POI content authoring seams, no campaign placements',()=>{
-  it('fails closed for every production chest until actual content is authored',()=>{
+describe('approved POI content owner adapters',()=>{
+  it('rejects any chest credit without an actual selected unresolved chest',()=>{
+    expect(APPROVED_POI_CHESTS).toHaveLength(6);
     const state=createInitialState(),before=structuredClone(state);
     for(const node of state.run.graph.nodes)expect(createPoiChestAdapter()(state,node.id)).toBeNull();
     expect(state).toEqual(before);

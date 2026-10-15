@@ -1,5 +1,7 @@
 import { createUnitInstance, getFinalStats, getItemCategory } from './catalog';
 import { createRunState, enterRunNode, getAvailableRunNodes, getRunNode } from './runSystem';
+import { migratePoiExpedition } from './poiExpedition';
+import { LION_CANONICAL_POI_IDS } from '../campaign/LionPoiAuthoring';
 import {
   gameStateSchema,
   gameStateV1Schema,
@@ -83,7 +85,7 @@ export function createInitialState(): GameState {
 
 function hasCurrentLionRoute(state: GameState): boolean {
   const nodes = state.run.graph.nodes;
-  return nodes.length === 21
+  return LION_CANONICAL_POI_IDS.every(id => nodes.some(node => node.id === id))
     && nodes.some((node) => node.id === 'lion-opening-ambush')
     && nodes.some((node) => node.id === 'lion-final-trial-event')
     && nodes.some((node) => node.id === 'lion-final-refuge' && node.contentId === 'final_refuge')
@@ -115,17 +117,17 @@ function migrateCurrentLionRoute(previous: GameState): GameState {
 export function migrateState(value: unknown): GameState {
   const normalized = normalizeLegacyEquipment(value);
   const current = gameStateSchema.safeParse(normalized);
-  if (current.success) return hasCurrentLionRoute(current.data) ? current.data : migrateCurrentLionRoute(current.data);
+  if (current.success) return migratePoiExpedition(hasCurrentLionRoute(current.data) ? current.data : migrateCurrentLionRoute(current.data));
   const v5 = gameStateV5Schema.safeParse(normalized);
-  if (v5.success) return migrateV5(v5.data);
+  if (v5.success) return migratePoiExpedition(migrateV5(v5.data));
   const v4 = gameStateV4Schema.safeParse(normalized);
-  if (v4.success) return migrateV4(v4.data);
+  if (v4.success) return migratePoiExpedition(migrateV4(v4.data));
   const v3 = gameStateV3Schema.safeParse(normalized);
-  if (v3.success) return migrateV4(migrateV3(v3.data));
+  if (v3.success) return migratePoiExpedition(migrateV4(migrateV3(v3.data)));
   const v2 = gameStateV2Schema.safeParse(normalized);
-  if (v2.success) return migrateV4(migrateV2(v2.data));
+  if (v2.success) return migratePoiExpedition(migrateV4(migrateV2(v2.data)));
   const legacy = gameStateV1Schema.parse(normalized);
-  return migrateV1(legacy);
+  return migratePoiExpedition(migrateV1(legacy));
 }
 
 function migrateV3(previous: GameStateV3): GameStateV4 {

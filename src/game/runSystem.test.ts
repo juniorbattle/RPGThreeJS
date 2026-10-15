@@ -7,6 +7,7 @@ import {
   enterRunNode, selectTraversalBranch,
 } from './runSystem';
 import type { GameState } from './types';
+import {LION_CANONICAL_POI_IDS,LOT_E_POIS,LOT_E_EDGES} from '../campaign/LionPoiAuthoring';
 
 function choicesAt(state: GameState, nodeId: string) {
   state.run.currentNodeId = nodeId;
@@ -24,9 +25,11 @@ describe('hybrid run system', () => {
     }
   });
 
-  it('creates a 21-node Lion braid with two management refuges, a final refuge, and three reconverging trials', () => {
+  it('preserves the21-node Lion braid and adds exactly12approved optional nodes', () => {
     const graph = generateRunGraph(7);
-    expect(graph.nodes).toHaveLength(21);
+    expect(graph.nodes).toHaveLength(33);
+    expect(graph.nodes.filter(node=>LION_CANONICAL_POI_IDS.includes(node.id))).toHaveLength(21);
+    expect(graph.nodes.filter(node=>LOT_E_POIS.some(poi=>poi.id===node.id))).toHaveLength(12);
     expect(Math.max(...graph.nodes.map((node) => node.depth))).toBe(17);
     expect(graph.nodes.filter((node) => node.type === 'refuge')).toHaveLength(2);
     expect(graph.nodes.filter((node) => node.type === 'shop')).toHaveLength(0);
@@ -47,7 +50,12 @@ describe('hybrid run system', () => {
     for (const node of graph.nodes) {
       for (const link of node.links) incoming.set(link, (incoming.get(link) ?? 0) + 1);
     }
-    expect(graph.nodes.filter((node) => node.id !== 'lion-camp').every((node) => (incoming.get(node.id) ?? 0) > 0)).toBe(true);
+    const canonical=graph.nodes.filter(node=>LION_CANONICAL_POI_IDS.includes(node.id));
+    expect(canonical.filter((node) => node.id !== 'lion-camp').every((node) => (incoming.get(node.id) ?? 0) > 0)).toBe(true);
+    for(const poi of LOT_E_POIS){
+      expect(graph.nodes.find(node=>node.id===poi.id)?.links).toEqual([]);
+      expect(LOT_E_EDGES.some(edge=>edge.from===poi.id||edge.to===poi.id)).toBe(true);
+    }
 
     const reachesFinale = (nodeId: string, visited = new Set<string>()): boolean => {
       if (nodeId === 'lion-final-judgement') return true;
@@ -56,7 +64,7 @@ describe('hybrid run system', () => {
       const node = graph.nodes.find((candidate) => candidate.id === nodeId);
       return Boolean(node?.links.some((link) => reachesFinale(link, new Set(visited))));
     };
-    expect(graph.nodes.every((node) => reachesFinale(node.id))).toBe(true);
+    expect(canonical.every((node) => reachesFinale(node.id))).toBe(true);
 
     let node = graph.nodes.find((candidate) => candidate.id === 'lion-camp')!;
     const path = [node.id];
@@ -163,7 +171,8 @@ describe('hybrid run system', () => {
     stale.currentNodeId = 'lion-reserve-trail';
 
     const migrated = migrateState(stale);
-    expect(migrated.run.graph.nodes).toHaveLength(21);
+    expect(migrated.run.graph.nodes).toHaveLength(33);
+    expect(migrated.run.graph.nodes.filter(node=>LION_CANONICAL_POI_IDS.includes(node.id))).toHaveLength(21);
     expect(migrated.run.currentNodeId).toBe('lion-reserve-trail');
     expect(migrated.flags.helpedRefugees).toBe(true);
     expect(migrated.run.temporaryLoot.gold).toBe(75);

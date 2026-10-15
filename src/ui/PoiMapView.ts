@@ -1,10 +1,11 @@
 import type { PoiMapModel } from '../game/runSystem';
-import { LION_POI_POSITIONS, LION_POI_REGIONS, lionPoiMapPhase } from '../campaign/LionPoiMap';
+import { LION_POI_POSITIONS, LION_POI_REGIONS, lionPoiMapPhase, lionPoiPathBends } from '../campaign/LionPoiMap';
 import './poi-map.css';
 
 interface PoiMapOptions {
   root:HTMLElement;onMove:(id:string)=>Promise<void>;onBypass:(id:string)=>void;
   onCompany:()=>void;onSave:()=>void;onMenu:()=>void;onReducedMotion:()=>void;
+  onWait?:()=>Promise<void>;onFightElite?:(id:string)=>Promise<void>;
 }
 const escape=(s:string)=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
 const statusLabels={available:'Disponible',locked:'Verrouillé',resolved:'Résolu',neutralized:'Neutralisé'};
@@ -31,29 +32,36 @@ export class PoiMapView {
       (own.has(e.from)&&e.to===n.id)||(own.has(e.to)&&e.from===n.id)));
     const positions=new Map(nodes.map(n=>[n.id,LION_POI_POSITIONS[n.id]??[850,300] as readonly[number,number]]));
     for(const n of nodes)if(n.region!==phase)positions.set(n.id,n.region<phase?[80,80]:[870,430]);
+    const threats=model.threats.filter(threat=>threat.region===phase);
+    const nodeLabel=(id:string)=>model.nodes.find(node=>node.id===id)?.label??id;
     const seen=new Set<string>();
     const paths=model.edges.filter(e=>positions.has(e.from)&&positions.has(e.to)).map(e=>{
       const key=[e.from,e.to].sort().join(':');if(seen.has(key))return '';seen.add(key);
       const [x,y]=positions.get(e.from)!,[tx,ty]=positions.get(e.to)!;
       const bend=(Math.abs(ty-y)>100?1:-1)*Math.min(48,Math.abs(tx-x)*.22);
-      const d=`M${x} ${y} C${x+(tx-x)*.35} ${y+bend} ${x+(tx-x)*.65} ${ty-bend} ${tx} ${ty}`;
+      const bends=lionPoiPathBends(e.from,e.to);
+      const d=bends?`M${x} ${y} ${bends.map(([px,py])=>`L${px} ${py}`).join(' ')} L${tx} ${ty}`
+        :`M${x} ${y} C${x+(tx-x)*.35} ${y+bend} ${x+(tx-x)*.65} ${ty-bend} ${tx} ${ty}`;
       return `<path class="poi-path-shadow" d="${d}"/><path class="poi-path ${e.unlocked?'poi-path--open':''}" d="${d}"/>`;
     }).join('');
     const element=document.createElement('section');element.className='poi-map';
     element.dataset.region=String(phase);element.dataset.reducedMotion=String(reducedMotion);
     element.setAttribute('aria-label','Carte de campagne');
-    element.innerHTML=`<header class="poi-map__header"><div class="poi-map__heading"><span>Chronique du Lion</span><h1>Carte de campagne</h1></div><p class="poi-map__resources">Or <b>${model.gold}</b><span>·</span> Butin <b>${model.temporaryGold}</b><span>·</span> Réputation <b>${model.reputation}</b></p><nav aria-label="Actions de campagne"><button data-poi-action="company">Compagnie</button><button data-poi-action="save">Sauvegarder</button><button data-poi-action="menu">Menu</button><button data-poi-action="motion" aria-pressed="${reducedMotion}">Mouvement réduit</button></nav></header>
+    element.innerHTML=`<header class="poi-map__header"><div class="poi-map__heading"><span>Chronique du Lion</span><h1>Carte de campagne</h1></div><p class="poi-map__resources">Or <b>${model.gold}</b><span>·</span> Butin <b>${model.temporaryGold}</b><span>·</span> Réputation <b>${model.reputation}</b></p><nav aria-label="Actions de campagne"><button data-poi-action="company">Compagnie</button><button data-poi-action="save">Sauvegarder</button><button data-poi-action="menu">Menu</button><button data-poi-action="motion" aria-pressed="${reducedMotion}">Mouvement réduit</button><button data-poi-action="wait">Attendre</button></nav></header>
       <div class="poi-map__atlas-bar"><div class="poi-map__regions" role="tablist" aria-label="Régions de campagne">${LION_POI_REGIONS.map((r,i)=>`<button role="tab" id="poi-region-${i}" data-poi-region="${i}" aria-selected="${i===phase}" tabindex="${i===phase?0:-1}" aria-controls="poi-atlas">${r.shortTitle}</button>`).join('')}</div><button data-poi-action="locate">Ma position</button></div>
       <div class="poi-map__land" id="poi-atlas" role="tabpanel" aria-labelledby="poi-region-${phase}" tabindex="0" aria-label="${escape(region.title)}. Carte défilante, glisser ou utiliser les flèches."><div class="poi-map__canvas"><img class="poi-map__geography" src="${region.image}" alt="" draggable="false"/><svg viewBox="0 0 960 520" aria-hidden="true">${paths}</svg>
-      ${nodes.map(n=>{const [x,y]=positions.get(n.id)!;return `<button class="poi-marker poi-marker--${n.status} poi-marker--${n.role} poi-marker--${n.kind} ${n.id===model.currentNodeId?'poi-marker--current':''} ${n.region!==phase?'poi-marker--border':''}" data-poi-id="${escape(n.id)}" data-poi-reachable="${n.canMove}" style="left:${x/9.6}%;top:${y/5.2}%" aria-label="${escape(n.label)}, ${roleLabels[n.role]}, ${kindLabels[n.kind]}, ${participationLabels[n.participation]}, ${statusLabels[n.status]}${n.id===model.currentNodeId?', position actuelle':''}${n.reusable?', services réutilisables':''}"><span class="poi-marker__icon" aria-hidden="true">${icons[n.kind]}</span><span class="poi-marker__name">${escape(n.label)}</span>${n.status==='resolved'?'<span class="poi-marker__check" aria-hidden="true">✓</span>':n.status==='neutralized'?'<span class="poi-marker__check poi-marker__check--neutral" aria-hidden="true">—</span>':''}${n.id===model.currentNodeId?'<span class="poi-marker__position">Vous êtes ici</span>':''}</button>`;}).join('')}</div></div>
-      <div class="poi-map__map-caption"><span>${escape(region.title)}</span><span>Glisser ou défiler pour explorer · Flèches : points d’intérêt</span></div>
-      <footer class="poi-map__footer"><div class="poi-map__detail" aria-live="polite"></div><div class="poi-map__legend"><p><span>◆ Jalon</span> <span>◉ Structurant</span> <span>◇ Rencontre</span> <span>⚔ Combat</span> <span>♜ Élite</span> <span>⌂ Refuge</span></p><p>✓ Résolu · — Neutralisé<br>Les chemins ouverts se parcourent dans les deux sens.</p></div></footer>`;
+      ${nodes.map(n=>{const [x,y]=positions.get(n.id)!;const threat=threats.find(threat=>threat.positionId===n.id);return `<button class="poi-marker poi-marker--${n.status} poi-marker--${n.role} poi-marker--${n.kind} ${n.id===model.currentNodeId?'poi-marker--current':''} ${n.region!==phase?'poi-marker--border':''} ${threat?'poi-marker--occupied':''}" data-poi-id="${escape(n.id)}" data-poi-reachable="${n.canMove}" style="left:${x/9.6}%;top:${y/5.2}%" aria-label="${escape(n.label)}, ${roleLabels[n.role]}, ${kindLabels[n.kind]}, ${participationLabels[n.participation]}, ${statusLabels[n.status]}${n.id===model.currentNodeId?', position actuelle':''}${n.reusable?', services réutilisables':''}${threat?', passage occupé par '+escape(threat.label):''}"><span class="poi-marker__icon" aria-hidden="true">${icons[n.kind]}</span><span class="poi-marker__name">${escape(n.label)}</span>${n.status==='resolved'?'<span class="poi-marker__check" aria-hidden="true">✓</span>':n.status==='neutralized'?'<span class="poi-marker__check poi-marker__check--neutral" aria-hidden="true">—</span>':''}${n.id===model.currentNodeId?'<span class="poi-marker__position">Vous êtes ici</span>':''}</button>`;}).join('')}
+      ${threats.map(threat=>{const position=positions.get(threat.positionId);if(!position)return '';return `<span class="poi-threat" data-poi-elite-id="${escape(threat.id)}" style="left:${position[0]/9.6}%;top:${position[1]/5.2}%" aria-hidden="true">♜</span>`;}).join('')}</div></div>
+      <div class="poi-map__map-caption"><span>${escape(region.title)} · Tour ${model.turn}</span><span>Glisser ou défiler pour explorer · Flèches : points d’intérêt</span></div>
+      <footer class="poi-map__footer"><div class="poi-map__detail" aria-live="polite"></div><div class="poi-map__legend"><p><span>◆ Jalon</span> <span>◉ Structurant</span> <span>◇ Rencontre</span> <span>⚔ Combat</span> <span>▣ Coffre</span> <span>♜ Menace mobile</span> <span>⌂ Refuge</span></p><p>✓ Résolu · — Neutralisé<br>Les chemins ouverts se parcourent dans les deux sens.</p></div></footer>`;
     this.options.root.append(element);this.element=element;
     const land=element.querySelector<HTMLElement>('.poi-map__land')!;
     const update=()=>{
       const n=model.nodes.find(n=>n.id===this.selectedId)??current;
       const canMove=n.canMove||(n.id===model.currentNodeId&&n.canActivate);
       element.querySelector('.poi-map__detail')!.innerHTML=`<div><span class="poi-map__detail-role">${roleLabels[n.role]} · ${participationLabels[n.participation]}</span><h2>${escape(n.label)}</h2><p>${kindLabels[n.kind]} · ${statusLabels[n.status]}${n.id===model.currentNodeId?' · Position actuelle':''}${n.reusable?' · Services réutilisables':''}</p><p>${escape(n.hint??'')}</p>${n.kind==='elite'?'<strong class="poi-map__danger">Combat d’élite · Préparez votre compagnie.</strong>':''}</div><div class="poi-map__detail-actions"><button data-poi-action="move" ${canMove?'':'disabled'}>${n.id===model.currentNodeId?(n.reusable?'Ouvrir le refuge':'Ouvrir'):'Se rendre'}</button>${n.canBypass?'<button data-poi-action="bypass">Contourner</button>':''}</div>`;
+      const threatBrief=threats.map(threat=>`<div class="poi-map__threat-brief" data-poi-threat="${escape(threat.id)}"><strong>♜ ${escape(threat.label)}${threat.contested?' · Passage contesté':''}</strong><p>${threat.mode==='cyclic_patrol'?'Patrouille':'Traque locale'} · ${escape(nodeLabel(threat.positionId))} → ${escape(nodeLabel(threat.nextPositionId))}</p>${threat.canFight?`<button data-poi-action="elite-fight" data-elite-id="${escape(threat.id)}">Affronter la menace</button>`:''}</div>`).join('');
+      element.querySelector('.poi-map__detail')!.insertAdjacentHTML('beforeend',threatBrief);
       element.querySelectorAll<HTMLButtonElement>('[data-poi-id]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.poiId===n.id)));
     };
     const select=(id:string,scroll=false)=>{
@@ -76,6 +84,8 @@ export class PoiMapView {
         case'bypass':this.options.onBypass(this.selectedId);break;
         case'company':this.options.onCompany();break;case'save':this.options.onSave();break;
         case'menu':this.options.onMenu();break;case'motion':this.options.onReducedMotion();break;
+        case'wait':button.disabled=true;void this.options.onWait?.().finally(()=>{if(button.isConnected)button.disabled=false;});break;
+        case'elite-fight':if(button.dataset.eliteId){button.disabled=true;void this.options.onFightElite?.(button.dataset.eliteId).finally(()=>{if(button.isConnected)button.disabled=false;});}break;
         case'locate':this.render(model,lionPoiMapPhase(model.currentNodeId),model.currentNodeId,reducedMotion);break;
       }
     });

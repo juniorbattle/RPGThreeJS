@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "method": "BUILT_IN_IMAGE_GEN_EDIT",
+  "visualModel": "baked_raster",
+  "runtimeObjectModel": "none",
+  "collisionModel": "none",
+  "engineTarget": "project-native DOM/SVG",
+  "direction": "Option C / Pixel Diorama Fantasy",
+  "acceptance": "CANDIDATE_TECHNICAL_INTEGRATION; OPERATOR_ART_PENDING",
+  "sources": [
+    {
+      "key": "opening",
+      "reference": "public/assets/generated/lion-phase/poi-v2/lion-opening.png",
+      "prompt": "Edit target: the attached existing forest campaign atlas. Production background for RPGThreeJS Lot E, a baked raster map, no runtime objects or collision. Preserve its carefully clustered modern pixel art / HD-2D fantasy diorama style, navy forest shadows, warm grass, slate rock, canopy variation, miniature three-quarter overhead perspective and existing forest/camp/stone-audience/refuge identity. Recompose the geography to follow this EXACT traversable ground layout, using normalized coordinates within a 960 by 520 logical canvas (x right,y down), preserving a wide landscape 16:9 frame. Provide 12 naturally open destination clearings, with no drawn markers or labels: west canvas camp (65,315), small existing stone audience stronghold (190,170), forest battle clearing (300,320), central trail crossroads (450,245), northern supply clearing (350,70), northern patrol clearing (500,70), refugee clearing with small existing tents (650,70), northeast event-trial clearing (770,200), southeast combat-trial clearing (735,420), eastern palisade canvas refuge (890,310), southern wolf glade (450,410), southern cache clearing (585,455). Ground paths MUST join camp-audience-battle-crossroads as a readable main corridor, then crossroads-refugees and crossroads-to-each-trial, refugees-to-each-trial, each trial-to-refuge. Add the exact north detour crossroads-supply-patrol-refugees and the exact small south loop crossroads-wolf-glade-cache-crossroads. Paths bend organically between trees but never run over a cliff, water, tree crowns, walls or buildings. Place ridges/streams in the space BETWEEN these routes, not under destination clearings; any necessary stream crossing has a small coherent bridge. Keep route clearings roomy for code-owned 44px markers and labels. Differentiate north green canopies and south darker woods without inventing settlements, monuments, characters or lore. No people, creatures, chests, text, letters, numerals, map pins, borders, HUD, legend, interface or watermark. Detailed pixel clusters, intentional shapes, no photorealism, smooth 3D, watercolor, generic vector or anime. This is finished geographical background artwork, not a screenshot or diagram.",
+      "generatedOutput": "C:\\Users\\miche\\.codex\\generated_images\\01a141b8-b256-73c2-9c25-b4411214088e\\exec-ebe9455f-5ef7-4706-9e5b-1e8b74707181.png",
+      "asset": "public/assets/generated/lion-phase/poi-lot-e/lion-opening.png",
+      "sha256": "a9705f4c1d8831615d31c0ff38c49ae8ae2cb51d37cc18c27b25f5f4086377b3",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "valley",
+      "reference": "public/assets/generated/lion-phase/poi-v2/bois-clair.png",
+      "prompt": "Edit target: attached existing Bois-Clair valley atlas, for RPGThreeJS Lot E. Preserve the established modern pixel art / HD-2D Pixel Diorama Fantasy style, dense intentional pixel clusters, slate cliffs, emerald/navy forest, teal river, warm trail highlights, existing small village, shrine and two canvas refuges. Recompose a coherent overhead three-quarter 16:9 landscape around EXACT code-marker destination anchors in a 960x520 logical coordinate system (x right,y down). Keep west entry from earlier refuge at (80,80). Ten own-region destination pads: supplies trail (160,245), optional supply depot clearing (180,80), marsh combat detour (330,90), Valmir road junction and principal river crossing (410,315), bridge cache clearing (200,420), serpent patrol clearing (370,445), existing shrine/event-trial (570,110), existing combat-trial glade (590,420), existing Bois-Clair village (760,270), east refuge tent palisade (875,115). Wide navigable trails follow entry-supply-trail-Valmir, supply-trail-depot-marsh-Valmir (northern loop), Valmir-cache-serpent-clearing-Valmir (southern triangular loop), then Valmir-to-each-trial, each trial-to-village and village-refuge. All routes must be visible real ground, with coherent slopes or stairs, and bridges at EVERY crossing of river/wetland. Put the river and cliffs around the walkable route network, not under markers. Exactly the existing small village and shrine, no new named places or lore. Leave natural open ground around destination pads, especially the 3 southern patrol points for a mobile warning overlay. No baked enemy, hero, chest, marker, labels, text, UI or watermark. Rich diorama relief, readable artistic hierarchy and pixel detail matching the reference, no vector map, no smooth3D or photorealism. Background only; runtime overlays own all interaction.",
+      "generatedOutput": "C:\\Users\\miche\\.codex\\generated_images\\01a141b8-b256-73c2-9c25-b4411214088e\\exec-721d9fd9-3222-452e-80a2-ba83e5736686.png",
+      "asset": "public/assets/generated/lion-phase/poi-lot-e/bois-clair.png",
+      "sha256": "28b9b1e9a6c9540f62c97c9f9ad85bff508f44cfd57afb2a486b31a2aafbe451",
+      "width": 1704,
+      "height": 923
+    },
+    {
+      "key": "seal",
+      "reference": "public/assets/generated/lion-phase/poi-v2/judgement.png",
+      "prompt": "Edit target: attached existing ruined approach and judgement atlas for RPGThreeJS Lot E. Preserve the approved modern pixel-art HD-2D / Pixel Diorama Fantasy style, gold-green foliage, navy shadows, slate ruins, dramatic but coherent relief, existing palisade entry and eastern judgement sanctuary, and the canvas final preparation camp. Recompose the actual WALKABLE geography for a wide 16:9 overhead three-quarter atlas. Logical canvas 960x520, x right y down. Region entry from previous refuge is (80,80). Eleven destination clearings: volunteer/recruit path (140,340), witness-supplies clearing (185,160), witnesses crossroads (360,265), northern hunter glade (390,75), event-trial ruin clearing (580,105), southern independent ruin encounter courtyard (365,435), combat-trial ruins (575,420), signs of shadows landmark clearing (740,250), optional ruin-supplies dead-end (760,75), final canvas preparation camp (745,435), judgement sanctuary (885,130). Trails must connect entry-volunteer-witnesses; optional loop volunteer-supplies-witnesses; northern detour witnesses-hunters-event-trial; southern detour witnesses-independent-ruin-fight-combat-trial; ALSO maintain direct witnesses-to-each-trial; each trial connects to shadow-signs, shadow-signs-to-preparation-to-judgement. The late cache is a reversible dead-end from shadow-signs to (760,75) ONLY, no shortcut from it to judgement or a trial. Create a believable walkable ring around ridges via ramps or stairs so drawn routes never cross sheer cliff faces or ruin walls. Destination pads stay clear of masonry, ravines and tall foreground trees for 44px code-owned markers/labels. No new lore monuments, settlements, people, monsters, chests, flags, labels, text, symbols, map markers, UI or watermark. Make this finished pixel-cluster fantasy background art with intentional relief, not a generic map or screenshot. Match reference family closely.",
+      "generatedOutput": "C:\\Users\\miche\\.codex\\generated_images\\01a141b8-b256-73c2-9c25-b4411214088e\\exec-1b7ce0f2-ce85-4519-9f41-897ca4dabae9.png",
+      "asset": "public/assets/generated/lion-phase/poi-lot-e/judgement.png",
+      "sha256": "e4ba872b1756427dedd6b763271b63f74d83690717c25df090a0b7555a3f6ddf",
+      "width": 1704,
+      "height": 923
+    }
+  ]
+}

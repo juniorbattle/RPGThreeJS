@@ -1,3 +1,5 @@
+import { LOT_E_POIS } from './LionPoiAuthoring';
+
 /** Authored campaign geography; RunSystem validates every edge and causal gate.
  * The directed RunGraph remains unchanged for old V6 recovery. No layout is saved. */
 export const LION_OPENING_LOCAL_ROUTES = Object.freeze([
@@ -39,6 +41,8 @@ export const LION_POI_METADATA: Readonly<Record<string,LionPoiMetadata>> = Objec
   'lion-shadow-signs':{region:2,role:'primary',participation:'required'},
   'lion-final-refuge':{region:2,role:'primary',participation:'required'},
   'lion-final-judgement':{region:2,role:'primary',participation:'required'},
+  ...Object.fromEntries(LOT_E_POIS.map(poi => [poi.id,
+    {region:poi.region, role:poi.role, participation:poi.participation}])),
 });
 
 export function lionPoiRegion(nodeId:string):0|1|2 {return LION_POI_METADATA[nodeId]?.region??0;}

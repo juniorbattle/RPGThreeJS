@@ -1,6 +1,8 @@
 # POI V2 art and content authoring
 
-Authority: [OD-2026-10-15-A](../autonomy/POI_V2_OPERATOR_DECISION_2026-10-15.md), set1.3.0. **CURRENT FACT:** 21 existing Lion nodes. No new chest, encounter or elite placement is active. `APPROVED_POI_CHESTS` remains empty. **APPROVED DECISION:** real connected local branches and three authored region maps. **UNDECIDED:** final operator artistic acceptance and any additional content placement.
+Authority: [OD-2026-10-15-B](../autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md), set1.4.0. **CURRENT FACT:** 21 preserved canonical nodes plus the12 approved Lot E nodes, six active chests and two separate mobile elites. The exact [Lot E contract](RPGThreeJS_LOT_E_CONTRAT_AUTHORING_FINAL_2026-10-15.md) and [annex](RPGThreeJS_LOT_E_MANIFEST_AUTHORING_FINAL_2026-10-15.json) supersede the inactive V2 proposals below. **UNDECIDED:** operator artistic acceptance and final felt balance.
+
+The three Lot E map revisions are versioned in `public/assets/generated/lion-phase/poi-lot-e/`; original V2 art remains intact. Built-in image-generation edits use the inspected V2 maps as references and add the approved destination clearings, loop paths and crossing approaches. [Exact prompts, outputs and hashes](LOT_E_ATLAS_PROVENANCE_2026-10-15.json) record the reproducible art handoff. Native overlays remain the authority for paths, accessibility, temporary occupation and intentions. Technical geometry and capture review must precede the separate operator art decision.
 
 ## Art specification
 
@@ -18,9 +20,9 @@ All prompts request modern Option C / Pixel Diorama Fantasy, crisp intentional h
 
 Acceptance requires before/after comparison, current captures of all three regions, readable overlay routes and labels,1366×768/620/390 geometry, keyboard/touch scrolling and focus, OS/game reduction, plus operator artistic inspection. A generated asset is a candidate integrated for review, never automatically `PRODUCTION_APPROVED` art.
 
-## Optional authoring proposals — inactive
+## Historical V2 authoring proposals — superseded by Lot E
 
-These are explicit **PROPOSED FUTURE DESIGN**, not catalogue entries, approved rewards or blockers to the21-node delivery. No icon or playable node is shown for these proposals.
+The following table preserves the old **PROPOSED FUTURE DESIGN** as historical context. It no longer describes the approved Lot E payloads or live topology; use the signed contract and annex above.
 
 | Proposed durable ID | Proposed connection | Exact candidate payload and provenance | Economy / decision |
 | --- | --- | --- | --- |
@@ -28,4 +30,4 @@ These are explicit **PROPOSED FUTURE DESIGN**, not catalogue entries, approved r
 | `lion-poi-opening-patrol` | Separate reversible dead end from crossroads; trial still required | Existing normal `forest_patrol`, existing eligible roster; unchanged existing rewards85gold,+1reputation,1red_gem,1iron_ore | New reward opportunity and durable ID need explicit placement/economy approval. Not silently activated by permission to use ordinary configurations. |
 | No opening elite proposed | None | Existing `troll_crossing` and `serpent_duelist_trial` are genuinely ranked elite but authored for later phases; no eligible opening elite placement is approved | Preserve their current canonical availability; do not move them into the tutorial or label a normal fight elite. |
 
-The existing chest adapter fails closed until authoring is approved. Any future new durable node must add RunSystem-owned once-only state and tested old-V6 compatibility. Catalogue availability alone does not approve a placement or reward.
+Lot E authoring is explicitly approved by OD-2026-10-15-B. The active adapter and additive V6 migration implement its exact payloads; the historical candidates above are not a second catalogue. Any further content still requires explicit authoring approval.

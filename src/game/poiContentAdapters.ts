@@ -2,6 +2,7 @@ import { combatConfigs } from './content';
 import { getItemCategory } from './catalog';
 import { addTemporaryLoot, getRunNode, isPoiNeutralized } from './runSystem';
 import type { CombatConfig, GameState } from './types';
+import { LOT_E_POIS } from '../campaign/LionPoiAuthoring';
 
 export interface AuthoredPoiChest {
   nodeId: string;
@@ -9,8 +10,10 @@ export interface AuthoredPoiChest {
   gold: number;
   items: Readonly<Record<string, number>>;
 }
-/** No new campaign placement/reward has been approved. Authoring must populate this explicitly. */
-export const APPROVED_POI_CHESTS: readonly AuthoredPoiChest[] = Object.freeze([]);
+/** Exact six-chest catalogue approved by OD-2026-10-15-B; all grants remain temporary. */
+export const APPROVED_POI_CHESTS: readonly AuthoredPoiChest[] = Object.freeze(LOT_E_POIS
+  .filter(poi=>poi.chestLoot).map(poi=>({nodeId:poi.id,contentId:poi.contentId!,
+    gold:poi.chestLoot!.temporaryGold,items:poi.chestLoot!.temporaryItems})));
 
 /** Existing tactical authority supplies both ordinary and genuinely ranked elite payloads. */
 export function poiCombatPayload(state: GameState, nodeId: string, elite = false): CombatConfig | null {

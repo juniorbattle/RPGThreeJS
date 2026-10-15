@@ -1,10 +1,13 @@
 // @vitest-environment happy-dom
 import { describe, expect, it } from 'vitest';
 import { createInitialState, SaveRepository } from './store';
-import { bypassPoi, enterPoi, failRunToCheckpoint, isPoiNeutralized, selectPoiMap } from './runSystem';
+import { bypassPoi, enterPoi as enterOwnerPoi, failRunToCheckpoint, isPoiNeutralized, selectPoiMap, settlePoiNavigation } from './runSystem';
 import type { GameState } from './types';
 
 // Pure authority fixtures explicitly mark content resolved; these are not played combat evidence.
+// Complete the preceding mechanical lifecycle boundary before the next intention. Native GameApp
+// does this after its actual arrival content; pending-turn exclusion has dedicated Lot E coverage.
+function enterPoi(state:GameState,id:string){settlePoiNavigation(state);return enterOwnerPoi(state,id);}
 function resolveFixture(state: GameState, id: string): void {
   expect(enterPoi(state,id)?.activate).toBe(true);
   state.resolvedNodeIds.push(id);

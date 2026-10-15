@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { GameApp } from './GameApp';
-import { createInitialState, SaveRepository } from './store';
+import { createInitialState, SaveRepository, migrateState } from './store';
 import { sceneTransition } from '../ui/SceneTransition';
 import type { GameState, RunNode } from './types';
 import { getRunNode } from './runSystem';
@@ -31,6 +31,7 @@ describe('GameApp POI owner handoffs',()=>{
     owner.state.run.traversalBranches={T0:'lion-first-trial-combat',T1:'lion-second-trial-event'};
     owner.state.run.temporaryLoot.gold=23;
     if(resolved)owner.state.resolvedNodeIds.push(id);
+    owner.state=migrateState(owner.state); // Initialize only the newly versioned expedition facts.
     new SaveRepository().saveAuto(owner.state);const saved=structuredClone(owner.state);
     vi.spyOn(sceneTransition,'run').mockImplementation(async options=>{await options.task();});
     const encounter=vi.spyOn(owner,'resolveRunNode').mockResolvedValue();

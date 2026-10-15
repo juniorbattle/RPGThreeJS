@@ -3,8 +3,8 @@
   "runStartedAt": "2026-10-15T22:57:16.909Z",
   "runEndedAt": null,
   "activeTask": "POI-LOT-E-FINAL",
-  "activePhase": "IMPLEMENTATION",
-  "activeSubtask": "Implement complete Lot E E1-E5, then focused truth/save/integration checks, independent review and earned native campaign acceptance.",
+  "activePhase": "NATIVE_CAMPAIGN",
+  "activeSubtask": "Run registered earned production Lot E direct and complete opening campaigns on frozen product checkpoint; inspect atlas captures and exact V6.",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "99ed9ed9d5b4290f65e1591a701463ad61c0f21d",
   "lastPushedCommit": "0aada9fdd65d10702138bfdf1174ce188c824302",
@@ -274,7 +274,7 @@
     "Preserved unrelated six-hero skills, mounted keyboard, narrative/manual findings; ten inherited broader-suite audit failures",
     "Two inactive optional chest/patrol authoring proposals require specific approval before activation"
   ],
-  "nextAction": "Implement complete Lot E E1-E5, then focused truth/save/integration checks, independent review and earned native campaign acceptance.",
+  "nextAction": "Run registered earned production Lot E direct and complete opening campaigns on frozen product checkpoint; inspect atlas captures and exact V6.",
   "taskQueue": [
     "POI-MAP-FINALIZATION: requested implementation/native milestones REVIEWED_SCOPED; operator final playtest remains",
     "DEMO-PC-CAMPAIGN: both native truth endings, T0/T1/T3 alternatives, rescue/sacrifice, defeat and exact V6 accepted in recorded scopes",
@@ -377,10 +377,10 @@
   },
   "runId": "codex-lot-e-20261015",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-15T23:04:04.827Z",
+  "lastHeartbeat": "2026-10-15T23:44:58.702Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-15T23:04:04.827Z",
+    "lastHeartbeat": "2026-10-15T23:44:58.702Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -29893,8 +29893,45 @@
         "acceptanceScope": "Frozen recorded scope only; no inherited battle relabelled as newly played; failed jobs remain unseedable"
       }
     ],
-    "wip": null,
-    "nextAction": "Implement complete Lot E E1-E5, then focused truth/save/integration checks, independent review and earned native campaign acceptance.",
+    "wip": {
+      "branch": "wip/codex-lot-e-20261015",
+      "sha": "6381ff7ef8fa9005f428214a7bd783d0d0865ab9",
+      "dirtyFiles": [
+        "src/campaign/LionPoiMap.ts",
+        "src/campaign/LionPoiTopology.test.ts",
+        "src/campaign/LionPoiTopology.ts",
+        "src/campaign/LionPoiAuthoring.ts",
+        "src/game/GameApp.ts",
+        "src/game/GameAppPoi.test.ts",
+        "src/game/GameAppPoiExpedition.test.ts",
+        "src/game/content.ts",
+        "src/game/poiContentAdapters.test.ts",
+        "src/game/poiContentAdapters.ts",
+        "src/game/poiNavigation.test.ts",
+        "src/game/poiExpedition.test.ts",
+        "src/game/poiExpedition.ts",
+        "src/game/runSystem.ts",
+        "src/game/store.ts",
+        "src/game/types.ts",
+        "src/ui/PoiMapView.ts",
+        "src/ui/RunNodePresentation.ts",
+        "src/ui/poi-map.css",
+        "src/ui/PoiEncounterView.test.ts",
+        "src/ui/PoiEncounterView.ts",
+        "src/game/runSystem.test.ts",
+        "src/game/content.test.ts",
+        "src/game/campaignPresentationMigration.test.ts",
+        "tools/demo-continuous-production-qa.mjs",
+        "tools/qa/qa-job.mjs",
+        "docs/project/LOT_E_ATLAS_PROVENANCE_2026-10-15.json",
+        "public/assets/generated/lion-phase/poi-lot-e/lion-opening.png",
+        "public/assets/generated/lion-phase/poi-lot-e/bois-clair.png",
+        "public/assets/generated/lion-phase/poi-lot-e/judgement.png"
+      ],
+      "status": "GREEN_MECHANICAL_NATIVE_PENDING",
+      "lastGreenCheck": "independent-qa-02:206tests/types/contracts/build; final atlas build PASS; native driver prelaunch guardian PASS"
+    },
+    "nextAction": "Run registered earned production Lot E direct and complete opening campaigns on frozen product checkpoint; inspect atlas captures and exact V6.",
     "runMetrics": {
       "runId": "codex-poi-v2-20261015",
       "countBasis": "Unique final paths compared with starting b79063bb, no renames; removals distinct from surviving modifications",
@@ -30777,7 +30814,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "POI-LOT-E-FINAL",
-    "activeSubtask": "Implement complete Lot E E1-E5, then focused truth/save/integration checks, independent review and earned native campaign acceptance.",
+    "activeSubtask": "Run registered earned production Lot E direct and complete opening campaigns on frozen product checkpoint; inspect atlas captures and exact V6.",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -34113,7 +34150,7 @@
     "agent": "codex",
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-15T22:57:16.909Z",
-    "activePhase": "IMPLEMENTATION",
+    "activePhase": "NATIVE_CAMPAIGN",
     "heartbeat": "2026-10-15T21:32:17.578Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-15T2128Z-codex-poi-v2-retirement.md",
     "motion1617": {
@@ -35910,7 +35947,17 @@
       "balanceAcceptance": "OPERATOR_PENDING",
       "amendmentCommit": "f9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8",
       "contractReview": "PASS_INDEPENDENT_ACTUAL_DIFF",
-      "governanceReferenceUpdate": "OPERATOR_EXPLICITLY_APPROVED_AND_UPDATED_FOUR_REFERENCES_ONLY"
+      "governanceReferenceUpdate": "OPERATOR_EXPLICITLY_APPROVED_AND_UPDATED_FOUR_REFERENCES_ONLY",
+      "lastSnapshotAt": "2026-10-15T23:40:01.8286581Z",
+      "mechanicalEvidence": {
+        "tests": 206,
+        "types": "PASS",
+        "contracts": "8/8",
+        "build": "PASS_FINAL_ATLAS_BUILD",
+        "directory": "tmp/lot-e/independent-qa-02",
+        "graphReview": "PASS_BOUNDED_ALL_RESOLUTION_MASKS_AND_OUTCOMES",
+        "qaHelperTests": "19/19_HOST"
+      }
     }
   },
   "previousInterruptedRun": {

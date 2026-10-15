@@ -3,12 +3,14 @@ import {LION_POI_METADATA,lionPoiRegion} from './LionPoiTopology';
 import {LION_CAMPAIGN_STRUCTURE} from './LionCampaignStructure';
 import {createInitialState} from '../game/store';
 import {selectPoiMap} from '../game/runSystem';
+import {LOT_E_POIS} from './LionPoiAuthoring';
 
 describe('authored Lion POI regions and participation',()=>{
-  it('classifies exactly the21canonical nodes without adding authoring or changing campaign facts',()=>{
+  it('keeps all21canonical identities and classifies exactly12approved optional additions without changing campaign facts',()=>{
     const state=createInitialState();const before=structuredClone(state);
-    expect(Object.keys(LION_POI_METADATA).sort()).toEqual(LION_CAMPAIGN_STRUCTURE.map(n=>n.id).sort());
-    expect(selectPoiMap(state).nodes).toHaveLength(21);expect(state).toEqual(before);
+    expect(LION_CAMPAIGN_STRUCTURE).toHaveLength(21);
+    expect(Object.keys(LION_POI_METADATA).sort()).toEqual([...LION_CAMPAIGN_STRUCTURE.map(n=>n.id),...LOT_E_POIS.map(poi=>poi.id)].sort());
+    expect(selectPoiMap(state).nodes).toHaveLength(33);expect(state).toEqual(before);
     expect(new Set(Object.values(LION_POI_METADATA).map(n=>n.region))).toEqual(new Set([0,1,2]));
     expect(LION_POI_METADATA['lion-opening-ambush']).toEqual({region:0,role:'structuring',participation:'required'});
     expect(LION_POI_METADATA['lion-nomad-crossroads']!.participation).toBe('required');

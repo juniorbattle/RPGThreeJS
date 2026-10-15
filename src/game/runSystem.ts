@@ -1,5 +1,5 @@
 import type {
-  CampaignNode, GameState, InventoryState, RunGraph, RunLoot, RunNode, RunNodeType, RunState,
+  CampaignNode, GameState, InventoryState, RunGraph, RunLoot, RunNode, RunNodeType, RunState, CombatResult,
 } from './types';
 import { getLionConductTier, type LionConductTier } from './lionNarrative';
 import { LION_TRAVERSAL_LEGS } from '../campaign/LionCampaignTravelRelations';
@@ -7,6 +7,10 @@ import { changeReputation } from './reputation';
 import { LION_FIRST_TRIAL, LION_OPENING_LOCAL_ROUTES, openingLocalRoutesUnlocked, LION_POI_METADATA,
   type LionPoiRole, type LionPoiParticipation } from '../campaign/LionPoiTopology';
 import { resolveOptionalEncounterIgnoreConsequence } from './OptionalEncounterConsequencePolicy';
+import { LOT_E_POIS, LOT_E_ELITES, makeExpeditionNodes } from '../campaign/LionPoiAuthoring';
+import { applyCombatProgress } from './combatProgress';
+import { initialPoiExpedition, expeditionEdges, recordPoiMovement, eliteAtPoi,
+  beginPoiEliteEncounter, settlePoiStep, selectPoiThreats, type PoiThreatView } from './poiExpedition';
 
 export { getLionConductScore, getLionConductTier } from './lionNarrative';
 export type { LionConductTier } from './lionNarrative';
@@ -571,7 +575,7 @@ function makeLionNode(template: LionRouteNode, seed: number): RunNode {
 
 export function generateRunGraph(seed: number): RunGraph {
   return {
-    nodes: LION_ROUTE_TEMPLATE.map((node) => makeLionNode(node, seed)),
+    nodes: [...LION_ROUTE_TEMPLATE.map((node) => makeLionNode(node, seed)), ...makeExpeditionNodes(seed)],
   };
 }
 
@@ -588,6 +592,7 @@ export function createRunState(seed = Date.now() & 0x7fffffff): RunState {
     revealedNodeIds: [start.id, ...start.links],
     visitedNodeIds: [start.id],
     temporaryLoot: { gold: 0, inventory: EMPTY_INVENTORY() },
+    poiExpedition: initialPoiExpedition(),
     graph,
   };
 }
@@ -703,6 +708,8 @@ export interface PoiMapModel {
   reputation: number;
   nodes: PoiMapNode[];
   edges: { from: string; to: string; unlocked: boolean }[];
+  threats: PoiThreatView[];
+  turn: number;
 }
 
 function poiForkChoice(state: GameState, leg: typeof LION_TRAVERSAL_LEGS[number], ids: readonly string[]): string | undefined {
@@ -746,6 +753,9 @@ function unlockedPoiIds(state: GameState): Set<string> {
   }
   // Preserve an authentic old interrupted encounter, never infer its outcome.
   unlocked.add(state.run.currentNodeId);
+  for (const poi of LOT_E_POIS) {
+    if (poi.prerequisiteResolved.every(id => state.resolvedNodeIds.includes(id))) unlocked.add(poi.id);
+  }
   return unlocked;
 }
 
@@ -766,8 +776,10 @@ export function selectPoiMap(state: GameState): PoiMapModel {
     ...(current?.links ?? []),
     ...state.run.graph.nodes.filter(n => n.links.includes(state.run.currentNodeId)).map(n => n.id),
   ]);
-  const localEdges = LION_OPENING_LOCAL_ROUTES.map(edge=>({...edge,
-    unlocked:openingLocalRoutesUnlocked(state.resolvedNodeIds)}));
+  const localEdges = [
+    ...LION_OPENING_LOCAL_ROUTES.map(edge=>({...edge, unlocked:openingLocalRoutesUnlocked(state.resolvedNodeIds)})),
+    ...expeditionEdges().map(edge=>({...edge, unlocked:unlocked.has(edge.from)&&unlocked.has(edge.to)})),
+  ];
   for (const edge of localEdges.filter(e=>e.unlocked)) {
     if (edge.from===state.run.currentNodeId) neighbors.add(edge.to);
     if (edge.to===state.run.currentNodeId) neighbors.add(edge.from);
@@ -791,7 +803,7 @@ export function selectPoiMap(state: GameState): PoiMapModel {
     const status: PoiStatus = state.resolvedNodeIds.includes(node.id) ? 'resolved'
       : neutralized ? 'neutralized' : unlocked.has(node.id) ? 'available' : 'locked';
     const reusable = node.type === 'refuge' && Boolean(state.flags[`refugeSecured:${node.id}`]);
-    const kind: PoiKind = node.type === 'refuge' ? 'refuge'
+    const kind: PoiKind = node.type === 'chest' ? 'chest' : node.type === 'refuge' ? 'refuge'
       : node.type === 'combat' ? (ELITE_ROUTE_CONTENT_IDS.has(node.contentId) ? 'elite' : 'combat')
       : node.type === 'story' || node.type === 'boss' ? 'primary' : 'mystery';
     const canMove = active && node.id !== state.run.currentNodeId && neighbors.has(node.id) && unlocked.has(node.id);
@@ -803,25 +815,35 @@ export function selectPoiMap(state: GameState): PoiMapModel {
         && !state.run.bypassedRouteNodeIds?.includes(node.id) && (canMove || node.id === state.run.currentNodeId),
     };
   });
+  const geography = {nodes, edges:[...state.run.graph.nodes.flatMap(n=>n.links.map(id=>({from:n.id,to:id,unlocked:unlocked.has(n.id)&&unlocked.has(id)}))),
+    ...bypassEdges.map(edge=>({from:edge.fromNodeId,to:edge.toNodeId,unlocked:unlocked.has(edge.fromNodeId)&&unlocked.has(edge.toNodeId)})),
+    ...localEdges.filter(edge=>!bypassEdges.some(b=>b.fromNodeId===edge.from&&b.toNodeId===edge.to))]};
   return {currentNodeId:state.run.currentNodeId, gold:state.gold, temporaryGold:state.run.temporaryLoot.gold,
     reputation:state.reputation, nodes,
-    edges:[...state.run.graph.nodes.flatMap(n=>n.links.map(id=>({from:n.id,to:id,unlocked:unlocked.has(n.id)&&unlocked.has(id)}))),
-      ...bypassEdges.map(edge=>({from:edge.fromNodeId,to:edge.toNodeId,unlocked:unlocked.has(edge.fromNodeId)&&unlocked.has(edge.toNodeId)})),
-      ...localEdges.filter(edge=>!bypassEdges.some(b=>b.fromNodeId===edge.from&&b.toNodeId===edge.to))],
+    edges:geography.edges, threats:selectPoiThreats(state, geography), turn:state.run.poiExpedition?.turn??0,
   };
 }
 
 /** Revalidated movement/activation with authored optional bypass. Never grants resolution, loot or combat results. */
-export function enterPoi(state: GameState, nodeId: string): { node: RunNode; activate: boolean } | null {
-  if (state.run.status !== 'active') return null;
-  const selected = selectPoiMap(state).nodes.find(n => n.id === nodeId);
+export function enterPoi(state: GameState, nodeId: string): { node: RunNode; activate: boolean; interception?:boolean } | null {
+  if (state.run.status !== 'active' || state.run.poiExpedition?.encounter || state.run.poiExpedition?.pendingStep) return null;
+  const map = selectPoiMap(state);
+  const selected = map.nodes.find(n => n.id === nodeId);
   if (!selected || state.run.status !== 'active'
     || (!selected.canMove && !(nodeId === state.run.currentNodeId && selected.canActivate))) return null;
+  const threat = eliteAtPoi(state, nodeId);
+  if (threat) {
+    beginPoiEliteEncounter(state,threat.id,'front',nodeId);
+    return {node:getRunNode(state.run,nodeId)!,activate:false,interception:true};
+  }
   // Choosing a direct local trial route ignores the compatible refugee encounter.
   // Its authored consequence belongs to this truth owner and is never a UI effect.
-  if (state.run.currentNodeId==='lion-nomad-crossroads' && LION_FIRST_TRIAL.includes(nodeId)
+  if (LION_FIRST_TRIAL.includes(nodeId)
     && !state.resolvedNodeIds.includes('lion-refugees')) bypassPoi(state,'lion-refugees');
   const node = getRunNode(state.run, nodeId)!;
+  const origin = map.nodes.find(n=>n.id===state.run.currentNodeId);
+  recordPoiMovement(state,state.run.currentNodeId,nodeId,
+    origin?.status==='resolved'||origin?.status==='neutralized'||origin?.id==='lion-camp');
   if (!isPoiNeutralized(state, nodeId)) {
     for (const leg of LION_TRAVERSAL_LEGS) for (const stage of leg.stages) {
       if (stage.mode === 'IN_TRAVERSAL_FORK' && stage.nodeIds.includes(nodeId)
@@ -840,6 +862,37 @@ export function enterPoi(state: GameState, nodeId: string): { node: RunNode; act
     if (['event','mystery','recruitment'].includes(node.type) && !state.seenUniqueEvents.includes(node.contentId)) state.seenUniqueEvents.push(node.contentId);
   }
   return {node, activate:selected.canActivate};
+}
+
+/** Lifecycle boundary: arrival content is complete before a pending threat step is evaluated. */
+export function settlePoiNavigation(state: GameState): void {
+  settlePoiStep(state,selectPoiMap(state));
+}
+
+export function commitPoiEliteFight(state: GameState, encounterId: string): string|null {
+  const encounter=state.run.poiExpedition?.encounter;
+  const def=LOT_E_ELITES.find(def=>def.id===encounter?.eliteId);
+  const elite=def&&state.run.poiExpedition?.elites[def.id];
+  if (!encounter||encounter.id!==encounterId||!def||!elite?.active||elite.defeated
+    ||state.run.status!=='active'||state.run.currentNodeId!==encounter.originNodeId) return null;
+  encounter.phase='combat'; return def.combat.id;
+}
+
+/** A mobile tactical result cannot resolve any RunNode or execute a canonical narrative hook. */
+export function resolvePoiEliteVictory(state: GameState, encounterId: string, result: CombatResult): boolean {
+  const expedition=state.run.poiExpedition, encounter=expedition?.encounter;
+  const def=LOT_E_ELITES.find(def=>def.id===encounter?.eliteId);
+  const elite=def&&expedition?.elites[def.id];
+  if (!result.victory||!encounter||encounter.id!==encounterId||encounter.phase!=='combat'
+    ||!def||!elite?.active||elite.defeated||result.combatId!==def.combat.id||state.run.status!=='active') return false;
+  applyCombatProgress(state,result,3);
+  addTemporaryLoot(state.run,{gold:def.combat.rewards.temporaryGold});
+  for(const [itemId,quantity] of Object.entries(def.combat.rewards.materials))
+    addTemporaryLoot(state.run,{category:'materials',itemId,quantity});
+  changeReputation(state,def.combat.rewards.reputation,`combat:${result.combatId}`);
+  elite.defeated=true;elite.active=false;
+  delete expedition!.encounter;
+  return true;
 }
 
 /** Only authored optional events may be bypassed; this owner applies their existing once-only consequence. */
@@ -902,4 +955,9 @@ export function failRunToCheckpoint(state: GameState): void {
   state.run.temporaryLoot = { gold: 0, inventory: EMPTY_INVENTORY() };
   state.currentNodeId = state.run.checkpointNodeId;
   state.run.status = 'active';
+  if (state.run.poiExpedition) {
+    delete state.run.poiExpedition.pendingStep;
+    delete state.run.poiExpedition.encounter;
+    delete state.run.poiExpedition.previousSafeNodeId;
+  }
 }
