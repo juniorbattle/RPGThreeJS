@@ -1,6 +1,6 @@
 # POI finalization — codex-poi-finalization-20261014
 
-IN_PROGRESS. Both native endings now completed with exact terminal/menu/reload: trial32rounds/168actions and Serpent12rounds/76actions. Actual positive-loot defeat on touch390:210temporarygold lost, secured20 retained, original First-refuge checkpoint and entire V6 exact after reload. Native OS/game reduction preparation and touch terminal/choices pass their scoped cases. Five inherited Journey failures closed;109focused/19helper/type/build/contracts gates green at source3b35197. Current driver d732e4d; frozen source/build unchanged. No full demo, balance or retirement claim.
+IN_PROGRESS. Both native endings completed with exact terminal/menu/reload: trial32rounds/168actions and Serpent12rounds/76actions. Actual positive-loot defeat on touch390:210temporarygold lost, secured20 retained, original First-refuge checkpoint and entire V6 exact after reload. Native OS/game reduction preparation and touch terminal/choices pass scoped cases. Final UI source/build70a4a0a separates map anchors and enlarges controls; independent final-build recovery checks44px targets/fullroster/31trustedtaps and no label overlap. Five inherited Journey failures closed;149focused/19helper/type/build/contracts green. No full demo, balance or retirement claim.
 
 Player-visible changes: restore authored preparation/local map return; native saved reduction control. Native equipment purchases/equipment/sale/rest remain existing game rules. Traversal dependency inventory retained, no deletion. All229preceding QA jobs and deferred skills/keyboard/narrative objects match baseline exactly.
 
@@ -1337,6 +1337,9 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - poi-preparation-touch-os390-2127: SUCCEEDED; port 5423; receipt `tmp/demo/poi-preparation-touch-os390-2127/qa-job.json`; NOT_ACCEPTED
 - poi-defeat-t1-touch-2150: SUCCEEDED; port 5424; receipt `tmp/demo/poi-defeat-t1-touch-2150/qa-job.json`; NOT_ACCEPTED
 - poi-second-sacrifice-steel-2153: FAILED; port 5425; receipt `tmp/demo/poi-second-sacrifice-steel-2153/qa-job.json`; NOT_ACCEPTED
+- poi-defeat-touch-final-ui-0113: SUCCEEDED; port 5426; receipt `tmp/demo/poi-defeat-touch-final-ui-0113/qa-job.json`; NOT_ACCEPTED
+- poi-sacrifice-rested-final-0113: RUNNING; port 5427; receipt `tmp/demo/poi-sacrifice-rested-final-0113/qa-job.json`; NOT_ACCEPTED
+- poi-t3-touch-os-final-0115: RUNNING; port 5428; receipt `tmp/demo/poi-t3-touch-os-final-0115/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
