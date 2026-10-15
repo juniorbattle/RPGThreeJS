@@ -8,7 +8,8 @@ import { LION_PURSUIT_ENCOUNTER_BINDINGS, LION_PURSUIT_ENEMY_POOLS, rollLionPurs
 import { combatConfigs } from './content';
 import { applyCombatProgress } from './combatProgress';
 import { changeReputation } from './reputation';
-import { LION_FIRST_TRIAL, LION_OPENING_LOCAL_ROUTES, openingLocalRoutesUnlocked } from '../campaign/LionPoiTopology';
+import { LION_FIRST_TRIAL, LION_OPENING_LOCAL_ROUTES, openingLocalRoutesUnlocked, LION_POI_METADATA,
+  type LionPoiRole, type LionPoiParticipation } from '../campaign/LionPoiTopology';
 import { resolveOptionalEncounterIgnoreConsequence } from './OptionalEncounterConsequencePolicy';
 
 export { getLionConductScore, getLionConductTier } from './lionNarrative';
@@ -689,6 +690,9 @@ export function enterRunNode(run: RunState, nodeId: string): RunNode | null {
 export type PoiStatus = 'available' | 'locked' | 'resolved' | 'neutralized';
 export type PoiKind = 'primary' | 'mystery' | 'combat' | 'elite' | 'chest' | 'refuge';
 export interface PoiMapNode extends RunNode {
+  region: number;
+  role: LionPoiRole;
+  participation: LionPoiParticipation;
   status: PoiStatus;
   kind: PoiKind;
   reusable: boolean;
@@ -795,7 +799,9 @@ export function selectPoiMap(state: GameState): PoiMapModel {
       : node.type === 'combat' ? (ELITE_ROUTE_CONTENT_IDS.has(node.contentId) ? 'elite' : 'combat')
       : node.type === 'story' || node.type === 'boss' ? 'primary' : 'mystery';
     const canMove = active && node.id !== state.run.currentNodeId && neighbors.has(node.id) && unlocked.has(node.id);
-    return { ...node, status, kind, reusable, canMove,
+    const metadata=LION_POI_METADATA[node.id];
+    return { ...node, region:metadata?.region??0,role:metadata?.role??'secondary',
+      participation:metadata?.participation??'required',status, kind, reusable, canMove,
       canActivate: active && !neutralized && unlocked.has(node.id) && node.depth > 0 && (status === 'available' || reusable),
       canBypass: active && Boolean(poiOptionalLeg(node.id)) && !neutralized && status === 'available'
         && !state.run.bypassedRouteNodeIds?.includes(node.id) && (canMove || node.id === state.run.currentNodeId),

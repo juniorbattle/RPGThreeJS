@@ -1,0 +1,118 @@
+{
+  "scope": "ACCEPTED_SCOPED_LOT_A_NATIVE_DESKTOP1366_NORMAL",
+  "review": "Independent guardian actual-result/provenance/capture PASS",
+  "resultPath": "tmp/demo/poi-v2-first-refuge-0810/results.json",
+  "resultSha256": "b1819c257dbbb94bf486bac60fad2855473a841dc06be983b48155684bb43004",
+  "provenance": {
+    "gitHead": "85b1889038372cf715ee69e528ac4d5637b3b541",
+    "sourceTree": "a5490c7ce459f70edfe60d61933cdd7567ad55a7",
+    "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "driver": {
+      "path": "tools/demo-continuous-production-qa.mjs",
+      "sha256": "2a8685ecbfe5a48b8f5cda3a8d274f8a4e39907568f5fbfa274ffa110a3c60df"
+    },
+    "inputs": [],
+    "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+    "build": [
+      {
+        "path": "dist/assets/ReducedMotion-DV1BwpkR.js",
+        "sha256": "d11d526d18c449aa5e5e80298f8c8db3211c0f1d3035ea24fdaa1e94b2b58a77"
+      },
+      {
+        "path": "dist/assets/combat-D_Au6fwp.js",
+        "sha256": "1b3f70465037fa42f0e78bc1d1ecfa464bd0145a14b998a6c3813b4e0f36b46e"
+      },
+      {
+        "path": "dist/assets/combat-HSkJxt5D.css",
+        "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+      },
+      {
+        "path": "dist/assets/game-C2Tjl8Gd.css",
+        "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+      },
+      {
+        "path": "dist/assets/game-wuW2Lw1n.js",
+        "sha256": "553c24eeac23c1c41b319affa6df7fa7888a0e646941d66226f2495018c2e605"
+      },
+      {
+        "path": "dist/assets/three-core-f0ajj1rG.js",
+        "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+      },
+      {
+        "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+        "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+      },
+      {
+        "path": "dist/assets/validation-mSkvzYyn.js",
+        "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "631919a75ca72911078551edd7279f5918e6272ba6b18413c4df562d4e45a485"
+      }
+    ]
+  },
+  "nodes": [
+    "lion-camp",
+    "lion-audience",
+    "lion-opening-ambush",
+    "lion-nomad-crossroads",
+    "lion-first-trial-event",
+    "lion-refugees",
+    "lion-first-trial-event",
+    "lion-first-refuge"
+  ],
+  "battles": [
+    {
+      "nodeId": "lion-opening-ambush",
+      "pass": true,
+      "rounds": 3,
+      "actions": 17
+    }
+  ],
+  "localRoutes": [
+    "lion-refugees",
+    "lion-first-trial-event",
+    "lion-first-trial-combat"
+  ],
+  "bypass": {
+    "method": "NATIVE_DIRECT_LOCAL_ROUTE",
+    "before": 37,
+    "after": 35
+  },
+  "neutralization": {
+    "selected": "lion-first-trial-event",
+    "excluded": "lion-first-trial-combat",
+    "notResolved": true
+  },
+  "optionalRevisit": {
+    "resolved": true,
+    "dialogueObserved": true
+  },
+  "errors": [],
+  "fixtureStateWritten": false,
+  "combatOutcomeInjected": false,
+  "runtimeMutated": false,
+  "exactEarnedSave": "12931a226f9a81dc5a689f28da519370de50fc41a447d0babef903a5096e66dc",
+  "resumedHash": "53a2e46956c7b180e7cfe7f28a24c815af17806f167bc7c347f1fd93218dcbd2",
+  "captures": [
+    {
+      "path": "A-poi-v2-three-local-routes.png",
+      "sha256": "f0eb979c47c7d95d7ee4b5a3e4641cb7b8c9eb8055e411636276c1b69d412c92"
+    },
+    {
+      "path": "A-poi-exclusive-neutralization.png",
+      "sha256": "960dd2f33a3a6c4cd33112ee1d90212bf293f2fb037296c4e09459ac773ced19"
+    },
+    {
+      "path": "A-lion-first-refuge-poi-reusable-reloaded.png",
+      "sha256": "6301b4cae3660aa253f47f6831e7beff67a7e41718827f3501bc1649f02f7eea"
+    }
+  ],
+  "limitations": [
+    "Fresh combat alternative not played here",
+    "B/C/D/mobile/motion pending",
+    "Prototype art before Lot C",
+    "Not full-demo acceptance"
+  ]
+}
