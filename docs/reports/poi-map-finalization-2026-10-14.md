@@ -58,6 +58,8 @@ Final UI proof `poi-defeat-touch-final-ui-0113` is independently ACCEPTED_SCOPED
 
 ## Retained Traversal audit
 
+`poi-sacrifice-rested-final-0113` won T1 natively12rounds/69actions and returned for a genuinely funded paid rest. Its whole output FAILED/unseedable because the pilot incorrectly treated the fresh authored public petition as a repeated refuge effect. The native petition costs35temporarygold, grants3reputation and its existing flag/history/unique-event marker. The corrected pilot audits those exact consequences separately from unchanged temporary loot during shop/rest services. A distinct successful bounded T1 victory/reload will be required before the prepared raid continuation; no partial save from this failure is reused. The preparation pilot also now waits for its exact ready surface and excludes its control from the actual generic selector, with immediate failure on judgement overrun.
+
 The tracked text inventory at source3b35197 finds669 paths containing Traversal and350 files with named references:110 in src (including tests),43 tooling,4 media registries and193 documentation. Full line/term inventory: `tmp/autonomy/poi-finalization-traversal-inventory.json`. This is a static dependency inventory, not retirement acceptance. Shared TRAVERSAL_RHYTHM, V6 traversalBranches, canonical campaign relations, DEV QA lifecycle, assets/drivers and historical proof remain protected. No source, asset or driver was deleted.
 
 ## Remaining acceptance

@@ -203,10 +203,10 @@
   },
   "runId": "codex-poi-finalization-20261014",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-15T01:23:20.195Z",
+  "lastHeartbeat": "2026-10-15T01:37:30.333Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-15T01:23:20.195Z",
+    "lastHeartbeat": "2026-10-15T01:37:30.333Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -25040,7 +25040,7 @@
           "driverSha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a",
           "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
           "resultSha256": "0ea17c6bae127480c329eee6adcc83336b299f2aa050f4c0a3b4712b13ec2efe",
-          "reviewedAt": "2026-10-15T01:23:20.195Z",
+          "reviewedAt": "2026-10-15T01:37:30.333Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -25164,7 +25164,7 @@
           "driverSha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a",
           "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
           "resultSha256": "eb8c80a489b6ad39e9c4e1feaacae8480cee1a4cd5ffa4cf549cdee5a856bba6",
-          "reviewedAt": "2026-10-15T01:23:20.195Z",
+          "reviewedAt": "2026-10-15T01:37:30.333Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -25503,7 +25503,7 @@
           "driverSha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a",
           "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
           "resultSha256": "43eb951b26b5abca3ff3fa16ee6dd67fd60ee04a9fd0b559b93c9f30331efe3b",
-          "reviewedAt": "2026-10-15T01:23:20.195Z",
+          "reviewedAt": "2026-10-15T01:37:30.333Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -25723,7 +25723,7 @@
           "driverSha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a",
           "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
           "resultSha256": "f40e49178118d5a0b9bb02a020f1ea72e9f2a900a6ce44e93bf2493860fc572f",
-          "reviewedAt": "2026-10-15T01:23:20.195Z",
+          "reviewedAt": "2026-10-15T01:37:30.333Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -25954,7 +25954,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "50abaeec743cdcfbd74b32b48df0ccb9dfc64db60b961e323bbb3f8a3ebb7b26",
-          "reviewedAt": "2026-10-15T01:23:20.195Z",
+          "reviewedAt": "2026-10-15T01:37:30.333Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26075,7 +26075,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d",
-          "reviewedAt": "2026-10-15T01:23:20.195Z",
+          "reviewedAt": "2026-10-15T01:37:30.333Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26196,7 +26196,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "b6678cd0d52a650d1215db3a51227af07ca188d857f3bbe8f8734969c0f8d988",
-          "reviewedAt": "2026-10-15T01:23:20.195Z",
+          "reviewedAt": "2026-10-15T01:37:30.333Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26317,7 +26317,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "1001fa2a05d6f96baa071cc2598eaaf3b58f975c2257970e766ca62446b1357e",
-          "reviewedAt": "2026-10-15T01:23:20.195Z",
+          "reviewedAt": "2026-10-15T01:37:30.333Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26438,7 +26438,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "1dbbe66a02e34ad71104b9d37501b7fe99884ea8aafe9586cc1faa9a62ef2eeb",
-          "reviewedAt": "2026-10-15T01:23:20.195Z",
+          "reviewedAt": "2026-10-15T01:37:30.333Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26559,7 +26559,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "3eff2a58c459592d91a25a6fdca2c83ee9e561bcbf707332e894d3acff1753f9",
-          "reviewedAt": "2026-10-15T01:23:20.195Z",
+          "reviewedAt": "2026-10-15T01:37:30.333Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26680,7 +26680,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "1e49f3457196938e05789b9828dc00dab550e4883f68725d372100c982a2b4e6",
-          "reviewedAt": "2026-10-15T01:23:20.195Z",
+          "reviewedAt": "2026-10-15T01:37:30.333Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26905,15 +26905,15 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "reviewedExecution": {
           "sourceTree": "fcf7e608f321af152971c40276cae8f6f4731b50",
           "driverSha256": "117b0f123d2fb9c8388536332770979db401a310e9eb8e8b1ffca2624d4ea080",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "af0034f5296e3d9006e0bf1deed0abf98f64c8cdf5ea0c8b46dcb6dcf33c2b91",
-          "reviewedAt": "2026-10-15T01:23:20.195Z",
+          "reviewedAt": "2026-10-15T01:37:30.333Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26922,7 +26922,7 @@
         "schemaVersion": 1,
         "jobId": "poi-sacrifice-rested-final-0113",
         "runId": "codex-poi-finalization-20261014",
-        "status": "RUNNING",
+        "status": "FAILED",
         "registeredAt": "2026-10-15T01:13:10.331Z",
         "pid": 14668,
         "port": 5427,
@@ -27019,12 +27019,16 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-15T01:13:11.890Z",
-        "endedAt": null,
+        "endedAt": "2026-10-15T01:28:28.551Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
-        "resultDigestMatches": false,
-        "eligibleForReview": false
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/poi-sacrifice-rested-final-0113/results.json",
+        "resultSha256": "fb7689e0a8fc716a6efc5f20f33e08be1acaa686bc49c253cb6b99482bcd5ee7",
+        "provenanceStable": true
       },
       {
         "schemaVersion": 1,
@@ -27130,7 +27134,7 @@
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": false,
         "eligibleForReview": false,
         "ownerDispositionPath": "tmp/demo/poi-t3-touch-os-final-0115/owner-interruption.json"

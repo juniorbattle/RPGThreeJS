@@ -20,8 +20,10 @@ const touchInput=process.env.DEMO_QA_TOUCH==='1';
 const nativeEquipment=process.env.DEMO_QA_EQUIPMENT==='steel';
 const trialPlan=process.env.DEMO_QA_TRIALS??'event';
 const viewport=(process.env.DEMO_QA_VIEWPORT??'1366x768').split('x').map(Number);
+const preparationContinue='[data-narrative-tableau="FINAL_REFUGE_PREPARATION_TABLEAU"] [data-journey-continue]:visible:not(:disabled)';
+const genericJourneyContinue='[data-journey-continue]:visible:not(:disabled):not([data-narrative-tableau="FINAL_REFUGE_PREPARATION_TABLEAU"] [data-journey-continue])';
 assert.ok(viewport.length===2&&viewport.every(n=>Number.isInteger(n)&&n>0),'Invalid viewport');
-assert.ok(['first-refuge','second-refuge','valmir','preparation','ending','terminal','defeat-recovery','pursuit-victory'].includes(target),'Unknown bounded target');
+assert.ok(['first-refuge','second-refuge','second-trial','valmir','preparation','ending','terminal','defeat-recovery','pursuit-victory'].includes(target),'Unknown bounded target');
 assert.ok(['event','combat'].includes(trialPlan),'Unknown authored trial alternative');
 assert.ok(!(process.env.DEMO_QA_OS_MOTION==='1'&&process.env.DEMO_QA_GAME_MOTION==='1'),'OS-only and native game reduction are separate acceptance cases');
 if(target==='defeat-recovery')assert.ok(['lion-village-choice','lion-second-trial-combat','lion-final-trial-combat'].includes(defeatNodeId),'Unknown authored refuge-checkpoint defeat boundary');
@@ -40,8 +42,15 @@ if(priorProof){
   const save=JSON.parse(earnedText);assert.equal(save.version,6);
   assert.ok(save.resolvedNodeIds.includes('lion-opening-ambush'));
   assert.deepEqual(save,priorProof.resumed,'Earned resume must match the exact verified resumed owner state');
-  assert.ok(['lion-first-refuge','lion-second-refuge','lion-final-refuge','lion-valmir-road','lion-final-judgement'].includes(save.currentNodeId));
-  if(save.currentNodeId==='lion-valmir-road'){
+  assert.ok(['lion-first-refuge','lion-second-refuge','lion-final-refuge','lion-valmir-road','lion-second-trial-combat','lion-final-judgement'].includes(save.currentNodeId));
+  if(save.currentNodeId==='lion-second-trial-combat'){
+    assert.equal(target,'second-refuge');assert.equal(priorProof.target,'second-trial');
+    assert.ok(save.resolvedNodeIds.includes(save.currentNodeId));assert.ok(save.resolvedNodeIds.includes('lion-valmir-road'));
+    assert.ok(save.resolvedNodeIds.includes('lion-first-refuge'));assert.equal(save.flags['refugeSecured:lion-first-refuge'],true);
+    assert.equal(save.run.checkpointNodeId,'lion-first-refuge');assert.equal(save.run.traversalBranches.T1,save.currentNodeId);
+    assert.ok(save.run.temporaryLoot.gold>0);
+    assert.ok(priorProof.battles.some(b=>b.nodeId===save.currentNodeId&&b.pass&&b.outcome==='victory'));
+  }else if(save.currentNodeId==='lion-valmir-road'){
     assert.ok(save.resolvedNodeIds.includes(save.currentNodeId));assert.ok(save.run.temporaryLoot.gold>0);
     assert.equal(save.run.checkpointNodeId,'lion-first-refuge');
     assert.ok(priorProof.battles.some(b=>b.nodeId===save.currentNodeId&&b.combatId==='road_to_valmir'&&b.pass));
@@ -130,6 +139,7 @@ async function choose(){
   const text=await button.innerText();report.choices.push({sequence,step,index,text});
   const tribute=target==='first-refuge'&&priorProof&&sequence==='rep_event_roadside_intimidation'&&step==='1'&&index===1
     ?await state():null;
+  const petition=sequence==='rep_event_public_petition'&&step==='1'&&index===0?await state():null;
   if(touchInput)await button.tap();else {await button.focus();await page.keyboard.press('Enter');}report.inputs.push({action:touchInput?'touch choice':'keyboard choice',sequence,step,index,text});
   if(tribute){
     await page.waitForFunction(gold=>window.__demoQaApp.state.gold===gold-20&&window.__demoQaApp.state.flags.r4PaidRoadsideTribute===true,tribute.gold);
@@ -137,6 +147,16 @@ async function choose(){
     assert.deepEqual(paid.run.temporaryLoot,tribute.run.temporaryLoot);
     report.poi??={native:true};report.poi.legacyDepartureChoice={sequence,step,index,text,goldBefore:tribute.gold,goldAfter:paid.gold,
       authoredCost:20,temporaryLootUnchanged:true,paidFlag:true};
+  }
+  if(petition){
+    assert.notEqual(petition.flags.r4FundedPublicPetition,true,'The native petition must be a fresh authored event');
+    await page.waitForFunction(()=>window.__demoQaApp.state.flags.r4FundedPublicPetition===true);
+    const after=await state(),expected=structuredClone(petition);
+    expected.run.temporaryLoot.gold-=35;expected.flags.r4FundedPublicPetition=true;
+    expected.reputation=Math.min(100,petition.reputation+3);
+    expected.reputationHistory.push({delta:3,source:'narrative',value:expected.reputation});
+    assert.deepEqual(after,expected,'Native public petition differs from its authored exact consequences');
+    (report.nativeDepartureEvents??=[]).push({sequence,step,index,text,before:petition,after,temporaryCost:35,reputationDelta:3});
   }
 }
 async function cancel(frame){
@@ -329,10 +349,19 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
   assert.ok(rested.clan.members.every(u=>u.currentHealth>0));
   assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),rested,'Paid post-Valmir rest was not persisted exactly');
   await capture(`poi-after-${prefix}-${cost?'paid-rest':'already-healthy'}`);
+  const eventIndex=report.nativeDepartureEvents?.length??0;
   await keyboardActivate('.exploration-stop [data-action="continue"]');await returnToPoiMap();
-  assert.deepEqual(await state(),rested,'Resolved refuge departure repeated a one-shot effect');
+  const departed=await state(),events=report.nativeDepartureEvents?.slice(eventIndex)??[];
+  if(events.length){
+    assert.equal(postTrial,true);assert.equal(events.length,1);const event=events[0];
+    assert.equal(event.sequence,'rep_event_public_petition');
+    const beforeChoice=structuredClone(rested);
+    beforeChoice.seenUniqueEvents.push(`reputation-director-event|${rested.stepCounter}|lion-social-window-1|public-petition|public-expectation`);
+    assert.deepEqual(event.before,beforeChoice,'Refuge departure changed truth beyond the fresh canonical petition marker');
+    assert.deepEqual(departed,event.after,'Native departure repeated effects after the petition');
+  }else assert.deepEqual(departed,rested,'Resolved refuge departure repeated a one-shot effect');
   const onward=await poiNoReplayPath(['lion-reserve-trail','lion-valmir-road',...(postTrial?[milestone]:[])],true,`poi-after-${prefix}-prepared-return`);
-  report.poi[postTrial?'trialRefugePreparation':'valmirRefugePreparation']={before,arrival,funding,restBefore,rested,nativeCost:cost,lootUnchanged:true,checkpointUnchanged:true,
+  report.poi[postTrial?'trialRefugePreparation':'valmirRefugePreparation']={before,arrival,funding,restBefore,rested,departed,departureEvents:events,nativeCost:cost,servicesTemporaryLootUnchanged:true,checkpointUnchanged:true,
     returnPath,onward,paidRestPersistedExactly:cost>0,skippedAlreadyHealthy:cost===0,exactSavedOwner:true};
 }
 async function prepareNativeWeapon(nodeId){
@@ -932,7 +961,13 @@ try{
   if(report.osReducedMotion)assert.equal(report.motionEvidence.gameRequested,false,'OS-only motion proof requires normal game graphics');
   for(let index=0;index<12000&&Date.now()<deadline;index++){
     let live=await state();if(report.nodes.at(-1)!==live.currentNodeId){report.nodes.push(live.currentNodeId);console.log(`NODE ${live.currentNodeId}`);}
-    if(await page.locator('[data-narrative-tableau="FINAL_REFUGE_PREPARATION_TABLEAU"] [data-journey-continue]:visible').count()){
+    if(target==='preparation'){
+      assert.notEqual(live.currentNodeId,'lion-final-judgement','Preparation target overrun into judgement');
+      if(live.currentNodeId==='lion-final-refuge'&&live.resolvedNodeIds.includes(live.currentNodeId)){
+        await page.locator(preparationContinue).waitFor({state:'visible',timeout:30000});
+      }
+    }
+    if(await page.locator(preparationContinue).count()){
       live=await state();assert.equal(live.currentNodeId,'lion-final-refuge');
       if(!report.preparation){
         await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked'));
@@ -946,7 +981,7 @@ try{
           assert.equal(before.run.checkpointNodeId,'lion-second-refuge');assert.notEqual(before.flags['refugeSecured:lion-final-refuge'],true);
         }
         await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
-        await page.locator('[data-narrative-tableau="FINAL_REFUGE_PREPARATION_TABLEAU"] [data-journey-continue]:visible').waitFor();
+        await page.locator(preparationContinue).waitFor();
         assert.deepEqual(await state(),before,'Preparation reload changed owner or secured loot');
         report.preparation={before,resumed:await state(),exactV6:true,noHub:true,noNewSecuring:true};
         await capture('poi-final-refuge-preparation-resumed');
@@ -955,7 +990,7 @@ try{
           assert.deepEqual(report.errors,[]);report.pass=true;break;
         }
       }
-      await keyboardActivate('[data-journey-continue]:visible');await returnToPoiMap();continue;
+      await keyboardActivate(preparationContinue);await returnToPoiMap();continue;
     }
     const introduction=await page.locator('.dialogue:visible').evaluateAll(elements=>elements.map(e=>({sequence:e.dataset.dialogueSequence,step:e.dataset.dialogueStep}))) ;
     const introductory=introduction.find(e=>['acte_ouverture','camp_departure'].includes(e.sequence));
@@ -988,7 +1023,7 @@ try{
         assert.equal(Boolean(live.flags.missionGreed),routePlan==='sacrifice');
         if(target==='second-refuge')for(const [id,combatId] of [['lion-valmir-road','road_to_valmir'],
           ['lion-village-choice',routePlan==='rescue'?'village_defense':'village_raid']]){
-          const inheritedValmir=id==='lion-valmir-road'&&JSON.parse(earnedText??'null')?.currentNodeId===id;
+          const inheritedValmir=id==='lion-valmir-road'&&['lion-valmir-road','lion-second-trial-combat'].includes(JSON.parse(earnedText??'null')?.currentNodeId);
           assert.ok(report.battles.slice(inheritedValmir?0:report.inheritedBattleCount??0).some(b=>b.nodeId===id&&b.combatId===combatId&&b.pass),
             `Second refuge requires verified native ${combatId} victory at ${id}`);
         }
@@ -1148,6 +1183,19 @@ try{
     if(await page.locator('.poi-map:visible').count()){
       live=await state();
       report.poi??={native:true};
+      if(target==='second-trial'&&live.currentNodeId==='lion-second-trial-combat'&&live.resolvedNodeIds.includes(live.currentNodeId)){
+        assert.ok(report.battles.slice(report.inheritedBattleCount??0).some(b=>b.nodeId===live.currentNodeId&&b.pass&&b.outcome==='victory'));
+        assert.ok(live.resolvedNodeIds.includes('lion-first-refuge'));assert.equal(live.flags['refugeSecured:lion-first-refuge'],true);
+        assert.equal(live.run.checkpointNodeId,'lion-first-refuge');assert.ok(live.run.temporaryLoot.gold>0);
+        assert.equal(live.run.traversalBranches.T1,live.currentNodeId);assert.ok(!live.resolvedNodeIds.includes('lion-second-trial-event'));
+        assert.ok((await page.locator('.poi-map [data-poi-id="lion-second-trial-event"]').getAttribute('class')).includes('poi-marker--neutralized'));
+        await capture('poi-second-trial-resolved-neutralized');
+        const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));assert.deepEqual(JSON.parse(saved),live);
+        await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
+        await page.locator('.poi-map:visible').waitFor();report.resumed=await state();assert.deepEqual(report.resumed,live);
+        await writeFile(resolve(output,'earned-second-trial-v6.json'),saved+'\n');await capture('poi-second-trial-native-reloaded');
+        assert.deepEqual(report.errors,[]);report.pass=true;break;
+      }
       if(process.env.DEMO_QA_GAME_MOTION==='1'&&!live.settings.reducedGraphics){
         const before=await state();await keyboardActivate('.poi-map [data-poi-action="motion"]');
         const changed=await state(),expected=structuredClone(before);expected.settings.reducedGraphics=true;
@@ -1217,8 +1265,7 @@ try{
     else if(await page.locator('[data-traversal-fork-choice="lion-second-trial-event"]:visible:not(:disabled)').count()){await keyboardActivate('[data-traversal-fork-choice="lion-second-trial-event"]:not(:disabled)');}
     else if(await page.locator('[data-traversal-fork-choice="lion-final-trial-event"]:visible:not(:disabled)').count()){await keyboardActivate('[data-traversal-fork-choice="lion-final-trial-event"]:not(:disabled)');}
     else if(await page.locator('[data-traversal-confirm]:visible:not(:disabled)').count()){await click('[data-traversal-confirm]:visible:not(:disabled)');}
-    else if(await page.locator('[data-narrative-tableau="FINAL_REFUGE_PREPARATION_TABLEAU"] [data-journey-continue]:visible').count()){continue;}
-    else if(await page.locator('[data-journey-continue]:visible:not(:disabled)').count()){await click('[data-journey-continue]:visible:not(:disabled)');}
+    else if(await page.locator(genericJourneyContinue).count()){await click(genericJourneyContinue);}
     else if(await page.locator('[data-journey-choice]:visible:not(:disabled)').count()){await click('[data-journey-choice]:visible:not(:disabled)');}
     await page.waitForTimeout(100);
   }
