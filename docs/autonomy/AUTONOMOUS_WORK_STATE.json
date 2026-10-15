@@ -4,7 +4,7 @@
   "runEndedAt": null,
   "activeTask": "POI-V2-AND-TRAVERSAL-RETIREMENT",
   "activePhase": "A",
-  "activeSubtask": "Lot A accepted desktop1366normal with independent review; B21node role/participation/region authoring and distinct layouts reviewed,25tests/types pass. Integrate C artwork and accessible atlas, then apply reviewed D retirement.",
+  "activeSubtask": "C atlas/art candidates integrated:3new pixel-diorama regions, native region tabs/spatial focus/controlled pan,17tests/types+5focusrecheck pass; UI reviewer conditions addressed. Operator art/native viewport checks pending. A accepted; proceed D physical retirement with reversible C checkpoint.",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "804ba18d51620ba1d07cd4b91f14a3504b1dfd41",
   "lastPushedCommit": "804ba18d51620ba1d07cd4b91f14a3504b1dfd41",
@@ -71,7 +71,7 @@
     "Old Traversal retained; static669paths/350referencefiles inventory is not retirement acceptance",
     "Audio DEFERRED; eight videos unchanged; Bois-Clair night art external"
   ],
-  "nextAction": "Lot A accepted desktop1366normal with independent review; B21node role/participation/region authoring and distinct layouts reviewed,25tests/types pass. Integrate C artwork and accessible atlas, then apply reviewed D retirement.",
+  "nextAction": "C atlas/art candidates integrated:3new pixel-diorama regions, native region tabs/spatial focus/controlled pan,17tests/types+5focusrecheck pass; UI reviewer conditions addressed. Operator art/native viewport checks pending. A accepted; proceed D physical retirement with reversible C checkpoint.",
   "taskQueue": [
     "POI-MAP-FINALIZATION: requested implementation/native milestones REVIEWED_SCOPED; operator final playtest remains",
     "DEMO-PC-CAMPAIGN: both native truth endings, T0/T1/T3 alternatives, rescue/sacrifice, defeat and exact V6 accepted in recorded scopes",
@@ -177,7 +177,7 @@
   "lastHeartbeat": "2026-10-15T06:29:56.404Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-15T08:27:19.196Z",
+    "lastHeartbeat": "2026-10-15T08:30:09.407Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -28023,7 +28023,7 @@
       }
     ],
     "wip": null,
-    "nextAction": "Lot A accepted desktop1366normal with independent review; B21node role/participation/region authoring and distinct layouts reviewed,25tests/types pass. Integrate C artwork and accessible atlas, then apply reviewed D retirement.",
+    "nextAction": "C atlas/art candidates integrated:3new pixel-diorama regions, native region tabs/spatial focus/controlled pan,17tests/types+5focusrecheck pass; UI reviewer conditions addressed. Operator art/native viewport checks pending. A accepted; proceed D physical retirement with reversible C checkpoint.",
     "runMetrics": {
       "runId": "codex-poi-finalization-20261014",
       "runtimeSourceFilesModified": 5,

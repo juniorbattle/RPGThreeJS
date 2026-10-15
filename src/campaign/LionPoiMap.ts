@@ -1,4 +1,9 @@
 import {lionPoiRegion} from './LionPoiTopology';
+export const LION_POI_REGIONS = Object.freeze([
+  {shortTitle:'I · Le Lion',title:'Du Camp au Refuge du Lion',image:'/assets/generated/lion-phase/poi-v2/lion-opening.png'},
+  {shortTitle:'II · Bois-Clair',title:'La vallée de Bois-Clair',image:'/assets/generated/lion-phase/poi-v2/bois-clair.png'},
+  {shortTitle:'III · Le Sceau',title:'Les témoins et le jugement',image:'/assets/generated/lion-phase/poi-v2/judgement.png'},
+]);
 /** Authored layout only. RunSystem/campaign own connections and live eligibility. */
 export const LION_POI_POSITIONS: Readonly<Record<string, readonly [number, number]>> = {
   'lion-camp': [80, 410], 'lion-audience': [205, 255], 'lion-opening-ambush': [310, 365],

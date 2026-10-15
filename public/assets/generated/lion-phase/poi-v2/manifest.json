@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "operatorDecision": "OD-2026-10-15-A",
+  "status": "INTEGRATED_CANDIDATE_OPERATOR_ART_REVIEW_PENDING",
+  "pipeline": {
+    "visualModel": "baked_raster",
+    "runtimeObjectModel": "none",
+    "collisionModel": "none",
+    "engineTarget": "project-native POI atlas"
+  },
+  "generation": "Built-in image_gen, three new map backgrounds; no approved asset replacement",
+  "specification": "docs/project/POI_V2_ART_AND_AUTHORING.md",
+  "styleReferences": [
+    "demo-environment-pack-v1/travel/forest-road-travel.png",
+    "demo-environment-pack-v1/travel/first-refuge-travel.png"
+  ],
+  "assets": [
+    {
+      "path": "public/assets/generated/lion-phase/poi-v2/lion-opening.png",
+      "generationId": "exec-ff01ee91-c8f0-4833-b20b-11d97b9e6f65",
+      "width": 1672,
+      "height": 941,
+      "sha256": "541b2a5f57cda8ae8c58564a406ec0086577db08378e8e863dc4933d5430c4f9",
+      "bytes": 4133953
+    },
+    {
+      "path": "public/assets/generated/lion-phase/poi-v2/bois-clair.png",
+      "generationId": "exec-fc55c37c-7428-4332-8af0-a5c123e5775d",
+      "width": 1672,
+      "height": 941,
+      "sha256": "83bb8feb7e9de4a9bd03a060c771f6a7f0605fc5752090a80b72093b04bd862d",
+      "bytes": 3999067
+    },
+    {
+      "path": "public/assets/generated/lion-phase/poi-v2/judgement.png",
+      "generationId": "exec-c5e0447b-a6b7-4186-9efd-48ca0edf5612",
+      "width": 1672,
+      "height": 941,
+      "sha256": "0b0291f3ae540910fe4d3f96d63888cffe25d26334b5a8cf284152e8aef85a01",
+      "bytes": 4270035
+    }
+  ]
+}
