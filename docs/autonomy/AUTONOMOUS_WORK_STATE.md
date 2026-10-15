@@ -2,7 +2,7 @@
 
 IN_PROGRESS. OD-2026-10-15-A explicitly authorizes dedicated contract amendment, playable A/B, Option C art C and definitive physical retirement D. No scheduled budget applies; scheduler unchanged. Starting clean dev/live origin b79063b; main00b96f1. No inherited WIP.
 
-Current: Lot A runtime ready: 36current focused tests, types/build/contracts pass. Await guardian actualdiff then commit frozen source and run native first-refuge direct local route on1366 normal.
+Current: Fresh native rerun after reviewed assignment-idempotence fix;0752FAILED retained/unseedable.58focused tests/types/build pass. No retirement before corrected Lot A proof.
 
 All historical QA/deferred task objects are preserved in JSON and preceding closeout below. No new runtime/art/native acceptance claimed.
 
@@ -1333,31 +1333,32 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - poi-second-refuge-prepared-0540: FAILED; port 5409; receipt `tmp/demo/poi-second-refuge-prepared-0540/qa-job.json`; NOT_ACCEPTED
 - poi-second-refuge-manual-0643: FAILED; port 5409; receipt `tmp/demo/poi-second-refuge-manual-0643/qa-job.json`; NOT_ACCEPTED
 - poi-second-refuge-manual-0645: SUCCEEDED; port 5409; receipt `tmp/demo/poi-second-refuge-manual-0645/qa-job.json`; ACCEPTED_SCOPED_POI_RESCUE_SECOND_REFUGE_DESKTOP1366_NORMAL
-- poi-preparation-desktop-2019: SUCCEEDED; port 5410; receipt `tmp/demo/poi-preparation-desktop-2019/qa-job.json`; NOT_ACCEPTED
-- poi-preparation-mobile-os-2020: SUCCEEDED; port 5411; receipt `tmp/demo/poi-preparation-mobile-os-2020/qa-job.json`; NOT_ACCEPTED
+- poi-preparation-desktop-2019: SUCCEEDED; port 5410; receipt `tmp/demo/poi-preparation-desktop-2019/qa-job.json`; ACCEPTED_SCOPED_NATIVE_FINAL_PREPARATION_DESKTOP
+- poi-preparation-mobile-os-2020: SUCCEEDED; port 5411; receipt `tmp/demo/poi-preparation-mobile-os-2020/qa-job.json`; ACCEPTED_SCOPED_NATIVE_FINAL_PREPARATION_NARROW_OS
 - poi-defeat-finaltrial-2020: FAILED; port 5412; receipt `tmp/demo/poi-defeat-finaltrial-2020/qa-job.json`; NOT_ACCEPTED
 - poi-ending-serpent-2022: FAILED; port 5413; receipt `tmp/demo/poi-ending-serpent-2022/qa-job.json`; NOT_ACCEPTED
-- poi-ending-trial-mobile-2022: SUCCEEDED; port 5414; receipt `tmp/demo/poi-ending-trial-mobile-2022/qa-job.json`; NOT_ACCEPTED
-- poi-preparation-intermediate-game-2027: RUNNING; port 5415; receipt `tmp/demo/poi-preparation-intermediate-game-2027/qa-job.json`; NOT_ACCEPTED
-- poi-first-trial-combat-game-2029: SUCCEEDED; port 5416; receipt `tmp/demo/poi-first-trial-combat-game-2029/qa-job.json`; NOT_ACCEPTED
+- poi-ending-trial-mobile-2022: SUCCEEDED; port 5414; receipt `tmp/demo/poi-ending-trial-mobile-2022/qa-job.json`; ACCEPTED_SCOPED_NATIVE_TRIAL_ENDING_NARROW_KEYBOARD
+- poi-preparation-intermediate-game-2027: INTERRUPTED; port 5415; receipt `tmp/demo/poi-preparation-intermediate-game-2027/qa-job.json`; NOT_ACCEPTED
+- poi-first-trial-combat-game-2029: SUCCEEDED; port 5416; receipt `tmp/demo/poi-first-trial-combat-game-2029/qa-job.json`; ACCEPTED_SCOPED_FRESH_T0_COMBAT_NATIVE_GAME_REDUCTION
 - poi-second-combat-sacrifice-game-2051: FAILED; port 5417; receipt `tmp/demo/poi-second-combat-sacrifice-game-2051/qa-job.json`; NOT_ACCEPTED
-- poi-serpent-steel-keyboard-2130: SUCCEEDED; port 5418; receipt `tmp/demo/poi-serpent-steel-keyboard-2130/qa-job.json`; NOT_ACCEPTED
-- poi-valmir-steel-game-2130: SUCCEEDED; port 5419; receipt `tmp/demo/poi-valmir-steel-game-2130/qa-job.json`; NOT_ACCEPTED
-- poi-terminal-touch-2132: SUCCEEDED; port 5420; receipt `tmp/demo/poi-terminal-touch-2132/qa-job.json`; NOT_ACCEPTED
-- poi-preparation-game620-2125: SUCCEEDED; port 5421; receipt `tmp/demo/poi-preparation-game620-2125/qa-job.json`; NOT_ACCEPTED
-- poi-preparation-os1366-2126: SUCCEEDED; port 5422; receipt `tmp/demo/poi-preparation-os1366-2126/qa-job.json`; NOT_ACCEPTED
-- poi-preparation-touch-os390-2127: SUCCEEDED; port 5423; receipt `tmp/demo/poi-preparation-touch-os390-2127/qa-job.json`; NOT_ACCEPTED
-- poi-defeat-t1-touch-2150: SUCCEEDED; port 5424; receipt `tmp/demo/poi-defeat-t1-touch-2150/qa-job.json`; NOT_ACCEPTED
+- poi-serpent-steel-keyboard-2130: SUCCEEDED; port 5418; receipt `tmp/demo/poi-serpent-steel-keyboard-2130/qa-job.json`; ACCEPTED_SCOPED_NATIVE_SERPENT_ENDING_DESKTOP_KEYBOARD
+- poi-valmir-steel-game-2130: SUCCEEDED; port 5419; receipt `tmp/demo/poi-valmir-steel-game-2130/qa-job.json`; ACCEPTED_SCOPED_NATIVE_VALMIR_POSITIVE_LOOT_EXACT_SEED
+- poi-terminal-touch-2132: SUCCEEDED; port 5420; receipt `tmp/demo/poi-terminal-touch-2132/qa-job.json`; ACCEPTED_SCOPED_NATIVE_TERMINAL_TOUCH_NO_NEW_BATTLE
+- poi-preparation-game620-2125: SUCCEEDED; port 5421; receipt `tmp/demo/poi-preparation-game620-2125/qa-job.json`; ACCEPTED_SCOPED_NATIVE_PREPARATION_GAME_REDUCTION_620
+- poi-preparation-os1366-2126: SUCCEEDED; port 5422; receipt `tmp/demo/poi-preparation-os1366-2126/qa-job.json`; ACCEPTED_SCOPED_NATIVE_PREPARATION_OS_REDUCTION_1366
+- poi-preparation-touch-os390-2127: SUCCEEDED; port 5423; receipt `tmp/demo/poi-preparation-touch-os390-2127/qa-job.json`; ACCEPTED_SCOPED_NATIVE_PREPARATION_OS_REDUCTION_TOUCH_390
+- poi-defeat-t1-touch-2150: SUCCEEDED; port 5424; receipt `tmp/demo/poi-defeat-t1-touch-2150/qa-job.json`; ACCEPTED_SCOPED_NATIVE_DEFEAT_POSITIVE_LOOT_CHECKPOINT_TOUCH
 - poi-second-sacrifice-steel-2153: FAILED; port 5425; receipt `tmp/demo/poi-second-sacrifice-steel-2153/qa-job.json`; NOT_ACCEPTED
-- poi-defeat-touch-final-ui-0113: SUCCEEDED; port 5426; receipt `tmp/demo/poi-defeat-touch-final-ui-0113/qa-job.json`; NOT_ACCEPTED
+- poi-defeat-touch-final-ui-0113: SUCCEEDED; port 5426; receipt `tmp/demo/poi-defeat-touch-final-ui-0113/qa-job.json`; ACCEPTED_SCOPED_FINAL_UI_NATIVE_DEFEAT_ROSTER_TOUCH_44PX_NO_LABEL_OVERLAP
 - poi-sacrifice-rested-final-0113: FAILED; port 5427; receipt `tmp/demo/poi-sacrifice-rested-final-0113/qa-job.json`; NOT_ACCEPTED
-- poi-t3-touch-os-final-0115: RUNNING; port 5428; receipt `tmp/demo/poi-t3-touch-os-final-0115/qa-job.json`; NOT_ACCEPTED
-- poi-second-trial-earned-0141: SUCCEEDED; port 5429; receipt `tmp/demo/poi-second-trial-earned-0141/qa-job.json`; NOT_ACCEPTED
-- poi-t3-touch-ready-final-0141: SUCCEEDED; port 5430; receipt `tmp/demo/poi-t3-touch-ready-final-0141/qa-job.json`; NOT_ACCEPTED
+- poi-t3-touch-os-final-0115: INTERRUPTED; port 5428; receipt `tmp/demo/poi-t3-touch-os-final-0115/qa-job.json`; NOT_ACCEPTED
+- poi-second-trial-earned-0141: SUCCEEDED; port 5429; receipt `tmp/demo/poi-second-trial-earned-0141/qa-job.json`; ACCEPTED_SCOPED_NATIVE_T1_VICTORY_POSITIVE_LOOT_EXACT_RELOAD_SEED
+- poi-t3-touch-ready-final-0141: SUCCEEDED; port 5430; receipt `tmp/demo/poi-t3-touch-ready-final-0141/qa-job.json`; ACCEPTED_SCOPED_FINAL_UI_NATIVE_T3_OFFENSIVE_TOUCH_OS_PREPARATION_EXACT_LOOT
 - poi-sacrifice-prepared-final: FAILED; port 5431; receipt `tmp/demo/poi-sacrifice-prepared-final/qa-job.json`; NOT_ACCEPTED
 - poi-sacrifice-prepared-final-replay: FAILED; port 5432; receipt `tmp/demo/poi-sacrifice-prepared-final-replay/qa-job.json`; NOT_ACCEPTED
-- poi-sacrifice-rogue-supplies-final: SUCCEEDED; port 5433; receipt `tmp/demo/poi-sacrifice-rogue-supplies-final/qa-job.json`; NOT_ACCEPTED
-- poi-sacrifice-event-route-final: SUCCEEDED; port 5434; receipt `tmp/demo/poi-sacrifice-event-route-final/qa-job.json`; NOT_ACCEPTED
+- poi-sacrifice-rogue-supplies-final: SUCCEEDED; port 5433; receipt `tmp/demo/poi-sacrifice-rogue-supplies-final/qa-job.json`; ACCEPTED_SCOPED_NATIVE_T1_COMBAT_PREPARED_RAID_SECOND_REFUGE_EXACT_V6
+- poi-sacrifice-event-route-final: SUCCEEDED; port 5434; receipt `tmp/demo/poi-sacrifice-event-route-final/qa-job.json`; ACCEPTED_SCOPED_NATIVE_T1_SHRINE_RAID_SECOND_REFUGE_EXACT_V6
+- poi-v2-first-refuge-0752: FAILED; port 5440; receipt `tmp/demo/poi-v2-first-refuge-0752/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

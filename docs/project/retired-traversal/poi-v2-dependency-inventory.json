@@ -1,0 +1,1204 @@
+{
+  "baseline": "b79063bb4d96636198e93d61b7b3dd1110dab6e2",
+  "recordedAt": "2026-10-15T07:56:21.864Z",
+  "scope": "Pre-removal candidate inventory; final disposition updated in Lot D",
+  "rows": [
+    {
+      "path": "src/traversal/TraversalCaravan.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalDepth.test.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalT0Assets.test.ts, tools/traversal/pursuit-charge-lab.ts, tools/traversal/road-anchor-lab.ts, tools/traversal/road-late-reset-lab.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalCheckpointRoute.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoadAuthoring.ts, src/traversal/TraversalRoadMotion.test.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalT0CheckpointRoute.ts, src/traversal/TraversalT0Route.test.ts, src/traversal/TraversalT1CheckpointRoute.ts, src/traversal/TraversalT1Scene.test.ts, src/traversal/TraversalT3CheckpointRoute.ts, src/traversal/TraversalT3Scene.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalDepth.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalDepth.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalDepth.test.ts, src/traversal/TraversalRoadAuthoring.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalT0Foreground.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalFeaturePolicy.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalFeaturePolicy.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/game/GameApp.ts, src/traversal/TraversalFeaturePolicy.test.ts, src/traversal/TraversalT1Scene.test.ts, src/traversal/TraversalT3Scene.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalForkOverlay.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalForkOverlay.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalForkOverlay.test.ts, src/traversal/TraversalRunController.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalInteractionGrammar.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoadScene.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalPresentation.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalPresentation.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/game/GameApp.ts, src/traversal/TraversalPresentation.test.ts, src/traversal/TraversalRoadScene.test.ts, src/traversal/TraversalT1Scene.test.ts, src/traversal/TraversalT3Scene.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalPreviewSaves.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalPreviewSaves.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/game/GameApp.ts, src/traversal/TraversalPreviewSaves.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalPursuerSprite.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalPursuerSprite.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalPursuerSprite.test.ts, src/traversal/TraversalPursuitChargeRenderer.ts, src/traversal/TraversalRoutePursuitArt.test.ts, src/traversal/TraversalRoutePursuitRenderer.ts, src/traversal/TraversalRoutePursuitRenderer.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalPursuitCharge.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalPursuitCharge.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalPursuerSprite.test.ts, src/traversal/TraversalPursuitCharge.test.ts, src/traversal/TraversalPursuitChargeRenderer.test.ts, src/traversal/TraversalPursuitChargeRenderer.ts, src/traversal/TraversalRoadScene.test.ts, src/traversal/TraversalRoadScene.ts, tools/traversal/pursuit-charge-lab.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalPursuitChargeRenderer.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalPursuitChargeRenderer.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalPursuerSprite.test.ts, src/traversal/TraversalPursuitChargeRenderer.test.ts, src/traversal/TraversalRoadScene.ts, tools/traversal/pursuit-charge-lab.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalPursuitPresentationPolicy.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoadScene.ts, src/traversal/TraversalRoutePursuit.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRewardPresentationPolicy.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRewardPresentationPolicy.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRewardPresentationPolicy.test.ts, src/traversal/TraversalRoadScene.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRiskPresentationPolicy.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRiskPresentationPolicy.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRiskPresentationPolicy.test.ts, src/traversal/TraversalRoadScene.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRoadAnchor.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRoadAnchor.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalPursuitChargeRenderer.ts, src/traversal/TraversalRoadAnchor.test.ts, src/traversal/TraversalRoadCamera.test.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalRouteRewardRenderer.ts, src/traversal/TraversalRouteRiskRenderer.ts, tools/traversal/road-anchor-lab.ts, tools/traversal/road-late-reset-lab.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRoadAuthoring.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoadScene.test.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalT0Authoring.ts, src/traversal/TraversalT1Authoring.ts, src/traversal/TraversalT3Authoring.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRoadCamera.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRoadMotion.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRoadScene.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRoadScene.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalPresentation.ts, src/traversal/TraversalRoadMotion.test.ts, src/traversal/TraversalRoadScene.test.ts, src/traversal/TraversalT0Scene.ts, src/traversal/TraversalT1Scene.ts, src/traversal/TraversalT3Scene.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRoadSpace.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalCaravan.ts, src/traversal/TraversalDepth.test.ts, src/traversal/TraversalDepth.ts, src/traversal/TraversalPursuitChargeRenderer.ts, src/traversal/TraversalRoadAnchor.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalRouteModel.ts, src/traversal/TraversalT0World.test.ts, src/traversal/TraversalWorldRenderer.ts, tools/traversal/pursuit-charge-lab.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRouteModel.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalCheckpointRoute.ts, src/traversal/TraversalInteractionGrammar.ts, src/traversal/TraversalPresentation.ts, src/traversal/TraversalRoadAuthoring.ts, src/traversal/TraversalRoadScene.test.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalT0Route.test.ts, src/traversal/TraversalT0Route.ts, src/traversal/TraversalT0Route.ts, src/traversal/TraversalT0Route.ts, src/traversal/TraversalT1Route.ts, src/traversal/TraversalT1Scene.ts, src/traversal/TraversalT3Route.ts, src/traversal/TraversalT3Scene.ts, src/traversal/TraversalWorldSubject.test.ts, src/traversal/TraversalWorldSubject.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRoutePursuit.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRoutePursuit.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoadAuthoring.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalRoutePursuit.test.ts, src/traversal/TraversalRoutePursuitRenderer.ts, src/traversal/TraversalRoutePursuitRenderer.ts, src/traversal/TraversalT0Pursuit.ts, src/traversal/TraversalT0PursuitScene.test.ts, tools/traversal/pursuit-charge-lab.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRoutePursuitArt.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRoutePursuitRenderer.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoadScene.ts, src/traversal/TraversalRoutePursuit.test.ts, src/traversal/TraversalRoutePursuitArt.test.ts, src/traversal/TraversalWorldSubject.test.ts, src/traversal/TraversalWorldSubject.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRouteRenderer.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoadScene.ts, tools/traversal/road-anchor-lab.ts, tools/traversal/road-late-reset-lab.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRouteReward.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRouteReward.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoadAnchor.test.ts, src/traversal/TraversalRoadAuthoring.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalRoutePursuit.test.ts, src/traversal/TraversalRouteReward.test.ts, src/traversal/TraversalRouteRewardRenderer.ts, src/traversal/TraversalT0Reward.ts, tools/traversal/road-anchor-lab.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRouteRewardRenderer.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoadAnchor.test.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalRouteReward.test.ts, tools/traversal/road-anchor-lab.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRouteRisk.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRouteRisk.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoadAuthoring.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalRoutePursuit.test.ts, src/traversal/TraversalRouteReward.test.ts, src/traversal/TraversalRouteRisk.test.ts, src/traversal/TraversalRouteRiskRenderer.ts, src/traversal/TraversalRouteRiskVisual.ts, src/traversal/TraversalT0Risk.ts, tools/traversal/road-anchor-lab.ts, tools/traversal/road-late-reset-lab.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRouteRiskRenderer.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoadScene.ts, src/traversal/TraversalRouteRisk.test.ts, tools/traversal/road-anchor-lab.ts, tools/traversal/road-late-reset-lab.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRouteRiskVisual.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRouteRisk.test.ts, src/traversal/TraversalRouteRiskRenderer.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRouteRun.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRouteRun.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalCheckpointRoute.ts, src/traversal/TraversalRoadAnchor.test.ts, src/traversal/TraversalRoadAnchor.ts, src/traversal/TraversalRoadCamera.test.ts, src/traversal/TraversalRoadMotion.test.ts, src/traversal/TraversalRoadMotion.test.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalRoutePursuit.test.ts, src/traversal/TraversalRouteReward.test.ts, src/traversal/TraversalRouteRisk.test.ts, src/traversal/TraversalRouteRun.test.ts, src/traversal/TraversalT0PursuitScene.test.ts, tools/traversal/road-anchor-lab.ts, tools/traversal/road-late-reset-lab.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRunController.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRunController.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoadScene.ts, src/traversal/TraversalRunController.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRunRuntime.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalRunRuntime.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalPresentation.ts, src/traversal/TraversalPursuitCharge.ts, src/traversal/TraversalRoadMotion.test.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalRouteModel.ts, src/traversal/TraversalRoutePursuit.ts, src/traversal/TraversalRoutePursuitRenderer.ts, src/traversal/TraversalRouteReward.ts, src/traversal/TraversalRouteRisk.ts, src/traversal/TraversalRouteRun.ts, src/traversal/TraversalRunController.ts, src/traversal/TraversalRunRuntime.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalSprite.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalDepth.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalWorldRenderer.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalSpriteBounds.json",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalSprite.ts, src/traversal/TraversalT0Assets.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT0Assets.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT0Assets.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalT0Assets.test.ts, src/traversal/TraversalT0Authoring.ts, src/traversal/TraversalT0Route.test.ts, src/traversal/TraversalT0Route.ts, src/traversal/TraversalT0World.ts, src/traversal/TraversalT1Route.ts, src/traversal/TraversalT1World.ts, src/traversal/TraversalT3Route.ts, src/traversal/TraversalT3World.ts, src/traversal/TraversalWorldRenderer.test.ts, src/traversal/TraversalWorldSubject.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT0Authoring.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoadMotion.test.ts, src/traversal/TraversalRoadScene.test.ts, src/traversal/TraversalT0Scene.ts, src/traversal/TraversalT1Authoring.ts, src/traversal/TraversalT3Authoring.ts, tools/traversal/pursuit-charge-lab.ts, tools/traversal/road-anchor-lab.ts, tools/traversal/road-late-reset-lab.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT0CheckpointRoute.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoadCamera.test.ts, src/traversal/TraversalRoutePursuit.test.ts, src/traversal/TraversalRouteReward.test.ts, src/traversal/TraversalRouteRisk.test.ts, src/traversal/TraversalRouteRun.test.ts, src/traversal/TraversalT0Authoring.ts, src/traversal/TraversalT0PursuitScene.test.ts, src/traversal/TraversalT0Route.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT0Flow.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT0Foreground.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalDepth.test.ts, src/traversal/TraversalT0Assets.test.ts, src/traversal/TraversalT0Authoring.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT0Pursuit.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoutePursuit.test.ts, src/traversal/TraversalT0Authoring.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT0PursuitScene.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT0Reward.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoutePursuit.test.ts, src/traversal/TraversalRouteReward.test.ts, src/traversal/TraversalT0Authoring.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT0Risk.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoutePursuit.test.ts, src/traversal/TraversalRouteReward.test.ts, src/traversal/TraversalRouteRisk.test.ts, src/traversal/TraversalT0Authoring.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT0Route.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT0Route.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalT0Authoring.ts, src/traversal/TraversalT0Route.test.ts, src/traversal/TraversalT0Scene.ts, src/traversal/TraversalT0World.test.ts, src/traversal/TraversalWorldSubject.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT0Scene.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT0Scene.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/game/traversalT0ProductionRollout.test.ts, src/traversal/TraversalPresentation.ts, src/traversal/TraversalRoadMotion.test.ts, src/traversal/TraversalT0Flow.test.ts, src/traversal/TraversalT0PursuitScene.test.ts, src/traversal/TraversalT0Scene.test.ts, src/traversal/TraversalT0World.test.ts, src/traversal/TraversalWorldSubject.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT0World.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT0World.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalT0Assets.test.ts, src/traversal/TraversalT0Authoring.ts, src/traversal/TraversalT0Route.test.ts, src/traversal/TraversalT0Scene.test.ts, src/traversal/TraversalT0World.test.ts, src/traversal/TraversalT1World.ts, src/traversal/TraversalT3World.ts, tools/traversal/pursuit-charge-lab.ts, tools/traversal/road-anchor-lab.ts, tools/traversal/road-late-reset-lab.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT1Authoring.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalT1Scene.test.ts, src/traversal/TraversalT1Scene.ts, tools/traversal/pursuit-charge-lab.ts, tools/traversal/road-anchor-lab.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT1CheckpointRoute.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalT1Authoring.ts, src/traversal/TraversalT1Scene.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT1Route.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalT1Authoring.ts, src/traversal/TraversalWorldSubject.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT1Scene.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT1Scene.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/game/traversalT0ProductionRollout.test.ts, src/traversal/TraversalPresentation.ts, src/traversal/TraversalT1Scene.test.ts, src/traversal/TraversalWorldSubject.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT1World.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalT1Authoring.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT3Authoring.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalT3Scene.test.ts, src/traversal/TraversalT3Scene.ts, tools/traversal/pursuit-charge-lab.ts, tools/traversal/road-anchor-lab.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT3CheckpointRoute.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalT3Authoring.ts, src/traversal/TraversalT3Scene.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT3Route.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalT3Authoring.ts, src/traversal/TraversalWorldSubject.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT3Scene.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT3Scene.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/game/traversalT0ProductionRollout.test.ts, src/traversal/TraversalPresentation.ts, src/traversal/TraversalT3Scene.test.ts, src/traversal/TraversalWorldSubject.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalT3World.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalT3Authoring.ts, src/traversal/TraversalT3Scene.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalTransition.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/game/GameApp.ts, src/traversal/TraversalRoadScene.ts, src/ui/SceneTransition.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalWorldModel.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoadAuthoring.ts, src/traversal/TraversalT0World.ts, src/traversal/TraversalT0World.ts, src/traversal/TraversalT1World.ts, src/traversal/TraversalT3World.ts, src/traversal/TraversalWorldRenderer.test.ts, src/traversal/TraversalWorldRenderer.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalWorldRenderer.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalWorldRenderer.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoadScene.ts, src/traversal/TraversalT0World.test.ts, src/traversal/TraversalWorldRenderer.test.ts, tools/traversal/pursuit-charge-lab.ts, tools/traversal/road-anchor-lab.ts, tools/traversal/road-late-reset-lab.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalWorldSubject.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "src/traversal/TraversalWorldSubject.ts",
+      "classification": "DELETE",
+      "activeImporters": "src/traversal/TraversalRoadScene.ts, src/traversal/TraversalWorldSubject.test.ts",
+      "destination": "Removed after native Lot A replacement acceptance",
+      "evidence": "Physical-only engine or dedicated test; consumers inside retiring engine except GameApp and SceneTransition migrated in same lot."
+    },
+    {
+      "path": "tools/traversal-game-motion-production-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-motion-fallback-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-motion-production-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-pursuit-charge-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-road-anchor-lab-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-road-authoring-audit.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-road-elements-production-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-road-entry-production-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-road-evidence-audit.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-road-late-reset-lab-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-road-more-routes-production-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-rock-production-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-t0-browser-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-t0-pursuit-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "tools/traversal-t0-browser-qa.mjs",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-t0-reward-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "tools/traversal-t0-browser-qa.mjs",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-t1-browser-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-t1-production-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-t3-browser-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-t3-production-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-visual-convergence-probe-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal-visual-convergence-qa.mjs",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal/pursuit-charge-lab.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal/road-anchor-lab.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "tools/traversal/road-late-reset-lab.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Removed from active toolset",
+      "evidence": "Dedicated physical-world QA/lab; old reports remain immutable."
+    },
+    {
+      "path": "src/styles/traversal.css",
+      "classification": "DELETE",
+      "activeImporters": "tools/traversal/pursuit-charge-lab.ts, tools/traversal/road-anchor-lab.ts, tools/traversal/road-late-reset-lab.ts",
+      "destination": "Remove with physical caller",
+      "evidence": "Physical engine only."
+    },
+    {
+      "path": "src/styles/traversal-pursuit-charge.css",
+      "classification": "DELETE",
+      "activeImporters": "tools/traversal/pursuit-charge-lab.ts",
+      "destination": "Remove with physical caller",
+      "evidence": "Physical engine only."
+    },
+    {
+      "path": "src/game/GameAppRouteReward.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove with physical caller",
+      "evidence": "Physical engine only."
+    },
+    {
+      "path": "src/game/traversalT0ProductionRollout.test.ts",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove with physical caller",
+      "evidence": "Physical engine only."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/asset-manifest.json",
+      "classification": "HISTORICAL_EVIDENCE",
+      "activeImporters": "",
+      "destination": "Preserve provenance under docs/project/retired-traversal/",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/foreground/ferns.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/foreground/roots.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/foreground/shared-loop.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/props/abandoned-cart.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/props/fork-sign.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/pursuit/README.md",
+      "classification": "HISTORICAL_EVIDENCE",
+      "activeImporters": "",
+      "destination": "Preserve provenance under docs/project/retired-traversal/",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.json",
+      "classification": "HISTORICAL_EVIDENCE",
+      "activeImporters": "",
+      "destination": "Preserve provenance under docs/project/retired-traversal/",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/reward/README.md",
+      "classification": "HISTORICAL_EVIDENCE",
+      "activeImporters": "",
+      "destination": "Preserve provenance under docs/project/retired-traversal/",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/reward/coin-pouch.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/risk/README.md",
+      "classification": "HISTORICAL_EVIDENCE",
+      "activeImporters": "",
+      "destination": "Preserve provenance under docs/project/retired-traversal/",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/risk/boulder-a.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/risk/boulder-b.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/risk/fallen-branch-a.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/risk/fallen-branch-b.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/risk/roadblock-a.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/risk/roadblock-b.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/chassis.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/wheel.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/ambush-cleared.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/damaged-caravan.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-junction.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/nomad-waystation.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/opening-ambush.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/refugee-halt.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/ruined-outpost.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t1/asset-manifest.json",
+      "classification": "HISTORICAL_EVIDENCE",
+      "activeImporters": "",
+      "destination": "Preserve provenance under docs/project/retired-traversal/",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t1/world-v1/old-shrine.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t1/world-v1/valmir-road.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t3/asset-manifest.json",
+      "classification": "HISTORICAL_EVIDENCE",
+      "activeImporters": "",
+      "destination": "Preserve provenance under docs/project/retired-traversal/",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t3/world-v1/dragon-roost.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t3/world-v1/shadow-ruins.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t3/world-v1/witness-road.png",
+      "classification": "DELETE",
+      "activeImporters": "",
+      "destination": "Remove orphan production art",
+      "evidence": "Only active render consumers inside retiring src/traversal; shared environment/character/cinematic media untouched."
+    },
+    {
+      "path": "src/ui/SceneTransition.ts",
+      "classification": "REHOME_SHARED",
+      "activeImporters": "src/game/GameApp.ts, src/game/GameApp.ts, src/game/GameAppPoi.test.ts, src/game/campaignPresentationMigration.test.ts, src/game/traversalT0ProductionRollout.test.ts, src/ui/SceneTransition.test.ts",
+      "destination": "Neutral UI transition / OptionalEncounterConsequencePolicy / POI tests",
+      "evidence": "Keep shared behavior, remove physical-only branches."
+    },
+    {
+      "path": "src/game/TraversalOptionalConsequencePolicy.ts",
+      "classification": "REHOME_SHARED",
+      "activeImporters": "src/game/GameApp.ts, src/game/campaignGrammarConsolidation.test.ts",
+      "destination": "Neutral UI transition / OptionalEncounterConsequencePolicy / POI tests",
+      "evidence": "Keep shared behavior, remove physical-only branches."
+    },
+    {
+      "path": "src/game/campaignGrammarConsolidation.test.ts",
+      "classification": "REHOME_SHARED",
+      "activeImporters": "",
+      "destination": "Neutral UI transition / OptionalEncounterConsequencePolicy / POI tests",
+      "evidence": "Keep shared behavior, remove physical-only branches."
+    },
+    {
+      "path": "src/campaign/LionCampaignTravelRelations.ts",
+      "classification": "KEEP_DURABLE_COMPAT",
+      "activeImporters": "src/campaign/LionCampaignTravelRelations.test.ts, src/campaign/LionTraversalPursuitEncounters.ts, src/game/GameApp.ts, src/game/runSystem.ts, src/game/traversalRouteAuthority.test.ts, src/traversal/TraversalCheckpointRoute.ts, src/traversal/TraversalFeaturePolicy.ts, src/traversal/TraversalPresentation.ts, src/traversal/TraversalRoadAuthoring.ts, src/traversal/TraversalRoadMotion.test.ts, src/traversal/TraversalRoadScene.test.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalRouteModel.ts, src/traversal/TraversalRunController.test.ts, src/traversal/TraversalRunController.ts, src/traversal/TraversalRunRuntime.test.ts, src/traversal/TraversalRunRuntime.ts, src/traversal/TraversalT0Authoring.ts, src/traversal/TraversalT0Flow.test.ts, src/traversal/TraversalT0PursuitScene.test.ts, src/traversal/TraversalT0Route.test.ts, src/traversal/TraversalT0Route.ts, src/traversal/TraversalT0Scene.test.ts, src/traversal/TraversalT0World.test.ts, src/traversal/TraversalT1Route.ts, src/traversal/TraversalT1Scene.test.ts, src/traversal/TraversalT3Route.ts, src/traversal/TraversalT3Scene.test.ts, src/traversal/TraversalWorldSubject.test.ts",
+      "destination": "Existing owner",
+      "evidence": "T0–T4, traversalBranches, bypass/recovery graph and V6 preserved; remove only physical Pursuit functions from runSystem."
+    },
+    {
+      "path": "src/campaign/LionCampaignStructure.ts",
+      "classification": "KEEP_DURABLE_COMPAT",
+      "activeImporters": "src/campaign/LionCampaignStructure.test.ts, src/campaign/LionCampaignStructureAudit.ts, src/campaign/LionCampaignTravelRelations.ts, src/traversal/TraversalT0Route.ts, src/traversal/TraversalT1Route.ts, src/traversal/TraversalT3Route.ts",
+      "destination": "Existing owner",
+      "evidence": "T0–T4, traversalBranches, bypass/recovery graph and V6 preserved; remove only physical Pursuit functions from runSystem."
+    },
+    {
+      "path": "src/game/types.ts",
+      "classification": "KEEP_DURABLE_COMPAT",
+      "activeImporters": "src/cinematics/DialoguePresentationSegments.ts, src/cinematics/DialogueStagingDirector.ts, src/cinematics/NarrativeDialogueAdapter.ts, src/cinematics/NarrativeSceneSurface.ts, src/cinematics/NarrativeStage.ts, src/cinematics/NarrativeStagingAudit.ts, src/cinematics/NarrativeTableau.ts, src/combat/CombatBridge.ts, src/combat/protocol.ts, src/combat/vfx/CombatVfxLab.ts, src/combat/vfx/DemoVfxActionScope.ts, src/game/GameApp.ts, src/game/GameAppPoi.test.ts, src/game/OptionalEncounterConsequencePolicy.ts, src/game/RuntimeDialogueReachability.ts, src/game/campaignGrammarContent.ts, src/game/campaignPresentationMigration.test.ts, src/game/catalog.ts, src/game/combatProgress.ts, src/game/content.test.ts, src/game/content.ts, src/game/contestResolution.test.ts, src/game/contestResolution.ts, src/game/contextualDialogue.test.ts, src/game/contextualDialogue.test.ts, src/game/contextualDialogue.ts, src/game/contextualDialogue.ts, src/game/contextualDialogueContent.ts, src/game/dialoguePresentationShape.ts, src/game/lionFinale.test.ts, src/game/lionFinale.ts, src/game/lionFinale.ts, src/game/management.test.ts, src/game/management.ts, src/game/poiContentAdapters.ts, src/game/poiNavigation.test.ts, src/game/r5NarrativeExpansion.test.ts, src/game/r6FullRouteIntegration.test.ts, src/game/reputation.ts, src/game/reputationEventContent.ts, src/game/reputationEventDirector.test.ts, src/game/reputationEventDirector.ts, src/game/runSystem.test.ts, src/game/runSystem.ts, src/game/skills.ts, src/game/store.ts, src/game/traversalRouteAuthority.test.ts, src/game/traversalT0ProductionRollout.test.ts, src/journey/JourneyCampaignBoundary.test.ts, src/journey/JourneyCampaignBoundary.ts, src/journey/JourneyPresentationResolver.test.ts, src/journey/JourneyPresentationResolver.ts, src/journey/JourneyRunNodeAdapter.test.ts, src/journey/JourneyRunNodeAdapter.ts, src/journey/RouteCommitGuard.test.ts, src/journey/RouteCommitGuard.ts, src/qa/r7LionSimulation.ts, src/traversal/TraversalForkOverlay.ts, src/traversal/TraversalPreviewSaves.ts, src/traversal/TraversalRoadAuthoring.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalRunController.ts, src/traversal/TraversalT0Authoring.ts, src/traversal/TraversalT0Route.ts, src/traversal/TraversalT1Route.ts, src/traversal/TraversalT3Authoring.ts, src/traversal/TraversalT3Route.ts, src/traversal/TraversalT3World.ts, src/traversal/TraversalWorldSubject.ts, src/ui/CampaignStatusHud.ts, src/ui/DialogueView.test.ts, src/ui/DialogueView.ts, src/ui/ManagementView.ts, src/ui/RefugePresentation.ts, src/ui/RunNodePresentation.ts, src/ui/TravelView.ts, tools/cinematics/generate_cin6ea4_dialogue_lock.ts, tools/dialogue/dialogue-proof.ts",
+      "destination": "Existing owner",
+      "evidence": "T0–T4, traversalBranches, bypass/recovery graph and V6 preserved; remove only physical Pursuit functions from runSystem."
+    },
+    {
+      "path": "src/game/store.ts",
+      "classification": "KEEP_DURABLE_COMPAT",
+      "activeImporters": "src/cinematics/CinematicTriggers.test.ts, src/cinematics/DialogueStagingDirector.test.ts, src/cinematics/NarrativeStage.test.ts, src/cinematics/NarrativeStagingAudit.ts, src/cinematics/RuntimePresentationStepCensus.test.ts, src/combat/protocol.test.ts, src/combat/vfx/DemoVfxActionScope.ts, src/game/GameApp.ts, src/game/GameAppPoi.test.ts, src/game/RuntimeDialogueReachability.ts, src/game/campaignGrammarConsolidation.test.ts, src/game/campaignPresentationMigration.test.ts, src/game/cin2CampaignBridge.test.ts, src/game/cin67NarrativeStageIntegration.test.ts, src/game/combatProgress.test.ts, src/game/content.test.ts, src/game/contestResolution.test.ts, src/game/contextualDialogue.test.ts, src/game/lionFinale.test.ts, src/game/management.test.ts, src/game/poiContentAdapters.test.ts, src/game/poiNavigation.test.ts, src/game/r5NarrativeExpansion.test.ts, src/game/r6FullRouteIntegration.test.ts, src/game/refugeHubContinuity.test.ts, src/game/reputation.test.ts, src/game/reputationEventDirector.test.ts, src/game/runSystem.test.ts, src/game/traversalRouteAuthority.test.ts, src/game/traversalT0ProductionRollout.test.ts, src/journey/JourneyCampaignBoundary.test.ts, src/journey/JourneyPresentationResolver.test.ts, src/journey/JourneyRunNodeAdapter.test.ts, src/journey/RouteCommitGuard.test.ts, src/qa/r7LionSimulation.ts, src/traversal/TraversalForkOverlay.test.ts, src/traversal/TraversalPreviewSaves.test.ts, src/traversal/TraversalPreviewSaves.ts, src/traversal/TraversalRoadMotion.test.ts, src/traversal/TraversalRoadScene.test.ts, src/traversal/TraversalRouteReward.test.ts, src/traversal/TraversalRunController.test.ts, src/traversal/TraversalRunRuntime.test.ts, src/traversal/TraversalT0Flow.test.ts, src/traversal/TraversalT0PursuitScene.test.ts, src/traversal/TraversalT0Route.test.ts, src/traversal/TraversalT0Scene.test.ts, src/traversal/TraversalT0World.test.ts, src/traversal/TraversalT1Scene.test.ts, src/traversal/TraversalT3Scene.test.ts, src/traversal/TraversalWorldSubject.test.ts, src/ui/CampaignStatusHud.test.ts, src/ui/CharacterUiIntegration.test.ts, src/ui/DialogueView.test.ts, src/ui/ExplorationView.test.ts, src/ui/ManagementView.test.ts, src/ui/RefugePresentation.test.ts, src/ui/TraversalTravelReturn.test.ts, tools/dialogue/dialogue-proof.ts, tools/dialogue/journey-scene-proof.ts, tools/dialogue/static-tableau-v2-proof.ts",
+      "destination": "Existing owner",
+      "evidence": "T0–T4, traversalBranches, bypass/recovery graph and V6 preserved; remove only physical Pursuit functions from runSystem."
+    },
+    {
+      "path": "src/game/runSystem.ts",
+      "classification": "KEEP_DURABLE_COMPAT",
+      "activeImporters": "src/campaign/LionCampaignStructureAudit.ts, src/cinematics/FinalNarrativeContinuity.test.ts, src/cinematics/FinalPresentationModeAudit.test.ts, src/combat/vfx/DemoVfxActionScope.ts, src/game/GameApp.ts, src/game/GameAppPoi.test.ts, src/game/campaignGrammarConsolidation.test.ts, src/game/campaignPresentationMigration.test.ts, src/game/cin2CampaignBridge.test.ts, src/game/cin67NarrativeStageIntegration.test.ts, src/game/poiContentAdapters.test.ts, src/game/poiContentAdapters.ts, src/game/poiNavigation.test.ts, src/game/r6FullRouteIntegration.test.ts, src/game/runSystem.test.ts, src/game/store.ts, src/game/traversalRouteAuthority.test.ts, src/game/traversalT0ProductionRollout.test.ts, src/journey/JourneyCampaignBoundary.test.ts, src/journey/JourneyPresentationResolver.test.ts, src/journey/JourneyRunNodeAdapter.test.ts, src/journey/RouteCommitGuard.test.ts, src/qa/r7LionSimulation.ts, src/traversal/TraversalForkOverlay.test.ts, src/traversal/TraversalRoadMotion.test.ts, src/traversal/TraversalRoadScene.test.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalRouteReward.test.ts, src/traversal/TraversalRunController.test.ts, src/traversal/TraversalRunRuntime.test.ts, src/traversal/TraversalT0Flow.test.ts, src/traversal/TraversalT0PursuitScene.test.ts, src/traversal/TraversalT0Scene.test.ts, src/traversal/TraversalT0Scene.ts, src/traversal/TraversalT0World.test.ts, src/traversal/TraversalT1Route.ts, src/traversal/TraversalT1Scene.test.ts, src/traversal/TraversalT1Scene.ts, src/traversal/TraversalT3Route.ts, src/traversal/TraversalT3Scene.test.ts, src/traversal/TraversalT3Scene.ts, src/traversal/TraversalWorldSubject.test.ts, src/ui/PoiMapView.ts, src/ui/TravelView.ts, src/ui/TraversalTravelReturn.test.ts, tools/cinematics/generate_cin6d5_specs.ts, tools/cinematics/generate_cin6d_specs.ts",
+      "destination": "Existing owner",
+      "evidence": "T0–T4, traversalBranches, bypass/recovery graph and V6 preserved; remove only physical Pursuit functions from runSystem."
+    },
+    {
+      "path": "src/game/GameApp.ts",
+      "classification": "REHOME_SHARED",
+      "activeImporters": "src/game/GameAppPoi.test.ts, src/game/GameAppRouteReward.test.ts, src/game/campaignGrammarConsolidation.test.ts, src/game/campaignPresentationMigration.test.ts, src/game/refugeHubContinuity.test.ts, src/game/traversalT0ProductionRollout.test.ts, src/main.ts",
+      "destination": "Existing owner with physical dependencies removed",
+      "evidence": "Campaign/narrative/UI/combat/POI still consumed; retain nonphysical behavior."
+    },
+    {
+      "path": "src/ui/CampaignStatusHud.ts",
+      "classification": "REHOME_SHARED",
+      "activeImporters": "src/cinematics/NarrativeStage.test.ts, src/cinematics/NarrativeStage.ts, src/game/GameApp.ts, src/game/campaignGrammarConsolidation.test.ts, src/game/refugeHubContinuity.test.ts, src/journey/JourneyCampaignBoundary.ts, src/traversal/TraversalRoadScene.ts, src/traversal/TraversalRouteReward.test.ts, src/ui/CampaignStatusHud.test.ts, src/ui/ExplorationView.test.ts, src/ui/ExplorationView.ts, tools/dialogue/journey-scene-proof.ts, tools/ui-kit-system-1-gallery.ts",
+      "destination": "Existing owner with physical dependencies removed",
+      "evidence": "Campaign/narrative/UI/combat/POI still consumed; retain nonphysical behavior."
+    },
+    {
+      "path": "src/ui/TravelView.ts",
+      "classification": "REHOME_SHARED",
+      "activeImporters": "src/game/GameApp.ts, src/ui/CharacterUiIntegration.test.ts, src/ui/TraversalTravelReturn.test.ts",
+      "destination": "Existing owner with physical dependencies removed",
+      "evidence": "Campaign/narrative/UI/combat/POI still consumed; retain nonphysical behavior."
+    },
+    {
+      "path": "src/ui/NarrativeStage.ts",
+      "classification": "REHOME_SHARED",
+      "activeImporters": "",
+      "destination": "Existing owner with physical dependencies removed",
+      "evidence": "Campaign/narrative/UI/combat/POI still consumed; retain nonphysical behavior."
+    },
+    {
+      "path": "src/journey/JourneyCampaignBoundary.ts",
+      "classification": "REHOME_SHARED",
+      "activeImporters": "src/game/GameApp.ts, src/game/campaignPresentationMigration.test.ts, src/game/traversalT0ProductionRollout.test.ts, src/journey/JourneyCampaignBoundary.test.ts",
+      "destination": "Existing owner with physical dependencies removed",
+      "evidence": "Campaign/narrative/UI/combat/POI still consumed; retain nonphysical behavior."
+    },
+    {
+      "path": "src/styles/app.css",
+      "classification": "REHOME_SHARED",
+      "activeImporters": "src/main.ts, tools/dialogue/dialogue-proof.ts, tools/dialogue/journey-scene-proof.ts, tools/dialogue/static-tableau-v2-proof.ts",
+      "destination": "Existing owner with physical dependencies removed",
+      "evidence": "Campaign/narrative/UI/combat/POI still consumed; retain nonphysical behavior."
+    },
+    {
+      "path": "tools/demo-continuous-production-qa.mjs",
+      "classification": "REHOME_SHARED",
+      "activeImporters": "",
+      "destination": "Existing owner with physical dependencies removed",
+      "evidence": "Campaign/narrative/UI/combat/POI still consumed; retain nonphysical behavior."
+    },
+    {
+      "path": "src/game/campaignPresentationMigration.test.ts",
+      "classification": "REVIEW_UNCERTAIN",
+      "activeImporters": "",
+      "destination": "Review exact assertions/consumers before retirement",
+      "evidence": "No automatic deletion based on name."
+    },
+    {
+      "path": "src/game/cin2CampaignBridge.test.ts",
+      "classification": "REVIEW_UNCERTAIN",
+      "activeImporters": "",
+      "destination": "Review exact assertions/consumers before retirement",
+      "evidence": "No automatic deletion based on name."
+    },
+    {
+      "path": "src/game/TraversalTravelReturn.test.ts",
+      "classification": "REVIEW_UNCERTAIN",
+      "activeImporters": "",
+      "destination": "Review exact assertions/consumers before retirement",
+      "evidence": "No automatic deletion based on name."
+    },
+    {
+      "path": "src/game/traversalRouteAuthority.test.ts",
+      "classification": "REVIEW_UNCERTAIN",
+      "activeImporters": "",
+      "destination": "Review exact assertions/consumers before retirement",
+      "evidence": "No automatic deletion based on name."
+    },
+    {
+      "path": "src/campaign/LionTraversalPursuitEncounters.ts",
+      "classification": "REVIEW_UNCERTAIN",
+      "activeImporters": "src/game/content.test.ts, src/game/runSystem.test.ts, src/game/runSystem.ts",
+      "destination": "Review exact assertions/consumers before retirement",
+      "evidence": "No automatic deletion based on name."
+    }
+  ]
+}

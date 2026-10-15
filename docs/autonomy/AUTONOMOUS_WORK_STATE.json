@@ -4,7 +4,7 @@
   "runEndedAt": null,
   "activeTask": "POI-V2-AND-TRAVERSAL-RETIREMENT",
   "activePhase": "A",
-  "activeSubtask": "Lot A runtime ready: 36current focused tests, types/build/contracts pass. Await guardian actualdiff then commit frozen source and run native first-refuge direct local route on1366 normal.",
+  "activeSubtask": "Fresh native rerun after reviewed assignment-idempotence fix;0752FAILED retained/unseedable.58focused tests/types/build pass. No retirement before corrected Lot A proof.",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "804ba18d51620ba1d07cd4b91f14a3504b1dfd41",
   "lastPushedCommit": "804ba18d51620ba1d07cd4b91f14a3504b1dfd41",
@@ -70,7 +70,7 @@
     "Old Traversal retained; static669paths/350referencefiles inventory is not retirement acceptance",
     "Audio DEFERRED; eight videos unchanged; Bois-Clair night art external"
   ],
-  "nextAction": "Lot A runtime ready: 36current focused tests, types/build/contracts pass. Await guardian actualdiff then commit frozen source and run native first-refuge direct local route on1366 normal.",
+  "nextAction": "Fresh native rerun after reviewed assignment-idempotence fix;0752FAILED retained/unseedable.58focused tests/types/build pass. No retirement before corrected Lot A proof.",
   "taskQueue": [
     "POI-MAP-FINALIZATION: requested implementation/native milestones REVIEWED_SCOPED; operator final playtest remains",
     "DEMO-PC-CAMPAIGN: both native truth endings, T0/T1/T3 alternatives, rescue/sacrifice, defeat and exact V6 accepted in recorded scopes",
@@ -176,7 +176,7 @@
   "lastHeartbeat": "2026-10-15T06:29:56.404Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-15T07:49:04.737Z",
+    "lastHeartbeat": "2026-10-15T08:07:36.938Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -27816,10 +27816,111 @@
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-v2-first-refuge-0752",
+        "runId": "codex-poi-v2-20261015",
+        "status": "FAILED",
+        "registeredAt": "2026-10-15T07:49:24.896Z",
+        "pid": 53360,
+        "port": 5440,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "first-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 25,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "gameReducedMotion": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": null,
+          "priorProofPath": null,
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-v2-first-refuge-0752",
+        "receiptPath": "tmp/demo/poi-v2-first-refuge-0752/qa-job.json",
+        "provenance": {
+          "gitHead": "ca78057c91b56d72a323df5db13a7ae21b8640f9",
+          "sourceTree": "9b6d5d390da3cfed953f8b083e3335ba2dcfc433",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "2a8685ecbfe5a48b8f5cda3a8d274f8a4e39907568f5fbfa274ffa110a3c60df"
+          },
+          "inputs": [],
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-BYn21mEW.js",
+              "sha256": "957b739729acbd388e1838756555e214833ea2e240f1187d3b3f6f079e157157"
+            },
+            {
+              "path": "dist/assets/combat-DjqMkLJ7.js",
+              "sha256": "3b772d98176de97b45fe4242f4122d1f7ccc56909515901eef2a79dc9bc0a510"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BbmO7avt.js",
+              "sha256": "8592be8bd77102cae685d6fde1dc84abdd5f835e9767f642c7bf0aae81a1d020"
+            },
+            {
+              "path": "dist/assets/game-C2Tjl8Gd.css",
+              "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "5ed24ea3a1b380b5cfd93d9cef000eb021734af642a61d96bfe002f03ca5e638"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-15T07:49:25.927Z",
+        "endedAt": "2026-10-15T08:03:39.978Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/poi-v2-first-refuge-0752/results.json",
+        "resultSha256": "fcfa4c03daa4b7e477c2e8920125687fcc7def6528539722f5d83acdd27bec5e",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       }
     ],
     "wip": null,
-    "nextAction": "Lot A runtime ready: 36current focused tests, types/build/contracts pass. Await guardian actualdiff then commit frozen source and run native first-refuge direct local route on1366 normal.",
+    "nextAction": "Fresh native rerun after reviewed assignment-idempotence fix;0752FAILED retained/unseedable.58focused tests/types/build pass. No retirement before corrected Lot A proof.",
     "runMetrics": {
       "runId": "codex-poi-finalization-20261014",
       "runtimeSourceFilesModified": 5,

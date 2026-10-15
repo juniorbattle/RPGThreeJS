@@ -538,6 +538,9 @@ function adaptiveVariantByContentId(nodeId: string, contentId: string): Adaptive
 function resolveAdaptiveNode(state: GameState, node: RunNode): RunNode {
   if (state.run.visitedNodeIds.includes(node.id)) return node;
   const assignment = state.mysteryAssignments[node.id];
+  // The saved graph already carries the fully authored variant, including mandate-specific
+  // hints. Content IDs can be shared by variants; rematching by ID would rewrite that data.
+  if (assignment === node.contentId) return node;
   const variant = (assignment ? adaptiveVariantByContentId(node.id, assignment) : null)
     ?? selectAdaptiveVariant(state, node.id);
   if (!variant) return node;

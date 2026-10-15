@@ -139,6 +139,18 @@ describe('authoritative connected POI navigation',()=>{
     expect(loaded).toEqual(state);expect(node(loaded,'lion-first-trial-event').contentId).toBe(content);
     expect(loaded.version).toBe(6);
   });
+  it('retains the entire revealed mandate variant through backtracking and exact V6 reload',()=>{
+    const state=createInitialState();state.flags.lionMandateHonour=true;
+    for(const id of ['lion-audience','lion-opening-ambush','lion-nomad-crossroads'])resolveFixture(state,id);
+    selectPoiMap(state);const before=structuredClone(state.run.graph);
+    expect(before.nodes.find(n=>n.id==='lion-first-trial-event')!.hint).toContain('mandat du Lion');
+    for(const id of ['lion-opening-ambush','lion-audience','lion-opening-ambush','lion-nomad-crossroads']) {
+      expect(enterPoi(state,id)?.activate).toBe(false);selectPoiMap(state);
+    }
+    expect(state.run.graph).toEqual(before);
+    const saves=new SaveRepository();saves.saveAuto(state);const loaded=saves.loadAuto()!;
+    expect(loaded).toEqual(state);selectPoiMap(loaded);expect(loaded.run.graph).toEqual(before);
+  });
   it('preserves old V6 interruptions without converting a visit to victory, and clears a losing branch on rollback',()=>{
     const state=crossroads();resolveFixture(state,'lion-refugees');
     state.run.currentNodeId='lion-first-trial-combat';state.currentNodeId=state.run.currentNodeId;
