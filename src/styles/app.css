@@ -2645,7 +2645,7 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .journey-overlay__choice { display:flex; flex-direction:column; align-items:flex-start; gap:4px; width:100%; min-height:74px; padding:11px 14px; border:1px solid rgba(114,199,255,.32); border-radius:6px; background:linear-gradient(145deg,rgba(18,30,51,.9),rgba(4,8,16,.94)); color:#eaf5ff; text-align:left; cursor:pointer; }
 .journey-overlay__choice:hover:not([disabled]),.journey-overlay__choice:focus-visible { border-color:rgba(244,217,139,.72); outline:2px solid rgba(114,199,255,.7); outline-offset:2px; }
 .journey-overlay__choice[disabled] { opacity:.45; cursor:not-allowed; }
-.journey-overlay__choice--continue { min-height:42px; align-items:center; justify-content:center; color:#fff0c8; font:700 11px Cinzel,serif; letter-spacing:.12em; text-transform:uppercase; }
+.journey-overlay__choice--continue { min-height:44px; align-items:center; justify-content:center; color:#fff0c8; font:700 11px Cinzel,serif; letter-spacing:.12em; text-transform:uppercase; }
 .journey-overlay__choice b { color:#fff0c8; font:700 15px Cinzel,serif; }
 .journey-overlay--branch .journey-overlay__choice { min-height:66px; background:linear-gradient(145deg,rgba(18,30,51,.76),rgba(4,8,16,.88)); backdrop-filter:blur(8px); }
 .journey-overlay--branch .journey-overlay__choice--route-left { border-left-color:rgba(244,217,139,.7); }

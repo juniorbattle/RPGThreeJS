@@ -132,12 +132,12 @@ async function choose(){
     serpent_informant:{'1':routePlan==='rescue'?0:1},mystery_lancer_recruit:{'1':routePlan==='rescue'?0:1},
     witnesses_on_road:{'1':routePlan==='rescue'?0:1},shadow_signs:{'1':0},
     lion_finale_judgement:{record:0,shadow:0,intent:finalePlan==='serpent'?0:1}};
-  if(target==='second-refuge'||target==='first-refuge'&&priorProof)plans.rep_event_roadside_intimidation={'1':1};
+  if(target==='second-refuge'||target==='first-refuge')plans.rep_event_roadside_intimidation={'1':1};
   const index=plans[sequence]?.[step]??0;
   const button=dialogue.locator('.dialogue-choice:visible').nth(index);
   assert.equal(await button.isEnabled(),true,`Authored choice disabled: ${sequence}/${step}/${index}`);
   const text=await button.innerText();report.choices.push({sequence,step,index,text});
-  const tribute=target==='first-refuge'&&priorProof&&sequence==='rep_event_roadside_intimidation'&&step==='1'&&index===1
+  const tribute=target==='first-refuge'&&sequence==='rep_event_roadside_intimidation'&&step==='1'&&index===1
     ?await state():null;
   const petition=sequence==='rep_event_public_petition'&&step==='1'&&index===0?await state():null;
   if(touchInput)await button.tap();else {await button.focus();await page.keyboard.press('Enter');}report.inputs.push({action:touchInput?'touch choice':'keyboard choice',sequence,step,index,text});
@@ -308,8 +308,17 @@ async function inspectPoiAtlas(){
       const r=e.getBoundingClientRect();return {label:e.getAttribute('aria-label')||e.textContent.trim(),width:r.width,height:r.height};
     }));
     assert.ok(controls.every(c=>c.width>=44&&c.height>=44),'Atlas native target below44px');
+    await page.waitForFunction(()=>{const image=document.querySelector('.poi-map__geography');return image?.complete&&image.naturalWidth>0;},null,{timeout:30000});
+    const geography=await page.locator('.poi-map__geography').evaluate(async image=>{await image.decode();return{src:image.getAttribute('src'),complete:image.complete,width:image.naturalWidth,height:image.naturalHeight};});
     await capture(`atlas-region-${index}-${viewport[0]}`);
-    regions.push({index,controls});
+    const borders=[];
+    for(const id of await page.locator('.poi-marker--border').evaluateAll(elements=>elements.map(e=>e.dataset.poiId))){
+      await keyboardActivate(`.poi-marker[data-poi-id="${id}"]`);
+      const bounds=await page.locator(`.poi-marker[data-poi-id="${id}"] .poi-marker__name`).evaluate(e=>{const r=e.getBoundingClientRect(),land=e.closest('.poi-map__land').getBoundingClientRect();return{left:r.left,top:r.top,right:r.right,bottom:r.bottom,land:{left:land.left,top:land.top,right:land.right,bottom:land.bottom}};});
+      assert.ok(bounds.left>=bounds.land.left-1&&bounds.top>=bounds.land.top-1&&bounds.right<=bounds.land.right+1&&bounds.bottom<=bounds.land.bottom+1,'Native border marker label remained clipped after focus');
+      borders.push({id,bounds});
+    }
+    regions.push({index,controls,geography,borders});
   }
   await keyboardActivate('.poi-map [data-poi-action="locate"]');
   assert.equal(await page.locator('.poi-map').getAttribute('data-region'),initialRegion);
@@ -949,6 +958,12 @@ try{
         .some(e=>e.getClientRects().length&&!e.closest('[inert]')));
       if(await page.locator('.poi-map:visible').count()){
         await inspectPoiAtlas();
+        if(process.env.DEMO_QA_GAME_MOTION==='1'&&!(await state()).settings.reducedGraphics){
+          const before=await state();await keyboardActivate('.poi-map [data-poi-action="motion"]');
+          const changed=await state(),expected=structuredClone(before);expected.settings.reducedGraphics=true;
+          assert.deepEqual(changed,expected,'Native motion preference changed unrelated V6 truth');
+          report.nativeInitialGameMotionControl=true;
+        }
         const current=JSON.parse(earnedText).currentNodeId;
         assert.equal((await state()).currentNodeId,current);
         await activateControl(page.locator(`.poi-map [data-poi-id="${current}"]`));
@@ -962,6 +977,7 @@ try{
     osRequested:matchMedia('(prefers-reduced-motion: reduce)').matches,
     gameRequested:window.__demoQaApp.state.settings.reducedGraphics,
   }));
+  report.motionEvidence.nativeGameControl=report.nativeInitialGameMotionControl===true;
   assert.equal(report.motionEvidence.osRequested,report.osReducedMotion,'OS motion emulation does not match the requested scenario');
   if(report.osReducedMotion)assert.equal(report.motionEvidence.gameRequested,false,'OS-only motion proof requires normal game graphics');
   for(let index=0;index<12000&&Date.now()<deadline;index++){
@@ -977,6 +993,7 @@ try{
       if(!report.preparation){
         await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked'));
         const before=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+        if(touchInput){const bounds=await page.locator(preparationContinue).boundingBox();assert.ok(bounds&&bounds.width>=44&&bounds.height>=44,'Preparation touch action below44px');}
         assert.equal((await page.locator('.journey-overlay__title').textContent()).trim(),'Avant le jugement');
         assert.equal(await page.locator('.exploration-stop:visible,iframe.combat-frame').count(),0);
         assert.equal(await page.locator('.narrative-cast__actor').count(),3);

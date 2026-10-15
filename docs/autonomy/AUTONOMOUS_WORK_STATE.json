@@ -4,7 +4,7 @@
   "runEndedAt": null,
   "activeTask": "POI-V2-AND-TRAVERSAL-RETIREMENT",
   "activePhase": "D",
-  "activeSubtask": "Preserve failed fresh1230-style roadside-refusal proof; complete live second-refuge job, then apply44px/marker/readiness and bounded native-choice corrections and verify final build.",
+  "activeSubtask": "Verify final corrected build: decoded atlas1366, native game toggle620, OS-touch preparation44px390, fresh bounded first-refuge; reuse reviewed unchanged later campaign truth.",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "d104e214c363f0c7da6ec44b407f00062407db7e",
   "lastPushedCommit": "d104e214c363f0c7da6ec44b407f00062407db7e",
@@ -249,7 +249,7 @@
     "Correct preparation continue42to44px, stabilize desktop art captures after image decode, then one corrected-build native smoke",
     "Operator art/full-demo/balance and physical-device acceptance separate; unrelated six-hero/mounted-keyboard/narrative work preserved"
   ],
-  "nextAction": "Preserve failed fresh1230-style roadside-refusal proof; complete live second-refuge job, then apply44px/marker/readiness and bounded native-choice corrections and verify final build.",
+  "nextAction": "Verify final corrected build: decoded atlas1366, native game toggle620, OS-touch preparation44px390, fresh bounded first-refuge; reuse reviewed unchanged later campaign truth.",
   "taskQueue": [
     "POI-MAP-FINALIZATION: requested implementation/native milestones REVIEWED_SCOPED; operator final playtest remains",
     "DEMO-PC-CAMPAIGN: both native truth endings, T0/T1/T3 alternatives, rescue/sacrifice, defeat and exact V6 accepted in recorded scopes",
@@ -355,7 +355,7 @@
   "lastHeartbeat": "2026-10-15T06:29:56.404Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-15T16:57:10.490Z",
+    "lastHeartbeat": "2026-10-15T17:10:53.089Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -28292,7 +28292,7 @@
         "endedAt": "2026-10-15T16:52:50.858Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "exitCode": 1,
@@ -28408,7 +28408,7 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false
       },
@@ -28520,9 +28520,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -28632,7 +28632,7 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false
       },
@@ -28744,9 +28744,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -28856,9 +28856,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -28968,9 +28968,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -29080,15 +29080,15 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
         "jobId": "poi-v2-D-second-refuge-1232",
         "runId": "codex-poi-v2-20261015",
-        "status": "RUNNING",
+        "status": "FAILED",
         "registeredAt": "2026-10-15T16:21:44.892Z",
         "pid": 24164,
         "port": 5447,
@@ -29185,12 +29185,16 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-15T16:21:46.717Z",
-        "endedAt": null,
+        "endedAt": "2026-10-15T17:07:23.138Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
-        "resultDigestMatches": false,
-        "eligibleForReview": false
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/poi-v2-D-second-refuge-1232/results.json",
+        "resultSha256": "035568d6a7cc09b12683d21da89800a77f7bad4289f04710f0a7b8cf5c27adf9",
+        "provenanceStable": true
       },
       {
         "schemaVersion": 1,
@@ -29300,13 +29304,13 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true
+        "eligibleForReview": false
       }
     ],
     "wip": null,
-    "nextAction": "Preserve failed fresh1230-style roadside-refusal proof; complete live second-refuge job, then apply44px/marker/readiness and bounded native-choice corrections and verify final build.",
+    "nextAction": "Verify final corrected build: decoded atlas1366, native game toggle620, OS-touch preparation44px390, fresh bounded first-refuge; reuse reviewed unchanged later campaign truth.",
     "runMetrics": {
       "runId": "codex-poi-finalization-20261014",
       "runtimeSourceFilesModified": 5,

@@ -30,7 +30,7 @@ export class PoiMapView {
     const nodes=model.nodes.filter(n=>own.has(n.id)||model.edges.some(e=>
       (own.has(e.from)&&e.to===n.id)||(own.has(e.to)&&e.from===n.id)));
     const positions=new Map(nodes.map(n=>[n.id,LION_POI_POSITIONS[n.id]??[850,300] as readonly[number,number]]));
-    for(const n of nodes)if(n.region!==phase)positions.set(n.id,n.region<phase?[80,80]:[870,475]);
+    for(const n of nodes)if(n.region!==phase)positions.set(n.id,n.region<phase?[80,80]:[870,430]);
     const seen=new Set<string>();
     const paths=model.edges.filter(e=>positions.has(e.from)&&positions.has(e.to)).map(e=>{
       const key=[e.from,e.to].sort().join(':');if(seen.has(key))return '';seen.add(key);
