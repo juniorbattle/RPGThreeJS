@@ -1,0 +1,612 @@
+{
+  "schema": "rpgthreejs.poi-lot-e.authoring-final.v1",
+  "approvedConcept": [
+    "12 optional fixed POIs",
+    "2 independent moving elites",
+    "Combat or retreat on interception"
+  ],
+  "approvalBoundary": "Detailed placement, combat pools and economic numbers become production-authorized when the operator sends the full contract+manifest with an explicit execute instruction.",
+  "verifiedBaseline": "dev@4c80196cf2eb87097f063f4f312756044f5a5e47",
+  "protectedCanonicalIds": [
+    "lion-camp",
+    "lion-audience",
+    "lion-opening-ambush",
+    "lion-nomad-crossroads",
+    "lion-refugees",
+    "lion-first-trial-event",
+    "lion-first-trial-combat",
+    "lion-first-refuge",
+    "lion-reserve-trail",
+    "lion-valmir-road",
+    "lion-second-trial-event",
+    "lion-second-trial-combat",
+    "lion-village-choice",
+    "lion-second-refuge",
+    "lion-lancer-recruit",
+    "lion-witnesses",
+    "lion-final-trial-event",
+    "lion-final-trial-combat",
+    "lion-shadow-signs",
+    "lion-final-refuge",
+    "lion-final-judgement"
+  ],
+  "fixedPoiCandidates": [
+    {
+      "region": 0,
+      "id": "lion-poi-opening-supplies",
+      "label": "Réserve forestière",
+      "kind": "chest",
+      "role": "secondary",
+      "participation": "optional",
+      "prerequisiteResolved": [
+        "lion-nomad-crossroads"
+      ],
+      "edges": [
+        "lion-nomad-crossroads",
+        "lion-poi-opening-patrol"
+      ],
+      "contentId": "poi_chest_opening_supplies",
+      "chestLoot": {
+        "temporaryGold": 0,
+        "temporaryItems": {
+          "potion": 1
+        }
+      },
+      "onceOnly": true
+    },
+    {
+      "region": 0,
+      "id": "lion-poi-opening-patrol",
+      "label": "Patrouille en sous-bois",
+      "kind": "combat",
+      "role": "secondary",
+      "participation": "optional",
+      "prerequisiteResolved": [
+        "lion-nomad-crossroads"
+      ],
+      "edges": [
+        "lion-poi-opening-supplies",
+        "lion-refugees"
+      ],
+      "combat": {
+        "encounterRank": "normal",
+        "sceneId": "forest_route",
+        "variants": [
+          {
+            "id": "poi_opening_patrol_a",
+            "sourceFormation": "forest_patrol",
+            "enemyVisualIds": [
+              "serpent_raider",
+              "serpent_raider"
+            ],
+            "preCombatDialogueId": null,
+            "postCombatDialogueId": null
+          },
+          {
+            "id": "poi_opening_patrol_b",
+            "sourceFormation": "forest_patrol",
+            "enemyVisualIds": [
+              "serpent_raider",
+              "serpent_raider",
+              "serpent_raider"
+            ],
+            "preCombatDialogueId": null,
+            "postCombatDialogueId": null
+          }
+        ],
+        "assignment": "stableHash(run.seed,poiId) modulo variants.length",
+        "onceOnly": true,
+        "rewards": {
+          "temporaryGold": 85,
+          "reputation": 1,
+          "materials": {
+            "red_gem": 1,
+            "iron_ore": 1
+          }
+        }
+      }
+    },
+    {
+      "region": 0,
+      "id": "lion-poi-opening-wolves",
+      "label": "Meute du détour",
+      "kind": "combat",
+      "role": "secondary",
+      "participation": "optional",
+      "prerequisiteResolved": [
+        "lion-nomad-crossroads"
+      ],
+      "edges": [
+        "lion-nomad-crossroads",
+        "lion-poi-opening-cache"
+      ],
+      "combat": {
+        "encounterRank": "normal",
+        "sceneId": "forest_route",
+        "variants": [
+          {
+            "id": "poi_opening_wolves_a",
+            "sourceFormation": "wolf_pack",
+            "enemyVisualIds": [
+              "wolf",
+              "wolf"
+            ],
+            "preCombatDialogueId": null,
+            "postCombatDialogueId": null
+          },
+          {
+            "id": "poi_opening_wolves_b",
+            "sourceFormation": "forest_ambush",
+            "enemyVisualIds": [
+              "wolf",
+              "cave_rat"
+            ],
+            "preCombatDialogueId": null,
+            "postCombatDialogueId": null
+          }
+        ],
+        "assignment": "stableHash(run.seed,poiId) modulo variants.length",
+        "onceOnly": true,
+        "rewards": {
+          "temporaryGold": 80,
+          "reputation": 1,
+          "materials": {
+            "red_gem": 1,
+            "iron_ore": 1
+          }
+        }
+      }
+    },
+    {
+      "region": 0,
+      "id": "lion-poi-opening-cache",
+      "label": "Cache du sentier",
+      "kind": "chest",
+      "role": "secondary",
+      "participation": "optional",
+      "prerequisiteResolved": [
+        "lion-nomad-crossroads"
+      ],
+      "edges": [
+        "lion-poi-opening-wolves",
+        "lion-nomad-crossroads"
+      ],
+      "contentId": "poi_chest_opening_cache",
+      "chestLoot": {
+        "temporaryGold": 15,
+        "temporaryItems": {
+          "antidote": 1
+        }
+      },
+      "onceOnly": true
+    },
+    {
+      "region": 1,
+      "id": "lion-poi-valley-supplies",
+      "label": "Dépôt des sentiers",
+      "kind": "chest",
+      "role": "secondary",
+      "participation": "optional",
+      "prerequisiteResolved": [
+        "lion-reserve-trail"
+      ],
+      "edges": [
+        "lion-reserve-trail",
+        "lion-poi-valley-marsh"
+      ],
+      "contentId": "poi_chest_valley_supplies",
+      "chestLoot": {
+        "temporaryGold": 0,
+        "temporaryItems": {
+          "ether": 1
+        }
+      },
+      "onceOnly": true
+    },
+    {
+      "region": 1,
+      "id": "lion-poi-valley-marsh",
+      "label": "Détour des marais",
+      "kind": "combat",
+      "role": "secondary",
+      "participation": "optional",
+      "prerequisiteResolved": [
+        "lion-reserve-trail"
+      ],
+      "edges": [
+        "lion-poi-valley-supplies",
+        "lion-valmir-road"
+      ],
+      "combat": {
+        "encounterRank": "normal",
+        "sceneId": "forest_route",
+        "variants": [
+          {
+            "id": "poi_valley_marsh_a",
+            "sourceFormation": "marsh_crossing",
+            "enemyVisualIds": [
+              "marsh_toad",
+              "cave_rat"
+            ],
+            "preCombatDialogueId": null,
+            "postCombatDialogueId": null
+          },
+          {
+            "id": "poi_valley_marsh_b",
+            "sourceFormation": "road_to_valmir",
+            "enemyVisualIds": [
+              "wild_boar",
+              "venom_serpent"
+            ],
+            "preCombatDialogueId": null,
+            "postCombatDialogueId": null
+          }
+        ],
+        "assignment": "stableHash(run.seed,poiId) modulo variants.length",
+        "onceOnly": true,
+        "rewards": {
+          "temporaryGold": 90,
+          "reputation": 1,
+          "materials": {
+            "red_gem": 1,
+            "iron_ore": 1
+          }
+        }
+      }
+    },
+    {
+      "region": 1,
+      "id": "lion-poi-valley-bridge-cache",
+      "label": "Cache du pont",
+      "kind": "chest",
+      "role": "secondary",
+      "participation": "optional",
+      "prerequisiteResolved": [
+        "lion-valmir-road"
+      ],
+      "edges": [
+        "lion-valmir-road",
+        "lion-poi-valley-serpent"
+      ],
+      "contentId": "poi_chest_valley_bridge_cache",
+      "chestLoot": {
+        "temporaryGold": 35,
+        "temporaryItems": {
+          "potion": 1
+        }
+      },
+      "onceOnly": true
+    },
+    {
+      "region": 1,
+      "id": "lion-poi-valley-serpent",
+      "label": "Ronde des Serpents",
+      "kind": "combat",
+      "role": "secondary",
+      "participation": "optional",
+      "prerequisiteResolved": [
+        "lion-valmir-road"
+      ],
+      "edges": [
+        "lion-poi-valley-bridge-cache",
+        "lion-valmir-road"
+      ],
+      "combat": {
+        "encounterRank": "normal",
+        "sceneId": "forest_route",
+        "variants": [
+          {
+            "id": "poi_valley_serpent_a",
+            "sourceFormation": "serpent_reprisals",
+            "enemyVisualIds": [
+              "serpent_raider",
+              "serpent_brute"
+            ],
+            "preCombatDialogueId": null,
+            "postCombatDialogueId": null
+          },
+          {
+            "id": "poi_valley_serpent_b",
+            "sourceFormation": "serpent_checkpoint",
+            "enemyVisualIds": [
+              "serpent_raider",
+              "serpent_brute",
+              "serpent_oracle"
+            ],
+            "preCombatDialogueId": null,
+            "postCombatDialogueId": null
+          }
+        ],
+        "assignment": "stableHash(run.seed,poiId) modulo variants.length",
+        "onceOnly": true,
+        "rewards": {
+          "temporaryGold": 100,
+          "reputation": 0,
+          "materials": {
+            "red_gem": 1,
+            "iron_ore": 2
+          }
+        }
+      }
+    },
+    {
+      "region": 2,
+      "id": "lion-poi-seal-witness-supplies",
+      "label": "Réserves des témoins",
+      "kind": "chest",
+      "role": "secondary",
+      "participation": "optional",
+      "prerequisiteResolved": [
+        "lion-lancer-recruit"
+      ],
+      "edges": [
+        "lion-lancer-recruit",
+        "lion-witnesses"
+      ],
+      "contentId": "poi_chest_seal_witness_supplies",
+      "chestLoot": {
+        "temporaryGold": 0,
+        "temporaryItems": {
+          "antidote": 1,
+          "ether": 1
+        }
+      },
+      "onceOnly": true
+    },
+    {
+      "region": 2,
+      "id": "lion-poi-seal-hunters",
+      "label": "Chasseurs du passage",
+      "kind": "combat",
+      "role": "secondary",
+      "participation": "optional",
+      "prerequisiteResolved": [
+        "lion-witnesses"
+      ],
+      "edges": [
+        "lion-witnesses",
+        "lion-final-trial-event"
+      ],
+      "combat": {
+        "encounterRank": "normal",
+        "sceneId": "lion_sanctum",
+        "variants": [
+          {
+            "id": "poi_seal_hunters_a",
+            "sourceFormation": "serpent_hunters",
+            "enemyVisualIds": [
+              "serpent_raider",
+              "serpent_brute",
+              "serpent_oracle",
+              "serpent_raider"
+            ],
+            "preCombatDialogueId": null,
+            "postCombatDialogueId": null
+          },
+          {
+            "id": "poi_seal_hunters_b",
+            "sourceFormation": "serpent_checkpoint",
+            "enemyVisualIds": [
+              "serpent_raider",
+              "serpent_brute",
+              "serpent_oracle"
+            ],
+            "preCombatDialogueId": null,
+            "postCombatDialogueId": null
+          }
+        ],
+        "assignment": "stableHash(run.seed,poiId) modulo variants.length",
+        "onceOnly": true,
+        "rewards": {
+          "temporaryGold": 125,
+          "reputation": 0,
+          "materials": {
+            "red_gem": 2,
+            "iron_ore": 2
+          }
+        }
+      }
+    },
+    {
+      "region": 2,
+      "id": "lion-poi-seal-ruin-encounter",
+      "label": "Veille des ruines",
+      "kind": "combat",
+      "role": "secondary",
+      "participation": "optional",
+      "prerequisiteResolved": [
+        "lion-witnesses"
+      ],
+      "edges": [
+        "lion-witnesses",
+        "lion-final-trial-combat"
+      ],
+      "combat": {
+        "encounterRank": "normal",
+        "sceneId": "lion_sanctum",
+        "variants": [
+          {
+            "id": "poi_seal_ruin_encounter_a",
+            "sourceFormation": "ruins_guardians",
+            "enemyVisualIds": [
+              "goblin",
+              "skeleton",
+              "cave_rat"
+            ],
+            "preCombatDialogueId": null,
+            "postCombatDialogueId": null
+          },
+          {
+            "id": "poi_seal_ruin_encounter_b",
+            "sourceFormation": "ruins_guardians",
+            "enemyVisualIds": [
+              "goblin",
+              "skeleton",
+              "skeleton"
+            ],
+            "preCombatDialogueId": null,
+            "postCombatDialogueId": null
+          }
+        ],
+        "assignment": "stableHash(run.seed,poiId) modulo variants.length",
+        "onceOnly": true,
+        "rewards": {
+          "temporaryGold": 110,
+          "reputation": 1,
+          "materials": {
+            "red_gem": 1,
+            "iron_ore": 2
+          }
+        }
+      }
+    },
+    {
+      "region": 2,
+      "id": "lion-poi-seal-ruin-supplies",
+      "label": "Réserve des ruines",
+      "kind": "chest",
+      "role": "secondary",
+      "participation": "optional",
+      "prerequisiteResolved": [
+        "lion-shadow-signs"
+      ],
+      "edges": [
+        "lion-shadow-signs"
+      ],
+      "contentId": "poi_chest_seal_ruin_supplies",
+      "chestLoot": {
+        "temporaryGold": 50,
+        "temporaryItems": {
+          "revive_vial": 1
+        }
+      },
+      "onceOnly": true
+    }
+  ],
+  "mobileEliteActors": [
+    {
+      "id": "lion-elite-valley-sentinel",
+      "label": "Sentinelle de la vallée",
+      "region": 1,
+      "activateAfterResolved": "lion-valmir-road",
+      "allowedPositions": [
+        "lion-poi-valley-bridge-cache",
+        "lion-poi-valley-serpent",
+        "lion-valmir-road"
+      ],
+      "spawnPosition": "lion-poi-valley-bridge-cache",
+      "mode": "cyclic_patrol",
+      "step": "atMostOneUnlockedAdjacentEdgePerAcceptedMapMovementOrWait",
+      "combat": {
+        "id": "poi_elite_valley_sentinel",
+        "encounterRank": "elite",
+        "sceneId": "forest_route",
+        "enemies": [
+          "serpent_brute",
+          "serpent_raider"
+        ],
+        "rewards": {
+          "temporaryGold": 120,
+          "reputation": 1,
+          "materials": {
+            "red_gem": 1,
+            "iron_ore": 2
+          }
+        },
+        "onceOnly": true
+      }
+    },
+    {
+      "id": "lion-elite-seal-warden",
+      "label": "Garde des ruines",
+      "region": 2,
+      "activateAfterResolved": "lion-witnesses",
+      "allowedPositions": [
+        "lion-witnesses",
+        "lion-poi-seal-hunters",
+        "lion-poi-seal-ruin-encounter"
+      ],
+      "spawnPosition": "lion-poi-seal-ruin-encounter",
+      "mode": "bounded_one_edge_graph_chase",
+      "step": "atMostOneUnlockedAdjacentEdgePerAcceptedMapMovementOrWait",
+      "combat": {
+        "id": "poi_elite_seal_warden",
+        "encounterRank": "elite",
+        "sceneId": "lion_sanctum",
+        "enemies": [
+          "skeleton",
+          "goblin",
+          "skeleton"
+        ],
+        "rewards": {
+          "temporaryGold": 170,
+          "reputation": 1,
+          "materials": {
+            "red_gem": 2,
+            "iron_ore": 2
+          }
+        },
+        "onceOnly": true
+      }
+    }
+  ],
+  "collision": {
+    "playerAttemptsOccupied": "Before moving, choice [fight,retreat]. Retreat cancels move without activating underlying POI.",
+    "eliteEntersCurrent": "After all active scene content closes, choice [fight,retreat to previous safe POI]. If no safe retreat exists, elite move is rejected and wait/fight options remain.",
+    "fightOwner": "Independent elite combat context, not the underlying RunNode",
+    "retreatTurns": "At most one, no repeat-dialogue and no immediate reentrant prompt",
+    "onVictory": "Resolve elite alone, give one-time temporary rewards, do not resolve underlying POI",
+    "onDefeat": "Canonical checkpoint recovery; elite not considered defeated",
+    "safeZones": [
+      "unresolved canonical required events",
+      "unresolved canonical exclusive trials",
+      "refuges",
+      "Bois-Clair",
+      "final judgement"
+    ]
+  },
+  "timing": {
+    "tickOn": [
+      "committed map movement",
+      "explicit wait action"
+    ],
+    "doNotTickOn": [
+      "map open",
+      "scroll/pan/hover",
+      "focus",
+      "dialogue",
+      "combat",
+      "refuge",
+      "save/load",
+      "UI redraw"
+    ],
+    "randomness": "deterministic, saved or reconstructible from durable seed/POI facts"
+  },
+  "migration": {
+    "currentSchemaVersion": 6,
+    "existingGraphContainsNodes": true,
+    "newFields": "Optional saved expedition/threat state; additive idempotent insertion of missing POI graph nodes",
+    "preserve": "all prior canonical facts, choices, resources, checkpoints, branch decisions, final states"
+  },
+  "prohibited": [
+    "return of physical Traversal",
+    "random rewards on revisit",
+    "new canon/lore/characters",
+    "duplicate canonical combat completion",
+    "new video or audio mandate",
+    "forced combat without retreat"
+  ],
+  "economy": {
+    "optionalNormalCombatGold": 590,
+    "optionalChestGold": 100,
+    "optionalMobileEliteGold": 290,
+    "optionalMaximumGold": 980,
+    "newNormalReputation": 4,
+    "newEliteReputation": 2,
+    "newNormalRedGem": 7,
+    "newEliteRedGem": 3,
+    "newNormalIronOre": 9,
+    "newEliteIronOre": 4
+  },
+  "operatorAcceptance": "Native game and visual/operator balance sign-off separate from technical delivery"
+}

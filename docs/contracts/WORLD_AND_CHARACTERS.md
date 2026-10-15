@@ -2,6 +2,10 @@
 
 Status: **LOCKED**.
 
+## Lot E atlas composition — OD-2026-10-15-B
+
+Dedicated `PRODUCTION-CONTRACTS-POI-LOT-E-1`, set 1.4.0, [approved authoring](../autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md). Adapt the three existing Option C / Pixel Diorama Fantasy atlas compositions to 33 permanent POIs and two separate mobile threat overlays. Finalize approved loops with coherent clearings, relief, river/bridge crossings and legible marker/label space; recompose a background when needed rather than shrink usable targets. Paths and threat presentation never become progression or physical collision authority. Reuse the existing bestiary and Character V2 resources; add no lore, named character, faction or cinematic. Inspect three comparable native captures against approved environment style. Technical delivery does not substitute for operator artistic acceptance.
+
 The target is modern pixel art / HD-2D fantasy JRPG/tactical RPG. Maintain authored silhouettes, materials, palettes, lighting, and readable game scale across surfaces. Photorealism, generic anime, watercolor, and smooth generic 3D are not production substitutes.
 
 Character System V2 masters and promoted combat/narrative poses are the current final visual ceiling. Use approved canonical media byte-identically where a task calls for promotion. A new character must match that visual family and have a declared pose/staging role. Do not silently remaster the whole cast or replace protected art during cleanup.

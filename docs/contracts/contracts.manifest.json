@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
   "lockedAt": "2026-10-01",
-  "contractSetVersion": "1.3.0",
+  "contractSetVersion": "1.4.0",
   "approvedAmendments": [
     {
       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
@@ -58,6 +58,25 @@
       "successorDoctrine": "POI_MAP_NAVIGATION_V2",
       "supersededRule": "Temporary physical compatibility and implicit linear map composition",
       "implementationAcceptance": "PENDING; separate A/B/C/D runtime, V6 and operator artistic acceptance"
+    },
+    {
+      "taskId": "PRODUCTION-CONTRACTS-POI-LOT-E-1",
+      "operatorDecisionId": "OD-2026-10-15-B",
+      "operatorDecisionPath": "docs/autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md",
+      "approvedAt": "2026-10-15",
+      "changedContracts": [
+        "TRAVERSAL",
+        "CAMPAIGN_AND_STATE",
+        "COMBAT_AND_VFX",
+        "UI_AND_ACCESSIBILITY",
+        "WORLD_AND_CHARACTERS",
+        "AUTHORING_AND_QA"
+      ],
+      "constitutionChanged": false,
+      "historicalContractId": "TRAVERSAL",
+      "successorDoctrine": "POI_MAP_LOT_E_EXPLORATION",
+      "supersededRule": "Inactive V1 chest/elite proposals; content placement now explicitly approved for the exact Lot E annex",
+      "implementationAcceptance": "PENDING; full E1-E5 technical/native delivery required, operator art/final balance separate"
     }
   ],
   "status": "LOCKED",

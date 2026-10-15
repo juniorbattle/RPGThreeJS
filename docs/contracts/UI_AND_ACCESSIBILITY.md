@@ -2,6 +2,12 @@
 
 Status: **LOCKED**.
 
+## Lot E atlas and interception agency — OD-2026-10-15-B
+
+Dedicated `PRODUCTION-CONTRACTS-POI-LOT-E-1`, set 1.4.0, [operator decision](../autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md). Display 33 fixed POIs and two visually distinct mobile threat overlays from authoritative selectors. Expose actual position, next-turn threatened area, patrol/chase tendency and contested routes with text as well as color. Present explicit Wait and Combat/retreat intents; a modal or gesture never owns movement, reward, branch, threat tick or resolution. Keep chests distinct and show the owner-attributed once-only popup. Restore safe map focus after cancellation, retreat and combat.
+
+Finalize the three Option C compositions after topology: readable approved routes, relief/water crossings, distinct labels and nonoverlapping threat indicators. Preserve targets at least44px, keyboard spatial navigation, modal focus/escape, touch scrolling/pan, 1366x768 /620 /390x844 bounds and independent OS/game reduced motion. No hover, zoom, selection or art state changes game truth. Technical/capture inspection is separate from operator artistic acceptance.
+
 ## POI navigation — OD-2026-10-13-D
 
 Dedicated `PRODUCTION-CONTRACTS-POI-NAVIGATION-1` / [OD-2026-10-13-D](../autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md), set 1.2.0: geographical POIs distinguish primary, mystery, combat, elite, chest and refuge when genuinely authored. Show authoritative available/active/resolved/neutralized/locked states and reusable refuges with text as well as visual encoding. Native pointer/keyboard selection, visible focus, usable hit areas and responsive bounds are required. Use sober transitions and reduced motion; no physical movement engine or unnecessary pan. Never enable an intent rejected by canonical accessibility.

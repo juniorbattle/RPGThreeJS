@@ -2,6 +2,12 @@
 
 Status: **LOCKED**.
 
+## Lot E exploration and persistent threats — OD-2026-10-15-B
+
+Dedicated `PRODUCTION-CONTRACTS-POI-LOT-E-1`, set 1.4.0, approved by [OD-2026-10-15-B](../autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md). The linked operator contract and authoring annex approve exactly twelve optional fixed nodes (six chests, six two-variant ordinary encounters) in addition to the 21 protected canonical nodes, plus two independent mobile elite actors, not fixed POIs. RunSystem owns their eligibility, stable seed/POI assignments, once-only resolution, temporary rewards, turn clock, positions, interceptions and safe retreat. Optional nodes never satisfy a canonical milestone or replace required encounter/victory, exclusive trial, preparation or judgement. Preserve canonical rewards, costs, choices, neutralization and once-only bypass consequences, including detours/backtracking.
+
+Persist only versioned expedition truth and necessary encounter/return/idempotence context. Add missing fixed nodes idempotently to old V6 without rebuilding the campaign or changing existing current/checkpoint, visited/resolved, assignment, branch, recruitment, resource or final facts. Canonical directed recovery links remain separate from reversible expedition geography. Completed saves stay completed with no active threats. Stable variants and defeated elites survive defeat and reload; defeat loses unsecured loot through the existing owner. New chests give only approved temporary gold/items once. Operator art and final balance acceptance are separate from demonstrated technical/native delivery.
+
 ## POI navigation amendment — OD-2026-10-13-D
 
 Dedicated `PRODUCTION-CONTRACTS-POI-NAVIGATION-1` / [OD-2026-10-13-D](../autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md), set 1.2.0 supersedes physical navigation. RunSystem validates connected bidirectional movement and activation with mandatory causal ordering. Preserve authored IDs, content and effects. Resolved POIs replay no content/rewards. Neutralized derives from canonical incompatibility and is never completed/victorious/rewarded. Compatible optional events remain revisitable; preserve authored bypass consequences. Visit/bypass is not resolution. Unlocked refuges reuse existing services and costs without arrival replay; final narrative refuge unchanged.
