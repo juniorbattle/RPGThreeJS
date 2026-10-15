@@ -1,0 +1,3569 @@
+{
+  "task": "POI-V2-AND-TRAVERSAL-RETIREMENT",
+  "recordedAt": "2026-10-15T21:27:57.217Z",
+  "contractSet": "1.3.0",
+  "immutableBaseline": "5667837212ceffb6a16b22141623bf6f5c7e6ea6",
+  "status": "REVIEWED_ACCEPTED_SCOPED",
+  "scope": "Native recorded scopes only; inherited battles distinguished, failed whole jobs unseedable. Operator art/device/full balance acceptance separate.",
+  "art": {
+    "manifest": "public/assets/generated/lion-phase/poi-v2/manifest.json",
+    "sha256": "d747eb75ab394762661a0aa2d3dd0409a010ac3a95bc9b53f7942c427310a26b",
+    "status": "INTEGRATED_CANDIDATE_OPERATOR_ART_REVIEW_PENDING",
+    "assets": [
+      {
+        "path": "public/assets/generated/lion-phase/poi-v2/lion-opening.png",
+        "generationId": "exec-ff01ee91-c8f0-4833-b20b-11d97b9e6f65",
+        "width": 1672,
+        "height": 941,
+        "sha256": "541b2a5f57cda8ae8c58564a406ec0086577db08378e8e863dc4933d5430c4f9",
+        "bytes": 4133953
+      },
+      {
+        "path": "public/assets/generated/lion-phase/poi-v2/bois-clair.png",
+        "generationId": "exec-fc55c37c-7428-4332-8af0-a5c123e5775d",
+        "width": 1672,
+        "height": 941,
+        "sha256": "83bb8feb7e9de4a9bd03a060c771f6a7f0605fc5752090a80b72093b04bd862d",
+        "bytes": 3999067
+      },
+      {
+        "path": "public/assets/generated/lion-phase/poi-v2/judgement.png",
+        "generationId": "exec-c5e0447b-a6b7-4186-9efd-48ca0edf5612",
+        "width": 1672,
+        "height": 941,
+        "sha256": "0b0291f3ae540910fe4d3f96d63888cffe25d26334b5a8cf284152e8aef85a01",
+        "bytes": 4270035
+      }
+    ]
+  },
+  "captures": [
+    {
+      "jobId": "poi-v2-D-final-atlas1366-1312",
+      "source": "tmp/demo/poi-v2-D-final-atlas1366-1312/atlas-region-0-1366.png",
+      "path": "C-atlas-forest1366.png",
+      "sha256": "694385e385b29ac90db4ad28bd11bb51d1347d350a76685204e975c0e97c07e4",
+      "inspection": "Root, independent guardian and UI reviewer in declared scope"
+    },
+    {
+      "jobId": "poi-v2-D-final-atlas1366-1312",
+      "source": "tmp/demo/poi-v2-D-final-atlas1366-1312/atlas-region-1-1366.png",
+      "path": "C-atlas-bois-clair1366.png",
+      "sha256": "0c0a08ef7e315908bc9b4509529cbf5d7f8bea622ea87910fc7566a4c5829a91",
+      "inspection": "Root, independent guardian and UI reviewer in declared scope"
+    },
+    {
+      "jobId": "poi-v2-D-final-atlas1366-1312",
+      "source": "tmp/demo/poi-v2-D-final-atlas1366-1312/atlas-region-2-1366.png",
+      "path": "C-atlas-judgement1366.png",
+      "sha256": "c19f68bcf2d458348bf12efd29c8d6a323c56a77514f3e78ccbc0319894db6a9",
+      "inspection": "Root, independent guardian and UI reviewer in declared scope"
+    },
+    {
+      "jobId": "poi-v2-D-final-prep-touch390-1313",
+      "source": "tmp/demo/poi-v2-D-final-prep-touch390-1313/atlas-native-pan-390.png",
+      "path": "C-atlas-native-swipe390.png",
+      "sha256": "d8c77550e82d38a88b08d6b73db3eec69a49f57f59e3c6ddb1ef89e9ca82b2a1",
+      "inspection": "Root, independent guardian and UI reviewer in declared scope"
+    },
+    {
+      "jobId": "poi-v2-D-final-prep-touch390-1313",
+      "source": "tmp/demo/poi-v2-D-final-prep-touch390-1313/poi-final-refuge-preparation-resumed.png",
+      "path": "D-preparation-touch44px.png",
+      "sha256": "add196170ec06511e07a3f24859eb02df913ae220c03dd1626f3c635d255d24e",
+      "inspection": "Root, independent guardian and UI reviewer in declared scope"
+    },
+    {
+      "jobId": "poi-v2-D-petition-first-refuge-1714",
+      "source": "tmp/demo/poi-v2-D-petition-first-refuge-1714/lion-first-refuge-poi-reusable-reloaded.png",
+      "path": "D-fresh-first-refuge-v6.png",
+      "sha256": "d7292ab512f1646c77df62178b5717b9b2283261445c64bf6ca96ae4fd6e54ee",
+      "inspection": "Root and independent guardian; unchanged refuge presentation"
+    }
+  ],
+  "jobs": [
+    {
+      "jobId": "poi-v2-D-atlas-game620-1224",
+      "status": "FAILED",
+      "reviewedDisposition": "NOT_ACCEPTED",
+      "output": "tmp/demo/poi-v2-D-atlas-game620-1224",
+      "resultSha256": "1658075f9169965e1bf4b590b58ff26f26e353e1da06b902f275fbfed2d4279f",
+      "receiptSha256": "8cc2153da39ef0869782a8d489ac29b15c89ea2d8264580f598a683d18141eac",
+      "parameters": {
+        "target": "first-refuge",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "gameReducedMotion": true,
+        "viewport": [
+          620,
+          780
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-v2-first-refuge-0810/earned-lion-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-v2-first-refuge-0810/results.json",
+        "verifySalvation": false
+      },
+      "requiredAssertions": [
+        "EARNED_LINEAGE",
+        "NATIVE_INPUTS",
+        "EXACT_RELOAD"
+      ],
+      "provenance": {
+        "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+        "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-v2-first-refuge-0810/earned-lion-first-refuge-v6.json",
+            "sha256": "12931a226f9a81dc5a689f28da519370de50fc41a447d0babef903a5096e66dc"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-v2-first-refuge-0810/results.json",
+            "sha256": "b1819c257dbbb94bf486bac60fad2855473a841dc06be983b48155684bb43004"
+          }
+        ],
+        "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+            "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+          },
+          {
+            "path": "dist/assets/combat-CdaTw3hu.js",
+            "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-BwpTgJUS.js",
+            "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+          },
+          {
+            "path": "dist/assets/game-Ca5i6doY.css",
+            "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "errors": [],
+      "failure": "AssertionError [ERR_ASSERTION]: Requested game motion reduction was never activated\n\nfalse !== true\n\n    at file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:1270:51",
+      "inheritedBattleCount": 1,
+      "newBattles": [],
+      "atlas": {
+        "pass": true,
+        "viewport": [
+          620,
+          780
+        ],
+        "initialRegion": "0",
+        "regionCount": 3,
+        "ownerUnchanged": true,
+        "nativeTouch": false,
+        "geometry": {
+          "left": 340,
+          "top": 0,
+          "width": 620,
+          "height": 428,
+          "scrollWidth": 960,
+          "scrollHeight": 527
+        },
+        "pan": {
+          "left": 300,
+          "top": 0
+        },
+        "minimumTarget": 44,
+        "regions": [
+          {
+            "index": 0,
+            "geography": null,
+            "borders": null
+          },
+          {
+            "index": 1,
+            "geography": null,
+            "borders": null
+          },
+          {
+            "index": 2,
+            "geography": null,
+            "borders": null
+          }
+        ]
+      },
+      "currentNodeId": "lion-first-refuge",
+      "motion": {
+        "osRequested": false,
+        "gameRequested": false
+      },
+      "trustedTouch": [],
+      "preparation": null,
+      "terminalMenu": null,
+      "defeatRecovery": null
+    },
+    {
+      "jobId": "poi-v2-D-atlas-saved-game620-1226",
+      "status": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_FROZEN_ATLAS_SAVED_GAME_REDUCTION620_V6",
+      "output": "tmp/demo/poi-v2-D-atlas-saved-game620-1226",
+      "resultSha256": "3963a0c3eb948e6de14d51aa86482b2c7dc209a5347420e529c452d93c3bd654",
+      "receiptSha256": "d065422ad41f904df773275be0b7186209e936088d028020ed6489428d798604",
+      "parameters": {
+        "target": "first-refuge",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "combat",
+        "gameReducedMotion": true,
+        "viewport": [
+          620,
+          780
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-first-trial-combat-game-2029/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-first-trial-combat-game-2029/results.json",
+        "verifySalvation": false
+      },
+      "requiredAssertions": [
+        "EARNED_LINEAGE",
+        "NATIVE_INPUTS",
+        "EXACT_RELOAD"
+      ],
+      "provenance": {
+        "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+        "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-first-trial-combat-game-2029/earned-first-refuge-v6.json",
+            "sha256": "007befc315d164fb7533729266e166e0a691c46380eaf316881df4bfa30ce1e3"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-first-trial-combat-game-2029/results.json",
+            "sha256": "f40e49178118d5a0b9bb02a020f1ea72e9f2a900a6ce44e93bf2493860fc572f"
+          }
+        ],
+        "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+            "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+          },
+          {
+            "path": "dist/assets/combat-CdaTw3hu.js",
+            "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-BwpTgJUS.js",
+            "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+          },
+          {
+            "path": "dist/assets/game-Ca5i6doY.css",
+            "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "errors": [],
+      "failure": null,
+      "inheritedBattleCount": 2,
+      "newBattles": [],
+      "atlas": {
+        "pass": true,
+        "viewport": [
+          620,
+          780
+        ],
+        "initialRegion": "0",
+        "regionCount": 3,
+        "ownerUnchanged": true,
+        "nativeTouch": false,
+        "geometry": {
+          "left": 340,
+          "top": 0,
+          "width": 620,
+          "height": 428,
+          "scrollWidth": 960,
+          "scrollHeight": 527
+        },
+        "pan": {
+          "left": 300,
+          "top": 0
+        },
+        "minimumTarget": 44,
+        "regions": [
+          {
+            "index": 0,
+            "geography": null,
+            "borders": null
+          },
+          {
+            "index": 1,
+            "geography": null,
+            "borders": null
+          },
+          {
+            "index": 2,
+            "geography": null,
+            "borders": null
+          }
+        ]
+      },
+      "currentNodeId": "lion-first-refuge",
+      "motion": {
+        "osRequested": false,
+        "gameRequested": true
+      },
+      "trustedTouch": [],
+      "preparation": null,
+      "terminalMenu": null,
+      "defeatRecovery": null
+    },
+    {
+      "jobId": "poi-v2-D-defeat-touch-1229",
+      "status": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_NATIVE_DEFEAT_TEMPORARY_LOSS_SECURED_CHECKPOINT_V6",
+      "output": "tmp/demo/poi-v2-D-defeat-touch-1229",
+      "resultSha256": "3b2715d675e78a364c81b466051fdf05f11056f4d17f0676f7802a041609cc89",
+      "receiptSha256": "827392af517faab9cafb3ffdca63f4fcd1d432822decf804f20847264f3eaa02",
+      "parameters": {
+        "target": "defeat-recovery",
+        "routePlan": "sacrifice",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": true,
+        "touchInput": true,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "gameReducedMotion": true,
+        "viewport": [
+          390,
+          844
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+        "priorProofPath": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+        "verifySalvation": false
+      },
+      "requiredAssertions": [
+        "EXACT_V6_CHECKPOINT_RECOVERY",
+        "NATIVE_POI_CHECKPOINT_RETURN",
+        "EXACT_RELOAD"
+      ],
+      "provenance": {
+        "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+        "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+            "sha256": "95f2c787cbc0c6244c1d0e44e95ac123a9809d3669f28a92d783b9da260a0e5d"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+            "sha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d"
+          }
+        ],
+        "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+            "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+          },
+          {
+            "path": "dist/assets/combat-CdaTw3hu.js",
+            "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-BwpTgJUS.js",
+            "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+          },
+          {
+            "path": "dist/assets/game-Ca5i6doY.css",
+            "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "errors": [],
+      "failure": null,
+      "inheritedBattleCount": 3,
+      "newBattles": [
+        {
+          "nodeId": "lion-village-choice",
+          "combatId": "village_raid",
+          "round": 3,
+          "actions": 3,
+          "resultText": "✦\n\nROUTE BRISÉE\n\nDéfaite\n\nVotre équipe a été vaincue…\n\nCHECKPOINT\nRetour au dernier refuge\nÉTAT DE LA COMPAGNIE\nElara\nK.O.\nREVENIR À LA CARTE",
+          "pass": true
+        }
+      ],
+      "atlas": {
+        "pass": true,
+        "viewport": [
+          390,
+          844
+        ],
+        "initialRegion": "1",
+        "regionCount": 3,
+        "ownerUnchanged": true,
+        "nativeTouch": true,
+        "geometry": {
+          "left": 105,
+          "top": 0,
+          "width": 390,
+          "height": 490,
+          "scrollWidth": 960,
+          "scrollHeight": 534
+        },
+        "pan": {
+          "left": 0,
+          "top": 0
+        },
+        "minimumTarget": 44,
+        "regions": [
+          {
+            "index": 0,
+            "geography": null,
+            "borders": null
+          },
+          {
+            "index": 1,
+            "geography": null,
+            "borders": null
+          },
+          {
+            "index": 2,
+            "geography": null,
+            "borders": null
+          }
+        ]
+      },
+      "currentNodeId": "lion-first-refuge",
+      "motion": {
+        "osRequested": false,
+        "gameRequested": true
+      },
+      "trustedTouch": [
+        {
+          "target": "BUTTON",
+          "at": 1792081250094
+        },
+        {
+          "target": "poi-region-0",
+          "at": 1792081252351
+        },
+        {
+          "target": "poi-region-1",
+          "at": 1792081252635
+        },
+        {
+          "target": "poi-region-2",
+          "at": 1792081252801
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081252984
+        },
+        {
+          "target": "DIV",
+          "at": 1792081253034
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081253550
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081253637
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081253684
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081254817
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081255039
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081255420
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081255613
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081255823
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081256037
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081256100
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081257512
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081257760
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081257983
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081258181
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081258694
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081258923
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081259141
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081259378
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081259614
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081259820
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081260061
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081260485
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081260726
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081260919
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081261155
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081261355
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081261619
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081262753
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081262977
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081267349
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081268565
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081270077
+        },
+        {
+          "target": "SMALL",
+          "at": 1792081271363
+        },
+        {
+          "target": "combat-battlefield",
+          "at": 1792081272092
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081280061
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081287644
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081289571
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081293405
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081302243
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081314055
+        },
+        {
+          "target": "combat-result-action",
+          "at": 1792081320419
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081324317
+        }
+      ],
+      "preparation": null,
+      "terminalMenu": null,
+      "defeatRecovery": {
+        "pass": true,
+        "checkpoint": "lion-first-refuge",
+        "exact": true,
+        "securedBefore": 20,
+        "securedAfter": 20,
+        "temporaryBefore": 260,
+        "temporaryAfter": 0
+      }
+    },
+    {
+      "jobId": "poi-v2-D-final-atlas1366-1312",
+      "status": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_DECODED_THREE_REGION_ATLAS1366_KEYBOARD_V6",
+      "output": "tmp/demo/poi-v2-D-final-atlas1366-1312",
+      "resultSha256": "1622e827600a4bd40648b2215a6667bd30cef928f3a0ee7091c99c045033ce99",
+      "receiptSha256": "6510ca6409d9bf1bfc7dffce802ad459c85ddfc769f24b6d8be8b9383dea7d41",
+      "parameters": {
+        "target": "first-refuge",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "gameReducedMotion": false,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-v2-first-refuge-0810/earned-lion-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-v2-first-refuge-0810/results.json",
+        "verifySalvation": false
+      },
+      "requiredAssertions": [
+        "EARNED_LINEAGE",
+        "NATIVE_INPUTS",
+        "EXACT_RELOAD"
+      ],
+      "provenance": {
+        "gitHead": "99ed9ed9d5b4290f65e1591a701463ad61c0f21d",
+        "sourceTree": "d6e92946f0cf8080d6a0f8978083bef901ba06dc",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "662386d9a26ade68410d6bf00df5b0d4d734b286ca1cfb077372819ec7cedc77"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-v2-first-refuge-0810/earned-lion-first-refuge-v6.json",
+            "sha256": "12931a226f9a81dc5a689f28da519370de50fc41a447d0babef903a5096e66dc"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-v2-first-refuge-0810/results.json",
+            "sha256": "b1819c257dbbb94bf486bac60fad2855473a841dc06be983b48155684bb43004"
+          }
+        ],
+        "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+            "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+          },
+          {
+            "path": "dist/assets/combat-CdaTw3hu.js",
+            "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-B0ya3PyK.css",
+            "sha256": "35dc9086ad5156bf2263021c8d8915cc22041551f802059934a997eff0b82a33"
+          },
+          {
+            "path": "dist/assets/game-CaUtfEer.js",
+            "sha256": "fba4069c776c866eedda6ced564a20320b9b6faa26bdd382b259ec30d2122e99"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "77f326552711e0bc400cbd30a4960b0390635b998cf9bade5322d07bd54d3963"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "errors": [],
+      "failure": null,
+      "inheritedBattleCount": 1,
+      "newBattles": [],
+      "atlas": {
+        "pass": true,
+        "viewport": [
+          1366,
+          768
+        ],
+        "initialRegion": "0",
+        "regionCount": 3,
+        "ownerUnchanged": true,
+        "nativeTouch": false,
+        "geometry": {
+          "left": 0,
+          "top": 0,
+          "width": 1366,
+          "height": 490,
+          "scrollWidth": 1366,
+          "scrollHeight": 490
+        },
+        "pan": null,
+        "minimumTarget": 44,
+        "regions": [
+          {
+            "index": 0,
+            "geography": {
+              "src": "/assets/generated/lion-phase/poi-v2/lion-opening.png",
+              "complete": true,
+              "width": 1672,
+              "height": 941
+            },
+            "borders": [
+              {
+                "id": "lion-reserve-trail",
+                "bounds": {
+                  "left": 997.46875,
+                  "top": 530.671875,
+                  "right": 1070.46875,
+                  "bottom": 585.671875,
+                  "land": {
+                    "left": 0,
+                    "top": 136,
+                    "right": 1366,
+                    "bottom": 626.40625
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "geography": {
+              "src": "/assets/generated/lion-phase/poi-v2/bois-clair.png",
+              "complete": true,
+              "width": 1672,
+              "height": 941
+            },
+            "borders": [
+              {
+                "id": "lion-first-refuge",
+                "bounds": {
+                  "left": 265.703125,
+                  "top": 223.203125,
+                  "right": 380.359375,
+                  "bottom": 248.203125,
+                  "land": {
+                    "left": 0,
+                    "top": 136,
+                    "right": 1366,
+                    "bottom": 626.40625
+                  }
+                }
+              },
+              {
+                "id": "lion-lancer-recruit",
+                "bounds": {
+                  "left": 996.4375,
+                  "top": 523.171875,
+                  "right": 1071.5,
+                  "bottom": 593.171875,
+                  "land": {
+                    "left": 0,
+                    "top": 136,
+                    "right": 1366,
+                    "bottom": 626.40625
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "geography": {
+              "src": "/assets/generated/lion-phase/poi-v2/judgement.png",
+              "complete": true,
+              "width": 1672,
+              "height": 941
+            },
+            "borders": [
+              {
+                "id": "lion-second-refuge",
+                "bounds": {
+                  "left": 256.03125,
+                  "top": 225.203125,
+                  "right": 390.03125,
+                  "bottom": 265.203125,
+                  "land": {
+                    "left": 0,
+                    "top": 136,
+                    "right": 1366,
+                    "bottom": 626.40625
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "currentNodeId": "lion-first-refuge",
+      "motion": {
+        "osRequested": false,
+        "gameRequested": false,
+        "nativeGameControl": false
+      },
+      "trustedTouch": [],
+      "preparation": null,
+      "terminalMenu": null,
+      "defeatRecovery": null
+    },
+    {
+      "jobId": "poi-v2-D-final-fresh-opening-1313",
+      "status": "FAILED",
+      "reviewedDisposition": "NOT_ACCEPTED",
+      "output": "tmp/demo/poi-v2-D-final-fresh-opening-1313",
+      "resultSha256": "36b6eb12caa5406cba0ffab5098e70b62c593f54915892443994ddb986f271a4",
+      "receiptSha256": "d5a56a5b98c265d584ee9a01e7240caa148ce8acfb272db7e9d2b91f62faff72",
+      "parameters": {
+        "target": "first-refuge",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "gameReducedMotion": false,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": null,
+        "priorProofPath": null,
+        "verifySalvation": false
+      },
+      "requiredAssertions": [
+        "EARNED_LINEAGE",
+        "NATIVE_INPUTS",
+        "EXACT_RELOAD"
+      ],
+      "provenance": {
+        "gitHead": "99ed9ed9d5b4290f65e1591a701463ad61c0f21d",
+        "sourceTree": "d6e92946f0cf8080d6a0f8978083bef901ba06dc",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "662386d9a26ade68410d6bf00df5b0d4d734b286ca1cfb077372819ec7cedc77"
+        },
+        "inputs": [],
+        "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+            "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+          },
+          {
+            "path": "dist/assets/combat-CdaTw3hu.js",
+            "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-B0ya3PyK.css",
+            "sha256": "35dc9086ad5156bf2263021c8d8915cc22041551f802059934a997eff0b82a33"
+          },
+          {
+            "path": "dist/assets/game-CaUtfEer.js",
+            "sha256": "fba4069c776c866eedda6ced564a20320b9b6faa26bdd382b259ec30d2122e99"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "77f326552711e0bc400cbd30a4960b0390635b998cf9bade5322d07bd54d3963"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "errors": [],
+      "failure": "AssertionError [ERR_ASSERTION]: Native public petition differs from its authored exact consequences\n+ actual - expected\n... Skipped lines\n\n  {\n    clan: {\n      maxSize: 12,\n      members: [\n        {\n...\n    },\n+   gold: 75,\n-   gold: 110,\n    inventory: {\n      accessories: {},\n      consumables: {\n        antidote: 2,\n        potion: 6,\n...\n      temporaryLoot: {\n+       gold: 0,\n-       gold: -35,\n        inventory: {\n          accessories: {},\n          consumables: {},\n          materials: {},\n          weapons: {}\n\n    at choose (file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:158:12)\n    at async returnToPoiMap (file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:355:78)\n    at async file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:1068:9",
+      "inheritedBattleCount": 0,
+      "newBattles": [
+        {
+          "nodeId": "lion-opening-ambush",
+          "combatId": "wolf_pack",
+          "round": 2,
+          "actions": 19,
+          "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nMeute affamée\n\nOBJECTIF SÉCURISÉ\nRepoussez la meute qui encercle la compagnie.\nRÉCOMPENSES\nOr\n+80\nGemmes rouges\n+1\nMinerai de fer\n+1\nRéputation\n+1\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nDEBOUT\nElara\nDEBOUT\nKestrel\nK.O.\nCONTINUER LA CHRONIQUE",
+          "pass": true
+        }
+      ],
+      "atlas": {
+        "pass": true,
+        "viewport": [
+          1366,
+          768
+        ],
+        "initialRegion": "0",
+        "regionCount": 3,
+        "ownerUnchanged": true,
+        "nativeTouch": false,
+        "geometry": {
+          "left": 0,
+          "top": 0,
+          "width": 1366,
+          "height": 490,
+          "scrollWidth": 1366,
+          "scrollHeight": 490
+        },
+        "pan": null,
+        "minimumTarget": 44,
+        "regions": [
+          {
+            "index": 0,
+            "geography": {
+              "src": "/assets/generated/lion-phase/poi-v2/lion-opening.png",
+              "complete": true,
+              "width": 1672,
+              "height": 941
+            },
+            "borders": [
+              {
+                "id": "lion-reserve-trail",
+                "bounds": {
+                  "left": 997.46875,
+                  "top": 530.671875,
+                  "right": 1070.46875,
+                  "bottom": 585.671875,
+                  "land": {
+                    "left": 0,
+                    "top": 136,
+                    "right": 1366,
+                    "bottom": 626.40625
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "geography": {
+              "src": "/assets/generated/lion-phase/poi-v2/bois-clair.png",
+              "complete": true,
+              "width": 1672,
+              "height": 941
+            },
+            "borders": [
+              {
+                "id": "lion-first-refuge",
+                "bounds": {
+                  "left": 265.703125,
+                  "top": 232.703125,
+                  "right": 380.359375,
+                  "bottom": 257.703125,
+                  "land": {
+                    "left": 0,
+                    "top": 136,
+                    "right": 1366,
+                    "bottom": 626.40625
+                  }
+                }
+              },
+              {
+                "id": "lion-lancer-recruit",
+                "bounds": {
+                  "left": 996.4375,
+                  "top": 523.171875,
+                  "right": 1071.5,
+                  "bottom": 593.171875,
+                  "land": {
+                    "left": 0,
+                    "top": 136,
+                    "right": 1366,
+                    "bottom": 626.40625
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "geography": {
+              "src": "/assets/generated/lion-phase/poi-v2/judgement.png",
+              "complete": true,
+              "width": 1672,
+              "height": 941
+            },
+            "borders": [
+              {
+                "id": "lion-second-refuge",
+                "bounds": {
+                  "left": 256.03125,
+                  "top": 225.203125,
+                  "right": 390.03125,
+                  "bottom": 265.203125,
+                  "land": {
+                    "left": 0,
+                    "top": 136,
+                    "right": 1366,
+                    "bottom": 626.40625
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "motion": {
+        "osRequested": false,
+        "gameRequested": false,
+        "nativeGameControl": false
+      },
+      "trustedTouch": [],
+      "preparation": null,
+      "terminalMenu": null,
+      "defeatRecovery": null
+    },
+    {
+      "jobId": "poi-v2-D-final-game620-1312",
+      "status": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_NATIVE_GAME_REDUCTION620_ATLAS_V6",
+      "output": "tmp/demo/poi-v2-D-final-game620-1312",
+      "resultSha256": "a5009bb8a331cfd7169f7b7fff245398bf1ee1fab268a00240fa06b86f5be20f",
+      "receiptSha256": "817dcc8659f9273c1135f54178a3df4c733cedbe01f58123e240e63e6532ba24",
+      "parameters": {
+        "target": "first-refuge",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "gameReducedMotion": true,
+        "viewport": [
+          620,
+          780
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-v2-first-refuge-0810/earned-lion-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-v2-first-refuge-0810/results.json",
+        "verifySalvation": false
+      },
+      "requiredAssertions": [
+        "EARNED_LINEAGE",
+        "NATIVE_INPUTS",
+        "EXACT_RELOAD"
+      ],
+      "provenance": {
+        "gitHead": "99ed9ed9d5b4290f65e1591a701463ad61c0f21d",
+        "sourceTree": "d6e92946f0cf8080d6a0f8978083bef901ba06dc",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "662386d9a26ade68410d6bf00df5b0d4d734b286ca1cfb077372819ec7cedc77"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-v2-first-refuge-0810/earned-lion-first-refuge-v6.json",
+            "sha256": "12931a226f9a81dc5a689f28da519370de50fc41a447d0babef903a5096e66dc"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-v2-first-refuge-0810/results.json",
+            "sha256": "b1819c257dbbb94bf486bac60fad2855473a841dc06be983b48155684bb43004"
+          }
+        ],
+        "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+            "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+          },
+          {
+            "path": "dist/assets/combat-CdaTw3hu.js",
+            "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-B0ya3PyK.css",
+            "sha256": "35dc9086ad5156bf2263021c8d8915cc22041551f802059934a997eff0b82a33"
+          },
+          {
+            "path": "dist/assets/game-CaUtfEer.js",
+            "sha256": "fba4069c776c866eedda6ced564a20320b9b6faa26bdd382b259ec30d2122e99"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "77f326552711e0bc400cbd30a4960b0390635b998cf9bade5322d07bd54d3963"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "errors": [],
+      "failure": null,
+      "inheritedBattleCount": 1,
+      "newBattles": [],
+      "atlas": {
+        "pass": true,
+        "viewport": [
+          620,
+          780
+        ],
+        "initialRegion": "0",
+        "regionCount": 3,
+        "ownerUnchanged": true,
+        "nativeTouch": false,
+        "geometry": {
+          "left": 340,
+          "top": 0,
+          "width": 620,
+          "height": 428,
+          "scrollWidth": 960,
+          "scrollHeight": 520
+        },
+        "pan": {
+          "left": 300,
+          "top": 0
+        },
+        "minimumTarget": 44,
+        "regions": [
+          {
+            "index": 0,
+            "geography": {
+              "src": "/assets/generated/lion-phase/poi-v2/lion-opening.png",
+              "complete": true,
+              "width": 1672,
+              "height": 941
+            },
+            "borders": [
+              {
+                "id": "lion-reserve-trail",
+                "bounds": {
+                  "left": 489,
+                  "top": 542.5,
+                  "right": 571,
+                  "bottom": 597.5,
+                  "land": {
+                    "left": 0,
+                    "top": 169,
+                    "right": 620,
+                    "bottom": 597.40625
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "geography": {
+              "src": "/assets/generated/lion-phase/poi-v2/bois-clair.png",
+              "complete": true,
+              "width": 1672,
+              "height": 941
+            },
+            "borders": [
+              {
+                "id": "lion-first-refuge",
+                "bounds": {
+                  "left": 22.65625,
+                  "top": 253,
+                  "right": 137.3125,
+                  "bottom": 278,
+                  "land": {
+                    "left": 0,
+                    "top": 169,
+                    "right": 620,
+                    "bottom": 597.40625
+                  }
+                }
+              },
+              {
+                "id": "lion-lancer-recruit",
+                "bounds": {
+                  "left": 489,
+                  "top": 527,
+                  "right": 571,
+                  "bottom": 597,
+                  "land": {
+                    "left": 0,
+                    "top": 169,
+                    "right": 620,
+                    "bottom": 597.40625
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "geography": {
+              "src": "/assets/generated/lion-phase/poi-v2/judgement.png",
+              "complete": true,
+              "width": 1672,
+              "height": 941
+            },
+            "borders": [
+              {
+                "id": "lion-second-refuge",
+                "bounds": {
+                  "left": 12.984375,
+                  "top": 255,
+                  "right": 146.984375,
+                  "bottom": 295,
+                  "land": {
+                    "left": 0,
+                    "top": 169,
+                    "right": 620,
+                    "bottom": 597.40625
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "currentNodeId": "lion-first-refuge",
+      "motion": {
+        "osRequested": false,
+        "gameRequested": true,
+        "nativeGameControl": true
+      },
+      "trustedTouch": [],
+      "preparation": null,
+      "terminalMenu": null,
+      "defeatRecovery": null
+    },
+    {
+      "jobId": "poi-v2-D-final-prep-touch390-1313",
+      "status": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_TOUCH_OS_ONLY390_THREE_REGION_PREPARATION44PX_V6",
+      "output": "tmp/demo/poi-v2-D-final-prep-touch390-1313",
+      "resultSha256": "2195294c8ad1587a8b4a08d1247baa6fefdf329abe528b476ce7d5cf6892dab2",
+      "receiptSha256": "de69c9a1931af5d9f66fadeff6203c712fd02123c2363c84d692c36e6709c765",
+      "parameters": {
+        "target": "preparation",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "touchInput": true,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "gameReducedMotion": false,
+        "viewport": [
+          390,
+          844
+        ],
+        "osReducedMotion": true,
+        "earnedSavePath": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+        "verifySalvation": false
+      },
+      "requiredAssertions": [
+        "EARNED_LINEAGE",
+        "NATIVE_INPUTS",
+        "EXACT_RELOAD"
+      ],
+      "provenance": {
+        "gitHead": "99ed9ed9d5b4290f65e1591a701463ad61c0f21d",
+        "sourceTree": "d6e92946f0cf8080d6a0f8978083bef901ba06dc",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "662386d9a26ade68410d6bf00df5b0d4d734b286ca1cfb077372819ec7cedc77"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+            "sha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+            "sha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868"
+          }
+        ],
+        "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+            "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+          },
+          {
+            "path": "dist/assets/combat-CdaTw3hu.js",
+            "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-B0ya3PyK.css",
+            "sha256": "35dc9086ad5156bf2263021c8d8915cc22041551f802059934a997eff0b82a33"
+          },
+          {
+            "path": "dist/assets/game-CaUtfEer.js",
+            "sha256": "fba4069c776c866eedda6ced564a20320b9b6faa26bdd382b259ec30d2122e99"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "77f326552711e0bc400cbd30a4960b0390635b998cf9bade5322d07bd54d3963"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "errors": [],
+      "failure": null,
+      "inheritedBattleCount": 3,
+      "newBattles": [],
+      "atlas": {
+        "pass": true,
+        "viewport": [
+          390,
+          844
+        ],
+        "initialRegion": "1",
+        "regionCount": 3,
+        "ownerUnchanged": true,
+        "nativeTouch": true,
+        "geometry": {
+          "left": 570,
+          "top": 0,
+          "width": 390,
+          "height": 474,
+          "scrollWidth": 960,
+          "scrollHeight": 520
+        },
+        "pan": {
+          "left": 371,
+          "top": 0
+        },
+        "minimumTarget": 44,
+        "regions": [
+          {
+            "index": 0,
+            "geography": {
+              "src": "/assets/generated/lion-phase/poi-v2/lion-opening.png",
+              "complete": true,
+              "width": 1672,
+              "height": 941
+            },
+            "borders": [
+              {
+                "id": "lion-reserve-trail",
+                "bounds": {
+                  "left": 259,
+                  "top": 589.5,
+                  "right": 341,
+                  "bottom": 644.5,
+                  "land": {
+                    "left": 0,
+                    "top": 171,
+                    "right": 390,
+                    "bottom": 644.609375
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "geography": {
+              "src": "/assets/generated/lion-phase/poi-v2/bois-clair.png",
+              "complete": true,
+              "width": 1672,
+              "height": 941
+            },
+            "borders": [
+              {
+                "id": "lion-first-refuge",
+                "bounds": {
+                  "left": 22.65625,
+                  "top": 264.5,
+                  "right": 137.3125,
+                  "bottom": 289.5,
+                  "land": {
+                    "left": 0,
+                    "top": 171,
+                    "right": 390,
+                    "bottom": 661.40625
+                  }
+                }
+              },
+              {
+                "id": "lion-lancer-recruit",
+                "bounds": {
+                  "left": 259,
+                  "top": 575,
+                  "right": 341,
+                  "bottom": 645,
+                  "land": {
+                    "left": 0,
+                    "top": 171,
+                    "right": 390,
+                    "bottom": 644.609375
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "geography": {
+              "src": "/assets/generated/lion-phase/poi-v2/judgement.png",
+              "complete": true,
+              "width": 1672,
+              "height": 941
+            },
+            "borders": [
+              {
+                "id": "lion-second-refuge",
+                "bounds": {
+                  "left": 12.984375,
+                  "top": 247.5,
+                  "right": 146.984375,
+                  "bottom": 287.5,
+                  "land": {
+                    "left": 0,
+                    "top": 171,
+                    "right": 390,
+                    "bottom": 644.609375
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "currentNodeId": "lion-final-refuge",
+      "motion": {
+        "osRequested": true,
+        "gameRequested": false,
+        "nativeGameControl": false
+      },
+      "trustedTouch": [
+        {
+          "target": "BUTTON",
+          "at": 1792084311308
+        },
+        {
+          "target": "poi-region-0",
+          "at": 1792084313462
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084313681
+        },
+        {
+          "target": "poi-region-1",
+          "at": 1792084313744
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084313879
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084313929
+        },
+        {
+          "target": "poi-region-2",
+          "at": 1792084313977
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084314161
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084314211
+        },
+        {
+          "target": "DIV",
+          "at": 1792084314244
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084314644
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084314711
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084314763
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084315077
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084315211
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084315261
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084315328
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084316011
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084318428
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084318478
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084318795
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084319144
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084319684
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084319754
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084319862
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084319912
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084320544
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084320761
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084320928
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084321128
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084321178
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084321828
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084322011
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084322211
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084322394
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084322578
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084322762
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084322945
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084323111
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084323294
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084323478
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084324094
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084324277
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084324460
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084324661
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084324710
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084325361
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084325544
+        },
+        {
+          "target": "STRONG",
+          "at": 1792084325744
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084325927
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084326146
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084326195
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084326844
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084327029
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084327211
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084327394
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084327578
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084327762
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084327945
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084328144
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084328344
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084328528
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084329061
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084329660
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084329844
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084330027
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084330211
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084330395
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084330577
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084330761
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084331361
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084331544
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084331728
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084331911
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084332111
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084332160
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084332811
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084333010
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084333194
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084333394
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084333578
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084333760
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084334294
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084334477
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084334662
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084334844
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084335027
+        },
+        {
+          "target": "SPAN",
+          "at": 1792084335211
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792084338177
+        }
+      ],
+      "preparation": {
+        "exactV6": true,
+        "noHub": true,
+        "noNewSecuring": true
+      },
+      "terminalMenu": null,
+      "defeatRecovery": null
+    },
+    {
+      "jobId": "poi-v2-D-legacy0603-1231",
+      "status": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_PRE_POI_TRAVERSAL_V6_REFUGE_CONTINUATION",
+      "output": "tmp/demo/poi-v2-D-legacy0603-1231",
+      "resultSha256": "32b20290d0654d98f5d3c8524a5dca0a790092a45f284fd0c1fdec38a9de0456",
+      "receiptSha256": "5d2e5f0a3ec38042d22df17cbb22983d196610febec5c3f7e92a2dcbdfab4860",
+      "parameters": {
+        "target": "first-refuge",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "gameReducedMotion": false,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/reward-label-native-desktop-0603/results.json",
+        "verifySalvation": false
+      },
+      "requiredAssertions": [
+        "EARNED_LINEAGE",
+        "NATIVE_INPUTS",
+        "EXACT_RELOAD"
+      ],
+      "provenance": {
+        "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+        "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json",
+            "sha256": "d0fc5c11f8263316c071c4d859982f60a8be97b6d35ea024b7a960c93b5fd656"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/reward-label-native-desktop-0603/results.json",
+            "sha256": "03eab0e5a83eea0f40c962cd7ce741df4e88cd4757ff331197f2f9f595bfc9f0"
+          }
+        ],
+        "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+            "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+          },
+          {
+            "path": "dist/assets/combat-CdaTw3hu.js",
+            "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-BwpTgJUS.js",
+            "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+          },
+          {
+            "path": "dist/assets/game-Ca5i6doY.css",
+            "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "errors": [],
+      "failure": null,
+      "inheritedBattleCount": 2,
+      "newBattles": [],
+      "atlas": null,
+      "currentNodeId": "lion-first-refuge",
+      "motion": {
+        "osRequested": false,
+        "gameRequested": false
+      },
+      "trustedTouch": [],
+      "preparation": null,
+      "terminalMenu": null,
+      "defeatRecovery": null
+    },
+    {
+      "jobId": "poi-v2-D-opening-combat-1220",
+      "status": "FAILED",
+      "reviewedDisposition": "NOT_ACCEPTED",
+      "output": "tmp/demo/poi-v2-D-opening-combat-1220",
+      "resultSha256": "f0db25cdaff3f8313e741bdb20a9bd5ca732f2bee317a41a570bd66cbacb131a",
+      "receiptSha256": "8b48ffde97d8b35f52180acd9c55f3c042d818acf0db0eb93617a79af1f16c9a",
+      "parameters": {
+        "target": "first-refuge",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "combat",
+        "gameReducedMotion": false,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": null,
+        "priorProofPath": null,
+        "verifySalvation": false
+      },
+      "requiredAssertions": [
+        "EARNED_LINEAGE",
+        "NATIVE_INPUTS",
+        "EXACT_RELOAD"
+      ],
+      "provenance": {
+        "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+        "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+        },
+        "inputs": [],
+        "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+            "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+          },
+          {
+            "path": "dist/assets/combat-CdaTw3hu.js",
+            "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-BwpTgJUS.js",
+            "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+          },
+          {
+            "path": "dist/assets/game-Ca5i6doY.css",
+            "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "errors": [],
+      "failure": "locator.waitFor: Timeout 1000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.poi-map:visible') to be visible\u001b[22m\n\n    at returnToPoiMap (C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\tools\\demo-continuous-production-qa.mjs:351:42)\n    at async file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:1051:9",
+      "inheritedBattleCount": 0,
+      "newBattles": [
+        {
+          "nodeId": "lion-opening-ambush",
+          "combatId": "wolf_pack",
+          "round": 2,
+          "actions": 19,
+          "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nMeute affamée\n\nOBJECTIF SÉCURISÉ\nRepoussez la meute qui encercle la compagnie.\nRÉCOMPENSES\nOr\n+80\nGemmes rouges\n+1\nMinerai de fer\n+1\nRéputation\n+1\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nDEBOUT\nElara\nDEBOUT\nKestrel\nK.O.\nCONTINUER LA CHRONIQUE",
+          "pass": true
+        },
+        {
+          "nodeId": "lion-first-trial-combat",
+          "combatId": "spider_nest",
+          "round": 4,
+          "actions": 31,
+          "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nNid venimeux\n\nOBJECTIF SÉCURISÉ\nDétruisez le nid venimeux avant que la piste ne soit condamnée.\nRÉCOMPENSES\nOr\n+85\nGemmes rouges\n+1\nMinerai de fer\n+1\nRéputation\n+1\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nDEBOUT\nElara\nK.O.\nKestrel\nDEBOUT\nCONTINUER LA CHRONIQUE",
+          "pass": true
+        }
+      ],
+      "atlas": {
+        "pass": true,
+        "viewport": [
+          1366,
+          768
+        ],
+        "initialRegion": "0",
+        "regionCount": 3,
+        "ownerUnchanged": true,
+        "nativeTouch": false,
+        "geometry": {
+          "left": 0,
+          "top": 0,
+          "width": 1366,
+          "height": 490,
+          "scrollWidth": 1366,
+          "scrollHeight": 490
+        },
+        "pan": null,
+        "minimumTarget": 44,
+        "regions": [
+          {
+            "index": 0,
+            "geography": null,
+            "borders": null
+          },
+          {
+            "index": 1,
+            "geography": null,
+            "borders": null
+          },
+          {
+            "index": 2,
+            "geography": null,
+            "borders": null
+          }
+        ]
+      },
+      "motion": {
+        "osRequested": false,
+        "gameRequested": false
+      },
+      "trustedTouch": [],
+      "preparation": null,
+      "terminalMenu": null,
+      "defeatRecovery": null
+    },
+    {
+      "jobId": "poi-v2-D-petition-first-refuge-1714",
+      "status": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_FRESH_OPENING_EVENT_FIRST_REFUGE_V6",
+      "output": "tmp/demo/poi-v2-D-petition-first-refuge-1714",
+      "resultSha256": "f862bb1ed096639939c77654b0ae8808e50cf781e2efa59901e3fe00d4a6281e",
+      "receiptSha256": "494f0a89930772040e630f1b7d5e31aef0cbe2a6266ac95f8065212ceb271df7",
+      "parameters": {
+        "target": "first-refuge",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "gameReducedMotion": false,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": null,
+        "priorProofPath": null,
+        "verifySalvation": false
+      },
+      "requiredAssertions": [
+        "EARNED_LINEAGE",
+        "NATIVE_INPUTS",
+        "EXACT_RELOAD"
+      ],
+      "provenance": {
+        "gitHead": "eaae27f83fc66a77ca0014fc5e87e07dad3dd635",
+        "sourceTree": "d6e92946f0cf8080d6a0f8978083bef901ba06dc",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "098dc3605afb174bb856bc2d245f5792d02c5814bddaa07e85a704ee3ad611ec"
+        },
+        "inputs": [],
+        "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+            "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+          },
+          {
+            "path": "dist/assets/combat-CdaTw3hu.js",
+            "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-B0ya3PyK.css",
+            "sha256": "35dc9086ad5156bf2263021c8d8915cc22041551f802059934a997eff0b82a33"
+          },
+          {
+            "path": "dist/assets/game-CaUtfEer.js",
+            "sha256": "fba4069c776c866eedda6ced564a20320b9b6faa26bdd382b259ec30d2122e99"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "77f326552711e0bc400cbd30a4960b0390635b998cf9bade5322d07bd54d3963"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "errors": [],
+      "failure": null,
+      "inheritedBattleCount": 0,
+      "newBattles": [
+        {
+          "nodeId": "lion-opening-ambush",
+          "combatId": "wolf_pack",
+          "round": 2,
+          "actions": 19,
+          "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nMeute affamée\n\nOBJECTIF SÉCURISÉ\nRepoussez la meute qui encercle la compagnie.\nRÉCOMPENSES\nOr\n+80\nGemmes rouges\n+1\nMinerai de fer\n+1\nRéputation\n+1\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nDEBOUT\nElara\nDEBOUT\nKestrel\nK.O.\nCONTINUER LA CHRONIQUE",
+          "pass": true
+        }
+      ],
+      "atlas": {
+        "pass": true,
+        "viewport": [
+          1366,
+          768
+        ],
+        "initialRegion": "0",
+        "regionCount": 3,
+        "ownerUnchanged": true,
+        "nativeTouch": false,
+        "geometry": {
+          "left": 0,
+          "top": 0,
+          "width": 1366,
+          "height": 490,
+          "scrollWidth": 1366,
+          "scrollHeight": 490
+        },
+        "pan": null,
+        "minimumTarget": 44,
+        "regions": [
+          {
+            "index": 0,
+            "geography": {
+              "src": "/assets/generated/lion-phase/poi-v2/lion-opening.png",
+              "complete": true,
+              "width": 1672,
+              "height": 941
+            },
+            "borders": [
+              {
+                "id": "lion-reserve-trail",
+                "bounds": {
+                  "left": 997.46875,
+                  "top": 530.671875,
+                  "right": 1070.46875,
+                  "bottom": 585.671875,
+                  "land": {
+                    "left": 0,
+                    "top": 136,
+                    "right": 1366,
+                    "bottom": 626.40625
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "geography": {
+              "src": "/assets/generated/lion-phase/poi-v2/bois-clair.png",
+              "complete": true,
+              "width": 1672,
+              "height": 941
+            },
+            "borders": [
+              {
+                "id": "lion-first-refuge",
+                "bounds": {
+                  "left": 265.703125,
+                  "top": 232.703125,
+                  "right": 380.359375,
+                  "bottom": 257.703125,
+                  "land": {
+                    "left": 0,
+                    "top": 136,
+                    "right": 1366,
+                    "bottom": 626.40625
+                  }
+                }
+              },
+              {
+                "id": "lion-lancer-recruit",
+                "bounds": {
+                  "left": 996.4375,
+                  "top": 523.171875,
+                  "right": 1071.5,
+                  "bottom": 593.171875,
+                  "land": {
+                    "left": 0,
+                    "top": 136,
+                    "right": 1366,
+                    "bottom": 626.40625
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "geography": {
+              "src": "/assets/generated/lion-phase/poi-v2/judgement.png",
+              "complete": true,
+              "width": 1672,
+              "height": 941
+            },
+            "borders": [
+              {
+                "id": "lion-second-refuge",
+                "bounds": {
+                  "left": 256.03125,
+                  "top": 225.203125,
+                  "right": 390.03125,
+                  "bottom": 265.203125,
+                  "land": {
+                    "left": 0,
+                    "top": 136,
+                    "right": 1366,
+                    "bottom": 626.40625
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "currentNodeId": "lion-first-refuge",
+      "motion": {
+        "osRequested": false,
+        "gameRequested": false,
+        "nativeGameControl": false
+      },
+      "trustedTouch": [],
+      "preparation": null,
+      "terminalMenu": null,
+      "defeatRecovery": null
+    },
+    {
+      "jobId": "poi-v2-D-preparation-touch-1221",
+      "status": "FAILED",
+      "reviewedDisposition": "NOT_ACCEPTED",
+      "output": "tmp/demo/poi-v2-D-preparation-touch-1221",
+      "resultSha256": "22c86398d9c347867ed2cc7b206d176451e54d1bba35a3bac7bb118bbcffb31e",
+      "receiptSha256": "921d8a40e7ee054797c695005b5c6023e9fb4cc20f0f3946dc26f696e2bf39d9",
+      "parameters": {
+        "target": "preparation",
+        "routePlan": "sacrifice",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "touchInput": true,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "gameReducedMotion": false,
+        "viewport": [
+          390,
+          844
+        ],
+        "osReducedMotion": true,
+        "earnedSavePath": "tmp/demo/poi-sacrifice-event-route-final/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-sacrifice-event-route-final/results.json",
+        "verifySalvation": false
+      },
+      "requiredAssertions": [
+        "EARNED_LINEAGE",
+        "NATIVE_INPUTS",
+        "EXACT_RELOAD"
+      ],
+      "provenance": {
+        "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+        "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-sacrifice-event-route-final/earned-lion-second-refuge-v6.json",
+            "sha256": "982355eac224a51a189f393478e0dc8198c0bd2eb5c12ba4117a9322395c2808"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-sacrifice-event-route-final/results.json",
+            "sha256": "188d2a8db2207006550d3902109cfefe0a4b07a61fe583e43493c4507d2931fa"
+          }
+        ],
+        "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+            "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+          },
+          {
+            "path": "dist/assets/combat-CdaTw3hu.js",
+            "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-BwpTgJUS.js",
+            "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+          },
+          {
+            "path": "dist/assets/game-Ca5i6doY.css",
+            "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "errors": [],
+      "failure": "AssertionError [ERR_ASSERTION]: OS-only motion proof requires normal game graphics\n\ntrue !== false\n\n    at file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:966:36",
+      "inheritedBattleCount": 4,
+      "newBattles": [],
+      "atlas": {
+        "pass": true,
+        "viewport": [
+          390,
+          844
+        ],
+        "initialRegion": "1",
+        "regionCount": 3,
+        "ownerUnchanged": true,
+        "nativeTouch": true,
+        "geometry": {
+          "left": 570,
+          "top": 0,
+          "width": 390,
+          "height": 474,
+          "scrollWidth": 960,
+          "scrollHeight": 534
+        },
+        "pan": {
+          "left": 371,
+          "top": 0
+        },
+        "minimumTarget": 44,
+        "regions": [
+          {
+            "index": 0,
+            "geography": null,
+            "borders": null
+          },
+          {
+            "index": 1,
+            "geography": null,
+            "borders": null
+          },
+          {
+            "index": 2,
+            "geography": null,
+            "borders": null
+          }
+        ]
+      },
+      "motion": {
+        "osRequested": true,
+        "gameRequested": true
+      },
+      "trustedTouch": [
+        {
+          "target": "BUTTON",
+          "at": 1792081095255
+        },
+        {
+          "target": "poi-region-0",
+          "at": 1792081097458
+        },
+        {
+          "target": "poi-region-1",
+          "at": 1792081097675
+        },
+        {
+          "target": "poi-region-2",
+          "at": 1792081097841
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081097991
+        },
+        {
+          "target": "DIV",
+          "at": 1792081098046
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081098506
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081098590
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081098641
+        }
+      ],
+      "preparation": null,
+      "terminalMenu": null,
+      "defeatRecovery": null
+    },
+    {
+      "jobId": "poi-v2-D-preparation-touch-os-1223",
+      "status": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_FROZEN_PREPARATION_TOUCH_OS_ONLY_V6_OLD42PX",
+      "output": "tmp/demo/poi-v2-D-preparation-touch-os-1223",
+      "resultSha256": "bf79e2fb4513e347a9193a329341ad8f3b2b9cf5efaa043c133109a5e53ff528",
+      "receiptSha256": "490d47efdb9338ac55236ae9d9bd7f563211955b56b7ce425c75b6d98c816a86",
+      "parameters": {
+        "target": "preparation",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "touchInput": true,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "gameReducedMotion": false,
+        "viewport": [
+          390,
+          844
+        ],
+        "osReducedMotion": true,
+        "earnedSavePath": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+        "verifySalvation": false
+      },
+      "requiredAssertions": [
+        "EARNED_LINEAGE",
+        "NATIVE_INPUTS",
+        "EXACT_RELOAD"
+      ],
+      "provenance": {
+        "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+        "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+            "sha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+            "sha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868"
+          }
+        ],
+        "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+            "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+          },
+          {
+            "path": "dist/assets/combat-CdaTw3hu.js",
+            "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-BwpTgJUS.js",
+            "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+          },
+          {
+            "path": "dist/assets/game-Ca5i6doY.css",
+            "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "errors": [],
+      "failure": null,
+      "inheritedBattleCount": 3,
+      "newBattles": [],
+      "atlas": {
+        "pass": true,
+        "viewport": [
+          390,
+          844
+        ],
+        "initialRegion": "1",
+        "regionCount": 3,
+        "ownerUnchanged": true,
+        "nativeTouch": true,
+        "geometry": {
+          "left": 570,
+          "top": 0,
+          "width": 390,
+          "height": 474,
+          "scrollWidth": 960,
+          "scrollHeight": 534
+        },
+        "pan": {
+          "left": 371,
+          "top": 0
+        },
+        "minimumTarget": 44,
+        "regions": [
+          {
+            "index": 0,
+            "geography": null,
+            "borders": null
+          },
+          {
+            "index": 1,
+            "geography": null,
+            "borders": null
+          },
+          {
+            "index": 2,
+            "geography": null,
+            "borders": null
+          }
+        ]
+      },
+      "currentNodeId": "lion-final-refuge",
+      "motion": {
+        "osRequested": true,
+        "gameRequested": false
+      },
+      "trustedTouch": [
+        {
+          "target": "BUTTON",
+          "at": 1792081115191
+        },
+        {
+          "target": "poi-region-0",
+          "at": 1792081117356
+        },
+        {
+          "target": "poi-region-1",
+          "at": 1792081117556
+        },
+        {
+          "target": "poi-region-2",
+          "at": 1792081117706
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081117889
+        },
+        {
+          "target": "DIV",
+          "at": 1792081117939
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081118389
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081118455
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081118506
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081118872
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081119055
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081119107
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081119173
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081119873
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081122289
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081122339
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081122689
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081123090
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081123609
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081123689
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081123806
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081123856
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081124407
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081124656
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081124822
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081125022
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081125073
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081125723
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081125922
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081126106
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081126289
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081126489
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081126689
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081126889
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081127055
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081127255
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081127440
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081128073
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081128256
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081128439
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081128639
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081128689
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081129356
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081129555
+        },
+        {
+          "target": "STRONG",
+          "at": 1792081129749
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081129923
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081130125
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081130173
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081130838
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081131039
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081131239
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081131405
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081131607
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081131806
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081131989
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081132172
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081132356
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081132538
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081133039
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081133655
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081133839
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081134038
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081134221
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081134422
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081134622
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081134805
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081135438
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081135622
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081135805
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081136005
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081136221
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081136272
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081136939
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081137106
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081137288
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081137472
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081137656
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081137855
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081138371
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081138555
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081138739
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081138922
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081139105
+        },
+        {
+          "target": "SPAN",
+          "at": 1792081139289
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081142272
+        }
+      ],
+      "preparation": {
+        "exactV6": true,
+        "noHub": true,
+        "noNewSecuring": true
+      },
+      "terminalMenu": null,
+      "defeatRecovery": null
+    },
+    {
+      "jobId": "poi-v2-D-second-refuge-1232",
+      "status": "FAILED",
+      "reviewedDisposition": "NOT_ACCEPTED",
+      "output": "tmp/demo/poi-v2-D-second-refuge-1232",
+      "resultSha256": "035568d6a7cc09b12683d21da89800a77f7bad4289f04710f0a7b8cf5c27adf9",
+      "receiptSha256": "acc362bee865ee370ae21bb4cf6281d7d722097d33dbfb887b4df36d3ca58bd6",
+      "parameters": {
+        "target": "second-refuge",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "gameReducedMotion": false,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-v2-first-refuge-0810/earned-lion-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-v2-first-refuge-0810/results.json",
+        "verifySalvation": false
+      },
+      "requiredAssertions": [
+        "EARNED_LINEAGE",
+        "NATIVE_INPUTS",
+        "EXACT_RELOAD"
+      ],
+      "provenance": {
+        "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+        "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-v2-first-refuge-0810/earned-lion-first-refuge-v6.json",
+            "sha256": "12931a226f9a81dc5a689f28da519370de50fc41a447d0babef903a5096e66dc"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-v2-first-refuge-0810/results.json",
+            "sha256": "b1819c257dbbb94bf486bac60fad2855473a841dc06be983b48155684bb43004"
+          }
+        ],
+        "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+            "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+          },
+          {
+            "path": "dist/assets/combat-CdaTw3hu.js",
+            "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-BwpTgJUS.js",
+            "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+          },
+          {
+            "path": "dist/assets/game-Ca5i6doY.css",
+            "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "errors": [],
+      "failure": "AssertionError [ERR_ASSERTION]: Battle did not finish before bounded deadline\n\nfalse !== true\n\n    at battle (file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:838:10)\n    at async file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/demo-continuous-production-qa.mjs:1177:59",
+      "inheritedBattleCount": 1,
+      "newBattles": [
+        {
+          "nodeId": "lion-valmir-road",
+          "combatId": "road_to_valmir",
+          "round": 6,
+          "actions": 45,
+          "resultText": "✦\n\nCHRONIQUE VICTORIEUSE\n\nVictoire\n\nRoute de Bois-Clair\n\nOBJECTIF SÉCURISÉ\nOuvrez la route de Bois-Clair avant que le village ne tombe.\nRÉCOMPENSES\nOr\n+90\nGemmes rouges\n+1\nMinerai de fer\n+1\nRéputation\n+1\nÉTAT DE LA COMPAGNIE\nAlistair\nDEBOUT\nMarian\nDEBOUT\nElara\nK.O.\nKestrel\nDEBOUT\nCONTINUER LA CHRONIQUE",
+          "pass": true
+        },
+        {
+          "nodeId": "lion-village-choice",
+          "combatId": "village_defense",
+          "round": 5,
+          "actions": 37,
+          "pass": false
+        }
+      ],
+      "atlas": {
+        "pass": true,
+        "viewport": [
+          1366,
+          768
+        ],
+        "initialRegion": "0",
+        "regionCount": 3,
+        "ownerUnchanged": true,
+        "nativeTouch": false,
+        "geometry": {
+          "left": 0,
+          "top": 0,
+          "width": 1366,
+          "height": 490,
+          "scrollWidth": 1366,
+          "scrollHeight": 490
+        },
+        "pan": null,
+        "minimumTarget": 44,
+        "regions": [
+          {
+            "index": 0,
+            "geography": null,
+            "borders": null
+          },
+          {
+            "index": 1,
+            "geography": null,
+            "borders": null
+          },
+          {
+            "index": 2,
+            "geography": null,
+            "borders": null
+          }
+        ]
+      },
+      "currentNodeId": "lion-first-refuge",
+      "motion": {
+        "osRequested": false,
+        "gameRequested": false
+      },
+      "trustedTouch": [],
+      "preparation": null,
+      "terminalMenu": null,
+      "defeatRecovery": null
+    },
+    {
+      "jobId": "poi-v2-D-terminal-serpent-1227",
+      "status": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_INHERITED_SERPENT_TERMINAL_MENU_RELOAD",
+      "output": "tmp/demo/poi-v2-D-terminal-serpent-1227",
+      "resultSha256": "3835965929a86ce5f9f2ec6c3f98076129ef3a596b0b5a00391db5561c63b64d",
+      "receiptSha256": "8a9bcd1c2966e98cdd99d93ebf1154752c50e4dc35230b6dc1abc443686362ff",
+      "parameters": {
+        "target": "terminal",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "gameReducedMotion": false,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-serpent-steel-keyboard-2130/earned-ending-v6.json",
+        "priorProofPath": "tmp/demo/poi-serpent-steel-keyboard-2130/results.json",
+        "verifySalvation": false
+      },
+      "requiredAssertions": [
+        "EARNED_LINEAGE",
+        "NATIVE_INPUTS",
+        "EXACT_RELOAD"
+      ],
+      "provenance": {
+        "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+        "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-serpent-steel-keyboard-2130/earned-ending-v6.json",
+            "sha256": "3857d78b536e716f035b77b84371605e57d59cccd359d4561f32b9f5c2bfd627"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-serpent-steel-keyboard-2130/results.json",
+            "sha256": "50abaeec743cdcfbd74b32b48df0ccb9dfc64db60b961e323bbb3f8a3ebb7b26"
+          }
+        ],
+        "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+            "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+          },
+          {
+            "path": "dist/assets/combat-CdaTw3hu.js",
+            "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-BwpTgJUS.js",
+            "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+          },
+          {
+            "path": "dist/assets/game-Ca5i6doY.css",
+            "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "errors": [],
+      "failure": null,
+      "inheritedBattleCount": 4,
+      "newBattles": [],
+      "atlas": null,
+      "currentNodeId": "lion-final-judgement",
+      "motion": {
+        "osRequested": false,
+        "gameRequested": false
+      },
+      "trustedTouch": [],
+      "preparation": null,
+      "terminalMenu": {
+        "nativeKeyboard": true,
+        "nativeTouch": false,
+        "titleVisible": true,
+        "continueFocused": true,
+        "ownerUnchanged": true,
+        "savedBytesUnchanged": true
+      },
+      "defeatRecovery": null
+    },
+    {
+      "jobId": "poi-v2-D-terminal-trial-touch-1230",
+      "status": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_INHERITED_TRIAL_TERMINAL_TOUCH_MENU_RELOAD",
+      "output": "tmp/demo/poi-v2-D-terminal-trial-touch-1230",
+      "resultSha256": "305bba1c8edcb9240e575ce86aa07558b698699b65bbd28acbdd6e05615e6dca",
+      "receiptSha256": "fd9a690097b7127f0f6f560d3cb7305e71acfabaa65a10e39f62715df55283c9",
+      "parameters": {
+        "target": "terminal",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "trial",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "touchInput": true,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "gameReducedMotion": false,
+        "viewport": [
+          390,
+          844
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-ending-trial-mobile-2022/earned-ending-v6.json",
+        "priorProofPath": "tmp/demo/poi-ending-trial-mobile-2022/results.json",
+        "verifySalvation": false
+      },
+      "requiredAssertions": [
+        "EARNED_LINEAGE",
+        "NATIVE_INPUTS",
+        "EXACT_RELOAD"
+      ],
+      "provenance": {
+        "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+        "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-ending-trial-mobile-2022/earned-ending-v6.json",
+            "sha256": "dfafeca4e8c748ad71664e1d41a932d2deb1683590aa05ed33f167c42eb55685"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-ending-trial-mobile-2022/results.json",
+            "sha256": "43eb951b26b5abca3ff3fa16ee6dd67fd60ee04a9fd0b559b93c9f30331efe3b"
+          }
+        ],
+        "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+            "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+          },
+          {
+            "path": "dist/assets/combat-CdaTw3hu.js",
+            "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-BwpTgJUS.js",
+            "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+          },
+          {
+            "path": "dist/assets/game-Ca5i6doY.css",
+            "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+          }
+        ]
+      },
+      "provenanceStable": true,
+      "errors": [],
+      "failure": null,
+      "inheritedBattleCount": 4,
+      "newBattles": [],
+      "atlas": null,
+      "currentNodeId": "lion-final-judgement",
+      "motion": {
+        "osRequested": false,
+        "gameRequested": false
+      },
+      "trustedTouch": [
+        {
+          "target": "BUTTON",
+          "at": 1792081281867
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081287598
+        },
+        {
+          "target": "BUTTON",
+          "at": 1792081292298
+        }
+      ],
+      "preparation": null,
+      "terminalMenu": {
+        "nativeKeyboard": false,
+        "nativeTouch": true,
+        "titleVisible": true,
+        "continueFocused": true,
+        "ownerUnchanged": true,
+        "savedBytesUnchanged": true
+      },
+      "defeatRecovery": null
+    }
+  ],
+  "reviewedAt": "2026-10-15T21:28:01.742Z",
+  "review": {
+    "reviewers": [
+      "root",
+      "contracts-guardian",
+      "ui-accessibility"
+    ],
+    "limits": "Only listed recorded native scopes. Retained frozen scopes do not claim current source identity. Prior accepted campaign wins reuse unchanged critical owners under mission section5.3. All failed whole jobs and their intermediate saves remain unseedable. Operator artwork, hardware and full balance acceptance remain separate."
+  }
+}

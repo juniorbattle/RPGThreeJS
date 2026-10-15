@@ -1,10 +1,14 @@
-# POI V2 exceptional manual mission — codex-poi-v2-20261015
+# POI V2 and physical retirement — codex-poi-v2-20261015
 
-IN_PROGRESS. OD-2026-10-15-A explicitly authorizes dedicated contract amendment, playable A/B, Option C art C and definitive physical retirement D. No scheduled budget applies; scheduler unchanged. Starting clean dev/live origin b79063b; main00b96f1. No inherited WIP.
+COMPLETE_SCOPED at2026-10-15T21:28:16.771Z. A/B/C/D delivered on dev. Dedicated amendment1.3.0/baseline5667837 preceded runtime; main00b96f1 protected. No inherited WIP; scheduler unchanged.
 
-Current: Final fresh proof with exact temporary-first/permanent remainder petition cost; all atlas44px/touch/OS/game scopes reviewed. Preserve all failed whole outputs and unchanged later-campaign proof reuse.
+Product: mandatory opening/nomad corridor then three actual local routes,21explicit roles/regions, three illustrated atlases and44px keyboard/touch/motion controls. All87src/traversal files/physical launch paths removed; inventory184rows/146deletions/0uncertain. V6/durable IDs/shared assets/eight videos/canon preserved.0new active POI; two inactive proposals.
 
-All historical QA/deferred task objects are preserved in JSON and preceding closeout below. No new runtime/art/native acceptance claimed.
+Proof:17jobs/11accepted scoped/6failed whole outputs unseedable. Fresh opening→First refuge/exactV6, old V6, actual defeat/checkpoint, current preparation and inherited terminal scopes reviewed. Three decoded1366/620/390maps, native game toggle/OS-only swipe/44px pass. Historical Second-refuge/final-fight reuse has unchanged critical owners and explicit§5.3limits. Prior254jobs and deferred objects exact. No global suite/full-balance/artistic acceptance claim; ten inherited broader-suite failures classified.
+
+Report:[delivery](../reports/poi-v2-retirement-2026-10-15.md). Handoff:[closeout](handoffs/2026-10-15T2128Z-codex-poi-v2-retirement.md). Preview:http://127.0.0.1:5175/ deliberately retained, PID23452. Final selected closure publication and live parity follow this metadata checkpoint.
+
+Next:Operator PC playtest of published POI V2 and three-region artwork; preserve unrelated skills/keyboard/narrative work and inactive authoring proposals. No physical-road work or scheduler reactivation.
 
 ## Preserved preceding closeout
 
@@ -1359,21 +1363,22 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - poi-sacrifice-rogue-supplies-final: SUCCEEDED; port 5433; receipt `tmp/demo/poi-sacrifice-rogue-supplies-final/qa-job.json`; ACCEPTED_SCOPED_NATIVE_T1_COMBAT_PREPARED_RAID_SECOND_REFUGE_EXACT_V6
 - poi-sacrifice-event-route-final: SUCCEEDED; port 5434; receipt `tmp/demo/poi-sacrifice-event-route-final/qa-job.json`; ACCEPTED_SCOPED_NATIVE_T1_SHRINE_RAID_SECOND_REFUGE_EXACT_V6
 - poi-v2-first-refuge-0752: FAILED; port 5440; receipt `tmp/demo/poi-v2-first-refuge-0752/qa-job.json`; NOT_ACCEPTED
-- poi-v2-first-refuge-0810: SUCCEEDED; port 5441; receipt `tmp/demo/poi-v2-first-refuge-0810/qa-job.json`; NOT_ACCEPTED
+- poi-v2-first-refuge-0810: SUCCEEDED; port 5441; receipt `tmp/demo/poi-v2-first-refuge-0810/qa-job.json`; ACCEPTED_SCOPED_LOT_A_NATIVE_DESKTOP1366_NORMAL
 - poi-v2-D-opening-combat-1220: FAILED; port 5442; receipt `tmp/demo/poi-v2-D-opening-combat-1220/qa-job.json`; NOT_ACCEPTED
 - poi-v2-D-preparation-touch-1221: FAILED; port 5443; receipt `tmp/demo/poi-v2-D-preparation-touch-1221/qa-job.json`; NOT_ACCEPTED
-- poi-v2-D-preparation-touch-os-1223: SUCCEEDED; port 5443; receipt `tmp/demo/poi-v2-D-preparation-touch-os-1223/qa-job.json`; NOT_ACCEPTED
+- poi-v2-D-preparation-touch-os-1223: SUCCEEDED; port 5443; receipt `tmp/demo/poi-v2-D-preparation-touch-os-1223/qa-job.json`; ACCEPTED_SCOPED_FROZEN_PREPARATION_TOUCH_OS_ONLY_V6_OLD42PX
 - poi-v2-D-atlas-game620-1224: FAILED; port 5444; receipt `tmp/demo/poi-v2-D-atlas-game620-1224/qa-job.json`; NOT_ACCEPTED
-- poi-v2-D-atlas-saved-game620-1226: SUCCEEDED; port 5444; receipt `tmp/demo/poi-v2-D-atlas-saved-game620-1226/qa-job.json`; NOT_ACCEPTED
-- poi-v2-D-terminal-serpent-1227: SUCCEEDED; port 5445; receipt `tmp/demo/poi-v2-D-terminal-serpent-1227/qa-job.json`; NOT_ACCEPTED
-- poi-v2-D-defeat-touch-1229: SUCCEEDED; port 5446; receipt `tmp/demo/poi-v2-D-defeat-touch-1229/qa-job.json`; NOT_ACCEPTED
-- poi-v2-D-terminal-trial-touch-1230: SUCCEEDED; port 5445; receipt `tmp/demo/poi-v2-D-terminal-trial-touch-1230/qa-job.json`; NOT_ACCEPTED
+- poi-v2-D-atlas-saved-game620-1226: SUCCEEDED; port 5444; receipt `tmp/demo/poi-v2-D-atlas-saved-game620-1226/qa-job.json`; ACCEPTED_SCOPED_FROZEN_ATLAS_SAVED_GAME_REDUCTION620_V6
+- poi-v2-D-terminal-serpent-1227: SUCCEEDED; port 5445; receipt `tmp/demo/poi-v2-D-terminal-serpent-1227/qa-job.json`; ACCEPTED_SCOPED_INHERITED_SERPENT_TERMINAL_MENU_RELOAD
+- poi-v2-D-defeat-touch-1229: SUCCEEDED; port 5446; receipt `tmp/demo/poi-v2-D-defeat-touch-1229/qa-job.json`; ACCEPTED_SCOPED_NATIVE_DEFEAT_TEMPORARY_LOSS_SECURED_CHECKPOINT_V6
+- poi-v2-D-terminal-trial-touch-1230: SUCCEEDED; port 5445; receipt `tmp/demo/poi-v2-D-terminal-trial-touch-1230/qa-job.json`; ACCEPTED_SCOPED_INHERITED_TRIAL_TERMINAL_TOUCH_MENU_RELOAD
 - poi-v2-D-second-refuge-1232: FAILED; port 5447; receipt `tmp/demo/poi-v2-D-second-refuge-1232/qa-job.json`; NOT_ACCEPTED
-- poi-v2-D-legacy0603-1231: SUCCEEDED; port 5448; receipt `tmp/demo/poi-v2-D-legacy0603-1231/qa-job.json`; NOT_ACCEPTED
-- poi-v2-D-final-atlas1366-1312: SUCCEEDED; port 5442; receipt `tmp/demo/poi-v2-D-final-atlas1366-1312/qa-job.json`; NOT_ACCEPTED
-- poi-v2-D-final-game620-1312: SUCCEEDED; port 5443; receipt `tmp/demo/poi-v2-D-final-game620-1312/qa-job.json`; NOT_ACCEPTED
-- poi-v2-D-final-prep-touch390-1313: SUCCEEDED; port 5444; receipt `tmp/demo/poi-v2-D-final-prep-touch390-1313/qa-job.json`; NOT_ACCEPTED
+- poi-v2-D-legacy0603-1231: SUCCEEDED; port 5448; receipt `tmp/demo/poi-v2-D-legacy0603-1231/qa-job.json`; ACCEPTED_SCOPED_PRE_POI_TRAVERSAL_V6_REFUGE_CONTINUATION
+- poi-v2-D-final-atlas1366-1312: SUCCEEDED; port 5442; receipt `tmp/demo/poi-v2-D-final-atlas1366-1312/qa-job.json`; ACCEPTED_SCOPED_DECODED_THREE_REGION_ATLAS1366_KEYBOARD_V6
+- poi-v2-D-final-game620-1312: SUCCEEDED; port 5443; receipt `tmp/demo/poi-v2-D-final-game620-1312/qa-job.json`; ACCEPTED_SCOPED_NATIVE_GAME_REDUCTION620_ATLAS_V6
+- poi-v2-D-final-prep-touch390-1313: SUCCEEDED; port 5444; receipt `tmp/demo/poi-v2-D-final-prep-touch390-1313/qa-job.json`; ACCEPTED_SCOPED_TOUCH_OS_ONLY390_THREE_REGION_PREPARATION44PX_V6
 - poi-v2-D-final-fresh-opening-1313: FAILED; port 5445; receipt `tmp/demo/poi-v2-D-final-fresh-opening-1313/qa-job.json`; NOT_ACCEPTED
+- poi-v2-D-petition-first-refuge-1714: SUCCEEDED; port 5445; receipt `tmp/demo/poi-v2-D-petition-first-refuge-1714/qa-job.json`; ACCEPTED_SCOPED_FRESH_OPENING_EVENT_FIRST_REFUGE_V6
 <!-- QA_JOBS_END -->
 
 

@@ -1,20 +1,19 @@
 {
-  "status": "IN_PROGRESS",
+  "status": "COMPLETE_SCOPED",
   "runStartedAt": "2026-10-15T07:43:00Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-15T21:28:16.771Z",
   "activeTask": "POI-V2-AND-TRAVERSAL-RETIREMENT",
-  "activePhase": "D",
-  "activeSubtask": "Final fresh proof with exact temporary-first/permanent remainder petition cost; all atlas44px/touch/OS/game scopes reviewed. Preserve all failed whole outputs and unchanged later-campaign proof reuse.",
+  "activePhase": "CLOSED_SCOPED_POI_V2_RETIREMENT",
+  "activeSubtask": "Operator PC playtest of published POI V2 and three-region artwork; preserve unrelated skills/keyboard/narrative work and inactive authoring proposals. No physical-road work or scheduler reactivation.",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "d104e214c363f0c7da6ec44b407f00062407db7e",
-  "lastPushedCommit": "d104e214c363f0c7da6ec44b407f00062407db7e",
+  "lastKnownGoodCommit": "99ed9ed9d5b4290f65e1591a701463ad61c0f21d",
+  "lastPushedCommit": "eaae27f83fc66a77ca0014fc5e87e07dad3dd635",
   "completedThisRun": [
-    "Read both full operator directives; clean dev b79063b and live origin/main parity verified; acquired exclusive lock.",
-    "Lot A source published ca78057/85b1889; fresh native0810 accepted scoped desktop normal after actual assignment-stability correction; failed0752 retained unseedable.",
-    "Lot B:21explicit canonical region/role/participation entries; no new content activated; published6364504.",
-    "Lot C:three illustrated pixel-diorama atlases and accessible native controls published6d4e1f9; art remains candidate.",
-    "Lot D source publishedd104e21:144reviewed deletions,177inventory rows,0uncertain/active deleted-file imports,87src/traversal files removed.",
-    "Scoped current D native:old0603 V6/refuge/reload, saved-game620 atlas, OS-only390 touch swipe/preparation, real260temporary/20secured defeat recovery and both native terminals pass; independent review.42px preparation action still pending correction."
+    "Approved dedicated LOCKED1.3.0 amendment before runtime",
+    "True opening branches and stable authored assignments",
+    "21explicit POI roles/regions;3illustrated accessible atlases",
+    "Physical Traversal retired with184row inventory/146deletions and compatibility retention",
+    "Current native proofs/failed-output quarantine/selected evidence and independent review"
   ],
   "filesChanged": [
     ".agents/skills/autonomy-handoff/SKILL.md",
@@ -22,8 +21,10 @@
     ".agents/skills/qa-evidence/SKILL.md",
     ".agents/skills/ui-accessibility/SKILL.md",
     "AGENTS.md",
+    "docs/README.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
     "docs/autonomy/OPERATOR_DECISIONS.md",
     "docs/autonomy/POI_V2_OPERATOR_DECISION_2026-10-15.md",
     "docs/autonomy/RPGThreeJS_CONTRAT_OPERATEUR_POI_V2_ET_RETRAIT_TRAVERSAL_2026-10-15.md",
@@ -36,22 +37,33 @@
     "docs/contracts/UI_AND_ACCESSIBILITY.md",
     "docs/contracts/WORLD_AND_CHARACTERS.md",
     "docs/contracts/contracts.manifest.json",
+    "docs/project/CURRENT_STATUS.md",
     "docs/project/POI_NAVIGATION.md",
     "docs/project/POI_V2_ART_AND_AUTHORING.md",
     "docs/project/retired-traversal/README.md",
     "docs/project/retired-traversal/poi-v2-dependency-inventory.json",
     "docs/project/retired-traversal/qa/README.md",
+    "docs/project/retired-traversal/qa/narrative-stage-utility-consistency-1-qa.mjs.txt",
     "docs/project/retired-traversal/qa/project-continuity-audit-1.mjs.txt",
     "docs/project/retired-traversal/qa/run_campaign_presentation_migration_qa.mjs.txt",
+    "docs/project/retired-traversal/qa/run_cin6d6_browser_qa.mjs.txt",
+    "docs/project/retired-traversal/qa/ui-kit-system-1-gallery.html.txt",
+    "docs/project/retired-traversal/qa/ui-kit-system-1-gallery.ts.txt",
     "docs/project/retired-traversal/qa/ui-kit-system-1-qa.mjs.txt",
     "docs/project/retired-traversal/qa/ui-visual-direction-2-qa.mjs.txt",
     "docs/project/retired-traversal/qa/ui-visual-direction-font-compare.mjs.txt",
     "docs/project/retired-traversal/qa/ui-visual-direction-qa.mjs.txt",
+    "docs/reports/INDEX.md",
     "docs/reports/poi-v2-retirement-2026-10-15.md",
     "docs/reports/poi-v2-retirement-2026-10-15/A-lion-first-refuge-poi-reusable-reloaded.png",
     "docs/reports/poi-v2-retirement-2026-10-15/A-poi-exclusive-neutralization.png",
     "docs/reports/poi-v2-retirement-2026-10-15/A-poi-v2-three-local-routes.png",
     "docs/reports/poi-v2-retirement-2026-10-15/A-results.json",
+    "docs/reports/poi-v2-retirement-2026-10-15/C-atlas-bois-clair1366.png",
+    "docs/reports/poi-v2-retirement-2026-10-15/C-atlas-forest1366.png",
+    "docs/reports/poi-v2-retirement-2026-10-15/C-atlas-judgement1366.png",
+    "docs/reports/poi-v2-retirement-2026-10-15/C-atlas-native-swipe390.png",
+    "docs/reports/poi-v2-retirement-2026-10-15/D-preparation-touch44px.png",
     "public/assets/generated/lion-phase/poi-v2/README.md",
     "public/assets/generated/lion-phase/poi-v2/bois-clair.png",
     "public/assets/generated/lion-phase/poi-v2/judgement.png",
@@ -89,6 +101,7 @@
     "src/game/GameAppPoi.test.ts",
     "src/game/GameAppRouteReward.test.ts",
     "src/game/OptionalEncounterConsequencePolicy.ts",
+    "src/game/TraversalOptionalConsequencePolicy.ts",
     "src/game/campaignGrammarConsolidation.test.ts",
     "src/game/campaignPresentationMigration.test.ts",
     "src/game/cin2CampaignBridge.test.ts",
@@ -196,8 +209,13 @@
     "src/ui/SceneTransition.test.ts",
     "src/ui/SceneTransition.ts",
     "src/ui/poi-map.css",
+    "tools/cinematics/run_campaign_presentation_migration_qa.mjs",
+    "tools/cinematics/run_cin6d6_browser_qa.mjs",
     "tools/demo-continuous-production-qa.mjs",
+    "tools/narrative-stage-utility-consistency-1-qa.mjs",
+    "tools/project-continuity-audit-1.mjs",
     "tools/qa/qa-job.mjs",
+    "tools/refuge-production-accessibility-qa.mjs",
     "tools/traversal-game-motion-production-qa.mjs",
     "tools/traversal-motion-fallback-qa.mjs",
     "tools/traversal-motion-production-qa.mjs",
@@ -222,34 +240,41 @@
     "tools/traversal/pursuit-charge-lab.ts",
     "tools/traversal/road-anchor-lab.ts",
     "tools/traversal/road-late-reset-lab.ts",
-    "tools/ui-kit-system-1-qa.mjs"
+    "tools/ui-kit-system-1-gallery.html",
+    "tools/ui-kit-system-1-gallery.ts",
+    "tools/ui-kit-system-1-qa.mjs",
+    "tools/ui-visual-direction-2-qa.mjs",
+    "tools/ui-visual-direction-font-compare.mjs",
+    "tools/ui-visual-direction-qa.mjs",
+    "docs/autonomy/handoffs/2026-10-15T2128Z-codex-poi-v2-retirement.md",
+    "docs/reports/poi-v2-retirement-2026-10-15/D-fresh-first-refuge-v6.png",
+    "docs/reports/poi-v2-retirement-2026-10-15/results.json"
   ],
   "testsRun": [
-    "200relevant current tests plus6V6 boundary fixtures;23POI/refuge-order tests pass",
-    "19QA receipt node:test checks pass",
-    "TypeScript/production build,8contracts8slots/eightMP4,immutable/workingLOCKED/whitespace pass",
-    "Narrative staging validator passes282reachable presentation steps",
-    "Broader Vitest:2681pass/11fail+node:test discovery error; one stale refuge-source assertion fixed and23focused pass; ten other inherited/source-media findings documented, no global suite PASS",
-    "Current registered native jobs retain separate receipt/review status; fresh opening/trialcombat and A-to-second-refuge still running"
+    "Focused POI/RunSystem/Journey/refuge/lifecycle/transition tests pass; final36case UI/V6 and7source-order cases pass",
+    "19node:test receipt checks, TypeScript/build,8contracts8videos,282step narrative staging and empty LOCKED/whitespace gates",
+    "17native jobs:11accepted scoped and6failed whole outputs unseedable; prior254jobs/deferred objects exact",
+    "Guardian12rows PASS scoped; native3region art/keyboard/touch/OS/game, actual opening/defeat, V6/recovery/refuge/preparation/terminal verified; unchanged historical campaign wins reused under mission5.3",
+    "Broader suite retained ten inherited failures and node:test discovery mismatch; no global suite PASS"
   ],
   "testsPassed": [
-    "200relevant current tests plus6V6 boundary fixtures;23POI/refuge-order tests pass",
-    "19QA receipt node:test checks pass",
-    "TypeScript/production build,8contracts8slots/eightMP4,immutable/workingLOCKED/whitespace pass",
-    "Narrative staging validator passes282reachable presentation steps"
+    "Focused POI/RunSystem/Journey/refuge/lifecycle/transition tests pass; final36case UI/V6 and7source-order cases pass",
+    "19node:test receipt checks, TypeScript/build,8contracts8videos,282step narrative staging and empty LOCKED/whitespace gates",
+    "17native jobs:11accepted scoped and6failed whole outputs unseedable; prior254jobs/deferred objects exact",
+    "Guardian12rows PASS scoped; native3region art/keyboard/touch/OS/game, actual opening/defeat, V6/recovery/refuge/preparation/terminal verified; unchanged historical campaign wins reused under mission5.3"
   ],
   "testsRemaining": [
-    "Finish current fresh opening/combat and A-to-second-refuge proof; retain failures unseedable",
-    "Correct preparation continue42to44px, stabilize desktop art captures after image decode, then one corrected-build native smoke",
-    "Operator art/full-demo/balance and physical-device acceptance separate; unrelated six-hero/mounted-keyboard/narrative work preserved"
+    "Operator final artistic/PC full-demo/general balance and physical-device acceptance",
+    "Preserved unrelated six-hero skills, mounted keyboard, narrative/manual findings; ten inherited broader-suite audit failures",
+    "Two inactive optional chest/patrol authoring proposals require specific approval before activation"
   ],
   "blockers": [],
   "remainingWork": [
-    "Finish current fresh opening/combat and A-to-second-refuge proof; retain failures unseedable",
-    "Correct preparation continue42to44px, stabilize desktop art captures after image decode, then one corrected-build native smoke",
-    "Operator art/full-demo/balance and physical-device acceptance separate; unrelated six-hero/mounted-keyboard/narrative work preserved"
+    "Operator final artistic/PC full-demo/general balance and physical-device acceptance",
+    "Preserved unrelated six-hero skills, mounted keyboard, narrative/manual findings; ten inherited broader-suite audit failures",
+    "Two inactive optional chest/patrol authoring proposals require specific approval before activation"
   ],
-  "nextAction": "Final fresh proof with exact temporary-first/permanent remainder petition cost; all atlas44px/touch/OS/game scopes reviewed. Preserve all failed whole outputs and unchanged later-campaign proof reuse.",
+  "nextAction": "Operator PC playtest of published POI V2 and three-region artwork; preserve unrelated skills/keyboard/narrative work and inactive authoring proposals. No physical-road work or scheduler reactivation.",
   "taskQueue": [
     "POI-MAP-FINALIZATION: requested implementation/native milestones REVIEWED_SCOPED; operator final playtest remains",
     "DEMO-PC-CAMPAIGN: both native truth endings, T0/T1/T3 alternatives, rescue/sacrifice, defeat and exact V6 accepted in recorded scopes",
@@ -259,7 +284,7 @@
     "DEMO-MOBILE-AND-TESTER-HANDOFF: PENDING_AFTER_PC_STABLE; operator final acceptance OPEN"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_SOURCE_AND_RECORDED_NATIVE_SCOPES; finalD pending two live routes/44px/settled atlas; set1.3.0 baseline5667837 unchanged",
+  "contractComplianceStatus": "PASS_SCOPED_12_ROWS; set1.3.0/baseline5667837 unchanged; operator art/hardware/full balance separate",
   "commitReferenceScope": "lastPushedCommit identifies the preceding verified published checkpoint; final metadata identity/parity follow Git and guarded closeout, avoiding a self-reference",
   "operatorAuthorization": "Explicit exceptional mission and both full attachments OD-2026-10-15-A; normal non-force origin/dev publication permanently authorized OD-2026-10-12-A; no main writes.",
   "creativeDirection": {
@@ -352,10 +377,10 @@
   },
   "runId": "codex-poi-v2-20261015",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-15T06:29:56.404Z",
+  "lastHeartbeat": "2026-10-15T21:28:16.771Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-15T21:12:33.934Z",
+    "lastHeartbeat": "2026-10-15T21:29:08.569Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -28185,7 +28210,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_LOT_A_NATIVE_DESKTOP1366_NORMAL",
         "startedAt": "2026-10-15T08:07:38.366Z",
         "endedAt": "2026-10-15T08:21:21.471Z",
         "exitCode": 0,
@@ -28197,7 +28222,8 @@
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false,
-        "reviewedAt": "2026-10-15T08:25:17.083Z"
+        "reviewedAt": "2026-10-15T21:28:01.742Z",
+        "acceptanceScope": "Frozen recorded scope only; no inherited battle relabelled as newly played; failed jobs remain unseedable"
       },
       {
         "schemaVersion": 1,
@@ -28511,7 +28537,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_FROZEN_PREPARATION_TOUCH_OS_ONLY_V6_OLD42PX",
         "startedAt": "2026-10-15T16:18:33.021Z",
         "endedAt": "2026-10-15T16:19:05.699Z",
         "exitCode": 0,
@@ -28522,7 +28548,9 @@
         "requestMatches": true,
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": false
+        "eligibleForReview": false,
+        "reviewedAt": "2026-10-15T21:28:01.742Z",
+        "acceptanceScope": "Frozen recorded scope only; no inherited battle relabelled as newly played; failed jobs remain unseedable"
       },
       {
         "schemaVersion": 1,
@@ -28735,7 +28763,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_FROZEN_ATLAS_SAVED_GAME_REDUCTION620_V6",
         "startedAt": "2026-10-15T16:19:46.925Z",
         "endedAt": "2026-10-15T16:19:57.967Z",
         "exitCode": 0,
@@ -28746,7 +28774,9 @@
         "requestMatches": true,
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": false
+        "eligibleForReview": false,
+        "reviewedAt": "2026-10-15T21:28:01.742Z",
+        "acceptanceScope": "Frozen recorded scope only; no inherited battle relabelled as newly played; failed jobs remain unseedable"
       },
       {
         "schemaVersion": 1,
@@ -28847,7 +28877,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_INHERITED_SERPENT_TERMINAL_MENU_RELOAD",
         "startedAt": "2026-10-15T16:19:59.307Z",
         "endedAt": "2026-10-15T16:20:13.934Z",
         "exitCode": 0,
@@ -28858,7 +28888,9 @@
         "requestMatches": true,
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": false
+        "eligibleForReview": false,
+        "reviewedAt": "2026-10-15T21:28:01.742Z",
+        "acceptanceScope": "Frozen recorded scope only; no inherited battle relabelled as newly played; failed jobs remain unseedable"
       },
       {
         "schemaVersion": 1,
@@ -28959,7 +28991,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_NATIVE_DEFEAT_TEMPORARY_LOSS_SECURED_CHECKPOINT_V6",
         "startedAt": "2026-10-15T16:20:47.701Z",
         "endedAt": "2026-10-15T16:22:09.463Z",
         "exitCode": 0,
@@ -28970,7 +29002,9 @@
         "requestMatches": true,
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": false
+        "eligibleForReview": false,
+        "reviewedAt": "2026-10-15T21:28:01.742Z",
+        "acceptanceScope": "Frozen recorded scope only; no inherited battle relabelled as newly played; failed jobs remain unseedable"
       },
       {
         "schemaVersion": 1,
@@ -29071,7 +29105,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_INHERITED_TRIAL_TERMINAL_TOUCH_MENU_RELOAD",
         "startedAt": "2026-10-15T16:21:18.568Z",
         "endedAt": "2026-10-15T16:21:35.283Z",
         "exitCode": 0,
@@ -29082,7 +29116,9 @@
         "requestMatches": true,
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": false
+        "eligibleForReview": false,
+        "reviewedAt": "2026-10-15T21:28:01.742Z",
+        "acceptanceScope": "Frozen recorded scope only; no inherited battle relabelled as newly played; failed jobs remain unseedable"
       },
       {
         "schemaVersion": 1,
@@ -29295,7 +29331,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_PRE_POI_TRAVERSAL_V6_REFUGE_CONTINUATION",
         "startedAt": "2026-10-15T16:30:17.375Z",
         "endedAt": "2026-10-15T16:30:35.696Z",
         "exitCode": 0,
@@ -29306,7 +29342,9 @@
         "requestMatches": true,
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": false
+        "eligibleForReview": false,
+        "reviewedAt": "2026-10-15T21:28:01.742Z",
+        "acceptanceScope": "Frozen recorded scope only; no inherited battle relabelled as newly played; failed jobs remain unseedable"
       },
       {
         "schemaVersion": 1,
@@ -29407,7 +29445,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_DECODED_THREE_REGION_ATLAS1366_KEYBOARD_V6",
         "startedAt": "2026-10-15T17:11:01.995Z",
         "endedAt": "2026-10-15T17:11:12.483Z",
         "exitCode": 0,
@@ -29418,7 +29456,9 @@
         "requestMatches": true,
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": false
+        "eligibleForReview": false,
+        "reviewedAt": "2026-10-15T21:28:01.742Z",
+        "acceptanceScope": "Frozen recorded scope only; no inherited battle relabelled as newly played; failed jobs remain unseedable"
       },
       {
         "schemaVersion": 1,
@@ -29519,7 +29559,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_NATIVE_GAME_REDUCTION620_ATLAS_V6",
         "startedAt": "2026-10-15T17:11:14.505Z",
         "endedAt": "2026-10-15T17:11:23.965Z",
         "exitCode": 0,
@@ -29530,7 +29570,9 @@
         "requestMatches": true,
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": false
+        "eligibleForReview": false,
+        "reviewedAt": "2026-10-15T21:28:01.742Z",
+        "acceptanceScope": "Frozen recorded scope only; no inherited battle relabelled as newly played; failed jobs remain unseedable"
       },
       {
         "schemaVersion": 1,
@@ -29631,7 +29673,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_TOUCH_OS_ONLY390_THREE_REGION_PREPARATION44PX_V6",
         "startedAt": "2026-10-15T17:11:49.254Z",
         "endedAt": "2026-10-15T17:12:23.134Z",
         "exitCode": 0,
@@ -29642,7 +29684,9 @@
         "requestMatches": true,
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": false
+        "eligibleForReview": false,
+        "reviewedAt": "2026-10-15T21:28:01.742Z",
+        "acceptanceScope": "Frozen recorded scope only; no inherited battle relabelled as newly played; failed jobs remain unseedable"
       },
       {
         "schemaVersion": 1,
@@ -29744,27 +29788,178 @@
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-v2-D-petition-first-refuge-1714",
+        "runId": "codex-poi-v2-20261015",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-15T21:12:44.464Z",
+        "pid": 31220,
+        "port": 5445,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "first-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "gameReducedMotion": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": null,
+          "priorProofPath": null,
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-v2-D-petition-first-refuge-1714",
+        "receiptPath": "tmp/demo/poi-v2-D-petition-first-refuge-1714/qa-job.json",
+        "provenance": {
+          "gitHead": "eaae27f83fc66a77ca0014fc5e87e07dad3dd635",
+          "sourceTree": "d6e92946f0cf8080d6a0f8978083bef901ba06dc",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "098dc3605afb174bb856bc2d245f5792d02c5814bddaa07e85a704ee3ad611ec"
+          },
+          "inputs": [],
+          "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+              "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+            },
+            {
+              "path": "dist/assets/combat-CdaTw3hu.js",
+              "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-B0ya3PyK.css",
+              "sha256": "35dc9086ad5156bf2263021c8d8915cc22041551f802059934a997eff0b82a33"
+            },
+            {
+              "path": "dist/assets/game-CaUtfEer.js",
+              "sha256": "fba4069c776c866eedda6ced564a20320b9b6faa26bdd382b259ec30d2122e99"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "77f326552711e0bc400cbd30a4960b0390635b998cf9bade5322d07bd54d3963"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_FRESH_OPENING_EVENT_FIRST_REFUGE_V6",
+        "startedAt": "2026-10-15T21:12:45.322Z",
+        "endedAt": "2026-10-15T21:26:26.966Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/poi-v2-D-petition-first-refuge-1714/results.json",
+        "resultSha256": "f862bb1ed096639939c77654b0ae8808e50cf781e2efa59901e3fe00d4a6281e",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "reviewedAt": "2026-10-15T21:28:01.742Z",
+        "acceptanceScope": "Frozen recorded scope only; no inherited battle relabelled as newly played; failed jobs remain unseedable"
       }
     ],
     "wip": null,
-    "nextAction": "Final fresh proof with exact temporary-first/permanent remainder petition cost; all atlas44px/touch/OS/game scopes reviewed. Preserve all failed whole outputs and unchanged later-campaign proof reuse.",
+    "nextAction": "Operator PC playtest of published POI V2 and three-region artwork; preserve unrelated skills/keyboard/narrative work and inactive authoring proposals. No physical-road work or scheduler reactivation.",
     "runMetrics": {
-      "runId": "codex-poi-finalization-20261014",
-      "runtimeSourceFilesModified": 5,
-      "testFilesModified": 2,
-      "existingQaFilesModified": 2,
-      "existingQaTestFilesModified": 1,
+      "runId": "codex-poi-v2-20261015",
+      "countBasis": "Unique final paths compared with starting b79063bb, no renames; removals distinct from surviving modifications",
+      "counts": [
+        {
+          "name": "runtimeSource",
+          "total": 71,
+          "added": 2,
+          "modified": 9,
+          "removed": 60
+        },
+        {
+          "name": "sourceTests",
+          "total": 47,
+          "added": 2,
+          "modified": 12,
+          "removed": 33
+        },
+        {
+          "name": "artResources",
+          "total": 27,
+          "added": 5,
+          "modified": 0,
+          "removed": 22
+        },
+        {
+          "name": "existingQaAndGalleryTools",
+          "total": 37,
+          "added": 0,
+          "modified": 6,
+          "removed": 31
+        },
+        {
+          "name": "selectedProof",
+          "total": 11,
+          "added": 11,
+          "modified": 0,
+          "removed": 0
+        },
+        {
+          "name": "workflowCanonicalHistoricalDocs",
+          "total": 40,
+          "added": 19,
+          "modified": 21,
+          "removed": 0
+        }
+      ],
+      "totalPaths": 233,
+      "removedPaths": 146,
+      "runtimeSourceFilesModified": 11,
+      "testFilesModified": 14,
+      "newTestFiles": 2,
+      "existingQaFilesModified": 6,
       "newQaFilesAdded": 0,
       "promotedProofFiles": 11,
-      "promotedCaptures": 10,
-      "workflowDocs": 9,
+      "promotedCaptures": 9,
+      "workflowDocs": 40,
+      "newArtResources": 5,
       "inheritedWipFiles": 0,
-      "browserScenarios": 25,
-      "registeredJobs": 25,
-      "acceptedScopes": 16,
-      "failed": 7,
-      "interrupted": 2,
-      "reviewers": 1
+      "registeredNativeJobs": 17,
+      "acceptedScopes": 11,
+      "failedWholeUnseedable": 6,
+      "interrupted": 0,
+      "additionalSharedGallerySmoke": 1,
+      "reviewerRoles": 3
     },
     "checkpointPaths": [
       "docs/README.md",
@@ -29809,7 +30004,7 @@
       "protectedMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
       "finalClosure": "Final metadata commit/live parity and owned-lock release are guarded at execution; exact final identity follows Git"
     },
-    "runEndedAt": "2026-10-15T06:29:56.404Z",
+    "runEndedAt": "2026-10-15T21:28:16.771Z",
     "writerStopped": true,
     "metadataPublication": {
       "status": "FINAL_CLOSURE_METADATA",
@@ -30607,8 +30802,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "POI-MAP-FINALIZATION",
-    "activeSubtask": "Requested POI finalization accepted scoped; operator final playtest remains",
+    "activeTask": "POI-V2-AND-TRAVERSAL-RETIREMENT",
+    "activeSubtask": "A/B/C/D delivered; scoped technical acceptance complete",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -33943,10 +34138,10 @@
     "runId": "codex-poi-v2-20261015",
     "agent": "codex",
     "status": "COMPLETE_SCOPED",
-    "runStartedAt": "2026-10-14T20:08:10.9502211Z",
-    "activePhase": "CLOSED_SCOPED_POI_CANDIDATE",
-    "heartbeat": "2026-10-15T06:29:56.404Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-15T0618Z-codex-poi-finalization.md",
+    "runStartedAt": "2026-10-15T07:43:00Z",
+    "activePhase": "CLOSED_SCOPED_POI_V2_RETIREMENT",
+    "heartbeat": "2026-10-15T21:28:16.771Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-15T2128Z-codex-poi-v2-retirement.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -35285,8 +35480,8 @@
         }
       }
     },
-    "threadId": "01a136cb-21ed-7cc2-b87e-31dde647e502",
-    "writerStoppedMeaning": "Product/QA writer finished; only final metadata publication/parity/owned-lock release remains under this run",
+    "threadId": "01a13e7b-a438-7963-adc2-6fee28c3c492",
+    "writerStoppedMeaning": "Product and native QA complete; final selected closure commit/publication/parity and owned-lock release only",
     "run1944": {
       "startedAt": "2026-10-13T19:45:46.4541492Z",
       "seedAudit": "tmp/autonomy/run-1944/seed-audit.json",
@@ -35674,18 +35869,39 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
+    "lastPushedCommit": "eaae27f83fc66a77ca0014fc5e87e07dad3dd635",
     "productPreview": {
-      "url": "http://127.0.0.1:5175/",
-      "pid": 60640,
       "port": 5175,
+      "retained": true,
+      "pid": 23452,
+      "purpose": "Operator POI V2 playable preview",
+      "url": "http://127.0.0.1:5175/",
       "status": "AVAILABLE_FOR_OPERATOR_PLAY",
-      "build": "Runtime70a4a0a / source tree fcf7e608f321af152971c40276cae8f6f4731b50; exact served dist/index.html verified",
       "intentionallyRetained": true,
-      "checkedAt": "2026-10-15T06:25:14.022Z",
-      "servedIndexSha256": "0ec7717ad6489420b03c7dcab93c72065a0f86f7176e4a9d20a32525a933b687",
-      "sourceTree": "fcf7e608f321af152971c40276cae8f6f4731b50",
-      "runtimeCheckpoint": "70a4a0aca0cd9b2887354dd7bc2b8a97ef7dd59d"
+      "checkedAt": "2026-10-15T21:28:41.356Z",
+      "servedIndexSha256": "77f326552711e0bc400cbd30a4960b0390635b998cf9bade5322d07bd54d3963",
+      "sourceTree": "d6e92946f0cf8080d6a0f8978083bef901ba06dc",
+      "runtimeCheckpoint": "99ed9ed9d5b4290f65e1591a701463ad61c0f21d"
+    },
+    "previousPoiFinalizationLiveScalars": {
+      "lastHeartbeat": "2026-10-15T21:12:33.934Z",
+      "wip": null,
+      "nextAction": "Final fresh proof with exact temporary-first/permanent remainder petition cost; all atlas44px/touch/OS/game scopes reviewed. Preserve all failed whole outputs and unchanged later-campaign proof reuse.",
+      "runEndedAt": "2026-10-15T06:29:56.404Z",
+      "writerStopped": true,
+      "publishedCheckpoint": "652c5aed64ea21723e7f9d19cc8600dbc56a96f3",
+      "activeTask": "POI-MAP-FINALIZATION",
+      "activeSubtask": "Requested POI finalization accepted scoped; operator final playtest remains",
+      "runId": "codex-poi-v2-20261015",
+      "agent": "codex",
+      "status": "COMPLETE_SCOPED",
+      "runStartedAt": "2026-10-14T20:08:10.9502211Z",
+      "activePhase": "CLOSED_SCOPED_POI_CANDIDATE",
+      "heartbeat": "2026-10-15T06:29:56.404Z",
+      "currentHandoff": "docs/autonomy/handoffs/2026-10-15T0618Z-codex-poi-finalization.md",
+      "threadId": "01a136cb-21ed-7cc2-b87e-31dde647e502",
+      "writerStoppedMeaning": "Product/QA writer finished; only final metadata publication/parity/owned-lock release remains under this run",
+      "lastPushedCommit": "f597e3b181b6dc97a6bdee45978716a654ccbf35"
     }
   },
   "previousInterruptedRun": {
@@ -35733,7 +35949,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-15T0618Z-codex-poi-finalization.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-15T2128Z-codex-poi-v2-retirement.md",
   "runMeasurement": {
     "runId": "codex-poi-continuation-20261014",
     "runtimeSourceFilesModified": 1,
@@ -37056,22 +37272,70 @@
     "fullDemoComplete": false
   },
   "currentRunMeasurement": {
-    "runId": "codex-poi-finalization-20261014",
-    "runtimeSourceFilesModified": 5,
-    "testFilesModified": 2,
-    "existingQaFilesModified": 2,
-    "existingQaTestFilesModified": 1,
+    "runId": "codex-poi-v2-20261015",
+    "countBasis": "Unique final paths compared with starting b79063bb, no renames; removals distinct from surviving modifications",
+    "counts": [
+      {
+        "name": "runtimeSource",
+        "total": 71,
+        "added": 2,
+        "modified": 9,
+        "removed": 60
+      },
+      {
+        "name": "sourceTests",
+        "total": 47,
+        "added": 2,
+        "modified": 12,
+        "removed": 33
+      },
+      {
+        "name": "artResources",
+        "total": 27,
+        "added": 5,
+        "modified": 0,
+        "removed": 22
+      },
+      {
+        "name": "existingQaAndGalleryTools",
+        "total": 37,
+        "added": 0,
+        "modified": 6,
+        "removed": 31
+      },
+      {
+        "name": "selectedProof",
+        "total": 11,
+        "added": 11,
+        "modified": 0,
+        "removed": 0
+      },
+      {
+        "name": "workflowCanonicalHistoricalDocs",
+        "total": 40,
+        "added": 19,
+        "modified": 21,
+        "removed": 0
+      }
+    ],
+    "totalPaths": 233,
+    "removedPaths": 146,
+    "runtimeSourceFilesModified": 11,
+    "testFilesModified": 14,
+    "newTestFiles": 2,
+    "existingQaFilesModified": 6,
     "newQaFilesAdded": 0,
     "promotedProofFiles": 11,
-    "promotedCaptures": 10,
-    "workflowDocs": 9,
+    "promotedCaptures": 9,
+    "workflowDocs": 40,
+    "newArtResources": 5,
     "inheritedWipFiles": 0,
-    "browserScenarios": 25,
-    "registeredJobs": 25,
-    "acceptedScopes": 16,
-    "failed": 7,
-    "interrupted": 2,
-    "reviewers": 1
+    "registeredNativeJobs": 17,
+    "acceptedScopes": 11,
+    "failedWholeUnseedable": 6,
+    "interrupted": 0,
+    "additionalSharedGallerySmoke": 1,
+    "reviewerRoles": 3
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",
@@ -37441,7 +37705,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-14T18:47:05.843Z",
+  "heartbeat": "2026-10-15T21:28:16.771Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -38031,5 +38295,98 @@
     },
     "guardianFinalReview": "PASS scoped independent twelve-row matrix; exact native identities/captures/assertions reviewed",
     "completedAt": "2026-10-15T06:29:56.404Z"
+  },
+  "poiV2": {
+    "status": "COMPLETE_SCOPED",
+    "runId": "codex-poi-v2-20261015",
+    "operatorDecision": "OD-2026-10-15-A",
+    "contractSet": "1.3.0",
+    "immutableBaseline": "5667837212ceffb6a16b22141623bf6f5c7e6ea6",
+    "runtimeCheckpoint": "99ed9ed9d5b4290f65e1591a701463ad61c0f21d",
+    "driverCheckpoint": "eaae27f83fc66a77ca0014fc5e87e07dad3dd635",
+    "sourceTree": "d6e92946f0cf8080d6a0f8978083bef901ba06dc",
+    "report": "docs/reports/poi-v2-retirement-2026-10-15.md",
+    "evidence": "docs/reports/poi-v2-retirement-2026-10-15/results.json",
+    "totalNodes": 21,
+    "newActiveNodes": 0,
+    "inactiveProposals": 2,
+    "inventoryRows": 184,
+    "removedPaths": 146,
+    "uncertain": 0,
+    "registeredJobs": 17,
+    "acceptedScopes": 11,
+    "failedWholeUnseedable": 6,
+    "prior254JobsExact": true,
+    "deferredObjectsExact": true,
+    "reviewedAt": "2026-10-15T21:28:01.742Z",
+    "artStatus": "INTEGRATED_CANDIDATE_OPERATOR_ART_REVIEW_PENDING",
+    "criticalCampaignReuse": "Mission section5.3; canonical combat/content/economy/checkpoint owners unchanged; inherited wins labelled separately",
+    "operatorNextAction": "Operator PC playtest of published POI V2 and three-region artwork; preserve unrelated skills/keyboard/narrative work and inactive authoring proposals. No physical-road work or scheduler reactivation.",
+    "metrics": {
+      "runId": "codex-poi-v2-20261015",
+      "countBasis": "Unique final paths compared with starting b79063bb, no renames; removals distinct from surviving modifications",
+      "counts": [
+        {
+          "name": "runtimeSource",
+          "total": 71,
+          "added": 2,
+          "modified": 9,
+          "removed": 60
+        },
+        {
+          "name": "sourceTests",
+          "total": 47,
+          "added": 2,
+          "modified": 12,
+          "removed": 33
+        },
+        {
+          "name": "artResources",
+          "total": 27,
+          "added": 5,
+          "modified": 0,
+          "removed": 22
+        },
+        {
+          "name": "existingQaAndGalleryTools",
+          "total": 37,
+          "added": 0,
+          "modified": 6,
+          "removed": 31
+        },
+        {
+          "name": "selectedProof",
+          "total": 11,
+          "added": 11,
+          "modified": 0,
+          "removed": 0
+        },
+        {
+          "name": "workflowCanonicalHistoricalDocs",
+          "total": 40,
+          "added": 19,
+          "modified": 21,
+          "removed": 0
+        }
+      ],
+      "totalPaths": 233,
+      "removedPaths": 146,
+      "runtimeSourceFilesModified": 11,
+      "testFilesModified": 14,
+      "newTestFiles": 2,
+      "existingQaFilesModified": 6,
+      "newQaFilesAdded": 0,
+      "promotedProofFiles": 11,
+      "promotedCaptures": 9,
+      "workflowDocs": 40,
+      "newArtResources": 5,
+      "inheritedWipFiles": 0,
+      "registeredNativeJobs": 17,
+      "acceptedScopes": 11,
+      "failedWholeUnseedable": 6,
+      "interrupted": 0,
+      "additionalSharedGallerySmoke": 1,
+      "reviewerRoles": 3
+    }
   }
 }
