@@ -6,8 +6,8 @@
 | DOMAIN | Campaign handoffs, Journey, POI, V6, accessibility, existing QA |
 | BASELINE | dev `5b7a67c736d7b3bc7071d5376a65b4c272dd2781` |
 | BRANCH | dev |
-| HEAD | Runtime `70a4a0aca0cd9b2887354dd7bc2b8a97ef7dd59d`; pilot `8fa8ea90e48d2e1340472ad904e263b989d96029`; documentation identity follows Git |
-| STATUS | IN_PROGRESS; T1/sacrifice and final review remain |
+| HEAD | Runtime `70a4a0aca0cd9b2887354dd7bc2b8a97ef7dd59d`; final pilot `85d2f91e09d90ffabdb8e8c61112268ebb365688`; documentation identity follows Git |
+| STATUS | IN_PROGRESS; prepared sacrifice/raid and final review remain |
 | MERGED_IN | NONE; direct dev checkpoints |
 | SUPERSEDES | NONE; extends earlier first/second-refuge evidence |
 | SUPERSEDED_BY | NONE |
@@ -58,6 +58,7 @@ Root and the independent guardian inspected the accepted scopes, raw provenance/
 | sacrifice-rested-final-0113 | FAILED: native T1 victory and funded paid rest, then an incorrect pilot invariance assertion rejected the fresh authored public petition. Whole output unseedable. |
 | t3-touch-os-final-0115 | INTERRUPTED: real T3 victory4rounds/34actions, then preparation overrun. Only verified PID61364/parent35872/listener5428 tree stopped; raw receipt/sidecar preserved. |
 | sacrifice-prepared-final | FAILED before Raid: pilot placed the petition occurrence marker before the dialogue completion that actually records it. Native immediate consequences were exact; raw before/after/lastState are retained. No new combat, whole output unseedable. |
+| sacrifice-prepared-final-replay | FAILED: actual village_raid defeat6rounds/29actions despite full paid rest; native rest funding and petition passed exact comparisons. No potion remained and auto-deployment omitted Cédric. Whole output unseedable. |
 
 All failed/interrupted outputs remain NOT_ACCEPTED and unseedable, including their intermediate wins/saves. The corrected existing pilot waits for exact preparation readiness, excludes its control from the actual generic click and fails on judgement overrun. Native public-petition consequences are audited exactly:35temporarygold cost,3reputation, original flag/history, then the unique-event marker after dialogue completion. Shop/rest temporary-loot invariance is separate; there is no general exception to full-state comparison. The successful bounded T1 checkpoint is independently accepted: result `62360ce6eb06734555532fd507a1dae4189cb3c228dbf242748919c1ca6cdfe3`, save `46740a093c6ceb27c95414f7469b32df537a59f7b944e457449726bf0086649a`, exactly equals resumed. Normal45minute budgets and the scheduler remain unchanged.
 
@@ -65,7 +66,7 @@ All failed/interrupted outputs remain NOT_ACCEPTED and unseedable, including the
 
 149focused tests pass: GameAppPoi10, poiNavigation9, runSystem35, JourneyCampaignBoundary18, JourneyRunNodeAdapter10, NarrativeSceneSurface27, lionFinale24 and lionVerdict16. The40finale/verdict cases cover reveal/conceal/undecided and voluntary/rejected intent; native ending proof covers the two recorded truth paths. All19existing QA continuity tests pass. TypeScript, production build,8contracts/8slots, eight shipped MP4s and empty immutable/working LOCKED/whitespace gates pass. No full-suite acceptance is claimed; unfiltered discovery of ignored archived tmp copies is outside the149current-test scope.
 
-Final runtime source tree: `fcf7e608f321af152971c40276cae8f6f4731b50`; pilot SHA256 `2d3ee60fb36fb3286e6e78fa3fb3350caaec0fc42a9d3a0e6032ce5c4a14595e`. Historical executions keep their earlier independent identities. Initial3b35197 and final70a4a0a source/build plus d732e4d/8fa8ea9 pilots are frozen under ignored tmp/autonomy/. Compact evidence retains exact input/bundle identities; no old capture establishes an untested final-build layout.
+Final runtime source tree: `fcf7e608f321af152971c40276cae8f6f4731b50`; final pilot SHA256 `6b1d4c08da1af18b5cacdc21ad5cee6129eebb9bc9a876966de85a7caac0cbe6`. Historical executions keep their earlier independent identities. Initial3b35197 and final70a4a0a source/build plus d732e4d/8fa8ea9/85d2f91 pilots are frozen under ignored tmp/autonomy/. Compact evidence retains exact input/bundle identities; no old capture establishes an untested final-build layout.
 
 ## Retained Traversal and delivery limits
 

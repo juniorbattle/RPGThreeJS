@@ -1343,6 +1343,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - poi-second-trial-earned-0141: SUCCEEDED; port 5429; receipt `tmp/demo/poi-second-trial-earned-0141/qa-job.json`; NOT_ACCEPTED
 - poi-t3-touch-ready-final-0141: SUCCEEDED; port 5430; receipt `tmp/demo/poi-t3-touch-ready-final-0141/qa-job.json`; NOT_ACCEPTED
 - poi-sacrifice-prepared-final: FAILED; port 5431; receipt `tmp/demo/poi-sacrifice-prepared-final/qa-job.json`; NOT_ACCEPTED
+- poi-sacrifice-prepared-final-replay: FAILED; port 5432; receipt `tmp/demo/poi-sacrifice-prepared-final-replay/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

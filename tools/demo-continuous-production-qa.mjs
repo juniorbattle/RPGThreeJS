@@ -83,8 +83,8 @@ if(touchInput){
 }
 Object.assign(report,{target,routePlan,finalePlan,trialPlan,defeatNodeId,nativeDefeatWait,viewport:{width:viewport[0],height:viewport[1]},
   osReducedMotion:process.env.DEMO_QA_OS_MOTION==='1',observationHook:'Built bootstrap exposes GameApp for read-only snapshots; no owner method invoked',refuges:[],choices:[]});
-report.nativeTacticalPolicy='Champion Salvation policy retained; novice crosier uses native lowest-charge ally attacks and follows wounded allies; non-Champion potions below half health; read-only rejection telemetry; all actions use existing native controls';
-report.nativePreparationPolicy='Existing native equipment/shop and paid refuge rest when requested; post-T1 continuation may sell existing permanent materials to fund rest; exact transactions and temporary-loot invariance';
+report.nativeTacticalPolicy='Salvation and skill targets prioritize lowest-health eligible native targets; novice crosier uses lowest-charge ally attacks and follows wounded allies; potions below75% for Champion/Raid and50% elsewhere; read-only rejection telemetry; existing native controls only';
+report.nativePreparationPolicy='Existing native equipment/shop and paid refuge rest; post-T1 Raid may sell existing permanent supplies for paid rest/two potions and deploy living Cedric; exact transactions and temporary-loot invariance';
 report.nativeTraversalPolicy=target==='pursuit-victory'?'Native same-lane charge collision if the genuine legacy surface is mounted':'Production native adjacent POI intentions; legacy lane controls only if their genuine surface is mounted';
 report.driverSha256=createHash('sha256').update(await readFile('tools/demo-continuous-production-qa.mjs')).digest('hex');
 report.productionBundles=await Promise.all((await readdir('dist/assets')).filter(name=>/^(game|combat)-.*\.js$/.test(name))
@@ -349,19 +349,54 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
   assert.ok(rested.clan.members.every(u=>u.currentHealth>0));
   assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),rested,'Paid post-Valmir rest was not persisted exactly');
   await capture(`poi-after-${prefix}-${cost?'paid-rest':'already-healthy'}`);
+  let prepared=rested,supplyPurchase=null;
+  if(postTrial&&routePlan==='sacrifice'){
+    await keyboardActivate('.exploration-stop [data-action="shop"]');
+    await keyboardActivate('.management [data-shop-mode="buy"]');
+    const buy='.management [data-trade="buy"][data-item="potion"]';
+    await page.locator(buy).waitFor({state:'visible'});
+    const price=Number.parseInt(await page.locator(buy).innerText(),10),quantity=2,supplyFunding=[];
+    assert.ok(Number.isInteger(price)&&price>0);assert.ok(rested.shops.valmir.stock.potion>=quantity);
+    await keyboardActivate('.management [data-shop-mode="sell"]');
+    for(let i=0;i<10&&(await state()).gold<price*quantity;i++){
+      const owner=await state(),item=[['red_gem','materials'],['antidote','consumables'],['iron_ore','materials']]
+        .find(([id,category])=>(owner.inventory[category][id]??0)>0);
+      assert.ok(item,'Existing permanent supplies cannot fund the native Raid potions');
+      const [id,category]=item,sell=`.management [data-trade="sell"][data-item="${id}"]`;
+      const proceeds=Number.parseInt(await page.locator(sell).innerText(),10);assert.ok(Number.isInteger(proceeds)&&proceeds>0);
+      await keyboardActivate(sell);const sold=await state(),expected=structuredClone(owner);
+      expected.gold+=proceeds;expected.inventory[category][id]-=1;expected.shops.valmir.stock[id]=(expected.shops.valmir.stock[id]??0)+1;
+      assert.deepEqual(sold,expected,'Native potion-funding sale changed unrelated truth or temporary loot');
+      assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),sold);
+      supplyFunding.push({id,category,price:proceeds});
+    }
+    await keyboardActivate('.management [data-shop-mode="buy"]');
+    for(let i=0;i<quantity;i++){
+      const owner=await state();assert.ok(owner.gold>=price);assert.equal(await page.locator(buy).isEnabled(),true);
+      assert.equal(Number.parseInt(await page.locator(buy).innerText(),10),price);
+      await keyboardActivate(buy);const bought=await state(),expected=structuredClone(owner);
+      expected.gold-=price;expected.inventory.consumables.potion=(expected.inventory.consumables.potion??0)+1;
+      expected.shops.valmir.stock.potion-=1;
+      assert.deepEqual(bought,expected,'Native Raid potion purchase changed unrelated V6 truth');
+      assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),bought);
+    }
+    await keyboardActivate('.management [data-action="close"]');await hub.waitFor({state:'visible'});
+    prepared=await state();supplyPurchase={quantity,price,funding:supplyFunding,before:rested,after:prepared,exactAutosave:true};
+    await capture('poi-after-trial-native-potion-stock');
+  }
   const eventIndex=report.nativeDepartureEvents?.length??0;
   await keyboardActivate('.exploration-stop [data-action="continue"]');await returnToPoiMap();
   const departed=await state(),events=report.nativeDepartureEvents?.slice(eventIndex)??[];
   if(events.length){
     assert.equal(postTrial,true);assert.equal(events.length,1);const event=events[0];
     assert.equal(event.sequence,'rep_event_public_petition');
-    assert.deepEqual(event.before,rested,'Refuge departure changed truth before the fresh canonical petition');
+    assert.deepEqual(event.before,prepared,'Refuge departure changed truth before the fresh canonical petition');
     const completedEvent=structuredClone(event.after);
     completedEvent.seenUniqueEvents.push(`reputation-director-event|${rested.stepCounter}|lion-social-window-1|public-petition|public-expectation`);
     assert.deepEqual(departed,completedEvent,'Native departure differs from the completed petition and its exact once-only marker');
-  }else assert.deepEqual(departed,rested,'Resolved refuge departure repeated a one-shot effect');
+  }else assert.deepEqual(departed,prepared,'Resolved refuge departure repeated a one-shot effect');
   const onward=await poiNoReplayPath(['lion-reserve-trail','lion-valmir-road',...(postTrial?[milestone]:[])],true,`poi-after-${prefix}-prepared-return`);
-  report.poi[postTrial?'trialRefugePreparation':'valmirRefugePreparation']={before,arrival,funding,restBefore,rested,departed,departureEvents:events,nativeCost:cost,servicesTemporaryLootUnchanged:true,checkpointUnchanged:true,
+  report.poi[postTrial?'trialRefugePreparation':'valmirRefugePreparation']={before,arrival,funding,restBefore,rested,prepared,supplyPurchase,departed,departureEvents:events,nativeCost:cost,servicesTemporaryLootUnchanged:true,checkpointUnchanged:true,
     returnPath,onward,paidRestPersistedExactly:cost>0,skippedAlreadyHealthy:cost===0,exactSavedOwner:true};
 }
 async function prepareNativeWeapon(nodeId){
@@ -482,7 +517,7 @@ async function attack(frame,battle,{support=false,exactAp=null}={}){
 }
 async function heal(frame,battle){
   const before=await combatState(frame);
-  const wounded=before.units.filter(u=>u.team==='player'&&u.alive&&u.hp<u.maxhp*(battle.combatId==='lion_chief'?.75:.5));
+  const wounded=before.units.filter(u=>u.team==='player'&&u.alive&&u.hp<u.maxhp*(['lion_chief','village_raid'].includes(battle.combatId)?.75:.5));
   const fallen=before.units.filter(u=>u.team==='player'&&u.downed&&!u.alive);
   if(!wounded.length&&!fallen.length)return false;
   const item=frame.locator('#menu [data-a="item"]:not(:disabled)');if(!await item.count())return false;
@@ -547,7 +582,7 @@ async function skill(frame,battle){
     if(!pending){await cancel(frame);continue;}
     const targets=(id.startsWith('w_s')||id==='w_purify'?wounded:before.units.filter(u=>u.team==='foe'&&u.alive))
       .sort((a,b)=>a.hp/a.maxhp-b.hp/b.maxhp);
-    attempt.eligibleCenters=pending.centers.filter(c=>targets.some(t=>t.id===c.targetId));
+    attempt.eligibleCenters=targets.flatMap(t=>pending.centers.filter(c=>t.id===c.targetId));
     for(const cell of attempt.eligibleCenters){
       const target=targets.find(t=>t.id===cell.targetId);
       if(id==='w_salvation'&&process.env.DEMO_QA_VERIFY_SALVATION==='1'&&before.active.ap===2)
@@ -655,8 +690,10 @@ async function battle(){
   entry.ownerBefore=await state();
   const preparedEndingParty=target==='ending'&&process.env.DEMO_QA_VERIFY_SALVATION!=='1'
     &&['serpent_captain','lion_chief'].includes(entry.combatId);
+  const preparedRaidParty=target==='second-refuge'&&routePlan==='sacrifice'&&entry.combatId==='village_raid';
+  const preparedParty=preparedEndingParty||preparedRaidParty;
   const intentionalDefeat=nativeDefeatWait&&entry.nodeId===defeatNodeId;
-  if(process.env.DEMO_QA_VERIFY_SALVATION==='1'||preparedEndingParty||intentionalDefeat){
+  if(process.env.DEMO_QA_VERIFY_SALVATION==='1'||preparedParty||intentionalDefeat){
     entry.availableRoster=await frame.evaluate(()=>G.rosterDefs.map(u=>({id:u.campaignId||u.id,skills:[...u.skills]})));
     const initialSkills={warrior:'w_break_guard',white_mage:'w_salvation',dark_mage:'n_dark_bolt',archer:'a_precise_shot',rogue:'ro_sneak_attack',lancer:'l_long_thrust'};
     entry.initialEquipmentSkills=[];
@@ -675,10 +712,11 @@ async function battle(){
     const available=new Set(entry.availableRoster.map(u=>u.id));
     const limit=Number((await frame.locator('#menu .deploy-head b').innerText()).match(/\d+\s*\/\s*(\d+)/)?.[1]);
     assert.ok(Number.isInteger(limit)&&limit>=1&&limit<=4,'Native encounter deployment limit invalid');
-    const preferred=preparedEndingParty?['white_mage','warrior','lancer','rogue']:['white_mage','warrior',...missing.map(u=>u.id)];
+    const preferred=preparedRaidParty?['white_mage','warrior','rogue','dark_mage']
+      :preparedEndingParty?['white_mage','warrior','lancer','rogue']:['white_mage','warrior',...missing.map(u=>u.id)];
     let picks=[...new Set([...preferred,...available])].filter(id=>available.has(id)
-      &&(!preparedEndingParty||entry.ownerBefore.clan.members.some(u=>u.id===id&&u.currentHealth>0)))
-      .slice(0,preparedEndingParty?limit:4);
+      &&(!preparedParty||entry.ownerBefore.clan.members.some(u=>u.id===id&&u.currentHealth>0)))
+      .slice(0,preparedParty?limit:4);
     if(intentionalDefeat){
       const living=entry.ownerBefore.clan.members.filter(u=>available.has(u.id)&&u.currentHealth>0).sort((a,b)=>a.currentHealth-b.currentHealth);
       assert.ok(living.length);picks=[living[0].id];
@@ -686,6 +724,7 @@ async function battle(){
     }
     assert.ok(picks.length>0&&picks.length<=limit,'Native party must fit the encounter');
     if(preparedEndingParty)entry.preparedEndingParty={preferred,picks,limit,existingLivingClanOnly:true};
+    if(preparedRaidParty)entry.preparedRaidParty={preferred,picks,limit,existingLivingClanOnly:true};
     await activateControl(frame.locator('#menu [data-d="reset"]'));
     for(const id of picks){
       const selector=`#menu [data-unit="${id}"]`;
