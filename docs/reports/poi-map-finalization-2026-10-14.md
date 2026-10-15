@@ -7,7 +7,7 @@
 | BASELINE | dev `5b7a67c736d7b3bc7071d5376a65b4c272dd2781` |
 | BRANCH | dev |
 | HEAD | Runtime `70a4a0aca0cd9b2887354dd7bc2b8a97ef7dd59d`; final pilot `07a0c0f66e12b27978ce278103e4a94df703cdc9`; documentation identity follows Git |
-| STATUS | REVIEWED_SCOPED_READY_FOR_PUBLICATION; all requested native milestones completed |
+| STATUS | COMPLETE_SCOPED; requested implementation/native milestones reviewed and published; human final playtest open |
 | MERGED_IN | NONE; direct dev checkpoints |
 | SUPERSEDES | NONE; extends earlier first/second-refuge evidence |
 | SUPERSEDED_BY | NONE |
@@ -101,3 +101,7 @@ The independent final twelve-row compliance matrix passes in the scopes above. B
 Counts against the starting checkpoint:5runtime source files,2source test files,2existing QA files,1existing QA test file,0new tracked QA files,11selected proof files(10captures),9workflow/docs files,0inherited WIP.25registered native executions:16reviewed scoped successes,7failed and2interrupted, all retained. These counts describe delivery work and evidence, not additional game content.
 
 Use the normal title/New Chronicle or an existing genuine save on the production preview http://127.0.0.1:5175/. Follow Audience, opening, Cédric/optional refugees, a first-trial choice and First refuge; reserves/Valmir, a second-trial choice, Bois-Clair and Second refuge; lancer/witnesses, a final-trial choice, shadow signs and preparation. Return to the map and explicitly select Judgement. Use existing equipment and paid refuge services when needed; choices and actual tactical outcomes remain authoritative. On mobile, pan the map to reach offscreen POIs. This is the candidate for the operator's final playtest, with the delivery limits above explicit.
+
+## Publication and closeout
+
+The reviewed product/proof/docs checkpoint `804ba18d51620ba1d07cd4b91f14a3504b1dfd41` was published normally to origin/dev under OD-2026-10-12-A. Fresh remote verification at2026-10-15T06:28:32.5716491Z matches that SHA; protected main remains `00b96f1b502539618790b1c0d8d642f86d3dcf7f`. The ten captures and compact proof are now immutable tracked evidence. Final paired-state/handoff metadata identity follows Git; it references this already verified checkpoint to avoid a self-reference. Same-run lock release is guarded by clean worktree and final live parity. Preview5175/user storage and unrelated WIP/deferred work remain preserved.

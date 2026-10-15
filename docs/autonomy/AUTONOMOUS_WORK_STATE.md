@@ -1,12 +1,12 @@
 # POI finalization — codex-poi-finalization-20261014
 
-READY_FOR_PUBLICATION. Both native truth endings/terminal/menu/exact reload; T0/T1/T3 combat alternatives, rescue and prepared sacrifice throughSecond refuge; actual positive-loot defeat/exact checkpoint recovery; OS/game reduction and390touch offensive combat. Five inherited Journey failures closed;149focused/19helper/type/build/8contracts8slots green. Human full-demo/hardware/general-balance acceptance remains open.
+COMPLETE_SCOPED. Both native truth endings/terminal/menu/exact reload; T0/T1/T3 combat alternatives, rescue and prepared sacrifice throughSecond refuge; actual positive-loot defeat/exact checkpoint recovery; OS/game reduction and390touch offensive combat. Five inherited Journey failures closed;149focused/19helper/type/build/8contracts8slots green. Human full-demo/hardware/general-balance acceptance remains open.
 
 Product: authored preparation/local map return, saved reduction control, separated narrow map anchors and44px mobile actions/pagination. No canon/tactical/economy/schema change. All229preceding jobs/deferred objects exact;16accepted scopes,7FAILED/2INTERRUPTED unseedable. Physical Traversal retained; static inventory is not retirement acceptance.
 
 Report:[finalization](../reports/poi-map-finalization-2026-10-14.md). Handoff:[current closeout](handoffs/2026-10-15T0618Z-codex-poi-finalization.md).
 
-Next: Complete independent final matrix, selected proof/docs publication, live parity and owned-lock release
+Next: Operator final playtest of the published POI candidate; preserve unrelated six-hero skill, mounted keyboard and narrative/manual findings. No automatic boss replay, physical-road polish, scheduler reactivation or Traversal removal.
 
 ## Preserved preceding closeout
 

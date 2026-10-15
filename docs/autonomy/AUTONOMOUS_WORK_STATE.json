@@ -1,13 +1,13 @@
 {
-  "status": "READY_FOR_PUBLICATION",
+  "status": "COMPLETE_SCOPED",
   "runStartedAt": "2026-10-14T20:08:10.9502211Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-15T06:29:56.404Z",
   "activeTask": "POI-MAP-FINALIZATION",
-  "activePhase": "FINAL_REVIEW_AND_PUBLICATION",
-  "activeSubtask": "Final independent matrix and publication of the reviewed candidate",
+  "activePhase": "CLOSED_SCOPED_POI_CANDIDATE",
+  "activeSubtask": "Requested POI finalization accepted scoped; operator final playtest remains",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "07a0c0f66e12b27978ce278103e4a94df703cdc9",
-  "lastPushedCommit": "07a0c0f66e12b27978ce278103e4a94df703cdc9",
+  "lastKnownGoodCommit": "804ba18d51620ba1d07cd4b91f14a3504b1dfd41",
+  "lastPushedCommit": "804ba18d51620ba1d07cd4b91f14a3504b1dfd41",
   "completedThisRun": [
     "Restored authored final preparation/local map agency and saved reduction preference",
     "Corrected narrow map labels and44px deployment/result/pagination controls",
@@ -76,7 +76,7 @@
     "Old Traversal retained; static669paths/350referencefiles inventory is not retirement acceptance",
     "Audio DEFERRED; eight videos unchanged; Bois-Clair night art external"
   ],
-  "nextAction": "Complete independent final matrix, selected proof/docs publication, live parity and owned-lock release",
+  "nextAction": "Operator final playtest of the published POI candidate; preserve unrelated six-hero skill, mounted keyboard and narrative/manual findings. No automatic boss replay, physical-road polish, scheduler reactivation or Traversal removal.",
   "taskQueue": [
     "POI-MAP-FINALIZATION: requested implementation/native milestones REVIEWED_SCOPED; operator final playtest remains",
     "DEMO-PC-CAMPAIGN: both native truth endings, T0/T1/T3 alternatives, rescue/sacrifice, defeat and exact V6 accepted in recorded scopes",
@@ -216,10 +216,10 @@
   },
   "runId": "codex-poi-finalization-20261014",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-15T06:28:14.190Z",
+  "lastHeartbeat": "2026-10-15T06:29:56.404Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-15T06:28:14.190Z",
+    "lastHeartbeat": "2026-10-15T06:29:56.404Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -25053,7 +25053,7 @@
           "driverSha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a",
           "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
           "resultSha256": "0ea17c6bae127480c329eee6adcc83336b299f2aa050f4c0a3b4712b13ec2efe",
-          "reviewedAt": "2026-10-15T06:28:13.564Z",
+          "reviewedAt": "2026-10-15T06:29:55.710Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -25177,7 +25177,7 @@
           "driverSha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a",
           "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
           "resultSha256": "eb8c80a489b6ad39e9c4e1feaacae8480cee1a4cd5ffa4cf549cdee5a856bba6",
-          "reviewedAt": "2026-10-15T06:28:13.564Z",
+          "reviewedAt": "2026-10-15T06:29:55.710Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -25516,7 +25516,7 @@
           "driverSha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a",
           "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
           "resultSha256": "43eb951b26b5abca3ff3fa16ee6dd67fd60ee04a9fd0b559b93c9f30331efe3b",
-          "reviewedAt": "2026-10-15T06:28:13.564Z",
+          "reviewedAt": "2026-10-15T06:29:55.710Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -25736,7 +25736,7 @@
           "driverSha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a",
           "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
           "resultSha256": "f40e49178118d5a0b9bb02a020f1ea72e9f2a900a6ce44e93bf2493860fc572f",
-          "reviewedAt": "2026-10-15T06:28:13.564Z",
+          "reviewedAt": "2026-10-15T06:29:55.710Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -25967,7 +25967,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "50abaeec743cdcfbd74b32b48df0ccb9dfc64db60b961e323bbb3f8a3ebb7b26",
-          "reviewedAt": "2026-10-15T06:28:13.564Z",
+          "reviewedAt": "2026-10-15T06:29:55.710Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26088,7 +26088,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d",
-          "reviewedAt": "2026-10-15T06:28:13.564Z",
+          "reviewedAt": "2026-10-15T06:29:55.710Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26209,7 +26209,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "b6678cd0d52a650d1215db3a51227af07ca188d857f3bbe8f8734969c0f8d988",
-          "reviewedAt": "2026-10-15T06:28:13.564Z",
+          "reviewedAt": "2026-10-15T06:29:55.710Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26330,7 +26330,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "1001fa2a05d6f96baa071cc2598eaaf3b58f975c2257970e766ca62446b1357e",
-          "reviewedAt": "2026-10-15T06:28:13.564Z",
+          "reviewedAt": "2026-10-15T06:29:55.710Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26451,7 +26451,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "1dbbe66a02e34ad71104b9d37501b7fe99884ea8aafe9586cc1faa9a62ef2eeb",
-          "reviewedAt": "2026-10-15T06:28:13.564Z",
+          "reviewedAt": "2026-10-15T06:29:55.710Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26572,7 +26572,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "3eff2a58c459592d91a25a6fdca2c83ee9e561bcbf707332e894d3acff1753f9",
-          "reviewedAt": "2026-10-15T06:28:13.564Z",
+          "reviewedAt": "2026-10-15T06:29:55.710Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26693,7 +26693,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "1e49f3457196938e05789b9828dc00dab550e4883f68725d372100c982a2b4e6",
-          "reviewedAt": "2026-10-15T06:28:13.564Z",
+          "reviewedAt": "2026-10-15T06:29:55.710Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26926,7 +26926,7 @@
           "driverSha256": "117b0f123d2fb9c8388536332770979db401a310e9eb8e8b1ffca2624d4ea080",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "af0034f5296e3d9006e0bf1deed0abf98f64c8cdf5ea0c8b46dcb6dcf33c2b91",
-          "reviewedAt": "2026-10-15T06:28:13.564Z",
+          "reviewedAt": "2026-10-15T06:29:55.710Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -27268,7 +27268,7 @@
           "driverSha256": "2d3ee60fb36fb3286e6e78fa3fb3350caaec0fc42a9d3a0e6032ce5c4a14595e",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "62360ce6eb06734555532fd507a1dae4189cb3c228dbf242748919c1ca6cdfe3",
-          "reviewedAt": "2026-10-15T06:28:13.564Z",
+          "reviewedAt": "2026-10-15T06:29:55.710Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -27389,7 +27389,7 @@
           "driverSha256": "2d3ee60fb36fb3286e6e78fa3fb3350caaec0fc42a9d3a0e6032ce5c4a14595e",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "cb301a4c9fabd6581c7836e35032e61b97ce174253efb6f3fa6cea143efb9608",
-          "reviewedAt": "2026-10-15T06:28:13.564Z",
+          "reviewedAt": "2026-10-15T06:29:55.710Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -27734,7 +27734,7 @@
           "driverSha256": "c7a7de388c5307727518bad69520ec3b54fc038eed82b05c06212d9b46286008",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "9a49da070ca91b5f910063abe51845e99b23865d05fb2b8a8e6bab569cd550ec",
-          "reviewedAt": "2026-10-15T06:28:13.564Z",
+          "reviewedAt": "2026-10-15T06:29:55.710Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -27855,14 +27855,14 @@
           "driverSha256": "c7a7de388c5307727518bad69520ec3b54fc038eed82b05c06212d9b46286008",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "188d2a8db2207006550d3902109cfefe0a4b07a61fe583e43493c4507d2931fa",
-          "reviewedAt": "2026-10-15T06:28:13.564Z",
+          "reviewedAt": "2026-10-15T06:29:55.710Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
       }
     ],
     "wip": null,
-    "nextAction": "Complete independent final matrix, selected proof/docs publication, live parity and owned-lock release",
+    "nextAction": "Operator final playtest of the published POI candidate; preserve unrelated six-hero skill, mounted keyboard and narrative/manual findings. No automatic boss replay, physical-road polish, scheduler reactivation or Traversal removal.",
     "runMetrics": {
       "runId": "codex-poi-finalization-20261014",
       "runtimeSourceFilesModified": 5,
@@ -27919,16 +27919,17 @@
       "runtimeCheckpoint": "70a4a0aca0cd9b2887354dd7bc2b8a97ef7dd59d",
       "pilotCheckpoint": "07a0c0f66e12b27978ce278103e4a94df703cdc9",
       "sourceTree": "fcf7e608f321af152971c40276cae8f6f4731b50",
-      "status": "READY_FOR_REVIEWED_PUBLICATION",
-      "verifiedPriorDev": "07a0c0f66e12b27978ce278103e4a94df703cdc9",
+      "status": "PRODUCT_PROOF_DOCS_PUBLISHED",
+      "verifiedPriorDev": "804ba18d51620ba1d07cd4b91f14a3504b1dfd41",
       "protectedMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
       "finalClosure": "Final metadata commit/live parity and owned-lock release are guarded at execution; exact final identity follows Git"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-15T06:29:56.404Z",
+    "writerStopped": true,
     "metadataPublication": {
-      "status": "FINAL_SELECTED_CLOSURE",
-      "shaIn": "Git/automation memory after push"
+      "status": "FINAL_CLOSURE_METADATA",
+      "shaIn": "Git and guarded live-remote verification; no external memory update",
+      "verifiedProductProofDocsCommit": "804ba18d51620ba1d07cd4b91f14a3504b1dfd41"
     },
     "publication1752History": {
       "status": "VERIFIED_PUBLISHED",
@@ -28722,7 +28723,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "POI-MAP-FINALIZATION",
-    "activeSubtask": "Final independent matrix and publication of the reviewed candidate",
+    "activeSubtask": "Requested POI finalization accepted scoped; operator final playtest remains",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -32056,10 +32057,10 @@
     },
     "runId": "codex-poi-finalization-20261014",
     "agent": "codex",
-    "status": "READY_FOR_PUBLICATION",
+    "status": "COMPLETE_SCOPED",
     "runStartedAt": "2026-10-14T20:08:10.9502211Z",
-    "activePhase": "FINAL_REVIEW_AND_PUBLICATION",
-    "heartbeat": "2026-10-14T18:47:05.843Z",
+    "activePhase": "CLOSED_SCOPED_POI_CANDIDATE",
+    "heartbeat": "2026-10-15T06:29:56.404Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-15T0618Z-codex-poi-finalization.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -36089,7 +36090,7 @@
       "verifiedRemoteMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
       "publishedAt": "2026-10-14T18:45:02.5129679+00:00"
     },
-    "status": "READY_FOR_PUBLICATION",
+    "status": "COMPLETE_SCOPED",
     "handoff": "docs/autonomy/handoffs/2026-10-15T0618Z-codex-poi-finalization.md",
     "acceptedRaidJob": "poi-sacrifice-rogue-supplies-final",
     "combinationCoverage": {
@@ -36144,6 +36145,6 @@
       "reviewers": 1
     },
     "guardianFinalReview": "PASS scoped independent twelve-row matrix; exact native identities/captures/assertions reviewed",
-    "completedAt": null
+    "completedAt": "2026-10-15T06:29:56.404Z"
   }
 }
