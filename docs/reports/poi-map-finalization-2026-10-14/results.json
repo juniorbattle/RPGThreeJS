@@ -1,0 +1,5880 @@
+{
+  "schemaVersion": 1,
+  "task": "POI-MAP-FINALIZATION",
+  "status": "REVIEWED_ACCEPTED_SCOPED",
+  "recordedAt": "2026-10-15T06:28:14.903Z",
+  "finalCodeHead": "07a0c0f66e12b27978ce278103e4a94df703cdc9",
+  "contractSet": "1.2.0",
+  "immutableBaseline": "692829f32d735ad890182eea6b5e5e195551bbbf",
+  "scope": "Reviewed native cases only; exact execution identities preserved independently. No whole-demo, hardware, general-balance or Traversal-retirement acceptance.",
+  "captures": [
+    {
+      "jobId": "poi-preparation-desktop-2019",
+      "source": "tmp/demo/poi-preparation-desktop-2019/poi-final-refuge-preparation-resumed.png",
+      "path": "01-native-preparation-desktop.png",
+      "sha256": "53ca642c31aa1afe6b7eeafbb1d77ca07d9be084a6aea7a2c4f7fafb49ca295b",
+      "inspection": "root; guardian where recorded in report"
+    },
+    {
+      "jobId": "poi-preparation-game620-2125",
+      "source": "tmp/demo/poi-preparation-game620-2125/poi-final-refuge-preparation-resumed.png",
+      "path": "02-native-preparation-game620.png",
+      "sha256": "6318ebf82a404521b3d2b6bd0476c61fa58f94c9d399334eb2eeb552ce06162b",
+      "inspection": "root; guardian where recorded in report"
+    },
+    {
+      "jobId": "poi-preparation-touch-os390-2127",
+      "source": "tmp/demo/poi-preparation-touch-os390-2127/poi-final-refuge-preparation-resumed.png",
+      "path": "03-native-preparation-touch-os390.png",
+      "sha256": "d2e335b85ca8c68cb7014a0185ca71b56dd9aa526595b56a101270ca9d4f079e",
+      "inspection": "root; guardian where recorded in report"
+    },
+    {
+      "jobId": "poi-first-trial-combat-game-2029",
+      "source": "tmp/demo/poi-first-trial-combat-game-2029/poi-exclusive-neutralization.png",
+      "path": "04-native-first-combat-neutralization.png",
+      "sha256": "8d51c1b2539c2650c6e1deefd0a9df3eaf3cad5e9e68faa18b8a4e1f5f47a0e5",
+      "inspection": "root; guardian where recorded in report"
+    },
+    {
+      "jobId": "poi-serpent-steel-keyboard-2130",
+      "source": "tmp/demo/poi-serpent-steel-keyboard-2130/ending-lion-seal-serpent-truth-resumed.png",
+      "path": "05-native-serpent-ending.png",
+      "sha256": "5039b315d9ad4a30a51642e6f87090f260f6d8dc8b49dbdd26a9db468e15a30d",
+      "inspection": "root; guardian where recorded in report"
+    },
+    {
+      "jobId": "poi-ending-trial-mobile-2022",
+      "source": "tmp/demo/poi-ending-trial-mobile-2022/ending-lion-seal-trial-truth-resumed.png",
+      "path": "06-native-trial-ending.png",
+      "sha256": "8ce52dfd1e3e5214501952e6b8588aa61bab42138310ef3fd71bc76bc2ebe067",
+      "inspection": "root; guardian where recorded in report"
+    },
+    {
+      "jobId": "poi-defeat-touch-final-ui-0113",
+      "source": "tmp/demo/poi-defeat-touch-final-ui-0113/native-defeat-recovered-resumed.png",
+      "path": "07-native-defeat-touch-final-map.png",
+      "sha256": "e65cff38fd592186f35da96c0d81cfa07df9a52ba3fb31873d185a55967aeb39",
+      "inspection": "root; guardian where recorded in report"
+    },
+    {
+      "jobId": "poi-sacrifice-rogue-supplies-final",
+      "source": "tmp/demo/poi-sacrifice-rogue-supplies-final/poi-second-refuge-resolved.png",
+      "path": "08-native-sacrifice-second-refuge.png",
+      "sha256": "59b3ccd0f351f4bb9cccf751f971698f41df9e8ba95b0908c22c0957e5d595c0",
+      "inspection": "root; guardian where recorded in report"
+    },
+    {
+      "jobId": "poi-t3-touch-ready-final-0141",
+      "source": "tmp/demo/poi-t3-touch-ready-final-0141/combat-3-result.png",
+      "path": "09-native-t3-touch-os-victory.png",
+      "sha256": "22c0eb4a42f0242d7b7e19315e9ab5fb3ba7635b37aa317ff14058a9b082aba8",
+      "inspection": "root; guardian where recorded in report"
+    },
+    {
+      "jobId": "poi-t3-touch-ready-final-0141",
+      "source": "tmp/demo/poi-t3-touch-ready-final-0141/poi-final-refuge-preparation-resumed.png",
+      "path": "10-native-t3-loot-preparation-reloaded.png",
+      "sha256": "edd1671da0158bcf72ad49df436e4d50f5a1435771fa4a9db9a2c8c6d7e360e3",
+      "inspection": "root; guardian where recorded in report"
+    }
+  ],
+  "jobs": [
+    {
+      "jobId": "poi-preparation-desktop-2019",
+      "output": "tmp/demo/poi-preparation-desktop-2019",
+      "status": "SUCCEEDED",
+      "rawStatus": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_NATIVE_FINAL_PREPARATION_DESKTOP",
+      "receiptSha256": "8fb452d28caeb0189c66b941346caf54a3b9bc314cd4c570f06f339bff59d25e",
+      "resultSha256": "0ea17c6bae127480c329eee6adcc83336b299f2aa050f4c0a3b4712b13ec2efe",
+      "parameters": {
+        "target": "preparation",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "trialPlan": "event",
+        "gameReducedMotion": false,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "3b35197f027aff3950bffe3b36bb1ad593f940a0",
+        "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+            "sha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+            "sha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868"
+          }
+        ],
+        "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BL64qO_z.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/game-CBmlPJ0P.js",
+            "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": true,
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 3,
+      "newBattles": [],
+      "ending": null,
+      "checkpoint": "lion-second-refuge",
+      "securedGold": 235,
+      "temporaryGold": 0,
+      "gameReducedMotion": false,
+      "preparation": {
+        "exactV6": true,
+        "noHub": true,
+        "noNewSecuring": true
+      },
+      "geometry": [
+        {
+          "name": "lion-second-refuge-earned",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-second-refuge-resolved",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-poi-reusable-reloaded",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-native-rest",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-final-refuge-preparation",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-final-refuge-preparation-resumed",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-preparation-mobile-os-2020",
+      "output": "tmp/demo/poi-preparation-mobile-os-2020",
+      "status": "SUCCEEDED",
+      "rawStatus": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_NATIVE_FINAL_PREPARATION_NARROW_OS",
+      "receiptSha256": "8273772744384eb41510b4fd708b7d9452ed74785748075c6d219776015f07c5",
+      "resultSha256": "eb8c80a489b6ad39e9c4e1feaacae8480cee1a4cd5ffa4cf549cdee5a856bba6",
+      "parameters": {
+        "target": "preparation",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "trialPlan": "event",
+        "gameReducedMotion": false,
+        "viewport": [
+          390,
+          844
+        ],
+        "osReducedMotion": true,
+        "earnedSavePath": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "3b35197f027aff3950bffe3b36bb1ad593f940a0",
+        "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+            "sha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+            "sha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868"
+          }
+        ],
+        "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BL64qO_z.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/game-CBmlPJ0P.js",
+            "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": true,
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 3,
+      "newBattles": [],
+      "ending": null,
+      "checkpoint": "lion-second-refuge",
+      "securedGold": 235,
+      "temporaryGold": 0,
+      "gameReducedMotion": false,
+      "preparation": {
+        "exactV6": true,
+        "noHub": true,
+        "noNewSecuring": true
+      },
+      "geometry": [
+        {
+          "name": "lion-second-refuge-earned",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-second-refuge-resolved",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-poi-reusable-reloaded",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-native-rest",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-final-refuge-preparation",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-final-refuge-preparation-resumed",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-defeat-finaltrial-2020",
+      "output": "tmp/demo/poi-defeat-finaltrial-2020",
+      "status": "FAILED",
+      "rawStatus": "FAILED",
+      "reviewedDisposition": "NOT_ACCEPTED",
+      "receiptSha256": "9ed0c8fac2b650bcf49abc2e40136fe8845ce0f78daa7543fa00d6bb9006680c",
+      "resultSha256": "3e63a734c23d3a6807d141b0974afa78c98d1a895d79e830c60ef89b6d0b1e81",
+      "parameters": {
+        "target": "defeat-recovery",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": true,
+        "trialPlan": "combat",
+        "gameReducedMotion": false,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "3b35197f027aff3950bffe3b36bb1ad593f940a0",
+        "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+            "sha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+            "sha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868"
+          }
+        ],
+        "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BL64qO_z.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/game-CBmlPJ0P.js",
+            "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": false,
+      "failure": "frame.waitForFunction: Timeout 60000ms exceeded.",
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 3,
+      "newBattles": [
+        {
+          "nodeId": "lion-final-trial-combat",
+          "combatId": "ruins_guardians",
+          "pass": false,
+          "actions": 10,
+          "nativeBattlefieldTouches": 0,
+          "resolvedAttackActions": 0,
+          "resolvedSkillActions": 0
+        }
+      ],
+      "geometry": [
+        {
+          "name": "combat-3-deployment",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-native-keyboard-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "failure-state",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-ending-serpent-2022",
+      "output": "tmp/demo/poi-ending-serpent-2022",
+      "status": "FAILED",
+      "rawStatus": "FAILED",
+      "reviewedDisposition": "NOT_ACCEPTED",
+      "receiptSha256": "d8731323e86dbcc57b14f12cf7e085d9ce9293c7be7a585a15af5fb60d995c43",
+      "resultSha256": "f19161b012e7e8c65fb9c348c8891385962629acf5b61e422657387a3233612c",
+      "parameters": {
+        "target": "ending",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "trialPlan": "event",
+        "gameReducedMotion": false,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-preparation-desktop-2019/earned-final-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-preparation-desktop-2019/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "3b35197f027aff3950bffe3b36bb1ad593f940a0",
+        "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-preparation-desktop-2019/earned-final-refuge-v6.json",
+            "sha256": "2f660a159b409332e6d7ae8e31f7b082d17aa5e0e3d953b6455632c7315a115b"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-preparation-desktop-2019/results.json",
+            "sha256": "0ea17c6bae127480c329eee6adcc83336b299f2aa050f4c0a3b4712b13ec2efe"
+          }
+        ],
+        "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BL64qO_z.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/game-CBmlPJ0P.js",
+            "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": false,
+      "failure": "AssertionError [ERR_ASSERTION]: Battle did not finish before bounded deadline",
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 3,
+      "newBattles": [
+        {
+          "nodeId": "lion-final-judgement",
+          "combatId": "serpent_captain",
+          "pass": false,
+          "rounds": 10,
+          "actions": 67,
+          "nativeBattlefieldTouches": 0,
+          "resolvedAttackActions": 17,
+          "resolvedSkillActions": 9,
+          "actualMotion": {
+            "effective": false,
+            "requestedGame": false
+          }
+        }
+      ],
+      "geometry": [
+        {
+          "name": "combat-3-deployment",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-native-keyboard-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-ro_sneak_attack-9",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-actual-impact",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-l_long_thrust-14",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-l_long_thrust-19",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-24",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-25",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-40",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-56",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-57",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-63",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "failure-state",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-ending-trial-mobile-2022",
+      "output": "tmp/demo/poi-ending-trial-mobile-2022",
+      "status": "SUCCEEDED",
+      "rawStatus": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_NATIVE_TRIAL_ENDING_NARROW_KEYBOARD",
+      "receiptSha256": "f6e13c1960ffa51fc4461f5b157678a239bf3f22c1bc482778f108070ae0e5db",
+      "resultSha256": "43eb951b26b5abca3ff3fa16ee6dd67fd60ee04a9fd0b559b93c9f30331efe3b",
+      "parameters": {
+        "target": "ending",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "trial",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "trialPlan": "event",
+        "gameReducedMotion": false,
+        "viewport": [
+          390,
+          844
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-preparation-desktop-2019/earned-final-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-preparation-desktop-2019/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "3b35197f027aff3950bffe3b36bb1ad593f940a0",
+        "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-preparation-desktop-2019/earned-final-refuge-v6.json",
+            "sha256": "2f660a159b409332e6d7ae8e31f7b082d17aa5e0e3d953b6455632c7315a115b"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-preparation-desktop-2019/results.json",
+            "sha256": "0ea17c6bae127480c329eee6adcc83336b299f2aa050f4c0a3b4712b13ec2efe"
+          }
+        ],
+        "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BL64qO_z.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/game-CBmlPJ0P.js",
+            "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": true,
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 3,
+      "newBattles": [
+        {
+          "nodeId": "lion-final-judgement",
+          "combatId": "lion_chief",
+          "pass": true,
+          "outcome": "victory",
+          "rounds": 32,
+          "actions": 168,
+          "nativeBattlefieldTouches": 0,
+          "resolvedAttackActions": 37,
+          "resolvedSkillActions": 34,
+          "actualMotion": {
+            "effective": false,
+            "requestedGame": false
+          }
+        }
+      ],
+      "ending": "lion-seal-trial-truth",
+      "checkpoint": "lion-final-judgement",
+      "securedGold": 435,
+      "temporaryGold": 0,
+      "gameReducedMotion": false,
+      "terminalMenu": {
+        "nativeKeyboard": true,
+        "titleVisible": true,
+        "continueFocused": true,
+        "ownerUnchanged": true,
+        "savedBytesUnchanged": true
+      },
+      "preparation": {
+        "exactV6": true,
+        "noHub": true,
+        "noNewSecuring": true
+      },
+      "geometry": [
+        {
+          "name": "poi-final-refuge-preparation",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-final-refuge-preparation-resumed",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-deployment",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-native-keyboard-return",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-ro_sneak_attack-10",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-actual-impact",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-l_long_thrust-15",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-l_long_thrust-21",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-27",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-28",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-30",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-37",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-38",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-49",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-55",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-61",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-67",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-73",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-79",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-80",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-91",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-92",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-98",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-104",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-110",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-116",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-122",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-128",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-132",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-134",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-136",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-138",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-141",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-145",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-152",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-163",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-164",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-166",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-168",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-result",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "ending-lion-seal-trial-truth",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "ending-lion-seal-trial-truth-resumed",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "ending-lion-seal-trial-truth-native-menu",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-preparation-intermediate-game-2027",
+      "output": "tmp/demo/poi-preparation-intermediate-game-2027",
+      "status": "INTERRUPTED",
+      "rawStatus": "RUNNING",
+      "reviewedDisposition": "NOT_ACCEPTED",
+      "ownerDisposition": {
+        "path": "tmp/demo/poi-preparation-intermediate-game-2027/owner-interruption.json",
+        "sha256": "bdd295a72321400ccc3588a85d6efed01ece5e7332824f251bddaa00160e290f"
+      },
+      "receiptSha256": "3ef25994ea094165362939dfa7b4071808aafdd358666df5a40bdc8d5bd172b6",
+      "parameters": {
+        "target": "preparation",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "trialPlan": "event",
+        "gameReducedMotion": true,
+        "viewport": [
+          620,
+          780
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "3b35197f027aff3950bffe3b36bb1ad593f940a0",
+        "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+            "sha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+            "sha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868"
+          }
+        ],
+        "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BL64qO_z.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/game-CBmlPJ0P.js",
+            "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+          }
+        ]
+      },
+      "noRuntimeMutation": false,
+      "noOutcomeInjection": false,
+      "inheritedBattles": 0
+    },
+    {
+      "jobId": "poi-first-trial-combat-game-2029",
+      "output": "tmp/demo/poi-first-trial-combat-game-2029",
+      "status": "SUCCEEDED",
+      "rawStatus": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_FRESH_T0_COMBAT_NATIVE_GAME_REDUCTION",
+      "receiptSha256": "66e682ce1a6ccc84de73b216924c67bc0c98a968e3a2fdcb6533a3291cd7c2cf",
+      "resultSha256": "f40e49178118d5a0b9bb02a020f1ea72e9f2a900a6ce44e93bf2493860fc572f",
+      "parameters": {
+        "target": "first-refuge",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "trialPlan": "combat",
+        "gameReducedMotion": true,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": null,
+        "priorProofPath": null,
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "3b35197f027aff3950bffe3b36bb1ad593f940a0",
+        "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a"
+        },
+        "inputs": [],
+        "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BL64qO_z.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/game-CBmlPJ0P.js",
+            "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": true,
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 0,
+      "newBattles": [
+        {
+          "nodeId": "lion-opening-ambush",
+          "combatId": "forest_ambush",
+          "pass": true,
+          "outcome": "victory",
+          "rounds": 3,
+          "actions": 17,
+          "nativeBattlefieldTouches": 0,
+          "resolvedAttackActions": 4,
+          "resolvedSkillActions": 2,
+          "actualMotion": {
+            "effective": true,
+            "requestedGame": true
+          }
+        },
+        {
+          "nodeId": "lion-first-trial-combat",
+          "combatId": "spider_nest",
+          "pass": true,
+          "outcome": "victory",
+          "rounds": 4,
+          "actions": 29,
+          "nativeBattlefieldTouches": 0,
+          "resolvedAttackActions": 6,
+          "resolvedSkillActions": 4,
+          "actualMotion": {
+            "effective": true,
+            "requestedGame": true
+          }
+        }
+      ],
+      "ending": null,
+      "checkpoint": "lion-first-refuge",
+      "securedGold": 205,
+      "temporaryGold": 0,
+      "gameReducedMotion": true,
+      "geometry": [
+        {
+          "name": "intro-acte_ouverture-3",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "intro-acte_ouverture-4",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "intro-acte_ouverture-6",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "intro-camp_departure-3",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-0-deployment",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-0-native-keyboard-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-0-actual-impact",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-0-w_break_guard-14",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-0-n_dark_bolt-17",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-0-result",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-0-native-parent-keyboard-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-cedric",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-native-backtracking",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-refugees-bypassed",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-1-deployment",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-1-actual-impact",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-1-w_salvation-11",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-1-w_salvation-17",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-1-w_salvation-25",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-1-w_break_guard-28",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-1-result",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-exclusive-neutralization",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-first-refuge-earned",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-first-refuge-poi-reusable-reloaded",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-second-combat-sacrifice-game-2051",
+      "output": "tmp/demo/poi-second-combat-sacrifice-game-2051",
+      "status": "FAILED",
+      "rawStatus": "FAILED",
+      "reviewedDisposition": "NOT_ACCEPTED",
+      "receiptSha256": "6bf8491d16992dce086b4f19f1f5842e8ef3c030f5129c03ba721e29c69cf9ca",
+      "resultSha256": "b4e9b920ae76240b7ca8da9734d2cedaa170be4223b46fbeef675627471d52ad",
+      "parameters": {
+        "target": "second-refuge",
+        "routePlan": "sacrifice",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "trialPlan": "combat",
+        "gameReducedMotion": true,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-first-trial-combat-game-2029/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-first-trial-combat-game-2029/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "c6d7137fd69282160db324f1b696051724396904",
+        "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-first-trial-combat-game-2029/earned-first-refuge-v6.json",
+            "sha256": "007befc315d164fb7533729266e166e0a691c46380eaf316881df4bfa30ce1e3"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-first-trial-combat-game-2029/results.json",
+            "sha256": "f40e49178118d5a0b9bb02a020f1ea72e9f2a900a6ce44e93bf2493860fc572f"
+          }
+        ],
+        "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BL64qO_z.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/game-CBmlPJ0P.js",
+            "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": false,
+      "failure": "AssertionError [ERR_ASSERTION]: Actual battle ended without victory: ✦",
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 2,
+      "newBattles": [
+        {
+          "nodeId": "lion-valmir-road",
+          "combatId": "road_to_valmir",
+          "pass": true,
+          "outcome": "victory",
+          "rounds": 6,
+          "actions": 39,
+          "nativeBattlefieldTouches": 0,
+          "resolvedAttackActions": 9,
+          "resolvedSkillActions": 7,
+          "actualMotion": {
+            "effective": true,
+            "requestedGame": true
+          }
+        },
+        {
+          "nodeId": "lion-second-trial-combat",
+          "combatId": "troll_crossing",
+          "pass": false,
+          "rounds": 14,
+          "actions": 70,
+          "nativeBattlefieldTouches": 0,
+          "resolvedAttackActions": 17,
+          "resolvedSkillActions": 8,
+          "actualMotion": {
+            "effective": true,
+            "requestedGame": true
+          }
+        }
+      ],
+      "ending": null,
+      "checkpoint": "lion-first-refuge",
+      "securedGold": 205,
+      "temporaryGold": 0,
+      "gameReducedMotion": true,
+      "geometry": [
+        {
+          "name": "lion-first-refuge-earned",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-native-backtracking",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-first-refuge-poi-reusable-reloaded",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-first-refuge-native-rest",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-second-section-reserves",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-deployment",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-native-keyboard-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-actual-impact",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-n_dark_bolt-11",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-w_break_guard-17",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-w_salvation-23",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-w_salvation-24",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-w_salvation-32",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-a_precise_shot-34",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-w_salvation-37",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-result",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-valmir-return-path",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-valmir-paid-rest",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-valmir-prepared-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-deployment",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-actual-impact",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-n_dark_bolt-11",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-16",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-25",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-28",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-29",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-n_dark_bolt-42",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-58",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-59",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-result",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "failure-state",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-serpent-steel-keyboard-2130",
+      "output": "tmp/demo/poi-serpent-steel-keyboard-2130",
+      "status": "SUCCEEDED",
+      "rawStatus": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_NATIVE_SERPENT_ENDING_DESKTOP_KEYBOARD",
+      "receiptSha256": "c14f7e12f4ef50f39d35a4e3c890668f36c36841ba98c98aa181f2e64b7ef33c",
+      "resultSha256": "50abaeec743cdcfbd74b32b48df0ccb9dfc64db60b961e323bbb3f8a3ebb7b26",
+      "parameters": {
+        "target": "ending",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": true,
+        "trialPlan": "event",
+        "gameReducedMotion": false,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "d732e4da36e4a3c6fd88eb35a8c6c2004edfbfa7",
+        "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+            "sha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+            "sha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868"
+          }
+        ],
+        "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BL64qO_z.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/game-CBmlPJ0P.js",
+            "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": true,
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 3,
+      "newBattles": [
+        {
+          "nodeId": "lion-final-judgement",
+          "combatId": "serpent_captain",
+          "pass": true,
+          "outcome": "victory",
+          "rounds": 12,
+          "actions": 76,
+          "nativeBattlefieldTouches": 0,
+          "resolvedAttackActions": 21,
+          "resolvedSkillActions": 8,
+          "actualMotion": {
+            "effective": false,
+            "requestedGame": false
+          }
+        }
+      ],
+      "ending": "lion-seal-serpent-truth",
+      "checkpoint": "lion-final-judgement",
+      "securedGold": 447,
+      "temporaryGold": 0,
+      "gameReducedMotion": false,
+      "trustedTouches": 0,
+      "terminalMenu": {
+        "nativeKeyboard": true,
+        "nativeTouch": false,
+        "titleVisible": true,
+        "continueFocused": true,
+        "ownerUnchanged": true,
+        "savedBytesUnchanged": true
+      },
+      "preparation": {
+        "exactV6": true,
+        "noHub": true,
+        "noNewSecuring": true
+      },
+      "geometry": [
+        {
+          "name": "lion-second-refuge-earned",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-second-refuge-resolved",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-poi-reusable-reloaded",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-native-steel-equipment",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-native-rest",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-final-refuge-preparation",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-final-refuge-preparation-resumed",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-deployment",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-native-keyboard-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-ro_sneak_attack-9",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-actual-impact",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-l_long_thrust-14",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-l_long_thrust-19",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-24",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-25",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-40",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-56",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-62",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-result",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "ending-lion-seal-serpent-truth",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "ending-lion-seal-serpent-truth-resumed",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "ending-lion-seal-serpent-truth-native-menu",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-valmir-steel-game-2130",
+      "output": "tmp/demo/poi-valmir-steel-game-2130",
+      "status": "SUCCEEDED",
+      "rawStatus": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_NATIVE_VALMIR_POSITIVE_LOOT_EXACT_SEED",
+      "receiptSha256": "64a9c5560c9373e7fb62df95014280dadc4e87254a7c47fee3c425d36797b169",
+      "resultSha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d",
+      "parameters": {
+        "target": "valmir",
+        "routePlan": "sacrifice",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": true,
+        "trialPlan": "combat",
+        "gameReducedMotion": true,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-first-trial-combat-game-2029/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-first-trial-combat-game-2029/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "d732e4da36e4a3c6fd88eb35a8c6c2004edfbfa7",
+        "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-first-trial-combat-game-2029/earned-first-refuge-v6.json",
+            "sha256": "007befc315d164fb7533729266e166e0a691c46380eaf316881df4bfa30ce1e3"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-first-trial-combat-game-2029/results.json",
+            "sha256": "f40e49178118d5a0b9bb02a020f1ea72e9f2a900a6ce44e93bf2493860fc572f"
+          }
+        ],
+        "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BL64qO_z.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/game-CBmlPJ0P.js",
+            "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": true,
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 2,
+      "newBattles": [
+        {
+          "nodeId": "lion-valmir-road",
+          "combatId": "road_to_valmir",
+          "pass": true,
+          "outcome": "victory",
+          "rounds": 6,
+          "actions": 39,
+          "nativeBattlefieldTouches": 0,
+          "resolvedAttackActions": 9,
+          "resolvedSkillActions": 7,
+          "actualMotion": {
+            "effective": true,
+            "requestedGame": true
+          }
+        }
+      ],
+      "ending": null,
+      "checkpoint": "lion-first-refuge",
+      "securedGold": 20,
+      "temporaryGold": 210,
+      "gameReducedMotion": true,
+      "trustedTouches": 0,
+      "geometry": [
+        {
+          "name": "lion-first-refuge-earned",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-native-backtracking",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-first-refuge-poi-reusable-reloaded",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-first-refuge-native-steel-equipment",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-first-refuge-native-rest",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-second-section-reserves",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-deployment",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-native-keyboard-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-actual-impact",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-n_dark_bolt-11",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-w_break_guard-17",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-w_salvation-23",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-w_salvation-24",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-w_salvation-32",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-a_precise_shot-34",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-w_salvation-37",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-2-result",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-valmir-return-path",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-valmir-paid-rest",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-valmir-prepared-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-valmir-positive-loot-reloaded",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-terminal-touch-2132",
+      "output": "tmp/demo/poi-terminal-touch-2132",
+      "status": "SUCCEEDED",
+      "rawStatus": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_NATIVE_TERMINAL_TOUCH_NO_NEW_BATTLE",
+      "receiptSha256": "79656836803e42be49a9766ddf6b115d292c7f5b7ab08860dc797de2d3e0f167",
+      "resultSha256": "b6678cd0d52a650d1215db3a51227af07ca188d857f3bbe8f8734969c0f8d988",
+      "parameters": {
+        "target": "terminal",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "trial",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "touchInput": true,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "gameReducedMotion": false,
+        "viewport": [
+          390,
+          844
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-ending-trial-mobile-2022/earned-ending-v6.json",
+        "priorProofPath": "tmp/demo/poi-ending-trial-mobile-2022/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "d732e4da36e4a3c6fd88eb35a8c6c2004edfbfa7",
+        "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-ending-trial-mobile-2022/earned-ending-v6.json",
+            "sha256": "dfafeca4e8c748ad71664e1d41a932d2deb1683590aa05ed33f167c42eb55685"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-ending-trial-mobile-2022/results.json",
+            "sha256": "43eb951b26b5abca3ff3fa16ee6dd67fd60ee04a9fd0b559b93c9f30331efe3b"
+          }
+        ],
+        "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BL64qO_z.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/game-CBmlPJ0P.js",
+            "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": true,
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 4,
+      "newBattles": [],
+      "ending": "lion-seal-trial-truth",
+      "checkpoint": "lion-final-judgement",
+      "securedGold": 435,
+      "temporaryGold": 0,
+      "gameReducedMotion": false,
+      "trustedTouches": 3,
+      "terminalMenu": {
+        "nativeKeyboard": false,
+        "nativeTouch": true,
+        "titleVisible": true,
+        "continueFocused": true,
+        "ownerUnchanged": true,
+        "savedBytesUnchanged": true
+      },
+      "geometry": [
+        {
+          "name": "ending-lion-seal-trial-truth",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "ending-lion-seal-trial-truth-resumed",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "ending-lion-seal-trial-truth-native-menu",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-preparation-game620-2125",
+      "output": "tmp/demo/poi-preparation-game620-2125",
+      "status": "SUCCEEDED",
+      "rawStatus": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_NATIVE_PREPARATION_GAME_REDUCTION_620",
+      "receiptSha256": "9c235339644dc27b84a76eec92efdcf893efb79fdc2d8bd4a8e96415bee24741",
+      "resultSha256": "1001fa2a05d6f96baa071cc2598eaaf3b58f975c2257970e766ca62446b1357e",
+      "parameters": {
+        "target": "preparation",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "gameReducedMotion": true,
+        "viewport": [
+          620,
+          780
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "d732e4da36e4a3c6fd88eb35a8c6c2004edfbfa7",
+        "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+            "sha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+            "sha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868"
+          }
+        ],
+        "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BL64qO_z.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/game-CBmlPJ0P.js",
+            "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": true,
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 3,
+      "newBattles": [],
+      "ending": null,
+      "checkpoint": "lion-second-refuge",
+      "securedGold": 235,
+      "temporaryGold": 0,
+      "gameReducedMotion": true,
+      "trustedTouches": 0,
+      "preparation": {
+        "exactV6": true,
+        "noHub": true,
+        "noNewSecuring": true
+      },
+      "geometry": [
+        {
+          "name": "lion-second-refuge-earned",
+          "width": 620,
+          "height": 780,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-second-refuge-resolved",
+          "width": 620,
+          "height": 780,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-poi-reusable-reloaded",
+          "width": 620,
+          "height": 780,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-native-rest",
+          "width": 620,
+          "height": 780,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-final-refuge-preparation",
+          "width": 620,
+          "height": 780,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-final-refuge-preparation-resumed",
+          "width": 620,
+          "height": 780,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-preparation-os1366-2126",
+      "output": "tmp/demo/poi-preparation-os1366-2126",
+      "status": "SUCCEEDED",
+      "rawStatus": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_NATIVE_PREPARATION_OS_REDUCTION_1366",
+      "receiptSha256": "21a1cb16cf103b5df041ea6f4e36471f0dc40b1a617c1226738496fe79ea4804",
+      "resultSha256": "1dbbe66a02e34ad71104b9d37501b7fe99884ea8aafe9586cc1faa9a62ef2eeb",
+      "parameters": {
+        "target": "preparation",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "gameReducedMotion": false,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": true,
+        "earnedSavePath": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "d732e4da36e4a3c6fd88eb35a8c6c2004edfbfa7",
+        "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+            "sha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+            "sha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868"
+          }
+        ],
+        "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BL64qO_z.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/game-CBmlPJ0P.js",
+            "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": true,
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 3,
+      "newBattles": [],
+      "ending": null,
+      "checkpoint": "lion-second-refuge",
+      "securedGold": 235,
+      "temporaryGold": 0,
+      "gameReducedMotion": false,
+      "trustedTouches": 0,
+      "preparation": {
+        "exactV6": true,
+        "noHub": true,
+        "noNewSecuring": true
+      },
+      "geometry": [
+        {
+          "name": "lion-second-refuge-earned",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-second-refuge-resolved",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-poi-reusable-reloaded",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-native-rest",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-final-refuge-preparation",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-final-refuge-preparation-resumed",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-preparation-touch-os390-2127",
+      "output": "tmp/demo/poi-preparation-touch-os390-2127",
+      "status": "SUCCEEDED",
+      "rawStatus": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_NATIVE_PREPARATION_OS_REDUCTION_TOUCH_390",
+      "receiptSha256": "22e85588a01a06115dbe516aabff0dbe4a300d290cf319325964266df1fe7e04",
+      "resultSha256": "3eff2a58c459592d91a25a6fdca2c83ee9e561bcbf707332e894d3acff1753f9",
+      "parameters": {
+        "target": "preparation",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "touchInput": true,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "gameReducedMotion": false,
+        "viewport": [
+          390,
+          844
+        ],
+        "osReducedMotion": true,
+        "earnedSavePath": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "d732e4da36e4a3c6fd88eb35a8c6c2004edfbfa7",
+        "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+            "sha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+            "sha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868"
+          }
+        ],
+        "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BL64qO_z.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/game-CBmlPJ0P.js",
+            "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": true,
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 3,
+      "newBattles": [],
+      "ending": null,
+      "checkpoint": "lion-second-refuge",
+      "securedGold": 235,
+      "temporaryGold": 0,
+      "gameReducedMotion": false,
+      "trustedTouches": 79,
+      "preparation": {
+        "exactV6": true,
+        "noHub": true,
+        "noNewSecuring": true
+      },
+      "geometry": [
+        {
+          "name": "lion-second-refuge-earned",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-second-refuge-resolved",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-poi-reusable-reloaded",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-native-rest",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-final-refuge-preparation",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-final-refuge-preparation-resumed",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-defeat-t1-touch-2150",
+      "output": "tmp/demo/poi-defeat-t1-touch-2150",
+      "status": "SUCCEEDED",
+      "rawStatus": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_NATIVE_DEFEAT_POSITIVE_LOOT_CHECKPOINT_TOUCH",
+      "receiptSha256": "f1bce04224b5f95a4250b7eb25a0dfdd3dd4d22d06cd21a69e755579cb08ec6d",
+      "resultSha256": "1e49f3457196938e05789b9828dc00dab550e4883f68725d372100c982a2b4e6",
+      "parameters": {
+        "target": "defeat-recovery",
+        "routePlan": "sacrifice",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-second-trial-combat",
+        "nativeDefeatWait": true,
+        "touchInput": true,
+        "nativeEquipment": false,
+        "trialPlan": "combat",
+        "gameReducedMotion": true,
+        "viewport": [
+          390,
+          844
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+        "priorProofPath": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "d732e4da36e4a3c6fd88eb35a8c6c2004edfbfa7",
+        "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+            "sha256": "95f2c787cbc0c6244c1d0e44e95ac123a9809d3669f28a92d783b9da260a0e5d"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+            "sha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d"
+          }
+        ],
+        "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BL64qO_z.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/game-CBmlPJ0P.js",
+            "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": true,
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 3,
+      "newBattles": [
+        {
+          "nodeId": "lion-second-trial-combat",
+          "combatId": "troll_crossing",
+          "pass": true,
+          "outcome": "defeat",
+          "rounds": 15,
+          "actions": 15,
+          "nativeDefeatDeployment": {
+            "picks": [
+              "dark_mage"
+            ],
+            "actualHealth": 75,
+            "nativeLivingClanOnly": true
+          },
+          "nativeBattlefieldTouches": 1,
+          "resolvedAttackActions": 0,
+          "resolvedSkillActions": 0,
+          "actualMotion": {
+            "effective": true,
+            "requestedGame": true
+          }
+        }
+      ],
+      "ending": null,
+      "checkpoint": "lion-first-refuge",
+      "securedGold": 20,
+      "temporaryGold": 0,
+      "gameReducedMotion": true,
+      "trustedTouches": 29,
+      "defeat": {
+        "checkpoint": "lion-first-refuge",
+        "temporaryGoldBefore": 210,
+        "temporaryGoldAfter": 0,
+        "securedGold": 20,
+        "entireExpectedRecoveredResumedEqual": true
+      },
+      "geometry": [
+        {
+          "name": "combat-3-deployment",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-result",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-native-defeat-return-focus",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "native-defeat-recovered",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "native-defeat-recovered-resumed",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-second-sacrifice-steel-2153",
+      "output": "tmp/demo/poi-second-sacrifice-steel-2153",
+      "status": "FAILED",
+      "rawStatus": "FAILED",
+      "reviewedDisposition": "NOT_ACCEPTED",
+      "receiptSha256": "6a2eefd4b717c10dad8a7b00de62d2beeb91903accfe57fe77e6d735640c1edf",
+      "resultSha256": "345614a2b0e17d1a52b39664be17a6543bf78e48e749abe2f60c2ddf098c6f49",
+      "parameters": {
+        "target": "second-refuge",
+        "routePlan": "sacrifice",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "combat",
+        "gameReducedMotion": true,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+        "priorProofPath": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "d732e4da36e4a3c6fd88eb35a8c6c2004edfbfa7",
+        "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+            "sha256": "95f2c787cbc0c6244c1d0e44e95ac123a9809d3669f28a92d783b9da260a0e5d"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+            "sha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d"
+          }
+        ],
+        "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BL64qO_z.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-DGLEfKFr.css",
+            "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/game-CBmlPJ0P.js",
+            "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": false,
+      "failure": "AssertionError [ERR_ASSERTION]: Actual battle ended without victory: ✦",
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 3,
+      "newBattles": [
+        {
+          "nodeId": "lion-second-trial-combat",
+          "combatId": "troll_crossing",
+          "pass": true,
+          "outcome": "victory",
+          "rounds": 12,
+          "actions": 69,
+          "nativeBattlefieldTouches": 0,
+          "resolvedAttackActions": 17,
+          "resolvedSkillActions": 8,
+          "actualMotion": {
+            "effective": true,
+            "requestedGame": true
+          }
+        },
+        {
+          "nodeId": "lion-village-choice",
+          "combatId": "village_raid",
+          "pass": false,
+          "rounds": 3,
+          "actions": 13,
+          "nativeBattlefieldTouches": 0,
+          "resolvedAttackActions": 2,
+          "resolvedSkillActions": 2,
+          "actualMotion": {
+            "effective": true,
+            "requestedGame": true
+          }
+        }
+      ],
+      "trustedTouches": 0,
+      "geometry": [
+        {
+          "name": "poi-after-valmir-return-path",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-valmir-already-healthy",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-valmir-prepared-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-deployment",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-native-keyboard-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-actual-impact",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-n_dark_bolt-11",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-16",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-25",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-28",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-29",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-n_dark_bolt-42",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-58",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-59",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-result",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-deployment",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-actual-impact",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_salvation-9",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_break_guard-11",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-result",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "failure-state",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-defeat-touch-final-ui-0113",
+      "output": "tmp/demo/poi-defeat-touch-final-ui-0113",
+      "status": "SUCCEEDED",
+      "rawStatus": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_FINAL_UI_NATIVE_DEFEAT_ROSTER_TOUCH_44PX_NO_LABEL_OVERLAP",
+      "receiptSha256": "370024087888351ee3dcfaa0153dd451b6b8e75a945e1484a3b715e7ef04cf54",
+      "resultSha256": "af0034f5296e3d9006e0bf1deed0abf98f64c8cdf5ea0c8b46dcb6dcf33c2b91",
+      "parameters": {
+        "target": "defeat-recovery",
+        "routePlan": "sacrifice",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-second-trial-combat",
+        "nativeDefeatWait": true,
+        "touchInput": true,
+        "nativeEquipment": false,
+        "trialPlan": "combat",
+        "gameReducedMotion": true,
+        "viewport": [
+          390,
+          844
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+        "priorProofPath": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "70a4a0aca0cd9b2887354dd7bc2b8a97ef7dd59d",
+        "sourceTree": "fcf7e608f321af152971c40276cae8f6f4731b50",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "117b0f123d2fb9c8388536332770979db401a310e9eb8e8b1ffca2624d4ea080"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+            "sha256": "95f2c787cbc0c6244c1d0e44e95ac123a9809d3669f28a92d783b9da260a0e5d"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+            "sha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d"
+          }
+        ],
+        "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BKuqErnf.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-Bfzo5C3d.js",
+            "sha256": "625980eb7ec5041b78391d2370ec6943b266546e21731f3e7039868730d735a0"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "0ec7717ad6489420b03c7dcab93c72065a0f86f7176e4a9d20a32525a933b687"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": true,
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 3,
+      "newBattles": [
+        {
+          "nodeId": "lion-second-trial-combat",
+          "combatId": "troll_crossing",
+          "pass": true,
+          "outcome": "defeat",
+          "rounds": 15,
+          "actions": 15,
+          "nativeDefeatDeployment": {
+            "picks": [
+              "dark_mage"
+            ],
+            "actualHealth": 75,
+            "nativeLivingClanOnly": true
+          },
+          "resultControlBounds": {
+            "x": 28,
+            "y": 514.9375,
+            "width": 334,
+            "height": 44
+          },
+          "deploymentTouch": {
+            "controls": [
+              {
+                "action": "prev",
+                "x": 131.34375,
+                "y": 726,
+                "width": 44,
+                "height": 44
+              },
+              {
+                "action": "next",
+                "x": 214.640625,
+                "y": 726,
+                "width": 44,
+                "height": 44
+              },
+              {
+                "action": "auto",
+                "x": 17,
+                "y": 783,
+                "width": 99.703125,
+                "height": 44
+              },
+              {
+                "action": "reset",
+                "x": 121.703125,
+                "y": 783,
+                "width": 99.71875,
+                "height": 44
+              },
+              {
+                "action": "start",
+                "x": 226.421875,
+                "y": 783,
+                "width": 146.578125,
+                "height": 44
+              },
+              {
+                "action": "prev",
+                "x": 130.34375,
+                "y": 726,
+                "width": 44,
+                "height": 44
+              },
+              {
+                "action": "next",
+                "x": 215.640625,
+                "y": 726,
+                "width": 44,
+                "height": 44
+              },
+              {
+                "action": "auto",
+                "x": 17,
+                "y": 783,
+                "width": 99.703125,
+                "height": 44
+              },
+              {
+                "action": "reset",
+                "x": 121.703125,
+                "y": 783,
+                "width": 99.71875,
+                "height": 44
+              },
+              {
+                "action": "start",
+                "x": 226.421875,
+                "y": 783,
+                "width": 146.578125,
+                "height": 44
+              }
+            ],
+            "roster": [
+              "warrior",
+              "white_mage",
+              "dark_mage",
+              "archer",
+              "rogue"
+            ],
+            "deployed": [
+              "dark_mage"
+            ],
+            "exactOwnerUnchanged": true,
+            "exactSaveUnchanged": true,
+            "nativePagination": true
+          },
+          "nativeBattlefieldTouches": 1,
+          "resolvedAttackActions": 0,
+          "resolvedSkillActions": 0,
+          "actualMotion": {
+            "effective": true,
+            "requestedGame": true
+          }
+        }
+      ],
+      "ending": null,
+      "checkpoint": "lion-first-refuge",
+      "securedGold": 20,
+      "temporaryGold": 0,
+      "gameReducedMotion": true,
+      "trustedTouches": 31,
+      "defeat": {
+        "checkpoint": "lion-first-refuge",
+        "temporaryGoldBefore": 210,
+        "temporaryGoldAfter": 0,
+        "securedGold": 20,
+        "entireExpectedRecoveredResumedEqual": true
+      },
+      "geometry": [
+        {
+          "name": "combat-3-deployment",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-result",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-native-defeat-return-focus",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "native-defeat-recovered",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "native-defeat-recovered-resumed",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-sacrifice-rested-final-0113",
+      "output": "tmp/demo/poi-sacrifice-rested-final-0113",
+      "status": "FAILED",
+      "rawStatus": "FAILED",
+      "reviewedDisposition": "NOT_ACCEPTED",
+      "receiptSha256": "ecd826aaade70d31edc027dc6ab4fd35abef01f095c129b95760172208318f2e",
+      "resultSha256": "fb7689e0a8fc716a6efc5f20f33e08be1acaa686bc49c253cb6b99482bcd5ee7",
+      "parameters": {
+        "target": "second-refuge",
+        "routePlan": "sacrifice",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "combat",
+        "gameReducedMotion": true,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+        "priorProofPath": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "70a4a0aca0cd9b2887354dd7bc2b8a97ef7dd59d",
+        "sourceTree": "fcf7e608f321af152971c40276cae8f6f4731b50",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "117b0f123d2fb9c8388536332770979db401a310e9eb8e8b1ffca2624d4ea080"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+            "sha256": "95f2c787cbc0c6244c1d0e44e95ac123a9809d3669f28a92d783b9da260a0e5d"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+            "sha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d"
+          }
+        ],
+        "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BKuqErnf.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-Bfzo5C3d.js",
+            "sha256": "625980eb7ec5041b78391d2370ec6943b266546e21731f3e7039868730d735a0"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "0ec7717ad6489420b03c7dcab93c72065a0f86f7176e4a9d20a32525a933b687"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": false,
+      "failure": "AssertionError [ERR_ASSERTION]: Resolved refuge departure repeated a one-shot effect",
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 3,
+      "newBattles": [
+        {
+          "nodeId": "lion-second-trial-combat",
+          "combatId": "troll_crossing",
+          "pass": true,
+          "outcome": "victory",
+          "rounds": 12,
+          "actions": 69,
+          "resultControlBounds": {
+            "x": 454,
+            "y": 530.3125,
+            "width": 458,
+            "height": 44
+          },
+          "nativeBattlefieldTouches": 0,
+          "resolvedAttackActions": 17,
+          "resolvedSkillActions": 8,
+          "actualMotion": {
+            "effective": true,
+            "requestedGame": true
+          }
+        }
+      ],
+      "trustedTouches": 0,
+      "geometry": [
+        {
+          "name": "poi-after-valmir-return-path",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-valmir-already-healthy",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-valmir-prepared-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-deployment",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-native-keyboard-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-actual-impact",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-n_dark_bolt-11",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-16",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-25",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-28",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-29",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-n_dark_bolt-42",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-58",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-59",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-result",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-trial-return-path",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-trial-paid-rest",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "failure-state",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-t3-touch-os-final-0115",
+      "output": "tmp/demo/poi-t3-touch-os-final-0115",
+      "status": "INTERRUPTED",
+      "rawStatus": "RUNNING",
+      "reviewedDisposition": "NOT_ACCEPTED",
+      "ownerDisposition": {
+        "path": "tmp/demo/poi-t3-touch-os-final-0115/owner-interruption.json",
+        "sha256": "dc5ad3d03ed1f43f8f105a07413ddd876b8a61a038f03310cf6d8360055c2250"
+      },
+      "receiptSha256": "58f01e3df2782b9f55932e659c133be5bf4a0d4b46782b434ad5314f66fc673b",
+      "parameters": {
+        "target": "preparation",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "touchInput": true,
+        "nativeEquipment": true,
+        "trialPlan": "combat",
+        "gameReducedMotion": false,
+        "viewport": [
+          390,
+          844
+        ],
+        "osReducedMotion": true,
+        "earnedSavePath": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "70a4a0aca0cd9b2887354dd7bc2b8a97ef7dd59d",
+        "sourceTree": "fcf7e608f321af152971c40276cae8f6f4731b50",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "117b0f123d2fb9c8388536332770979db401a310e9eb8e8b1ffca2624d4ea080"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+            "sha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+            "sha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868"
+          }
+        ],
+        "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BKuqErnf.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-Bfzo5C3d.js",
+            "sha256": "625980eb7ec5041b78391d2370ec6943b266546e21731f3e7039868730d735a0"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "0ec7717ad6489420b03c7dcab93c72065a0f86f7176e4a9d20a32525a933b687"
+          }
+        ]
+      },
+      "noRuntimeMutation": false,
+      "noOutcomeInjection": false,
+      "inheritedBattles": 0
+    },
+    {
+      "jobId": "poi-second-trial-earned-0141",
+      "output": "tmp/demo/poi-second-trial-earned-0141",
+      "status": "SUCCEEDED",
+      "rawStatus": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_NATIVE_T1_VICTORY_POSITIVE_LOOT_EXACT_RELOAD_SEED",
+      "receiptSha256": "b27cef8964b406c902532abb06f9f39ac443f7b925d3506f7d50708452d88454",
+      "resultSha256": "62360ce6eb06734555532fd507a1dae4189cb3c228dbf242748919c1ca6cdfe3",
+      "parameters": {
+        "target": "second-trial",
+        "routePlan": "sacrifice",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "combat",
+        "gameReducedMotion": true,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+        "priorProofPath": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "8fa8ea90e48d2e1340472ad904e263b989d96029",
+        "sourceTree": "fcf7e608f321af152971c40276cae8f6f4731b50",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "2d3ee60fb36fb3286e6e78fa3fb3350caaec0fc42a9d3a0e6032ce5c4a14595e"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+            "sha256": "95f2c787cbc0c6244c1d0e44e95ac123a9809d3669f28a92d783b9da260a0e5d"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+            "sha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d"
+          }
+        ],
+        "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BKuqErnf.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-Bfzo5C3d.js",
+            "sha256": "625980eb7ec5041b78391d2370ec6943b266546e21731f3e7039868730d735a0"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "0ec7717ad6489420b03c7dcab93c72065a0f86f7176e4a9d20a32525a933b687"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": true,
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 3,
+      "newBattles": [
+        {
+          "nodeId": "lion-second-trial-combat",
+          "combatId": "troll_crossing",
+          "pass": true,
+          "outcome": "victory",
+          "rounds": 12,
+          "actions": 69,
+          "resultControlBounds": {
+            "x": 454,
+            "y": 530.3125,
+            "width": 458,
+            "height": 44
+          },
+          "nativeBattlefieldTouches": 0,
+          "resolvedAttackActions": 17,
+          "resolvedSkillActions": 8,
+          "actualMotion": {
+            "effective": true,
+            "requestedGame": true
+          }
+        }
+      ],
+      "ending": null,
+      "checkpoint": "lion-first-refuge",
+      "securedGold": 20,
+      "temporaryGold": 390,
+      "gameReducedMotion": true,
+      "trustedTouches": 0,
+      "geometry": [
+        {
+          "name": "combat-3-deployment",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-native-keyboard-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-actual-impact",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-n_dark_bolt-11",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-16",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-25",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-28",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-29",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-n_dark_bolt-42",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-58",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-59",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-result",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-second-trial-resolved-neutralized",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-second-trial-native-reloaded",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-t3-touch-ready-final-0141",
+      "output": "tmp/demo/poi-t3-touch-ready-final-0141",
+      "status": "SUCCEEDED",
+      "rawStatus": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_FINAL_UI_NATIVE_T3_OFFENSIVE_TOUCH_OS_PREPARATION_EXACT_LOOT",
+      "receiptSha256": "a3059b4252c9efe8e0e5c5f396b15d27debf065e450ba0fb77bb1b1bbd55ed81",
+      "resultSha256": "cb301a4c9fabd6581c7836e35032e61b97ce174253efb6f3fa6cea143efb9608",
+      "parameters": {
+        "target": "preparation",
+        "routePlan": "rescue",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "touchInput": true,
+        "nativeEquipment": true,
+        "trialPlan": "combat",
+        "gameReducedMotion": false,
+        "viewport": [
+          390,
+          844
+        ],
+        "osReducedMotion": true,
+        "earnedSavePath": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "8fa8ea90e48d2e1340472ad904e263b989d96029",
+        "sourceTree": "fcf7e608f321af152971c40276cae8f6f4731b50",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "2d3ee60fb36fb3286e6e78fa3fb3350caaec0fc42a9d3a0e6032ce5c4a14595e"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+            "sha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+            "sha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868"
+          }
+        ],
+        "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BKuqErnf.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-Bfzo5C3d.js",
+            "sha256": "625980eb7ec5041b78391d2370ec6943b266546e21731f3e7039868730d735a0"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "0ec7717ad6489420b03c7dcab93c72065a0f86f7176e4a9d20a32525a933b687"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": true,
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 3,
+      "newBattles": [
+        {
+          "nodeId": "lion-final-trial-combat",
+          "combatId": "ruins_guardians",
+          "pass": true,
+          "outcome": "victory",
+          "rounds": 4,
+          "actions": 34,
+          "resultControlBounds": {
+            "x": 28,
+            "y": 594.640625,
+            "width": 334,
+            "height": 44
+          },
+          "deploymentTouch": {
+            "controls": [
+              {
+                "action": "prev",
+                "x": 131.34375,
+                "y": 726,
+                "width": 44,
+                "height": 44
+              },
+              {
+                "action": "next",
+                "x": 214.640625,
+                "y": 726,
+                "width": 44,
+                "height": 44
+              },
+              {
+                "action": "auto",
+                "x": 17,
+                "y": 783,
+                "width": 99.703125,
+                "height": 44
+              },
+              {
+                "action": "reset",
+                "x": 121.703125,
+                "y": 783,
+                "width": 99.71875,
+                "height": 44
+              },
+              {
+                "action": "start",
+                "x": 226.421875,
+                "y": 783,
+                "width": 146.578125,
+                "height": 44
+              },
+              {
+                "action": "prev",
+                "x": 130.34375,
+                "y": 726,
+                "width": 44,
+                "height": 44
+              },
+              {
+                "action": "next",
+                "x": 215.640625,
+                "y": 726,
+                "width": 44,
+                "height": 44
+              },
+              {
+                "action": "auto",
+                "x": 17,
+                "y": 783,
+                "width": 99.703125,
+                "height": 44
+              },
+              {
+                "action": "reset",
+                "x": 121.703125,
+                "y": 783,
+                "width": 99.71875,
+                "height": 44
+              },
+              {
+                "action": "start",
+                "x": 226.421875,
+                "y": 783,
+                "width": 146.578125,
+                "height": 44
+              }
+            ],
+            "roster": [
+              "warrior",
+              "white_mage",
+              "dark_mage",
+              "archer",
+              "rogue",
+              "lancer"
+            ],
+            "deployed": [
+              "warrior",
+              "white_mage",
+              "dark_mage",
+              "archer"
+            ],
+            "exactOwnerUnchanged": true,
+            "exactSaveUnchanged": true,
+            "nativePagination": true
+          },
+          "nativeBattlefieldTouches": 21,
+          "resolvedAttackActions": 5,
+          "resolvedSkillActions": 6,
+          "actualMotion": {
+            "effective": true,
+            "requestedGame": false
+          }
+        }
+      ],
+      "ending": null,
+      "checkpoint": "lion-second-refuge",
+      "securedGold": 147,
+      "temporaryGold": 110,
+      "gameReducedMotion": false,
+      "trustedTouches": 252,
+      "preparation": {
+        "exactV6": true,
+        "noHub": true,
+        "noNewSecuring": true
+      },
+      "geometry": [
+        {
+          "name": "lion-second-refuge-earned",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-second-refuge-resolved",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-poi-reusable-reloaded",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-native-steel-equipment",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-native-rest",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-deployment",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-actual-impact",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-n_dark_bolt-11",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-n_dark_bolt-12",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-17",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-25",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-26",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-31",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-result",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-final-combat-resolved-neutralized",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": [
+            {
+              "label": "⚔Ruines infestées✓",
+              "x": 342.5234375,
+              "y": 524.25,
+              "right": 453.7265625,
+              "bottom": 597.25
+            }
+          ]
+        },
+        {
+          "name": "poi-final-refuge-preparation",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-final-refuge-preparation-resumed",
+          "width": 390,
+          "height": 844,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-sacrifice-prepared-final",
+      "output": "tmp/demo/poi-sacrifice-prepared-final",
+      "status": "FAILED",
+      "rawStatus": "FAILED",
+      "reviewedDisposition": "NOT_ACCEPTED",
+      "receiptSha256": "77d70cccd60e1e017f5b4e79dbfd326bea4edc7c58a41a4a4d77e9dc1af4245f",
+      "resultSha256": "e20276409b1ff4bff5886c60a3b5293ba51e63515a0a2f7a82aaf2ea8cdf394f",
+      "parameters": {
+        "target": "second-refuge",
+        "routePlan": "sacrifice",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "combat",
+        "gameReducedMotion": true,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-second-trial-earned-0141/earned-second-trial-v6.json",
+        "priorProofPath": "tmp/demo/poi-second-trial-earned-0141/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "2a20cbdc119527dd1e072aa2ef3652061da6c9ec",
+        "sourceTree": "fcf7e608f321af152971c40276cae8f6f4731b50",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "2d3ee60fb36fb3286e6e78fa3fb3350caaec0fc42a9d3a0e6032ce5c4a14595e"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-second-trial-earned-0141/earned-second-trial-v6.json",
+            "sha256": "46740a093c6ceb27c95414f7469b32df537a59f7b944e457449726bf0086649a"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-second-trial-earned-0141/results.json",
+            "sha256": "62360ce6eb06734555532fd507a1dae4189cb3c228dbf242748919c1ca6cdfe3"
+          }
+        ],
+        "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BKuqErnf.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-Bfzo5C3d.js",
+            "sha256": "625980eb7ec5041b78391d2370ec6943b266546e21731f3e7039868730d735a0"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "0ec7717ad6489420b03c7dcab93c72065a0f86f7176e4a9d20a32525a933b687"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": false,
+      "failure": "AssertionError [ERR_ASSERTION]: Refuge departure changed truth beyond the fresh canonical petition marker",
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 4,
+      "newBattles": [],
+      "trustedTouches": 0,
+      "geometry": [
+        {
+          "name": "poi-after-trial-return-path",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-trial-paid-rest",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "failure-state",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-sacrifice-prepared-final-replay",
+      "output": "tmp/demo/poi-sacrifice-prepared-final-replay",
+      "status": "FAILED",
+      "rawStatus": "FAILED",
+      "reviewedDisposition": "NOT_ACCEPTED",
+      "receiptSha256": "03f1bcf379260d57f1ac1e8d4dd34f298b3a650ae93523890222af755d621a3c",
+      "resultSha256": "9223be272de362c9383d1e32d902d52fcd46b604753c510790e1f741917687e1",
+      "parameters": {
+        "target": "second-refuge",
+        "routePlan": "sacrifice",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "combat",
+        "gameReducedMotion": true,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-second-trial-earned-0141/earned-second-trial-v6.json",
+        "priorProofPath": "tmp/demo/poi-second-trial-earned-0141/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "85d2f91e09d90ffabdb8e8c61112268ebb365688",
+        "sourceTree": "fcf7e608f321af152971c40276cae8f6f4731b50",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "6b1d4c08da1af18b5cacdc21ad5cee6129eebb9bc9a876966de85a7caac0cbe6"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-second-trial-earned-0141/earned-second-trial-v6.json",
+            "sha256": "46740a093c6ceb27c95414f7469b32df537a59f7b944e457449726bf0086649a"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-second-trial-earned-0141/results.json",
+            "sha256": "62360ce6eb06734555532fd507a1dae4189cb3c228dbf242748919c1ca6cdfe3"
+          }
+        ],
+        "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BKuqErnf.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-Bfzo5C3d.js",
+            "sha256": "625980eb7ec5041b78391d2370ec6943b266546e21731f3e7039868730d735a0"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "0ec7717ad6489420b03c7dcab93c72065a0f86f7176e4a9d20a32525a933b687"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": false,
+      "failure": "AssertionError [ERR_ASSERTION]: Actual battle ended without victory: ✦",
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 4,
+      "newBattles": [
+        {
+          "nodeId": "lion-village-choice",
+          "combatId": "village_raid",
+          "pass": false,
+          "rounds": 6,
+          "actions": 29,
+          "resultControlBounds": {
+            "x": 454,
+            "y": 494.3125,
+            "width": 458,
+            "height": 44
+          },
+          "nativeBattlefieldTouches": 0,
+          "resolvedAttackActions": 5,
+          "resolvedSkillActions": 6,
+          "actualMotion": {
+            "effective": true,
+            "requestedGame": true
+          }
+        }
+      ],
+      "trustedTouches": 0,
+      "postTrialPreparation": {
+        "cost": 45,
+        "funding": [
+          {
+            "id": "red_gem",
+            "price": 25
+          }
+        ],
+        "servicesTemporaryLootUnchanged": true,
+        "checkpointUnchanged": true,
+        "departureEvents": [
+          {
+            "sequence": "rep_event_public_petition",
+            "temporaryCost": 35,
+            "reputationDelta": 3,
+            "temporaryBefore": 390,
+            "temporaryAfter": 355,
+            "reputationBefore": 41,
+            "reputationAfter": 44
+          }
+        ]
+      },
+      "geometry": [
+        {
+          "name": "poi-after-trial-return-path",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-trial-paid-rest",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-trial-prepared-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-deployment",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-native-keyboard-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-actual-impact",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-n_dark_bolt-11",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_salvation-15",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_break_guard-18",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_salvation-22",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_salvation-26",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_salvation-27",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-result",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "failure-state",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-sacrifice-rogue-supplies-final",
+      "output": "tmp/demo/poi-sacrifice-rogue-supplies-final",
+      "status": "SUCCEEDED",
+      "rawStatus": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_NATIVE_T1_COMBAT_PREPARED_RAID_SECOND_REFUGE_EXACT_V6",
+      "receiptSha256": "1cc7d97bf4c1438f5223f8c6e94a3b3259875bd84c0d273b25ad7920bef7939e",
+      "resultSha256": "9a49da070ca91b5f910063abe51845e99b23865d05fb2b8a8e6bab569cd550ec",
+      "parameters": {
+        "target": "second-refuge",
+        "routePlan": "sacrifice",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "combat",
+        "gameReducedMotion": true,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-second-trial-earned-0141/earned-second-trial-v6.json",
+        "priorProofPath": "tmp/demo/poi-second-trial-earned-0141/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "07a0c0f66e12b27978ce278103e4a94df703cdc9",
+        "sourceTree": "fcf7e608f321af152971c40276cae8f6f4731b50",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "c7a7de388c5307727518bad69520ec3b54fc038eed82b05c06212d9b46286008"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-second-trial-earned-0141/earned-second-trial-v6.json",
+            "sha256": "46740a093c6ceb27c95414f7469b32df537a59f7b944e457449726bf0086649a"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-second-trial-earned-0141/results.json",
+            "sha256": "62360ce6eb06734555532fd507a1dae4189cb3c228dbf242748919c1ca6cdfe3"
+          }
+        ],
+        "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BKuqErnf.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-Bfzo5C3d.js",
+            "sha256": "625980eb7ec5041b78391d2370ec6943b266546e21731f3e7039868730d735a0"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "0ec7717ad6489420b03c7dcab93c72065a0f86f7176e4a9d20a32525a933b687"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": true,
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 4,
+      "newBattles": [
+        {
+          "nodeId": "lion-village-choice",
+          "combatId": "village_raid",
+          "pass": true,
+          "outcome": "victory",
+          "rounds": 13,
+          "actions": 59,
+          "preparedRaidParty": {
+            "preferred": [
+              "white_mage",
+              "warrior",
+              "rogue",
+              "dark_mage"
+            ],
+            "picks": [
+              "white_mage",
+              "warrior",
+              "rogue",
+              "dark_mage"
+            ],
+            "limit": 4,
+            "existingLivingClanOnly": true
+          },
+          "resultControlBounds": {
+            "x": 454,
+            "y": 530.3125,
+            "width": 458,
+            "height": 44
+          },
+          "nativeBattlefieldTouches": 0,
+          "resolvedAttackActions": 7,
+          "resolvedSkillActions": 18,
+          "actualMotion": {
+            "effective": true,
+            "requestedGame": true
+          }
+        }
+      ],
+      "ending": null,
+      "checkpoint": "lion-second-refuge",
+      "securedGold": 775,
+      "temporaryGold": 0,
+      "gameReducedMotion": true,
+      "trustedTouches": 0,
+      "postTrialPreparation": {
+        "cost": 45,
+        "funding": [
+          {
+            "id": "red_gem",
+            "price": 25
+          }
+        ],
+        "servicesTemporaryLootUnchanged": true,
+        "checkpointUnchanged": true,
+        "supplyPurchase": {
+          "quantity": 2,
+          "price": 15,
+          "funding": [
+            {
+              "id": "red_gem",
+              "category": "materials",
+              "price": 25
+            },
+            {
+              "id": "antidote",
+              "category": "consumables",
+              "price": 5
+            }
+          ],
+          "exactAutosave": true
+        },
+        "departureEvents": [
+          {
+            "sequence": "rep_event_public_petition",
+            "temporaryCost": 35,
+            "reputationDelta": 3,
+            "temporaryBefore": 390,
+            "temporaryAfter": 355,
+            "reputationBefore": 41,
+            "reputationAfter": 44
+          }
+        ]
+      },
+      "geometry": [
+        {
+          "name": "poi-after-trial-return-path",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-trial-paid-rest",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-trial-native-potion-stock",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-trial-prepared-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-deployment",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-native-keyboard-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-ro_sneak_attack-9",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-actual-impact",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-n_dark_bolt-12",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_break_guard-19",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_salvation-22",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_salvation-24",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_salvation-25",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_salvation-27",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_break_guard-29",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_salvation-32",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_salvation-36",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_salvation-41",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_break_guard-43",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_break_guard-44",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_salvation-46",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_salvation-50",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_salvation-52",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_break_guard-54",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-w_break_guard-58",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-4-result",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-earned",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-second-refuge-resolved",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-poi-reusable-reloaded",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        }
+      ]
+    },
+    {
+      "jobId": "poi-sacrifice-event-route-final",
+      "output": "tmp/demo/poi-sacrifice-event-route-final",
+      "status": "SUCCEEDED",
+      "rawStatus": "SUCCEEDED",
+      "reviewedDisposition": "ACCEPTED_SCOPED_NATIVE_T1_SHRINE_RAID_SECOND_REFUGE_EXACT_V6",
+      "receiptSha256": "d9546fbd5e3934b526da5c84b22e65681ee72000c1502670d4253374583e33a8",
+      "resultSha256": "188d2a8db2207006550d3902109cfefe0a4b07a61fe583e43493c4507d2931fa",
+      "parameters": {
+        "target": "second-refuge",
+        "routePlan": "sacrifice",
+        "timeoutMinutes": 45,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-final-trial-combat",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "gameReducedMotion": true,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+        "priorProofPath": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+        "verifySalvation": false
+      },
+      "execution": {
+        "gitHead": "07a0c0f66e12b27978ce278103e4a94df703cdc9",
+        "sourceTree": "fcf7e608f321af152971c40276cae8f6f4731b50",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "c7a7de388c5307727518bad69520ec3b54fc038eed82b05c06212d9b46286008"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+            "sha256": "95f2c787cbc0c6244c1d0e44e95ac123a9809d3669f28a92d783b9da260a0e5d"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+            "sha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d"
+          }
+        ],
+        "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+            "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+          },
+          {
+            "path": "dist/assets/combat-BKuqErnf.js",
+            "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-Bfzo5C3d.js",
+            "sha256": "625980eb7ec5041b78391d2370ec6943b266546e21731f3e7039868730d735a0"
+          },
+          {
+            "path": "dist/assets/game-C2Tjl8Gd.css",
+            "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "0ec7717ad6489420b03c7dcab93c72065a0f86f7176e4a9d20a32525a933b687"
+          }
+        ]
+      },
+      "stable": true,
+      "pass": true,
+      "noRuntimeMutation": true,
+      "noOutcomeInjection": true,
+      "errors": [],
+      "inheritedBattles": 3,
+      "newBattles": [
+        {
+          "nodeId": "lion-village-choice",
+          "combatId": "village_raid",
+          "pass": true,
+          "outcome": "victory",
+          "rounds": 15,
+          "actions": 73,
+          "preparedRaidParty": {
+            "preferred": [
+              "white_mage",
+              "warrior",
+              "rogue",
+              "dark_mage"
+            ],
+            "picks": [
+              "white_mage",
+              "warrior",
+              "rogue",
+              "dark_mage"
+            ],
+            "limit": 4,
+            "existingLivingClanOnly": true
+          },
+          "resultControlBounds": {
+            "x": 454,
+            "y": 530.3125,
+            "width": 458,
+            "height": 44
+          },
+          "nativeBattlefieldTouches": 0,
+          "resolvedAttackActions": 8,
+          "resolvedSkillActions": 22,
+          "actualMotion": {
+            "effective": true,
+            "requestedGame": true
+          }
+        }
+      ],
+      "ending": null,
+      "checkpoint": "lion-second-refuge",
+      "securedGold": 700,
+      "temporaryGold": 0,
+      "gameReducedMotion": true,
+      "trustedTouches": 0,
+      "geometry": [
+        {
+          "name": "poi-after-valmir-return-path",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-valmir-already-healthy",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-after-valmir-prepared-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-deployment",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-native-keyboard-return",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-ro_sneak_attack-9",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-actual-impact",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-n_dark_bolt-12",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-19",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-22",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-24",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-25",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-27",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-29",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-32",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-36",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-40",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-45",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-47",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-50",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-54",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-59",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-61",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-64",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-67",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_salvation-69",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-71",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-w_break_guard-73",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "combat-3-result",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-earned",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "poi-second-refuge-resolved",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        },
+        {
+          "name": "lion-second-refuge-poi-reusable-reloaded",
+          "width": 1366,
+          "height": 768,
+          "overflow": 0,
+          "markerLabelOverlaps": [],
+          "controlsOutsideViewport": []
+        }
+      ]
+    }
+  ]
+}

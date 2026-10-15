@@ -1,10 +1,12 @@
 # POI finalization — codex-poi-finalization-20261014
 
-IN_PROGRESS. Both native endings completed with exact terminal/menu/reload: trial32rounds/168actions and Serpent12rounds/76actions. Actual positive-loot defeat on touch390:210temporarygold lost, secured20 retained, original First-refuge checkpoint and entire V6 exact after reload. Native OS/game reduction preparation and touch terminal/choices pass scoped cases. Final UI source/build70a4a0a separates map anchors and enlarges controls; independent final-build recovery checks44px targets/fullroster/31trustedtaps and no label overlap. Five inherited Journey failures closed;149focused/19helper/type/build/contracts green. No full demo, balance or retirement claim.
+READY_FOR_PUBLICATION. Both native truth endings/terminal/menu/exact reload; T0/T1/T3 combat alternatives, rescue and prepared sacrifice throughSecond refuge; actual positive-loot defeat/exact checkpoint recovery; OS/game reduction and390touch offensive combat. Five inherited Journey failures closed;149focused/19helper/type/build/8contracts8slots green. Human full-demo/hardware/general-balance acceptance remains open.
 
-Player-visible changes: restore authored preparation/local map return; native saved reduction control. Native equipment purchases/equipment/sale/rest remain existing game rules. Traversal dependency inventory retained, no deletion. All229preceding QA jobs and deferred skills/keyboard/narrative objects match baseline exactly.
+Product: authored preparation/local map return, saved reduction control, separated narrow map anchors and44px mobile actions/pagination. No canon/tactical/economy/schema change. All229preceding jobs/deferred objects exact;16accepted scopes,7FAILED/2INTERRUPTED unseedable. Physical Traversal retained; static inventory is not retirement acceptance.
 
-Next: Finish prepared sacrifice/raid to Second refuge from successful exact T1 seed46740a09; final selected proof, canonical docs, independent matrix and dev publication. T1/T3 combat alternatives accepted scoped. Retain physical Traversal.
+Report:[finalization](../reports/poi-map-finalization-2026-10-14.md). Handoff:[current closeout](handoffs/2026-10-15T0618Z-codex-poi-finalization.md).
+
+Next: Complete independent final matrix, selected proof/docs publication, live parity and owned-lock release
 
 ## Preserved preceding closeout
 
@@ -1344,6 +1346,8 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - poi-t3-touch-ready-final-0141: SUCCEEDED; port 5430; receipt `tmp/demo/poi-t3-touch-ready-final-0141/qa-job.json`; NOT_ACCEPTED
 - poi-sacrifice-prepared-final: FAILED; port 5431; receipt `tmp/demo/poi-sacrifice-prepared-final/qa-job.json`; NOT_ACCEPTED
 - poi-sacrifice-prepared-final-replay: FAILED; port 5432; receipt `tmp/demo/poi-sacrifice-prepared-final-replay/qa-job.json`; NOT_ACCEPTED
+- poi-sacrifice-rogue-supplies-final: SUCCEEDED; port 5433; receipt `tmp/demo/poi-sacrifice-rogue-supplies-final/qa-job.json`; NOT_ACCEPTED
+- poi-sacrifice-event-route-final: SUCCEEDED; port 5434; receipt `tmp/demo/poi-sacrifice-event-route-final/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

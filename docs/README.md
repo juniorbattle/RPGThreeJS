@@ -12,7 +12,7 @@ The [game constitution](game/GAME_CONSTITUTION.md) and [locked production contra
 ## Start here
 
 - [Current project status](project/CURRENT_STATUS.md), [demo roadmap](project/DEMO_ROADMAP.md), [post-demo roadmap](project/POST_DEMO_ROADMAP.md), and [engineering rules](project/ENGINEERING_RULES.md).
-- [Production POI navigation](project/POI_NAVIGATION.md), [second-refuge integration](reports/poi-map-integration-2026-10-14.md) and [remaining finalization](reports/poi-map-finalization-2026-10-14.md). The [Traversal reference](traversal/README.md), [old T0 contract](traversal/T0_PRODUCTION_CONTRACT.md) and [leg audit](traversal/LEGS_ROADMAP.md) remain historical navigation/compatibility references under the current LOCKED POI successor doctrine.
+- [Production POI navigation](project/POI_NAVIGATION.md), [second-refuge integration](reports/poi-map-integration-2026-10-14.md) and [campaign finalization](reports/poi-map-finalization-2026-10-14.md). The [Traversal reference](traversal/README.md), [old T0 contract](traversal/T0_PRODUCTION_CONTRACT.md) and [leg audit](traversal/LEGS_ROADMAP.md) remain historical navigation/compatibility references under the current LOCKED POI successor doctrine.
 - [Content map](content/README.md) and [demo content map](content/DEMO_CONTENT_MAP.md).
 - [Historical reports](reports/README.md) and [report index](reports/INDEX.md).
 - [Repository inventory and proposed cleanup](audits/project-continuity-audit-1.md). No deletion is authorized by the plan alone.

@@ -1,0 +1,26 @@
+# POI finalization — reviewed candidate for operator playtest
+
+Run `codex-poi-finalization-20261014`, started2026-10-14T20:08:10Z. The operator resumed the remaining campaign endings, authored alternatives, POI defeat, motion/mobile and five inherited Journey failures. Current stage: independent final twelve-row review PASS scoped; selected proof/docs publication and operational closure follow. Earlier first/second-refuge closeouts remain historical; the scheduler is unchanged.
+
+**Product changed.** Existing three-actor final preparation is reconstructed on arrival/reload with local map return before explicit Judgement. The map exposes the existing saved reduction preference; Journey forwards it to NarrativeStage while retaining OS reduction. Cross-panel map anchors separate narrow labels, and mobile deployment/result/pagination controls measure44px. Five inherited Journey timing failures now wait for actual readiness, preserving their original expectations. No new canon, reward, hub, schema, tactical rule or media slot.
+
+**New playable step.** Both native truth endings/terminal/menu/exact reload; fresh T0/T1/T3 combat alternatives; rescue and sacrifice; actual positive-loot defeat/exact checkpoint recovery; OS/game reduction and390touch offensive combat/preparation/terminal. Troll→Raid wins13rounds/59actions and reaches reusable Second refuge775gold/22rep. Shrine→Raid wins15rounds/73actions, Second refuge700gold/14rep. Both retain missionSuccess=false/missionGreed=true, zero temporary loot and whole earned V6=resumed. Native rest45, two potions15each and public petition35temporary/+3rep are existing paid/canonical consequences, fully audited.
+
+**Precise blocker.** None for the requested POI implementation/native milestones. Final human artistic/balance/full-demo and physical-device review remain open, as do the separately preserved six-hero skills, mounted keyboard and narrative/manual findings. The two native truth endings and recorded route combinations do not certify every moral-ending permutation. Mobile maps intentionally pan horizontally; no all-markers-at-once/manual-swipe certification.
+
+**Next product action.** Deliver the candidate for the operator's final playtest using the route in the [final report](../../reports/poi-map-finalization-2026-10-14.md). Production preview http://127.0.0.1:5175/ remains available; user storage is untouched. No additional browser case, boss replay, physical-road polish, scheduler reactivation or Traversal retirement belongs to this closeout.
+
+Runtime checkpoint `70a4a0aca0cd9b2887354dd7bc2b8a97ef7dd59d`, source tree `fcf7e608f321af152971c40276cae8f6f4731b50`; final pilot `07a0c0f66e12b27978ce278103e4a94df703cdc9`, SHA256 `c7a7de388c5307727518bad69520ec3b54fc038eed82b05c06212d9b46286008`. Earlier executions retain independent frozen identities. Source/driver/helper/nine production inputs are archived under ignored tmp/autonomy/; the [compact proof](../../reports/poi-map-finalization-2026-10-14/results.json) records each exact input, bundle, receipt and result identity.
+
+Admissible successful continuation pairs, subject to future source/build compatibility:
+
+- `tmp/demo/poi-sacrifice-rogue-supplies-final/results.json`:9a49da070ca91b5f910063abe51845e99b23865d05fb2b8a8e6bab569cd550ec; earned-lion-second-refuge-v6.json:a15649f5ff11fbce361d538a7c13b03e4a80455134d83f258f5f8129184022ee.
+- `tmp/demo/poi-sacrifice-event-route-final/results.json`:188d2a8db2207006550d3902109cfefe0a4b07a61fe583e43493c4507d2931fa; earned-lion-second-refuge-v6.json:982355eac224a51a189f393478e0dc8198c0bd2eb5c12ba4117a9322395c2808.
+
+Verification:149focused source tests,19existing QA continuity tests, types/build,8contracts/8slots/eightMP4/immutable and working LOCKED/whitespace gates pass. Fresh staging validator passes75reachable dialogues/257dialogue steps/282runtime presentation steps. Independent guardian has accepted16native scopes; final selected-package matrix is recorded in the report.25current native executions include7FAILED and2INTERRUPTED, retained unseedable with original receipts/sidecars. All229preceding QA jobs and deferredDemoTask/pendingNarrativeTask match the starting baseline exactly.
+
+Counts: runtime5/test2/existingQA2/existingQAtest1/newtrackedQA0/promotedproof11(10captures)/workflow9/inheritedWIP0/reviewer1. Native control/strategy improvements in the existing pilot remain player inputs; combat owners determine legality/AP/damage/outcome.
+
+Set1.2.0/immutable `692829f32d735ad890182eea6b5e5e195551bbbf`; no LOCKED rule changed. Eight videos, V2, actor cap, temporary-loot authority, Alaric climax and main are preserved. Audio DEFERRED; Bois-Clair night art external. Physical Traversal remains: static inventory669named paths/350referencefiles is not retirement acceptance; shared timing, durable fork/save/campaign relations, assets, DEV QA and historical proofs are protected.
+
+Publication: normal origin/dev authorized permanently by OD-2026-10-12-A. Final proof/docs publication, live parity and same-run owned-lock release follow guarded execution; final metadata identity follows Git, avoiding a self-reference. Prior published pilot07a0c0f matched origin/dev and protected main00b96f1 at resumed preflight; no native worker remained. The final closeout record below is completed only after publication.
