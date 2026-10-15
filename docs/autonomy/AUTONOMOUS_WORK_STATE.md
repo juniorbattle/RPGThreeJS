@@ -2,7 +2,7 @@
 
 IN_PROGRESS. OD-2026-10-15-A explicitly authorizes dedicated contract amendment, playable A/B, Option C art C and definitive physical retirement D. No scheduled budget applies; scheduler unchanged. Starting clean dev/live origin b79063b; main00b96f1. No inherited WIP.
 
-Current: Verify final corrected build: decoded atlas1366, native game toggle620, OS-touch preparation44px390, fresh bounded first-refuge; reuse reviewed unchanged later campaign truth.
+Current: Final fresh proof with exact temporary-first/permanent remainder petition cost; all atlas44px/touch/OS/game scopes reviewed. Preserve all failed whole outputs and unchanged later-campaign proof reuse.
 
 All historical QA/deferred task objects are preserved in JSON and preceding closeout below. No new runtime/art/native acceptance claimed.
 
@@ -1370,6 +1370,10 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - poi-v2-D-terminal-trial-touch-1230: SUCCEEDED; port 5445; receipt `tmp/demo/poi-v2-D-terminal-trial-touch-1230/qa-job.json`; NOT_ACCEPTED
 - poi-v2-D-second-refuge-1232: FAILED; port 5447; receipt `tmp/demo/poi-v2-D-second-refuge-1232/qa-job.json`; NOT_ACCEPTED
 - poi-v2-D-legacy0603-1231: SUCCEEDED; port 5448; receipt `tmp/demo/poi-v2-D-legacy0603-1231/qa-job.json`; NOT_ACCEPTED
+- poi-v2-D-final-atlas1366-1312: SUCCEEDED; port 5442; receipt `tmp/demo/poi-v2-D-final-atlas1366-1312/qa-job.json`; NOT_ACCEPTED
+- poi-v2-D-final-game620-1312: SUCCEEDED; port 5443; receipt `tmp/demo/poi-v2-D-final-game620-1312/qa-job.json`; NOT_ACCEPTED
+- poi-v2-D-final-prep-touch390-1313: SUCCEEDED; port 5444; receipt `tmp/demo/poi-v2-D-final-prep-touch390-1313/qa-job.json`; NOT_ACCEPTED
+- poi-v2-D-final-fresh-opening-1313: FAILED; port 5445; receipt `tmp/demo/poi-v2-D-final-fresh-opening-1313/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

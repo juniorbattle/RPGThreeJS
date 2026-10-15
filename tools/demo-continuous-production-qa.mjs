@@ -152,11 +152,14 @@ async function choose(){
     assert.notEqual(petition.flags.r4FundedPublicPetition,true,'The native petition must be a fresh authored event');
     await page.waitForFunction(()=>window.__demoQaApp.state.flags.r4FundedPublicPetition===true);
     const after=await state(),expected=structuredClone(petition);
-    expected.run.temporaryLoot.gold-=35;expected.flags.r4FundedPublicPetition=true;
+    assert.ok(petition.gold+petition.run.temporaryLoot.gold>=35,'Native funded petition must be affordable');
+    const temporaryCost=Math.min(35,petition.run.temporaryLoot.gold),securedCost=35-temporaryCost;
+    expected.run.temporaryLoot.gold-=temporaryCost;expected.gold-=securedCost;
+    expected.flags.r4FundedPublicPetition=true;
     expected.reputation=Math.min(100,petition.reputation+3);
     expected.reputationHistory.push({delta:3,source:'narrative',value:expected.reputation});
     assert.deepEqual(after,expected,'Native public petition differs from its authored exact consequences');
-    (report.nativeDepartureEvents??=[]).push({sequence,step,index,text,before:petition,after,temporaryCost:35,reputationDelta:3});
+    (report.nativeDepartureEvents??=[]).push({sequence,step,index,text,before:petition,after,authoredCost:35,temporaryCost,securedCost,reputationDelta:3});
   }
 }
 async function cancel(frame){
