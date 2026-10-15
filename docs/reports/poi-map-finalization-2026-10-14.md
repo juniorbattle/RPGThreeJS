@@ -7,7 +7,7 @@
 | BASELINE | dev5b7a67c736d7b3bc7071d5376a65b4c272dd2781 |
 | BRANCH | dev |
 | HEAD | 3b35197f027aff3950bffe3b36bb1ad593f940a0 |
-| STATUS | IN_PROGRESS; final preparation accepted scoped, remaining native cases active |
+| STATUS | IN_PROGRESS; both endings, positive-loot defeat and motion/touch scopes accepted; alternatives/mobile finish active |
 | MERGED_IN | NONE; direct dev checkpoint |
 | SUPERSEDES | NONE; extends earlier first/second-refuge evidence |
 | SUPERSEDED_BY | NONE |
@@ -36,7 +36,17 @@ Journey now supplies the existing game reduction preference to its NarrativeStag
 
 After every worker ended, the existing pilot was corrected once: preparation ownership is refreshed at DOM boundaries; actual native weapon purchase/equipment/sale precedes paid rest; desktop targeting uses supported battlefield keyboard cells; narrow touch uses a real touchscreen context, taps and trusted-event observations. Successful bounded Valmir positive-loot/reload and completed-terminal seeds retain exact successful-proof admission. Recovery requires positive loot loss and a genuinely defeated native deployment. Runtime/build remain frozen from3b35197; old executions retain their original driver identity and scoped dispositions.
 
-Guardian independently accepted only the two preparation scopes above; reduction-game/intermediate and full mobile/dynamic acceptance remain open. Raw receipts retain NOT_ACCEPTED; reviewed dispositions are recorded separately.
+At driver checkpoint d732e4d, guardian independently reviewed seven further successful stable cases and ten selected captures:
+
+- `poi-serpent-steel-keyboard-2130`: actual Serpent victory12rounds/76actions, lion-seal-serpent-truth,447gold/100reputation; ending/terminal/menu/exact reload. Existing steel weapon bought133gold, old weapon sold45gold, equipped before paid rest; no free heal or economy change.
+- `poi-valmir-steel-game-2130`: actual Valmir6rounds/39actions; native steel purchase170gold/sale45, post-Valmir paid rest15. Positive210temporarygold/20securedgold, exact reload and successful reusable seed.
+- `poi-terminal-touch-2132`:390×844 real touchscreen context,3trusted taps, zero new battles; actual completed-trial seed and exact terminal/menu/save preservation.
+- `poi-preparation-game620-2125`:620×780 native game reduction, durable preference and exact preparation reload.
+- `poi-preparation-os1366-2126`: desktop OS-only reduction with normal game graphics, exact preparation reload.
+- `poi-preparation-touch-os390-2127`:390×844 OS-only,79trusted taps through native choices/map/preparation, exact V6, no hub/new securing.
+- `poi-defeat-t1-touch-2150`: actual Elara75HP native single-member deployment and defeat15rounds/15waits,29trusted taps;210temporarygold→0,20securedgold retained, exact First-refuge checkpoint. T1 cleared/T0 retained, failed combat unresolved/unrewarded, entire expected=recovered=resumed V6.
+
+Root also verified raw result digests, successful-save admission and relevant current captures. Raw receipts retain NOT_ACCEPTED; reviewed dispositions are separate. Guardian's concrete mobile finding remains open: narrow recovered-map labels First refuge/reserves overlap, while detail and departure stay usable. Do not claim full mobile layout or offensive touch combat before correcting and rechecking this finding.
 
 ## Retained Traversal audit
 
@@ -44,4 +54,4 @@ The tracked text inventory at source3b35197 finds669 paths containing Traversal 
 
 ## Remaining acceptance
 
-Both real final victories and terminal/menu/exact reload; all three exclusive combat alternatives and authored sacrifice continuation; native defeat/checkpoint truth; actual game reduction and desktop/intermediate/narrow motion matrix; wider V6 interruptions and final operator artistic/balance/demo testing. The task remains IN_PROGRESS until its authorized implementation and acceptance are resolved.
+T1/sacrifice continuation and T3 combat alternative; narrow map-label correction and actual offensive touch combat on the final build; final scoped matrix/docs/publication. Broader human artistic/balance/demo testing and unrelated preserved skills/keyboard work are distinct from this pass. The task remains IN_PROGRESS until its authorized implementation and acceptance are resolved.

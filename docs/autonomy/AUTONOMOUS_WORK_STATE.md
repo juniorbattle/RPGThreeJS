@@ -1,12 +1,10 @@
 # POI finalization — codex-poi-finalization-20261014
 
-IN_PROGRESS: operator requests both endings, authored alternatives, native POI defeat, reduced motion/mobile and five inherited Journey failures. Preflight clean dev5b7a67c/live origin parity; no inherited lock or dirty paths. Set1.2.0/baseline692829f protected. Scheduler unchanged.
+IN_PROGRESS. Both native endings now completed with exact terminal/menu/reload: trial32rounds/168actions and Serpent12rounds/76actions. Actual positive-loot defeat on touch390:210temporarygold lost, secured20 retained, original First-refuge checkpoint and entire V6 exact after reload. Native OS/game reduction preparation and touch terminal/choices pass their scoped cases. Five inherited Journey failures closed;109focused/19helper/type/build/contracts gates green at source3b35197. Current driver d732e4d; frozen source/build unchanged. No full demo, balance or retirement claim.
 
-Product: rebuild authored final-refuge preparation on arrival/reload, local return to map; no new hub/securing. Carry game reduction into Journey tableaux and expose existing setting through a native POI button. Five Journey test timing failures closed without changed expectations. Native acceptance pending;109focused/types/8contracts green. Reuse existing runner, normal45minute per-job watchdog; no old Traversal retirement.
+Player-visible changes: restore authored preparation/local map return; native saved reduction control. Native equipment purchases/equipment/sale/rest remain existing game rules. Traversal dependency inventory retained, no deletion. All229preceding QA jobs and deferred skills/keyboard/narrative objects match baseline exactly.
 
-Next: Finish frozen native endings and fresh T0 combat; then one runner synchronization/native defeat/touch correction and remaining T1/sacrifice/T3/motion matrix.
-
-Fresh T0 combat accepted scoped: real opening3round17actions and first-trial4round29actions; optional bypass/revisit, neutralized event, native game reduction and exact reusable-refuge V6.205gold/44rep. Both endings and T1 combat/sacrifice still running; failed/interrupted cases remain nonaccepted.
+Next: Finish native T1/sacrifice and T3 alternatives; inspect mobile combat touch targets; final selected proof, canonical docs, independent matrix and dev publication. Retain physical Traversal.
 
 ## Preserved preceding closeout
 
@@ -1326,11 +1324,19 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - poi-preparation-desktop-2019: SUCCEEDED; port 5410; receipt `tmp/demo/poi-preparation-desktop-2019/qa-job.json`; NOT_ACCEPTED
 - poi-preparation-mobile-os-2020: SUCCEEDED; port 5411; receipt `tmp/demo/poi-preparation-mobile-os-2020/qa-job.json`; NOT_ACCEPTED
 - poi-defeat-finaltrial-2020: FAILED; port 5412; receipt `tmp/demo/poi-defeat-finaltrial-2020/qa-job.json`; NOT_ACCEPTED
-- poi-ending-serpent-2022: RUNNING; port 5413; receipt `tmp/demo/poi-ending-serpent-2022/qa-job.json`; NOT_ACCEPTED
-- poi-ending-trial-mobile-2022: RUNNING; port 5414; receipt `tmp/demo/poi-ending-trial-mobile-2022/qa-job.json`; NOT_ACCEPTED
+- poi-ending-serpent-2022: FAILED; port 5413; receipt `tmp/demo/poi-ending-serpent-2022/qa-job.json`; NOT_ACCEPTED
+- poi-ending-trial-mobile-2022: SUCCEEDED; port 5414; receipt `tmp/demo/poi-ending-trial-mobile-2022/qa-job.json`; NOT_ACCEPTED
 - poi-preparation-intermediate-game-2027: RUNNING; port 5415; receipt `tmp/demo/poi-preparation-intermediate-game-2027/qa-job.json`; NOT_ACCEPTED
 - poi-first-trial-combat-game-2029: SUCCEEDED; port 5416; receipt `tmp/demo/poi-first-trial-combat-game-2029/qa-job.json`; NOT_ACCEPTED
-- poi-second-combat-sacrifice-game-2051: RUNNING; port 5417; receipt `tmp/demo/poi-second-combat-sacrifice-game-2051/qa-job.json`; NOT_ACCEPTED
+- poi-second-combat-sacrifice-game-2051: FAILED; port 5417; receipt `tmp/demo/poi-second-combat-sacrifice-game-2051/qa-job.json`; NOT_ACCEPTED
+- poi-serpent-steel-keyboard-2130: SUCCEEDED; port 5418; receipt `tmp/demo/poi-serpent-steel-keyboard-2130/qa-job.json`; NOT_ACCEPTED
+- poi-valmir-steel-game-2130: SUCCEEDED; port 5419; receipt `tmp/demo/poi-valmir-steel-game-2130/qa-job.json`; NOT_ACCEPTED
+- poi-terminal-touch-2132: SUCCEEDED; port 5420; receipt `tmp/demo/poi-terminal-touch-2132/qa-job.json`; NOT_ACCEPTED
+- poi-preparation-game620-2125: SUCCEEDED; port 5421; receipt `tmp/demo/poi-preparation-game620-2125/qa-job.json`; NOT_ACCEPTED
+- poi-preparation-os1366-2126: SUCCEEDED; port 5422; receipt `tmp/demo/poi-preparation-os1366-2126/qa-job.json`; NOT_ACCEPTED
+- poi-preparation-touch-os390-2127: SUCCEEDED; port 5423; receipt `tmp/demo/poi-preparation-touch-os390-2127/qa-job.json`; NOT_ACCEPTED
+- poi-defeat-t1-touch-2150: SUCCEEDED; port 5424; receipt `tmp/demo/poi-defeat-t1-touch-2150/qa-job.json`; NOT_ACCEPTED
+- poi-second-sacrifice-steel-2153: RUNNING; port 5425; receipt `tmp/demo/poi-second-sacrifice-steel-2153/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

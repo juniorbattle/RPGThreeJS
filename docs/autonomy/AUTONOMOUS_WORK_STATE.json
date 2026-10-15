@@ -4,7 +4,7 @@
   "runEndedAt": null,
   "activeTask": "POI-MAP-FINALIZATION",
   "activePhase": "PRODUCT_AND_NATIVE_ACCEPTANCE",
-  "activeSubtask": "Final-refuge preparation, Journey async boundaries and remaining native POI acceptance",
+  "activeSubtask": "Finish native T1/sacrifice and T3 alternatives; inspect mobile combat touch targets; final selected proof, canonical docs, independent matrix and dev publication. Retain physical Traversal.",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
   "lastPushedCommit": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
@@ -63,7 +63,7 @@
     "Five inherited JourneyBoundary failures, OS reduced motion/mobile/operator full demo",
     "Safe physical Traversal retirement only after full replacement and complete reference inventory"
   ],
-  "nextAction": "Finish frozen native endings and fresh T0 combat; then one runner synchronization/native defeat/touch correction and remaining T1/sacrifice/T3/motion matrix.",
+  "nextAction": "Finish native T1/sacrifice and T3 alternatives; inspect mobile combat touch targets; final selected proof, canonical docs, independent matrix and dev publication. Retain physical Traversal.",
   "taskQueue": [
     "POI-INTEGRATION-CLOSEOUT: COMPLETE_SCOPED Audience→Second refuge/rescue/desktop1366normal; full campaign remains open; final metadata follows publishedf597e3b",
     "DEMO-PC-CAMPAIGN: native Audience→Second refuge rescue accepted scoped; later pre-judgement/both endings/terminal/reload OPEN for future separate pass",
@@ -203,10 +203,10 @@
   },
   "runId": "codex-poi-finalization-20261014",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-14T20:53:36.349Z",
+  "lastHeartbeat": "2026-10-15T00:50:25.232Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-14T20:53:36.349Z",
+    "lastHeartbeat": "2026-10-15T00:50:25.232Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -25018,7 +25018,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_NATIVE_FINAL_PREPARATION",
+        "acceptance": "ACCEPTED_SCOPED_NATIVE_FINAL_PREPARATION_DESKTOP",
         "startedAt": "2026-10-14T20:17:18.123Z",
         "endedAt": "2026-10-14T20:17:48.014Z",
         "exitCode": 0,
@@ -25027,14 +25027,23 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "reviewedBy": [
           "root",
           "contracts-guardian"
         ],
-        "scope": "Authored preparation/exactV6, desktop normal or mobile OS-only; no new tactical result"
+        "scope": "Authored preparation/exactV6, desktop normal or mobile OS-only; no new tactical result",
+        "reviewedExecution": {
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "driverSha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a",
+          "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
+          "resultSha256": "0ea17c6bae127480c329eee6adcc83336b299f2aa050f4c0a3b4712b13ec2efe",
+          "reviewedAt": "2026-10-15T00:50:25.232Z",
+          "reviewer": "root; independent guardian where recorded in task report",
+          "runtimeCompatibility": "Production src/build unchanged from3b35197; QA driver checkpoint may differ"
+        }
       },
       {
         "schemaVersion": 1,
@@ -25133,7 +25142,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_NATIVE_FINAL_PREPARATION",
+        "acceptance": "ACCEPTED_SCOPED_NATIVE_FINAL_PREPARATION_NARROW_OS",
         "startedAt": "2026-10-14T20:18:02.395Z",
         "endedAt": "2026-10-14T20:18:30.778Z",
         "exitCode": 0,
@@ -25142,14 +25151,23 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "reviewedBy": [
           "root",
           "contracts-guardian"
         ],
-        "scope": "Authored preparation/exactV6, desktop normal or mobile OS-only; no new tactical result"
+        "scope": "Authored preparation/exactV6, desktop normal or mobile OS-only; no new tactical result",
+        "reviewedExecution": {
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "driverSha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a",
+          "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
+          "resultSha256": "eb8c80a489b6ad39e9c4e1feaacae8480cee1a4cd5ffa4cf549cdee5a856bba6",
+          "reviewedAt": "2026-10-15T00:50:25.232Z",
+          "reviewer": "root; independent guardian where recorded in task report",
+          "runtimeCompatibility": "Production src/build unchanged from3b35197; QA driver checkpoint may differ"
+        }
       },
       {
         "schemaVersion": 1,
@@ -25253,7 +25271,7 @@
         "endedAt": "2026-10-14T20:24:53.993Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
         "eligibleForReview": false,
         "exitCode": 1,
@@ -25265,7 +25283,7 @@
         "schemaVersion": 1,
         "jobId": "poi-ending-serpent-2022",
         "runId": "codex-poi-finalization-20261014",
-        "status": "RUNNING",
+        "status": "FAILED",
         "registeredAt": "2026-10-14T20:18:48.197Z",
         "pid": 46360,
         "port": 5413,
@@ -25360,18 +25378,22 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-14T20:18:50.237Z",
-        "endedAt": null,
+        "endedAt": "2026-10-14T21:04:11.282Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
-        "resultDigestMatches": false,
-        "eligibleForReview": false
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/poi-ending-serpent-2022/results.json",
+        "resultSha256": "f19161b012e7e8c65fb9c348c8891385962629acf5b61e422657387a3233612c",
+        "provenanceStable": true
       },
       {
         "schemaVersion": 1,
         "jobId": "poi-ending-trial-mobile-2022",
         "runId": "codex-poi-finalization-20261014",
-        "status": "RUNNING",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-14T20:19:00.315Z",
         "pid": 54952,
         "port": 5414,
@@ -25464,14 +25486,27 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_NATIVE_TRIAL_ENDING_NARROW_KEYBOARD",
         "startedAt": "2026-10-14T20:19:03.101Z",
-        "endedAt": null,
+        "endedAt": "2026-10-14T20:58:09.449Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
-        "resultDigestMatches": false,
-        "eligibleForReview": false
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 0,
+        "resultPath": "tmp/demo/poi-ending-trial-mobile-2022/results.json",
+        "resultSha256": "43eb951b26b5abca3ff3fa16ee6dd67fd60ee04a9fd0b559b93c9f30331efe3b",
+        "provenanceStable": true,
+        "reviewedExecution": {
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "driverSha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a",
+          "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
+          "resultSha256": "43eb951b26b5abca3ff3fa16ee6dd67fd60ee04a9fd0b559b93c9f30331efe3b",
+          "reviewedAt": "2026-10-15T00:50:25.232Z",
+          "reviewer": "root; independent guardian where recorded in task report",
+          "runtimeCompatibility": "Production src/build unchanged from3b35197; QA driver checkpoint may differ"
+        }
       },
       {
         "schemaVersion": 1,
@@ -25575,10 +25610,11 @@
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": false,
         "eligibleForReview": false,
-        "ownerInterruption": "tmp/demo/poi-preparation-intermediate-game-2027/owner-interruption.json"
+        "ownerInterruption": "tmp/demo/poi-preparation-intermediate-game-2027/owner-interruption.json",
+        "ownerDispositionPath": "tmp/demo/poi-preparation-intermediate-game-2027/owner-interruption.json"
       },
       {
         "schemaVersion": 1,
@@ -25671,9 +25707,9 @@
         "endedAt": "2026-10-14T20:49:23.452Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "exitCode": 0,
         "resultPath": "tmp/demo/poi-first-trial-combat-game-2029/results.json",
         "resultSha256": "f40e49178118d5a0b9bb02a020f1ea72e9f2a900a6ce44e93bf2493860fc572f",
@@ -25681,13 +25717,22 @@
         "reviewedBy": [
           "root",
           "contracts-guardian"
-        ]
+        ],
+        "reviewedExecution": {
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "driverSha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a",
+          "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
+          "resultSha256": "f40e49178118d5a0b9bb02a020f1ea72e9f2a900a6ce44e93bf2493860fc572f",
+          "reviewedAt": "2026-10-15T00:50:25.232Z",
+          "reviewer": "root; independent guardian where recorded in task report",
+          "runtimeCompatibility": "Production src/build unchanged from3b35197; QA driver checkpoint may differ"
+        }
       },
       {
         "schemaVersion": 1,
         "jobId": "poi-second-combat-sacrifice-game-2051",
         "runId": "codex-poi-finalization-20261014",
-        "status": "RUNNING",
+        "status": "FAILED",
         "registeredAt": "2026-10-14T20:50:38.351Z",
         "pid": 35860,
         "port": 5417,
@@ -25782,6 +25827,965 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-14T20:50:42.647Z",
+        "endedAt": "2026-10-14T21:13:28.814Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 1,
+        "resultPath": "tmp/demo/poi-second-combat-sacrifice-game-2051/results.json",
+        "resultSha256": "b4e9b920ae76240b7ca8da9734d2cedaa170be4223b46fbeef675627471d52ad",
+        "provenanceStable": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-serpent-steel-keyboard-2130",
+        "runId": "codex-poi-finalization-20261014",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-14T21:21:34.529Z",
+        "pid": 58264,
+        "port": 5418,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "ending",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-final-trial-combat",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": true,
+          "trialPlan": "event",
+          "gameReducedMotion": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-serpent-steel-keyboard-2130",
+        "receiptPath": "tmp/demo/poi-serpent-steel-keyboard-2130/qa-job.json",
+        "provenance": {
+          "gitHead": "d732e4da36e4a3c6fd88eb35a8c6c2004edfbfa7",
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+              "sha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+              "sha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868"
+            }
+          ],
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+              "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+            },
+            {
+              "path": "dist/assets/combat-BL64qO_z.js",
+              "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-C2Tjl8Gd.css",
+              "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+            },
+            {
+              "path": "dist/assets/game-CBmlPJ0P.js",
+              "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_NATIVE_SERPENT_ENDING_DESKTOP_KEYBOARD",
+        "startedAt": "2026-10-14T21:21:35.507Z",
+        "endedAt": "2026-10-14T21:47:51.100Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/poi-serpent-steel-keyboard-2130/results.json",
+        "resultSha256": "50abaeec743cdcfbd74b32b48df0ccb9dfc64db60b961e323bbb3f8a3ebb7b26",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "reviewedExecution": {
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "resultSha256": "50abaeec743cdcfbd74b32b48df0ccb9dfc64db60b961e323bbb3f8a3ebb7b26",
+          "reviewedAt": "2026-10-15T00:50:25.232Z",
+          "reviewer": "root; independent guardian where recorded in task report",
+          "runtimeCompatibility": "Production src/build unchanged from3b35197; QA driver checkpoint may differ"
+        }
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-valmir-steel-game-2130",
+        "runId": "codex-poi-finalization-20261014",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-14T21:21:46.514Z",
+        "pid": 8220,
+        "port": 5419,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "valmir",
+          "routePlan": "sacrifice",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-final-trial-combat",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": true,
+          "trialPlan": "combat",
+          "gameReducedMotion": true,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/poi-first-trial-combat-game-2029/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/poi-first-trial-combat-game-2029/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-valmir-steel-game-2130",
+        "receiptPath": "tmp/demo/poi-valmir-steel-game-2130/qa-job.json",
+        "provenance": {
+          "gitHead": "d732e4da36e4a3c6fd88eb35a8c6c2004edfbfa7",
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-first-trial-combat-game-2029/earned-first-refuge-v6.json",
+              "sha256": "007befc315d164fb7533729266e166e0a691c46380eaf316881df4bfa30ce1e3"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-first-trial-combat-game-2029/results.json",
+              "sha256": "f40e49178118d5a0b9bb02a020f1ea72e9f2a900a6ce44e93bf2493860fc572f"
+            }
+          ],
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+              "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+            },
+            {
+              "path": "dist/assets/combat-BL64qO_z.js",
+              "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-C2Tjl8Gd.css",
+              "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+            },
+            {
+              "path": "dist/assets/game-CBmlPJ0P.js",
+              "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_NATIVE_VALMIR_POSITIVE_LOOT_EXACT_SEED",
+        "startedAt": "2026-10-14T21:21:47.587Z",
+        "endedAt": "2026-10-14T21:29:26.716Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+        "resultSha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "reviewedExecution": {
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "resultSha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d",
+          "reviewedAt": "2026-10-15T00:50:25.232Z",
+          "reviewer": "root; independent guardian where recorded in task report",
+          "runtimeCompatibility": "Production src/build unchanged from3b35197; QA driver checkpoint may differ"
+        }
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-terminal-touch-2132",
+        "runId": "codex-poi-finalization-20261014",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-14T21:22:14.374Z",
+        "pid": 34716,
+        "port": 5420,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "terminal",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "trial",
+          "defeatNodeId": "lion-final-trial-combat",
+          "nativeDefeatWait": false,
+          "touchInput": true,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "gameReducedMotion": false,
+          "viewport": [
+            390,
+            844
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/poi-ending-trial-mobile-2022/earned-ending-v6.json",
+          "priorProofPath": "tmp/demo/poi-ending-trial-mobile-2022/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-terminal-touch-2132",
+        "receiptPath": "tmp/demo/poi-terminal-touch-2132/qa-job.json",
+        "provenance": {
+          "gitHead": "d732e4da36e4a3c6fd88eb35a8c6c2004edfbfa7",
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-ending-trial-mobile-2022/earned-ending-v6.json",
+              "sha256": "dfafeca4e8c748ad71664e1d41a932d2deb1683590aa05ed33f167c42eb55685"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-ending-trial-mobile-2022/results.json",
+              "sha256": "43eb951b26b5abca3ff3fa16ee6dd67fd60ee04a9fd0b559b93c9f30331efe3b"
+            }
+          ],
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+              "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+            },
+            {
+              "path": "dist/assets/combat-BL64qO_z.js",
+              "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-C2Tjl8Gd.css",
+              "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+            },
+            {
+              "path": "dist/assets/game-CBmlPJ0P.js",
+              "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_NATIVE_TERMINAL_TOUCH_NO_NEW_BATTLE",
+        "startedAt": "2026-10-14T21:22:17.007Z",
+        "endedAt": "2026-10-14T21:22:31.016Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/poi-terminal-touch-2132/results.json",
+        "resultSha256": "b6678cd0d52a650d1215db3a51227af07ca188d857f3bbe8f8734969c0f8d988",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "reviewedExecution": {
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "resultSha256": "b6678cd0d52a650d1215db3a51227af07ca188d857f3bbe8f8734969c0f8d988",
+          "reviewedAt": "2026-10-15T00:50:25.232Z",
+          "reviewer": "root; independent guardian where recorded in task report",
+          "runtimeCompatibility": "Production src/build unchanged from3b35197; QA driver checkpoint may differ"
+        }
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-preparation-game620-2125",
+        "runId": "codex-poi-finalization-20261014",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-14T21:23:55.658Z",
+        "pid": 3684,
+        "port": 5421,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "preparation",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-final-trial-combat",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "gameReducedMotion": true,
+          "viewport": [
+            620,
+            780
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-preparation-game620-2125",
+        "receiptPath": "tmp/demo/poi-preparation-game620-2125/qa-job.json",
+        "provenance": {
+          "gitHead": "d732e4da36e4a3c6fd88eb35a8c6c2004edfbfa7",
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+              "sha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+              "sha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868"
+            }
+          ],
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+              "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+            },
+            {
+              "path": "dist/assets/combat-BL64qO_z.js",
+              "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-C2Tjl8Gd.css",
+              "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+            },
+            {
+              "path": "dist/assets/game-CBmlPJ0P.js",
+              "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_NATIVE_PREPARATION_GAME_REDUCTION_620",
+        "startedAt": "2026-10-14T21:23:58.082Z",
+        "endedAt": "2026-10-14T21:24:30.888Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/poi-preparation-game620-2125/results.json",
+        "resultSha256": "1001fa2a05d6f96baa071cc2598eaaf3b58f975c2257970e766ca62446b1357e",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "reviewedExecution": {
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "resultSha256": "1001fa2a05d6f96baa071cc2598eaaf3b58f975c2257970e766ca62446b1357e",
+          "reviewedAt": "2026-10-15T00:50:25.232Z",
+          "reviewer": "root; independent guardian where recorded in task report",
+          "runtimeCompatibility": "Production src/build unchanged from3b35197; QA driver checkpoint may differ"
+        }
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-preparation-os1366-2126",
+        "runId": "codex-poi-finalization-20261014",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-14T21:25:38.718Z",
+        "pid": 16272,
+        "port": 5422,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "preparation",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-final-trial-combat",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "gameReducedMotion": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": true,
+          "earnedSavePath": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-preparation-os1366-2126",
+        "receiptPath": "tmp/demo/poi-preparation-os1366-2126/qa-job.json",
+        "provenance": {
+          "gitHead": "d732e4da36e4a3c6fd88eb35a8c6c2004edfbfa7",
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+              "sha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+              "sha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868"
+            }
+          ],
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+              "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+            },
+            {
+              "path": "dist/assets/combat-BL64qO_z.js",
+              "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-C2Tjl8Gd.css",
+              "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+            },
+            {
+              "path": "dist/assets/game-CBmlPJ0P.js",
+              "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_NATIVE_PREPARATION_OS_REDUCTION_1366",
+        "startedAt": "2026-10-14T21:25:41.063Z",
+        "endedAt": "2026-10-14T21:26:15.857Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/poi-preparation-os1366-2126/results.json",
+        "resultSha256": "1dbbe66a02e34ad71104b9d37501b7fe99884ea8aafe9586cc1faa9a62ef2eeb",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "reviewedExecution": {
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "resultSha256": "1dbbe66a02e34ad71104b9d37501b7fe99884ea8aafe9586cc1faa9a62ef2eeb",
+          "reviewedAt": "2026-10-15T00:50:25.232Z",
+          "reviewer": "root; independent guardian where recorded in task report",
+          "runtimeCompatibility": "Production src/build unchanged from3b35197; QA driver checkpoint may differ"
+        }
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-preparation-touch-os390-2127",
+        "runId": "codex-poi-finalization-20261014",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-14T21:26:03.003Z",
+        "pid": 16468,
+        "port": 5423,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "preparation",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-final-trial-combat",
+          "nativeDefeatWait": false,
+          "touchInput": true,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "gameReducedMotion": false,
+          "viewport": [
+            390,
+            844
+          ],
+          "osReducedMotion": true,
+          "earnedSavePath": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-preparation-touch-os390-2127",
+        "receiptPath": "tmp/demo/poi-preparation-touch-os390-2127/qa-job.json",
+        "provenance": {
+          "gitHead": "d732e4da36e4a3c6fd88eb35a8c6c2004edfbfa7",
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+              "sha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+              "sha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868"
+            }
+          ],
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+              "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+            },
+            {
+              "path": "dist/assets/combat-BL64qO_z.js",
+              "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-C2Tjl8Gd.css",
+              "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+            },
+            {
+              "path": "dist/assets/game-CBmlPJ0P.js",
+              "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_NATIVE_PREPARATION_OS_REDUCTION_TOUCH_390",
+        "startedAt": "2026-10-14T21:26:06.281Z",
+        "endedAt": "2026-10-14T21:26:43.107Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/poi-preparation-touch-os390-2127/results.json",
+        "resultSha256": "3eff2a58c459592d91a25a6fdca2c83ee9e561bcbf707332e894d3acff1753f9",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "reviewedExecution": {
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "resultSha256": "3eff2a58c459592d91a25a6fdca2c83ee9e561bcbf707332e894d3acff1753f9",
+          "reviewedAt": "2026-10-15T00:50:25.232Z",
+          "reviewer": "root; independent guardian where recorded in task report",
+          "runtimeCompatibility": "Production src/build unchanged from3b35197; QA driver checkpoint may differ"
+        }
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-defeat-t1-touch-2150",
+        "runId": "codex-poi-finalization-20261014",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-15T00:48:09.281Z",
+        "pid": 25436,
+        "port": 5424,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "defeat-recovery",
+          "routePlan": "sacrifice",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-second-trial-combat",
+          "nativeDefeatWait": true,
+          "touchInput": true,
+          "nativeEquipment": false,
+          "trialPlan": "combat",
+          "gameReducedMotion": true,
+          "viewport": [
+            390,
+            844
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+          "priorProofPath": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EXACT_V6_CHECKPOINT_RECOVERY",
+          "NATIVE_POI_CHECKPOINT_RETURN",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-defeat-t1-touch-2150",
+        "receiptPath": "tmp/demo/poi-defeat-t1-touch-2150/qa-job.json",
+        "provenance": {
+          "gitHead": "d732e4da36e4a3c6fd88eb35a8c6c2004edfbfa7",
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+              "sha256": "95f2c787cbc0c6244c1d0e44e95ac123a9809d3669f28a92d783b9da260a0e5d"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+              "sha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d"
+            }
+          ],
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+              "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+            },
+            {
+              "path": "dist/assets/combat-BL64qO_z.js",
+              "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-C2Tjl8Gd.css",
+              "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+            },
+            {
+              "path": "dist/assets/game-CBmlPJ0P.js",
+              "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_NATIVE_DEFEAT_POSITIVE_LOOT_CHECKPOINT_TOUCH",
+        "startedAt": "2026-10-15T00:48:10.319Z",
+        "endedAt": "2026-10-15T00:49:05.713Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/poi-defeat-t1-touch-2150/results.json",
+        "resultSha256": "1e49f3457196938e05789b9828dc00dab550e4883f68725d372100c982a2b4e6",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "reviewedExecution": {
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "resultSha256": "1e49f3457196938e05789b9828dc00dab550e4883f68725d372100c982a2b4e6",
+          "reviewedAt": "2026-10-15T00:50:25.232Z",
+          "reviewer": "root; independent guardian where recorded in task report",
+          "runtimeCompatibility": "Production src/build unchanged from3b35197; QA driver checkpoint may differ"
+        }
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-second-sacrifice-steel-2153",
+        "runId": "codex-poi-finalization-20261014",
+        "status": "RUNNING",
+        "registeredAt": "2026-10-15T00:48:57.994Z",
+        "pid": 68328,
+        "port": 5425,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "second-refuge",
+          "routePlan": "sacrifice",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-final-trial-combat",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "combat",
+          "gameReducedMotion": true,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+          "priorProofPath": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-second-sacrifice-steel-2153",
+        "receiptPath": "tmp/demo/poi-second-sacrifice-steel-2153/qa-job.json",
+        "provenance": {
+          "gitHead": "d732e4da36e4a3c6fd88eb35a8c6c2004edfbfa7",
+          "sourceTree": "e7e1ebb0c04a38d8bde2df3aabb6c9f55e7a0e1d",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+              "sha256": "95f2c787cbc0c6244c1d0e44e95ac123a9809d3669f28a92d783b9da260a0e5d"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+              "sha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d"
+            }
+          ],
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+              "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+            },
+            {
+              "path": "dist/assets/combat-BL64qO_z.js",
+              "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+            },
+            {
+              "path": "dist/assets/combat-DGLEfKFr.css",
+              "sha256": "a33a1f9d3d71cf2a880a36ffb2958f4c633ae425c0cff48ff1ac66ac07bc64a1"
+            },
+            {
+              "path": "dist/assets/game-C2Tjl8Gd.css",
+              "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+            },
+            {
+              "path": "dist/assets/game-CBmlPJ0P.js",
+              "sha256": "40bfb7b9469ff63b32365047892ad44ef4adaa43dfd57900c0e5818d6be39775"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "cddc9afb8054f90bf70e07750982c872ffa1b75f290d3f79286baf05baaf7b03"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-15T00:48:59.461Z",
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
@@ -25791,7 +26795,7 @@
       }
     ],
     "wip": null,
-    "nextAction": "Finish frozen native endings and fresh T0 combat; then one runner synchronization/native defeat/touch correction and remaining T1/sacrifice/T3/motion matrix.",
+    "nextAction": "Finish native T1/sacrifice and T3 alternatives; inspect mobile combat touch targets; final selected proof, canonical docs, independent matrix and dev publication. Retain physical Traversal.",
     "runMetrics": {
       "runId": "codex-poi-continuation-20261014",
       "runtimeSourceFilesModified": 1,
@@ -26634,7 +27638,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "POI-MAP-FINALIZATION",
-    "activeSubtask": "Final-refuge preparation, Journey async boundaries and remaining native POI acceptance",
+    "activeSubtask": "Finish native T1/sacrifice and T3 alternatives; inspect mobile combat touch targets; final selected proof, canonical docs, independent matrix and dev publication. Retain physical Traversal.",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -33952,6 +34956,14 @@
       "reason": "45min watchdog, native battle incomplete after67actions",
       "seedAdmissible": false,
       "next": "Distinct native equipment/controls preparation from authenticated0645; no partial seed"
+    },
+    "progress": {
+      "bothNativeEndings": true,
+      "positiveLootDefeat": true,
+      "gameAndOsMotion": true,
+      "nativeTouch": true,
+      "allAlternatives": false,
+      "finalReview": false
     }
   }
 }
