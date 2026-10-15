@@ -4,10 +4,10 @@
   "runEndedAt": "2026-10-15T21:28:16.771Z",
   "activeTask": "POI-V2-AND-TRAVERSAL-RETIREMENT",
   "activePhase": "CLOSED_SCOPED_POI_V2_RETIREMENT",
-  "activeSubtask": "Operator PC playtest of published POI V2 and three-region artwork; preserve unrelated skills/keyboard/narrative work and inactive authoring proposals. No physical-road work or scheduler reactivation.",
+  "activeSubtask": "A/B/C/D delivered; scoped technical acceptance complete",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "99ed9ed9d5b4290f65e1591a701463ad61c0f21d",
-  "lastPushedCommit": "eaae27f83fc66a77ca0014fc5e87e07dad3dd635",
+  "lastPushedCommit": "0aada9fdd65d10702138bfdf1174ce188c824302",
   "completedThisRun": [
     "Approved dedicated LOCKED1.3.0 amendment before runtime",
     "True opening branches and stable authored assignments",
@@ -285,7 +285,7 @@
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_SCOPED_12_ROWS; set1.3.0/baseline5667837 unchanged; operator art/hardware/full balance separate",
-  "commitReferenceScope": "lastPushedCommit identifies the preceding verified published checkpoint; final metadata identity/parity follow Git and guarded closeout, avoiding a self-reference",
+  "commitReferenceScope": "LastPushed/publishedCheckpoint name reviewed delivery0aada9f; the following metadata commit is identified by Git and guarded live closeout receipt, avoiding self-reference",
   "operatorAuthorization": "Explicit exceptional mission and both full attachments OD-2026-10-15-A; normal non-force origin/dev publication permanently authorized OD-2026-10-12-A; no main writes.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -377,10 +377,10 @@
   },
   "runId": "codex-poi-v2-20261015",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-15T21:28:16.771Z",
+  "lastHeartbeat": "2026-10-15T21:32:17.578Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-15T21:29:08.569Z",
+    "lastHeartbeat": "2026-10-15T21:32:17.578Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -29962,54 +29962,29 @@
       "reviewerRoles": 3
     },
     "checkpointPaths": [
-      "docs/README.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-      "docs/autonomy/handoffs/2026-10-15T0618Z-codex-poi-finalization.md",
-      "docs/project/CURRENT_STATUS.md",
-      "docs/project/POI_NAVIGATION.md",
-      "docs/reports/INDEX.md",
-      "docs/reports/poi-map-finalization-2026-10-14.md",
-      "docs/reports/poi-map-finalization-2026-10-14/01-native-preparation-desktop.png",
-      "docs/reports/poi-map-finalization-2026-10-14/02-native-preparation-game620.png",
-      "docs/reports/poi-map-finalization-2026-10-14/03-native-preparation-touch-os390.png",
-      "docs/reports/poi-map-finalization-2026-10-14/04-native-first-combat-neutralization.png",
-      "docs/reports/poi-map-finalization-2026-10-14/05-native-serpent-ending.png",
-      "docs/reports/poi-map-finalization-2026-10-14/06-native-trial-ending.png",
-      "docs/reports/poi-map-finalization-2026-10-14/07-native-defeat-touch-final-map.png",
-      "docs/reports/poi-map-finalization-2026-10-14/08-native-sacrifice-second-refuge.png",
-      "docs/reports/poi-map-finalization-2026-10-14/09-native-t3-touch-os-victory.png",
-      "docs/reports/poi-map-finalization-2026-10-14/10-native-t3-loot-preparation-reloaded.png",
-      "docs/reports/poi-map-finalization-2026-10-14/results.json",
-      "src/game/GameApp.ts",
-      "src/game/GameAppPoi.test.ts",
-      "src/journey/JourneyCampaignBoundary.test.ts",
-      "src/journey/JourneyCampaignBoundary.ts",
-      "src/styles/combat-shell.css",
-      "src/ui/PoiMapView.ts",
-      "src/ui/poi-map.css",
-      "tools/demo-continuous-production-qa.mjs",
-      "tools/qa/qa-job.mjs",
-      "tools/qa/qa-job.test.mjs"
+      "docs/autonomy/handoffs/2026-10-15T2128Z-codex-poi-v2-retirement.md",
+      "docs/reports/poi-v2-retirement-2026-10-15.md"
     ],
     "publication": {
-      "target": "origin/dev",
-      "authorization": "OD-2026-10-12-A",
-      "runtimeCheckpoint": "70a4a0aca0cd9b2887354dd7bc2b8a97ef7dd59d",
-      "pilotCheckpoint": "07a0c0f66e12b27978ce278103e4a94df703cdc9",
-      "sourceTree": "fcf7e608f321af152971c40276cae8f6f4731b50",
-      "status": "PRODUCT_PROOF_DOCS_PUBLISHED",
-      "verifiedPriorDev": "804ba18d51620ba1d07cd4b91f14a3504b1dfd41",
+      "status": "PUBLISHED_DELIVERY_LIVE_PARITY_VERIFIED",
+      "deliveryCommit": "0aada9fdd65d10702138bfdf1174ce188c824302",
+      "branch": "dev",
+      "remote": "origin/dev",
+      "remoteVerifiedAt": "2026-10-15T21:32:17.578Z",
       "protectedMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "finalClosure": "Final metadata commit/live parity and owned-lock release are guarded at execution; exact final identity follows Git"
+      "normalNonForce": true,
+      "authorization": "OD-2026-10-12-A and OD-2026-10-15-A",
+      "finalMetadata": "Current metadata commit is identified by Git; guarded final push/parity/owned-lock release follows this checkpoint"
     },
     "runEndedAt": "2026-10-15T21:28:16.771Z",
     "writerStopped": true,
     "metadataPublication": {
-      "status": "FINAL_CLOSURE_METADATA",
-      "shaIn": "Git and guarded live-remote verification; no external memory update",
-      "verifiedProductProofDocsCommit": "804ba18d51620ba1d07cd4b91f14a3504b1dfd41"
+      "status": "FINAL_METADATA_CLOSURE",
+      "runId": "codex-poi-v2-20261015",
+      "verifiedDelivery": "0aada9fdd65d10702138bfdf1174ce188c824302",
+      "at": "2026-10-15T21:32:17.578Z"
     },
     "publication1752History": {
       "status": "VERIFIED_PUBLISHED",
@@ -30119,16 +30094,15 @@
       "reason": "Automatic review found insufficient trusted exact authorization to disclose internal state on public GitHub WIP branch; local concrete checkpoint in preparation"
     },
     "publicationCloseout": {
-      "runId": "rpgthreejs-auto-dev-90m-20261012T1848",
-      "status": "PUBLISHED_CHECKPOINT_FINAL_METADATA_CLOSURE_NEXT",
-      "worker": "45584 absent after terminal receipt",
-      "port": 5393,
-      "portStatus": "FREE",
-      "ownedWip": "RETAIN_LOCAL_REMOTE_NO_CLEANUP_ATTEMPT",
-      "nextAction": "Retry reviewer availability after read-only preflight/exclusive lock; inspect motion-t0-os-desktop-1848 SUCCEEDED terminal receipt/result9fb0743d and current source637f91ee/driverce350f77/helper/nine physical build identity. Reuse this completed T0OS1366 smoke: root inspected four captures, 12 driver assertions/841 samples, return/fork numerical joins1.5776%/1.2606%, zero departure offset/reveal clock, one unresolved lion-first-refuge callback under inline fade1. Independent traversal review failed before findings with usage_limit_exceeded; resume the same bounded review, do not rerun unchanged T0OS1848/T3OS1821/T3normal1648/T0normal1617/T1normal0415/OS0504. Root source audit found JS-driven fade timing but no demonstrated runtime defect: next resolve actual getComputedStyle local curtain and root ::after opacity/visibility/geometry/z-order, snapshot at view swap, and timestamped departure/arrival sequence in existing driver; inline values and stills cannot certify coverage or perceived continuity. Before editing certifying assertions, apply the relevant guardian trigger and one-smoke policy; no speculative product edit or broad matrix. Game-only/full perception/mobileLAST and original all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo remain OPEN. Preserve exact deferred keyboard/pendingNarrative/taskQueue; never seed FAILED1521 partial saves or replay unchanged deadline-only campaign.",
-      "checkpoint": "1d763e639085c2e83a1b491038058900c261fd07",
-      "snapshot": "64575cac0791376cf168fda463f94bd25a964e3c",
-      "automaticReviewRefusals": 0
+      "status": "PUBLISHED_DELIVERY_LIVE_PARITY_VERIFIED",
+      "deliveryCommit": "0aada9fdd65d10702138bfdf1174ce188c824302",
+      "branch": "dev",
+      "remote": "origin/dev",
+      "remoteVerifiedAt": "2026-10-15T21:32:17.578Z",
+      "protectedMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "normalNonForce": true,
+      "authorization": "OD-2026-10-12-A and OD-2026-10-15-A",
+      "finalMetadata": "Current metadata commit is identified by Git; guarded final push/parity/owned-lock release follows this checkpoint"
     },
     "run1859History": {
       "runId": "rpgthreejs-auto-dev-90m-20261008T1859",
@@ -30747,7 +30721,7 @@
       "workerAbsent": 60012,
       "portAbsent": 5352
     },
-    "publishedCheckpoint": "652c5aed64ea21723e7f9d19cc8600dbc56a96f3",
+    "publishedCheckpoint": "0aada9fdd65d10702138bfdf1174ce188c824302",
     "closeout0613": {
       "checkpoint": "babc01bf3571247b73516a740c501a88b1deb7dd",
       "runEndedAt": "2026-10-09T06:56:55.147Z",
@@ -34140,7 +34114,7 @@
     "status": "COMPLETE_SCOPED",
     "runStartedAt": "2026-10-15T07:43:00Z",
     "activePhase": "CLOSED_SCOPED_POI_V2_RETIREMENT",
-    "heartbeat": "2026-10-15T21:28:16.771Z",
+    "heartbeat": "2026-10-15T21:32:17.578Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-15T2128Z-codex-poi-v2-retirement.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -35869,7 +35843,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "eaae27f83fc66a77ca0014fc5e87e07dad3dd635",
+    "lastPushedCommit": "0aada9fdd65d10702138bfdf1174ce188c824302",
     "productPreview": {
       "port": 5175,
       "retained": true,
@@ -35902,6 +35876,29 @@
       "threadId": "01a136cb-21ed-7cc2-b87e-31dde647e502",
       "writerStoppedMeaning": "Product/QA writer finished; only final metadata publication/parity/owned-lock release remains under this run",
       "lastPushedCommit": "f597e3b181b6dc97a6bdee45978716a654ccbf35"
+    },
+    "previousPoiFinalizationPublication": {
+      "target": "origin/dev",
+      "authorization": "OD-2026-10-12-A",
+      "runtimeCheckpoint": "70a4a0aca0cd9b2887354dd7bc2b8a97ef7dd59d",
+      "pilotCheckpoint": "07a0c0f66e12b27978ce278103e4a94df703cdc9",
+      "sourceTree": "fcf7e608f321af152971c40276cae8f6f4731b50",
+      "status": "PRODUCT_PROOF_DOCS_PUBLISHED",
+      "verifiedPriorDev": "804ba18d51620ba1d07cd4b91f14a3504b1dfd41",
+      "protectedMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "finalClosure": "Final metadata commit/live parity and owned-lock release are guarded at execution; exact final identity follows Git"
+    },
+    "previousPoiFinalizationPublicationCloseout": {
+      "runId": "rpgthreejs-auto-dev-90m-20261012T1848",
+      "status": "PUBLISHED_CHECKPOINT_FINAL_METADATA_CLOSURE_NEXT",
+      "worker": "45584 absent after terminal receipt",
+      "port": 5393,
+      "portStatus": "FREE",
+      "ownedWip": "RETAIN_LOCAL_REMOTE_NO_CLEANUP_ATTEMPT",
+      "nextAction": "Retry reviewer availability after read-only preflight/exclusive lock; inspect motion-t0-os-desktop-1848 SUCCEEDED terminal receipt/result9fb0743d and current source637f91ee/driverce350f77/helper/nine physical build identity. Reuse this completed T0OS1366 smoke: root inspected four captures, 12 driver assertions/841 samples, return/fork numerical joins1.5776%/1.2606%, zero departure offset/reveal clock, one unresolved lion-first-refuge callback under inline fade1. Independent traversal review failed before findings with usage_limit_exceeded; resume the same bounded review, do not rerun unchanged T0OS1848/T3OS1821/T3normal1648/T0normal1617/T1normal0415/OS0504. Root source audit found JS-driven fade timing but no demonstrated runtime defect: next resolve actual getComputedStyle local curtain and root ::after opacity/visibility/geometry/z-order, snapshot at view swap, and timestamped departure/arrival sequence in existing driver; inline values and stills cannot certify coverage or perceived continuity. Before editing certifying assertions, apply the relevant guardian trigger and one-smoke policy; no speculative product edit or broad matrix. Game-only/full perception/mobileLAST and original all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo remain OPEN. Preserve exact deferred keyboard/pendingNarrative/taskQueue; never seed FAILED1521 partial saves or replay unchanged deadline-only campaign.",
+      "checkpoint": "1d763e639085c2e83a1b491038058900c261fd07",
+      "snapshot": "64575cac0791376cf168fda463f94bd25a964e3c",
+      "automaticReviewRefusals": 0
     }
   },
   "previousInterruptedRun": {
@@ -36106,17 +36103,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": {
-    "status": "FINAL_METADATA_ONLY",
-    "files": [
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-14T1841Z-codex-poi-integration.md",
-      "docs/reports/poi-map-integration-2026-10-14.md",
-      "docs/reports/poi-map-integration-2026-10-14/results.json"
-    ],
-    "workflowClosure": "Product/proof/project docs publishedf597e3b; final metadata publication and owned-lock release pending guarded execution"
-  },
+  "uncommittedWork": [],
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
@@ -37705,7 +37692,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-15T21:28:16.771Z",
+  "heartbeat": "2026-10-15T21:32:17.578Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -38387,6 +38374,17 @@
       "interrupted": 0,
       "additionalSharedGallerySmoke": 1,
       "reviewerRoles": 3
+    },
+    "publication": {
+      "status": "PUBLISHED_DELIVERY_LIVE_PARITY_VERIFIED",
+      "deliveryCommit": "0aada9fdd65d10702138bfdf1174ce188c824302",
+      "branch": "dev",
+      "remote": "origin/dev",
+      "remoteVerifiedAt": "2026-10-15T21:32:17.578Z",
+      "protectedMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "normalNonForce": true,
+      "authorization": "OD-2026-10-12-A and OD-2026-10-15-A",
+      "finalMetadata": "Current metadata commit is identified by Git; guarded final push/parity/owned-lock release follows this checkpoint"
     }
   }
 }

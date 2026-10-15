@@ -6,7 +6,7 @@ Product: mandatory opening/nomad corridor then three actual local routes,21expli
 
 Proof:17jobs/11accepted scoped/6failed whole outputs unseedable. Fresh opening→First refuge/exactV6, old V6, actual defeat/checkpoint, current preparation and inherited terminal scopes reviewed. Three decoded1366/620/390maps, native game toggle/OS-only swipe/44px pass. Historical Second-refuge/final-fight reuse has unchanged critical owners and explicit§5.3limits. Prior254jobs and deferred objects exact. No global suite/full-balance/artistic acceptance claim; ten inherited broader-suite failures classified.
 
-Report:[delivery](../reports/poi-v2-retirement-2026-10-15.md). Handoff:[closeout](handoffs/2026-10-15T2128Z-codex-poi-v2-retirement.md). Preview:http://127.0.0.1:5175/ deliberately retained, PID23452. Final selected closure publication and live parity follow this metadata checkpoint.
+Report:[delivery](../reports/poi-v2-retirement-2026-10-15.md). Handoff:[closeout](handoffs/2026-10-15T2128Z-codex-poi-v2-retirement.md). Preview:http://127.0.0.1:5175/ deliberately retained, PID23452. Delivery0aada9fdd65d10702138bfdf1174ce188c824302 published normally to origin/dev; live parity verified2026-10-15T21:32:17.578Z, main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. Current final metadata commit follows in Git; guarded final parity/owned-lock release is required before ending the run.
 
 Next:Operator PC playtest of published POI V2 and three-region artwork; preserve unrelated skills/keyboard/narrative work and inactive authoring proposals. No physical-road work or scheduler reactivation.
 
