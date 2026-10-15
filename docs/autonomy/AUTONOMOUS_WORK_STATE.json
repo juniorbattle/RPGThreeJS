@@ -4,7 +4,7 @@
   "runEndedAt": null,
   "activeTask": "POI-MAP-FINALIZATION",
   "activePhase": "PRODUCT_AND_NATIVE_ACCEPTANCE",
-  "activeSubtask": "Finish native T1/sacrifice and T3 alternatives; inspect mobile combat touch targets; final selected proof, canonical docs, independent matrix and dev publication. Retain physical Traversal.",
+  "activeSubtask": "Finish bounded native T1 and prepared sacrifice/raid to Second refuge; final selected proof, canonical docs, independent matrix and dev publication. T3 offensive OS-only touch accepted scoped. Retain physical Traversal.",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
   "lastPushedCommit": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
@@ -63,7 +63,7 @@
     "Five inherited JourneyBoundary failures, OS reduced motion/mobile/operator full demo",
     "Safe physical Traversal retirement only after full replacement and complete reference inventory"
   ],
-  "nextAction": "Finish native T1/sacrifice and T3 alternatives; inspect mobile combat touch targets; final selected proof, canonical docs, independent matrix and dev publication. Retain physical Traversal.",
+  "nextAction": "Finish bounded native T1 and prepared sacrifice/raid to Second refuge; final selected proof, canonical docs, independent matrix and dev publication. T3 offensive OS-only touch accepted scoped. Retain physical Traversal.",
   "taskQueue": [
     "POI-INTEGRATION-CLOSEOUT: COMPLETE_SCOPED Audience→Second refuge/rescue/desktop1366normal; full campaign remains open; final metadata follows publishedf597e3b",
     "DEMO-PC-CAMPAIGN: native Audience→Second refuge rescue accepted scoped; later pre-judgement/both endings/terminal/reload OPEN for future separate pass",
@@ -203,10 +203,10 @@
   },
   "runId": "codex-poi-finalization-20261014",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-15T01:37:30.333Z",
+  "lastHeartbeat": "2026-10-15T01:46:38.952Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-15T01:37:30.333Z",
+    "lastHeartbeat": "2026-10-15T01:46:38.952Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -25040,7 +25040,7 @@
           "driverSha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a",
           "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
           "resultSha256": "0ea17c6bae127480c329eee6adcc83336b299f2aa050f4c0a3b4712b13ec2efe",
-          "reviewedAt": "2026-10-15T01:37:30.333Z",
+          "reviewedAt": "2026-10-15T01:46:38.952Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -25164,7 +25164,7 @@
           "driverSha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a",
           "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
           "resultSha256": "eb8c80a489b6ad39e9c4e1feaacae8480cee1a4cd5ffa4cf549cdee5a856bba6",
-          "reviewedAt": "2026-10-15T01:37:30.333Z",
+          "reviewedAt": "2026-10-15T01:46:38.952Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -25503,7 +25503,7 @@
           "driverSha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a",
           "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
           "resultSha256": "43eb951b26b5abca3ff3fa16ee6dd67fd60ee04a9fd0b559b93c9f30331efe3b",
-          "reviewedAt": "2026-10-15T01:37:30.333Z",
+          "reviewedAt": "2026-10-15T01:46:38.952Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -25723,7 +25723,7 @@
           "driverSha256": "ae3c16782cd4637365c2486399316dbfa9bdc0b5855cbce75d5ba160e210b07a",
           "receiptToolSha256": "2eecaf2b6c012e4ec5d71a3bae828a6446f247cb6662bb766b82eb9ec3368124",
           "resultSha256": "f40e49178118d5a0b9bb02a020f1ea72e9f2a900a6ce44e93bf2493860fc572f",
-          "reviewedAt": "2026-10-15T01:37:30.333Z",
+          "reviewedAt": "2026-10-15T01:46:38.952Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -25954,7 +25954,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "50abaeec743cdcfbd74b32b48df0ccb9dfc64db60b961e323bbb3f8a3ebb7b26",
-          "reviewedAt": "2026-10-15T01:37:30.333Z",
+          "reviewedAt": "2026-10-15T01:46:38.952Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26075,7 +26075,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d",
-          "reviewedAt": "2026-10-15T01:37:30.333Z",
+          "reviewedAt": "2026-10-15T01:46:38.952Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26196,7 +26196,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "b6678cd0d52a650d1215db3a51227af07ca188d857f3bbe8f8734969c0f8d988",
-          "reviewedAt": "2026-10-15T01:37:30.333Z",
+          "reviewedAt": "2026-10-15T01:46:38.952Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26317,7 +26317,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "1001fa2a05d6f96baa071cc2598eaaf3b58f975c2257970e766ca62446b1357e",
-          "reviewedAt": "2026-10-15T01:37:30.333Z",
+          "reviewedAt": "2026-10-15T01:46:38.952Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26438,7 +26438,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "1dbbe66a02e34ad71104b9d37501b7fe99884ea8aafe9586cc1faa9a62ef2eeb",
-          "reviewedAt": "2026-10-15T01:37:30.333Z",
+          "reviewedAt": "2026-10-15T01:46:38.952Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26559,7 +26559,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "3eff2a58c459592d91a25a6fdca2c83ee9e561bcbf707332e894d3acff1753f9",
-          "reviewedAt": "2026-10-15T01:37:30.333Z",
+          "reviewedAt": "2026-10-15T01:46:38.952Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26680,7 +26680,7 @@
           "driverSha256": "02d6bc971a8fc7a2b839d16756fd9391a7809c43893e0a68c643d2dcb5501ee3",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "1e49f3457196938e05789b9828dc00dab550e4883f68725d372100c982a2b4e6",
-          "reviewedAt": "2026-10-15T01:37:30.333Z",
+          "reviewedAt": "2026-10-15T01:46:38.952Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -26913,7 +26913,7 @@
           "driverSha256": "117b0f123d2fb9c8388536332770979db401a310e9eb8e8b1ffca2624d4ea080",
           "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
           "resultSha256": "af0034f5296e3d9006e0bf1deed0abf98f64c8cdf5ea0c8b46dcb6dcf33c2b91",
-          "reviewedAt": "2026-10-15T01:37:30.333Z",
+          "reviewedAt": "2026-10-15T01:46:38.952Z",
           "reviewer": "root; independent guardian where recorded in task report",
           "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
         }
@@ -27138,10 +27138,239 @@
         "resultDigestMatches": false,
         "eligibleForReview": false,
         "ownerDispositionPath": "tmp/demo/poi-t3-touch-os-final-0115/owner-interruption.json"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-second-trial-earned-0141",
+        "runId": "codex-poi-finalization-20261014",
+        "status": "RUNNING",
+        "registeredAt": "2026-10-15T01:38:27.232Z",
+        "pid": 39412,
+        "port": 5429,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "second-trial",
+          "routePlan": "sacrifice",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-final-trial-combat",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "combat",
+          "gameReducedMotion": true,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+          "priorProofPath": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-second-trial-earned-0141",
+        "receiptPath": "tmp/demo/poi-second-trial-earned-0141/qa-job.json",
+        "provenance": {
+          "gitHead": "8fa8ea90e48d2e1340472ad904e263b989d96029",
+          "sourceTree": "fcf7e608f321af152971c40276cae8f6f4731b50",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "2d3ee60fb36fb3286e6e78fa3fb3350caaec0fc42a9d3a0e6032ce5c4a14595e"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+              "sha256": "95f2c787cbc0c6244c1d0e44e95ac123a9809d3669f28a92d783b9da260a0e5d"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+              "sha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d"
+            }
+          ],
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+              "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+            },
+            {
+              "path": "dist/assets/combat-BKuqErnf.js",
+              "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-Bfzo5C3d.js",
+              "sha256": "625980eb7ec5041b78391d2370ec6943b266546e21731f3e7039868730d735a0"
+            },
+            {
+              "path": "dist/assets/game-C2Tjl8Gd.css",
+              "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "0ec7717ad6489420b03c7dcab93c72065a0f86f7176e4a9d20a32525a933b687"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-15T01:38:28.458Z",
+        "endedAt": null,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": false,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-t3-touch-ready-final-0141",
+        "runId": "codex-poi-finalization-20261014",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-15T01:38:43.063Z",
+        "pid": 52552,
+        "port": 5430,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "preparation",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-final-trial-combat",
+          "nativeDefeatWait": false,
+          "touchInput": true,
+          "nativeEquipment": true,
+          "trialPlan": "combat",
+          "gameReducedMotion": false,
+          "viewport": [
+            390,
+            844
+          ],
+          "osReducedMotion": true,
+          "earnedSavePath": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-t3-touch-ready-final-0141",
+        "receiptPath": "tmp/demo/poi-t3-touch-ready-final-0141/qa-job.json",
+        "provenance": {
+          "gitHead": "8fa8ea90e48d2e1340472ad904e263b989d96029",
+          "sourceTree": "fcf7e608f321af152971c40276cae8f6f4731b50",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "2d3ee60fb36fb3286e6e78fa3fb3350caaec0fc42a9d3a0e6032ce5c4a14595e"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+              "sha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+              "sha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868"
+            }
+          ],
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-DK88ExqY.js",
+              "sha256": "c78891be4abba9b4ae2e1d1b835cc4f0d6588f8987e083cba836e480cfb0e57e"
+            },
+            {
+              "path": "dist/assets/combat-BKuqErnf.js",
+              "sha256": "0c37c44c2096bdae90641a19dc8faa6876c0bf773b647522d4775108d03595b3"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-Bfzo5C3d.js",
+              "sha256": "625980eb7ec5041b78391d2370ec6943b266546e21731f3e7039868730d735a0"
+            },
+            {
+              "path": "dist/assets/game-C2Tjl8Gd.css",
+              "sha256": "aaef61d186b6f0b3e0d97b7d7c144983c83491d672e2a192f0a4a1acdd3a736e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "0ec7717ad6489420b03c7dcab93c72065a0f86f7176e4a9d20a32525a933b687"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_FINAL_UI_NATIVE_T3_OFFENSIVE_TOUCH_OS_PREPARATION_EXACT_LOOT",
+        "startedAt": "2026-10-15T01:38:44.572Z",
+        "endedAt": "2026-10-15T01:43:50.579Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/poi-t3-touch-ready-final-0141/results.json",
+        "resultSha256": "cb301a4c9fabd6581c7836e35032e61b97ce174253efb6f3fa6cea143efb9608",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "reviewedExecution": {
+          "sourceTree": "fcf7e608f321af152971c40276cae8f6f4731b50",
+          "driverSha256": "2d3ee60fb36fb3286e6e78fa3fb3350caaec0fc42a9d3a0e6032ce5c4a14595e",
+          "receiptToolSha256": "cafbbaceed417335fda1001666a6bbdd3a86278a2f6852a8937dbcf5bec3ae2e",
+          "resultSha256": "cb301a4c9fabd6581c7836e35032e61b97ce174253efb6f3fa6cea143efb9608",
+          "reviewedAt": "2026-10-15T01:46:38.952Z",
+          "reviewer": "root; independent guardian where recorded in task report",
+          "runtimeCompatibility": "Frozen execution preserved; final UI-only anchor/target-size delta requires its own current-build proof; campaign/combat/save owners unchanged"
+        }
       }
     ],
     "wip": null,
-    "nextAction": "Finish native T1/sacrifice and T3 alternatives; inspect mobile combat touch targets; final selected proof, canonical docs, independent matrix and dev publication. Retain physical Traversal.",
+    "nextAction": "Finish bounded native T1 and prepared sacrifice/raid to Second refuge; final selected proof, canonical docs, independent matrix and dev publication. T3 offensive OS-only touch accepted scoped. Retain physical Traversal.",
     "runMetrics": {
       "runId": "codex-poi-continuation-20261014",
       "runtimeSourceFilesModified": 1,
@@ -27984,7 +28213,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "POI-MAP-FINALIZATION",
-    "activeSubtask": "Finish native T1/sacrifice and T3 alternatives; inspect mobile combat touch targets; final selected proof, canonical docs, independent matrix and dev publication. Retain physical Traversal.",
+    "activeSubtask": "Finish bounded native T1 and prepared sacrifice/raid to Second refuge; final selected proof, canonical docs, independent matrix and dev publication. T3 offensive OS-only touch accepted scoped. Retain physical Traversal.",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -35310,6 +35539,7 @@
       "gameAndOsMotion": true,
       "nativeTouch": true,
       "finalUiRecovery": true,
+      "finalUiOffensiveT3": true,
       "allAlternatives": false,
       "finalReview": false
     }

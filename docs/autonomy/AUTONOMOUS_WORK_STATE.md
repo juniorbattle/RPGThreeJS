@@ -4,7 +4,7 @@ IN_PROGRESS. Both native endings completed with exact terminal/menu/reload: tria
 
 Player-visible changes: restore authored preparation/local map return; native saved reduction control. Native equipment purchases/equipment/sale/rest remain existing game rules. Traversal dependency inventory retained, no deletion. All229preceding QA jobs and deferred skills/keyboard/narrative objects match baseline exactly.
 
-Next: Finish native T1/sacrifice and T3 alternatives; inspect mobile combat touch targets; final selected proof, canonical docs, independent matrix and dev publication. Retain physical Traversal.
+Next: Finish bounded native T1 and prepared sacrifice/raid to Second refuge; final selected proof, canonical docs, independent matrix and dev publication. T3 offensive OS-only touch accepted scoped. Retain physical Traversal.
 
 ## Preserved preceding closeout
 
@@ -1340,6 +1340,8 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - poi-defeat-touch-final-ui-0113: SUCCEEDED; port 5426; receipt `tmp/demo/poi-defeat-touch-final-ui-0113/qa-job.json`; NOT_ACCEPTED
 - poi-sacrifice-rested-final-0113: FAILED; port 5427; receipt `tmp/demo/poi-sacrifice-rested-final-0113/qa-job.json`; NOT_ACCEPTED
 - poi-t3-touch-os-final-0115: RUNNING; port 5428; receipt `tmp/demo/poi-t3-touch-os-final-0115/qa-job.json`; NOT_ACCEPTED
+- poi-second-trial-earned-0141: RUNNING; port 5429; receipt `tmp/demo/poi-second-trial-earned-0141/qa-job.json`; NOT_ACCEPTED
+- poi-t3-touch-ready-final-0141: SUCCEEDED; port 5430; receipt `tmp/demo/poi-t3-touch-ready-final-0141/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
