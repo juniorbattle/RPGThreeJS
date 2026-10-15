@@ -30,7 +30,7 @@ export class PoiMapView {
       || model.edges.some(e => (e.from === current.id && e.to === n.id) || (e.to === current.id && e.from === n.id)));
     const positions = new Map(nodes.map(n => [n.id, LION_POI_POSITIONS[n.id] ?? [850,300]]));
     // Border anchors for adjacent phases, without inventing campaign locations.
-    for(const n of nodes) if(lionPoiMapPhase(n.depth)!==phase) positions.set(n.id, n.depth<current.depth?[55,300]:[910,300]);
+    for(const n of nodes) if(lionPoiMapPhase(n.depth)!==phase) positions.set(n.id, n.depth<current.depth?[90,80]:[870,80]);
     const paths = model.edges.filter(e => positions.has(e.from) && positions.has(e.to)).map(e => {
       const [x,y]=positions.get(e.from)!; const [tx,ty]=positions.get(e.to)!;
       return `<path class="poi-path ${e.unlocked?'poi-path--open':''}" d="M${x} ${y} Q${(x+tx)/2} ${y-30} ${tx} ${ty}"/>`;

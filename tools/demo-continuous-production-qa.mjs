@@ -75,9 +75,8 @@ if(touchInput){
 Object.assign(report,{target,routePlan,finalePlan,trialPlan,defeatNodeId,nativeDefeatWait,viewport:{width:viewport[0],height:viewport[1]},
   osReducedMotion:process.env.DEMO_QA_OS_MOTION==='1',observationHook:'Built bootstrap exposes GameApp for read-only snapshots; no owner method invoked',refuges:[],choices:[]});
 report.nativeTacticalPolicy='Champion Salvation policy retained; novice crosier uses native lowest-charge ally attacks and follows wounded allies; non-Champion potions below half health; read-only rejection telemetry; all actions use existing native controls';
-report.nativePreparationPolicy=target==='defeat-recovery'?'Four affordable first-refuge potions through native shop; exact secured wallet/inventory/stock transaction and reload':'Existing refuge preparation';
-report.nativeTraversalPolicy=target==='pursuit-victory'?'Native same-lane charge collision':
-  ['second-refuge','ending'].includes(target)?'Native opposite-lane steering during visible charge; any collision still resolves through actual combat':'Existing native traversal inputs';
+report.nativePreparationPolicy='Existing native equipment/shop and paid refuge rest when requested; post-T1 continuation may sell existing permanent materials to fund rest; exact transactions and temporary-loot invariance';
+report.nativeTraversalPolicy=target==='pursuit-victory'?'Native same-lane charge collision if the genuine legacy surface is mounted':'Production native adjacent POI intentions; legacy lane controls only if their genuine surface is mounted';
 report.driverSha256=createHash('sha256').update(await readFile('tools/demo-continuous-production-qa.mjs')).digest('hex');
 report.productionBundles=await Promise.all((await readdir('dist/assets')).filter(name=>/^(game|combat)-.*\.js$/.test(name))
   .map(async name=>({path:`dist/assets/${name}`,sha256:createHash('sha256').update(await readFile(`dist/assets/${name}`)).digest('hex')})));
@@ -97,9 +96,19 @@ async function capture(name){await page.screenshot({path:resolve(output,`${name}
   report.geometry??=[];report.geometry.push(await page.evaluate(name=>{
     const controls=[...document.querySelectorAll('.dialogue-choice,.exploration-stop button,.poi-map nav button,.poi-map__detail button,.poi-marker[aria-pressed="true"],[data-traversal-fork-choice],[data-traversal-confirm],[data-journey-choice],[data-journey-continue]')]
       .filter(e=>e.getClientRects().length&&!e.disabled).map(e=>{const r=e.getBoundingClientRect();return{label:e.textContent.trim(),x:r.x,y:r.y,right:r.right,bottom:r.bottom};});
-    return{name,width:innerWidth,height:innerHeight,overflow:document.documentElement.scrollWidth-innerWidth,controls,
+    const land=document.querySelector('.poi-map__land')?.getBoundingClientRect();
+    const markerLabels=land?[...document.querySelectorAll('.poi-marker__name')].map(e=>{
+      const r=e.getBoundingClientRect();return{label:e.textContent.trim(),left:Math.max(0,land.left,r.left),top:Math.max(0,land.top,r.top),right:Math.min(innerWidth,land.right,r.right),bottom:Math.min(innerHeight,land.bottom,r.bottom)};
+    }).filter(r=>r.right>r.left&&r.bottom>r.top):[];
+    const markerLabelOverlaps=[];
+    for(let i=0;i<markerLabels.length;i++)for(let j=i+1;j<markerLabels.length;j++){
+      const a=markerLabels[i],b=markerLabels[j];
+      if(Math.min(a.right,b.right)-Math.max(a.left,b.left)>1&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>1)markerLabelOverlaps.push([a.label,b.label]);
+    }
+    return{name,width:innerWidth,height:innerHeight,overflow:document.documentElement.scrollWidth-innerWidth,controls,markerLabels,markerLabelOverlaps,
       sequence:document.querySelector('.dialogue')?.dataset.dialogueSequence,step:document.querySelector('.dialogue')?.dataset.dialogueStep};
   },name));
+  assert.deepEqual(report.geometry.at(-1).markerLabelOverlaps,[],'Visible native map labels overlap');
 }
 async function state(){return page.evaluate(()=>JSON.parse(JSON.stringify(window.__demoQaApp.state)));}
 async function activateControl(control){if(touchInput)await control.tap();else await control.click();}
@@ -277,33 +286,53 @@ async function returnToPoiMap(){
   }
   await page.locator('.poi-map:visible').waitFor({timeout:1000});
 }
-async function preparePoiCompanyAfterValmir(){
+async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
   const before=await state();
-  assert.ok(before.resolvedNodeIds.includes('lion-valmir-road'));
-  const returnPath=await poiNoReplayPath(['lion-reserve-trail'],true,'poi-after-valmir-return-path');
+  assert.equal(before.currentNodeId,milestone);assert.ok(before.resolvedNodeIds.includes(milestone));
+  const postTrial=milestone==='lion-second-trial-combat',prefix=postTrial?'trial':'valmir';
+  const returnPath=await poiNoReplayPath(postTrial?['lion-valmir-road','lion-reserve-trail']:['lion-reserve-trail'],true,`poi-after-${prefix}-return-path`);
   await poiMove('lion-first-refuge',true);
   const hub=page.locator('.exploration-stop:visible:not([inert])');await hub.waitFor({state:'visible'});
   const arrival=await state(),expectedArrival=structuredClone(before);
   expectedArrival.currentNodeId=expectedArrival.run.currentNodeId='lion-first-refuge';
   assert.deepEqual(arrival,expectedArrival,'Reopened refuge changed earned Valmir facts, loot or checkpoint');
   const rest=page.locator('.exploration-stop [data-action="rest"]:not(:disabled)');
-  const cost=await rest.count()?Number((await rest.innerText()).match(/(\d+)\s*or/i)?.[1]):0;
-  if(cost){assert.ok(Number.isInteger(cost)&&cost>0&&arrival.gold>=cost,'Native post-Valmir rest must be affordable and paid');
+  const cost=Number((await page.locator('.exploration-stop [data-action="rest"]').innerText()).match(/(\d+)\s*or/i)?.[1]??0);
+  const funding=[];
+  if(cost>arrival.gold){
+    assert.equal(postTrial,true,'Only the explicitly prepared post-trial scenario may sell existing supplies');
+    await keyboardActivate('.exploration-stop [data-action="shop"]');
+    await keyboardActivate('.management [data-shop-mode="sell"]');
+    for(let i=0;i<10&&(await state()).gold<cost;i++){
+      const owner=await state(),id=['red_gem','iron_ore'].find(id=>(owner.inventory.materials[id]??0)>0);
+      assert.ok(id,'Existing permanent supplies cannot fund the native rest');
+      const sell=`.management [data-trade="sell"][data-item="${id}"]`;
+      const price=Number.parseInt(await page.locator(sell).innerText(),10);assert.ok(Number.isInteger(price)&&price>0);
+      await keyboardActivate(sell);const sold=await state(),expected=structuredClone(owner);
+      expected.gold+=price;expected.inventory.materials[id]-=1;expected.shops.valmir.stock[id]=(expected.shops.valmir.stock[id]??0)+1;
+      assert.deepEqual(sold,expected,'Native rest-funding sale changed unrelated truth or temporary loot');
+      assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),sold);
+      funding.push({id,price,before:owner,after:sold});
+    }
+    await keyboardActivate('.management [data-action="close"]');await hub.waitFor({state:'visible'});
+  }
+  const restBefore=await state();
+  if(cost){assert.ok(Number.isInteger(cost)&&cost>0&&restBefore.gold>=cost,'Native rest must be affordable and paid');
     await keyboardActivate('.exploration-stop [data-action="rest"]:not(:disabled)');}
   else assert.match(await page.locator('.exploration-stop [data-action="rest"]').innerText(),/Compagnie en pleine forme/);
   await hub.waitFor({state:'visible'});
-  const rested=await state(),expectedRest=structuredClone(arrival);
+  const rested=await state(),expectedRest=structuredClone(restBefore);
   expectedRest.gold-=cost;
   for(const [i,member] of expectedRest.clan.members.entries())member.currentHealth=rested.clan.members[i].currentHealth;
   assert.deepEqual(rested,expectedRest,'Native post-Valmir rest changed unrelated earned truth');
   assert.equal(await rest.count(),0,'Native rest did not restore the full party');
   assert.ok(rested.clan.members.every(u=>u.currentHealth>0));
   assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),rested,'Paid post-Valmir rest was not persisted exactly');
-  await capture(cost?'poi-after-valmir-paid-rest':'poi-after-valmir-already-healthy');
+  await capture(`poi-after-${prefix}-${cost?'paid-rest':'already-healthy'}`);
   await keyboardActivate('.exploration-stop [data-action="continue"]');await returnToPoiMap();
   assert.deepEqual(await state(),rested,'Resolved refuge departure repeated a one-shot effect');
-  const onward=await poiNoReplayPath(['lion-reserve-trail','lion-valmir-road'],true,'poi-after-valmir-prepared-return');
-  report.poi.valmirRefugePreparation={before,arrival,rested,nativeCost:cost,lootUnchanged:true,checkpointUnchanged:true,
+  const onward=await poiNoReplayPath(['lion-reserve-trail','lion-valmir-road',...(postTrial?[milestone]:[])],true,`poi-after-${prefix}-prepared-return`);
+  report.poi[postTrial?'trialRefugePreparation':'valmirRefugePreparation']={before,arrival,funding,restBefore,rested,nativeCost:cost,lootUnchanged:true,checkpointUnchanged:true,
     returnPath,onward,paidRestPersistedExactly:cost>0,skippedAlreadyHealthy:cost===0,exactSavedOwner:true};
 }
 async function prepareNativeWeapon(nodeId){
@@ -366,6 +395,29 @@ async function cellClick(frame,cell,attempt){
   }return false;
 }
 async function settled(frame){await frame.waitForFunction(()=>window.G.over||!window.G.busy&&window.G.mode==='menu',null,{timeout:30000});}
+async function verifyTouchDeployment(frame,entry){
+  const owner=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  const deployed=await frame.evaluate(()=>G.deployedUnits.map(u=>u.campaignId||u.id));
+  const expected=await frame.evaluate(()=>G.rosterDefs.map(u=>u.campaignId||u.id));
+  const seen=new Set(),controls=[];
+  const first=async()=>{for(let i=0;i<10;i++){const b=frame.locator('#menu [data-d="prev"]:not(:disabled)');if(!await b.count())return;await b.tap();}throw Error('Native roster never reached first page');};
+  await first();
+  for(let i=0;i<10;i++){
+    for(const id of await frame.locator('#menu [data-unit]').evaluateAll(bs=>bs.map(b=>b.dataset.unit)))seen.add(id);
+    for(const button of await frame.locator('#menu .deploy-actions button,#menu .deploy-pages button').all()){
+      await button.scrollIntoViewIfNeeded();const r=await button.boundingBox(),panel=await frame.locator('#menu').boundingBox();
+      assert.ok(r&&r.width>=44&&r.height>=44,'Native touch deployment target below44px');
+      assert.ok(r.x>=0&&r.y>=0&&r.x+r.width<=viewport[0]+1&&r.y+r.height<=viewport[1]+1,'Native touch deployment target outside viewport');
+      assert.ok(r.y>=panel.y-1&&r.y+r.height<=panel.y+panel.height+1,'Native touch deployment target clipped by its scroll panel');
+      controls.push({action:await button.getAttribute('data-d'),...r});
+    }
+    const next=frame.locator('#menu [data-d="next"]:not(:disabled)');if(!await next.count())break;await next.tap();
+  }
+  assert.deepEqual([...seen].sort(),[...expected].sort(),'Native touch pagination did not expose the entire roster');
+  await first();assert.deepEqual(await frame.evaluate(()=>G.deployedUnits.map(u=>u.campaignId||u.id)),deployed);
+  assert.deepEqual(await state(),owner);assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),saved);
+  entry.deploymentTouch={controls,roster:[...seen],deployed,exactOwnerUnchanged:true,exactSaveUnchanged:true,nativePagination:true};
+}
 async function attack(frame,battle,{support=false,exactAp=null}={}){
   const before=await combatState(frame), button=frame.locator('#menu [data-a="attack"]:not(:disabled)').first();
   const attempt={before,support,buttons:await frame.locator('#menu [data-a="attack"]').evaluateAll(bs=>bs.map(b=>({disabled:b.disabled,text:b.textContent.trim(),weaponIndex:b.dataset.wi})))};
@@ -627,6 +679,7 @@ async function battle(){
     entry.deployed=entry.nativeDeploymentIds.length;
   }
   entry.autosaveBefore=JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')));
+  if(touchInput)await verifyTouchDeployment(frame,entry);
   await capture(`combat-${entry.index}-deployment`);
   await activateControl(frame.locator('#menu [data-d="start"]'));
   if(entry.index===0&&!priorProof&&['forest_ambush','wolf_pack'].includes(entry.combatId)){
@@ -688,8 +741,17 @@ async function battle(){
   }
   entry.result=await combatState(frame);
   assert.equal(entry.result.over,true,'Battle did not finish before bounded deadline');
+  if(process.env.DEMO_QA_GAME_MOTION==='1'){
+    assert.equal(entry.result.diagnostics.requestedReducedGraphics,true,'Combat did not receive the actual saved game preference');
+    assert.equal(entry.result.diagnostics.reducedGraphics,true,'Combat did not apply the requested reduced graphics');
+  }
   await capture(`combat-${entry.index}-result`);
   entry.resultText=await frame.locator('.combat-result-card').innerText();
+  entry.resultControlBounds=await frame.locator('#combat-result-action').boundingBox();
+  if(touchInput){
+    const r=entry.resultControlBounds;assert.ok(r&&r.width>=44&&r.height>=44,'Native touch result target below44px');
+    assert.ok(r.x>=0&&r.y>=0&&r.x+r.width<=viewport[0]+1&&r.y+r.height<=viewport[1]+1,'Native touch result target clipped');
+  }
   if(target==='defeat-recovery'&&entry.resultText.includes('Défaite')){
     assert.equal(entry.nodeId,defeatNodeId,'Defeat occurred before the requested native recovery boundary');
     assert.equal(entry.result.units.filter(u=>u.team==='player'&&u.alive).length,0);
@@ -879,6 +941,10 @@ try{
         assert.equal(await page.locator('.exploration-stop:visible,iframe.combat-frame').count(),0);
         assert.equal(await page.locator('.narrative-cast__actor').count(),3);
         assert.deepEqual(JSON.parse(saved),before);await capture('poi-final-refuge-preparation');
+        if(report.poi?.finalCombatAlternative){
+          assert.ok(before.run.temporaryLoot.gold>0,'Final preparation unexpectedly secured the earned T3 loot');
+          assert.equal(before.run.checkpointNodeId,'lion-second-refuge');assert.notEqual(before.flags['refugeSecured:lion-final-refuge'],true);
+        }
         await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
         await page.locator('[data-narrative-tableau="FINAL_REFUGE_PREPARATION_TABLEAU"] [data-journey-continue]:visible').waitFor();
         assert.deepEqual(await state(),before,'Preparation reload changed owner or secured loot');
@@ -1100,6 +1166,18 @@ try{
           await writeFile(resolve(output,'earned-valmir-v6.json'),saved+'\n');await capture('poi-valmir-positive-loot-reloaded');
           assert.deepEqual(report.errors,[]);report.pass=true;break;
         }continue;
+      }
+      if(target==='second-refuge'&&live.currentNodeId==='lion-second-trial-combat'
+        &&live.resolvedNodeIds.includes(live.currentNodeId)&&!report.poi.trialRefugePreparation){
+        await preparePoiCompanyAfterValmir('lion-second-trial-combat');continue;
+      }
+      if(live.currentNodeId==='lion-final-trial-combat'&&live.resolvedNodeIds.includes(live.currentNodeId)&&!report.poi.finalCombatAlternative){
+        const excluded='lion-final-trial-event';
+        assert.ok(!live.resolvedNodeIds.includes(excluded));
+        assert.ok((await page.locator(`.poi-map [data-poi-id="${excluded}"]`).getAttribute('class')).includes('poi-marker--neutralized'));
+        assert.ok(report.battles.slice(report.inheritedBattleCount??0).some(b=>b.nodeId===live.currentNodeId&&b.pass&&b.outcome==='victory'));
+        report.poi.finalCombatAlternative={selected:live.currentNodeId,excluded,temporaryLoot:structuredClone(live.run.temporaryLoot),checkpoint:live.run.checkpointNodeId};
+        await capture('poi-final-combat-resolved-neutralized');
       }
       if(live.currentNodeId==='lion-reserve-trail'&&!report.poi.secondSection){
         await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked'));

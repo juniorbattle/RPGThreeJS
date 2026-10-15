@@ -1336,7 +1336,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - poi-preparation-os1366-2126: SUCCEEDED; port 5422; receipt `tmp/demo/poi-preparation-os1366-2126/qa-job.json`; NOT_ACCEPTED
 - poi-preparation-touch-os390-2127: SUCCEEDED; port 5423; receipt `tmp/demo/poi-preparation-touch-os390-2127/qa-job.json`; NOT_ACCEPTED
 - poi-defeat-t1-touch-2150: SUCCEEDED; port 5424; receipt `tmp/demo/poi-defeat-t1-touch-2150/qa-job.json`; NOT_ACCEPTED
-- poi-second-sacrifice-steel-2153: RUNNING; port 5425; receipt `tmp/demo/poi-second-sacrifice-steel-2153/qa-job.json`; NOT_ACCEPTED
+- poi-second-sacrifice-steel-2153: FAILED; port 5425; receipt `tmp/demo/poi-second-sacrifice-steel-2153/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
