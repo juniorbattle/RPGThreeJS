@@ -9,7 +9,7 @@ Contract: UI_AND_ACCESSIBILITY (`docs/contracts/UI_AND_ACCESSIBILITY.md`), plus 
 
 ## Ownership
 
-`src/ui/` (views, `design-system/`, `theme/` tokens, `SceneTransition`, `RefugePresentation`, `CampaignStatusHud`) and `src/styles/` (`app.css`, `traversal.css`). CSS also lives in `src/ui/theme/*.css`, `src/ui/design-system/campaign-ui.css` and `src/ui/dialogue-alignment.css`: search all of them for a class before editing. This layer is presentation only: status labels and numbers come from runtime truth.
+`src/ui/` (views, `design-system/`, `theme/` tokens, `SceneTransition`, `RefugePresentation`, `CampaignStatusHud`) and `src/styles/` (`app.css`, `poi-map.css`). CSS also lives in `src/ui/theme/*.css`, `src/ui/design-system/campaign-ui.css` and `src/ui/dialogue-alignment.css`: search all of them for a class before editing. This layer is presentation only: status labels and numbers come from runtime truth.
 
 ## Invariants
 
@@ -23,7 +23,7 @@ Digest of the contract as of commit `d7ca28aed5c377ffedb03202f6364b7a947d1096`; 
 - A media fallback keeps the player's agency and never depends on motion to carry information.
 ## Reduced motion model
 
-Two sources: the game setting (`state.settings.reducedGraphics`, passed as `reducedMotion` by `GameApp`) and the OS `prefers-reduced-motion`. Either one requests less motion, and an explicit game value of `false` must never switch off the OS request. JavaScript reads this through one shared helper in `src/ui/` rather than ad-hoc `matchMedia` calls. CSS keeps `@media (prefers-reduced-motion: reduce)` blocks in `app.css` and `traversal.css`. The QA-lab scenarios in `GameApp` pass an explicit `reducedMotion: false`: account for that when testing OS-only reduction.
+Two sources: the game setting (`state.settings.reducedGraphics`, passed as `reducedMotion` by `GameApp`) and the OS `prefers-reduced-motion`. Either one requests less motion, and an explicit game value of `false` must never switch off the OS request. JavaScript reads this through one shared helper in `src/ui/` rather than ad-hoc `matchMedia` calls. CSS keeps `@media (prefers-reduced-motion: reduce)` blocks in `app.css` and `poi-map.css`. Verify OS-only and game-setting reduction separately in the current native campaign driver. Physical Traversal QA labs were retired under OD-2026-10-15-A.
 
 Historical item8 acceptance remains scoped to its source/proof. Active manual-playtest acceptance includes cast/scene transitions with OS-only reduction and normal game settings; do not certify new transitions using old captures.
 

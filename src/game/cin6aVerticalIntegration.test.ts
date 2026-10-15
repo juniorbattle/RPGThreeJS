@@ -44,7 +44,9 @@ describe('CIN-6A vertical integration seams', () => {
 
   it('plays first-refuge arrival before management and resolves both departures at the post-Continue boundary', () => {
     const resolveNode = method('private async resolveRunNode');
-    const refuge = resolveNode.slice(0, resolveNode.indexOf("if (node.type === 'shop')"));
+    const start = resolveNode.indexOf("if (node.type === 'refuge')");
+    expect(start).toBeGreaterThan(-1);
+    const refuge = resolveNode.slice(start, resolveNode.indexOf("if (node.type === 'shop')", start));
     expect(refuge.indexOf('resolveCin6aRefugeArrival(node.id)')).toBeLessThan(refuge.indexOf('this.exploration.open'));
     expect(refuge).not.toContain('resolveCin6aRefugeDeparture(node.id)');
     expect(refuge.indexOf("if (action === 'continue') break")).toBeLessThan(refuge.indexOf('this.markResolved(node.id)'));

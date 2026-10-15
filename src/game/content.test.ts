@@ -13,7 +13,6 @@ import characterQc from '../../public/assets/characters/pixel/canonical-characte
 import { DialogueView } from '../ui/DialogueView';
 import { createInitialState } from './store';
 import { buildLionFinaleJudgement, resolveLionFinaleExecution } from './lionFinale';
-import { LION_PURSUIT_ENEMY_POOLS } from '../campaign/LionTraversalPursuitEncounters';
 
 interface CharacterAssetProfile {
   full: string;
@@ -103,13 +102,7 @@ describe('campaign content integrity', () => {
     }
   });
 
-  it('uses existing ordinary character assets for every randomized Pursuit enemy', () => {
-    const profiles = assets.characterProfiles as Record<string, CharacterAssetProfile>;
-    for (const id of new Set(Object.values(LION_PURSUIT_ENEMY_POOLS).flat())) {
-      expect(profiles[id] ?? resolveCharacterVisualProfile(id), id).toBeTruthy();
-      expect(id).not.toMatch(/elite|boss|champion/);
-    }
-  });
+
   it('only references existing nodes, dialogues and combats', () => {
     const nodeIds = new Set(campaignNodes.map((node) => node.id));
 

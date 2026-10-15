@@ -23,7 +23,7 @@ const viewport=(process.env.DEMO_QA_VIEWPORT??'1366x768').split('x').map(Number)
 const preparationContinue='[data-narrative-tableau="FINAL_REFUGE_PREPARATION_TABLEAU"] [data-journey-continue]:visible:not(:disabled)';
 const genericJourneyContinue='[data-journey-continue]:visible:not(:disabled):not([data-narrative-tableau="FINAL_REFUGE_PREPARATION_TABLEAU"] [data-journey-continue])';
 assert.ok(viewport.length===2&&viewport.every(n=>Number.isInteger(n)&&n>0),'Invalid viewport');
-assert.ok(['first-refuge','second-refuge','second-trial','valmir','preparation','ending','terminal','defeat-recovery','pursuit-victory'].includes(target),'Unknown bounded target');
+assert.ok(['first-refuge','second-refuge','second-trial','valmir','preparation','ending','terminal','defeat-recovery'].includes(target),'Unknown bounded target');
 assert.ok(['event','combat'].includes(trialPlan),'Unknown authored trial alternative');
 assert.ok(!(process.env.DEMO_QA_OS_MOTION==='1'&&process.env.DEMO_QA_GAME_MOTION==='1'),'OS-only and native game reduction are separate acceptance cases');
 if(target==='defeat-recovery')assert.ok(['lion-village-choice','lion-second-trial-combat','lion-final-trial-combat'].includes(defeatNodeId),'Unknown authored refuge-checkpoint defeat boundary');
@@ -85,7 +85,7 @@ Object.assign(report,{target,routePlan,finalePlan,trialPlan,defeatNodeId,nativeD
   osReducedMotion:process.env.DEMO_QA_OS_MOTION==='1',observationHook:'Built bootstrap exposes GameApp for read-only snapshots; no owner method invoked',refuges:[],choices:[]});
 report.nativeTacticalPolicy='Salvation and skill targets prioritize lowest-health eligible native targets; novice crosier uses lowest-charge ally attacks and follows wounded allies; potions below75% for Champion/Raid and50% elsewhere; read-only rejection telemetry; existing native controls only';
 report.nativePreparationPolicy='Existing native equipment/shop and paid refuge rest; post-T1 Raid may sell existing permanent supplies for paid rest/two potions and deploy living Cedric; exact transactions and temporary-loot invariance';
-report.nativeTraversalPolicy=target==='pursuit-victory'?'Native same-lane charge collision if the genuine legacy surface is mounted':'Production native adjacent POI intentions; legacy lane controls only if their genuine surface is mounted';
+report.nativeNavigationPolicy='Production native adjacent POI intentions; no physical engine or driving fallback';
 report.driverSha256=createHash('sha256').update(await readFile('tools/demo-continuous-production-qa.mjs')).digest('hex');
 report.productionBundles=await Promise.all((await readdir('dist/assets')).filter(name=>/^(game|combat)-.*\.js$/.test(name))
   .map(async name=>({path:`dist/assets/${name}`,sha256:createHash('sha256').update(await readFile(`dist/assets/${name}`)).digest('hex')})));
@@ -103,7 +103,7 @@ if(jobOptions.parameters.timeoutAuthority)report.timeoutAuthority=jobOptions.par
 const deadline=Date.now()+report.timeoutMinutes*60*1000;
 async function capture(name){await page.screenshot({path:resolve(output,`${name}.png`)});report.captures.push(`${name}.png`);
   report.geometry??=[];report.geometry.push(await page.evaluate(name=>{
-    const controls=[...document.querySelectorAll('.dialogue-choice,.exploration-stop button,.poi-map nav button,.poi-map__detail button,.poi-marker[aria-pressed="true"],[data-traversal-fork-choice],[data-traversal-confirm],[data-journey-choice],[data-journey-continue]')]
+    const controls=[...document.querySelectorAll('.dialogue-choice,.exploration-stop button,.poi-map nav button,.poi-map__atlas-bar button,.poi-map__detail button,.poi-marker[aria-pressed="true"],[data-journey-choice],[data-journey-continue]')]
       .filter(e=>e.getClientRects().length&&!e.disabled).map(e=>{const r=e.getBoundingClientRect();return{label:e.textContent.trim(),x:r.x,y:r.y,right:r.right,bottom:r.bottom};});
     const land=document.querySelector('.poi-map__land')?.getBoundingClientRect();
     const markerLabels=land?[...document.querySelectorAll('.poi-marker__name')].map(e=>{
@@ -294,6 +294,50 @@ async function poiNoReplayPath(ids,mixedInputs=false,captureName='poi-native-bac
   await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked'));
   await capture(captureName);
   return {ids,before,after,noReplay:true,exactConsequences:true};
+}
+async function inspectPoiAtlas(){
+  if(report.atlas)return;
+  await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked'));
+  const before=await state(),initialRegion=await page.locator('.poi-map').getAttribute('data-region');
+  const regions=[];
+  for(const index of [0,1,2]){
+    await keyboardActivate(`.poi-map [data-poi-region="${index}"]`);
+    assert.equal(await page.locator(`[data-poi-region="${index}"]`).getAttribute('aria-selected'),'true');
+    assert.equal(await page.locator(`[data-poi-region="${index}"]`).evaluate(e=>e===document.activeElement),true,'Region tab lost native focus');
+    const controls=await page.locator('.poi-map button').evaluateAll(elements=>elements.map(e=>{
+      const r=e.getBoundingClientRect();return {label:e.getAttribute('aria-label')||e.textContent.trim(),width:r.width,height:r.height};
+    }));
+    assert.ok(controls.every(c=>c.width>=44&&c.height>=44),'Atlas native target below44px');
+    await capture(`atlas-region-${index}-${viewport[0]}`);
+    regions.push({index,controls});
+  }
+  await keyboardActivate('.poi-map [data-poi-action="locate"]');
+  assert.equal(await page.locator('.poi-map').getAttribute('data-region'),initialRegion);
+  assert.equal(await page.locator(`[data-poi-id="${before.currentNodeId}"]`).evaluate(e=>e===document.activeElement),true,'Locate did not restore marker focus');
+  const land=page.locator('.poi-map__land');
+  const geometry=await land.evaluate(e=>({left:e.scrollLeft,top:e.scrollTop,width:e.clientWidth,height:e.clientHeight,scrollWidth:e.scrollWidth,scrollHeight:e.scrollHeight}));
+  let pan=null;
+  if(geometry.scrollWidth>geometry.width+5){
+    if(touchInput){
+      const box=await land.boundingBox();assert.ok(box);
+      const direction=geometry.left>5?-1:1;
+      const cdp=await context.newCDPSession(page),y=box.y+Math.min(box.height*.5,180),start=box.x+box.width*(direction===1?.8:.2);
+      await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:start,y}]});
+      for(let step=1;step<=6;step++){
+        await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:start-box.width*.55*direction*step/6,y}]});
+        await page.waitForTimeout(30);
+      }
+      await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await cdp.detach();
+    }else {await land.focus();await page.keyboard.press(geometry.left>5?'ArrowLeft':'ArrowRight');}
+    await page.waitForFunction(left=>document.querySelector('.poi-map__land').scrollLeft!==left,geometry.left);
+    pan=await land.evaluate(e=>({left:e.scrollLeft,top:e.scrollTop}));
+    report.inputs.push({action:touchInput?'native touch atlas swipe':'native keyboard atlas scroll',before:geometry,after:pan});
+    await capture(`atlas-native-pan-${viewport[0]}`);
+    await keyboardActivate('.poi-map [data-poi-action="locate"]');
+  }
+  assert.deepEqual(await state(),before,'Atlas browsing/focus/pan changed canonical owner facts');
+  assert.equal(await page.locator('.traversal-road,.traversal-fork-overlay').count(),0,'Retired physical surface mounted');
+  report.atlas={pass:true,regions,geometry,pan,ownerUnchanged:true,nativeTouch:touchInput,viewport,initialRegion};
 }
 async function returnToPoiMap(){
   // Existing authored post-refuge ATE/reputation dialogue retains player agency before map return.
@@ -664,24 +708,7 @@ async function battle(){
   await frame.waitForFunction(()=>window.__BOOTED===true,null,{timeout:60000});
   const entry={index:report.battles.length,nodeId:(await state()).currentNodeId,
     combatId:await page.evaluate(()=>window.__demoQaApp.combat.session?.config.id),actions:[],pass:false}; report.battles.push(entry);
-  entry.pursuit=await page.evaluate(()=>{
-    const app=window.__demoQaApp,scene=app.activeTraversal;
-    if(!scene?.roadCombatWindow)return null;
-    window.__demoQaPursuitRoad=scene; // Observation reference only; no runtime method or state write.
-    return {windowId:scene.roadCombatWindow,legId:scene.session.legId,segment:scene.element.dataset.routeSegment,
-      session:structuredClone(scene.session),elapsedMs:scene.routeRun.elapsedMs,distance:scene.routeRenderer.distance,
-      config:structuredClone(app.combat.session.config)};
-  });
   assert.equal(await frame.evaluate(()=>typeof window.__qaHelpers.teleportActiveUnitNextToEnemy),'undefined','Production mutation helper present');
-  if(entry.pursuit){
-    entry.pursuit.nativeRoster=await frame.evaluate(()=>G.units.filter(u=>u.team==='foe')
-      .map(u=>({id:u.combatPoseUnitId,name:u.name,maxhp:u.maxhp,boss:!!u.boss,elite:!!u.elite})));
-    assert.deepEqual(entry.pursuit.nativeRoster.map(u=>u.id),entry.pursuit.config.enemyVisualIds,
-      'Native Pursuit roster differs from the campaign-selected random formation');
-    const [minimum,maximum]=entry.pursuit.legId==='T0'?[2,2]:entry.pursuit.legId==='T1'?[2,3]:[3,4];
-    assert.ok(entry.pursuit.nativeRoster.length>=minimum&&entry.pursuit.nativeRoster.length<=maximum);
-    assert.ok(entry.pursuit.nativeRoster.every(u=>!u.boss&&!u.elite));
-  }
   for(const selector of ['#tutorial:not(.hidden) [data-action="skip"]','#boss-tutorial:not(.hidden) [data-action="start"]']){
     if(await frame.locator(selector).isVisible().catch(()=>false))await activateControl(frame.locator(selector));
   }
@@ -889,68 +916,6 @@ async function battle(){
   entry.outcome='victory';
   entry.nativeVictoryHealth=await frame.evaluate(()=>Object.fromEntries(G.deployedUnits
     .map(u=>[u.campaignId||u.name,Math.max(0,Math.round(u.alive?u.hp:0))])));
-  if(entry.pursuit){
-    entry.pursuit.nativePayload=await frame.evaluate(()=>({
-      participants:G.deployedUnits.map(u=>u.campaignId||u.name),
-      unitHealth:Object.fromEntries(G.deployedUnits.map(u=>[u.campaignId||u.name,Math.max(0,Math.round(u.alive?u.hp:0))])),
-    }));
-    assert.ok(['forest_patrol','forest_ambush','wolf_pack'].includes(entry.combatId));
-    assert.equal(entry.pursuit.config.encounterRank,'normal');assert.ok(!entry.pursuit.config.isBoss);
-    await frame.locator('#combat-result-action').focus();await page.keyboard.press('Enter');
-    report.inputs.push({action:'native Pursuit result Enter',windowId:entry.pursuit.windowId});
-    await element.waitFor({state:'detached',timeout:30000});
-    await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked')
-      &&window.__demoQaApp.activeTraversal?.session.phase==='RUNNING');
-    entry.ownerAfter=await state();
-    const before=entry.ownerBefore,after=entry.ownerAfter;
-    for(const key of ['currentNodeId','resolvedNodeIds','flags','endingId'])assert.deepEqual(after[key],before[key],`Pursuit changed ${key}`);
-    for(const key of ['graph','currentNodeId','visitedNodeIds','traversalBranches','bypassedRouteNodeIds','checkpointNodeId','status'])
-      assert.deepEqual(after.run[key],before.run[key],`Pursuit changed run.${key}`);
-    assert.equal(after.gold,before.gold,'Pursuit secured route gold');
-    const expectedLoot=structuredClone(before.run.temporaryLoot),rewards=entry.pursuit.config.rewards;
-    expectedLoot.gold+=rewards.gold;
-    for(const [id,quantity] of Object.entries(rewards.materials))expectedLoot.inventory.materials[id]=(expectedLoot.inventory.materials[id]??0)+quantity;
-    assert.deepEqual(after.run.temporaryLoot,expectedLoot,'Pursuit must apply existing temporary reward exactly once');
-    assert.deepEqual(after.inventory.consumables,entry.result.inventory,'Native consumed items were not retained');
-    for(const unit of before.clan.members){
-      const nativeHealth=entry.pursuit.nativePayload.unitHealth[unit.id];
-      assert.equal(after.clan.members.find(u=>u.id===unit.id).currentHealth,
-        nativeHealth===undefined?unit.currentHealth:Math.max(1,nativeHealth),
-        'Post-victory participant recovery or unchanged bench health differs from native result');
-    }
-    assert.deepEqual(after.deployment.unitIds,entry.pursuit.nativePayload.participants.slice(0,entry.pursuit.config.maxPlayerUnits));
-    const reputation=Math.max(0,Math.min(100,before.reputation+Math.trunc(rewards.reputation)));
-    assert.equal(after.reputation,reputation);
-    assert.deepEqual(after.reputationHistory,[...before.reputationHistory,{delta:Math.trunc(rewards.reputation),source:`combat:${entry.combatId}`,value:reputation}]);
-    entry.pursuit.returned=await page.evaluate(()=>{
-      const scene=window.__demoQaApp.activeTraversal,control=document.activeElement,r=control.getBoundingClientRect(),style=getComputedStyle(control);
-      return {sameRoad:scene===window.__demoQaPursuitRoad,window:scene.roadCombatWindow,segment:scene.element.dataset.routeSegment,
-        stage:scene.session.stageIndex,consumed:[...scene.session.consumedBeatIds],elapsedMs:scene.routeRun.elapsedMs,
-        focusedLane:control.dataset.traversalLane,focusVisible:control.matches(':focus-visible'),
-        outlineWidth:style.outlineWidth,bounds:{left:r.left,top:r.top,right:r.right,bottom:r.bottom}};
-    });
-    const returned=entry.pursuit.returned;
-    assert.equal(returned.sameRoad,true);assert.equal(returned.window,null);assert.equal(returned.segment,entry.pursuit.segment);
-    assert.equal(returned.stage,entry.pursuit.session.stageIndex);assert.deepEqual(returned.consumed,entry.pursuit.session.consumedBeatIds);
-    assert.ok(returned.elapsedMs>=entry.pursuit.elapsedMs&&returned.elapsedMs-entry.pursuit.elapsedMs<1500,'Return restarted or advanced the held road');
-    assert.equal(returned.focusedLane,String(entry.pursuit.session.currentLane));assert.equal(returned.focusVisible,true);
-    assert.ok(Number.parseFloat(returned.outlineWidth)>0&&returned.bounds.left>=0&&returned.bounds.top>=0
-      &&returned.bounds.right<=viewport[0]&&returned.bounds.bottom<=viewport[1],'Returned focus is clipped or invisible');
-    await capture(`combat-${entry.index}-pursuit-return-focus`);
-    assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),entry.autosaveBefore,'Incidental victory changed autosave cadence');
-    assert.equal(entry.autosaveBefore.version,6,'Persistence proof requires an actual V6 autosave');
-    if(target==='pursuit-victory'){
-      await page.reload({waitUntil:'networkidle'});await click('.title-screen [data-action="continue"]');
-      await page.waitForFunction(id=>window.__demoQaApp.state.currentNodeId===id
-        &&!document.body.classList.contains('scene-transition--locked')
-        &&[...document.querySelectorAll('[data-traversal-lane],[data-traversal-confirm],[data-journey-continue],[data-journey-choice],.dialogue-choice,.exploration-stop button')]
-          .some(e=>!e.disabled&&e.getClientRects().length&&!e.closest('[inert]')),entry.autosaveBefore.currentNodeId);
-      report.resumed=await state();assert.deepEqual(report.resumed,entry.autosaveBefore,'Reload changed persisted canonical truth');
-      assert.equal(await page.locator('iframe.combat-frame').count(),0,'Reload replayed ephemeral Pursuit combat');
-      await capture('pursuit-v6-reloaded');assert.deepEqual(report.errors,[]);report.pass=true;
-    }
-    entry.pass=true;return;
-  }
   if(entry.index===0&&!priorProof&&!touchInput){
     await frame.locator('#combat-result-action').focus();
     await page.keyboard.press('Enter');
@@ -983,6 +948,7 @@ try{
       await page.waitForFunction(()=>[...document.querySelectorAll('.poi-map,.exploration-stop')]
         .some(e=>e.getClientRects().length&&!e.closest('[inert]')));
       if(await page.locator('.poi-map:visible').count()){
+        await inspectPoiAtlas();
         const current=JSON.parse(earnedText).currentNodeId;
         assert.equal((await state()).currentNodeId,current);
         await activateControl(page.locator(`.poi-map [data-poi-id="${current}"]`));
@@ -1209,17 +1175,8 @@ try{
       assert.deepEqual(report.errors,[]);report.pass=true;break;
     }
     if(await page.locator('iframe.combat-frame').count()){await battle();if(report.defeatRecovery?.pass||report.pass)break;continue;}
-    if(['pursuit-victory','second-refuge','ending'].includes(target)){
-      const charge=page.locator('.traversal-pursuit-charge[data-phase="CHARGING"]:visible');
-      if(await charge.count()){
-        const chargeLane=await charge.getAttribute('data-lane');
-        assert.ok(chargeLane==='0'||chargeLane==='1','Visible Pursuit charge must identify a native lane');
-        const lane=target==='pursuit-victory'?chargeLane:String(1-Number(chargeLane));
-        const button=page.locator(`[data-traversal-lane="${lane}"]:visible:not(:disabled)`);
-        if(await button.count())await keyboardActivate(`[data-traversal-lane="${lane}"]:visible:not(:disabled)`);
-      }
-    }
     if(await page.locator('.poi-map:visible').count()){
+      await inspectPoiAtlas();
       live=await state();
       report.poi??={native:true};
       if(target==='second-trial'&&live.currentNodeId==='lion-second-trial-combat'&&live.resolvedNodeIds.includes(live.currentNodeId)){
@@ -1304,10 +1261,6 @@ try{
     else if(await page.locator('.cinematic-overlay__skip:visible').count()){await click('.cinematic-overlay__skip:visible');}
     else if(await page.locator('.dialogue-choice:visible:not(:disabled)').count()){await choose();}
     else if(await page.locator('.dialogue:visible').count()){await advanceDialogue();}
-    else if(await page.locator('[data-traversal-fork-choice="lion-first-trial-event"]:visible:not(:disabled)').count()){await click('[data-traversal-fork-choice="lion-first-trial-event"]:not(:disabled)');}
-    else if(await page.locator('[data-traversal-fork-choice="lion-second-trial-event"]:visible:not(:disabled)').count()){await keyboardActivate('[data-traversal-fork-choice="lion-second-trial-event"]:not(:disabled)');}
-    else if(await page.locator('[data-traversal-fork-choice="lion-final-trial-event"]:visible:not(:disabled)').count()){await keyboardActivate('[data-traversal-fork-choice="lion-final-trial-event"]:not(:disabled)');}
-    else if(await page.locator('[data-traversal-confirm]:visible:not(:disabled)').count()){await click('[data-traversal-confirm]:visible:not(:disabled)');}
     else if(await page.locator(genericJourneyContinue).count()){await click(genericJourneyContinue);}
     else if(await page.locator('[data-journey-choice]:visible:not(:disabled)').count()){await click('[data-journey-choice]:visible:not(:disabled)');}
     await page.waitForTimeout(100);

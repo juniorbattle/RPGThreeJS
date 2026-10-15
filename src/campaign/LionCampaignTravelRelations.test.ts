@@ -40,25 +40,13 @@ describe('LionCampaignTravelRelations', () => {
   it('preserves stage modes after runtime freezing', () => {
     expect(LION_TRAVERSAL_LEGS.find((leg) => leg.id === 'T0')?.stages.map((stage) => stage.mode))
       .toEqual(['MANDATORY_INTERRUPT', 'MANDATORY_INTERRUPT', 'OPTIONAL_INTERRUPT', 'IN_TRAVERSAL_FORK']);
-    expect(LION_TRAVERSAL_LEGS.find((leg) => leg.id === 'T1')?.stages.at(-1)?.forkPresentation?.surface)
-      .toBe('TRAVERSAL_OVERLAY');
   });
 
-  it('keeps every fork inside the live traversal surface', () => {
-    const forkStages = LION_TRAVERSAL_LEGS
-      .flatMap((leg) => leg.stages)
-      .filter((stage) => stage.mode === 'IN_TRAVERSAL_FORK');
-
-    expect(forkStages).toHaveLength(3);
-    for (const stage of forkStages) {
-      expect(stage.forkPresentation).toEqual({
-        surface: 'TRAVERSAL_OVERLAY',
-        keepTraversalMounted: true,
-        edgeTreatment: 'TRANSLUCENT_OPAQUE_EDGES',
-        choicePlacement: 'RIGHT_CHOICE_RAIL',
-        locomotionWhileChoosing: 'SLOW_OR_HOLD',
-      });
-    }
+  it('keeps all exclusive-choice stages immutable without a physical presentation owner',()=>{
+    const forks=LION_TRAVERSAL_LEGS.flatMap(leg=>leg.stages).filter(stage=>stage.mode==='IN_TRAVERSAL_FORK');
+    expect(forks).toHaveLength(3);
+    for(const stage of forks){expect(Object.isFrozen(stage)).toBe(true);expect(Object.isFrozen(stage.nodeIds)).toBe(true);
+      expect(stage).not.toHaveProperty('forkPresentation');}
   });
 
   it('has no structural travel-relation debt', () => {

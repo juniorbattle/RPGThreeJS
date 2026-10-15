@@ -33,7 +33,7 @@ it('moves the one HUD through surfaces and ignores stale cleanup', () => {
   const hud = new CampaignStatusHud(() => selectCampaignStatus(state));
   const journey = document.createElement('section'), road = document.createElement('section');
   document.body.append(journey, road);
-  hud.show(journey); hud.show(road, 'traversal'); hud.hide(journey);
+  hud.show(journey); hud.show(road); hud.hide(journey);
   expect(document.querySelectorAll('.campaign-status-hud')).toHaveLength(1);
   expect(road.contains(hud.element)).toBe(true);
   hud.show(journey); hud.hide(road);

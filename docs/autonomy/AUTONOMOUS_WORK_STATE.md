@@ -2,7 +2,7 @@
 
 IN_PROGRESS. OD-2026-10-15-A explicitly authorizes dedicated contract amendment, playable A/B, Option C art C and definitive physical retirement D. No scheduled budget applies; scheduler unchanged. Starting clean dev/live origin b79063b; main00b96f1. No inherited WIP.
 
-Current: C atlas/art candidates integrated:3new pixel-diorama regions, native region tabs/spatial focus/controlled pan,17tests/types+5focusrecheck pass; UI reviewer conditions addressed. Operator art/native viewport checks pending. A accepted; proceed D physical retirement with reversible C checkpoint.
+Current: Finalize the physical-engine retirement, verify V6 handoffs and current atlas in production, then close all four lots.
 
 All historical QA/deferred task objects are preserved in JSON and preceding closeout below. No new runtime/art/native acceptance claimed.
 

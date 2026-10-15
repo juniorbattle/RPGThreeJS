@@ -5,13 +5,11 @@ import { createUnitInstance, getItemCategory, toCombatant } from './catalog';
 import { applyCombatProgress } from './combatProgress';
 import {
   addTemporaryLoot, enterRunNode, failRunToCheckpoint,
-  getAvailableRunNodes, getRunNode, secureRunLoot, bypassTraversalNode,
-  requestTraversalPursuitEncounter, resolveTraversalPursuitVictory, type TraversalPursuitContact,
+  getAvailableRunNodes, getRunNode, secureRunLoot,
   selectPoiMap, enterPoi, bypassPoi, isPoiNeutralized,
 } from './runSystem';
 import { changeReputation, getReputationRule } from './reputation';
 import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
-import { resolveTraversalIgnoreConsequence } from './TraversalOptionalConsequencePolicy';
 import { CLAN_ANCHOR_DIALOGUES } from './campaignGrammarContent';
 import { resolveCharacterUnitId } from '../render/CharacterVisualRegistry';
 import {
@@ -31,13 +29,11 @@ import { getRestCost, getWoundedUnitCount, restUnits } from './management';
 import { CombatBridge } from '../combat/CombatBridge';
 import { DialogueView, resolveDialogueBackdrop } from '../ui/DialogueView';
 import { ManagementView } from '../ui/ManagementView';
-import { TravelView } from '../ui/TravelView';
 import { PoiMapView } from '../ui/PoiMapView';
 import { ExplorationView } from '../ui/ExplorationView';
 import { resolveRefugePresentation } from '../ui/RefugePresentation';
 import { PrologueView } from '../ui/PrologueView';
 import { sceneTransition } from '../ui/SceneTransition';
-import { TRAVERSAL_RHYTHM } from '../traversal/TraversalTransition';
 import type { TransitionVariant } from '../ui/SceneTransition';
 import { CinematicPlayer } from '../cinematics/CinematicPlayer';
 import { CinematicRegistry } from '../cinematics/CinematicRegistry';
@@ -59,10 +55,6 @@ import {
 import { JourneyCampaignBoundary, type JourneyBoundaryRequest } from '../journey/JourneyCampaignBoundary';
 import { resolveCampaignPresentation } from '../journey/JourneyPresentationPolicy';
 import { evaluateRouteCommit } from '../journey/RouteCommitGuard';
-import { isTraversalProductionEnabledForLeg } from '../traversal/TraversalFeaturePolicy';
-import { createTraversalPresentation, hasAuthoredTraversalPresentation, type TraversalPresentationScene } from '../traversal/TraversalPresentation';
-import { TraversalPreviewSaves } from '../traversal/TraversalPreviewSaves';
-import { LION_TRAVERSAL_LEGS, type LionTraversalLeg, type LionTraversalLegId } from '../campaign/LionCampaignTravelRelations';
 import type { JourneySecondaryActionPresentation } from '../cinematics/JourneyTypes';
 import { NarrativeStage } from '../cinematics/NarrativeStage';
 import { resolveCinematicPresentation, resolveDialoguePresentation } from '../cinematics/NarrativePresentationResolver';
@@ -134,16 +126,14 @@ export class GameApp {
   private readonly dialogue: DialogueView;
   private readonly management: ManagementView;
   private readonly combat: CombatBridge;
-  private readonly travel: TravelView;
   private readonly poiMap: PoiMapView;
   private readonly exploration: ExplorationView;
   private readonly prologue: PrologueView;
   private readonly cinematicRegistry = new CinematicRegistry();
   private readonly cinematicPlayer = new CinematicPlayer(this.cinematicRegistry);
   private pendingCombatId: string | null = null;
-  private traversalPursuitAbort: AbortController | null = null;
   private pendingChapterBeatId: string | null = null;
-  // Journey/NarrativeStage is the default; TravelView is recovery or an explicit DEV override.
+  // Narrative presentation policy; campaign navigation is always POI.
   private readonly campaignPresentation = resolveCampaignPresentation({
     search: window.location.search,
     dev: import.meta.env.DEV,
@@ -153,9 +143,6 @@ export class GameApp {
     dev: import.meta.env.DEV,
   });
   private journeyBoundary: JourneyCampaignBoundary | null = null;
-  private activeTraversal: TraversalPresentationScene | null = null;
-  private traversalEntryInFlight = false;
-  private traversalArrivalInFlight = false;
   private lastNarrativeCinematicBeat: ResolvedPresentationBeat | undefined;
   private activeNarrativeStage: NarrativeStage | null = null;
   // Latched after a catastrophic Journey failure so the fallback can never recurse into Journey.
@@ -165,9 +152,7 @@ export class GameApp {
     && new URLSearchParams(window.location.search).get('qa') === '1';
   private readonly cinematicQaEnabled = this.qaEnabled
     && new URLSearchParams(window.location.search).get('cinematic') === '1';
-  private readonly traversalT0QaEnabled = this.qaEnabled
-    && new URLSearchParams(window.location.search).get('traversal') === 't0';
-  private readonly saves = this.traversalT0QaEnabled ? new TraversalPreviewSaves() : new SaveRepository();
+  private readonly saves = new SaveRepository();
   // Explicit DEV-only end-to-end fixture: it only exposes the existing combat QA controls while
   // the real campaign/Journey controller continues to own route, dialogue and state progression.
   private readonly cin6aGoldenQaEnabled = this.qaEnabled
@@ -194,14 +179,6 @@ export class GameApp {
       },
     });
     this.combat = new CombatBridge(root);
-    this.travel = new TravelView({
-      root,
-      getState: () => this.state,
-      onSelect: (node) => this.chooseRunNode(node),
-      onOpenClan: () => void this.openManagement('clan'),
-      onSave: () => this.saves.saveManual(this.state),
-      onOpenMenu: () => this.renderTitle(),
-    });
     this.exploration = new ExplorationView({ root, statusHud: this.statusHud });
     this.poiMap = new PoiMapView({root,
       onMove: id => this.choosePoi(id),
@@ -220,19 +197,17 @@ export class GameApp {
 
   async start(): Promise<void> {
     await this.cinematicRegistry.load();
-    if (this.traversalT0QaEnabled) await this.startTraversalT0Qa();
-    else if (this.cinematicQaEnabled) this.renderCinematicQa();
+    if (this.cinematicQaEnabled) this.renderCinematicQa();
     else this.renderTitle();
   }
 
   dispose(): void {
     this.poiMap.close();
-    this.disposeTraversal();
+
     this.disposeJourney();
     this.disposeNarrativeStage();
     this.cinematicPlayer.dispose();
     this.combat.dispose();
-    this.travel.close();
     this.exploration.close();
     this.prologue.close();
   }
@@ -240,11 +215,10 @@ export class GameApp {
   private renderTitle(): void {
     this.poiMap.close();
     delete document.body.dataset.campaignSurface;
-    this.disposeTraversal();
+
     this.disposeJourney();
     this.disposeNarrativeStage();
     this.setMode('TITLE');
-    this.travel.close();
     this.exploration.close();
     this.prologue.close();
     this.combat.close();
@@ -276,217 +250,6 @@ export class GameApp {
       ?? this.chrome.querySelector<HTMLButtonElement>('[data-action="new"]'))?.focus();
   }
 
-  /** Isolated DEV proof. It consumes the real T0 relation and RunSystem without opening rollout. */
-  private async startTraversalT0Qa(): Promise<void> {
-    if (!this.traversalT0QaEnabled) {
-      this.renderTitle();
-      return;
-    }
-    const leg = LION_TRAVERSAL_LEGS.find((candidate) => candidate.id === 'T0');
-    if (!leg) throw new Error('Canonical Traversal leg T0 is missing.');
-    this.disposeTraversal();
-    this.disposeJourney();
-    this.disposeNarrativeStage();
-    this.travel.close();
-    this.exploration.close();
-    this.prologue.close();
-    this.combat.close();
-    this.state = createInitialState();
-    this.state.run.currentNodeId = leg.originNodeId;
-    this.state.currentNodeId = leg.originNodeId;
-    this.state.run.visitedNodeIds = [...new Set([...this.state.run.visitedNodeIds, leg.originNodeId])];
-    this.state.run.revealedNodeIds = [...new Set([...this.state.run.revealedNodeIds, leg.originNodeId])];
-    this.state.visitedNodeIds = [...new Set([...this.state.visitedNodeIds, leg.originNodeId])];
-    // Show the real Travel surface before the isolated preview's covered departure.
-    this.showTravel();
-    await this.enterTraversal(leg, false);
-  }
-
-  /** Shared mount only; QA alone manufactures a state and uses its isolated save repository. */
-  private async enterTraversal(leg: LionTraversalLeg, saveOrigin = true): Promise<void> {
-    if (this.activeTraversal || this.traversalEntryInFlight) return;
-    this.traversalEntryInFlight = true;
-    this.activeNarrativeStage?.prepareGlobalHandoff();
-    try {
-      if (saveOrigin) {
-        let departure!: ReturnType<JourneyCampaignBoundary['present']>;
-        const destinationLabel = getRunNode(this.state.run, leg.destinationNodeId)?.label ?? 'Prochaine destination';
-        const departureRequest: JourneyBoundaryRequest = {
-          currentNodeId: leg.originNodeId,
-          available: getAvailableRunNodes(this.state),
-          secondary: JOURNEY_SECONDARY_ACTIONS,
-          reducedMotion: this.state.settings.reducedGraphics,
-          presentationOnly: {
-            eyebrow: 'Départ',
-            title: `Vers ${destinationLabel}`,
-            continueLabel: 'Prendre la route',
-          },
-        };
-        await sceneTransition.run({ variant: 'travel', holdMs: 0, task: async () => {
-          this.disposeNarrativeStage();
-          this.travel.close();
-          this.setMode('NARRATIVE');
-          this.canvas.hidden = true;
-          this.chrome.replaceChildren();
-          // The resolved origin is durable; watching the departure is intentionally not persisted.
-          this.saves.saveAuto(this.state);
-          const boundary = this.ensureJourneyBoundary();
-          departure = boundary.present(departureRequest);
-          await Promise.race([boundary.waitUntilSurfaceReady(), departure]);
-        } });
-        let outcome = await departure;
-        while (outcome.kind === 'secondary' && outcome.id && this.mode === 'NARRATIVE') {
-          if (!await this.handleJourneySecondary(outcome.id)) return;
-          // A committed overlay is single-use. Rebuild the same local agency from unchanged truth.
-          outcome = await this.ensureJourneyBoundary().present(departureRequest);
-        }
-        if (outcome.kind !== 'presentation-continue' || this.mode !== 'NARRATIVE') return;
-      }
-      await sceneTransition.run({ variant: 'traversal', holdMs: 0, task: async () => {
-        this.disposeNarrativeStage();
-        this.disposeJourney();
-        this.travel.close();
-        this.combat.close();
-        // Journey already establishes NARRATIVE as the authorized presentation mode for a mounted
-        // campaign surface. The explicit activeTraversal owner distinguishes this playable surface.
-        this.setMode('NARRATIVE');
-        document.body.dataset.campaignSurface = 'traversal';
-        this.canvas.hidden = true;
-        this.chrome.replaceChildren();
-        const traversal = createTraversalPresentation({
-          root: this.root,
-          leg,
-          getState: () => this.state,
-          getAvailableNodes: () => getAvailableRunNodes(this.state),
-          statusHud: this.statusHud,
-          onRouteRewardPickup: reward => this.acceptTraversalRouteReward(reward),
-          onOptionalIgnore: nodeId => this.ignoreTraversalOptionalNode(nodeId),
-          onPursuitContact: contact => this.startTraversalPursuitCombat(contact),
-          onNodeHandoff: async (node) => { await this.commitRunNodeChoice(node.id); },
-          onArrival: async (destinationNodeId) => { await this.completeTraversalArrival(destinationNodeId); },
-          onMenu: () => this.renderTitle(),
-        });
-        this.activeTraversal = traversal;
-        // No physical session is persisted. Until final arrival this remains the durable boundary.
-        traversal.open();
-      } });
-    } catch (error) {
-      await this.failJourneyToTravel(error);
-    } finally {
-      this.traversalEntryInFlight = false;
-    }
-  }
-
-  private ignoreTraversalOptionalNode(nodeId: string): { accepted: boolean; feedback?: string } {
-    const traversal = this.activeTraversal;
-    if (!traversal || this.state.run.visitedNodeIds.includes(nodeId)
-      || this.state.run.bypassedRouteNodeIds?.includes(nodeId)) return { accepted: false };
-    const node = getAvailableRunNodes(this.state).find(candidate => candidate.id === nodeId);
-    if (!traversal || traversal.session.phase !== 'RUNNING' || !node
-      || !traversal.route.beats.some(beat => beat.campaignNodeIds.includes(nodeId))
-      || !bypassTraversalNode(this.state.run, traversal.session.legId, nodeId)) return { accepted: false };
-    const consequence = resolveTraversalIgnoreConsequence(traversal.session.legId, node);
-    if (consequence) {
-      changeReputation(this.state, consequence.reputation, `traversal-ignore:${node.id}`);
-      this.state.flags[consequence.flag] = true;
-      this.statusHud?.refresh();
-    }
-    return { accepted: true, feedback: consequence?.feedback };
-  }
-
-  private acceptTraversalRouteReward(reward: { readonly id: string; readonly gold: number }): boolean {
-    const traversal = this.activeTraversal;
-    if (!traversal || !isTraversalProductionEnabledForLeg(traversal.session.legId)
-      || !hasAuthoredTraversalPresentation(traversal.session.legId) || traversal.session.phase !== 'RUNNING'
-      || !Number.isInteger(reward.gold) || reward.gold <= 0) return false;
-    addTemporaryLoot(this.state.run, { gold: reward.gold });
-    this.statusHud.refresh();
-    return true;
-  }
-
-  /** Incidental road combat reuses tactical authority without resolving a campaign node. */
-  private async startTraversalPursuitCombat(contact: TraversalPursuitContact): Promise<void> {
-    const traversal = this.activeTraversal;
-    if (!traversal || this.traversalPursuitAbort || this.mode !== 'NARRATIVE'
-      || traversal.session.phase !== 'DECISION' || traversal.session.pendingBeatId !== contact.windowId
-      || traversal.session.legId !== contact.legId) return;
-    const request = requestTraversalPursuitEncounter(this.state, contact);
-    if (!request) {
-      console.error('[Traversal] Ineligible Pursuit collision mapping.', contact);
-      return; // A rejected contact remains pending, never becomes a fabricated miss.
-    }
-    const owner = new AbortController();
-    this.traversalPursuitAbort = owner;
-    try {
-      let session!: ReturnType<CombatBridge['start']>;
-      await sceneTransition.run({ variant: 'traversal', label: request.config.encounterLabel, task: async () => {
-        if (this.activeTraversal !== traversal) return;
-        this.disposeJourney(); this.disposeNarrativeStage(); this.travel.close();
-        this.setMode('COMBAT'); this.chrome.replaceChildren();
-        session = this.combat.start({ config: request.config,
-          clan: this.state.clan.members.filter(unit => unit.currentHealth > 0).map(unit => toCombatant(unit)),
-          inventory: this.state.inventory.consumables, preferredUnitIds: this.state.deployment.unitIds,
-          reducedGraphics: this.state.settings.reducedGraphics,
-          devQa: this.cin6aGoldenQaEnabled || this.traversalT0QaEnabled });
-        await session.ready;
-      } });
-      if (!session || this.activeTraversal !== traversal) return;
-      const result = await Promise.race([session.result, new Promise<null>(resolve => {
-        if (owner.signal.aborted) resolve(null);
-        else owner.signal.addEventListener('abort', () => resolve(null), { once: true });
-      })]);
-      if (!result || this.activeTraversal !== traversal) return;
-      if (!result.victory) {
-        this.disposeTraversal();
-        this.state = this.saves.loadAuto() ?? this.state;
-        failRunToCheckpoint(this.state); this.saves.saveAuto(this.state);
-        await sceneTransition.run({ variant: 'result', label: 'Défaite', task: async () => {} });
-        await this.enterCampaignPresentation();
-        return;
-      }
-      if (!resolveTraversalPursuitVictory(this.state, request, result)) throw new Error('Stale Pursuit combat result.');
-      // Existing canonical autosave cadence remains intact. Reload abandons the ephemeral
-      // battle/road and resumes that saved boundary, never a serialized physical Pursuit.
-      await sceneTransition.run({ variant: 'traversal', task: async () => {
-        if (this.activeTraversal !== traversal) return;
-        this.combat.close(); this.setMode('NARRATIVE');
-        document.body.dataset.campaignSurface = 'traversal'; this.chrome.replaceChildren();
-        if (!traversal.resumeRoadCombat(contact.windowId)) throw new Error('Pursuit road return mismatch.');
-        this.statusHud.refresh();
-      } });
-      if (this.activeTraversal === traversal && !owner.signal.aborted && this.mode === 'NARRATIVE') {
-        traversal.focusRoadControls();
-      }
-    } catch (error) {
-      console.error('[Traversal] Pursuit combat handoff failed.', error);
-      if (this.activeTraversal === traversal) await this.failJourneyToTravel(error);
-    } finally { if (this.traversalPursuitAbort === owner) this.traversalPursuitAbort = null; }
-  }
-
-  private async completeTraversalArrival(destinationNodeId: string): Promise<void> {
-    const traversal = this.activeTraversal;
-    if (!traversal || traversal.session.phase !== 'ARRIVING'
-      || traversal.route.destinationNodeId !== destinationNodeId || this.traversalArrivalInFlight) return;
-    // Arrival completes the physical leg, not the next canonical node.
-    // The canonical boundary presents authoritative options for explicit player confirmation.
-    this.traversalArrivalInFlight = true;
-    try {
-      await this.enterCampaignPresentation();
-    } finally {
-      this.traversalArrivalInFlight = false;
-    }
-  }
-
-  private disposeTraversal(): void {
-    this.traversalPursuitAbort?.abort();
-    this.traversalPursuitAbort = null;
-    this.activeTraversal?.dispose();
-    this.activeTraversal = null;
-    if (document.body.dataset.campaignSurface === 'traversal') {
-      delete document.body.dataset.campaignSurface;
-    }
-  }
-
   private renderQaLab(message = ''): void {
     if (!this.qaEnabled) {
       this.renderTitle();
@@ -506,7 +269,6 @@ export class GameApp {
     const p = this.qaParams;
     this.disposeJourney();
     this.setMode('QA');
-    this.travel.close();
     this.exploration.close();
     this.prologue.close();
     this.combat.close();
@@ -590,7 +352,6 @@ export class GameApp {
     }
     this.disposeJourney();
     this.setMode('QA');
-    this.travel.close();
     this.exploration.close();
     this.prologue.close();
     this.combat.close();
@@ -899,125 +660,28 @@ export class GameApp {
   }
 
   private async enterCampaignPresentation(): Promise<void> {
-    // Existing ending agency is a terminal presentation, never another navigation path.
-    if (!this.traversalT0QaEnabled && this.hasCompletedPoiChronicle()) {
-      this.poiMap.close();
-      delete document.body.dataset.campaignSurface;
-      await this.enterJourney();
-      return;
+    // Existing terminal and preparation presentation retain agency; navigation stays on the map.
+    if (this.hasCompletedPoiChronicle()) {
+      this.poiMap.close(); delete document.body.dataset.campaignSurface;
+      await this.enterJourney(); return;
     }
-    // Rebuild the authored campfire from durable facts on arrival and reload. Its local
-    // continuation returns to POI navigation; preparation neither enters nor resolves a node.
-    if (!this.traversalT0QaEnabled && !this.journeyUnavailable
-      && this.state.run.currentNodeId === 'lion-final-refuge'
+    if (!this.journeyUnavailable && this.state.run.currentNodeId === 'lion-final-refuge'
       && this.state.resolvedNodeIds.includes('lion-final-refuge')) {
-      this.poiMap.close();
-      delete document.body.dataset.campaignSurface;
-      await this.enterJourney();
-      return;
+      this.poiMap.close(); delete document.body.dataset.campaignSurface;
+      await this.enterJourney(); return;
     }
-    // Production POI navigation owns selection only. The physical road remains retained for
-    // historical DEV QA; no road session is invisibly driven by the production map.
-    if (!this.traversalT0QaEnabled) {
-      this.showPoiMap();
-      return;
-    }
-    if (this.resumeActiveTraversalIfReady()) return;
-    if (this.traversalEntryInFlight) return;
-    // An existing owner may only leave through final arrival, never through another entry.
-    if (this.activeTraversal && this.activeTraversal.session.phase !== 'ARRIVING') return;
-    const leg = !this.activeTraversal && this.state.run.status === 'active'
-      ? LION_TRAVERSAL_LEGS.find(candidate => candidate.originNodeId === this.state.run.currentNodeId
-        && this.state.resolvedNodeIds.includes(candidate.originNodeId)
-        && this.usesTraversalPresentation(candidate.id)
-        && getAvailableRunNodes(this.state).some(node => candidate.stages[0]?.nodeIds.includes(node.id)))
-      : undefined;
-    if (leg) {
-      await this.enterTraversal(leg);
-      return;
-    }
-    if (this.usesJourneyPresentation()) {
-      await this.enterJourney();
-      return;
-    }
-    await this.enterTravel();
-  }
-
-  private resumeActiveTraversalIfReady(): boolean {
-    const traversal = this.activeTraversal;
-    const nodeId = traversal?.activeNodeId;
-    if (!traversal || !nodeId || !traversal.canResumeNode(nodeId)) return false;
-    if (!this.state.resolvedNodeIds.includes(nodeId)) return false;
-    void sceneTransition.run({ variant: 'traversal', holdMs: TRAVERSAL_RHYTHM.hold * 1000, task: async () => {
-      if (this.activeTraversal !== traversal) return;
-      // The transition timer can finish before its opacity reaches 1 on a busy frame.
-      // Keep the checkpoint surface until the Route swap is actually covered.
-      await new Promise<void>(resolve => {
-        const waitForCover = () => {
-          const cover = document.querySelector<HTMLElement>('.scene-transition--traversal');
-          if (import.meta.env.DEV || document.hidden || !cover
-            || Number(getComputedStyle(cover).opacity) >= .999) resolve();
-          else requestAnimationFrame(waitForCover);
-        };
-        waitForCover();
-      });
-      if (this.activeTraversal !== traversal) return;
-      this.activeNarrativeStage?.prepareGlobalHandoff();
-      this.disposeNarrativeStage();
-      this.disposeJourney();
-      this.travel.close();
-      this.combat.close();
-      this.setMode('NARRATIVE');
-      document.body.dataset.campaignSurface = 'traversal';
-      this.canvas.hidden = true;
-      this.chrome.replaceChildren();
-      traversal.resumeNode(nodeId);
-    } });
-    return true;
+    this.showPoiMap();
   }
 
   private usesJourneyPresentation(): boolean {
     return this.campaignPresentation === 'journey' && !this.journeyUnavailable;
   }
 
-  /**
-   * Production-safe Traversal gate. This is deliberately fail-closed and is not wired
-   * to query params, DEV mode or automatic asset detection.
-   */
-  private usesTraversalPresentation(legId: LionTraversalLegId): boolean {
-    return isTraversalProductionEnabledForLeg(legId) && hasAuthoredTraversalPresentation(legId);
-  }
-
-  private async enterTravel(): Promise<void> {
-    this.activeNarrativeStage?.prepareGlobalHandoff();
-    const arrivingTraversal = this.activeTraversal?.session.phase === 'ARRIVING' ? this.activeTraversal : null;
-    await sceneTransition.run({
-      variant: arrivingTraversal ? 'traversal' : 'travel',
-      task: async () => {
-        // Legacy/debug or recovery arrival still completes physically under cover, without entry.
-        arrivingTraversal?.completeArrival();
-        this.showTravel();
-        this.saves.saveAuto(this.state);
-      },
-    });
-  }
-
-  private showTravel(): void {
-    this.disposeTraversal();
-    this.disposeJourney();
-    this.disposeNarrativeStage();
-    this.setMode('TRAVEL');
-    this.canvas.hidden = true;
-    this.chrome.replaceChildren();
-    this.travel.open();
-  }
-
   private showPoiMap(focusId = this.state.run.currentNodeId): void {
     this.activeNarrativeStage?.prepareGlobalHandoff();
-    this.disposeTraversal();
+
     this.disposeJourney();
     this.disposeNarrativeStage();
-    this.travel.close();
     this.exploration.close();
     this.setMode('TRAVEL');
     document.body.dataset.campaignSurface = 'poi-map';
@@ -1057,17 +721,14 @@ export class GameApp {
 
   private async enterJourney(): Promise<void> {
     this.activeNarrativeStage?.prepareGlobalHandoff();
-    const arrivingTraversal = this.activeTraversal?.session.phase === 'ARRIVING' ? this.activeTraversal : null;
     let boundaryPromise: Promise<void> | null = null;
     try {
       await sceneTransition.run({
-        variant: arrivingTraversal ? 'traversal' : 'travel',
+        variant: 'travel',
         task: async () => {
-          // Final physical completion and unmount happen only once the shared cover is opaque.
-          arrivingTraversal?.completeArrival();
-          this.disposeTraversal();
+
+
           this.disposeNarrativeStage();
-          this.travel.close();
           this.setMode('NARRATIVE');
           this.canvas.hidden = true;
           this.chrome.replaceChildren();
@@ -1100,7 +761,7 @@ export class GameApp {
         available,
         secondary: JOURNEY_SECONDARY_ACTIONS,
         reducedMotion: this.state.settings.reducedGraphics,
-        ...(!this.traversalT0QaEnabled && current?.id === 'lion-final-refuge'
+        ...(current?.id === 'lion-final-refuge'
           ? { presentationOnly: { eyebrow: 'Préparation', title: 'Avant le jugement', continueLabel: 'Carte de campagne' } }
           : {}),
       });
@@ -1128,20 +789,11 @@ export class GameApp {
     }
   }
 
-  /**
-   * Journey system failure — distinct from a missing clip, which CIN-1 already degrades safely.
-   * Journey is latched off for the rest of the session so the fallback cannot recurse.
-   */
   private async failJourneyToTravel(error: unknown): Promise<void> {
     console.error('[Journey] Presentation failed; restoring safe campaign surface.', error);
-    this.disposeJourney();
-    this.journeyUnavailable = true;
-    if (!this.traversalT0QaEnabled) {
-      if (this.hasCompletedPoiChronicle()) this.renderTitle();
-      else this.showPoiMap();
-      return;
-    }
-    await this.enterTravel();
+    this.disposeJourney(); this.journeyUnavailable = true;
+    if (this.hasCompletedPoiChronicle()) this.renderTitle();
+    else this.showPoiMap();
   }
 
   private ensureJourneyBoundary(): JourneyCampaignBoundary {
@@ -1200,10 +852,6 @@ export class GameApp {
     return true;
   }
 
-  private async chooseRunNode(node: RunNode): Promise<void> {
-    await this.commitRunNodeChoice(node.id);
-  }
-
   /**
    * THE authoritative route commit path. TravelView and Journey both enter here, and neither may
    * duplicate any of these operations. Returns true only when a node was actually entered.
@@ -1221,13 +869,9 @@ export class GameApp {
       return false;
     }
     const node = decision.node;
-    const traversalHandoff = this.activeTraversal?.session.phase === 'NODE_HANDOFF'
-      ? this.activeTraversal
-      : null;
     let entered: RunNode | null = null;
     this.routeCommitInFlight = true;
     try {
-      this.travel.close();
       this.disposeJourney();
       this.setMode('RESULT');
       entered = enterRunNode(this.state.run, node.id);
@@ -1241,9 +885,6 @@ export class GameApp {
           this.state.seenUniqueEvents.push(entered.contentId);
         }
         this.state.stepCounter += 1;
-        if (traversalHandoff?.activeNodeId === entered.id) {
-          traversalHandoff.beginNodeResolution(entered.id);
-        }
       }
     } finally {
       // The mutex protects only the single authoritative RunSystem mutation. Holding it while
@@ -1627,8 +1268,7 @@ export class GameApp {
         return;
       }
     }
-    const variant: TransitionVariant = this.activeTraversal ? 'traversal'
-      : config.encounterRank === 'boss' ? 'boss' : 'combat';
+    const variant: TransitionVariant = config.encounterRank === 'boss' ? 'boss' : 'combat';
     const combatants = this.state.clan.members.filter((unit) => unit.currentHealth > 0).map((unit) => toCombatant(unit));
     let resolveCombatStart!: (session: ReturnType<CombatBridge['start']>) => void;
     const combatStarted = new Promise<ReturnType<CombatBridge['start']>>((resolve) => {
@@ -1647,7 +1287,6 @@ export class GameApp {
         this.disposeJourney();
         this.disposeNarrativeStage();
         this.setMode('COMBAT');
-        this.travel.close();
         this.chrome.replaceChildren();
         const combatSession = this.combat.start({
           config,
@@ -1655,7 +1294,7 @@ export class GameApp {
           inventory: this.state.inventory.consumables,
           preferredUnitIds: this.state.deployment.unitIds,
           reducedGraphics: this.state.settings.reducedGraphics,
-          devQa: this.cin6aGoldenQaEnabled || this.traversalT0QaEnabled,
+          devQa: this.cin6aGoldenQaEnabled,
         });
         resolveCombatStart(combatSession);
         await combatSession.ready;
@@ -1673,7 +1312,7 @@ export class GameApp {
   ): Promise<void> {
     await this.playStandaloneCinematic({ hook: 'afterCombat', combatId: result.combatId, outcome: result.victory ? 'victory' : 'defeat' }, result.victory ? 'Victoire' : 'Défaite');
     if (!result.victory) {
-      this.disposeTraversal();
+
       this.state = this.saves.loadAuto() ?? this.state;
       failRunToCheckpoint(this.state);
       this.saves.saveAuto(this.state);
@@ -1791,10 +1430,9 @@ export class GameApp {
         this.prologue.close();
         this.exploration.close();
         this.combat.close();
-        this.travel.close();
         this.poiMap.close();
         this.disposeJourney();
-        this.disposeTraversal();
+
         // Neutral holding mode: the presentation is chosen only after the resume profile is known,
         // so a reload never mounts a campaign surface it is about to replace.
         this.setMode('RESULT');

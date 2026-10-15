@@ -25,11 +25,10 @@ vitest loads `vite.config.ts`, which prints `[VFX Preview]` lines. They are harm
 | `tools/cinematics/run_cin6d6_route_browser_qa.mjs` | `--production`; env `CIN6D6_VIEWPORT` (default `1920x1080`), `CIN6D6_ROUTE_OUTPUT_DIR`, `CIN6D6_BASE_URL`, `CIN6D6_PORT`; also game-setting reduced motion, OS-only reduced motion and blocked-media modes (read the head of the script) | `tmp/cinematics/cin6d6/browser-qa/routes` | production preview 5242 (strict); DEV expects a server on 5173 |
 | `tools/cinematics/run_eight_slot_browser_qa.mjs` | env `EIGHT_SLOT_QA_OUTPUT` | `tmp/cinematics/eight-slot-qa` | read the script |
 | `tools/cinematics/run_production_eight_slot_media_qa.mjs` | env `CIN8_MEDIA_OUTPUT`; isolated real-player proof, not campaign acceptance | `tmp/cinematics/eight-slot-remaster/media-qa` | read the script |
-| `tools/traversal-t3-production-qa.mjs` | `--production`, `--candidate`, `--output=`, `--port=`, `--scenario=` | `tmp/traversal/t3-integration-production` or `-dev` | 5241 production, 5240 DEV |
-| `tools/traversal-t0-browser-qa.mjs` | `--production`, `--print-output`, `--output=` | `docs/reports/evidence/traversal-t0/...` | read the script |
+| `tools/demo-continuous-production-qa.mjs` | env `DEMO_QA_TARGET`, `DEMO_QA_OUTPUT`, `DEMO_QA_PORT`, `DEMO_QA_VIEWPORT`, `DEMO_QA_OS_MOTION`, `DEMO_QA_GAME_MOTION`, `DEMO_QA_TOUCH`; continuations require matching `DEMO_QA_EARNED_SAVE` / `DEMO_QA_PRIOR_PROOF`; register `live.qaJobs` first | unique ignored `tmp/demo/...` | strict selected free port |
 | `tools/dialogue/run-dialogue-ui-staging-qa.mjs` | spawns vite with `--strictPort` | read the script | read the script |
 
-Other drivers (`tools/ui-*-qa.mjs`, `tools/narrative-stage-utility-consistency-1-qa.mjs`, `tools/refuge-hub-continuity-1-qa.mjs`, `tools/traversal-t1-*.mjs`, `tools/combat-*-qa.mjs`): read the script header for flags, ports and output before running.
+Other drivers (`tools/ui-*-qa.mjs`, `tools/narrative-stage-utility-consistency-1-qa.mjs`, `tools/refuge-hub-continuity-1-qa.mjs`, `tools/combat-*-qa.mjs`): read the script header for flags, ports and output before running.
 
 Viewports used by accepted evidence: desktop 1440x810 or 1920x1080 (1366x768 for cinematics), intermediate 620x780, narrow 390x844.
 

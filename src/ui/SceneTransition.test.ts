@@ -9,23 +9,20 @@ afterEach(() => {
 });
 
 describe('scene transition interlude', () => {
-  it('covers Traversal handoffs with the shared short fade and keeps input locked until reveal', async () => {
-    vi.useFakeTimers();
-    const transition = new SceneTransition();
-    const task = vi.fn(async () => undefined);
-    const run = transition.run({ variant: 'traversal', task });
-    const curtain = document.querySelector<HTMLElement>('.scene-transition')!;
+
+  it('covers map/Journey handoffs and keeps input locked until the ordinary travel reveal', async () => {
+    vi.useFakeTimers();const transition=new SceneTransition(),task=vi.fn(async()=>undefined);
+    const run=transition.run({variant:'travel',task});
+    const curtain=document.querySelector<HTMLElement>('.scene-transition')!;
     expect(curtain.classList.contains('scene-transition--fade')).toBe(true);
-    expect(curtain.style.getPropertyValue('--scene-transition-in')).toBe('360ms');
-    await vi.advanceTimersByTimeAsync(350);
-    expect(task).not.toHaveBeenCalled();
-    await vi.advanceTimersByTimeAsync(130);
+    expect(curtain.style.getPropertyValue('--scene-transition-in')).toBe('450ms');
+    await vi.advanceTimersByTimeAsync(440);expect(task).not.toHaveBeenCalled();
+    await vi.advanceTimersByTimeAsync(20);expect(task).not.toHaveBeenCalled();
+    curtain.dispatchEvent(new Event('transitionend'));await vi.advanceTimersByTimeAsync(0);
     expect(task).toHaveBeenCalledOnce();
     expect(document.body.classList.contains('scene-transition--locked')).toBe(true);
-    await vi.advanceTimersByTimeAsync(480);
-    await run;
-    expect(document.querySelector('.scene-transition')).toBeNull();
-    expect(document.body.classList.contains('scene-transition--locked')).toBe(false);
+    await vi.runAllTimersAsync();await run;
+    expect(document.querySelector('.scene-transition')).toBeNull();expect(document.body.classList.contains('scene-transition--locked')).toBe(false);
   });
   it('releases input only for the covered interlude and reacquires it before the task', async () => {
     vi.useFakeTimers();

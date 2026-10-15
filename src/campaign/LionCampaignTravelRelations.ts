@@ -9,19 +9,6 @@ export type LionRetiredTraversalLegId = Extract<LionTraversalLegId, 'T2' | 'T4'>
 
 export type LionTraversalStageMode = 'MANDATORY_INTERRUPT' | 'OPTIONAL_INTERRUPT' | 'IN_TRAVERSAL_FORK';
 
-export interface LionTraversalForkPresentation {
-  /** Fork choice is rendered over the live Traversal world; never TravelView/Journey. */
-  readonly surface: 'TRAVERSAL_OVERLAY';
-  /** Traversal scene/camera/world remain mounted while the choice is active. */
-  readonly keepTraversalMounted: true;
-  /** Slightly opaque/translucent edge treatment; center remains readable. */
-  readonly edgeTreatment: 'TRANSLUCENT_OPAQUE_EDGES';
-  /** Route-choice buttons live in a compact rail on the right side. */
-  readonly choicePlacement: 'RIGHT_CHOICE_RAIL';
-  /** Vehicle may slow or hold, but this is not a campaign/presentation exit. */
-  readonly locomotionWhileChoosing: 'SLOW_OR_HOLD';
-}
-
 export interface LionTraversalStage {
   /**
    * One ID is a route encounter; mode determines whether participation is required.
@@ -33,7 +20,6 @@ export interface LionTraversalStage {
   readonly branchEncounterMode?: 'OPTIONAL_INTERRUPT' | 'MANDATORY_INTERRUPT';
   /** Per-node participation overrides; fork selection and topology remain unchanged. */
   readonly optionalBranchNodeIds?: readonly string[];
-  readonly forkPresentation?: LionTraversalForkPresentation;
 }
 
 export interface LionTraversalLeg {
@@ -57,15 +43,8 @@ export interface LionMajorCampaignTransition {
   readonly mode: 'DIRECT_MAJOR_TRANSITION';
 }
 
-/**
- * Playable travel relations only.
- *
- * RunSystem still owns which branch is available. Traversal presents the movement,
- * materializes route interrupts, and keeps fork agency inside the live traversal scene.
- * A fork overlay never hands control to TravelView/Journey. After the choice is committed,
- * the chosen node is resolved through the existing node authority and the same traversal leg
- * continues until its destination anchor is reached.
- */
+/** Historical T0/T1/T3 identities now describe POI progression, participation and
+ * exclusive choices. RunSystem owns their facts; no road scene or physical session exists. */
 const LION_TRAVERSAL_LEG_DEFINITIONS: readonly LionTraversalLeg[] = [
   {
     id: 'T0',
@@ -81,13 +60,6 @@ const LION_TRAVERSAL_LEG_DEFINITIONS: readonly LionTraversalLeg[] = [
         // Combat commits to its payoff; the authored social event can be declined before dialogue.
         branchEncounterMode: 'MANDATORY_INTERRUPT',
         optionalBranchNodeIds: Object.freeze(['lion-first-trial-event']),
-        forkPresentation: {
-          surface: 'TRAVERSAL_OVERLAY',
-          keepTraversalMounted: true,
-          edgeTreatment: 'TRANSLUCENT_OPAQUE_EDGES',
-          choicePlacement: 'RIGHT_CHOICE_RAIL',
-          locomotionWhileChoosing: 'SLOW_OR_HOLD',
-        },
       },
     ],
   },
@@ -101,13 +73,6 @@ const LION_TRAVERSAL_LEG_DEFINITIONS: readonly LionTraversalLeg[] = [
       {
         nodeIds: ['lion-second-trial-event', 'lion-second-trial-combat'],
         mode: 'IN_TRAVERSAL_FORK',
-        forkPresentation: {
-          surface: 'TRAVERSAL_OVERLAY',
-          keepTraversalMounted: true,
-          edgeTreatment: 'TRANSLUCENT_OPAQUE_EDGES',
-          choicePlacement: 'RIGHT_CHOICE_RAIL',
-          locomotionWhileChoosing: 'SLOW_OR_HOLD',
-        },
       },
     ],
   },
@@ -121,13 +86,6 @@ const LION_TRAVERSAL_LEG_DEFINITIONS: readonly LionTraversalLeg[] = [
       {
         nodeIds: ['lion-final-trial-event', 'lion-final-trial-combat'],
         mode: 'IN_TRAVERSAL_FORK',
-        forkPresentation: {
-          surface: 'TRAVERSAL_OVERLAY',
-          keepTraversalMounted: true,
-          edgeTreatment: 'TRANSLUCENT_OPAQUE_EDGES',
-          choicePlacement: 'RIGHT_CHOICE_RAIL',
-          locomotionWhileChoosing: 'SLOW_OR_HOLD',
-        },
       },
     ],
   },
@@ -139,9 +97,6 @@ export const LION_TRAVERSAL_LEGS: readonly LionTraversalLeg[] = Object.freeze(
     stages: Object.freeze(leg.stages.map((stage) => Object.freeze({
       ...stage,
       nodeIds: Object.freeze([...stage.nodeIds]),
-      forkPresentation: stage.forkPresentation
-        ? Object.freeze({ ...stage.forkPresentation })
-        : undefined,
     }))),
   })),
 );

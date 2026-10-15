@@ -22,6 +22,25 @@ function fixture() {
   owner.state=createInitialState();return {app,owner};
 }
 describe('GameApp POI owner handoffs',()=>{
+  it.each([
+    ['lion-nomad-crossroads',true],['lion-reserve-trail',true],['lion-witnesses',true],
+    ['lion-refugees',false],['lion-second-trial-event',false],['lion-first-trial-combat',false],
+  ] as const)('resumes historical V6 boundary %s through its current owner (resolved=%s)',async(id,resolved)=>{
+    const {app,owner}=fixture();
+    owner.state.run.currentNodeId=owner.state.currentNodeId=id;
+    owner.state.run.traversalBranches={T0:'lion-first-trial-combat',T1:'lion-second-trial-event'};
+    owner.state.run.temporaryLoot.gold=23;
+    if(resolved)owner.state.resolvedNodeIds.push(id);
+    new SaveRepository().saveAuto(owner.state);const saved=structuredClone(owner.state);
+    vi.spyOn(sceneTransition,'run').mockImplementation(async options=>{await options.task();});
+    const encounter=vi.spyOn(owner,'resolveRunNode').mockResolvedValue();
+    const map=vi.spyOn(owner,'enterCampaignPresentation').mockResolvedValue();
+    await owner.continueChronicle();
+    if(resolved){expect(map).toHaveBeenCalledOnce();expect(encounter).not.toHaveBeenCalled();}
+    else {expect(encounter).toHaveBeenCalledWith(expect.objectContaining({id}),true);expect(map).not.toHaveBeenCalled();}
+    expect(owner.state).toEqual(saved);expect(new SaveRepository().loadAuto()).toEqual(saved);
+    expect(document.querySelector('.traversal-road,.traversal-fork-overlay')).toBeNull();app.dispose();
+  });
   it('rebuilds final-refuge preparation on exact V6 reload without opening a hub or securing loot',async()=>{
     const {app,owner}=fixture();
     owner.state.run.currentNodeId=owner.state.currentNodeId='lion-final-refuge';

@@ -33,7 +33,7 @@ The code adapts to a LOCKED contract, never the reverse. On a conflict: record i
 | Lifecycle coordination | coordinator only | `src/game/GameApp.ts` |
 | Tactical combat | owner of resolution | `src/combat/` (`CombatBridge`, `legacyCombat*`, `deploymentRules`, `protocol`) |
 | Tableau, cinematics, Journey | presentation | `src/cinematics/`, `src/journey/` |
-| Traversal (T0 reference, T1, T3) | presentation and ephemeral scene state | `src/traversal/` |
+| POI navigation | RunSystem owns progression; atlas owns presentation | `src/campaign/LionPoi*`, `src/ui/PoiMapView.ts` |
 | Combat Stage, VFX | presentation only | `src/combat/stage/`, `src/combat/vfx/` |
 | UI, theme, styles | presentation | `src/ui/`, `src/styles/` |
 | Art registries, assets | media | `src/render/`, `public/assets/` |
@@ -78,7 +78,7 @@ Codex starts subagents only when authorized. The recurring instruction authorize
 
 ## Active POI migration priority
 
-OD-2026-10-13-D / `docs/autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md` supersedes physical Traversal navigation. The dedicated set1.2.0 amendment is complete at the baseline above. Implement the playable connected Audience→first-refuge POI slice with existing contents, backtracking, once-only effects, neutralization, reusable refuge and V6 acceptance before retirement. Preserve non-navigation manual findings and deferred work; do not resume physical-road polish or reactivate automation.
+OD-2026-10-15-A / `docs/autonomy/POI_V2_OPERATOR_DECISION_2026-10-15.md` authorizes POI V2 and definitive physical Traversal retirement under set1.3.0 at the baseline above. The three-region atlas is the navigation surface. Preserve durable T0–T4/V6 facts, campaign relations, existing content, historical evidence and shared resources. `docs/project/retired-traversal/` records removal dispositions. Preserve non-navigation manual findings and deferred work; do not restore physical-road simulation or reactivate automation.
 
 ## Preserved manual-playtest priority
 

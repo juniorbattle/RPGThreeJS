@@ -22,7 +22,7 @@ export class CampaignStatusHud {
     this.element.setAttribute('aria-label', 'État de la compagnie');
   }
 
-  show(owner: HTMLElement, layout: 'journey' | 'traversal' = 'journey'): void {
+  show(owner: HTMLElement, layout: 'journey' = 'journey'): void {
     this.owner = owner;
     this.element.dataset.layout = layout;
     owner.append(this.element);

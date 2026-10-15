@@ -20,35 +20,17 @@ function occurrences(needle: string): number {
 }
 
 describe('CIN-2 campaign presentation bridge', () => {
-  it('routes every surface through one authoritative route commit function', () => {
-    // RunSystem entry exists exactly once in the whole app controller.
-    expect(occurrences('enterRunNode(')).toBe(1);
-    expect(occurrences('this.state.stepCounter += 1')).toBe(1);
-    expect(occurrences('this.state.visitedNodeIds = [...this.state.run.visitedNodeIds]')).toBe(1);
-    expect(occurrences('this.state.seenUniqueEvents.push(')).toBe(1);
-    expect(occurrences('private async commitRunNodeChoice')).toBe(1);
 
-    const commit = method('private async commitRunNodeChoice');
-    expect(commit).toContain('evaluateRouteCommit({');
-    expect(commit).toContain('enterRunNode(this.state.run, node.id)');
-    expect(commit).toContain('this.state.currentNodeId = entered.id');
-    expect(commit).toContain('this.state.visitedNodeIds = [...this.state.run.visitedNodeIds]');
-    expect(commit).toContain('this.state.seenUniqueEvents.push(entered.contentId)');
+  it('delegates native map intentions to RunSystem and retains one guarded Journey commit', () => {
+    const choose=method('private async choosePoi');
+    expect(choose).toContain('enterPoi(this.state, nodeId)');
+    expect(choose).not.toContain('stepCounter');expect(choose).not.toContain('visitedNodeIds');
+    expect(choose.indexOf('this.routeCommitInFlight = false')).toBeLessThan(choose.indexOf('await this.resolveRunNode'));
+    const commit=method('private async commitRunNodeChoice');
+    expect(commit).toContain('evaluateRouteCommit({');expect(commit).toContain('enterRunNode(this.state.run, node.id)');
     expect(commit).toContain('this.state.stepCounter += 1');
-    expect(commit).toContain('await this.resolveRunNode(entered, false)');
-    expect(commit).toContain('this.routeCommitInFlight = true');
-    expect(commit).toContain('this.routeCommitInFlight = false');
-    expect(commit.indexOf('this.routeCommitInFlight = false'))
-      .toBeLessThan(commit.indexOf('await this.resolveRunNode(entered, false)'));
-
-    // TravelView selection delegates instead of duplicating the sequence.
-    const choose = method('private async chooseRunNode');
-    expect(choose).toContain('this.commitRunNodeChoice(node.id)');
-    expect(choose).not.toContain('enterRunNode');
-    expect(choose).not.toContain('stepCounter');
-    expect(SOURCE).toContain('onSelect: (node) => this.chooseRunNode(node)');
-
-    // Journey selection delegates to the very same function.
+    expect(commit.indexOf('this.routeCommitInFlight = false')).toBeLessThan(commit.indexOf('await this.resolveRunNode'));
+    expect(occurrences('enterRunNode(')).toBe(1);
     expect(method('private async runJourneyBoundary')).toContain('await this.commitRunNodeChoice(outcome.id)');
   });
 
@@ -60,37 +42,20 @@ describe('CIN-2 campaign presentation bridge', () => {
     expect(method('private async commitRunNodeChoice')).not.toContain("this.mode !== 'TRAVEL'");
   });
 
-  it('returns every campaign boundary through the presentation facade', () => {
-    expect(occurrences('private async enterCampaignPresentation')).toBe(1);
-    // Only exceptional policy/failure branches enter legacy TravelView.
-    expect(occurrences('await this.enterTravel();')).toBe(2);
-    expect(method('private async completeTraversalArrival')).toContain('await this.enterCampaignPresentation()');
-    expect(method('private async completeTraversalArrival')).not.toContain('enterTravel');
-    expect(method('private async completeTraversalArrival')).not.toContain('commitRunNodeChoice');
-    expect(method('private async enterCampaignPresentation')).toContain('await this.enterJourney()');
-    expect(method('private async failJourneyToTravel')).toContain('await this.enterTravel()');
-    // Every post-node/return path uses the facade.
-    expect(occurrences('await this.enterCampaignPresentation();')).toBeGreaterThanOrEqual(9);
-
-    const resolveNode = method('private async resolveRunNode');
-    expect(resolveNode).not.toContain('enterTravel');
-    expect(method('private async resolveCombat')).not.toContain('enterTravel');
-    expect(method('private async flushPendingCombat')).not.toContain('enterTravel');
+  it('uses POI as sole navigation and preserves explicit terminal/preparation Journey boundaries', () => {
+    const facade=method('private async enterCampaignPresentation');
+    expect(facade).toContain('this.showPoiMap()');expect(facade).toContain('this.hasCompletedPoiChronicle()');
+    expect(facade).toContain('lion-final-refuge');expect(facade).toContain('await this.enterJourney()');
+    for(const name of ['private async resolveRunNode','private async resolveCombat','private async flushPendingCombat','private async continueChronicle'])
+      expect(method(name)).toContain('this.enterCampaignPresentation()');
+    expect(SOURCE).not.toMatch(/activeTraversal|enterTraversal|usesTraversalPresentation|new TravelView/);
   });
 
-  it('selects the explicitly approved authored T0/T1/T3 rollout through the facade', () => {
-    const gate = readFileSync(resolve(process.cwd(), 'src/traversal/TraversalFeaturePolicy.ts'), 'utf8');
-    expect(gate).toContain('enabled: true');
-    expect(gate).toContain('designAssetsReady: true');
-    expect(gate).toContain("rolloutLegIds: Object.freeze(['T0', 'T1', 'T3']");
-    expect(SOURCE).toContain('private usesTraversalPresentation');
-    expect(SOURCE).toContain('isTraversalProductionEnabledForLeg(legId)');
-
-    const facade = method('private async enterCampaignPresentation');
-    expect(facade).toContain('usesTraversalPresentation(');
-    expect(facade).toContain('enterTraversal(leg)');
-    expect(facade).toContain('await this.enterJourney()');
-    expect(facade).toContain('await this.enterTravel()');
+  it('contains no physical engine import, feature gate or alternate driving entry', () => {
+    expect(SOURCE).not.toContain('../traversal/');expect(SOURCE).not.toContain('TraversalPreviewSaves');
+    expect(SOURCE).not.toContain('traversalT0QaEnabled');expect(SOURCE).toContain('private readonly saves = new SaveRepository()');
+    expect(method('private showPoiMap')).toContain('selectPoiMap(this.state)');
+    expect(method('private showPoiMap')).toContain('this.poiMap.open(model');
   });
 
   it('keeps the R6 post-node ordering with the presentation strictly last', () => {
@@ -152,11 +117,12 @@ describe('CIN-2 campaign presentation bridge', () => {
     expect(journeyLoop).toContain('if (await this.handleJourneySecondary(outcome.id)) continue;');
   });
 
-  it('falls back to TravelView on catastrophic Journey failure without recursing', () => {
+  it('falls back to POI or terminal title on catastrophic Journey failure without recursing', () => {
     const fail = method('private async failJourneyToTravel');
     expect(fail).toContain('this.journeyUnavailable = true');
     expect(fail).toContain('this.disposeJourney()');
-    expect(fail).toContain('await this.enterTravel()');
+    expect(fail).toContain('this.showPoiMap()');
+    expect(fail).toContain('this.renderTitle()');
     expect(fail).not.toContain('enterCampaignPresentation');
     expect(fail).not.toContain('enterJourney');
     expect(SOURCE).toContain("this.campaignPresentation === 'journey' && !this.journeyUnavailable");
@@ -166,7 +132,7 @@ describe('CIN-2 campaign presentation bridge', () => {
   });
 
   it('disposes Journey-owned resources on every exit path', () => {
-    for (const name of ['dispose(): void', 'private renderTitle', 'private showTravel', 'private async continueChronicle']) {
+    for (const name of ['dispose(): void', 'private renderTitle', 'private showPoiMap', 'private async continueChronicle']) {
       expect(method(name)).toContain('disposeJourney()');
     }
     expect(method('private disposeJourney')).toContain('this.journeyBoundary?.dispose()');

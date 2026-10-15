@@ -24,9 +24,9 @@ describe('CIN-6.7 NarrativeStage campaign integration', () => {
     expect(resolveCampaignPresentation({ search: '?journey=cinematic', dev: true })).toBe('journey');
     expect(resolveCampaignPresentation({ search: '?presentation=narrative', dev: true })).toBe('journey');
     expect(resolveCampaignPresentation({ search: '?presentation=narrative', dev: false })).toBe('journey');
-    expect(SOURCE).toContain('private readonly travel: TravelView');
-    expect(SOURCE).toContain('this.travel = new TravelView({');
-    expect(method('private async failJourneyToTravel')).toContain('await this.enterTravel()');
+    expect(SOURCE).toContain('private readonly poiMap: PoiMapView');
+    expect(SOURCE).toContain('this.poiMap = new PoiMapView({');
+    expect(method('private async failJourneyToTravel')).toContain('this.showPoiMap()');
   });
 
   it('presents route boundaries in NARRATIVE mode without changing RunSystem options', () => {
