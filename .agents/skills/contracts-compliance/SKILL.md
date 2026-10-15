@@ -5,7 +5,7 @@ description: "Use before implementing and before declaring any RPGThreeJS task c
 
 # Contracts compliance
 
-Read first: `docs/game/GAME_CONSTITUTION.md`, `docs/contracts/README.md`, `docs/contracts/contracts.manifest.json`, `docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md`, then every contract the task touches. Lock `PRODUCTION-CONTRACTS-LOCK-1`, commit `692829f32d735ad890182eea6b5e5e195551bbbf`. These documents are authoritative: cite them, never paraphrase them into new doctrine.
+Read first: `docs/game/GAME_CONSTITUTION.md`, `docs/contracts/README.md`, `docs/contracts/contracts.manifest.json`, `docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md`, then every contract the task touches. Lock `PRODUCTION-CONTRACTS-LOCK-1`, commit `5667837212ceffb6a16b22141623bf6f5c7e6ea6`. These documents are authoritative: cite them, never paraphrase them into new doctrine.
 
 ## Orchestration (OD-2026-10-02-C)
 
@@ -14,7 +14,7 @@ The orchestrator applies this skill before implementation and task completion. I
 ## Gates (run them, do not assume)
 
 ```
-git --no-optional-locks diff --exit-code 692829f32d735ad890182eea6b5e5e195551bbbf HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md   # must print nothing
+git --no-optional-locks diff --exit-code 5667837212ceffb6a16b22141623bf6f5c7e6ea6 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md   # must print nothing
 git --no-optional-locks status --short -- docs/contracts docs/game/GAME_CONSTITUTION.md                  # must print nothing
 npm run contracts:validate                                                                              # 8 contracts, 8 slots
 ```
@@ -65,4 +65,4 @@ Then record: contracts read, contract set version, LOCKED rules impacted, and an
 
 ## Approved contract amendment boundary
 
-Current set1.2.0 derives from PRODUCTION-CONTRACTS-POI-NAVIGATION-1 / OD-2026-10-13-D at the immutable baseline above; b1e8858 is the original historical lock. A dedicated operator-approved amendment records exact changed rules, task/decision and version, independent review, then establishes its committed baseline in a following operational commit. A normal task must not advance that baseline or edit a LOCKED contract. Its gate must remain empty. During an authorized amendment, inspect the exact approved diff rather than claim no rule changed. Read the current manifest version for every matrix. Manual visual findings reopen affected acceptance; an old PASS is historical, not a rebuttal.
+Current set1.3.0 derives from PRODUCTION-CONTRACTS-POI-V2-RETIREMENT-1 / OD-2026-10-15-A at the immutable baseline above; b1e8858 is the original historical lock. A dedicated operator-approved amendment records exact changed rules, task/decision and version, independent review, then establishes its committed baseline in a following operational commit. A normal task must not advance that baseline or edit a LOCKED contract. Its gate must remain empty. During an authorized amendment, inspect the exact approved diff rather than claim no rule changed. Read the current manifest version for every matrix. Manual visual findings reopen affected acceptance; an old PASS is historical, not a rebuttal.

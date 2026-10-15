@@ -1,21 +1,15 @@
 {
-  "status": "COMPLETE_SCOPED",
-  "runStartedAt": "2026-10-14T20:08:10.9502211Z",
-  "runEndedAt": "2026-10-15T06:29:56.404Z",
-  "activeTask": "POI-MAP-FINALIZATION",
-  "activePhase": "CLOSED_SCOPED_POI_CANDIDATE",
-  "activeSubtask": "Requested POI finalization accepted scoped; operator final playtest remains",
+  "status": "IN_PROGRESS",
+  "runStartedAt": "2026-10-15T07:43:00Z",
+  "runEndedAt": null,
+  "activeTask": "POI-V2-AND-TRAVERSAL-RETIREMENT",
+  "activePhase": "A",
+  "activeSubtask": "Dedicated set1.3.0 amendment review, then playable local branches",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "804ba18d51620ba1d07cd4b91f14a3504b1dfd41",
   "lastPushedCommit": "804ba18d51620ba1d07cd4b91f14a3504b1dfd41",
   "completedThisRun": [
-    "Restored authored final preparation/local map agency and saved reduction preference",
-    "Corrected narrow map labels and44px deployment/result/pagination controls",
-    "Both native final bosses/truth endings and exact terminal/menu/reload accepted",
-    "T0/T1/T3 combat alternatives, rescue and prepared sacrifice/raid accepted through existing owners",
-    "Positive-loot POI defeat/checkpoint recovery and OS/game/touch scopes accepted",
-    "Five inherited Journey timing failures closed without weakened functional assertions",
-    "Retained physical Traversal and its compatibility/dependency inventory; all229previous jobs/deferred objects exact"
+    "Read both full operator directives; clean dev b79063b and live origin/main parity verified; acquired exclusive lock."
   ],
   "filesChanged": [
     "docs/README.md",
@@ -76,7 +70,7 @@
     "Old Traversal retained; static669paths/350referencefiles inventory is not retirement acceptance",
     "Audio DEFERRED; eight videos unchanged; Bois-Clair night art external"
   ],
-  "nextAction": "Operator final playtest of the published POI candidate; preserve unrelated six-hero skill, mounted keyboard and narrative/manual findings. No automatic boss replay, physical-road polish, scheduler reactivation or Traversal removal.",
+  "nextAction": "Commit reviewed POI V2 amendment, establish immutable baseline, implement and natively play first-phase local branches before retirement.",
   "taskQueue": [
     "POI-MAP-FINALIZATION: requested implementation/native milestones REVIEWED_SCOPED; operator final playtest remains",
     "DEMO-PC-CAMPAIGN: both native truth endings, T0/T1/T3 alternatives, rescue/sacrifice, defeat and exact V6 accepted in recorded scopes",
@@ -86,44 +80,7 @@
     "DEMO-MOBILE-AND-TESTER-HANDOFF: PENDING_AFTER_PC_STABLE; operator final acceptance OPEN"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": {
-    "contractSetVersion": "1.2.0",
-    "immutableBaseline": "692829f32d735ad890182eea6b5e5e195551bbbf",
-    "lockedRulesChanged": false,
-    "approvedDedicatedAmendment": {
-      "task": "PRODUCTION-CONTRACTS-POI-NAVIGATION-1",
-      "decision": "OD-2026-10-13-D",
-      "rulesChanged": "Navigation doctrine only and directly affected navigation authoring/state/UI/ownership clauses",
-      "review": "PASS independent guardian before integration"
-    },
-    "contractsRead": [
-      "GAME_CONSTITUTION",
-      "README",
-      "contracts.manifest.json",
-      "AUTONOMOUS_WORK_PROTOCOL",
-      "WORLD_AND_CHARACTERS",
-      "CAMPAIGN_AND_STATE",
-      "COMBAT_AND_VFX",
-      "TRAVERSAL",
-      "PRESENTATION_AND_MEDIA",
-      "UI_AND_ACCESSIBILITY",
-      "AUTHORING_AND_QA"
-    ],
-    "matrix": {
-      "GAME_CONSTITUTION": "PASS scoped; Existing canon/truth/IDs/V6/eight media protected",
-      "ART_DIRECTION": "PASS scoped; Existing assets retained; map/CSS presentation only",
-      "CHARACTERS": "PASS scoped; V2/three-actor preparation retained",
-      "ENVIRONMENTS": "PASS scoped; Existing promoted environments retained",
-      "NARRATIVE / CAMPAIGN": "PASS scoped; Both native truth endings and authored alternatives/rescue/sacrifice; no invented choice/consequence",
-      "NARRATIVE_PRESENTATION": "PASS scoped; Authored preparation/local map agency and exactly8slots",
-      "TRAVERSAL": "PASS scoped; POI intents remain RunSystem-owned; physical runtime retained",
-      "COMBAT": "PASS scoped; Actual canonical victories/defeat; no damage/AP/stat/outcome changes",
-      "SAVE": "PASS scoped; Exact whole V6 at milestones/terminal/checkpoint; authentic earned seeds only",
-      "UI / ACCESSIBILITY": "PASS scoped; 44px mobile controls/roster, game and OS reduction; scrolling/device limits explicit",
-      "QA_EVIDENCE": "PASS scoped; 16scoped stable native cases/10inspected captures;7failed2interrupted unseedable",
-      "REPOSITORY_GOVERNANCE": "PASS scoped; Owned lock/dev-only standing publication;229prior jobs and deferred objects preserved"
-    }
-  },
+  "contractComplianceStatus": "AMENDMENT_REVIEW; runtime/V6/art/retirement pending",
   "commitReferenceScope": "lastPushedCommit identifies the preceding verified published checkpoint; final metadata identity/parity follow Git and guarded closeout, avoiding a self-reference",
   "operatorAuthorization": "Explicit current POI migration/LOCKED amendment request and attachments, registered OD-2026-10-13-D; normal origin/dev publication permanently authorized OD-2026-10-12-A",
   "creativeDirection": {
@@ -214,12 +171,12 @@
     "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
     "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
   },
-  "runId": "codex-poi-finalization-20261014",
+  "runId": "codex-poi-v2-20261015",
   "agent": "codex",
   "lastHeartbeat": "2026-10-15T06:29:56.404Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-15T06:29:56.404Z",
+    "lastHeartbeat": "2026-10-15T07:43:11.623Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -27862,7 +27819,7 @@
       }
     ],
     "wip": null,
-    "nextAction": "Operator final playtest of the published POI candidate; preserve unrelated six-hero skill, mounted keyboard and narrative/manual findings. No automatic boss replay, physical-road polish, scheduler reactivation or Traversal removal.",
+    "nextAction": "Commit reviewed POI V2 amendment, establish immutable baseline, implement and natively play first-phase local branches before retirement.",
     "runMetrics": {
       "runId": "codex-poi-finalization-20261014",
       "runtimeSourceFilesModified": 5,
@@ -32055,7 +32012,7 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-poi-finalization-20261014",
+    "runId": "codex-poi-v2-20261015",
     "agent": "codex",
     "status": "COMPLETE_SCOPED",
     "runStartedAt": "2026-10-14T20:08:10.9502211Z",

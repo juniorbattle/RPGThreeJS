@@ -1,3 +1,13 @@
+# POI V2 exceptional manual mission — codex-poi-v2-20261015
+
+IN_PROGRESS. OD-2026-10-15-A explicitly authorizes dedicated contract amendment, playable A/B, Option C art C and definitive physical retirement D. No scheduled budget applies; scheduler unchanged. Starting clean dev/live origin b79063b; main00b96f1. No inherited WIP.
+
+Current: independent amendment review before runtime. Next: Commit reviewed POI V2 amendment, establish immutable baseline, implement and natively play first-phase local branches before retirement.
+
+All historical QA/deferred task objects are preserved in JSON and preceding closeout below. No new runtime/art/native acceptance claimed.
+
+## Preserved preceding closeout
+
 # POI finalization — codex-poi-finalization-20261014
 
 COMPLETE_SCOPED. Both native truth endings/terminal/menu/exact reload; T0/T1/T3 combat alternatives, rescue and prepared sacrifice throughSecond refuge; actual positive-loot defeat/exact checkpoint recovery; OS/game reduction and390touch offensive combat. Five inherited Journey failures closed;149focused/19helper/type/build/8contracts8slots green. Human full-demo/hardware/general-balance acceptance remains open.
