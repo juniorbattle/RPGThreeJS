@@ -10,6 +10,10 @@ An environment family must remain recognizable across Journey/Travel, tableau, T
 
 Before deleting or replacing media, inventory runtime, registry, manifest, CSS, tooling, QA, and historical evidence references. An asset deficit is a documented blocker for that deliverable, not permission to insert fake production art or silently substitute another visual style.
 
-## Narrative environment truth — OD-2026-10-03-A
+## POI V2 geographical art — OD-2026-10-15-A
+
+Dedicated `PRODUCTION-CONTRACTS-POI-V2-RETIREMENT-1`, set 1.3.0. Author distinct geographical compositions for the three campaign phases in Option C / Pixel Diorama Fantasy: controlled palettes, differentiated forest/relief/water/clearings and recognizable approved locations at coherent scale. Paths and marker hierarchy remain readable. Repetitive generic vector terrain, pasted level screenshots, random texture and off-style fantasy images do not establish final art. Compare old/new maps and all three phases against an existing approved environment. Technical correctness and operator artistic acceptance are separate gates. If essential art is missing, provide a precise specification and mark artistic direction pending rather than certify a generic substitute. Resource removal requires actual reference proof, including narrative/cinematic reuse.
+
+## Preserved narrative environment truth — OD-2026-10-03-A
 
 Dedicated amendment `PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1`: an artistically successful image can still fail when it misrepresents the world at that moment. Validate place, time, relevant weather, destroyed/intact state, present faction, branch outcome and event context against campaign facts. Visual QA checks narrative truth as well as aesthetics; do not infer or create a world-state change from the background. Physical road ground/lane/depth criteria remain historical evidence; production POI navigation follows the successor doctrine in TRAVERSAL under OD-2026-10-13-D.

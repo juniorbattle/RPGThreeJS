@@ -10,6 +10,10 @@ Use the shared deep navy, brass, warm gold, and ivory visual family. Keep UI com
 
 Responsive layouts must keep navigation, choices, status, and critical combat controls usable at desktop, intermediate, and narrow mobile widths. Verify actual viewport bounds, clipping, overlap, scroll and hit targets, including relevant choice, reward, combat, and refuge states. Keyboard navigation, visible focus, meaningful labels, and reduced motion are production requirements, not late polish. An animated media fallback must preserve agency and avoid motion-dependent information.
 
-## Cast and transition readability — OD-2026-10-03-A
+## POI V2 interaction — OD-2026-10-15-A
+
+Dedicated `PRODUCTION-CONTRACTS-POI-V2-RETIREMENT-1`, set 1.3.0. Clearly distinguish primary milestones, required secondary structuring nodes and genuinely authored optional categories, independently of resolved/neutralized/current/locked state. Show detail on focus, hover or touch without losing critical information. Keep paths visible and labels separated at 1366×768, 620px and 390px. Native keyboard/touch targets are at least44px, focus is visible, and map scrolling/panning is controllable. OS or game reduction independently requests reduced motion. No presentation gesture grants movement, content resolution or access rejected by RunSystem.
+
+## Preserved cast and transition readability — OD-2026-10-03-A
 
 Dedicated amendment `PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1`: verify short cast exit/breath/entry continuity, meaningful transition copy, responsive dialogue and focus retention/restoration. OS reduced motion and game reduction each request the reduced-motion alternative; explicit game false cannot suppress the OS. Use gentle fade/pause/focus continuity without large displacement, retain all dialogue/choices and avoid motion-dependent information. Production/browser evidence must include desktop, intermediate and narrow viewports with normal and OS-only reduced motion.

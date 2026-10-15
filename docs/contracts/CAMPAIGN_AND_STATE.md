@@ -16,7 +16,11 @@ Refuges are for consolidation and preparation. Route loot is temporary until the
 
 Durable campaign facts are saved through versioned schemas and migrations. Preserve durable IDs and compatibility with existing saves. Save route choices, resolved events, inventory and resources through their existing owners; do not serialize animation state, camera, transient Route Risk/Pursuit state, layout, or other visual state. Any changed durable schema requires an explicit migration and resume tests at affected boundaries.
 
-## Manual-playtest amendment — OD-2026-10-03-A
+## POI V2 composition — OD-2026-10-15-A
+
+Dedicated `PRODUCTION-CONTRACTS-POI-V2-RETIREMENT-1`, set 1.3.0. Primary, secondary structuring and optional content roles are explicit authored metadata; content category and obligatory participation are independent axes. First combat and the nomad crossroads remain required secondary structuring nodes. After their resolution RunSystem validates genuine local routes to the optional refugees and existing exclusive first trial alternatives; the refuge requires the canonical trial. A map selection or geographical visit alone never grants victory, completion or reward. Existing once-only bypass consequences, stable encounter assignment, checkpoint recovery and compatible optional revisit survive both old and new V6. Layout/phase boundaries do not change causality or become saved truth. Preserve the directed recovery graph and all 21 durable node IDs. Additional chests, elites or encounters require approved IDs, configurations, placements and rewards before activation. Neither the map nor a removed physical engine owns campaign facts.
+
+## Preserved manual-playtest amendment — OD-2026-10-03-A
 
 Dedicated task `PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1` locks a mandatory campfire/preparation beat before Alaric's final judgement: end of route -> breathing/preparation/context -> judgement. It is a narrative boundary, not a new Traversal, ninth video or automatic full refuge-management hub. Keep existing durable IDs, branch continuity, final-refuge type and save/resume authority. Reuse approved content; do not invent new plot, choices, rewards or consequences to populate it. A visual campfire alone never authorizes securing loot.
 

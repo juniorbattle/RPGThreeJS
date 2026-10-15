@@ -18,7 +18,11 @@ Commit coherent checkpoints and push regularly to `origin/dev`, including before
 
 Dedicated `PRODUCTION-CONTRACTS-POI-NAVIGATION-1` / [OD-2026-10-13-D](../autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md), set 1.2.0 supersedes the physical Traversal production queue below on navigation only. Execute the dedicated amendment and committed baseline first, then the real Audience→first-refuge POI slice; generalize remaining Lion continuity/branches/endings, then retire old road code/media/tools only after verified replacement and reference inventory. Keep gameplay/combat/keyboard work and non-navigation acceptance. Audio remains DEFERRED until narrative/presentation/cinematics/POI navigation are stable. Do not reactivate the scheduler.
 
-## Historical ordered initial queue
+## Exceptional POI V2 mission — OD-2026-10-15-A
+
+Dedicated `PRODUCTION-CONTRACTS-POI-V2-RETIREMENT-1`, set 1.3.0. The explicitly requested exceptional manual mission proceeds through playable A/B, artistic C and definitive physical retirement D, with coherent normal dev checkpoints and preserved WIP. Its operator-specified absence of a time/work limit applies to this mission only; scheduled configuration and paused status stay unchanged. Independent guardian review precedes the amended LOCKED baseline and guards sensitive runtime milestones. No new authoring/reward or art acceptance is inferred from execution authorization. Main remains protected.
+
+## Preserved historical ordered initial queue
 
 1. `PRODUCTION-CONTRACTS-LOCK-1` and this protocol.
 2. Contract drift audit and safe canonical-document correction.
