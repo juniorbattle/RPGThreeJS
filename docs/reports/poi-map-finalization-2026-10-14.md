@@ -4,66 +4,75 @@
 | --- | --- |
 | TASK | POI-MAP-FINALIZATION |
 | DOMAIN | Campaign handoffs, Journey, POI, V6, accessibility, existing QA |
-| BASELINE | dev5b7a67c736d7b3bc7071d5376a65b4c272dd2781 |
+| BASELINE | dev `5b7a67c736d7b3bc7071d5376a65b4c272dd2781` |
 | BRANCH | dev |
-| HEAD | 3b35197f027aff3950bffe3b36bb1ad593f940a0 |
-| STATUS | IN_PROGRESS; both endings, positive-loot defeat and motion/touch scopes accepted; alternatives/mobile finish active |
-| MERGED_IN | NONE; direct dev checkpoint |
+| HEAD | Runtime `70a4a0aca0cd9b2887354dd7bc2b8a97ef7dd59d`; pilot `8fa8ea90e48d2e1340472ad904e263b989d96029`; documentation identity follows Git |
+| STATUS | IN_PROGRESS; T1/sacrifice and final review remain |
+| MERGED_IN | NONE; direct dev checkpoints |
 | SUPERSEDES | NONE; extends earlier first/second-refuge evidence |
 | SUPERSEDED_BY | NONE |
-| PRODUCTION_IMPACT | Restored final-refuge preparation before explicit map judgement; native reduction preference |
-| CANONICAL_DOCS_UPDATED | Pending final native acceptance |
-| EVIDENCE | Unique ignored jobs below; executable source/build frozen in tmp/autonomy |
+| PRODUCTION_IMPACT | Authored final preparation, saved reduction control, narrow map readability and 44px mobile controls |
+| CANONICAL_DOCS_UPDATED | POI_NAVIGATION, CURRENT_STATUS, DEMO_COMPLETION_PLAN, documentation/report indexes and paired state |
+| EVIDENCE | [Compact execution identities and selected captures](poi-map-finalization-2026-10-14/results.json); unique raw jobs under ignored tmp/demo/ |
 
-The operator explicitly resumed the remaining endings, authored alternatives, native POI defeat, reduced motion/mobile and five inherited Journey failures. Contract set1.2.0 and immutable692829f remain unchanged. The scheduler, main, historical proof and deferred work are preserved.
+CURRENT FACT: the operator resumed the remaining endings, authored alternatives, native POI defeat, reduced motion/mobile and five inherited Journey failures. Contract set1.2.0 and immutable `692829f32d735ad890182eea6b5e5e195551bbbf` are unchanged. The scheduler, main, historical proof and deferred work are preserved.
 
-The production map had bypassed the existing final-refuge preparation tableau. GameApp now reconstructs that authored narrative boundary from durable resolved facts on arrival and reload. Its local continuation returns to the map; it creates no node, consequence, hub, free rest or securing rule. Company, save and menu remain available. Explicit judgement selection stays with existing POI/campaign owners.
+## Product behavior
 
-Journey now supplies the existing game reduction preference to its NarrativeStage factory. A native map control exposes existing settings.reducedGraphics, saves it through the normal owner and restores focus. OS reduction remains independent. Five inherited Journey tests now wait for actual surface readiness instead of a fixed microtask count; all original titles, actions and invariance assertions remain intact.
+The final-refuge story now reconstructs its existing three-actor preparation on arrival and reload. Its local Carte de campagne action returns to POI selection before explicit Judgement activation. Company/save/menu remain available. This adds no node, dialogue, consequence, hub, free rest or securing rule.
 
-109 focused tests pass, including all18 Journey boundary tests,10 GameApp POI cases and27 scene-surface cases. All19 QA continuity tests pass, including exact preservation of earlier reviewed jobs on synchronization. TypeScript, production build, eight-contract/eight-slot validator, eight shipped MP4s and immutable/working LOCKED/whitespace gates pass. No full-suite acceptance is claimed.
+The map exposes the existing saved settings.reducedGraphics preference and restores focus after activation. Journey supplies this game preference to NarrativeStage; OS reduction remains independent. Five inherited Journey tests now wait for actual surface readiness rather than a fixed microtask count. Their original functional expectations remain intact.
 
-## Current native evidence
+The observed narrow map-label overlap is corrected by moving only cross-panel display anchors to [90,80]/[870,80]. Mobile deployment actions, roster pagination and result continuation measure at least44px. Same-phase authored layout, graph, IDs, statuses, tactics and V6 remain unchanged.
 
-- `poi-preparation-desktop-2019`: SUCCEEDED, stable provenance,1366×768 normal. Authenticated0645→existing paid Second-refuge rest→lancer/witnesses/final event/shadow signs→final preparation. Exact V6 reload, three actors, local map agency and no new hub/securing. Three native battles inherited explicitly; zero new tactical result.
-- `poi-preparation-mobile-os-2020`: same authored continuation and exact V6 on390×844, OS reduce with normal game graphics. Root and guardian inspected preparation and selected map captures; recorded controls fit the viewport.
-- `poi-defeat-finaltrial-2020`: FAILED,60second enemy-turn wait. Nonaccepted and unseedable; no tactical/balance defect inferred from the timeout. Original result/receipt/capture preserved.
-- `poi-preparation-intermediate-game-2027`: INTERRUPTED by the owner after a runner race passed the preparation objective into judgement. Only its verified worker67616 and descendants were stopped; original receipt and owner-interruption sidecar retained. No acceptance or reusable seed.
-- `poi-first-trial-combat-game-2029`: SUCCEEDED/stable; guardian accepted scoped and authentic seed admissible. Two fresh native victories: opening3rounds/17actions, first-trial combat4rounds/29actions. The event alternative is neutralized/not resolved, optional refugees bypass/revisit remains functional, native game reduction persists through exact V6 reload and reusable First refuge. Final205gold/44reputation/zero temporary loot. Root and guardian inspected the neutralization map and reloaded services; measured controls fit1366×768.
-- `poi-ending-trial-mobile-2022`: SUCCEEDED/stable, guardian ACCEPTED_SCOPED; actual lion_chief victory32rounds/168native actions, three inherited victories distinguished. Completed lion-seal-trial-truth,435gold/98reputation, final checkpoint, zero temporary loot. Earned ending save=final owner=resumed exactly; terminal/menu/Continue focus preserve owner and saved bytes. Three final captures inspected;390×844 normal viewport, mouse/keyboard, tactile excluded.
-- `poi-ending-serpent-2022`: FAILED at its45minute watchdog after67native actions, no completed battle/ending. Original output remains unseedable; preparation, native equipment and supported controls must be used for a distinct continuation.
-- `poi-second-combat-sacrifice-game-2051`: FAILED on actual T1 Troll defeat, round14/70 native actions; foe12HP remaining. Valmir was genuinely won6rounds/39actions, but this entire failed output is unseedable. No recovery acceptance is inferred before native acknowledgement/reload.
+## Reviewed native milestones
 
-After every worker ended, the existing pilot was corrected once: preparation ownership is refreshed at DOM boundaries; actual native weapon purchase/equipment/sale precedes paid rest; desktop targeting uses supported battlefield keyboard cells; narrow touch uses a real touchscreen context, taps and trusted-event observations. Successful bounded Valmir positive-loot/reload and completed-terminal seeds retain exact successful-proof admission. Recovery requires positive loot loss and a genuinely defeated native deployment. Runtime/build remain frozen from3b35197; old executions retain their original driver identity and scoped dispositions.
+Every accepted case has SUCCEEDED/exit0, stable source/driver/helper/build/input provenance, a verified result digest and no browser errors, fixture writes, runtime mutation or injected outcome. Acceptance is a separate reviewed ledger disposition; original receipts are never relabelled. Inherited victories remain explicitly distinguished from newly played combat.
 
-At driver checkpoint d732e4d, guardian independently reviewed seven further successful stable cases and ten selected captures:
+| Native case | Reviewed result and limit |
+| --- | --- |
+| preparation-desktop-2019 / preparation-mobile-os-2020 | Authentic0645 rescue lineage through lancer/witnesses/final event/shadow signs to preparation; exact V6, three actors, company/map agency, no hub/new securing.1366normal and390OS-only; no new battle. |
+| first-trial-combat-game-2029 | Fresh opening3rounds/17actions and T0combat4rounds/29actions. Optional bypass/revisit; event alternative neutralized/notresolved. Native game reduction persists, reusable First refuge/exact reload;205gold/44rep. |
+| ending-trial-mobile-2022 | Actual lion_chief32rounds/168actions; lion-seal-trial-truth,435gold/98rep, exact ending/terminal/menu/reload and unchanged save bytes.390normal mouse/keyboard, not touch combat. |
+| serpent-steel-keyboard-2130 | Actual Serpent12rounds/76actions; lion-seal-serpent-truth,447gold/100rep, exact terminal/menu/reload. Existing steel purchase/equip/sale and paid rest; desktop native keyboard targeting. |
+| valmir-steel-game-2130 | Actual Valmir6rounds/39actions; existing steel purchase170gold/sale45 and post-Valmir rest15.20securedgold/210temporarygold, exact reload; successful reusable native seed. |
+| terminal-touch-2132 | Completed Trial lineage,390touch context/3trusted taps; exact terminal/menu/save preservation; zero new battle. |
+| preparation-game620-2125 / preparation-os1366-2126 / preparation-touch-os390-2127 | Independent game-reduced620, OS-only1366 and true touch/OS390 preparation/reload. The touch continuation records79trusted taps. |
+| defeat-t1-touch-2150 | Real single-member Elara75HP deployment/defeat15rounds/15waits and29trusted taps.210temporarygold lost,20securedgold retained; First checkpoint, T1 cleared/T0 retained, failed combat unresolved/unrewarded. Entire expected=recovered=resumed V6. |
+| defeat-touch-final-ui-0113 | Same genuine positive-loot recovery on final70a4a0a build.31trusted taps, complete five-member roster,44x44 pagination and44px deployment/result actions. Root/guardian inspect separated recovered/reloaded map labels. |
+| t3-touch-ready-final-0141 | Fresh ruins_guardians4rounds/34actions,5attacks/6skills,21native battlefield taps/252trusted touches. Six-member roster and44px controls. Effective OS reduction true/requested game false. T3 event neutralized/notresolved; exact preparation/reload retains147securedgold/110temporarygold and Second checkpoint, no hub/new securing. |
+| second-trial-earned-0141 | Fresh Troll victory12rounds/69actions, event neutralized/notresolved.20securedgold/390temporarygold/41rep, First refuge resolved/secured/checkpoint and exact V6/reload. Root/guardian inspect result/reloaded map; successful seed admissible. |
+| prepared sacrifice/raid continuation | PENDING from the successful bounded T1 seed; no failed intermediate save is admitted. |
 
-- `poi-serpent-steel-keyboard-2130`: actual Serpent victory12rounds/76actions, lion-seal-serpent-truth,447gold/100reputation; ending/terminal/menu/exact reload. Existing steel weapon bought133gold, old weapon sold45gold, equipped before paid rest; no free heal or economy change.
-- `poi-valmir-steel-game-2130`: actual Valmir6rounds/39actions; native steel purchase170gold/sale45, post-Valmir paid rest15. Positive210temporarygold/20securedgold, exact reload and successful reusable seed.
-- `poi-terminal-touch-2132`:390×844 real touchscreen context,3trusted taps, zero new battles; actual completed-trial seed and exact terminal/menu/save preservation.
-- `poi-preparation-game620-2125`:620×780 native game reduction, durable preference and exact preparation reload.
-- `poi-preparation-os1366-2126`: desktop OS-only reduction with normal game graphics, exact preparation reload.
-- `poi-preparation-touch-os390-2127`:390×844 OS-only,79trusted taps through native choices/map/preparation, exact V6, no hub/new securing.
-- `poi-defeat-t1-touch-2150`: actual Elara75HP native single-member deployment and defeat15rounds/15waits,29trusted taps;210temporarygold→0,20securedgold retained, exact First-refuge checkpoint. T1 cleared/T0 retained, failed combat unresolved/unrewarded, entire expected=recovered=resumed V6.
+Root and the independent guardian inspected the accepted scopes, raw provenance/digests, exact owner saves and selected captures. T3 result digest: `cb301a4c9fabd6581c7836e35032e61b97ce174253efb6f3fa6cea143efb9608`. Mobile maps intentionally scroll horizontally: one transient selected resolved marker is partially visible, its full name remains in the detail and subsequent native navigation reaches preparation. No all-markers-at-once or manual-swipe certification is claimed.
 
-Root also verified raw result digests, successful-save admission and relevant current captures. Raw receipts retain NOT_ACCEPTED; reviewed dispositions are separate. Guardian's concrete mobile finding remains open: narrow recovered-map labels First refuge/reserves overlap, while detail and departure stay usable. Do not claim full mobile layout or offensive touch combat before correcting and rechecking this finding.
+## Preserved nonaccepted executions
 
-`poi-second-sacrifice-steel-2153` won the Troll12rounds/69actions but lost village_raid3rounds/13actions after marching on with three1HP members. The entire failed result remains unseedable. The prepared continuation starts again from successful Valmir: return through resolved T1/Valmir/reserves, existing permanent-material sale only if needed, exact paid rest/temporary-loot preservation, then native return to T1 and raid.
+| Job | Disposition and reason |
+| --- | --- |
+| defeat-finaltrial-2020 | FAILED:60second enemy-turn wait; no recovery acceptance or inferred balance defect. |
+| ending-serpent-2022 | FAILED:45minute watchdog with incomplete native battle after67actions. |
+| preparation-intermediate-game-2027 | INTERRUPTED: pilot raced past preparation into judgement. Exact owned worker67616 stopped; original receipt/owner sidecar preserved. |
+| second-combat-sacrifice-game-2051 | FAILED: actual Troll defeat14rounds/70actions, foe12HP. Its earlier genuine Valmir victory does not make the whole output reusable. |
+| second-sacrifice-steel-2153 | FAILED: actual Troll victory12rounds/69actions followed by village_raid defeat3rounds/13actions with three1HP members. |
+| sacrifice-rested-final-0113 | FAILED: native T1 victory and funded paid rest, then an incorrect pilot invariance assertion rejected the fresh authored public petition. Whole output unseedable. |
+| t3-touch-os-final-0115 | INTERRUPTED: real T3 victory4rounds/34actions, then preparation overrun. Only verified PID61364/parent35872/listener5428 tree stopped; raw receipt/sidecar preserved. |
+| sacrifice-prepared-final | FAILED before Raid: pilot placed the petition occurrence marker before the dialogue completion that actually records it. Native immediate consequences were exact; raw before/after/lastState are retained. No new combat, whole output unseedable. |
 
-The final mobile source correction moves only cross-panel display anchors to[90,80]/[870,80], separates labels, enlarges the result/deployment actions to44px and roster pagination to44×44px. Existing pilot checks actual label intersections, complete touch roster pagination, real control bounds, exact owner/save/deployment invariance and positive unsecured T3 loot through final preparation. Guardian PASS source; runtime acceptance remains pending. Final mechanical pass:149focused tests, including24finale and16verdict cases covering reveal/conceal/undecided and voluntary/rejected intent; build/types/8contracts/8slots/eightMP4/LOCKED gates pass. The19helper tests remain valid at unchanged helper d732e4d.
+All failed/interrupted outputs remain NOT_ACCEPTED and unseedable, including their intermediate wins/saves. The corrected existing pilot waits for exact preparation readiness, excludes its control from the actual generic click and fails on judgement overrun. Native public-petition consequences are audited exactly:35temporarygold cost,3reputation, original flag/history, then the unique-event marker after dialogue completion. Shop/rest temporary-loot invariance is separate; there is no general exception to full-state comparison. The successful bounded T1 checkpoint is independently accepted: result `62360ce6eb06734555532fd507a1dae4189cb3c228dbf242748919c1ca6cdfe3`, save `46740a093c6ceb27c95414f7469b32df537a59f7b944e457449726bf0086649a`, exactly equals resumed. Normal45minute budgets and the scheduler remain unchanged.
 
-Final UI proof `poi-defeat-touch-final-ui-0113` is independently ACCEPTED_SCOPED on70a4a0a:31trusted taps, complete five-member roster, pagination44×44, deployment actions99/99/146×44, result334×44; all measured controls fit. Recovered/reloaded narrow map labels are separated. Actual positive-loot defeat and entire expected/recovered/resumed V6 still match. Initial mobile findings are corrected in this scope.
+## Mechanical verification
 
-`poi-t3-touch-os-final-0115` won actual T3 combat4rounds/34actions but a generic-action race passed its preparation objective into judgement. The owner verified PID61364, exact parent command35872 and listener5428 before stopping only that tree; original raw receipt and interruption sidecar remain. INTERRUPTED/NOT_ACCEPTED/unseedable. The pilot's next correction must await exact preparation readiness after durable resolution, exclude its control in the actual generic selector, and fail immediately on target overrun. UI/build/source remain frozen while the prepared sacrifice case finishes.
+149focused tests pass: GameAppPoi10, poiNavigation9, runSystem35, JourneyCampaignBoundary18, JourneyRunNodeAdapter10, NarrativeSceneSurface27, lionFinale24 and lionVerdict16. The40finale/verdict cases cover reveal/conceal/undecided and voluntary/rejected intent; native ending proof covers the two recorded truth paths. All19existing QA continuity tests pass. TypeScript, production build,8contracts/8slots, eight shipped MP4s and empty immutable/working LOCKED/whitespace gates pass. No full-suite acceptance is claimed; unfiltered discovery of ignored archived tmp copies is outside the149current-test scope.
 
-## Retained Traversal audit
+Final runtime source tree: `fcf7e608f321af152971c40276cae8f6f4731b50`; pilot SHA256 `2d3ee60fb36fb3286e6e78fa3fb3350caaec0fc42a9d3a0e6032ce5c4a14595e`. Historical executions keep their earlier independent identities. Initial3b35197 and final70a4a0a source/build plus d732e4d/8fa8ea9 pilots are frozen under ignored tmp/autonomy/. Compact evidence retains exact input/bundle identities; no old capture establishes an untested final-build layout.
 
-`poi-t3-touch-ready-final-0141` is independently ACCEPTED_SCOPED on8fa8ea9/runtime70a4a0a: actual ruins_guardians4rounds/34actions,5attacks/6skills,21native battlefield taps/252trusted touches. OS-only diagnostics are effective reducedGraphics=true/requestedReducedGraphics=false. Six-member roster/pagination and deployment/result44px targets pass. T3 event is neutralized/notresolved. Final preparation/reload retains147securedgold/110temporarygold/Second-refuge checkpoint, with no new hub/securing. Root/guardian inspected result/map/preparation captures and exact provenance/digestcb301a4c…9608. One selected marker is partially visible within the intentionally horizontally scrollable mobile map; full detail and subsequent native navigation remain available. No all-markers-at-once or manual-swipe certification is claimed. T1/sacrifice remains active.
+## Retained Traversal and delivery limits
 
-`poi-sacrifice-rested-final-0113` won T1 natively12rounds/69actions and returned for a genuinely funded paid rest. Its whole output FAILED/unseedable because the pilot incorrectly treated the fresh authored public petition as a repeated refuge effect. The native petition costs35temporarygold, grants3reputation and its existing flag/history/unique-event marker. The corrected pilot audits those exact consequences separately from unchanged temporary loot during shop/rest services. A distinct successful bounded T1 victory/reload will be required before the prepared raid continuation; no partial save from this failure is reused. The preparation pilot also now waits for its exact ready surface and excludes its control from the actual generic selector, with immediate failure on judgement overrun.
+Static inventory at source3b35197:669 Traversal-named paths,350 text-reference files (110src including tests,43tools,4media registries,193docs), retained at tmp/autonomy/poi-finalization-traversal-inventory.json. It is a dependency inventory, not retirement acceptance. Shared TRAVERSAL_RHYTHM, durable traversalBranches, campaign relations, DEV QA lifecycle, assets/drivers and historical proof remain. Nothing was deleted.
 
-The tracked text inventory at source3b35197 finds669 paths containing Traversal and350 files with named references:110 in src (including tests),43 tooling,4 media registries and193 documentation. Full line/term inventory: `tmp/autonomy/poi-finalization-traversal-inventory.json`. This is a static dependency inventory, not retirement acceptance. Shared TRAVERSAL_RHYTHM, V6 traversalBranches, canonical campaign relations, DEV QA lifecycle, assets/drivers and historical proof remain protected. No source, asset or driver was deleted.
+The independent final twelve-row compliance matrix and T1/sacrifice acceptance remain pending. All229preceding QA jobs and deferredDemoTask/pendingNarrativeTask match the starting baseline exactly. Full human artistic/balance/demo review, physical-device testing, every moral-ending permutation, complete six-hero skill acceptance and deferred mounted keyboard/narrative work are separate limits. Exactly eight videos/V2/four-actor cap/canon/main protection remain; audio is DEFERRED and Bois-Clair night art is external.
 
-## Remaining acceptance
+## Operator playtest route
 
-T1/sacrifice continuation and final scoped matrix/docs/publication. T3 offensive OS-only touch and final narrow layout are accepted in the scopes above. Broader human artistic/balance/demo testing and unrelated preserved skills/keyboard work are distinct from this pass. The task remains IN_PROGRESS until its authorized implementation and acceptance are resolved.
+Use the normal title/New Chronicle or an existing genuine save on the production preview http://127.0.0.1:5175/. Follow Audience, opening, Cédric/optional refugees, a first-trial choice and First refuge; reserves/Valmir, a second-trial choice, Bois-Clair and Second refuge; lancer/witnesses, a final-trial choice, shadow signs and preparation. Return to the map and explicitly select Judgement. Use existing equipment and paid refuge services when needed; choices and actual tactical outcomes remain authoritative. On mobile, pan the map to reach offscreen POIs. This is the candidate for the operator's final playtest, with the pending scopes above still explicit.

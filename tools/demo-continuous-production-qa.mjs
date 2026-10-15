@@ -355,10 +355,10 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
   if(events.length){
     assert.equal(postTrial,true);assert.equal(events.length,1);const event=events[0];
     assert.equal(event.sequence,'rep_event_public_petition');
-    const beforeChoice=structuredClone(rested);
-    beforeChoice.seenUniqueEvents.push(`reputation-director-event|${rested.stepCounter}|lion-social-window-1|public-petition|public-expectation`);
-    assert.deepEqual(event.before,beforeChoice,'Refuge departure changed truth beyond the fresh canonical petition marker');
-    assert.deepEqual(departed,event.after,'Native departure repeated effects after the petition');
+    assert.deepEqual(event.before,rested,'Refuge departure changed truth before the fresh canonical petition');
+    const completedEvent=structuredClone(event.after);
+    completedEvent.seenUniqueEvents.push(`reputation-director-event|${rested.stepCounter}|lion-social-window-1|public-petition|public-expectation`);
+    assert.deepEqual(departed,completedEvent,'Native departure differs from the completed petition and its exact once-only marker');
   }else assert.deepEqual(departed,rested,'Resolved refuge departure repeated a one-shot effect');
   const onward=await poiNoReplayPath(['lion-reserve-trail','lion-valmir-road',...(postTrial?[milestone]:[])],true,`poi-after-${prefix}-prepared-return`);
   report.poi[postTrial?'trialRefugePreparation':'valmirRefugePreparation']={before,arrival,funding,restBefore,rested,departed,departureEvents:events,nativeCost:cost,servicesTemporaryLootUnchanged:true,checkpointUnchanged:true,
