@@ -3,87 +3,265 @@
   "runStartedAt": "2026-10-15T07:43:00Z",
   "runEndedAt": null,
   "activeTask": "POI-V2-AND-TRAVERSAL-RETIREMENT",
-  "activePhase": "A",
-  "activeSubtask": "Finalize the physical-engine retirement, verify V6 handoffs and current atlas in production, then close all four lots.",
+  "activePhase": "D",
+  "activeSubtask": "Finish two native combat routes; then correct preparation44px and capture three decoded atlas regions on final build.",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "804ba18d51620ba1d07cd4b91f14a3504b1dfd41",
-  "lastPushedCommit": "804ba18d51620ba1d07cd4b91f14a3504b1dfd41",
+  "lastKnownGoodCommit": "d104e214c363f0c7da6ec44b407f00062407db7e",
+  "lastPushedCommit": "d104e214c363f0c7da6ec44b407f00062407db7e",
   "completedThisRun": [
     "Read both full operator directives; clean dev b79063b and live origin/main parity verified; acquired exclusive lock.",
-    "Lot A source published ca78057/85b1889; fresh native0810 accepted scoped desktop normal after actual assignment-stability correction; failed0752 retained unseedable."
+    "Lot A source published ca78057/85b1889; fresh native0810 accepted scoped desktop normal after actual assignment-stability correction; failed0752 retained unseedable.",
+    "Lot B:21explicit canonical region/role/participation entries; no new content activated; published6364504.",
+    "Lot C:three illustrated pixel-diorama atlases and accessible native controls published6d4e1f9; art remains candidate.",
+    "Lot D source publishedd104e21:144reviewed deletions,177inventory rows,0uncertain/active deleted-file imports,87src/traversal files removed.",
+    "Scoped current D native:old0603 V6/refuge/reload, saved-game620 atlas, OS-only390 touch swipe/preparation, real260temporary/20secured defeat recovery and both native terminals pass; independent review.42px preparation action still pending correction."
   ],
   "filesChanged": [
-    "docs/README.md",
+    ".agents/skills/autonomy-handoff/SKILL.md",
+    ".agents/skills/contracts-compliance/SKILL.md",
+    ".agents/skills/qa-evidence/SKILL.md",
+    ".agents/skills/ui-accessibility/SKILL.md",
+    "AGENTS.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-    "docs/autonomy/handoffs/2026-10-15T0618Z-codex-poi-finalization.md",
-    "docs/project/CURRENT_STATUS.md",
+    "docs/autonomy/OPERATOR_DECISIONS.md",
+    "docs/autonomy/POI_V2_OPERATOR_DECISION_2026-10-15.md",
+    "docs/autonomy/RPGThreeJS_CONTRAT_OPERATEUR_POI_V2_ET_RETRAIT_TRAVERSAL_2026-10-15.md",
+    "docs/autonomy/RPGThreeJS_MISSION_POI_V2_ET_RETRAIT_TRAVERSAL_2026-10-15.md",
+    "docs/contracts/AUTHORING_AND_QA.md",
+    "docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md",
+    "docs/contracts/CAMPAIGN_AND_STATE.md",
+    "docs/contracts/README.md",
+    "docs/contracts/TRAVERSAL.md",
+    "docs/contracts/UI_AND_ACCESSIBILITY.md",
+    "docs/contracts/WORLD_AND_CHARACTERS.md",
+    "docs/contracts/contracts.manifest.json",
     "docs/project/POI_NAVIGATION.md",
-    "docs/reports/INDEX.md",
-    "docs/reports/poi-map-finalization-2026-10-14.md",
-    "docs/reports/poi-map-finalization-2026-10-14/01-native-preparation-desktop.png",
-    "docs/reports/poi-map-finalization-2026-10-14/02-native-preparation-game620.png",
-    "docs/reports/poi-map-finalization-2026-10-14/03-native-preparation-touch-os390.png",
-    "docs/reports/poi-map-finalization-2026-10-14/04-native-first-combat-neutralization.png",
-    "docs/reports/poi-map-finalization-2026-10-14/05-native-serpent-ending.png",
-    "docs/reports/poi-map-finalization-2026-10-14/06-native-trial-ending.png",
-    "docs/reports/poi-map-finalization-2026-10-14/07-native-defeat-touch-final-map.png",
-    "docs/reports/poi-map-finalization-2026-10-14/08-native-sacrifice-second-refuge.png",
-    "docs/reports/poi-map-finalization-2026-10-14/09-native-t3-touch-os-victory.png",
-    "docs/reports/poi-map-finalization-2026-10-14/10-native-t3-loot-preparation-reloaded.png",
-    "docs/reports/poi-map-finalization-2026-10-14/results.json",
+    "docs/project/POI_V2_ART_AND_AUTHORING.md",
+    "docs/project/retired-traversal/README.md",
+    "docs/project/retired-traversal/poi-v2-dependency-inventory.json",
+    "docs/project/retired-traversal/qa/README.md",
+    "docs/project/retired-traversal/qa/project-continuity-audit-1.mjs.txt",
+    "docs/project/retired-traversal/qa/run_campaign_presentation_migration_qa.mjs.txt",
+    "docs/project/retired-traversal/qa/ui-kit-system-1-qa.mjs.txt",
+    "docs/project/retired-traversal/qa/ui-visual-direction-2-qa.mjs.txt",
+    "docs/project/retired-traversal/qa/ui-visual-direction-font-compare.mjs.txt",
+    "docs/project/retired-traversal/qa/ui-visual-direction-qa.mjs.txt",
+    "docs/reports/poi-v2-retirement-2026-10-15.md",
+    "docs/reports/poi-v2-retirement-2026-10-15/A-lion-first-refuge-poi-reusable-reloaded.png",
+    "docs/reports/poi-v2-retirement-2026-10-15/A-poi-exclusive-neutralization.png",
+    "docs/reports/poi-v2-retirement-2026-10-15/A-poi-v2-three-local-routes.png",
+    "docs/reports/poi-v2-retirement-2026-10-15/A-results.json",
+    "public/assets/generated/lion-phase/poi-v2/README.md",
+    "public/assets/generated/lion-phase/poi-v2/bois-clair.png",
+    "public/assets/generated/lion-phase/poi-v2/judgement.png",
+    "public/assets/generated/lion-phase/poi-v2/lion-opening.png",
+    "public/assets/generated/lion-phase/poi-v2/manifest.json",
+    "public/assets/generated/lion-phase/traversal/t0/foreground/ferns.png",
+    "public/assets/generated/lion-phase/traversal/t0/foreground/roots.png",
+    "public/assets/generated/lion-phase/traversal/t0/foreground/shared-loop.png",
+    "public/assets/generated/lion-phase/traversal/t0/props/abandoned-cart.png",
+    "public/assets/generated/lion-phase/traversal/t0/props/fork-sign.png",
+    "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.png",
+    "public/assets/generated/lion-phase/traversal/t0/reward/coin-pouch.png",
+    "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/chassis.png",
+    "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/wheel.png",
+    "public/assets/generated/lion-phase/traversal/t0/world-v1/ambush-cleared.png",
+    "public/assets/generated/lion-phase/traversal/t0/world-v1/damaged-caravan.png",
+    "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-junction.png",
+    "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+    "public/assets/generated/lion-phase/traversal/t0/world-v1/nomad-waystation.png",
+    "public/assets/generated/lion-phase/traversal/t0/world-v1/opening-ambush.png",
+    "public/assets/generated/lion-phase/traversal/t0/world-v1/refugee-halt.png",
+    "public/assets/generated/lion-phase/traversal/t0/world-v1/ruined-outpost.png",
+    "public/assets/generated/lion-phase/traversal/t1/world-v1/old-shrine.png",
+    "public/assets/generated/lion-phase/traversal/t1/world-v1/valmir-road.png",
+    "public/assets/generated/lion-phase/traversal/t3/world-v1/dragon-roost.png",
+    "public/assets/generated/lion-phase/traversal/t3/world-v1/shadow-ruins.png",
+    "public/assets/generated/lion-phase/traversal/t3/world-v1/witness-road.png",
+    "src/campaign/LionCampaignTravelRelations.test.ts",
+    "src/campaign/LionCampaignTravelRelations.ts",
+    "src/campaign/LionPoiMap.ts",
+    "src/campaign/LionPoiTopology.test.ts",
+    "src/campaign/LionPoiTopology.ts",
+    "src/campaign/LionTraversalPursuitEncounters.ts",
     "src/game/GameApp.ts",
     "src/game/GameAppPoi.test.ts",
-    "src/journey/JourneyCampaignBoundary.test.ts",
-    "src/journey/JourneyCampaignBoundary.ts",
-    "src/styles/combat-shell.css",
+    "src/game/GameAppRouteReward.test.ts",
+    "src/game/OptionalEncounterConsequencePolicy.ts",
+    "src/game/campaignGrammarConsolidation.test.ts",
+    "src/game/campaignPresentationMigration.test.ts",
+    "src/game/cin2CampaignBridge.test.ts",
+    "src/game/cin67NarrativeStageIntegration.test.ts",
+    "src/game/cin6aVerticalIntegration.test.ts",
+    "src/game/content.test.ts",
+    "src/game/poiNavigation.test.ts",
+    "src/game/runSystem.test.ts",
+    "src/game/runSystem.ts",
+    "src/game/traversalT0ProductionRollout.test.ts",
+    "src/styles/app.css",
+    "src/styles/traversal-pursuit-charge.css",
+    "src/styles/traversal.css",
+    "src/traversal/TraversalCaravan.ts",
+    "src/traversal/TraversalCheckpointRoute.ts",
+    "src/traversal/TraversalDepth.test.ts",
+    "src/traversal/TraversalDepth.ts",
+    "src/traversal/TraversalFeaturePolicy.test.ts",
+    "src/traversal/TraversalFeaturePolicy.ts",
+    "src/traversal/TraversalForkOverlay.test.ts",
+    "src/traversal/TraversalForkOverlay.ts",
+    "src/traversal/TraversalInteractionGrammar.ts",
+    "src/traversal/TraversalPresentation.test.ts",
+    "src/traversal/TraversalPresentation.ts",
+    "src/traversal/TraversalPreviewSaves.test.ts",
+    "src/traversal/TraversalPreviewSaves.ts",
+    "src/traversal/TraversalPursuerSprite.test.ts",
+    "src/traversal/TraversalPursuerSprite.ts",
+    "src/traversal/TraversalPursuitCharge.test.ts",
+    "src/traversal/TraversalPursuitCharge.ts",
+    "src/traversal/TraversalPursuitChargeRenderer.test.ts",
+    "src/traversal/TraversalPursuitChargeRenderer.ts",
+    "src/traversal/TraversalPursuitPresentationPolicy.ts",
+    "src/traversal/TraversalRewardPresentationPolicy.test.ts",
+    "src/traversal/TraversalRewardPresentationPolicy.ts",
+    "src/traversal/TraversalRiskPresentationPolicy.test.ts",
+    "src/traversal/TraversalRiskPresentationPolicy.ts",
+    "src/traversal/TraversalRoadAnchor.test.ts",
+    "src/traversal/TraversalRoadAnchor.ts",
+    "src/traversal/TraversalRoadAuthoring.ts",
+    "src/traversal/TraversalRoadCamera.test.ts",
+    "src/traversal/TraversalRoadMotion.test.ts",
+    "src/traversal/TraversalRoadScene.test.ts",
+    "src/traversal/TraversalRoadScene.ts",
+    "src/traversal/TraversalRoadSpace.ts",
+    "src/traversal/TraversalRouteModel.ts",
+    "src/traversal/TraversalRoutePursuit.test.ts",
+    "src/traversal/TraversalRoutePursuit.ts",
+    "src/traversal/TraversalRoutePursuitArt.test.ts",
+    "src/traversal/TraversalRoutePursuitRenderer.ts",
+    "src/traversal/TraversalRouteRenderer.ts",
+    "src/traversal/TraversalRouteReward.test.ts",
+    "src/traversal/TraversalRouteReward.ts",
+    "src/traversal/TraversalRouteRewardRenderer.ts",
+    "src/traversal/TraversalRouteRisk.test.ts",
+    "src/traversal/TraversalRouteRisk.ts",
+    "src/traversal/TraversalRouteRiskRenderer.ts",
+    "src/traversal/TraversalRouteRiskVisual.ts",
+    "src/traversal/TraversalRouteRun.test.ts",
+    "src/traversal/TraversalRouteRun.ts",
+    "src/traversal/TraversalRunController.test.ts",
+    "src/traversal/TraversalRunController.ts",
+    "src/traversal/TraversalRunRuntime.test.ts",
+    "src/traversal/TraversalRunRuntime.ts",
+    "src/traversal/TraversalSprite.ts",
+    "src/traversal/TraversalSpriteBounds.json",
+    "src/traversal/TraversalT0Assets.test.ts",
+    "src/traversal/TraversalT0Assets.ts",
+    "src/traversal/TraversalT0Authoring.ts",
+    "src/traversal/TraversalT0CheckpointRoute.ts",
+    "src/traversal/TraversalT0Flow.test.ts",
+    "src/traversal/TraversalT0Foreground.ts",
+    "src/traversal/TraversalT0Pursuit.ts",
+    "src/traversal/TraversalT0PursuitScene.test.ts",
+    "src/traversal/TraversalT0Reward.ts",
+    "src/traversal/TraversalT0Risk.ts",
+    "src/traversal/TraversalT0Route.test.ts",
+    "src/traversal/TraversalT0Route.ts",
+    "src/traversal/TraversalT0Scene.test.ts",
+    "src/traversal/TraversalT0Scene.ts",
+    "src/traversal/TraversalT0World.test.ts",
+    "src/traversal/TraversalT0World.ts",
+    "src/traversal/TraversalT1Authoring.ts",
+    "src/traversal/TraversalT1CheckpointRoute.ts",
+    "src/traversal/TraversalT1Route.ts",
+    "src/traversal/TraversalT1Scene.test.ts",
+    "src/traversal/TraversalT1Scene.ts",
+    "src/traversal/TraversalT1World.ts",
+    "src/traversal/TraversalT3Authoring.ts",
+    "src/traversal/TraversalT3CheckpointRoute.ts",
+    "src/traversal/TraversalT3Route.ts",
+    "src/traversal/TraversalT3Scene.test.ts",
+    "src/traversal/TraversalT3Scene.ts",
+    "src/traversal/TraversalT3World.ts",
+    "src/traversal/TraversalTransition.ts",
+    "src/traversal/TraversalWorldModel.ts",
+    "src/traversal/TraversalWorldRenderer.test.ts",
+    "src/traversal/TraversalWorldRenderer.ts",
+    "src/traversal/TraversalWorldSubject.test.ts",
+    "src/traversal/TraversalWorldSubject.ts",
+    "src/ui/CampaignStatusHud.test.ts",
+    "src/ui/CampaignStatusHud.ts",
+    "src/ui/PoiMapView.test.ts",
     "src/ui/PoiMapView.ts",
+    "src/ui/SceneTransition.test.ts",
+    "src/ui/SceneTransition.ts",
     "src/ui/poi-map.css",
     "tools/demo-continuous-production-qa.mjs",
     "tools/qa/qa-job.mjs",
-    "tools/qa/qa-job.test.mjs"
+    "tools/traversal-game-motion-production-qa.mjs",
+    "tools/traversal-motion-fallback-qa.mjs",
+    "tools/traversal-motion-production-qa.mjs",
+    "tools/traversal-pursuit-charge-qa.mjs",
+    "tools/traversal-road-anchor-lab-qa.mjs",
+    "tools/traversal-road-authoring-audit.mjs",
+    "tools/traversal-road-elements-production-qa.mjs",
+    "tools/traversal-road-entry-production-qa.mjs",
+    "tools/traversal-road-evidence-audit.mjs",
+    "tools/traversal-road-late-reset-lab-qa.mjs",
+    "tools/traversal-road-more-routes-production-qa.mjs",
+    "tools/traversal-rock-production-qa.mjs",
+    "tools/traversal-t0-browser-qa.mjs",
+    "tools/traversal-t0-pursuit-qa.mjs",
+    "tools/traversal-t0-reward-qa.mjs",
+    "tools/traversal-t1-browser-qa.mjs",
+    "tools/traversal-t1-production-qa.mjs",
+    "tools/traversal-t3-browser-qa.mjs",
+    "tools/traversal-t3-production-qa.mjs",
+    "tools/traversal-visual-convergence-probe-qa.mjs",
+    "tools/traversal-visual-convergence-qa.mjs",
+    "tools/traversal/pursuit-charge-lab.ts",
+    "tools/traversal/road-anchor-lab.ts",
+    "tools/traversal/road-late-reset-lab.ts",
+    "tools/ui-kit-system-1-qa.mjs"
   ],
   "testsRun": [
-    "149focused current game/POI/Journey/surface/finale/verdict tests; no archived tmp copies",
-    "19existing QA continuity tests at unchanged helper",
-    "TypeScript/production build,8contracts8slots/eightMP4,immutable/workingLOCKED/whitespace",
-    "25registered native jobs:16accepted scoped,7FAILED and2INTERRUPTED; original executions preserved"
+    "200relevant current tests plus6V6 boundary fixtures;23POI/refuge-order tests pass",
+    "19QA receipt node:test checks pass",
+    "TypeScript/production build,8contracts8slots/eightMP4,immutable/workingLOCKED/whitespace pass",
+    "Narrative staging validator passes282reachable presentation steps",
+    "Broader Vitest:2681pass/11fail+node:test discovery error; one stale refuge-source assertion fixed and23focused pass; ten other inherited/source-media findings documented, no global suite PASS",
+    "Current registered native jobs retain separate receipt/review status; fresh opening/trialcombat and A-to-second-refuge still running"
   ],
   "testsPassed": [
-    "149focused/19helper/types/build/contracts/LOCKED/whitespace",
-    "16reviewed native scopes; exact V6 and earned lineage; no injected combat outcome"
+    "200relevant current tests plus6V6 boundary fixtures;23POI/refuge-order tests pass",
+    "19QA receipt node:test checks pass",
+    "TypeScript/production build,8contracts8slots/eightMP4,immutable/workingLOCKED/whitespace pass",
+    "Narrative staging validator passes282reachable presentation steps"
   ],
   "testsRemaining": [
-    "Human artistic/balance/full-demo acceptance and physical-device testing remain open",
-    "The two native truth endings are accepted; reveal/conceal/undecided and voluntary/rejected intent have40mechanical cases, not every native permutation",
-    "Mobile map scrolls horizontally; not all markers fit simultaneously and no manual-swipe certification is claimed",
-    "Complete six-hero skill/mounted keyboard/narrative tasks retain their original deferred objects and scope",
-    "Old Traversal retained; static669paths/350referencefiles inventory is not retirement acceptance",
-    "Audio DEFERRED; eight videos unchanged; Bois-Clair night art external"
+    "Finish current fresh opening/combat and A-to-second-refuge proof; retain failures unseedable",
+    "Correct preparation continue42to44px, stabilize desktop art captures after image decode, then one corrected-build native smoke",
+    "Operator art/full-demo/balance and physical-device acceptance separate; unrelated six-hero/mounted-keyboard/narrative work preserved"
   ],
   "blockers": [],
   "remainingWork": [
-    "Human artistic/balance/full-demo acceptance and physical-device testing remain open",
-    "The two native truth endings are accepted; reveal/conceal/undecided and voluntary/rejected intent have40mechanical cases, not every native permutation",
-    "Mobile map scrolls horizontally; not all markers fit simultaneously and no manual-swipe certification is claimed",
-    "Complete six-hero skill/mounted keyboard/narrative tasks retain their original deferred objects and scope",
-    "Old Traversal retained; static669paths/350referencefiles inventory is not retirement acceptance",
-    "Audio DEFERRED; eight videos unchanged; Bois-Clair night art external"
+    "Finish current fresh opening/combat and A-to-second-refuge proof; retain failures unseedable",
+    "Correct preparation continue42to44px, stabilize desktop art captures after image decode, then one corrected-build native smoke",
+    "Operator art/full-demo/balance and physical-device acceptance separate; unrelated six-hero/mounted-keyboard/narrative work preserved"
   ],
-  "nextAction": "Finalize the physical-engine retirement, verify V6 handoffs and current atlas in production, then close all four lots.",
+  "nextAction": "Finish two native combat routes; then correct preparation44px and capture three decoded atlas regions on final build.",
   "taskQueue": [
     "POI-MAP-FINALIZATION: requested implementation/native milestones REVIEWED_SCOPED; operator final playtest remains",
     "DEMO-PC-CAMPAIGN: both native truth endings, T0/T1/T3 alternatives, rescue/sacrifice, defeat and exact V6 accepted in recorded scopes",
-    "DEMO-COMBAT-SKILLS: PENDING_MISSING_CRITERIA_ONLY; six heroes/lancer, native victory/defeat and ordinary Pursuit return",
+    "DEMO-COMBAT-SKILLS: PENDING_MISSING_CRITERIA_ONLY; six heroes/lancer, native victory/defeat and ordinary canonical combat return (physical Pursuit retired by OD-2026-10-15-A)",
     "DEMO-CAMPAIGN-KEYBOARD: PENDING; preserve standalone scoped acceptance and deferred work; mounted campaign targets/focus OPEN",
     "DEMO-PRESENTATION-FINAL: PENDING_CONSOLIDATED_MILESTONE; known visual/manual findings remain OPEN; Bois-Clair night asset EXTERNAL",
     "DEMO-MOBILE-AND-TESTER-HANDOFF: PENDING_AFTER_PC_STABLE; operator final acceptance OPEN"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_SCOPED_A; B/C/D/art/mobile pending; set1.3.0 baseline5667837 unchanged",
+  "contractComplianceStatus": "PASS_SOURCE_AND_RECORDED_NATIVE_SCOPES; finalD pending two live routes/44px/settled atlas; set1.3.0 baseline5667837 unchanged",
   "commitReferenceScope": "lastPushedCommit identifies the preceding verified published checkpoint; final metadata identity/parity follow Git and guarded closeout, avoiding a self-reference",
-  "operatorAuthorization": "Explicit current POI migration/LOCKED amendment request and attachments, registered OD-2026-10-13-D; normal origin/dev publication permanently authorized OD-2026-10-12-A",
+  "operatorAuthorization": "Explicit exceptional mission and both full attachments OD-2026-10-15-A; normal non-force origin/dev publication permanently authorized OD-2026-10-12-A; no main writes.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -177,7 +355,7 @@
   "lastHeartbeat": "2026-10-15T06:29:56.404Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-15T16:11:54.664Z",
+    "lastHeartbeat": "2026-10-15T16:33:37.986Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -28007,7 +28185,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_LOT_A_NATIVE_DESKTOP1366_NORMAL",
+        "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-15T08:07:38.366Z",
         "endedAt": "2026-10-15T08:21:21.471Z",
         "exitCode": 0,
@@ -28016,14 +28194,1075 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "reviewedAt": "2026-10-15T08:25:17.083Z"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-v2-D-opening-combat-1220",
+        "runId": "codex-poi-v2-20261015",
+        "status": "RUNNING",
+        "registeredAt": "2026-10-15T16:17:45.736Z",
+        "pid": 28364,
+        "port": 5442,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "first-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "combat",
+          "gameReducedMotion": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": null,
+          "priorProofPath": null,
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-v2-D-opening-combat-1220",
+        "receiptPath": "tmp/demo/poi-v2-D-opening-combat-1220/qa-job.json",
+        "provenance": {
+          "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+          "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+          },
+          "inputs": [],
+          "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+              "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+            },
+            {
+              "path": "dist/assets/combat-CdaTw3hu.js",
+              "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BwpTgJUS.js",
+              "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+            },
+            {
+              "path": "dist/assets/game-Ca5i6doY.css",
+              "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-15T16:17:47.571Z",
+        "endedAt": null,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": false,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-v2-D-preparation-touch-1221",
+        "runId": "codex-poi-v2-20261015",
+        "status": "FAILED",
+        "registeredAt": "2026-10-15T16:18:12.119Z",
+        "pid": 29460,
+        "port": 5443,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "preparation",
+          "routePlan": "sacrifice",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": true,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "gameReducedMotion": false,
+          "viewport": [
+            390,
+            844
+          ],
+          "osReducedMotion": true,
+          "earnedSavePath": "tmp/demo/poi-sacrifice-event-route-final/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/poi-sacrifice-event-route-final/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-v2-D-preparation-touch-1221",
+        "receiptPath": "tmp/demo/poi-v2-D-preparation-touch-1221/qa-job.json",
+        "provenance": {
+          "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+          "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-sacrifice-event-route-final/earned-lion-second-refuge-v6.json",
+              "sha256": "982355eac224a51a189f393478e0dc8198c0bd2eb5c12ba4117a9322395c2808"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-sacrifice-event-route-final/results.json",
+              "sha256": "188d2a8db2207006550d3902109cfefe0a4b07a61fe583e43493c4507d2931fa"
+            }
+          ],
+          "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+              "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+            },
+            {
+              "path": "dist/assets/combat-CdaTw3hu.js",
+              "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BwpTgJUS.js",
+              "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+            },
+            {
+              "path": "dist/assets/game-Ca5i6doY.css",
+              "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-15T16:18:13.078Z",
+        "endedAt": "2026-10-15T16:18:19.814Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/poi-v2-D-preparation-touch-1221/results.json",
+        "resultSha256": "22c86398d9c347867ed2cc7b206d176451e54d1bba35a3bac7bb118bbcffb31e",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
         "matchesCurrentExecution": true,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
-        "reviewedAt": "2026-10-15T08:25:17.083Z"
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-v2-D-preparation-touch-os-1223",
+        "runId": "codex-poi-v2-20261015",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-15T16:18:32.068Z",
+        "pid": 11144,
+        "port": 5443,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "preparation",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": true,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "gameReducedMotion": false,
+          "viewport": [
+            390,
+            844
+          ],
+          "osReducedMotion": true,
+          "earnedSavePath": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-v2-D-preparation-touch-os-1223",
+        "receiptPath": "tmp/demo/poi-v2-D-preparation-touch-os-1223/qa-job.json",
+        "provenance": {
+          "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+          "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-second-refuge-manual-0645/earned-lion-second-refuge-v6.json",
+              "sha256": "f0e6a039c4d3f5ec5dd36be0d349ef2cbb970a0fbd5e49a0343564fa97277c9a"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-second-refuge-manual-0645/results.json",
+              "sha256": "0f0f492ba2924e8102f34d12026d2303746aae760c76730d9b266d69d0d45868"
+            }
+          ],
+          "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+              "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+            },
+            {
+              "path": "dist/assets/combat-CdaTw3hu.js",
+              "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BwpTgJUS.js",
+              "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+            },
+            {
+              "path": "dist/assets/game-Ca5i6doY.css",
+              "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-15T16:18:33.021Z",
+        "endedAt": "2026-10-15T16:19:05.699Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/poi-v2-D-preparation-touch-os-1223/results.json",
+        "resultSha256": "bf79e2fb4513e347a9193a329341ad8f3b2b9cf5efaa043c133109a5e53ff528",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-v2-D-atlas-game620-1224",
+        "runId": "codex-poi-v2-20261015",
+        "status": "FAILED",
+        "registeredAt": "2026-10-15T16:18:54.138Z",
+        "pid": 32420,
+        "port": 5444,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "first-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "gameReducedMotion": true,
+          "viewport": [
+            620,
+            780
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/poi-v2-first-refuge-0810/earned-lion-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/poi-v2-first-refuge-0810/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-v2-D-atlas-game620-1224",
+        "receiptPath": "tmp/demo/poi-v2-D-atlas-game620-1224/qa-job.json",
+        "provenance": {
+          "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+          "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-v2-first-refuge-0810/earned-lion-first-refuge-v6.json",
+              "sha256": "12931a226f9a81dc5a689f28da519370de50fc41a447d0babef903a5096e66dc"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-v2-first-refuge-0810/results.json",
+              "sha256": "b1819c257dbbb94bf486bac60fad2855473a841dc06be983b48155684bb43004"
+            }
+          ],
+          "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+              "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+            },
+            {
+              "path": "dist/assets/combat-CdaTw3hu.js",
+              "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BwpTgJUS.js",
+              "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+            },
+            {
+              "path": "dist/assets/game-Ca5i6doY.css",
+              "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-15T16:18:55.082Z",
+        "endedAt": "2026-10-15T16:19:05.579Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/poi-v2-D-atlas-game620-1224/results.json",
+        "resultSha256": "1658075f9169965e1bf4b590b58ff26f26e353e1da06b902f275fbfed2d4279f",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-v2-D-atlas-saved-game620-1226",
+        "runId": "codex-poi-v2-20261015",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-15T16:19:45.587Z",
+        "pid": 20464,
+        "port": 5444,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "first-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "combat",
+          "gameReducedMotion": true,
+          "viewport": [
+            620,
+            780
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/poi-first-trial-combat-game-2029/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/poi-first-trial-combat-game-2029/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-v2-D-atlas-saved-game620-1226",
+        "receiptPath": "tmp/demo/poi-v2-D-atlas-saved-game620-1226/qa-job.json",
+        "provenance": {
+          "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+          "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-first-trial-combat-game-2029/earned-first-refuge-v6.json",
+              "sha256": "007befc315d164fb7533729266e166e0a691c46380eaf316881df4bfa30ce1e3"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-first-trial-combat-game-2029/results.json",
+              "sha256": "f40e49178118d5a0b9bb02a020f1ea72e9f2a900a6ce44e93bf2493860fc572f"
+            }
+          ],
+          "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+              "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+            },
+            {
+              "path": "dist/assets/combat-CdaTw3hu.js",
+              "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BwpTgJUS.js",
+              "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+            },
+            {
+              "path": "dist/assets/game-Ca5i6doY.css",
+              "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-15T16:19:46.925Z",
+        "endedAt": "2026-10-15T16:19:57.967Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/poi-v2-D-atlas-saved-game620-1226/results.json",
+        "resultSha256": "3963a0c3eb948e6de14d51aa86482b2c7dc209a5347420e529c452d93c3bd654",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-v2-D-terminal-serpent-1227",
+        "runId": "codex-poi-v2-20261015",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-15T16:19:57.890Z",
+        "pid": 12624,
+        "port": 5445,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "terminal",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "gameReducedMotion": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/poi-serpent-steel-keyboard-2130/earned-ending-v6.json",
+          "priorProofPath": "tmp/demo/poi-serpent-steel-keyboard-2130/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-v2-D-terminal-serpent-1227",
+        "receiptPath": "tmp/demo/poi-v2-D-terminal-serpent-1227/qa-job.json",
+        "provenance": {
+          "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+          "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-serpent-steel-keyboard-2130/earned-ending-v6.json",
+              "sha256": "3857d78b536e716f035b77b84371605e57d59cccd359d4561f32b9f5c2bfd627"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-serpent-steel-keyboard-2130/results.json",
+              "sha256": "50abaeec743cdcfbd74b32b48df0ccb9dfc64db60b961e323bbb3f8a3ebb7b26"
+            }
+          ],
+          "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+              "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+            },
+            {
+              "path": "dist/assets/combat-CdaTw3hu.js",
+              "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BwpTgJUS.js",
+              "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+            },
+            {
+              "path": "dist/assets/game-Ca5i6doY.css",
+              "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-15T16:19:59.307Z",
+        "endedAt": "2026-10-15T16:20:13.934Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/poi-v2-D-terminal-serpent-1227/results.json",
+        "resultSha256": "3835965929a86ce5f9f2ec6c3f98076129ef3a596b0b5a00391db5561c63b64d",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-v2-D-defeat-touch-1229",
+        "runId": "codex-poi-v2-20261015",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-15T16:20:46.247Z",
+        "pid": null,
+        "port": 5446,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "defeat-recovery",
+          "routePlan": "sacrifice",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": true,
+          "touchInput": true,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "gameReducedMotion": true,
+          "viewport": [
+            390,
+            844
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+          "priorProofPath": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EXACT_V6_CHECKPOINT_RECOVERY",
+          "NATIVE_POI_CHECKPOINT_RETURN",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-v2-D-defeat-touch-1229",
+        "receiptPath": "tmp/demo/poi-v2-D-defeat-touch-1229/qa-job.json",
+        "provenance": {
+          "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+          "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+              "sha256": "95f2c787cbc0c6244c1d0e44e95ac123a9809d3669f28a92d783b9da260a0e5d"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+              "sha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d"
+            }
+          ],
+          "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+              "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+            },
+            {
+              "path": "dist/assets/combat-CdaTw3hu.js",
+              "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BwpTgJUS.js",
+              "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+            },
+            {
+              "path": "dist/assets/game-Ca5i6doY.css",
+              "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-v2-D-terminal-trial-touch-1230",
+        "runId": "codex-poi-v2-20261015",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-15T16:21:16.260Z",
+        "pid": null,
+        "port": 5445,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "terminal",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "trial",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": true,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "gameReducedMotion": false,
+          "viewport": [
+            390,
+            844
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/poi-ending-trial-mobile-2022/earned-ending-v6.json",
+          "priorProofPath": "tmp/demo/poi-ending-trial-mobile-2022/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-v2-D-terminal-trial-touch-1230",
+        "receiptPath": "tmp/demo/poi-v2-D-terminal-trial-touch-1230/qa-job.json",
+        "provenance": {
+          "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+          "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-ending-trial-mobile-2022/earned-ending-v6.json",
+              "sha256": "dfafeca4e8c748ad71664e1d41a932d2deb1683590aa05ed33f167c42eb55685"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-ending-trial-mobile-2022/results.json",
+              "sha256": "43eb951b26b5abca3ff3fa16ee6dd67fd60ee04a9fd0b559b93c9f30331efe3b"
+            }
+          ],
+          "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+              "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+            },
+            {
+              "path": "dist/assets/combat-CdaTw3hu.js",
+              "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BwpTgJUS.js",
+              "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+            },
+            {
+              "path": "dist/assets/game-Ca5i6doY.css",
+              "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-v2-D-second-refuge-1232",
+        "runId": "codex-poi-v2-20261015",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-15T16:21:44.892Z",
+        "pid": null,
+        "port": 5447,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "second-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "gameReducedMotion": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/poi-v2-first-refuge-0810/earned-lion-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/poi-v2-first-refuge-0810/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-v2-D-second-refuge-1232",
+        "receiptPath": "tmp/demo/poi-v2-D-second-refuge-1232/qa-job.json",
+        "provenance": {
+          "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+          "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-v2-first-refuge-0810/earned-lion-first-refuge-v6.json",
+              "sha256": "12931a226f9a81dc5a689f28da519370de50fc41a447d0babef903a5096e66dc"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-v2-first-refuge-0810/results.json",
+              "sha256": "b1819c257dbbb94bf486bac60fad2855473a841dc06be983b48155684bb43004"
+            }
+          ],
+          "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+              "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+            },
+            {
+              "path": "dist/assets/combat-CdaTw3hu.js",
+              "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BwpTgJUS.js",
+              "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+            },
+            {
+              "path": "dist/assets/game-Ca5i6doY.css",
+              "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-v2-D-legacy0603-1231",
+        "runId": "codex-poi-v2-20261015",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-15T16:30:15.580Z",
+        "pid": null,
+        "port": 5448,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "first-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "gameReducedMotion": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/reward-label-native-desktop-0603/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/poi-v2-D-legacy0603-1231",
+        "receiptPath": "tmp/demo/poi-v2-D-legacy0603-1231/qa-job.json",
+        "provenance": {
+          "gitHead": "d104e214c363f0c7da6ec44b407f00062407db7e",
+          "sourceTree": "3d2a17a82520b48fa0c539493a55aa567e823872",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "c8955c373068ece8ba29e375c7529d35df80f95c82a1478486f7e62ed3666ee8"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/reward-label-native-desktop-0603/earned-first-refuge-v6.json",
+              "sha256": "d0fc5c11f8263316c071c4d859982f60a8be97b6d35ea024b7a960c93b5fd656"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/reward-label-native-desktop-0603/results.json",
+              "sha256": "03eab0e5a83eea0f40c962cd7ce741df4e88cd4757ff331197f2f9f595bfc9f0"
+            }
+          ],
+          "receiptToolSha256": "6d5ae3afe194191d6dc1e40dd195a95247f22af9ba75d985659af5152e305aeb",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CPMQGdgt.js",
+              "sha256": "13dcb12df079858da42661dac9c82ae0bc742f2ebfb6115ea67b966810b8891b"
+            },
+            {
+              "path": "dist/assets/combat-CdaTw3hu.js",
+              "sha256": "cf50629ea619db2f01afcbb220972a56c9d2f690cbed2d24f324318e57a91c56"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BwpTgJUS.js",
+              "sha256": "5abe84ea9fffc35061db1c229e094ba1811b6e8789ef136fc5f3cf6d7986acaa"
+            },
+            {
+              "path": "dist/assets/game-Ca5i6doY.css",
+              "sha256": "465da90c105aea1b9537853507edb0a619910de3fba876b7b8e7b14e8345c3bc"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "1eda21ac3175e518b3f7576810dc4b3952d4be0aa3964701366634017aa9642d"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
       }
     ],
     "wip": null,
-    "nextAction": "Finalize the physical-engine retirement, verify V6 handoffs and current atlas in production, then close all four lots.",
+    "nextAction": "Finish two native combat routes; then correct preparation44px and capture three decoded atlas regions on final build.",
     "runMetrics": {
       "runId": "codex-poi-finalization-20261014",
       "runtimeSourceFilesModified": 5,
