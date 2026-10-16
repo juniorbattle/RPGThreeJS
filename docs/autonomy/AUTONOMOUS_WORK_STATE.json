@@ -1,123 +1,76 @@
 {
-  "status": "COMPLETE_SCOPED",
-  "runStartedAt": "2026-10-15T22:57:16.909Z",
-  "runEndedAt": "2026-10-16T15:33:54.359Z",
-  "activeTask": "POI-LOT-E-FINAL",
-  "activePhase": "CLOSED_SCOPED_LOT_E_FINAL",
-  "activeSubtask": "E1-E5 delivered; complete native campaign, independent review and scoped technical acceptance",
+  "status": "READY_FOR_NEXT_SCHEDULED_RUN",
+  "runStartedAt": "2026-10-16T22:26:21.6290487Z",
+  "runEndedAt": "2026-10-16T22:30:18.502Z",
+  "activeTask": "DEMO-PC-SIX-HERO-SKILLS",
+  "activePhase": "POI_POST_LOT_E_PC_FINISHING",
+  "activeSubtask": "Close only missing initial-equipment competence criteria, starting with Garen/l_long_thrust; then mounted tactical keyboard",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
-  "lastPushedCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
+  "lastKnownGoodCommit": "19b53c3d8e066a4e3145cbbe8585b9af5596b264",
+  "lastPushedCommit": "19b53c3d8e066a4e3145cbbe8585b9af5596b264",
   "completedThisRun": [
-    "Approved dedicated set1.4.0 amendment before runtime",
-    "Twelve exact optional POI/six chests/six deterministic ordinary formations",
-    "Two independent graph-mobile elites with native Combat/retreat and real victories",
-    "Additive old/current/terminal V6 and interruption recovery",
-    "Three revised integrated atlases and scoped desktop/compact/touch controls",
-    "Complete twelve-victory native campaign and exact terminal/menu/save"
+    "Configuration only: adopted delivered POI V2/Lot E baseline and removed obsolete physical-road/1521 priorities",
+    "Updated existing paused recurrence and aligned active queue/MD/JSON/live; no product execution or new acceptance"
   ],
   "filesChanged": [
-    ".agents/skills/autonomy-handoff/SKILL.md",
-    ".agents/skills/contracts-compliance/SKILL.md",
     "AGENTS.md",
-    "docs/README.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/LOT_E_EXECUTION_DIRECTIVE_2026-10-15.md",
-    "docs/autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md",
     "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
     "docs/autonomy/OPERATOR_DECISIONS.md",
-    "docs/contracts/AUTHORING_AND_QA.md",
-    "docs/contracts/CAMPAIGN_AND_STATE.md",
-    "docs/contracts/COMBAT_AND_VFX.md",
-    "docs/contracts/README.md",
-    "docs/contracts/TRAVERSAL.md",
-    "docs/contracts/UI_AND_ACCESSIBILITY.md",
-    "docs/contracts/WORLD_AND_CHARACTERS.md",
-    "docs/contracts/contracts.manifest.json",
-    "docs/project/CURRENT_STATUS.md",
-    "docs/project/LOT_E_ATLAS_PROVENANCE_2026-10-15.json",
-    "docs/project/POI_NAVIGATION.md",
-    "docs/project/POI_V2_ART_AND_AUTHORING.md",
-    "docs/project/RPGThreeJS_LOT_E_CONTRAT_AUTHORING_FINAL_2026-10-15.md",
-    "docs/project/RPGThreeJS_LOT_E_MANIFEST_AUTHORING_FINAL_2026-10-15.json",
-    "docs/reports/INDEX.md",
-    "docs/reports/lot-e-final-2026-10-15.md",
-    "public/assets/generated/lion-phase/poi-lot-e/bois-clair.png",
-    "public/assets/generated/lion-phase/poi-lot-e/judgement.png",
-    "public/assets/generated/lion-phase/poi-lot-e/lion-opening.png",
-    "src/campaign/LionPoiAuthoring.ts",
-    "src/campaign/LionPoiMap.ts",
-    "src/campaign/LionPoiTopology.test.ts",
-    "src/campaign/LionPoiTopology.ts",
-    "src/game/GameApp.ts",
-    "src/game/GameAppPoi.test.ts",
-    "src/game/GameAppPoiExpedition.test.ts",
-    "src/game/campaignPresentationMigration.test.ts",
-    "src/game/content.test.ts",
-    "src/game/content.ts",
-    "src/game/poiContentAdapters.test.ts",
-    "src/game/poiContentAdapters.ts",
-    "src/game/poiExpedition.test.ts",
-    "src/game/poiExpedition.ts",
-    "src/game/poiNavigation.test.ts",
-    "src/game/runSystem.test.ts",
-    "src/game/runSystem.ts",
-    "src/game/store.ts",
-    "src/game/types.ts",
-    "src/ui/ManagementView.ts",
-    "src/ui/PoiEncounterView.test.ts",
-    "src/ui/PoiEncounterView.ts",
-    "src/ui/PoiMapView.ts",
-    "src/ui/RunNodePresentation.ts",
-    "src/ui/poi-map.css",
-    "tools/demo-continuous-production-qa.mjs",
-    "tools/qa/qa-job.mjs",
-    "docs/autonomy/handoffs/2026-10-16T1526Z-codex-lot-e-final.md",
-    "docs/reports/evidence/lot-e-final-2026-10-15/atlas-I.png",
-    "docs/reports/evidence/lot-e-final-2026-10-15/atlas-II.png",
-    "docs/reports/evidence/lot-e-final-2026-10-15/atlas-III.png",
-    "docs/reports/evidence/lot-e-final-2026-10-15/header-390-os.png",
-    "docs/reports/evidence/lot-e-final-2026-10-15/rear-retreat-620.png",
-    "docs/reports/evidence/lot-e-final-2026-10-15/defeat-checkpoint-620.png",
-    "docs/reports/evidence/lot-e-final-2026-10-15/sentinel-victory-620.png",
-    "docs/reports/evidence/lot-e-final-2026-10-15/chest-once-620.png",
-    "docs/reports/evidence/lot-e-final-2026-10-15/warden-victory-620.png",
-    "docs/reports/evidence/lot-e-final-2026-10-15/complete-ending-1366.png",
-    "docs/reports/evidence/lot-e-final-2026-10-15/results.json"
+    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+    "docs/autonomy/RECURRING_RUN_PROMPT.md",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    "docs/autonomy/handoffs/2026-10-16T2226Z-codex-recurring-poi-config.md"
   ],
   "testsRun": [
-    "tmp/lot-e/final-focused-tests.log",
-    "tmp/lot-e/forge-material-ui-tests.log",
-    "tmp/lot-e/forge-material-build.log"
+    "Immutable and working LOCKED gates",
+    "contracts validator:8contracts/8slots",
+    "git diff --check",
+    "Exact automation prompt/all other fields preserved",
+    "310 QA records and deferred JSON objects unchanged"
   ],
   "testsPassed": [
-    "277 distinct focused current tests/16 files",
-    "19 host QA helper tests",
-    "TypeScript/production build",
-    "8 contracts/8 slots",
-    "Finalized native scoped receipts"
+    "Configuration mechanical checks PASS; no runtime test/build/browser executed"
   ],
   "testsRemaining": [
-    "Operator artistic/felt-balance/physical-device and full-demo acceptance",
-    "Preserved unrelated six-hero skills, mounted keyboard and narrative/manual findings"
+    "Missing six-hero initial-equipment competence criteria only",
+    "Mounted campaign battlefield keyboard/targeting/refusal/focus and pointer regression",
+    "Unresolved narrative/tableau/manual presentation criteria",
+    "Accessibility and final PC correction scopes; later mobile/device/operator acceptance"
   ],
   "blockers": [],
   "remainingWork": [
-    "Operator Lot E playtest and the preserved unrelated deferred work"
+    "Complete current missing competence criteria without replaying accepted campaigns",
+    "Finish mounted tactical keyboard and actual controls",
+    "Finish remaining narrative presentation and accessibility/PC readiness",
+    "Operator Lot E art/economy/felt-balance and physical-device acceptance remains separate",
+    "Final mobile/tester package after PC stabilization"
   ],
-  "nextAction": "Operator PC playtest of Lot E artwork, encounter difficulty and economic comfort; preserve unrelated deferred skills/keyboard/narrative findings. Scheduler remains PAUSED; no physical Traversal restoration.",
+  "nextAction": "Next manually enabled scheduled run only: read-only preflight/exclusive lock on current dev, then resume DEMO-PC-SIX-HERO-SKILLS with Garen novice_spear/l_long_thrust. Compare accepted Lot E/native skill evidence with current src/game/catalog.ts, src/combat/CombatBridge.ts and tools/demo-continuous-production-qa.mjs; isolate only a genuinely missing initial-equipment cast/AP/result criterion. Reuse accepted scopes without replay. Use a separately SUCCEEDED, reviewed, compatible nonterminal earned save where Garen is recruited and real menus/actions; correct a demonstrated source defect or verify only the missing criterion with the existing runner. No injected equipment/AP/outcome, FAILED seed, full campaign replay, new QA framework or economy/elite adjustment. If already accepted, retain proof and move directly to mounted campaign battlefield keyboard/controls, reconciling deferred work with current POI code rather than restoring old snapshots. Keep310QA/deferred objects, V6/canon/LOCKED/eight slots and definitive Traversal retirement; scheduler activation and Lot E art/felt-balance/economy decisions remain operator-only.",
   "taskQueue": [
-    "POI-MAP-FINALIZATION: requested implementation/native milestones REVIEWED_SCOPED; operator final playtest remains",
-    "DEMO-PC-CAMPAIGN: both native truth endings, T0/T1/T3 alternatives, rescue/sacrifice, defeat and exact V6 accepted in recorded scopes",
-    "DEMO-COMBAT-SKILLS: PENDING_MISSING_CRITERIA_ONLY; six heroes/lancer, native victory/defeat and ordinary canonical combat return (physical Pursuit retired by OD-2026-10-15-A)",
-    "DEMO-CAMPAIGN-KEYBOARD: PENDING; preserve standalone scoped acceptance and deferred work; mounted campaign targets/focus OPEN",
-    "DEMO-PRESENTATION-FINAL: PENDING_CONSOLIDATED_MILESTONE; known visual/manual findings remain OPEN; Bois-Clair night asset EXTERNAL",
-    "DEMO-MOBILE-AND-TESTER-HANDOFF: PENDING_AFTER_PC_STABLE; operator final acceptance OPEN"
+    "DEMO-PC-SIX-HERO-SKILLS: ACTIVE_MISSING_CRITERIA_ONLY; Garen novice_spear/l_long_thrust first; accepted casts not replayed",
+    "DEMO-CAMPAIGN-KEYBOARD: NEXT; current POI campaign iframe, deployment/targets/refusals/Retour/focus/pointer; deferred work preserved",
+    "DEMO-NARRATIVE-PRESENTATION: PENDING_UNRESOLVED_FINDINGS_ONLY; no new canon or Alaric rewrite",
+    "DEMO-PC-ACCESSIBILITY-FINISHING: PENDING; relevant focus/reduced-motion/UI defects only",
+    "DEMO-PC-TESTER-HANDOFF: PENDING; candidate build/routes/short honest limits; Lot E human playtest separate",
+    "DEMO-MOBILE-FINAL: AFTER_PC_STABLE; retain existing scoped touch proofs"
   ],
-  "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_SCOPED",
-  "commitReferenceScope": "LastPushed/publishedCheckpoint name reviewed delivery0aada9f; the following metadata commit is identified by Git and guarded live closeout receipt, avoiding self-reference",
+  "creditStatus": "NOT_QUERIED_CONFIGURATION_ONLY",
+  "contractComplianceStatus": {
+    "GAME_CONSTITUTION": "PASS_CONFIGURATION_UNCHANGED",
+    "ART_DIRECTION": "N/A_NO_ART_CHANGE",
+    "CHARACTERS": "N/A_UNCHANGED",
+    "ENVIRONMENTS": "N/A_UNCHANGED",
+    "NARRATIVE_CAMPAIGN": "N/A_UNCHANGED",
+    "NARRATIVE_PRESENTATION": "N/A_UNCHANGED",
+    "TRAVERSAL": "PASS_PHYSICAL_RETIREMENT_PRESERVED_NO_SOURCE_CHANGE",
+    "COMBAT": "N/A_UNCHANGED",
+    "SAVE": "PASS_NO_SAVE_FILES_OR_SCHEMA_WRITES",
+    "UI_ACCESSIBILITY": "N/A_UNCHANGED",
+    "QA_EVIDENCE": "PASS_310_RECORDS_AND_ACCEPTANCES_PRESERVED",
+    "REPOSITORY_GOVERNANCE": "PASS_CONFIGURATION_ONLY"
+  },
+  "commitReferenceScope": "19b53c3 is the verified published Lot E closeout at configuration start. This workflow checkpoint is recorded in Git and automation memory after transport; no self-referential commit hash or product acceptance advancement.",
   "operatorAuthorization": "Explicit exceptional mission and both full attachments OD-2026-10-15-A; normal non-force origin/dev publication permanently authorized OD-2026-10-12-A; no main writes.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -187,32 +140,13 @@
     "manualMediaNextAction": "Acquire lock/read Git and both state files; no provider task is pending and MiniMax use remains explicitly authorized. Resume item 8 at tools/cinematics/specs/production-eight-slot-remaster/bois_clair_arrival.json shot_02: integrate the declared promoted burning tableau with V2 villageoise/white_mage/serpent_raider, preserve unresolved rescue/reserves agency, validate/hash source, then generate its 10s block with the existing adapter. Reuse shot_01 keyframe (31918e9e8b1a8bc73f913cbd8e16f98cd9b3c0e795f7984288f12729cd35b8f8) and local silent 10s master (b0e80d01845f82f3d42c4024a7ffc047b306ad00d567586fea9eac98b533411f); it is NOT the full 20s slot. Use tools/cinematics/inspect_remaster_candidate.mjs with --spec/--shot/--input/--output in a new ignored directory, then review cut continuity and 390x844 portrait crop before full-slot/campaign acceptance. Camp attempts 1-3 are unaccepted and capped; do not create attempt 4 or reset numbering. Audience 2 fixes equipment/framing but final art/cadence remains unaccepted; prepare a concrete correction before attempt 3. Five remaining slot families still need keyframes/motion. Preserve exactly eight current public MP4s until separate final artist and runtime acceptance; no LOCKED change; audio DEFERRED.",
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
-  "autonomyScope": {
-    "decisionSource": "docs/autonomy/CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md",
-    "allowed": [
-      "cinematic structure readiness",
-      "existing-media integration/QA",
-      "independent demo QA and fixes"
-    ],
-    "excluded": [
-      "new video/keyframe generation",
-      "MiniMax generation/polling jobs",
-      "artistic media remaster",
-      "production MP4 replacement",
-      "automatic Alistair redesign or biography change"
-    ],
-    "mediaWorkstream": "EXTERNAL_MANUAL_WORKSTREAM",
-    "mediaRemasterComplete": false,
-    "prologue": "DESIRED_EXTENSION_TO_PLAN; dedicated contract work before activation",
-    "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
-    "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
-  },
-  "runId": "codex-lot-e-20261015",
+  "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
+  "runId": "codex-recurring-poi-config-20261016T2226",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-16T15:33:54.359Z",
+  "lastHeartbeat": "2026-10-16T22:30:18.503Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-16T15:33:54.359Z",
+    "lastHeartbeat": "2026-10-16T22:30:18.503Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -34231,78 +34165,32 @@
       }
     ],
     "wip": null,
-    "nextAction": "Operator PC playtest of Lot E artwork, encounter difficulty and economic comfort; preserve unrelated deferred skills/keyboard/narrative findings. Scheduler remains PAUSED; no physical Traversal restoration.",
+    "nextAction": "Next manually enabled scheduled run only: read-only preflight/exclusive lock on current dev, then resume DEMO-PC-SIX-HERO-SKILLS with Garen novice_spear/l_long_thrust. Compare accepted Lot E/native skill evidence with current src/game/catalog.ts, src/combat/CombatBridge.ts and tools/demo-continuous-production-qa.mjs; isolate only a genuinely missing initial-equipment cast/AP/result criterion. Reuse accepted scopes without replay. Use a separately SUCCEEDED, reviewed, compatible nonterminal earned save where Garen is recruited and real menus/actions; correct a demonstrated source defect or verify only the missing criterion with the existing runner. No injected equipment/AP/outcome, FAILED seed, full campaign replay, new QA framework or economy/elite adjustment. If already accepted, retain proof and move directly to mounted campaign battlefield keyboard/controls, reconciling deferred work with current POI code rather than restoring old snapshots. Keep310QA/deferred objects, V6/canon/LOCKED/eight slots and definitive Traversal retirement; scheduler activation and Lot E art/felt-balance/economy decisions remain operator-only.",
     "runMetrics": {
-      "runId": "codex-lot-e-20261015",
-      "countBasis": "Unique final paths from 4c80196cf2eb87097f063f4f312756044f5a5e47, selected evidence only",
-      "counts": {
-        "workflowAndCanonicalDocs": {
-          "added": 7,
-          "modified": 12,
-          "removed": 0,
-          "total": 19
-        },
-        "lockedAmendment": {
-          "added": 0,
-          "modified": 8,
-          "removed": 0,
-          "total": 8
-        },
-        "artResources": {
-          "added": 3,
-          "modified": 0,
-          "removed": 0,
-          "total": 3
-        },
-        "runtimeSource": {
-          "added": 3,
-          "modified": 12,
-          "removed": 0,
-          "total": 15
-        },
-        "sourceTests": {
-          "added": 3,
-          "modified": 7,
-          "removed": 0,
-          "total": 10
-        },
-        "existingQaTools": {
-          "added": 0,
-          "modified": 2,
-          "removed": 0,
-          "total": 2
-        },
-        "selectedEvidence": {
-          "added": 11,
-          "modified": 0,
-          "removed": 0,
-          "total": 11
-        }
-      },
-      "totalPaths": 68,
-      "deletedPaths": 0,
-      "inheritedWipFiles": 0,
-      "registeredNativeJobs": 39,
-      "acceptedScopes": 20,
-      "unacceptedWholeOutputs": 19,
-      "newQaFilesAdded": 0,
-      "promotedCaptures": 10,
-      "promotedProofFiles": 11,
-      "reviewerRoles": 2
+      "kind": "CONFIGURATION_ONLY",
+      "sourceModified": 0,
+      "qaProofAdded": 0,
+      "workflowFiles": 8,
+      "browserScenarios": 0
     },
-    "checkpointPaths": [],
+    "checkpointPaths": [
+      "AGENTS.md",
+      "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
+      "docs/autonomy/OPERATOR_DECISIONS.md",
+      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+      "docs/autonomy/RECURRING_RUN_PROMPT.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/handoffs/2026-10-16T2226Z-codex-recurring-poi-config.md"
+    ],
     "publication": {
-      "status": "LOT_E_DELIVERY_PUBLISHED_LIVE_PARITY_VERIFIED",
-      "deliveryCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
+      "status": "CONFIGURATION_CHECKPOINT_PENDING_NORMAL_DEV_PUSH",
+      "lastVerifiedPublishedCommit": "19b53c3d8e066a4e3145cbbe8585b9af5596b264",
+      "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
       "branch": "dev",
-      "remote": "origin/dev",
-      "remoteVerifiedAt": "2026-10-16T15:33:54.359Z",
-      "protectedMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "normalNonForce": true,
-      "authorization": "OD-2026-10-12-A and OD-2026-10-15-B",
-      "metadataCommit": "This final metadata snapshot follows the confirmed delivery; identify it in Git"
+      "authorization": "OD-2026-10-12-A"
     },
-    "runEndedAt": "2026-10-16T15:33:54.359Z",
+    "runEndedAt": "2026-10-16T22:30:18.502Z",
     "writerStopped": true,
     "metadataPublication": {
       "status": "INCLUDED_IN_FINAL_CLOSEOUT_COMMIT",
@@ -35099,8 +34987,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "POI-LOT-E-FINAL",
-    "activeSubtask": "E1-E5 delivered; complete native campaign, independent review and scoped technical acceptance",
+    "activeTask": "DEMO-PC-SIX-HERO-SKILLS",
+    "activeSubtask": "Close only missing initial-equipment competence criteria, starting with Garen/l_long_thrust; then mounted tactical keyboard",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -38432,13 +38320,13 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-lot-e-20261015",
+    "runId": "codex-recurring-poi-config-20261016T2226",
     "agent": "codex",
-    "status": "COMPLETE_SCOPED",
-    "runStartedAt": "2026-10-15T22:57:16.909Z",
-    "activePhase": "CLOSED_SCOPED_LOT_E_FINAL",
-    "heartbeat": "2026-10-16T15:33:54.359Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-16T1526Z-codex-lot-e-final.md",
+    "status": "READY_FOR_NEXT_SCHEDULED_RUN",
+    "runStartedAt": "2026-10-16T22:26:21.6290487Z",
+    "activePhase": "POI_POST_LOT_E_PC_FINISHING",
+    "heartbeat": "2026-10-16T22:30:18.503Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-16T2226Z-codex-recurring-poi-config.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -41017,22 +40905,13 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-16T1526Z-codex-lot-e-final.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-16T2226Z-codex-recurring-poi-config.md",
   "runMeasurement": {
-    "runId": "codex-poi-continuation-20261014",
-    "runtimeSourceFilesModified": 1,
-    "testFilesModified": 1,
-    "existingQaFilesModified": 2,
-    "existingQaTestFilesModified": 1,
-    "newQaFilesAdded": 0,
-    "promotedProofFiles": 6,
-    "promotedCaptures": 5,
-    "inheritedWipFiles": 0,
-    "browserScenarios": 3,
-    "registeredJobs": 4,
-    "preGameplayEnvironmentFailures": 1,
-    "reviewers": 1,
-    "workflowDocs": 12
+    "kind": "CONFIGURATION_ONLY",
+    "sourceModified": 0,
+    "qaProofAdded": 0,
+    "workflowFiles": 8,
+    "browserScenarios": 0
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -41121,25 +41000,7 @@
     ],
     "acceptance": "INCOMPLETE; prior0520reports are not current production keyboard acceptance"
   },
-  "operatorPriority": {
-    "decisionId": "OD-2026-10-03-A",
-    "source": "docs/autonomy/MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md",
-    "priority": "HIGHEST_REMEDIATION_BEFORE_GENERIC_DEMO_QA_POLISH",
-    "tasks": [
-      "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
-      "TRAVERSAL-VISUAL-CONVERGENCE",
-      "TRAVERSAL-MOTION-POLISH",
-      "TRAVERSAL-PURSUIT-THREAT",
-      "TRAVERSAL-ROAD-ELEMENTS",
-      "PRE-JUDGEMENT-CAMPFIRE",
-      "NARRATIVE-CONTEXT-COHERENCE",
-      "STATIC-TABLEAU-STAGING-POLISH",
-      "SCENE-TRANSITION-COPY",
-      "ENVIRONMENT-NARRATIVE-COHERENCE",
-      "Resume deferred DEMO-QA-POLISH"
-    ],
-    "previousAutomatedPassCannotInvalidateManualFinding": true
-  },
+  "operatorPriority": "OD-2026-10-16-A: independent PC finishing on delivered33POI/two-mobile-elite/three-atlas production; Lot E human review isolated",
   "reopenedAcceptance": [
     {
       "area": "TRAVERSAL T0/T1/T3",
@@ -41310,62 +41171,11 @@
     }
   },
   "runStatistics": {
-    "runId": "codex-lot-e-20261015",
-    "countBasis": "Unique final paths from 4c80196cf2eb87097f063f4f312756044f5a5e47, selected evidence only",
-    "counts": {
-      "workflowAndCanonicalDocs": {
-        "added": 7,
-        "modified": 12,
-        "removed": 0,
-        "total": 19
-      },
-      "lockedAmendment": {
-        "added": 0,
-        "modified": 8,
-        "removed": 0,
-        "total": 8
-      },
-      "artResources": {
-        "added": 3,
-        "modified": 0,
-        "removed": 0,
-        "total": 3
-      },
-      "runtimeSource": {
-        "added": 3,
-        "modified": 12,
-        "removed": 0,
-        "total": 15
-      },
-      "sourceTests": {
-        "added": 3,
-        "modified": 7,
-        "removed": 0,
-        "total": 10
-      },
-      "existingQaTools": {
-        "added": 0,
-        "modified": 2,
-        "removed": 0,
-        "total": 2
-      },
-      "selectedEvidence": {
-        "added": 11,
-        "modified": 0,
-        "removed": 0,
-        "total": 11
-      }
-    },
-    "totalPaths": 68,
-    "deletedPaths": 0,
-    "inheritedWipFiles": 0,
-    "registeredNativeJobs": 39,
-    "acceptedScopes": 20,
-    "unacceptedWholeOutputs": 19,
-    "newQaFilesAdded": 0,
-    "promotedCaptures": 10,
-    "promotedProofFiles": 11,
-    "reviewerRoles": 2
+    "kind": "CONFIGURATION_ONLY",
+    "sourceModified": 0,
+    "qaProofAdded": 0,
+    "workflowFiles": 8,
+    "browserScenarios": 0
   },
   "qaToolingJustification": "Zero new QA runners/frameworks; existing campaign pilot and receipt helper extended with original owner/assertion/provenance checks; manual timeout exception scoped to the directly authorized named run",
   "retainedRunArtifacts": {
@@ -42370,62 +42180,11 @@
     "fullDemoComplete": false
   },
   "currentRunMeasurement": {
-    "runId": "codex-lot-e-20261015",
-    "countBasis": "Unique final paths from 4c80196cf2eb87097f063f4f312756044f5a5e47, selected evidence only",
-    "counts": {
-      "workflowAndCanonicalDocs": {
-        "added": 7,
-        "modified": 12,
-        "removed": 0,
-        "total": 19
-      },
-      "lockedAmendment": {
-        "added": 0,
-        "modified": 8,
-        "removed": 0,
-        "total": 8
-      },
-      "artResources": {
-        "added": 3,
-        "modified": 0,
-        "removed": 0,
-        "total": 3
-      },
-      "runtimeSource": {
-        "added": 3,
-        "modified": 12,
-        "removed": 0,
-        "total": 15
-      },
-      "sourceTests": {
-        "added": 3,
-        "modified": 7,
-        "removed": 0,
-        "total": 10
-      },
-      "existingQaTools": {
-        "added": 0,
-        "modified": 2,
-        "removed": 0,
-        "total": 2
-      },
-      "selectedEvidence": {
-        "added": 11,
-        "modified": 0,
-        "removed": 0,
-        "total": 11
-      }
-    },
-    "totalPaths": 68,
-    "deletedPaths": 0,
-    "inheritedWipFiles": 0,
-    "registeredNativeJobs": 39,
-    "acceptedScopes": 20,
-    "unacceptedWholeOutputs": 19,
-    "newQaFilesAdded": 0,
-    "promotedCaptures": 10,
-    "promotedProofFiles": 11,
-    "reviewerRoles": 2
+    "kind": "CONFIGURATION_ONLY",
+    "sourceModified": 0,
+    "qaProofAdded": 0,
+    "workflowFiles": 8,
+    "browserScenarios": 0
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",
@@ -42456,110 +42215,19 @@
     "workflowFilesModified": 7
   },
   "demoCompletionFocus": {
-    "decision": "OD-2026-10-13-A",
+    "decision": "OD-2026-10-16-A",
     "plan": "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-    "configurationRun": {
-      "runId": "codex-demo-completion-focus-20261013T0523",
-      "runStartedAt": "2026-10-13T05:23:12.9886719Z",
-      "kind": "WORKFLOW_ONLY_NO_PRODUCT_ACCEPTANCE_ADVANCED",
-      "sourceModified": 0,
-      "qaProofAdded": 0,
-      "workflowFiles": 7,
-      "runEndedAt": "2026-10-13T05:31:27.829Z",
-      "compliance": {
-        "GAME_CONSTITUTION": "PASS",
-        "REPOSITORY_GOVERNANCE": "PASS",
-        "QA_EVIDENCE": "PASS_WORKFLOW_ONLY",
-        "contractSetVersion": "1.1.0",
-        "lockedRulesChanged": false,
-        "productAcceptanceAdvanced": false
-      }
-    },
-    "observedBaseline": "6175eb5890caabbad149eccb4e5c40ac05876ccd",
-    "observedLast16Commits": {
-      "productFilesModified": 0,
-      "existingQaDriversModified": 1
-    },
-    "supersededOperationalContinuation": {
-      "activePhase": "SCOPED_CHECKPOINT_PUBLISHED",
-      "activeSubtask": "T0 OS1366 rendered gentle arrival fade accepted; normal computed/perceived movement remains open",
-      "nextAction": "Read-only autonomy preflight and exclusive lock. Reuse motion-t0-os-temporal-0127-host terminal receipt/result8174185c, source637f91ee, driver50a72e09, receipt helper and nine physical build hashes, plus scoped guardian/domain reviews. T0 OS1366 rendered gentle arrival fade is accepted only for this fixture-assisted presentation flow. Do not repeat unchanged accepted T0 OS numerical/computed/rendered proof or campaign deadline-only runs. Next unresolved desktop boundary: T0 normal computed coverage and perceived continuous checkpoint departure/accelerating final exit. Register ONE existing tools/traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --pursuit-check=0 --coverage-check=1 --port=<verified-free-port> --output=<unique-ignored-path>, identical --register arguments, 15 retained assertions; inspect native video at return/fork and final arrival. This adds unproved computed/rendered coverage to previously numerical-only normal evidence; no speculative product edit or instrumentation rewrite. Native video PTS remains unsynchronized with performance.now, so exact painted fade/hold durations remain open. T1/T3 coverage, game-only reduction and mobileLAST remain later gaps. Preserve exact parent all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo, deferred keyboard, pendingNarrative and taskQueue; never seed FAILED1521 partial outputs.",
-      "taskQueue": [
-        "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
-        "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
-        "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
-        "TRAVERSAL-MOTION-POLISH: COMPLETE_SCOPED_PRESENTATION",
-        "TRAVERSAL-PURSUIT-THREAT: TEN_MAPPINGS_IMPLEMENTED; T0_DESKTOP_FIXTURE_CONTACT_MISS_RETURN_PASS; ARTICULATED_GAIT_AND_FULL_ACCEPTANCE_OPEN",
-        "TRAVERSAL-ROAD-ELEMENTS: COMPLETE_SCOPED_PRESENTATION",
-        "PRE-JUDGEMENT-CAMPFIRE: COMPLETE_SCOPED_PRESENTATION",
-        "NARRATIVE-CONTEXT-COHERENCE: SCOPED_CONTEXTUAL_STATIC_AND_MOUNTED_OS_OPENING_ACCEPTED; NORMAL_INTERMEDIATE_DYNAMIC_EARNED_OPEN",
-        "STATIC-TABLEAU-STAGING-POLISH: COMPLETE_SCOPED_RUNTIME; exact old checkpoint and recovery snapshot live remote verified run0514",
-        "SCENE-TRANSITION-COPY: SCOPED_RUNTIME_PASS; BLOCKED_STATIC_OS_SHADOW",
-        "ENVIRONMENT-NARRATIVE-COHERENCE: BLOCKED_ASSET_BOIS_CLAIR_NIGHT; bounded audit complete",
-        "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
-      ],
-      "testsRemaining": [
-        "T0 OS reduction, game reduction false, 1366x768 only",
-        "Fixture origin/injected combat results exclude earned campaign, tactical balance, Pursuit, V6 and reload",
-        "Video PTS lacks absolute synchronization with performance.now; exact painted fade/hold durations and independent paint cadence remain unverified",
-        "Full perceived checkpoint momentum, other legs/settings/viewports and demo acceptance remain open"
-      ],
-      "liveActivePhase": "SCOPED_CHECKPOINT_PUBLISHED",
-      "liveActiveSubtask": "T0 OS1366 rendered gentle arrival fade accepted; normal computed/perceived movement remains open",
-      "liveNextAction": "Read-only autonomy preflight and exclusive lock. Reuse motion-t0-os-temporal-0127-host terminal receipt/result8174185c, source637f91ee, driver50a72e09, receipt helper and nine physical build hashes, plus scoped guardian/domain reviews. T0 OS1366 rendered gentle arrival fade is accepted only for this fixture-assisted presentation flow. Do not repeat unchanged accepted T0 OS numerical/computed/rendered proof or campaign deadline-only runs. Next unresolved desktop boundary: T0 normal computed coverage and perceived continuous checkpoint departure/accelerating final exit. Register ONE existing tools/traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --pursuit-check=0 --coverage-check=1 --port=<verified-free-port> --output=<unique-ignored-path>, identical --register arguments, 15 retained assertions; inspect native video at return/fork and final arrival. This adds unproved computed/rendered coverage to previously numerical-only normal evidence; no speculative product edit or instrumentation rewrite. Native video PTS remains unsynchronized with performance.now, so exact painted fade/hold durations remain open. T1/T3 coverage, game-only reduction and mobileLAST remain later gaps. Preserve exact parent all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo, deferred keyboard, pendingNarrative and taskQueue; never seed FAILED1521 partial outputs."
-    },
-    "loopGuard": {
-      "maxUnchangedBoundaryInvestigationMinutes": 20,
-      "maxConsecutiveProductRunsOnlyQaWithoutPlayableMilestone": 2,
-      "isolatedT0DiagnosticsDeferred": true,
-      "noSpeculativeCodeForMetric": true,
-      "noFalseAcceptance": true
-    },
-    "reportFields": [
-      "product changed",
-      "new playable step",
-      "precise blocker",
-      "next product action"
-    ],
-    "automation": {
-      "model": "gpt-6.1-sol",
-      "reasoning": "high",
-      "cadenceMinutes": 90,
-      "status": "PAUSED",
-      "onlyPromptAndUpdatedAtChanged": true
-    }
+    "handoff": "docs/autonomy/handoffs/2026-10-16T2226Z-codex-recurring-poi-config.md",
+    "scope": "POI_POST_LOT_E_PC_FINISHING",
+    "history": "recurringPoiConfiguration.previousRootFields.demoCompletionFocus"
   },
   "nextScheduledExecutionDirective": {
-    "decision": "OD-2026-10-13-B",
-    "path": "docs/autonomy/PLAYABLE_DEMO_EXECUTION_DIRECTIVE_2026-10-13.md",
-    "status": "APPLIED_TO_SCHEDULED_RUN",
-    "operatorChat": "01a0f5ba-db22-7412-b3ad-a3429d76cad6",
+    "decision": "OD-2026-10-16-A",
+    "path": "docs/autonomy/handoffs/2026-10-16T2226Z-codex-recurring-poi-config.md",
+    "status": "READY_FOR_NEXT_MANUALLY_ENABLED_RUN",
     "configurationChatDoesNotExecuteProduct": true,
-    "automationRemainsPaused": false,
-    "planUnchanged": "OD-2026-10-13-A",
-    "investigationLimitAppliesOnlyWhenNoUsefulProgress": true,
-    "operatorReportFormat": "directive section10",
-    "productSourceModified": 0,
-    "newBrowserScenarios": 0,
-    "qaProofAdded": 0,
-    "workflowFilesModified": 5,
-    "configurationSnapshot": {
-      "decision": "OD-2026-10-13-B",
-      "path": "docs/autonomy/PLAYABLE_DEMO_EXECUTION_DIRECTIVE_2026-10-13.md",
-      "status": "READY_FOR_NEXT_SCHEDULED_RUN",
-      "operatorChat": "01a0f5ba-db22-7412-b3ad-a3429d76cad6",
-      "configurationChatDoesNotExecuteProduct": true,
-      "automationRemainsPaused": true,
-      "planUnchanged": "OD-2026-10-13-A",
-      "investigationLimitAppliesOnlyWhenNoUsefulProgress": true,
-      "operatorReportFormat": "directive section10",
-      "productSourceModified": 0,
-      "newBrowserScenarios": 0,
-      "qaProofAdded": 0,
-      "workflowFilesModified": 5
-    },
-    "appliedRunId": "rpgthreejs-auto-dev-90m-20261013T0552",
-    "schedulerObservation": "ACTIVE after manual reactivation; no scheduler mutation by this run"
+    "automationRemainsPaused": true,
+    "history": "recurringPoiConfiguration.previousRootFields.nextScheduledExecutionDirective"
   },
   "poiMigration": {
     "operatorDecisionId": "OD-2026-10-13-D",
@@ -42795,7 +42463,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-16T15:33:54.359Z",
+  "heartbeat": "2026-10-16T22:30:18.503Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -43572,6 +43240,674 @@
       "normalNonForce": true,
       "authorization": "OD-2026-10-12-A and OD-2026-10-15-A",
       "finalMetadata": "Current metadata commit is identified by Git; guarded final push/parity/owned-lock release follows this checkpoint"
+    }
+  },
+  "recurringPoiConfiguration": {
+    "decision": "OD-2026-10-16-A",
+    "scope": "CONFIGURATION_ONLY_NO_PRODUCT_ACCEPTANCE_ADVANCEMENT",
+    "currentDirective": "docs/autonomy/handoffs/2026-10-16T2226Z-codex-recurring-poi-config.md",
+    "contractSetVersion": "1.4.0",
+    "immutableBaseline": "f9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8",
+    "productionBaseline": {
+      "fixedPoi": 33,
+      "mobileElites": 2,
+      "chests": 6,
+      "ordinaryEncounterPois": 6,
+      "atlases": 3,
+      "physicalTraversal": "DEFINITIVELY_RETIRED",
+      "lotEStatus": "COMPLETE_SCOPED",
+      "delivery": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
+      "closeout": "19b53c3d8e066a4e3145cbbe8585b9af5596b264",
+      "acceptedEvidence": "docs/reports/evidence/lot-e-final-2026-10-15/results.json"
+    },
+    "operatorReviewPending": [
+      "Lot E economy and felt balance",
+      "Elite formations/settings/difficulty",
+      "Atlas artistic approval and physical-device comfort",
+      "Final global demo playtest"
+    ],
+    "operatorWaitDoesNotBlockIndependentWork": true,
+    "economyAndEliteAdjustmentsAuthorized": false,
+    "automation": {
+      "existingId": "rpgthreejs-auto-dev-90m",
+      "status": "PAUSED",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "xhigh",
+      "cadenceMinutes": 90,
+      "onlyPromptAndUpdatedAtChanged": true,
+      "operatorOnlyActivation": true
+    },
+    "qaJobsPreserved": 310,
+    "previousRootFields": {
+      "status": {
+        "existed": true,
+        "value": "COMPLETE_SCOPED"
+      },
+      "runId": {
+        "existed": true,
+        "value": "codex-lot-e-20261015"
+      },
+      "agent": {
+        "existed": true,
+        "value": "codex"
+      },
+      "runStartedAt": {
+        "existed": true,
+        "value": "2026-10-15T22:57:16.909Z"
+      },
+      "runEndedAt": {
+        "existed": true,
+        "value": "2026-10-16T15:33:54.359Z"
+      },
+      "lastHeartbeat": {
+        "existed": true,
+        "value": "2026-10-16T15:33:54.359Z"
+      },
+      "heartbeat": {
+        "existed": true,
+        "value": "2026-10-16T15:33:54.359Z"
+      },
+      "activeTask": {
+        "existed": true,
+        "value": "POI-LOT-E-FINAL"
+      },
+      "activePhase": {
+        "existed": true,
+        "value": "CLOSED_SCOPED_LOT_E_FINAL"
+      },
+      "activeSubtask": {
+        "existed": true,
+        "value": "E1-E5 delivered; complete native campaign, independent review and scoped technical acceptance"
+      },
+      "workingBranch": {
+        "existed": true,
+        "value": "dev"
+      },
+      "lastKnownGoodCommit": {
+        "existed": true,
+        "value": "0686065d883567116c4b09f7b326c4e50bdbc8a7"
+      },
+      "lastPushedCommit": {
+        "existed": true,
+        "value": "0686065d883567116c4b09f7b326c4e50bdbc8a7"
+      },
+      "currentHandoff": {
+        "existed": true,
+        "value": "docs/autonomy/handoffs/2026-10-16T1526Z-codex-lot-e-final.md"
+      },
+      "nextAction": {
+        "existed": true,
+        "value": "Operator PC playtest of Lot E artwork, encounter difficulty and economic comfort; preserve unrelated deferred skills/keyboard/narrative findings. Scheduler remains PAUSED; no physical Traversal restoration."
+      },
+      "completedThisRun": {
+        "existed": true,
+        "value": [
+          "Approved dedicated set1.4.0 amendment before runtime",
+          "Twelve exact optional POI/six chests/six deterministic ordinary formations",
+          "Two independent graph-mobile elites with native Combat/retreat and real victories",
+          "Additive old/current/terminal V6 and interruption recovery",
+          "Three revised integrated atlases and scoped desktop/compact/touch controls",
+          "Complete twelve-victory native campaign and exact terminal/menu/save"
+        ]
+      },
+      "filesChanged": {
+        "existed": true,
+        "value": [
+          ".agents/skills/autonomy-handoff/SKILL.md",
+          ".agents/skills/contracts-compliance/SKILL.md",
+          "AGENTS.md",
+          "docs/README.md",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+          "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+          "docs/autonomy/LOT_E_EXECUTION_DIRECTIVE_2026-10-15.md",
+          "docs/autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md",
+          "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
+          "docs/autonomy/OPERATOR_DECISIONS.md",
+          "docs/contracts/AUTHORING_AND_QA.md",
+          "docs/contracts/CAMPAIGN_AND_STATE.md",
+          "docs/contracts/COMBAT_AND_VFX.md",
+          "docs/contracts/README.md",
+          "docs/contracts/TRAVERSAL.md",
+          "docs/contracts/UI_AND_ACCESSIBILITY.md",
+          "docs/contracts/WORLD_AND_CHARACTERS.md",
+          "docs/contracts/contracts.manifest.json",
+          "docs/project/CURRENT_STATUS.md",
+          "docs/project/LOT_E_ATLAS_PROVENANCE_2026-10-15.json",
+          "docs/project/POI_NAVIGATION.md",
+          "docs/project/POI_V2_ART_AND_AUTHORING.md",
+          "docs/project/RPGThreeJS_LOT_E_CONTRAT_AUTHORING_FINAL_2026-10-15.md",
+          "docs/project/RPGThreeJS_LOT_E_MANIFEST_AUTHORING_FINAL_2026-10-15.json",
+          "docs/reports/INDEX.md",
+          "docs/reports/lot-e-final-2026-10-15.md",
+          "public/assets/generated/lion-phase/poi-lot-e/bois-clair.png",
+          "public/assets/generated/lion-phase/poi-lot-e/judgement.png",
+          "public/assets/generated/lion-phase/poi-lot-e/lion-opening.png",
+          "src/campaign/LionPoiAuthoring.ts",
+          "src/campaign/LionPoiMap.ts",
+          "src/campaign/LionPoiTopology.test.ts",
+          "src/campaign/LionPoiTopology.ts",
+          "src/game/GameApp.ts",
+          "src/game/GameAppPoi.test.ts",
+          "src/game/GameAppPoiExpedition.test.ts",
+          "src/game/campaignPresentationMigration.test.ts",
+          "src/game/content.test.ts",
+          "src/game/content.ts",
+          "src/game/poiContentAdapters.test.ts",
+          "src/game/poiContentAdapters.ts",
+          "src/game/poiExpedition.test.ts",
+          "src/game/poiExpedition.ts",
+          "src/game/poiNavigation.test.ts",
+          "src/game/runSystem.test.ts",
+          "src/game/runSystem.ts",
+          "src/game/store.ts",
+          "src/game/types.ts",
+          "src/ui/ManagementView.ts",
+          "src/ui/PoiEncounterView.test.ts",
+          "src/ui/PoiEncounterView.ts",
+          "src/ui/PoiMapView.ts",
+          "src/ui/RunNodePresentation.ts",
+          "src/ui/poi-map.css",
+          "tools/demo-continuous-production-qa.mjs",
+          "tools/qa/qa-job.mjs",
+          "docs/autonomy/handoffs/2026-10-16T1526Z-codex-lot-e-final.md",
+          "docs/reports/evidence/lot-e-final-2026-10-15/atlas-I.png",
+          "docs/reports/evidence/lot-e-final-2026-10-15/atlas-II.png",
+          "docs/reports/evidence/lot-e-final-2026-10-15/atlas-III.png",
+          "docs/reports/evidence/lot-e-final-2026-10-15/header-390-os.png",
+          "docs/reports/evidence/lot-e-final-2026-10-15/rear-retreat-620.png",
+          "docs/reports/evidence/lot-e-final-2026-10-15/defeat-checkpoint-620.png",
+          "docs/reports/evidence/lot-e-final-2026-10-15/sentinel-victory-620.png",
+          "docs/reports/evidence/lot-e-final-2026-10-15/chest-once-620.png",
+          "docs/reports/evidence/lot-e-final-2026-10-15/warden-victory-620.png",
+          "docs/reports/evidence/lot-e-final-2026-10-15/complete-ending-1366.png",
+          "docs/reports/evidence/lot-e-final-2026-10-15/results.json"
+        ]
+      },
+      "testsRun": {
+        "existed": true,
+        "value": [
+          "tmp/lot-e/final-focused-tests.log",
+          "tmp/lot-e/forge-material-ui-tests.log",
+          "tmp/lot-e/forge-material-build.log"
+        ]
+      },
+      "testsPassed": {
+        "existed": true,
+        "value": [
+          "277 distinct focused current tests/16 files",
+          "19 host QA helper tests",
+          "TypeScript/production build",
+          "8 contracts/8 slots",
+          "Finalized native scoped receipts"
+        ]
+      },
+      "testsRemaining": {
+        "existed": true,
+        "value": [
+          "Operator artistic/felt-balance/physical-device and full-demo acceptance",
+          "Preserved unrelated six-hero skills, mounted keyboard and narrative/manual findings"
+        ]
+      },
+      "blockers": {
+        "existed": true,
+        "value": []
+      },
+      "remainingWork": {
+        "existed": true,
+        "value": [
+          "Operator Lot E playtest and the preserved unrelated deferred work"
+        ]
+      },
+      "taskQueue": {
+        "existed": true,
+        "value": [
+          "POI-MAP-FINALIZATION: requested implementation/native milestones REVIEWED_SCOPED; operator final playtest remains",
+          "DEMO-PC-CAMPAIGN: both native truth endings, T0/T1/T3 alternatives, rescue/sacrifice, defeat and exact V6 accepted in recorded scopes",
+          "DEMO-COMBAT-SKILLS: PENDING_MISSING_CRITERIA_ONLY; six heroes/lancer, native victory/defeat and ordinary canonical combat return (physical Pursuit retired by OD-2026-10-15-A)",
+          "DEMO-CAMPAIGN-KEYBOARD: PENDING; preserve standalone scoped acceptance and deferred work; mounted campaign targets/focus OPEN",
+          "DEMO-PRESENTATION-FINAL: PENDING_CONSOLIDATED_MILESTONE; known visual/manual findings remain OPEN; Bois-Clair night asset EXTERNAL",
+          "DEMO-MOBILE-AND-TESTER-HANDOFF: PENDING_AFTER_PC_STABLE; operator final acceptance OPEN"
+        ]
+      },
+      "operatorPriority": {
+        "existed": true,
+        "value": {
+          "decisionId": "OD-2026-10-03-A",
+          "source": "docs/autonomy/MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md",
+          "priority": "HIGHEST_REMEDIATION_BEFORE_GENERIC_DEMO_QA_POLISH",
+          "tasks": [
+            "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
+            "TRAVERSAL-VISUAL-CONVERGENCE",
+            "TRAVERSAL-MOTION-POLISH",
+            "TRAVERSAL-PURSUIT-THREAT",
+            "TRAVERSAL-ROAD-ELEMENTS",
+            "PRE-JUDGEMENT-CAMPFIRE",
+            "NARRATIVE-CONTEXT-COHERENCE",
+            "STATIC-TABLEAU-STAGING-POLISH",
+            "SCENE-TRANSITION-COPY",
+            "ENVIRONMENT-NARRATIVE-COHERENCE",
+            "Resume deferred DEMO-QA-POLISH"
+          ],
+          "previousAutomatedPassCannotInvalidateManualFinding": true
+        }
+      },
+      "autonomyScope": {
+        "existed": true,
+        "value": {
+          "decisionSource": "docs/autonomy/CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md",
+          "allowed": [
+            "cinematic structure readiness",
+            "existing-media integration/QA",
+            "independent demo QA and fixes"
+          ],
+          "excluded": [
+            "new video/keyframe generation",
+            "MiniMax generation/polling jobs",
+            "artistic media remaster",
+            "production MP4 replacement",
+            "automatic Alistair redesign or biography change"
+          ],
+          "mediaWorkstream": "EXTERNAL_MANUAL_WORKSTREAM",
+          "mediaRemasterComplete": false,
+          "prologue": "DESIRED_EXTENSION_TO_PLAN; dedicated contract work before activation",
+          "firstRefugeFirstScene": "OPTION_TO_EVALUATE; no approved extra slot",
+          "alistair": "NONURGENT_DECISION_PENDING; sober design or Lion-region origin hypothesis"
+        }
+      },
+      "runMeasurement": {
+        "existed": true,
+        "value": {
+          "runId": "codex-poi-continuation-20261014",
+          "runtimeSourceFilesModified": 1,
+          "testFilesModified": 1,
+          "existingQaFilesModified": 2,
+          "existingQaTestFilesModified": 1,
+          "newQaFilesAdded": 0,
+          "promotedProofFiles": 6,
+          "promotedCaptures": 5,
+          "inheritedWipFiles": 0,
+          "browserScenarios": 3,
+          "registeredJobs": 4,
+          "preGameplayEnvironmentFailures": 1,
+          "reviewers": 1,
+          "workflowDocs": 12
+        }
+      },
+      "runStatistics": {
+        "existed": true,
+        "value": {
+          "runId": "codex-lot-e-20261015",
+          "countBasis": "Unique final paths from 4c80196cf2eb87097f063f4f312756044f5a5e47, selected evidence only",
+          "counts": {
+            "workflowAndCanonicalDocs": {
+              "added": 7,
+              "modified": 12,
+              "removed": 0,
+              "total": 19
+            },
+            "lockedAmendment": {
+              "added": 0,
+              "modified": 8,
+              "removed": 0,
+              "total": 8
+            },
+            "artResources": {
+              "added": 3,
+              "modified": 0,
+              "removed": 0,
+              "total": 3
+            },
+            "runtimeSource": {
+              "added": 3,
+              "modified": 12,
+              "removed": 0,
+              "total": 15
+            },
+            "sourceTests": {
+              "added": 3,
+              "modified": 7,
+              "removed": 0,
+              "total": 10
+            },
+            "existingQaTools": {
+              "added": 0,
+              "modified": 2,
+              "removed": 0,
+              "total": 2
+            },
+            "selectedEvidence": {
+              "added": 11,
+              "modified": 0,
+              "removed": 0,
+              "total": 11
+            }
+          },
+          "totalPaths": 68,
+          "deletedPaths": 0,
+          "inheritedWipFiles": 0,
+          "registeredNativeJobs": 39,
+          "acceptedScopes": 20,
+          "unacceptedWholeOutputs": 19,
+          "newQaFilesAdded": 0,
+          "promotedCaptures": 10,
+          "promotedProofFiles": 11,
+          "reviewerRoles": 2
+        }
+      },
+      "currentRunMeasurement": {
+        "existed": true,
+        "value": {
+          "runId": "codex-lot-e-20261015",
+          "countBasis": "Unique final paths from 4c80196cf2eb87097f063f4f312756044f5a5e47, selected evidence only",
+          "counts": {
+            "workflowAndCanonicalDocs": {
+              "added": 7,
+              "modified": 12,
+              "removed": 0,
+              "total": 19
+            },
+            "lockedAmendment": {
+              "added": 0,
+              "modified": 8,
+              "removed": 0,
+              "total": 8
+            },
+            "artResources": {
+              "added": 3,
+              "modified": 0,
+              "removed": 0,
+              "total": 3
+            },
+            "runtimeSource": {
+              "added": 3,
+              "modified": 12,
+              "removed": 0,
+              "total": 15
+            },
+            "sourceTests": {
+              "added": 3,
+              "modified": 7,
+              "removed": 0,
+              "total": 10
+            },
+            "existingQaTools": {
+              "added": 0,
+              "modified": 2,
+              "removed": 0,
+              "total": 2
+            },
+            "selectedEvidence": {
+              "added": 11,
+              "modified": 0,
+              "removed": 0,
+              "total": 11
+            }
+          },
+          "totalPaths": 68,
+          "deletedPaths": 0,
+          "inheritedWipFiles": 0,
+          "registeredNativeJobs": 39,
+          "acceptedScopes": 20,
+          "unacceptedWholeOutputs": 19,
+          "newQaFilesAdded": 0,
+          "promotedCaptures": 10,
+          "promotedProofFiles": 11,
+          "reviewerRoles": 2
+        }
+      },
+      "creditStatus": {
+        "existed": true,
+        "value": "AVAILABLE"
+      },
+      "contractComplianceStatus": {
+        "existed": true,
+        "value": "PASS_SCOPED"
+      },
+      "commitReferenceScope": {
+        "existed": true,
+        "value": "LastPushed/publishedCheckpoint name reviewed delivery0aada9f; the following metadata commit is identified by Git and guarded live closeout receipt, avoiding self-reference"
+      },
+      "demoCompletionFocus": {
+        "existed": true,
+        "value": {
+          "decision": "OD-2026-10-13-A",
+          "plan": "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+          "configurationRun": {
+            "runId": "codex-demo-completion-focus-20261013T0523",
+            "runStartedAt": "2026-10-13T05:23:12.9886719Z",
+            "kind": "WORKFLOW_ONLY_NO_PRODUCT_ACCEPTANCE_ADVANCED",
+            "sourceModified": 0,
+            "qaProofAdded": 0,
+            "workflowFiles": 7,
+            "runEndedAt": "2026-10-13T05:31:27.829Z",
+            "compliance": {
+              "GAME_CONSTITUTION": "PASS",
+              "REPOSITORY_GOVERNANCE": "PASS",
+              "QA_EVIDENCE": "PASS_WORKFLOW_ONLY",
+              "contractSetVersion": "1.1.0",
+              "lockedRulesChanged": false,
+              "productAcceptanceAdvanced": false
+            }
+          },
+          "observedBaseline": "6175eb5890caabbad149eccb4e5c40ac05876ccd",
+          "observedLast16Commits": {
+            "productFilesModified": 0,
+            "existingQaDriversModified": 1
+          },
+          "supersededOperationalContinuation": {
+            "activePhase": "SCOPED_CHECKPOINT_PUBLISHED",
+            "activeSubtask": "T0 OS1366 rendered gentle arrival fade accepted; normal computed/perceived movement remains open",
+            "nextAction": "Read-only autonomy preflight and exclusive lock. Reuse motion-t0-os-temporal-0127-host terminal receipt/result8174185c, source637f91ee, driver50a72e09, receipt helper and nine physical build hashes, plus scoped guardian/domain reviews. T0 OS1366 rendered gentle arrival fade is accepted only for this fixture-assisted presentation flow. Do not repeat unchanged accepted T0 OS numerical/computed/rendered proof or campaign deadline-only runs. Next unresolved desktop boundary: T0 normal computed coverage and perceived continuous checkpoint departure/accelerating final exit. Register ONE existing tools/traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --pursuit-check=0 --coverage-check=1 --port=<verified-free-port> --output=<unique-ignored-path>, identical --register arguments, 15 retained assertions; inspect native video at return/fork and final arrival. This adds unproved computed/rendered coverage to previously numerical-only normal evidence; no speculative product edit or instrumentation rewrite. Native video PTS remains unsynchronized with performance.now, so exact painted fade/hold durations remain open. T1/T3 coverage, game-only reduction and mobileLAST remain later gaps. Preserve exact parent all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo, deferred keyboard, pendingNarrative and taskQueue; never seed FAILED1521 partial outputs.",
+            "taskQueue": [
+              "OD-2026-10-09-A: ACTIVE desktop beginner combat, narrative clarity, pursuit/checkpoint/final exit; mobile final milestone",
+              "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1: COMPLETE_DOCUMENTARY_ONLY",
+              "TRAVERSAL-VISUAL-CONVERGENCE: COMPLETE_SCOPED_PRESENTATION",
+              "TRAVERSAL-MOTION-POLISH: COMPLETE_SCOPED_PRESENTATION",
+              "TRAVERSAL-PURSUIT-THREAT: TEN_MAPPINGS_IMPLEMENTED; T0_DESKTOP_FIXTURE_CONTACT_MISS_RETURN_PASS; ARTICULATED_GAIT_AND_FULL_ACCEPTANCE_OPEN",
+              "TRAVERSAL-ROAD-ELEMENTS: COMPLETE_SCOPED_PRESENTATION",
+              "PRE-JUDGEMENT-CAMPFIRE: COMPLETE_SCOPED_PRESENTATION",
+              "NARRATIVE-CONTEXT-COHERENCE: SCOPED_CONTEXTUAL_STATIC_AND_MOUNTED_OS_OPENING_ACCEPTED; NORMAL_INTERMEDIATE_DYNAMIC_EARNED_OPEN",
+              "STATIC-TABLEAU-STAGING-POLISH: COMPLETE_SCOPED_RUNTIME; exact old checkpoint and recovery snapshot live remote verified run0514",
+              "SCENE-TRANSITION-COPY: SCOPED_RUNTIME_PASS; BLOCKED_STATIC_OS_SHADOW",
+              "ENVIRONMENT-NARRATIVE-COHERENCE: BLOCKED_ASSET_BOIS_CLAIR_NIGHT; bounded audit complete",
+              "Resume deferred DEMO-QA-POLISH: ACTIVE; standalone keyboard scoped accepted; campaign/accessibility gates open"
+            ],
+            "testsRemaining": [
+              "T0 OS reduction, game reduction false, 1366x768 only",
+              "Fixture origin/injected combat results exclude earned campaign, tactical balance, Pursuit, V6 and reload",
+              "Video PTS lacks absolute synchronization with performance.now; exact painted fade/hold durations and independent paint cadence remain unverified",
+              "Full perceived checkpoint momentum, other legs/settings/viewports and demo acceptance remain open"
+            ],
+            "liveActivePhase": "SCOPED_CHECKPOINT_PUBLISHED",
+            "liveActiveSubtask": "T0 OS1366 rendered gentle arrival fade accepted; normal computed/perceived movement remains open",
+            "liveNextAction": "Read-only autonomy preflight and exclusive lock. Reuse motion-t0-os-temporal-0127-host terminal receipt/result8174185c, source637f91ee, driver50a72e09, receipt helper and nine physical build hashes, plus scoped guardian/domain reviews. T0 OS1366 rendered gentle arrival fade is accepted only for this fixture-assisted presentation flow. Do not repeat unchanged accepted T0 OS numerical/computed/rendered proof or campaign deadline-only runs. Next unresolved desktop boundary: T0 normal computed coverage and perceived continuous checkpoint departure/accelerating final exit. Register ONE existing tools/traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --pursuit-check=0 --coverage-check=1 --port=<verified-free-port> --output=<unique-ignored-path>, identical --register arguments, 15 retained assertions; inspect native video at return/fork and final arrival. This adds unproved computed/rendered coverage to previously numerical-only normal evidence; no speculative product edit or instrumentation rewrite. Native video PTS remains unsynchronized with performance.now, so exact painted fade/hold durations remain open. T1/T3 coverage, game-only reduction and mobileLAST remain later gaps. Preserve exact parent all-six/random-Pursuit/lancer/earnedsecond-refuge/fullV6/ending/balance/later narrative/AT/operatorfinal/demo, deferred keyboard, pendingNarrative and taskQueue; never seed FAILED1521 partial outputs."
+          },
+          "loopGuard": {
+            "maxUnchangedBoundaryInvestigationMinutes": 20,
+            "maxConsecutiveProductRunsOnlyQaWithoutPlayableMilestone": 2,
+            "isolatedT0DiagnosticsDeferred": true,
+            "noSpeculativeCodeForMetric": true,
+            "noFalseAcceptance": true
+          },
+          "reportFields": [
+            "product changed",
+            "new playable step",
+            "precise blocker",
+            "next product action"
+          ],
+          "automation": {
+            "model": "gpt-6.1-sol",
+            "reasoning": "high",
+            "cadenceMinutes": 90,
+            "status": "PAUSED",
+            "onlyPromptAndUpdatedAtChanged": true
+          }
+        }
+      },
+      "nextScheduledExecutionDirective": {
+        "existed": true,
+        "value": {
+          "decision": "OD-2026-10-13-B",
+          "path": "docs/autonomy/PLAYABLE_DEMO_EXECUTION_DIRECTIVE_2026-10-13.md",
+          "status": "APPLIED_TO_SCHEDULED_RUN",
+          "operatorChat": "01a0f5ba-db22-7412-b3ad-a3429d76cad6",
+          "configurationChatDoesNotExecuteProduct": true,
+          "automationRemainsPaused": false,
+          "planUnchanged": "OD-2026-10-13-A",
+          "investigationLimitAppliesOnlyWhenNoUsefulProgress": true,
+          "operatorReportFormat": "directive section10",
+          "productSourceModified": 0,
+          "newBrowserScenarios": 0,
+          "qaProofAdded": 0,
+          "workflowFilesModified": 5,
+          "configurationSnapshot": {
+            "decision": "OD-2026-10-13-B",
+            "path": "docs/autonomy/PLAYABLE_DEMO_EXECUTION_DIRECTIVE_2026-10-13.md",
+            "status": "READY_FOR_NEXT_SCHEDULED_RUN",
+            "operatorChat": "01a0f5ba-db22-7412-b3ad-a3429d76cad6",
+            "configurationChatDoesNotExecuteProduct": true,
+            "automationRemainsPaused": true,
+            "planUnchanged": "OD-2026-10-13-A",
+            "investigationLimitAppliesOnlyWhenNoUsefulProgress": true,
+            "operatorReportFormat": "directive section10",
+            "productSourceModified": 0,
+            "newBrowserScenarios": 0,
+            "qaProofAdded": 0,
+            "workflowFilesModified": 5
+          },
+          "appliedRunId": "rpgthreejs-auto-dev-90m-20261013T0552",
+          "schedulerObservation": "ACTIVE after manual reactivation; no scheduler mutation by this run"
+        }
+      }
+    },
+    "previousLiveFields": {
+      "runId": {
+        "existed": true,
+        "value": "codex-lot-e-20261015"
+      },
+      "agent": {
+        "existed": true,
+        "value": "codex"
+      },
+      "status": {
+        "existed": true,
+        "value": "COMPLETE_SCOPED"
+      },
+      "activeTask": {
+        "existed": true,
+        "value": "POI-LOT-E-FINAL"
+      },
+      "activePhase": {
+        "existed": true,
+        "value": "CLOSED_SCOPED_LOT_E_FINAL"
+      },
+      "activeSubtask": {
+        "existed": true,
+        "value": "E1-E5 delivered; complete native campaign, independent review and scoped technical acceptance"
+      },
+      "nextAction": {
+        "existed": true,
+        "value": "Operator PC playtest of Lot E artwork, encounter difficulty and economic comfort; preserve unrelated deferred skills/keyboard/narrative findings. Scheduler remains PAUSED; no physical Traversal restoration."
+      },
+      "currentHandoff": {
+        "existed": true,
+        "value": "docs/autonomy/handoffs/2026-10-16T1526Z-codex-lot-e-final.md"
+      },
+      "runStartedAt": {
+        "existed": true,
+        "value": "2026-10-15T22:57:16.909Z"
+      },
+      "runEndedAt": {
+        "existed": true,
+        "value": "2026-10-16T15:33:54.359Z"
+      },
+      "lastHeartbeat": {
+        "existed": true,
+        "value": "2026-10-16T15:33:54.359Z"
+      },
+      "heartbeat": {
+        "existed": true,
+        "value": "2026-10-16T15:33:54.359Z"
+      },
+      "runMetrics": {
+        "existed": true,
+        "value": {
+          "runId": "codex-lot-e-20261015",
+          "countBasis": "Unique final paths from 4c80196cf2eb87097f063f4f312756044f5a5e47, selected evidence only",
+          "counts": {
+            "workflowAndCanonicalDocs": {
+              "added": 7,
+              "modified": 12,
+              "removed": 0,
+              "total": 19
+            },
+            "lockedAmendment": {
+              "added": 0,
+              "modified": 8,
+              "removed": 0,
+              "total": 8
+            },
+            "artResources": {
+              "added": 3,
+              "modified": 0,
+              "removed": 0,
+              "total": 3
+            },
+            "runtimeSource": {
+              "added": 3,
+              "modified": 12,
+              "removed": 0,
+              "total": 15
+            },
+            "sourceTests": {
+              "added": 3,
+              "modified": 7,
+              "removed": 0,
+              "total": 10
+            },
+            "existingQaTools": {
+              "added": 0,
+              "modified": 2,
+              "removed": 0,
+              "total": 2
+            },
+            "selectedEvidence": {
+              "added": 11,
+              "modified": 0,
+              "removed": 0,
+              "total": 11
+            }
+          },
+          "totalPaths": 68,
+          "deletedPaths": 0,
+          "inheritedWipFiles": 0,
+          "registeredNativeJobs": 39,
+          "acceptedScopes": 20,
+          "unacceptedWholeOutputs": 19,
+          "newQaFilesAdded": 0,
+          "promotedCaptures": 10,
+          "promotedProofFiles": 11,
+          "reviewerRoles": 2
+        }
+      },
+      "checkpointPaths": {
+        "existed": true,
+        "value": []
+      },
+      "publication": {
+        "existed": true,
+        "value": {
+          "status": "LOT_E_DELIVERY_PUBLISHED_LIVE_PARITY_VERIFIED",
+          "deliveryCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
+          "branch": "dev",
+          "remote": "origin/dev",
+          "remoteVerifiedAt": "2026-10-16T15:33:54.359Z",
+          "protectedMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+          "normalNonForce": true,
+          "authorization": "OD-2026-10-12-A and OD-2026-10-15-B",
+          "metadataCommit": "This final metadata snapshot follows the confirmed delivery; identify it in Git"
+        }
+      }
     }
   }
 }
