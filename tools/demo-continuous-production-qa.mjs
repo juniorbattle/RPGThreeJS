@@ -511,7 +511,7 @@ async function explorePoiStep(live){
   }
   if(explorationPlan==='complete'&&region>0){
     const def=lotE.mobileEliteActors.find(elite=>elite.region===region),elite=live.run.poiExpedition.elites[def.id];
-    if(region===1&&elite.defeated&&!report.expedition.afterElitePreparation){
+    if(region===1&&elite.defeated&&!live.resolvedNodeIds.includes('lion-village-choice')&&!report.expedition.afterElitePreparation){
       if(live.currentNodeId!=='lion-valmir-road')await navigateExpedition('lion-valmir-road');
       else {await preparePoiCompanyAfterValmir();report.expedition.afterElitePreparation={eliteId:def.id,nativePaidService:true};}
       return true;
@@ -731,7 +731,7 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
 async function prepareNativeWeapon(nodeId){
   const baseItemId='steel_greatsword',forge=explorationPlan==='complete'&&nodeId==='lion-second-refuge';
   const itemId=forge?'ember_greatsword':baseItemId,unitId='warrior',initial=await state();
-  if(initial.clan.members.find(u=>u.id===unitId).equipment.weaponIds[0]===itemId)return;
+  if([itemId,'ember_greatsword'].includes(initial.clan.members.find(u=>u.id===unitId).equipment.weaponIds[0]))return;
   const reuseEquippedBase=forge&&initial.clan.members.find(u=>u.id===unitId).equipment.weaponIds[0]===baseItemId;
   const purchaseId=reuseEquippedBase?'novice_greatsword':baseItemId;
   await keyboardActivate('.exploration-stop [data-action="shop"]');
@@ -765,6 +765,9 @@ async function prepareNativeWeapon(nodeId){
     await keyboardActivate('.management [data-shop-mode="craft"]');
     const craft='.management [data-craft="craft_burn_greatsword"]';
     assert.equal(await page.locator(craft).isEnabled(),true);assert.match(await page.locator(craft).getAttribute('aria-label'),/80 or/);
+    const ingredientText=await page.locator(craft).locator('..').locator('.craft-recipe__ingredients').innerText();
+    assert.match(ingredientText,/Minerai de fer \d+\/2/,'Native forge must disclose its real permanent material cost');
+    await capture(`${nodeId}-native-earned-forge-ready`);
     await keyboardActivate(craft);const forged=await state(),expected=structuredClone(beforeForge);
     expected.gold-=80;expected.inventory.weapons[baseItemId]-=1;
     expected.inventory.materials.iron_ore-=2;expected.inventory.weapons[itemId]=(expected.inventory.weapons[itemId]??0)+1;

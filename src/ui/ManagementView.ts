@@ -813,6 +813,7 @@ export class ManagementView {
       const ingredients = [
         ...Object.entries(recipe.inputs.weapons ?? {}).map(([id, quantity]) => this.ingredientLabel('weapons', id, quantity)),
         ...Object.entries(recipe.inputs.accessories ?? {}).map(([id, quantity]) => this.ingredientLabel('accessories', id, quantity)),
+        ...Object.entries(recipe.inputs.materials ?? {}).map(([id, quantity]) => this.ingredientLabel('materials', id, quantity)),
       ].join('');
       return `<article class="craft-recipe ui-panel ui-panel--soft">
         <div class="craft-recipe__output">
@@ -842,7 +843,7 @@ export class ManagementView {
     </div>`;
   }
 
-  private ingredientLabel(category: 'weapons' | 'accessories', itemId: string, quantity: number): string {
+  private ingredientLabel(category: 'weapons' | 'accessories' | 'materials', itemId: string, quantity: number): string {
     const state = this.options.getState();
     const item = itemById.get(itemId);
     const owned = state.inventory[category][itemId] ?? 0;
