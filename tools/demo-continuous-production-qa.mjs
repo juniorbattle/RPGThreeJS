@@ -20,6 +20,7 @@ const touchInput=process.env.DEMO_QA_TOUCH==='1';
 const nativeEquipment=process.env.DEMO_QA_EQUIPMENT==='steel';
 const trialPlan=process.env.DEMO_QA_TRIALS??'event';
 const explorationPlan=process.env.DEMO_QA_EXPLORATION??'direct';
+const checkpointPoiId=process.env.DEMO_QA_CHECKPOINT_POI??null;
 assert.ok(['direct','moderate','complete'].includes(explorationPlan),'Unknown Lot E native exploration strategy');
 assert.ok(!(explorationPlan==='complete'&&target==='valmir'),'Complete region II exploration requires target second-refuge or later');
 const lotE=JSON.parse(await readFile('docs/project/RPGThreeJS_LOT_E_MANIFEST_AUTHORING_FINAL_2026-10-15.json','utf8'));
@@ -27,7 +28,8 @@ const viewport=(process.env.DEMO_QA_VIEWPORT??'1366x768').split('x').map(Number)
 const preparationContinue='[data-narrative-tableau="FINAL_REFUGE_PREPARATION_TABLEAU"] [data-journey-continue]:visible:not(:disabled)';
 const genericJourneyContinue='[data-journey-continue]:visible:not(:disabled):not([data-narrative-tableau="FINAL_REFUGE_PREPARATION_TABLEAU"] [data-journey-continue])';
 assert.ok(viewport.length===2&&viewport.every(n=>Number.isInteger(n)&&n>0),'Invalid viewport');
-assert.ok(['first-refuge','second-refuge','second-trial','valmir','preparation','ending','terminal','defeat-recovery'].includes(target),'Unknown bounded target');
+assert.ok(['first-refuge','second-refuge','second-trial','valmir','preparation','ending','terminal','defeat-recovery','expedition-checkpoint'].includes(target),'Unknown bounded target');
+assert.ok(target!=='expedition-checkpoint'||lotE.fixedPoiCandidates.some(poi=>poi.id===checkpointPoiId),'Native expedition checkpoint requires an approved optional POI');
 assert.ok(['event','combat'].includes(trialPlan),'Unknown authored trial alternative');
 assert.ok(!(process.env.DEMO_QA_OS_MOTION==='1'&&process.env.DEMO_QA_GAME_MOTION==='1'),'OS-only and native game reduction are separate acceptance cases');
 if(target==='defeat-recovery')assert.ok(['lion-village-choice','lion-second-trial-combat','lion-final-trial-combat',
@@ -39,6 +41,13 @@ if(Boolean(earnedSavePath)!==Boolean(priorProofPath))throw new Error('Earned res
 const earnedText=earnedSavePath?await readFile(earnedSavePath,'utf8'):null;
 const priorProof=priorProofPath?JSON.parse(await readFile(priorProofPath,'utf8')):null;
 if(priorProof){
+  assert.ok(priorProof.qaJobReceipt,'Certified continuation requires its finalized QA receipt');
+  const receipt=JSON.parse(await readFile(priorProof.qaJobReceipt,'utf8'));
+  assert.equal(receipt.status,'SUCCEEDED','An interrupted or failed worker cannot seed native continuation');
+  assert.equal(receipt.exitCode,0);
+  assert.equal(receipt.provenanceStable,true,'Prior native execution provenance drifted');
+  assert.equal(resolve(receipt.resultPath),resolve(priorProofPath),'Prior receipt describes another result');
+  assert.equal(receipt.resultSha256,createHash('sha256').update(await readFile(priorProofPath)).digest('hex'),'Prior native result hash mismatches its receipt');
   assert.equal(priorProof.pass,true,'Certified continuation requires successful prior proof');
   assert.equal(priorProof.failure,undefined,'Certified continuation cannot contain a failed assertion');
   assert.deepEqual(priorProof.errors,[]);
@@ -47,8 +56,15 @@ if(priorProof){
   const save=JSON.parse(earnedText);assert.equal(save.version,6);
   assert.ok(save.resolvedNodeIds.includes('lion-opening-ambush'));
   assert.deepEqual(save,priorProof.resumed,'Earned resume must match the exact verified resumed owner state');
-  assert.ok(['lion-first-refuge','lion-second-refuge','lion-final-refuge','lion-valmir-road','lion-second-trial-combat','lion-final-judgement'].includes(save.currentNodeId));
-  if(save.currentNodeId==='lion-second-trial-combat'){
+  const optionalCheckpoint=lotE.fixedPoiCandidates.some(poi=>poi.id===save.currentNodeId);
+  assert.ok(optionalCheckpoint||['lion-first-refuge','lion-second-refuge','lion-final-refuge','lion-valmir-road','lion-second-trial-combat','lion-final-judgement'].includes(save.currentNodeId));
+  if(optionalCheckpoint){
+    assert.equal(priorProof.target,'expedition-checkpoint');
+    assert.equal(receipt.parameters.target,'expedition-checkpoint');assert.equal(receipt.parameters.checkpointPoiId,save.currentNodeId);
+    assert.equal(priorProof.expeditionCheckpoint?.id,save.currentNodeId);assert.equal(priorProof.expeditionCheckpoint?.pass,true);
+    assert.ok(save.resolvedNodeIds.includes(save.currentNodeId));
+    assert.equal(save.run.poiExpedition.pendingStep,undefined);assert.equal(save.run.poiExpedition.encounter,undefined);
+  }else if(save.currentNodeId==='lion-second-trial-combat'){
     assert.equal(target,'second-refuge');assert.equal(priorProof.target,'second-trial');
     assert.ok(save.resolvedNodeIds.includes(save.currentNodeId));assert.ok(save.resolvedNodeIds.includes('lion-valmir-road'));
     assert.ok(save.resolvedNodeIds.includes('lion-first-refuge'));assert.equal(save.flags['refugeSecured:lion-first-refuge'],true);
@@ -1272,7 +1288,7 @@ try{
         // Complete the refuge visit natively, reopen services, then resume its resolved map POI.
         await keyboardActivate('.exploration-stop [data-action="continue"]');
         await returnToPoiMap();
-        const completed=await state();assert.ok(completed.resolvedNodeIds.includes(nodeId));
+        let completed=await state();assert.ok(completed.resolvedNodeIds.includes(nodeId));
         if(nodeId==='lion-second-refuge'){
           const excluded=completed.run.traversalBranches.T1.endsWith('-event')?'lion-second-trial-combat':'lion-second-trial-event';
           assert.ok((await page.locator(`.poi-map [data-poi-id="${excluded}"]`).getAttribute('class')).includes('poi-marker--neutralized'));
@@ -1293,8 +1309,10 @@ try{
           report.poi.compatibilityBacktracking=await poiNoReplayPath(path,true);
           report.poi.compatibilityBacktracking.contractedBothDirections=Boolean(shortcut);
           await poiMove(nodeId,true);await hub.waitFor({state:'visible'});
-          assert.deepEqual(await state(),completed,'Returning to reusable refuge changed completed V6 truth');
+          assertCanonicalMatch(await state(),completed,'Returning to reusable refuge changed canonical V6 truth');
           await keyboardActivate('.exploration-stop [data-action="continue"]');await returnToPoiMap();
+          await verifyExpeditionSettlement();assert.equal(pendingExpeditionProof,undefined);
+          completed=await state();
         }
         await keyboardActivate(`.poi-map [data-poi-id="${nodeId}"]`);
         await keyboardActivate('.poi-map [data-poi-action="move"]');await hub.waitFor({state:'visible'});
@@ -1401,8 +1419,21 @@ try{
     if(await page.locator('.poi-map:visible').count()){
       await inspectPoiAtlas();
       live=await state();
+      if(target==='expedition-checkpoint'&&live.currentNodeId===checkpointPoiId&&live.resolvedNodeIds.includes(checkpointPoiId)){
+        assert.equal(live.run.poiExpedition.pendingStep,undefined);assert.equal(live.run.poiExpedition.encounter,undefined);
+        const earnedHere=report.battles.slice(report.inheritedBattleCount??0).some(b=>b.nodeId===checkpointPoiId&&b.pass&&b.outcome==='victory')
+          ||report.expedition.chests.some(chest=>chest.id===checkpointPoiId);
+        assert.ok(earnedHere,'An intermediate checkpoint requires a newly completed native optional activity');
+        const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));assert.deepEqual(JSON.parse(saved),live);
+        await capture('expedition-checkpoint-earned');
+        await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
+        await page.locator('.poi-map:visible').waitFor();report.resumed=await state();assert.deepEqual(report.resumed,live);
+        await writeFile(resolve(output,'earned-expedition-checkpoint-v6.json'),saved+'\n');
+        report.expeditionCheckpoint={id:checkpointPoiId,pass:true,native:true,exactReload:true};
+        await capture('expedition-checkpoint-reloaded');assert.deepEqual(report.errors,[]);report.pass=true;break;
+      }
       report.poi??={native:true};
-      const needsValmirPreparation=(['second-refuge','valmir'].includes(target)||explorationPlan!=='direct'&&target==='ending')
+      const needsValmirPreparation=(['second-refuge','valmir'].includes(target)||explorationPlan!=='direct')
         &&live.currentNodeId==='lion-valmir-road'&&live.resolvedNodeIds.includes(live.currentNodeId)&&!report.poi.valmirRefugePreparation;
       if(!needsValmirPreparation&&await explorePoiStep(live))continue;
       if(target==='second-trial'&&live.currentNodeId==='lion-second-trial-combat'&&live.resolvedNodeIds.includes(live.currentNodeId)){
@@ -1424,7 +1455,7 @@ try{
         assert.deepEqual(changed,expected,'Native motion preference changed unrelated V6 truth');
         report.motionEvidence.gameRequested=true;report.motionEvidence.nativeGameControl=true;continue;
       }
-      if((['second-refuge','valmir'].includes(target)||explorationPlan!=='direct'&&target==='ending')&&live.currentNodeId==='lion-valmir-road'
+      if((['second-refuge','valmir'].includes(target)||explorationPlan!=='direct')&&live.currentNodeId==='lion-valmir-road'
         &&live.resolvedNodeIds.includes(live.currentNodeId)&&!report.poi.valmirRefugePreparation){
         await preparePoiCompanyAfterValmir();
         if(target==='valmir'){
@@ -1496,7 +1527,7 @@ try{
   const final=await state();
   report.expedition.economy={gold:final.gold,temporaryLoot:final.run.temporaryLoot,reputation:final.reputation,
     inventory:final.inventory,heroes:final.clan.members.map(unit=>({id:unit.definitionId,hp:unit.currentHealth})),checkpoint:final.run.checkpointNodeId};
-  if(explorationPlan==='complete'&&target!=='defeat-recovery'){
+  if(explorationPlan==='complete'&&!['defeat-recovery','expedition-checkpoint'].includes(target)){
     const upTo=target==='first-refuge'?0:['second-refuge','valmir','second-trial'].includes(target)?1:2;
     for(const poi of lotE.fixedPoiCandidates.filter(poi=>poi.region<=upTo))assert.ok(final.resolvedNodeIds.includes(poi.id),`Complete native exploration missed ${poi.id}`);
     for(const elite of lotE.mobileEliteActors.filter(elite=>elite.region<=upTo))assert.equal(final.run.poiExpedition.elites[elite.id].defeated,true,`Complete native exploration missed elite ${elite.id}`);
@@ -1514,8 +1545,10 @@ try{
       .map(a=>a.verifiedInitialEquipmentCast?.definitionId).filter(Boolean)))].sort();
     if(target==='ending')assert.deepEqual(report.nativeInitialEquipmentCasts,['archer','dark_mage','lancer','rogue','warrior','white_mage'],'Six fresh native initial-equipment casts were not observed');
   }
-}catch(error){report.pass=false;report.failure=error.stack;await capture('failure-state').catch(()=>{});
-  report.lastState=await state().catch(()=>null);console.error(error.stack);process.exitCode=1;
+}catch(error){report.pass=false;report.failure=error.stack;console.error(error.stack);
+  await writeFile(resolve(output,'failure.json'),JSON.stringify({failure:report.failure,at:new Date().toISOString()},null,2)+'\n');
+  await capture('failure-state').catch(()=>{});
+  report.lastState=await state().catch(()=>null);process.exitCode=1;
 }finally{
   const save=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')).catch(()=>null);
   if(save)await writeFile(resolve(output,'last-earned-autosave-v6.json'),save+'\n');

@@ -39,6 +39,8 @@
 .poi-map__canvas path{stroke-linejoin:round}
 .poi-marker--occupied .poi-marker__icon{border-color:#ee9876}
 .poi-threat{position:absolute;z-index:4;display:grid;place-items:center;width:30px;height:30px;transform:translate(18px,-42px);border:2px solid #f1aa87;border-radius:5px;background:#622f32;color:#fff0cc;font-size:22px;box-shadow:0 2px 10px #100a;pointer-events:none}
+.poi-map:not([data-reduced-motion=true]) .poi-threat{animation:poi-threat-presence 2.8s ease-in-out infinite}
+@keyframes poi-threat-presence{50%{box-shadow:0 0 0 4px #edac8224,0 2px 14px #da6e5259}}
 .poi-map__threat-brief{border-left:2px solid #cf8b6b;padding-left:12px;max-width:320px;font-size:12px;color:#ffd8ba}
 .poi-map__threat-brief p{font-size:11px}.poi-map__threat-brief button{margin-top:4px}
 .poi-dialog-backdrop{position:fixed;inset:0;z-index:150;display:grid;place-items:center;padding:20px;background:#07121cda;color:#f4ead3}
