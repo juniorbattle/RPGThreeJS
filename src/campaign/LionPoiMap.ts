@@ -5,7 +5,7 @@ export const LION_POI_REGIONS = Object.freeze([
   {shortTitle:'III · Le Sceau',title:'Les témoins et le jugement',image:'/assets/generated/lion-phase/poi-lot-e/judgement.png'},
 ]);
 /** Off-region destinations are anchored at visible outbound trails, not waterfalls. */
-export const LION_POI_REGION_EXITS:readonly(readonly[number,number])[]=[[650,350],[720,420],[870,430]];
+export const LION_POI_REGION_EXITS:readonly(readonly[number,number])[]=[[650,350],[720,440],[870,430]];
 /** Authored layout only. RunSystem/campaign own connections and live eligibility. */
 export const LION_POI_POSITIONS: Readonly<Record<string, readonly [number, number]>> = {
   'lion-camp': [75,305], 'lion-audience': [190,170], 'lion-opening-ambush': [300,275],
