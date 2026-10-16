@@ -166,6 +166,7 @@ async function choose(){
   const tribute=target==='first-refuge'&&sequence==='rep_event_roadside_intimidation'&&step==='1'&&index===1
     ?await state():null;
   const petition=sequence==='rep_event_public_petition'&&step==='1'&&index===0?await state():null;
+  const information=sequence==='rep_event_brokered_information'&&step==='1'&&index===0?await state():null;
   if(touchInput)await button.tap();else {await button.focus();await page.keyboard.press('Enter');}report.inputs.push({action:touchInput?'touch choice':'keyboard choice',sequence,step,index,text});
   if(tribute){
     await page.waitForFunction(gold=>window.__demoQaApp.state.gold===gold-20&&window.__demoQaApp.state.flags.r4PaidRoadsideTribute===true,tribute.gold);
@@ -185,7 +186,17 @@ async function choose(){
     expected.reputation=Math.min(100,petition.reputation+3);
     expected.reputationHistory.push({delta:3,source:'narrative',value:expected.reputation});
     assert.deepEqual(after,expected,'Native public petition differs from its authored exact consequences');
-    (report.nativeDepartureEvents??=[]).push({sequence,step,index,text,before:petition,after,authoredCost:35,temporaryCost,securedCost,reputationDelta:3});
+    (report.nativeDepartureEvents??=[]).push({sequence,step,index,text,before:petition,after,authoredCost:35,temporaryCost,securedCost,reputationDelta:3,markerEvent:'public-petition|public-expectation'});
+  }
+  if(information){
+    assert.notEqual(information.flags.r4BoughtRoadInformation,true,'Road information must be a fresh authored purchase');
+    await page.waitForFunction(()=>window.__demoQaApp.state.flags.r4BoughtRoadInformation===true);
+    const after=await state(),expected=structuredClone(information);
+    assert.ok(information.gold+information.run.temporaryLoot.gold>=25);
+    const temporaryCost=Math.min(25,information.run.temporaryLoot.gold),securedCost=25-temporaryCost;
+    expected.run.temporaryLoot.gold-=temporaryCost;expected.gold-=securedCost;expected.flags.r4BoughtRoadInformation=true;
+    assert.deepEqual(after,expected,'Native road information differs from its exact authored cost/flag');
+    (report.nativeDepartureEvents??=[]).push({sequence,step,index,text,before:information,after,authoredCost:25,temporaryCost,securedCost,reputationDelta:0,markerEvent:'brokered-information|roadside-opportunity'});
   }
 }
 async function cancel(frame){
@@ -643,12 +654,12 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
   await keyboardActivate('.exploration-stop [data-action="continue"]');await returnToPoiMap();
   const departed=await state(),events=report.nativeDepartureEvents?.slice(eventIndex)??[];
   if(events.length){
-    assert.equal(postTrial,true);assert.equal(events.length,1);const event=events[0];
-    assert.equal(event.sequence,'rep_event_public_petition');
-    assert.deepEqual(event.before,prepared,'Refuge departure changed truth before the fresh canonical petition');
+    assert.equal(events.length,1);const event=events[0];
+    assert.ok(['rep_event_public_petition','rep_event_brokered_information'].includes(event.sequence));
+    assert.deepEqual(event.before,prepared,'Refuge departure changed truth before the fresh canonical social event');
     const completedEvent=structuredClone(event.after);
-    completedEvent.seenUniqueEvents.push(`reputation-director-event|${rested.stepCounter}|lion-social-window-1|public-petition|public-expectation`);
-    assertCanonicalMatch(departed,completedEvent,'Native departure differs from the completed petition and its exact once-only marker');
+    completedEvent.seenUniqueEvents.push(`reputation-director-event|${rested.stepCounter}|lion-social-window-1|${event.markerEvent}`);
+    assertCanonicalMatch(departed,completedEvent,'Native departure differs from the completed authored social event and its exact once-only marker');
     assertExpeditionStep(completedEvent,departed,0);
   }else {
     assertCanonicalMatch(departed,prepared,'Resolved refuge departure repeated a one-shot effect');
