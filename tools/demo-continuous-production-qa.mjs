@@ -732,26 +732,45 @@ async function prepareNativeWeapon(nodeId){
   const baseItemId='steel_greatsword',forge=explorationPlan==='complete'&&nodeId==='lion-second-refuge';
   const itemId=forge?'ember_greatsword':baseItemId,unitId='warrior',initial=await state();
   if(initial.clan.members.find(u=>u.id===unitId).equipment.weaponIds[0]===itemId)return;
+  const reuseEquippedBase=forge&&initial.clan.members.find(u=>u.id===unitId).equipment.weaponIds[0]===baseItemId;
+  const purchaseId=reuseEquippedBase?'novice_greatsword':baseItemId;
   await keyboardActivate('.exploration-stop [data-action="shop"]');
-  const buy=`.management [data-trade="buy"][data-item="${baseItemId}"]`;
+  const buy=`.management [data-trade="buy"][data-item="${purchaseId}"]`;
   await page.locator(buy).waitFor({state:'visible'});
   const before=await state(),price=Number.parseInt(await page.locator(buy).innerText(),10);
   assert.ok(Number.isInteger(price)&&price>0&&before.gold>=price,'Native weapon purchase must be affordable');
   await keyboardActivate(buy);const bought=await state(),expectedBuy=structuredClone(before);
-  expectedBuy.gold-=price;expectedBuy.inventory.weapons[baseItemId]=(expectedBuy.inventory.weapons[baseItemId]??0)+1;
-  expectedBuy.shops.valmir.stock[baseItemId]-=1;assert.deepEqual(bought,expectedBuy,'Native purchase changed unrelated truth');
+  expectedBuy.gold-=price;expectedBuy.inventory.weapons[purchaseId]=(expectedBuy.inventory.weapons[purchaseId]??0)+1;
+  expectedBuy.shops.valmir.stock[purchaseId]-=1;assert.deepEqual(bought,expectedBuy,'Native purchase changed unrelated truth');
   let prepared=bought;
+  if(reuseEquippedBase){
+    await keyboardActivate('.management [data-action="close"]');
+    await keyboardActivate('.exploration-stop [data-action="clan"]');
+    await keyboardActivate(`.management [data-unit="${unitId}"]`);
+    await keyboardActivate('.management [data-equip-slot="weapon"]');
+    await keyboardActivate(`.management [data-preview-item="${purchaseId}"]`);
+    await keyboardActivate(`.management [data-equip-confirm="${purchaseId}"]`);
+    const swapped=await state(),expected=structuredClone(bought),hero=expected.clan.members.find(u=>u.id===unitId);
+    assert.deepEqual(hero.equipment.accessoryIds,[null,null],'Native forge swap scope expects the earned accessory-free warrior');
+    hero.equipment.weaponIds[0]=purchaseId;hero.currentHealth=Math.min(hero.currentHealth,140);
+    expected.inventory.weapons[purchaseId]-=1;expected.inventory.weapons[baseItemId]=(expected.inventory.weapons[baseItemId]??0)+1;
+    assert.deepEqual(swapped,expected,'Native substitute equipment must return the actual steel blade without healing');
+    assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),swapped);
+    prepared=swapped;await keyboardActivate('.management [data-action="close"]');
+    await keyboardActivate('.exploration-stop [data-action="shop"]');
+  }
   if(forge){
-    assert.ok(bought.gold>=80&&(bought.inventory.materials.iron_ore??0)>=2,'Earned permanent resources must fund the existing forge recipe');
+    const beforeForge=prepared;
+    assert.ok(beforeForge.gold>=80&&(beforeForge.inventory.materials.iron_ore??0)>=2,'Earned permanent resources must fund the existing forge recipe');
     await keyboardActivate('.management [data-shop-mode="craft"]');
     const craft='.management [data-craft="craft_burn_greatsword"]';
     assert.equal(await page.locator(craft).isEnabled(),true);assert.match(await page.locator(craft).getAttribute('aria-label'),/80 or/);
-    await keyboardActivate(craft);const forged=await state(),expected=structuredClone(bought);
+    await keyboardActivate(craft);const forged=await state(),expected=structuredClone(beforeForge);
     expected.gold-=80;expected.inventory.weapons[baseItemId]-=1;
     expected.inventory.materials.iron_ore-=2;expected.inventory.weapons[itemId]=(expected.inventory.weapons[itemId]??0)+1;
     assert.deepEqual(forged,expected,'Native forge must consume only the exact existing permanent recipe inputs');
     assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),forged);
-    (report.nativeForgePreparation??=[]).push({nodeId,recipeId:'craft_burn_greatsword',cost:80,iron:2,baseItemId,itemId,before:bought,after:forged,temporaryLootUnchanged:true});
+    (report.nativeForgePreparation??=[]).push({nodeId,recipeId:'craft_burn_greatsword',cost:80,iron:2,baseItemId,itemId,reuseEquippedBase,purchaseId,before:beforeForge,after:forged,temporaryLootUnchanged:true});
     await capture(`${nodeId}-native-earned-forge`);prepared=forged;
   }
   await keyboardActivate('.management [data-action="close"]');
@@ -775,7 +794,7 @@ async function prepareNativeWeapon(nodeId){
   expectedSell.gold+=proceeds;expectedSell.inventory.weapons[old]-=1;expectedSell.shops.valmir.stock[old]=(expectedSell.shops.valmir.stock[old]??0)+1;
   assert.deepEqual(sold,expectedSell,'Native sale changed unrelated truth');
   assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),sold);
-  (report.nativeWeaponPreparation??=[]).push({nodeId,itemId,unitId,price,old,proceeds,before,bought,equipped,sold});
+  (report.nativeWeaponPreparation??=[]).push({nodeId,itemId,purchaseId,unitId,price,old,proceeds,before,bought,equipped,sold});
   await capture(`${nodeId}-native-${forge?'ember-forged':'steel'}-equipment`);
   await keyboardActivate('.management [data-action="close"]');
 }

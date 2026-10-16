@@ -2,7 +2,7 @@
 
 IN_PROGRESS. Operator OD-2026-10-15-B approves the complete twelve optional POIs, two graph-mobile elites, exact catalogue/economy and independent Combat/retreat. Starting dev4c80196c; no inherited WIP. Dedicated set1.4.0 actual-diff review PASS, amendment commitf9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8. The operator explicitly approved the four governance version/SHA reference updates after auto-review refusal; immutable baselinef9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8. E1-E5 and native acceptance remain PENDING; operator art/final balance separate. All prior QA records, deferred tasks and historical proof preserved. Scheduler unchanged.
 
-Next: Sentinel first novice trio lost35nativeactions: rejected/notseed. Retry from certified serpent checkpoint with native steel purchase, healer/warrior/rogue deployment, paid post-elite rest/exact existing-material funding; no enemy/reward/stat changes. Both real elite victories and completeIII/ending remain.
+Next: Complete II SUCCEEDED592gold89rep/8optional/sentinel32/village38, exactV6andchoiceReload. FinishIII from that certifiedsave: native steel reuse/forge80+2iron, interrupted chest roundtrip, warden/ruin victories then earned checkpoint; full12/end still pending.
 
 ## Preserved preceding checkpoint
 
@@ -1418,6 +1418,9 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - lot-e-complete-II-0003: PLANNED; port 5422; receipt `tmp/demo/lot-e-complete-II-0003/qa-job.json`; NOT_ACCEPTED
 - lot-e-moderate-ending-0002: PLANNED; port 5423; receipt `tmp/demo/lot-e-moderate-ending-0002/qa-job.json`; NOT_ACCEPTED
 - lot-e-complete-II-0004: PLANNED; port 5424; receipt `tmp/demo/lot-e-complete-II-0004/qa-job.json`; NOT_ACCEPTED
+- lot-e-moderate-ending-0001: NOT_STARTED_REGISTRATION_RACE; port 5419; receipt `tmp/demo/lot-e-moderate-ending-0001/qa-job.json`; NOT_ACCEPTED
+- lot-e-complete-II-0005: PLANNED; port 5425; receipt `tmp/demo/lot-e-complete-II-0005/qa-job.json`; NOT_ACCEPTED
+- lot-e-complete-III-0001: PLANNED; port 5426; receipt `tmp/demo/lot-e-complete-III-0001/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
