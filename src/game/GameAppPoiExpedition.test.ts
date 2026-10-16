@@ -81,6 +81,43 @@ describe('mechanical GameApp expedition integration, not native battle evidence'
     expect(owner.state.currentNodeId).toBe('lion-reserve-trail');expect(exp.turn).toBe(1);
     expect(owner.state.resolvedNodeIds).toEqual(before.resolvedNodeIds);expect(owner.state.run.temporaryLoot).toEqual(before.run.temporaryLoot);app.dispose();
   });
+  it.each(['front','rear'] as const)('disposing a %s interception preserves the exact saved choice for a new app instead of applying a synthetic retreat',async kind=>{
+    const {app,owner,root}=fixture('lion-valmir-road');
+    if(kind==='rear'){
+      const exp=owner.state.run.poiExpedition!,elite=exp.elites['lion-elite-valley-sentinel']!;
+      elite.positionId='lion-poi-valley-serpent';elite.patrolIndex=1;exp.previousSafeNodeId='lion-reserve-trail';
+    }
+    const pending=kind==='front'?owner.choosePoi('lion-poi-valley-bridge-cache'):owner.waitOnPoi();
+    const before=structuredClone(owner.state),saved=localStorage.getItem('rpg-threejs:autosave:v6');
+    expect(before.run.poiExpedition?.encounter?.phase).toBe('choice');expect(before.run.poiExpedition?.encounter?.kind).toBe(kind);
+    app.dispose();await pending;
+    expect(owner.state).toEqual(before);expect(localStorage.getItem('rpg-threejs:autosave:v6')).toBe(saved);
+    expect(root.querySelector('.poi-map')).toBeNull();expect(root.querySelector('[role=dialog]')).toBeNull();
+    const replacement=new GameApp(root,document.createElement('canvas'));
+    const resumedOwner=replacement as unknown as typeof owner;
+    const resumed=resumedOwner.continueChronicle();
+    await vi.waitFor(()=>expect(root.querySelector('[role=dialog]')).not.toBeNull());
+    expect(resumedOwner.state).toEqual(before);
+    root.querySelector<HTMLButtonElement>('[data-poi-dialog-action=retreat]')!.click();await resumed;
+    expect(resumedOwner.state.run.poiExpedition?.encounter).toBeUndefined();replacement.dispose();
+  });
+  it('disposing an attributed chest preserves its pending turn without saving or redrawing, then resumes it exactly once',async()=>{
+    const {app,owner,root}=fixture('lion-valmir-road'),elite=owner.state.run.poiExpedition!.elites['lion-elite-valley-sentinel']!;
+    elite.positionId='lion-poi-valley-serpent';elite.patrolIndex=1;
+    const pending=owner.choosePoi('lion-poi-valley-bridge-cache');
+    const before=structuredClone(owner.state),saved=localStorage.getItem('rpg-threejs:autosave:v6');
+    expect(before.run.poiExpedition?.pendingStep?.step).toBe(1);
+    app.dispose();await pending;
+    expect(owner.state).toEqual(before);expect(localStorage.getItem('rpg-threejs:autosave:v6')).toBe(saved);
+    expect(root.querySelector('.poi-map')).toBeNull();expect(root.querySelector('[role=dialog]')).toBeNull();
+    const replacement=new GameApp(root,document.createElement('canvas'));
+    const resumedOwner=replacement as unknown as typeof owner;await resumedOwner.continueChronicle();
+    expect(resumedOwner.state.run.poiExpedition?.pendingStep).toBeUndefined();
+    expect(resumedOwner.state.run.poiExpedition?.turn).toBe(before.run.poiExpedition?.turn);
+    expect(resumedOwner.state.run.temporaryLoot).toEqual(before.run.temporaryLoot);
+    expect(resumedOwner.state.run.poiExpedition?.elites['lion-elite-valley-sentinel']?.positionId).toBe('lion-valmir-road');
+    expect(root.querySelector('[role=dialog]')).toBeNull();replacement.dispose();
+  });
   it('a mobile defeat uses the actual saved checkpoint owner, loses unsecured loot and leaves the elite alive',async()=>{
     const {app,owner,root}=fixture('lion-valmir-road');owner.state.gold=44;owner.state.run.temporaryLoot.gold=71;
     vi.spyOn(owner.combat,'start').mockImplementation(({config})=>({ready:Promise.resolve(),

@@ -108,7 +108,7 @@ if(touchInput){
 Object.assign(report,{target,routePlan,finalePlan,trialPlan,defeatNodeId,nativeDefeatWait,viewport:{width:viewport[0],height:viewport[1]},
   osReducedMotion:process.env.DEMO_QA_OS_MOTION==='1',observationHook:'Built bootstrap exposes GameApp for read-only snapshots; no owner method invoked',refuges:[],choices:[]});
 report.nativeTacticalPolicy='Salvation and skill targets prioritize lowest-health eligible native targets; novice crosier uses lowest-charge ally attacks and follows wounded allies; potions below75% for Champion/Raid and50% elsewhere; read-only rejection telemetry; existing native controls only';
-report.nativePreparationPolicy='Existing native equipment/shop and paid refuge rest; post-T1 Raid may sell existing permanent supplies for paid rest/two potions and deploy living Cedric; exact transactions and temporary-loot invariance';
+report.nativePreparationPolicy='Existing native equipment/shop and paid refuge rest; complete+equipment buys steel and forges the existing Espadon de Braise recipe for80 permanent gold/2iron; post-T1 Raid may sell existing supplies for paid rest/two potions; exact native transactions and temporary-loot invariance';
 report.nativeNavigationPolicy='Production native adjacent POI intentions; no physical engine or driving fallback';
 report.driverSha256=createHash('sha256').update(await readFile('tools/demo-continuous-production-qa.mjs')).digest('hex');
 report.productionBundles=await Promise.all((await readdir('dist/assets')).filter(name=>/^(game|combat)-.*\.js$/.test(name))
@@ -456,7 +456,20 @@ async function handleExpeditionDialog(forceRetreat=false){
     assert.deepEqual(live.run.temporaryLoot.inventory,expected);
     assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),live,'Chest must save before popup acknowledgement');
     report.expedition.chests.push({id:def.id,gold:def.chestLoot.temporaryGold,items:def.chestLoot.temporaryItems,temporary:true,turn:live.run.poiExpedition.turn});
-    await capture(`chest-${def.id}`);await keyboardActivate('[data-poi-dialog-action="close"]');return true;
+    await capture(`chest-${def.id}`);
+    if(explorationPlan==='complete'&&!report.expedition.chestReload){
+      await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
+      await page.locator('.poi-map:visible').waitFor();
+      const resumed=await state();assertCanonicalMatch(resumed,live,'Interrupted chest reload repeated a reward or changed canonical facts');
+      assertExpeditionStep(live,resumed,0);await verifyExpeditionSettlement();
+      assert.equal(await page.locator('.poi-dialog-backdrop:visible').count(),0,'Attributed chest reopened its reward popup');
+      assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),resumed);
+      await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
+      await page.locator('.poi-map:visible').waitFor();assert.deepEqual(await state(),resumed,'Second chest reload advanced another turn or repeated attribution');
+      report.expedition.chestReload={id:def.id,before:live,after:resumed,exactCanonical:true,grantOnce:true,settledOnce:true};
+      await capture(`chest-${def.id}-interrupted-reloaded`);return true;
+    }
+    await keyboardActivate('[data-poi-dialog-action="close"]');return true;
   }
   const def=lotE.mobileEliteActors.find(elite=>elite.id===encounter.eliteId);assert.ok(def);
   const prior=report.expedition.interceptions.filter(entry=>entry.eliteId===def.id&&entry.choice==='retreat');
@@ -710,23 +723,38 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
     returnPath,onward,paidRestPersistedExactly:cost>0,skippedAlreadyHealthy:cost===0,exactSavedOwner:true};
 }
 async function prepareNativeWeapon(nodeId){
-  const itemId='steel_greatsword',unitId='warrior',initial=await state();
+  const baseItemId='steel_greatsword',forge=explorationPlan==='complete';
+  const itemId=forge?'ember_greatsword':baseItemId,unitId='warrior',initial=await state();
   if(initial.clan.members.find(u=>u.id===unitId).equipment.weaponIds[0]===itemId)return;
   await keyboardActivate('.exploration-stop [data-action="shop"]');
-  const buy=`.management [data-trade="buy"][data-item="${itemId}"]`;
+  const buy=`.management [data-trade="buy"][data-item="${baseItemId}"]`;
   await page.locator(buy).waitFor({state:'visible'});
   const before=await state(),price=Number.parseInt(await page.locator(buy).innerText(),10);
   assert.ok(Number.isInteger(price)&&price>0&&before.gold>=price,'Native weapon purchase must be affordable');
   await keyboardActivate(buy);const bought=await state(),expectedBuy=structuredClone(before);
-  expectedBuy.gold-=price;expectedBuy.inventory.weapons[itemId]=(expectedBuy.inventory.weapons[itemId]??0)+1;
-  expectedBuy.shops.valmir.stock[itemId]-=1;assert.deepEqual(bought,expectedBuy,'Native purchase changed unrelated truth');
+  expectedBuy.gold-=price;expectedBuy.inventory.weapons[baseItemId]=(expectedBuy.inventory.weapons[baseItemId]??0)+1;
+  expectedBuy.shops.valmir.stock[baseItemId]-=1;assert.deepEqual(bought,expectedBuy,'Native purchase changed unrelated truth');
+  let prepared=bought;
+  if(forge){
+    assert.ok(bought.gold>=80&&(bought.inventory.materials.iron_ore??0)>=2,'Earned permanent resources must fund the existing forge recipe');
+    await keyboardActivate('.management [data-shop-mode="craft"]');
+    const craft='.management [data-craft="craft_burn_greatsword"]';
+    assert.equal(await page.locator(craft).isEnabled(),true);assert.match(await page.locator(craft).getAttribute('aria-label'),/80 or/);
+    await keyboardActivate(craft);const forged=await state(),expected=structuredClone(bought);
+    expected.gold-=80;expected.inventory.weapons[baseItemId]-=1;
+    expected.inventory.materials.iron_ore-=2;expected.inventory.weapons[itemId]=(expected.inventory.weapons[itemId]??0)+1;
+    assert.deepEqual(forged,expected,'Native forge must consume only the exact existing permanent recipe inputs');
+    assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),forged);
+    (report.nativeForgePreparation??=[]).push({nodeId,recipeId:'craft_burn_greatsword',cost:80,iron:2,baseItemId,itemId,before:bought,after:forged,temporaryLootUnchanged:true});
+    await capture(`${nodeId}-native-earned-forge`);prepared=forged;
+  }
   await keyboardActivate('.management [data-action="close"]');
   await keyboardActivate('.exploration-stop [data-action="clan"]');
   await keyboardActivate(`.management [data-unit="${unitId}"]`);
   await keyboardActivate('.management [data-equip-slot="weapon"]');
   await keyboardActivate(`.management [data-preview-item="${itemId}"]`);
   await keyboardActivate(`.management [data-equip-confirm="${itemId}"]`);
-  const equipped=await state(),expectedEquip=structuredClone(bought),hero=expectedEquip.clan.members.find(u=>u.id===unitId);
+  const equipped=await state(),expectedEquip=structuredClone(prepared),hero=expectedEquip.clan.members.find(u=>u.id===unitId);
   const old=hero.equipment.weaponIds[0];hero.equipment.weaponIds[0]=itemId;
   expectedEquip.inventory.weapons[old]=(expectedEquip.inventory.weapons[old]??0)+1;
   expectedEquip.inventory.weapons[itemId]-=1;
@@ -742,7 +770,7 @@ async function prepareNativeWeapon(nodeId){
   assert.deepEqual(sold,expectedSell,'Native sale changed unrelated truth');
   assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),sold);
   (report.nativeWeaponPreparation??=[]).push({nodeId,itemId,unitId,price,old,proceeds,before,bought,equipped,sold});
-  await capture(`${nodeId}-native-steel-equipment`);
+  await capture(`${nodeId}-native-${forge?'ember-forged':'steel'}-equipment`);
   await keyboardActivate('.management [data-action="close"]');
 }
 async function cellClick(frame,cell,attempt){

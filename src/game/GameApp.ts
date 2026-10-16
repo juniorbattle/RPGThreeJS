@@ -124,6 +124,7 @@ const JOURNEY_SECONDARY_ACTIONS: readonly JourneySecondaryActionPresentation[] =
 const JOURNEY_MAX_REJECTIONS = 3;
 
 export class GameApp {
+  private disposed = false;
   private mode: AppMode = 'TITLE';
   private state: GameState = createInitialState();
   private readonly statusHud = new CampaignStatusHud(() => selectCampaignStatus(this.state));
@@ -211,6 +212,7 @@ export class GameApp {
   }
 
   dispose(): void {
+    this.disposed = true;
     this.poiEncounter.close();
     this.poiMap.close();
 
@@ -671,6 +673,7 @@ export class GameApp {
   }
 
   private async enterCampaignPresentation(): Promise<void> {
+    if(this.disposed)return;
     settlePoiNavigation(this.state);
     if(this.state.run.poiExpedition?.encounter){await this.presentPoiElite();return;}
     // Existing terminal and preparation presentation retain agency; navigation stays on the map.
@@ -745,7 +748,7 @@ export class GameApp {
         :'Ce passage est occupé. Combattez ou restez à votre position sûre.',
       lines:['Combat d’élite · Déploiement : 3 unités maximum.',
         `${def.combat.rewards.temporaryGold} or de butin temporaire à la victoire. Le lieu conserve son propre contenu.`]});
-    if(this.state.run.poiExpedition?.encounter?.id!==encounter.id)return;
+    if(this.disposed||this.state.run.poiExpedition?.encounter?.id!==encounter.id)return;
     if(choice==='retreat'){
       if(!retreatPoiElite(this.state,selectPoiMap(this.state)))throw new Error('Unavailable safe elite retreat');
       this.saves.saveAuto(this.state);this.showPoiMap(this.state.run.currentNodeId);return;

@@ -2,7 +2,7 @@
 
 IN_PROGRESS. Operator OD-2026-10-15-B approves the complete twelve optional POIs, two graph-mobile elites, exact catalogue/economy and independent Combat/retreat. Starting dev4c80196c; no inherited WIP. Dedicated set1.4.0 actual-diff review PASS, amendment commitf9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8. The operator explicitly approved the four governance version/SHA reference updates after auto-review refusal; immutable baselinef9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8. E1-E5 and native acceptance remain PENDING; operator art/final balance separate. All prior QA records, deferred tasks and historical proof preserved. Scheduler unchanged.
 
-Next: Continue complete valley from exact successful serpent checkpoint; native paid rest, saved interception reload, sentinel victory then Second refuge. Moderate II certified480gold/front+rearretreat; continue moderate ending. Final atlas label spacing verified by new capture.
+Next: 269 current-source tests/15files, contracts8/eightvideos/types/build PASS; moderate true ending850gold certified. Verify corrected choice/chest pagehide resumes and actual valley sentinel, then regionIII warden/all12POI/earned forge and full ending.
 
 ## Preserved preceding checkpoint
 
@@ -1414,6 +1414,9 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - lot-e-atlas-1920-terrain-0001: PLANNED; port 5417; receipt `tmp/demo/lot-e-atlas-1920-terrain-0001/qa-job.json`; NOT_ACCEPTED
 - lot-e-complete-II-0002: PLANNED; port 5418; receipt `tmp/demo/lot-e-complete-II-0002/qa-job.json`; NOT_ACCEPTED
 - lot-e-atlas-1920-trails-0001: PLANNED; port 5420; receipt `tmp/demo/lot-e-atlas-1920-trails-0001/qa-job.json`; NOT_ACCEPTED
+- lot-e-atlas-1920-trails-0002: PLANNED; port 5421; receipt `tmp/demo/lot-e-atlas-1920-trails-0002/qa-job.json`; NOT_ACCEPTED
+- lot-e-complete-II-0003: PLANNED; port 5422; receipt `tmp/demo/lot-e-complete-II-0003/qa-job.json`; NOT_ACCEPTED
+- lot-e-moderate-ending-0002: PLANNED; port 5423; receipt `tmp/demo/lot-e-moderate-ending-0002/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 
