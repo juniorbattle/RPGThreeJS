@@ -6,6 +6,8 @@ COMPLETE_SCOPED at 2026-10-16T15:29:46.093Z. OD-2026-10-15-B; contract set1.4.0/
 
 Report: [Lot E delivery](../reports/lot-e-final-2026-10-15.md). Handoff: [closeout](handoffs/2026-10-16T1526Z-codex-lot-e-final.md).
 
+Publication: delivery 0686065d883567116c4b09f7b326c4e50bdbc8a7 confirmed on origin/dev; main00b96f1 unchanged. Own WIP snapshot retired locally/remotely after payload verification. Production preview http://127.0.0.1:5175/ PID30712 retained; no live QA listeners. Final metadata push/parity and owned-lock release follow this snapshot.
+
 Next: Operator PC playtest of Lot E artwork, encounter difficulty and economic comfort; preserve unrelated deferred skills/keyboard/narrative findings. Scheduler remains PAUSED; no physical Traversal restoration.
 
 ## Preserved preceding checkpoint

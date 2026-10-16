@@ -1,13 +1,13 @@
 {
   "status": "COMPLETE_SCOPED",
   "runStartedAt": "2026-10-15T22:57:16.909Z",
-  "runEndedAt": "2026-10-16T15:29:46.093Z",
+  "runEndedAt": "2026-10-16T15:33:54.359Z",
   "activeTask": "POI-LOT-E-FINAL",
   "activePhase": "CLOSED_SCOPED_LOT_E_FINAL",
   "activeSubtask": "E1-E5 delivered; complete native campaign, independent review and scoped technical acceptance",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "45fdb478bf465acc07de50948a664183896d2e2c",
-  "lastPushedCommit": "45fdb478bf465acc07de50948a664183896d2e2c",
+  "lastKnownGoodCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
+  "lastPushedCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
   "completedThisRun": [
     "Approved dedicated set1.4.0 amendment before runtime",
     "Twelve exact optional POI/six chests/six deterministic ordinary formations",
@@ -209,10 +209,10 @@
   },
   "runId": "codex-lot-e-20261015",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-16T15:29:46.093Z",
+  "lastHeartbeat": "2026-10-16T15:33:54.359Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-16T15:29:46.093Z",
+    "lastHeartbeat": "2026-10-16T15:33:54.359Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -34230,32 +34230,7 @@
         }
       }
     ],
-    "wip": {
-      "branch": "wip/codex-lot-e-20261015",
-      "sha": "6381ff7ef8fa9005f428214a7bd783d0d0865ab9",
-      "dirtyFiles": [
-        "docs/README.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/project/CURRENT_STATUS.md",
-        "docs/reports/INDEX.md",
-        "docs/reports/lot-e-final-2026-10-15.md",
-        "docs/autonomy/handoffs/2026-10-16T1526Z-codex-lot-e-final.md",
-        "docs/reports/evidence/lot-e-final-2026-10-15/atlas-I.png",
-        "docs/reports/evidence/lot-e-final-2026-10-15/atlas-II.png",
-        "docs/reports/evidence/lot-e-final-2026-10-15/atlas-III.png",
-        "docs/reports/evidence/lot-e-final-2026-10-15/header-390-os.png",
-        "docs/reports/evidence/lot-e-final-2026-10-15/rear-retreat-620.png",
-        "docs/reports/evidence/lot-e-final-2026-10-15/defeat-checkpoint-620.png",
-        "docs/reports/evidence/lot-e-final-2026-10-15/sentinel-victory-620.png",
-        "docs/reports/evidence/lot-e-final-2026-10-15/chest-once-620.png",
-        "docs/reports/evidence/lot-e-final-2026-10-15/warden-victory-620.png",
-        "docs/reports/evidence/lot-e-final-2026-10-15/complete-ending-1366.png",
-        "docs/reports/evidence/lot-e-final-2026-10-15/results.json"
-      ],
-      "status": "SOURCE_ON_DEV_DELIVERY_PAYLOAD_READY",
-      "lastGreenCheck": "277distinct focused tests/16files;type/build/contracts8/slots8; independent full native lineage PASS"
-    },
+    "wip": null,
     "nextAction": "Operator PC playtest of Lot E artwork, encounter difficulty and economic comfort; preserve unrelated deferred skills/keyboard/narrative findings. Scheduler remains PAUSED; no physical Traversal restoration.",
     "runMetrics": {
       "runId": "codex-lot-e-20261015",
@@ -34315,28 +34290,24 @@
       "promotedProofFiles": 11,
       "reviewerRoles": 2
     },
-    "checkpointPaths": [
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-15T2128Z-codex-poi-v2-retirement.md",
-      "docs/reports/poi-v2-retirement-2026-10-15.md"
-    ],
+    "checkpointPaths": [],
     "publication": {
-      "status": "LOT_E_FINAL_DELIVERY_READY_FOR_NORMAL_DEV_PUBLICATION",
+      "status": "LOT_E_DELIVERY_PUBLISHED_LIVE_PARITY_VERIFIED",
+      "deliveryCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
       "branch": "dev",
       "remote": "origin/dev",
-      "lastConfirmedCommit": "45fdb478bf465acc07de50948a664183896d2e2c",
+      "remoteVerifiedAt": "2026-10-16T15:33:54.359Z",
       "protectedMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
       "normalNonForce": true,
-      "authorization": "OD-2026-10-12-A and OD-2026-10-15-B"
+      "authorization": "OD-2026-10-12-A and OD-2026-10-15-B",
+      "metadataCommit": "This final metadata snapshot follows the confirmed delivery; identify it in Git"
     },
-    "runEndedAt": "2026-10-16T15:29:46.093Z",
-    "writerStopped": false,
+    "runEndedAt": "2026-10-16T15:33:54.359Z",
+    "writerStopped": true,
     "metadataPublication": {
-      "status": "FINAL_METADATA_CLOSURE",
-      "runId": "codex-poi-v2-20261015",
-      "verifiedDelivery": "0aada9fdd65d10702138bfdf1174ce188c824302",
-      "at": "2026-10-15T21:32:17.578Z"
+      "status": "INCLUDED_IN_FINAL_CLOSEOUT_COMMIT",
+      "deliveryCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
+      "followup": "Normal push/live parity/owned-lock release immediately after this snapshot"
     },
     "publication1752History": {
       "status": "VERIFIED_PUBLISHED",
@@ -38466,7 +38437,7 @@
     "status": "COMPLETE_SCOPED",
     "runStartedAt": "2026-10-15T22:57:16.909Z",
     "activePhase": "CLOSED_SCOPED_LOT_E_FINAL",
-    "heartbeat": "2026-10-16T15:29:46.093Z",
+    "heartbeat": "2026-10-16T15:33:54.359Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-16T1526Z-codex-lot-e-final.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -40195,7 +40166,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "45fdb478bf465acc07de50948a664183896d2e2c",
+    "lastPushedCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
     "productPreview": {
       "verifiedAt": "2026-10-16T15:27:07.4093983Z",
       "indexSha256": "b4773b8722aef154c3cd6e0e92cd677703c177b82f23cd084e5b661d353aa69f",
@@ -40980,7 +40951,25 @@
         ],
         "technicalScopeOnly": true
       },
-      "registeredJobs": 39
+      "registeredJobs": 39,
+      "wipRetirement": {
+        "verifiedAt": "2026-10-16T15:32:22.9073498Z",
+        "delivery": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
+        "productCheckpoint": "efcd280590230045cb811c737915bfeb75187afe",
+        "branch": "wip/codex-lot-e-20261015",
+        "snapshot": "6381ff7ef8fa9005f428214a7bd783d0d0865ab9",
+        "status": "RETIRED_LOCAL_AND_REMOTE_AFTER_DELIVERY"
+      },
+      "automationStatusObserved": "PAUSED_UNCHANGED_AT_FINAL_CLOSEOUT",
+      "preview": {
+        "verifiedAt": "2026-10-16T15:27:07.4093983Z",
+        "indexSha256": "b4773b8722aef154c3cd6e0e92cd677703c177b82f23cd084e5b661d353aa69f",
+        "pid": 30712,
+        "startedByLotE": true,
+        "retainedForOperator": true,
+        "url": "http://127.0.0.1:5175/"
+      },
+      "closeoutAt": "2026-10-16T15:33:54.359Z"
     }
   },
   "previousInterruptedRun": {
@@ -41485,7 +41474,7 @@
     "preparation": "Native rest75;3KO/5wounded/300gold",
     "scope": "Scoped1366normal rescue secondrefuge on prior frozen build"
   },
-  "lastAcceptedProductionCommit": "f597e3b181b6dc97a6bdee45978716a654ccbf35",
+  "lastAcceptedProductionCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
   "operatorFeedback1748": {
     "previous": {
       "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
@@ -42806,7 +42795,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-16T15:29:46.093Z",
+  "heartbeat": "2026-10-16T15:33:54.359Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",

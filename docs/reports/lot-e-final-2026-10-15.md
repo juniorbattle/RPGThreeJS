@@ -6,7 +6,7 @@
 | DOMAIN | Campagne, contenu, combat, sauvegarde V6, interface et atlas |
 | BASELINE | `4c80196cf2eb87097f063f4f312756044f5a5e47` sur dev |
 | BRANCH | dev |
-| HEAD | Code produit : `c706f31a0ac5b172cc1fe74e432559f30c077a88` ; exécution native finale/pilote : `45fdb478bf465acc07de50948a664183896d2e2c` ; livraison documentaire dans l’historique Git |
+| HEAD | Code produit : `c706f31a0ac5b172cc1fe74e432559f30c077a88` ; exécution native finale/pilote : `45fdb478bf465acc07de50948a664183896d2e2c` ; livraison publiée : 0686065d883567116c4b09f7b326c4e50bdbc8a7 ; métadonnée de clôture suivante dans Git |
 | STATUS | COMPLETE_SCOPED — critères techniques et parcours natif complets ; acceptation artistique et équilibre ressenti réservés au playtest opérateur |
 | MERGED_IN | NONE — checkpoints directement publiés sur origin/dev |
 | SUPERSEDES | Proposition inactive V1 « 4/5/5, élites statiques », remplacée par le catalogue Lot E approuvé ; les rapports POI antérieurs gardent leur portée historique |
