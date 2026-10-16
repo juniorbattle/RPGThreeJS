@@ -2,7 +2,7 @@
 
 IN_PROGRESS. Operator OD-2026-10-15-B approves the complete twelve optional POIs, two graph-mobile elites, exact catalogue/economy and independent Combat/retreat. Starting dev4c80196c; no inherited WIP. Dedicated set1.4.0 actual-diff review PASS, amendment commitf9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8. The operator explicitly approved the four governance version/SHA reference updates after auto-review refusal; immutable baselinef9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8. E1-E5 and native acceptance remain PENDING; operator art/final balance separate. All prior QA records, deferred tasks and historical proof preserved. Scheduler unchanged.
 
-Next: Publish corrected mobile header and pilot route resume; refresh active-threat motion/header captures and continue complete I from certified patrol checkpoint.
+Next: Resume complete and moderate valley lineages plus corrected UI preparation checks; native mobile elites and optional defeat still required.
 
 ## Preserved preceding checkpoint
 
@@ -1396,6 +1396,9 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - lot-e-moderate-marsh-0001: SUCCEEDED; port 5411; receipt `tmp/demo/lot-e-moderate-marsh-0001/qa-job.json`; NOT_ACCEPTED
 - lot-e-direct-ending-touch-0001: SUCCEEDED; port 5412; receipt `tmp/demo/lot-e-direct-ending-touch-0001/qa-job.json`; NOT_ACCEPTED
 - lot-e-optional-defeat-0001: RUNNING; port 5411; receipt `tmp/demo/lot-e-optional-defeat-0001/qa-job.json`; NOT_ACCEPTED
+- lot-e-complete-I-0003: SUCCEEDED; port 5410; receipt `tmp/demo/lot-e-complete-I-0003/qa-job.json`; NOT_ACCEPTED
+- lot-e-ui-390-os-0001: RUNNING; port 5411; receipt `tmp/demo/lot-e-ui-390-os-0001/qa-job.json`; NOT_ACCEPTED
+- lot-e-atlas-1920-normal-0001: RUNNING; port 5412; receipt `tmp/demo/lot-e-atlas-1920-normal-0001/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

@@ -125,7 +125,7 @@ page.on('requestfailed',request=>{if(request.failure()?.errorText!=='net::ERR_AB
 report.timeoutMinutes=jobOptions.parameters.timeoutMinutes;
 if(jobOptions.parameters.timeoutAuthority)report.timeoutAuthority=jobOptions.parameters.timeoutAuthority;
 const deadline=Date.now()+report.timeoutMinutes*60*1000;
-async function capture(name){await page.screenshot({path:resolve(output,`${name}.png`)});report.captures.push(`${name}.png`);
+async function capture(name,timeout=30000){await page.screenshot({path:resolve(output,`${name}.png`),timeout});report.captures.push(`${name}.png`);
   report.geometry??=[];report.geometry.push(await page.evaluate(name=>{
     const controls=[...document.querySelectorAll('.dialogue-choice,.exploration-stop button,.poi-map nav button,.poi-map__atlas-bar button,.poi-map__detail button,.poi-marker[aria-pressed="true"],.poi-dialog button,[data-journey-choice],[data-journey-continue]')]
       .filter(e=>e.getClientRects().length&&!e.disabled).map(e=>{const r=e.getBoundingClientRect();return{label:e.textContent.trim(),x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height,focused:e===document.activeElement,inert:!!e.closest('[inert]')};});
@@ -1193,7 +1193,7 @@ try{
     if(!original.run.poiExpedition)delete preserved.run.poiExpedition;
     assert.deepEqual(preserved,original,'Additive V6 load changed an existing canonical fact');
     report.earnedResume.additiveMigration={originalNodes:original.run.graph.nodes.length,currentNodes:resumed.run.graph.nodes.length,canonicalFactsExact:true};
-    if(['first-refuge','second-refuge','valmir','preparation','ending'].includes(target)&&['lion-first-refuge','lion-second-refuge'].includes(JSON.parse(earnedText).currentNodeId)){
+    if(['first-refuge','second-refuge','valmir','preparation','ending','expedition-checkpoint'].includes(target)&&['lion-first-refuge','lion-second-refuge'].includes(JSON.parse(earnedText).currentNodeId)){
       await page.waitForFunction(()=>[...document.querySelectorAll('.poi-map,.exploration-stop')]
         .some(e=>e.getClientRects().length&&!e.closest('[inert]')));
       if(await page.locator('.poi-map:visible').count()){
@@ -1226,9 +1226,6 @@ try{
     let live=await state();if(report.nodes.at(-1)!==live.currentNodeId){report.nodes.push(live.currentNodeId);console.log(`NODE ${live.currentNodeId}`);}
     if(target==='preparation'){
       assert.notEqual(live.currentNodeId,'lion-final-judgement','Preparation target overrun into judgement');
-      if(live.currentNodeId==='lion-final-refuge'&&live.resolvedNodeIds.includes(live.currentNodeId)){
-        await page.locator(preparationContinue).waitFor({state:'visible',timeout:30000});
-      }
     }
     if(await page.locator(preparationContinue).count()){
       live=await state();assert.equal(live.currentNodeId,'lion-final-refuge');
@@ -1568,7 +1565,7 @@ try{
   }
 }catch(error){report.pass=false;report.failure=error.stack;console.error(error.stack);
   await writeFile(resolve(output,'failure.json'),JSON.stringify({failure:report.failure,at:new Date().toISOString()},null,2)+'\n');
-  await capture('failure-state').catch(()=>{});
+  await capture('failure-state',10000).catch(()=>{});
   report.lastState=await state().catch(()=>null);process.exitCode=1;
 }finally{
   const save=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')).catch(()=>null);
