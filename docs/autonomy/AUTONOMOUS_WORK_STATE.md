@@ -2,7 +2,7 @@
 
 IN_PROGRESS. Operator OD-2026-10-15-B approves the complete twelve optional POIs, two graph-mobile elites, exact catalogue/economy and independent Combat/retreat. Starting dev4c80196c; no inherited WIP. Dedicated set1.4.0 actual-diff review PASS, amendment commitf9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8. The operator explicitly approved the four governance version/SHA reference updates after auto-review refusal; immutable baselinef9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8. E1-E5 and native acceptance remain PENDING; operator art/final balance separate. All prior QA records, deferred tasks and historical proof preserved. Scheduler unchanged.
 
-Next: Validate exact canonical social-event timing, continue complete valley loop and moderate recovery from SUCCEEDED sources; retry optional defeat from certified historical Valmir V6.
+Next: Verify complete valley sentinel and Second refuge from SUCCEEDED serpent checkpoint after native paid rest; repeat moderate II after exact Valmir-config proof fix; refresh 3 region captures for terrain polylines.
 
 ## Preserved preceding checkpoint
 
@@ -1388,23 +1388,27 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - poi-v2-D-final-fresh-opening-1313: FAILED; port 5445; receipt `tmp/demo/poi-v2-D-final-fresh-opening-1313/qa-job.json`; NOT_ACCEPTED
 - poi-v2-D-petition-first-refuge-1714: SUCCEEDED; port 5445; receipt `tmp/demo/poi-v2-D-petition-first-refuge-1714/qa-job.json`; ACCEPTED_SCOPED_FRESH_OPENING_EVENT_FIRST_REFUGE_V6
 - lot-e-complete-I-0001: INTERRUPTED_WORKER_ABSENT; port 5410; receipt `tmp/demo/lot-e-complete-I-0001/qa-job.json`; NOT_ACCEPTED
-- lot-e-direct-I-0001: SUCCEEDED; port 5411; receipt `tmp/demo/lot-e-direct-I-0001/qa-job.json`; NOT_ACCEPTED
+- lot-e-direct-I-0001: SUCCEEDED; port 5411; receipt `tmp/demo/lot-e-direct-I-0001/qa-job.json`; ACCEPTED_SCOPED_EFCD280_NATIVE_FIRST_REFUGE
 - lot-e-oldV6-II-touch-0001: INTERRUPTED_WORKER_ABSENT; port 5412; receipt `tmp/demo/lot-e-oldV6-II-touch-0001/qa-job.json`; NOT_ACCEPTED
 - lot-e-complete-patrol-0002: SUCCEEDED; port 5410; receipt `tmp/demo/lot-e-complete-patrol-0002/qa-job.json`; NOT_ACCEPTED
 - lot-e-oldV6-II-touch-0002: SUCCEEDED; port 5412; receipt `tmp/demo/lot-e-oldV6-II-touch-0002/qa-job.json`; NOT_ACCEPTED
 - lot-e-moderate-I-0001: SUCCEEDED; port 5411; receipt `tmp/demo/lot-e-moderate-I-0001/qa-job.json`; NOT_ACCEPTED
 - lot-e-moderate-marsh-0001: SUCCEEDED; port 5411; receipt `tmp/demo/lot-e-moderate-marsh-0001/qa-job.json`; NOT_ACCEPTED
 - lot-e-direct-ending-touch-0001: SUCCEEDED; port 5412; receipt `tmp/demo/lot-e-direct-ending-touch-0001/qa-job.json`; NOT_ACCEPTED
-- lot-e-optional-defeat-0001: RUNNING; port 5411; receipt `tmp/demo/lot-e-optional-defeat-0001/qa-job.json`; NOT_ACCEPTED
+- lot-e-optional-defeat-0001: ABORTED_PILOT_DEAD_END; port 5411; receipt `tmp/demo/lot-e-optional-defeat-0001/qa-job.json`; NOT_ACCEPTED
 - lot-e-complete-I-0003: SUCCEEDED; port 5410; receipt `tmp/demo/lot-e-complete-I-0003/qa-job.json`; NOT_ACCEPTED
-- lot-e-ui-390-os-0001: RUNNING; port 5411; receipt `tmp/demo/lot-e-ui-390-os-0001/qa-job.json`; NOT_ACCEPTED
-- lot-e-atlas-1920-normal-0001: RUNNING; port 5412; receipt `tmp/demo/lot-e-atlas-1920-normal-0001/qa-job.json`; NOT_ACCEPTED
+- lot-e-ui-390-os-0001: FAILED_PILOT_PREPARATION_WAIT; port 5411; receipt `tmp/demo/lot-e-ui-390-os-0001/qa-job.json`; NOT_ACCEPTED
+- lot-e-atlas-1920-normal-0001: FAILED_PILOT_PREPARATION_WAIT; port 5412; receipt `tmp/demo/lot-e-atlas-1920-normal-0001/qa-job.json`; NOT_ACCEPTED
 - lot-e-complete-marsh-0001: SUCCEEDED; port 5410; receipt `tmp/demo/lot-e-complete-marsh-0001/qa-job.json`; NOT_ACCEPTED
 - lot-e-ui-390-os-0002: SUCCEEDED; port 5411; receipt `tmp/demo/lot-e-ui-390-os-0002/qa-job.json`; NOT_ACCEPTED
 - lot-e-atlas-1920-normal-0002: SUCCEEDED; port 5412; receipt `tmp/demo/lot-e-atlas-1920-normal-0002/qa-job.json`; NOT_ACCEPTED
 - lot-e-moderate-II-0001: FAILED; port 5413; receipt `tmp/demo/lot-e-moderate-II-0001/qa-job.json`; NOT_ACCEPTED
 - lot-e-optional-defeat-0002: FAILED; port 5411; receipt `tmp/demo/lot-e-optional-defeat-0002/qa-job.json`; NOT_ACCEPTED
 - lot-e-complete-valley-loop-0001: FAILED; port 5410; receipt `tmp/demo/lot-e-complete-valley-loop-0001/qa-job.json`; NOT_ACCEPTED
+- lot-e-complete-valley-loop-0002: PLANNED; port 5410; receipt `tmp/demo/lot-e-complete-valley-loop-0002/qa-job.json`; NOT_ACCEPTED
+- lot-e-moderate-II-0002: PLANNED; port 5413; receipt `tmp/demo/lot-e-moderate-II-0002/qa-job.json`; NOT_ACCEPTED
+- lot-e-optional-defeat-0003: PLANNED; port 5411; receipt `tmp/demo/lot-e-optional-defeat-0003/qa-job.json`; NOT_ACCEPTED
+- lot-e-ui-620-game-0001: PLANNED; port 5411; receipt `tmp/demo/lot-e-ui-620-game-0001/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

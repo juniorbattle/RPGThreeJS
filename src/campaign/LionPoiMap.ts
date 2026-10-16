@@ -32,6 +32,7 @@ const PATH_BENDS:Readonly<Record<string,readonly(readonly[number,number])[]>>={
   'lion-nomad-crossroads>lion-refugees':[[460,180],[480,125],[555,90],[625,75]],
   'lion-nomad-crossroads>lion-first-trial-event':[[540,250],[600,230],[660,220],[725,180]],
   'lion-nomad-crossroads>lion-first-trial-combat':[[525,290],[590,340],[680,365]],
+  'lion-refugees>lion-first-trial-combat':[[735,115],[775,165],[805,195],[850,235],[855,290],[820,335],[785,355]],
   'lion-poi-opening-supplies>lion-nomad-crossroads':[[400,110],[440,180]],
   'lion-poi-opening-supplies>lion-poi-opening-patrol':[[420,65],[460,70]],
   'lion-poi-opening-patrol>lion-refugees':[[550,85],[610,80]],
@@ -44,7 +45,7 @@ const PATH_BENDS:Readonly<Record<string,readonly(readonly[number,number])[]>>={
   'lion-poi-valley-bridge-cache>lion-valmir-road':[[295,350],[335,325],[410,305]],
   'lion-poi-valley-bridge-cache>lion-poi-valley-serpent':[[300,390],[350,425],[400,440]],
   'lion-poi-valley-serpent>lion-valmir-road':[[475,420],[520,420],[600,370],[640,345],[620,310],[540,265],[490,275]],
-  'lion-valmir-road>lion-second-trial-event':[[440,220],[500,170],[540,130]],
+  'lion-valmir-road>lion-second-trial-event':[[490,270],[530,260],[580,240],[605,210],[615,170],[605,135],[590,110]],
   'lion-valmir-road>lion-second-trial-combat':[[525,265],[575,310],[625,365]],
   'lion-second-trial-combat>lion-village-choice':[[705,345],[735,290]],
   'lion-poi-seal-witness-supplies>lion-lancer-recruit':[[185,200],[170,260]],
@@ -58,8 +59,13 @@ const PATH_BENDS:Readonly<Record<string,readonly(readonly[number,number])[]>>={
   'lion-poi-seal-ruin-supplies>lion-shadow-signs':[[750,110],[755,160],[730,200]],
   'lion-final-refuge>lion-final-judgement':[[850,320],[885,270],[900,210],[885,160]],
 };
-export function lionPoiPathBends(from:string,to:string):readonly(readonly[number,number])[]|undefined {
-  return PATH_BENDS[`${from}>${to}`]??PATH_BENDS[`${to}>${from}`]?.slice().reverse();
+const REGION_PATH_BENDS:Readonly<Record<number,Readonly<Record<string,readonly(readonly[number,number])[]>>>>={
+  2:{'lion-second-refuge>lion-lancer-recruit':[[125,115],[185,140],[225,185],[250,215],[225,245],[175,275],[150,305]]},
+};
+export function lionPoiPathBends(from:string,to:string,region?:number):readonly(readonly[number,number])[]|undefined {
+  const paths=region===undefined?undefined:REGION_PATH_BENDS[region];
+  return paths?.[`${from}>${to}`]??paths?.[`${to}>${from}`]?.slice().reverse()
+    ??PATH_BENDS[`${from}>${to}`]??PATH_BENDS[`${to}>${from}`]?.slice().reverse();
 }
 
 export function lionPoiMapPhase(nodeId: string): number { return lionPoiRegion(nodeId); }

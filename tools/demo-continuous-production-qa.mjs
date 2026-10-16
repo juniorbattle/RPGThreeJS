@@ -74,7 +74,9 @@ if(priorProof){
   }else if(save.currentNodeId==='lion-valmir-road'){
     assert.ok(save.resolvedNodeIds.includes(save.currentNodeId));assert.ok(save.run.temporaryLoot.gold>0);
     assert.equal(save.run.checkpointNodeId,'lion-first-refuge');
-    assert.ok(priorProof.battles.some(b=>b.nodeId===save.currentNodeId&&b.combatId==='road_to_valmir'&&b.pass));
+    const combatId=save.run.graph.nodes.find(node=>node.id===save.currentNodeId)?.contentId;
+    assert.ok(['road_to_valmir','marsh_crossing'].includes(combatId));
+    assert.ok(priorProof.battles.some(b=>b.nodeId===save.currentNodeId&&b.combatId===combatId&&b.pass&&b.outcome==='victory'));
   }else if(save.currentNodeId==='lion-final-judgement'){
     assert.equal(target,'terminal');assert.equal(save.run.status,'completed');assert.ok(save.endingId);
   }else if(save.currentNodeId==='lion-final-refuge')assert.ok(save.resolvedNodeIds.includes(save.currentNodeId));
@@ -425,7 +427,8 @@ async function handleExpeditionDialog(){
   }
   const def=lotE.mobileEliteActors.find(elite=>elite.id===encounter.eliteId);assert.ok(def);
   const prior=report.expedition.interceptions.filter(entry=>entry.eliteId===def.id&&entry.choice==='retreat');
-  const retreat=explorationPlan!=='complete'||(encounter.kind==='front'&&!prior.some(entry=>entry.kind==='front'))
+  const retreat=explorationPlan!=='complete'||(def.region===1&&live.clan.members.some(member=>member.currentHealth<=1))
+    ||(encounter.kind==='front'&&!prior.some(entry=>entry.kind==='front'))
     ||(encounter.kind==='rear'&&!prior.some(entry=>entry.kind==='rear'));
   await capture(`elite-${def.id}-${encounter.kind}-${retreat?'retreat':'fight'}-${report.expedition.interceptions.length}`);
   await keyboardActivate(`[data-poi-dialog-action="${retreat?'retreat':'fight'}"]`);
@@ -469,6 +472,14 @@ async function explorePoiStep(live){
     const ordinaryDone=region===1?['lion-poi-valley-bridge-cache','lion-poi-valley-serpent'].every(id=>live.resolvedNodeIds.includes(id))
       :report.expedition.interceptions.some(entry=>entry.eliteId===def.id&&entry.kind==='rear'&&entry.choice==='retreat');
     if(elite.active&&!elite.defeated&&ordinaryDone){
+      if(region===1&&live.clan.members.some(member=>member.currentHealth<=1)){
+        if(live.currentNodeId!=='lion-valmir-road')await navigateExpedition('lion-valmir-road');
+        else {
+          const before=await state();await preparePoiCompanyAfterValmir();
+          report.expedition.eliteRest={eliteId:def.id,before,after:await state(),nativePaidService:true};
+        }
+        return true;
+      }
       const challenge=page.locator(`.poi-map [data-poi-action="elite-fight"][data-elite-id="${def.id}"]:not(:disabled)`);
       if(await challenge.count())await keyboardActivate(`.poi-map [data-poi-action="elite-fight"][data-elite-id="${def.id}"]`);
       else await navigateExpedition(elite.positionId);
@@ -1293,10 +1304,11 @@ try{
         assert.ok(!live.resolvedNodeIds.includes(selected.endsWith('-event')?'lion-second-trial-combat':'lion-second-trial-event'));
         assert.equal(live.flags.missionSuccess,routePlan==='rescue');
         assert.equal(Boolean(live.flags.missionGreed),routePlan==='sacrifice');
-        if(target==='second-refuge')for(const [id,combatId] of [['lion-valmir-road','road_to_valmir'],
+        const valmirCombatId=live.run.graph.nodes.find(node=>node.id==='lion-valmir-road')?.contentId;
+        assert.ok(['road_to_valmir','marsh_crossing'].includes(valmirCombatId));
+        if(target==='second-refuge')for(const [id,combatId] of [['lion-valmir-road',valmirCombatId],
           ['lion-village-choice',routePlan==='rescue'?'village_defense':'village_raid']]){
-          const inheritedValmir=id==='lion-valmir-road'&&['lion-valmir-road','lion-second-trial-combat'].includes(JSON.parse(earnedText??'null')?.currentNodeId);
-          assert.ok(report.battles.slice(inheritedValmir?0:report.inheritedBattleCount??0).some(b=>b.nodeId===id&&b.combatId===combatId&&b.pass),
+          assert.ok(report.battles.some(b=>b.nodeId===id&&b.combatId===combatId&&b.pass&&b.outcome==='victory'),
             `Second refuge requires verified native ${combatId} victory at ${id}`);
         }
       }

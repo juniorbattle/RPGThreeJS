@@ -39,7 +39,7 @@ export class PoiMapView {
       const key=[e.from,e.to].sort().join(':');if(seen.has(key))return '';seen.add(key);
       const [x,y]=positions.get(e.from)!,[tx,ty]=positions.get(e.to)!;
       const bend=(Math.abs(ty-y)>100?1:-1)*Math.min(48,Math.abs(tx-x)*.22);
-      const bends=lionPoiPathBends(e.from,e.to);
+      const bends=lionPoiPathBends(e.from,e.to,phase);
       const d=bends?`M${x} ${y} ${bends.map(([px,py])=>`L${px} ${py}`).join(' ')} L${tx} ${ty}`
         :`M${x} ${y} C${x+(tx-x)*.35} ${y+bend} ${x+(tx-x)*.65} ${ty-bend} ${tx} ${ty}`;
       return `<path class="poi-path-shadow" d="${d}"/><path class="poi-path ${e.unlocked?'poi-path--open':''}" d="${d}"/>`;
