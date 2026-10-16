@@ -4,6 +4,8 @@ export const LION_POI_REGIONS = Object.freeze([
   {shortTitle:'II · Bois-Clair',title:'La vallée de Bois-Clair',image:'/assets/generated/lion-phase/poi-lot-e/bois-clair.png'},
   {shortTitle:'III · Le Sceau',title:'Les témoins et le jugement',image:'/assets/generated/lion-phase/poi-lot-e/judgement.png'},
 ]);
+/** Off-region destinations are anchored at visible outbound trails, not waterfalls. */
+export const LION_POI_REGION_EXITS:readonly(readonly[number,number])[]=[[650,350],[720,420],[870,430]];
 /** Authored layout only. RunSystem/campaign own connections and live eligibility. */
 export const LION_POI_POSITIONS: Readonly<Record<string, readonly [number, number]>> = {
   'lion-camp': [75,305], 'lion-audience': [190,170], 'lion-opening-ambush': [300,275],
@@ -33,7 +35,7 @@ const PATH_BENDS:Readonly<Record<string,readonly(readonly[number,number])[]>>={
   'lion-nomad-crossroads>lion-first-trial-event':[[540,250],[600,230],[660,220],[725,180]],
   'lion-nomad-crossroads>lion-first-trial-combat':[[525,290],[590,340],[680,365]],
   'lion-refugees>lion-first-trial-combat':[[735,115],[775,165],[805,195],[850,235],[855,290],[820,335],[785,355]],
-  'lion-poi-opening-supplies>lion-nomad-crossroads':[[400,110],[440,180]],
+  'lion-poi-opening-supplies>lion-nomad-crossroads':[[420,65],[460,70],[500,85],[480,125],[460,180]],
   'lion-poi-opening-supplies>lion-poi-opening-patrol':[[420,65],[460,70]],
   'lion-poi-opening-patrol>lion-refugees':[[550,85],[610,80]],
   'lion-poi-opening-wolves>lion-nomad-crossroads':[[435,340],[450,300]],
@@ -48,18 +50,20 @@ const PATH_BENDS:Readonly<Record<string,readonly(readonly[number,number])[]>>={
   'lion-valmir-road>lion-second-trial-event':[[490,270],[530,260],[580,240],[605,210],[615,170],[605,135],[590,110]],
   'lion-valmir-road>lion-second-trial-combat':[[525,265],[575,310],[625,365]],
   'lion-second-trial-combat>lion-village-choice':[[705,345],[735,290]],
-  'lion-poi-seal-witness-supplies>lion-lancer-recruit':[[185,200],[170,260]],
+  'lion-poi-seal-witness-supplies>lion-lancer-recruit':[[225,185],[250,215],[225,245],[175,275],[150,305]],
   'lion-poi-seal-witness-supplies>lion-witnesses':[[220,210],[285,230],[335,245]],
   'lion-poi-seal-hunters>lion-witnesses':[[365,130],[350,180]],
   'lion-poi-seal-hunters>lion-final-trial-event':[[450,90],[505,80]],
   'lion-poi-seal-ruin-encounter>lion-witnesses':[[360,345],[365,300]],
   'lion-poi-seal-ruin-encounter>lion-final-trial-combat':[[410,405],[480,390]],
-  'lion-witnesses>lion-final-trial-event':[[425,200],[470,160],[520,120]],
+  'lion-witnesses>lion-final-trial-event':[[430,230],[480,215],[530,195],[560,170],[570,135],[570,95]],
   'lion-witnesses>lion-final-trial-combat':[[430,245],[470,280],[510,310]],
   'lion-poi-seal-ruin-supplies>lion-shadow-signs':[[750,110],[755,160],[730,200]],
   'lion-final-refuge>lion-final-judgement':[[850,320],[885,270],[900,210],[885,160]],
 };
 const REGION_PATH_BENDS:Readonly<Record<number,Readonly<Record<string,readonly(readonly[number,number])[]>>>>={
+  0:{'lion-first-refuge>lion-reserve-trail':[[850,305],[820,330],[770,350],[720,350]]},
+  1:{'lion-second-refuge>lion-lancer-recruit':[[845,165],[790,225],[745,280],[700,310],[650,330],[680,375]]},
   2:{'lion-second-refuge>lion-lancer-recruit':[[125,115],[185,140],[225,185],[250,215],[225,245],[175,275],[150,305]]},
 };
 export function lionPoiPathBends(from:string,to:string,region?:number):readonly(readonly[number,number])[]|undefined {

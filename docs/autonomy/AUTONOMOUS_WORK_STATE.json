@@ -3,8 +3,8 @@
   "runStartedAt": "2026-10-15T22:57:16.909Z",
   "runEndedAt": null,
   "activeTask": "POI-LOT-E-FINAL",
-  "activePhase": "NATIVE_ELITE_AND_ATLAS_ACCEPTANCE",
-  "activeSubtask": "Verify complete valley sentinel and Second refuge from SUCCEEDED serpent checkpoint after native paid rest; repeat moderate II after exact Valmir-config proof fix; refresh 3 region captures for terrain polylines.",
+  "activePhase": "NATIVE_ELITE_AND_SEAL_ACCEPTANCE",
+  "activeSubtask": "Moderate II SUCCEEDED 480gold, front/rear retreat native; complete serpent checkpoint resumes via paid rest and intercepted service return, then real valley sentinel; final outbound terrain capture refresh.",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "99ed9ed9d5b4290f65e1591a701463ad61c0f21d",
   "lastPushedCommit": "0aada9fdd65d10702138bfdf1174ce188c824302",
@@ -274,7 +274,7 @@
     "Preserved unrelated six-hero skills, mounted keyboard, narrative/manual findings; ten inherited broader-suite audit failures",
     "Two inactive optional chest/patrol authoring proposals require specific approval before activation"
   ],
-  "nextAction": "Verify complete valley sentinel and Second refuge from SUCCEEDED serpent checkpoint after native paid rest; repeat moderate II after exact Valmir-config proof fix; refresh 3 region captures for terrain polylines.",
+  "nextAction": "Moderate II SUCCEEDED 480gold, front/rear retreat native; complete serpent checkpoint resumes via paid rest and intercepted service return, then real valley sentinel; final outbound terrain capture refresh.",
   "taskQueue": [
     "POI-MAP-FINALIZATION: requested implementation/native milestones REVIEWED_SCOPED; operator final playtest remains",
     "DEMO-PC-CAMPAIGN: both native truth endings, T0/T1/T3 alternatives, rescue/sacrifice, defeat and exact V6 accepted in recorded scopes",
@@ -377,10 +377,10 @@
   },
   "runId": "codex-lot-e-20261015",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-16T03:25:39.107Z",
+  "lastHeartbeat": "2026-10-16T03:33:47.011Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-16T03:25:39.107Z",
+    "lastHeartbeat": "2026-10-16T03:33:47.011Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -30866,7 +30866,7 @@
         "eligibleForReview": false,
         "receiptStatus": "RUNNING_WITHOUT_FINAL_RESULT",
         "reason": "Optional checkpoint resumed with empty pilot phases and no directed links; owned PID13944 and descendants stopped after identity verification. No partial state used as a seed.",
-        "reconciledAt": "2026-10-16T03:25:39.208Z"
+        "reconciledAt": "2026-10-16T03:33:47.105Z"
       },
       {
         "schemaVersion": 1,
@@ -31086,7 +31086,7 @@
         "acceptance": "NOT_ACCEPTED",
         "receiptStatus": "RUNNING_WITHOUT_FINAL_RESULT",
         "reason": "Pilot waited for preparation before advancing prior dialogue. failure.json retained. Host PID/listener absent; PowerShell Stop preference on stderr interrupted native error finalization. Launcher corrected, no partial state accepted.",
-        "reconciledAt": "2026-10-16T03:25:39.210Z",
+        "reconciledAt": "2026-10-16T03:33:47.106Z",
         "startedAt": "2026-10-16T02:49:15.203Z",
         "endedAt": null,
         "provenanceMatches": true,
@@ -31199,7 +31199,7 @@
         "acceptance": "NOT_ACCEPTED",
         "receiptStatus": "RUNNING_WITHOUT_FINAL_RESULT",
         "reason": "Pilot waited for preparation before advancing prior dialogue. failure.json retained. Host PID/listener absent; PowerShell Stop preference on stderr interrupted native error finalization. Launcher corrected, no partial state accepted.",
-        "reconciledAt": "2026-10-16T03:25:39.210Z",
+        "reconciledAt": "2026-10-16T03:33:47.106Z",
         "startedAt": "2026-10-16T02:49:27.917Z",
         "endedAt": null,
         "provenanceMatches": true,
@@ -32303,6 +32303,315 @@
           ]
         },
         "acceptance": "NOT_ACCEPTED"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "lot-e-moderate-II-0003",
+        "runId": "codex-lot-e-20261015",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-16T03:26:07.434Z",
+        "pid": null,
+        "port": 5416,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "second-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "explorationPlan": "moderate",
+          "checkpointPoiId": null,
+          "gameReducedMotion": true,
+          "viewport": [
+            620,
+            780
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/lot-e-moderate-marsh-0001/earned-expedition-checkpoint-v6.json",
+          "priorProofPath": "tmp/demo/lot-e-moderate-marsh-0001/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/lot-e-moderate-II-0003",
+        "receiptPath": "tmp/demo/lot-e-moderate-II-0003/qa-job.json",
+        "provenance": {
+          "gitHead": "d898537bdbe40cdc7908de7c270cdfb3aa8999df",
+          "sourceTree": "a10333f54d4035e958a899239665b8c8d263c7b0",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "6976ab84c53fbcb75d6ca4c2eb58448245117154b36dcc24c0e1d3f039ed8f5f"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/lot-e-moderate-marsh-0001/earned-expedition-checkpoint-v6.json",
+              "sha256": "a854296f08a2b3ca3e2d1197af5ae1a0a95c8c94946571175b32a28673da37f9"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/lot-e-moderate-marsh-0001/results.json",
+              "sha256": "9a0d5438ed2aa4db7b14e002aa99e81394b0754f347bcb6a0b2718f7aa4027b5"
+            }
+          ],
+          "receiptToolSha256": "9adbcfa5be97588301ada7a0141caa2729b5cd55b0711011079d183c586a1e3d",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+              "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+            },
+            {
+              "path": "dist/assets/combat-CYjlO7p1.js",
+              "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BRsHiIui.js",
+              "sha256": "213183c03e52d5d65f2790c76f3d400f69a4f014a2648a04cd1c35a430d659b9"
+            },
+            {
+              "path": "dist/assets/game-UCVpfDso.css",
+              "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "6046538bb3273944bb50ad4a91768f3c2af70a6725cfd7280b2faf36aa299044"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "lot-e-complete-II-0001",
+        "runId": "codex-lot-e-20261015",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-16T03:26:08.187Z",
+        "pid": null,
+        "port": 5415,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "second-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "explorationPlan": "complete",
+          "checkpointPoiId": null,
+          "gameReducedMotion": true,
+          "viewport": [
+            620,
+            780
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/lot-e-complete-valley-loop-0002/earned-expedition-checkpoint-v6.json",
+          "priorProofPath": "tmp/demo/lot-e-complete-valley-loop-0002/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/lot-e-complete-II-0001",
+        "receiptPath": "tmp/demo/lot-e-complete-II-0001/qa-job.json",
+        "provenance": {
+          "gitHead": "d898537bdbe40cdc7908de7c270cdfb3aa8999df",
+          "sourceTree": "a10333f54d4035e958a899239665b8c8d263c7b0",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "6976ab84c53fbcb75d6ca4c2eb58448245117154b36dcc24c0e1d3f039ed8f5f"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/lot-e-complete-valley-loop-0002/earned-expedition-checkpoint-v6.json",
+              "sha256": "c27a426b1b48978f3f3d03ff8c8876f7bc6f04b9601ab238b114bfbc2ff8549e"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/lot-e-complete-valley-loop-0002/results.json",
+              "sha256": "12eb80357887aa0a360604196503ea457ab609fc2dc41b42ed823df679ba3d3f"
+            }
+          ],
+          "receiptToolSha256": "9adbcfa5be97588301ada7a0141caa2729b5cd55b0711011079d183c586a1e3d",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+              "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+            },
+            {
+              "path": "dist/assets/combat-CYjlO7p1.js",
+              "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BRsHiIui.js",
+              "sha256": "213183c03e52d5d65f2790c76f3d400f69a4f014a2648a04cd1c35a430d659b9"
+            },
+            {
+              "path": "dist/assets/game-UCVpfDso.css",
+              "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "6046538bb3273944bb50ad4a91768f3c2af70a6725cfd7280b2faf36aa299044"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "lot-e-atlas-1920-terrain-0001",
+        "runId": "codex-lot-e-20261015",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-16T03:26:08.460Z",
+        "pid": null,
+        "port": 5417,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "preparation",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "explorationPlan": "direct",
+          "checkpointPoiId": null,
+          "gameReducedMotion": false,
+          "viewport": [
+            1920,
+            1080
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/lot-e-oldV6-II-touch-0002/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/lot-e-oldV6-II-touch-0002/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/lot-e-atlas-1920-terrain-0001",
+        "receiptPath": "tmp/demo/lot-e-atlas-1920-terrain-0001/qa-job.json",
+        "provenance": {
+          "gitHead": "d898537bdbe40cdc7908de7c270cdfb3aa8999df",
+          "sourceTree": "a10333f54d4035e958a899239665b8c8d263c7b0",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "6976ab84c53fbcb75d6ca4c2eb58448245117154b36dcc24c0e1d3f039ed8f5f"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/lot-e-oldV6-II-touch-0002/earned-lion-second-refuge-v6.json",
+              "sha256": "1ded07a0f2bb434156d557b089b4fe80fc57e338e33fc18789b30637df544d62"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/lot-e-oldV6-II-touch-0002/results.json",
+              "sha256": "f6ac24d2f6417e169c85dba1f413649bd0eaba0ea2d215ab3b6d36d34da0cd13"
+            }
+          ],
+          "receiptToolSha256": "9adbcfa5be97588301ada7a0141caa2729b5cd55b0711011079d183c586a1e3d",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+              "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+            },
+            {
+              "path": "dist/assets/combat-CYjlO7p1.js",
+              "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BRsHiIui.js",
+              "sha256": "213183c03e52d5d65f2790c76f3d400f69a4f014a2648a04cd1c35a430d659b9"
+            },
+            {
+              "path": "dist/assets/game-UCVpfDso.css",
+              "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "6046538bb3273944bb50ad4a91768f3c2af70a6725cfd7280b2faf36aa299044"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
       }
     ],
     "wip": {
@@ -32316,7 +32625,7 @@
       "status": "RUNTIME_ON_DEV_NATIVE_IN_PROGRESS",
       "lastGreenCheck": "independent-qa-02:206tests/types/contracts/build; final atlas build PASS; native driver prelaunch guardian PASS"
     },
-    "nextAction": "Verify complete valley sentinel and Second refuge from SUCCEEDED serpent checkpoint after native paid rest; repeat moderate II after exact Valmir-config proof fix; refresh 3 region captures for terrain polylines.",
+    "nextAction": "Moderate II SUCCEEDED 480gold, front/rear retreat native; complete serpent checkpoint resumes via paid rest and intercepted service return, then real valley sentinel; final outbound terrain capture refresh.",
     "runMetrics": {
       "runId": "codex-poi-v2-20261015",
       "countBasis": "Unique final paths compared with starting b79063bb, no renames; removals distinct from surviving modifications",
@@ -33199,7 +33508,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "POI-LOT-E-FINAL",
-    "activeSubtask": "Verify complete valley sentinel and Second refuge from SUCCEEDED serpent checkpoint after native paid rest; repeat moderate II after exact Valmir-config proof fix; refresh 3 region captures for terrain polylines.",
+    "activeSubtask": "Moderate II SUCCEEDED 480gold, front/rear retreat native; complete serpent checkpoint resumes via paid rest and intercepted service return, then real valley sentinel; final outbound terrain capture refresh.",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -36535,7 +36844,7 @@
     "agent": "codex",
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-15T22:57:16.909Z",
-    "activePhase": "NATIVE_ELITE_AND_ATLAS_ACCEPTANCE",
+    "activePhase": "NATIVE_ELITE_AND_SEAL_ACCEPTANCE",
     "heartbeat": "2026-10-15T21:32:17.578Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-15T2128Z-codex-poi-v2-retirement.md",
     "motion1617": {

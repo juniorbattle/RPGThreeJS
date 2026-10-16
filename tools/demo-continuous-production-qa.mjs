@@ -363,22 +363,40 @@ function assertCanonicalMatch(actual,expected,message){
   const a=structuredClone(actual),b=structuredClone(expected);
   delete a.run.poiExpedition;delete b.run.poiExpedition;assert.deepEqual(a,b,message);
 }
-async function poiNoReplayPath(ids,mixedInputs=false,captureName='poi-native-backtracking'){
-  const before=await state();
+async function poiNoReplayPath(ids,mixedInputs=false,captureName='poi-native-backtracking',allowServiceInterceptions=false){
+  const before=await state(),intentStart=report.expedition.intents.length,waitStart=report.expedition.waits.length;
   for(const [index,id] of ids.entries()){
-    const stepBefore=await state();
-    await poiMove(id,mixedInputs&&index%2===0);await page.locator('.poi-map:visible').waitFor();
-    assert.equal(await page.locator('.dialogue:visible,iframe.combat-frame,.cinematic-overlay:visible,.poi-dialog-backdrop:visible').count(),0,'Inert POI path opened an activity or interception');
-    assertExpeditionStep(stepBefore,await state(),1);
+    let reached=false;
+    for(let attempt=0;attempt<12;attempt++){
+      await poiMove(id,mixedInputs&&index%2===0);await page.locator('.poi-map:visible').waitFor();
+      assert.equal(await page.locator('.dialogue:visible,iframe.combat-frame,.cinematic-overlay:visible').count(),0,'Resolved service path replayed an activity');
+      const intercepted=await page.locator('.poi-dialog-backdrop:visible').count()>0;
+      if(intercepted){
+        assert.equal(allowServiceInterceptions,true,'Inert POI path opened an interception');
+        await handleExpeditionDialog(true);
+      }
+      if((await state()).currentNodeId===id){reached=true;break;}
+      assert.equal(intercepted,true,'Resolved service movement failed without an interception');
+      await waitExpeditionTurn();
+      if(await page.locator('.poi-dialog-backdrop:visible').count())await handleExpeditionDialog(true);
+      expeditionWaitPending=false;
+    }
+    assert.equal(reached,true,'Native service return exceeded twelve interception/retry decisions');
   }
+  await verifyExpeditionSettlement();assert.equal(pendingExpeditionProof,undefined);
   const after=await state();
   const expected=structuredClone(before);expected.currentNodeId=ids.at(-1);expected.run.currentNodeId=ids.at(-1);
-  assert.equal(after.run.poiExpedition.turn,before.run.poiExpedition.turn+ids.length,'Resolved movement must count each accepted map edge once');
+  const movementTurns=report.expedition.intents.slice(intentStart).reduce((sum,entry)=>sum+entry.turnAfter-entry.turnBefore,0);
+  const waitTurns=report.expedition.waits.length-waitStart;
+  assert.equal(after.run.poiExpedition.turn,before.run.poiExpedition.turn+movementTurns+waitTurns,'Resolved movement must count each accepted map edge and explicit Wait once');
+  if(!allowServiceInterceptions)assert.equal(movementTurns,ids.length);
   assert.equal(after.run.poiExpedition.pendingStep,undefined,'Inert passage must settle the deferred turn');
+  assert.equal(after.run.poiExpedition.encounter,undefined);
+  for(const def of lotE.mobileEliteActors)assert.equal(after.run.poiExpedition.elites[def.id].defeated,before.run.poiExpedition.elites[def.id].defeated);
   assertCanonicalMatch(after,expected,'Resolved backtracking changed canonical facts/resources/assignments');
   await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked'));
   await capture(captureName);
-  return {ids,before,after,noReplay:true,exactConsequences:true};
+  return {ids,before,after,noReplay:true,exactConsequences:true,allowServiceInterceptions,movementTurns,waitTurns};
 }
 
 async function navigateExpedition(target){
@@ -397,9 +415,24 @@ async function navigateExpedition(target){
   await poiMove(path[1],report.expedition.intents.length%2===0);return true;
 }
 let expeditionWaitPending=false;
-async function handleExpeditionDialog(){
+async function waitExpeditionTurn(){
+  await verifyExpeditionSettlement();assert.equal(pendingExpeditionProof,undefined);
+  const before=await state();await keyboardActivate('.poi-map [data-poi-action="wait"]');
+  await page.waitForFunction(turn=>window.__demoQaApp.state.run.poiExpedition.turn===turn+1,before.run.poiExpedition.turn);
+  const after=await state();assertExpeditionStep(before,after,1);
+  report.expedition.waits.push({before,after,explicit:true,pass:true});expeditionWaitPending=false;
+}
+async function handleExpeditionDialog(forceRetreat=false){
   const dialog=page.locator('.poi-dialog-backdrop:visible');if(!await dialog.count())return false;
   const live=await state(),encounter=live.run.poiExpedition?.encounter;
+  if(explorationPlan==='complete'&&encounter&&!(report.expedition.encounterReloads??=[]).some(entry=>entry.eliteId===encounter.eliteId&&entry.kind===encounter.kind)){
+    const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+    assert.deepEqual(JSON.parse(saved),live,'Native interception choice was not saved before modal agency');
+    await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
+    await dialog.waitFor({state:'visible'});
+    assert.deepEqual(await state(),live,'Native interception reload changed context, position, resources or turn');
+    report.expedition.encounterReloads.push({eliteId:encounter.eliteId,kind:encounter.kind,phase:encounter.phase,exactOwner:true,noTick:true});
+  }
   const expectedFocus=encounter?'retreat':'close';
   assert.equal(await page.evaluate(()=>document.activeElement?.getAttribute('data-poi-dialog-action')),expectedFocus,'Native POI dialog lost its safe initial focus');
   const controls=await dialog.locator('button').evaluateAll(elements=>elements.map(element=>{const r=element.getBoundingClientRect();return{action:element.dataset.poiDialogAction,x:r.x,y:r.y,width:r.width,height:r.height,right:r.right,bottom:r.bottom};}));
@@ -427,7 +460,7 @@ async function handleExpeditionDialog(){
   }
   const def=lotE.mobileEliteActors.find(elite=>elite.id===encounter.eliteId);assert.ok(def);
   const prior=report.expedition.interceptions.filter(entry=>entry.eliteId===def.id&&entry.choice==='retreat');
-  const retreat=explorationPlan!=='complete'||(def.region===1&&live.clan.members.some(member=>member.currentHealth<=1))
+  const retreat=forceRetreat||explorationPlan!=='complete'||(def.region===1&&live.clan.members.some(member=>member.currentHealth<=1))
     ||(encounter.kind==='front'&&!prior.some(entry=>entry.kind==='front'))
     ||(encounter.kind==='rear'&&!prior.some(entry=>entry.kind==='rear'));
   await capture(`elite-${def.id}-${encounter.kind}-${retreat?'retreat':'fight'}-${report.expedition.interceptions.length}`);
@@ -450,11 +483,7 @@ async function handleExpeditionDialog(){
 async function explorePoiStep(live){
   if(explorationPlan==='direct')return false;
   if(expeditionWaitPending){
-    await verifyExpeditionSettlement();assert.equal(pendingExpeditionProof,undefined);
-    const before=await state();await keyboardActivate('.poi-map [data-poi-action="wait"]');
-    await page.waitForFunction(turn=>window.__demoQaApp.state.run.poiExpedition.turn===turn+1,before.run.poiExpedition.turn);
-    const after=await state();assertExpeditionStep(before,after,1);
-    report.expedition.waits.push({before,after,explicit:true,pass:true});expeditionWaitPending=false;return true;
+    await waitExpeditionTurn();return true;
   }
   const region=Number(await page.locator('.poi-map').getAttribute('data-region'));
   if(explorationPlan==='moderate'&&region===1&&live.resolvedNodeIds.includes('lion-valmir-road')){
@@ -676,7 +705,7 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
     assertCanonicalMatch(departed,prepared,'Resolved refuge departure repeated a one-shot effect');
     assertExpeditionStep(prepared,departed,0);
   }
-  const onward=await poiNoReplayPath(['lion-reserve-trail','lion-valmir-road',...(postTrial?[milestone]:[])],true,`poi-after-${prefix}-prepared-return`);
+  const onward=await poiNoReplayPath(['lion-reserve-trail','lion-valmir-road',...(postTrial?[milestone]:[])],true,`poi-after-${prefix}-prepared-return`,true);
   report.poi[postTrial?'trialRefugePreparation':'valmirRefugePreparation']={before,arrival,funding,restBefore,rested,prepared,supplyPurchase,departed,departureEvents:events,nativeCost:cost,servicesTemporaryLootUnchanged:true,checkpointUnchanged:true,
     returnPath,onward,paidRestPersistedExactly:cost>0,skippedAlreadyHealthy:cost===0,exactSavedOwner:true};
 }

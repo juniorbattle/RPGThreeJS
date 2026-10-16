@@ -1,5 +1,5 @@
 import type { PoiMapModel } from '../game/runSystem';
-import { LION_POI_POSITIONS, LION_POI_REGIONS, lionPoiMapPhase, lionPoiPathBends } from '../campaign/LionPoiMap';
+import { LION_POI_POSITIONS, LION_POI_REGIONS, LION_POI_REGION_EXITS, lionPoiMapPhase, lionPoiPathBends } from '../campaign/LionPoiMap';
 import './poi-map.css';
 
 interface PoiMapOptions {
@@ -31,7 +31,7 @@ export class PoiMapView {
     const nodes=model.nodes.filter(n=>own.has(n.id)||model.edges.some(e=>
       (own.has(e.from)&&e.to===n.id)||(own.has(e.to)&&e.from===n.id)));
     const positions=new Map(nodes.map(n=>[n.id,LION_POI_POSITIONS[n.id]??[850,300] as readonly[number,number]]));
-    for(const n of nodes)if(n.region!==phase)positions.set(n.id,n.region<phase?[80,80]:[870,430]);
+    for(const n of nodes)if(n.region!==phase)positions.set(n.id,n.region<phase?[80,80]:LION_POI_REGION_EXITS[phase]!);
     const threats=model.threats.filter(threat=>threat.region===phase);
     const nodeLabel=(id:string)=>model.nodes.find(node=>node.id===id)?.label??id;
     const seen=new Set<string>();
