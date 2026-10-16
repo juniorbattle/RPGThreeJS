@@ -178,6 +178,50 @@ describe('native battlefield rejection feedback', () => {
   });
 });
 
+describe('native action submenu cancellation', () => {
+  const runtime = readFileSync(new NodeURL('./legacyCombatRuntime.js', import.meta.url), 'utf8');
+  const cancelSource = runtime.slice(runtime.indexOf('function cancelToMenu(){'), runtime.indexOf('\nasync function doExecute('));
+  const closeSource = runtime.slice(runtime.indexOf('function closeSubmenu(){'), runtime.indexOf('\nfunction tipFor('));
+
+  function submenu(kind: string, keyboard = true, busy = false) {
+    const menu = document.createElement('div'), skillmenu = document.createElement('div'), outside = document.createElement('button');
+    menu.innerHTML = '<button data-a="' + kind + '">Action</button><button data-a="wait">Attendre</button>';
+    skillmenu.dataset.kind = kind;
+    skillmenu.innerHTML = '<button>Retour</button>';
+    document.body.replaceChildren(menu, skillmenu, outside);
+    const game = { mode: 'menu', busy, active: { ap: 3 }, pending: null };
+    const sync = vi.fn();
+    const cancel = new Function('G', 'dom', 'keyboardInput', 'syncActionDockState',
+      closeSource + cancelSource + ';return cancelToMenu;')(game, { menu, skillmenu }, keyboard, sync);
+    skillmenu.querySelector('button')!.focus();
+    return { game, menu, skillmenu, outside, sync, cancel };
+  }
+
+  it.each(['attack', 'skill', 'item'])('returns Escape from the %s submenu to its enabled dock action without spending AP', kind => {
+    const input = submenu(kind), before = structuredClone(input.game);
+    input.cancel();
+    expect(input.skillmenu.classList.contains('hidden')).toBe(true);
+    expect(document.activeElement).toBe(input.menu.querySelector('[data-a="' + kind + '"]'));
+    expect(input.game).toEqual(before);
+  });
+
+  it('does not interrupt a busy native action', () => {
+    const input = submenu('skill', true, true), focused = document.activeElement;
+    input.cancel();
+    expect(input.skillmenu.classList.contains('hidden')).toBe(false);
+    expect(document.activeElement).toBe(focused);
+    expect(input.sync).not.toHaveBeenCalled();
+  });
+
+  it.each([true, false])('keeps external focus ownership when keyboard mode is %s', keyboard => {
+    const input = submenu('item', keyboard);
+    input.outside.focus();
+    input.cancel();
+    expect(input.skillmenu.classList.contains('hidden')).toBe(true);
+    expect(document.activeElement).toBe(input.outside);
+  });
+});
+
 describe('native deployment keyboard focus', () => {
   const runtime = readFileSync(new NodeURL('./legacyCombatRuntime.js', import.meta.url), 'utf8');
   const menuSource = runtime.slice(runtime.indexOf('function openDeployMenu(){'), runtime.indexOf('\nfunction renderDefinitionPanel('));

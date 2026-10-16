@@ -2106,7 +2106,9 @@ function enterTarget(spec){ if(G.busy)return;
   unitFocus.focus(G.units,G.active,validTargets);
   if(spec.self) previewAt(G.active.gx,G.active.gz); else drawRange();
   setHint((spec.self?'Action':(spec.type==='move'?'Déplacement':'Ciblage'))+' — '+spec.name); focusBattlefield(selectedCombatAction(G.mode,spec.key),spec.self?G.active:centers[0],spec.wi); }
-function cancelToMenu(){ if(G.busy)return; if(G.mode==='move'||G.mode==='target'){ restoreUnitFocus(); hideActionPreview(); G._targetPreviewKey=null; G.pending=null; clearHL(); G.mode='menu'; openActionMenu(); setHint(G.active.name+' — à vous de jouer'); restoreBattlefieldFocus(); } }
+function cancelToMenu(){ if(G.busy)return;
+  if(G.mode==='menu'&&!dom.skillmenu.classList.contains('hidden')){ closeSubmenu(); return; }
+  if(G.mode==='move'||G.mode==='target'){ restoreUnitFocus(); hideActionPreview(); G._targetPreviewKey=null; G.pending=null; clearHL(); G.mode='menu'; openActionMenu(); setHint(G.active.name+' — à vous de jouer'); restoreBattlefieldFocus(); } }
 
 async function doExecute(spec,cx,cz){ await executeAction(G.active,spec,cx,cz); afterSub(); }
 function afterSub(){ restoreUnitFocus(); hideActionPreview(); G._targetPreviewKey=null; if(G.over)return; G.mode='menu'; selectUnit(G.active); openActionMenu();

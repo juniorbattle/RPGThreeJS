@@ -1,36 +1,40 @@
 {
-  "status": "READY_FOR_NEXT_SCHEDULED_RUN",
-  "runStartedAt": "2026-10-16T22:26:21.6290487Z",
-  "runEndedAt": "2026-10-16T22:30:18.502Z",
-  "activeTask": "DEMO-PC-SIX-HERO-SKILLS",
+  "status": "IN_PROGRESS",
+  "runStartedAt": "2026-10-16T23:31:08.434Z",
+  "runEndedAt": null,
+  "activeTask": "DEMO-CAMPAIGN-KEYBOARD",
   "activePhase": "POI_POST_LOT_E_PC_FINISHING",
-  "activeSubtask": "Close only missing initial-equipment competence criteria, starting with Garen/l_long_thrust; then mounted tactical keyboard",
+  "activeSubtask": "Escape closes attack/skill/item submenus and restores enabled dock focus; one mounted production opening verification pending",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "19b53c3d8e066a4e3145cbbe8585b9af5596b264",
   "lastPushedCommit": "19b53c3d8e066a4e3145cbbe8585b9af5596b264",
   "completedThisRun": [
-    "Configuration only: adopted delivered POI V2/Lot E baseline and removed obsolete physical-road/1521 priorities",
-    "Updated existing paused recurrence and aligned active queue/MD/JSON/live; no product execution or new acceptance"
+    "Operator authorized immediate product resumption; removed saved prompt configuration-only restriction and retained ACTIVE scheduler settings",
+    "Garen CLOSED_SCOPED using accepted Lot E complete-ending-0003 battle10 novice-spear cast:3to1AP, target85to57; no gameplay replay",
+    "Fixed demonstrated Escape no-op in native attack/skill/item menus; existing closeSubmenu owns focus only"
   ],
   "filesChanged": [
-    "AGENTS.md",
-    "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
+    "docs/autonomy/PRODUCT_RESUMPTION_OPERATOR_DECISION_2026-10-16.md",
     "docs/autonomy/OPERATOR_DECISIONS.md",
     "docs/autonomy/DEMO_COMPLETION_PLAN.md",
     "docs/autonomy/RECURRING_RUN_PROMPT.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-16T2226Z-codex-recurring-poi-config.md"
+    "src/combat/legacyCombatRuntime.js",
+    "src/combat/combatKeyboard.test.ts",
+    "tools/demo-continuous-production-qa.mjs"
   ],
   "testsRun": [
-    "Immutable and working LOCKED gates",
-    "contracts validator:8contracts/8slots",
-    "git diff --check",
-    "Exact automation prompt/all other fields preserved",
-    "310 QA records and deferred JSON objects unchanged"
+    "Actual-source red reproduction:5new assertions failed before fix",
+    "83focused tests2files (41keyboard+42hotfix), current src only; archival tmp excluded",
+    "TypeScript noEmit",
+    "Production build",
+    "contracts:validate8contracts/8slots",
+    "LOCKED immutable/working gates; whitespace",
+    "Exact updated automation prompt/settings"
   ],
   "testsPassed": [
-    "Configuration mechanical checks PASS; no runtime test/build/browser executed"
+    "83focused current tests, TypeScript, production build, validator8/8, unchanged LOCKED and whitespace"
   ],
   "testsRemaining": [
     "Missing six-hero initial-equipment competence criteria only",
@@ -46,30 +50,17 @@
     "Operator Lot E art/economy/felt-balance and physical-device acceptance remains separate",
     "Final mobile/tester package after PC stabilization"
   ],
-  "nextAction": "Next manually enabled scheduled run only: read-only preflight/exclusive lock on current dev, then resume DEMO-PC-SIX-HERO-SKILLS with Garen novice_spear/l_long_thrust. Compare accepted Lot E/native skill evidence with current src/game/catalog.ts, src/combat/CombatBridge.ts and tools/demo-continuous-production-qa.mjs; isolate only a genuinely missing initial-equipment cast/AP/result criterion. Reuse accepted scopes without replay. Use a separately SUCCEEDED, reviewed, compatible nonterminal earned save where Garen is recruited and real menus/actions; correct a demonstrated source defect or verify only the missing criterion with the existing runner. No injected equipment/AP/outcome, FAILED seed, full campaign replay, new QA framework or economy/elite adjustment. If already accepted, retain proof and move directly to mounted campaign battlefield keyboard/controls, reconciling deferred work with current POI code rather than restoring old snapshots. Keep310QA/deferred objects, V6/canon/LOCKED/eight slots and definitive Traversal retirement; scheduler activation and Lot E art/felt-balance/economy decisions remain operator-only.",
+  "nextAction": "Run one registered native production first-refuge1366normal scenario with existing campaign runner; inspect mounted deployment/three submenu Escape+Retour/refusals/legal movement+target/pointer and final earned V6. No Garen replay. If scoped controls pass, proceed demonstrated narrative findings.",
   "taskQueue": [
-    "DEMO-PC-SIX-HERO-SKILLS: ACTIVE_MISSING_CRITERIA_ONLY; Garen novice_spear/l_long_thrust first; accepted casts not replayed",
-    "DEMO-CAMPAIGN-KEYBOARD: NEXT; current POI campaign iframe, deployment/targets/refusals/Retour/focus/pointer; deferred work preserved",
+    "DEMO-PC-SIX-HERO-SKILLS: Garen CLOSED_SCOPED_REUSED_LOT_E; existing hero/AP/heal scopes retained, no blanket balance claim",
+    "DEMO-CAMPAIGN-KEYBOARD: ACTIVE; Escape correction green, mounted1366normal native verification pending",
     "DEMO-NARRATIVE-PRESENTATION: PENDING_UNRESOLVED_FINDINGS_ONLY; no new canon or Alaric rewrite",
     "DEMO-PC-ACCESSIBILITY-FINISHING: PENDING; relevant focus/reduced-motion/UI defects only",
     "DEMO-PC-TESTER-HANDOFF: PENDING; candidate build/routes/short honest limits; Lot E human playtest separate",
     "DEMO-MOBILE-FINAL: AFTER_PC_STABLE; retain existing scoped touch proofs"
   ],
-  "creditStatus": "NOT_QUERIED_CONFIGURATION_ONLY",
-  "contractComplianceStatus": {
-    "GAME_CONSTITUTION": "PASS_CONFIGURATION_UNCHANGED",
-    "ART_DIRECTION": "N/A_NO_ART_CHANGE",
-    "CHARACTERS": "N/A_UNCHANGED",
-    "ENVIRONMENTS": "N/A_UNCHANGED",
-    "NARRATIVE_CAMPAIGN": "N/A_UNCHANGED",
-    "NARRATIVE_PRESENTATION": "N/A_UNCHANGED",
-    "TRAVERSAL": "PASS_PHYSICAL_RETIREMENT_PRESERVED_NO_SOURCE_CHANGE",
-    "COMBAT": "N/A_UNCHANGED",
-    "SAVE": "PASS_NO_SAVE_FILES_OR_SCHEMA_WRITES",
-    "UI_ACCESSIBILITY": "N/A_UNCHANGED",
-    "QA_EVIDENCE": "PASS_310_RECORDS_AND_ACCEPTANCES_PRESERVED",
-    "REPOSITORY_GOVERNANCE": "PASS_CONFIGURATION_ONLY"
-  },
+  "creditStatus": "AVAILABLE",
+  "contractComplianceStatus": "IN_PROGRESS_SET_1_4_0_NO_LOCKED_CHANGE",
   "commitReferenceScope": "19b53c3 is the verified published Lot E closeout at configuration start. This workflow checkpoint is recorded in Git and automation memory after transport; no self-referential commit hash or product acceptance advancement.",
   "operatorAuthorization": "Explicit exceptional mission and both full attachments OD-2026-10-15-A; normal non-force origin/dev publication permanently authorized OD-2026-10-12-A; no main writes.",
   "creativeDirection": {
@@ -141,12 +132,12 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-recurring-poi-config-20261016T2226",
+  "runId": "rpgthreejs-auto-dev-90m-20261016T2329",
   "agent": "codex",
   "lastHeartbeat": "2026-10-16T22:30:18.503Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-16T22:30:18.503Z",
+    "lastHeartbeat": "2026-10-16T23:37:41.376Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -34164,8 +34155,24 @@
         }
       }
     ],
-    "wip": null,
-    "nextAction": "Next manually enabled scheduled run only: read-only preflight/exclusive lock on current dev, then resume DEMO-PC-SIX-HERO-SKILLS with Garen novice_spear/l_long_thrust. Compare accepted Lot E/native skill evidence with current src/game/catalog.ts, src/combat/CombatBridge.ts and tools/demo-continuous-production-qa.mjs; isolate only a genuinely missing initial-equipment cast/AP/result criterion. Reuse accepted scopes without replay. Use a separately SUCCEEDED, reviewed, compatible nonterminal earned save where Garen is recruited and real menus/actions; correct a demonstrated source defect or verify only the missing criterion with the existing runner. No injected equipment/AP/outcome, FAILED seed, full campaign replay, new QA framework or economy/elite adjustment. If already accepted, retain proof and move directly to mounted campaign battlefield keyboard/controls, reconciling deferred work with current POI code rather than restoring old snapshots. Keep310QA/deferred objects, V6/canon/LOCKED/eight slots and definitive Traversal retirement; scheduler activation and Lot E art/felt-balance/economy decisions remain operator-only.",
+    "wip": {
+      "branch": null,
+      "sha": null,
+      "dirtyFiles": [
+        "docs/autonomy/PRODUCT_RESUMPTION_OPERATOR_DECISION_2026-10-16.md",
+        "docs/autonomy/OPERATOR_DECISIONS.md",
+        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+        "docs/autonomy/RECURRING_RUN_PROMPT.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/combatKeyboard.test.ts",
+        "tools/demo-continuous-production-qa.mjs"
+      ],
+      "status": "GREEN",
+      "lastGreenCheck": "2026-10-16T23:37:41.376Z"
+    },
+    "nextAction": "Run one registered native production first-refuge1366normal scenario with existing campaign runner; inspect mounted deployment/three submenu Escape+Retour/refusals/legal movement+target/pointer and final earned V6. No Garen replay. If scoped controls pass, proceed demonstrated narrative findings.",
     "runMetrics": {
       "kind": "CONFIGURATION_ONLY",
       "sourceModified": 0,
@@ -34987,8 +34994,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "DEMO-PC-SIX-HERO-SKILLS",
-    "activeSubtask": "Close only missing initial-equipment competence criteria, starting with Garen/l_long_thrust; then mounted tactical keyboard",
+    "activeTask": "DEMO-CAMPAIGN-KEYBOARD",
+    "activeSubtask": "Escape closes attack/skill/item submenus and restores enabled dock focus; one mounted production opening verification pending",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -38320,9 +38327,9 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-recurring-poi-config-20261016T2226",
+    "runId": "rpgthreejs-auto-dev-90m-20261016T2329",
     "agent": "codex",
-    "status": "READY_FOR_NEXT_SCHEDULED_RUN",
+    "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-16T22:26:21.6290487Z",
     "activePhase": "POI_POST_LOT_E_PC_FINISHING",
     "heartbeat": "2026-10-16T22:30:18.503Z",
@@ -43908,6 +43915,45 @@
           "metadataCommit": "This final metadata snapshot follows the confirmed delivery; identify it in Git"
         }
       }
+    }
+  },
+  "productResumption2329": {
+    "operatorDecision": "OD-2026-10-16-B",
+    "at": "2026-10-16T23:31:08.434Z",
+    "baseline": "7eef1060a8c74091268eb3c7a1e5420311948dd4",
+    "priorRunId": "codex-recurring-poi-config-20261016T2226",
+    "schedulerStatus": "ACTIVE_RETAINED",
+    "inheritedWip": [],
+    "counts": {
+      "productSource": 1,
+      "productTests": 1,
+      "existingQa": 1,
+      "newQa": 0,
+      "promotedProof": 0,
+      "workflow": 6,
+      "inherited": 0,
+      "browser": 0
+    },
+    "garen": {
+      "status": "CLOSED_SCOPED",
+      "sourceProof": "docs/reports/evidence/lot-e-final-2026-10-15/results.json",
+      "rawResult": "tmp/demo/lot-e-complete-ending-0003/results.json",
+      "resultSha256": "30c47c484ff689ea128d19cf9481e1b5b4e3095270ada9d65f6d3bf8eec1c079",
+      "battleIndex": 10,
+      "skill": "l_long_thrust",
+      "weapon": "novice_spear",
+      "ap": [
+        3,
+        1
+      ],
+      "targetHp": [
+        85,
+        57
+      ],
+      "capture": "tmp/demo/lot-e-complete-ending-0003/combat-10-l_long_thrust-14.png",
+      "captureInspected": true,
+      "guardian": "PASS_SCOPED_REUSE_UNCHANGED_SOURCE",
+      "newBrowser": false
     }
   }
 }

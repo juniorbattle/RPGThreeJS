@@ -213,6 +213,38 @@ async function combatState(frame){return frame.evaluate(()=>{const g=window.G;re
     statuses:{...g.active.statuses},weapons:g.active.weapons.map(w=>({name:w.name,weaponType:w.weaponType,min:w.min,max:w.max}))},
   units:g.units.map(u=>({id:u.campaignId||u.id,name:u.name,team:u.team,gx:u.gx,gz:u.gz,hp:u.hp,maxhp:u.maxhp,alive:u.alive,downed:!!u.downed})),
   inventory:{...g.inv},diagnostics:window.__COMBAT_DIAGNOSTICS};});}
+async function campaignTabTo(frame,selector,key){
+  const control=frame.locator(selector).first();await control.waitFor({state:'visible'});
+  for(let step=0;step<70;step++){
+    if(await control.evaluate(e=>e===document.activeElement))return control;
+    await key('Tab');
+  }
+  throw Error('Native campaign Tab could not reach '+selector);
+}
+async function campaignDeploymentKeyboard(frame,entry){
+  const before=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  const inputs=[],key=async value=>{await page.keyboard.press(value);inputs.push(value);};
+  await campaignTabTo(frame,'#menu [data-unit]',key);await key('Enter');
+  const rosterFocus=await frame.evaluate(()=>{const e=document.activeElement,r=e.getBoundingClientRect();return{
+    selected:G.selectedDeployId,focused:e.dataset.unit,enabled:!e.disabled,visible:e.matches(':focus-visible'),
+    outline:getComputedStyle(e).outlineStyle,x:r.x,y:r.y,right:r.right,bottom:r.bottom};});
+  assert.equal(rosterFocus.focused,rosterFocus.selected,'Mounted roster replacement lost keyboard focus');
+  assert.ok(rosterFocus.enabled&&rosterFocus.visible&&rosterFocus.outline!=='none','Mounted roster focus must remain visible');
+  assert.ok(rosterFocus.x>=0&&rosterFocus.y>=0&&rosterFocus.right<=viewport[0]+1&&rosterFocus.bottom<=viewport[1]+1,'Mounted roster focus clipped');
+  const cell=await frame.evaluate(()=>{const c=G.deployZone.find(c=>!c.occupant);return{gx:c.gx,gz:c.gz};});
+  const canvas=await campaignTabTo(frame,'#combat-battlefield',key);
+  const cursor=await canvas.evaluate(e=>({gx:Number(e.dataset.cursorGx),gz:Number(e.dataset.cursorGz)}));
+  for(let x=cursor.gx;x!==cell.gx;x+=Math.sign(cell.gx-x))await key(cell.gx>x?'ArrowRight':'ArrowLeft');
+  for(let z=cursor.gz;z!==cell.gz;z+=Math.sign(cell.gz-z))await key(cell.gz>z?'ArrowDown':'ArrowUp');
+  const count=await frame.evaluate(()=>G.deployedUnits.length);await key('Enter');
+  assert.equal(await frame.evaluate(()=>G.deployedUnits.length),count+1,'Mounted keyboard deployment failed');
+  await key('Space');assert.equal(await frame.evaluate(()=>G.deployedUnits.length),count,'Mounted keyboard removal failed');
+  await campaignTabTo(frame,'#menu [data-d="auto"]',key);await key('Enter');
+  assert.deepEqual(await state(),before,'Mounted deployment changed owner truth');
+  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),saved,'Mounted deployment wrote autosave');
+  await capture(`combat-${entry.index}-native-deployment-focus`);
+  entry.deploymentKeyboard={inputs,rosterFocus,cell,manualPlacement:true,manualRemoval:true,ownerUnchanged:true,autosaveUnchanged:true,pass:true};
+}
 async function campaignBattlefieldKeyboard(frame,entry){
   await frame.waitForFunction(()=>G.mode==='menu'&&!G.busy&&G.active?.team==='player');
   const ownerBefore=await state(),before=await combatState(frame);
@@ -251,10 +283,10 @@ async function campaignBattlefieldKeyboard(frame,entry){
   await key('Escape');
   const attackButton=frame.locator('#menu [data-a="attack"]:not(:disabled)').first();
   assert.equal(await attackButton.count(),1,'Native attack control required for refusal proof');
-  await attackButton.focus();await key('Enter');
+  await campaignTabTo(frame,'#menu [data-a="attack"]:not(:disabled)',key);await key('Enter');
   const charge=frame.locator('#skillmenu [data-ch]:not([data-ch="_back"]):not(:disabled)').first();
   assert.equal(await charge.count(),1,'Native attack charge required for refusal proof');
-  await charge.focus();await key('Enter');
+  await campaignTabTo(frame,'#skillmenu [data-ch]:not([data-ch="_back"]):not(:disabled)',key);await key('Enter');
   assert.equal((await combatState(frame)).mode,'target');
   const invalidTarget=await frame.evaluate(()=>{
     if(G.pending.spec.self)return null;
@@ -272,13 +304,55 @@ async function campaignBattlefieldKeyboard(frame,entry){
   assert.equal(restored.dock,true,'Campaign Escape must restore enabled dock focus');
   assert.ok(restored.x>=0&&restored.y>=0&&restored.right<=viewport[0]+1&&restored.bottom<=viewport[1]+1,'Campaign returned focus clipped');
   if(viewport[0]<=620)assert.ok(restored.width>=44&&restored.height>=44,'Campaign returned dock touch target too small');
+  const fullControls=!priorProof&&entry.nodeId==='lion-opening-ambush',submenus=[];
+  if(fullControls)for(const [action,back] of [['attack','data-ch'],['skill','data-s'],['item','data-i']]){
+    assert.equal(await frame.locator(`#menu [data-a="${action}"]:not(:disabled)`).count(),1,`Mounted ${action} control required`);
+    for(const cancel of ['Escape','Retour']){
+      await campaignTabTo(frame,`#menu [data-a="${action}"]`,key);await key('Enter');
+      await campaignTabTo(frame,`#skillmenu [${back}="_back"]`,key);
+      await key(cancel==='Escape'?'Escape':'Space');
+      assert.ok(await frame.locator('#skillmenu').evaluate(e=>e.classList.contains('hidden')),`Mounted ${action} ${cancel} did not close submenu`);
+      assert.equal(await frame.evaluate(()=>document.activeElement.dataset.a),action,`Mounted ${action} ${cancel} lost dock focus`);
+      submenus.push({action,cancel,pass:true});
+    }
+  }
   const after=await combatState(frame),ownerAfter=await state();
   const gameplay=snapshot=>{const {diagnostics,...truth}=snapshot;return truth;};
   assert.deepEqual(gameplay(after),gameplay(before),'Campaign keyboard inspection/cancel changed tactical truth');
   assert.deepEqual(ownerAfter,ownerBefore,'Campaign keyboard inspection/cancel changed owner V6 truth');
   assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),autosaveBefore,'Campaign keyboard inspection/cancel wrote autosave');
   await capture(`combat-${entry.index}-native-keyboard-return`);
-  entry.battlefieldKeyboard={method:'ACTUAL_TAB_CAMPAIGN_IFRAME_NATIVE_REFUSALS',inputs,focus,cursorBefore,cursor,moveRejected,targetRejected,restored,before,after,renderDiagnosticsExcludedFromTruth:true,ownerUnchanged:true,autosaveUnchanged:true,pass:true};
+  entry.battlefieldKeyboard={method:'ACTUAL_TAB_CAMPAIGN_IFRAME_NATIVE_ACTIONS',inputs,focus,cursorBefore,cursor,moveRejected,targetRejected,restored,submenus,before,after,renderDiagnosticsExcludedFromTruth:true,ownerUnchanged:true,autosaveUnchanged:true,pass:true};
+  if(!fullControls)return;
+  await campaignTabTo(frame,'#menu [data-a="move"]:not(:disabled)',key);await key('Enter');
+  const destination=await frame.evaluate(()=>{
+    const u=G.active,w=u.weapons[0],foes=G.units.filter(e=>e.team==='foe'&&e.alive);
+    const score=c=>Math.min(...foes.map(e=>{const d=Math.abs(c.gx-e.gx)+Math.abs(c.gz-e.gz);return(d>=w.min&&d<=w.max?0:100)+d;}));
+    const c=G.reach.list.filter(c=>!c.occupant&&(c.gx!==u.gx||c.gz!==u.gz)).sort((a,b)=>score(a)-score(b))[0];
+    return c&&{gx:c.gx,gz:c.gz};
+  });
+  assert.ok(destination,'Mounted native movement needs a reachable cell');
+  await moveCursor(destination);await key('Enter');await settled(frame);
+  const moved=await combatState(frame);
+  assert.deepEqual({gx:moved.active.gx,gz:moved.active.gz},destination,'Mounted keyboard movement did not reach selected cell');
+  assert.equal(moved.active.ap,before.active.ap,'Mounted native movement changed AP');assert.equal(moved.moved,true);
+  assert.ok(await frame.evaluate(()=>document.activeElement.matches('#menu button:not(:disabled)')),'Mounted legal movement lost enabled dock focus');
+  entry.actions.push({kind:'keyboard-move',cell:destination,before:after,after:moved});
+  entry.battlefieldKeyboard.legalMove={destination,before:after,after:moved,pass:true};
+  await campaignTabTo(frame,'#menu [data-a="attack"]:not(:disabled)',key);await key('Enter');
+  await campaignTabTo(frame,'#skillmenu [data-ch="0"]:not(:disabled)',key);await key('Enter');
+  const legal=await frame.evaluate(()=>{const c=G.pending.centers.find(c=>G.grid[c.gx][c.gz].occupant?.alive&&G.grid[c.gx][c.gz].occupant.team==='foe');
+    return c&&{cell:{gx:c.gx,gz:c.gz},spec:{key:G.pending.spec.key,ap:G.pending.spec.ap}};});
+  assert.ok(legal,'Mounted native attack requires a legal living foe after approach');
+  await moveCursor(legal.cell);await capture(`combat-${entry.index}-native-keyboard-target`);await key('Enter');await settled(frame);
+  const attacked=await combatState(frame),refunds=moved.units.filter(u=>u.team==='foe'&&u.alive&&attacked.units.some(t=>t.id===u.id&&!t.alive)).length;
+  assert.equal(attacked.attacks,moved.attacks+1,'Mounted keyboard target must resolve exactly once');
+  assert.equal(attacked.active.ap,Math.max(0,Math.min(moved.active.maxap,moved.active.ap+refunds)-legal.spec.ap),'Mounted native attack AP/refunds differ');
+  assert.ok(await frame.evaluate(()=>document.activeElement.matches('#menu button:not(:disabled)')),'Mounted legal target lost enabled dock focus');
+  assert.deepEqual(await state(),ownerBefore,'Mounted tactical actions changed campaign owner before resolution');
+  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),autosaveBefore,'Mounted tactical actions wrote autosave');
+  entry.actions.push({kind:'keyboard-attack',cell:legal.cell,spec:legal.spec,before:moved,after:attacked});
+  entry.battlefieldKeyboard.legalTarget={...legal,before:moved,after:attacked,refunds,pass:true};
 }
 async function campaignParentKeyboardReturn(entry){
   assert.equal(entry.nodeId,'lion-opening-ambush','Parent keyboard proof is scoped to fresh opening aftermath');
@@ -823,7 +897,7 @@ async function prepareNativeWeapon(nodeId){
   await keyboardActivate('.management [data-action="close"]');
 }
 async function cellClick(frame,cell,attempt){
-  if(!touchInput){
+  if(!touchInput&&!attempt?.pointerRequired){
     const canvas=frame.locator('#combat-battlefield');await canvas.focus();
     const current=await canvas.evaluate(e=>({gx:Number(e.dataset.cursorGx),gz:Number(e.dataset.cursorGz)}));
     assert.ok(Number.isInteger(current.gx)&&Number.isInteger(current.gz),'Native keyboard cursor missing');
@@ -842,7 +916,10 @@ async function cellClick(frame,cell,attempt){
     const hit=observation.tag==='CANVAS';
     const pointer={cell:{gx:cell.gx,gz:cell.gz},projected:point,iframe:box,local:{x,y},observation,clicked:hit};
     (report.pointerAttempts??=[]).push(pointer);if(attempt)(attempt.pointerAttempts??=[]).push(pointer);
-    if(hit){await page.touchscreen.tap(box.x+x,box.y+y);report.inputs.push({action:'native battlefield touch cell',cell:{gx:cell.gx,gz:cell.gz}});return true;}
+    if(hit){
+      if(touchInput)await page.touchscreen.tap(box.x+x,box.y+y);else await page.mouse.click(box.x+x,box.y+y);
+      report.inputs.push({action:touchInput?'native battlefield touch cell':'native battlefield pointer cell',cell:{gx:cell.gx,gz:cell.gz}});return true;
+    }
   }return false;
 }
 async function settled(frame){await frame.waitForFunction(()=>window.G.over||!window.G.busy&&window.G.mode==='menu',null,{timeout:30000});}
@@ -886,6 +963,7 @@ async function attack(frame,battle,{support=false,exactAp=null}={}){
     :c.target.team!==g.active.team)).sort((a,b)=>support?a.target.hp/a.target.maxhp-b.target.hp/b.target.maxhp:a.target.hp-b.target.hp)
     .map(c=>({gx:c.gx,gz:c.gz,targetId:c.target.id}))};},{support,exactAp});
   Object.assign(attempt,native);
+  attempt.pointerRequired=Boolean(!touchInput&&!support&&battle.battlefieldKeyboard?.legalTarget&&!battle.battlefieldKeyboard.pointerTarget);
   if(exactAp!==null&&native.spec?.ap!==exactAp){attempt.reason='native-cost-outside-scoped-setup';await cancel(frame);return false;}
   for(const cell of native.candidates){if(await cellClick(frame,cell,attempt)){
     await page.waitForTimeout(50);
@@ -898,6 +976,12 @@ async function attack(frame,battle,{support=false,exactAp=null}={}){
       else assert.ok(healed.hp>old.hp,'Native crosier input did not heal its selected ally');
       assert.ok(after.active?.id!==before.active.id||after.active.ap<before.active.ap,'Native crosier action did not spend AP');}
     battle.actions.push({kind:support?'crosier-heal':'attack',cell,spec:native.spec,before,after});attempt.reason='native-action-resolved';
+    if(attempt.pointerRequired){
+      const refunds=before.units.filter(u=>u.team==='foe'&&u.alive&&after.units.some(t=>t.id===u.id&&!t.alive)).length;
+      assert.equal(after.attacks,before.attacks+1,'Mounted pointer target must resolve exactly once');
+      assert.equal(after.active.ap,Math.max(0,Math.min(before.active.maxap,before.active.ap+refunds)-native.spec.ap),'Mounted pointer AP/refunds differ');
+      battle.battlefieldKeyboard.pointerTarget={cell,spec:native.spec,before,after,refunds,pass:true};
+    }
     return true;
   }}
   attempt.reason??=native.candidates.length?'no-native-pointer-hit':'no-native-eligible-target';await cancel(frame);return false;
@@ -1057,7 +1141,9 @@ async function battle(){
   for(const selector of ['#tutorial:not(.hidden) [data-action="skip"]','#boss-tutorial:not(.hidden) [data-action="start"]']){
     if(await frame.locator(selector).isVisible().catch(()=>false))await activateControl(frame.locator(selector));
   }
-  await activateControl(frame.locator('#menu [data-d="auto"]'));
+  const mountedKeyboard=!touchInput&&!priorProof&&entry.nodeId==='lion-opening-ambush';
+  if(mountedKeyboard)await campaignDeploymentKeyboard(frame,entry);
+  else await activateControl(frame.locator('#menu [data-d="auto"]'));
   entry.deployed=await frame.evaluate(()=>window.G.deployedUnits.length);assert.ok(entry.deployed>0&&entry.deployed<=4,'Deployment exceeds the existing four-unit cap');
   const nativeConfig=await page.evaluate(()=>window.__demoQaApp.combat.session.config);
   assert.ok(entry.deployed<=nativeConfig.maxPlayerUnits,'Native deployment exceeds this actual encounter limit');
@@ -1132,7 +1218,8 @@ async function battle(){
   entry.autosaveBefore=JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')));
   if(touchInput)await verifyTouchDeployment(frame,entry);
   await capture(`combat-${entry.index}-deployment`);
-  await activateControl(frame.locator('#menu [data-d="start"]'));
+  if(mountedKeyboard){await campaignTabTo(frame,'#menu [data-d="start"]',value=>page.keyboard.press(value));await page.keyboard.press('Enter');}
+  else await activateControl(frame.locator('#menu [data-d="start"]'));
   if(entry.index===0&&!priorProof&&['forest_ambush','wolf_pack'].includes(entry.combatId)){
     entry.initialRoster=await frame.evaluate(()=>G.units.map(u=>({id:u.campaignId||u.id,team:u.team,skills:[...u.skills]})));
     assert.equal(entry.initialRoster.filter(u=>u.team==='foe').length,2,'Opening enemy count');
@@ -1269,7 +1356,9 @@ async function battle(){
   }
   assert.ok(entry.resultText.includes('Victoire'),`Actual battle ended without victory: ${entry.resultText}`);
   assert.equal(entry.result.units.filter(u=>u.team==='foe'&&u.alive).length,0);
-  assert.ok(entry.actions.some(a=>a.kind==='attack'));entry.pass=true;
+  assert.ok(entry.actions.some(a=>a.kind==='attack'));
+  if(entry.battlefieldKeyboard?.legalTarget)assert.equal(entry.battlefieldKeyboard.pointerTarget?.pass,true,'Mounted pointer battlefield continuation missing');
+  entry.pass=true;
   entry.outcome='victory';
   entry.nativeVictoryHealth=await frame.evaluate(()=>Object.fromEntries(G.deployedUnits
     .map(u=>[u.campaignId||u.name,Math.max(0,Math.round(u.alive?u.hp:0))])));
