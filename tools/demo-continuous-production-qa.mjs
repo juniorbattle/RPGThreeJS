@@ -108,7 +108,7 @@ if(touchInput){
 Object.assign(report,{target,routePlan,finalePlan,trialPlan,defeatNodeId,nativeDefeatWait,viewport:{width:viewport[0],height:viewport[1]},
   osReducedMotion:process.env.DEMO_QA_OS_MOTION==='1',observationHook:'Built bootstrap exposes GameApp for read-only snapshots; no owner method invoked',refuges:[],choices:[]});
 report.nativeTacticalPolicy='Salvation and skill targets prioritize lowest-health eligible native targets; novice crosier uses lowest-charge ally attacks and follows wounded allies; potions below75% for Champion/Raid and50% elsewhere; read-only rejection telemetry; existing native controls only';
-report.nativePreparationPolicy='Existing native equipment/shop and paid refuge rest; complete+equipment buys steel and forges the existing Espadon de Braise recipe for80 permanent gold/2iron; post-T1 Raid may sell existing supplies for paid rest/two potions; exact native transactions and temporary-loot invariance';
+report.nativePreparationPolicy='Existing native equipment/shop and paid refuge rest; complete+equipment buys steel, then at Second refuge forges the existing Espadon de Braise recipe for80 permanent gold/2iron; explicit prepared routes may sell existing supplies to fund paid rest; exact native transactions and temporary-loot invariance';
 report.nativeNavigationPolicy='Production native adjacent POI intentions; no physical engine or driving fallback';
 report.driverSha256=createHash('sha256').update(await readFile('tools/demo-continuous-production-qa.mjs')).digest('hex');
 report.productionBundles=await Promise.all((await readdir('dist/assets')).filter(name=>/^(game|combat)-.*\.js$/.test(name))
@@ -511,6 +511,11 @@ async function explorePoiStep(live){
   }
   if(explorationPlan==='complete'&&region>0){
     const def=lotE.mobileEliteActors.find(elite=>elite.region===region),elite=live.run.poiExpedition.elites[def.id];
+    if(region===1&&elite.defeated&&!report.expedition.afterElitePreparation){
+      if(live.currentNodeId!=='lion-valmir-road')await navigateExpedition('lion-valmir-road');
+      else {await preparePoiCompanyAfterValmir();report.expedition.afterElitePreparation={eliteId:def.id,nativePaidService:true};}
+      return true;
+    }
     const ordinaryDone=region===1?['lion-poi-valley-bridge-cache','lion-poi-valley-serpent'].every(id=>live.resolvedNodeIds.includes(id))
       :report.expedition.interceptions.some(entry=>entry.eliteId===def.id&&entry.kind==='rear'&&entry.choice==='retreat');
     if(elite.active&&!elite.defeated&&ordinaryDone){
@@ -635,11 +640,12 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
   assertCanonicalMatch(arrival,expectedArrival,'Reopened refuge changed earned Valmir facts, loot or checkpoint');
   assert.equal(arrival.run.poiExpedition.turn,before.run.poiExpedition.turn+(postTrial?3:2));
   assert.equal(arrival.run.poiExpedition.pendingStep?.toNodeId,'lion-first-refuge');
+  if(nativeEquipment)await prepareNativeWeapon('lion-first-refuge');
   const rest=page.locator('.exploration-stop [data-action="rest"]:not(:disabled)');
   const cost=Number((await page.locator('.exploration-stop [data-action="rest"]').innerText()).match(/(\d+)\s*or/i)?.[1]??0);
   const funding=[];
-  if(cost>arrival.gold){
-    assert.equal(postTrial,true,'Only the explicitly prepared post-trial scenario may sell existing supplies');
+  if(cost>(await state()).gold){
+    assert.ok(postTrial||nativeEquipment&&explorationPlan==='complete','Only the explicit post-trial/complete equipment scenario may sell existing supplies');
     await keyboardActivate('.exploration-stop [data-action="shop"]');
     await keyboardActivate('.management [data-shop-mode="sell"]');
     for(let i=0;i<10&&(await state()).gold<cost;i++){
@@ -723,7 +729,7 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
     returnPath,onward,paidRestPersistedExactly:cost>0,skippedAlreadyHealthy:cost===0,exactSavedOwner:true};
 }
 async function prepareNativeWeapon(nodeId){
-  const baseItemId='steel_greatsword',forge=explorationPlan==='complete';
+  const baseItemId='steel_greatsword',forge=explorationPlan==='complete'&&nodeId==='lion-second-refuge';
   const itemId=forge?'ember_greatsword':baseItemId,unitId='warrior',initial=await state();
   if(initial.clan.members.find(u=>u.id===unitId).equipment.weaponIds[0]===itemId)return;
   await keyboardActivate('.exploration-stop [data-action="shop"]');
@@ -1020,7 +1026,8 @@ async function battle(){
   const preparedEndingParty=target==='ending'&&process.env.DEMO_QA_VERIFY_SALVATION!=='1'
     &&['serpent_captain','lion_chief'].includes(entry.combatId);
   const preparedRaidParty=target==='second-refuge'&&routePlan==='sacrifice'&&entry.combatId==='village_raid';
-  const preparedParty=preparedEndingParty||preparedRaidParty;
+  const preparedEliteParty=Boolean(entry.eliteId);
+  const preparedParty=preparedEndingParty||preparedRaidParty||preparedEliteParty;
   const intentionalDefeat=nativeDefeatWait&&entry.nodeId===defeatNodeId;
   if(process.env.DEMO_QA_VERIFY_SALVATION==='1'||preparedParty||intentionalDefeat){
     entry.availableRoster=await frame.evaluate(()=>G.rosterDefs.map(u=>({id:u.campaignId||u.id,skills:[...u.skills]})));
@@ -1041,7 +1048,8 @@ async function battle(){
     const available=new Set(entry.availableRoster.map(u=>u.id));
     const limit=Number((await frame.locator('#menu .deploy-head b').innerText()).match(/\d+\s*\/\s*(\d+)/)?.[1]);
     assert.ok(Number.isInteger(limit)&&limit>=1&&limit<=4,'Native encounter deployment limit invalid');
-    const preferred=preparedRaidParty?['white_mage','warrior','rogue','dark_mage']
+    const preferred=preparedEliteParty?['white_mage','warrior','rogue']
+      :preparedRaidParty?['white_mage','warrior','rogue','dark_mage']
       :preparedEndingParty?['white_mage','warrior','lancer','rogue']:['white_mage','warrior',...missing.map(u=>u.id)];
     let picks=[...new Set([...preferred,...available])].filter(id=>available.has(id)
       &&(!preparedParty||entry.ownerBefore.clan.members.some(u=>u.id===id&&u.currentHealth>0)))
@@ -1054,6 +1062,7 @@ async function battle(){
     assert.ok(picks.length>0&&picks.length<=limit,'Native party must fit the encounter');
     if(preparedEndingParty)entry.preparedEndingParty={preferred,picks,limit,existingLivingClanOnly:true};
     if(preparedRaidParty)entry.preparedRaidParty={preferred,picks,limit,existingLivingClanOnly:true};
+    if(preparedEliteParty)entry.preparedEliteParty={preferred,picks,limit,existingLivingClanOnly:true};
     await activateControl(frame.locator('#menu [data-d="reset"]'));
     for(const id of picks){
       const selector=`#menu [data-unit="${id}"]`;
