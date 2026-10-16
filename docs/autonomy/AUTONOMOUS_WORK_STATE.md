@@ -2,7 +2,7 @@
 
 IN_PROGRESS. Operator OD-2026-10-15-B approves the complete twelve optional POIs, two graph-mobile elites, exact catalogue/economy and independent Combat/retreat. Starting dev4c80196c; no inherited WIP. Dedicated set1.4.0 actual-diff review PASS, amendment commitf9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8. The operator explicitly approved the four governance version/SHA reference updates after auto-review refusal; immutable baselinef9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8. E1-E5 and native acceptance remain PENDING; operator art/final balance separate. All prior QA records, deferred tasks and historical proof preserved. Scheduler unchanged.
 
-Next: Complete current patrol, optional-defeat and ending jobs on frozen build; then correct390header with scoped native refresh and continue complete regional lineages.
+Next: Publish corrected mobile header and pilot route resume; refresh active-threat motion/header captures and continue complete I from certified patrol checkpoint.
 
 ## Preserved preceding checkpoint
 
@@ -1390,11 +1390,11 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - lot-e-complete-I-0001: INTERRUPTED_WORKER_ABSENT; port 5410; receipt `tmp/demo/lot-e-complete-I-0001/qa-job.json`; NOT_ACCEPTED
 - lot-e-direct-I-0001: SUCCEEDED; port 5411; receipt `tmp/demo/lot-e-direct-I-0001/qa-job.json`; NOT_ACCEPTED
 - lot-e-oldV6-II-touch-0001: INTERRUPTED_WORKER_ABSENT; port 5412; receipt `tmp/demo/lot-e-oldV6-II-touch-0001/qa-job.json`; NOT_ACCEPTED
-- lot-e-complete-patrol-0002: RUNNING; port 5410; receipt `tmp/demo/lot-e-complete-patrol-0002/qa-job.json`; NOT_ACCEPTED
+- lot-e-complete-patrol-0002: SUCCEEDED; port 5410; receipt `tmp/demo/lot-e-complete-patrol-0002/qa-job.json`; NOT_ACCEPTED
 - lot-e-oldV6-II-touch-0002: SUCCEEDED; port 5412; receipt `tmp/demo/lot-e-oldV6-II-touch-0002/qa-job.json`; NOT_ACCEPTED
 - lot-e-moderate-I-0001: SUCCEEDED; port 5411; receipt `tmp/demo/lot-e-moderate-I-0001/qa-job.json`; NOT_ACCEPTED
 - lot-e-moderate-marsh-0001: SUCCEEDED; port 5411; receipt `tmp/demo/lot-e-moderate-marsh-0001/qa-job.json`; NOT_ACCEPTED
-- lot-e-direct-ending-touch-0001: RUNNING; port 5412; receipt `tmp/demo/lot-e-direct-ending-touch-0001/qa-job.json`; NOT_ACCEPTED
+- lot-e-direct-ending-touch-0001: SUCCEEDED; port 5412; receipt `tmp/demo/lot-e-direct-ending-touch-0001/qa-job.json`; NOT_ACCEPTED
 - lot-e-optional-defeat-0001: RUNNING; port 5411; receipt `tmp/demo/lot-e-optional-defeat-0001/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 

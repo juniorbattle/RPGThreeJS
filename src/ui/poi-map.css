@@ -51,3 +51,4 @@
 .poi-dialog button:focus-visible{outline:3px solid #ffe7a5;outline-offset:3px}.poi-dialog button[data-poi-dialog-action=fight]{background:#754039}.poi-dialog button[data-poi-dialog-action=close]{background:#d9bd83;color:#152630}
 @media(max-width:1050px){.poi-map__detail{flex-wrap:wrap}.poi-map__threat-brief{max-width:none}.poi-map__legend{display:none}}
 @media(max-width:700px){.poi-map__threat-brief{border-left:0;border-top:1px solid #86624a;padding:6px 0 0;width:100%}.poi-map__threat-brief p{margin:2px 0}.poi-dialog-backdrop{padding:12px}.poi-dialog{padding:20px;max-height:calc(100dvh - 24px)}}
+@media(max-width:700px){.poi-map__header nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%}.poi-map__header nav button{white-space:normal;overflow-wrap:anywhere}}

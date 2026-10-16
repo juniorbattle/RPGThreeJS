@@ -116,6 +116,8 @@ if(priorProof){
   report.earnedResume={savePath:earnedSavePath,priorProofPath,kind:'EXACT_VERIFIED_RESUMED_OWNER_STATE',sha256:createHash('sha256').update(earnedText).digest('hex'),proofSha256:createHash('sha256').update(await readFile(priorProofPath)).digest('hex')};
   report.nodes=[...priorProof.nodes];report.battles=structuredClone(priorProof.battles);
   report.inheritedBattleCount=report.battles.length;report.priorInputs=structuredClone(priorProof.inputs);
+  // Resume only the external native pilot's route cursor. No game/save fact is written.
+  report.expedition.phases=structuredClone(priorProof.expedition?.phases??{});
 }
 page.on('pageerror',error=>report.errors.push(error.message));
 page.on('console',message=>{if(message.type()==='error'&&!message.text().includes('[VFX Preview]'))report.errors.push(message.text());});
@@ -125,8 +127,9 @@ if(jobOptions.parameters.timeoutAuthority)report.timeoutAuthority=jobOptions.par
 const deadline=Date.now()+report.timeoutMinutes*60*1000;
 async function capture(name){await page.screenshot({path:resolve(output,`${name}.png`)});report.captures.push(`${name}.png`);
   report.geometry??=[];report.geometry.push(await page.evaluate(name=>{
-    const controls=[...document.querySelectorAll('.dialogue-choice,.exploration-stop button,.poi-map nav button,.poi-map__atlas-bar button,.poi-map__detail button,.poi-marker[aria-pressed="true"],[data-journey-choice],[data-journey-continue]')]
-      .filter(e=>e.getClientRects().length&&!e.disabled).map(e=>{const r=e.getBoundingClientRect();return{label:e.textContent.trim(),x:r.x,y:r.y,right:r.right,bottom:r.bottom};});
+    const controls=[...document.querySelectorAll('.dialogue-choice,.exploration-stop button,.poi-map nav button,.poi-map__atlas-bar button,.poi-map__detail button,.poi-marker[aria-pressed="true"],.poi-dialog button,[data-journey-choice],[data-journey-continue]')]
+      .filter(e=>e.getClientRects().length&&!e.disabled).map(e=>{const r=e.getBoundingClientRect();return{label:e.textContent.trim(),x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height,focused:e===document.activeElement,inert:!!e.closest('[inert]')};});
+    const navLabelOverflows=[...document.querySelectorAll('.poi-map__header nav button')].filter(e=>e.scrollWidth>e.clientWidth+1).map(e=>e.textContent.trim());
     const land=document.querySelector('.poi-map__land')?.getBoundingClientRect();
     const markerLabels=land?[...document.querySelectorAll('.poi-marker__name')].map(e=>{
       const r=e.getBoundingClientRect();return{label:e.textContent.trim(),left:Math.max(0,land.left,r.left),top:Math.max(0,land.top,r.top),right:Math.min(innerWidth,land.right,r.right),bottom:Math.min(innerHeight,land.bottom,r.bottom)};
@@ -136,10 +139,11 @@ async function capture(name){await page.screenshot({path:resolve(output,`${name}
       const a=markerLabels[i],b=markerLabels[j];
       if(Math.min(a.right,b.right)-Math.max(a.left,b.left)>1&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>1)markerLabelOverlaps.push([a.label,b.label]);
     }
-    return{name,width:innerWidth,height:innerHeight,overflow:document.documentElement.scrollWidth-innerWidth,controls,markerLabels,markerLabelOverlaps,
+    return{name,width:innerWidth,height:innerHeight,overflow:document.documentElement.scrollWidth-innerWidth,controls,navLabelOverflows,markerLabels,markerLabelOverlaps,
       sequence:document.querySelector('.dialogue')?.dataset.dialogueSequence,step:document.querySelector('.dialogue')?.dataset.dialogueStep};
   },name));
   assert.deepEqual(report.geometry.at(-1).markerLabelOverlaps,[],'Visible native map labels overlap');
+  assert.deepEqual(report.geometry.at(-1).navLabelOverflows,[],'Native atlas action labels overflow their button');
 }
 async function state(){return page.evaluate(()=>JSON.parse(JSON.stringify(window.__demoQaApp.state)));}
 async function activateControl(control){if(touchInput)await control.tap();else await control.click();}
@@ -383,6 +387,17 @@ let expeditionWaitPending=false;
 async function handleExpeditionDialog(){
   const dialog=page.locator('.poi-dialog-backdrop:visible');if(!await dialog.count())return false;
   const live=await state(),encounter=live.run.poiExpedition?.encounter;
+  const expectedFocus=encounter?'retreat':'close';
+  assert.equal(await page.evaluate(()=>document.activeElement?.getAttribute('data-poi-dialog-action')),expectedFocus,'Native POI dialog lost its safe initial focus');
+  const controls=await dialog.locator('button').evaluateAll(elements=>elements.map(element=>{const r=element.getBoundingClientRect();return{action:element.dataset.poiDialogAction,x:r.x,y:r.y,width:r.width,height:r.height,right:r.right,bottom:r.bottom};}));
+  assert.ok(controls.every(r=>r.width>=44&&r.height>=44&&r.x>=0&&r.y>=0&&r.right<=viewport[0]+1&&r.bottom<=viewport[1]+1),'Native POI dialog controls are too small or clipped');
+  if(!touchInput){
+    await page.keyboard.press('Tab');assert.ok(await page.evaluate(()=>!!document.activeElement?.closest('.poi-dialog')),'Native Tab escaped the modal');
+    await page.keyboard.press('Shift+Tab');
+    assert.equal(await page.evaluate(()=>document.activeElement?.getAttribute('data-poi-dialog-action')),expectedFocus);
+    assert.deepEqual(await state(),live,'Dialog focus navigation changed owner truth');
+  }
+  (report.expedition.dialogs??=[]).push({eliteId:encounter?.eliteId,chestId:encounter?undefined:live.currentNodeId,controls,initialFocus:expectedFocus,nativeTrap:!touchInput,pass:true});
   if(!encounter){
     const def=lotE.fixedPoiCandidates.find(poi=>poi.id===live.currentNodeId&&poi.chestLoot);
     assert.ok(def&&live.resolvedNodeIds.includes(def.id),'Chest popup must follow an actual unique owner attribution');
@@ -490,6 +505,11 @@ async function inspectPoiAtlas(){
     assert.ok(controls.every(c=>c.width>=44&&c.height>=44),'Atlas native target below44px');
     await page.waitForFunction(()=>{const image=document.querySelector('.poi-map__geography');return image?.complete&&image.naturalWidth>0;},null,{timeout:30000});
     const geography=await page.locator('.poi-map__geography').evaluate(async image=>{await image.decode();return{src:image.getAttribute('src'),complete:image.complete,width:image.naturalWidth,height:image.naturalHeight};});
+    const threatMotion=await page.locator('.poi-map').evaluate(map=>({
+      osReduced:matchMedia('(prefers-reduced-motion: reduce)').matches,gameReduced:map.dataset.reducedMotion==='true',
+      threats:[...map.querySelectorAll('.poi-threat')].map(element=>({animation:getComputedStyle(element).animationName,duration:getComputedStyle(element).animationDuration})),
+    }));
+    for(const threat of threatMotion.threats)assert.equal(threat.animation,threatMotion.osReduced||threatMotion.gameReduced?'none':'poi-threat-presence','Threat pulse disagrees with independent OS/game motion controls');
     await capture(`atlas-region-${index}-${viewport[0]}`);
     const borders=[];
     for(const id of await page.locator('.poi-marker--border').evaluateAll(elements=>elements.map(e=>e.dataset.poiId))){
@@ -498,7 +518,7 @@ async function inspectPoiAtlas(){
       assert.ok(bounds.left>=bounds.land.left-1&&bounds.top>=bounds.land.top-1&&bounds.right<=bounds.land.right+1&&bounds.bottom<=bounds.land.bottom+1,'Native border marker label remained clipped after focus');
       borders.push({id,bounds});
     }
-    regions.push({index,controls,geography,borders});
+    regions.push({index,controls,geography,borders,threatMotion});
   }
   await keyboardActivate('.poi-map [data-poi-action="locate"]');
   assert.equal(await page.locator('.poi-map').getAttribute('data-region'),initialRegion);
@@ -1514,6 +1534,7 @@ try{
       if(!next)for(const id of choices)if(await page.locator(`.poi-map [data-poi-id="${id}"][data-poi-reachable="true"]`).count()){next=id;break;}
       if(!next&&live.currentNodeId==='lion-nomad-crossroads'&&report.poi.optionalBypass)next=`lion-first-trial-${trialPlan}`;
       if(next){await poiMove(next);continue;}
+      assert.ok(!live.currentNodeId.startsWith('lion-poi-'),'Native pilot exhausted its optional route without a canonical exit');
     }
     if(await page.locator('.prologue-view').count()){await page.keyboard.press('Enter');}
     else if(await page.locator('.cinematic-overlay__skip:visible').count()){await click('.cinematic-overlay__skip:visible');}

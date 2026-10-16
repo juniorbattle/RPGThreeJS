@@ -3,8 +3,8 @@
   "runStartedAt": "2026-10-15T22:57:16.909Z",
   "runEndedAt": null,
   "activeTask": "POI-LOT-E-FINAL",
-  "activePhase": "NATIVE_CAMPAIGN",
-  "activeSubtask": "Complete current patrol, optional-defeat and ending jobs on frozen build; then correct390header with scoped native refresh and continue complete regional lineages.",
+  "activePhase": "NATIVE_UI_REFRESH",
+  "activeSubtask": "Publish corrected mobile header and pilot route resume; refresh active-threat motion/header captures and continue complete I from certified patrol checkpoint.",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "99ed9ed9d5b4290f65e1591a701463ad61c0f21d",
   "lastPushedCommit": "0aada9fdd65d10702138bfdf1174ce188c824302",
@@ -274,7 +274,7 @@
     "Preserved unrelated six-hero skills, mounted keyboard, narrative/manual findings; ten inherited broader-suite audit failures",
     "Two inactive optional chest/patrol authoring proposals require specific approval before activation"
   ],
-  "nextAction": "Complete current patrol, optional-defeat and ending jobs on frozen build; then correct390header with scoped native refresh and continue complete regional lineages.",
+  "nextAction": "Publish corrected mobile header and pilot route resume; refresh active-threat motion/header captures and continue complete I from certified patrol checkpoint.",
   "taskQueue": [
     "POI-MAP-FINALIZATION: requested implementation/native milestones REVIEWED_SCOPED; operator final playtest remains",
     "DEMO-PC-CAMPAIGN: both native truth endings, T0/T1/T3 alternatives, rescue/sacrifice, defeat and exact V6 accepted in recorded scopes",
@@ -377,10 +377,10 @@
   },
   "runId": "codex-lot-e-20261015",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-16T02:37:45.486Z",
+  "lastHeartbeat": "2026-10-16T02:48:22.314Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-16T02:37:45.486Z",
+    "lastHeartbeat": "2026-10-16T02:48:22.314Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -30211,7 +30211,7 @@
         "schemaVersion": 1,
         "jobId": "lot-e-complete-patrol-0002",
         "runId": "codex-lot-e-20261015",
-        "status": "RUNNING",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-16T02:17:27.402Z",
         "pid": 6732,
         "port": 5410,
@@ -30299,12 +30299,16 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-16T02:17:29.200Z",
-        "endedAt": null,
+        "endedAt": "2026-10-16T02:44:14.722Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
-        "resultDigestMatches": false,
-        "eligibleForReview": false
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 0,
+        "resultPath": "tmp/demo/lot-e-complete-patrol-0002/results.json",
+        "resultSha256": "78a75d4704fc5857eef81054bada061cfc2f3dd935227d39540d8fb14d1afcb1",
+        "provenanceStable": true
       },
       {
         "schemaVersion": 1,
@@ -30412,9 +30416,9 @@
         "endedAt": "2026-10-16T02:29:20.565Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true,
+        "eligibleForReview": false,
         "exitCode": 0,
         "resultPath": "tmp/demo/lot-e-oldV6-II-touch-0002/results.json",
         "resultSha256": "f6ac24d2f6417e169c85dba1f413649bd0eaba0ea2d215ab3b6d36d34da0cd13",
@@ -30519,9 +30523,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -30633,15 +30637,15 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-direct-ending-touch-0001",
         "runId": "codex-lot-e-20261015",
-        "status": "RUNNING",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-16T02:30:53.594Z",
         "pid": 9192,
         "port": 5412,
@@ -30740,18 +30744,22 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-16T02:30:55.272Z",
-        "endedAt": null,
+        "endedAt": "2026-10-16T02:39:18.856Z",
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
-        "resultDigestMatches": false,
-        "eligibleForReview": false
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 0,
+        "resultPath": "tmp/demo/lot-e-direct-ending-touch-0001/results.json",
+        "resultSha256": "0f9934c1052e90f6dd6c7b1d3784240a6f2d46f539b2887a507830c5dd6a1752",
+        "provenanceStable": true
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-optional-defeat-0001",
         "runId": "codex-lot-e-20261015",
-        "status": "RUNNING",
+        "status": "ABORTED_PILOT_DEAD_END",
         "registeredAt": "2026-10-16T02:37:00.622Z",
         "pid": 13944,
         "port": 5411,
@@ -30853,9 +30861,12 @@
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": false,
-        "eligibleForReview": false
+        "eligibleForReview": false,
+        "receiptStatus": "RUNNING_WITHOUT_FINAL_RESULT",
+        "reason": "Optional checkpoint resumed with empty pilot phases and no directed links; owned PID13944 and descendants stopped after identity verification. No partial state used as a seed.",
+        "reconciledAt": "2026-10-16T02:48:22.403Z"
       }
     ],
     "wip": {
@@ -30869,7 +30880,7 @@
       "status": "RUNTIME_ON_DEV_NATIVE_IN_PROGRESS",
       "lastGreenCheck": "independent-qa-02:206tests/types/contracts/build; final atlas build PASS; native driver prelaunch guardian PASS"
     },
-    "nextAction": "Complete current patrol, optional-defeat and ending jobs on frozen build; then correct390header with scoped native refresh and continue complete regional lineages.",
+    "nextAction": "Publish corrected mobile header and pilot route resume; refresh active-threat motion/header captures and continue complete I from certified patrol checkpoint.",
     "runMetrics": {
       "runId": "codex-poi-v2-20261015",
       "countBasis": "Unique final paths compared with starting b79063bb, no renames; removals distinct from surviving modifications",
@@ -31752,7 +31763,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "POI-LOT-E-FINAL",
-    "activeSubtask": "Complete current patrol, optional-defeat and ending jobs on frozen build; then correct390header with scoped native refresh and continue complete regional lineages.",
+    "activeSubtask": "Publish corrected mobile header and pilot route resume; refresh active-threat motion/header captures and continue complete I from certified patrol checkpoint.",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -35088,7 +35099,7 @@
     "agent": "codex",
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-15T22:57:16.909Z",
-    "activePhase": "NATIVE_CAMPAIGN",
+    "activePhase": "NATIVE_UI_REFRESH",
     "heartbeat": "2026-10-15T21:32:17.578Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-15T2128Z-codex-poi-v2-retirement.md",
     "motion1617": {
