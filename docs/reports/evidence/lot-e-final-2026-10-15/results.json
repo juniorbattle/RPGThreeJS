@@ -1,0 +1,5964 @@
+{
+  "schema": "rpgthreejs.lot-e.final-evidence.v1",
+  "recordedAt": "2026-10-16T15:29:45.296Z",
+  "baseline": "4c80196cf2eb87097f063f4f312756044f5a5e47",
+  "lockedBaseline": "f9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8",
+  "status": "COMPLETE_SCOPED",
+  "artAcceptance": "OPERATOR_PLAYTEST_PENDING",
+  "balanceAcceptance": "OPERATOR_PLAYTEST_PENDING",
+  "catalogue": {
+    "canonicalNodes": 21,
+    "newNodes": 12,
+    "chests": 6,
+    "ordinaryCombatPoi": 6,
+    "elites": 2,
+    "ordinaryGold": 590,
+    "chestGold": 100,
+    "eliteGold": 290
+  },
+  "completeCampaign": {
+    "jobId": "lot-e-complete-ending-0003",
+    "sourceCommit": "45fdb478bf465acc07de50948a664183896d2e2c",
+    "jobLineage": [
+      "lot-e-complete-patrol-0002",
+      "lot-e-complete-I-0003",
+      "lot-e-complete-marsh-0001",
+      "lot-e-complete-valley-loop-0002",
+      "lot-e-complete-II-0005",
+      "lot-e-complete-III-0003",
+      "lot-e-complete-ending-0003"
+    ],
+    "nativeVictoryCount": 12,
+    "ordinaryLotEVictories": 6,
+    "eliteVictories": 2,
+    "canonicalVictories": 4,
+    "chestCount": 6,
+    "optionalResolved": [
+      "lion-poi-opening-supplies",
+      "lion-poi-opening-patrol",
+      "lion-poi-opening-wolves",
+      "lion-poi-opening-cache",
+      "lion-poi-valley-supplies",
+      "lion-poi-valley-marsh",
+      "lion-poi-valley-bridge-cache",
+      "lion-poi-valley-serpent",
+      "lion-poi-seal-witness-supplies",
+      "lion-poi-seal-hunters",
+      "lion-poi-seal-ruin-encounter",
+      "lion-poi-seal-ruin-supplies"
+    ],
+    "elitesDefeated": [
+      "lion-elite-valley-sentinel",
+      "lion-elite-seal-warden"
+    ],
+    "securedGold": 1167,
+    "temporaryGold": 0,
+    "reputation": 100,
+    "ending": "lion-seal-serpent-truth",
+    "exactTerminalV6": true,
+    "nativeTerminalMenu": {
+      "nativeKeyboard": true,
+      "nativeTouch": false,
+      "titleVisible": true,
+      "continueFocused": true,
+      "ownerUnchanged": true,
+      "savedBytesUnchanged": true
+    },
+    "earnedSave": {
+      "path": "tmp/demo/lot-e-complete-ending-0003/earned-ending-v6.json",
+      "sha256": "ecdacccbffd245455b0bb39c41e596d0a9d72c7d3de406688050c5b9c382f27c"
+    },
+    "preparation": [
+      {
+        "nodeId": "lion-first-refuge",
+        "itemId": "steel_greatsword",
+        "unitId": "warrior",
+        "price": 153,
+        "old": "novice_greatsword",
+        "proceeds": 45,
+        "before": {
+          "gold": 190,
+          "temporaryGold": 290,
+          "reputation": 63,
+          "permanentIron": 3,
+          "currentNodeId": "lion-first-refuge"
+        },
+        "bought": {
+          "gold": 37,
+          "temporaryGold": 290,
+          "reputation": 63,
+          "permanentIron": 3,
+          "currentNodeId": "lion-first-refuge"
+        },
+        "equipped": {
+          "gold": 37,
+          "temporaryGold": 290,
+          "reputation": 63,
+          "permanentIron": 3,
+          "currentNodeId": "lion-first-refuge"
+        },
+        "sold": {
+          "gold": 82,
+          "temporaryGold": 290,
+          "reputation": 63,
+          "permanentIron": 3,
+          "currentNodeId": "lion-first-refuge"
+        }
+      },
+      {
+        "nodeId": "lion-second-refuge",
+        "itemId": "ember_greatsword",
+        "purchaseId": "novice_greatsword",
+        "unitId": "warrior",
+        "price": 70,
+        "old": "novice_greatsword",
+        "proceeds": 45,
+        "before": {
+          "gold": 592,
+          "temporaryGold": 0,
+          "reputation": 89,
+          "permanentIron": 11,
+          "currentNodeId": "lion-second-refuge"
+        },
+        "bought": {
+          "gold": 522,
+          "temporaryGold": 0,
+          "reputation": 89,
+          "permanentIron": 11,
+          "currentNodeId": "lion-second-refuge"
+        },
+        "equipped": {
+          "gold": 442,
+          "temporaryGold": 0,
+          "reputation": 89,
+          "permanentIron": 9,
+          "currentNodeId": "lion-second-refuge"
+        },
+        "sold": {
+          "gold": 487,
+          "temporaryGold": 0,
+          "reputation": 89,
+          "permanentIron": 9,
+          "currentNodeId": "lion-second-refuge"
+        }
+      },
+      {
+        "nodeId": "lion-second-refuge",
+        "recipeId": "craft_burn_greatsword",
+        "cost": 80,
+        "iron": 2,
+        "baseItemId": "steel_greatsword",
+        "itemId": "ember_greatsword",
+        "reuseEquippedBase": true,
+        "purchaseId": "novice_greatsword",
+        "before": {
+          "gold": 522,
+          "temporaryGold": 0,
+          "reputation": 89,
+          "permanentIron": 11,
+          "currentNodeId": "lion-second-refuge"
+        },
+        "after": {
+          "gold": 442,
+          "temporaryGold": 0,
+          "reputation": 89,
+          "permanentIron": 9,
+          "currentNodeId": "lion-second-refuge"
+        },
+        "temporaryLootUnchanged": true
+      }
+    ],
+    "sealRecoveries": [
+      {
+        "origin": "lion-poi-seal-ruin-encounter",
+        "before": {
+          "gold": 472,
+          "temporaryGold": 280,
+          "reputation": 100,
+          "permanentIron": 9,
+          "currentNodeId": "lion-poi-seal-ruin-encounter"
+        },
+        "phase": "return-to-origin",
+        "servicesBefore": {
+          "gold": 472,
+          "temporaryGold": 280,
+          "reputation": 100,
+          "permanentIron": 9,
+          "currentNodeId": "lion-second-refuge"
+        },
+        "rested": {
+          "gold": 442,
+          "temporaryGold": 280,
+          "reputation": 100,
+          "permanentIron": 9,
+          "currentNodeId": "lion-second-refuge"
+        },
+        "cost": 30,
+        "exactSavedOwner": true,
+        "after": {
+          "gold": 442,
+          "temporaryGold": 280,
+          "reputation": 100,
+          "permanentIron": 9,
+          "currentNodeId": "lion-poi-seal-ruin-encounter"
+        },
+        "complete": true
+      },
+      {
+        "origin": "lion-poi-seal-hunters",
+        "before": {
+          "gold": 442,
+          "temporaryGold": 405,
+          "reputation": 100,
+          "permanentIron": 9,
+          "currentNodeId": "lion-poi-seal-hunters"
+        },
+        "phase": "return-to-origin",
+        "servicesBefore": {
+          "gold": 442,
+          "temporaryGold": 405,
+          "reputation": 100,
+          "permanentIron": 9,
+          "currentNodeId": "lion-second-refuge"
+        },
+        "rested": {
+          "gold": 412,
+          "temporaryGold": 405,
+          "reputation": 100,
+          "permanentIron": 9,
+          "currentNodeId": "lion-second-refuge"
+        },
+        "cost": 30,
+        "exactSavedOwner": true,
+        "after": {
+          "gold": 412,
+          "temporaryGold": 405,
+          "reputation": 100,
+          "permanentIron": 9,
+          "currentNodeId": "lion-poi-seal-hunters"
+        },
+        "complete": true
+      }
+    ],
+    "battles": [
+      {
+        "nodeId": "lion-opening-ambush",
+        "eliteId": null,
+        "combatId": "wolf_pack",
+        "outcome": "victory",
+        "pass": true,
+        "actions": 19,
+        "rounds": 2,
+        "deployed": 4,
+        "enemies": null,
+        "exactLotERewards": null
+      },
+      {
+        "nodeId": "lion-poi-opening-patrol",
+        "eliteId": null,
+        "combatId": "poi_opening_patrol_a",
+        "outcome": "victory",
+        "pass": true,
+        "actions": 35,
+        "rounds": 6,
+        "deployed": 4,
+        "enemies": [
+          "serpent_raider",
+          "serpent_raider"
+        ],
+        "exactLotERewards": {
+          "temporaryGold": 85,
+          "reputation": 1,
+          "materials": {
+            "red_gem": 1,
+            "iron_ore": 1
+          },
+          "temporary": true,
+          "pass": true
+        }
+      },
+      {
+        "nodeId": "lion-poi-opening-wolves",
+        "eliteId": null,
+        "combatId": "poi_opening_wolves_a",
+        "outcome": "victory",
+        "pass": true,
+        "actions": 28,
+        "rounds": 4,
+        "deployed": 4,
+        "enemies": [
+          "wolf",
+          "wolf"
+        ],
+        "exactLotERewards": {
+          "temporaryGold": 80,
+          "reputation": 1,
+          "materials": {
+            "red_gem": 1,
+            "iron_ore": 1
+          },
+          "temporary": true,
+          "pass": true
+        }
+      },
+      {
+        "nodeId": "lion-poi-valley-marsh",
+        "eliteId": null,
+        "combatId": "poi_valley_marsh_a",
+        "outcome": "victory",
+        "pass": true,
+        "actions": 27,
+        "rounds": 4,
+        "deployed": 4,
+        "enemies": [
+          "marsh_toad",
+          "cave_rat"
+        ],
+        "exactLotERewards": {
+          "temporaryGold": 90,
+          "reputation": 1,
+          "materials": {
+            "red_gem": 1,
+            "iron_ore": 1
+          },
+          "temporary": true,
+          "pass": true
+        }
+      },
+      {
+        "nodeId": "lion-valmir-road",
+        "eliteId": null,
+        "combatId": "marsh_crossing",
+        "outcome": "victory",
+        "pass": true,
+        "actions": 33,
+        "rounds": 4,
+        "deployed": 4,
+        "enemies": null,
+        "exactLotERewards": null
+      },
+      {
+        "nodeId": "lion-poi-valley-serpent",
+        "eliteId": null,
+        "combatId": "poi_valley_serpent_a",
+        "outcome": "victory",
+        "pass": true,
+        "actions": 43,
+        "rounds": 8,
+        "deployed": 4,
+        "enemies": [
+          "serpent_raider",
+          "serpent_brute"
+        ],
+        "exactLotERewards": {
+          "temporaryGold": 100,
+          "reputation": 0,
+          "materials": {
+            "red_gem": 1,
+            "iron_ore": 2
+          },
+          "temporary": true,
+          "pass": true
+        }
+      },
+      {
+        "nodeId": "lion-valmir-road",
+        "eliteId": "lion-elite-valley-sentinel",
+        "combatId": "poi_elite_valley_sentinel",
+        "outcome": "victory",
+        "pass": true,
+        "actions": 32,
+        "rounds": 6,
+        "deployed": 3,
+        "enemies": [
+          "serpent_brute",
+          "serpent_raider"
+        ],
+        "exactLotERewards": {
+          "temporaryGold": 120,
+          "reputation": 1,
+          "materials": {
+            "red_gem": 1,
+            "iron_ore": 2
+          },
+          "temporary": true,
+          "pass": true
+        }
+      },
+      {
+        "nodeId": "lion-village-choice",
+        "eliteId": null,
+        "combatId": "village_defense",
+        "outcome": "victory",
+        "pass": true,
+        "actions": 38,
+        "rounds": 5,
+        "deployed": 4,
+        "enemies": null,
+        "exactLotERewards": null
+      },
+      {
+        "nodeId": "lion-final-trial-event",
+        "eliteId": "lion-elite-seal-warden",
+        "combatId": "poi_elite_seal_warden",
+        "outcome": "victory",
+        "pass": true,
+        "actions": 35,
+        "rounds": 7,
+        "deployed": 3,
+        "enemies": [
+          "skeleton",
+          "goblin",
+          "skeleton"
+        ],
+        "exactLotERewards": {
+          "temporaryGold": 170,
+          "reputation": 1,
+          "materials": {
+            "red_gem": 2,
+            "iron_ore": 2
+          },
+          "temporary": true,
+          "pass": true
+        }
+      },
+      {
+        "nodeId": "lion-poi-seal-ruin-encounter",
+        "eliteId": null,
+        "combatId": "poi_seal_ruin_encounter_b",
+        "outcome": "victory",
+        "pass": true,
+        "actions": 47,
+        "rounds": 7,
+        "deployed": 4,
+        "enemies": [
+          "goblin",
+          "skeleton",
+          "skeleton"
+        ],
+        "exactLotERewards": {
+          "temporaryGold": 110,
+          "reputation": 1,
+          "materials": {
+            "red_gem": 1,
+            "iron_ore": 2
+          },
+          "temporary": true,
+          "pass": true
+        }
+      },
+      {
+        "nodeId": "lion-poi-seal-hunters",
+        "eliteId": null,
+        "combatId": "poi_seal_hunters_a",
+        "outcome": "victory",
+        "pass": true,
+        "actions": 58,
+        "rounds": 9,
+        "deployed": 4,
+        "enemies": [
+          "serpent_raider",
+          "serpent_brute",
+          "serpent_oracle",
+          "serpent_raider"
+        ],
+        "exactLotERewards": {
+          "temporaryGold": 125,
+          "reputation": 0,
+          "materials": {
+            "red_gem": 2,
+            "iron_ore": 2
+          },
+          "temporary": true,
+          "pass": true
+        }
+      },
+      {
+        "nodeId": "lion-final-judgement",
+        "eliteId": null,
+        "combatId": "serpent_captain",
+        "outcome": "victory",
+        "pass": true,
+        "actions": 74,
+        "rounds": 11,
+        "deployed": 4,
+        "enemies": null,
+        "exactLotERewards": null
+      }
+    ],
+    "chests": [
+      {
+        "id": "lion-poi-opening-supplies",
+        "gold": 0,
+        "items": {
+          "potion": 1
+        },
+        "temporary": true,
+        "turn": 8
+      },
+      {
+        "id": "lion-poi-opening-cache",
+        "gold": 15,
+        "items": {
+          "antidote": 1
+        },
+        "temporary": true,
+        "turn": 13
+      },
+      {
+        "id": "lion-poi-valley-supplies",
+        "gold": 0,
+        "items": {
+          "ether": 1
+        },
+        "temporary": true,
+        "turn": 45
+      },
+      {
+        "id": "lion-poi-valley-bridge-cache",
+        "gold": 35,
+        "items": {
+          "potion": 1
+        },
+        "temporary": true,
+        "turn": 55
+      },
+      {
+        "id": "lion-poi-seal-witness-supplies",
+        "gold": 0,
+        "items": {
+          "antidote": 1,
+          "ether": 1
+        },
+        "temporary": true,
+        "turn": 72
+      },
+      {
+        "id": "lion-poi-seal-ruin-supplies",
+        "gold": 50,
+        "items": {
+          "revive_vial": 1
+        },
+        "temporary": true,
+        "turn": 95
+      }
+    ],
+    "technicalScopeOnly": true
+  },
+  "accepted": [
+    {
+      "id": "lot-e-direct-I-0001",
+      "target": "first-refuge",
+      "strategy": "direct",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "touch": false,
+      "receipt": {
+        "path": "tmp/demo/lot-e-direct-I-0001/qa-job.json",
+        "sha256": "8b9739d6aa7470eaa3832a426f906620fd12804167ba38b40aaa5f3bbade5a0e",
+        "resultPath": "tmp/demo/lot-e-direct-I-0001/results.json",
+        "resultSha256": "9a45444ca56011d91ecc37362efc7a9a7269500cebfe6738c3e1b77f1e570f51",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "efcd280590230045cb811c737915bfeb75187afe",
+        "sourceTree": "c03a68a475a72d0c95db02f52a743742164e33d9",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "1f8515545702c727c4a04d571fb1a286cd887d6825bdbef60699c8e84958eddf"
+        },
+        "inputs": [],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-QBTjA6-y.css",
+            "sha256": "859ac51193d483d64cf7aa992dd64671813ca8ed9c5f86c7694ff10a3c470f6f"
+          },
+          {
+            "path": "dist/assets/game-T-XEYJlr.js",
+            "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "0d87d1e8be22b6cec2e7d91a4ee777a9f692eea5e2a98cae9fc159227696c3ee"
+          }
+        ]
+      },
+      "exactEarnedResume": null,
+      "checkpoint": null,
+      "ending": null,
+      "currentNodeId": "lion-first-refuge",
+      "final": {
+        "gold": 110,
+        "temporaryGold": 0,
+        "reputation": 51,
+        "graphNodes": 33,
+        "optionalResolved": [],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": false,
+            "positionId": "lion-poi-valley-bridge-cache",
+            "patrolIndex": 0,
+            "mode": "cyclic_patrol",
+            "lastStep": 0,
+            "defeated": false
+          },
+          "lion-elite-seal-warden": {
+            "active": false,
+            "positionId": "lion-poi-seal-ruin-encounter",
+            "patrolIndex": 2,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 0,
+            "defeated": false
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 140
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 72
+          },
+          {
+            "id": "archer",
+            "hp": 1
+          },
+          {
+            "id": "rogue",
+            "hp": 100
+          }
+        ]
+      },
+      "newBattles": [
+        {
+          "nodeId": "lion-opening-ambush",
+          "eliteId": null,
+          "combatId": "wolf_pack",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 19,
+          "rounds": 2,
+          "deployed": 4,
+          "enemies": null,
+          "exactLotERewards": null
+        }
+      ],
+      "certifiedLineageBattleCount": 1,
+      "inheritedBattleCount": 0,
+      "chests": [],
+      "nativeWeaponPreparation": [],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [],
+      "nativeRefuges": [
+        {
+          "nodeId": "lion-first-refuge",
+          "entry": {
+            "gold": 110,
+            "temporaryGold": 0,
+            "reputation": 51,
+            "permanentIron": 1,
+            "currentNodeId": "lion-first-refuge"
+          },
+          "resumed": {
+            "gold": 110,
+            "temporaryGold": 0,
+            "reputation": 51,
+            "permanentIron": 1,
+            "currentNodeId": "lion-first-refuge"
+          },
+          "reusable": true,
+          "exactV6": true
+        }
+      ],
+      "terminalMenu": null,
+      "interceptions": [],
+      "explicitWaits": [],
+      "encounterReloads": [],
+      "chestReload": null,
+      "geometry": {
+        "samples": 22,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [],
+      "failureRecovery": null,
+      "captureCount": 22,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-complete-patrol-0002",
+      "target": "expedition-checkpoint",
+      "strategy": "complete",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "touch": false,
+      "receipt": {
+        "path": "tmp/demo/lot-e-complete-patrol-0002/qa-job.json",
+        "sha256": "16548074e1439a08cce9614fe630ecf8fbcbb9d49bbbe716b008ca0095243b24",
+        "resultPath": "tmp/demo/lot-e-complete-patrol-0002/results.json",
+        "resultSha256": "78a75d4704fc5857eef81054bada061cfc2f3dd935227d39540d8fb14d1afcb1",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+        "sourceTree": "721c1410b01681b6e675f91c8c3e471bacb5fc80",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "c660a7cf4c942d3199253b2b6cee435677ea243e449330b269aee9c2e2071b8b"
+        },
+        "inputs": [],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-BPx08x0P.js",
+            "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+          },
+          {
+            "path": "dist/assets/game-qv9iOn3q.css",
+            "sha256": "3b94e86b0b2f77d6f599e109fa593e9a1d8a0923243691a0fd15b066b5a8d1a0"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "36eed7e34394e1feed1518def21dad2c6ddedada8d0513604b08c782e4170e56"
+          }
+        ]
+      },
+      "exactEarnedResume": null,
+      "checkpoint": {
+        "id": "lion-poi-opening-patrol",
+        "pass": true,
+        "native": true,
+        "exactReload": true
+      },
+      "ending": null,
+      "currentNodeId": "lion-poi-opening-patrol",
+      "final": {
+        "gold": 150,
+        "temporaryGold": 115,
+        "reputation": 38,
+        "graphNodes": 33,
+        "optionalResolved": [
+          "lion-poi-opening-supplies",
+          "lion-poi-opening-patrol"
+        ],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": false,
+            "positionId": "lion-poi-valley-bridge-cache",
+            "patrolIndex": 0,
+            "mode": "cyclic_patrol",
+            "lastStep": 0,
+            "defeated": false
+          },
+          "lion-elite-seal-warden": {
+            "active": false,
+            "positionId": "lion-poi-seal-ruin-encounter",
+            "patrolIndex": 2,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 0,
+            "defeated": false
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 125
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 2
+          },
+          {
+            "id": "archer",
+            "hp": 1
+          },
+          {
+            "id": "rogue",
+            "hp": 100
+          }
+        ]
+      },
+      "newBattles": [
+        {
+          "nodeId": "lion-opening-ambush",
+          "eliteId": null,
+          "combatId": "wolf_pack",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 19,
+          "rounds": 2,
+          "deployed": 4,
+          "enemies": null,
+          "exactLotERewards": null
+        },
+        {
+          "nodeId": "lion-poi-opening-patrol",
+          "eliteId": null,
+          "combatId": "poi_opening_patrol_a",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 35,
+          "rounds": 6,
+          "deployed": 4,
+          "enemies": [
+            "serpent_raider",
+            "serpent_raider"
+          ],
+          "exactLotERewards": {
+            "temporaryGold": 85,
+            "reputation": 1,
+            "materials": {
+              "red_gem": 1,
+              "iron_ore": 1
+            },
+            "temporary": true,
+            "pass": true
+          }
+        }
+      ],
+      "certifiedLineageBattleCount": 2,
+      "inheritedBattleCount": 0,
+      "chests": [
+        {
+          "id": "lion-poi-opening-supplies",
+          "gold": 0,
+          "items": {
+            "potion": 1
+          },
+          "temporary": true,
+          "turn": 8
+        }
+      ],
+      "nativeWeaponPreparation": [],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [],
+      "nativeRefuges": [],
+      "terminalMenu": null,
+      "interceptions": [],
+      "explicitWaits": [],
+      "encounterReloads": [],
+      "chestReload": null,
+      "geometry": {
+        "samples": 31,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [],
+      "failureRecovery": null,
+      "captureCount": 31,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-oldV6-II-touch-0002",
+      "target": "second-refuge",
+      "strategy": "direct",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "touch": true,
+      "receipt": {
+        "path": "tmp/demo/lot-e-oldV6-II-touch-0002/qa-job.json",
+        "sha256": "e49f25c0ebb9fea7fa8d8b0190958ae97beaa0ba2b241de471d6fbda8e839720",
+        "resultPath": "tmp/demo/lot-e-oldV6-II-touch-0002/results.json",
+        "resultSha256": "f6ac24d2f6417e169c85dba1f413649bd0eaba0ea2d215ab3b6d36d34da0cd13",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+        "sourceTree": "721c1410b01681b6e675f91c8c3e471bacb5fc80",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "c660a7cf4c942d3199253b2b6cee435677ea243e449330b269aee9c2e2071b8b"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-v2-first-refuge-0810/earned-first-refuge-v6.json",
+            "sha256": "12931a226f9a81dc5a689f28da519370de50fc41a447d0babef903a5096e66dc"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-v2-first-refuge-0810/results.json",
+            "sha256": "b1819c257dbbb94bf486bac60fad2855473a841dc06be983b48155684bb43004"
+          }
+        ],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-BPx08x0P.js",
+            "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+          },
+          {
+            "path": "dist/assets/game-qv9iOn3q.css",
+            "sha256": "3b94e86b0b2f77d6f599e109fa593e9a1d8a0923243691a0fd15b066b5a8d1a0"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "36eed7e34394e1feed1518def21dad2c6ddedada8d0513604b08c782e4170e56"
+          }
+        ]
+      },
+      "exactEarnedResume": {
+        "savePath": "tmp/demo/poi-v2-first-refuge-0810/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/poi-v2-first-refuge-0810/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "12931a226f9a81dc5a689f28da519370de50fc41a447d0babef903a5096e66dc",
+        "proofSha256": "b1819c257dbbb94bf486bac60fad2855473a841dc06be983b48155684bb43004",
+        "additiveMigration": {
+          "originalNodes": 21,
+          "currentNodes": 33,
+          "canonicalFactsExact": true
+        }
+      },
+      "checkpoint": null,
+      "ending": null,
+      "currentNodeId": "lion-second-refuge",
+      "final": {
+        "gold": 290,
+        "temporaryGold": 0,
+        "reputation": 83,
+        "graphNodes": 33,
+        "optionalResolved": [],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": true,
+            "positionId": "lion-poi-valley-serpent",
+            "patrolIndex": 1,
+            "mode": "cyclic_patrol",
+            "lastStep": 13,
+            "defeated": false
+          },
+          "lion-elite-seal-warden": {
+            "active": false,
+            "positionId": "lion-poi-seal-ruin-encounter",
+            "patrolIndex": 2,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 0,
+            "defeated": false
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 140
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 1
+          },
+          {
+            "id": "archer",
+            "hp": 1
+          },
+          {
+            "id": "rogue",
+            "hp": 100
+          }
+        ]
+      },
+      "newBattles": [
+        {
+          "nodeId": "lion-valmir-road",
+          "eliteId": null,
+          "combatId": "road_to_valmir",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 45,
+          "rounds": 6,
+          "deployed": 4,
+          "enemies": null,
+          "exactLotERewards": null
+        },
+        {
+          "nodeId": "lion-village-choice",
+          "eliteId": null,
+          "combatId": "village_defense",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 54,
+          "rounds": 8,
+          "deployed": 4,
+          "enemies": null,
+          "exactLotERewards": null
+        }
+      ],
+      "certifiedLineageBattleCount": 3,
+      "inheritedBattleCount": 1,
+      "chests": [],
+      "nativeWeaponPreparation": [],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [],
+      "nativeRefuges": [
+        {
+          "nodeId": "lion-first-refuge",
+          "entry": {
+            "gold": 85,
+            "temporaryGold": 0,
+            "reputation": 51,
+            "permanentIron": 1,
+            "currentNodeId": "lion-first-refuge"
+          },
+          "resumed": {
+            "gold": 85,
+            "temporaryGold": 0,
+            "reputation": 51,
+            "permanentIron": 1,
+            "currentNodeId": "lion-first-refuge"
+          },
+          "reusable": true,
+          "exactV6": true,
+          "rested": {
+            "gold": 55,
+            "temporaryGold": 0,
+            "reputation": 51,
+            "permanentIron": 1,
+            "currentNodeId": "lion-first-refuge"
+          }
+        },
+        {
+          "nodeId": "lion-second-refuge",
+          "entry": {
+            "gold": 290,
+            "temporaryGold": 0,
+            "reputation": 83,
+            "permanentIron": 4,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "resumed": {
+            "gold": 290,
+            "temporaryGold": 0,
+            "reputation": 83,
+            "permanentIron": 4,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "reusable": true,
+          "exactV6": true
+        }
+      ],
+      "terminalMenu": null,
+      "interceptions": [],
+      "explicitWaits": [],
+      "encounterReloads": [],
+      "chestReload": null,
+      "geometry": {
+        "samples": 39,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [],
+      "failureRecovery": null,
+      "captureCount": 39,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-moderate-I-0001",
+      "target": "first-refuge",
+      "strategy": "moderate",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "touch": false,
+      "receipt": {
+        "path": "tmp/demo/lot-e-moderate-I-0001/qa-job.json",
+        "sha256": "d3d55ab830379ec99b7d7c4f43dd24678e7f4e03df1d738753d1220e4ca2ff03",
+        "resultPath": "tmp/demo/lot-e-moderate-I-0001/results.json",
+        "resultSha256": "f99c0d4d9f4ffb9049643235fb0be2509ae0a324f1a76eb367aec7d9ceb55d61",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+        "sourceTree": "721c1410b01681b6e675f91c8c3e471bacb5fc80",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "c660a7cf4c942d3199253b2b6cee435677ea243e449330b269aee9c2e2071b8b"
+        },
+        "inputs": [],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-BPx08x0P.js",
+            "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+          },
+          {
+            "path": "dist/assets/game-qv9iOn3q.css",
+            "sha256": "3b94e86b0b2f77d6f599e109fa593e9a1d8a0923243691a0fd15b066b5a8d1a0"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "36eed7e34394e1feed1518def21dad2c6ddedada8d0513604b08c782e4170e56"
+          }
+        ]
+      },
+      "exactEarnedResume": null,
+      "checkpoint": null,
+      "ending": null,
+      "currentNodeId": "lion-first-refuge",
+      "final": {
+        "gold": 205,
+        "temporaryGold": 0,
+        "reputation": 54,
+        "graphNodes": 33,
+        "optionalResolved": [
+          "lion-poi-opening-wolves",
+          "lion-poi-opening-cache"
+        ],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": false,
+            "positionId": "lion-poi-valley-bridge-cache",
+            "patrolIndex": 0,
+            "mode": "cyclic_patrol",
+            "lastStep": 0,
+            "defeated": false
+          },
+          "lion-elite-seal-warden": {
+            "active": false,
+            "positionId": "lion-poi-seal-ruin-encounter",
+            "patrolIndex": 2,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 0,
+            "defeated": false
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 140
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 1
+          },
+          {
+            "id": "archer",
+            "hp": 78
+          },
+          {
+            "id": "rogue",
+            "hp": 100
+          }
+        ]
+      },
+      "newBattles": [
+        {
+          "nodeId": "lion-opening-ambush",
+          "eliteId": null,
+          "combatId": "wolf_pack",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 19,
+          "rounds": 2,
+          "deployed": 4,
+          "enemies": null,
+          "exactLotERewards": null
+        },
+        {
+          "nodeId": "lion-poi-opening-wolves",
+          "eliteId": null,
+          "combatId": "poi_opening_wolves_b",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 32,
+          "rounds": 5,
+          "deployed": 4,
+          "enemies": [
+            "wolf",
+            "cave_rat"
+          ],
+          "exactLotERewards": {
+            "temporaryGold": 80,
+            "reputation": 1,
+            "materials": {
+              "red_gem": 1,
+              "iron_ore": 1
+            },
+            "temporary": true,
+            "pass": true
+          }
+        }
+      ],
+      "certifiedLineageBattleCount": 2,
+      "inheritedBattleCount": 0,
+      "chests": [
+        {
+          "id": "lion-poi-opening-cache",
+          "gold": 15,
+          "items": {
+            "antidote": 1
+          },
+          "temporary": true,
+          "turn": 9
+        }
+      ],
+      "nativeWeaponPreparation": [],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [],
+      "nativeRefuges": [
+        {
+          "nodeId": "lion-first-refuge",
+          "entry": {
+            "gold": 205,
+            "temporaryGold": 0,
+            "reputation": 54,
+            "permanentIron": 2,
+            "currentNodeId": "lion-first-refuge"
+          },
+          "resumed": {
+            "gold": 205,
+            "temporaryGold": 0,
+            "reputation": 54,
+            "permanentIron": 2,
+            "currentNodeId": "lion-first-refuge"
+          },
+          "reusable": true,
+          "exactV6": true
+        }
+      ],
+      "terminalMenu": null,
+      "interceptions": [],
+      "explicitWaits": [],
+      "encounterReloads": [],
+      "chestReload": null,
+      "geometry": {
+        "samples": 31,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [],
+      "failureRecovery": null,
+      "captureCount": 31,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-moderate-marsh-0001",
+      "target": "expedition-checkpoint",
+      "strategy": "moderate",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "touch": false,
+      "receipt": {
+        "path": "tmp/demo/lot-e-moderate-marsh-0001/qa-job.json",
+        "sha256": "913db314e362928c2d6ebe7e6ac12ba66216b0f5dcc3a6bc81e6af3054d2bef7",
+        "resultPath": "tmp/demo/lot-e-moderate-marsh-0001/results.json",
+        "resultSha256": "9a0d5438ed2aa4db7b14e002aa99e81394b0754f347bcb6a0b2718f7aa4027b5",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+        "sourceTree": "721c1410b01681b6e675f91c8c3e471bacb5fc80",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "c660a7cf4c942d3199253b2b6cee435677ea243e449330b269aee9c2e2071b8b"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/lot-e-moderate-I-0001/earned-first-refuge-v6.json",
+            "sha256": "34bc93091ae042d0feb4f86f02630bac5539044ae8a94d00c38986c865bba352"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/lot-e-moderate-I-0001/results.json",
+            "sha256": "f99c0d4d9f4ffb9049643235fb0be2509ae0a324f1a76eb367aec7d9ceb55d61"
+          }
+        ],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-BPx08x0P.js",
+            "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+          },
+          {
+            "path": "dist/assets/game-qv9iOn3q.css",
+            "sha256": "3b94e86b0b2f77d6f599e109fa593e9a1d8a0923243691a0fd15b066b5a8d1a0"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "36eed7e34394e1feed1518def21dad2c6ddedada8d0513604b08c782e4170e56"
+          }
+        ]
+      },
+      "exactEarnedResume": {
+        "savePath": "tmp/demo/lot-e-moderate-I-0001/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/lot-e-moderate-I-0001/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "34bc93091ae042d0feb4f86f02630bac5539044ae8a94d00c38986c865bba352",
+        "proofSha256": "f99c0d4d9f4ffb9049643235fb0be2509ae0a324f1a76eb367aec7d9ceb55d61",
+        "additiveMigration": {
+          "originalNodes": 33,
+          "currentNodes": 33,
+          "canonicalFactsExact": true
+        }
+      },
+      "checkpoint": {
+        "id": "lion-poi-valley-marsh",
+        "pass": true,
+        "native": true,
+        "exactReload": true
+      },
+      "ending": null,
+      "currentNodeId": "lion-poi-valley-marsh",
+      "final": {
+        "gold": 205,
+        "temporaryGold": 90,
+        "reputation": 59,
+        "graphNodes": 33,
+        "optionalResolved": [
+          "lion-poi-opening-wolves",
+          "lion-poi-opening-cache",
+          "lion-poi-valley-supplies",
+          "lion-poi-valley-marsh"
+        ],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": false,
+            "positionId": "lion-poi-valley-bridge-cache",
+            "patrolIndex": 0,
+            "mode": "cyclic_patrol",
+            "lastStep": 0,
+            "defeated": false
+          },
+          "lion-elite-seal-warden": {
+            "active": false,
+            "positionId": "lion-poi-seal-ruin-encounter",
+            "patrolIndex": 2,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 0,
+            "defeated": false
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 88
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 58
+          },
+          {
+            "id": "archer",
+            "hp": 90
+          },
+          {
+            "id": "rogue",
+            "hp": 100
+          }
+        ]
+      },
+      "newBattles": [
+        {
+          "nodeId": "lion-poi-valley-marsh",
+          "eliteId": null,
+          "combatId": "poi_valley_marsh_b",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 32,
+          "rounds": 4,
+          "deployed": 4,
+          "enemies": [
+            "wild_boar",
+            "venom_serpent"
+          ],
+          "exactLotERewards": {
+            "temporaryGold": 90,
+            "reputation": 1,
+            "materials": {
+              "red_gem": 1,
+              "iron_ore": 1
+            },
+            "temporary": true,
+            "pass": true
+          }
+        }
+      ],
+      "certifiedLineageBattleCount": 3,
+      "inheritedBattleCount": 2,
+      "chests": [
+        {
+          "id": "lion-poi-valley-supplies",
+          "gold": 0,
+          "items": {
+            "ether": 1
+          },
+          "temporary": true,
+          "turn": 17
+        }
+      ],
+      "nativeWeaponPreparation": [],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [],
+      "nativeRefuges": [],
+      "terminalMenu": null,
+      "interceptions": [],
+      "explicitWaits": [],
+      "encounterReloads": [],
+      "chestReload": null,
+      "geometry": {
+        "samples": 16,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [],
+      "failureRecovery": null,
+      "captureCount": 16,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-direct-ending-touch-0001",
+      "target": "ending",
+      "strategy": "direct",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "touch": true,
+      "receipt": {
+        "path": "tmp/demo/lot-e-direct-ending-touch-0001/qa-job.json",
+        "sha256": "612c9b5c8eb51f46f35e2626425642bff68a1d2ea1c94e5a0b89750f86769e82",
+        "resultPath": "tmp/demo/lot-e-direct-ending-touch-0001/results.json",
+        "resultSha256": "0f9934c1052e90f6dd6c7b1d3784240a6f2d46f539b2887a507830c5dd6a1752",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+        "sourceTree": "721c1410b01681b6e675f91c8c3e471bacb5fc80",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "c660a7cf4c942d3199253b2b6cee435677ea243e449330b269aee9c2e2071b8b"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/lot-e-oldV6-II-touch-0002/earned-lion-second-refuge-v6.json",
+            "sha256": "1ded07a0f2bb434156d557b089b4fe80fc57e338e33fc18789b30637df544d62"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/lot-e-oldV6-II-touch-0002/results.json",
+            "sha256": "f6ac24d2f6417e169c85dba1f413649bd0eaba0ea2d215ab3b6d36d34da0cd13"
+          }
+        ],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-BPx08x0P.js",
+            "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+          },
+          {
+            "path": "dist/assets/game-qv9iOn3q.css",
+            "sha256": "3b94e86b0b2f77d6f599e109fa593e9a1d8a0923243691a0fd15b066b5a8d1a0"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "36eed7e34394e1feed1518def21dad2c6ddedada8d0513604b08c782e4170e56"
+          }
+        ]
+      },
+      "exactEarnedResume": {
+        "savePath": "tmp/demo/lot-e-oldV6-II-touch-0002/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/lot-e-oldV6-II-touch-0002/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "1ded07a0f2bb434156d557b089b4fe80fc57e338e33fc18789b30637df544d62",
+        "proofSha256": "f6ac24d2f6417e169c85dba1f413649bd0eaba0ea2d215ab3b6d36d34da0cd13",
+        "additiveMigration": {
+          "originalNodes": 33,
+          "currentNodes": 33,
+          "canonicalFactsExact": true
+        }
+      },
+      "checkpoint": null,
+      "ending": "lion-seal-serpent-truth",
+      "currentNodeId": "lion-final-judgement",
+      "final": {
+        "gold": 560,
+        "temporaryGold": 0,
+        "reputation": 100,
+        "graphNodes": 33,
+        "optionalResolved": [],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": false,
+            "positionId": "lion-poi-valley-bridge-cache",
+            "patrolIndex": 0,
+            "mode": "cyclic_patrol",
+            "lastStep": 18,
+            "defeated": false
+          },
+          "lion-elite-seal-warden": {
+            "active": false,
+            "positionId": "lion-witnesses",
+            "patrolIndex": 0,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 18,
+            "defeated": false
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 140
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 75
+          },
+          {
+            "id": "archer",
+            "hp": 90
+          },
+          {
+            "id": "rogue",
+            "hp": 1
+          },
+          {
+            "id": "lancer",
+            "hp": 130
+          }
+        ]
+      },
+      "newBattles": [
+        {
+          "nodeId": "lion-final-judgement",
+          "eliteId": null,
+          "combatId": "serpent_captain",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 83,
+          "rounds": 13,
+          "deployed": 4,
+          "enemies": null,
+          "exactLotERewards": null
+        }
+      ],
+      "certifiedLineageBattleCount": 4,
+      "inheritedBattleCount": 3,
+      "chests": [],
+      "nativeWeaponPreparation": [],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [],
+      "nativeRefuges": [
+        {
+          "nodeId": "lion-second-refuge",
+          "entry": {
+            "gold": 290,
+            "temporaryGold": 0,
+            "reputation": 83,
+            "permanentIron": 4,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "resumed": {
+            "gold": 290,
+            "temporaryGold": 0,
+            "reputation": 83,
+            "permanentIron": 4,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "reusable": true,
+          "exactV6": true,
+          "rested": {
+            "gold": 260,
+            "temporaryGold": 0,
+            "reputation": 83,
+            "permanentIron": 4,
+            "currentNodeId": "lion-second-refuge"
+          }
+        }
+      ],
+      "terminalMenu": {
+        "nativeKeyboard": false,
+        "nativeTouch": true,
+        "titleVisible": true,
+        "continueFocused": true,
+        "ownerUnchanged": true,
+        "savedBytesUnchanged": true
+      },
+      "interceptions": [],
+      "explicitWaits": [],
+      "encounterReloads": [],
+      "chestReload": null,
+      "geometry": {
+        "samples": 26,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [],
+      "failureRecovery": null,
+      "captureCount": 26,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-complete-I-0003",
+      "target": "first-refuge",
+      "strategy": "complete",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "touch": false,
+      "receipt": {
+        "path": "tmp/demo/lot-e-complete-I-0003/qa-job.json",
+        "sha256": "90d9623e14bbcda50db7dad52faa6284e3f7f38f8ac386d7ee5e71753da47927",
+        "resultPath": "tmp/demo/lot-e-complete-I-0003/results.json",
+        "resultSha256": "2ff57d7dc63fd8a019326640cc292967d210016aaab56544264d964276016ad3",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "5c14d2d142137594e9a256df437c77ad1df428a9",
+        "sourceTree": "2e0751154b8505e3061e282c3934ee443fac0cff",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "51ec1e53fa9bc55bdb8bc3e2627623e20129d48c2587dc9395182ab5f910a7a0"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/lot-e-complete-patrol-0002/earned-expedition-checkpoint-v6.json",
+            "sha256": "93f7d1af6175efe39d3dbed7612ec98bd7539dfcd6ef193d0e34ee537db54b6c"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/lot-e-complete-patrol-0002/results.json",
+            "sha256": "78a75d4704fc5857eef81054bada061cfc2f3dd935227d39540d8fb14d1afcb1"
+          }
+        ],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-DtAZhH0m.js",
+            "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+          },
+          {
+            "path": "dist/assets/game-UCVpfDso.css",
+            "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "e589cfe07fe9998c0e244cb32c09b62c5f05b7632bbbf4ab37f8f7f2f500f9c7"
+          }
+        ]
+      },
+      "exactEarnedResume": {
+        "savePath": "tmp/demo/lot-e-complete-patrol-0002/earned-expedition-checkpoint-v6.json",
+        "priorProofPath": "tmp/demo/lot-e-complete-patrol-0002/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "93f7d1af6175efe39d3dbed7612ec98bd7539dfcd6ef193d0e34ee537db54b6c",
+        "proofSha256": "78a75d4704fc5857eef81054bada061cfc2f3dd935227d39540d8fb14d1afcb1",
+        "additiveMigration": {
+          "originalNodes": 33,
+          "currentNodes": 33,
+          "canonicalFactsExact": true
+        }
+      },
+      "checkpoint": null,
+      "ending": null,
+      "currentNodeId": "lion-first-refuge",
+      "final": {
+        "gold": 265,
+        "temporaryGold": 0,
+        "reputation": 55,
+        "graphNodes": 33,
+        "optionalResolved": [
+          "lion-poi-opening-supplies",
+          "lion-poi-opening-patrol",
+          "lion-poi-opening-wolves",
+          "lion-poi-opening-cache"
+        ],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": false,
+            "positionId": "lion-poi-valley-bridge-cache",
+            "patrolIndex": 0,
+            "mode": "cyclic_patrol",
+            "lastStep": 0,
+            "defeated": false
+          },
+          "lion-elite-seal-warden": {
+            "active": false,
+            "positionId": "lion-poi-seal-ruin-encounter",
+            "patrolIndex": 2,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 0,
+            "defeated": false
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 125
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 30
+          },
+          {
+            "id": "archer",
+            "hp": 56
+          },
+          {
+            "id": "rogue",
+            "hp": 100
+          }
+        ]
+      },
+      "newBattles": [
+        {
+          "nodeId": "lion-poi-opening-wolves",
+          "eliteId": null,
+          "combatId": "poi_opening_wolves_a",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 28,
+          "rounds": 4,
+          "deployed": 4,
+          "enemies": [
+            "wolf",
+            "wolf"
+          ],
+          "exactLotERewards": {
+            "temporaryGold": 80,
+            "reputation": 1,
+            "materials": {
+              "red_gem": 1,
+              "iron_ore": 1
+            },
+            "temporary": true,
+            "pass": true
+          }
+        }
+      ],
+      "certifiedLineageBattleCount": 3,
+      "inheritedBattleCount": 2,
+      "chests": [
+        {
+          "id": "lion-poi-opening-cache",
+          "gold": 15,
+          "items": {
+            "antidote": 1
+          },
+          "temporary": true,
+          "turn": 13
+        }
+      ],
+      "nativeWeaponPreparation": [],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [],
+      "nativeRefuges": [
+        {
+          "nodeId": "lion-first-refuge",
+          "entry": {
+            "gold": 290,
+            "temporaryGold": 0,
+            "reputation": 55,
+            "permanentIron": 3,
+            "currentNodeId": "lion-first-refuge"
+          },
+          "resumed": {
+            "gold": 265,
+            "temporaryGold": 0,
+            "reputation": 55,
+            "permanentIron": 3,
+            "currentNodeId": "lion-first-refuge"
+          },
+          "reusable": true,
+          "exactV6": true
+        }
+      ],
+      "terminalMenu": null,
+      "interceptions": [],
+      "explicitWaits": [],
+      "encounterReloads": [],
+      "chestReload": null,
+      "geometry": {
+        "samples": 18,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [],
+      "failureRecovery": null,
+      "captureCount": 18,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-complete-marsh-0001",
+      "target": "expedition-checkpoint",
+      "strategy": "complete",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "touch": false,
+      "receipt": {
+        "path": "tmp/demo/lot-e-complete-marsh-0001/qa-job.json",
+        "sha256": "f58af00039cc5328f77daa8c50dcf4c0f69410bcd89179494b0d0d6b4c77ef33",
+        "resultPath": "tmp/demo/lot-e-complete-marsh-0001/results.json",
+        "resultSha256": "741db27973c07c9b366d0eff3e319e3e62315edd8daba8ef30c6048426a03492",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "36a5fae90eddeb669c32bbc7ddea7dfe477c6199",
+        "sourceTree": "2e0751154b8505e3061e282c3934ee443fac0cff",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "1af3638e9a37ade513c3987e5631a4109cd4250ab85cd61cb4e70e6579ed3fea"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/lot-e-complete-I-0003/earned-first-refuge-v6.json",
+            "sha256": "235830e0c702263532386ae93b1f7d4fbeacccf63d573737eb791ad20cacfeaa"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/lot-e-complete-I-0003/results.json",
+            "sha256": "2ff57d7dc63fd8a019326640cc292967d210016aaab56544264d964276016ad3"
+          }
+        ],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-DtAZhH0m.js",
+            "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+          },
+          {
+            "path": "dist/assets/game-UCVpfDso.css",
+            "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "e589cfe07fe9998c0e244cb32c09b62c5f05b7632bbbf4ab37f8f7f2f500f9c7"
+          }
+        ]
+      },
+      "exactEarnedResume": {
+        "savePath": "tmp/demo/lot-e-complete-I-0003/earned-first-refuge-v6.json",
+        "priorProofPath": "tmp/demo/lot-e-complete-I-0003/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "235830e0c702263532386ae93b1f7d4fbeacccf63d573737eb791ad20cacfeaa",
+        "proofSha256": "2ff57d7dc63fd8a019326640cc292967d210016aaab56544264d964276016ad3",
+        "additiveMigration": {
+          "originalNodes": 33,
+          "currentNodes": 33,
+          "canonicalFactsExact": true
+        }
+      },
+      "checkpoint": {
+        "id": "lion-poi-valley-marsh",
+        "pass": true,
+        "native": true,
+        "exactReload": true
+      },
+      "ending": null,
+      "currentNodeId": "lion-poi-valley-marsh",
+      "final": {
+        "gold": 220,
+        "temporaryGold": 90,
+        "reputation": 60,
+        "graphNodes": 33,
+        "optionalResolved": [
+          "lion-poi-opening-supplies",
+          "lion-poi-opening-patrol",
+          "lion-poi-opening-wolves",
+          "lion-poi-opening-cache",
+          "lion-poi-valley-supplies",
+          "lion-poi-valley-marsh"
+        ],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": false,
+            "positionId": "lion-poi-valley-bridge-cache",
+            "patrolIndex": 0,
+            "mode": "cyclic_patrol",
+            "lastStep": 0,
+            "defeated": false
+          },
+          "lion-elite-seal-warden": {
+            "active": false,
+            "positionId": "lion-poi-seal-ruin-encounter",
+            "patrolIndex": 2,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 0,
+            "defeated": false
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 140
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 42
+          },
+          {
+            "id": "archer",
+            "hp": 71
+          },
+          {
+            "id": "rogue",
+            "hp": 100
+          }
+        ]
+      },
+      "newBattles": [
+        {
+          "nodeId": "lion-poi-valley-marsh",
+          "eliteId": null,
+          "combatId": "poi_valley_marsh_a",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 27,
+          "rounds": 4,
+          "deployed": 4,
+          "enemies": [
+            "marsh_toad",
+            "cave_rat"
+          ],
+          "exactLotERewards": {
+            "temporaryGold": 90,
+            "reputation": 1,
+            "materials": {
+              "red_gem": 1,
+              "iron_ore": 1
+            },
+            "temporary": true,
+            "pass": true
+          }
+        }
+      ],
+      "certifiedLineageBattleCount": 4,
+      "inheritedBattleCount": 3,
+      "chests": [
+        {
+          "id": "lion-poi-valley-supplies",
+          "gold": 0,
+          "items": {
+            "ether": 1
+          },
+          "temporary": true,
+          "turn": 45
+        }
+      ],
+      "nativeWeaponPreparation": [],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [],
+      "nativeRefuges": [
+        {
+          "nodeId": "lion-first-refuge",
+          "entry": {
+            "gold": 265,
+            "temporaryGold": 0,
+            "reputation": 55,
+            "permanentIron": 3,
+            "currentNodeId": "lion-first-refuge"
+          },
+          "resumed": {
+            "gold": 265,
+            "temporaryGold": 0,
+            "reputation": 55,
+            "permanentIron": 3,
+            "currentNodeId": "lion-first-refuge"
+          },
+          "reusable": true,
+          "exactV6": true,
+          "rested": {
+            "gold": 220,
+            "temporaryGold": 0,
+            "reputation": 55,
+            "permanentIron": 3,
+            "currentNodeId": "lion-first-refuge"
+          }
+        }
+      ],
+      "terminalMenu": null,
+      "interceptions": [],
+      "explicitWaits": [],
+      "encounterReloads": [],
+      "chestReload": null,
+      "geometry": {
+        "samples": 18,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [],
+      "failureRecovery": null,
+      "captureCount": 18,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-ui-390-os-0002",
+      "target": "preparation",
+      "strategy": "direct",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "touch": true,
+      "receipt": {
+        "path": "tmp/demo/lot-e-ui-390-os-0002/qa-job.json",
+        "sha256": "a1584ed977f4800f0a8dd71d8dc70b909690ca1dc74a4a372b5169058a269076",
+        "resultPath": "tmp/demo/lot-e-ui-390-os-0002/results.json",
+        "resultSha256": "6944811f1f39b307b751710b2ccfc6baeda7d7f339dce49e35079b903a1f6156",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "36a5fae90eddeb669c32bbc7ddea7dfe477c6199",
+        "sourceTree": "2e0751154b8505e3061e282c3934ee443fac0cff",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "1af3638e9a37ade513c3987e5631a4109cd4250ab85cd61cb4e70e6579ed3fea"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/lot-e-oldV6-II-touch-0002/earned-lion-second-refuge-v6.json",
+            "sha256": "1ded07a0f2bb434156d557b089b4fe80fc57e338e33fc18789b30637df544d62"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/lot-e-oldV6-II-touch-0002/results.json",
+            "sha256": "f6ac24d2f6417e169c85dba1f413649bd0eaba0ea2d215ab3b6d36d34da0cd13"
+          }
+        ],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-DtAZhH0m.js",
+            "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+          },
+          {
+            "path": "dist/assets/game-UCVpfDso.css",
+            "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "e589cfe07fe9998c0e244cb32c09b62c5f05b7632bbbf4ab37f8f7f2f500f9c7"
+          }
+        ]
+      },
+      "exactEarnedResume": {
+        "savePath": "tmp/demo/lot-e-oldV6-II-touch-0002/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/lot-e-oldV6-II-touch-0002/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "1ded07a0f2bb434156d557b089b4fe80fc57e338e33fc18789b30637df544d62",
+        "proofSha256": "f6ac24d2f6417e169c85dba1f413649bd0eaba0ea2d215ab3b6d36d34da0cd13",
+        "additiveMigration": {
+          "originalNodes": 33,
+          "currentNodes": 33,
+          "canonicalFactsExact": true
+        }
+      },
+      "checkpoint": null,
+      "ending": null,
+      "currentNodeId": "lion-final-refuge",
+      "final": {
+        "gold": 260,
+        "temporaryGold": 0,
+        "reputation": 100,
+        "graphNodes": 33,
+        "optionalResolved": [],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": true,
+            "positionId": "lion-poi-valley-bridge-cache",
+            "patrolIndex": 0,
+            "mode": "cyclic_patrol",
+            "lastStep": 18,
+            "defeated": false
+          },
+          "lion-elite-seal-warden": {
+            "active": true,
+            "positionId": "lion-witnesses",
+            "patrolIndex": 0,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 18,
+            "defeated": false
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 140
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 75
+          },
+          {
+            "id": "archer",
+            "hp": 90
+          },
+          {
+            "id": "rogue",
+            "hp": 100
+          },
+          {
+            "id": "lancer",
+            "hp": 130
+          }
+        ]
+      },
+      "newBattles": [],
+      "certifiedLineageBattleCount": 3,
+      "inheritedBattleCount": 3,
+      "chests": [],
+      "nativeWeaponPreparation": [],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [],
+      "nativeRefuges": [
+        {
+          "nodeId": "lion-second-refuge",
+          "entry": {
+            "gold": 290,
+            "temporaryGold": 0,
+            "reputation": 83,
+            "permanentIron": 4,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "resumed": {
+            "gold": 290,
+            "temporaryGold": 0,
+            "reputation": 83,
+            "permanentIron": 4,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "reusable": true,
+          "exactV6": true,
+          "rested": {
+            "gold": 260,
+            "temporaryGold": 0,
+            "reputation": 83,
+            "permanentIron": 4,
+            "currentNodeId": "lion-second-refuge"
+          }
+        }
+      ],
+      "terminalMenu": null,
+      "interceptions": [],
+      "explicitWaits": [],
+      "encounterReloads": [],
+      "chestReload": null,
+      "geometry": {
+        "samples": 10,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [
+        {
+          "osReduced": true,
+          "gameReduced": false,
+          "threats": [
+            {
+              "animation": "none",
+              "duration": "0s"
+            }
+          ]
+        }
+      ],
+      "failureRecovery": null,
+      "captureCount": 10,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-atlas-1920-normal-0002",
+      "target": "preparation",
+      "strategy": "direct",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "touch": false,
+      "receipt": {
+        "path": "tmp/demo/lot-e-atlas-1920-normal-0002/qa-job.json",
+        "sha256": "e9c7677bfe30358d1b5b7bd8f5dcbfda1dd32a2e578bd234c628f7e7943eac07",
+        "resultPath": "tmp/demo/lot-e-atlas-1920-normal-0002/results.json",
+        "resultSha256": "29681b8ee7f97118a30e5f27b52a238274ad0ee79fd6a3c541fc61f8676907ab",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "36a5fae90eddeb669c32bbc7ddea7dfe477c6199",
+        "sourceTree": "2e0751154b8505e3061e282c3934ee443fac0cff",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "1af3638e9a37ade513c3987e5631a4109cd4250ab85cd61cb4e70e6579ed3fea"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/lot-e-oldV6-II-touch-0002/earned-lion-second-refuge-v6.json",
+            "sha256": "1ded07a0f2bb434156d557b089b4fe80fc57e338e33fc18789b30637df544d62"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/lot-e-oldV6-II-touch-0002/results.json",
+            "sha256": "f6ac24d2f6417e169c85dba1f413649bd0eaba0ea2d215ab3b6d36d34da0cd13"
+          }
+        ],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-DtAZhH0m.js",
+            "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+          },
+          {
+            "path": "dist/assets/game-UCVpfDso.css",
+            "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "e589cfe07fe9998c0e244cb32c09b62c5f05b7632bbbf4ab37f8f7f2f500f9c7"
+          }
+        ]
+      },
+      "exactEarnedResume": {
+        "savePath": "tmp/demo/lot-e-oldV6-II-touch-0002/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/lot-e-oldV6-II-touch-0002/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "1ded07a0f2bb434156d557b089b4fe80fc57e338e33fc18789b30637df544d62",
+        "proofSha256": "f6ac24d2f6417e169c85dba1f413649bd0eaba0ea2d215ab3b6d36d34da0cd13",
+        "additiveMigration": {
+          "originalNodes": 33,
+          "currentNodes": 33,
+          "canonicalFactsExact": true
+        }
+      },
+      "checkpoint": null,
+      "ending": null,
+      "currentNodeId": "lion-final-refuge",
+      "final": {
+        "gold": 260,
+        "temporaryGold": 0,
+        "reputation": 100,
+        "graphNodes": 33,
+        "optionalResolved": [],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": true,
+            "positionId": "lion-poi-valley-bridge-cache",
+            "patrolIndex": 0,
+            "mode": "cyclic_patrol",
+            "lastStep": 18,
+            "defeated": false
+          },
+          "lion-elite-seal-warden": {
+            "active": true,
+            "positionId": "lion-witnesses",
+            "patrolIndex": 0,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 18,
+            "defeated": false
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 140
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 75
+          },
+          {
+            "id": "archer",
+            "hp": 90
+          },
+          {
+            "id": "rogue",
+            "hp": 100
+          },
+          {
+            "id": "lancer",
+            "hp": 130
+          }
+        ]
+      },
+      "newBattles": [],
+      "certifiedLineageBattleCount": 3,
+      "inheritedBattleCount": 3,
+      "chests": [],
+      "nativeWeaponPreparation": [],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [],
+      "nativeRefuges": [
+        {
+          "nodeId": "lion-second-refuge",
+          "entry": {
+            "gold": 290,
+            "temporaryGold": 0,
+            "reputation": 83,
+            "permanentIron": 4,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "resumed": {
+            "gold": 290,
+            "temporaryGold": 0,
+            "reputation": 83,
+            "permanentIron": 4,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "reusable": true,
+          "exactV6": true,
+          "rested": {
+            "gold": 260,
+            "temporaryGold": 0,
+            "reputation": 83,
+            "permanentIron": 4,
+            "currentNodeId": "lion-second-refuge"
+          }
+        }
+      ],
+      "terminalMenu": null,
+      "interceptions": [],
+      "explicitWaits": [],
+      "encounterReloads": [],
+      "chestReload": null,
+      "geometry": {
+        "samples": 9,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [
+        {
+          "osReduced": false,
+          "gameReduced": false,
+          "threats": [
+            {
+              "animation": "poi-threat-presence",
+              "duration": "2.8s"
+            }
+          ]
+        }
+      ],
+      "failureRecovery": null,
+      "captureCount": 9,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-complete-valley-loop-0002",
+      "target": "expedition-checkpoint",
+      "strategy": "complete",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "touch": false,
+      "receipt": {
+        "path": "tmp/demo/lot-e-complete-valley-loop-0002/qa-job.json",
+        "sha256": "b672f63629977d97211c09698a2fdb23047958f2e90331786da1d1ae388ae47f",
+        "resultPath": "tmp/demo/lot-e-complete-valley-loop-0002/results.json",
+        "resultSha256": "12eb80357887aa0a360604196503ea457ab609fc2dc41b42ed823df679ba3d3f",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "94585c60136f7f765b35359193a1ca5861c6e542",
+        "sourceTree": "2e0751154b8505e3061e282c3934ee443fac0cff",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "f825abac6d3d8b5b84f26a0a09cffaedf5a9d19d385b3ce985e968992dccc5ba"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/lot-e-complete-marsh-0001/earned-expedition-checkpoint-v6.json",
+            "sha256": "b617d22cf4edc0ea95f2e95c6e68e7b26a2be17d736574d64c2106d588292b41"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/lot-e-complete-marsh-0001/results.json",
+            "sha256": "741db27973c07c9b366d0eff3e319e3e62315edd8daba8ef30c6048426a03492"
+          }
+        ],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-DtAZhH0m.js",
+            "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+          },
+          {
+            "path": "dist/assets/game-UCVpfDso.css",
+            "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "e589cfe07fe9998c0e244cb32c09b62c5f05b7632bbbf4ab37f8f7f2f500f9c7"
+          }
+        ]
+      },
+      "exactEarnedResume": {
+        "savePath": "tmp/demo/lot-e-complete-marsh-0001/earned-expedition-checkpoint-v6.json",
+        "priorProofPath": "tmp/demo/lot-e-complete-marsh-0001/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "b617d22cf4edc0ea95f2e95c6e68e7b26a2be17d736574d64c2106d588292b41",
+        "proofSha256": "741db27973c07c9b366d0eff3e319e3e62315edd8daba8ef30c6048426a03492",
+        "additiveMigration": {
+          "originalNodes": 33,
+          "currentNodes": 33,
+          "canonicalFactsExact": true
+        }
+      },
+      "checkpoint": {
+        "id": "lion-poi-valley-serpent",
+        "pass": true,
+        "native": true,
+        "exactReload": true
+      },
+      "ending": null,
+      "currentNodeId": "lion-poi-valley-serpent",
+      "final": {
+        "gold": 190,
+        "temporaryGold": 290,
+        "reputation": 63,
+        "graphNodes": 33,
+        "optionalResolved": [
+          "lion-poi-opening-supplies",
+          "lion-poi-opening-patrol",
+          "lion-poi-opening-wolves",
+          "lion-poi-opening-cache",
+          "lion-poi-valley-supplies",
+          "lion-poi-valley-marsh",
+          "lion-poi-valley-bridge-cache",
+          "lion-poi-valley-serpent"
+        ],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": true,
+            "positionId": "lion-poi-valley-bridge-cache",
+            "patrolIndex": 0,
+            "mode": "cyclic_patrol",
+            "lastStep": 56,
+            "defeated": false
+          },
+          "lion-elite-seal-warden": {
+            "active": false,
+            "positionId": "lion-poi-seal-ruin-encounter",
+            "patrolIndex": 2,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 0,
+            "defeated": false
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 140
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 1
+          },
+          {
+            "id": "archer",
+            "hp": 1
+          },
+          {
+            "id": "rogue",
+            "hp": 100
+          }
+        ]
+      },
+      "newBattles": [
+        {
+          "nodeId": "lion-valmir-road",
+          "eliteId": null,
+          "combatId": "marsh_crossing",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 33,
+          "rounds": 4,
+          "deployed": 4,
+          "enemies": null,
+          "exactLotERewards": null
+        },
+        {
+          "nodeId": "lion-poi-valley-serpent",
+          "eliteId": null,
+          "combatId": "poi_valley_serpent_a",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 43,
+          "rounds": 8,
+          "deployed": 4,
+          "enemies": [
+            "serpent_raider",
+            "serpent_brute"
+          ],
+          "exactLotERewards": {
+            "temporaryGold": 100,
+            "reputation": 0,
+            "materials": {
+              "red_gem": 1,
+              "iron_ore": 2
+            },
+            "temporary": true,
+            "pass": true
+          }
+        }
+      ],
+      "certifiedLineageBattleCount": 6,
+      "inheritedBattleCount": 4,
+      "chests": [
+        {
+          "id": "lion-poi-valley-bridge-cache",
+          "gold": 35,
+          "items": {
+            "potion": 1
+          },
+          "temporary": true,
+          "turn": 55
+        }
+      ],
+      "nativeWeaponPreparation": [],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [],
+      "nativeRefuges": [],
+      "terminalMenu": null,
+      "interceptions": [
+        {
+          "eliteId": "lion-elite-valley-sentinel",
+          "kind": "front",
+          "choice": "retreat",
+          "pass": true,
+          "turnBefore": 52,
+          "turnAfter": 52,
+          "from": "lion-second-trial-event",
+          "to": "lion-second-trial-event"
+        }
+      ],
+      "explicitWaits": [
+        {
+          "before": 52,
+          "after": 53,
+          "pass": true
+        }
+      ],
+      "encounterReloads": [],
+      "chestReload": null,
+      "geometry": {
+        "samples": 29,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [],
+      "failureRecovery": null,
+      "captureCount": 29,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-optional-defeat-0003",
+      "target": "defeat-recovery",
+      "strategy": "complete",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "touch": false,
+      "receipt": {
+        "path": "tmp/demo/lot-e-optional-defeat-0003/qa-job.json",
+        "sha256": "a1cfa8a231e90b17ca8d387e35f8a099a2017553d63a907356c68afb62af04d3",
+        "resultPath": "tmp/demo/lot-e-optional-defeat-0003/results.json",
+        "resultSha256": "06abce507d83faedb891b1d4fdc5dd0bfe7a96d0dffceb700e70e592b9059abb",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "94585c60136f7f765b35359193a1ca5861c6e542",
+        "sourceTree": "2e0751154b8505e3061e282c3934ee443fac0cff",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "f825abac6d3d8b5b84f26a0a09cffaedf5a9d19d385b3ce985e968992dccc5ba"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+            "sha256": "95f2c787cbc0c6244c1d0e44e95ac123a9809d3669f28a92d783b9da260a0e5d"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+            "sha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d"
+          }
+        ],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-DtAZhH0m.js",
+            "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+          },
+          {
+            "path": "dist/assets/game-UCVpfDso.css",
+            "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "e589cfe07fe9998c0e244cb32c09b62c5f05b7632bbbf4ab37f8f7f2f500f9c7"
+          }
+        ]
+      },
+      "exactEarnedResume": {
+        "savePath": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+        "priorProofPath": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "95f2c787cbc0c6244c1d0e44e95ac123a9809d3669f28a92d783b9da260a0e5d",
+        "proofSha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d",
+        "additiveMigration": {
+          "originalNodes": 21,
+          "currentNodes": 33,
+          "canonicalFactsExact": true
+        }
+      },
+      "checkpoint": null,
+      "ending": null,
+      "currentNodeId": "lion-first-refuge",
+      "final": {
+        "gold": 20,
+        "temporaryGold": 0,
+        "reputation": 39,
+        "graphNodes": 33,
+        "optionalResolved": [
+          "lion-poi-valley-supplies"
+        ],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": true,
+            "positionId": "lion-poi-valley-bridge-cache",
+            "patrolIndex": 0,
+            "mode": "cyclic_patrol",
+            "lastStep": 6,
+            "defeated": false
+          },
+          "lion-elite-seal-warden": {
+            "active": false,
+            "positionId": "lion-poi-seal-ruin-encounter",
+            "patrolIndex": 2,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 0,
+            "defeated": false
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 165
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 75
+          },
+          {
+            "id": "archer",
+            "hp": 90
+          },
+          {
+            "id": "rogue",
+            "hp": 100
+          }
+        ]
+      },
+      "newBattles": [
+        {
+          "nodeId": "lion-poi-valley-marsh",
+          "eliteId": null,
+          "combatId": "poi_valley_marsh_a",
+          "outcome": "defeat",
+          "pass": true,
+          "actions": 2,
+          "rounds": 3,
+          "deployed": 1,
+          "enemies": [
+            "marsh_toad",
+            "cave_rat"
+          ],
+          "exactLotERewards": null
+        }
+      ],
+      "certifiedLineageBattleCount": 4,
+      "inheritedBattleCount": 3,
+      "chests": [
+        {
+          "id": "lion-poi-valley-supplies",
+          "gold": 0,
+          "items": {
+            "ether": 1
+          },
+          "temporary": true,
+          "turn": 6
+        }
+      ],
+      "nativeWeaponPreparation": [],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [],
+      "nativeRefuges": [],
+      "terminalMenu": null,
+      "interceptions": [],
+      "explicitWaits": [],
+      "encounterReloads": [],
+      "chestReload": null,
+      "geometry": {
+        "samples": 14,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [
+        {
+          "osReduced": false,
+          "gameReduced": true,
+          "threats": [
+            {
+              "animation": "none",
+              "duration": "0s"
+            }
+          ]
+        }
+      ],
+      "failureRecovery": {
+        "nodeId": "lion-poi-valley-marsh",
+        "checkpoint": "lion-first-refuge",
+        "exactExpected": true,
+        "securedGold": 20,
+        "temporaryGold": 0
+      },
+      "captureCount": 14,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-ui-620-game-0001",
+      "target": "valmir",
+      "strategy": "direct",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "touch": false,
+      "receipt": {
+        "path": "tmp/demo/lot-e-ui-620-game-0001/qa-job.json",
+        "sha256": "702737c97c36017e6a310cbcd203b593c314f17145a75faf056f1d3516bae6f2",
+        "resultPath": "tmp/demo/lot-e-ui-620-game-0001/results.json",
+        "resultSha256": "a5671a127951ce2fff5a33ad4f9cb772e5f7871edafa1cdb4876a7106e017ab3",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "94585c60136f7f765b35359193a1ca5861c6e542",
+        "sourceTree": "2e0751154b8505e3061e282c3934ee443fac0cff",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "f825abac6d3d8b5b84f26a0a09cffaedf5a9d19d385b3ce985e968992dccc5ba"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+            "sha256": "95f2c787cbc0c6244c1d0e44e95ac123a9809d3669f28a92d783b9da260a0e5d"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+            "sha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d"
+          }
+        ],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-DtAZhH0m.js",
+            "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+          },
+          {
+            "path": "dist/assets/game-UCVpfDso.css",
+            "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "e589cfe07fe9998c0e244cb32c09b62c5f05b7632bbbf4ab37f8f7f2f500f9c7"
+          }
+        ]
+      },
+      "exactEarnedResume": {
+        "savePath": "tmp/demo/poi-valmir-steel-game-2130/earned-valmir-v6.json",
+        "priorProofPath": "tmp/demo/poi-valmir-steel-game-2130/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "95f2c787cbc0c6244c1d0e44e95ac123a9809d3669f28a92d783b9da260a0e5d",
+        "proofSha256": "0f2bf60594e63db9e61442614843126ad54a2bb41b1121723c1ce2bc24ff078d",
+        "additiveMigration": {
+          "originalNodes": 21,
+          "currentNodes": 33,
+          "canonicalFactsExact": true
+        }
+      },
+      "checkpoint": null,
+      "ending": null,
+      "currentNodeId": "lion-valmir-road",
+      "final": {
+        "gold": 20,
+        "temporaryGold": 210,
+        "reputation": 39,
+        "graphNodes": 33,
+        "optionalResolved": [],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": true,
+            "positionId": "lion-poi-valley-serpent",
+            "patrolIndex": 1,
+            "mode": "cyclic_patrol",
+            "lastStep": 4,
+            "defeated": false
+          },
+          "lion-elite-seal-warden": {
+            "active": false,
+            "positionId": "lion-poi-seal-ruin-encounter",
+            "patrolIndex": 2,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 0,
+            "defeated": false
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 165
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 75
+          },
+          {
+            "id": "archer",
+            "hp": 90
+          },
+          {
+            "id": "rogue",
+            "hp": 100
+          }
+        ]
+      },
+      "newBattles": [],
+      "certifiedLineageBattleCount": 3,
+      "inheritedBattleCount": 3,
+      "chests": [],
+      "nativeWeaponPreparation": [],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [],
+      "nativeRefuges": [],
+      "terminalMenu": null,
+      "interceptions": [],
+      "explicitWaits": [],
+      "encounterReloads": [],
+      "chestReload": null,
+      "geometry": {
+        "samples": 8,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [
+        {
+          "osReduced": false,
+          "gameReduced": true,
+          "threats": [
+            {
+              "animation": "none",
+              "duration": "0s"
+            }
+          ]
+        }
+      ],
+      "failureRecovery": null,
+      "captureCount": 8,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-moderate-II-0003",
+      "target": "second-refuge",
+      "strategy": "moderate",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "touch": false,
+      "receipt": {
+        "path": "tmp/demo/lot-e-moderate-II-0003/qa-job.json",
+        "sha256": "dd173f021e05c51a3b1cfc547f3bf18458bec1ba792cc7a71d9e5fd2ed695380",
+        "resultPath": "tmp/demo/lot-e-moderate-II-0003/results.json",
+        "resultSha256": "16ab97542f4b69cf867f516bb9bc1b01d3ad013df840df84dff555c29dd5888f",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "d898537bdbe40cdc7908de7c270cdfb3aa8999df",
+        "sourceTree": "a10333f54d4035e958a899239665b8c8d263c7b0",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "6976ab84c53fbcb75d6ca4c2eb58448245117154b36dcc24c0e1d3f039ed8f5f"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/lot-e-moderate-marsh-0001/earned-expedition-checkpoint-v6.json",
+            "sha256": "a854296f08a2b3ca3e2d1197af5ae1a0a95c8c94946571175b32a28673da37f9"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/lot-e-moderate-marsh-0001/results.json",
+            "sha256": "9a0d5438ed2aa4db7b14e002aa99e81394b0754f347bcb6a0b2718f7aa4027b5"
+          }
+        ],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-BRsHiIui.js",
+            "sha256": "213183c03e52d5d65f2790c76f3d400f69a4f014a2648a04cd1c35a430d659b9"
+          },
+          {
+            "path": "dist/assets/game-UCVpfDso.css",
+            "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "6046538bb3273944bb50ad4a91768f3c2af70a6725cfd7280b2faf36aa299044"
+          }
+        ]
+      },
+      "exactEarnedResume": {
+        "savePath": "tmp/demo/lot-e-moderate-marsh-0001/earned-expedition-checkpoint-v6.json",
+        "priorProofPath": "tmp/demo/lot-e-moderate-marsh-0001/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "a854296f08a2b3ca3e2d1197af5ae1a0a95c8c94946571175b32a28673da37f9",
+        "proofSha256": "9a0d5438ed2aa4db7b14e002aa99e81394b0754f347bcb6a0b2718f7aa4027b5",
+        "additiveMigration": {
+          "originalNodes": 33,
+          "currentNodes": 33,
+          "canonicalFactsExact": true
+        }
+      },
+      "checkpoint": null,
+      "ending": null,
+      "currentNodeId": "lion-second-refuge",
+      "final": {
+        "gold": 480,
+        "temporaryGold": 0,
+        "reputation": 90,
+        "graphNodes": 33,
+        "optionalResolved": [
+          "lion-poi-opening-wolves",
+          "lion-poi-opening-cache",
+          "lion-poi-valley-supplies",
+          "lion-poi-valley-marsh"
+        ],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": true,
+            "positionId": "lion-poi-valley-serpent",
+            "patrolIndex": 1,
+            "mode": "cyclic_patrol",
+            "lastStep": 29,
+            "defeated": false
+          },
+          "lion-elite-seal-warden": {
+            "active": false,
+            "positionId": "lion-poi-seal-ruin-encounter",
+            "patrolIndex": 2,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 0,
+            "defeated": false
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 140
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 1
+          },
+          {
+            "id": "archer",
+            "hp": 1
+          },
+          {
+            "id": "rogue",
+            "hp": 100
+          }
+        ]
+      },
+      "newBattles": [
+        {
+          "nodeId": "lion-valmir-road",
+          "eliteId": null,
+          "combatId": "marsh_crossing",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 33,
+          "rounds": 4,
+          "deployed": 4,
+          "enemies": null,
+          "exactLotERewards": null
+        },
+        {
+          "nodeId": "lion-village-choice",
+          "eliteId": null,
+          "combatId": "village_defense",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 54,
+          "rounds": 8,
+          "deployed": 4,
+          "enemies": null,
+          "exactLotERewards": null
+        }
+      ],
+      "certifiedLineageBattleCount": 5,
+      "inheritedBattleCount": 3,
+      "chests": [],
+      "nativeWeaponPreparation": [],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [],
+      "nativeRefuges": [
+        {
+          "nodeId": "lion-second-refuge",
+          "entry": {
+            "gold": 480,
+            "temporaryGold": 0,
+            "reputation": 90,
+            "permanentIron": 6,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "resumed": {
+            "gold": 480,
+            "temporaryGold": 0,
+            "reputation": 90,
+            "permanentIron": 6,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "reusable": true,
+          "exactV6": true
+        }
+      ],
+      "terminalMenu": null,
+      "interceptions": [
+        {
+          "eliteId": "lion-elite-valley-sentinel",
+          "kind": "front",
+          "choice": "retreat",
+          "pass": true,
+          "turnBefore": 23,
+          "turnAfter": 23,
+          "from": "lion-valmir-road",
+          "to": "lion-valmir-road"
+        },
+        {
+          "eliteId": "lion-elite-valley-sentinel",
+          "kind": "rear",
+          "choice": "retreat",
+          "pass": true,
+          "turnBefore": 24,
+          "turnAfter": 24,
+          "from": "lion-valmir-road",
+          "to": "lion-reserve-trail"
+        },
+        {
+          "eliteId": "lion-elite-valley-sentinel",
+          "kind": "front",
+          "choice": "retreat",
+          "pass": true,
+          "turnBefore": 24,
+          "turnAfter": 24,
+          "from": "lion-reserve-trail",
+          "to": "lion-reserve-trail"
+        }
+      ],
+      "explicitWaits": [
+        {
+          "before": 23,
+          "after": 24,
+          "pass": true
+        },
+        {
+          "before": 24,
+          "after": 25,
+          "pass": true
+        }
+      ],
+      "encounterReloads": [],
+      "chestReload": null,
+      "geometry": {
+        "samples": 37,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [],
+      "failureRecovery": null,
+      "captureCount": 37,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-atlas-1920-terrain-0001",
+      "target": "preparation",
+      "strategy": "direct",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "touch": false,
+      "receipt": {
+        "path": "tmp/demo/lot-e-atlas-1920-terrain-0001/qa-job.json",
+        "sha256": "2c22c5ac1846f19d46ce1e295dc3c6b49b8d1aabdd751852555fcac1dadacc11",
+        "resultPath": "tmp/demo/lot-e-atlas-1920-terrain-0001/results.json",
+        "resultSha256": "e94cfede021930e054cfe7d186a24e8511b62e8b1712f03f69122542af5f35ce",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "d898537bdbe40cdc7908de7c270cdfb3aa8999df",
+        "sourceTree": "a10333f54d4035e958a899239665b8c8d263c7b0",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "6976ab84c53fbcb75d6ca4c2eb58448245117154b36dcc24c0e1d3f039ed8f5f"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/lot-e-oldV6-II-touch-0002/earned-lion-second-refuge-v6.json",
+            "sha256": "1ded07a0f2bb434156d557b089b4fe80fc57e338e33fc18789b30637df544d62"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/lot-e-oldV6-II-touch-0002/results.json",
+            "sha256": "f6ac24d2f6417e169c85dba1f413649bd0eaba0ea2d215ab3b6d36d34da0cd13"
+          }
+        ],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-BRsHiIui.js",
+            "sha256": "213183c03e52d5d65f2790c76f3d400f69a4f014a2648a04cd1c35a430d659b9"
+          },
+          {
+            "path": "dist/assets/game-UCVpfDso.css",
+            "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "6046538bb3273944bb50ad4a91768f3c2af70a6725cfd7280b2faf36aa299044"
+          }
+        ]
+      },
+      "exactEarnedResume": {
+        "savePath": "tmp/demo/lot-e-oldV6-II-touch-0002/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/lot-e-oldV6-II-touch-0002/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "1ded07a0f2bb434156d557b089b4fe80fc57e338e33fc18789b30637df544d62",
+        "proofSha256": "f6ac24d2f6417e169c85dba1f413649bd0eaba0ea2d215ab3b6d36d34da0cd13",
+        "additiveMigration": {
+          "originalNodes": 33,
+          "currentNodes": 33,
+          "canonicalFactsExact": true
+        }
+      },
+      "checkpoint": null,
+      "ending": null,
+      "currentNodeId": "lion-final-refuge",
+      "final": {
+        "gold": 260,
+        "temporaryGold": 0,
+        "reputation": 100,
+        "graphNodes": 33,
+        "optionalResolved": [],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": true,
+            "positionId": "lion-poi-valley-bridge-cache",
+            "patrolIndex": 0,
+            "mode": "cyclic_patrol",
+            "lastStep": 18,
+            "defeated": false
+          },
+          "lion-elite-seal-warden": {
+            "active": true,
+            "positionId": "lion-witnesses",
+            "patrolIndex": 0,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 18,
+            "defeated": false
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 140
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 75
+          },
+          {
+            "id": "archer",
+            "hp": 90
+          },
+          {
+            "id": "rogue",
+            "hp": 100
+          },
+          {
+            "id": "lancer",
+            "hp": 130
+          }
+        ]
+      },
+      "newBattles": [],
+      "certifiedLineageBattleCount": 3,
+      "inheritedBattleCount": 3,
+      "chests": [],
+      "nativeWeaponPreparation": [],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [],
+      "nativeRefuges": [
+        {
+          "nodeId": "lion-second-refuge",
+          "entry": {
+            "gold": 290,
+            "temporaryGold": 0,
+            "reputation": 83,
+            "permanentIron": 4,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "resumed": {
+            "gold": 290,
+            "temporaryGold": 0,
+            "reputation": 83,
+            "permanentIron": 4,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "reusable": true,
+          "exactV6": true,
+          "rested": {
+            "gold": 260,
+            "temporaryGold": 0,
+            "reputation": 83,
+            "permanentIron": 4,
+            "currentNodeId": "lion-second-refuge"
+          }
+        }
+      ],
+      "terminalMenu": null,
+      "interceptions": [],
+      "explicitWaits": [],
+      "encounterReloads": [],
+      "chestReload": null,
+      "geometry": {
+        "samples": 9,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [
+        {
+          "osReduced": false,
+          "gameReduced": false,
+          "threats": [
+            {
+              "animation": "poi-threat-presence",
+              "duration": "2.8s"
+            }
+          ]
+        }
+      ],
+      "failureRecovery": null,
+      "captureCount": 9,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-atlas-1920-trails-0002",
+      "target": "preparation",
+      "strategy": "direct",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "touch": false,
+      "receipt": {
+        "path": "tmp/demo/lot-e-atlas-1920-trails-0002/qa-job.json",
+        "sha256": "e151cc32d97b2aed2e4f0bd8ee16d92c3e365b673a4827cb9961504c1e95b91b",
+        "resultPath": "tmp/demo/lot-e-atlas-1920-trails-0002/results.json",
+        "resultSha256": "4250e7abc22a2507271bfcb193baae537c237d4884566971ed100aac51aa2771",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "fbaad2d24d7e29de343a58f10b7acbaf585abb38",
+        "sourceTree": "61c2c7101110f55ac36b2d062f763a13f9b46709",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "a040270dd71371b4a26e50b77cf2a4b5ba20d43cdee80e3cb4b740566360070d"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/lot-e-oldV6-II-touch-0002/earned-lion-second-refuge-v6.json",
+            "sha256": "1ded07a0f2bb434156d557b089b4fe80fc57e338e33fc18789b30637df544d62"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/lot-e-oldV6-II-touch-0002/results.json",
+            "sha256": "f6ac24d2f6417e169c85dba1f413649bd0eaba0ea2d215ab3b6d36d34da0cd13"
+          }
+        ],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-UCVpfDso.css",
+            "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+          },
+          {
+            "path": "dist/assets/game-pisOYBXN.js",
+            "sha256": "e13b77fe45304139f875ed6a78e1aa67966023fedc0fcb7c9caf0cbecb6fbba9"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "850d6a70369c35ebf7ce0304ab7fc213ba24d7cdf0cd9736674ab834e0ddd61f"
+          }
+        ]
+      },
+      "exactEarnedResume": {
+        "savePath": "tmp/demo/lot-e-oldV6-II-touch-0002/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/lot-e-oldV6-II-touch-0002/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "1ded07a0f2bb434156d557b089b4fe80fc57e338e33fc18789b30637df544d62",
+        "proofSha256": "f6ac24d2f6417e169c85dba1f413649bd0eaba0ea2d215ab3b6d36d34da0cd13",
+        "additiveMigration": {
+          "originalNodes": 33,
+          "currentNodes": 33,
+          "canonicalFactsExact": true
+        }
+      },
+      "checkpoint": null,
+      "ending": null,
+      "currentNodeId": "lion-final-refuge",
+      "final": {
+        "gold": 260,
+        "temporaryGold": 0,
+        "reputation": 100,
+        "graphNodes": 33,
+        "optionalResolved": [],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": true,
+            "positionId": "lion-poi-valley-bridge-cache",
+            "patrolIndex": 0,
+            "mode": "cyclic_patrol",
+            "lastStep": 18,
+            "defeated": false
+          },
+          "lion-elite-seal-warden": {
+            "active": true,
+            "positionId": "lion-witnesses",
+            "patrolIndex": 0,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 18,
+            "defeated": false
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 140
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 75
+          },
+          {
+            "id": "archer",
+            "hp": 90
+          },
+          {
+            "id": "rogue",
+            "hp": 100
+          },
+          {
+            "id": "lancer",
+            "hp": 130
+          }
+        ]
+      },
+      "newBattles": [],
+      "certifiedLineageBattleCount": 3,
+      "inheritedBattleCount": 3,
+      "chests": [],
+      "nativeWeaponPreparation": [],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [],
+      "nativeRefuges": [
+        {
+          "nodeId": "lion-second-refuge",
+          "entry": {
+            "gold": 290,
+            "temporaryGold": 0,
+            "reputation": 83,
+            "permanentIron": 4,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "resumed": {
+            "gold": 290,
+            "temporaryGold": 0,
+            "reputation": 83,
+            "permanentIron": 4,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "reusable": true,
+          "exactV6": true,
+          "rested": {
+            "gold": 260,
+            "temporaryGold": 0,
+            "reputation": 83,
+            "permanentIron": 4,
+            "currentNodeId": "lion-second-refuge"
+          }
+        }
+      ],
+      "terminalMenu": null,
+      "interceptions": [],
+      "explicitWaits": [],
+      "encounterReloads": [],
+      "chestReload": null,
+      "geometry": {
+        "samples": 9,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [
+        {
+          "osReduced": false,
+          "gameReduced": false,
+          "threats": [
+            {
+              "animation": "poi-threat-presence",
+              "duration": "2.8s"
+            }
+          ]
+        }
+      ],
+      "failureRecovery": null,
+      "captureCount": 9,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-moderate-ending-0002",
+      "target": "ending",
+      "strategy": "moderate",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "touch": false,
+      "receipt": {
+        "path": "tmp/demo/lot-e-moderate-ending-0002/qa-job.json",
+        "sha256": "ff488e3cb222d05bb7e64b23e2745c7347abd8cfec1dbbff353697320920d273",
+        "resultPath": "tmp/demo/lot-e-moderate-ending-0002/results.json",
+        "resultSha256": "f18add1a0292edfd47d1df3ce53c545a9a8e04a661128d978ca4ccb00222be0c",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "fbaad2d24d7e29de343a58f10b7acbaf585abb38",
+        "sourceTree": "61c2c7101110f55ac36b2d062f763a13f9b46709",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "a040270dd71371b4a26e50b77cf2a4b5ba20d43cdee80e3cb4b740566360070d"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/lot-e-moderate-II-0003/earned-lion-second-refuge-v6.json",
+            "sha256": "df1359f3b0fa3fff6aba244de6dc3390e7d2ac151bf6da519999605d290f25b5"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/lot-e-moderate-II-0003/results.json",
+            "sha256": "16ab97542f4b69cf867f516bb9bc1b01d3ad013df840df84dff555c29dd5888f"
+          }
+        ],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-UCVpfDso.css",
+            "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+          },
+          {
+            "path": "dist/assets/game-pisOYBXN.js",
+            "sha256": "e13b77fe45304139f875ed6a78e1aa67966023fedc0fcb7c9caf0cbecb6fbba9"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "850d6a70369c35ebf7ce0304ab7fc213ba24d7cdf0cd9736674ab834e0ddd61f"
+          }
+        ]
+      },
+      "exactEarnedResume": {
+        "savePath": "tmp/demo/lot-e-moderate-II-0003/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/lot-e-moderate-II-0003/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "df1359f3b0fa3fff6aba244de6dc3390e7d2ac151bf6da519999605d290f25b5",
+        "proofSha256": "16ab97542f4b69cf867f516bb9bc1b01d3ad013df840df84dff555c29dd5888f",
+        "additiveMigration": {
+          "originalNodes": 33,
+          "currentNodes": 33,
+          "canonicalFactsExact": true
+        }
+      },
+      "checkpoint": null,
+      "ending": "lion-seal-serpent-truth",
+      "currentNodeId": "lion-final-judgement",
+      "final": {
+        "gold": 850,
+        "temporaryGold": 0,
+        "reputation": 100,
+        "graphNodes": 33,
+        "optionalResolved": [
+          "lion-poi-opening-wolves",
+          "lion-poi-opening-cache",
+          "lion-poi-valley-supplies",
+          "lion-poi-valley-marsh",
+          "lion-poi-seal-witness-supplies",
+          "lion-poi-seal-hunters"
+        ],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": false,
+            "positionId": "lion-valmir-road",
+            "patrolIndex": 2,
+            "mode": "cyclic_patrol",
+            "lastStep": 48,
+            "defeated": false
+          },
+          "lion-elite-seal-warden": {
+            "active": false,
+            "positionId": "lion-poi-seal-hunters",
+            "patrolIndex": 1,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 48,
+            "defeated": false
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 140
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 1
+          },
+          {
+            "id": "archer",
+            "hp": 1
+          },
+          {
+            "id": "rogue",
+            "hp": 1
+          },
+          {
+            "id": "lancer",
+            "hp": 130
+          }
+        ]
+      },
+      "newBattles": [
+        {
+          "nodeId": "lion-poi-seal-hunters",
+          "eliteId": null,
+          "combatId": "poi_seal_hunters_b",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 46,
+          "rounds": 10,
+          "deployed": 4,
+          "enemies": [
+            "serpent_raider",
+            "serpent_brute",
+            "serpent_oracle"
+          ],
+          "exactLotERewards": {
+            "temporaryGold": 125,
+            "reputation": 0,
+            "materials": {
+              "red_gem": 2,
+              "iron_ore": 2
+            },
+            "temporary": true,
+            "pass": true
+          }
+        },
+        {
+          "nodeId": "lion-final-judgement",
+          "eliteId": null,
+          "combatId": "serpent_captain",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 83,
+          "rounds": 13,
+          "deployed": 4,
+          "enemies": null,
+          "exactLotERewards": null
+        }
+      ],
+      "certifiedLineageBattleCount": 7,
+      "inheritedBattleCount": 5,
+      "chests": [
+        {
+          "id": "lion-poi-seal-witness-supplies",
+          "gold": 0,
+          "items": {
+            "antidote": 1,
+            "ether": 1
+          },
+          "temporary": true,
+          "turn": 43
+        }
+      ],
+      "nativeWeaponPreparation": [],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [],
+      "nativeRefuges": [
+        {
+          "nodeId": "lion-second-refuge",
+          "entry": {
+            "gold": 480,
+            "temporaryGold": 0,
+            "reputation": 90,
+            "permanentIron": 6,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "resumed": {
+            "gold": 480,
+            "temporaryGold": 0,
+            "reputation": 90,
+            "permanentIron": 6,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "reusable": true,
+          "exactV6": true,
+          "rested": {
+            "gold": 450,
+            "temporaryGold": 0,
+            "reputation": 90,
+            "permanentIron": 6,
+            "currentNodeId": "lion-second-refuge"
+          }
+        },
+        {
+          "nodeId": "lion-second-refuge",
+          "entry": {
+            "gold": 425,
+            "temporaryGold": 0,
+            "reputation": 90,
+            "permanentIron": 6,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "resumed": {
+            "gold": 425,
+            "temporaryGold": 0,
+            "reputation": 90,
+            "permanentIron": 6,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "reusable": true,
+          "exactV6": true
+        }
+      ],
+      "terminalMenu": {
+        "nativeKeyboard": true,
+        "nativeTouch": false,
+        "titleVisible": true,
+        "continueFocused": true,
+        "ownerUnchanged": true,
+        "savedBytesUnchanged": true
+      },
+      "interceptions": [
+        {
+          "eliteId": "lion-elite-valley-sentinel",
+          "kind": "rear",
+          "choice": "retreat",
+          "pass": true,
+          "turnBefore": 36,
+          "turnAfter": 36,
+          "from": "lion-valmir-road",
+          "to": "lion-reserve-trail"
+        },
+        {
+          "eliteId": "lion-elite-seal-warden",
+          "kind": "front",
+          "choice": "retreat",
+          "pass": true,
+          "turnBefore": 44,
+          "turnAfter": 44,
+          "from": "lion-witnesses",
+          "to": "lion-witnesses"
+        },
+        {
+          "eliteId": "lion-elite-seal-warden",
+          "kind": "rear",
+          "choice": "retreat",
+          "pass": true,
+          "turnBefore": 46,
+          "turnAfter": 46,
+          "from": "lion-poi-seal-hunters",
+          "to": "lion-final-trial-event"
+        }
+      ],
+      "explicitWaits": [
+        {
+          "before": 36,
+          "after": 37,
+          "pass": true
+        }
+      ],
+      "encounterReloads": [],
+      "chestReload": null,
+      "geometry": {
+        "samples": 55,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [
+        {
+          "osReduced": false,
+          "gameReduced": true,
+          "threats": [
+            {
+              "animation": "none",
+              "duration": "0s"
+            }
+          ]
+        }
+      ],
+      "failureRecovery": null,
+      "captureCount": 55,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-complete-II-0005",
+      "target": "second-refuge",
+      "strategy": "complete",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "touch": false,
+      "receipt": {
+        "path": "tmp/demo/lot-e-complete-II-0005/qa-job.json",
+        "sha256": "6facd839ca584bbc45426b900a82cc7c0fead8bf8c34b4d26ffa1afad5cabad3",
+        "resultPath": "tmp/demo/lot-e-complete-II-0005/results.json",
+        "resultSha256": "94ea9684eab1fef213f84f4cae24334eea207c47c1553cd2804be6c268c35944",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "a35560e3c62510400e2cd57b7cc68c9d6461c8e9",
+        "sourceTree": "85ea15f47b38926eaee6b179e106667548bb917b",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "71284290d3298dc9d367143915eb61d59f115ded95c82fa3b8ff1e3d5fa2477a"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/lot-e-complete-valley-loop-0002/earned-expedition-checkpoint-v6.json",
+            "sha256": "c27a426b1b48978f3f3d03ff8c8876f7bc6f04b9601ab238b114bfbc2ff8549e"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/lot-e-complete-valley-loop-0002/results.json",
+            "sha256": "12eb80357887aa0a360604196503ea457ab609fc2dc41b42ed823df679ba3d3f"
+          }
+        ],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-UCVpfDso.css",
+            "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+          },
+          {
+            "path": "dist/assets/game-Y4Z5Ok-T.js",
+            "sha256": "3bbac1f461f2c160aa852d4fbe6820c023be31d0c4c01c2db51336eb826350e5"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "fb694c24f43f8a8e39b9684017d7d764e97617455d23a2665709e27a65427e57"
+          }
+        ]
+      },
+      "exactEarnedResume": {
+        "savePath": "tmp/demo/lot-e-complete-valley-loop-0002/earned-expedition-checkpoint-v6.json",
+        "priorProofPath": "tmp/demo/lot-e-complete-valley-loop-0002/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "c27a426b1b48978f3f3d03ff8c8876f7bc6f04b9601ab238b114bfbc2ff8549e",
+        "proofSha256": "12eb80357887aa0a360604196503ea457ab609fc2dc41b42ed823df679ba3d3f",
+        "additiveMigration": {
+          "originalNodes": 33,
+          "currentNodes": 33,
+          "canonicalFactsExact": true
+        }
+      },
+      "checkpoint": null,
+      "ending": null,
+      "currentNodeId": "lion-second-refuge",
+      "final": {
+        "gold": 592,
+        "temporaryGold": 0,
+        "reputation": 89,
+        "graphNodes": 33,
+        "optionalResolved": [
+          "lion-poi-opening-supplies",
+          "lion-poi-opening-patrol",
+          "lion-poi-opening-wolves",
+          "lion-poi-opening-cache",
+          "lion-poi-valley-supplies",
+          "lion-poi-valley-marsh",
+          "lion-poi-valley-bridge-cache",
+          "lion-poi-valley-serpent"
+        ],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": false,
+            "positionId": "lion-poi-valley-serpent",
+            "patrolIndex": 1,
+            "mode": "cyclic_patrol",
+            "lastStep": 63,
+            "defeated": true
+          },
+          "lion-elite-seal-warden": {
+            "active": false,
+            "positionId": "lion-poi-seal-ruin-encounter",
+            "patrolIndex": 2,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 0,
+            "defeated": false
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 165
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 75
+          },
+          {
+            "id": "archer",
+            "hp": 90
+          },
+          {
+            "id": "rogue",
+            "hp": 100
+          }
+        ]
+      },
+      "newBattles": [
+        {
+          "nodeId": "lion-valmir-road",
+          "eliteId": "lion-elite-valley-sentinel",
+          "combatId": "poi_elite_valley_sentinel",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 32,
+          "rounds": 6,
+          "deployed": 3,
+          "enemies": [
+            "serpent_brute",
+            "serpent_raider"
+          ],
+          "exactLotERewards": {
+            "temporaryGold": 120,
+            "reputation": 1,
+            "materials": {
+              "red_gem": 1,
+              "iron_ore": 2
+            },
+            "temporary": true,
+            "pass": true
+          }
+        },
+        {
+          "nodeId": "lion-village-choice",
+          "eliteId": null,
+          "combatId": "village_defense",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 38,
+          "rounds": 5,
+          "deployed": 4,
+          "enemies": null,
+          "exactLotERewards": null
+        }
+      ],
+      "certifiedLineageBattleCount": 8,
+      "inheritedBattleCount": 6,
+      "chests": [],
+      "nativeWeaponPreparation": [
+        {
+          "nodeId": "lion-first-refuge",
+          "itemId": "steel_greatsword",
+          "unitId": "warrior",
+          "price": 153,
+          "old": "novice_greatsword",
+          "proceeds": 45,
+          "before": {
+            "gold": 190,
+            "temporaryGold": 290,
+            "reputation": 63,
+            "permanentIron": 3,
+            "currentNodeId": "lion-first-refuge"
+          },
+          "bought": {
+            "gold": 37,
+            "temporaryGold": 290,
+            "reputation": 63,
+            "permanentIron": 3,
+            "currentNodeId": "lion-first-refuge"
+          },
+          "equipped": {
+            "gold": 37,
+            "temporaryGold": 290,
+            "reputation": 63,
+            "permanentIron": 3,
+            "currentNodeId": "lion-first-refuge"
+          },
+          "sold": {
+            "gold": 82,
+            "temporaryGold": 290,
+            "reputation": 63,
+            "permanentIron": 3,
+            "currentNodeId": "lion-first-refuge"
+          }
+        }
+      ],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [],
+      "nativeRefuges": [
+        {
+          "nodeId": "lion-second-refuge",
+          "entry": {
+            "gold": 592,
+            "temporaryGold": 0,
+            "reputation": 89,
+            "permanentIron": 11,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "resumed": {
+            "gold": 592,
+            "temporaryGold": 0,
+            "reputation": 89,
+            "permanentIron": 11,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "reusable": true,
+          "exactV6": true
+        }
+      ],
+      "terminalMenu": null,
+      "interceptions": [
+        {
+          "eliteId": "lion-elite-valley-sentinel",
+          "kind": "rear",
+          "choice": "retreat",
+          "pass": true,
+          "turnBefore": 61,
+          "turnAfter": 61,
+          "from": "lion-valmir-road",
+          "to": "lion-reserve-trail"
+        },
+        {
+          "eliteId": "lion-elite-valley-sentinel",
+          "kind": "contested",
+          "choice": "fight",
+          "pass": true
+        }
+      ],
+      "explicitWaits": [
+        {
+          "before": 61,
+          "after": 62,
+          "pass": true
+        }
+      ],
+      "encounterReloads": [
+        {
+          "eliteId": "lion-elite-valley-sentinel",
+          "kind": "rear",
+          "phase": "choice",
+          "exactOwner": true,
+          "noTick": true
+        },
+        {
+          "eliteId": "lion-elite-valley-sentinel",
+          "kind": "contested",
+          "phase": "choice",
+          "exactOwner": true,
+          "noTick": true
+        }
+      ],
+      "chestReload": null,
+      "geometry": {
+        "samples": 39,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [
+        {
+          "osReduced": false,
+          "gameReduced": true,
+          "threats": [
+            {
+              "animation": "none",
+              "duration": "0s"
+            }
+          ]
+        }
+      ],
+      "failureRecovery": null,
+      "captureCount": 39,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-complete-III-0003",
+      "target": "expedition-checkpoint",
+      "strategy": "complete",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "touch": false,
+      "receipt": {
+        "path": "tmp/demo/lot-e-complete-III-0003/qa-job.json",
+        "sha256": "8bdc6e6abe191b2185f8e1d93ba10258d5f2783f0d9b08d4ff647066e7014df4",
+        "resultPath": "tmp/demo/lot-e-complete-III-0003/results.json",
+        "resultSha256": "71e6e18311414bd2d38f9e8ec90d8279e55cdf598af5b2c50970b624224314cf",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "c706f31a0ac5b172cc1fe74e432559f30c077a88",
+        "sourceTree": "7eea4ace90cb563ed83fb8d67b4bc999b74955af",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "ca3c2b44f4511f23994b87fea71d09e2e859ff0f529cee106811db1def4aae88"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/lot-e-complete-II-0005/earned-lion-second-refuge-v6.json",
+            "sha256": "b8705f6f21becc30e6e7019fa52a24ac59dcefa95fa68e09fd5b4728d589749a"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/lot-e-complete-II-0005/results.json",
+            "sha256": "94ea9684eab1fef213f84f4cae24334eea207c47c1553cd2804be6c268c35944"
+          }
+        ],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-UCVpfDso.css",
+            "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+          },
+          {
+            "path": "dist/assets/game-l7q6Wbot.js",
+            "sha256": "e4b934cc0bcfedebf75143dad090800e1be3295a346c3023e53e98ca54e2643e"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "b4773b8722aef154c3cd6e0e92cd677703c177b82f23cd084e5b661d353aa69f"
+          }
+        ]
+      },
+      "exactEarnedResume": {
+        "savePath": "tmp/demo/lot-e-complete-II-0005/earned-lion-second-refuge-v6.json",
+        "priorProofPath": "tmp/demo/lot-e-complete-II-0005/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "b8705f6f21becc30e6e7019fa52a24ac59dcefa95fa68e09fd5b4728d589749a",
+        "proofSha256": "94ea9684eab1fef213f84f4cae24334eea207c47c1553cd2804be6c268c35944",
+        "additiveMigration": {
+          "originalNodes": 33,
+          "currentNodes": 33,
+          "canonicalFactsExact": true
+        }
+      },
+      "checkpoint": {
+        "id": "lion-poi-seal-ruin-encounter",
+        "pass": true,
+        "native": true,
+        "exactReload": true
+      },
+      "ending": null,
+      "currentNodeId": "lion-poi-seal-ruin-encounter",
+      "final": {
+        "gold": 472,
+        "temporaryGold": 280,
+        "reputation": 100,
+        "graphNodes": 33,
+        "optionalResolved": [
+          "lion-poi-opening-supplies",
+          "lion-poi-opening-patrol",
+          "lion-poi-opening-wolves",
+          "lion-poi-opening-cache",
+          "lion-poi-valley-supplies",
+          "lion-poi-valley-marsh",
+          "lion-poi-valley-bridge-cache",
+          "lion-poi-valley-serpent",
+          "lion-poi-seal-witness-supplies",
+          "lion-poi-seal-ruin-encounter"
+        ],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": false,
+            "positionId": "lion-poi-valley-serpent",
+            "patrolIndex": 1,
+            "mode": "cyclic_patrol",
+            "lastStep": 63,
+            "defeated": true
+          },
+          "lion-elite-seal-warden": {
+            "active": false,
+            "positionId": "lion-witnesses",
+            "patrolIndex": 0,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 76,
+            "defeated": true
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 165
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 1
+          },
+          {
+            "id": "archer",
+            "hp": 90
+          },
+          {
+            "id": "rogue",
+            "hp": 1
+          },
+          {
+            "id": "lancer",
+            "hp": 130
+          }
+        ]
+      },
+      "newBattles": [
+        {
+          "nodeId": "lion-final-trial-event",
+          "eliteId": "lion-elite-seal-warden",
+          "combatId": "poi_elite_seal_warden",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 35,
+          "rounds": 7,
+          "deployed": 3,
+          "enemies": [
+            "skeleton",
+            "goblin",
+            "skeleton"
+          ],
+          "exactLotERewards": {
+            "temporaryGold": 170,
+            "reputation": 1,
+            "materials": {
+              "red_gem": 2,
+              "iron_ore": 2
+            },
+            "temporary": true,
+            "pass": true
+          }
+        },
+        {
+          "nodeId": "lion-poi-seal-ruin-encounter",
+          "eliteId": null,
+          "combatId": "poi_seal_ruin_encounter_b",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 47,
+          "rounds": 7,
+          "deployed": 4,
+          "enemies": [
+            "goblin",
+            "skeleton",
+            "skeleton"
+          ],
+          "exactLotERewards": {
+            "temporaryGold": 110,
+            "reputation": 1,
+            "materials": {
+              "red_gem": 1,
+              "iron_ore": 2
+            },
+            "temporary": true,
+            "pass": true
+          }
+        }
+      ],
+      "certifiedLineageBattleCount": 10,
+      "inheritedBattleCount": 8,
+      "chests": [
+        {
+          "id": "lion-poi-seal-witness-supplies",
+          "gold": 0,
+          "items": {
+            "antidote": 1,
+            "ether": 1
+          },
+          "temporary": true,
+          "turn": 72
+        }
+      ],
+      "nativeWeaponPreparation": [
+        {
+          "nodeId": "lion-second-refuge",
+          "itemId": "ember_greatsword",
+          "purchaseId": "novice_greatsword",
+          "unitId": "warrior",
+          "price": 70,
+          "old": "novice_greatsword",
+          "proceeds": 45,
+          "before": {
+            "gold": 592,
+            "temporaryGold": 0,
+            "reputation": 89,
+            "permanentIron": 11,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "bought": {
+            "gold": 522,
+            "temporaryGold": 0,
+            "reputation": 89,
+            "permanentIron": 11,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "equipped": {
+            "gold": 442,
+            "temporaryGold": 0,
+            "reputation": 89,
+            "permanentIron": 9,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "sold": {
+            "gold": 487,
+            "temporaryGold": 0,
+            "reputation": 89,
+            "permanentIron": 9,
+            "currentNodeId": "lion-second-refuge"
+          }
+        }
+      ],
+      "nativeForgePreparation": [
+        {
+          "nodeId": "lion-second-refuge",
+          "recipeId": "craft_burn_greatsword",
+          "cost": 80,
+          "iron": 2,
+          "baseItemId": "steel_greatsword",
+          "itemId": "ember_greatsword",
+          "reuseEquippedBase": true,
+          "purchaseId": "novice_greatsword",
+          "before": {
+            "gold": 522,
+            "temporaryGold": 0,
+            "reputation": 89,
+            "permanentIron": 11,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "after": {
+            "gold": 442,
+            "temporaryGold": 0,
+            "reputation": 89,
+            "permanentIron": 9,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "temporaryLootUnchanged": true
+        }
+      ],
+      "sealRecoveries": [],
+      "nativeRefuges": [
+        {
+          "nodeId": "lion-second-refuge",
+          "entry": {
+            "gold": 592,
+            "temporaryGold": 0,
+            "reputation": 89,
+            "permanentIron": 11,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "resumed": {
+            "gold": 592,
+            "temporaryGold": 0,
+            "reputation": 89,
+            "permanentIron": 11,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "reusable": true,
+          "exactV6": true,
+          "rested": {
+            "gold": 472,
+            "temporaryGold": 0,
+            "reputation": 89,
+            "permanentIron": 9,
+            "currentNodeId": "lion-second-refuge"
+          }
+        }
+      ],
+      "terminalMenu": null,
+      "interceptions": [
+        {
+          "eliteId": "lion-elite-seal-warden",
+          "kind": "front",
+          "choice": "retreat",
+          "pass": true,
+          "turnBefore": 74,
+          "turnAfter": 74,
+          "from": "lion-final-trial-event",
+          "to": "lion-final-trial-event"
+        },
+        {
+          "eliteId": "lion-elite-seal-warden",
+          "kind": "rear",
+          "choice": "retreat",
+          "pass": true,
+          "turnBefore": 76,
+          "turnAfter": 76,
+          "from": "lion-witnesses",
+          "to": "lion-final-trial-event"
+        },
+        {
+          "eliteId": "lion-elite-seal-warden",
+          "kind": "contested",
+          "choice": "fight",
+          "pass": true
+        }
+      ],
+      "explicitWaits": [
+        {
+          "before": 74,
+          "after": 75,
+          "pass": true
+        }
+      ],
+      "encounterReloads": [
+        {
+          "eliteId": "lion-elite-seal-warden",
+          "kind": "front",
+          "phase": "choice",
+          "exactOwner": true,
+          "noTick": true
+        },
+        {
+          "eliteId": "lion-elite-seal-warden",
+          "kind": "rear",
+          "phase": "choice",
+          "exactOwner": true,
+          "noTick": true
+        },
+        {
+          "eliteId": "lion-elite-seal-warden",
+          "kind": "contested",
+          "phase": "choice",
+          "exactOwner": true,
+          "noTick": true
+        }
+      ],
+      "chestReload": {
+        "id": "lion-poi-seal-witness-supplies",
+        "exactCanonical": true,
+        "grantOnce": true,
+        "settledOnce": true
+      },
+      "geometry": {
+        "samples": 41,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [],
+      "failureRecovery": null,
+      "captureCount": 41,
+      "technicalScopeOnly": true
+    },
+    {
+      "id": "lot-e-complete-ending-0003",
+      "target": "ending",
+      "strategy": "complete",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "touch": false,
+      "receipt": {
+        "path": "tmp/demo/lot-e-complete-ending-0003/qa-job.json",
+        "sha256": "ff6aaaa702cb55c69b979f9f12edc07140f745e34e4ddc40db3b98d4467662e4",
+        "resultPath": "tmp/demo/lot-e-complete-ending-0003/results.json",
+        "resultSha256": "30c47c484ff689ea128d19cf9481e1b5b4e3095270ada9d65f6d3bf8eec1c079",
+        "status": "SUCCEEDED",
+        "provenanceStable": true,
+        "gitHead": "45fdb478bf465acc07de50948a664183896d2e2c",
+        "sourceTree": "7eea4ace90cb563ed83fb8d67b4bc999b74955af",
+        "driver": {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "sha256": "e9e050bc1bc1329f39a509ac4ef0cf6c2c59634d691f5cd90aec3be87284772f"
+        },
+        "inputs": [
+          {
+            "role": "earnedSavePath",
+            "path": "tmp/demo/lot-e-complete-III-0003/earned-expedition-checkpoint-v6.json",
+            "sha256": "6828bc4cc72c82d541f67e63eeea2bfcaf79ea6d6ab6c3ca766639dfd82752c7"
+          },
+          {
+            "role": "priorProofPath",
+            "path": "tmp/demo/lot-e-complete-III-0003/results.json",
+            "sha256": "71e6e18311414bd2d38f9e8ec90d8279e55cdf598af5b2c50970b624224314cf"
+          }
+        ],
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+            "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+          },
+          {
+            "path": "dist/assets/combat-CYjlO7p1.js",
+            "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+          },
+          {
+            "path": "dist/assets/combat-HSkJxt5D.css",
+            "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+          },
+          {
+            "path": "dist/assets/game-UCVpfDso.css",
+            "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+          },
+          {
+            "path": "dist/assets/game-l7q6Wbot.js",
+            "sha256": "e4b934cc0bcfedebf75143dad090800e1be3295a346c3023e53e98ca54e2643e"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "b4773b8722aef154c3cd6e0e92cd677703c177b82f23cd084e5b661d353aa69f"
+          }
+        ]
+      },
+      "exactEarnedResume": {
+        "savePath": "tmp/demo/lot-e-complete-III-0003/earned-expedition-checkpoint-v6.json",
+        "priorProofPath": "tmp/demo/lot-e-complete-III-0003/results.json",
+        "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+        "sha256": "6828bc4cc72c82d541f67e63eeea2bfcaf79ea6d6ab6c3ca766639dfd82752c7",
+        "proofSha256": "71e6e18311414bd2d38f9e8ec90d8279e55cdf598af5b2c50970b624224314cf",
+        "additiveMigration": {
+          "originalNodes": 33,
+          "currentNodes": 33,
+          "canonicalFactsExact": true
+        }
+      },
+      "checkpoint": null,
+      "ending": "lion-seal-serpent-truth",
+      "currentNodeId": "lion-final-judgement",
+      "final": {
+        "gold": 1167,
+        "temporaryGold": 0,
+        "reputation": 100,
+        "graphNodes": 33,
+        "optionalResolved": [
+          "lion-poi-opening-supplies",
+          "lion-poi-opening-patrol",
+          "lion-poi-opening-wolves",
+          "lion-poi-opening-cache",
+          "lion-poi-valley-supplies",
+          "lion-poi-valley-marsh",
+          "lion-poi-valley-bridge-cache",
+          "lion-poi-valley-serpent",
+          "lion-poi-seal-witness-supplies",
+          "lion-poi-seal-hunters",
+          "lion-poi-seal-ruin-encounter",
+          "lion-poi-seal-ruin-supplies"
+        ],
+        "elites": {
+          "lion-elite-valley-sentinel": {
+            "active": false,
+            "positionId": "lion-poi-valley-serpent",
+            "patrolIndex": 1,
+            "mode": "cyclic_patrol",
+            "lastStep": 63,
+            "defeated": true
+          },
+          "lion-elite-seal-warden": {
+            "active": false,
+            "positionId": "lion-witnesses",
+            "patrolIndex": 0,
+            "mode": "bounded_one_edge_graph_chase",
+            "lastStep": 76,
+            "defeated": true
+          }
+        },
+        "clan": [
+          {
+            "id": "warrior",
+            "hp": 165
+          },
+          {
+            "id": "white_mage",
+            "hp": 100
+          },
+          {
+            "id": "dark_mage",
+            "hp": 75
+          },
+          {
+            "id": "archer",
+            "hp": 90
+          },
+          {
+            "id": "rogue",
+            "hp": 1
+          },
+          {
+            "id": "lancer",
+            "hp": 130
+          }
+        ]
+      },
+      "newBattles": [
+        {
+          "nodeId": "lion-poi-seal-hunters",
+          "eliteId": null,
+          "combatId": "poi_seal_hunters_a",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 58,
+          "rounds": 9,
+          "deployed": 4,
+          "enemies": [
+            "serpent_raider",
+            "serpent_brute",
+            "serpent_oracle",
+            "serpent_raider"
+          ],
+          "exactLotERewards": {
+            "temporaryGold": 125,
+            "reputation": 0,
+            "materials": {
+              "red_gem": 2,
+              "iron_ore": 2
+            },
+            "temporary": true,
+            "pass": true
+          }
+        },
+        {
+          "nodeId": "lion-final-judgement",
+          "eliteId": null,
+          "combatId": "serpent_captain",
+          "outcome": "victory",
+          "pass": true,
+          "actions": 74,
+          "rounds": 11,
+          "deployed": 4,
+          "enemies": null,
+          "exactLotERewards": null
+        }
+      ],
+      "certifiedLineageBattleCount": 12,
+      "inheritedBattleCount": 10,
+      "chests": [
+        {
+          "id": "lion-poi-seal-ruin-supplies",
+          "gold": 50,
+          "items": {
+            "revive_vial": 1
+          },
+          "temporary": true,
+          "turn": 95
+        }
+      ],
+      "nativeWeaponPreparation": [],
+      "nativeForgePreparation": [],
+      "sealRecoveries": [
+        {
+          "origin": "lion-poi-seal-ruin-encounter",
+          "before": {
+            "gold": 472,
+            "temporaryGold": 280,
+            "reputation": 100,
+            "permanentIron": 9,
+            "currentNodeId": "lion-poi-seal-ruin-encounter"
+          },
+          "phase": "return-to-origin",
+          "servicesBefore": {
+            "gold": 472,
+            "temporaryGold": 280,
+            "reputation": 100,
+            "permanentIron": 9,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "rested": {
+            "gold": 442,
+            "temporaryGold": 280,
+            "reputation": 100,
+            "permanentIron": 9,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "cost": 30,
+          "exactSavedOwner": true,
+          "after": {
+            "gold": 442,
+            "temporaryGold": 280,
+            "reputation": 100,
+            "permanentIron": 9,
+            "currentNodeId": "lion-poi-seal-ruin-encounter"
+          },
+          "complete": true
+        },
+        {
+          "origin": "lion-poi-seal-hunters",
+          "before": {
+            "gold": 442,
+            "temporaryGold": 405,
+            "reputation": 100,
+            "permanentIron": 9,
+            "currentNodeId": "lion-poi-seal-hunters"
+          },
+          "phase": "return-to-origin",
+          "servicesBefore": {
+            "gold": 442,
+            "temporaryGold": 405,
+            "reputation": 100,
+            "permanentIron": 9,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "rested": {
+            "gold": 412,
+            "temporaryGold": 405,
+            "reputation": 100,
+            "permanentIron": 9,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "cost": 30,
+          "exactSavedOwner": true,
+          "after": {
+            "gold": 412,
+            "temporaryGold": 405,
+            "reputation": 100,
+            "permanentIron": 9,
+            "currentNodeId": "lion-poi-seal-hunters"
+          },
+          "complete": true
+        }
+      ],
+      "nativeRefuges": [
+        {
+          "nodeId": "lion-second-refuge",
+          "entry": {
+            "gold": 472,
+            "temporaryGold": 280,
+            "reputation": 100,
+            "permanentIron": 9,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "resumed": {
+            "gold": 472,
+            "temporaryGold": 280,
+            "reputation": 100,
+            "permanentIron": 9,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "reusable": true,
+          "exactV6": true,
+          "rested": {
+            "gold": 442,
+            "temporaryGold": 280,
+            "reputation": 100,
+            "permanentIron": 9,
+            "currentNodeId": "lion-second-refuge"
+          }
+        },
+        {
+          "nodeId": "lion-second-refuge",
+          "entry": {
+            "gold": 442,
+            "temporaryGold": 405,
+            "reputation": 100,
+            "permanentIron": 9,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "resumed": {
+            "gold": 442,
+            "temporaryGold": 405,
+            "reputation": 100,
+            "permanentIron": 9,
+            "currentNodeId": "lion-second-refuge"
+          },
+          "reusable": true,
+          "exactV6": true,
+          "rested": {
+            "gold": 412,
+            "temporaryGold": 405,
+            "reputation": 100,
+            "permanentIron": 9,
+            "currentNodeId": "lion-second-refuge"
+          }
+        }
+      ],
+      "terminalMenu": {
+        "nativeKeyboard": true,
+        "nativeTouch": false,
+        "titleVisible": true,
+        "continueFocused": true,
+        "ownerUnchanged": true,
+        "savedBytesUnchanged": true
+      },
+      "interceptions": [],
+      "explicitWaits": [],
+      "encounterReloads": [],
+      "chestReload": {
+        "id": "lion-poi-seal-ruin-supplies",
+        "exactCanonical": true,
+        "grantOnce": true,
+        "settledOnce": true
+      },
+      "geometry": {
+        "samples": 49,
+        "pageOverflowSamples": 0,
+        "labelOverlapSamples": 0
+      },
+      "motion": [],
+      "failureRecovery": null,
+      "captureCount": 49,
+      "technicalScopeOnly": true
+    }
+  ],
+  "rejected": [
+    {
+      "id": "lot-e-complete-I-0001",
+      "status": "INTERRUPTED_WORKER_ABSENT",
+      "receiptStatus": "RUNNING",
+      "seedAllowed": false,
+      "reason": "Session interruption: host PID and listener verified absent; original output retained. No partial save accepted."
+    },
+    {
+      "id": "lot-e-oldV6-II-touch-0001",
+      "status": "INTERRUPTED_WORKER_ABSENT",
+      "receiptStatus": "RUNNING",
+      "seedAllowed": false,
+      "reason": "Session interruption: host PID and listener verified absent; original output retained. No partial save accepted."
+    },
+    {
+      "id": "lot-e-optional-defeat-0001",
+      "status": "ABORTED_PILOT_DEAD_END",
+      "receiptStatus": "RUNNING",
+      "seedAllowed": false,
+      "reason": "Optional checkpoint resumed with empty pilot phases and no directed links; owned PID13944 and descendants stopped after identity verification. No partial state used as a seed."
+    },
+    {
+      "id": "lot-e-ui-390-os-0001",
+      "status": "FAILED_PILOT_PREPARATION_WAIT",
+      "receiptStatus": "RUNNING",
+      "seedAllowed": false,
+      "reason": "Pilot waited for preparation before advancing prior dialogue. failure.json retained. Host PID/listener absent; PowerShell Stop preference on stderr interrupted native error finalization. Launcher corrected, no partial state accepted."
+    },
+    {
+      "id": "lot-e-atlas-1920-normal-0001",
+      "status": "FAILED_PILOT_PREPARATION_WAIT",
+      "receiptStatus": "RUNNING",
+      "seedAllowed": false,
+      "reason": "Pilot waited for preparation before advancing prior dialogue. failure.json retained. Host PID/listener absent; PowerShell Stop preference on stderr interrupted native error finalization. Launcher corrected, no partial state accepted."
+    },
+    {
+      "id": "lot-e-moderate-II-0001",
+      "status": "FAILED",
+      "receiptStatus": "FAILED",
+      "seedAllowed": false,
+      "reason": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+    },
+    {
+      "id": "lot-e-optional-defeat-0002",
+      "status": "FAILED",
+      "receiptStatus": "FAILED",
+      "seedAllowed": false,
+      "reason": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+    },
+    {
+      "id": "lot-e-complete-valley-loop-0001",
+      "status": "FAILED",
+      "receiptStatus": "FAILED",
+      "seedAllowed": false,
+      "reason": "AssertionError [ERR_ASSERTION]: Resolved refuge departure repeated a one-shot effect"
+    },
+    {
+      "id": "lot-e-moderate-II-0002",
+      "status": "FAILED",
+      "receiptStatus": "FAILED",
+      "seedAllowed": false,
+      "reason": "AssertionError [ERR_ASSERTION]: Second refuge requires verified native road_to_valmir victory at lion-valmir-road"
+    },
+    {
+      "id": "lot-e-complete-II-0001",
+      "status": "FAILED",
+      "receiptStatus": "FAILED",
+      "seedAllowed": false,
+      "reason": "AssertionError [ERR_ASSERTION]: Inert POI path opened an activity or interception"
+    },
+    {
+      "id": "lot-e-complete-II-0002",
+      "status": "FAILED",
+      "receiptStatus": "FAILED",
+      "seedAllowed": false,
+      "reason": "AssertionError [ERR_ASSERTION]: Visible native map labels overlap"
+    },
+    {
+      "id": "lot-e-atlas-1920-trails-0001",
+      "status": "FAILED",
+      "receiptStatus": "FAILED",
+      "seedAllowed": false,
+      "reason": "AssertionError [ERR_ASSERTION]: Visible native map labels overlap"
+    },
+    {
+      "id": "lot-e-complete-II-0003",
+      "status": "FAILED",
+      "receiptStatus": "FAILED",
+      "seedAllowed": false,
+      "reason": "locator.waitFor: Timeout 30000ms exceeded."
+    },
+    {
+      "id": "lot-e-complete-II-0004",
+      "status": "FAILED",
+      "receiptStatus": "FAILED",
+      "seedAllowed": false,
+      "reason": "AssertionError [ERR_ASSERTION]: Actual battle ended without victory: ✦"
+    },
+    {
+      "id": "lot-e-moderate-ending-0001",
+      "status": "NOT_STARTED_REGISTRATION_RACE",
+      "seedAllowed": false,
+      "reason": "Parallel registration overwrote the planned ledger before beginJob; no receipt, output or browser was created. Future registrations are sequential."
+    },
+    {
+      "id": "lot-e-complete-III-0001",
+      "status": "FAILED",
+      "receiptStatus": "FAILED",
+      "seedAllowed": false,
+      "reason": "locator.waitFor: Timeout 30000ms exceeded."
+    },
+    {
+      "id": "lot-e-complete-III-0002",
+      "status": "FAILED",
+      "receiptStatus": "FAILED",
+      "seedAllowed": false,
+      "reason": "locator.waitFor: Timeout 30000ms exceeded."
+    },
+    {
+      "id": "lot-e-complete-ending-0001",
+      "status": "FAILED",
+      "receiptStatus": "FAILED",
+      "seedAllowed": false,
+      "reason": "AssertionError [ERR_ASSERTION]: Actual battle ended without victory: ✦"
+    },
+    {
+      "id": "lot-e-complete-ending-0002",
+      "status": "FAILED",
+      "receiptStatus": "FAILED",
+      "seedAllowed": false,
+      "reason": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+    }
+  ],
+  "selectedCaptures": [
+    {
+      "path": "docs/reports/evidence/lot-e-final-2026-10-15/atlas-I.png",
+      "original": "tmp/demo/lot-e-atlas-1920-trails-0002/atlas-region-0-1920.png",
+      "jobId": "lot-e-atlas-1920-trails-0002",
+      "sha256": "0c5aa56cc69a946ee76018ebe6c7da4b3ace5fa7e30b06964ebcb5b829ea35e6",
+      "nativeResultSha256": "4250e7abc22a2507271bfcb193baae537c237d4884566971ed100aac51aa2771",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "path": "docs/reports/evidence/lot-e-final-2026-10-15/atlas-II.png",
+      "original": "tmp/demo/lot-e-atlas-1920-trails-0002/atlas-region-1-1920.png",
+      "jobId": "lot-e-atlas-1920-trails-0002",
+      "sha256": "6854c7133b1c77cb8d868ecee69e86875d0dd2cc245874cc2fac934ffd8e5ade",
+      "nativeResultSha256": "4250e7abc22a2507271bfcb193baae537c237d4884566971ed100aac51aa2771",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "path": "docs/reports/evidence/lot-e-final-2026-10-15/atlas-III.png",
+      "original": "tmp/demo/lot-e-atlas-1920-trails-0002/atlas-region-2-1920.png",
+      "jobId": "lot-e-atlas-1920-trails-0002",
+      "sha256": "9ae22cf4205b1420b38d30afe0f71b5c6698316cc690d817869c30cc40efdaef",
+      "nativeResultSha256": "4250e7abc22a2507271bfcb193baae537c237d4884566971ed100aac51aa2771",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "path": "docs/reports/evidence/lot-e-final-2026-10-15/header-390-os.png",
+      "original": "tmp/demo/lot-e-ui-390-os-0002/atlas-region-0-390.png",
+      "jobId": "lot-e-ui-390-os-0002",
+      "sha256": "c7a82452344eca84e2d7d411829e21cbc317d0576b6da9ed3dada4a232595142",
+      "nativeResultSha256": "6944811f1f39b307b751710b2ccfc6baeda7d7f339dce49e35079b903a1f6156",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "docs/reports/evidence/lot-e-final-2026-10-15/rear-retreat-620.png",
+      "original": "tmp/demo/lot-e-moderate-II-0003/elite-lion-elite-valley-sentinel-rear-retreat-1.png",
+      "jobId": "lot-e-moderate-II-0003",
+      "sha256": "8239e05474a60cf99680baf4389b262b2601a6cb105c95a0f68fc925f23a2f75",
+      "nativeResultSha256": "16ab97542f4b69cf867f516bb9bc1b01d3ad013df840df84dff555c29dd5888f",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      }
+    },
+    {
+      "path": "docs/reports/evidence/lot-e-final-2026-10-15/defeat-checkpoint-620.png",
+      "original": "tmp/demo/lot-e-optional-defeat-0003/native-defeat-recovered-resumed.png",
+      "jobId": "lot-e-optional-defeat-0003",
+      "sha256": "19c6616a2d5359b52fce0d401bb733d67dbd553bd0d2c8bf15cae4973e8738ec",
+      "nativeResultSha256": "06abce507d83faedb891b1d4fdc5dd0bfe7a96d0dffceb700e70e592b9059abb",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      }
+    },
+    {
+      "path": "docs/reports/evidence/lot-e-final-2026-10-15/sentinel-victory-620.png",
+      "original": "tmp/demo/lot-e-complete-II-0005/combat-6-result.png",
+      "jobId": "lot-e-complete-II-0005",
+      "sha256": "cdedadffd386128991cc99a39caed72d67006d87093fe4fbf17b70b5960543c1",
+      "nativeResultSha256": "94ea9684eab1fef213f84f4cae24334eea207c47c1553cd2804be6c268c35944",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      }
+    },
+    {
+      "path": "docs/reports/evidence/lot-e-final-2026-10-15/chest-once-620.png",
+      "original": "tmp/demo/lot-e-complete-III-0003/chest-lion-poi-seal-witness-supplies.png",
+      "jobId": "lot-e-complete-III-0003",
+      "sha256": "7216ba49b5ad128bf3410a134676953135cdd596ef495cb698377bef2494fb2f",
+      "nativeResultSha256": "71e6e18311414bd2d38f9e8ec90d8279e55cdf598af5b2c50970b624224314cf",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      }
+    },
+    {
+      "path": "docs/reports/evidence/lot-e-final-2026-10-15/warden-victory-620.png",
+      "original": "tmp/demo/lot-e-complete-III-0003/combat-8-result.png",
+      "jobId": "lot-e-complete-III-0003",
+      "sha256": "9d3ae781f7cb0427709c0a0f6fa04456707ee542c17421522ee01588997681f0",
+      "nativeResultSha256": "71e6e18311414bd2d38f9e8ec90d8279e55cdf598af5b2c50970b624224314cf",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      }
+    },
+    {
+      "path": "docs/reports/evidence/lot-e-final-2026-10-15/complete-ending-1366.png",
+      "original": "tmp/demo/lot-e-complete-ending-0003/ending-lion-seal-serpent-truth.png",
+      "jobId": "lot-e-complete-ending-0003",
+      "sha256": "b46474e719c14188113c653f383640c0e527dde3d4230aa195bf444a70df5a77",
+      "nativeResultSha256": "30c47c484ff689ea128d19cf9481e1b5b4e3095270ada9d65f6d3bf8eec1c079",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      }
+    }
+  ],
+  "continuity": {
+    "priorJobCount": 271,
+    "priorJobEntriesExact": true,
+    "deferredObjectsExact": {
+      "providerTasksPending": true,
+      "deferredDemoTask": true,
+      "pendingNarrativeTask": true
+    }
+  },
+  "mechanical": {
+    "distinctFocusedTests": 277,
+    "currentTestFiles": 16,
+    "qaHelperHostTests": 19,
+    "typescript": "PASS",
+    "productionBuild": "PASS",
+    "logs": [
+      {
+        "path": "tmp/lot-e/final-focused-tests.log",
+        "sha256": "6820b17bbca10d151c25024abde0a36665b8ad1b27e9063e34aea2638f39c8a5"
+      },
+      {
+        "path": "tmp/lot-e/forge-material-ui-tests.log",
+        "sha256": "2594f95389bd4706065cea02ecb726ee397f28c2395bfe6516508500830c0da8"
+      },
+      {
+        "path": "tmp/lot-e/forge-material-build.log",
+        "sha256": "e11d65851afe5a3c2e56dc27a2a8a453ddde7951647fdcbb56602fd669e5e0a3"
+      }
+    ],
+    "fullSuiteClaimed": false,
+    "contracts": 8,
+    "videoSlots": 8,
+    "physicalTraversalAbsent": true,
+    "builtMp4Count": 8
+  },
+  "independentReview": {
+    "guardian": {
+      "status": "PASS_SCOPED",
+      "reviewedAt": "2026-10-16T15:29:44.150Z",
+      "contractSet": "1.4.0",
+      "lockedGate": "EMPTY",
+      "validator": "8 contracts / 8 slots",
+      "matrix": {
+        "GAME_CONSTITUTION": "PASS_SCOPED",
+        "ART_DIRECTION": "PASS_SCOPED",
+        "CHARACTERS": "PASS_SCOPED",
+        "ENVIRONMENTS": "PASS_SCOPED",
+        "NARRATIVE_CAMPAIGN": "PASS_SCOPED",
+        "NARRATIVE_PRESENTATION": "PASS_SCOPED",
+        "TRAVERSAL": "PASS_SCOPED",
+        "COMBAT": "PASS_SCOPED",
+        "SAVE": "PASS_SCOPED",
+        "UI_ACCESSIBILITY": "PASS_SCOPED",
+        "QA_EVIDENCE": "PASS_SCOPED",
+        "REPOSITORY_GOVERNANCE": "PASS_SCOPED"
+      },
+      "humanAcceptance": "Art, felt balance, hardware and full-demo remain operator work"
+    },
+    "nativeQa": {
+      "status": "PASS_SCOPED",
+      "reviewedAt": "2026-10-16T15:29:44.150Z",
+      "resultSha256": "30c47c484ff689ea128d19cf9481e1b5b4e3095270ada9d65f6d3bf8eec1c079",
+      "sourceCommit": "45fdb478bf465acc07de50948a664183896d2e2c",
+      "buildFilesExact": 9,
+      "lineageJobsCertified": 7,
+      "nativeVictories": 12,
+      "chests": 6,
+      "optionalResolved": 12,
+      "elitesDefeated": 2,
+      "terminalV6Exact": true,
+      "menuOwnerAndBytesExact": true,
+      "paidSealRest": [
+        30,
+        30
+      ],
+      "errors": [],
+      "captureInspection": "Boss, resumed ending and menu1366 inspected; previous atlas/elite/chest scopes reviewed",
+      "ignoredReview": "tmp/lot-e/independent-native-review/results.json"
+    }
+  },
+  "fileInventory": {
+    "baseline": "4c80196cf2eb87097f063f4f312756044f5a5e47",
+    "counts": {
+      "workflowAndCanonicalDocs": {
+        "added": 7,
+        "modified": 12,
+        "removed": 0,
+        "total": 19
+      },
+      "lockedAmendment": {
+        "added": 0,
+        "modified": 8,
+        "removed": 0,
+        "total": 8
+      },
+      "artResources": {
+        "added": 3,
+        "modified": 0,
+        "removed": 0,
+        "total": 3
+      },
+      "runtimeSource": {
+        "added": 3,
+        "modified": 12,
+        "removed": 0,
+        "total": 15
+      },
+      "sourceTests": {
+        "added": 3,
+        "modified": 7,
+        "removed": 0,
+        "total": 10
+      },
+      "existingQaTools": {
+        "added": 0,
+        "modified": 2,
+        "removed": 0,
+        "total": 2
+      },
+      "selectedEvidence": {
+        "added": 11,
+        "modified": 0,
+        "removed": 0,
+        "total": 11
+      }
+    },
+    "totalPaths": 68,
+    "deletedPaths": 0,
+    "newQaTools": 0,
+    "inheritedWipFiles": 0,
+    "entries": [
+      {
+        "status": "M",
+        "path": ".agents/skills/autonomy-handoff/SKILL.md",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "M",
+        "path": ".agents/skills/contracts-compliance/SKILL.md",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "M",
+        "path": "AGENTS.md",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "M",
+        "path": "docs/README.md",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "M",
+        "path": "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "M",
+        "path": "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "A",
+        "path": "docs/autonomy/LOT_E_EXECUTION_DIRECTIVE_2026-10-15.md",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "A",
+        "path": "docs/autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "M",
+        "path": "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "M",
+        "path": "docs/autonomy/OPERATOR_DECISIONS.md",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "M",
+        "path": "docs/contracts/AUTHORING_AND_QA.md",
+        "category": "lockedAmendment"
+      },
+      {
+        "status": "M",
+        "path": "docs/contracts/CAMPAIGN_AND_STATE.md",
+        "category": "lockedAmendment"
+      },
+      {
+        "status": "M",
+        "path": "docs/contracts/COMBAT_AND_VFX.md",
+        "category": "lockedAmendment"
+      },
+      {
+        "status": "M",
+        "path": "docs/contracts/README.md",
+        "category": "lockedAmendment"
+      },
+      {
+        "status": "M",
+        "path": "docs/contracts/TRAVERSAL.md",
+        "category": "lockedAmendment"
+      },
+      {
+        "status": "M",
+        "path": "docs/contracts/UI_AND_ACCESSIBILITY.md",
+        "category": "lockedAmendment"
+      },
+      {
+        "status": "M",
+        "path": "docs/contracts/WORLD_AND_CHARACTERS.md",
+        "category": "lockedAmendment"
+      },
+      {
+        "status": "M",
+        "path": "docs/contracts/contracts.manifest.json",
+        "category": "lockedAmendment"
+      },
+      {
+        "status": "M",
+        "path": "docs/project/CURRENT_STATUS.md",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "A",
+        "path": "docs/project/LOT_E_ATLAS_PROVENANCE_2026-10-15.json",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "M",
+        "path": "docs/project/POI_NAVIGATION.md",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "M",
+        "path": "docs/project/POI_V2_ART_AND_AUTHORING.md",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "A",
+        "path": "docs/project/RPGThreeJS_LOT_E_CONTRAT_AUTHORING_FINAL_2026-10-15.md",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "A",
+        "path": "docs/project/RPGThreeJS_LOT_E_MANIFEST_AUTHORING_FINAL_2026-10-15.json",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "M",
+        "path": "docs/reports/INDEX.md",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "A",
+        "path": "docs/reports/lot-e-final-2026-10-15.md",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "A",
+        "path": "public/assets/generated/lion-phase/poi-lot-e/bois-clair.png",
+        "category": "artResources"
+      },
+      {
+        "status": "A",
+        "path": "public/assets/generated/lion-phase/poi-lot-e/judgement.png",
+        "category": "artResources"
+      },
+      {
+        "status": "A",
+        "path": "public/assets/generated/lion-phase/poi-lot-e/lion-opening.png",
+        "category": "artResources"
+      },
+      {
+        "status": "A",
+        "path": "src/campaign/LionPoiAuthoring.ts",
+        "category": "runtimeSource"
+      },
+      {
+        "status": "M",
+        "path": "src/campaign/LionPoiMap.ts",
+        "category": "runtimeSource"
+      },
+      {
+        "status": "M",
+        "path": "src/campaign/LionPoiTopology.test.ts",
+        "category": "sourceTests"
+      },
+      {
+        "status": "M",
+        "path": "src/campaign/LionPoiTopology.ts",
+        "category": "runtimeSource"
+      },
+      {
+        "status": "M",
+        "path": "src/game/GameApp.ts",
+        "category": "runtimeSource"
+      },
+      {
+        "status": "M",
+        "path": "src/game/GameAppPoi.test.ts",
+        "category": "sourceTests"
+      },
+      {
+        "status": "A",
+        "path": "src/game/GameAppPoiExpedition.test.ts",
+        "category": "sourceTests"
+      },
+      {
+        "status": "M",
+        "path": "src/game/campaignPresentationMigration.test.ts",
+        "category": "sourceTests"
+      },
+      {
+        "status": "M",
+        "path": "src/game/content.test.ts",
+        "category": "sourceTests"
+      },
+      {
+        "status": "M",
+        "path": "src/game/content.ts",
+        "category": "runtimeSource"
+      },
+      {
+        "status": "M",
+        "path": "src/game/poiContentAdapters.test.ts",
+        "category": "sourceTests"
+      },
+      {
+        "status": "M",
+        "path": "src/game/poiContentAdapters.ts",
+        "category": "runtimeSource"
+      },
+      {
+        "status": "A",
+        "path": "src/game/poiExpedition.test.ts",
+        "category": "sourceTests"
+      },
+      {
+        "status": "A",
+        "path": "src/game/poiExpedition.ts",
+        "category": "runtimeSource"
+      },
+      {
+        "status": "M",
+        "path": "src/game/poiNavigation.test.ts",
+        "category": "sourceTests"
+      },
+      {
+        "status": "M",
+        "path": "src/game/runSystem.test.ts",
+        "category": "sourceTests"
+      },
+      {
+        "status": "M",
+        "path": "src/game/runSystem.ts",
+        "category": "runtimeSource"
+      },
+      {
+        "status": "M",
+        "path": "src/game/store.ts",
+        "category": "runtimeSource"
+      },
+      {
+        "status": "M",
+        "path": "src/game/types.ts",
+        "category": "runtimeSource"
+      },
+      {
+        "status": "M",
+        "path": "src/ui/ManagementView.ts",
+        "category": "runtimeSource"
+      },
+      {
+        "status": "A",
+        "path": "src/ui/PoiEncounterView.test.ts",
+        "category": "sourceTests"
+      },
+      {
+        "status": "A",
+        "path": "src/ui/PoiEncounterView.ts",
+        "category": "runtimeSource"
+      },
+      {
+        "status": "M",
+        "path": "src/ui/PoiMapView.ts",
+        "category": "runtimeSource"
+      },
+      {
+        "status": "M",
+        "path": "src/ui/RunNodePresentation.ts",
+        "category": "runtimeSource"
+      },
+      {
+        "status": "M",
+        "path": "src/ui/poi-map.css",
+        "category": "runtimeSource"
+      },
+      {
+        "status": "M",
+        "path": "tools/demo-continuous-production-qa.mjs",
+        "category": "existingQaTools"
+      },
+      {
+        "status": "M",
+        "path": "tools/qa/qa-job.mjs",
+        "category": "existingQaTools"
+      },
+      {
+        "status": "A",
+        "path": "docs/autonomy/handoffs/2026-10-16T1526Z-codex-lot-e-final.md",
+        "category": "workflowAndCanonicalDocs"
+      },
+      {
+        "status": "A",
+        "path": "docs/reports/evidence/lot-e-final-2026-10-15/atlas-I.png",
+        "category": "selectedEvidence"
+      },
+      {
+        "status": "A",
+        "path": "docs/reports/evidence/lot-e-final-2026-10-15/atlas-II.png",
+        "category": "selectedEvidence"
+      },
+      {
+        "status": "A",
+        "path": "docs/reports/evidence/lot-e-final-2026-10-15/atlas-III.png",
+        "category": "selectedEvidence"
+      },
+      {
+        "status": "A",
+        "path": "docs/reports/evidence/lot-e-final-2026-10-15/header-390-os.png",
+        "category": "selectedEvidence"
+      },
+      {
+        "status": "A",
+        "path": "docs/reports/evidence/lot-e-final-2026-10-15/rear-retreat-620.png",
+        "category": "selectedEvidence"
+      },
+      {
+        "status": "A",
+        "path": "docs/reports/evidence/lot-e-final-2026-10-15/defeat-checkpoint-620.png",
+        "category": "selectedEvidence"
+      },
+      {
+        "status": "A",
+        "path": "docs/reports/evidence/lot-e-final-2026-10-15/sentinel-victory-620.png",
+        "category": "selectedEvidence"
+      },
+      {
+        "status": "A",
+        "path": "docs/reports/evidence/lot-e-final-2026-10-15/chest-once-620.png",
+        "category": "selectedEvidence"
+      },
+      {
+        "status": "A",
+        "path": "docs/reports/evidence/lot-e-final-2026-10-15/warden-victory-620.png",
+        "category": "selectedEvidence"
+      },
+      {
+        "status": "A",
+        "path": "docs/reports/evidence/lot-e-final-2026-10-15/complete-ending-1366.png",
+        "category": "selectedEvidence"
+      },
+      {
+        "status": "A",
+        "path": "docs/reports/evidence/lot-e-final-2026-10-15/results.json",
+        "category": "selectedEvidence"
+      }
+    ]
+  }
+}

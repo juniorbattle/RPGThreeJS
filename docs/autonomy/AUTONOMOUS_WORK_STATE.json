@@ -1,280 +1,112 @@
 {
-  "status": "IN_PROGRESS",
+  "status": "COMPLETE_SCOPED",
   "runStartedAt": "2026-10-15T22:57:16.909Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-16T15:29:46.093Z",
   "activeTask": "POI-LOT-E-FINAL",
-  "activePhase": "NATIVE_FINAL_REVISIT_GUARD",
-  "activeSubtask": "Ending0002FAILEDunseedable:pilotincorrectlyexpectedzero280tempGoldonrevisitedrefuge. Strictcanonical+lootpreservationassertionnowcoversonlynativeSealpaidrecovery;initialrefugeskeepzeroassertion. RetryIIIcertifiedwithpaidrest/team.",
+  "activePhase": "CLOSED_SCOPED_LOT_E_FINAL",
+  "activeSubtask": "E1-E5 delivered; complete native campaign, independent review and scoped technical acceptance",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "99ed9ed9d5b4290f65e1591a701463ad61c0f21d",
-  "lastPushedCommit": "0aada9fdd65d10702138bfdf1174ce188c824302",
+  "lastKnownGoodCommit": "45fdb478bf465acc07de50948a664183896d2e2c",
+  "lastPushedCommit": "45fdb478bf465acc07de50948a664183896d2e2c",
   "completedThisRun": [
-    "Approved dedicated LOCKED1.3.0 amendment before runtime",
-    "True opening branches and stable authored assignments",
-    "21explicit POI roles/regions;3illustrated accessible atlases",
-    "Physical Traversal retired with184row inventory/146deletions and compatibility retention",
-    "Current native proofs/failed-output quarantine/selected evidence and independent review"
+    "Approved dedicated set1.4.0 amendment before runtime",
+    "Twelve exact optional POI/six chests/six deterministic ordinary formations",
+    "Two independent graph-mobile elites with native Combat/retreat and real victories",
+    "Additive old/current/terminal V6 and interruption recovery",
+    "Three revised integrated atlases and scoped desktop/compact/touch controls",
+    "Complete twelve-victory native campaign and exact terminal/menu/save"
   ],
   "filesChanged": [
     ".agents/skills/autonomy-handoff/SKILL.md",
     ".agents/skills/contracts-compliance/SKILL.md",
-    ".agents/skills/qa-evidence/SKILL.md",
-    ".agents/skills/ui-accessibility/SKILL.md",
     "AGENTS.md",
     "docs/README.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+    "docs/autonomy/LOT_E_EXECUTION_DIRECTIVE_2026-10-15.md",
+    "docs/autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md",
+    "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
     "docs/autonomy/OPERATOR_DECISIONS.md",
-    "docs/autonomy/POI_V2_OPERATOR_DECISION_2026-10-15.md",
-    "docs/autonomy/RPGThreeJS_CONTRAT_OPERATEUR_POI_V2_ET_RETRAIT_TRAVERSAL_2026-10-15.md",
-    "docs/autonomy/RPGThreeJS_MISSION_POI_V2_ET_RETRAIT_TRAVERSAL_2026-10-15.md",
     "docs/contracts/AUTHORING_AND_QA.md",
-    "docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md",
     "docs/contracts/CAMPAIGN_AND_STATE.md",
+    "docs/contracts/COMBAT_AND_VFX.md",
     "docs/contracts/README.md",
     "docs/contracts/TRAVERSAL.md",
     "docs/contracts/UI_AND_ACCESSIBILITY.md",
     "docs/contracts/WORLD_AND_CHARACTERS.md",
     "docs/contracts/contracts.manifest.json",
     "docs/project/CURRENT_STATUS.md",
+    "docs/project/LOT_E_ATLAS_PROVENANCE_2026-10-15.json",
     "docs/project/POI_NAVIGATION.md",
     "docs/project/POI_V2_ART_AND_AUTHORING.md",
-    "docs/project/retired-traversal/README.md",
-    "docs/project/retired-traversal/poi-v2-dependency-inventory.json",
-    "docs/project/retired-traversal/qa/README.md",
-    "docs/project/retired-traversal/qa/narrative-stage-utility-consistency-1-qa.mjs.txt",
-    "docs/project/retired-traversal/qa/project-continuity-audit-1.mjs.txt",
-    "docs/project/retired-traversal/qa/run_campaign_presentation_migration_qa.mjs.txt",
-    "docs/project/retired-traversal/qa/run_cin6d6_browser_qa.mjs.txt",
-    "docs/project/retired-traversal/qa/ui-kit-system-1-gallery.html.txt",
-    "docs/project/retired-traversal/qa/ui-kit-system-1-gallery.ts.txt",
-    "docs/project/retired-traversal/qa/ui-kit-system-1-qa.mjs.txt",
-    "docs/project/retired-traversal/qa/ui-visual-direction-2-qa.mjs.txt",
-    "docs/project/retired-traversal/qa/ui-visual-direction-font-compare.mjs.txt",
-    "docs/project/retired-traversal/qa/ui-visual-direction-qa.mjs.txt",
+    "docs/project/RPGThreeJS_LOT_E_CONTRAT_AUTHORING_FINAL_2026-10-15.md",
+    "docs/project/RPGThreeJS_LOT_E_MANIFEST_AUTHORING_FINAL_2026-10-15.json",
     "docs/reports/INDEX.md",
-    "docs/reports/poi-v2-retirement-2026-10-15.md",
-    "docs/reports/poi-v2-retirement-2026-10-15/A-lion-first-refuge-poi-reusable-reloaded.png",
-    "docs/reports/poi-v2-retirement-2026-10-15/A-poi-exclusive-neutralization.png",
-    "docs/reports/poi-v2-retirement-2026-10-15/A-poi-v2-three-local-routes.png",
-    "docs/reports/poi-v2-retirement-2026-10-15/A-results.json",
-    "docs/reports/poi-v2-retirement-2026-10-15/C-atlas-bois-clair1366.png",
-    "docs/reports/poi-v2-retirement-2026-10-15/C-atlas-forest1366.png",
-    "docs/reports/poi-v2-retirement-2026-10-15/C-atlas-judgement1366.png",
-    "docs/reports/poi-v2-retirement-2026-10-15/C-atlas-native-swipe390.png",
-    "docs/reports/poi-v2-retirement-2026-10-15/D-preparation-touch44px.png",
-    "public/assets/generated/lion-phase/poi-v2/README.md",
-    "public/assets/generated/lion-phase/poi-v2/bois-clair.png",
-    "public/assets/generated/lion-phase/poi-v2/judgement.png",
-    "public/assets/generated/lion-phase/poi-v2/lion-opening.png",
-    "public/assets/generated/lion-phase/poi-v2/manifest.json",
-    "public/assets/generated/lion-phase/traversal/t0/foreground/ferns.png",
-    "public/assets/generated/lion-phase/traversal/t0/foreground/roots.png",
-    "public/assets/generated/lion-phase/traversal/t0/foreground/shared-loop.png",
-    "public/assets/generated/lion-phase/traversal/t0/props/abandoned-cart.png",
-    "public/assets/generated/lion-phase/traversal/t0/props/fork-sign.png",
-    "public/assets/generated/lion-phase/traversal/t0/pursuit/shadow-pursuer-run-v1.png",
-    "public/assets/generated/lion-phase/traversal/t0/reward/coin-pouch.png",
-    "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/chassis.png",
-    "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/wheel.png",
-    "public/assets/generated/lion-phase/traversal/t0/world-v1/ambush-cleared.png",
-    "public/assets/generated/lion-phase/traversal/t0/world-v1/damaged-caravan.png",
-    "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-junction.png",
-    "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
-    "public/assets/generated/lion-phase/traversal/t0/world-v1/nomad-waystation.png",
-    "public/assets/generated/lion-phase/traversal/t0/world-v1/opening-ambush.png",
-    "public/assets/generated/lion-phase/traversal/t0/world-v1/refugee-halt.png",
-    "public/assets/generated/lion-phase/traversal/t0/world-v1/ruined-outpost.png",
-    "public/assets/generated/lion-phase/traversal/t1/world-v1/old-shrine.png",
-    "public/assets/generated/lion-phase/traversal/t1/world-v1/valmir-road.png",
-    "public/assets/generated/lion-phase/traversal/t3/world-v1/dragon-roost.png",
-    "public/assets/generated/lion-phase/traversal/t3/world-v1/shadow-ruins.png",
-    "public/assets/generated/lion-phase/traversal/t3/world-v1/witness-road.png",
-    "src/campaign/LionCampaignTravelRelations.test.ts",
-    "src/campaign/LionCampaignTravelRelations.ts",
+    "docs/reports/lot-e-final-2026-10-15.md",
+    "public/assets/generated/lion-phase/poi-lot-e/bois-clair.png",
+    "public/assets/generated/lion-phase/poi-lot-e/judgement.png",
+    "public/assets/generated/lion-phase/poi-lot-e/lion-opening.png",
+    "src/campaign/LionPoiAuthoring.ts",
     "src/campaign/LionPoiMap.ts",
     "src/campaign/LionPoiTopology.test.ts",
     "src/campaign/LionPoiTopology.ts",
-    "src/campaign/LionTraversalPursuitEncounters.ts",
     "src/game/GameApp.ts",
     "src/game/GameAppPoi.test.ts",
-    "src/game/GameAppRouteReward.test.ts",
-    "src/game/OptionalEncounterConsequencePolicy.ts",
-    "src/game/TraversalOptionalConsequencePolicy.ts",
-    "src/game/campaignGrammarConsolidation.test.ts",
+    "src/game/GameAppPoiExpedition.test.ts",
     "src/game/campaignPresentationMigration.test.ts",
-    "src/game/cin2CampaignBridge.test.ts",
-    "src/game/cin67NarrativeStageIntegration.test.ts",
-    "src/game/cin6aVerticalIntegration.test.ts",
     "src/game/content.test.ts",
+    "src/game/content.ts",
+    "src/game/poiContentAdapters.test.ts",
+    "src/game/poiContentAdapters.ts",
+    "src/game/poiExpedition.test.ts",
+    "src/game/poiExpedition.ts",
     "src/game/poiNavigation.test.ts",
     "src/game/runSystem.test.ts",
     "src/game/runSystem.ts",
-    "src/game/traversalT0ProductionRollout.test.ts",
-    "src/styles/app.css",
-    "src/styles/traversal-pursuit-charge.css",
-    "src/styles/traversal.css",
-    "src/traversal/TraversalCaravan.ts",
-    "src/traversal/TraversalCheckpointRoute.ts",
-    "src/traversal/TraversalDepth.test.ts",
-    "src/traversal/TraversalDepth.ts",
-    "src/traversal/TraversalFeaturePolicy.test.ts",
-    "src/traversal/TraversalFeaturePolicy.ts",
-    "src/traversal/TraversalForkOverlay.test.ts",
-    "src/traversal/TraversalForkOverlay.ts",
-    "src/traversal/TraversalInteractionGrammar.ts",
-    "src/traversal/TraversalPresentation.test.ts",
-    "src/traversal/TraversalPresentation.ts",
-    "src/traversal/TraversalPreviewSaves.test.ts",
-    "src/traversal/TraversalPreviewSaves.ts",
-    "src/traversal/TraversalPursuerSprite.test.ts",
-    "src/traversal/TraversalPursuerSprite.ts",
-    "src/traversal/TraversalPursuitCharge.test.ts",
-    "src/traversal/TraversalPursuitCharge.ts",
-    "src/traversal/TraversalPursuitChargeRenderer.test.ts",
-    "src/traversal/TraversalPursuitChargeRenderer.ts",
-    "src/traversal/TraversalPursuitPresentationPolicy.ts",
-    "src/traversal/TraversalRewardPresentationPolicy.test.ts",
-    "src/traversal/TraversalRewardPresentationPolicy.ts",
-    "src/traversal/TraversalRiskPresentationPolicy.test.ts",
-    "src/traversal/TraversalRiskPresentationPolicy.ts",
-    "src/traversal/TraversalRoadAnchor.test.ts",
-    "src/traversal/TraversalRoadAnchor.ts",
-    "src/traversal/TraversalRoadAuthoring.ts",
-    "src/traversal/TraversalRoadCamera.test.ts",
-    "src/traversal/TraversalRoadMotion.test.ts",
-    "src/traversal/TraversalRoadScene.test.ts",
-    "src/traversal/TraversalRoadScene.ts",
-    "src/traversal/TraversalRoadSpace.ts",
-    "src/traversal/TraversalRouteModel.ts",
-    "src/traversal/TraversalRoutePursuit.test.ts",
-    "src/traversal/TraversalRoutePursuit.ts",
-    "src/traversal/TraversalRoutePursuitArt.test.ts",
-    "src/traversal/TraversalRoutePursuitRenderer.ts",
-    "src/traversal/TraversalRouteRenderer.ts",
-    "src/traversal/TraversalRouteReward.test.ts",
-    "src/traversal/TraversalRouteReward.ts",
-    "src/traversal/TraversalRouteRewardRenderer.ts",
-    "src/traversal/TraversalRouteRisk.test.ts",
-    "src/traversal/TraversalRouteRisk.ts",
-    "src/traversal/TraversalRouteRiskRenderer.ts",
-    "src/traversal/TraversalRouteRiskVisual.ts",
-    "src/traversal/TraversalRouteRun.test.ts",
-    "src/traversal/TraversalRouteRun.ts",
-    "src/traversal/TraversalRunController.test.ts",
-    "src/traversal/TraversalRunController.ts",
-    "src/traversal/TraversalRunRuntime.test.ts",
-    "src/traversal/TraversalRunRuntime.ts",
-    "src/traversal/TraversalSprite.ts",
-    "src/traversal/TraversalSpriteBounds.json",
-    "src/traversal/TraversalT0Assets.test.ts",
-    "src/traversal/TraversalT0Assets.ts",
-    "src/traversal/TraversalT0Authoring.ts",
-    "src/traversal/TraversalT0CheckpointRoute.ts",
-    "src/traversal/TraversalT0Flow.test.ts",
-    "src/traversal/TraversalT0Foreground.ts",
-    "src/traversal/TraversalT0Pursuit.ts",
-    "src/traversal/TraversalT0PursuitScene.test.ts",
-    "src/traversal/TraversalT0Reward.ts",
-    "src/traversal/TraversalT0Risk.ts",
-    "src/traversal/TraversalT0Route.test.ts",
-    "src/traversal/TraversalT0Route.ts",
-    "src/traversal/TraversalT0Scene.test.ts",
-    "src/traversal/TraversalT0Scene.ts",
-    "src/traversal/TraversalT0World.test.ts",
-    "src/traversal/TraversalT0World.ts",
-    "src/traversal/TraversalT1Authoring.ts",
-    "src/traversal/TraversalT1CheckpointRoute.ts",
-    "src/traversal/TraversalT1Route.ts",
-    "src/traversal/TraversalT1Scene.test.ts",
-    "src/traversal/TraversalT1Scene.ts",
-    "src/traversal/TraversalT1World.ts",
-    "src/traversal/TraversalT3Authoring.ts",
-    "src/traversal/TraversalT3CheckpointRoute.ts",
-    "src/traversal/TraversalT3Route.ts",
-    "src/traversal/TraversalT3Scene.test.ts",
-    "src/traversal/TraversalT3Scene.ts",
-    "src/traversal/TraversalT3World.ts",
-    "src/traversal/TraversalTransition.ts",
-    "src/traversal/TraversalWorldModel.ts",
-    "src/traversal/TraversalWorldRenderer.test.ts",
-    "src/traversal/TraversalWorldRenderer.ts",
-    "src/traversal/TraversalWorldSubject.test.ts",
-    "src/traversal/TraversalWorldSubject.ts",
-    "src/ui/CampaignStatusHud.test.ts",
-    "src/ui/CampaignStatusHud.ts",
-    "src/ui/PoiMapView.test.ts",
+    "src/game/store.ts",
+    "src/game/types.ts",
+    "src/ui/ManagementView.ts",
+    "src/ui/PoiEncounterView.test.ts",
+    "src/ui/PoiEncounterView.ts",
     "src/ui/PoiMapView.ts",
-    "src/ui/SceneTransition.test.ts",
-    "src/ui/SceneTransition.ts",
+    "src/ui/RunNodePresentation.ts",
     "src/ui/poi-map.css",
-    "tools/cinematics/run_campaign_presentation_migration_qa.mjs",
-    "tools/cinematics/run_cin6d6_browser_qa.mjs",
     "tools/demo-continuous-production-qa.mjs",
-    "tools/narrative-stage-utility-consistency-1-qa.mjs",
-    "tools/project-continuity-audit-1.mjs",
     "tools/qa/qa-job.mjs",
-    "tools/refuge-production-accessibility-qa.mjs",
-    "tools/traversal-game-motion-production-qa.mjs",
-    "tools/traversal-motion-fallback-qa.mjs",
-    "tools/traversal-motion-production-qa.mjs",
-    "tools/traversal-pursuit-charge-qa.mjs",
-    "tools/traversal-road-anchor-lab-qa.mjs",
-    "tools/traversal-road-authoring-audit.mjs",
-    "tools/traversal-road-elements-production-qa.mjs",
-    "tools/traversal-road-entry-production-qa.mjs",
-    "tools/traversal-road-evidence-audit.mjs",
-    "tools/traversal-road-late-reset-lab-qa.mjs",
-    "tools/traversal-road-more-routes-production-qa.mjs",
-    "tools/traversal-rock-production-qa.mjs",
-    "tools/traversal-t0-browser-qa.mjs",
-    "tools/traversal-t0-pursuit-qa.mjs",
-    "tools/traversal-t0-reward-qa.mjs",
-    "tools/traversal-t1-browser-qa.mjs",
-    "tools/traversal-t1-production-qa.mjs",
-    "tools/traversal-t3-browser-qa.mjs",
-    "tools/traversal-t3-production-qa.mjs",
-    "tools/traversal-visual-convergence-probe-qa.mjs",
-    "tools/traversal-visual-convergence-qa.mjs",
-    "tools/traversal/pursuit-charge-lab.ts",
-    "tools/traversal/road-anchor-lab.ts",
-    "tools/traversal/road-late-reset-lab.ts",
-    "tools/ui-kit-system-1-gallery.html",
-    "tools/ui-kit-system-1-gallery.ts",
-    "tools/ui-kit-system-1-qa.mjs",
-    "tools/ui-visual-direction-2-qa.mjs",
-    "tools/ui-visual-direction-font-compare.mjs",
-    "tools/ui-visual-direction-qa.mjs",
-    "docs/autonomy/handoffs/2026-10-15T2128Z-codex-poi-v2-retirement.md",
-    "docs/reports/poi-v2-retirement-2026-10-15/D-fresh-first-refuge-v6.png",
-    "docs/reports/poi-v2-retirement-2026-10-15/results.json"
+    "docs/autonomy/handoffs/2026-10-16T1526Z-codex-lot-e-final.md",
+    "docs/reports/evidence/lot-e-final-2026-10-15/atlas-I.png",
+    "docs/reports/evidence/lot-e-final-2026-10-15/atlas-II.png",
+    "docs/reports/evidence/lot-e-final-2026-10-15/atlas-III.png",
+    "docs/reports/evidence/lot-e-final-2026-10-15/header-390-os.png",
+    "docs/reports/evidence/lot-e-final-2026-10-15/rear-retreat-620.png",
+    "docs/reports/evidence/lot-e-final-2026-10-15/defeat-checkpoint-620.png",
+    "docs/reports/evidence/lot-e-final-2026-10-15/sentinel-victory-620.png",
+    "docs/reports/evidence/lot-e-final-2026-10-15/chest-once-620.png",
+    "docs/reports/evidence/lot-e-final-2026-10-15/warden-victory-620.png",
+    "docs/reports/evidence/lot-e-final-2026-10-15/complete-ending-1366.png",
+    "docs/reports/evidence/lot-e-final-2026-10-15/results.json"
   ],
   "testsRun": [
-    "Focused POI/RunSystem/Journey/refuge/lifecycle/transition tests pass; final36case UI/V6 and7source-order cases pass",
-    "19node:test receipt checks, TypeScript/build,8contracts8videos,282step narrative staging and empty LOCKED/whitespace gates",
-    "17native jobs:11accepted scoped and6failed whole outputs unseedable; prior254jobs/deferred objects exact",
-    "Guardian12rows PASS scoped; native3region art/keyboard/touch/OS/game, actual opening/defeat, V6/recovery/refuge/preparation/terminal verified; unchanged historical campaign wins reused under mission5.3",
-    "Broader suite retained ten inherited failures and node:test discovery mismatch; no global suite PASS"
+    "tmp/lot-e/final-focused-tests.log",
+    "tmp/lot-e/forge-material-ui-tests.log",
+    "tmp/lot-e/forge-material-build.log"
   ],
   "testsPassed": [
-    "Focused POI/RunSystem/Journey/refuge/lifecycle/transition tests pass; final36case UI/V6 and7source-order cases pass",
-    "19node:test receipt checks, TypeScript/build,8contracts8videos,282step narrative staging and empty LOCKED/whitespace gates",
-    "17native jobs:11accepted scoped and6failed whole outputs unseedable; prior254jobs/deferred objects exact",
-    "Guardian12rows PASS scoped; native3region art/keyboard/touch/OS/game, actual opening/defeat, V6/recovery/refuge/preparation/terminal verified; unchanged historical campaign wins reused under mission5.3"
+    "277 distinct focused current tests/16 files",
+    "19 host QA helper tests",
+    "TypeScript/production build",
+    "8 contracts/8 slots",
+    "Finalized native scoped receipts"
   ],
   "testsRemaining": [
-    "Operator final artistic/PC full-demo/general balance and physical-device acceptance",
-    "Preserved unrelated six-hero skills, mounted keyboard, narrative/manual findings; ten inherited broader-suite audit failures",
-    "Two inactive optional chest/patrol authoring proposals require specific approval before activation"
+    "Operator artistic/felt-balance/physical-device and full-demo acceptance",
+    "Preserved unrelated six-hero skills, mounted keyboard and narrative/manual findings"
   ],
   "blockers": [],
   "remainingWork": [
-    "Operator final artistic/PC full-demo/general balance and physical-device acceptance",
-    "Preserved unrelated six-hero skills, mounted keyboard, narrative/manual findings; ten inherited broader-suite audit failures",
-    "Two inactive optional chest/patrol authoring proposals require specific approval before activation"
+    "Operator Lot E playtest and the preserved unrelated deferred work"
   ],
-  "nextAction": "Ending0002FAILEDunseedable:pilotincorrectlyexpectedzero280tempGoldonrevisitedrefuge. Strictcanonical+lootpreservationassertionnowcoversonlynativeSealpaidrecovery;initialrefugeskeepzeroassertion. RetryIIIcertifiedwithpaidrest/team.",
+  "nextAction": "Operator PC playtest of Lot E artwork, encounter difficulty and economic comfort; preserve unrelated deferred skills/keyboard/narrative findings. Scheduler remains PAUSED; no physical Traversal restoration.",
   "taskQueue": [
     "POI-MAP-FINALIZATION: requested implementation/native milestones REVIEWED_SCOPED; operator final playtest remains",
     "DEMO-PC-CAMPAIGN: both native truth endings, T0/T1/T3 alternatives, rescue/sacrifice, defeat and exact V6 accepted in recorded scopes",
@@ -284,7 +116,7 @@
     "DEMO-MOBILE-AND-TESTER-HANDOFF: PENDING_AFTER_PC_STABLE; operator final acceptance OPEN"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_SCOPED_12_ROWS; set1.3.0/baseline5667837 unchanged; operator art/hardware/full balance separate",
+  "contractComplianceStatus": "PASS_SCOPED",
   "commitReferenceScope": "LastPushed/publishedCheckpoint name reviewed delivery0aada9f; the following metadata commit is identified by Git and guarded live closeout receipt, avoiding self-reference",
   "operatorAuthorization": "Explicit exceptional mission and both full attachments OD-2026-10-15-A; normal non-force origin/dev publication permanently authorized OD-2026-10-12-A; no main writes.",
   "creativeDirection": {
@@ -377,10 +209,10 @@
   },
   "runId": "codex-lot-e-20261015",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-16T08:36:01.593Z",
+  "lastHeartbeat": "2026-10-16T15:29:46.093Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-16T08:36:01.593Z",
+    "lastHeartbeat": "2026-10-16T15:29:46.093Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -30082,7 +29914,7 @@
             }
           ]
         },
-        "acceptance": "ACCEPTED_SCOPED_EFCD280_NATIVE_FIRST_REFUGE",
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
         "startedAt": "2026-10-15T23:45:55.662Z",
         "endedAt": "2026-10-16T00:04:04.215Z",
         "exitCode": 0,
@@ -30093,7 +29925,13 @@
         "requestMatches": true,
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": false
+        "eligibleForReview": false,
+        "scopedAcceptance": {
+          "scope": "direct/first-refuge; 1366x768; original source efcd280590230045cb811c737915bfeb75187afe",
+          "sourceCommit": "efcd280590230045cb811c737915bfeb75187afe",
+          "resultSha256": "9a45444ca56011d91ecc37362efc7a9a7269500cebfe6738c3e1b77f1e570f51",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
@@ -30297,7 +30135,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
         "startedAt": "2026-10-16T02:17:29.200Z",
         "endedAt": "2026-10-16T02:44:14.722Z",
         "provenanceMatches": true,
@@ -30308,7 +30146,13 @@
         "exitCode": 0,
         "resultPath": "tmp/demo/lot-e-complete-patrol-0002/results.json",
         "resultSha256": "78a75d4704fc5857eef81054bada061cfc2f3dd935227d39540d8fb14d1afcb1",
-        "provenanceStable": true
+        "provenanceStable": true,
+        "scopedAcceptance": {
+          "scope": "complete/expedition-checkpoint; 1366x768; original source 3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "sourceCommit": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "resultSha256": "78a75d4704fc5857eef81054bada061cfc2f3dd935227d39540d8fb14d1afcb1",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
@@ -30411,7 +30255,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
         "startedAt": "2026-10-16T02:17:41.051Z",
         "endedAt": "2026-10-16T02:29:20.565Z",
         "provenanceMatches": true,
@@ -30422,7 +30266,13 @@
         "exitCode": 0,
         "resultPath": "tmp/demo/lot-e-oldV6-II-touch-0002/results.json",
         "resultSha256": "f6ac24d2f6417e169c85dba1f413649bd0eaba0ea2d215ab3b6d36d34da0cd13",
-        "provenanceStable": true
+        "provenanceStable": true,
+        "scopedAcceptance": {
+          "scope": "direct/second-refuge; 390x844; original source 3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "sourceCommit": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "resultSha256": "f6ac24d2f6417e169c85dba1f413649bd0eaba0ea2d215ab3b6d36d34da0cd13",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
@@ -30514,7 +30364,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
         "startedAt": "2026-10-16T02:18:06.761Z",
         "endedAt": "2026-10-16T02:28:01.963Z",
         "exitCode": 0,
@@ -30525,7 +30375,13 @@
         "requestMatches": true,
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": false
+        "eligibleForReview": false,
+        "scopedAcceptance": {
+          "scope": "moderate/first-refuge; 620x780; original source 3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "sourceCommit": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "resultSha256": "f99c0d4d9f4ffb9049643235fb0be2509ae0a324f1a76eb367aec7d9ceb55d61",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
@@ -30628,7 +30484,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
         "startedAt": "2026-10-16T02:30:17.832Z",
         "endedAt": "2026-10-16T02:34:25.058Z",
         "exitCode": 0,
@@ -30639,7 +30495,13 @@
         "requestMatches": true,
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": false
+        "eligibleForReview": false,
+        "scopedAcceptance": {
+          "scope": "moderate/expedition-checkpoint; 620x780; original source 3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "sourceCommit": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "resultSha256": "9a0d5438ed2aa4db7b14e002aa99e81394b0754f347bcb6a0b2718f7aa4027b5",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
@@ -30742,7 +30604,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
         "startedAt": "2026-10-16T02:30:55.272Z",
         "endedAt": "2026-10-16T02:39:18.856Z",
         "provenanceMatches": true,
@@ -30753,7 +30615,13 @@
         "exitCode": 0,
         "resultPath": "tmp/demo/lot-e-direct-ending-touch-0001/results.json",
         "resultSha256": "0f9934c1052e90f6dd6c7b1d3784240a6f2d46f539b2887a507830c5dd6a1752",
-        "provenanceStable": true
+        "provenanceStable": true,
+        "scopedAcceptance": {
+          "scope": "direct/ending; 390x844; original source 3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "sourceCommit": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "resultSha256": "0f9934c1052e90f6dd6c7b1d3784240a6f2d46f539b2887a507830c5dd6a1752",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
@@ -30866,7 +30734,7 @@
         "eligibleForReview": false,
         "receiptStatus": "RUNNING_WITHOUT_FINAL_RESULT",
         "reason": "Optional checkpoint resumed with empty pilot phases and no directed links; owned PID13944 and descendants stopped after identity verification. No partial state used as a seed.",
-        "reconciledAt": "2026-10-16T08:08:19.014Z"
+        "reconciledAt": "2026-10-16T15:25:47.831Z"
       },
       {
         "schemaVersion": 1,
@@ -30969,7 +30837,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
         "startedAt": "2026-10-16T02:49:02.893Z",
         "endedAt": "2026-10-16T02:57:12.146Z",
         "exitCode": 0,
@@ -30980,7 +30848,13 @@
         "requestMatches": true,
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": false
+        "eligibleForReview": false,
+        "scopedAcceptance": {
+          "scope": "complete/first-refuge; 1366x768; original source 5c14d2d142137594e9a256df437c77ad1df428a9",
+          "sourceCommit": "5c14d2d142137594e9a256df437c77ad1df428a9",
+          "resultSha256": "2ff57d7dc63fd8a019326640cc292967d210016aaab56544264d964276016ad3",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
@@ -31086,7 +30960,7 @@
         "acceptance": "NOT_ACCEPTED",
         "receiptStatus": "RUNNING_WITHOUT_FINAL_RESULT",
         "reason": "Pilot waited for preparation before advancing prior dialogue. failure.json retained. Host PID/listener absent; PowerShell Stop preference on stderr interrupted native error finalization. Launcher corrected, no partial state accepted.",
-        "reconciledAt": "2026-10-16T08:08:19.015Z",
+        "reconciledAt": "2026-10-16T15:25:47.832Z",
         "startedAt": "2026-10-16T02:49:15.203Z",
         "endedAt": null,
         "provenanceMatches": true,
@@ -31199,7 +31073,7 @@
         "acceptance": "NOT_ACCEPTED",
         "receiptStatus": "RUNNING_WITHOUT_FINAL_RESULT",
         "reason": "Pilot waited for preparation before advancing prior dialogue. failure.json retained. Host PID/listener absent; PowerShell Stop preference on stderr interrupted native error finalization. Launcher corrected, no partial state accepted.",
-        "reconciledAt": "2026-10-16T08:08:19.015Z",
+        "reconciledAt": "2026-10-16T15:25:47.832Z",
         "startedAt": "2026-10-16T02:49:27.917Z",
         "endedAt": null,
         "provenanceMatches": true,
@@ -31309,7 +31183,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
         "startedAt": "2026-10-16T03:01:31.541Z",
         "endedAt": "2026-10-16T03:04:50.148Z",
         "exitCode": 0,
@@ -31320,7 +31194,13 @@
         "requestMatches": true,
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": false
+        "eligibleForReview": false,
+        "scopedAcceptance": {
+          "scope": "complete/expedition-checkpoint; 620x780; original source 36a5fae90eddeb669c32bbc7ddea7dfe477c6199",
+          "sourceCommit": "36a5fae90eddeb669c32bbc7ddea7dfe477c6199",
+          "resultSha256": "741db27973c07c9b366d0eff3e319e3e62315edd8daba8ef30c6048426a03492",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
@@ -31423,7 +31303,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
         "startedAt": "2026-10-16T03:01:44.201Z",
         "endedAt": "2026-10-16T03:02:20.735Z",
         "exitCode": 0,
@@ -31434,7 +31314,13 @@
         "requestMatches": true,
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": false
+        "eligibleForReview": false,
+        "scopedAcceptance": {
+          "scope": "direct/preparation; 390x844; original source 36a5fae90eddeb669c32bbc7ddea7dfe477c6199",
+          "sourceCommit": "36a5fae90eddeb669c32bbc7ddea7dfe477c6199",
+          "resultSha256": "6944811f1f39b307b751710b2ccfc6baeda7d7f339dce49e35079b903a1f6156",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
@@ -31537,7 +31423,7 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED",
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
         "startedAt": "2026-10-16T03:01:57.385Z",
         "endedAt": "2026-10-16T03:02:34.554Z",
         "exitCode": 0,
@@ -31548,7 +31434,13 @@
         "requestMatches": true,
         "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": false
+        "eligibleForReview": false,
+        "scopedAcceptance": {
+          "scope": "direct/preparation; 1920x1080; original source 36a5fae90eddeb669c32bbc7ddea7dfe477c6199",
+          "sourceCommit": "36a5fae90eddeb669c32bbc7ddea7dfe477c6199",
+          "resultSha256": "29681b8ee7f97118a30e5f27b52a238274ad0ee79fd6a3c541fc61f8676907ab",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
@@ -31896,9 +31788,9 @@
         "schemaVersion": 1,
         "jobId": "lot-e-complete-valley-loop-0002",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-16T03:12:16.838Z",
-        "pid": null,
+        "pid": 8688,
         "port": 5410,
         "command": [
           "node",
@@ -31993,15 +31885,32 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
+        "startedAt": "2026-10-16T03:12:17.761Z",
+        "endedAt": "2026-10-16T03:19:48.962Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/lot-e-complete-valley-loop-0002/results.json",
+        "resultSha256": "12eb80357887aa0a360604196503ea457ab609fc2dc41b42ed823df679ba3d3f",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "scopedAcceptance": {
+          "scope": "complete/expedition-checkpoint; 620x780; original source 94585c60136f7f765b35359193a1ca5861c6e542",
+          "sourceCommit": "94585c60136f7f765b35359193a1ca5861c6e542",
+          "resultSha256": "12eb80357887aa0a360604196503ea457ab609fc2dc41b42ed823df679ba3d3f",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-moderate-II-0002",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "FAILED",
         "registeredAt": "2026-10-16T03:12:31.715Z",
-        "pid": null,
+        "pid": 10076,
         "port": 5413,
         "command": [
           "node",
@@ -32096,15 +32005,26 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-16T03:12:32.828Z",
+        "endedAt": "2026-10-16T03:21:16.387Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/lot-e-moderate-II-0002/results.json",
+        "resultSha256": "ca31610329d1fdad7577e6f84734eac229cb4ea059eafd24022be2a003618d55",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-optional-defeat-0003",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-16T03:12:46.023Z",
-        "pid": null,
+        "pid": 24032,
         "port": 5411,
         "command": [
           "node",
@@ -32199,15 +32119,32 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
+        "startedAt": "2026-10-16T03:12:47.748Z",
+        "endedAt": "2026-10-16T03:13:48.334Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/lot-e-optional-defeat-0003/results.json",
+        "resultSha256": "06abce507d83faedb891b1d4fdc5dd0bfe7a96d0dffceb700e70e592b9059abb",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "scopedAcceptance": {
+          "scope": "complete/defeat-recovery; 620x780; original source 94585c60136f7f765b35359193a1ca5861c6e542",
+          "sourceCommit": "94585c60136f7f765b35359193a1ca5861c6e542",
+          "resultSha256": "06abce507d83faedb891b1d4fdc5dd0bfe7a96d0dffceb700e70e592b9059abb",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-ui-620-game-0001",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-16T03:15:14.005Z",
-        "pid": null,
+        "pid": 23832,
         "port": 5411,
         "command": [
           "node",
@@ -32302,15 +32239,32 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
+        "startedAt": "2026-10-16T03:15:15.779Z",
+        "endedAt": "2026-10-16T03:15:28.074Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/lot-e-ui-620-game-0001/results.json",
+        "resultSha256": "a5671a127951ce2fff5a33ad4f9cb772e5f7871edafa1cdb4876a7106e017ab3",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "scopedAcceptance": {
+          "scope": "direct/valmir; 620x780; original source 94585c60136f7f765b35359193a1ca5861c6e542",
+          "sourceCommit": "94585c60136f7f765b35359193a1ca5861c6e542",
+          "resultSha256": "a5671a127951ce2fff5a33ad4f9cb772e5f7871edafa1cdb4876a7106e017ab3",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-moderate-II-0003",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-16T03:26:07.434Z",
-        "pid": null,
+        "pid": 23280,
         "port": 5416,
         "command": [
           "node",
@@ -32405,15 +32359,32 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
+        "startedAt": "2026-10-16T03:26:08.280Z",
+        "endedAt": "2026-10-16T03:33:05.266Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/lot-e-moderate-II-0003/results.json",
+        "resultSha256": "16ab97542f4b69cf867f516bb9bc1b01d3ad013df840df84dff555c29dd5888f",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "scopedAcceptance": {
+          "scope": "moderate/second-refuge; 620x780; original source d898537bdbe40cdc7908de7c270cdfb3aa8999df",
+          "sourceCommit": "d898537bdbe40cdc7908de7c270cdfb3aa8999df",
+          "resultSha256": "16ab97542f4b69cf867f516bb9bc1b01d3ad013df840df84dff555c29dd5888f",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-complete-II-0001",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "FAILED",
         "registeredAt": "2026-10-16T03:26:08.187Z",
-        "pid": null,
+        "pid": 2424,
         "port": 5415,
         "command": [
           "node",
@@ -32508,15 +32479,26 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-16T03:26:09.066Z",
+        "endedAt": "2026-10-16T03:26:15.140Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/lot-e-complete-II-0001/results.json",
+        "resultSha256": "0d237e7f1e68b53ecfa2b891ce844e98db025ec405c2f26f10ff42f5cc4d0f88",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-atlas-1920-terrain-0001",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-16T03:26:08.460Z",
-        "pid": null,
+        "pid": 21692,
         "port": 5417,
         "command": [
           "node",
@@ -32611,15 +32593,32 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
+        "startedAt": "2026-10-16T03:26:09.358Z",
+        "endedAt": "2026-10-16T03:26:44.890Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/lot-e-atlas-1920-terrain-0001/results.json",
+        "resultSha256": "e94cfede021930e054cfe7d186a24e8511b62e8b1712f03f69122542af5f35ce",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "scopedAcceptance": {
+          "scope": "direct/preparation; 1920x1080; original source d898537bdbe40cdc7908de7c270cdfb3aa8999df",
+          "sourceCommit": "d898537bdbe40cdc7908de7c270cdfb3aa8999df",
+          "resultSha256": "e94cfede021930e054cfe7d186a24e8511b62e8b1712f03f69122542af5f35ce",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-complete-II-0002",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "FAILED",
         "registeredAt": "2026-10-16T03:34:36.750Z",
-        "pid": null,
+        "pid": 20700,
         "port": 5418,
         "command": [
           "node",
@@ -32714,15 +32713,26 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-16T03:34:37.619Z",
+        "endedAt": "2026-10-16T03:34:43.024Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/lot-e-complete-II-0002/results.json",
+        "resultSha256": "2d9f6ac7cc7bfd59cc022d82366defa2361e16c711eb41d94611e5ed9fdcd63d",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-atlas-1920-trails-0001",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "FAILED",
         "registeredAt": "2026-10-16T03:34:37.038Z",
-        "pid": null,
+        "pid": 19020,
         "port": 5420,
         "command": [
           "node",
@@ -32817,15 +32827,26 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-16T03:34:37.894Z",
+        "endedAt": "2026-10-16T03:34:43.016Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/lot-e-atlas-1920-trails-0001/results.json",
+        "resultSha256": "1891bc2b35cbd72d11b4a24239b65bfe7e5c28735b926909df1ea3f17d2fe5c0",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-atlas-1920-trails-0002",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-16T07:14:57.177Z",
-        "pid": null,
+        "pid": 32416,
         "port": 5421,
         "command": [
           "node",
@@ -32920,15 +32941,32 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
+        "startedAt": "2026-10-16T07:14:57.961Z",
+        "endedAt": "2026-10-16T07:15:36.225Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/lot-e-atlas-1920-trails-0002/results.json",
+        "resultSha256": "4250e7abc22a2507271bfcb193baae537c237d4884566971ed100aac51aa2771",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "scopedAcceptance": {
+          "scope": "direct/preparation; 1920x1080; original source fbaad2d24d7e29de343a58f10b7acbaf585abb38",
+          "sourceCommit": "fbaad2d24d7e29de343a58f10b7acbaf585abb38",
+          "resultSha256": "4250e7abc22a2507271bfcb193baae537c237d4884566971ed100aac51aa2771",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-complete-II-0003",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "FAILED",
         "registeredAt": "2026-10-16T07:15:19.750Z",
-        "pid": null,
+        "pid": 28372,
         "port": 5422,
         "command": [
           "node",
@@ -33023,15 +33061,26 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-16T07:15:20.597Z",
+        "endedAt": "2026-10-16T07:15:59.627Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/lot-e-complete-II-0003/results.json",
+        "resultSha256": "1c79292dd7c4bc3c158b53a6107c18f59bacdb8616eb2ce4f8dbde4a99919890",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-moderate-ending-0002",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-16T07:15:40.867Z",
-        "pid": null,
+        "pid": 26376,
         "port": 5423,
         "command": [
           "node",
@@ -33126,15 +33175,32 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
+        "startedAt": "2026-10-16T07:15:41.702Z",
+        "endedAt": "2026-10-16T07:31:04.177Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/lot-e-moderate-ending-0002/results.json",
+        "resultSha256": "f18add1a0292edfd47d1df3ce53c545a9a8e04a661128d978ca4ccb00222be0c",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "scopedAcceptance": {
+          "scope": "moderate/ending; 620x780; original source fbaad2d24d7e29de343a58f10b7acbaf585abb38",
+          "sourceCommit": "fbaad2d24d7e29de343a58f10b7acbaf585abb38",
+          "resultSha256": "f18add1a0292edfd47d1df3ce53c545a9a8e04a661128d978ca4ccb00222be0c",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-complete-II-0004",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "FAILED",
         "registeredAt": "2026-10-16T07:34:49.067Z",
-        "pid": null,
+        "pid": 3644,
         "port": 5424,
         "command": [
           "node",
@@ -33229,7 +33295,18 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-16T07:34:49.920Z",
+        "endedAt": "2026-10-16T07:39:49.485Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/lot-e-complete-II-0004/results.json",
+        "resultSha256": "09df7caac3c5cc4d8fa1a6774c5bccbe9d6f6ff75539d711e9c0dcf2e26ad190",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -33340,9 +33417,9 @@
         "schemaVersion": 1,
         "jobId": "lot-e-complete-II-0005",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-16T07:44:50.200Z",
-        "pid": null,
+        "pid": 19492,
         "port": 5425,
         "command": [
           "node",
@@ -33437,15 +33514,32 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
+        "startedAt": "2026-10-16T07:44:51.009Z",
+        "endedAt": "2026-10-16T07:54:11.493Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/lot-e-complete-II-0005/results.json",
+        "resultSha256": "94ea9684eab1fef213f84f4cae24334eea207c47c1553cd2804be6c268c35944",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "scopedAcceptance": {
+          "scope": "complete/second-refuge; 620x780; original source a35560e3c62510400e2cd57b7cc68c9d6461c8e9",
+          "sourceCommit": "a35560e3c62510400e2cd57b7cc68c9d6461c8e9",
+          "resultSha256": "94ea9684eab1fef213f84f4cae24334eea207c47c1553cd2804be6c268c35944",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-complete-III-0001",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "FAILED",
         "registeredAt": "2026-10-16T07:56:35.960Z",
-        "pid": null,
+        "pid": 17060,
         "port": 5426,
         "command": [
           "node",
@@ -33540,15 +33634,26 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-16T07:56:36.809Z",
+        "endedAt": "2026-10-16T07:57:18.166Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/lot-e-complete-III-0001/results.json",
+        "resultSha256": "39f2d5296ad9df6ccfab6500c09d4fb0f9c9be50dcb6f0c9e0aecf0c9d2d97b2",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-complete-III-0002",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "FAILED",
         "registeredAt": "2026-10-16T08:02:13.480Z",
-        "pid": null,
+        "pid": 27340,
         "port": 5427,
         "command": [
           "node",
@@ -33643,15 +33748,26 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-16T08:02:14.492Z",
+        "endedAt": "2026-10-16T08:02:58.205Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/lot-e-complete-III-0002/results.json",
+        "resultSha256": "6e68ece8bcf07cc14f64397ea0fe46c9b83e619435a6581c5192979e2c50d5b8",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-complete-III-0003",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-16T08:08:29.963Z",
-        "pid": null,
+        "pid": 30396,
         "port": 5428,
         "command": [
           "node",
@@ -33746,15 +33862,32 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "ACCEPTED_SCOPED_HISTORICAL_EXECUTION",
+        "startedAt": "2026-10-16T08:08:30.877Z",
+        "endedAt": "2026-10-16T08:18:46.184Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/lot-e-complete-III-0003/results.json",
+        "resultSha256": "71e6e18311414bd2d38f9e8ec90d8279e55cdf598af5b2c50970b624224314cf",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "scopedAcceptance": {
+          "scope": "complete/expedition-checkpoint; 620x780; original source c706f31a0ac5b172cc1fe74e432559f30c077a88",
+          "sourceCommit": "c706f31a0ac5b172cc1fe74e432559f30c077a88",
+          "resultSha256": "71e6e18311414bd2d38f9e8ec90d8279e55cdf598af5b2c50970b624224314cf",
+          "review": "INDEPENDENT_SCOPED"
+        }
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-complete-ending-0001",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "FAILED",
         "registeredAt": "2026-10-16T08:19:22.459Z",
-        "pid": null,
+        "pid": 30736,
         "port": 5429,
         "command": [
           "node",
@@ -33849,15 +33982,26 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-16T08:19:23.334Z",
+        "endedAt": "2026-10-16T08:27:44.314Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/lot-e-complete-ending-0001/results.json",
+        "resultSha256": "8e836cadc9a4195452f2913d60cabb7891c161121eb44dd73fc1c98d1cc8fa27",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
         "jobId": "lot-e-complete-ending-0002",
         "runId": "codex-lot-e-20261015",
-        "status": "PLANNED",
+        "status": "FAILED",
         "registeredAt": "2026-10-16T08:32:57.549Z",
-        "pid": null,
+        "pid": 28456,
         "port": 5430,
         "command": [
           "node",
@@ -33952,113 +34096,224 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-16T08:32:58.581Z",
+        "endedAt": "2026-10-16T08:33:07.522Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/lot-e-complete-ending-0002/results.json",
+        "resultSha256": "d350ab337f593d55945171d384db848db6ad1e27fe3dad3e2f498dbb669a62d2",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "lot-e-complete-ending-0003",
+        "runId": "codex-lot-e-20261015",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-16T08:36:37.820Z",
+        "pid": 6092,
+        "port": 5431,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "ending",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": true,
+          "trialPlan": "event",
+          "explorationPlan": "complete",
+          "checkpointPoiId": null,
+          "gameReducedMotion": true,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/lot-e-complete-III-0003/earned-expedition-checkpoint-v6.json",
+          "priorProofPath": "tmp/demo/lot-e-complete-III-0003/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/lot-e-complete-ending-0003",
+        "receiptPath": "tmp/demo/lot-e-complete-ending-0003/qa-job.json",
+        "provenance": {
+          "gitHead": "45fdb478bf465acc07de50948a664183896d2e2c",
+          "sourceTree": "7eea4ace90cb563ed83fb8d67b4bc999b74955af",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "e9e050bc1bc1329f39a509ac4ef0cf6c2c59634d691f5cd90aec3be87284772f"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/lot-e-complete-III-0003/earned-expedition-checkpoint-v6.json",
+              "sha256": "6828bc4cc72c82d541f67e63eeea2bfcaf79ea6d6ab6c3ca766639dfd82752c7"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/lot-e-complete-III-0003/results.json",
+              "sha256": "71e6e18311414bd2d38f9e8ec90d8279e55cdf598af5b2c50970b624224314cf"
+            }
+          ],
+          "receiptToolSha256": "9adbcfa5be97588301ada7a0141caa2729b5cd55b0711011079d183c586a1e3d",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+              "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+            },
+            {
+              "path": "dist/assets/combat-CYjlO7p1.js",
+              "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-UCVpfDso.css",
+              "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+            },
+            {
+              "path": "dist/assets/game-l7q6Wbot.js",
+              "sha256": "e4b934cc0bcfedebf75143dad090800e1be3295a346c3023e53e98ca54e2643e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "b4773b8722aef154c3cd6e0e92cd677703c177b82f23cd084e5b661d353aa69f"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_CURRENT_EXECUTION",
+        "startedAt": "2026-10-16T08:36:38.651Z",
+        "endedAt": "2026-10-16T09:08:38.898Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/lot-e-complete-ending-0003/results.json",
+        "resultSha256": "30c47c484ff689ea128d19cf9481e1b5b4e3095270ada9d65f6d3bf8eec1c079",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "scopedAcceptance": {
+          "scope": "complete/ending; 1366x768; original source 45fdb478bf465acc07de50948a664183896d2e2c",
+          "sourceCommit": "45fdb478bf465acc07de50948a664183896d2e2c",
+          "resultSha256": "30c47c484ff689ea128d19cf9481e1b5b4e3095270ada9d65f6d3bf8eec1c079",
+          "review": "INDEPENDENT_SCOPED"
+        }
       }
     ],
     "wip": {
       "branch": "wip/codex-lot-e-20261015",
       "sha": "6381ff7ef8fa9005f428214a7bd783d0d0865ab9",
       "dirtyFiles": [
-        "src/campaign/LionPoiMap.ts",
-        "src/campaign/LionPoiTopology.test.ts",
-        "src/campaign/LionPoiTopology.ts",
-        "src/campaign/LionPoiAuthoring.ts",
-        "src/game/GameApp.ts",
-        "src/game/GameAppPoi.test.ts",
-        "src/game/GameAppPoiExpedition.test.ts",
-        "src/game/content.ts",
-        "src/game/poiContentAdapters.test.ts",
-        "src/game/poiContentAdapters.ts",
-        "src/game/poiNavigation.test.ts",
-        "src/game/poiExpedition.test.ts",
-        "src/game/poiExpedition.ts",
-        "src/game/runSystem.ts",
-        "src/game/store.ts",
-        "src/game/types.ts",
-        "src/ui/PoiMapView.ts",
-        "src/ui/RunNodePresentation.ts",
-        "src/ui/poi-map.css",
-        "src/ui/PoiEncounterView.test.ts",
-        "src/ui/PoiEncounterView.ts",
-        "src/game/runSystem.test.ts",
-        "src/game/content.test.ts",
-        "src/game/campaignPresentationMigration.test.ts",
-        "tools/demo-continuous-production-qa.mjs",
-        "tools/qa/qa-job.mjs",
-        "docs/project/LOT_E_ATLAS_PROVENANCE_2026-10-15.json",
-        "public/assets/generated/lion-phase/poi-lot-e/lion-opening.png",
-        "public/assets/generated/lion-phase/poi-lot-e/bois-clair.png",
-        "public/assets/generated/lion-phase/poi-lot-e/judgement.png"
+        "docs/README.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/project/CURRENT_STATUS.md",
+        "docs/reports/INDEX.md",
+        "docs/reports/lot-e-final-2026-10-15.md",
+        "docs/autonomy/handoffs/2026-10-16T1526Z-codex-lot-e-final.md",
+        "docs/reports/evidence/lot-e-final-2026-10-15/atlas-I.png",
+        "docs/reports/evidence/lot-e-final-2026-10-15/atlas-II.png",
+        "docs/reports/evidence/lot-e-final-2026-10-15/atlas-III.png",
+        "docs/reports/evidence/lot-e-final-2026-10-15/header-390-os.png",
+        "docs/reports/evidence/lot-e-final-2026-10-15/rear-retreat-620.png",
+        "docs/reports/evidence/lot-e-final-2026-10-15/defeat-checkpoint-620.png",
+        "docs/reports/evidence/lot-e-final-2026-10-15/sentinel-victory-620.png",
+        "docs/reports/evidence/lot-e-final-2026-10-15/chest-once-620.png",
+        "docs/reports/evidence/lot-e-final-2026-10-15/warden-victory-620.png",
+        "docs/reports/evidence/lot-e-final-2026-10-15/complete-ending-1366.png",
+        "docs/reports/evidence/lot-e-final-2026-10-15/results.json"
       ],
-      "status": "GREEN_MECHANICAL_NATIVE_PENDING",
-      "lastGreenCheck": "independent-qa-02:206tests/types/contracts/build; final atlas build PASS; native driver prelaunch guardian PASS"
+      "status": "SOURCE_ON_DEV_DELIVERY_PAYLOAD_READY",
+      "lastGreenCheck": "277distinct focused tests/16files;type/build/contracts8/slots8; independent full native lineage PASS"
     },
-    "nextAction": "Ending0002FAILEDunseedable:pilotincorrectlyexpectedzero280tempGoldonrevisitedrefuge. Strictcanonical+lootpreservationassertionnowcoversonlynativeSealpaidrecovery;initialrefugeskeepzeroassertion. RetryIIIcertifiedwithpaidrest/team.",
+    "nextAction": "Operator PC playtest of Lot E artwork, encounter difficulty and economic comfort; preserve unrelated deferred skills/keyboard/narrative findings. Scheduler remains PAUSED; no physical Traversal restoration.",
     "runMetrics": {
-      "runId": "codex-poi-v2-20261015",
-      "countBasis": "Unique final paths compared with starting b79063bb, no renames; removals distinct from surviving modifications",
-      "counts": [
-        {
-          "name": "runtimeSource",
-          "total": 71,
-          "added": 2,
-          "modified": 9,
-          "removed": 60
-        },
-        {
-          "name": "sourceTests",
-          "total": 47,
-          "added": 2,
+      "runId": "codex-lot-e-20261015",
+      "countBasis": "Unique final paths from 4c80196cf2eb87097f063f4f312756044f5a5e47, selected evidence only",
+      "counts": {
+        "workflowAndCanonicalDocs": {
+          "added": 7,
           "modified": 12,
-          "removed": 33
+          "removed": 0,
+          "total": 19
         },
-        {
-          "name": "artResources",
-          "total": 27,
-          "added": 5,
-          "modified": 0,
-          "removed": 22
-        },
-        {
-          "name": "existingQaAndGalleryTools",
-          "total": 37,
+        "lockedAmendment": {
           "added": 0,
-          "modified": 6,
-          "removed": 31
+          "modified": 8,
+          "removed": 0,
+          "total": 8
         },
-        {
-          "name": "selectedProof",
-          "total": 11,
+        "artResources": {
+          "added": 3,
+          "modified": 0,
+          "removed": 0,
+          "total": 3
+        },
+        "runtimeSource": {
+          "added": 3,
+          "modified": 12,
+          "removed": 0,
+          "total": 15
+        },
+        "sourceTests": {
+          "added": 3,
+          "modified": 7,
+          "removed": 0,
+          "total": 10
+        },
+        "existingQaTools": {
+          "added": 0,
+          "modified": 2,
+          "removed": 0,
+          "total": 2
+        },
+        "selectedEvidence": {
           "added": 11,
           "modified": 0,
-          "removed": 0
-        },
-        {
-          "name": "workflowCanonicalHistoricalDocs",
-          "total": 40,
-          "added": 19,
-          "modified": 21,
-          "removed": 0
+          "removed": 0,
+          "total": 11
         }
-      ],
-      "totalPaths": 233,
-      "removedPaths": 146,
-      "runtimeSourceFilesModified": 11,
-      "testFilesModified": 14,
-      "newTestFiles": 2,
-      "existingQaFilesModified": 6,
-      "newQaFilesAdded": 0,
-      "promotedProofFiles": 11,
-      "promotedCaptures": 9,
-      "workflowDocs": 40,
-      "newArtResources": 5,
+      },
+      "totalPaths": 68,
+      "deletedPaths": 0,
       "inheritedWipFiles": 0,
-      "registeredNativeJobs": 17,
-      "acceptedScopes": 11,
-      "failedWholeUnseedable": 6,
-      "interrupted": 0,
-      "additionalSharedGallerySmoke": 1,
-      "reviewerRoles": 3
+      "registeredNativeJobs": 39,
+      "acceptedScopes": 20,
+      "unacceptedWholeOutputs": 19,
+      "newQaFilesAdded": 0,
+      "promotedCaptures": 10,
+      "promotedProofFiles": 11,
+      "reviewerRoles": 2
     },
     "checkpointPaths": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -34067,18 +34322,16 @@
       "docs/reports/poi-v2-retirement-2026-10-15.md"
     ],
     "publication": {
-      "status": "PUBLISHED_DELIVERY_LIVE_PARITY_VERIFIED",
-      "deliveryCommit": "0aada9fdd65d10702138bfdf1174ce188c824302",
+      "status": "LOT_E_FINAL_DELIVERY_READY_FOR_NORMAL_DEV_PUBLICATION",
       "branch": "dev",
       "remote": "origin/dev",
-      "remoteVerifiedAt": "2026-10-15T21:32:17.578Z",
+      "lastConfirmedCommit": "45fdb478bf465acc07de50948a664183896d2e2c",
       "protectedMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
       "normalNonForce": true,
-      "authorization": "OD-2026-10-12-A and OD-2026-10-15-A",
-      "finalMetadata": "Current metadata commit is identified by Git; guarded final push/parity/owned-lock release follows this checkpoint"
+      "authorization": "OD-2026-10-12-A and OD-2026-10-15-B"
     },
-    "runEndedAt": "2026-10-15T21:28:16.771Z",
-    "writerStopped": true,
+    "runEndedAt": "2026-10-16T15:29:46.093Z",
+    "writerStopped": false,
     "metadataPublication": {
       "status": "FINAL_METADATA_CLOSURE",
       "runId": "codex-poi-v2-20261015",
@@ -34876,7 +35129,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "POI-LOT-E-FINAL",
-    "activeSubtask": "Ending0002FAILEDunseedable:pilotincorrectlyexpectedzero280tempGoldonrevisitedrefuge. Strictcanonical+lootpreservationassertionnowcoversonlynativeSealpaidrecovery;initialrefugeskeepzeroassertion. RetryIIIcertifiedwithpaidrest/team.",
+    "activeSubtask": "E1-E5 delivered; complete native campaign, independent review and scoped technical acceptance",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -38210,11 +38463,11 @@
     },
     "runId": "codex-lot-e-20261015",
     "agent": "codex",
-    "status": "IN_PROGRESS",
+    "status": "COMPLETE_SCOPED",
     "runStartedAt": "2026-10-15T22:57:16.909Z",
-    "activePhase": "NATIVE_FINAL_REVISIT_GUARD",
-    "heartbeat": "2026-10-15T21:32:17.578Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-15T2128Z-codex-poi-v2-retirement.md",
+    "activePhase": "CLOSED_SCOPED_LOT_E_FINAL",
+    "heartbeat": "2026-10-16T15:29:46.093Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-16T1526Z-codex-lot-e-final.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -39942,19 +40195,14 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "0aada9fdd65d10702138bfdf1174ce188c824302",
+    "lastPushedCommit": "45fdb478bf465acc07de50948a664183896d2e2c",
     "productPreview": {
-      "port": 5175,
-      "retained": true,
-      "pid": 23452,
-      "purpose": "Operator POI V2 playable preview",
-      "url": "http://127.0.0.1:5175/",
-      "status": "AVAILABLE_FOR_OPERATOR_PLAY",
-      "intentionallyRetained": true,
-      "checkedAt": "2026-10-15T21:28:41.356Z",
-      "servedIndexSha256": "77f326552711e0bc400cbd30a4960b0390635b998cf9bade5322d07bd54d3963",
-      "sourceTree": "d6e92946f0cf8080d6a0f8978083bef901ba06dc",
-      "runtimeCheckpoint": "99ed9ed9d5b4290f65e1591a701463ad61c0f21d"
+      "verifiedAt": "2026-10-16T15:27:07.4093983Z",
+      "indexSha256": "b4773b8722aef154c3cd6e0e92cd677703c177b82f23cd084e5b661d353aa69f",
+      "pid": 30712,
+      "startedByLotE": true,
+      "retainedForOperator": true,
+      "url": "http://127.0.0.1:5175/"
     },
     "previousPoiFinalizationLiveScalars": {
       "lastHeartbeat": "2026-10-15T21:12:33.934Z",
@@ -40002,11 +40250,11 @@
     "lotE": {
       "baseline": "4c80196cf2eb87097f063f4f312756044f5a5e47",
       "operatorDecision": "OD-2026-10-15-B",
-      "status": "IN_PROGRESS",
-      "runtimeImplemented": false,
-      "nativeAcceptance": false,
-      "artAcceptance": "OPERATOR_PENDING",
-      "balanceAcceptance": "OPERATOR_PENDING",
+      "status": "COMPLETE_SCOPED",
+      "runtimeImplemented": true,
+      "nativeAcceptance": true,
+      "artAcceptance": "OPERATOR_PLAYTEST_PENDING",
+      "balanceAcceptance": "OPERATOR_PLAYTEST_PENDING",
       "amendmentCommit": "f9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8",
       "contractReview": "PASS_INDEPENDENT_ACTUAL_DIFF",
       "governanceReferenceUpdate": "OPERATOR_EXPLICITLY_APPROVED_AND_UPDATED_FOUR_REFERENCES_ONLY",
@@ -40037,11 +40285,702 @@
       "nativeCheckpointPolicy": "Within45minute jobs, approved optional POI actual new activity, settled context, exact autosave/reload, finalized SUCCEEDED receipt+SHA required for continuation; no partial/failed seeds",
       "acceptedProofs": {
         "lot-e-direct-I-0001": {
-          "scope": "First refuge canonical/economic/save/atlas desktop; no new Lot E combat or active threat motion",
-          "review": "Independent receipt/SHA/exactV6/90nativeInputs/22geometry/three captures PASS",
-          "checkpoint": "efcd280590230045cb811c737915bfeb75187afe"
+          "scope": "direct/first-refuge; 1366x768; original source efcd280590230045cb811c737915bfeb75187afe",
+          "sourceCommit": "efcd280590230045cb811c737915bfeb75187afe",
+          "resultSha256": "9a45444ca56011d91ecc37362efc7a9a7269500cebfe6738c3e1b77f1e570f51",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-complete-patrol-0002": {
+          "scope": "complete/expedition-checkpoint; 1366x768; original source 3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "sourceCommit": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "resultSha256": "78a75d4704fc5857eef81054bada061cfc2f3dd935227d39540d8fb14d1afcb1",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-oldV6-II-touch-0002": {
+          "scope": "direct/second-refuge; 390x844; original source 3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "sourceCommit": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "resultSha256": "f6ac24d2f6417e169c85dba1f413649bd0eaba0ea2d215ab3b6d36d34da0cd13",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-moderate-I-0001": {
+          "scope": "moderate/first-refuge; 620x780; original source 3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "sourceCommit": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "resultSha256": "f99c0d4d9f4ffb9049643235fb0be2509ae0a324f1a76eb367aec7d9ceb55d61",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-moderate-marsh-0001": {
+          "scope": "moderate/expedition-checkpoint; 620x780; original source 3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "sourceCommit": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "resultSha256": "9a0d5438ed2aa4db7b14e002aa99e81394b0754f347bcb6a0b2718f7aa4027b5",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-direct-ending-touch-0001": {
+          "scope": "direct/ending; 390x844; original source 3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "sourceCommit": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "resultSha256": "0f9934c1052e90f6dd6c7b1d3784240a6f2d46f539b2887a507830c5dd6a1752",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-complete-I-0003": {
+          "scope": "complete/first-refuge; 1366x768; original source 5c14d2d142137594e9a256df437c77ad1df428a9",
+          "sourceCommit": "5c14d2d142137594e9a256df437c77ad1df428a9",
+          "resultSha256": "2ff57d7dc63fd8a019326640cc292967d210016aaab56544264d964276016ad3",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-complete-marsh-0001": {
+          "scope": "complete/expedition-checkpoint; 620x780; original source 36a5fae90eddeb669c32bbc7ddea7dfe477c6199",
+          "sourceCommit": "36a5fae90eddeb669c32bbc7ddea7dfe477c6199",
+          "resultSha256": "741db27973c07c9b366d0eff3e319e3e62315edd8daba8ef30c6048426a03492",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-ui-390-os-0002": {
+          "scope": "direct/preparation; 390x844; original source 36a5fae90eddeb669c32bbc7ddea7dfe477c6199",
+          "sourceCommit": "36a5fae90eddeb669c32bbc7ddea7dfe477c6199",
+          "resultSha256": "6944811f1f39b307b751710b2ccfc6baeda7d7f339dce49e35079b903a1f6156",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-atlas-1920-normal-0002": {
+          "scope": "direct/preparation; 1920x1080; original source 36a5fae90eddeb669c32bbc7ddea7dfe477c6199",
+          "sourceCommit": "36a5fae90eddeb669c32bbc7ddea7dfe477c6199",
+          "resultSha256": "29681b8ee7f97118a30e5f27b52a238274ad0ee79fd6a3c541fc61f8676907ab",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-complete-valley-loop-0002": {
+          "scope": "complete/expedition-checkpoint; 620x780; original source 94585c60136f7f765b35359193a1ca5861c6e542",
+          "sourceCommit": "94585c60136f7f765b35359193a1ca5861c6e542",
+          "resultSha256": "12eb80357887aa0a360604196503ea457ab609fc2dc41b42ed823df679ba3d3f",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-optional-defeat-0003": {
+          "scope": "complete/defeat-recovery; 620x780; original source 94585c60136f7f765b35359193a1ca5861c6e542",
+          "sourceCommit": "94585c60136f7f765b35359193a1ca5861c6e542",
+          "resultSha256": "06abce507d83faedb891b1d4fdc5dd0bfe7a96d0dffceb700e70e592b9059abb",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-ui-620-game-0001": {
+          "scope": "direct/valmir; 620x780; original source 94585c60136f7f765b35359193a1ca5861c6e542",
+          "sourceCommit": "94585c60136f7f765b35359193a1ca5861c6e542",
+          "resultSha256": "a5671a127951ce2fff5a33ad4f9cb772e5f7871edafa1cdb4876a7106e017ab3",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-moderate-II-0003": {
+          "scope": "moderate/second-refuge; 620x780; original source d898537bdbe40cdc7908de7c270cdfb3aa8999df",
+          "sourceCommit": "d898537bdbe40cdc7908de7c270cdfb3aa8999df",
+          "resultSha256": "16ab97542f4b69cf867f516bb9bc1b01d3ad013df840df84dff555c29dd5888f",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-atlas-1920-terrain-0001": {
+          "scope": "direct/preparation; 1920x1080; original source d898537bdbe40cdc7908de7c270cdfb3aa8999df",
+          "sourceCommit": "d898537bdbe40cdc7908de7c270cdfb3aa8999df",
+          "resultSha256": "e94cfede021930e054cfe7d186a24e8511b62e8b1712f03f69122542af5f35ce",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-atlas-1920-trails-0002": {
+          "scope": "direct/preparation; 1920x1080; original source fbaad2d24d7e29de343a58f10b7acbaf585abb38",
+          "sourceCommit": "fbaad2d24d7e29de343a58f10b7acbaf585abb38",
+          "resultSha256": "4250e7abc22a2507271bfcb193baae537c237d4884566971ed100aac51aa2771",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-moderate-ending-0002": {
+          "scope": "moderate/ending; 620x780; original source fbaad2d24d7e29de343a58f10b7acbaf585abb38",
+          "sourceCommit": "fbaad2d24d7e29de343a58f10b7acbaf585abb38",
+          "resultSha256": "f18add1a0292edfd47d1df3ce53c545a9a8e04a661128d978ca4ccb00222be0c",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-complete-II-0005": {
+          "scope": "complete/second-refuge; 620x780; original source a35560e3c62510400e2cd57b7cc68c9d6461c8e9",
+          "sourceCommit": "a35560e3c62510400e2cd57b7cc68c9d6461c8e9",
+          "resultSha256": "94ea9684eab1fef213f84f4cae24334eea207c47c1553cd2804be6c268c35944",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-complete-III-0003": {
+          "scope": "complete/expedition-checkpoint; 620x780; original source c706f31a0ac5b172cc1fe74e432559f30c077a88",
+          "sourceCommit": "c706f31a0ac5b172cc1fe74e432559f30c077a88",
+          "resultSha256": "71e6e18311414bd2d38f9e8ec90d8279e55cdf598af5b2c50970b624224314cf",
+          "review": "INDEPENDENT_SCOPED"
+        },
+        "lot-e-complete-ending-0003": {
+          "scope": "complete/ending; 1366x768; original source 45fdb478bf465acc07de50948a664183896d2e2c",
+          "sourceCommit": "45fdb478bf465acc07de50948a664183896d2e2c",
+          "resultSha256": "30c47c484ff689ea128d19cf9481e1b5b4e3095270ada9d65f6d3bf8eec1c079",
+          "review": "INDEPENDENT_SCOPED"
         }
-      }
+      },
+      "independentFinalReview": {
+        "guardian": {
+          "status": "PASS_SCOPED",
+          "reviewedAt": "2026-10-16T15:29:44.150Z",
+          "contractSet": "1.4.0",
+          "lockedGate": "EMPTY",
+          "validator": "8 contracts / 8 slots",
+          "matrix": {
+            "GAME_CONSTITUTION": "PASS_SCOPED",
+            "ART_DIRECTION": "PASS_SCOPED",
+            "CHARACTERS": "PASS_SCOPED",
+            "ENVIRONMENTS": "PASS_SCOPED",
+            "NARRATIVE_CAMPAIGN": "PASS_SCOPED",
+            "NARRATIVE_PRESENTATION": "PASS_SCOPED",
+            "TRAVERSAL": "PASS_SCOPED",
+            "COMBAT": "PASS_SCOPED",
+            "SAVE": "PASS_SCOPED",
+            "UI_ACCESSIBILITY": "PASS_SCOPED",
+            "QA_EVIDENCE": "PASS_SCOPED",
+            "REPOSITORY_GOVERNANCE": "PASS_SCOPED"
+          },
+          "humanAcceptance": "Art, felt balance, hardware and full-demo remain operator work"
+        },
+        "nativeQa": {
+          "status": "PASS_SCOPED",
+          "reviewedAt": "2026-10-16T15:29:44.150Z",
+          "resultSha256": "30c47c484ff689ea128d19cf9481e1b5b4e3095270ada9d65f6d3bf8eec1c079",
+          "sourceCommit": "45fdb478bf465acc07de50948a664183896d2e2c",
+          "buildFilesExact": 9,
+          "lineageJobsCertified": 7,
+          "nativeVictories": 12,
+          "chests": 6,
+          "optionalResolved": 12,
+          "elitesDefeated": 2,
+          "terminalV6Exact": true,
+          "menuOwnerAndBytesExact": true,
+          "paidSealRest": [
+            30,
+            30
+          ],
+          "errors": [],
+          "captureInspection": "Boss, resumed ending and menu1366 inspected; previous atlas/elite/chest scopes reviewed",
+          "ignoredReview": "tmp/lot-e/independent-native-review/results.json"
+        }
+      },
+      "technicalEvidence": "docs/reports/evidence/lot-e-final-2026-10-15/results.json",
+      "completeCampaign": {
+        "jobId": "lot-e-complete-ending-0003",
+        "sourceCommit": "45fdb478bf465acc07de50948a664183896d2e2c",
+        "jobLineage": [
+          "lot-e-complete-patrol-0002",
+          "lot-e-complete-I-0003",
+          "lot-e-complete-marsh-0001",
+          "lot-e-complete-valley-loop-0002",
+          "lot-e-complete-II-0005",
+          "lot-e-complete-III-0003",
+          "lot-e-complete-ending-0003"
+        ],
+        "nativeVictoryCount": 12,
+        "ordinaryLotEVictories": 6,
+        "eliteVictories": 2,
+        "canonicalVictories": 4,
+        "chestCount": 6,
+        "optionalResolved": [
+          "lion-poi-opening-supplies",
+          "lion-poi-opening-patrol",
+          "lion-poi-opening-wolves",
+          "lion-poi-opening-cache",
+          "lion-poi-valley-supplies",
+          "lion-poi-valley-marsh",
+          "lion-poi-valley-bridge-cache",
+          "lion-poi-valley-serpent",
+          "lion-poi-seal-witness-supplies",
+          "lion-poi-seal-hunters",
+          "lion-poi-seal-ruin-encounter",
+          "lion-poi-seal-ruin-supplies"
+        ],
+        "elitesDefeated": [
+          "lion-elite-valley-sentinel",
+          "lion-elite-seal-warden"
+        ],
+        "securedGold": 1167,
+        "temporaryGold": 0,
+        "reputation": 100,
+        "ending": "lion-seal-serpent-truth",
+        "exactTerminalV6": true,
+        "nativeTerminalMenu": {
+          "nativeKeyboard": true,
+          "nativeTouch": false,
+          "titleVisible": true,
+          "continueFocused": true,
+          "ownerUnchanged": true,
+          "savedBytesUnchanged": true
+        },
+        "earnedSave": {
+          "path": "tmp/demo/lot-e-complete-ending-0003/earned-ending-v6.json",
+          "sha256": "ecdacccbffd245455b0bb39c41e596d0a9d72c7d3de406688050c5b9c382f27c"
+        },
+        "preparation": [
+          {
+            "nodeId": "lion-first-refuge",
+            "itemId": "steel_greatsword",
+            "unitId": "warrior",
+            "price": 153,
+            "old": "novice_greatsword",
+            "proceeds": 45,
+            "before": {
+              "gold": 190,
+              "temporaryGold": 290,
+              "reputation": 63,
+              "permanentIron": 3,
+              "currentNodeId": "lion-first-refuge"
+            },
+            "bought": {
+              "gold": 37,
+              "temporaryGold": 290,
+              "reputation": 63,
+              "permanentIron": 3,
+              "currentNodeId": "lion-first-refuge"
+            },
+            "equipped": {
+              "gold": 37,
+              "temporaryGold": 290,
+              "reputation": 63,
+              "permanentIron": 3,
+              "currentNodeId": "lion-first-refuge"
+            },
+            "sold": {
+              "gold": 82,
+              "temporaryGold": 290,
+              "reputation": 63,
+              "permanentIron": 3,
+              "currentNodeId": "lion-first-refuge"
+            }
+          },
+          {
+            "nodeId": "lion-second-refuge",
+            "itemId": "ember_greatsword",
+            "purchaseId": "novice_greatsword",
+            "unitId": "warrior",
+            "price": 70,
+            "old": "novice_greatsword",
+            "proceeds": 45,
+            "before": {
+              "gold": 592,
+              "temporaryGold": 0,
+              "reputation": 89,
+              "permanentIron": 11,
+              "currentNodeId": "lion-second-refuge"
+            },
+            "bought": {
+              "gold": 522,
+              "temporaryGold": 0,
+              "reputation": 89,
+              "permanentIron": 11,
+              "currentNodeId": "lion-second-refuge"
+            },
+            "equipped": {
+              "gold": 442,
+              "temporaryGold": 0,
+              "reputation": 89,
+              "permanentIron": 9,
+              "currentNodeId": "lion-second-refuge"
+            },
+            "sold": {
+              "gold": 487,
+              "temporaryGold": 0,
+              "reputation": 89,
+              "permanentIron": 9,
+              "currentNodeId": "lion-second-refuge"
+            }
+          },
+          {
+            "nodeId": "lion-second-refuge",
+            "recipeId": "craft_burn_greatsword",
+            "cost": 80,
+            "iron": 2,
+            "baseItemId": "steel_greatsword",
+            "itemId": "ember_greatsword",
+            "reuseEquippedBase": true,
+            "purchaseId": "novice_greatsword",
+            "before": {
+              "gold": 522,
+              "temporaryGold": 0,
+              "reputation": 89,
+              "permanentIron": 11,
+              "currentNodeId": "lion-second-refuge"
+            },
+            "after": {
+              "gold": 442,
+              "temporaryGold": 0,
+              "reputation": 89,
+              "permanentIron": 9,
+              "currentNodeId": "lion-second-refuge"
+            },
+            "temporaryLootUnchanged": true
+          }
+        ],
+        "sealRecoveries": [
+          {
+            "origin": "lion-poi-seal-ruin-encounter",
+            "before": {
+              "gold": 472,
+              "temporaryGold": 280,
+              "reputation": 100,
+              "permanentIron": 9,
+              "currentNodeId": "lion-poi-seal-ruin-encounter"
+            },
+            "phase": "return-to-origin",
+            "servicesBefore": {
+              "gold": 472,
+              "temporaryGold": 280,
+              "reputation": 100,
+              "permanentIron": 9,
+              "currentNodeId": "lion-second-refuge"
+            },
+            "rested": {
+              "gold": 442,
+              "temporaryGold": 280,
+              "reputation": 100,
+              "permanentIron": 9,
+              "currentNodeId": "lion-second-refuge"
+            },
+            "cost": 30,
+            "exactSavedOwner": true,
+            "after": {
+              "gold": 442,
+              "temporaryGold": 280,
+              "reputation": 100,
+              "permanentIron": 9,
+              "currentNodeId": "lion-poi-seal-ruin-encounter"
+            },
+            "complete": true
+          },
+          {
+            "origin": "lion-poi-seal-hunters",
+            "before": {
+              "gold": 442,
+              "temporaryGold": 405,
+              "reputation": 100,
+              "permanentIron": 9,
+              "currentNodeId": "lion-poi-seal-hunters"
+            },
+            "phase": "return-to-origin",
+            "servicesBefore": {
+              "gold": 442,
+              "temporaryGold": 405,
+              "reputation": 100,
+              "permanentIron": 9,
+              "currentNodeId": "lion-second-refuge"
+            },
+            "rested": {
+              "gold": 412,
+              "temporaryGold": 405,
+              "reputation": 100,
+              "permanentIron": 9,
+              "currentNodeId": "lion-second-refuge"
+            },
+            "cost": 30,
+            "exactSavedOwner": true,
+            "after": {
+              "gold": 412,
+              "temporaryGold": 405,
+              "reputation": 100,
+              "permanentIron": 9,
+              "currentNodeId": "lion-poi-seal-hunters"
+            },
+            "complete": true
+          }
+        ],
+        "battles": [
+          {
+            "nodeId": "lion-opening-ambush",
+            "eliteId": null,
+            "combatId": "wolf_pack",
+            "outcome": "victory",
+            "pass": true,
+            "actions": 19,
+            "rounds": 2,
+            "deployed": 4,
+            "enemies": null,
+            "exactLotERewards": null
+          },
+          {
+            "nodeId": "lion-poi-opening-patrol",
+            "eliteId": null,
+            "combatId": "poi_opening_patrol_a",
+            "outcome": "victory",
+            "pass": true,
+            "actions": 35,
+            "rounds": 6,
+            "deployed": 4,
+            "enemies": [
+              "serpent_raider",
+              "serpent_raider"
+            ],
+            "exactLotERewards": {
+              "temporaryGold": 85,
+              "reputation": 1,
+              "materials": {
+                "red_gem": 1,
+                "iron_ore": 1
+              },
+              "temporary": true,
+              "pass": true
+            }
+          },
+          {
+            "nodeId": "lion-poi-opening-wolves",
+            "eliteId": null,
+            "combatId": "poi_opening_wolves_a",
+            "outcome": "victory",
+            "pass": true,
+            "actions": 28,
+            "rounds": 4,
+            "deployed": 4,
+            "enemies": [
+              "wolf",
+              "wolf"
+            ],
+            "exactLotERewards": {
+              "temporaryGold": 80,
+              "reputation": 1,
+              "materials": {
+                "red_gem": 1,
+                "iron_ore": 1
+              },
+              "temporary": true,
+              "pass": true
+            }
+          },
+          {
+            "nodeId": "lion-poi-valley-marsh",
+            "eliteId": null,
+            "combatId": "poi_valley_marsh_a",
+            "outcome": "victory",
+            "pass": true,
+            "actions": 27,
+            "rounds": 4,
+            "deployed": 4,
+            "enemies": [
+              "marsh_toad",
+              "cave_rat"
+            ],
+            "exactLotERewards": {
+              "temporaryGold": 90,
+              "reputation": 1,
+              "materials": {
+                "red_gem": 1,
+                "iron_ore": 1
+              },
+              "temporary": true,
+              "pass": true
+            }
+          },
+          {
+            "nodeId": "lion-valmir-road",
+            "eliteId": null,
+            "combatId": "marsh_crossing",
+            "outcome": "victory",
+            "pass": true,
+            "actions": 33,
+            "rounds": 4,
+            "deployed": 4,
+            "enemies": null,
+            "exactLotERewards": null
+          },
+          {
+            "nodeId": "lion-poi-valley-serpent",
+            "eliteId": null,
+            "combatId": "poi_valley_serpent_a",
+            "outcome": "victory",
+            "pass": true,
+            "actions": 43,
+            "rounds": 8,
+            "deployed": 4,
+            "enemies": [
+              "serpent_raider",
+              "serpent_brute"
+            ],
+            "exactLotERewards": {
+              "temporaryGold": 100,
+              "reputation": 0,
+              "materials": {
+                "red_gem": 1,
+                "iron_ore": 2
+              },
+              "temporary": true,
+              "pass": true
+            }
+          },
+          {
+            "nodeId": "lion-valmir-road",
+            "eliteId": "lion-elite-valley-sentinel",
+            "combatId": "poi_elite_valley_sentinel",
+            "outcome": "victory",
+            "pass": true,
+            "actions": 32,
+            "rounds": 6,
+            "deployed": 3,
+            "enemies": [
+              "serpent_brute",
+              "serpent_raider"
+            ],
+            "exactLotERewards": {
+              "temporaryGold": 120,
+              "reputation": 1,
+              "materials": {
+                "red_gem": 1,
+                "iron_ore": 2
+              },
+              "temporary": true,
+              "pass": true
+            }
+          },
+          {
+            "nodeId": "lion-village-choice",
+            "eliteId": null,
+            "combatId": "village_defense",
+            "outcome": "victory",
+            "pass": true,
+            "actions": 38,
+            "rounds": 5,
+            "deployed": 4,
+            "enemies": null,
+            "exactLotERewards": null
+          },
+          {
+            "nodeId": "lion-final-trial-event",
+            "eliteId": "lion-elite-seal-warden",
+            "combatId": "poi_elite_seal_warden",
+            "outcome": "victory",
+            "pass": true,
+            "actions": 35,
+            "rounds": 7,
+            "deployed": 3,
+            "enemies": [
+              "skeleton",
+              "goblin",
+              "skeleton"
+            ],
+            "exactLotERewards": {
+              "temporaryGold": 170,
+              "reputation": 1,
+              "materials": {
+                "red_gem": 2,
+                "iron_ore": 2
+              },
+              "temporary": true,
+              "pass": true
+            }
+          },
+          {
+            "nodeId": "lion-poi-seal-ruin-encounter",
+            "eliteId": null,
+            "combatId": "poi_seal_ruin_encounter_b",
+            "outcome": "victory",
+            "pass": true,
+            "actions": 47,
+            "rounds": 7,
+            "deployed": 4,
+            "enemies": [
+              "goblin",
+              "skeleton",
+              "skeleton"
+            ],
+            "exactLotERewards": {
+              "temporaryGold": 110,
+              "reputation": 1,
+              "materials": {
+                "red_gem": 1,
+                "iron_ore": 2
+              },
+              "temporary": true,
+              "pass": true
+            }
+          },
+          {
+            "nodeId": "lion-poi-seal-hunters",
+            "eliteId": null,
+            "combatId": "poi_seal_hunters_a",
+            "outcome": "victory",
+            "pass": true,
+            "actions": 58,
+            "rounds": 9,
+            "deployed": 4,
+            "enemies": [
+              "serpent_raider",
+              "serpent_brute",
+              "serpent_oracle",
+              "serpent_raider"
+            ],
+            "exactLotERewards": {
+              "temporaryGold": 125,
+              "reputation": 0,
+              "materials": {
+                "red_gem": 2,
+                "iron_ore": 2
+              },
+              "temporary": true,
+              "pass": true
+            }
+          },
+          {
+            "nodeId": "lion-final-judgement",
+            "eliteId": null,
+            "combatId": "serpent_captain",
+            "outcome": "victory",
+            "pass": true,
+            "actions": 74,
+            "rounds": 11,
+            "deployed": 4,
+            "enemies": null,
+            "exactLotERewards": null
+          }
+        ],
+        "chests": [
+          {
+            "id": "lion-poi-opening-supplies",
+            "gold": 0,
+            "items": {
+              "potion": 1
+            },
+            "temporary": true,
+            "turn": 8
+          },
+          {
+            "id": "lion-poi-opening-cache",
+            "gold": 15,
+            "items": {
+              "antidote": 1
+            },
+            "temporary": true,
+            "turn": 13
+          },
+          {
+            "id": "lion-poi-valley-supplies",
+            "gold": 0,
+            "items": {
+              "ether": 1
+            },
+            "temporary": true,
+            "turn": 45
+          },
+          {
+            "id": "lion-poi-valley-bridge-cache",
+            "gold": 35,
+            "items": {
+              "potion": 1
+            },
+            "temporary": true,
+            "turn": 55
+          },
+          {
+            "id": "lion-poi-seal-witness-supplies",
+            "gold": 0,
+            "items": {
+              "antidote": 1,
+              "ether": 1
+            },
+            "temporary": true,
+            "turn": 72
+          },
+          {
+            "id": "lion-poi-seal-ruin-supplies",
+            "gold": 50,
+            "items": {
+              "revive_vial": 1
+            },
+            "temporary": true,
+            "turn": 95
+          }
+        ],
+        "technicalScopeOnly": true
+      },
+      "registeredJobs": 39
     }
   },
   "previousInterruptedRun": {
@@ -40089,7 +41028,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-15T2128Z-codex-poi-v2-retirement.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-16T1526Z-codex-lot-e-final.md",
   "runMeasurement": {
     "runId": "codex-poi-continuation-20261014",
     "runtimeSourceFilesModified": 1,
@@ -40382,22 +41321,62 @@
     }
   },
   "runStatistics": {
-    "runId": "codex-poi-finalization-20261014",
-    "runtimeSourceFilesModified": 5,
-    "testFilesModified": 2,
-    "existingQaFilesModified": 2,
-    "existingQaTestFilesModified": 1,
-    "newQaFilesAdded": 0,
-    "promotedProofFiles": 11,
-    "promotedCaptures": 10,
-    "workflowDocs": 9,
+    "runId": "codex-lot-e-20261015",
+    "countBasis": "Unique final paths from 4c80196cf2eb87097f063f4f312756044f5a5e47, selected evidence only",
+    "counts": {
+      "workflowAndCanonicalDocs": {
+        "added": 7,
+        "modified": 12,
+        "removed": 0,
+        "total": 19
+      },
+      "lockedAmendment": {
+        "added": 0,
+        "modified": 8,
+        "removed": 0,
+        "total": 8
+      },
+      "artResources": {
+        "added": 3,
+        "modified": 0,
+        "removed": 0,
+        "total": 3
+      },
+      "runtimeSource": {
+        "added": 3,
+        "modified": 12,
+        "removed": 0,
+        "total": 15
+      },
+      "sourceTests": {
+        "added": 3,
+        "modified": 7,
+        "removed": 0,
+        "total": 10
+      },
+      "existingQaTools": {
+        "added": 0,
+        "modified": 2,
+        "removed": 0,
+        "total": 2
+      },
+      "selectedEvidence": {
+        "added": 11,
+        "modified": 0,
+        "removed": 0,
+        "total": 11
+      }
+    },
+    "totalPaths": 68,
+    "deletedPaths": 0,
     "inheritedWipFiles": 0,
-    "browserScenarios": 25,
-    "registeredJobs": 25,
-    "acceptedScopes": 16,
-    "failed": 7,
-    "interrupted": 2,
-    "reviewers": 1
+    "registeredNativeJobs": 39,
+    "acceptedScopes": 20,
+    "unacceptedWholeOutputs": 19,
+    "newQaFilesAdded": 0,
+    "promotedCaptures": 10,
+    "promotedProofFiles": 11,
+    "reviewerRoles": 2
   },
   "qaToolingJustification": "Zero new QA runners/frameworks; existing campaign pilot and receipt helper extended with original owner/assertion/provenance checks; manual timeout exception scoped to the directly authorized named run",
   "retainedRunArtifacts": {
@@ -41402,70 +42381,62 @@
     "fullDemoComplete": false
   },
   "currentRunMeasurement": {
-    "runId": "codex-poi-v2-20261015",
-    "countBasis": "Unique final paths compared with starting b79063bb, no renames; removals distinct from surviving modifications",
-    "counts": [
-      {
-        "name": "runtimeSource",
-        "total": 71,
-        "added": 2,
-        "modified": 9,
-        "removed": 60
-      },
-      {
-        "name": "sourceTests",
-        "total": 47,
-        "added": 2,
+    "runId": "codex-lot-e-20261015",
+    "countBasis": "Unique final paths from 4c80196cf2eb87097f063f4f312756044f5a5e47, selected evidence only",
+    "counts": {
+      "workflowAndCanonicalDocs": {
+        "added": 7,
         "modified": 12,
-        "removed": 33
+        "removed": 0,
+        "total": 19
       },
-      {
-        "name": "artResources",
-        "total": 27,
-        "added": 5,
-        "modified": 0,
-        "removed": 22
-      },
-      {
-        "name": "existingQaAndGalleryTools",
-        "total": 37,
+      "lockedAmendment": {
         "added": 0,
-        "modified": 6,
-        "removed": 31
+        "modified": 8,
+        "removed": 0,
+        "total": 8
       },
-      {
-        "name": "selectedProof",
-        "total": 11,
+      "artResources": {
+        "added": 3,
+        "modified": 0,
+        "removed": 0,
+        "total": 3
+      },
+      "runtimeSource": {
+        "added": 3,
+        "modified": 12,
+        "removed": 0,
+        "total": 15
+      },
+      "sourceTests": {
+        "added": 3,
+        "modified": 7,
+        "removed": 0,
+        "total": 10
+      },
+      "existingQaTools": {
+        "added": 0,
+        "modified": 2,
+        "removed": 0,
+        "total": 2
+      },
+      "selectedEvidence": {
         "added": 11,
         "modified": 0,
-        "removed": 0
-      },
-      {
-        "name": "workflowCanonicalHistoricalDocs",
-        "total": 40,
-        "added": 19,
-        "modified": 21,
-        "removed": 0
+        "removed": 0,
+        "total": 11
       }
-    ],
-    "totalPaths": 233,
-    "removedPaths": 146,
-    "runtimeSourceFilesModified": 11,
-    "testFilesModified": 14,
-    "newTestFiles": 2,
-    "existingQaFilesModified": 6,
-    "newQaFilesAdded": 0,
-    "promotedProofFiles": 11,
-    "promotedCaptures": 9,
-    "workflowDocs": 40,
-    "newArtResources": 5,
+    },
+    "totalPaths": 68,
+    "deletedPaths": 0,
     "inheritedWipFiles": 0,
-    "registeredNativeJobs": 17,
-    "acceptedScopes": 11,
-    "failedWholeUnseedable": 6,
-    "interrupted": 0,
-    "additionalSharedGallerySmoke": 1,
-    "reviewerRoles": 3
+    "registeredNativeJobs": 39,
+    "acceptedScopes": 20,
+    "unacceptedWholeOutputs": 19,
+    "newQaFilesAdded": 0,
+    "promotedCaptures": 10,
+    "promotedProofFiles": 11,
+    "reviewerRoles": 2
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",
@@ -41835,7 +42806,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-15T21:32:17.578Z",
+  "heartbeat": "2026-10-16T15:29:46.093Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -42535,6 +43506,83 @@
     "status": "COMPLETE_SCOPED",
     "activeTask": "POI-V2-AND-TRAVERSAL-RETIREMENT",
     "nextAction": "Operator PC playtest of published POI V2 and three-region artwork; preserve unrelated skills/keyboard/narrative work and inactive authoring proposals. No physical-road work or scheduler reactivation.",
-    "lastKnownGoodCommit": "99ed9ed9d5b4290f65e1591a701463ad61c0f21d"
+    "lastKnownGoodCommit": "99ed9ed9d5b4290f65e1591a701463ad61c0f21d",
+    "runMetrics": {
+      "runId": "codex-poi-v2-20261015",
+      "countBasis": "Unique final paths compared with starting b79063bb, no renames; removals distinct from surviving modifications",
+      "counts": [
+        {
+          "name": "runtimeSource",
+          "total": 71,
+          "added": 2,
+          "modified": 9,
+          "removed": 60
+        },
+        {
+          "name": "sourceTests",
+          "total": 47,
+          "added": 2,
+          "modified": 12,
+          "removed": 33
+        },
+        {
+          "name": "artResources",
+          "total": 27,
+          "added": 5,
+          "modified": 0,
+          "removed": 22
+        },
+        {
+          "name": "existingQaAndGalleryTools",
+          "total": 37,
+          "added": 0,
+          "modified": 6,
+          "removed": 31
+        },
+        {
+          "name": "selectedProof",
+          "total": 11,
+          "added": 11,
+          "modified": 0,
+          "removed": 0
+        },
+        {
+          "name": "workflowCanonicalHistoricalDocs",
+          "total": 40,
+          "added": 19,
+          "modified": 21,
+          "removed": 0
+        }
+      ],
+      "totalPaths": 233,
+      "removedPaths": 146,
+      "runtimeSourceFilesModified": 11,
+      "testFilesModified": 14,
+      "newTestFiles": 2,
+      "existingQaFilesModified": 6,
+      "newQaFilesAdded": 0,
+      "promotedProofFiles": 11,
+      "promotedCaptures": 9,
+      "workflowDocs": 40,
+      "newArtResources": 5,
+      "inheritedWipFiles": 0,
+      "registeredNativeJobs": 17,
+      "acceptedScopes": 11,
+      "failedWholeUnseedable": 6,
+      "interrupted": 0,
+      "additionalSharedGallerySmoke": 1,
+      "reviewerRoles": 3
+    },
+    "publication": {
+      "status": "PUBLISHED_DELIVERY_LIVE_PARITY_VERIFIED",
+      "deliveryCommit": "0aada9fdd65d10702138bfdf1174ce188c824302",
+      "branch": "dev",
+      "remote": "origin/dev",
+      "remoteVerifiedAt": "2026-10-15T21:32:17.578Z",
+      "protectedMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "normalNonForce": true,
+      "authorization": "OD-2026-10-12-A and OD-2026-10-15-A",
+      "finalMetadata": "Current metadata commit is identified by Git; guarded final push/parity/owned-lock release follows this checkpoint"
+    }
   }
 }
