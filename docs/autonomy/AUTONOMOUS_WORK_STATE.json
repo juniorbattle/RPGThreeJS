@@ -3,8 +3,8 @@
   "runStartedAt": "2026-10-15T22:57:16.909Z",
   "runEndedAt": null,
   "activeTask": "POI-LOT-E-FINAL",
-  "activePhase": "NATIVE_CHECKPOINTS",
-  "activeSubtask": "Publish guarded native checkpoint pilot, resume fresh complete I and old V6 direct II; retain interrupted outputs unaccepted.",
+  "activePhase": "NATIVE_CAMPAIGN",
+  "activeSubtask": "Complete current patrol, optional-defeat and ending jobs on frozen build; then correct390header with scoped native refresh and continue complete regional lineages.",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "99ed9ed9d5b4290f65e1591a701463ad61c0f21d",
   "lastPushedCommit": "0aada9fdd65d10702138bfdf1174ce188c824302",
@@ -274,7 +274,7 @@
     "Preserved unrelated six-hero skills, mounted keyboard, narrative/manual findings; ten inherited broader-suite audit failures",
     "Two inactive optional chest/patrol authoring proposals require specific approval before activation"
   ],
-  "nextAction": "Publish guarded native checkpoint pilot, resume fresh complete I and old V6 direct II; retain interrupted outputs unaccepted.",
+  "nextAction": "Complete current patrol, optional-defeat and ending jobs on frozen build; then correct390header with scoped native refresh and continue complete regional lineages.",
   "taskQueue": [
     "POI-MAP-FINALIZATION: requested implementation/native milestones REVIEWED_SCOPED; operator final playtest remains",
     "DEMO-PC-CAMPAIGN: both native truth endings, T0/T1/T3 alternatives, rescue/sacrifice, defeat and exact V6 accepted in recorded scopes",
@@ -377,10 +377,10 @@
   },
   "runId": "codex-lot-e-20261015",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-16T02:16:43.122Z",
+  "lastHeartbeat": "2026-10-16T02:37:45.486Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-16T02:16:43.122Z",
+    "lastHeartbeat": "2026-10-16T02:37:45.486Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -29986,11 +29986,12 @@
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": false,
         "eligibleForReview": false,
         "reconciledAt": "2026-10-16T02:13:45.182Z",
-        "reason": "Original receipt remains RUNNING without final result; host PID and dedicated listener verified absent after session interruption. No partial save accepted."
+        "reason": "Session interruption: host PID and listener verified absent; original output retained. No partial save accepted.",
+        "receiptStatus": "RUNNING_WITHOUT_FINAL_RESULT"
       },
       {
         "schemaVersion": 1,
@@ -30081,7 +30082,7 @@
             }
           ]
         },
-        "acceptance": "REVIEW_PENDING",
+        "acceptance": "ACCEPTED_SCOPED_EFCD280_NATIVE_FIRST_REFUGE",
         "startedAt": "2026-10-15T23:45:55.662Z",
         "endedAt": "2026-10-16T00:04:04.215Z",
         "exitCode": 0,
@@ -30090,9 +30091,9 @@
         "provenanceMatches": true,
         "provenanceStable": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": true,
-        "eligibleForReview": true
+        "eligibleForReview": false
       },
       {
         "schemaVersion": 1,
@@ -30199,52 +30200,676 @@
         "endedAt": null,
         "provenanceMatches": true,
         "requestMatches": true,
-        "matchesCurrentExecution": true,
+        "matchesCurrentExecution": false,
         "resultDigestMatches": false,
         "eligibleForReview": false,
         "reconciledAt": "2026-10-16T02:13:45.183Z",
-        "reason": "Original receipt remains RUNNING without final result; host PID and dedicated listener verified absent after session interruption. No partial save accepted."
+        "reason": "Session interruption: host PID and listener verified absent; original output retained. No partial save accepted.",
+        "receiptStatus": "RUNNING_WITHOUT_FINAL_RESULT"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "lot-e-complete-patrol-0002",
+        "runId": "codex-lot-e-20261015",
+        "status": "RUNNING",
+        "registeredAt": "2026-10-16T02:17:27.402Z",
+        "pid": 6732,
+        "port": 5410,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "expedition-checkpoint",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "explorationPlan": "complete",
+          "checkpointPoiId": "lion-poi-opening-patrol",
+          "gameReducedMotion": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": null,
+          "priorProofPath": null,
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/lot-e-complete-patrol-0002",
+        "receiptPath": "tmp/demo/lot-e-complete-patrol-0002/qa-job.json",
+        "provenance": {
+          "gitHead": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "sourceTree": "721c1410b01681b6e675f91c8c3e471bacb5fc80",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "c660a7cf4c942d3199253b2b6cee435677ea243e449330b269aee9c2e2071b8b"
+          },
+          "inputs": [],
+          "receiptToolSha256": "9adbcfa5be97588301ada7a0141caa2729b5cd55b0711011079d183c586a1e3d",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+              "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+            },
+            {
+              "path": "dist/assets/combat-CYjlO7p1.js",
+              "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BPx08x0P.js",
+              "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+            },
+            {
+              "path": "dist/assets/game-qv9iOn3q.css",
+              "sha256": "3b94e86b0b2f77d6f599e109fa593e9a1d8a0923243691a0fd15b066b5a8d1a0"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "36eed7e34394e1feed1518def21dad2c6ddedada8d0513604b08c782e4170e56"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-16T02:17:29.200Z",
+        "endedAt": null,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": false,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "lot-e-oldV6-II-touch-0002",
+        "runId": "codex-lot-e-20261015",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-16T02:17:40.130Z",
+        "pid": 22660,
+        "port": 5412,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "second-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": true,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "explorationPlan": "direct",
+          "checkpointPoiId": null,
+          "gameReducedMotion": false,
+          "viewport": [
+            390,
+            844
+          ],
+          "osReducedMotion": true,
+          "earnedSavePath": "tmp/demo/poi-v2-first-refuge-0810/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/poi-v2-first-refuge-0810/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/lot-e-oldV6-II-touch-0002",
+        "receiptPath": "tmp/demo/lot-e-oldV6-II-touch-0002/qa-job.json",
+        "provenance": {
+          "gitHead": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "sourceTree": "721c1410b01681b6e675f91c8c3e471bacb5fc80",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "c660a7cf4c942d3199253b2b6cee435677ea243e449330b269aee9c2e2071b8b"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/poi-v2-first-refuge-0810/earned-first-refuge-v6.json",
+              "sha256": "12931a226f9a81dc5a689f28da519370de50fc41a447d0babef903a5096e66dc"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/poi-v2-first-refuge-0810/results.json",
+              "sha256": "b1819c257dbbb94bf486bac60fad2855473a841dc06be983b48155684bb43004"
+            }
+          ],
+          "receiptToolSha256": "9adbcfa5be97588301ada7a0141caa2729b5cd55b0711011079d183c586a1e3d",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+              "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+            },
+            {
+              "path": "dist/assets/combat-CYjlO7p1.js",
+              "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BPx08x0P.js",
+              "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+            },
+            {
+              "path": "dist/assets/game-qv9iOn3q.css",
+              "sha256": "3b94e86b0b2f77d6f599e109fa593e9a1d8a0923243691a0fd15b066b5a8d1a0"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "36eed7e34394e1feed1518def21dad2c6ddedada8d0513604b08c782e4170e56"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-16T02:17:41.051Z",
+        "endedAt": "2026-10-16T02:29:20.565Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "exitCode": 0,
+        "resultPath": "tmp/demo/lot-e-oldV6-II-touch-0002/results.json",
+        "resultSha256": "f6ac24d2f6417e169c85dba1f413649bd0eaba0ea2d215ab3b6d36d34da0cd13",
+        "provenanceStable": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "lot-e-moderate-I-0001",
+        "runId": "codex-lot-e-20261015",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-16T02:18:05.480Z",
+        "pid": 21532,
+        "port": 5411,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "first-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "explorationPlan": "moderate",
+          "checkpointPoiId": null,
+          "gameReducedMotion": true,
+          "viewport": [
+            620,
+            780
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": null,
+          "priorProofPath": null,
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/lot-e-moderate-I-0001",
+        "receiptPath": "tmp/demo/lot-e-moderate-I-0001/qa-job.json",
+        "provenance": {
+          "gitHead": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "sourceTree": "721c1410b01681b6e675f91c8c3e471bacb5fc80",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "c660a7cf4c942d3199253b2b6cee435677ea243e449330b269aee9c2e2071b8b"
+          },
+          "inputs": [],
+          "receiptToolSha256": "9adbcfa5be97588301ada7a0141caa2729b5cd55b0711011079d183c586a1e3d",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+              "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+            },
+            {
+              "path": "dist/assets/combat-CYjlO7p1.js",
+              "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BPx08x0P.js",
+              "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+            },
+            {
+              "path": "dist/assets/game-qv9iOn3q.css",
+              "sha256": "3b94e86b0b2f77d6f599e109fa593e9a1d8a0923243691a0fd15b066b5a8d1a0"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "36eed7e34394e1feed1518def21dad2c6ddedada8d0513604b08c782e4170e56"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-16T02:18:06.761Z",
+        "endedAt": "2026-10-16T02:28:01.963Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/lot-e-moderate-I-0001/results.json",
+        "resultSha256": "f99c0d4d9f4ffb9049643235fb0be2509ae0a324f1a76eb367aec7d9ceb55d61",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "lot-e-moderate-marsh-0001",
+        "runId": "codex-lot-e-20261015",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-16T02:30:14.776Z",
+        "pid": 22988,
+        "port": 5411,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "expedition-checkpoint",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "explorationPlan": "moderate",
+          "checkpointPoiId": "lion-poi-valley-marsh",
+          "gameReducedMotion": true,
+          "viewport": [
+            620,
+            780
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/lot-e-moderate-I-0001/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/lot-e-moderate-I-0001/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/lot-e-moderate-marsh-0001",
+        "receiptPath": "tmp/demo/lot-e-moderate-marsh-0001/qa-job.json",
+        "provenance": {
+          "gitHead": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "sourceTree": "721c1410b01681b6e675f91c8c3e471bacb5fc80",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "c660a7cf4c942d3199253b2b6cee435677ea243e449330b269aee9c2e2071b8b"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/lot-e-moderate-I-0001/earned-first-refuge-v6.json",
+              "sha256": "34bc93091ae042d0feb4f86f02630bac5539044ae8a94d00c38986c865bba352"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/lot-e-moderate-I-0001/results.json",
+              "sha256": "f99c0d4d9f4ffb9049643235fb0be2509ae0a324f1a76eb367aec7d9ceb55d61"
+            }
+          ],
+          "receiptToolSha256": "9adbcfa5be97588301ada7a0141caa2729b5cd55b0711011079d183c586a1e3d",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+              "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+            },
+            {
+              "path": "dist/assets/combat-CYjlO7p1.js",
+              "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BPx08x0P.js",
+              "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+            },
+            {
+              "path": "dist/assets/game-qv9iOn3q.css",
+              "sha256": "3b94e86b0b2f77d6f599e109fa593e9a1d8a0923243691a0fd15b066b5a8d1a0"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "36eed7e34394e1feed1518def21dad2c6ddedada8d0513604b08c782e4170e56"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-16T02:30:17.832Z",
+        "endedAt": "2026-10-16T02:34:25.058Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/lot-e-moderate-marsh-0001/results.json",
+        "resultSha256": "9a0d5438ed2aa4db7b14e002aa99e81394b0754f347bcb6a0b2718f7aa4027b5",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "lot-e-direct-ending-touch-0001",
+        "runId": "codex-lot-e-20261015",
+        "status": "RUNNING",
+        "registeredAt": "2026-10-16T02:30:53.594Z",
+        "pid": 9192,
+        "port": 5412,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "ending",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": true,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "explorationPlan": "direct",
+          "checkpointPoiId": null,
+          "gameReducedMotion": false,
+          "viewport": [
+            390,
+            844
+          ],
+          "osReducedMotion": true,
+          "earnedSavePath": "tmp/demo/lot-e-oldV6-II-touch-0002/earned-lion-second-refuge-v6.json",
+          "priorProofPath": "tmp/demo/lot-e-oldV6-II-touch-0002/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/lot-e-direct-ending-touch-0001",
+        "receiptPath": "tmp/demo/lot-e-direct-ending-touch-0001/qa-job.json",
+        "provenance": {
+          "gitHead": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "sourceTree": "721c1410b01681b6e675f91c8c3e471bacb5fc80",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "c660a7cf4c942d3199253b2b6cee435677ea243e449330b269aee9c2e2071b8b"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/lot-e-oldV6-II-touch-0002/earned-lion-second-refuge-v6.json",
+              "sha256": "1ded07a0f2bb434156d557b089b4fe80fc57e338e33fc18789b30637df544d62"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/lot-e-oldV6-II-touch-0002/results.json",
+              "sha256": "f6ac24d2f6417e169c85dba1f413649bd0eaba0ea2d215ab3b6d36d34da0cd13"
+            }
+          ],
+          "receiptToolSha256": "9adbcfa5be97588301ada7a0141caa2729b5cd55b0711011079d183c586a1e3d",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+              "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+            },
+            {
+              "path": "dist/assets/combat-CYjlO7p1.js",
+              "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BPx08x0P.js",
+              "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+            },
+            {
+              "path": "dist/assets/game-qv9iOn3q.css",
+              "sha256": "3b94e86b0b2f77d6f599e109fa593e9a1d8a0923243691a0fd15b066b5a8d1a0"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "36eed7e34394e1feed1518def21dad2c6ddedada8d0513604b08c782e4170e56"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-16T02:30:55.272Z",
+        "endedAt": null,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": false,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "lot-e-optional-defeat-0001",
+        "runId": "codex-lot-e-20261015",
+        "status": "RUNNING",
+        "registeredAt": "2026-10-16T02:37:00.622Z",
+        "pid": 13944,
+        "port": 5411,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "defeat-recovery",
+          "routePlan": "rescue",
+          "timeoutMinutes": 45,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-poi-valley-serpent",
+          "nativeDefeatWait": true,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "explorationPlan": "complete",
+          "checkpointPoiId": null,
+          "gameReducedMotion": true,
+          "viewport": [
+            620,
+            780
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/lot-e-moderate-marsh-0001/earned-expedition-checkpoint-v6.json",
+          "priorProofPath": "tmp/demo/lot-e-moderate-marsh-0001/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EXACT_V6_CHECKPOINT_RECOVERY",
+          "NATIVE_POI_CHECKPOINT_RETURN",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/lot-e-optional-defeat-0001",
+        "receiptPath": "tmp/demo/lot-e-optional-defeat-0001/qa-job.json",
+        "provenance": {
+          "gitHead": "3b80404cdd6e473ac0eab5583fb3d9ed46822e52",
+          "sourceTree": "721c1410b01681b6e675f91c8c3e471bacb5fc80",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "c660a7cf4c942d3199253b2b6cee435677ea243e449330b269aee9c2e2071b8b"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/lot-e-moderate-marsh-0001/earned-expedition-checkpoint-v6.json",
+              "sha256": "a854296f08a2b3ca3e2d1197af5ae1a0a95c8c94946571175b32a28673da37f9"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/lot-e-moderate-marsh-0001/results.json",
+              "sha256": "9a0d5438ed2aa4db7b14e002aa99e81394b0754f347bcb6a0b2718f7aa4027b5"
+            }
+          ],
+          "receiptToolSha256": "9adbcfa5be97588301ada7a0141caa2729b5cd55b0711011079d183c586a1e3d",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+              "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+            },
+            {
+              "path": "dist/assets/combat-CYjlO7p1.js",
+              "sha256": "65563ebe01b0333c197c24b0418a58972ee55e0fcfb4e32f16ac0ebaab20652c"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-BPx08x0P.js",
+              "sha256": "fb3dec54932f9da6e0132c2cae54304f73cac5035c9fea97b3e5bcc0f2b89777"
+            },
+            {
+              "path": "dist/assets/game-qv9iOn3q.css",
+              "sha256": "3b94e86b0b2f77d6f599e109fa593e9a1d8a0923243691a0fd15b066b5a8d1a0"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "36eed7e34394e1feed1518def21dad2c6ddedada8d0513604b08c782e4170e56"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-16T02:37:02.345Z",
+        "endedAt": null,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": false,
+        "eligibleForReview": false
       }
     ],
     "wip": {
       "branch": "wip/codex-lot-e-20261015",
       "sha": "6381ff7ef8fa9005f428214a7bd783d0d0865ab9",
       "dirtyFiles": [
-        "src/campaign/LionPoiMap.ts",
-        "src/campaign/LionPoiTopology.test.ts",
-        "src/campaign/LionPoiTopology.ts",
-        "src/campaign/LionPoiAuthoring.ts",
-        "src/game/GameApp.ts",
-        "src/game/GameAppPoi.test.ts",
-        "src/game/GameAppPoiExpedition.test.ts",
-        "src/game/content.ts",
-        "src/game/poiContentAdapters.test.ts",
-        "src/game/poiContentAdapters.ts",
-        "src/game/poiNavigation.test.ts",
-        "src/game/poiExpedition.test.ts",
-        "src/game/poiExpedition.ts",
-        "src/game/runSystem.ts",
-        "src/game/store.ts",
-        "src/game/types.ts",
-        "src/ui/PoiMapView.ts",
-        "src/ui/RunNodePresentation.ts",
-        "src/ui/poi-map.css",
-        "src/ui/PoiEncounterView.test.ts",
-        "src/ui/PoiEncounterView.ts",
-        "src/game/runSystem.test.ts",
-        "src/game/content.test.ts",
-        "src/game/campaignPresentationMigration.test.ts",
-        "tools/demo-continuous-production-qa.mjs",
-        "tools/qa/qa-job.mjs",
-        "docs/project/LOT_E_ATLAS_PROVENANCE_2026-10-15.json",
-        "public/assets/generated/lion-phase/poi-lot-e/lion-opening.png",
-        "public/assets/generated/lion-phase/poi-lot-e/bois-clair.png",
-        "public/assets/generated/lion-phase/poi-lot-e/judgement.png"
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/reports/lot-e-final-2026-10-15.md"
       ],
-      "status": "GREEN_MECHANICAL_NATIVE_PENDING",
+      "status": "RUNTIME_ON_DEV_NATIVE_IN_PROGRESS",
       "lastGreenCheck": "independent-qa-02:206tests/types/contracts/build; final atlas build PASS; native driver prelaunch guardian PASS"
     },
-    "nextAction": "Publish guarded native checkpoint pilot, resume fresh complete I and old V6 direct II; retain interrupted outputs unaccepted.",
+    "nextAction": "Complete current patrol, optional-defeat and ending jobs on frozen build; then correct390header with scoped native refresh and continue complete regional lineages.",
     "runMetrics": {
       "runId": "codex-poi-v2-20261015",
       "countBasis": "Unique final paths compared with starting b79063bb, no renames; removals distinct from surviving modifications",
@@ -31127,7 +31752,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "POI-LOT-E-FINAL",
-    "activeSubtask": "Publish guarded native checkpoint pilot, resume fresh complete I and old V6 direct II; retain interrupted outputs unaccepted.",
+    "activeSubtask": "Complete current patrol, optional-defeat and ending jobs on frozen build; then correct390header with scoped native refresh and continue complete regional lineages.",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -34463,7 +35088,7 @@
     "agent": "codex",
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-15T22:57:16.909Z",
-    "activePhase": "NATIVE_CHECKPOINTS",
+    "activePhase": "NATIVE_CAMPAIGN",
     "heartbeat": "2026-10-15T21:32:17.578Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-15T2128Z-codex-poi-v2-retirement.md",
     "motion1617": {
@@ -36280,7 +36905,14 @@
         "captureReview": "Three atlas captures inspected; no overlapping labels; scrollable bottom content, operator art pending",
         "scope": "Native efcd280 first-refuge canonical/economic/save scope; later CSS threat pulse and driver checkpoint additions do not claim new route acceptance"
       },
-      "nativeCheckpointPolicy": "Within45minute jobs, approved optional POI actual new activity, settled context, exact autosave/reload, finalized SUCCEEDED receipt+SHA required for continuation; no partial/failed seeds"
+      "nativeCheckpointPolicy": "Within45minute jobs, approved optional POI actual new activity, settled context, exact autosave/reload, finalized SUCCEEDED receipt+SHA required for continuation; no partial/failed seeds",
+      "acceptedProofs": {
+        "lot-e-direct-I-0001": {
+          "scope": "First refuge canonical/economic/save/atlas desktop; no new Lot E combat or active threat motion",
+          "review": "Independent receipt/SHA/exactV6/90nativeInputs/22geometry/three captures PASS",
+          "checkpoint": "efcd280590230045cb811c737915bfeb75187afe"
+        }
+      }
     }
   },
   "previousInterruptedRun": {

@@ -2,7 +2,7 @@
 
 IN_PROGRESS. Operator OD-2026-10-15-B approves the complete twelve optional POIs, two graph-mobile elites, exact catalogue/economy and independent Combat/retreat. Starting dev4c80196c; no inherited WIP. Dedicated set1.4.0 actual-diff review PASS, amendment commitf9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8. The operator explicitly approved the four governance version/SHA reference updates after auto-review refusal; immutable baselinef9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8. E1-E5 and native acceptance remain PENDING; operator art/final balance separate. All prior QA records, deferred tasks and historical proof preserved. Scheduler unchanged.
 
-Next: Publish guarded native checkpoint pilot, resume fresh complete I and old V6 direct II; retain interrupted outputs unaccepted.
+Next: Complete current patrol, optional-defeat and ending jobs on frozen build; then correct390header with scoped native refresh and continue complete regional lineages.
 
 ## Preserved preceding checkpoint
 
@@ -1387,9 +1387,15 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - poi-v2-D-final-prep-touch390-1313: SUCCEEDED; port 5444; receipt `tmp/demo/poi-v2-D-final-prep-touch390-1313/qa-job.json`; ACCEPTED_SCOPED_TOUCH_OS_ONLY390_THREE_REGION_PREPARATION44PX_V6
 - poi-v2-D-final-fresh-opening-1313: FAILED; port 5445; receipt `tmp/demo/poi-v2-D-final-fresh-opening-1313/qa-job.json`; NOT_ACCEPTED
 - poi-v2-D-petition-first-refuge-1714: SUCCEEDED; port 5445; receipt `tmp/demo/poi-v2-D-petition-first-refuge-1714/qa-job.json`; ACCEPTED_SCOPED_FRESH_OPENING_EVENT_FIRST_REFUGE_V6
-- lot-e-complete-I-0001: RUNNING; port 5410; receipt `tmp/demo/lot-e-complete-I-0001/qa-job.json`; NOT_ACCEPTED
+- lot-e-complete-I-0001: INTERRUPTED_WORKER_ABSENT; port 5410; receipt `tmp/demo/lot-e-complete-I-0001/qa-job.json`; NOT_ACCEPTED
 - lot-e-direct-I-0001: SUCCEEDED; port 5411; receipt `tmp/demo/lot-e-direct-I-0001/qa-job.json`; NOT_ACCEPTED
-- lot-e-oldV6-II-touch-0001: RUNNING; port 5412; receipt `tmp/demo/lot-e-oldV6-II-touch-0001/qa-job.json`; NOT_ACCEPTED
+- lot-e-oldV6-II-touch-0001: INTERRUPTED_WORKER_ABSENT; port 5412; receipt `tmp/demo/lot-e-oldV6-II-touch-0001/qa-job.json`; NOT_ACCEPTED
+- lot-e-complete-patrol-0002: RUNNING; port 5410; receipt `tmp/demo/lot-e-complete-patrol-0002/qa-job.json`; NOT_ACCEPTED
+- lot-e-oldV6-II-touch-0002: SUCCEEDED; port 5412; receipt `tmp/demo/lot-e-oldV6-II-touch-0002/qa-job.json`; NOT_ACCEPTED
+- lot-e-moderate-I-0001: SUCCEEDED; port 5411; receipt `tmp/demo/lot-e-moderate-I-0001/qa-job.json`; NOT_ACCEPTED
+- lot-e-moderate-marsh-0001: SUCCEEDED; port 5411; receipt `tmp/demo/lot-e-moderate-marsh-0001/qa-job.json`; NOT_ACCEPTED
+- lot-e-direct-ending-touch-0001: RUNNING; port 5412; receipt `tmp/demo/lot-e-direct-ending-touch-0001/qa-job.json`; NOT_ACCEPTED
+- lot-e-optional-defeat-0001: RUNNING; port 5411; receipt `tmp/demo/lot-e-optional-defeat-0001/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

@@ -1,0 +1,65 @@
+# Lot E Final — exploration, economy and mobile elites
+
+| Field | Value |
+| --- | --- |
+| TASK | POI-LOT-E-FINAL |
+| DOMAIN | Campaign, content, combat handoff, V6 saves, UI, atlas art |
+| BASELINE | `4c80196cf2eb87097f063f4f312756044f5a5e47` on dev |
+| BRANCH | dev |
+| HEAD | See coherent checkpoints below; final acceptance pending |
+| STATUS | Draft — implementation published, native milestone in progress |
+| MERGED_IN | NONE — authorized direct dev checkpoints |
+| SUPERSEDES | NONE; POI V2 retirement report retains its historical scope |
+| SUPERSEDED_BY | NONE |
+| PRODUCTION_IMPACT | 12 optional POI, six chests, six ordinary formations with two deterministic variants each, two independent mobile elites, three revised atlases |
+| CANONICAL_DOCS_UPDATED | `docs/project/POI_NAVIGATION.md`, `docs/project/POI_V2_ART_AND_AUTHORING.md`; approved authoring annexes and OD-2026-10-15-B |
+| EVIDENCE | Mechanical logs `tmp/lot-e/independent-qa-02/`, final builds and native jobs below; selected evidence promotion pending |
+
+CURRENT FACT: this report remains a draft until the native complete campaign, exact economy and V6 boundaries are reviewed. A published implementation checkpoint is not full Lot E acceptance.
+
+## Delivered behavior and authority
+
+The approved catalogue adds exactly four optional destinations per region, preserving all21 canonical IDs and their directed recovery graph. Six once-only chests grant100 temporary gold and seven consumables. Six optional combat POI have12 independent seed-stable configuration IDs and fixed rewards totaling590 temporary gold,+4 reputation,7 red gems and9 iron ore. Canonical scripts, rewards and tactical runtime remain unchanged.
+
+The two persistent mobile elites are separate from the33 POI. Their exact independent configurations award120/170 temporary gold,+1 reputation each,1/2 red gems and2 iron ore each. The existing tactical enemy definitions are reused; three deployed fighters give these independent elite formations their encounter limit. No boss or canonical dialogue is cloned.
+
+RunSystem owns movement, Wait, tick settlement, interception, safe retreat and elite victory. Front interception occurs before movement; retreat cancels without a tick. Rear interception follows activity closure and may return to the recorded adjacent safe POI without a second tick or narrative replay. Elite victory changes only its own defeat/reward context, never resolves its underlying POI. Defeat uses the existing checkpoint and temporary-loot loss owner. GameApp coordinates the existing combat bridge and surfaces.
+
+V6 migration adds missing optional nodes and the versioned expedition registry without rebuilding the canonical graph or changing old decisions, assignments, resources, checkpoints, recruitment, endings or historical traversalBranches. Terminal saves keep their terminal status without activating threats. The physical Traversal runtime remains retired; no video slot or audio work is added.
+
+## Coherent checkpoints
+
+- `f9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8`: dedicated approved contract amendment, set1.4.0 immutable baseline.
+- `62f630c`: four operational version/SHA references, after the operator's explicit limited approval.
+- `efcd280590230045cb811c737915bfeb75187afe`: complete runtime, authored content, assets and focused tests.
+- `3b80404`: finalized-receipt guards and intermediate native checkpoints; restrained threat pulse with both reduced-motion controls.
+
+All listed checkpoints were published normally to origin/dev under OD-2026-10-12-A. Main remains protected. The earlier automatic refusal of governance-reference writes was resolved by the operator's explicit approval of those references only.
+
+## Mechanical and independent review
+
+Independent QA:206 tests across13 files, TypeScript, eight contracts/eight video slots and production build pass.27 expedition tests cover both seeded formations, additive historical V6 boundaries, unique grants, front/rear collisions, retreat, victory/defeat and bounded reachability over all16 resolution masks per elite zone. Eight GameApp integration tests cover real owner handoffs with a mocked bridge result; those tests establish lifecycle behavior, not native tactical victory or balance.
+
+The bounded graph proof explicitly models successful activities and recovery. Native campaign proof below remains required. The existing QA helper's19 tests pass on the host; the restricted attempt failed on temporary Git-config permissions and is retained separately. Guardian reviews pass for the amendment, truth/save/combat ownership, graph proof and guarded native pilot. No later LOCKED change is made.
+
+## Native results — review in progress
+
+| Scenario | Result and limits |
+| --- | --- |
+| Direct I,1366 normal, `lot-e-direct-I-0001` | SUCCEEDED and independently inspected. One actual canonical opening victory, first refuge, exact autosave/reload,110 secured gold,51 reputation,0 temporary gold, no console errors. No new Lot E combat claimed by this scenario. |
+| Complete I, `lot-e-complete-I-0001` | Interrupted worker, no final result/receipt. Partial patrol progress is not accepted or used as a seed. |
+| Old V6 touch, `lot-e-oldV6-II-touch-0001` | Interrupted without final result. Assertion correction and new output used for retry; no failed/partial seed reused. |
+| Moderate I,620/game reduction, `lot-e-moderate-I-0001` | SUCCEEDED, receipt SHA/provenance and captures independently reviewed. One new actual optional victory (`poi_opening_wolves_b`,5 rounds/32 actions),15-gold/antidote chest,205 secured gold/54 reputation at first refuge, exact V6 and no console errors. |
+| Old V6 II,390/OS reduction, `lot-e-oldV6-II-touch-0002` | SUCCEEDED, receipt SHA/provenance and earned save independently checked. Two new actual canonical victories: Valmir6 rounds/45 actions, village defense54 actions; one opening battle inherited. Migration21→33 preserves canonical facts exactly,290 secured gold/83 reputation at Second refuge. No new optional fight claimed. |
+| Moderate marsh,620/game reduction, `lot-e-moderate-marsh-0001` | SUCCEEDED. New actual `poi_valley_marsh_b` victory,4 rounds/32 actions,90 temporary gold and exact reputation/materials, ether chest;205 secured gold/59 reputation. Optional checkpoint and reload exact. Independent terminal review pending. |
+| Current complete opening, optional defeat and direct ending | Pending finalized receipts, exact-state checks and capture inspection. |
+
+The direct-I receipt/result hash,90 native inputs and exact saved/resumed JSON were independently verified. Its three desktop atlas images loaded, controls measured at least44px,22 geometry samples reported no page overflow or label overlap. Scrollable map crops do not prove simultaneous visibility of every destination. The subsequent threat pulse is outside that earlier direct scenario's active-threat scope.
+
+The two fresh first-region routes both start with150 secured gold, earn80 from the actual opening fight, recruit Cedric for50, help refugees for40 and help the merchant for30. Native choice text and final saves retain those costs. Moderate exploration adds exactly80 from the wolves and15 from the cache, producing205 instead of110 secured gold at the refuge. Refugee/trial order differs, so the reputation difference is not attributable solely to optional combat. The old-V6 continuation starts from its historical85-gold first-refuge save and is a separate lineage; its290-gold second refuge is not a controlled comparison with the fresh110-gold route.
+
+## Atlas and remaining acceptance
+
+Three revised PNG backgrounds use the built-in image-generation edit tool and inspected V2 references. Original assets remain intact. Exact prompts, reference/output paths, dimensions and hashes are in [atlas provenance](../project/LOT_E_ATLAS_PROVENANCE_2026-10-15.json). The background is geographical art; overlays derive all state and routes from the owner. No pixel collision or physical simulation is added.
+
+The initial390px native review found overflowing action-bar labels. Correction and fresh capture acceptance remain pending. Operator artistic review and final felt balance remain separate from technical/native acceptance, even after this report becomes final. No full demo/device/general-balance approval is inferred from scripted wins.
