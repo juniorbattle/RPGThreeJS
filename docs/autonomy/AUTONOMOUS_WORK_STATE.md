@@ -2,7 +2,7 @@
 
 IN_PROGRESS. Operator OD-2026-10-15-B approves the complete twelve optional POIs, two graph-mobile elites, exact catalogue/economy and independent Combat/retreat. Starting dev4c80196c; no inherited WIP. Dedicated set1.4.0 actual-diff review PASS, amendment commitf9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8. The operator explicitly approved the four governance version/SHA reference updates after auto-review refusal; immutable baselinef9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8. E1-E5 and native acceptance remain PENDING; operator art/final balance separate. All prior QA records, deferred tasks and historical proof preserved. Scheduler unchanged.
 
-Next: IIIindependentPASS10optional/2elite;ending0001realhuntersdefeatwithtwo1HPkeptFAILED/unseedable. EndingretryfromcertifiedIIIwillpaynative2ndrefugerestandselectlivingMarian/Alistair/lancer/Cedric;runtime/buildunchanged.
+Next: Ending0002FAILEDunseedable:pilotincorrectlyexpectedzero280tempGoldonrevisitedrefuge. Strictcanonical+lootpreservationassertionnowcoversonlynativeSealpaidrecovery;initialrefugeskeepzeroassertion. RetryIIIcertifiedwithpaidrest/team.
 
 ## Preserved preceding checkpoint
 
@@ -1424,6 +1424,7 @@ Counts:5productsource modified,2tests modified,2existingQAmodified,0newQA,7proof
 - lot-e-complete-III-0002: PLANNED; port 5427; receipt `tmp/demo/lot-e-complete-III-0002/qa-job.json`; NOT_ACCEPTED
 - lot-e-complete-III-0003: PLANNED; port 5428; receipt `tmp/demo/lot-e-complete-III-0003/qa-job.json`; NOT_ACCEPTED
 - lot-e-complete-ending-0001: PLANNED; port 5429; receipt `tmp/demo/lot-e-complete-ending-0001/qa-job.json`; NOT_ACCEPTED
+- lot-e-complete-ending-0002: PLANNED; port 5430; receipt `tmp/demo/lot-e-complete-ending-0002/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 

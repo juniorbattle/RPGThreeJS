@@ -1404,7 +1404,13 @@ try{
       report.refuge=live;await capture(`${nodeId}-earned`);
       assert.ok(report.battles.length&&report.battles.every(b=>b.pass));
       assert.ok(live.resolvedNodeIds.includes('lion-opening-ambush'));
-      assert.equal(live.flags[`refugeSecured:${nodeId}`],true);assert.equal(live.run.temporaryLoot.gold,0);
+      assert.equal(live.flags[`refugeSecured:${nodeId}`],true);
+      const sealReturn=report.expedition.sealRecoveries?.at(-1);
+      if(nodeId==='lion-second-refuge'&&sealReturn?.phase==='to-refuge'){
+        const expected=structuredClone(sealReturn.before);expected.currentNodeId=expected.run.currentNodeId=nodeId;
+        assertCanonicalMatch(live,expected,'Revisiting the earned seal refuge must not secure loot, heal or replay canon');
+        assert.deepEqual(live.run.temporaryLoot,sealReturn.before.run.temporaryLoot);
+      }else assert.equal(live.run.temporaryLoot.gold,0);
       if(nodeId==='lion-second-refuge'){
         assert.ok(live.resolvedNodeIds.includes('lion-village-choice'));
         assert.ok(live.resolvedNodeIds.includes('lion-reserve-trail'));
