@@ -499,6 +499,27 @@ async function explorePoiStep(live){
     await waitExpeditionTurn();return true;
   }
   const region=Number(await page.locator('.poi-map').getAttribute('data-region'));
+  if(explorationPlan==='complete'&&nativeEquipment&&target==='ending'){
+    const recoveries=report.expedition.sealRecoveries??=[];
+    let recovery=recoveries.at(-1);
+    if((!recovery||recovery.complete)&&region===2&&live.clan.members.some(member=>member.currentHealth<=1)
+      &&lotE.mobileEliteActors.every(def=>live.run.poiExpedition.elites[def.id].defeated)){
+      assert.ok(live.resolvedNodeIds.includes(live.currentNodeId),'Recovery must start from a resolved native activity');
+      recovery={origin:live.currentNodeId,before:live,phase:'to-refuge'};recoveries.push(recovery);
+    }
+    if(recovery&&!recovery.complete){
+      if(recovery.phase==='to-refuge'){
+        await navigateExpedition('lion-second-refuge');return true;
+      }
+      assert.equal(recovery.phase,'return-to-origin');
+      if(region===1){await navigateExpedition('lion-lancer-recruit');return true;}
+      if(live.currentNodeId!==recovery.origin){await navigateExpedition(recovery.origin);return true;}
+      const expected=structuredClone(recovery.rested);expected.currentNodeId=expected.run.currentNodeId=recovery.origin;
+      assertCanonicalMatch(live,expected,'Paid seal recovery return changed canonical facts, loot or checkpoint');
+      assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),live);
+      recovery.after=live;recovery.complete=true;return true;
+    }
+  }
   if(explorationPlan==='moderate'&&region===1&&live.resolvedNodeIds.includes('lion-valmir-road')){
     const elite=live.run.poiExpedition.elites['lion-elite-valley-sentinel'];
     const seen=report.expedition.interceptions.some(entry=>entry.eliteId==='lion-elite-valley-sentinel');
@@ -1049,7 +1070,8 @@ async function battle(){
     &&['serpent_captain','lion_chief'].includes(entry.combatId);
   const preparedRaidParty=target==='second-refuge'&&routePlan==='sacrifice'&&entry.combatId==='village_raid';
   const preparedEliteParty=Boolean(entry.eliteId);
-  const preparedParty=preparedEndingParty||preparedRaidParty||preparedEliteParty;
+  const preparedExpeditionParty=nativeEquipment&&explorationPlan==='complete'&&entry.nodeId.startsWith('lion-poi-seal-');
+  const preparedParty=preparedEndingParty||preparedRaidParty||preparedEliteParty||preparedExpeditionParty;
   const intentionalDefeat=nativeDefeatWait&&entry.nodeId===defeatNodeId;
   if(process.env.DEMO_QA_VERIFY_SALVATION==='1'||preparedParty||intentionalDefeat){
     entry.availableRoster=await frame.evaluate(()=>G.rosterDefs.map(u=>({id:u.campaignId||u.id,skills:[...u.skills]})));
@@ -1072,7 +1094,7 @@ async function battle(){
     assert.ok(Number.isInteger(limit)&&limit>=1&&limit<=4,'Native encounter deployment limit invalid');
     const preferred=preparedEliteParty?['white_mage','warrior','rogue']
       :preparedRaidParty?['white_mage','warrior','rogue','dark_mage']
-      :preparedEndingParty?['white_mage','warrior','lancer','rogue']:['white_mage','warrior',...missing.map(u=>u.id)];
+      :preparedEndingParty||preparedExpeditionParty?['white_mage','warrior','lancer','rogue']:['white_mage','warrior',...missing.map(u=>u.id)];
     let picks=[...new Set([...preferred,...available])].filter(id=>available.has(id)
       &&(!preparedParty||entry.ownerBefore.clan.members.some(u=>u.id===id&&u.currentHealth>0)))
       .slice(0,preparedParty?limit:4);
@@ -1085,6 +1107,7 @@ async function battle(){
     if(preparedEndingParty)entry.preparedEndingParty={preferred,picks,limit,existingLivingClanOnly:true};
     if(preparedRaidParty)entry.preparedRaidParty={preferred,picks,limit,existingLivingClanOnly:true};
     if(preparedEliteParty)entry.preparedEliteParty={preferred,picks,limit,existingLivingClanOnly:true};
+    if(preparedExpeditionParty)entry.preparedExpeditionParty={preferred,picks,limit,existingLivingClanOnly:true};
     await activateControl(frame.locator('#menu [data-d="reset"]'));
     for(const id of picks){
       const selector=`#menu [data-unit="${id}"]`;
@@ -1469,6 +1492,7 @@ try{
       if(nativeEquipment)await prepareNativeWeapon(nodeId);
       const servicesBefore=await state();
       const rest=page.locator('.exploration-stop [data-action="rest"]:not(:disabled)');
+      const nativeRestCost=await rest.count()?Number((await rest.innerText()).match(/(\d+)\s*or/i)?.[1]):0;
       if(await rest.count()){
         await keyboardActivate('.exploration-stop [data-action="rest"]:not(:disabled)');
         await hub.waitFor({state:'visible'});await page.waitForTimeout(150);
@@ -1476,6 +1500,17 @@ try{
         assert.ok(rested.clan.members.every(u=>u.currentHealth>0),'Native rest left downed clan member');
         assert.deepEqual(rested.run.temporaryLoot,servicesBefore.run.temporaryLoot,'Native rest changed temporary loot');
         report.refuges.at(-1).rested=rested;await capture(`${nodeId}-native-rest`);
+      }
+      const sealRecovery=report.expedition.sealRecoveries?.at(-1);
+      if(nodeId==='lion-second-refuge'&&sealRecovery?.phase==='to-refuge'){
+        const rested=await state(),expected=structuredClone(servicesBefore);
+        assert.ok(Number.isInteger(nativeRestCost)&&nativeRestCost>0&&nativeRestCost%15===0);
+        expected.gold-=nativeRestCost;
+        for(const [index,member] of expected.clan.members.entries())member.currentHealth=rested.clan.members[index].currentHealth;
+        assert.deepEqual(rested,expected,'Native seal rest must change only paid gold and health');
+        assert.equal(await rest.count(),0,'Paid native recovery did not restore the party');
+        assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),rested);
+        Object.assign(sealRecovery,{servicesBefore,rested,cost:nativeRestCost,phase:'return-to-origin',exactSavedOwner:true});
       }
       if(nodeId==='lion-first-refuge'&&target==='defeat-recovery'){
         await keyboardActivate('.exploration-stop [data-action="shop"]');
