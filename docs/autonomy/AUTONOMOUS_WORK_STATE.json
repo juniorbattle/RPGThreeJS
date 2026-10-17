@@ -1,13 +1,13 @@
 {
-  "status": "IN_PROGRESS",
+  "status": "READY_FOR_NEXT_SCHEDULED_RUN",
   "runStartedAt": "2026-10-17T22:29:16Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-17T22:40:04.982Z",
   "activeTask": "DEMO-PC-DIALOGUE-ACCESSIBILITY",
   "activePhase": "SOURCE_GREEN_BROWSER_OPEN",
   "activeSubtask": "Stable complete accessible dialogue names implemented; one current-build browser verification remains",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "a9863a321ef657edacb7c7b476e86f062f1e974f",
-  "lastPushedCommit": "a9863a321ef657edacb7c7b476e86f062f1e974f",
+  "lastKnownGoodCommit": "129224d92107e456d88ceaff64135056441c1fbd",
+  "lastPushedCommit": "129224d92107e456d88ceaff64135056441c1fbd",
   "completedThisRun": [
     "Reused Garen/keyboard/contextual/opening/Lot E scopes without replay",
     "Observed previously missing protected council steps2/3, fixture-origin PC1366normal; exact scoped provenance retained",
@@ -143,7 +143,7 @@
     "lastGreenCheck": "2026-10-17T22:06:24.983Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-17T22:38:09.234Z",
+    "lastHeartbeat": "2026-10-17T22:40:04.982Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -34810,19 +34810,11 @@
     ],
     "wip": {
       "branch": null,
-      "sha": null,
+      "sha": "129224d92107e456d88ceaff64135056441c1fbd",
+      "checkpointBranch": "dev",
+      "dirtyFiles": [],
       "status": "GREEN",
-      "dirtyFiles": [
-        "src/ui/DialogueView.ts",
-        "src/ui/DialogueView.test.ts",
-        "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
-        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-        "docs/autonomy/handoffs/2026-10-17T2229Z-codex-dialogue-accessible-names.md"
-      ],
-      "lastGreenCheck": "2026-10-17T22:38:09.234Z"
+      "lastGreenCheck": "2026-10-17T22:40:04.982Z"
     },
     "nextAction": "After read-only preflight/exclusive lock, verify current DialogueView label source and fresh build; register ONE existing tools/cinematics/run_cin6ea4_dialogue_qa.mjs --production-contextual with CIN6EA4_COUNCIL_CONTINUATION=1, new ignored output/free port and host Chromium cache. Copy exact current six requiredAssertions/parameters into registration. Observe complete accessible names via getByRole before reveal finishes, correct segment/action, retained keyboard focus and unchanged council assertions. Inspect captures/provenance/digest. Do not reuse2234 as label acceptance, replay campaign/opening/Garen, or run default3x3 matrix. Then PC tester readiness; mobile final.",
     "runMetrics": {
@@ -34834,26 +34826,26 @@
       "workflowFiles": 5,
       "inheritedWipFiles": 0,
       "browserScenarios": 1,
-      "registeredJobs": 1,
-      "reviewers": 1
+      "reviewers": 2,
+      "registeredJobs": 1
     },
     "checkpointPaths": [
-      "src/combat/legacyCombatRuntime.js",
-      "src/combat/combatKeyboard.test.ts",
-      "tools/demo-continuous-production-qa.mjs",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "src/ui/DialogueView.ts",
+      "src/ui/DialogueView.test.ts",
+      "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/handoffs/2026-10-17T0002Z-codex-undo-wait.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
       "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-      "docs/autonomy/BATTLEFIELD_KEYBOARD.md"
+      "docs/autonomy/handoffs/2026-10-17T2229Z-codex-dialogue-accessible-names.md"
     ],
     "publication": {
       "destination": "origin/dev",
-      "sourceCheckpoint": "b66c997dbf19ee4fece10b2e785ba88fef7dae0c",
       "authorization": "OD-2026-10-12-A",
-      "finalWorkflow": "Containing Git commit; remote verification and release follow in automation memory"
+      "sourceCheckpoint": "129224d92107e456d88ceaff64135056441c1fbd",
+      "finalWorkflow": "Containing Git commit; live parity and owned-lock release recorded in automation memory"
     },
-    "runEndedAt": "2026-10-17T22:06:24.983Z",
+    "runEndedAt": "2026-10-17T22:40:04.982Z",
     "writerStopped": true,
     "metadataPublication": {
       "status": "INCLUDED_IN_FINAL_CLOSEOUT_COMMIT",
@@ -38986,7 +38978,7 @@
     "runId": "rpgthreejs-auto-dev-90m-20261017T2229",
     "agent": "codex",
     "status": "READY_FOR_NEXT_SCHEDULED_RUN",
-    "runStartedAt": "2026-10-17T21:35:43Z",
+    "runStartedAt": "2026-10-17T22:29:16Z",
     "activePhase": "SOURCE_GREEN_BROWSER_OPEN",
     "heartbeat": "2026-10-17T22:06:24.983Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-17T2135Z-codex-next-player-focus.md",
@@ -40717,7 +40709,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "a9863a321ef657edacb7c7b476e86f062f1e974f",
+    "lastPushedCommit": "129224d92107e456d88ceaff64135056441c1fbd",
     "productPreview": {
       "verifiedAt": "2026-10-16T15:27:07.4093983Z",
       "indexSha256": "b4773b8722aef154c3cd6e0e92cd677703c177b82f23cd084e5b661d353aa69f",
@@ -41523,7 +41515,59 @@
       "closeoutAt": "2026-10-16T15:33:54.359Z"
     },
     "creditStatus": "AVAILABLE",
-    "workingBranch": "dev"
+    "workingBranch": "dev",
+    "lastKnownGoodCommit": "129224d92107e456d88ceaff64135056441c1fbd",
+    "completedThisRun": [
+      "Reused Garen/keyboard/contextual/opening/Lot E scopes without replay",
+      "Observed previously missing protected council steps2/3, fixture-origin PC1366normal; exact scoped provenance retained",
+      "Corrected incomplete accessible dialogue control names during visual typewriter; segment/speaker/tag/outcomes/action preserved",
+      "Two red-before regressions now green;91focused tests/fresh types+build PASS; new label browser explicitly OPEN"
+    ],
+    "filesChanged": [
+      "src/ui/DialogueView.ts",
+      "src/ui/DialogueView.test.ts",
+      "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
+      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+      "docs/autonomy/handoffs/2026-10-17T2229Z-codex-dialogue-accessible-names.md"
+    ],
+    "testsRun": [
+      "2 intended dialogue accessibility failures before correction",
+      "91 current tests/4files after correction PASS",
+      "Fresh TypeScript+Vite build PASS;8MP4; inherited chunk-size advisory only",
+      "8contracts/8slots;LOCKED immutable/working gates, syntax and whitespace PASS",
+      "ONE old-build council continuation smoke accepted scoped; new label browser OPEN"
+    ],
+    "testsPassed": [
+      "91 current focused tests",
+      "Types/build/contracts/LOCKED/whitespace",
+      "ACCEPTED_SCOPED_FIXTURE_COUNCIL_STEPS_2_3_PC1366_NORMAL"
+    ],
+    "testsRemaining": [
+      "Current-build accessible-name production smoke before label acceptance",
+      "Remaining independent PC/tester finishing, final mobile and operator final acceptance"
+    ],
+    "blockers": [
+      "New accessible-name browser verification remains OPEN under the one-scenario-per-run limit; source checkpoint is green",
+      "Bois-Clair nightplate remains external BLOCKED_ASSET; independent PC work continues"
+    ],
+    "remainingWork": [
+      "Verify new accessible-name production boundary with existing runner",
+      "PC accessibility/tester readiness",
+      "Operator Lot E economy/elites/atlas art and external nightplate remain separate",
+      "Final mobile after PC stability"
+    ],
+    "taskQueue": [
+      "DEMO-PC-SIX-HERO-SKILLS: CLOSED_SCOPED_REUSED_PROOFS",
+      "DEMO-CAMPAIGN-KEYBOARD: NEXT_PLAYER_FOCUS_AND_POSITIVE_WAIT_ACCEPTED_SCOPED_PC1366_NORMAL; prior scopes retained",
+      "DEMO-NARRATIVE-PRESENTATION: ACTIVE_REMAINING_CRITERIA_ONLY",
+      "DEMO-PC-ACCESSIBILITY-FINISHING: SOURCE_GREEN_COMPLETE_DIALOGUE_NAMES_BROWSER_OPEN",
+      "DEMO-PC-TESTER-HANDOFF: PENDING",
+      "DEMO-MOBILE-FINAL: AFTER_PC_STABLE"
+    ],
+    "contractComplianceStatus": "SOURCE_COMPLIANT_QA_EVIDENCE_BLOCKED_NEW_LABEL_BROWSER_OPEN"
   },
   "previousInterruptedRun": {
     "runId": "rpgthreejs-auto-dev-90m-20261009T0011",
@@ -45101,6 +45145,18 @@
       "CAMPAIGN_AND_STATE",
       "WORLD_AND_CHARACTERS"
     ],
-    "staging": "PASS_282_runtime_steps_0_missing_or_unknown"
+    "staging": "PASS_282_runtime_steps_0_missing_or_unknown",
+    "endedAt": "2026-10-17T22:40:04.982Z",
+    "sourceCheckpoint": "129224d92107e456d88ceaff64135056441c1fbd",
+    "publication": {
+      "destination": "origin/dev",
+      "authorization": "OD-2026-10-12-A",
+      "sourceCheckpoint": "129224d92107e456d88ceaff64135056441c1fbd",
+      "finalWorkflow": "Containing Git commit; live parity and owned-lock release recorded in automation memory"
+    },
+    "workerDisposition": "Worker25512 exited with0; receipt finalized after browser/server/models cleanup; port5433 host absence checked at closeout",
+    "automaticReviewRefusal": false,
+    "taskComplete": false,
+    "newLabelBrowser": "OPEN"
   }
 }

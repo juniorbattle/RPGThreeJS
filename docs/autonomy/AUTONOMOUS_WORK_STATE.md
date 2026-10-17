@@ -1,6 +1,6 @@
 # Complete accessible dialogue names — source green, browser open
 
-Run rpgthreejs-auto-dev-90m-20261017T2229; started 2026-10-17T22:29:16Z; checkpoint in progress.
+READY_FOR_NEXT_SCHEDULED_RUN. Run rpgthreejs-auto-dev-90m-20261017T2229; started 2026-10-17T22:29:16Z; ended 2026-10-17T22:40:04.982Z. Source checkpoint 129224d92107e456d88ceaff64135056441c1fbd published on dev; final workflow transport/parity/owned-lock release in Git and automation memory. New-label browser remains OPEN.
 
 Dialogue controls expose their complete current segment, speaker/tag, consequences and available action before focus; visual typewriter and native progression remain unchanged. Two DOM regressions failed before correction;91current tests/fresh types+build PASS.
 
