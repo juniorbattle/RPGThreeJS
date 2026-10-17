@@ -78,3 +78,20 @@ Limits: combatState projection equality excludes facing; no complete tactical-st
 Counts: source1/test1/existingQA1/newPersistentQA0/promotedProof0/workflow5/inherited0/browser1/reviewer1. No contract/canon/economy/elite/atlas/media/Traversal/scheduler change. Set1.4.0 immutablef9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8; no LOCKED rule changed.
 
 Next: After read-only preflight/exclusive lock on current dev, reproduce focus continuity at the next player turn after native keyboard Wait in src/combat/legacyCombatRuntime.js beginTurn/openActionMenu using actual-source DOM. The accepted0007 scenario proves Wait activation/zero-AP/guard/turn advancement, not next-turn focus. Correct only a demonstrated focus loss using existing owner/helpers, preserve AP/turn/facing/V6 rules, then one scoped existing-runner PC production check. Retain Garen/2340/0007 scopes; no unchanged campaign replay. If no remaining PC control defect, advance demonstrated narrative presentation findings; isolate external Bois-Clair nightplate and leave mobile final.
+
+
+## Native next-player focus and positive Wait — 2026-10-17T2135Z
+
+Run rpgthreejs-auto-dev-90m-20261017T2135; started2026-10-17T21:35:43Z; ended2026-10-17T22:06:24.983Z. Sourcea9863a321ef657edacb7c7b476e86f062f1e974f published on dev; final workflow transport/parity/lock disposition in Git and automation memory.
+
+Native keyboard Wait now returns visible enabled dock focus at the next player turn, including an intervening enemy turn. A positive-AP Wait also preserves native breath/guard and subsequent focus. AP/turn/status/facing/campaign/V6 rules remain unchanged.
+
+One campaign-next-turn-2141 PC1366normal scenario: actual opening victory in4rounds/28recorded actions, both automatic next-player focus observations, zero/positive-AP Wait, retained Undo/keyboard/pointer/parent return, first refuge75gold/54reputation and exact earned V6 reload. Result835b785fa0740d5241b8be904b8d57f729c92f37f0973c6786e8ccbc20dbfd24; current source/driver/build/request/digest and selected captures reviewed; guardian scoped acceptance. Raw receipt NOT_ACCEPTED preserved; reviewed scope separate.
+
+Limits: Accepted only for native PC1366 normal-motion dock Wait and the observed next-player handoffs; canvas Wait, external/parent focus noninterference are source/DOM-tested only. No broad mobile/OS/spokenAT/device/art/balance/global-demo acceptance. Prior Garen/2340/0007 scopes retained; no unchanged campaign replay. Bois-Clair nightplate remains BLOCKED_ASSET outside this control task.
+
+98current focused tests/3files,TypeScript/build,8contracts/8slots,immutable/working LOCKED and whitespace PASS. Three expected source-DOM focus failures before correction. Guardian source and final native review; no LOCKED rule changed.
+
+Counts: source1/test1/existingQA1/newPersistentQA0/promotedProof0/workflow5/inherited0/browser1/reviewer1.314historicalQA and exactdeferredDemoTask/pendingNarrativeTask preserved;315total.
+
+Next action: After read-only preflight/exclusive lock on current dev, resume the PC narrative milestone in docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md: reconcile existing council/refugee acknowledgement proofs (contextual0455/opening1642 and earned Lot E observations) with current src/game/contextualDialogueContent.ts. Preserve accepted opening/council/fact/Alaric scopes; exercise only a genuinely missing presentation boundary with an existing runner or correct a demonstrated source defect. Do not replay a complete campaign or the accepted opening for an earned label. If those criteria are already covered, advance PC accessibility/tester readiness. Keep Bois-Clair nightplate isolated and final mobile after PC.
