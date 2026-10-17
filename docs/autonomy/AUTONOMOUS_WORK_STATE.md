@@ -6,6 +6,8 @@ Three real-source DOM failures fixed with transient focus continuity; existing A
 
 Next action: Read terminal campaign-next-turn-2141 receipt/results without rerun; verify current provenance/digest, both automatic-focus observations, positive-AP breath/guard, actual victory/refuge/exact V6 and selected captures; reuse guardian for scoped acceptance.
 
+Native progress at2026-10-17T21:54:27.234Z: both automatic-focus observations passed and captures inspected; real opening battle round2/13recorded actions. Aggregate receipt/earned V6 acceptance pending.
+
 <!-- QA_JOBS_START -->
 ## Live QA jobs
 

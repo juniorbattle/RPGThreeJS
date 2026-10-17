@@ -4,7 +4,7 @@
   "runEndedAt": null,
   "activeTask": "DEMO-CAMPAIGN-KEYBOARD",
   "activePhase": "POI_POST_LOT_E_PC_FINISHING",
-  "activeSubtask": "Published next-player-turn focus correction; native production campaign-next-turn-2141 running",
+  "activeSubtask": "Both native automatic next-player focus observations passed; actual opening battle progressing in round2",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "a9863a321ef657edacb7c7b476e86f062f1e974f",
   "lastPushedCommit": "a9863a321ef657edacb7c7b476e86f062f1e974f",
@@ -128,7 +128,7 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "rpgthreejs-auto-dev-90m-20261017T2135",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-17T21:41:34.831Z",
+  "lastHeartbeat": "2026-10-17T21:54:27.234Z",
   "wip": {
     "branch": null,
     "sha": "a9863a321ef657edacb7c7b476e86f062f1e974f",
@@ -140,7 +140,7 @@
     "lastGreenCheck": "2026-10-17T21:41:34.831Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-17T21:41:34.831Z",
+    "lastHeartbeat": "2026-10-17T21:54:27.234Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -35543,7 +35543,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "DEMO-CAMPAIGN-KEYBOARD",
-    "activeSubtask": "Published next-player-turn focus correction; native production campaign-next-turn-2141 running",
+    "activeSubtask": "Both native automatic next-player focus observations passed; actual opening battle progressing in round2",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -38880,7 +38880,7 @@
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-17T21:35:43Z",
     "activePhase": "POI_POST_LOT_E_PC_FINISHING",
-    "heartbeat": "2026-10-17T21:41:34.831Z",
+    "heartbeat": "2026-10-17T21:54:27.234Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-17T0002Z-codex-undo-wait.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -43032,7 +43032,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-17T21:41:34.831Z",
+  "heartbeat": "2026-10-17T21:54:27.234Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -44822,6 +44822,17 @@
     ],
     "noNewQaTool": true,
     "implementationCommit": "a9863a321ef657edacb7c7b476e86f062f1e974f",
-    "guardianPrelaunch": "PASS_WITH_PENDING_NATIVE_PROOF"
+    "guardianPrelaunch": "PASS_WITH_PENDING_NATIVE_PROOF",
+    "nativeProgress": {
+      "at": "2026-10-17T21:54:27.234Z",
+      "automaticFocusBothPassed": true,
+      "capturesInspected": [
+        "combat-0-native-next-turn-after-attack.png",
+        "combat-0-native-next-turn-positive-ap.png"
+      ],
+      "aggregateAcceptance": "PENDING_TERMINAL",
+      "battleRound": 2,
+      "recordedActions": 13
+    }
   }
 }
