@@ -1,10 +1,10 @@
 {
-  "status": "READY_FOR_NEXT_SCHEDULED_RUN",
+  "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-17T23:00:00Z",
   "runEndedAt": "2026-10-17T23:13:04.639Z",
-  "activeTask": "DEMO-PC-TESTER-HANDOFF",
-  "activePhase": "PC_CANDIDATE_DOCUMENTED_MOBILE_NEXT",
-  "activeSubtask": "Current dialogue labels accepted scoped; accurate PC launch and playtest guide delivered",
+  "activeTask": "DEMO-PC-GLOBAL-ACCEPTANCE",
+  "activePhase": "OPERATOR_PC_BALANCE_ART_PRIORITY",
+  "activeSubtask": "Consolidated PC review before remaining mobile verification",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "a0ee1afafbd93ed7b1fdf118dad60894f41a781f",
   "lastPushedCommit": "a0ee1afafbd93ed7b1fdf118dad60894f41a781f",
@@ -39,26 +39,30 @@
     "Operator final device/art/felt-balance/global demo acceptance"
   ],
   "blockers": [
-    "External Bois-Clair nightplate remains BLOCKED_ASSET; no independent PC source blocker demonstrated",
-    "No actual screen-reader or final mobile/global demo acceptance"
+    "Global PC/art/felt-balance acceptance remains open; technical scoped proofs retained",
+    "Bois-Clair nightplate external asset gap retained",
+    "Audio deferred; future video generation remains a dedicated non-recurring workstream"
   ],
   "remainingWork": [
-    "Final mobile verification after PC candidate finishing",
-    "Operator art, economy/elites, hardware comfort and final demo playtest"
+    "Global PC player experience acceptance",
+    "Operator felt-balance and art review with demonstrated corrections",
+    "Remaining mobile boundary after PC milestone",
+    "Conditional audiovisual roadmap recorded by OD-2026-10-17-A"
   ],
-  "nextAction": "Begin the final mobile milestone after preflight/lock: reconcile retained390touch/OS atlas and campaign scopes against current source, then isolate the missing current dialogue-name boundary. The existing run_cin6ea4_dialogue_qa.mjs council mode is fixed to1366normal; minimally parameterize that existing mode for ONE390x844 OS-only council steps1-3 case (game reduction false), preserving all six assertions, exact text/speakers/role-name/focus/bounds/state comparisons and historical defaults. Guardian reviews certifying diff before registration; no default3x3 matrix, new tool, full-campaign/Garen/PC replay or fabricated earned seed. Correct only a demonstrated narrow product defect. Retain PC_PLAYTEST guide and operator economy/art/device acceptance separately.",
+  "nextAction": "Prioritize global PC acceptance, felt balance and art under OD-2026-10-17-A before mobile. Use the retained Lot E complete-lineage results/captures and current PC_PLAYTEST acceptance grid to review preparation/difficulty, economy/detours, atlas/tableau readability and campaign comprehension. Preserve exact proof scopes; isolate ONE demonstrated player-facing defect for correction or one precise operator balance/art verdict. No unchanged full-campaign replay, arbitrary rebalance, new QA runner or mobile-only micro-PASS. Conditional later roadmap: FF9-style eight-slot cinematics (dedicated non-recurring work), UI sound FX, music, then combat VFX/unit choreography; audio stays deferred until the dedicated readiness decision and truth owners remain unchanged.",
   "taskQueue": [
-    "DEMO-PC-SIX-HERO-SKILLS: CLOSED_SCOPED_REUSED_PROOFS",
-    "DEMO-CAMPAIGN-KEYBOARD: ACCEPTED_SCOPED_PC1366_NORMAL; prior scopes retained",
-    "DEMO-NARRATIVE-PRESENTATION: RETAINED_SCOPED_PROOFS; external art isolated",
-    "DEMO-PC-ACCESSIBILITY-FINISHING: CURRENT_DIALOGUE_NAMES_ACCEPTED_SCOPED_PC1366_NORMAL",
-    "DEMO-PC-TESTER-HANDOFF: LAUNCH_AND_ROUTE_GUIDE_DELIVERED; operator final acceptance OPEN",
-    "DEMO-MOBILE-FINAL: NEXT_CHANGED_BOUNDARIES_ONLY"
+    "DEMO-PC-GLOBAL-ACCEPTANCE: PRIORITY; demonstrated gaps and operator verdicts",
+    "DEMO-PC-BALANCE-ART: PRIORITY; actual preparation/economy/atlas review",
+    "DEMO-MOBILE-FINAL: DEFERRED_UNTIL_PC_MILESTONE; relative media timing unspecified",
+    "CINEMATICS-FF9: CONDITIONAL_NEXT; eight slots, dedicated external work",
+    "UI-SOUND-FX: CONDITIONAL_AFTER_CINEMATICS; audio readiness decision first",
+    "GAME-MUSIC: CONDITIONAL_AFTER_UI_SOUNDS",
+    "COMBAT-VFX-CHOREOGRAPHY: CONDITIONAL_AFTER_MUSIC; presentation only"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_SCOPED_PC_DIALOGUE_AND_TESTER_DOCS; GLOBAL_DEMO_OPEN",
+  "contractComplianceStatus": "PASS_DOCUMENTED_OPERATOR_PRIORITY; GLOBAL_ACCEPTANCE_OPEN",
   "commitReferenceScope": "Source129224d unchanged; published PC onboarding checkpoint a0ee1afafbd93ed7b1fdf118dad60894f41a781f. Final workflow checkpoint is the Git commit containing this state; final transport/parity/lock release in automation memory. Nested historical ledgers retain original scope.",
-  "operatorAuthorization": "Explicit exceptional mission and both full attachments OD-2026-10-15-A; normal non-force origin/dev publication permanently authorized OD-2026-10-12-A; no main writes.",
+  "operatorAuthorization": "OD-2026-10-17-A directly prioritizes global PC acceptance, felt balance and art before mobile; conditional audiovisual roadmap. Publication OD-2026-10-12-A retained. No scheduler or LOCKED changes.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -34907,7 +34911,7 @@
       "status": "GREEN",
       "lastGreenCheck": "2026-10-17T22:40:04.982Z"
     },
-    "nextAction": "Begin the final mobile milestone after preflight/lock: reconcile retained390touch/OS atlas and campaign scopes against current source, then isolate the missing current dialogue-name boundary. The existing run_cin6ea4_dialogue_qa.mjs council mode is fixed to1366normal; minimally parameterize that existing mode for ONE390x844 OS-only council steps1-3 case (game reduction false), preserving all six assertions, exact text/speakers/role-name/focus/bounds/state comparisons and historical defaults. Guardian reviews certifying diff before registration; no default3x3 matrix, new tool, full-campaign/Garen/PC replay or fabricated earned seed. Correct only a demonstrated narrow product defect. Retain PC_PLAYTEST guide and operator economy/art/device acceptance separately.",
+    "nextAction": "Prioritize global PC acceptance, felt balance and art under OD-2026-10-17-A before mobile. Use the retained Lot E complete-lineage results/captures and current PC_PLAYTEST acceptance grid to review preparation/difficulty, economy/detours, atlas/tableau readability and campaign comprehension. Preserve exact proof scopes; isolate ONE demonstrated player-facing defect for correction or one precise operator balance/art verdict. No unchanged full-campaign replay, arbitrary rebalance, new QA runner or mobile-only micro-PASS. Conditional later roadmap: FF9-style eight-slot cinematics (dedicated non-recurring work), UI sound FX, music, then combat VFX/unit choreography; audio stays deferred until the dedicated readiness decision and truth owners remain unchanged.",
     "runMetrics": {
       "runtimeSourceFilesModified": 1,
       "testFilesModified": 1,
@@ -35733,8 +35737,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "DEMO-PC-TESTER-HANDOFF",
-    "activeSubtask": "Current dialogue labels accepted scoped; accurate PC launch and playtest guide delivered",
+    "activeTask": "DEMO-PC-GLOBAL-ACCEPTANCE",
+    "activeSubtask": "Consolidated PC review before remaining mobile verification",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -39068,11 +39072,11 @@
     },
     "runId": "rpgthreejs-auto-dev-90m-20261017T2300",
     "agent": "codex",
-    "status": "READY_FOR_NEXT_SCHEDULED_RUN",
+    "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-17T23:00:00Z",
-    "activePhase": "PC_CANDIDATE_DOCUMENTED_MOBILE_NEXT",
+    "activePhase": "OPERATOR_PC_BALANCE_ART_PRIORITY",
     "heartbeat": "2026-10-17T23:13:04.639Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-17T2300Z-codex-pc-dialogue-candidate.md",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-17T2320Z-codex-pc-acceptance-priority.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -41639,22 +41643,26 @@
       "Operator final device/art/felt-balance/global demo acceptance"
     ],
     "blockers": [
-      "External Bois-Clair nightplate remains BLOCKED_ASSET; no independent PC source blocker demonstrated",
-      "No actual screen-reader or final mobile/global demo acceptance"
+      "Global PC/art/felt-balance acceptance remains open; technical scoped proofs retained",
+      "Bois-Clair nightplate external asset gap retained",
+      "Audio deferred; future video generation remains a dedicated non-recurring workstream"
     ],
     "remainingWork": [
-      "Final mobile verification after PC candidate finishing",
-      "Operator art, economy/elites, hardware comfort and final demo playtest"
+      "Global PC player experience acceptance",
+      "Operator felt-balance and art review with demonstrated corrections",
+      "Remaining mobile boundary after PC milestone",
+      "Conditional audiovisual roadmap recorded by OD-2026-10-17-A"
     ],
     "taskQueue": [
-      "DEMO-PC-SIX-HERO-SKILLS: CLOSED_SCOPED_REUSED_PROOFS",
-      "DEMO-CAMPAIGN-KEYBOARD: ACCEPTED_SCOPED_PC1366_NORMAL; prior scopes retained",
-      "DEMO-NARRATIVE-PRESENTATION: RETAINED_SCOPED_PROOFS; external art isolated",
-      "DEMO-PC-ACCESSIBILITY-FINISHING: CURRENT_DIALOGUE_NAMES_ACCEPTED_SCOPED_PC1366_NORMAL",
-      "DEMO-PC-TESTER-HANDOFF: LAUNCH_AND_ROUTE_GUIDE_DELIVERED; operator final acceptance OPEN",
-      "DEMO-MOBILE-FINAL: NEXT_CHANGED_BOUNDARIES_ONLY"
+      "DEMO-PC-GLOBAL-ACCEPTANCE: PRIORITY; demonstrated gaps and operator verdicts",
+      "DEMO-PC-BALANCE-ART: PRIORITY; actual preparation/economy/atlas review",
+      "DEMO-MOBILE-FINAL: DEFERRED_UNTIL_PC_MILESTONE; relative media timing unspecified",
+      "CINEMATICS-FF9: CONDITIONAL_NEXT; eight slots, dedicated external work",
+      "UI-SOUND-FX: CONDITIONAL_AFTER_CINEMATICS; audio readiness decision first",
+      "GAME-MUSIC: CONDITIONAL_AFTER_UI_SOUNDS",
+      "COMBAT-VFX-CHOREOGRAPHY: CONDITIONAL_AFTER_MUSIC; presentation only"
     ],
-    "contractComplianceStatus": "PASS_SCOPED_PC_DIALOGUE_AND_TESTER_DOCS; GLOBAL_DEMO_OPEN",
+    "contractComplianceStatus": "PASS_DOCUMENTED_OPERATOR_PRIORITY; GLOBAL_ACCEPTANCE_OPEN",
     "dialogueNames2300": {
       "recordedAt": "2026-10-17T23:10:22.748Z",
       "runId": "rpgthreejs-auto-dev-90m-20261017T2300",
@@ -41777,7 +41785,22 @@
       }
     },
     "lastSnapshotAt": "2026-10-17T23:13:04.640Z",
-    "lastSnapshotCommit": "a0ee1afafbd93ed7b1fdf118dad60894f41a781f"
+    "lastSnapshotCommit": "a0ee1afafbd93ed7b1fdf118dad60894f41a781f",
+    "priorityDecision2320": {
+      "recordedAt": "2026-10-17T23:21:43.962Z",
+      "decisionId": "OD-2026-10-17-A",
+      "sessionRunId": "codex-pc-acceptance-priority-20261017T2320",
+      "scope": "Operator priority and conditional roadmap; no gameplay/acceptance/media generation",
+      "baseline": "47287e1d686032a503db0ef1dc46c25663e90361",
+      "schedulerChanged": false,
+      "counts": {
+        "runtime": 0,
+        "qa": 0,
+        "evidence": 0,
+        "workflow": 7
+      },
+      "nextAction": "Prioritize global PC acceptance, felt balance and art under OD-2026-10-17-A before mobile. Use the retained Lot E complete-lineage results/captures and current PC_PLAYTEST acceptance grid to review preparation/difficulty, economy/detours, atlas/tableau readability and campaign comprehension. Preserve exact proof scopes; isolate ONE demonstrated player-facing defect for correction or one precise operator balance/art verdict. No unchanged full-campaign replay, arbitrary rebalance, new QA runner or mobile-only micro-PASS. Conditional later roadmap: FF9-style eight-slot cinematics (dedicated non-recurring work), UI sound FX, music, then combat VFX/unit choreography; audio stays deferred until the dedicated readiness decision and truth owners remain unchanged."
+    }
   },
   "previousInterruptedRun": {
     "runId": "rpgthreejs-auto-dev-90m-20261009T0011",

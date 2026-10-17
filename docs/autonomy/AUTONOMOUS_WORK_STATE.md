@@ -1,3 +1,13 @@
+# Current priority — global PC acceptance, balance and art
+
+OD-2026-10-17-A supersedes the mobile-next action below. READY_FOR_PC_ACCEPTANCE; DEMO-PC-GLOBAL-ACCEPTANCE. Review the consolidated grid in docs/project/PC_PLAYTEST.md with retained native Lot E lineage/captures; isolate a demonstrated player defect or precise balance/art verdict. Mobile deferred until this PC milestone.
+
+Conditional later order: FF9-style eight-slot cinematics, UI sound FX, music, combat VFX and unit choreography. No generation or audio activation now; dedicated external video/audio-readiness boundaries retained. Scheduler/LOCKED/source/317QA jobs/deferred objects unchanged. This update changes priority, grants no new product acceptance.
+
+Next: Prioritize global PC acceptance, felt balance and art under OD-2026-10-17-A before mobile. Use the retained Lot E complete-lineage results/captures and current PC_PLAYTEST acceptance grid to review preparation/difficulty, economy/detours, atlas/tableau readability and campaign comprehension. Preserve exact proof scopes; isolate ONE demonstrated player-facing defect for correction or one precise operator balance/art verdict. No unchanged full-campaign replay, arbitrary rebalance, new QA runner or mobile-only micro-PASS. Conditional later roadmap: FF9-style eight-slot cinematics (dedicated non-recurring work), UI sound FX, music, then combat VFX/unit choreography; audio stays deferred until the dedicated readiness decision and truth owners remain unchanged.
+
+## Previous completed run — historical result
+
 # PC dialogue names verified; playtest guide delivered
 
 READY_FOR_NEXT_SCHEDULED_RUN. Run rpgthreejs-auto-dev-90m-20261017T2300; started2026-10-17T23:00:00Z; ended2026-10-17T23:11:50.831Z. Existing product129224d unchanged. Final documentation checkpoint/parity/lock release in Git and automation memory.

@@ -18,6 +18,22 @@ Pour un nouveau parcours, utiliser un profil de navigateur distinct afin de cons
 
 Pour chaque problème, noter le commit (`git rev-parse HEAD`), le navigateur, la taille de fenêtre, le lieu, les actions immédiatement précédentes, le résultat attendu et le résultat observé. Une capture aide à retrouver le contexte. Garder la sauvegarde existante et noter l'adresse utilisée.
 
+## Revue prioritaire : acceptation globale, équilibre et art
+
+[OD-2026-10-17-A](../autonomy/PC_ACCEPTANCE_AND_MEDIA_ROADMAP_OPERATOR_DECISION_2026-10-17.md) place cette revue avant la frontière mobile restante. Pour chaque ligne, consigner **accepté**, **défaut observé** ou **ajustement proposé**, avec le lieu, la capture/sauvegarde et l'observation qui justifient le verdict. Un champ vide reste à juger ; aucun résultat automatique ne le transforme en acceptation humaine.
+
+| Axe | Ce qui est établi | Ce qu'il faut maintenant juger sur PC |
+| --- | --- | --- |
+| Démo globale | Parcours gagnés, deux fins et reprises V6 dans les portées conservées ; source courante et changements récents vérifiés séparément. | Comprend-on l'objectif et la prochaine action ? Le rythme reste-t-il agréable de l'ouverture au jugement ? Un défaut empêche-t-il ou dégrade-t-il la partie ? |
+| Difficulté et préparation | Vraies victoires et défaites conservées, sans statistiques affaiblies ; recrutement, équipement, soins et repos par menus existants. | Le joueur comprend-il une défaite et peut-il raisonnablement se préparer/reprendre ? Les rencontres ordinaires et les deux élites ont-elles un intérêt et une difficulté adaptés ? |
+| Économie et détours | Catalogue Lot E et coûts existants implémentés ; butin temporaire sécurisé aux frontières existantes. | Les choix d'aide/exploration, recrutement, équipement et repos donnent-ils des arbitrages utiles ? Les détours sont-ils intéressants sans devenir obligatoires ? |
+| Atlas et art | Trois atlas intégrés, 33 POI fixes et deux élites mobiles ; cibles et états accessibles testés dans leurs portées. | Routes, catégories, relief, étiquettes et menaces se lisent-ils sans confusion ? Cohérence visuelle entre régions, tableaux et personnages ? |
+| Narration et confort | Textes canoniques et staging conservés ; focus/contrôles/noms accessibles PC vérifiés dans les portées documentées. | Qui parle et à qui ? Transitions et dialogues lisibles, sans gêne ni perte de contrôle à l'usage clavier/pointeur ? |
+
+Le [bilan économique Lot E](../reports/lot-e-final-2026-10-15.md) fournit des points de départ, pas un verdict : plafond facultatif brut de **980 or** ; soldes terminaux observés **560 / 850 / 1167 or** sur des lignées, dépenses et graines différentes. Ces chiffres ne forment pas une comparaison contrôlée d'équilibrage. Les deux défaites conservées (Sentinelle avec équipe novice, Chasseurs avec deux membres à 1 PV) doivent être replacées dans leur préparation réelle avant de proposer une correction.
+
+Prochaine action de revue : prendre la lignée complétiste et ses captures conservées dans le rapport Lot E, confronter préparation/rencontres/atlas à cette grille, puis ouvrir **un seul écart joueur concret** à corriger ou une décision précise à juger. Réutiliser les preuves compatibles ; ne pas rejouer la campagne pour accumuler des validations identiques.
+
 ## Acceptation encore ouverte
 
 L'économie, les récompenses/coûts, les formations et le rythme des élites, les atlas et le confort matériel attendent le playtest opérateur. L'image nocturne de Bois-Clair reste un blocage d'asset externe identifié. La remasterisation vidéo est un chantier manuel externe ; l'audio reste différé.
