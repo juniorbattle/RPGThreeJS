@@ -1,45 +1,29 @@
 {
-  "status": "READY_FOR_NEXT_SCHEDULED_RUN",
-  "runStartedAt": "2026-10-16T19:29:24.6746229-04:00",
-  "runEndedAt": "2026-10-16T23:53:09.829Z",
+  "status": "IN_PROGRESS",
+  "runStartedAt": "2026-10-17T00:02:02Z",
+  "runEndedAt": null,
   "activeTask": "DEMO-CAMPAIGN-KEYBOARD",
   "activePhase": "POI_POST_LOT_E_PC_FINISHING",
-  "activeSubtask": "Escape and fresh PC mounted controls accepted scoped; remaining native Undo movement focus and keyboard Wait",
+  "activeSubtask": "Undo movement focus fixed after two red DOM assertions; native Undo/Wait production verification pending",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "46ce177ab89d09a004615d5bdc2ccc81c5f301db",
   "lastPushedCommit": "46ce177ab89d09a004615d5bdc2ccc81c5f301db",
   "completedThisRun": [
-    "Operator authorized immediate product resumption; removed saved prompt configuration-only restriction and retained ACTIVE scheduler settings",
-    "Garen CLOSED_SCOPED using accepted Lot E complete-ending-0003 battle10 novice-spear cast:3to1AP, target85to57; no gameplay replay",
-    "Fixed demonstrated Escape no-op in native attack/skill/item menus; existing closeSubmenu owns focus only",
-    "One actual built-production PC1366normal scenario passed: native deployment, six Escape/Retour checks, refusals, legal movement/keyboard and actual pointer target; actual3round17action victory, parent return and exact first-refuge V6/reload",
-    "Guardian accepted scoped controls;7 relevant captures inspected;2 environment launch failures preserved without game entry",
-    "Late config observation: scheduler changed fromACTIVE/xhigh toPAUSED/high during run; latest fields retained without overriding"
+    "Read-only clean preflight, no concurrent lock; live dev parity verified and exclusive lock acquired",
+    "Native Undo focus loss reproduced from dock/canvas; bounded focus-only correction; 89 focused tests pass"
   ],
   "filesChanged": [
-    "docs/autonomy/PRODUCT_RESUMPTION_OPERATOR_DECISION_2026-10-16.md",
-    "docs/autonomy/OPERATOR_DECISIONS.md",
-    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-    "docs/autonomy/RECURRING_RUN_PROMPT.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
     "src/combat/legacyCombatRuntime.js",
     "src/combat/combatKeyboard.test.ts",
-    "tools/demo-continuous-production-qa.mjs",
-    "docs/autonomy/handoffs/2026-10-16T2329Z-codex-product-resumption.md"
+    "tools/demo-continuous-production-qa.mjs"
   ],
   "testsRun": [
-    "Actual-source red reproduction:5new assertions failed before fix",
-    "83focused tests2files (41keyboard+42hotfix), current src only; archival tmp excluded",
-    "TypeScript noEmit",
-    "Production build",
-    "contracts:validate8contracts/8slots",
-    "LOCKED immutable/working gates; whitespace",
-    "Exact updated automation prompt/settings"
+    "89 tests / 2 current files, excluding tmp archives",
+    "8 contracts / 8 slots and immutable/working LOCKED gates"
   ],
   "testsPassed": [
-    "83focused current tests, TypeScript, production build, validator8/8, unchanged LOCKED and whitespace",
-    "campaign-controls-2340 SUCCEEDED/exit0/provenanceStable/errors[]; result6211445a33f0ba0ed2e3b8f3a94eb493e6a49c0437f3ee7d3ac13ba34060f57b; seven selected captures inspected"
+    "89 focused tests",
+    "8 contracts / 8 slots; no LOCKED drift"
   ],
   "testsRemaining": [
     "Mounted native Undo movement focus and keyboard Wait",
@@ -54,7 +38,7 @@
     "Operator Lot E art/economy/felt-balance and physical-device acceptance remains separate",
     "Final mobile/tester package after PC stabilization"
   ],
-  "nextAction": "After read-only preflight/exclusive lock on current dev, reproduce native Undo movement focus in src/combat/legacyCombatRuntime.js undoMove/openActionMenu using actual-source DOM and the existing campaign runner. Correct only a demonstrated focus defect, preserve move/AP/owner/V6 truth, and use one scoped1366normal production check. Reuse accepted Garen and campaign-controls-2340 scopes without replaying full campaigns; keyboard Wait remains before wider keyboard closure, then demonstrated narrative findings. Reconcile deferred objects with current POI code; never restore stale snapshots.",
+  "nextAction": "Finish one current built-production campaign opening/refuge scenario proving both native Undo focus paths and keyboard Wait, inspect exact receipt/provenance/captures with guardian; retain prior Garen/Escape acceptance. Then continue demonstrated narrative findings under current POI code without replaying unchanged campaigns.",
   "taskQueue": [
     "DEMO-PC-SIX-HERO-SKILLS: Garen CLOSED_SCOPED_REUSED_LOT_E; existing hero/AP/heal scopes retained, no blanket balance claim",
     "DEMO-CAMPAIGN-KEYBOARD: ACTIVE_REMAINDER_UNDO_FOCUS_AND_KEYBOARD_WAIT; freshPCmountedcontrols/Escape scoped accepted",
@@ -136,12 +120,22 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "rpgthreejs-auto-dev-90m-20261016T2329",
+  "runId": "rpgthreejs-auto-dev-90m-20261017T0002",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-16T22:30:18.503Z",
-  "wip": null,
+  "lastHeartbeat": "2026-10-17T00:05:56.978Z",
+  "wip": {
+    "branch": null,
+    "sha": null,
+    "dirtyFiles": [
+      "src/combat/legacyCombatRuntime.js",
+      "src/combat/combatKeyboard.test.ts",
+      "tools/demo-continuous-production-qa.mjs"
+    ],
+    "status": "GREEN",
+    "lastGreenCheck": "2026-10-17T00:05:56.978Z"
+  },
   "live": {
-    "lastHeartbeat": "2026-10-16T23:53:09.829Z",
+    "lastHeartbeat": "2026-10-17T00:05:56.978Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -34509,11 +34503,15 @@
     "wip": {
       "branch": null,
       "sha": null,
-      "dirtyFiles": [],
+      "dirtyFiles": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/combatKeyboard.test.ts",
+        "tools/demo-continuous-production-qa.mjs"
+      ],
       "status": "GREEN",
-      "lastGreenCheck": "2026-10-16T23:53:09.829Z"
+      "lastGreenCheck": "2026-10-17T00:05:56.978Z"
     },
-    "nextAction": "After read-only preflight/exclusive lock on current dev, reproduce native Undo movement focus in src/combat/legacyCombatRuntime.js undoMove/openActionMenu using actual-source DOM and the existing campaign runner. Correct only a demonstrated focus defect, preserve move/AP/owner/V6 truth, and use one scoped1366normal production check. Reuse accepted Garen and campaign-controls-2340 scopes without replaying full campaigns; keyboard Wait remains before wider keyboard closure, then demonstrated narrative findings. Reconcile deferred objects with current POI code; never restore stale snapshots.",
+    "nextAction": "Finish one current built-production campaign opening/refuge scenario proving both native Undo focus paths and keyboard Wait, inspect exact receipt/provenance/captures with guardian; retain prior Garen/Escape acceptance. Then continue demonstrated narrative findings under current POI code without replaying unchanged campaigns.",
     "runMetrics": {
       "kind": "CONFIGURATION_ONLY",
       "sourceModified": 0,
@@ -34538,8 +34536,8 @@
       "branch": "dev",
       "authorization": "OD-2026-10-12-A"
     },
-    "runEndedAt": "2026-10-16T23:53:09.829Z",
-    "writerStopped": true,
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "status": "INCLUDED_IN_FINAL_CLOSEOUT_COMMIT",
       "deliveryCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
@@ -35336,7 +35334,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "DEMO-CAMPAIGN-KEYBOARD",
-    "activeSubtask": "Escape and fresh PC mounted controls accepted scoped; remaining native Undo movement focus and keyboard Wait",
+    "activeSubtask": "Undo movement focus fixed after two red DOM assertions; native Undo/Wait production verification pending",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -38668,13 +38666,13 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "rpgthreejs-auto-dev-90m-20261016T2329",
+    "runId": "rpgthreejs-auto-dev-90m-20261017T0002",
     "agent": "codex",
-    "status": "READY_FOR_NEXT_SCHEDULED_RUN",
-    "runStartedAt": "2026-10-16T22:26:21.6290487Z",
+    "status": "IN_PROGRESS",
+    "runStartedAt": "2026-10-17T00:02:02Z",
     "activePhase": "POI_POST_LOT_E_PC_FINISHING",
-    "heartbeat": "2026-10-16T22:30:18.503Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-16T2226Z-codex-recurring-poi-config.md",
+    "heartbeat": "2026-10-17T00:05:56.978Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-17T0002Z-codex-undo-wait.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -40013,7 +40011,7 @@
         }
       }
     },
-    "threadId": "01a13e7b-a438-7963-adc2-6fee28c3c492",
+    "threadId": "01a1472a-5fc6-72f3-a454-87673f02e27d",
     "writerStoppedMeaning": "Product and native QA complete; final selected closure commit/publication/parity and owned-lock release only",
     "run1944": {
       "startedAt": "2026-10-13T19:45:46.4541492Z",
@@ -41253,7 +41251,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-16T2226Z-codex-recurring-poi-config.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-17T0002Z-codex-undo-wait.md",
   "runMeasurement": {
     "kind": "CONFIGURATION_ONLY",
     "sourceModified": 0,
@@ -42811,7 +42809,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-16T22:30:18.503Z",
+  "heartbeat": "2026-10-17T00:05:56.978Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -44366,5 +44364,24 @@
       "initialReasoningEffort": "xhigh",
       "agentAction": "Retained latest PAUSED/high settings found after externally concurrent configuration change; no agent pause/reactivation/reasoning mutation"
     }
+  },
+  "run0002": {
+    "preflight": {
+      "head": "f69f0d3967c8ef818d47965cdbcaa520315725c0",
+      "liveDevParity": true,
+      "inheritedWip": 0,
+      "operatorPreview5175Untouched": true
+    },
+    "problem": "Native Undo rebuild removes the focused dock button, or retains canvas focus after U; return to enabled Move without stealing another focus owner.",
+    "scope": "Undo focus presentation only; keyboard Wait verifies existing breath/guard/turn owner; no gameplay, V6, economy, elite, art, canon, media or scheduler changes.",
+    "redBefore": {
+      "failed": 2,
+      "passed": 45
+    },
+    "focusedTests": 89,
+    "preservedHistoricalJobs": 313,
+    "qaTooling": "Existing campaign runner extended for missing Undo and Wait controls; no new QA tool.",
+    "acceptance": "PENDING_NATIVE_PRODUCTION",
+    "contractSetVersion": "1.4.0"
   }
 }

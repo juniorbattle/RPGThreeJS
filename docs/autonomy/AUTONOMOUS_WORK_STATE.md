@@ -1,26 +1,14 @@
-# Product resumption: Escape corrected, PC mounted controls scoped accepted
+# PC tactical controls: native Undo and Wait
 
-**READY_FOR_NEXT_SCHEDULED_RUN**. Run rpgthreejs-auto-dev-90m-20261016T2329; started2026-10-16T19:29:24.6746229-04:00; ended2026-10-16T23:53:09.829Z; dev source checkpoint46ce177. Closure commit is the Git commit containing this state; final remote parity/lock release recorded in automation memory.
+**IN_PROGRESS**. Run rpgthreejs-auto-dev-90m-20261017T0002; started 2026-10-17T00:02:02Z. Exclusive lock owned; clean inherited dev f69f0d3 equals live origin/dev at preflight. No inherited WIP.
 
-OD-2026-10-16-B authorizes current/subsequent product work. Configuration-only saved restriction removed; initial ACTIVE automation retained when prompt changed. At closeout, a concurrent settings change is observed: PAUSED/high, updated_at1792194617033. Latest settings retained; this run did not pause/reactivate/change reasoning. Cadence/model/environment/project/preferences retained.
+Product: Undo keyboard focus restores enabled Move after dock activation or canvas U; pointer/external/busy owners preserved. Two real-source DOM failures before correction, 89 tests now pass. Native Undo/Wait production verification pending; no acceptance inferred.
 
-Active task: DEMO-CAMPAIGN-KEYBOARD. Escape and fresh PC mounted controls accepted scoped; remaining native Undo movement focus and keyboard Wait.
+Next action: Finish one current built-production campaign opening/refuge scenario proving both native Undo focus paths and keyboard Wait, inspect exact receipt/provenance/captures with guardian; retain prior Garen/Escape acceptance. Then continue demonstrated narrative findings under current POI code without replaying unchanged campaigns.
 
-Next action: After read-only preflight/exclusive lock on current dev, reproduce native Undo movement focus in src/combat/legacyCombatRuntime.js undoMove/openActionMenu using actual-source DOM and the existing campaign runner. Correct only a demonstrated focus defect, preserve move/AP/owner/V6 truth, and use one scoped1366normal production check. Reuse accepted Garen and campaign-controls-2340 scopes without replaying full campaigns; keyboard Wait remains before wider keyboard closure, then demonstrated narrative findings. Reconcile deferred objects with current POI code; never restore stale snapshots.
+Prior Garen novice_spear/l_long_thrust and campaign-controls-2340 scopes retained. Physical Traversal retired; current33fixedPOIs/two mobile elites/threeatlases, V6 and eight video slots preserved. Operator economy/elite/art/global-demo acceptance remains open. Scheduler untouched.
 
-## Product result and played step
-
-Escape now closes attack/skill/item submenus via existing closeSubmenu and restores enabled dock focus. Busy/external/pointer ownership and move/target cancellation preserved; no AP/resolution/save rule changed. Five new DOM assertions failed before fix;83current focused tests2files, TypeScript, build,8contracts/8slots, LOCKED and whitespace pass. Archival tmp tests excluded from83.
-
-Fresh built PC1366×768 normal campaign-controls-2340: deployment/removal, six Escape/Retour checks, refusals with unchanged tactical/owner/autosave, legal move and keyboard attack, actual mouse canvas attack with exact AP/refunds. Real opening victory3round17actions, parent keyboard return, first refuge110gold/51reputation and exactV6/reload. Source46ce177/driver42081075; receiptSUCCEEDED/exit0/stable/result6211445a33f0ba0ed2e3b8f3a94eb493e6a49c0437f3ee7d3ac13ba34060f57b/errors[]. Guardian ACCEPTED_SCOPED and7captures inspected. Raw receipt default acceptance unchanged; separate ledger scope recorded. Two pre-game environment failures retained and never seeds. Worker terminal and5429free.
-
-Garen initial competence CLOSED_SCOPED by reused accepted Lot E complete-ending-0003 battle10:novice_spear/l_long_thrust AP3→1,target85→57; exact action/receipt/capture/unchanged source reviewed. No Garen replay, Slow or blanket six-hero/balance acceptance inferred.
-
-## Boundaries and remaining work
-
-Undo movement focus and keyboard Wait remain before wider keyboard closure; narrative findings/accessibility/PC and final mobile follow. No new mobile/OS/spokenAT/global-demo/balance/art PASS. Reload refuge capture is mid-fade, not settled artistic proof. Economy/elite configurations/atlases/canon unchanged. Physical Traversal retired;33fixedPOIs/twoelites/threeatlases and old/current/terminalV6 retained. Set1.4.0 immutablef9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8.
-
-310historicalQA records and root deferredDemoTask/pendingNarrativeTask preserved exactly;3new jobs only. Counts productSource1/productTest1/existingQA1/newQA0/promotedProof0/workflow7/inherited0/actualBrowser1 (+2environment-only failures). No tracked raw evidence/captures added. Full compliance matrix/receipt hashes and preservation in JSON. Handoff2026-10-16T2329Z-codex-product-resumption.md.
+313 historical QA records and exact deferredDemoTask/pendingNarrativeTask preserved. ProductSource1/test1/existingQA1/newQA0/promotedProof0/inherited0.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

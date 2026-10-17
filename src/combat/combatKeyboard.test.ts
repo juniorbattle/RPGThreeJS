@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { URL as NodeURL } from 'node:url';
 import { describe, expect, it, vi } from 'vitest';
 import { captureDeploymentFocus, nextCombatCursor, shouldHandleCombatShortcut, shouldPreventCombatWheel } from './combatKeyboard';
+import { renderCombatActionDock } from './combatHudPresentation';
 
 function routed(key: string, target: EventTarget, defaultPrevented = false): boolean {
   return shouldHandleCombatShortcut({ key, target, defaultPrevented });
@@ -219,6 +220,63 @@ describe('native action submenu cancellation', () => {
     input.cancel();
     expect(input.skillmenu.classList.contains('hidden')).toBe(true);
     expect(document.activeElement).toBe(input.outside);
+  });
+});
+
+describe('native movement undo focus', () => {
+  const runtime = readFileSync(new NodeURL('./legacyCombatRuntime.js', import.meta.url), 'utf8');
+  const undoSource = runtime.slice(runtime.indexOf('function undoMove(){'), runtime.indexOf('\nfunction transientInspect('));
+  const menuSource = runtime.slice(runtime.indexOf('function openActionMenu(){'), runtime.indexOf('\nfunction onMenu('));
+
+  function movement(keyboard = true, sync = () => {}) {
+    const menu = document.createElement('div'), skillmenu = document.createElement('div');
+    const canvas = document.createElement('canvas'), outside = document.createElement('button');
+    canvas.tabIndex = 0;
+    document.body.replaceChildren(menu, skillmenu, canvas, outside);
+    const game = { active: { team: 'player', name: 'Hero', gx: 2, gz: 1, ap: 3, mov: 4, skills: [], weapons: [] },
+      busy: false, over: false, movedThisTurn: true, movedBeforeAct: false, startGX: 0, startGZ: 1,
+      basicAttacksThisTurn: 0, itemsUsedThisTurn: 0, mode: 'menu' };
+    const place = vi.fn((u, gx, gz) => Object.assign(u, { gx, gz }));
+    const api = new Function('G', 'dom', 'renderer', 'keyboardInput', 'restoreUnitFocus', 'placeUnit', 'clearHL',
+      'selectUnit', 'setHint', 'closeMenus', 'hasS', 'invCount', 'renderCombatActionDock', 'syncActionDockState',
+      `${undoSource}\n${menuSource}\nreturn { undo: undoMove, open: openActionMenu };`)(
+      game, { menu, skillmenu }, { domElement: canvas }, keyboard, vi.fn(), place, vi.fn(), vi.fn(), vi.fn(),
+      vi.fn(), () => false, () => 0, renderCombatActionDock, sync,
+    ) as { undo: () => void; open: () => void };
+    api.open();
+    return { ...api, game, menu, canvas, outside, place };
+  }
+
+  it.each(['dock', 'canvas'])('returns keyboard undo from %s to enabled movement without changing AP', origin => {
+    const input = movement(), before = structuredClone(input.game);
+    (origin === 'dock' ? input.menu.querySelector<HTMLButtonElement>('[data-a="undo"]')! : input.canvas).focus();
+    input.undo();
+    expect(document.activeElement).toBe(input.menu.querySelector('[data-a="move"]'));
+    expect(input.game).toEqual({ ...before, movedThisTurn: false, active: { ...before.active, gx: 0 } });
+    expect(input.place).toHaveBeenCalledExactlyOnceWith(input.game.active, 0, 1, true);
+  });
+
+  it('preserves pointer and external focus owners', () => {
+    const pointer = movement(false);
+    pointer.menu.querySelector<HTMLButtonElement>('[data-a="undo"]')!.focus(); pointer.undo();
+    expect(document.activeElement).toBe(document.body);
+    const external = movement(); external.outside.focus(); external.undo();
+    expect(document.activeElement).toBe(external.outside);
+  });
+
+  it('does not take focus acquired during menu reconstruction', () => {
+    let outside: HTMLButtonElement | undefined;
+    const input = movement(true, () => outside?.focus()); outside = input.outside;
+    input.menu.querySelector<HTMLButtonElement>('[data-a="undo"]')!.focus(); input.undo();
+    expect(document.activeElement).toBe(input.outside);
+  });
+
+  it.each(['busy', 'movedBeforeAct'] as const)('keeps rejected %s undo and focus unchanged', flag => {
+    const input = movement(); input.game[flag] = true;
+    const button = input.menu.querySelector<HTMLButtonElement>('[data-a="undo"]')!; button.focus();
+    const before = structuredClone(input.game); input.undo();
+    expect(input.game).toEqual(before); expect(document.activeElement).toBe(button);
+    expect(input.place).not.toHaveBeenCalled();
   });
 });
 

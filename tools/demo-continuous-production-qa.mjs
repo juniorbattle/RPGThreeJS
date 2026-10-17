@@ -333,12 +333,35 @@ async function campaignBattlefieldKeyboard(frame,entry){
   });
   assert.ok(destination,'Mounted native movement needs a reachable cell');
   await moveCursor(destination);await key('Enter');await settled(frame);
-  const moved=await combatState(frame);
+  let moved=await combatState(frame);
   assert.deepEqual({gx:moved.active.gx,gz:moved.active.gz},destination,'Mounted keyboard movement did not reach selected cell');
   assert.equal(moved.active.ap,before.active.ap,'Mounted native movement changed AP');assert.equal(moved.moved,true);
   assert.ok(await frame.evaluate(()=>document.activeElement.matches('#menu button:not(:disabled)')),'Mounted legal movement lost enabled dock focus');
   entry.actions.push({kind:'keyboard-move',cell:destination,before:after,after:moved});
   entry.battlefieldKeyboard.legalMove={destination,before:after,after:moved,pass:true};
+  entry.battlefieldKeyboard.undo=[];
+  for(const origin of ['dock','canvas']){
+    if(origin==='dock'){
+      await campaignTabTo(frame,'#menu [data-a="undo"]:not(:disabled)',key);await key('Enter');
+    }else {await campaignTabTo(frame,'#combat-battlefield',key);await key('u');}
+    const undone=await combatState(frame);
+    assert.deepEqual(gameplay(undone),gameplay(after),'Mounted Undo must restore the pre-move combatState projection (facing excluded)');
+    const focused=await frame.evaluate(()=>{const e=document.activeElement,r=e.getBoundingClientRect();return{
+      action:e.dataset.a,enabled:!e.disabled,visible:e.matches(':focus-visible'),outline:getComputedStyle(e).outlineStyle,
+      x:r.x,y:r.y,right:r.right,bottom:r.bottom};});
+    assert.equal(focused.action,'move','Mounted Undo must restore movement focus');
+    assert.ok(focused.enabled&&focused.visible&&focused.outline!=='none','Mounted Undo focus invisible');
+    assert.ok(focused.x>=0&&focused.y>=0&&focused.right<=viewport[0]+1&&focused.bottom<=viewport[1]+1,'Mounted Undo focus clipped');
+    assert.deepEqual(await state(),ownerBefore,'Mounted Undo changed campaign truth');
+    assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),autosaveBefore,'Mounted Undo wrote autosave');
+    entry.actions.push({kind:'keyboard-undo',origin,before:moved,after:undone});
+    entry.battlefieldKeyboard.undo.push({origin,focused,before:moved,after:undone,pass:true});
+    await capture(`combat-${entry.index}-native-undo-${origin}`);
+    await key('Enter');await moveCursor(destination);await key('Enter');await settled(frame);
+    moved=await combatState(frame);
+    assert.deepEqual(gameplay(moved),gameplay(entry.battlefieldKeyboard.legalMove.after),'Mounted re-move must restore exact selected move');
+    entry.actions.push({kind:'keyboard-move',cell:destination,before:undone,after:moved});
+  }
   await campaignTabTo(frame,'#menu [data-a="attack"]:not(:disabled)',key);await key('Enter');
   await campaignTabTo(frame,'#skillmenu [data-ch="0"]:not(:disabled)',key);await key('Enter');
   const legal=await frame.evaluate(()=>{const c=G.pending.centers.find(c=>G.grid[c.gx][c.gz].occupant?.alive&&G.grid[c.gx][c.gz].occupant.team==='foe');
@@ -353,6 +376,20 @@ async function campaignBattlefieldKeyboard(frame,entry){
   assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),autosaveBefore,'Mounted tactical actions wrote autosave');
   entry.actions.push({kind:'keyboard-attack',cell:legal.cell,spec:legal.spec,before:moved,after:attacked});
   entry.battlefieldKeyboard.legalTarget={...legal,before:moved,after:attacked,refunds,pass:true};
+  const waiting=await frame.evaluate(()=>({id:G.active.campaignId,ap:G.active.ap,maxap:G.active.maxap,
+    round:G.round,turnIdx:G.turnIdx}));
+  await campaignTabTo(frame,'#menu [data-a="wait"]:not(:disabled)',key);await capture(`combat-${entry.index}-native-wait-focus`);await key('Space');
+  const waited=await frame.evaluate(id=>{const u=G.units.find(u=>u.campaignId===id);return{
+    id:u.campaignId,ap:u.ap,gardeAP:u.gardeAP,souffle:u._souffle,round:G.round,turnIdx:G.turnIdx};},waiting.id);
+  const expectedWaitAp=waiting.ap>=1?Math.min(waiting.maxap,waiting.ap+1):waiting.ap;
+  assert.equal(waited.ap,expectedWaitAp,'Mounted keyboard Wait must preserve native capped breath AP');
+  assert.equal(waited.gardeAP,expectedWaitAp,'Mounted keyboard Wait must store native guard AP');
+  assert.equal(waited.souffle,waiting.ap>=1,'Mounted keyboard Wait breath differs');
+  assert.ok(waited.round>waiting.round||waited.turnIdx!==waiting.turnIdx,'Mounted keyboard Wait did not advance the turn');
+  assert.deepEqual(await state(),ownerBefore,'Mounted keyboard Wait changed campaign owner before resolution');
+  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),autosaveBefore,'Mounted keyboard Wait wrote autosave');
+  entry.actions.push({kind:'keyboard-wait',before:waiting,after:waited});
+  entry.battlefieldKeyboard.wait={before:waiting,after:waited,expectedWaitAp,pass:true};
 }
 async function campaignParentKeyboardReturn(entry){
   assert.equal(entry.nodeId,'lion-opening-ambush','Parent keyboard proof is scoped to fresh opening aftermath');

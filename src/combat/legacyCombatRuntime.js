@@ -2116,7 +2116,12 @@ function afterSub(){ restoreUnitFocus(); hideActionPreview(); G._targetPreviewKe
   const nextAtkCost=G.basicAttacksThisTurn+1;
   const canAct = (u.ap>=nextAtkCost) || u.skills.some(s=>getSpec(u,s).ap<=u.ap) || (u.ap>=(G.itemsUsedThisTurn+1) && invCount()>0);
   if(!canAct && G.movedThisTurn) setHint('Tour terminé — Entrée pour attendre'); else setHint(u.name+' — choisissez une action'); restoreBattlefieldFocus(); }
-function undoMove(){ if(G.busy||!G.movedThisTurn||G.movedBeforeAct||G.startGX==null)return; restoreUnitFocus(); const u=G.active; placeUnit(u,G.startGX,G.startGZ,true); G.movedThisTurn=false; clearHL(); G.mode='menu'; selectUnit(u); openActionMenu(); setHint(u.name+' — déplacement annulé'); }
+function undoMove(){ if(G.busy||!G.movedThisTurn||G.movedBeforeAct||G.startGX==null)return;
+  const returnFocus=keyboardInput&&(dom.menu.contains(document.activeElement)||document.activeElement===renderer.domElement);
+  restoreUnitFocus(); const u=G.active; placeUnit(u,G.startGX,G.startGZ,true); G.movedThisTurn=false; clearHL(); G.mode='menu'; selectUnit(u); openActionMenu(); setHint(u.name+' — déplacement annulé');
+  if(returnFocus&&(document.activeElement===document.body||document.activeElement===renderer.domElement)){
+    const button=dom.menu.querySelector('button[data-a="move"]:not(:disabled)')||dom.menu.querySelector('button:not(:disabled)'); button?.focus({preventScroll:true});
+  } }
 
 function transientInspect(u){ if(!u)return; const key=u.campaignId||u.id||u.name; if(statsPanelKey!==key){statsPanelKey=key;statsPanelExpanded=false;} G.selected=u; renderPanel(u); }
 function restoreInspection(){ const fallback=(G.pinnedUnit&&G.pinnedUnit.alive?G.pinnedUnit:G.active); if(fallback)transientInspect(fallback); }
