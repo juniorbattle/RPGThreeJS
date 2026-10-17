@@ -1,18 +1,14 @@
-# PC next-player focus and positive Wait accepted scoped
+# PC council continuation — in progress
 
-**READY_FOR_NEXT_SCHEDULED_RUN**. Run rpgthreejs-auto-dev-90m-20261017T2135; started2026-10-17T21:35:43Z; ended2026-10-17T22:06:24.983Z. Sourcea9863a321ef657edacb7c7b476e86f062f1e974f published on dev; final workflow transport/parity/lock disposition in Git and automation memory.
+Run rpgthreejs-auto-dev-90m-20261017T2229, started 2026-10-17T22:29:16Z. Owned exclusive lock; clean dev and live remote parity verified.
 
-Native keyboard Wait now returns visible enabled dock focus at the next player turn, including an intervening enemy turn. A positive-AP Wait also preserves native breath/guard and subsequent focus. AP/turn/status/facing/campaign/V6 rules remain unchanged.
+Garen and native campaign keyboard scopes retained. Contextual council/refugee first-step0455 and opening dynamic1642 source unchanged; earned Lot E campaign/V6 acceptance retained. No new source defect established. Later council steps not observed by existing first-step runner.
 
-One campaign-next-turn-2141 PC1366normal scenario: actual opening victory in4rounds/28recorded actions, both automatic next-player focus observations, zero/positive-AP Wait, retained Undo/keyboard/pointer/parent return, first refuge75gold/54reputation and exact earned V6 reload. Result835b785fa0740d5241b8be904b8d57f729c92f37f0973c6786e8ccbc20dbfd24; current source/driver/build/request/digest and selected captures reviewed; guardian scoped acceptance. Raw receipt NOT_ACCEPTED preserved; reviewed scope separate.
+Existing --production-contextual runner stops at step!=1. A narrow opt-in observes later council text/facing/focus; default matrix unchanged, no new QA tool.
 
-Limits: Accepted only for native PC1366 normal-motion dock Wait and the observed next-player handoffs; canvas Wait, external/parent focus noninterference are source/DOM-tested only. No broad mobile/OS/spokenAT/device/art/balance/global-demo acceptance. Prior Garen/2340/0007 scopes retained; no unchanged campaign replay. Bois-Clair nightplate remains BLOCKED_ASSET outside this control task.
+Next: Review opt-in council continuation assertions, verify matching source/build, then register and run ONE PC1366 normal fixture-origin council observation of steps 1 through 3; no earned campaign or replay claim.
 
-98current focused tests/3files,TypeScript/build,8contracts/8slots,immutable/working LOCKED and whitespace PASS. Three expected source-DOM focus failures before correction. Guardian source and final native review; no LOCKED rule changed.
-
-Counts: source1/test1/existingQA1/newPersistentQA0/promotedProof0/workflow5/inherited0/browser1/reviewer1.314historicalQA and exactdeferredDemoTask/pendingNarrativeTask preserved;315total.
-
-Next action: After read-only preflight/exclusive lock on current dev, resume the PC narrative milestone in docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md: reconcile existing council/refugee acknowledgement proofs (contextual0455/opening1642 and earned Lot E observations) with current src/game/contextualDialogueContent.ts. Preserve accepted opening/council/fact/Alaric scopes; exercise only a genuinely missing presentation boundary with an existing runner or correct a demonstrated source defect. Do not replay a complete campaign or the accepted opening for an earned label. If those criteria are already covered, advance PC accessibility/tester readiness. Keep Bois-Clair nightplate isolated and final mobile after PC.
+Fixture-origin static narrative only; no earned campaign, fullV6/reload, OS/mobile, dynamic cast timing or global-demo acceptance.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -332,4 +328,5 @@ Next action: After read-only preflight/exclusive lock on current dev, resume the
 - campaign-controls-2340: SUCCEEDED; port 5429; receipt `tmp/demo/campaign-controls-2340/qa-job.json`; NOT_ACCEPTED
 - campaign-undo-wait-0007: SUCCEEDED; port 5430; receipt `tmp/demo/campaign-undo-wait-0007/qa-job.json`; NOT_ACCEPTED
 - campaign-next-turn-2141: SUCCEEDED; port 5432; receipt `tmp/demo/campaign-next-turn-2141/qa-job.json`; NOT_ACCEPTED
+- council-continuation-2234: PLANNED; port 5433; receipt `tmp/cinematics/council-continuation-2234/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->

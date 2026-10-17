@@ -1,43 +1,31 @@
 {
-  "status": "READY_FOR_NEXT_SCHEDULED_RUN",
-  "runStartedAt": "2026-10-17T21:35:43Z",
-  "runEndedAt": "2026-10-17T22:06:24.983Z",
+  "status": "IN_PROGRESS",
+  "runStartedAt": "2026-10-17T22:29:16Z",
+  "runEndedAt": null,
   "activeTask": "DEMO-NARRATIVE-PRESENTATION",
-  "activePhase": "POI_POST_LOT_E_PC_FINISHING",
-  "activeSubtask": "PC1366 next-player focus and positive-AP Wait accepted scoped; resume remaining narrative milestone",
+  "activePhase": "PC_COUNCIL_CONTINUATION",
+  "activeSubtask": "Observe only previously missing council continuation steps using the existing built-production contextual runner",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "a9863a321ef657edacb7c7b476e86f062f1e974f",
   "lastPushedCommit": "a9863a321ef657edacb7c7b476e86f062f1e974f",
-  "completedThisRun": [
-    "Native keyboard Wait now returns visible enabled dock focus at the next player turn, including an intervening enemy turn. A positive-AP Wait also preserves native breath/guard and subsequent focus. AP/turn/status/facing/campaign/V6 rules remain unchanged.",
-    "One campaign-next-turn-2141 PC1366normal scenario: actual opening victory in4rounds/28recorded actions, both automatic next-player focus observations, zero/positive-AP Wait, retained Undo/keyboard/pointer/parent return, first refuge75gold/54reputation and exact earned V6 reload. Result835b785fa0740d5241b8be904b8d57f729c92f37f0973c6786e8ccbc20dbfd24; current source/driver/build/request/digest and selected captures reviewed; guardian scoped acceptance. Raw receipt NOT_ACCEPTED preserved; reviewed scope separate.",
-    "98 focused current tests/3files, types/build,8contracts/8slots,immutable/working LOCKED and whitespace PASS; three real-source failures before fix",
-    "Preserved314historicalQA jobs and both exact deferred objects;315total; no contract/canon/economy/elite/atlas/media/Traversal/scheduler change"
-  ],
+  "completedThisRun": [],
   "filesChanged": [
-    "src/combat/legacyCombatRuntime.js",
-    "src/combat/combatKeyboard.test.ts",
-    "tools/demo-continuous-production-qa.mjs",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-    "docs/autonomy/BATTLEFIELD_KEYBOARD.md",
-    "docs/autonomy/handoffs/2026-10-17T2135Z-codex-next-player-focus.md"
+    "tools/cinematics/run_cin6ea4_dialogue_qa.mjs"
   ],
   "testsRun": [
-    "98 focused tests/3current files PASS; three intended DOM failures before correction",
-    "TypeScript and production build PASS; inherited chunk-size advisory only",
-    "8contracts/8slots; immutable/working LOCKED gates and whitespace PASS",
-    "One current native production scenario; exact request/provenance/result digest and selected captures reviewed"
+    "91 current targeted tests/4 files PASS (tmp snapshots excluded)",
+    "TypeScript PASS",
+    "8 contracts/8 video slots PASS; immutable and working LOCKED gates empty; whitespace/syntax PASS",
+    "Existing2135 build: all9 build files and current HEAD:src match successful receipt; no source edits"
   ],
   "testsPassed": [
-    "98 targeted tests",
-    "Types/build/contracts/LOCKED/whitespace",
-    "ACCEPTED_SCOPED_PC1366_NORMAL_NEXT_PLAYER_FOCUS_POSITIVE_WAIT"
+    "91 current targeted tests/4 files PASS (tmp snapshots excluded)",
+    "TypeScript PASS",
+    "8 contracts/8 video slots PASS; immutable and working LOCKED gates empty; whitespace/syntax PASS",
+    "Existing2135 build: all9 build files and current HEAD:src match successful receipt; no source edits"
   ],
   "testsRemaining": [
-    "Remaining narrative milestone and PC accessibility/tester readiness",
-    "Final mobile/OS/spokenAT/device/operator acceptance; no global-demo or felt-balance/art claim"
+    "Focused contextual/dialogue/staging tests, types, contracts and one council continuation smoke"
   ],
   "blockers": [],
   "remainingWork": [
@@ -46,7 +34,7 @@
     "Operator Lot E economy/elite settings/atlas art and Bois-Clair nightplate remain separate",
     "Final mobile after PC stability"
   ],
-  "nextAction": "After read-only preflight/exclusive lock on current dev, resume the PC narrative milestone in docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md: reconcile existing council/refugee acknowledgement proofs (contextual0455/opening1642 and earned Lot E observations) with current src/game/contextualDialogueContent.ts. Preserve accepted opening/council/fact/Alaric scopes; exercise only a genuinely missing presentation boundary with an existing runner or correct a demonstrated source defect. Do not replay a complete campaign or the accepted opening for an earned label. If those criteria are already covered, advance PC accessibility/tester readiness. Keep Bois-Clair nightplate isolated and final mobile after PC.",
+  "nextAction": "Review opt-in council continuation assertions, verify matching source/build, then register and run ONE PC1366 normal fixture-origin council observation of steps 1 through 3; no earned campaign or replay claim.",
   "taskQueue": [
     "DEMO-PC-SIX-HERO-SKILLS: CLOSED_SCOPED_REUSED_PROOFS",
     "DEMO-CAMPAIGN-KEYBOARD: NEXT_PLAYER_FOCUS_AND_POSITIVE_WAIT_ACCEPTED_SCOPED_PC1366_NORMAL; prior scopes retained",
@@ -56,7 +44,7 @@
     "DEMO-MOBILE-FINAL: AFTER_PC_STABLE"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_SCOPED_1.4.0_NO_LOCKED_RULE_CHANGED",
+  "contractComplianceStatus": "PENDING_SCOPED_REVIEW",
   "commitReferenceScope": "Source fields name published product a9863a3; final workflow commit is the Git commit containing this state. Verified transport/parity and lock release recorded in automation memory; historical nested ledgers retain original scope.",
   "operatorAuthorization": "Explicit exceptional mission and both full attachments OD-2026-10-15-A; normal non-force origin/dev publication permanently authorized OD-2026-10-12-A; no main writes.",
   "creativeDirection": {
@@ -139,7 +127,7 @@
     "lastGreenCheck": "2026-10-17T22:06:24.983Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-17T22:06:24.983Z",
+    "lastHeartbeat": "2026-10-17T22:33:43.476Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -34708,16 +34696,101 @@
         "resultPath": "tmp/demo/campaign-next-turn-2141/results.json",
         "resultSha256": "835b785fa0740d5241b8be904b8d57f729c92f37f0973c6786e8ccbc20dbfd24",
         "provenanceStable": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "council-continuation-2234",
+        "runId": "rpgthreejs-auto-dev-90m-20261017T2229",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-17T22:33:43.507Z",
+        "pid": null,
+        "port": 5433,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6ea4_dialogue_qa.mjs"
+        ],
+        "parameters": {
+          "mode": "contextual-council-continuation-production",
+          "cells": [
+            "1366x768-normal"
+          ],
+          "contexts": [
+            "protected-witness-council"
+          ],
+          "gameReducedMotion": false,
+          "method": "fixture-origin native owner selection; council steps 1 through 3; keyboard advancement without target refocus; static presentation only"
+        },
+        "requiredAssertions": [
+          "Council steps 1, 2 and 3 concatenate separately to their complete protected-witness text with canonical speakers",
+          "Native protected witness facts are observed after the declared fixture origin; no subsequent owner, flag or outcome writes by the driver",
+          "One STATIC_TABLEAU, Champion left facing Alaric right with stable reciprocal facing and look targets, at most four actors",
+          "Automatic enabled dialogue focus stays visible through native Enter advancement without refocusing the target; settled text fits",
+          "Every observation preserves complete live owner state and stored V6 bytes; normal OS/game motion, zero combat and clean diagnostics"
+        ],
+        "output": "tmp/cinematics/council-continuation-2234",
+        "receiptPath": "tmp/cinematics/council-continuation-2234/qa-job.json",
+        "provenance": {
+          "gitHead": "9f8b14cb04a9e06252aa0fb2f9b23d499091d7c4",
+          "sourceTree": "696a720b01af732c91190e00312de854be68f653",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
+            "sha256": "c437ec3f7683e707aada954fa6702c3c7e047592b350c2374143e2fa717a535f"
+          },
+          "inputs": [],
+          "receiptToolSha256": "9adbcfa5be97588301ada7a0141caa2729b5cd55b0711011079d183c586a1e3d",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+              "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/combat-_1j3BwQ2.js",
+              "sha256": "6b4075c2a198157543e4f3cfda96dcfe85842f4772f781b60097b32e565a5617"
+            },
+            {
+              "path": "dist/assets/game-UCVpfDso.css",
+              "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+            },
+            {
+              "path": "dist/assets/game-l7q6Wbot.js",
+              "sha256": "e4b934cc0bcfedebf75143dad090800e1be3295a346c3023e53e98ca54e2643e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "b4773b8722aef154c3cd6e0e92cd677703c177b82f23cd084e5b661d353aa69f"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
       }
     ],
     "wip": {
       "branch": null,
       "sha": null,
-      "dirtyFiles": [],
+      "dirtyFiles": [
+        "tools/cinematics/run_cin6ea4_dialogue_qa.mjs"
+      ],
       "status": "GREEN",
-      "lastGreenCheck": "2026-10-17T22:06:24.983Z"
+      "lastGreenCheck": "2026-10-17T22:33:43.474Z"
     },
-    "nextAction": "After read-only preflight/exclusive lock on current dev, resume the PC narrative milestone in docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md: reconcile existing council/refugee acknowledgement proofs (contextual0455/opening1642 and earned Lot E observations) with current src/game/contextualDialogueContent.ts. Preserve accepted opening/council/fact/Alaric scopes; exercise only a genuinely missing presentation boundary with an existing runner or correct a demonstrated source defect. Do not replay a complete campaign or the accepted opening for an earned label. If those criteria are already covered, advance PC accessibility/tester readiness. Keep Bois-Clair nightplate isolated and final mobile after PC.",
+    "nextAction": "Review opt-in council continuation assertions, verify matching source/build, then register and run ONE PC1366 normal fixture-origin council observation of steps 1 through 3; no earned campaign or replay claim.",
     "runMetrics": {
       "runtimeSourceFilesModified": 1,
       "testFilesModified": 1,
@@ -35544,7 +35617,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "DEMO-NARRATIVE-PRESENTATION",
-    "activeSubtask": "PC1366 next-player focus and positive-AP Wait accepted scoped; resume remaining narrative milestone",
+    "activeSubtask": "Observe only previously missing council continuation steps using the existing built-production contextual runner",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -38876,11 +38949,11 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "rpgthreejs-auto-dev-90m-20261017T2135",
+    "runId": "rpgthreejs-auto-dev-90m-20261017T2229",
     "agent": "codex",
     "status": "READY_FOR_NEXT_SCHEDULED_RUN",
     "runStartedAt": "2026-10-17T21:35:43Z",
-    "activePhase": "POI_POST_LOT_E_PC_FINISHING",
+    "activePhase": "PC_COUNCIL_CONTINUATION",
     "heartbeat": "2026-10-17T22:06:24.983Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-17T2135Z-codex-next-player-focus.md",
     "motion1617": {
@@ -44889,5 +44962,22 @@
     "scheduler": "UNTOUCHED",
     "externalNightplateBlockerReverified": "Current dialogue:ate_bois_clair_night_watch still maps to bois_clair_tableau_burning; approved-source-manifest timeOfDay sunset. No approved night substitution established."
   },
-  "contractSetVersion": "1.4.0"
+  "contractSetVersion": "1.4.0",
+  "run2229": {
+    "preflight": {
+      "clean": true,
+      "lockAbsent": true,
+      "inheritedWip": [],
+      "fetch": true,
+      "head": "9f8b14cb04a9e06252aa0fb2f9b23d499091d7c4",
+      "remoteDev": "9f8b14cb04a9e06252aa0fb2f9b23d499091d7c4",
+      "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
+    },
+    "reconciliation": "Garen and native campaign keyboard scopes retained. Contextual council/refugee first-step0455 and opening dynamic1642 source unchanged; earned Lot E campaign/V6 acceptance retained. No new source defect established. Later council steps not observed by existing first-step runner.",
+    "qaRationale": "Existing --production-contextual runner stops at step!=1. A narrow opt-in observes later council text/facing/focus; default matrix unchanged, no new QA tool.",
+    "limits": "Fixture-origin static narrative only; no earned campaign, fullV6/reload, OS/mobile, dynamic cast timing or global-demo acceptance.",
+    "historicalJobs": 315,
+    "scheduler": "UNTOUCHED",
+    "guardianPrelaunch": "PASS_SCOPED_FIXTURE_ORIGIN_SETTLED_OBSERVATIONS"
+  }
 }

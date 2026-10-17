@@ -477,14 +477,25 @@ async function runContextualProduction() {
   const output = process.env.CIN6EA4_OUTPUT_DIR;
   assert.ok(output?.startsWith('tmp/'), 'Contextual production requires a unique ignored output');
   const port = Number(process.env.CIN6EA4_PORT ?? 5373);
-  const parameters = {
+  const councilContinuation = process.env.CIN6EA4_COUNCIL_CONTINUATION === '1';
+  const parameters = councilContinuation ? {
+    mode: 'contextual-council-continuation-production',
+    cells: ['1366x768-normal'], contexts: ['protected-witness-council'], gameReducedMotion: false,
+    method: 'fixture-origin native owner selection; council steps 1 through 3; keyboard advancement without target refocus; static presentation only',
+  } : {
     mode: 'contextual-static-production',
     cells: ['1366x768-os', '620x780-os', '620x780-normal'],
     contexts: ['protected-witness-council', 'first-refuge-exploitation', 'displaced-family'],
     gameReducedMotion: false,
     method: 'fixture-origin native owner selection; first authored step pages only; keyboard advancement; static player observations',
   };
-  const requiredAssertions = [
+  const requiredAssertions = councilContinuation ? [
+    'Council steps 1, 2 and 3 concatenate separately to their complete protected-witness text with canonical speakers',
+    'Native protected witness facts are observed after the declared fixture origin; no subsequent owner, flag or outcome writes by the driver',
+    'One STATIC_TABLEAU, Champion left facing Alaric right with stable reciprocal facing and look targets, at most four actors',
+    'Automatic enabled dialogue focus stays visible through native Enter advancement without refocusing the target; settled text fits',
+    'Every observation preserves complete live owner state and stored V6 bytes; normal OS/game motion, zero combat and clean diagnostics',
+  ] : [
     'All first-step pages concatenate to the authored factual acknowledgement in each context and cell',
     'Native live facts match protected witnesses or refugee exploitation; no event or outcome injection',
     'One STATIC_TABLEAU with one to four actors; settled text and enabled controls fit; no moving media',
@@ -493,7 +504,9 @@ async function runContextualProduction() {
   ];
   const job = beginJob({ output, driver: 'tools/cinematics/run_cin6ea4_dialogue_qa.mjs', port, parameters, requiredAssertions });
   const report = { schemaVersion: 1, parameters, results: [], errors: [], pass: false,
-    scope: 'Fixture-origin first-step contextual static presentation; no earned campaign, node completion, reload, autofocus or dynamic cast-transition acceptance' };
+    scope: councilContinuation
+      ? 'Fixture-origin protected council steps 1 through 3 at PC1366 normal; no earned lineage, node completion, reload, OS/mobile or dynamic cast-transition acceptance'
+      : 'Fixture-origin first-step contextual static presentation; no earned campaign, node completion, reload, autofocus or dynamic cast-transition acceptance' };
   let models, server, browser;
   try {
     models = await createServer({ server: { middlewareMode: true, hmr: false, watch: null }, appType: 'custom' });
@@ -511,7 +524,12 @@ async function runContextualProduction() {
         flags: { lionMissionAccepted: true, lionMandateAdvance: true, exploitedRefugees: true, missionSuccess: true },
         expected: 'Vous avez vendu l’itinéraire contre les quarante dernières pièces de familles qui n’avaient déjà presque rien. Je ne demande pas que vous réécriviez la route. Je demande ce que vous faites maintenant pour leur prochain convoi.' },
     ];
-    for (const cell of parameters.cells) for (const scenario of cases) {
+    const councilSteps = {
+      '1': { actor: 'lion_champion', text: cases[0].expected },
+      '2': { actor: 'alaric', text: 'Les survivants de Bois-Clair ont choisi de parler librement. Ils ne demandent ni faveur ni vengeance : ils apportent des faits. Le Lion les entendra.' },
+      '3': { actor: 'lion_champion', text: 'Des témoins libres, alors. Leur parole n’offre pas le Sceau, mais elle interdit que nous jugions ces étrangers sur de simples rumeurs.' },
+    };
+    for (const cell of parameters.cells) for (const scenario of cases.filter(entry => parameters.contexts.includes(entry.id))) {
       const [width, height] = cell.split('-')[0].split('x').map(Number), os = cell.endsWith('-os');
       const context = await browser.newContext({ viewport: { width, height }, reducedMotion: os ? 'reduce' : 'no-preference' });
       const page = await context.newPage(), errors = [], segments = [];
@@ -567,7 +585,7 @@ async function runContextualProduction() {
           const dialogue = page.locator('.dialogue:visible').first();
           if (await dialogue.count()) {
             const sequence = await dialogue.getAttribute('data-dialogue-sequence'), step = await dialogue.getAttribute('data-dialogue-step');
-            if (segments.length && (sequence !== scenario.sequence || step !== '1')) break;
+            if (segments.length && (sequence !== scenario.sequence || !(councilContinuation ? step in councilSteps : step === '1'))) break;
             const visibleChoices = dialogue.locator('.dialogue-choice:visible:not([disabled])');
             if (segments.length && sequence === scenario.sequence && await visibleChoices.count()) {
               choiceControls = await visibleChoices.evaluateAll(buttons => buttons.map(button => {
@@ -586,8 +604,9 @@ async function runContextualProduction() {
               return dialogue && !dialogue.classList.contains('dialogue--preparing-step') && getComputedStyle(dialogue).opacity === '1'
                 && text?.dataset.finalText && text.querySelector('.dialogue__text-reveal')?.textContent === text.dataset.finalText;
             }, null, { timeout: 15000 });
-            if (sequence === scenario.sequence && step === '1') {
+            if (sequence === scenario.sequence && (councilContinuation ? step in councilSteps : step === '1')) {
               const before = await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6'));
+              const ownerBefore = councilContinuation ? await page.evaluate(() => JSON.stringify(window.__contextualApp.state)) : null;
               assert.ok(typeof before === 'string' && before.length > 0, 'Stored save missing at observation');
               assert.equal(JSON.parse(before).version, 6, 'Observation requires an existing V6 save');
               const observation = await dialogue.evaluate(element => {
@@ -602,21 +621,41 @@ async function runContextualProduction() {
                   osReduced: matchMedia('(prefers-reduced-motion: reduce)').matches, gameReduced: window.__contextualApp.state.settings.reducedGraphics,
                   facts: { protectedWitnesses: window.__contextualApp.state.flags.protectedWitnesses, silencedWitnesses: window.__contextualApp.state.flags.silencedWitnesses, exploitedRefugees: window.__contextualApp.state.flags.exploitedRefugees } };
               });
+              if (councilContinuation) {
+                const continuity = await dialogue.evaluate(element => {
+                  const box = element.querySelector('.dialogue__box'), style = getComputedStyle(box);
+                  return { step: element.dataset.dialogueStep, speaker: element.dataset.dialogueActor,
+                    focused: document.activeElement === box, outline: style.outlineStyle, outlineWidth: parseFloat(style.outlineWidth),
+                    cast: [...element.closest('.narrative-stage').querySelectorAll('.narrative-cast__actor')].map(actor => ({
+                      id: actor.dataset.actorId, position: actor.dataset.screenPosition, facing: actor.dataset.facing, lookTarget: actor.dataset.lookTarget,
+                    })) };
+                });
+                assert.equal(continuity.speaker, councilSteps[step].actor);
+                assert.ok(continuity.focused && continuity.outline !== 'none' && continuity.outlineWidth > 0, 'Automatic council focus missing or invisible');
+                assert.deepEqual(continuity.cast, [
+                  { id: 'lion_champion', position: 'LEFT', facing: 'RIGHT', lookTarget: 'alaric' },
+                  { id: 'alaric', position: 'RIGHT', facing: 'LEFT', lookTarget: 'lion_champion' },
+                ], 'Council relationship or stable facing changed');
+                Object.assign(observation, continuity);
+              }
               assert.equal(observation.mode, 'STATIC_TABLEAU'); assert.equal(observation.surfaces, 1);
               assert.equal(observation.mediaSurface, 'STATIC_TABLEAU'); assert.equal(observation.castOwnership, 'STAGE_OWNS_CAST'); assert.notEqual(observation.primaryInvariant, 'FAIL');
               assert.ok(observation.actors >= 1 && observation.actors <= 4); assert.ok(observation.textFits && observation.boxFits && observation.boxEnabled);
               assert.equal(observation.activeVideos, 0); assert.equal(observation.osReduced, os); assert.equal(observation.gameReduced, false);
               if (scenario.id === 'protected-witness-council') { assert.equal(observation.facts.protectedWitnesses, true); assert.notEqual(observation.facts.silencedWitnesses, true); }
               else assert.equal(observation.facts.exploitedRefugees, true);
-              const capture = `${cell}-${scenario.id}-${observation.segment.replace('/', '-')}.png`;
+              const capture = `${cell}-${scenario.id}-${councilContinuation ? `step-${step}-` : ''}${observation.segment.replace('/', '-')}.png`;
               await page.screenshot({ path: resolve(output, capture) });
               assert.equal(await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6')), before, 'Observation changed stored save');
-              assert.ok(!segments.some(entry => entry.segment === observation.segment), 'Keyboard did not advance the observed page');
+              if (councilContinuation) assert.equal(await page.evaluate(() => JSON.stringify(window.__contextualApp.state)), ownerBefore, 'Observation changed live owner state');
+              assert.ok(!segments.some(entry => entry.segment === observation.segment && (!councilContinuation || entry.step === step)), 'Keyboard did not advance the observed page');
               segments.push({ ...observation, savedBytesUnchanged: true, capture });
+              if (councilContinuation && step === '3' && observation.segment.split('/')[0] === observation.segment.split('/')[1]) break;
             }
             const choices = dialogue.locator('.dialogue-choice:visible:not([disabled])');
             const control = await choices.count() ? choices.first() : dialogue.locator('.dialogue__box');
-            await control.focus(); await page.keyboard.press('Enter');
+            if (!councilContinuation || sequence !== scenario.sequence) await control.focus();
+            await page.keyboard.press('Enter');
           } else {
             const leave = page.locator('.exploration-stop[data-refuge-node="lion-first-refuge"] [data-action="continue"]:visible');
             if (await leave.count()) { await leave.focus(); await page.keyboard.press('Enter'); }
@@ -625,7 +664,11 @@ async function runContextualProduction() {
           await page.waitForTimeout(60);
         }
         const normalize = text => text.replace(/\s+/g, ' ').trim();
-        assert.equal(normalize(segments.map(entry => entry.text).join(' ')), normalize(scenario.expected), 'Incomplete or inconsistent contextual text');
+        if (councilContinuation) {
+          for (const [step, expected] of Object.entries(councilSteps)) {
+            assert.equal(normalize(segments.filter(entry => entry.step === step).map(entry => entry.text).join(' ')), normalize(expected.text), `Incomplete council step ${step}`);
+          }
+        } else assert.equal(normalize(segments.map(entry => entry.text).join(' ')), normalize(scenario.expected), 'Incomplete or inconsistent contextual text');
         const motion = await page.evaluate(() => window.__contextualMotion);
         if (os) assert.ok(motion.length && motion.every(entry => /^(dialogue-tableau:|narrative-static:)/.test(entry.id) && entry.played === false && entry.osReduced && entry.gameReduced === false), 'Missing native OS-only static observations');
         assert.equal(errors.length, 0, JSON.stringify(errors));
