@@ -1,55 +1,63 @@
 {
-  "status": "IN_PROGRESS",
+  "status": "READY_FOR_NEXT_SCHEDULED_RUN",
   "runStartedAt": "2026-10-17T00:02:02Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-17T05:28:01.271Z",
   "activeTask": "DEMO-CAMPAIGN-KEYBOARD",
   "activePhase": "POI_POST_LOT_E_PC_FINISHING",
-  "activeSubtask": "Both mounted Undo focus paths and zero-AP keyboard Wait observed; actual opening victory/refuge reload job still running",
+  "activeSubtask": "Undo dock/canvas focus and zero-AP keyboard Wait accepted scoped in native PC campaign; next-turn focus still unproved",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "b66c997dbf19ee4fece10b2e785ba88fef7dae0c",
   "lastPushedCommit": "b66c997dbf19ee4fece10b2e785ba88fef7dae0c",
   "completedThisRun": [
-    "Read-only clean preflight, no concurrent lock; live dev parity verified and exclusive lock acquired",
-    "Native Undo focus loss reproduced from dock/canvas; bounded focus-only correction; 89 focused tests pass"
+    "Fixed demonstrated native Undo keyboard focus loss; two DOM failures before correction and 89 current focused tests pass",
+    "One production campaign-undo-wait-0007: actual opening victory, both native Undo focus origins, keyboard Wait at zeroAP, existing keyboard/pointer controls and parent/refuge/exactV6 reload; result 296b71b42119bd199c892417aef4eb453f5027f8c368c316d08de05e27427782",
+    "Guardian scoped native acceptance and selected capture review; original313QA jobs and exact deferred objects preserved; no gameplay/canon/save/media/scheduler changes"
   ],
   "filesChanged": [
     "src/combat/legacyCombatRuntime.js",
     "src/combat/combatKeyboard.test.ts",
-    "tools/demo-continuous-production-qa.mjs"
+    "tools/demo-continuous-production-qa.mjs",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/handoffs/2026-10-17T0002Z-codex-undo-wait.md",
+    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+    "docs/autonomy/BATTLEFIELD_KEYBOARD.md"
   ],
   "testsRun": [
-    "89 tests / 2 current files, excluding tmp archives",
-    "8 contracts / 8 slots and immutable/working LOCKED gates"
+    "89 current focused tests /2files; initial two focus failures corrected",
+    "TypeScript and production build pass",
+    "8 contracts /8video slots; immutable/working LOCKED and whitespace pass",
+    "One PC1366normal native campaign scenario; current execution/request/result digest and captures reviewed"
   ],
   "testsPassed": [
-    "89 focused tests",
-    "8 contracts / 8 slots; no LOCKED drift"
+    "89 targeted tests",
+    "TypeScript/build/contracts/LOCKED/whitespace",
+    "ACCEPTED_SCOPED_PC1366_NORMAL_UNDO_ZERO_AP_WAIT"
   ],
   "testsRemaining": [
-    "Mounted native Undo movement focus and keyboard Wait",
+    "Next player-turn focus after keyboard Wait not certified",
     "Remaining demonstrated narrative/tableau and PC accessibility finishing",
     "Final mobile/spokenAT/device/operator acceptance; Lot E economy/art/elite settings unchanged"
   ],
   "blockers": [],
   "remainingWork": [
-    "Complete current missing competence criteria without replaying accepted campaigns",
-    "Finish mounted tactical keyboard and actual controls",
-    "Finish remaining narrative presentation and accessibility/PC readiness",
+    "Reproduce next-player-turn focus continuity after native Wait, correct only a demonstrated defect",
+    "Finish remaining demonstrated narrative presentation and accessibility/PC readiness",
     "Operator Lot E art/economy/felt-balance and physical-device acceptance remains separate",
     "Final mobile/tester package after PC stabilization"
   ],
-  "nextAction": "Finish one current built-production campaign opening/refuge scenario proving both native Undo focus paths and keyboard Wait, inspect exact receipt/provenance/captures with guardian; retain prior Garen/Escape acceptance. Then continue demonstrated narrative findings under current POI code without replaying unchanged campaigns.",
+  "nextAction": "After read-only preflight/exclusive lock on current dev, reproduce focus continuity at the next player turn after native keyboard Wait in src/combat/legacyCombatRuntime.js beginTurn/openActionMenu using actual-source DOM. The accepted0007 scenario proves Wait activation/zero-AP/guard/turn advancement, not next-turn focus. Correct only a demonstrated focus loss using existing owner/helpers, preserve AP/turn/facing/V6 rules, then one scoped existing-runner PC production check. Retain Garen/2340/0007 scopes; no unchanged campaign replay. If no remaining PC control defect, advance demonstrated narrative presentation findings; isolate external Bois-Clair nightplate and leave mobile final.",
   "taskQueue": [
     "DEMO-PC-SIX-HERO-SKILLS: Garen CLOSED_SCOPED_REUSED_LOT_E; existing hero/AP/heal scopes retained, no blanket balance claim",
-    "DEMO-CAMPAIGN-KEYBOARD: ACTIVE_REMAINDER_UNDO_FOCUS_AND_KEYBOARD_WAIT; freshPCmountedcontrols/Escape scoped accepted",
+    "DEMO-CAMPAIGN-KEYBOARD: UNDO_AND_ZERO_AP_WAIT_ACCEPTED_SCOPED; reproduce next-player-turn focus before wider closure",
     "DEMO-NARRATIVE-PRESENTATION: PENDING_UNRESOLVED_FINDINGS_ONLY; no new canon or Alaric rewrite",
     "DEMO-PC-ACCESSIBILITY-FINISHING: PENDING; relevant focus/reduced-motion/UI defects only",
     "DEMO-PC-TESTER-HANDOFF: PENDING; candidate build/routes/short honest limits; Lot E human playtest separate",
     "DEMO-MOBILE-FINAL: AFTER_PC_STABLE; retain existing scoped touch proofs"
   ],
-  "creditStatus": "AVAILABLE_NO_QUOTA_EVENT",
-  "contractComplianceStatus": "PASS_SCOPED_SET_1_4_0_NO_LOCKED_CHANGE",
-  "commitReferenceScope": "19b53c3 is the verified published Lot E closeout at configuration start. This workflow checkpoint is recorded in Git and automation memory after transport; no self-referential commit hash or product acceptance advancement.",
+  "creditStatus": "AVAILABLE_RESUMED_AFTER_APPROVAL_REVIEW_QUOTA",
+  "contractComplianceStatus": "PASS_SCOPED_1.4.0_NO_LOCKED_RULE_CHANGED",
+  "commitReferenceScope": "lastKnownGoodCommit/lastPushedCommit name published product source b66c997. Final workflow commit is the Git commit containing this state; verified transport/lock release recorded in automation memory. Named historical nested ledgers retain their original scope.",
   "operatorAuthorization": "Explicit exceptional mission and both full attachments OD-2026-10-15-A; normal non-force origin/dev publication permanently authorized OD-2026-10-12-A; no main writes.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -122,19 +130,16 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "rpgthreejs-auto-dev-90m-20261017T0002",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-17T00:12:44.668Z",
+  "lastHeartbeat": "2026-10-17T05:28:01.271Z",
   "wip": {
     "branch": null,
     "sha": null,
-    "dirtyFiles": [
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
-    ],
+    "dirtyFiles": [],
     "status": "GREEN",
-    "lastGreenCheck": "2026-10-17T00:12:44.668Z"
+    "lastGreenCheck": "2026-10-17T05:28:01.271Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-17T00:12:44.668Z",
+    "lastHeartbeat": "2026-10-17T05:28:01.271Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -34502,7 +34507,7 @@
         "schemaVersion": 1,
         "jobId": "campaign-undo-wait-0007",
         "runId": "rpgthreejs-auto-dev-90m-20261017T0002",
-        "status": "RUNNING",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-17T00:06:31.810Z",
         "pid": 3876,
         "port": 5430,
@@ -34590,51 +34595,55 @@
         },
         "acceptance": "NOT_ACCEPTED",
         "startedAt": "2026-10-17T00:06:32.637Z",
-        "endedAt": null,
+        "endedAt": "2026-10-17T00:18:21.027Z",
         "provenanceMatches": true,
         "requestMatches": true,
         "matchesCurrentExecution": true,
-        "resultDigestMatches": false,
-        "eligibleForReview": false
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "exitCode": 0,
+        "resultPath": "tmp/demo/campaign-undo-wait-0007/results.json",
+        "resultSha256": "296b71b42119bd199c892417aef4eb453f5027f8c368c316d08de05e27427782",
+        "provenanceStable": true
       }
     ],
     "wip": {
       "branch": null,
       "sha": null,
-      "dirtyFiles": [
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
-      ],
+      "dirtyFiles": [],
       "status": "GREEN",
-      "lastGreenCheck": "2026-10-17T00:12:44.668Z"
+      "lastGreenCheck": "2026-10-17T05:28:01.271Z"
     },
-    "nextAction": "Finish one current built-production campaign opening/refuge scenario proving both native Undo focus paths and keyboard Wait, inspect exact receipt/provenance/captures with guardian; retain prior Garen/Escape acceptance. Then continue demonstrated narrative findings under current POI code without replaying unchanged campaigns.",
+    "nextAction": "After read-only preflight/exclusive lock on current dev, reproduce focus continuity at the next player turn after native keyboard Wait in src/combat/legacyCombatRuntime.js beginTurn/openActionMenu using actual-source DOM. The accepted0007 scenario proves Wait activation/zero-AP/guard/turn advancement, not next-turn focus. Correct only a demonstrated focus loss using existing owner/helpers, preserve AP/turn/facing/V6 rules, then one scoped existing-runner PC production check. Retain Garen/2340/0007 scopes; no unchanged campaign replay. If no remaining PC control defect, advance demonstrated narrative presentation findings; isolate external Bois-Clair nightplate and leave mobile final.",
     "runMetrics": {
-      "kind": "CONFIGURATION_ONLY",
-      "sourceModified": 0,
-      "qaProofAdded": 0,
-      "workflowFiles": 8,
-      "browserScenarios": 0
+      "productSource": 1,
+      "productTest": 1,
+      "existingQa": 1,
+      "newPersistentQa": 0,
+      "promotedProof": 0,
+      "workflow": 5,
+      "inheritedWip": 0,
+      "actualBrowser": 1,
+      "reviewer": 1
     },
     "checkpointPaths": [
-      "AGENTS.md",
-      "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-      "docs/autonomy/RECURRING_RUN_PROMPT.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "src/combat/legacyCombatRuntime.js",
+      "src/combat/combatKeyboard.test.ts",
+      "tools/demo-continuous-production-qa.mjs",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-16T2226Z-codex-recurring-poi-config.md"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/handoffs/2026-10-17T0002Z-codex-undo-wait.md",
+      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+      "docs/autonomy/BATTLEFIELD_KEYBOARD.md"
     ],
     "publication": {
-      "status": "CONFIGURATION_CHECKPOINT_PENDING_NORMAL_DEV_PUSH",
-      "lastVerifiedPublishedCommit": "19b53c3d8e066a4e3145cbbe8585b9af5596b264",
-      "destination": "https://github.com/juniorbattle/RPGThreeJS.git",
-      "branch": "dev",
-      "authorization": "OD-2026-10-12-A"
+      "destination": "origin/dev",
+      "sourceCheckpoint": "b66c997dbf19ee4fece10b2e785ba88fef7dae0c",
+      "authorization": "OD-2026-10-12-A",
+      "finalWorkflow": "Containing Git commit; remote verification and release follow in automation memory"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-17T05:28:01.271Z",
+    "writerStopped": true,
     "metadataPublication": {
       "status": "INCLUDED_IN_FINAL_CLOSEOUT_COMMIT",
       "deliveryCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
@@ -35431,7 +35440,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "DEMO-CAMPAIGN-KEYBOARD",
-    "activeSubtask": "Both mounted Undo focus paths and zero-AP keyboard Wait observed; actual opening victory/refuge reload job still running",
+    "activeSubtask": "Undo dock/canvas focus and zero-AP keyboard Wait accepted scoped in native PC campaign; next-turn focus still unproved",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -38765,10 +38774,10 @@
     },
     "runId": "rpgthreejs-auto-dev-90m-20261017T0002",
     "agent": "codex",
-    "status": "IN_PROGRESS",
+    "status": "READY_FOR_NEXT_SCHEDULED_RUN",
     "runStartedAt": "2026-10-17T00:02:02Z",
     "activePhase": "POI_POST_LOT_E_PC_FINISHING",
-    "heartbeat": "2026-10-17T00:12:44.668Z",
+    "heartbeat": "2026-10-17T05:28:01.271Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-17T0002Z-codex-undo-wait.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -40109,7 +40118,7 @@
       }
     },
     "threadId": "01a1472a-5fc6-72f3-a454-87673f02e27d",
-    "writerStoppedMeaning": "Product and native QA complete; final selected closure commit/publication/parity and owned-lock release only",
+    "writerStoppedMeaning": "Product and QA worker terminal; final workflow publication/owned lock release follows",
     "run1944": {
       "startedAt": "2026-10-13T19:45:46.4541492Z",
       "seedAudit": "tmp/autonomy/run-1944/seed-audit.json",
@@ -40497,7 +40506,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
+    "lastPushedCommit": "b66c997dbf19ee4fece10b2e785ba88fef7dae0c",
     "productPreview": {
       "verifiedAt": "2026-10-16T15:27:07.4093983Z",
       "indexSha256": "b4773b8722aef154c3cd6e0e92cd677703c177b82f23cd084e5b661d353aa69f",
@@ -41350,11 +41359,15 @@
   },
   "currentHandoff": "docs/autonomy/handoffs/2026-10-17T0002Z-codex-undo-wait.md",
   "runMeasurement": {
-    "kind": "CONFIGURATION_ONLY",
-    "sourceModified": 0,
-    "qaProofAdded": 0,
-    "workflowFiles": 8,
-    "browserScenarios": 0
+    "productSource": 1,
+    "productTest": 1,
+    "existingQa": 1,
+    "newPersistentQa": 0,
+    "promotedProof": 0,
+    "workflow": 5,
+    "inheritedWip": 0,
+    "actualBrowser": 1,
+    "reviewer": 1
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -41614,11 +41627,15 @@
     }
   },
   "runStatistics": {
-    "kind": "CONFIGURATION_ONLY",
-    "sourceModified": 0,
-    "qaProofAdded": 0,
-    "workflowFiles": 8,
-    "browserScenarios": 0
+    "productSource": 1,
+    "productTest": 1,
+    "existingQa": 1,
+    "newPersistentQa": 0,
+    "promotedProof": 0,
+    "workflow": 5,
+    "inheritedWip": 0,
+    "actualBrowser": 1,
+    "reviewer": 1
   },
   "qaToolingJustification": "Zero new QA runners/frameworks; existing campaign pilot and receipt helper extended with original owner/assertion/provenance checks; manual timeout exception scoped to the directly authorized named run",
   "retainedRunArtifacts": {
@@ -42623,11 +42640,15 @@
     "fullDemoComplete": false
   },
   "currentRunMeasurement": {
-    "kind": "CONFIGURATION_ONLY",
-    "sourceModified": 0,
-    "qaProofAdded": 0,
-    "workflowFiles": 8,
-    "browserScenarios": 0
+    "productSource": 1,
+    "productTest": 1,
+    "existingQa": 1,
+    "newPersistentQa": 0,
+    "promotedProof": 0,
+    "workflow": 5,
+    "inheritedWip": 0,
+    "actualBrowser": 1,
+    "reviewer": 1
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",
@@ -42906,7 +42927,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-17T00:12:44.668Z",
+  "heartbeat": "2026-10-17T05:28:01.271Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -44478,7 +44499,7 @@
     "focusedTests": 89,
     "preservedHistoricalJobs": 313,
     "qaTooling": "Existing campaign runner extended for missing Undo and Wait controls; no new QA tool.",
-    "acceptance": "PENDING_NATIVE_PRODUCTION",
+    "acceptance": "ACCEPTED_SCOPED_PC1366_NORMAL_UNDO_ZERO_AP_WAIT",
     "contractSetVersion": "1.4.0",
     "sourceCheckpoint": "b66c997dbf19ee4fece10b2e785ba88fef7dae0c",
     "sourceReview": "PASS_GUARDIAN_SOURCE_ONLY",
@@ -44494,7 +44515,187 @@
       "combat-0-native-keyboard-return.png",
       "combat-0-native-undo-dock.png",
       "combat-0-native-undo-canvas.png",
-      "combat-0-native-wait-focus.png"
-    ]
+      "combat-0-native-wait-focus.png",
+      "combat-0-result.png",
+      "combat-0-native-parent-keyboard-return.png",
+      "lion-first-refuge-earned.png",
+      "lion-first-refuge-poi-reusable-reloaded.png"
+    ],
+    "closedAt": "2026-10-17T05:28:01.271Z",
+    "terminalAudit": {
+      "recordedAt": "2026-10-17T05:28:01.072Z",
+      "runId": "rpgthreejs-auto-dev-90m-20261017T0002",
+      "jobId": "campaign-undo-wait-0007",
+      "parameters": {
+        "target": "first-refuge",
+        "routePlan": "rescue",
+        "timeoutMinutes": 25,
+        "finalePlan": "serpent",
+        "defeatNodeId": "lion-village-choice",
+        "nativeDefeatWait": false,
+        "touchInput": false,
+        "nativeEquipment": false,
+        "trialPlan": "event",
+        "explorationPlan": "direct",
+        "checkpointPoiId": null,
+        "gameReducedMotion": false,
+        "viewport": [
+          1366,
+          768
+        ],
+        "osReducedMotion": false,
+        "earnedSavePath": null,
+        "priorProofPath": null,
+        "verifySalvation": false
+      },
+      "assertions": [
+        "EARNED_LINEAGE",
+        "NATIVE_INPUTS",
+        "EXACT_RELOAD"
+      ],
+      "requestMatches": true,
+      "provenanceMatches": true,
+      "provenanceStable": true,
+      "matchesCurrentExecution": true,
+      "resultDigestMatches": true,
+      "eligibleForReview": true,
+      "resultSha256": "296b71b42119bd199c892417aef4eb453f5027f8c368c316d08de05e27427782",
+      "receiptSha256": "afa0a9baa0c3e4f9190c8956d13a1be256ad7dff909a17437a78122eea7e3194",
+      "driverSha256": "6349212e065ba7ee4f8d89d31e76174b21034d78b5792eaeba451167e74ab204",
+      "helperSha256": "9adbcfa5be97588301ada7a0141caa2729b5cd55b0711011079d183c586a1e3d",
+      "battle": {
+        "nodeId": "lion-opening-ambush",
+        "rounds": 3,
+        "actions": 21,
+        "outcome": "victory",
+        "undo": [
+          {
+            "origin": "dock",
+            "focused": {
+              "action": "move",
+              "enabled": true,
+              "visible": true,
+              "outline": "solid",
+              "x": 476,
+              "y": 677.90625,
+              "right": 554,
+              "bottom": 748
+            },
+            "pass": true
+          },
+          {
+            "origin": "canvas",
+            "focused": {
+              "action": "move",
+              "enabled": true,
+              "visible": true,
+              "outline": "solid",
+              "x": 476,
+              "y": 677.90625,
+              "right": 554,
+              "bottom": 748
+            },
+            "pass": true
+          }
+        ],
+        "wait": {
+          "before": {
+            "id": "archer",
+            "ap": 0,
+            "maxap": 5,
+            "round": 1,
+            "turnIdx": 0
+          },
+          "after": {
+            "id": "archer",
+            "ap": 0,
+            "gardeAP": 0,
+            "souffle": false,
+            "round": 1,
+            "turnIdx": 1
+          },
+          "expectedWaitAp": 0,
+          "pass": true
+        }
+      },
+      "captures": [
+        "combat-0-native-deployment-focus.png",
+        "combat-0-deployment.png",
+        "combat-0-native-keyboard-return.png",
+        "combat-0-native-undo-dock.png",
+        "combat-0-native-undo-canvas.png",
+        "combat-0-native-keyboard-target.png",
+        "combat-0-native-wait-focus.png",
+        "combat-0-native-parent-keyboard-return.png",
+        "lion-first-refuge-earned.png",
+        "lion-first-refuge-poi-reusable-reloaded.png"
+      ],
+      "resumedNode": "lion-first-refuge",
+      "exactEarnedSaveEqualsResumed": true,
+      "limits": [
+        "PC1366 normal only",
+        "combatState projection equality excludes facing; existing facing behavior preserved",
+        "No new OS/mobile/spokenAT/balance/art/full-demo acceptance"
+      ],
+      "acceptance": "ACCEPTED_SCOPED_PC1366_NORMAL_UNDO_ZERO_AP_WAIT",
+      "guardian": "ACCEPTED_SCOPED_PC1366_NORMAL_UNDO_ZERO_AP_WAIT",
+      "capturesInspectedByRoot": 8,
+      "capturesInspectedByGuardian": 5,
+      "auditCorrection": "Extra local audit mistakenly compared initial refuge entry before ATE/settlement with resumed completed-node state; removed that unsupported epoch equality. Actual earned save equals final resumed V6 independently. Production driver assertions unchanged."
+    },
+    "counts": {
+      "productSource": 1,
+      "productTest": 1,
+      "existingQa": 1,
+      "newPersistentQa": 0,
+      "promotedProof": 0,
+      "workflow": 5,
+      "inheritedWip": 0,
+      "actualBrowser": 1,
+      "reviewer": 1
+    },
+    "compliance": {
+      "GAME_CONSTITUTION": "PASS_AUTHORITY_PRESERVED",
+      "ART_DIRECTION": "N/A",
+      "CHARACTERS": "N/A",
+      "ENVIRONMENTS": "N/A",
+      "NARRATIVE_CAMPAIGN": "PASS_EXISTING_OWNER_UNCHANGED",
+      "NARRATIVE_PRESENTATION": "N/A",
+      "TRAVERSAL": "N/A_RETIRED_UNCHANGED",
+      "COMBAT": "PASS_FOCUS_ONLY_NATIVE_RULES_PRESERVED",
+      "SAVE": "PASS_SCOPED_OWNER_AND_EXACT_REFUGE_V6",
+      "UI_ACCESSIBILITY": "PASS_SCOPED_PC1366_NORMAL_UNDO_WAIT",
+      "QA_EVIDENCE": "PASS_REVIEWED_CURRENT_PROVENANCE_DIGEST_CAPTURES",
+      "REPOSITORY_GOVERNANCE": "PASS_OWNED_DEV_NORMAL_PUBLICATION"
+    },
+    "contractsRead": [
+      "GAME_CONSTITUTION",
+      "README",
+      "manifest",
+      "AUTONOMOUS_WORK_PROTOCOL",
+      "COMBAT_AND_VFX",
+      "CAMPAIGN_AND_STATE",
+      "UI_AND_ACCESSIBILITY",
+      "AUTHORING_AND_QA",
+      "PRESENTATION_AND_MEDIA"
+    ],
+    "limits": [
+      "PC1366 normal only",
+      "combatState projection equality excludes facing; existing facing behavior preserved",
+      "No new OS/mobile/spokenAT/balance/art/full-demo acceptance",
+      "Wait observed at zeroAP; positiveAP capped breath branch not newly certified",
+      "Next player-turn automatic focus not newly certified"
+    ],
+    "historicalJobsPreserved": 313,
+    "deferredObjectsPreserved": true,
+    "captureLimits": "Parent narrative and reload captures are transitional; no settled narrative/typography/art acceptance inferred.",
+    "automaticReview": {
+      "initialAction": "Elevated terminal audit/acceptance/local closeout",
+      "initialResult": "NOT_EXECUTED_APPROVAL_REVIEW_USAGE_LIMIT",
+      "reason": "Automatic approval review could not complete because usage limit was reached; not a determination the action was unsafe.",
+      "resolution": "After the announced reset, operator resumed this turn; same elevated approval mechanism succeeded. No bypass.",
+      "resumedAt": "2026-10-17T05:27:13Z",
+      "resumedChecks": "Same owned lock/thread; dev5914ede live parity; main00b96f1 unchanged; no src/tools diff; QA worker absent/port5430free; source/driver/helper/build/result still match."
+    }
   }
 }

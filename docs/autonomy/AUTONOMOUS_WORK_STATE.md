@@ -1,16 +1,18 @@
-# PC tactical controls: native Undo and Wait
+# PC tactical Undo and Wait accepted scoped
 
-**IN_PROGRESS**. Run rpgthreejs-auto-dev-90m-20261017T0002; started 2026-10-17T00:02:02Z. Exclusive lock owned; clean inherited dev f69f0d3 equals live origin/dev at preflight. No inherited WIP.
+**READY_FOR_NEXT_SCHEDULED_RUN**. Run rpgthreejs-auto-dev-90m-20261017T0002; started2026-10-17T00:02:02Z; ended2026-10-17T05:28:01.271Z. Published product sourceb66c997dbf19ee4fece10b2e785ba88fef7dae0c; final workflow SHA/parity/lock release in Git and automation memory.
 
-Product: Undo keyboard focus restores enabled Move after dock activation or canvas U; pointer/external/busy owners preserved. Two real-source DOM failures before correction, 89 tests now pass. Native Undo/Wait production verification pending; no acceptance inferred.
+Next action: After read-only preflight/exclusive lock on current dev, reproduce focus continuity at the next player turn after native keyboard Wait in src/combat/legacyCombatRuntime.js beginTurn/openActionMenu using actual-source DOM. The accepted0007 scenario proves Wait activation/zero-AP/guard/turn advancement, not next-turn focus. Correct only a demonstrated focus loss using existing owner/helpers, preserve AP/turn/facing/V6 rules, then one scoped existing-runner PC production check. Retain Garen/2340/0007 scopes; no unchanged campaign replay. If no remaining PC control defect, advance demonstrated narrative presentation findings; isolate external Bois-Clair nightplate and leave mobile final.
 
-Next action: Finish one current built-production campaign opening/refuge scenario proving both native Undo focus paths and keyboard Wait, inspect exact receipt/provenance/captures with guardian; retain prior Garen/Escape acceptance. Then continue demonstrated narrative findings under current POI code without replaying unchanged campaigns.
+Undo now restores enabled Move focus for keyboard dock Enter/canvas U, respecting pointer/external/busy owners. Existing facing/movement/AP/turn/save rules remain unchanged. Two DOM failures before fix;89current tests/types/build/8contracts8slots/LOCKED/whitespace pass.
 
-Prior Garen novice_spear/l_long_thrust and campaign-controls-2340 scopes retained. Physical Traversal retired; current33fixedPOIs/two mobile elites/threeatlases, V6 and eight video slots preserved. Operator economy/elite/art/global-demo acceptance remains open. Scheduler untouched.
+One native PC1366normal scenario campaign-undo-wait-0007: opening victory3round/21actions, both Undo origins, native zero-AP Wait/guard/turn advance, existing keyboard/pointer and parent return/first-refuge exactV6reload. Receipt SUCCEEDED/exit0/stable/current/result296b71b42119bd199c892417aef4eb453f5027f8c368c316d08de05e27427782; guardian ACCEPTED_SCOPED and captures inspected. Raw receipt default NOT_ACCEPTED untouched; reviewed scope recorded separately.
 
-313 historical QA records and exact deferredDemoTask/pendingNarrativeTask preserved. ProductSource1/test1/existingQA1/newQA0/promotedProof0/inherited0.
+Limits: combatState projection equality excludes facing; no complete tactical-state restoration claim. Wait positiveAP breath branch and next-player-turn focus are not newly certified. No mobile/OS/spokenAT/balance/art/global-demo claim. External Bois-Clair nightplate isolated. Prior Garen and2340 scopes retained;313oldQA and exact deferred objects preserved,314total.
 
-Native job progress 2026-10-17T00:12:44.668Z: dock Enter/canvas U Undo focus and zero-AP Wait observed. Four captures inspected. Opening battle continues; terminal/native acceptance pending. Source b66c997 normally published; existing facing behavior unchanged.
+Counts: source1/test1/existingQA1/newPersistentQA0/promotedProof0/workflow5/inherited0/browser1/reviewer1. No contract/canon/economy/elite/atlas/media/Traversal/scheduler change. Set1.4.0 immutablef9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8; no LOCKED rule changed.
+
+Clôture interrompue par le quota de revue automatique des permissions (commande non exécutée). Reprise après la fenêtre annoncée, même mécanisme d’autorisation, verrou/parité/provenance revalidés ; aucun contournement. État final et publication repris à05:28Z.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -328,5 +330,5 @@ Native job progress 2026-10-17T00:12:44.668Z: dock Enter/canvas U Undo focus and
 - campaign-controls-2329: FAILED; port 5429; receipt `tmp/demo/campaign-controls-2329/qa-job.json`; NOT_ACCEPTED
 - campaign-controls-2339: FAILED; port 5429; receipt `tmp/demo/campaign-controls-2339/qa-job.json`; NOT_ACCEPTED
 - campaign-controls-2340: SUCCEEDED; port 5429; receipt `tmp/demo/campaign-controls-2340/qa-job.json`; NOT_ACCEPTED
-- campaign-undo-wait-0007: RUNNING; port 5430; receipt `tmp/demo/campaign-undo-wait-0007/qa-job.json`; NOT_ACCEPTED
+- campaign-undo-wait-0007: SUCCEEDED; port 5430; receipt `tmp/demo/campaign-undo-wait-0007/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
