@@ -4,10 +4,10 @@
   "runEndedAt": null,
   "activeTask": "DEMO-CAMPAIGN-KEYBOARD",
   "activePhase": "POI_POST_LOT_E_PC_FINISHING",
-  "activeSubtask": "Undo movement focus fixed after two red DOM assertions; native Undo/Wait production verification pending",
+  "activeSubtask": "Both mounted Undo focus paths and zero-AP keyboard Wait observed; actual opening victory/refuge reload job still running",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "46ce177ab89d09a004615d5bdc2ccc81c5f301db",
-  "lastPushedCommit": "46ce177ab89d09a004615d5bdc2ccc81c5f301db",
+  "lastKnownGoodCommit": "b66c997dbf19ee4fece10b2e785ba88fef7dae0c",
+  "lastPushedCommit": "b66c997dbf19ee4fece10b2e785ba88fef7dae0c",
   "completedThisRun": [
     "Read-only clean preflight, no concurrent lock; live dev parity verified and exclusive lock acquired",
     "Native Undo focus loss reproduced from dock/canvas; bounded focus-only correction; 89 focused tests pass"
@@ -122,20 +122,19 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "rpgthreejs-auto-dev-90m-20261017T0002",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-17T00:05:56.978Z",
+  "lastHeartbeat": "2026-10-17T00:12:44.668Z",
   "wip": {
     "branch": null,
     "sha": null,
     "dirtyFiles": [
-      "src/combat/legacyCombatRuntime.js",
-      "src/combat/combatKeyboard.test.ts",
-      "tools/demo-continuous-production-qa.mjs"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
     ],
     "status": "GREEN",
-    "lastGreenCheck": "2026-10-17T00:05:56.978Z"
+    "lastGreenCheck": "2026-10-17T00:12:44.668Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-17T00:05:56.978Z",
+    "lastHeartbeat": "2026-10-17T00:12:44.668Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -34498,18 +34497,116 @@
           "lion-first-refuge-poi-reusable-reloaded.png"
         ],
         "independentReview": "contracts-guardian PASS_SCOPED; exact compact audit and finalized receipt reviewed"
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "campaign-undo-wait-0007",
+        "runId": "rpgthreejs-auto-dev-90m-20261017T0002",
+        "status": "RUNNING",
+        "registeredAt": "2026-10-17T00:06:31.810Z",
+        "pid": 3876,
+        "port": 5430,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "first-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 25,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "explorationPlan": "direct",
+          "checkpointPoiId": null,
+          "gameReducedMotion": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": null,
+          "priorProofPath": null,
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/campaign-undo-wait-0007",
+        "receiptPath": "tmp/demo/campaign-undo-wait-0007/qa-job.json",
+        "provenance": {
+          "gitHead": "b66c997dbf19ee4fece10b2e785ba88fef7dae0c",
+          "sourceTree": "b6c426441a493ee3689af753df0446f9c133bc46",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "6349212e065ba7ee4f8d89d31e76174b21034d78b5792eaeba451167e74ab204"
+          },
+          "inputs": [],
+          "receiptToolSha256": "9adbcfa5be97588301ada7a0141caa2729b5cd55b0711011079d183c586a1e3d",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+              "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+            },
+            {
+              "path": "dist/assets/combat-B-lduHQr.js",
+              "sha256": "84e27bb82554acc4b709ab2514df01f98f67463bcc70b1c683728044fa159348"
+            },
+            {
+              "path": "dist/assets/combat-HSkJxt5D.css",
+              "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+            },
+            {
+              "path": "dist/assets/game-UCVpfDso.css",
+              "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+            },
+            {
+              "path": "dist/assets/game-l7q6Wbot.js",
+              "sha256": "e4b934cc0bcfedebf75143dad090800e1be3295a346c3023e53e98ca54e2643e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "b4773b8722aef154c3cd6e0e92cd677703c177b82f23cd084e5b661d353aa69f"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-17T00:06:32.637Z",
+        "endedAt": null,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": false,
+        "eligibleForReview": false
       }
     ],
     "wip": {
       "branch": null,
       "sha": null,
       "dirtyFiles": [
-        "src/combat/legacyCombatRuntime.js",
-        "src/combat/combatKeyboard.test.ts",
-        "tools/demo-continuous-production-qa.mjs"
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
       ],
       "status": "GREEN",
-      "lastGreenCheck": "2026-10-17T00:05:56.978Z"
+      "lastGreenCheck": "2026-10-17T00:12:44.668Z"
     },
     "nextAction": "Finish one current built-production campaign opening/refuge scenario proving both native Undo focus paths and keyboard Wait, inspect exact receipt/provenance/captures with guardian; retain prior Garen/Escape acceptance. Then continue demonstrated narrative findings under current POI code without replaying unchanged campaigns.",
     "runMetrics": {
@@ -35334,7 +35431,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "DEMO-CAMPAIGN-KEYBOARD",
-    "activeSubtask": "Undo movement focus fixed after two red DOM assertions; native Undo/Wait production verification pending",
+    "activeSubtask": "Both mounted Undo focus paths and zero-AP keyboard Wait observed; actual opening victory/refuge reload job still running",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -38671,7 +38768,7 @@
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-17T00:02:02Z",
     "activePhase": "POI_POST_LOT_E_PC_FINISHING",
-    "heartbeat": "2026-10-17T00:05:56.978Z",
+    "heartbeat": "2026-10-17T00:12:44.668Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-17T0002Z-codex-undo-wait.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -42809,7 +42906,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-17T00:05:56.978Z",
+  "heartbeat": "2026-10-17T00:12:44.668Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -44382,6 +44479,22 @@
     "preservedHistoricalJobs": 313,
     "qaTooling": "Existing campaign runner extended for missing Undo and Wait controls; no new QA tool.",
     "acceptance": "PENDING_NATIVE_PRODUCTION",
-    "contractSetVersion": "1.4.0"
+    "contractSetVersion": "1.4.0",
+    "sourceCheckpoint": "b66c997dbf19ee4fece10b2e785ba88fef7dae0c",
+    "sourceReview": "PASS_GUARDIAN_SOURCE_ONLY",
+    "nativeAssertions": [
+      "TWO_UNDO_ORIGINS_RESTORE_COMBATSTATE_PROJECTION_EXCLUDING_FACING",
+      "ENABLED_VISIBLE_MOVE_FOCUS",
+      "NATIVE_WAIT_ZERO_AP_GUARD_AND_TURN_ADVANCE",
+      "CAMPAIGN_OWNER_AND_AUTOSAVE_INVARIANCE",
+      "EXISTING_VICTORY_PARENT_RETURN_EXACT_V6_RELOAD"
+    ],
+    "observations": "Dock Enter and canvas U returned visible enabled Move; Wait zero-AP native branch advanced turn. Pending terminal digest/current-execution/guardian review.",
+    "capturesInspected": [
+      "combat-0-native-keyboard-return.png",
+      "combat-0-native-undo-dock.png",
+      "combat-0-native-undo-canvas.png",
+      "combat-0-native-wait-focus.png"
+    ]
   }
 }

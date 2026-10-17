@@ -10,6 +10,8 @@ Prior Garen novice_spear/l_long_thrust and campaign-controls-2340 scopes retaine
 
 313 historical QA records and exact deferredDemoTask/pendingNarrativeTask preserved. ProductSource1/test1/existingQA1/newQA0/promotedProof0/inherited0.
 
+Native job progress 2026-10-17T00:12:44.668Z: dock Enter/canvas U Undo focus and zero-AP Wait observed. Four captures inspected. Opening battle continues; terminal/native acceptance pending. Source b66c997 normally published; existing facing behavior unchanged.
+
 <!-- QA_JOBS_START -->
 ## Live QA jobs
 
@@ -326,4 +328,5 @@ Prior Garen novice_spear/l_long_thrust and campaign-controls-2340 scopes retaine
 - campaign-controls-2329: FAILED; port 5429; receipt `tmp/demo/campaign-controls-2329/qa-job.json`; NOT_ACCEPTED
 - campaign-controls-2339: FAILED; port 5429; receipt `tmp/demo/campaign-controls-2339/qa-job.json`; NOT_ACCEPTED
 - campaign-controls-2340: SUCCEEDED; port 5429; receipt `tmp/demo/campaign-controls-2340/qa-job.json`; NOT_ACCEPTED
+- campaign-undo-wait-0007: RUNNING; port 5430; receipt `tmp/demo/campaign-undo-wait-0007/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
