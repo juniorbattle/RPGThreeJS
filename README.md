@@ -1,25 +1,28 @@
 # RPGThreeJS — La Voie des Sceaux
 
-Vertical slice HD-2D sous Three.js. Le runtime principal orchestre une run narrative ramifiée, la carte stratégique, les dialogues, le clan et la sauvegarde v5. Le combat de mêlée tactique reste une entrée Vite dédiée, initialisée par un contrat `postMessage` validé.
+Démo narrative et tactique HD-2D sous Three.js. La campagne relie les dialogues, le clan et les combats par une carte de 33 POI fixes, trois atlas et deux élites mobiles indépendantes. Les sauvegardes sont en V6.
 
 ```bash
 npm install
 npm run dev
 npm test
 npm run build
+npm run preview -- --host 127.0.0.1 --port 4173 --strictPort
 ```
 
-- `/` : run narrative, bandeau de voyage et carte stratégique.
-- `/legacy-combat.html` : arène compacte 8 × 4, avec déploiement du clan et décor hybride.
+- Pour tester le build de production, ouvrir [la campagne locale](http://127.0.0.1:4173/) après les deux dernières commandes. Utiliser un port libre ; `--strictPort` évite de changer silencieusement d'adresse.
+- `/` : entrée de campagne, carte POI, dialogues, refuges et combats intégrés. Le bouton Continuer reprend une sauvegarde existante dans ce navigateur et à cette adresse.
+- `/legacy-combat.html` : entrée technique du moteur tactique ; le parcours de playtest passe par la campagne.
+- [Parcours de playtest PC et limites connues](docs/project/PC_PLAYTEST.md). La démo reste en préparation pour le playtest final opérateur ; la passe mobile finale suit la stabilité PC.
 
 Principes actuels :
 
-- une ou deux armes équipées selon le profil de l’unité ;
-- quatre alliés contre trois ou quatre ennemis sur une grille entièrement praticable ;
+- une seule arme équipée par héros et deux emplacements d'accessoires ;
+- déploiement et résolution tactique selon la rencontre ;
 - progression par armes et accessoires, sans niveau ni XP ;
-- parcours seedé de douze étapes avec branches, refuges et révélation progressive ;
+- déplacements, attentes et exploration sur les connexions autorisées de la carte POI ;
 - butin temporaire sécurisé aux refuges et perdu en cas de défaite ;
 - réputation globale data-driven influençant prix et événements ;
-- boutique accessible uniquement depuis un nœud marchand ;
+- préparation et services aux refuges selon leur disponibilité ;
 - inspection des unités au survol et aperçu contextuel des actions ;
 - arrière-plans atmosphériques ancrés à la caméra, sans raycast ni collision.
