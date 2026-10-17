@@ -1,14 +1,14 @@
-# PC council continuation — in progress
+# Complete accessible dialogue names — source green, browser open
 
-Run rpgthreejs-auto-dev-90m-20261017T2229, started 2026-10-17T22:29:16Z. Owned exclusive lock; clean dev and live remote parity verified.
+Run rpgthreejs-auto-dev-90m-20261017T2229; started 2026-10-17T22:29:16Z; checkpoint in progress.
 
-Garen and native campaign keyboard scopes retained. Contextual council/refugee first-step0455 and opening dynamic1642 source unchanged; earned Lot E campaign/V6 acceptance retained. No new source defect established. Later council steps not observed by existing first-step runner.
+Dialogue controls expose their complete current segment, speaker/tag, consequences and available action before focus; visual typewriter and native progression remain unchanged. Two DOM regressions failed before correction;91current tests/fresh types+build PASS.
 
-Existing --production-contextual runner stops at step!=1. A narrow opt-in observes later council text/facing/focus; default matrix unchanged, no new QA tool.
+Protected council steps2/3 separately accepted scoped on old source-driver1840b27, result262150af6c0807832ae7fa734b17930210f0356b3f5fffbd383dce4f9961b604; fixture-origin PC1366normal,2actors/stable facing/settled visible focus/observation state equality. No earned or reload claim. New label source/build and runner assertions have NO browser acceptance. Raw receipt untouched.
 
-Next: Review opt-in council continuation assertions, verify matching source/build, then register and run ONE PC1366 normal fixture-origin council observation of steps 1 through 3; no earned campaign or replay claim.
+After read-only preflight/exclusive lock, verify current DialogueView label source and fresh build; register ONE existing tools/cinematics/run_cin6ea4_dialogue_qa.mjs --production-contextual with CIN6EA4_COUNCIL_CONTINUATION=1, new ignored output/free port and host Chromium cache. Copy exact current six requiredAssertions/parameters into registration. Observe complete accessible names via getByRole before reveal finishes, correct segment/action, retained keyboard focus and unchanged council assertions. Inspect captures/provenance/digest. Do not reuse2234 as label acceptance, replay campaign/opening/Garen, or run default3x3 matrix. Then PC tester readiness; mobile final.
 
-Fixture-origin static narrative only; no earned campaign, fullV6/reload, OS/mobile, dynamic cast timing or global-demo acceptance.
+Counts: source1/test1/existingQA1/newQA0/proof0/workflow5/inherited0/browser1/reviewers2.315historicalQA and both exact deferred objects preserved;316total. Set1.4.0/baselinef9d8fde unchanged. External nightplate and operator economy/elites/art separate; final mobile after PC.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -328,5 +328,5 @@ Fixture-origin static narrative only; no earned campaign, fullV6/reload, OS/mobi
 - campaign-controls-2340: SUCCEEDED; port 5429; receipt `tmp/demo/campaign-controls-2340/qa-job.json`; NOT_ACCEPTED
 - campaign-undo-wait-0007: SUCCEEDED; port 5430; receipt `tmp/demo/campaign-undo-wait-0007/qa-job.json`; NOT_ACCEPTED
 - campaign-next-turn-2141: SUCCEEDED; port 5432; receipt `tmp/demo/campaign-next-turn-2141/qa-job.json`; NOT_ACCEPTED
-- council-continuation-2234: PLANNED; port 5433; receipt `tmp/cinematics/council-continuation-2234/qa-job.json`; NOT_ACCEPTED
+- council-continuation-2234: SUCCEEDED; port 5433; receipt `tmp/cinematics/council-continuation-2234/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->

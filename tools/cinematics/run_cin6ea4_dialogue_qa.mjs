@@ -495,6 +495,7 @@ async function runContextualProduction() {
     'One STATIC_TABLEAU, Champion left facing Alaric right with stable reciprocal facing and look targets, at most four actors',
     'Automatic enabled dialogue focus stays visible through native Enter advancement without refocusing the target; settled text fits',
     'Every observation preserves complete live owner state and stored V6 bytes; normal OS/game motion, zero combat and clean diagnostics',
+    'Complete accessible control names include the current segment and action during progressive reveal; at least one observation precedes completed reveal',
   ] : [
     'All first-step pages concatenate to the authored factual acknowledgement in each context and cell',
     'Native live facts match protected witnesses or refugee exploitation; no event or outcome injection',
@@ -599,6 +600,23 @@ async function runContextualProduction() {
               await page.screenshot({ path: resolve(output, `${cell}-${scenario.id}-choices.png`) });
               break;
             }
+            let accessibleNameDuringReveal = null;
+            if (councilContinuation && sequence === scenario.sequence) {
+              await page.waitForFunction(() => {
+                const element = document.querySelector('.dialogue');
+                return element && !element.classList.contains('dialogue--preparing-step')
+                  && element.querySelector('.dialogue__text')?.dataset.finalText;
+              });
+              accessibleNameDuringReveal = await dialogue.evaluate(element => {
+                const box = element.querySelector('.dialogue__box'), text = element.querySelector('.dialogue__text');
+                return { label: box.getAttribute('aria-label'), text: text.dataset.finalText,
+                  action: element.querySelector('.dialogue__continue').textContent,
+                  revealed: text.querySelector('.dialogue__text-reveal').textContent, focused: document.activeElement === box };
+              });
+              assert.ok(accessibleNameDuringReveal.focused && accessibleNameDuringReveal.label?.includes(accessibleNameDuringReveal.text)
+                && accessibleNameDuringReveal.label.includes(accessibleNameDuringReveal.action), 'Incomplete accessible dialogue control name');
+              assert.equal(await dialogue.getByRole('button', { name: accessibleNameDuringReveal.label, exact: true }).count(), 1);
+            }
             await page.waitForFunction(() => {
               const dialogue = document.querySelector('.dialogue'), text = dialogue?.querySelector('.dialogue__text');
               return dialogue && !dialogue.classList.contains('dialogue--preparing-step') && getComputedStyle(dialogue).opacity === '1'
@@ -636,7 +654,7 @@ async function runContextualProduction() {
                   { id: 'lion_champion', position: 'LEFT', facing: 'RIGHT', lookTarget: 'alaric' },
                   { id: 'alaric', position: 'RIGHT', facing: 'LEFT', lookTarget: 'lion_champion' },
                 ], 'Council relationship or stable facing changed');
-                Object.assign(observation, continuity);
+                Object.assign(observation, continuity, { accessibleNameDuringReveal });
               }
               assert.equal(observation.mode, 'STATIC_TABLEAU'); assert.equal(observation.surfaces, 1);
               assert.equal(observation.mediaSurface, 'STATIC_TABLEAU'); assert.equal(observation.castOwnership, 'STAGE_OWNS_CAST'); assert.notEqual(observation.primaryInvariant, 'FAIL');
@@ -668,6 +686,7 @@ async function runContextualProduction() {
           for (const [step, expected] of Object.entries(councilSteps)) {
             assert.equal(normalize(segments.filter(entry => entry.step === step).map(entry => entry.text).join(' ')), normalize(expected.text), `Incomplete council step ${step}`);
           }
+          assert.ok(segments.some(entry => entry.accessibleNameDuringReveal.revealed !== entry.accessibleNameDuringReveal.text), 'No accessible-name observation during progressive reveal');
         } else assert.equal(normalize(segments.map(entry => entry.text).join(' ')), normalize(scenario.expected), 'Incomplete or inconsistent contextual text');
         const motion = await page.evaluate(() => window.__contextualMotion);
         if (os) assert.ok(motion.length && motion.every(entry => /^(dialogue-tableau:|narrative-static:)/.test(entry.id) && entry.played === false && entry.osReduced && entry.gameReduced === false), 'Missing native OS-only static observations');

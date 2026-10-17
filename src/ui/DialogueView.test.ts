@@ -253,9 +253,18 @@ describe('DialogueView narrative boundaries', () => {
       }),
     });
     expect(root.querySelectorAll('.dialogue-choice')).toHaveLength(0);
+    const box = root.querySelector<HTMLButtonElement>('.dialogue__box')!;
+    expect(box.getAttribute('aria-label')).toContain('Alaric');
+    expect(box.getAttribute('aria-label')).toContain('Mandat');
+    expect(box.getAttribute('aria-label')).toContain('Phrase canonique une.');
+    expect(box.getAttribute('aria-label')).not.toContain('Phrase canonique deux.');
+    expect(box.getAttribute('aria-label')).toContain('Lire la suite');
     root.querySelector<HTMLButtonElement>('.dialogue__box')?.click();
     expect(root.querySelectorAll('.dialogue-choice')).toHaveLength(0);
     expect(root.querySelector('.dialogue__text')?.textContent).toBe('Phrase canonique deux.');
+    expect(box.getAttribute('aria-label')).toContain('Phrase canonique deux.');
+    expect(box.getAttribute('aria-label')).not.toContain('Phrase canonique une.');
+    expect(box.getAttribute('aria-label')).toContain('Choisir');
     root.querySelector<HTMLButtonElement>('.dialogue__box')?.click();
     expect(root.querySelectorAll('.dialogue-choice')).toHaveLength(1);
     root.querySelector<HTMLButtonElement>('.dialogue-choice')?.click();
@@ -310,7 +319,7 @@ describe('DialogueView narrative boundaries', () => {
       steps: [{
         id: 'choice', speaker: 'Séraphine', actorId: 'sage_seraphine', tag: 'Conseil',
         text: 'Le texte final réserve toute sa géométrie avant que la première lettre ne soit révélée.',
-        portrait: '', expression: 'mystical', side: 'left', next: null, effects: [],
+        portrait: '', expression: 'mystical', side: 'left', next: null, effects: [{ type: 'addReputation', amount: 1 }],
         choices: [
           { text: 'Première voie', next: null, effects: [] },
           { text: 'Seconde voie', next: null, effects: [] },
@@ -335,8 +344,16 @@ describe('DialogueView narrative boundaries', () => {
     const text = root.querySelector<HTMLElement>('.dialogue__text')!;
     expect(text.dataset.finalText).toBe(sequence.steps[0]!.text);
     expect(text.querySelector('.dialogue__text-reveal')?.textContent).toBe('');
+    const box = root.querySelector<HTMLButtonElement>('.dialogue__box')!;
+    const accessibleLabel = box.getAttribute('aria-label');
+    expect(accessibleLabel).toContain(sequence.steps[0]!.text);
+    expect(accessibleLabel).toContain('Séraphine');
+    expect(accessibleLabel).toContain('Conseil');
+    expect(accessibleLabel).toContain('Réputation +1');
+    expect(accessibleLabel).toContain('Choisir');
     vi.advanceTimersByTime(30);
     expect(text.querySelector('.dialogue__text-reveal')?.textContent?.length).toBeGreaterThan(0);
+    expect(box.getAttribute('aria-label')).toBe(accessibleLabel);
     root.querySelector<HTMLButtonElement>('.dialogue__box')?.click();
     const overlay = root.querySelector<HTMLElement>('.dialogue--narrative')!;
     expect(overlay.dataset.narrativeSceneMode).toBe('STATIC_TABLEAU');

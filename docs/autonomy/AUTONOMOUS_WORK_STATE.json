@@ -2,49 +2,65 @@
   "status": "IN_PROGRESS",
   "runStartedAt": "2026-10-17T22:29:16Z",
   "runEndedAt": null,
-  "activeTask": "DEMO-NARRATIVE-PRESENTATION",
-  "activePhase": "PC_COUNCIL_CONTINUATION",
-  "activeSubtask": "Observe only previously missing council continuation steps using the existing built-production contextual runner",
+  "activeTask": "DEMO-PC-DIALOGUE-ACCESSIBILITY",
+  "activePhase": "SOURCE_GREEN_BROWSER_OPEN",
+  "activeSubtask": "Stable complete accessible dialogue names implemented; one current-build browser verification remains",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "a9863a321ef657edacb7c7b476e86f062f1e974f",
   "lastPushedCommit": "a9863a321ef657edacb7c7b476e86f062f1e974f",
-  "completedThisRun": [],
+  "completedThisRun": [
+    "Reused Garen/keyboard/contextual/opening/Lot E scopes without replay",
+    "Observed previously missing protected council steps2/3, fixture-origin PC1366normal; exact scoped provenance retained",
+    "Corrected incomplete accessible dialogue control names during visual typewriter; segment/speaker/tag/outcomes/action preserved",
+    "Two red-before regressions now green;91focused tests/fresh types+build PASS; new label browser explicitly OPEN"
+  ],
   "filesChanged": [
-    "tools/cinematics/run_cin6ea4_dialogue_qa.mjs"
+    "src/ui/DialogueView.ts",
+    "src/ui/DialogueView.test.ts",
+    "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
+    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+    "docs/autonomy/handoffs/2026-10-17T2229Z-codex-dialogue-accessible-names.md"
   ],
   "testsRun": [
-    "91 current targeted tests/4 files PASS (tmp snapshots excluded)",
-    "TypeScript PASS",
-    "8 contracts/8 video slots PASS; immutable and working LOCKED gates empty; whitespace/syntax PASS",
-    "Existing2135 build: all9 build files and current HEAD:src match successful receipt; no source edits"
+    "2 intended dialogue accessibility failures before correction",
+    "91 current tests/4files after correction PASS",
+    "Fresh TypeScript+Vite build PASS;8MP4; inherited chunk-size advisory only",
+    "8contracts/8slots;LOCKED immutable/working gates, syntax and whitespace PASS",
+    "ONE old-build council continuation smoke accepted scoped; new label browser OPEN"
   ],
   "testsPassed": [
-    "91 current targeted tests/4 files PASS (tmp snapshots excluded)",
-    "TypeScript PASS",
-    "8 contracts/8 video slots PASS; immutable and working LOCKED gates empty; whitespace/syntax PASS",
-    "Existing2135 build: all9 build files and current HEAD:src match successful receipt; no source edits"
+    "91 current focused tests",
+    "Types/build/contracts/LOCKED/whitespace",
+    "ACCEPTED_SCOPED_FIXTURE_COUNCIL_STEPS_2_3_PC1366_NORMAL"
   ],
   "testsRemaining": [
-    "Focused contextual/dialogue/staging tests, types, contracts and one council continuation smoke"
+    "Current-build accessible-name production smoke before label acceptance",
+    "Remaining independent PC/tester finishing, final mobile and operator final acceptance"
   ],
-  "blockers": [],
+  "blockers": [
+    "New accessible-name browser verification remains OPEN under the one-scenario-per-run limit; source checkpoint is green",
+    "Bois-Clair nightplate remains external BLOCKED_ASSET; independent PC work continues"
+  ],
   "remainingWork": [
-    "Consolidate remaining narrative presentation criteria from existing accepted proof; correct only demonstrated defects",
-    "Finish independent PC accessibility/tester readiness",
-    "Operator Lot E economy/elite settings/atlas art and Bois-Clair nightplate remain separate",
+    "Verify new accessible-name production boundary with existing runner",
+    "PC accessibility/tester readiness",
+    "Operator Lot E economy/elites/atlas art and external nightplate remain separate",
     "Final mobile after PC stability"
   ],
-  "nextAction": "Review opt-in council continuation assertions, verify matching source/build, then register and run ONE PC1366 normal fixture-origin council observation of steps 1 through 3; no earned campaign or replay claim.",
+  "nextAction": "After read-only preflight/exclusive lock, verify current DialogueView label source and fresh build; register ONE existing tools/cinematics/run_cin6ea4_dialogue_qa.mjs --production-contextual with CIN6EA4_COUNCIL_CONTINUATION=1, new ignored output/free port and host Chromium cache. Copy exact current six requiredAssertions/parameters into registration. Observe complete accessible names via getByRole before reveal finishes, correct segment/action, retained keyboard focus and unchanged council assertions. Inspect captures/provenance/digest. Do not reuse2234 as label acceptance, replay campaign/opening/Garen, or run default3x3 matrix. Then PC tester readiness; mobile final.",
   "taskQueue": [
     "DEMO-PC-SIX-HERO-SKILLS: CLOSED_SCOPED_REUSED_PROOFS",
     "DEMO-CAMPAIGN-KEYBOARD: NEXT_PLAYER_FOCUS_AND_POSITIVE_WAIT_ACCEPTED_SCOPED_PC1366_NORMAL; prior scopes retained",
     "DEMO-NARRATIVE-PRESENTATION: ACTIVE_REMAINING_CRITERIA_ONLY",
-    "DEMO-PC-ACCESSIBILITY-FINISHING: PENDING",
+    "DEMO-PC-ACCESSIBILITY-FINISHING: SOURCE_GREEN_COMPLETE_DIALOGUE_NAMES_BROWSER_OPEN",
     "DEMO-PC-TESTER-HANDOFF: PENDING",
     "DEMO-MOBILE-FINAL: AFTER_PC_STABLE"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PENDING_SCOPED_REVIEW",
+  "contractComplianceStatus": "SOURCE_COMPLIANT_QA_EVIDENCE_BLOCKED_NEW_LABEL_BROWSER_OPEN",
   "commitReferenceScope": "Source fields name published product a9863a3; final workflow commit is the Git commit containing this state. Verified transport/parity and lock release recorded in automation memory; historical nested ledgers retain original scope.",
   "operatorAuthorization": "Explicit exceptional mission and both full attachments OD-2026-10-15-A; normal non-force origin/dev publication permanently authorized OD-2026-10-12-A; no main writes.",
   "creativeDirection": {
@@ -127,7 +143,7 @@
     "lastGreenCheck": "2026-10-17T22:06:24.983Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-17T22:33:43.476Z",
+    "lastHeartbeat": "2026-10-17T22:38:09.234Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -34701,9 +34717,9 @@
         "schemaVersion": 1,
         "jobId": "council-continuation-2234",
         "runId": "rpgthreejs-auto-dev-90m-20261017T2229",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-17T22:33:43.507Z",
-        "pid": null,
+        "pid": 25512,
         "port": 5433,
         "command": [
           "node",
@@ -34778,19 +34794,37 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-17T22:34:05.953Z",
+        "endedAt": "2026-10-17T22:34:45.524Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/council-continuation-2234/results.json",
+        "resultSha256": "262150af6c0807832ae7fa734b17930210f0356b3f5fffbd383dce4f9961b604",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       }
     ],
     "wip": {
       "branch": null,
       "sha": null,
-      "dirtyFiles": [
-        "tools/cinematics/run_cin6ea4_dialogue_qa.mjs"
-      ],
       "status": "GREEN",
-      "lastGreenCheck": "2026-10-17T22:33:43.474Z"
+      "dirtyFiles": [
+        "src/ui/DialogueView.ts",
+        "src/ui/DialogueView.test.ts",
+        "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
+        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+        "docs/autonomy/handoffs/2026-10-17T2229Z-codex-dialogue-accessible-names.md"
+      ],
+      "lastGreenCheck": "2026-10-17T22:38:09.234Z"
     },
-    "nextAction": "Review opt-in council continuation assertions, verify matching source/build, then register and run ONE PC1366 normal fixture-origin council observation of steps 1 through 3; no earned campaign or replay claim.",
+    "nextAction": "After read-only preflight/exclusive lock, verify current DialogueView label source and fresh build; register ONE existing tools/cinematics/run_cin6ea4_dialogue_qa.mjs --production-contextual with CIN6EA4_COUNCIL_CONTINUATION=1, new ignored output/free port and host Chromium cache. Copy exact current six requiredAssertions/parameters into registration. Observe complete accessible names via getByRole before reveal finishes, correct segment/action, retained keyboard focus and unchanged council assertions. Inspect captures/provenance/digest. Do not reuse2234 as label acceptance, replay campaign/opening/Garen, or run default3x3 matrix. Then PC tester readiness; mobile final.",
     "runMetrics": {
       "runtimeSourceFilesModified": 1,
       "testFilesModified": 1,
@@ -35616,8 +35650,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "DEMO-NARRATIVE-PRESENTATION",
-    "activeSubtask": "Observe only previously missing council continuation steps using the existing built-production contextual runner",
+    "activeTask": "DEMO-PC-DIALOGUE-ACCESSIBILITY",
+    "activeSubtask": "Stable complete accessible dialogue names implemented; one current-build browser verification remains",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -38953,7 +38987,7 @@
     "agent": "codex",
     "status": "READY_FOR_NEXT_SCHEDULED_RUN",
     "runStartedAt": "2026-10-17T21:35:43Z",
-    "activePhase": "PC_COUNCIL_CONTINUATION",
+    "activePhase": "SOURCE_GREEN_BROWSER_OPEN",
     "heartbeat": "2026-10-17T22:06:24.983Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-17T2135Z-codex-next-player-focus.md",
     "motion1617": {
@@ -44978,6 +45012,95 @@
     "limits": "Fixture-origin static narrative only; no earned campaign, fullV6/reload, OS/mobile, dynamic cast timing or global-demo acceptance.",
     "historicalJobs": 315,
     "scheduler": "UNTOUCHED",
-    "guardianPrelaunch": "PASS_SCOPED_FIXTURE_ORIGIN_SETTLED_OBSERVATIONS"
+    "guardianPrelaunch": "PASS_SCOPED_FIXTURE_ORIGIN_SETTLED_OBSERVATIONS",
+    "audit": "tmp/autonomy/run2229/terminal-audit.json",
+    "councilAcceptance": "ACCEPTED_SCOPED_FIXTURE_COUNCIL_STEPS_2_3_PC1366_NORMAL",
+    "councilResultSha256": "262150af6c0807832ae7fa734b17930210f0356b3f5fffbd383dce4f9961b604",
+    "councilSourceDriverCommit": "1840b27b54e454293a0d1786e1bf486b2363ddb6",
+    "sourceFix": "Complete current-segment accessible control name before focus, stable across reveal and refreshed on pagination; no truth/agency mutation",
+    "status": "SOURCE_GREEN_BROWSER_OPEN",
+    "nextAction": "After read-only preflight/exclusive lock, verify current DialogueView label source and fresh build; register ONE existing tools/cinematics/run_cin6ea4_dialogue_qa.mjs --production-contextual with CIN6EA4_COUNCIL_CONTINUATION=1, new ignored output/free port and host Chromium cache. Copy exact current six requiredAssertions/parameters into registration. Observe complete accessible names via getByRole before reveal finishes, correct segment/action, retained keyboard focus and unchanged council assertions. Inspect captures/provenance/digest. Do not reuse2234 as label acceptance, replay campaign/opening/Garen, or run default3x3 matrix. Then PC tester readiness; mobile final.",
+    "rawReceiptAcceptance": "NOT_ACCEPTED_UNCHANGED",
+    "counts": {
+      "runtimeSourceFilesModified": 1,
+      "testFilesModified": 1,
+      "existingQaFilesModified": 1,
+      "newPersistentQaFiles": 0,
+      "promotedProofFiles": 0,
+      "workflowFiles": 5,
+      "inheritedWipFiles": 0,
+      "browserScenarios": 1,
+      "reviewers": 2
+    },
+    "scopeLimit": "Old source/build only. Full state/bytes equal during observations, not Enter; settled focus/facing only. No earned lineage, node completion/reload, OS/mobile or accessible-name reveal claim.",
+    "newLabelAcceptance": "OPEN_NO_BROWSER_OR_SCREEN_READER_CLAIM",
+    "sourceTests": [
+      "tmp/autonomy/run2229/label-before.log",
+      "tmp/autonomy/run2229/label-after.log",
+      "tmp/autonomy/run2229/build.log"
+    ],
+    "build": [
+      {
+        "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+        "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+      },
+      {
+        "path": "dist/assets/combat-HSkJxt5D.css",
+        "sha256": "fecbb2e1f87881e7bc8bbb5a6a29b9d08f174ff1a367cb97e84d8897ed13d7eb"
+      },
+      {
+        "path": "dist/assets/combat-_1j3BwQ2.js",
+        "sha256": "6b4075c2a198157543e4f3cfda96dcfe85842f4772f781b60097b32e565a5617"
+      },
+      {
+        "path": "dist/assets/game-C9BxMGXK.js",
+        "sha256": "b2cad7f3ab6a2a2ece1db0974281f146a478985eefd53d8e13ca8cc3248e50e3"
+      },
+      {
+        "path": "dist/assets/game-UCVpfDso.css",
+        "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+      },
+      {
+        "path": "dist/assets/three-core-f0ajj1rG.js",
+        "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+      },
+      {
+        "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+        "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+      },
+      {
+        "path": "dist/assets/validation-mSkvzYyn.js",
+        "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+      }
+    ],
+    "priorHistoryPreserved": true,
+    "lockedRuleChanged": false,
+    "compliance": {
+      "GAME_CONSTITUTION": "PASS",
+      "ART_DIRECTION": "N/A",
+      "CHARACTERS": "N/A",
+      "ENVIRONMENTS": "N/A",
+      "NARRATIVE_CAMPAIGN": "PASS_UNCHANGED",
+      "NARRATIVE_PRESENTATION": "PASS_SCOPED_SOURCE",
+      "TRAVERSAL": "N/A_RETIRED_UNCHANGED",
+      "COMBAT": "N/A",
+      "SAVE": "PASS_NO_SCHEMA_OR_WRITE_CHANGE",
+      "UI_ACCESSIBILITY": "PASS_SCOPED_DOM",
+      "QA_EVIDENCE": "BLOCKED_NEW_LABEL_BROWSER_OPEN",
+      "REPOSITORY_GOVERNANCE": "PASS_OWNED_DEV"
+    },
+    "guardian": "PASS_SOURCE_CHECKPOINT_NEW_LABEL_BROWSER_OPEN",
+    "contractsRead": [
+      "GAME_CONSTITUTION",
+      "README",
+      "manifest1.4.0",
+      "AUTONOMOUS_WORK_PROTOCOL",
+      "AUTHORING_AND_QA",
+      "PRESENTATION_AND_MEDIA",
+      "UI_AND_ACCESSIBILITY",
+      "CAMPAIGN_AND_STATE",
+      "WORLD_AND_CHARACTERS"
+    ],
+    "staging": "PASS_282_runtime_steps_0_missing_or_unknown"
   }
 }

@@ -263,6 +263,7 @@ export class DialogueView {
         ? 'Choisir ◆'
         : 'Continuer ◆';
     this.typeText(text, this.displaySegments[0]!);
+    this.updateAccessibleLabel(box);
     this.playOptions.onStepChange?.(step, presentation);
 
     if (step.effects.length && !this.appliedStepIds.has(step.id)) {
@@ -522,6 +523,8 @@ export class DialogueView {
       continueLabel.textContent = finalSegment
         ? this.current.choices?.length ? 'Choisir ◆' : 'Continuer ◆'
         : 'Lire la suite ◆';
+      const box = this.overlay.querySelector<HTMLButtonElement>('.dialogue__box');
+      if (box) this.updateAccessibleLabel(box);
       return;
     }
     if (this.current.choices?.length) {
@@ -561,5 +564,17 @@ export class DialogueView {
       reveal.textContent = value.slice(0, index);
       if (index >= value.length) window.clearInterval(this.typingTimer);
     }, 15);
+  }
+
+  private updateAccessibleLabel(box: HTMLButtonElement): void {
+    const continuation = box.querySelector<HTMLElement>('.dialogue__continue');
+    // The visual typewriter must not shorten the focused control's accessible name.
+    box.setAttribute('aria-label', [
+      box.querySelector('.dialogue__speaker')?.textContent,
+      box.querySelector('.dialogue__tag')?.textContent,
+      this.displaySegments[this.displaySegmentIndex],
+      ...Array.from(box.querySelectorAll('.dialogue-outcome span'), (label) => label.textContent),
+      continuation?.hidden ? '' : continuation?.textContent,
+    ].filter(Boolean).join(' '));
   }
 }
