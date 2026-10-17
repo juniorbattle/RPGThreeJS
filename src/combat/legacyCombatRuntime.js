@@ -1167,10 +1167,14 @@ async function beginTurn(u){ if(G.over)return; u._hasStartedTurn=true; G.active=
   const sk=statusSkips(u); if(!hasS(u,'taunt'))u._taunter=null; refreshPanel(u);
   if(sk){ if((u.boss||u.elite)&&u._ultCooldown<5){u._ultCooldown=5;clearBossIntentPresentation(u);} floatText(u,sk.name.toUpperCase()+' !',sk.col,true); logMsg(u.name+' est '+sk.name.toLowerCase()+' — tour passé.'); await wait(0.7); for(const s in u.statuses){ if(STATUS[s]&&STATUS[s].skip){ u.statuses[s]--; if(u.statuses[s]<=0)delete u.statuses[s]; } } refreshPanel(u); if(G.over)return; nextTurn(); return; }
   if(u._ultCooldown>0)u._ultCooldown--;
-  if(u.team==='player'){ G.mode='menu'; setHint(u.name+' — à vous de jouer'); openActionMenu(); }
+  if(u.team==='player'){ G.mode='menu'; setHint(u.name+' — à vous de jouer'); openActionMenu();
+    if(turnReturnFocus){ turnReturnFocus=false;
+      if(keyboardInput&&document.hasFocus()&&(document.activeElement===document.body||document.activeElement===renderer.domElement))dom.menu.querySelector('button:not(:disabled)')?.focus({preventScroll:true});
+    } }
   else { G.mode='ai'; closeMenus(); setHint(u.name+' (ennemi)…'); await wait(0.35); await aiTurn(u); }
 }
 function endTurn(){ if(G.busy||G.over)return; const u=G.active;
+  if(u?.team==='player')turnReturnFocus=keyboardInput&&(dom.menu.contains(document.activeElement)||document.activeElement===renderer.domElement);
   if(u&&u.alive){
     if(u.ap>=1){ u.ap=Math.min(u.maxap,u.ap+1); u._souffle=true; floatText(u,'SOUFFLE +1 AP','#7fd0ff',true); logMsg(u.name+' reprend son souffle (+1 AP).'); }
     else u._souffle=false;
@@ -2126,7 +2130,7 @@ function undoMove(){ if(G.busy||!G.movedThisTurn||G.movedBeforeAct||G.startGX==n
 function transientInspect(u){ if(!u)return; const key=u.campaignId||u.id||u.name; if(statsPanelKey!==key){statsPanelKey=key;statsPanelExpanded=false;} G.selected=u; renderPanel(u); }
 function restoreInspection(){ const fallback=(G.pinnedUnit&&G.pinnedUnit.alive?G.pinnedUnit:G.active); if(fallback)transientInspect(fallback); }
 // Input cursor/focus are transient presentation state, outside G and versioned saves.
-let keyboardInput=false,keyboardCell=null,battlefieldReturnAction=null;
+let keyboardInput=false,keyboardCell=null,battlefieldReturnAction=null,turnReturnFocus=false;
 function focusBattlefield(action,cell,weaponIndex){
   if(!keyboardInput)return;
   battlefieldReturnAction={action,weaponIndex}; keyboardCell={gx:cell.gx,gz:cell.gz};

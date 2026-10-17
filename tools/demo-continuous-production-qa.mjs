@@ -390,6 +390,35 @@ async function campaignBattlefieldKeyboard(frame,entry){
   assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),autosaveBefore,'Mounted keyboard Wait wrote autosave');
   entry.actions.push({kind:'keyboard-wait',before:waiting,after:waited});
   entry.battlefieldKeyboard.wait={before:waiting,after:waited,expectedWaitAp,pass:true};
+  async function nextPlayerFocus(previous,label){
+    await frame.waitForFunction(previous=>!G.over&&!G.busy&&G.mode==='menu'&&G.active?.team==='player'&&
+      (G.round>previous.round||G.turnIdx!==previous.turnIdx),previous,{timeout:60000});
+    assert.equal(await page.evaluate(()=>document.activeElement?.matches('iframe.combat-frame')),true,'Next turn must retain native iframe ownership');
+    const focused=await frame.evaluate(()=>{const e=document.activeElement,r=e.getBoundingClientRect();return{
+      action:e.dataset.a,enabled:e.matches('#menu button:not(:disabled)'),visible:e.matches(':focus-visible'),
+      outline:getComputedStyle(e).outlineStyle,x:r.x,y:r.y,right:r.right,bottom:r.bottom,
+      unit:G.active.campaignId,ap:G.active.ap,round:G.round,turnIdx:G.turnIdx};});
+    assert.ok(focused.enabled&&focused.visible&&focused.outline!=='none','Next player turn lost automatic visible enabled dock focus');
+    assert.ok(focused.x>=0&&focused.y>=0&&focused.right<=viewport[0]+1&&focused.bottom<=viewport[1]+1,'Next player turn focus clipped');
+    assert.deepEqual(await state(),ownerBefore,'Next turn focus changed campaign truth');
+    assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),autosaveBefore,'Next turn focus wrote autosave');
+    await capture(`combat-${entry.index}-native-next-turn-${label}`);
+    return {...focused,pass:true};
+  }
+  entry.battlefieldKeyboard.wait.nextPlayerFocus=await nextPlayerFocus(waiting,'after-attack');
+  const positiveWaiting=await frame.evaluate(()=>({id:G.active.campaignId,ap:G.active.ap,maxap:G.active.maxap,round:G.round,turnIdx:G.turnIdx}));
+  assert.ok(positiveWaiting.ap>=1,'Positive-AP keyboard Wait requires earned native AP');
+  await campaignTabTo(frame,'#menu [data-a="wait"]:not(:disabled)',key);await key('Space');
+  const positiveWaited=await frame.evaluate(id=>{const u=G.units.find(u=>u.campaignId===id);return{
+    id:u.campaignId,ap:u.ap,gardeAP:u.gardeAP,souffle:u._souffle,round:G.round,turnIdx:G.turnIdx};},positiveWaiting.id);
+  const positiveExpectedAp=Math.min(positiveWaiting.maxap,positiveWaiting.ap+1);
+  assert.equal(positiveWaited.ap,positiveExpectedAp,'Positive keyboard Wait must preserve native capped breath AP');
+  assert.equal(positiveWaited.gardeAP,positiveExpectedAp,'Positive keyboard Wait guard AP differs');
+  assert.equal(positiveWaited.souffle,true,'Positive keyboard Wait must take native breath');
+  assert.ok(positiveWaited.round>positiveWaiting.round||positiveWaited.turnIdx!==positiveWaiting.turnIdx,'Positive keyboard Wait did not advance the turn');
+  const positiveFocus=await nextPlayerFocus(positiveWaiting,'positive-ap');
+  entry.actions.push({kind:'keyboard-wait-positive-ap',before:positiveWaiting,after:positiveWaited});
+  entry.battlefieldKeyboard.positiveWait={before:positiveWaiting,after:positiveWaited,expectedWaitAp:positiveExpectedAp,nextPlayerFocus:positiveFocus,pass:true};
 }
 async function campaignParentKeyboardReturn(entry){
   assert.equal(entry.nodeId,'lion-opening-ambush','Parent keyboard proof is scoped to fresh opening aftermath');

@@ -280,6 +280,77 @@ describe('native movement undo focus', () => {
   });
 });
 
+describe('native next-player-turn focus', () => {
+  const runtime = readFileSync(new NodeURL('./legacyCombatRuntime.js', import.meta.url), 'utf8');
+  const turns = runtime.slice(runtime.indexOf('async function beginTurn(u){'), runtime.indexOf('\nfunction checkEnd('));
+  const menuSource = runtime.slice(runtime.indexOf('function openActionMenu(){'), runtime.indexOf('\nfunction onMenu('));
+
+  function battle(keyboard = true, hasFocus = true) {
+    const menu = document.createElement('div'), skillmenu = document.createElement('div');
+    const canvas = document.createElement('canvas'), outside = document.createElement('button'); canvas.tabIndex = 0;
+    document.body.replaceChildren(menu, skillmenu, canvas, outside);
+    const hero = (name: string, team = 'player') => ({ name, team, alive: true, ap: 1, maxap: 3, gx: 0, gz: 1,
+      mov: 4, statuses: {}, skills: [], weapons: [], _ultCooldown: 0 });
+    const first = hero('First'), second = hero('Second'), foe = hero('Foe', 'foe');
+    const game = { active: first, busy: false, over: false, mode: 'menu', movedThisTurn: false,
+      basicAttacksThisTurn: 0, itemsUsedThisTurn: 0 };
+    const close = () => { menu.replaceChildren(); menu.classList.add('hidden'); };
+    const next = vi.fn(), status = vi.fn(async () => {});
+    const documentView = { get activeElement() { return document.activeElement; }, body: document.body, hasFocus: () => hasFocus };
+    const noop = () => {};
+    const api = new Function('G', 'dom', 'renderer', 'keyboardInput', 'document', 'renderCombatActionDock',
+      'closeMenus', 'nextTurn', 'tickStatusDamage', 'setTimeout',
+      `let turnReturnFocus=false; const _t=0, STATUS={};
+       const hideActionPreview=()=>{}, refreshTurnbar=()=>{}, selectUnit=()=>{}, focusCam=()=>{},
+       refreshPanel=()=>{}, floatText=()=>{}, logMsg=()=>{}, clearBossIntentPresentation=()=>{},
+       setHint=()=>{}, restoreUnitFocus=()=>{}, clearHL=()=>{}, syncActionDockState=()=>{},
+       tickStatusDuration=()=>{}, hasS=()=>false, invCount=()=>0, statusSkips=()=>null,
+       wait=async()=>{}, aiTurn=async()=>{};
+       ${turns}\n${menuSource}\nreturn { begin:beginTurn, end:endTurn, open:openActionMenu };`)(
+      game, { menu, skillmenu }, { domElement: canvas }, keyboard, documentView, renderCombatActionDock,
+      close, next, status, noop,
+    ) as { begin: (unit: typeof first) => Promise<void>; end: () => void; open: () => void };
+    api.open();
+    return { ...api, game, first, second, foe, menu, canvas, outside, next, status };
+  }
+
+  it.each(['dock', 'canvas'])('restores an enabled action after keyboard Wait from %s and an enemy turn', async origin => {
+    const input = battle();
+    (origin === 'dock' ? input.menu.querySelector<HTMLButtonElement>('[data-a="wait"]')! : input.canvas).focus();
+    input.end();
+    expect(input.first.ap).toBe(2); expect(input.first).toMatchObject({ gardeAP: 2, _souffle: true });
+    expect(input.next).toHaveBeenCalledTimes(1);
+    await input.begin(input.foe); input.end();
+    await input.begin(input.second);
+    expect(document.activeElement).toBe(input.menu.querySelector('button:not(:disabled)'));
+    expect(input.second.ap).toBe(2); expect(input.game.mode).toBe('menu');
+  });
+
+  it('preserves zero-AP Wait and restores focus at a directly following player turn', async () => {
+    const input = battle(); input.first.ap = 0;
+    input.menu.querySelector<HTMLButtonElement>('[data-a="wait"]')!.focus(); input.end();
+    expect(input.first).toMatchObject({ ap: 0, gardeAP: 0, _souffle: false });
+    await input.begin(input.second);
+    expect(document.activeElement).toBe(input.menu.querySelector('button:not(:disabled)'));
+  });
+
+  it.each(['external', 'parent', 'pointer'])('preserves %s focus ownership during the asynchronous handoff', async owner => {
+    const input = battle(owner !== 'pointer', owner !== 'parent');
+    input.menu.querySelector<HTMLButtonElement>('[data-a="wait"]')!.focus(); input.end();
+    input.status.mockImplementationOnce(async () => { if (owner === 'external') input.outside.focus(); });
+    await input.begin(input.second);
+    expect(document.activeElement).toBe(owner === 'external' ? input.outside : document.body);
+  });
+
+  it('leaves busy Wait and an unrelated initial turn outside focus restoration', async () => {
+    const input = battle(), button = input.menu.querySelector<HTMLButtonElement>('[data-a="wait"]')!;
+    button.focus(); input.game.busy = true; input.end();
+    expect(document.activeElement).toBe(button); expect(input.next).not.toHaveBeenCalled();
+    input.game.busy = false; input.outside.focus(); await input.begin(input.second);
+    expect(document.activeElement).toBe(input.outside);
+  });
+});
+
 describe('native deployment keyboard focus', () => {
   const runtime = readFileSync(new NodeURL('./legacyCombatRuntime.js', import.meta.url), 'utf8');
   const menuSource = runtime.slice(runtime.indexOf('function openDeployMenu(){'), runtime.indexOf('\nfunction renderDefinitionPanel('));
