@@ -1,14 +1,14 @@
-# Complete accessible dialogue names — source green, browser open
+# PC dialogue names verified; playtest guide delivered
 
-READY_FOR_NEXT_SCHEDULED_RUN. Run rpgthreejs-auto-dev-90m-20261017T2229; started 2026-10-17T22:29:16Z; ended 2026-10-17T22:40:04.982Z. Source checkpoint 129224d92107e456d88ceaff64135056441c1fbd published on dev; final workflow transport/parity/owned-lock release in Git and automation memory. New-label browser remains OPEN.
+READY_FOR_NEXT_SCHEDULED_RUN. Run rpgthreejs-auto-dev-90m-20261017T2300; started2026-10-17T23:00:00Z; ended2026-10-17T23:11:50.831Z. Existing product129224d unchanged. Final documentation checkpoint/parity/lock release in Git and automation memory.
 
-Dialogue controls expose their complete current segment, speaker/tag, consequences and available action before focus; visual typewriter and native progression remain unchanged. Two DOM regressions failed before correction;91current tests/fresh types+build PASS.
+ONE current-build fixture-origin PC1366normal council steps1-3 passes complete browser role/name while each reveal is partial, native Enter/automatic visible2px focus, exact text/speakers/reciprocal2actor tableau, settled bounds, observation live/V6-byte invariance and zero combat/errors. Root3captures/guardianstep2 inspected. Result158dd8aa0e0c78b7d01bb0a69d3db69ab6a1b951c8c537c5c5ff0f967ca8388b; all request/provenance/current/digest checks true. Raw receipt NOT_ACCEPTED retained; separate live.dialogueNames2300 records accepted scope. No earned/node completion/reload/actualscreenreader/OS/mobile/art/balance/global-demo claim.
 
-Protected council steps2/3 separately accepted scoped on old source-driver1840b27, result262150af6c0807832ae7fa734b17930210f0356b3f5fffbd383dce4f9961b604; fixture-origin PC1366normal,2actors/stable facing/settled visible focus/observation state equality. No earned or reload claim. New label source/build and runner assertions have NO browser acceptance. Raw receipt untouched.
+Fresh types/build/10current DialogueView tests/8contracts8slots/LOCKED/whitespace PASS.20ignored baseline-copy tests excluded. No runtime change needed. README now states POI/V6/single weapon correctly; docs/project/PC_PLAYTEST.md provides production launch, profile/origin/save guidance and useful route/limits.
 
-After read-only preflight/exclusive lock, verify current DialogueView label source and fresh build; register ONE existing tools/cinematics/run_cin6ea4_dialogue_qa.mjs --production-contextual with CIN6EA4_COUNCIL_CONTINUATION=1, new ignored output/free port and host Chromium cache. Copy exact current six requiredAssertions/parameters into registration. Observe complete accessible names via getByRole before reveal finishes, correct segment/action, retained keyboard focus and unchanged council assertions. Inspect captures/provenance/digest. Do not reuse2234 as label acceptance, replay campaign/opening/Garen, or run default3x3 matrix. Then PC tester readiness; mobile final.
+Next: Begin the final mobile milestone after preflight/lock: reconcile retained390touch/OS atlas and campaign scopes against current source, then isolate the missing current dialogue-name boundary. The existing run_cin6ea4_dialogue_qa.mjs council mode is fixed to1366normal; minimally parameterize that existing mode for ONE390x844 OS-only council steps1-3 case (game reduction false), preserving all six assertions, exact text/speakers/role-name/focus/bounds/state comparisons and historical defaults. Guardian reviews certifying diff before registration; no default3x3 matrix, new tool, full-campaign/Garen/PC replay or fabricated earned seed. Correct only a demonstrated narrow product defect. Retain PC_PLAYTEST guide and operator economy/art/device acceptance separately.
 
-Counts: source1/test1/existingQA1/newQA0/proof0/workflow5/inherited0/browser1/reviewers2.315historicalQA and both exact deferred objects preserved;316total. Set1.4.0/baselinef9d8fde unchanged. External nightplate and operator economy/elites/art separate; final mobile after PC.
+Counts runtime0/test0/QA0/proof0/productDocs2/workflow5/inherited0/browser1/reviewer1.316historical jobs/deferred objects preserved;317total. Matrix set1.4.0: constitution/campaign/presentation/save/UI/QA/governance PASS scoped; art/characters/environments/navigation/combat N/A. No LOCKED rule changed.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -329,4 +329,7 @@ Counts: source1/test1/existingQA1/newQA0/proof0/workflow5/inherited0/browser1/re
 - campaign-undo-wait-0007: SUCCEEDED; port 5430; receipt `tmp/demo/campaign-undo-wait-0007/qa-job.json`; NOT_ACCEPTED
 - campaign-next-turn-2141: SUCCEEDED; port 5432; receipt `tmp/demo/campaign-next-turn-2141/qa-job.json`; NOT_ACCEPTED
 - council-continuation-2234: SUCCEEDED; port 5433; receipt `tmp/cinematics/council-continuation-2234/qa-job.json`; NOT_ACCEPTED
+- dialogue-names-2310: SUCCEEDED; port 5434; receipt `tmp/cinematics/dialogue-names-2310/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
+
+Closeout 2026-10-17T23:13:04.639Z: PC guide checkpoint a0ee1afafbd93ed7b1fdf118dad60894f41a781f published; final workflow commit and owned-lock retirement follow. Root/live aliases aligned;317jobs retain original receipts and316historical dispositions.
