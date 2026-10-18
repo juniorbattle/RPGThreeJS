@@ -87,6 +87,12 @@ if (isAbsolute(rel) || rel.startsWith('..')) throw new Error('Output must stay i
 try { await access(output); throw new Error('Refusing to overwrite evidence'); }
 catch (error) { if (error.code !== 'ENOENT') throw error; }
 const jobOptions=demoJobOptions();
+if(jobOptions.parameters.verifyRefugeRest){
+  const save=JSON.parse(earnedText);
+  assert.equal(save.currentNodeId,'lion-first-refuge','Rest clarity starts at the earned first refuge');
+  assert.equal(save.run.currentNodeId,save.currentNodeId);
+  assert.ok(save.resolvedNodeIds.includes(save.currentNodeId),'Rest clarity requires resolved refuge services');
+}
 const qaJob=beginJob(jobOptions);
 const server = await preview({preview:{host:'127.0.0.1',port,strictPort:true}});
 const browser = await chromium.launch({headless:true});
@@ -1615,6 +1621,57 @@ try{
       }
       const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
       assert.deepEqual(JSON.parse(saved),live,'Earned refuge agency precedes durable owner truth');
+      if(jobOptions.parameters.verifyRefugeRest){
+        assert.equal(nodeId,'lion-first-refuge');assert.ok(priorProof);
+        const restSelector='.exploration-stop [data-action="rest"]';
+        const restText=await page.locator(restSelector).innerText();
+        assert.match(restText,/Restaure tous les PV, K\.O\. inclus\./);
+        await keyboardActivate('.exploration-stop [data-action="clan"]');
+        await page.locator('.management .roster-card__hp').first().waitFor();
+        const roster=await page.locator('.management .roster-card').evaluateAll(cards=>cards.map(card=>({
+          id:card.dataset.unit,hp:card.querySelector('.roster-card__hp').textContent.split('/').map(Number)})));
+        assert.equal(roster.length,live.clan.members.length);
+        const wounded=roster.filter(row=>row.hp[0]<row.hp[1]);assert.ok(wounded.length>0);
+        for(const row of roster){const unit=live.clan.members.find(unit=>unit.id===row.id);
+          assert.ok(unit);assert.equal(row.hp[0],unit.currentHealth);assert.ok(row.hp[1]>0);}
+        await keyboardActivate('.management [data-action="close"]');await hub.waitFor();
+        assert.deepEqual(await state(),live,'Reading clan health changed owner truth');
+        assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),saved);
+        const cost=Number(restText.match(/(\d+)\s*or/)?.[1]);assert.equal(cost,wounded.length*15);
+        assert.match(restText,new RegExp(`${wounded.length} unités? blessées?`));
+        assert.ok(cost>0&&live.gold>=cost);assert.equal(await page.locator(restSelector).isEnabled(),true);
+        await page.locator(restSelector).focus();
+        const layout=await page.locator(restSelector).evaluate(button=>{
+          const rect=e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height,right:r.right,bottom:r.bottom};};
+          const style=getComputedStyle(button);return{button:rect(button),copy:rect(button.querySelector('small')),
+            focused:button===document.activeElement,outlineWidth:style.outlineWidth,outlineStyle:style.outlineStyle,
+            viewport:{width:innerWidth,height:innerHeight}};});
+        assert.ok(layout.focused);assert.ok(parseFloat(layout.outlineWidth)>0&&layout.outlineStyle!=='none');
+        for(const r of [layout.button,layout.copy])assert.ok(r.x>=0&&r.y>=0&&r.right<=viewport[0]+1&&r.bottom<=viewport[1]+1);
+        assert.ok(layout.copy.x>=layout.button.x&&layout.copy.y>=layout.button.y&&layout.copy.right<=layout.button.right+1&&layout.copy.bottom<=layout.button.bottom+1);
+        await capture('refuge-rest-effect-before-payment');
+        const before=await state();assert.deepEqual(before,live);
+        await keyboardActivate(restSelector);await hub.waitFor();
+        await page.waitForFunction(()=>document.querySelector('.exploration-stop')?.dataset.backgroundReady==='true');
+        const after=await state(),expected=structuredClone(before);expected.gold-=cost;
+        for(const unit of expected.clan.members)unit.currentHealth=roster.find(row=>row.id===unit.id).hp[1];
+        assert.deepEqual(after,expected,'Native rest must only debit its total and fully heal the clan');
+        assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),after);
+        assert.equal(await page.locator(restSelector).isDisabled(),true);
+        assert.match(await page.locator(restSelector).innerText(),/Compagnie en pleine forme/);
+        assert.equal(await page.locator('.exploration-stop [data-action="clan"]').evaluate(e=>e===document.activeElement),true);
+        await capture('refuge-rest-paid-full-health');
+        await keyboardActivate('.exploration-stop [data-action="continue"]');await returnToPoiMap();
+        await verifyExpeditionSettlement();assert.equal(pendingExpeditionProof,undefined);
+        const departed=await state();
+        const reloadSave=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+        assert.deepEqual(JSON.parse(reloadSave),departed);
+        await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
+        await page.locator('.poi-map:visible').waitFor();report.resumed=await state();assert.deepEqual(report.resumed,departed);
+        await writeFile(resolve(output,'earned-rest-prepared-v6.json'),reloadSave+'\n');
+        report.refugeRest={pass:true,nodeId,before,after,departed,roster,cost,restText,layout,exactReload:true,nativeKeyboard:true};
+        await capture('refuge-rest-prepared-reloaded');assert.deepEqual(report.errors,[]);report.pass=true;break;
+      }
       await writeFile(resolve(output,`earned-${nodeId}-v6.json`),saved+'\n');
       if(nodeId==='lion-first-refuge')await writeFile(resolve(output,'earned-first-refuge-v6.json'),saved+'\n');
       if(target==='first-refuge'||await page.locator('.poi-map').count()===0 && await page.evaluate(()=>document.body.dataset.campaignSurface==='poi-map')){
@@ -1879,6 +1936,7 @@ try{
   }
   assert.equal(report.pass,true,`Did not reach earned ${target} before the bounded deadline`);
   if(process.env.DEMO_QA_VERIFY_RESULT_HEALTH==='1')assert.ok(report.battles.slice(report.inheritedBattleCount??0).some(b=>b.resultHealth?.pass),'No new native result health was verified');
+  if(jobOptions.parameters.verifyRefugeRest)assert.equal(report.refugeRest?.pass,true,'No new native rest clarity was verified');
   const final=await state();
   report.expedition.economy={gold:final.gold,temporaryLoot:final.run.temporaryLoot,reputation:final.reputation,
     inventory:final.inventory,heroes:final.clan.members.map(unit=>({id:unit.definitionId,hp:unit.currentHealth})),checkpoint:final.run.checkpointNodeId};

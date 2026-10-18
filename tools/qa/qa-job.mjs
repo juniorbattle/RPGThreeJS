@@ -153,6 +153,7 @@ export function beginJob({root=process.cwd(),runId=process.env.AUTONOMY_RUN_ID??
 }
 export function demoJobOptions(env=process.env) {
   const target=env.DEMO_QA_TARGET??'first-refuge',routePlan=env.DEMO_QA_ROUTE??'rescue';
+  if(env.DEMO_QA_VERIFY_REFUGE_REST==='1')assert.ok(target==='first-refuge'&&env.DEMO_QA_EARNED_SAVE&&env.DEMO_QA_PRIOR_PROOF,'Rest clarity requires a certified first-refuge continuation');
   const timeoutMinutes=Number(env.DEMO_QA_TIMEOUT_MINUTES??25);
   const timeoutAuthority=env.DEMO_QA_TIMEOUT_AUTHORITY;
   if(timeoutAuthority!==undefined)validateTimeoutAuthority(env.AUTONOMY_RUN_ID,{timeoutAuthority,timeoutMinutes});
@@ -162,9 +163,11 @@ export function demoJobOptions(env=process.env) {
     parameters:{target,routePlan,timeoutMinutes,...(timeoutAuthority===undefined?{}:{timeoutAuthority}),finalePlan:env.DEMO_QA_FINALE??(routePlan==='rescue'?'serpent':'trial'),defeatNodeId:env.DEMO_QA_DEFEAT_NODE??'lion-village-choice',
       nativeDefeatWait:env.DEMO_QA_DEFEAT_WAIT==='1',touchInput:env.DEMO_QA_TOUCH==='1',nativeEquipment:env.DEMO_QA_EQUIPMENT==='steel',trialPlan:env.DEMO_QA_TRIALS??'event',explorationPlan:env.DEMO_QA_EXPLORATION??'direct',checkpointPoiId:env.DEMO_QA_CHECKPOINT_POI??null,gameReducedMotion:env.DEMO_QA_GAME_MOTION==='1',viewport:(env.DEMO_QA_VIEWPORT??'1366x768').split('x').map(Number),osReducedMotion:env.DEMO_QA_OS_MOTION==='1',
       earnedSavePath:env.DEMO_QA_EARNED_SAVE??null,priorProofPath:env.DEMO_QA_PRIOR_PROOF??null,verifySalvation:env.DEMO_QA_VERIFY_SALVATION==='1',
-      ...(env.DEMO_QA_VERIFY_RESULT_HEALTH==='1'?{verifyResultHealth:true}:{})},
+      ...(env.DEMO_QA_VERIFY_RESULT_HEALTH==='1'?{verifyResultHealth:true}:{}),
+      ...(env.DEMO_QA_VERIFY_REFUGE_REST==='1'?{verifyRefugeRest:true}:{})},
     requiredAssertions:[...(target==='defeat-recovery'?['EXACT_V6_CHECKPOINT_RECOVERY','NATIVE_POI_CHECKPOINT_RETURN','EXACT_RELOAD']:['EARNED_LINEAGE','NATIVE_INPUTS','EXACT_RELOAD']),
-      ...(env.DEMO_QA_VERIFY_RESULT_HEALTH==='1'?['EXACT_NATIVE_RESULT_HEALTH']:[])]};
+      ...(env.DEMO_QA_VERIFY_RESULT_HEALTH==='1'?['EXACT_NATIVE_RESULT_HEALTH']:[]),
+      ...(env.DEMO_QA_VERIFY_REFUGE_REST==='1'?['EXACT_NATIVE_REFUGE_REST_CLARITY']:[])]};
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
   const [action,...args]=process.argv.slice(2), values={};

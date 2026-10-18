@@ -78,6 +78,7 @@ it('rebuilds the same refuge with the same HUD after management and after Rest',
   const wounded = view.open(first, 'Neutre', 0, { cost: 30, woundedCount: 2, canRest: true });
   await settledHub();
   expect(document.body.textContent).toContain('2 unités blessées · 30 or');
+  expect(document.querySelector('[data-action="rest"]')?.textContent).toContain('Restaure tous les PV, K.O. inclus.');
   document.querySelector<HTMLButtonElement>('[data-action="rest"]')!.click();
   expect(await wounded).toBe('rest');
   const afterRest = view.open(first, 'Neutre', 0, {
@@ -112,6 +113,7 @@ it('disables Rest and explains the actual gold shortfall', async () => {
   const rest = document.querySelector<HTMLButtonElement>('[data-action="rest"]')!;
   expect(rest.disabled).toBe(true);
   expect(rest.textContent).toContain('45 or requis · or insuffisant');
+  expect(rest.textContent).toContain('Restaure tous les PV, K.O. inclus.');
   expect(document.querySelectorAll('.campaign-status-hud')).toHaveLength(1);
   document.querySelector<HTMLButtonElement>('[data-action="continue"]')!.click();
   expect(await action).toBe('continue');

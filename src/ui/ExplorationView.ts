@@ -67,7 +67,7 @@ export class ExplorationView {
         <button type="button" data-action="clan"><b>Clan</b><small>G&eacute;rer la compagnie</small></button>
         <button type="button" data-action="shop"><b>Shop</b><small>&Eacute;changer avec le marchand</small></button>
         <button type="button" data-action="skills"><b>Am&eacute;lioration</b><small>Renforcer les comp&eacute;tences</small></button>
-        <button type="button" data-action="rest" ${rest.canRest ? '' : 'disabled'}><b>Repos</b><small>${restHint}</small></button>
+        <button type="button" data-action="rest" ${rest.canRest ? '' : 'disabled'}><b>Repos</b><small>${restHint}${rest.woundedCount > 0 ? '<br>Restaure tous les PV, K.O. inclus.' : ''}</small></button>
         <button type="button" data-action="continue" class="exploration-stop__continue"><b>Reprendre la route</b><small>Quitter le refuge</small></button>
       </div>
     `;
