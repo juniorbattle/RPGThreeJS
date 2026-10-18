@@ -1,17 +1,20 @@
 {
-  "status": "IN_PROGRESS",
+  "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-18T03:27:26Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-18T03:46:35.555Z",
   "activeTask": "DEMO-PC-GLOBAL-ACCEPTANCE",
-  "activePhase": "GREEN_SOURCE_AWAITING_NATIVE_RESULT",
-  "activeSubtask": "Expose actual end-of-combat health for preparation decisions",
+  "activePhase": "RESULT_HEALTH_COMPLETE_SCOPED_OPERATOR_PC_VERDICT_OPEN",
+  "activeSubtask": "Exact final-combat health displayed; native wolves result and earned reload reviewed",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "68d8d76d1279767caabd229c36884a0f2a5fbd89",
-  "lastPushedCommit": "68d8d76d1279767caabd229c36884a0f2a5fbd89",
+  "lastKnownGoodCommit": "f0fde9ada2aa75d157445e8cbc376b1f0988149c",
+  "lastPushedCommit": "f0fde9ada2aa75d157445e8cbc376b1f0988149c",
   "completedThisRun": [
-    "Recovered stale quota-interrupted lock only after terminal/host-worker/live-parity checks; no inherited WIP",
-    "Reused accepted Garen/control/Lot E scopes; isolated missing result health",
-    "Implemented exact final-combat HP display without owner/callback/save changes"
+    "Recovered stale quota-interrupted2324 lock after terminal/host-worker/live-parity verification; no inherited WIP",
+    "Retained accepted Garen/controls/Lot E scopes; catalog and CombatBridge unchanged from accepted skill source",
+    "Corrected missing final-combat HP display using existing hp/maxhp/alive only; KO/recovery/rewards/actions/V6 unchanged",
+    "ONE native wolves victory4rounds28actions from certified patrol0002; exact4health rows, focus/bounds, handoff and earned checkpoint reload",
+    "Inspected result/reload captures; independent guardian accepted scoped result; raw receipt NOT_ACCEPTED retained",
+    "PC playtest guide now distinguishes final HP from KO recovery and supplies precise Hunters preparation verdict without controlled-balance claim"
   ],
   "filesChanged": [
     "src/combat/combatShellPresentation.ts",
@@ -20,39 +23,42 @@
     "tools/demo-continuous-production-qa.mjs",
     "tools/qa/qa-job.mjs",
     "tools/qa/qa-job.test.mjs",
+    "docs/project/PC_PLAYTEST.md",
+    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/handoffs/2026-10-18T0327Z-codex-result-health.md"
   ],
   "testsRun": [
-    "Meaningful red-before: KestrelDebout lacked1/90PV; initial test env setup corrected before this reproduction",
-    "19 focused presentation tests PASS",
-    "Types+fresh production build PASS;8MP4; inherited chunk advisory",
-    "contracts8/slots8,immutable/workingLOCKED,whitespace,driver syntax PASS",
-    "Guardian actual source/assertion diff PASS to register native run",
-    "20 QA helper tests PASS on host, including new opt-in receipt binding"
+    "One meaningful source red-before: KestrelDebout lacked1/90PV; initial DOM test-environment setup corrected before counting reproduction",
+    "19current presentation tests in2files PASS; unknown legacy health and frozen KO0/critical survivor covered",
+    "20QA-helper tests PASS on host, including opt-in parameter/assertion binding and unchanged defaults",
+    "Fresh npm run build PASS (TypeScript+Vite);8MP4; inherited chunk-size advisory",
+    "contracts8/slots8, immutable/workingLOCKED, whitespace and driver syntax PASS",
+    "ONE result-health-0327 production PC1366normal SUCCEEDED/exit0/errors[];4round28action native victory, all current/provenance/digest checks true",
+    "Root result+reload capture inspection and guardian final PASS_SCOPED; historical317 QA and both actual deferred objects preserved"
   ],
   "testsPassed": [
-    "19 focused presentation tests PASS",
-    "Types+fresh production build PASS;8MP4; inherited chunk advisory",
-    "contracts8/slots8,immutable/workingLOCKED,whitespace,driver syntax PASS",
-    "Guardian actual source/assertion diff PASS to register native run",
-    "20 QA helper tests"
+    "39distinct focused/helper tests",
+    "Types/fresh production build/8MP4/contracts8slots8/LOCKED/whitespace/syntax",
+    "ACCEPTED_SCOPED_PC1366_NORMAL_NATIVE_RESULT_HEALTH"
   ],
   "testsRemaining": [
-    "Focused result presentation regressions, contracts, types/build and ONE earned native changed result boundary"
+    "Operator global PC, felt balance, atlas art and hardware acceptance; next precise verdict: preparation clarity/rest cost before Sceau hunters",
+    "Final mobile changed-boundary pass after PC milestone; no new OS/mobile/actual-screen-reader scope in this run"
   ],
   "blockers": [
-    "Global PC/art/felt-balance acceptance remains open; technical scoped proofs retained",
+    "Operator global PC/art/felt-balance/hardware acceptance open; no autonomous economy/reward/elite adjustment",
     "Bois-Clair nightplate external asset gap retained",
-    "Audio deferred; future video generation remains a dedicated non-recurring workstream"
+    "Audio deferred; future video generation remains dedicated non-recurring work"
   ],
   "remainingWork": [
-    "Global PC player experience acceptance",
-    "Operator felt-balance and art review with demonstrated corrections",
-    "Remaining mobile boundary after PC milestone",
-    "Conditional audiovisual roadmap recorded by OD-2026-10-17-A"
+    "Global PC player-experience acceptance and demonstrated corrections",
+    "Operator felt-balance/art review with preparation context",
+    "Mobile boundary after PC milestone",
+    "Conditional audiovisual roadmap under OD-2026-10-17-A"
   ],
-  "nextAction": "Correct the demonstrated missing final-combat HP in the result screen; read existing G.deployedUnits hp/maxhp only, preserve KO/recovery/rewards/actions and verify one earned native opening-wolves continuation with the existing runner. Global PC/balance/art verdicts remain operator-held; mobile deferred.",
+  "nextAction": "On the current PC candidate, judge preparation clarity and felt rest cost before Chasseurs du Sceau using PC_PLAYTEST.md and retained failed/prepared Lot E examples (same hunters_a variant, different teams/health; not a controlled difficulty comparison). Correct only a demonstrated player-facing defect. Final balance/economy/elite/art/hardware/global-PC verdict stays operator-held; no autonomous rebalance, unchanged campaign/Garen/control replay or mobile micro-PASS. Mobile remains deferred until PC milestone; Bois-Clair nightplate external asset stays isolated.",
   "taskQueue": [
     "DEMO-PC-GLOBAL-ACCEPTANCE: PRIORITY; demonstrated gaps and operator verdicts",
     "DEMO-PC-BALANCE-ART: PRIORITY; actual preparation/economy/atlas review",
@@ -63,8 +69,8 @@
     "COMBAT-VFX-CHOREOGRAPHY: CONDITIONAL_AFTER_MUSIC; presentation only"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "IN_PROGRESS; set1.4.0 LOCKED gates empty; presentation-only health scope",
-  "commitReferenceScope": "Source129224d unchanged; published PC onboarding checkpoint a0ee1afafbd93ed7b1fdf118dad60894f41a781f. Final workflow checkpoint is the Git commit containing this state; final transport/parity/lock release in automation memory. Nested historical ledgers retain original scope.",
+  "contractComplianceStatus": "PASS_SCOPED_RESULT_HEALTH_SET1.4.0; GLOBAL_PC_ACCEPTANCE_OPEN",
+  "commitReferenceScope": "Source checkpoint f0fde9a published/live verified; final workflow checkpoint is the Git commit containing this state. Final transport/parity/lock release is recorded in automation memory. Nested historical ledgers retain original source/acceptance.",
   "operatorAuthorization": "OD-2026-10-17-A directly prioritizes global PC acceptance, felt balance and art before mobile; conditional audiovisual roadmap. Publication OD-2026-10-12-A retained. No scheduler or LOCKED changes.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -146,7 +152,7 @@
     "lastGreenCheck": "2026-10-17T22:06:24.983Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-18T03:33:13.523Z",
+    "lastHeartbeat": "2026-10-18T03:46:35.555Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -34904,17 +34910,133 @@
         "resultPath": "tmp/cinematics/dialogue-names-2310/results.json",
         "resultSha256": "158dd8aa0e0c78b7d01bb0a69d3db69ab6a1b951c8c537c5c5ff0f967ca8388b",
         "provenanceStable": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "result-health-0327",
+        "runId": "rpgthreejs-auto-dev-90m-20261018T0327",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-18T03:33:46.974Z",
+        "pid": 16620,
+        "port": 5435,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "expedition-checkpoint",
+          "routePlan": "rescue",
+          "timeoutMinutes": 25,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "explorationPlan": "complete",
+          "checkpointPoiId": "lion-poi-opening-wolves",
+          "gameReducedMotion": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/lot-e-complete-patrol-0002/earned-expedition-checkpoint-v6.json",
+          "priorProofPath": "tmp/demo/lot-e-complete-patrol-0002/results.json",
+          "verifySalvation": false,
+          "verifyResultHealth": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD",
+          "EXACT_NATIVE_RESULT_HEALTH"
+        ],
+        "output": "tmp/demo/result-health-0327",
+        "receiptPath": "tmp/demo/result-health-0327/qa-job.json",
+        "provenance": {
+          "gitHead": "f0fde9ada2aa75d157445e8cbc376b1f0988149c",
+          "sourceTree": "17b124010d49213c286c9881aad0a1e7dcea867e",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "2141ceb3dbe517d480785d3cc4a032db1a028f3620e38a67cab5a54ce70e6abe"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/lot-e-complete-patrol-0002/earned-expedition-checkpoint-v6.json",
+              "sha256": "93f7d1af6175efe39d3dbed7612ec98bd7539dfcd6ef193d0e34ee537db54b6c"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/lot-e-complete-patrol-0002/results.json",
+              "sha256": "78a75d4704fc5857eef81054bada061cfc2f3dd935227d39540d8fb14d1afcb1"
+            }
+          ],
+          "receiptToolSha256": "33f95760c6e7d86fcf1193850be79405881cc260d486cbab5e0ed8a6970618bd",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+              "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+            },
+            {
+              "path": "dist/assets/combat-BgnTtqFd.css",
+              "sha256": "dd876226810e04e18127ef93803ded1e68dcbe3acafdb0ab346f1aa557c13978"
+            },
+            {
+              "path": "dist/assets/combat-Ct5bloit.js",
+              "sha256": "b71ae181ac3b32fada292d8299a540de64d254a0376c55e429595dce42247974"
+            },
+            {
+              "path": "dist/assets/game-C9BxMGXK.js",
+              "sha256": "b2cad7f3ab6a2a2ece1db0974281f146a478985eefd53d8e13ca8cc3248e50e3"
+            },
+            {
+              "path": "dist/assets/game-UCVpfDso.css",
+              "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "5570de91c5400031c5acf34b5e1747a3e02f20f7ba9c43ab8239f7dc7dc20184"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-18T03:33:48.457Z",
+        "endedAt": "2026-10-18T03:43:57.561Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "exitCode": 0,
+        "resultPath": "tmp/demo/result-health-0327/results.json",
+        "resultSha256": "80c7bfbd38aabffe094ab39a3bf9d0d302c9a317dcecfb6b580e03635bed92fe",
+        "provenanceStable": true
       }
     ],
     "wip": {
       "branch": null,
-      "sha": "129224d92107e456d88ceaff64135056441c1fbd",
+      "sha": "f0fde9ada2aa75d157445e8cbc376b1f0988149c",
       "checkpointBranch": "dev",
       "dirtyFiles": [],
       "status": "GREEN",
-      "lastGreenCheck": "2026-10-17T22:40:04.982Z"
+      "lastGreenCheck": "2026-10-18T03:46:35.555Z"
     },
-    "nextAction": "Correct the demonstrated missing final-combat HP in the result screen; read existing G.deployedUnits hp/maxhp only, preserve KO/recovery/rewards/actions and verify one earned native opening-wolves continuation with the existing runner. Global PC/balance/art verdicts remain operator-held; mobile deferred.",
+    "nextAction": "On the current PC candidate, judge preparation clarity and felt rest cost before Chasseurs du Sceau using PC_PLAYTEST.md and retained failed/prepared Lot E examples (same hunters_a variant, different teams/health; not a controlled difficulty comparison). Correct only a demonstrated player-facing defect. Final balance/economy/elite/art/hardware/global-PC verdict stays operator-held; no autonomous rebalance, unchanged campaign/Garen/control replay or mobile micro-PASS. Mobile remains deferred until PC milestone; Bois-Clair nightplate external asset stays isolated.",
     "runMetrics": {
       "runtimeSourceFilesModified": 1,
       "testFilesModified": 1,
@@ -34943,7 +35065,7 @@
       "sourceCheckpoint": "129224d92107e456d88ceaff64135056441c1fbd",
       "finalWorkflow": "Containing Git commit; live parity and owned-lock release recorded in automation memory"
     },
-    "runEndedAt": null,
+    "runEndedAt": "2026-10-18T03:46:35.555Z",
     "writerStopped": true,
     "metadataPublication": {
       "status": "INCLUDED_IN_FINAL_CLOSEOUT_COMMIT",
@@ -35741,7 +35863,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "DEMO-PC-GLOBAL-ACCEPTANCE",
-    "activeSubtask": "Expose actual end-of-combat health for preparation decisions",
+    "activeSubtask": "Exact final-combat health displayed; native wolves result and earned reload reviewed",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -39075,9 +39197,9 @@
     },
     "runId": "rpgthreejs-auto-dev-90m-20261018T0327",
     "agent": "codex",
-    "status": "IN_PROGRESS",
+    "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-18T03:27:26Z",
-    "activePhase": "GREEN_SOURCE_AWAITING_NATIVE_RESULT",
+    "activePhase": "RESULT_HEALTH_COMPLETE_SCOPED_OPERATOR_PC_VERDICT_OPEN",
     "heartbeat": "2026-10-17T23:13:04.639Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-17T2320Z-codex-pc-acceptance-priority.md",
     "motion1617": {
@@ -40807,7 +40929,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "a0ee1afafbd93ed7b1fdf118dad60894f41a781f",
+    "lastPushedCommit": "f0fde9ada2aa75d157445e8cbc376b1f0988149c",
     "productPreview": {
       "verifiedAt": "2026-10-16T15:27:07.4093983Z",
       "indexSha256": "b4773b8722aef154c3cd6e0e92cd677703c177b82f23cd084e5b661d353aa69f",
@@ -41614,47 +41736,56 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "a0ee1afafbd93ed7b1fdf118dad60894f41a781f",
+    "lastKnownGoodCommit": "f0fde9ada2aa75d157445e8cbc376b1f0988149c",
     "completedThisRun": [
-      "Reused accepted Garen, native keyboard, Lot E and prior narrative scopes without campaign replay",
-      "Verified current complete dialogue accessible names during partial reveal across all three council steps in ONE PC1366normal production scenario",
-      "Inspected three settled captures; guardian independently reviewed step2 and exact result/receipt",
-      "Corrected obsolete README onboarding and delivered PC_PLAYTEST guide with production launch, save-origin preservation, useful route and explicit limits"
+      "Recovered stale quota-interrupted2324 lock after terminal/host-worker/live-parity verification; no inherited WIP",
+      "Retained accepted Garen/controls/Lot E scopes; catalog and CombatBridge unchanged from accepted skill source",
+      "Corrected missing final-combat HP display using existing hp/maxhp/alive only; KO/recovery/rewards/actions/V6 unchanged",
+      "ONE native wolves victory4rounds28actions from certified patrol0002; exact4health rows, focus/bounds, handoff and earned checkpoint reload",
+      "Inspected result/reload captures; independent guardian accepted scoped result; raw receipt NOT_ACCEPTED retained",
+      "PC playtest guide now distinguishes final HP from KO recovery and supplies precise Hunters preparation verdict without controlled-balance claim"
     ],
     "filesChanged": [
-      "README.md",
+      "src/combat/combatShellPresentation.ts",
+      "src/styles/combat-shell.css",
+      "src/combat/combatShellPresentation.test.ts",
+      "tools/demo-continuous-production-qa.mjs",
+      "tools/qa/qa-job.mjs",
+      "tools/qa/qa-job.test.mjs",
       "docs/project/PC_PLAYTEST.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
       "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-      "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
-      "docs/autonomy/handoffs/2026-10-17T2300Z-codex-pc-dialogue-candidate.md"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/handoffs/2026-10-18T0327Z-codex-result-health.md"
     ],
     "testsRun": [
-      "Fresh npm run build (TypeScript+Vite) PASS; eight MP4; inherited chunk advisory",
-      "Current src/ui/DialogueView.test.ts10tests PASS;20 duplicate ignored-baseline tests also ran and are excluded from current count",
-      "contracts:validate8contracts8slots; immutable/workingLOCKED and whitespace PASS",
-      "ONE dialogue-names-2310 production council PC1366normal PASS; complete labels during partial reveal on all3steps; captures inspected"
+      "One meaningful source red-before: KestrelDebout lacked1/90PV; initial DOM test-environment setup corrected before counting reproduction",
+      "19current presentation tests in2files PASS; unknown legacy health and frozen KO0/critical survivor covered",
+      "20QA-helper tests PASS on host, including opt-in parameter/assertion binding and unchanged defaults",
+      "Fresh npm run build PASS (TypeScript+Vite);8MP4; inherited chunk-size advisory",
+      "contracts8/slots8, immutable/workingLOCKED, whitespace and driver syntax PASS",
+      "ONE result-health-0327 production PC1366normal SUCCEEDED/exit0/errors[];4round28action native victory, all current/provenance/digest checks true",
+      "Root result+reload capture inspection and guardian final PASS_SCOPED; historical317 QA and both actual deferred objects preserved"
     ],
     "testsPassed": [
-      "10current DialogueView tests",
-      "Fresh types/build/eight media/contracts/LOCKED/whitespace",
-      "ACCEPTED_SCOPED_FIXTURE_COUNCIL_COMPLETE_NAMES_PC1366_NORMAL"
+      "39distinct focused/helper tests",
+      "Types/fresh production build/8MP4/contracts8slots8/LOCKED/whitespace/syntax",
+      "ACCEPTED_SCOPED_PC1366_NORMAL_NATIVE_RESULT_HEALTH"
     ],
     "testsRemaining": [
-      "Final mobile milestone: current labels/narrow controls and changed boundaries only",
-      "Operator final device/art/felt-balance/global demo acceptance"
+      "Operator global PC, felt balance, atlas art and hardware acceptance; next precise verdict: preparation clarity/rest cost before Sceau hunters",
+      "Final mobile changed-boundary pass after PC milestone; no new OS/mobile/actual-screen-reader scope in this run"
     ],
     "blockers": [
-      "Global PC/art/felt-balance acceptance remains open; technical scoped proofs retained",
+      "Operator global PC/art/felt-balance/hardware acceptance open; no autonomous economy/reward/elite adjustment",
       "Bois-Clair nightplate external asset gap retained",
-      "Audio deferred; future video generation remains a dedicated non-recurring workstream"
+      "Audio deferred; future video generation remains dedicated non-recurring work"
     ],
     "remainingWork": [
-      "Global PC player experience acceptance",
-      "Operator felt-balance and art review with demonstrated corrections",
-      "Remaining mobile boundary after PC milestone",
-      "Conditional audiovisual roadmap recorded by OD-2026-10-17-A"
+      "Global PC player-experience acceptance and demonstrated corrections",
+      "Operator felt-balance/art review with preparation context",
+      "Mobile boundary after PC milestone",
+      "Conditional audiovisual roadmap under OD-2026-10-17-A"
     ],
     "taskQueue": [
       "DEMO-PC-GLOBAL-ACCEPTANCE: PRIORITY; demonstrated gaps and operator verdicts",
@@ -41665,7 +41796,7 @@
       "GAME-MUSIC: CONDITIONAL_AFTER_UI_SOUNDS",
       "COMBAT-VFX-CHOREOGRAPHY: CONDITIONAL_AFTER_MUSIC; presentation only"
     ],
-    "contractComplianceStatus": "PASS_DOCUMENTED_OPERATOR_PRIORITY; GLOBAL_ACCEPTANCE_OPEN",
+    "contractComplianceStatus": "PASS_SCOPED_RESULT_HEALTH_SET1.4.0; GLOBAL_PC_ACCEPTANCE_OPEN",
     "dialogueNames2300": {
       "recordedAt": "2026-10-17T23:10:22.748Z",
       "runId": "rpgthreejs-auto-dev-90m-20261017T2300",
@@ -41787,8 +41918,8 @@
         "REPOSITORY_GOVERNANCE": "PASS"
       }
     },
-    "lastSnapshotAt": "2026-10-17T23:13:04.640Z",
-    "lastSnapshotCommit": "a0ee1afafbd93ed7b1fdf118dad60894f41a781f",
+    "lastSnapshotAt": "2026-10-18T03:46:35.555Z",
+    "lastSnapshotCommit": "f0fde9ada2aa75d157445e8cbc376b1f0988149c",
     "priorityDecision2320": {
       "recordedAt": "2026-10-17T23:21:43.962Z",
       "decisionId": "OD-2026-10-17-A",
@@ -41824,17 +41955,218 @@
       "plannedTest": "src/combat/combatShellPresentation.test.ts",
       "plannedExistingRunner": "tools/demo-continuous-production-qa.mjs",
       "nativeSeed": "tmp/demo/lot-e-complete-patrol-0002/earned-expedition-checkpoint-v6.json",
-      "scope": "End-of-combat HP only, not future recovered campaign health; no truth/save change",
+      "scope": "ONE earned native opening-wolves victory result PC1366normal; exact final HP/status, automatic focus, visible row/text/control bounds, post-result handoff and exact earned V6 reload",
       "guardianPreflight": "PASS_TO_REGISTER_NATIVE",
       "counts": {
         "runtime": 2,
-        "tests": 2,
+        "sourceTests": 1,
+        "helperTests": 1,
         "existingQa": 2,
-        "newQa": 0,
+        "newPersistentQa": 0,
         "promotedProof": 0,
+        "productDocs": 1,
+        "workflow": 4,
         "inheritedWip": 0,
-        "browser": 0,
-        "reviewers": 1
+        "browser": 1,
+        "reusedReviewers": 1
+      },
+      "sourceCommit": "f0fde9ada2aa75d157445e8cbc376b1f0988149c",
+      "jobId": "result-health-0327",
+      "registered": true,
+      "pid": 16620,
+      "port": 5435,
+      "lastSnapshotCommit": "f0fde9ada2aa75d157445e8cbc376b1f0988149c",
+      "reviewedAt": "2026-10-18T03:46:35.555Z",
+      "sourceTree": "17b124010d49213c286c9881aad0a1e7dcea867e",
+      "receiptStatus": "SUCCEEDED",
+      "resultSha256": "80c7bfbd38aabffe094ab39a3bf9d0d302c9a317dcecfb6b580e03635bed92fe",
+      "receiptSha256": "3403fd7b2206dc9678d3b23962c801bc51a11af0b9aab061991cd765435e606f",
+      "driver": {
+        "path": "tools/demo-continuous-production-qa.mjs",
+        "sha256": "2141ceb3dbe517d480785d3cc4a032db1a028f3620e38a67cab5a54ce70e6abe"
+      },
+      "currentExecutionChecks": {
+        "requestMatches": true,
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
+      },
+      "native": {
+        "node": "lion-poi-opening-wolves",
+        "combat": "poi_opening_wolves_a",
+        "rounds": 4,
+        "actions": 28,
+        "health": {
+          "expected": [
+            {
+              "name": "Alistair",
+              "alive": true,
+              "hp": 125,
+              "maxhp": 140
+            },
+            {
+              "name": "Marian",
+              "alive": true,
+              "hp": 100,
+              "maxhp": 100
+            },
+            {
+              "name": "Elara",
+              "alive": true,
+              "hp": 30,
+              "maxhp": 75
+            },
+            {
+              "name": "Kestrel",
+              "alive": true,
+              "hp": 56,
+              "maxhp": 90
+            }
+          ],
+          "rows": [
+            {
+              "name": "Alistair",
+              "status": "Debout",
+              "health": "125 / 140 PV",
+              "ko": false,
+              "bounds": {
+                "x": 454,
+                "y": 447.3125,
+                "width": 226.5,
+                "height": 44
+              },
+              "healthBounds": {
+                "x": 605.4375,
+                "y": 469.3125,
+                "width": 65.0625,
+                "height": 14
+              }
+            },
+            {
+              "name": "Marian",
+              "status": "Debout",
+              "health": "100 / 100 PV",
+              "ko": false,
+              "bounds": {
+                "x": 685.5,
+                "y": 447.3125,
+                "width": 226.5,
+                "height": 44
+              },
+              "healthBounds": {
+                "x": 836.078125,
+                "y": 469.3125,
+                "width": 65.921875,
+                "height": 14
+              }
+            },
+            {
+              "name": "Elara",
+              "status": "Debout",
+              "health": "30 / 75 PV",
+              "ko": false,
+              "bounds": {
+                "x": 454,
+                "y": 496.3125,
+                "width": 226.5,
+                "height": 44
+              },
+              "healthBounds": {
+                "x": 615.6875,
+                "y": 518.3125,
+                "width": 54.8125,
+                "height": 14
+              }
+            },
+            {
+              "name": "Kestrel",
+              "status": "Debout",
+              "health": "56 / 90 PV",
+              "ko": false,
+              "bounds": {
+                "x": 685.5,
+                "y": 496.3125,
+                "width": 226.5,
+                "height": 44
+              },
+              "healthBounds": {
+                "x": 846.34375,
+                "y": 518.3125,
+                "width": 55.65625,
+                "height": 14
+              }
+            }
+          ],
+          "focused": true,
+          "caption": "PV en fin de combat",
+          "finalRuntime": [
+            {
+              "name": "Alistair",
+              "alive": true,
+              "hp": 125,
+              "maxhp": 140
+            },
+            {
+              "name": "Marian",
+              "alive": true,
+              "hp": 100,
+              "maxhp": 100
+            },
+            {
+              "name": "Elara",
+              "alive": true,
+              "hp": 30,
+              "maxhp": 75
+            },
+            {
+              "name": "Kestrel",
+              "alive": true,
+              "hp": 56,
+              "maxhp": 90
+            }
+          ],
+          "pass": true
+        },
+        "postVictoryHealth": {
+          "warrior": 125,
+          "white_mage": 100,
+          "dark_mage": 30,
+          "archer": 56
+        },
+        "exactReload": true
+      },
+      "resultCapture": "combat-2-result.png",
+      "reloadCapture": "expedition-checkpoint-reloaded.png",
+      "historicalQaPreserved": 317,
+      "deferredObjectsPreserved": true,
+      "limits": "No native defeat or new KO-recovery scope unless observed; KO0 and absent legacy health covered by frozen DOM test. No OS/mobile/actual-screen-reader/global-balance/art/full-demo acceptance.",
+      "acceptance": "ACCEPTED_SCOPED_PC1366_NORMAL_NATIVE_RESULT_HEALTH",
+      "rootInspected": [
+        "combat-2-result.png",
+        "expedition-checkpoint-reloaded.png"
+      ],
+      "rootReview": "Result four health rows/statuses readable and bounded; automatic Continue focus visible. Reload capture supports map return, not atlas art or all-label acceptance. No new native KO/defeat claim.",
+      "guardian": "PASS_SCOPED; actual six-file diff, raw receipt, terminal audit, result capture and PC_PLAYTEST diff independently reviewed",
+      "cleanup": {
+        "worker16620Absent": true,
+        "port5435Free": true,
+        "otherServersUntouched": true
+      },
+      "complianceMatrix": {
+        "GAME_CONSTITUTION": "PASS",
+        "ART_DIRECTION": "N/A",
+        "CHARACTERS": "N/A",
+        "ENVIRONMENTS": "N/A",
+        "NARRATIVE_CAMPAIGN": "PASS unchanged handoffs; preparation examples accurately scoped",
+        "NARRATIVE_PRESENTATION": "N/A",
+        "TRAVERSAL": "N/A",
+        "COMBAT": "PASS unchanged outcomes/rewards/waves",
+        "SAVE": "PASS exact earned V6 reload; no schema or owner change",
+        "UI_ACCESSIBILITY": "PASS_SCOPED PC1366normal readability/focus/bounds",
+        "QA_EVIDENCE": "PASS_SCOPED genuine changed-boundary native victory, stable provenance and inspected capture",
+        "REPOSITORY_GOVERNANCE": "PASS"
       }
     }
   },
@@ -45427,5 +45759,7 @@
     "automaticReviewRefusal": false,
     "taskComplete": false,
     "newLabelBrowser": "OPEN"
-  }
+  },
+  "lastSnapshotCommit": "f0fde9ada2aa75d157445e8cbc376b1f0988149c",
+  "lastSnapshotAt": "2026-10-18T03:46:35.555Z"
 }

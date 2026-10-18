@@ -26,6 +26,8 @@ Conditional later order once implementation/PC readiness are established: **FF9-
 
 ## Operator-held decisions
 
+PC preparation correction, source `f0fde9a`: result screens now show each participant's exact **PV en fin de combat** alongside Debout/K.O., without changing tactical resolution or later campaign recovery. ONE earned native `result-health-0327` continuation at1366×768 normal wins the optional opening wolves in4rounds/28actions, verifies all four displayed health/status rows against the runtime, automatic Continue focus, bounds, unchanged observation owner/save bytes and exact checkpoint reload. KO0 and missing legacy values are covered by focused DOM tests; this native case has no K.O. or defeat. Global art/balance, OS/mobile and actual screen-reader acceptance remain separate. The next concrete PC verdict is preparation clarity and felt rest cost before the Sceau hunters, using the retained failed/prepared examples in [PC_PLAYTEST](../project/PC_PLAYTEST.md), without a campaign replay or autonomous rebalance.
+
 Lot E economy/rewards/costs, elite settings/formations and atlas art await operator playtest. **No autonomous rebalance, enemy weakening or art remaster.** OD-2026-10-17-A now prioritizes these reviews with global PC acceptance before mobile; independent demonstrated PC fixes can continue. Preserve exact Lot E catalogue, formation seed, once-only temporary-loot rules and existing securing; no new canon or lore.
 
 ## Work method

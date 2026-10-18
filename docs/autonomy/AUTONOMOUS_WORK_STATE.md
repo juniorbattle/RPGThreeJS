@@ -1,12 +1,16 @@
-# PC result health — in progress
+# PC result health — native scoped acceptance
 
-Run rpgthreejs-auto-dev-90m-20261018T0327; started 2026-10-18T03:27:26Z. Old quota-interrupted run archived after terminal/host-worker/live-parity verification; clean dev, no inherited WIP.
+READY_FOR_PC_ACCEPTANCE. Run rpgthreejs-auto-dev-90m-20261018T0327; started 2026-10-18T03:27:26Z; ended 2026-10-18T03:46:35.555Z. Source f0fde9a normally published/live verified; final state/publication closure is the containing Git commit and automation memory. Global PC/balance/art remains operator-held under OD-2026-10-17-A; mobile deferred.
 
-Player gap: result screen hides final HP behind Debout/K.O.; retained patrol ends at2/1HP. Show exact final-combat HP from existing runtime data to support preparation, preserving later1HP KO recovery, rewards, actions and V6. No balance verdict or autonomous rebalance.
+Product: result now shows each participant's exact owner-provided final-combat HP/maxHP alongside Debout/K.O. Caption distinguishes later campaign1HP victory recovery; missing legacy values remain absent. No tactical rules, rewards, callbacks, wave logic, V6 or canon changed.
 
-Next: Correct the demonstrated missing final-combat HP in the result screen; read existing G.deployedUnits hp/maxhp only, preserve KO/recovery/rewards/actions and verify one earned native opening-wolves continuation with the existing runner. Global PC/balance/art verdicts remain operator-held; mobile deferred.
+ONE earned result-health-0327 PC1366normal victory at opening-wolves:4rounds28actions. Alistair125/140, Marian100/100, Elara30/75, Kestrel56/90 exactly match deployed runtime; automatic visible Continue focus, bounded rows/text/control, observation owner/save bytes, native map return and exact earned checkpoint reload verified. Root2captures/guardian result inspected. ACCEPTED_SCOPED_PC1366_NORMAL_NATIVE_RESULT_HEALTH. All6current eligibility checks true; result80c7bfbd38aabffe094ab39a3bf9d0d302c9a317dcecfb6b580e03635bed92fe; raw receipt NOT_ACCEPTED untouched. Separate live.resultHealth0327 and ignored terminal-audit record reviewed scope. No fresh native KO/defeat/OS/mobile/actualscreenreader/art/balance/global-demo claim.
 
-Counts planned: runtime2, test1, existingQA1, newQA0, promotedProof0, inheritedWip0; shared-state workflow recorded separately. 19 focused tests, types/fresh build,8MP4/contracts8slots8/immutable-workingLOCKED/whitespace/syntax PASS. Guardian actual diff PASS to register; one meaningful red-before. Native smoke pending; no gameplay QA launched.
+One meaningful red-before;19presentation+20helper tests, types/fresh build/8MP4/contracts8slots8/immutable-workingLOCKED/whitespace/syntax PASS. Independent guardian final PASS_SCOPED. Garen/catalog/CombatBridge and accepted controls/campaign scopes retained without replay.317historical jobs and both actual deferred objects preserved;318total. Old quota-interrupted lock archived after terminal/host-worker/live-parity verification; no inherited WIP. Worker16620 absent/5435free; unrelated servers untouched.
+
+Counts runtime2/sourceTests1/helperTests1/existingQA2/newPersistentQA0/promotedProof0/productDocs1/workflow4/inherited0/browser1/reusedReviewer1. Constitution/campaign/combat/save/UI/QA/governance PASS scoped; art/characters/environments/narrative-presentation/navigation N/A. Set1.4.0; no LOCKED rule changed. No economy/elite/atlas/media/Traversal/scheduler change.
+
+Next ONE product action: On the current PC candidate, judge preparation clarity and felt rest cost before Chasseurs du Sceau using PC_PLAYTEST.md and retained failed/prepared Lot E examples (same hunters_a variant, different teams/health; not a controlled difficulty comparison). Correct only a demonstrated player-facing defect. Final balance/economy/elite/art/hardware/global-PC verdict stays operator-held; no autonomous rebalance, unchanged campaign/Garen/control replay or mobile micro-PASS. Mobile remains deferred until PC milestone; Bois-Clair nightplate external asset stays isolated.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -328,6 +332,7 @@ Counts planned: runtime2, test1, existingQA1, newQA0, promotedProof0, inheritedW
 - campaign-next-turn-2141: SUCCEEDED; port 5432; receipt `tmp/demo/campaign-next-turn-2141/qa-job.json`; NOT_ACCEPTED
 - council-continuation-2234: SUCCEEDED; port 5433; receipt `tmp/cinematics/council-continuation-2234/qa-job.json`; NOT_ACCEPTED
 - dialogue-names-2310: SUCCEEDED; port 5434; receipt `tmp/cinematics/dialogue-names-2310/qa-job.json`; NOT_ACCEPTED
+- result-health-0327: SUCCEEDED; port 5435; receipt `tmp/demo/result-health-0327/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 Closeout 2026-10-17T23:13:04.639Z: PC guide checkpoint a0ee1afafbd93ed7b1fdf118dad60894f41a781f published; final workflow commit and owned-lock retirement follow. Root/live aliases aligned;317jobs retain original receipts and316historical dispositions.
