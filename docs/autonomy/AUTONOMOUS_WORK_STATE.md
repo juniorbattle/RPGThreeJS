@@ -1,14 +1,16 @@
-# POI paths and player pawn — second operator feedback
+# POI pawn/path clarity delivered; loot proposal separate
 
-IN_PROGRESS. Run codex-poi-pawn-20261018T1935, started2026-10-18T19:35:48Z, heartbeat2026-10-18T19:42:41.388Z. Clean ee252d1/no inherited WIP, owned lock/fetch/liveparity; other related chats idle.
+READY_FOR_PC_REVIEW. Run codex-poi-pawn-20261018T1935 started2026-10-18T19:35:48Z, ended2026-10-18T19:47:25.815Z. Tested source4f044c4 published origin/dev; final closure containing commit.
 
-Wait explicitly1turn stationary/threat movement; all edges quieter, legal adjacency/selected route emphasized; persistent actual-position pawn reused by saved-movement animation. No truth/loot/V6/contract edits.53currenttests/types/build/contracts8slots8PASS. Native/reviewer pending. Prior1903scoped acceptance retained in JSON.
+Wait visibly1tour surplace and accessible threat explanation; all paths preserved thinner, legal adjacent/selected path hierarchy; persistent distinct actual-position pawn follows saved committed movement.53currenttests4files/types/build/contracts8slots8/LOCKED/whitespace/syntaxPASS. One existing-runner original2141earned scenario poi-pawn-1935 SUCCEEDED/exit0/errors[]/all6flags;4real resolved moves,0newbattles,exactV6reload; desktop/620idle/travel root/guardian inspected. Separate ACCEPTED_SCOPED in live.poiPawn1935; raw receipt NOT_ACCEPTED unchanged.
 
-Loot permanence is a concrete PROPOSED dedicated amendment in docs/autonomy/POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md, not implemented by this UI change. Current temporary-wallet purchases remain provisional; recovery checkpoint must stay independent of reward securing.
+Current temporary-loot rules unchanged. Dedicated immediate-permanence proposal includes all gold/items, defeat retention, unchanged quantities/costs/checkpoint locations and exactonce old/current/terminalV6 remainingpool transfer. It remains PROPOSED awaiting dedicated approval; UI/independent PC work do not wait on that decision.
 
-Next ONE action: Run one existing-driver certified2141first-refuge continuation to inspect persistent pawn, legal selected path and actual movement/reload, then finish UI checkpoint. Present dedicated permanence proposal for explicit approval without changing current loot rules.
+Historical324jobs + deferredDemoTask/pendingNarrativeTask exact;325total. Runtime2/sourceTest1/existingQA1/newPersistentQA0/promotedProof4/productGuide1/workflow5(including proposal)/inherited0/browser1/reusedreviewer1. Scheduler/preview5438 preserved.
 
-GlobalPC/art/balance/hardware/mobile scope remains open, scheduler/preview5438 unchanged.
+Next ONE action: Present POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md for explicit dedicated approval: immediate permanent earned gains, retention after defeat, unchanged amounts/costs/checkpoints and idempotent V6 conversion. Only that gameplay change awaits approval; preserve completed pawn/path proof and continue independent demonstrated PC finishing when applicable.
+
+GlobalPC/art/balance/hardware/mobile verdicts remain open; no new native other-region/reduced-travel/combat/interception/realAT acceptance. External Bois-Clair nightplate/media/audio unchanged.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -337,4 +339,5 @@ GlobalPC/art/balance/hardware/mobile scope remains open, scheduler/preview5438 u
 - poi-immersive-1903: FAILED; port 5442; receipt `tmp/demo/poi-immersive-1903/qa-job.json`; NOT_ACCEPTED
 - poi-immersive-1903-fixed: FAILED; port 5442; receipt `tmp/demo/poi-immersive-1903-fixed/qa-job.json`; NOT_ACCEPTED
 - poi-immersive-1903-settled: SUCCEEDED; port 5442; receipt `tmp/demo/poi-immersive-1903-settled/qa-job.json`; NOT_ACCEPTED
+- poi-pawn-1935: SUCCEEDED; port 5442; receipt `tmp/demo/poi-pawn-1935/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->

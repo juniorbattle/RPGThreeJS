@@ -1,18 +1,19 @@
 {
-  "status": "IN_PROGRESS",
+  "status": "READY_FOR_PC_REVIEW",
   "runStartedAt": "2026-10-18T19:35:48Z",
-  "runEndedAt": null,
-  "activeTask": "POI-PATH-PAWN-CLARITY",
-  "activePhase": "SOURCE_GREEN_NATIVE_PENDING",
-  "activeSubtask": "Second operator feedback: clearer Wait, path hierarchy and persistent player pawn; separate proposed permanent-loot amendment",
+  "runEndedAt": "2026-10-18T19:47:25.815Z",
+  "activeTask": "DEMO-PC-GLOBAL-ACCEPTANCE",
+  "activePhase": "POI_PAWN_PATHS_COMPLETE_SCOPED_LOOT_DEDICATED_APPROVAL_PENDING",
+  "activeSubtask": "Second requested map UI corrections delivered; concrete separate immediate-loot proposal awaiting approval",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "ee252d1b856b74dfd56d779fbfcf65031710e8b0",
-  "lastPushedCommit": "ee252d1b856b74dfd56d779fbfcf65031710e8b0",
+  "lastKnownGoodCommit": "4f044c4f74739134a256276edf46c889826c65cf",
+  "lastPushedCommit": "4f044c4f74739134a256276edf46c889826c65cf",
   "completedThisRun": [
     "Visible/accessibly explained Wait1turn stationary, active threats may advance",
     "All actual edges retained with quieter remote strokes and legal adjacent/selected emphasis",
     "Persistent noninteractive pawn at actual current node, same pawn animates after saved movement",
-    "Concrete PROPOSED permanent-loot task prepared; LOCKED/current economy unchanged"
+    "Concrete PROPOSED permanent-loot task prepared; LOCKED/current economy unchanged",
+    "ACCEPTED_SCOPED_POI_FIRST_REGION_PC_PERSISTENT_PAWN_LEGAL_PATH_AND_WAIT_CLARITY"
   ],
   "filesChanged": [
     "src/ui/PoiMapView.ts",
@@ -21,40 +22,50 @@
     "tools/demo-continuous-production-qa.mjs",
     "docs/autonomy/POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/project/PC_PLAYTEST.md",
+    "docs/reports/poi-pawn-paths-2026-10-18.md",
+    "docs/autonomy/handoffs/2026-10-18T1935Z-codex-poi-pawn-paths.md",
+    "docs/reports/poi-pawn-paths-2026-10-18/scoped-proof.json",
+    "docs/reports/poi-pawn-paths-2026-10-18/poi-immersive-1366.png",
+    "docs/reports/poi-pawn-paths-2026-10-18/poi-immersive-620.png",
+    "docs/reports/poi-pawn-paths-2026-10-18/poi-travel-committed.png"
   ],
   "testsRun": [
     "53current focused tests/4files PASS",
-    "TypeScript/production build/contracts8slots8/immutable gate/whitespace/syntax PASS"
+    "TypeScript/production build/contracts8slots8/immutable gate/whitespace/syntax PASS",
+    "One native poi-pawn-1935 SUCCEEDED/exit0/errors[]/all6flags;4resolved moves,0new battles,exactV6reload;3root/guardian captures inspected"
   ],
   "testsPassed": [
     "53current focused tests/4files PASS",
-    "TypeScript/production build/contracts8slots8/immutable gate/whitespace/syntax PASS"
+    "TypeScript/production build/contracts8slots8/immutable gate/whitespace/syntax PASS",
+    "One native poi-pawn-1935 SUCCEEDED/exit0/errors[]/all6flags;4resolved moves,0new battles,exactV6reload;3root/guardian captures inspected"
   ],
   "testsRemaining": [
-    "Existing earned native presentation scenario and inspected path/pawn captures",
-    "Independent actual-diff/native-proof review"
+    "Dedicated approval then separate actual amendment/runtime proof for permanent loot",
+    "Global PC/operator art/balance/hardware; native other-region/reduced-travel/actualAT/device/mobile scopes not newly accepted"
   ],
   "blockers": [
     "Operator global PC/art/felt-balance/hardware acceptance open; no autonomous economy/reward/elite adjustment",
     "Bois-Clair nightplate external asset gap retained",
-    "Audio deferred; future video generation remains dedicated non-recurring work"
+    "Audio deferred; future video generation remains dedicated non-recurring work",
+    "Dedicated immediate-loot amendment approval pending; blocks only permanence, not independent UI/PC finishing"
   ],
   "remainingWork": [
-    "Global PC experience, art, balance and hardware review; demonstrated corrections",
-    "Independent genuinely missing PC finishing criteria before later mobile milestone",
-    "External Bois-Clair nightplate and conditional media/audio roadmap remain separate"
+    "Dedicated proposed immediate-loot approval and, if approved, contract amendment before runtime",
+    "Remaining demonstrated PC findings/global art/balance/hardware review",
+    "Later mobile and conditional media/audio work; external Bois-Clair nightplate isolated"
   ],
-  "nextAction": "Run one existing-driver certified2141first-refuge continuation to inspect persistent pawn, legal selected path and actual movement/reload, then finish UI checkpoint. Present dedicated permanence proposal for explicit approval without changing current loot rules.",
+  "nextAction": "Present POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md for explicit dedicated approval: immediate permanent earned gains, retention after defeat, unchanged amounts/costs/checkpoints and idempotent V6 conversion. Only that gameplay change awaits approval; preserve completed pawn/path proof and continue independent demonstrated PC finishing when applicable.",
   "taskQueue": [
-    "POI-IMMERSIVE-MAP-UI: COMPLETE_SCOPED; direct operator review of new presentation",
-    "DEMO-PC-GLOBAL-ACCEPTANCE: remaining concrete PC findings and independent finishing",
-    "DEMO-PC-BALANCE-ART: operator verdicts; no arbitrary economy/elite/art adjustment",
-    "DEMO-MOBILE-FINAL: deferred until PC milestone",
-    "Conditional audiovisual roadmap per OD-2026-10-17-A; generation excluded from recurring runs"
+    "POI-PATH-PAWN-CLARITY: COMPLETE_SCOPED_UI",
+    "IMMEDIATE-LOOT: PROPOSED_DEDICATED_APPROVAL_PENDING; no LOCKED/runtime change yet",
+    "DEMO-PC-GLOBAL-ACCEPTANCE: remaining demonstrated findings and independent finishing",
+    "DEMO-PC-BALANCE-ART: operator verdicts; no arbitrary adjustments",
+    "DEMO-MOBILE-FINAL: after PC milestone; conditional media/audio roadmap retained"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_SCOPED; independent actual-diff/native-proof guardian review; set1.4.0 and immutable baseline unchanged",
+  "contractComplianceStatus": "PASS_SCOPED_UI; independent actual-diff/native review; set1.4.0 unchanged. Permanent-loot task only PROPOSED.",
   "commitReferenceScope": "lastKnownGood/accepted/implementation/wip reference tested sourcec6b9cb8; lastPushed is verified preceding workflow commit; final closure is containing Git commit, live parity/lock release recorded in automation memory.",
   "operatorAuthorization": "Direct operator second screenshot feedback18October2026: explain Wait, declutter connecting paths, persistent animated player pawn, request immediate definitive loot. Mixed UI task implements independent presentation work; dedicated LOCKED amendment proposal for loot permanence awaits approval.",
   "creativeDirection": {
@@ -128,25 +139,17 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-poi-pawn-20261018T1935",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-18T19:42:41.388Z",
+  "lastHeartbeat": "2026-10-18T19:47:25.815Z",
   "wip": {
     "branch": null,
-    "sha": "ee252d1b856b74dfd56d779fbfcf65031710e8b0",
+    "sha": "4f044c4f74739134a256276edf46c889826c65cf",
     "checkpointBranch": "dev",
-    "dirtyFiles": [
-      "src/ui/PoiMapView.ts",
-      "src/ui/poi-map.css",
-      "src/ui/PoiMapView.test.ts",
-      "tools/demo-continuous-production-qa.mjs",
-      "docs/autonomy/POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
-    ],
-    "status": "GREEN_SOURCE_NATIVE_PENDING",
-    "lastGreenCheck": "2026-10-18T19:42:41.388Z"
+    "dirtyFiles": [],
+    "status": "GREEN",
+    "lastGreenCheck": "2026-10-18T19:47:25.815Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-18T19:42:41.388Z",
+    "lastHeartbeat": "2026-10-18T19:47:25.815Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -35716,6 +35719,122 @@
         "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-pawn-1935",
+        "runId": "codex-poi-pawn-20261018T1935",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-18T19:43:48.537Z",
+        "pid": 24744,
+        "port": 5442,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "first-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 10,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "explorationPlan": "direct",
+          "checkpointPoiId": null,
+          "gameReducedMotion": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/campaign-next-turn-2141/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/campaign-next-turn-2141/results.json",
+          "verifySalvation": false,
+          "verifyPoiPresentation": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD",
+          "NATIVE_POI_PRESENTATION_AND_COMMITTED_TRAVEL"
+        ],
+        "output": "tmp/demo/poi-pawn-1935",
+        "receiptPath": "tmp/demo/poi-pawn-1935/qa-job.json",
+        "provenance": {
+          "gitHead": "4f044c4f74739134a256276edf46c889826c65cf",
+          "sourceTree": "d13fae08be20bd84f082f1f523430b1351238f4a",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "6c04b28a737d2badcc5fe6f4f770b95fda9bc4d60204b18cb09717d3af335eb8"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/campaign-next-turn-2141/earned-first-refuge-v6.json",
+              "sha256": "788dc78ad6b274225261c755b2cd1e69a35a0c7579aa7938228a9d42fef8d1a1"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/campaign-next-turn-2141/results.json",
+              "sha256": "835b785fa0740d5241b8be904b8d57f729c92f37f0973c6786e8ccbc20dbfd24"
+            }
+          ],
+          "receiptToolSha256": "30f973ad37c9aa5f1954f5b1fe5e60bb8efa31041ba282b6be39edc20e805d9d",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CuFr1fl1.js",
+              "sha256": "0fa0ebe3db613f553a8b2aba99eb97fbe69e501d3dc0e339a22a3c1331a55e50"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/combat-okohYAhc.js",
+              "sha256": "6a6a22aa824a2ff7178e7bc26ef8d95fcab262d73dbddbf09f47be321b74da99"
+            },
+            {
+              "path": "dist/assets/game-BDzc0ivW.css",
+              "sha256": "43d2987ff8b63278b19ac4dca06828c9efd619220d2ad4b0432b2e125e796a86"
+            },
+            {
+              "path": "dist/assets/game-DGGPsXvC.js",
+              "sha256": "6e80f34b5badf068c4f806b9b8f0ac9dc143b9ce38e9f0783150533bafc80c4d"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "f4a75c023ef37008fb0fbbb747aa2c054a1b79fa3682595645125a2ffe4101f6"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-18T19:43:49.417Z",
+        "endedAt": "2026-10-18T19:44:04.436Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/poi-pawn-1935/results.json",
+        "resultSha256": "604500bb9bd772034692d5a43d76a6b8ccdc70074dcf9bdfdde825df58f6b5a4",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
       }
     ],
     "wip": {
@@ -43438,11 +43557,48 @@
       ]
     },
     "poiPawn1935": {
-      "status": "IN_PROGRESS",
-      "baseline": "ee252d1b856b74dfd56d779fbfcf65031710e8b0",
+      "status": "ACCEPTED_SCOPED",
+      "at": "2026-10-18T19:47:25.815Z",
+      "acceptance": "ACCEPTED_SCOPED_POI_FIRST_REGION_PC_PERSISTENT_PAWN_LEGAL_PATH_AND_WAIT_CLARITY",
+      "sourceCommit": "4f044c4f74739134a256276edf46c889826c65cf",
+      "jobId": "poi-pawn-1935",
+      "resultSha256": "604500bb9bd772034692d5a43d76a6b8ccdc70074dcf9bdfdde825df58f6b5a4",
+      "receiptSha256": "d7f1a431a8409208b44f9e9b0a9531095e132c2884e60536848d93f139a79dec",
+      "driverSha256": "6c04b28a737d2badcc5fe6f4f770b95fda9bc4d60204b18cb09717d3af335eb8",
+      "checks": {
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
+      },
+      "played": "4resolved native first-region moves; idle pawn stable on selection; selected actual legal edge; exactV6reload;0newbattles",
+      "capturesInspected": [
+        "poi-immersive-1366.png",
+        "poi-immersive-620.png",
+        "poi-travel-committed.png"
+      ],
+      "guardian": "Independent PASS actual diff/provenance/digests and desktop/620/travel captures",
+      "scope": "First-region PC1366 native pawn/path movement and exactV6 reload; same-page responsive layout/live OSgame CSS checks. No loot permanence, new combat/interception, native reduced-travel, all-region art, realAT/device/global acceptance.",
       "lootPermanence": "PROPOSED_DEDICATED_APPROVAL_PENDING",
-      "newQaTool": false,
-      "inheritedWip": 0
+      "historicalJobsPreserved": 324,
+      "deferredObjectsPreserved": [
+        "deferredDemoTask",
+        "pendingNarrativeTask"
+      ],
+      "counts": {
+        "runtimeSourceFiles": 2,
+        "sourceTestFiles": 1,
+        "existingQaFiles": 1,
+        "newPersistentQaFiles": 0,
+        "promotedProofFiles": 4,
+        "productDocs": 1,
+        "workflowFiles": 5,
+        "inheritedWipFiles": 0,
+        "browserScenarios": 1,
+        "reusedReviewers": 1
+      }
     }
   },
   "previousInterruptedRun": {

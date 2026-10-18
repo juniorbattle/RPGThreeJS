@@ -12,7 +12,9 @@ Pour un nouveau parcours, utiliser un profil de navigateur distinct afin de cons
 
 La carte occupe désormais l'espace entre l'en-tête compact et les actions du lieu sélectionné. **Aide** ouvre le volet de commandes et de légende ; **Détails** y affiche aussi le contexte du lieu. Fermer ou Escape rend le focus au bouton utilisé. Les avertissements de menaces, leur prochain déplacement et les actions disponibles restent visibles sans ouvrir le volet.
 
-Les onglets de région apparaissent à mesure que la compagnie atteint ces régions ; les régions acquises restent consultables en revenant sur ses pas. Le fond, les tracés et les POI gardent leurs proportions communes. Une brève lumière suit le chemin après un déplacement validé et sauvegardé ; le mouvement réduit du jeu ou du système supprime cette animation. Juger maintenant si le gain d'espace et les repères à la demande rendent la navigation plus confortable.
+Les onglets de région apparaissent à mesure que la compagnie atteint ces régions ; les régions acquises restent consultables en revenant sur ses pas. Le fond, les tracés et les POI gardent leurs proportions communes. Les chemins lointains sont discrets ; les liaisons accessibles depuis la position actuelle et le chemin vers une destination légale sélectionnée ressortent davantage. Un pion de compagnie indique la position réelle, même au repos. Après un déplacement validé et sauvegardé, ce même pion avance progressivement sur le tracé ; le mouvement réduit du jeu ou du système donne immédiatement la nouvelle position. Sélectionner un lieu seul ne déplace pas le pion.
+
+**Attendre — 1 tour sur place** laisse passer un tour sans déplacement : les menaces actives peuvent avancer, ce qui permet notamment de laisser passer une patrouille. Cela ne soigne pas la compagnie. Sur la première région sans menace active, cet effet peut être peu visible. Or sécurisé et butin restent distincts dans cette version ; la demande de gains immédiatement définitifs fait l'objet d'une [proposition séparée](../autonomy/POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md), sans changement économique implicite.
 
 ## Parcours et observations utiles
 

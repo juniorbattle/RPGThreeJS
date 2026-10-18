@@ -1,0 +1,113 @@
+{
+  "runId": "codex-poi-pawn-20261018T1935",
+  "at": "2026-10-18T19:45:00.753Z",
+  "checks": {
+    "provenanceMatches": true,
+    "provenanceStable": true,
+    "requestMatches": true,
+    "matchesCurrentExecution": true,
+    "resultDigestMatches": true,
+    "eligibleForReview": true
+  },
+  "sourceCommit": "4f044c4f74739134a256276edf46c889826c65cf",
+  "sourceTree": "d13fae08be20bd84f082f1f523430b1351238f4a",
+  "resultSha256": "604500bb9bd772034692d5a43d76a6b8ccdc70074dcf9bdfdde825df58f6b5a4",
+  "receiptSha256": "d7f1a431a8409208b44f9e9b0a9531095e132c2884e60536848d93f139a79dec",
+  "driverSha256": "6c04b28a737d2badcc5fe6f4f770b95fda9bc4d60204b18cb09717d3af335eb8",
+  "build": [
+    {
+      "path": "dist/assets/ReducedMotion-CuFr1fl1.js",
+      "sha256": "0fa0ebe3db613f553a8b2aba99eb97fbe69e501d3dc0e339a22a3c1331a55e50"
+    },
+    {
+      "path": "dist/assets/combat-DG7ZUtBq.css",
+      "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+    },
+    {
+      "path": "dist/assets/combat-okohYAhc.js",
+      "sha256": "6a6a22aa824a2ff7178e7bc26ef8d95fcab262d73dbddbf09f47be321b74da99"
+    },
+    {
+      "path": "dist/assets/game-BDzc0ivW.css",
+      "sha256": "43d2987ff8b63278b19ac4dca06828c9efd619220d2ad4b0432b2e125e796a86"
+    },
+    {
+      "path": "dist/assets/game-DGGPsXvC.js",
+      "sha256": "6e80f34b5badf068c4f806b9b8f0ac9dc143b9ce38e9f0783150533bafc80c4d"
+    },
+    {
+      "path": "dist/assets/three-core-f0ajj1rG.js",
+      "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+    },
+    {
+      "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+      "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+    },
+    {
+      "path": "dist/assets/validation-mSkvzYyn.js",
+      "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+    },
+    {
+      "path": "dist/index.html",
+      "sha256": "f4a75c023ef37008fb0fbbb747aa2c054a1b79fa3682595645125a2ffe4101f6"
+    }
+  ],
+  "newBattles": 0,
+  "nativeMoves": 4,
+  "exactReload": true,
+  "actualPawnSelectionStable": true,
+  "selectedLegalPath": true,
+  "ownerAndSaveBeforeMotion": true,
+  "layouts": [
+    {
+      "size": {
+        "width": 1366,
+        "height": 768
+      },
+      "land": {
+        "x": 0,
+        "y": 67,
+        "width": 1366,
+        "height": 640,
+        "right": 1366,
+        "bottom": 707
+      }
+    },
+    {
+      "size": {
+        "width": 620,
+        "height": 780
+      },
+      "land": {
+        "x": 0,
+        "y": 154,
+        "width": 620,
+        "height": 520.609375,
+        "right": 620,
+        "bottom": 674.609375
+      }
+    },
+    {
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "land": {
+        "x": 0,
+        "y": 154,
+        "width": 390,
+        "height": 584.609375,
+        "right": 390,
+        "bottom": 738.609375
+      }
+    }
+  ],
+  "runtimeMutated": false,
+  "combatOutcomeInjected": false,
+  "capturesInspected": [
+    "poi-immersive-1366.png",
+    "poi-immersive-620.png",
+    "poi-travel-committed.png"
+  ],
+  "scope": "First-region PC1366 native pawn/path movement and exactV6 reload; same-page responsive layout/live OSgame CSS checks. No loot permanence, new combat/interception, native reduced-travel, all-region art, realAT/device/global acceptance."
+}
