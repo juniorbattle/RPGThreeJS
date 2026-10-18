@@ -1,12 +1,12 @@
-# Checkpoint rule corrected — no keep-gains-on-defeat task
+# Last actual save is the recovery reference
 
-PLAN_REVISED. OD-2026-10-18-A, run codex-checkpoint-rule-20261018T2040 started2026-10-18T20:40:13Z ended2026-10-18T20:45:36.837Z. Direct operator correction: losing reloads complete gameplay at last checkpoint; post-checkpoint gains AND spending/progression roll back. Reject the previous unapproved permanence/retention proposal. No XP system added.
+PLAN_REVISED. OD-2026-10-18-B/run codex-save-rule-20261018T2049 started2026-10-18T20:49:36Z ended2026-10-18T20:50:48.045Z. Defeat reloads last valid saved state of active game, undoing only unsaved changes. Autosaves now; possible independent manual slots later. Saved gains and their resolved facts stay together, no unsaved retention/farming.
 
-Source review: checkpointNodeId only, no full snapshot; both ordinary/elite defeat currently reload latest autosave and relocate/clear temporary loot rather than full historical restoration. Corrected proposal specifies actual run-bound snapshot, preparation refresh at real safe checkpoints, preserved preferences, exact restored world/elite/reward facts and honest legacyV6 loss protection until real snapshot. Never unify legacy gains while keeping old partial recovery.
+Supersedes mandatory separate refuge/checkpoint snapshot design from2040; do not implement it as prerequisite. Existing full saved payload is reference, both ordinary/elite defeat paths currently alter it with failRunToCheckpoint afterward. Dedicated actual amendment/review/baseline and runtime proof still pending. No new manual-slot feature implied.
 
-This checkpoint changes target/docs/state only; no source/LOCKED/build/browser/QAjob change or new product acceptance. Prior pawn/path/source4f044c4 scoped acceptance and325historical QA/deferred objects retained. Scheduler/operator preview5438 untouched.
+Docs/ledger/guide/state only; no source/LOCKED/build/browser/QAjob changes.325QA/deferred objects and prior accepted pawn/path scopes unchanged. Scheduler/preview5438 untouched.
 
-Next ONE action: Prepare the dedicated CHECKPOINT-ROLLBACK amendment for OD-2026-10-18-A: usable unified holdings within an attempt, full saved-checkpoint gameplay restore on defeat. Never execute the rejected keep-earned-gains proposal. Current code remains unchanged; actual checkpoint snapshot and safe legacy migration are required before unified rewards.
+Next ONE action: Prepare dedicated LAST-SAVE-RELOAD amendment for OD-2026-10-18-B, then adapt both defeat paths to exact actual save restoration. Do not build mandatory separate refuge snapshots or implement retained-unsaved gains. Current autosave is reference; future manual slots remain independent scope.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

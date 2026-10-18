@@ -1,60 +1,56 @@
 {
   "status": "PLAN_REVISED",
-  "runStartedAt": "2026-10-18T20:40:13Z",
-  "runEndedAt": "2026-10-18T20:45:36.837Z",
-  "activeTask": "CHECKPOINT-ROLLBACK-DEDICATED-SCOPE",
-  "activePhase": "TARGET_CORRECTED_NO_RUNTIME_AMENDMENT_YET",
-  "activeSubtask": "Reject post-checkpoint gain retention; one usable wallet paired with full checkpoint gameplay restore",
+  "runStartedAt": "2026-10-18T20:49:36Z",
+  "runEndedAt": "2026-10-18T20:50:48.045Z",
+  "activeTask": "LAST-SAVE-RELOAD-DEDICATED-SCOPE",
+  "activePhase": "LAST_ACTUAL_SAVE_TARGET_CLARIFIED_RUNTIME_UNCHANGED",
+  "activeSubtask": "Autosave now/future manual slots; remove mandatory checkpoint-snapshot design",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "4f044c4f74739134a256276edf46c889826c65cf",
   "lastPushedCommit": "4f044c4f74739134a256276edf46c889826c65cf",
   "completedThisRun": [
-    "Recorded operator correction OD-2026-10-18-A and superseded unapproved keep-gains-on-defeat proposal",
-    "Verified source has checkpointNodeId only; latest autosave recovery is not a full checkpoint restore",
-    "Revised dedicated scope: gains and spending/progression restored together, no added XP system; preserve preferences",
-    "Specified actual-snapshot capture/preparation/legacy-save boundaries without fabricated history"
+    "OD-2026-10-18-B records last actual save as restore reference, superseding checkpoint-specific design",
+    "Revised proposal/state/guide: undo only unsaved changes, keep saved reward and once-only facts together",
+    "Future multiple manual slots stay independent/active-game-scoped; no new slot implementation implied"
   ],
   "filesChanged": [
     "docs/autonomy/POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md",
     "docs/autonomy/OPERATOR_DECISIONS.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/project/PC_PLAYTEST.md",
-    "docs/autonomy/handoffs/2026-10-18T2040Z-codex-checkpoint-rule-correction.md"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
   ],
   "testsRun": [
-    "Read-only source/contract recovery mapping and independent guardian review",
-    "Whitespace/immutable-workingLOCKED/8contracts8slots gates; no source/build/browser rerun for rule-document correction"
+    "Whitespace/immutable-workingLOCKED/8contracts8slots gates; documentation-only, no source/build/browser rerun"
   ],
   "testsPassed": [
-    "Read-only source/contract recovery mapping and independent guardian review",
-    "Whitespace/immutable-workingLOCKED/8contracts8slots gates; no source/build/browser rerun for rule-document correction"
+    "Whitespace/immutable-workingLOCKED/8contracts8slots gates; documentation-only, no source/build/browser rerun"
   ],
   "testsRemaining": [
-    "Dedicated actual contract amendment/review/immutable-baseline checkpoint before runtime",
-    "Full gameplay snapshot/restore/migration implementation and meaningful defeat/reload proof"
+    "Dedicated actual amended-rule review/baseline before runtime",
+    "Exact ordinary/elite last-save restoration/unified-wallet implementation and native proof"
   ],
   "blockers": [
     "Operator global PC/art/felt-balance/hardware acceptance open; no autonomous economy/reward/elite adjustment",
     "Bois-Clair nightplate external asset gap retained",
     "Audio deferred; future video generation remains dedicated non-recurring work",
-    "Full checkpoint rollback not implemented; currentV6 contains location only, so actual snapshot/migration and dedicated amendment are required"
+    "Exact last-save defeat restoration not implemented; current post-load failRunToCheckpoint changes the recorded save state"
   ],
   "remainingWork": [
-    "Dedicated corrected checkpoint rollback task, not unconditional loot permanence",
-    "Existing remaining PC review, later mobile and audiovisual boundaries retained"
+    "Corrected dedicated last-save restoration/unified-wallet task",
+    "Prior independent PC review and later mobile/media scopes retained"
   ],
-  "nextAction": "Prepare the dedicated CHECKPOINT-ROLLBACK amendment for OD-2026-10-18-A: usable unified holdings within an attempt, full saved-checkpoint gameplay restore on defeat. Never execute the rejected keep-earned-gains proposal. Current code remains unchanged; actual checkpoint snapshot and safe legacy migration are required before unified rewards.",
+  "nextAction": "Prepare dedicated LAST-SAVE-RELOAD amendment for OD-2026-10-18-B, then adapt both defeat paths to exact actual save restoration. Do not build mandatory separate refuge snapshots or implement retained-unsaved gains. Current autosave is reference; future manual slots remain independent scope.",
   "taskQueue": [
-    "CHECKPOINT-ROLLBACK: corrected dedicated scope; full restore, never retention after defeat",
+    "LAST-SAVE-RELOAD: corrected target; ordinary/elite restore exact active-game save",
     "POI-PATH-PAWN-CLARITY: prior COMPLETE_SCOPED_UI retained",
     "Independent demonstrated PC findings and operator art/balance/hardware review",
-    "Later mobile/conditional media/audio retained"
+    "Later mobile and conditional media/audio retained"
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_RULE_DOCUMENT_CORRECTION_ONLY; set1.4.0 unchanged. Runtime target requires dedicated amendment and is not accepted.",
   "commitReferenceScope": "lastKnownGood/accepted/implementation/wip reference tested sourcec6b9cb8; lastPushed is verified preceding workflow commit; final closure is containing Git commit, live parity/lock release recorded in automation memory.",
-  "operatorAuthorization": "OD-2026-10-18-A direct operator correction rejects post-checkpoint gain retention and requests full checkpoint reload. This checkpoint records corrected target only; protected amendment/runtime execution not performed.",
+  "operatorAuthorization": "OD-2026-10-18-B explicitly clarifies last actual save, current automatic and possible future manual multi-slots. This checkpoint is target/continuity only, no runtime or LOCKED amendment.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -124,19 +120,19 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-checkpoint-rule-20261018T2040",
+  "runId": "codex-save-rule-20261018T2049",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-18T20:45:36.837Z",
+  "lastHeartbeat": "2026-10-18T20:50:48.045Z",
   "wip": {
     "branch": null,
-    "sha": "992ab9d5adc33c945c150aab453bee7db12190e3",
+    "sha": "819644094d9e2d6f8fa759227fe5fd756f4b97e0",
     "checkpointBranch": "dev",
     "dirtyFiles": [],
     "status": "GREEN_DOCS_ONLY",
-    "lastGreenCheck": "2026-10-18T20:45:36.837Z"
+    "lastGreenCheck": "2026-10-18T20:50:48.045Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-18T20:45:36.837Z",
+    "lastHeartbeat": "2026-10-18T20:50:48.045Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -43606,6 +43602,15 @@
         "inheritedWipFiles": 0,
         "browserScenarios": 0
       }
+    },
+    "lastSaveRule2049": {
+      "status": "TARGET_CLARIFIED",
+      "operatorDecision": "OD-2026-10-18-B",
+      "runtimeChanged": false,
+      "lockedChanged": false,
+      "qaJobsAdded": 0,
+      "scope": "Rule clarification only; no runtime acceptance",
+      "withdrawn": "Mandatory separate refuge checkpoint snapshot/preparation refresh and mid-route fallback plan"
     }
   },
   "previousInterruptedRun": {
