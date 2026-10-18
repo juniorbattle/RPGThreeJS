@@ -1,16 +1,12 @@
-# PC refuge rest clarity — native scoped acceptance
+# Deployment health before battle — source green
 
-READY_FOR_PC_ACCEPTANCE. Run rpgthreejs-auto-dev-90m-20261018T0355; started 2026-10-18T03:55:14Z; ended 2026-10-18T04:02:35.571Z. OD-2026-10-17-A global PC acceptance priority; mobile deferred.
+Run rpgthreejs-auto-dev-90m-20261018T0503; started2026-10-18T05:03:00Z. DEPLOYMENT_HEALTH_CORRECTIVE_NATIVE_PENDING.
 
-Product: Rest now explicitly states “Restaure tous les PV, K.O. inclus.” while wounded, alongside existing count/total or insufficient-gold explanation. Existing management owner heals to maxHP; no cost, callback, save schema, canon, art or combat rule changed. Healthy text and enabled state retained.
+Player problem: deployment cards show En jeu/Reserve without current/maxHP, including the retained Hunters attempt with two heroes at1HP. Exact owner HP now appears in visible and accessible card text; unknown legacy pairs omitted. No selection, rules, costs, V6, combat outcomes or art changes.
 
-Two meaningful DOM red-before failures;66 current source tests +21 helper tests, production build/types,8contracts8slots, immutable/working LOCKED, syntax and whitespace PASS. Existing runner gets a receipt-bound opt-in for certified first-refuge preparation; defaults unchanged. Guardian review and proof accepted scoped in live.restClarity0355 / handoff.
+76 current tests/3files +22 helper tests and types/build/contracts8slots8/LOCKED/whitespace PASS;2 red-before failures. Guardian PASS_TO_REGISTER. Native proof pending; no new acceptance claimed.
 
-ONE native PC1366normal continuation from certified campaign-next-turn-2141: actual Clan pre-rest maxima,2members at1HP,30gold total,75→45, full-health exact transaction/autosave, healthy disabled Rest with safe Clan focus, native map exit/earned exact reload.3 captures inspected; no fresh combat, nativeKO, OS/mobile, actualAT, economy/art/global-demo verdict. Raw receipt NOT_ACCEPTED unchanged; separate reviewed acceptance.
-
-Counts runtime1/sourceTest1/existingQA2/helperTest1/newPersistentQA0/promotedProof0/productDoc1/workflow4/inherited0/browser1/reviewer1. Historical318jobs and both deferred objects preserved;319jobs total. Set1.4.0 unchanged; no LOCKED rule changed.
-
-Next ONE product action: On current PC candidate, operator judges preparation and felt rest cost before Chasseurs du Sceau using PC_PLAYTEST retained failed/prepared examples and now explicit full-rest effect. Correct only a demonstrated player defect; no autonomous economy/elite/art changes or accepted-campaign replay. Mobile deferred until PC milestone.
+Next ONE action: ONE corrective existing-runner deployment-health-0503-fixed PC1366normal scenario with same accepted patrol0002 seed; require untruncated full3digitHP across reserve/deployed pages and exact earned reload. First partial attempt owner-stopped/rejected for visible truncation, never seed.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -334,6 +330,10 @@ Next ONE product action: On current PC candidate, operator judges preparation an
 - dialogue-names-2310: SUCCEEDED; port 5434; receipt `tmp/cinematics/dialogue-names-2310/qa-job.json`; NOT_ACCEPTED
 - result-health-0327: SUCCEEDED; port 5435; receipt `tmp/demo/result-health-0327/qa-job.json`; NOT_ACCEPTED
 - refuge-rest-0355: SUCCEEDED; port 5436; receipt `tmp/demo/refuge-rest-0355/qa-job.json`; NOT_ACCEPTED
+- deployment-health-0503: STOPPED_VISUAL_REGRESSION; port 5437; receipt `tmp/demo/deployment-health-0503/qa-job.json`; NOT_ACCEPTED
+- deployment-health-0503-fixed: PLANNED; port 5437; receipt `tmp/demo/deployment-health-0503-fixed/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 Closeout 2026-10-17T23:13:04.639Z: PC guide checkpoint a0ee1afafbd93ed7b1fdf118dad60894f41a781f published; final workflow commit and owned-lock retirement follow. Root/live aliases aligned;317jobs retain original receipts and316historical dispositions.
+
+First native attempt owner-stopped after visually observed3digit HP truncation. Raw partial receipt unchanged/NOT_ACCEPTED/unseedable. CSS correction retains10px text in332px desktop roster; corrective smoke alone permitted for own regression. Source checkpoint c6b9cb8e2c5649cfce91a79a6d6b374cf1df7dd6.

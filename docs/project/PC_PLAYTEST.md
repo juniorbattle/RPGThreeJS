@@ -36,6 +36,8 @@ Point de revue concret : **la préparation avant les Chasseurs du Sceau**. La te
 
 Le bouton **Repos** indique désormais son effet avant paiement : « Restaure tous les PV, K.O. inclus. », à côté du nombre de blessés et du coût total existant. Consulter Clan pour comparer les PV actuels/maximaux avant de choisir. La vérification native PC au premier refuge a payé 30 or pour deux héros à 1 PV, retrouvé les PV maximaux et conservé exactement la partie après recharge ; elle ne juge pas le tarif ni la difficulté des Chasseurs.
 
+Au **déploiement**, les cartes affichent aussi les PV actuels/maximaux, en réserve comme en jeu et dans leur nom accessible. Comparer ces valeurs avant « Lancer le combat » : « En jeu » décrit le placement, sans garantir la pleine santé. La sélection détaillée reste disponible pour les autres statistiques.
+
 Prochaine action de revue : prendre la lignée complétiste et ses captures conservées dans le rapport Lot E, confronter préparation/rencontres/atlas à cette grille, puis ouvrir **un seul écart joueur concret** à corriger ou une décision précise à juger. Réutiliser les preuves compatibles ; ne pas rejouer la campagne pour accumuler des validations identiques.
 
 ## Acceptation encore ouverte
