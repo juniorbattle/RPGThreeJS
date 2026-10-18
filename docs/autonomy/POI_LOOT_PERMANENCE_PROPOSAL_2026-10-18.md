@@ -1,33 +1,36 @@
-# Proposition dédiée : gains immédiatement définitifs
+# Revised dedicated scope: immediate use with full checkpoint rollback
 
-Status: **PROPOSED — dedicated operator approval pending**. This document is a concrete proposal, not an approved contract amendment or permission to change runtime. Source: direct operator feedback in chat01a14e6a,18October2026, after the POI declutter checkpointee252d1. The operator wants to avoid provisional loot because it appears usable from the menu.
+Status: **TARGET CORRECTED BY OPERATOR; dedicated amendment/runtime execution pending**. Revision2,18October2026, chat01a14e6a. The earlier proposal to retain post-checkpoint earnings after defeat is explicitly rejected and must not be implemented. No LOCKED contract or runtime changes are authorized by this proposal document itself.
 
-## Current verified behavior
+## Exact operator clarification
 
-Management buyItem can spend the temporary wallet, but puts that purchase in the temporary inventory. Equip/use/upgrade/craft/rest use permanent inventory/gold. Temporary-wallet sales remove permanent stock and credit temporary gold. Thus immediate shop spending is distinct from secured ownership. secureRunLoot merges and clears the temporary pool **and advances checkpointNodeId**. failRunToCheckpoint clears remaining temporary loot. These are existing approved rules, not UI labels alone.
+The operator rejects profitable defeat/accumulation and requests reloading the party at the last checkpoint, before defeat. Gains may be usable during the current attempt, but a loss restores the actual saved checkpoint state. This replaces the earlier keep-earned-gains proposal; it is not an approval of unconditional permanent loot.
 
-## Exact proposed replacement rule
+## Correct target rule
 
-All genuinely earned gold, materials, consumables and equipment become permanent immediately when their existing owner attributes them. They are available to existing menus immediately and are not removed by defeat. Defeat keeps its existing health/party/campaign recovery and returns to the existing checkpoint. A reward, chest, purchase or elite victory must never establish a new checkpoint merely by making gains permanent.
+One spendable wallet/inventory during an attempt. On ordinary or independent elite defeat, atomically restore the complete gameplay snapshot captured at the last actual safe checkpoint. Roll back post-checkpoint gains AND spending/consumption, HP/party/equipment/upgrades, recruitment, shop stock, reputation/history, flags, choices/resolutions/bypasses, graph/seed/assignments and expedition turn/positions/elite defeats/reward attribution together. Replaying after restore cannot keep rewards or purchases from the abandoned attempt. Current accessibility/preferences remain outside gameplay rollback. There is no XP/level progression to add or penalize.
 
-Display one gold balance and permanent inventory. Remove the separate provisional balance from the POI header and obsolete temporary-wallet guidance. Preserve every reward quantity, price, cost, formation, enemy configuration, encounter seed, once-only fact, recruitment and canonical choice. This changes reward retention and risk, so the prior economy/art/balance verdict is not automatically extended.
+No arbitrary percentage loss, new reward, cost, combat configuration, canon or checkpoint location. Do not retain an elite defeat or resolved chest while reverting its reward, or retain its reward while restoring the encounter. Within each live timeline, existing exactly-once attribution still applies.
 
-## Dedicated implementation boundaries
+## Current verified source gap
 
-1. Contract task before runtime: proposed ID PRODUCTION-CONTRACTS-IMMEDIATE-LOOT-1, proposed set1.5.0. Review the exact delta independently, commit the approved amendment, then establish its committed immutable baseline in a separate operational checkpoint. Only then adapt runtime/tests. No protected document is changed by this proposal.
-2. Narrowly supersede temporary-until-refuge and unsecured-loot-loss rules in GAME_CONSTITUTION, CAMPAIGN_AND_STATE, TRAVERSAL, COMBAT_AND_VFX and AUTHORING_AND_QA. Review any UI wording that depends on those rules. Preserve all unrelated rules, eight video IDs, canon, current maps, truth owners, audio deferral and physical-engine retirement. Record explicitly superseded parts of prior economic decisions; retain historical reports unchanged.
-3. RunSystem/campaign/reward owners credit the existing permanent wallet/inventory once. Separate consolidation of a compatibility loot pool from checkpoint advancement. Never call secureRunLoot after every reward as a shortcut.
-4. Old/current/checkpoint/terminal V6: transfer only the actually saved remaining temporary pool into permanent holdings once, then zero that pool. Repeated loads/roundtrips must not duplicate it. Preserve durable IDs, current/checkpoint locations, resolved/bypassed/visited facts, recruitment, existing holdings and outcomes. Never reconstruct rewards lost before this change or infer an unearned reward. Retain old V6 compatibility fields as inert/empty if that avoids unnecessary schema churn.
-5. Pending chest attribution, ordinary/elite victory and interrupted result/reward screens must retain idempotence. Already attributed saved rewards transfer exactly once; pending events stay pending until their actual owner resolves them. No victory or loot injection.
-6. Route/refuge buy/sell flows use the unified permanent wallet and inventory; equip, consume, upgrade and forge use those same real holdings. Temporary-wallet arguments/callers are reconciled explicitly. Existing special payment choices keep their original amount, affordability and once-only effects.
-7. Refuge/checkpoint advancement remains at exactly its existing authorized boundaries, including old saves and defeat recovery. No new free healing, reset or checkpoint follows a chest, purchase or victory.
+runStateSchema stores checkpointNodeId but no full checkpoint snapshot. SaveRepository has latest auto/manual saves. Both defeat paths load latest autosave then failRunToCheckpoint: relocation, temporary-loot cleanup and selected branch/pending cleanup do not restore all prior checkpoint facts. secureRunLoot both merges temporary holdings and advances checkpointNodeId, so calling it after every reward would be an incorrect shortcut.
 
-## Acceptance required after approval
+## Concrete dedicated task boundaries
 
-Focused tests: all reward owners and duplicate-result rejection; unified shop buy/sell and immediate item use; old/current/terminal V6 conversion and repeated load; pending chest/elite/result resume; defeat retaining earned holdings while returning to the unchanged checkpoint; exact costs and once-only effects. Types, immutable amended-contract gate,8contracts/8slots, build and independent sensitive guardian review remain required.
+1. Proposed task PRODUCTION-CONTRACTS-CHECKPOINT-ROLLBACK-1, proposed set1.5.0. Review the exact amendment independently, commit it, establish its immutable baseline operationally, then implement. Current1.4.0/f9d8fde3 remains unchanged here. Narrowly amend constitution/campaign/POI/combat/QA rules for temporary-until-refuge, recovery and elite-defeats-survive-defeat; preserve unrelated rules, eight slots and audio deferral.
+2. RunSystem/save owners capture a durable, run-bound, versioned full gameplay checkpoint snapshot without recursive snapshots or mismatched independent sidecars. Both defeat paths use one restoration owner. Presentation never restores or credits resources.
+3. Concrete proposed capture timing: fresh-game starting baseline, then existing safe camp/refuge checkpoints after canonical entry is resolved. Accepted preparation transactions while remaining at that same secured checkpoint refresh its gameplay snapshot; route rewards, manual mid-route saves and ordinary autosaves never advance or overwrite the checkpoint snapshot. Preserve existing checkpoint locations.
+4. Auto/manual save and reload retain the actual checkpoint snapshot and current-attempt state independently. Reload/restore is atomic and idempotent. Interrupted chest/result/elite/transition states cannot duplicate attribution or replace the safe snapshot with an unfinished encounter.
+5. Old/current/checkpoint/terminal V6 remain loadable. Bootstrap a snapshot only from an actual valid same-run safe checkpoint state when available. A mid-route legacy save contains no reconstructible historical checkpoint. Preserve its current facts and disclose transitional legacy recovery until a real safe checkpoint establishes the snapshot; retain legacy temporary-loss protection too. Do not unify legacy rewards into retained permanent holdings while keeping old recovery, fabricate past history or silently promote a mid-route position into a checkpoint. Terminal saves stay terminal; no old lost reward is reconstructed.
+6. Once an authentic snapshot exists, existing reward owners credit the unified spendable wallet/inventory. Reconcile buy/sell/equip/consume/forge and special payment choices without amount/price changes. A defeat restores those transactions together, eliminating gain retention from the abandoned attempt.
 
-Use an existing successful earned save/proof and existing native runner for a bounded actual reward→menu use→reload path. Demonstrate real defeat/recovery only where the changed retention rule requires it; no injected outcome or failed seed. Preserve all historical failed/successful receipts and scopes. Operator balance acceptance stays separate.
+## Required verification
 
-## Approval to give
+Focused snapshot serialization/run-identity/nonrecursive validation, capture eligibility and preparation refresh, exact full restoration of every gameplay field, both defeat paths, pending rewards/idempotence, repeated restore/reload, oldV6 missing-snapshot handling and preserved preferences. Test gain->purchase/use->defeat->restore and repeated loss cycles proving no net accumulation; no invented XP system. Retain seeded encounter determinism within the restored timeline.
 
-Approve the dedicated task above to make all genuinely earned loot permanent immediately, retain it after defeat, and preserve recovery/checkpoint locations and all quantities/costs. Otherwise retain current rules and clarify their UI only. The independent path/pawn/Wait corrections do not depend on this decision.
+Use successful earned save/proof and existing native runners for bounded real reward/use/defeat/reload verification. No failed seed, injected outcome or fabricated historical snapshot. Types/build/8contracts8slots/immutable amended baseline/guardian/capture review required. Historical proofs retain original scopes and are not rewritten as acceptance of this new recovery rule.
+
+## Execution status
+
+This revision records the corrected intended rule, not an implementation or new acceptance. It supersedes every pending request to approve retention of post-checkpoint gains after defeat. The independent delivered POI pawn/paths/Wait UI remains accepted in its previous scope.

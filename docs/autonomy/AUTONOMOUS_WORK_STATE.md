@@ -1,16 +1,12 @@
-# POI pawn/path clarity delivered; loot proposal separate
+# Checkpoint rule corrected — no keep-gains-on-defeat task
 
-READY_FOR_PC_REVIEW. Run codex-poi-pawn-20261018T1935 started2026-10-18T19:35:48Z, ended2026-10-18T19:47:25.815Z. Tested source4f044c4 published origin/dev; final closure containing commit.
+PLAN_REVISED. OD-2026-10-18-A, run codex-checkpoint-rule-20261018T2040 started2026-10-18T20:40:13Z ended2026-10-18T20:45:36.837Z. Direct operator correction: losing reloads complete gameplay at last checkpoint; post-checkpoint gains AND spending/progression roll back. Reject the previous unapproved permanence/retention proposal. No XP system added.
 
-Wait visibly1tour surplace and accessible threat explanation; all paths preserved thinner, legal adjacent/selected path hierarchy; persistent distinct actual-position pawn follows saved committed movement.53currenttests4files/types/build/contracts8slots8/LOCKED/whitespace/syntaxPASS. One existing-runner original2141earned scenario poi-pawn-1935 SUCCEEDED/exit0/errors[]/all6flags;4real resolved moves,0newbattles,exactV6reload; desktop/620idle/travel root/guardian inspected. Separate ACCEPTED_SCOPED in live.poiPawn1935; raw receipt NOT_ACCEPTED unchanged.
+Source review: checkpointNodeId only, no full snapshot; both ordinary/elite defeat currently reload latest autosave and relocate/clear temporary loot rather than full historical restoration. Corrected proposal specifies actual run-bound snapshot, preparation refresh at real safe checkpoints, preserved preferences, exact restored world/elite/reward facts and honest legacyV6 loss protection until real snapshot. Never unify legacy gains while keeping old partial recovery.
 
-Current temporary-loot rules unchanged. Dedicated immediate-permanence proposal includes all gold/items, defeat retention, unchanged quantities/costs/checkpoint locations and exactonce old/current/terminalV6 remainingpool transfer. It remains PROPOSED awaiting dedicated approval; UI/independent PC work do not wait on that decision.
+This checkpoint changes target/docs/state only; no source/LOCKED/build/browser/QAjob change or new product acceptance. Prior pawn/path/source4f044c4 scoped acceptance and325historical QA/deferred objects retained. Scheduler/operator preview5438 untouched.
 
-Historical324jobs + deferredDemoTask/pendingNarrativeTask exact;325total. Runtime2/sourceTest1/existingQA1/newPersistentQA0/promotedProof4/productGuide1/workflow5(including proposal)/inherited0/browser1/reusedreviewer1. Scheduler/preview5438 preserved.
-
-Next ONE action: Present POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md for explicit dedicated approval: immediate permanent earned gains, retention after defeat, unchanged amounts/costs/checkpoints and idempotent V6 conversion. Only that gameplay change awaits approval; preserve completed pawn/path proof and continue independent demonstrated PC finishing when applicable.
-
-GlobalPC/art/balance/hardware/mobile verdicts remain open; no new native other-region/reduced-travel/combat/interception/realAT acceptance. External Bois-Clair nightplate/media/audio unchanged.
+Next ONE action: Prepare the dedicated CHECKPOINT-ROLLBACK amendment for OD-2026-10-18-A: usable unified holdings within an attempt, full saved-checkpoint gameplay restore on defeat. Never execute the rejected keep-earned-gains proposal. Current code remains unchanged; actual checkpoint snapshot and safe legacy migration are required before unified rewards.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

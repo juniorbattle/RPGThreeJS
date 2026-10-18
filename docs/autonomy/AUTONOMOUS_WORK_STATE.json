@@ -1,73 +1,60 @@
 {
-  "status": "READY_FOR_PC_REVIEW",
-  "runStartedAt": "2026-10-18T19:35:48Z",
-  "runEndedAt": "2026-10-18T19:47:25.815Z",
-  "activeTask": "DEMO-PC-GLOBAL-ACCEPTANCE",
-  "activePhase": "POI_PAWN_PATHS_COMPLETE_SCOPED_LOOT_DEDICATED_APPROVAL_PENDING",
-  "activeSubtask": "Second requested map UI corrections delivered; concrete separate immediate-loot proposal awaiting approval",
+  "status": "PLAN_REVISED",
+  "runStartedAt": "2026-10-18T20:40:13Z",
+  "runEndedAt": "2026-10-18T20:45:36.837Z",
+  "activeTask": "CHECKPOINT-ROLLBACK-DEDICATED-SCOPE",
+  "activePhase": "TARGET_CORRECTED_NO_RUNTIME_AMENDMENT_YET",
+  "activeSubtask": "Reject post-checkpoint gain retention; one usable wallet paired with full checkpoint gameplay restore",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "4f044c4f74739134a256276edf46c889826c65cf",
   "lastPushedCommit": "4f044c4f74739134a256276edf46c889826c65cf",
   "completedThisRun": [
-    "Visible/accessibly explained Wait1turn stationary, active threats may advance",
-    "All actual edges retained with quieter remote strokes and legal adjacent/selected emphasis",
-    "Persistent noninteractive pawn at actual current node, same pawn animates after saved movement",
-    "Concrete PROPOSED permanent-loot task prepared; LOCKED/current economy unchanged",
-    "ACCEPTED_SCOPED_POI_FIRST_REGION_PC_PERSISTENT_PAWN_LEGAL_PATH_AND_WAIT_CLARITY"
+    "Recorded operator correction OD-2026-10-18-A and superseded unapproved keep-gains-on-defeat proposal",
+    "Verified source has checkpointNodeId only; latest autosave recovery is not a full checkpoint restore",
+    "Revised dedicated scope: gains and spending/progression restored together, no added XP system; preserve preferences",
+    "Specified actual-snapshot capture/preparation/legacy-save boundaries without fabricated history"
   ],
   "filesChanged": [
-    "src/ui/PoiMapView.ts",
-    "src/ui/poi-map.css",
-    "src/ui/PoiMapView.test.ts",
-    "tools/demo-continuous-production-qa.mjs",
     "docs/autonomy/POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md",
+    "docs/autonomy/OPERATOR_DECISIONS.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/project/PC_PLAYTEST.md",
-    "docs/reports/poi-pawn-paths-2026-10-18.md",
-    "docs/autonomy/handoffs/2026-10-18T1935Z-codex-poi-pawn-paths.md",
-    "docs/reports/poi-pawn-paths-2026-10-18/scoped-proof.json",
-    "docs/reports/poi-pawn-paths-2026-10-18/poi-immersive-1366.png",
-    "docs/reports/poi-pawn-paths-2026-10-18/poi-immersive-620.png",
-    "docs/reports/poi-pawn-paths-2026-10-18/poi-travel-committed.png"
+    "docs/autonomy/handoffs/2026-10-18T2040Z-codex-checkpoint-rule-correction.md"
   ],
   "testsRun": [
-    "53current focused tests/4files PASS",
-    "TypeScript/production build/contracts8slots8/immutable gate/whitespace/syntax PASS",
-    "One native poi-pawn-1935 SUCCEEDED/exit0/errors[]/all6flags;4resolved moves,0new battles,exactV6reload;3root/guardian captures inspected"
+    "Read-only source/contract recovery mapping and independent guardian review",
+    "Whitespace/immutable-workingLOCKED/8contracts8slots gates; no source/build/browser rerun for rule-document correction"
   ],
   "testsPassed": [
-    "53current focused tests/4files PASS",
-    "TypeScript/production build/contracts8slots8/immutable gate/whitespace/syntax PASS",
-    "One native poi-pawn-1935 SUCCEEDED/exit0/errors[]/all6flags;4resolved moves,0new battles,exactV6reload;3root/guardian captures inspected"
+    "Read-only source/contract recovery mapping and independent guardian review",
+    "Whitespace/immutable-workingLOCKED/8contracts8slots gates; no source/build/browser rerun for rule-document correction"
   ],
   "testsRemaining": [
-    "Dedicated approval then separate actual amendment/runtime proof for permanent loot",
-    "Global PC/operator art/balance/hardware; native other-region/reduced-travel/actualAT/device/mobile scopes not newly accepted"
+    "Dedicated actual contract amendment/review/immutable-baseline checkpoint before runtime",
+    "Full gameplay snapshot/restore/migration implementation and meaningful defeat/reload proof"
   ],
   "blockers": [
     "Operator global PC/art/felt-balance/hardware acceptance open; no autonomous economy/reward/elite adjustment",
     "Bois-Clair nightplate external asset gap retained",
     "Audio deferred; future video generation remains dedicated non-recurring work",
-    "Dedicated immediate-loot amendment approval pending; blocks only permanence, not independent UI/PC finishing"
+    "Full checkpoint rollback not implemented; currentV6 contains location only, so actual snapshot/migration and dedicated amendment are required"
   ],
   "remainingWork": [
-    "Dedicated proposed immediate-loot approval and, if approved, contract amendment before runtime",
-    "Remaining demonstrated PC findings/global art/balance/hardware review",
-    "Later mobile and conditional media/audio work; external Bois-Clair nightplate isolated"
+    "Dedicated corrected checkpoint rollback task, not unconditional loot permanence",
+    "Existing remaining PC review, later mobile and audiovisual boundaries retained"
   ],
-  "nextAction": "Present POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md for explicit dedicated approval: immediate permanent earned gains, retention after defeat, unchanged amounts/costs/checkpoints and idempotent V6 conversion. Only that gameplay change awaits approval; preserve completed pawn/path proof and continue independent demonstrated PC finishing when applicable.",
+  "nextAction": "Prepare the dedicated CHECKPOINT-ROLLBACK amendment for OD-2026-10-18-A: usable unified holdings within an attempt, full saved-checkpoint gameplay restore on defeat. Never execute the rejected keep-earned-gains proposal. Current code remains unchanged; actual checkpoint snapshot and safe legacy migration are required before unified rewards.",
   "taskQueue": [
-    "POI-PATH-PAWN-CLARITY: COMPLETE_SCOPED_UI",
-    "IMMEDIATE-LOOT: PROPOSED_DEDICATED_APPROVAL_PENDING; no LOCKED/runtime change yet",
-    "DEMO-PC-GLOBAL-ACCEPTANCE: remaining demonstrated findings and independent finishing",
-    "DEMO-PC-BALANCE-ART: operator verdicts; no arbitrary adjustments",
-    "DEMO-MOBILE-FINAL: after PC milestone; conditional media/audio roadmap retained"
+    "CHECKPOINT-ROLLBACK: corrected dedicated scope; full restore, never retention after defeat",
+    "POI-PATH-PAWN-CLARITY: prior COMPLETE_SCOPED_UI retained",
+    "Independent demonstrated PC findings and operator art/balance/hardware review",
+    "Later mobile/conditional media/audio retained"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_SCOPED_UI; independent actual-diff/native review; set1.4.0 unchanged. Permanent-loot task only PROPOSED.",
+  "contractComplianceStatus": "PASS_RULE_DOCUMENT_CORRECTION_ONLY; set1.4.0 unchanged. Runtime target requires dedicated amendment and is not accepted.",
   "commitReferenceScope": "lastKnownGood/accepted/implementation/wip reference tested sourcec6b9cb8; lastPushed is verified preceding workflow commit; final closure is containing Git commit, live parity/lock release recorded in automation memory.",
-  "operatorAuthorization": "Direct operator second screenshot feedback18October2026: explain Wait, declutter connecting paths, persistent animated player pawn, request immediate definitive loot. Mixed UI task implements independent presentation work; dedicated LOCKED amendment proposal for loot permanence awaits approval.",
+  "operatorAuthorization": "OD-2026-10-18-A direct operator correction rejects post-checkpoint gain retention and requests full checkpoint reload. This checkpoint records corrected target only; protected amendment/runtime execution not performed.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -137,19 +124,19 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-poi-pawn-20261018T1935",
+  "runId": "codex-checkpoint-rule-20261018T2040",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-18T19:47:25.815Z",
+  "lastHeartbeat": "2026-10-18T20:45:36.837Z",
   "wip": {
     "branch": null,
-    "sha": "4f044c4f74739134a256276edf46c889826c65cf",
+    "sha": "992ab9d5adc33c945c150aab453bee7db12190e3",
     "checkpointBranch": "dev",
     "dirtyFiles": [],
-    "status": "GREEN",
-    "lastGreenCheck": "2026-10-18T19:47:25.815Z"
+    "status": "GREEN_DOCS_ONLY",
+    "lastGreenCheck": "2026-10-18T20:45:36.837Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-18T19:47:25.815Z",
+    "lastHeartbeat": "2026-10-18T20:45:36.837Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -43598,6 +43585,26 @@
         "inheritedWipFiles": 0,
         "browserScenarios": 1,
         "reusedReviewers": 1
+      }
+    },
+    "checkpointRule2040": {
+      "status": "TARGET_CORRECTED",
+      "at": "2026-10-18T20:45:36.837Z",
+      "operatorDecision": "OD-2026-10-18-A",
+      "previousProposal": "KEEP_GAINS_AFTER_DEFEAT_REJECTED",
+      "runtimeChanged": false,
+      "lockedChanged": false,
+      "newQaJobs": 0,
+      "scope": "Rule clarification/proposal/state only; no new product acceptance",
+      "guardian": "Read-only exact owner/save mapping; checkpoint snapshot missing; both recovery paths and legacy coupling identified",
+      "counts": {
+        "runtimeSourceFiles": 0,
+        "qaFiles": 0,
+        "promotedProofFiles": 0,
+        "productDocs": 1,
+        "workflowFiles": 5,
+        "inheritedWipFiles": 0,
+        "browserScenarios": 0
       }
     }
   },
