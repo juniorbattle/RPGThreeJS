@@ -1,12 +1,16 @@
-# Deployment health before battle — source green
+# PC deployment health — native scoped acceptance
 
-Run rpgthreejs-auto-dev-90m-20261018T0503; started2026-10-18T05:03:00Z. DEPLOYMENT_HEALTH_CORRECTIVE_NATIVE_PENDING.
+READY_FOR_PC_ACCEPTANCE. Run rpgthreejs-auto-dev-90m-20261018T0503; started2026-10-18T05:03:00Z; ended2026-10-18T05:23:55.037Z. OD17A global PC priority; mobile deferred.
 
-Player problem: deployment cards show En jeu/Reserve without current/maxHP, including the retained Hunters attempt with two heroes at1HP. Exact owner HP now appears in visible and accessible card text; unknown legacy pairs omitted. No selection, rules, costs, V6, combat outcomes or art changes.
+Product: exact current/maxHP visible and accessible on reserve/deployed cards before Start. Desktop roster332px preserves10px numbers. Unknown legacy pairs omitted. No rules, selection, cost, V6, AP, outcome, art or media changes.
 
-76 current tests/3files +22 helper tests and types/build/contracts8slots8/LOCKED/whitespace PASS;2 red-before failures. Guardian PASS_TO_REGISTER. Native proof pending; no new acceptance claimed.
+76current tests/3files +22helper tests, types/fresh build,8contracts8slots, immutable/working LOCKED, whitespace/syntax PASS;2red-before failures. First native attempt rejected/stopped for observed3digit truncation, raw partial unchanged/unseedable. One corrective native scenario ACCEPTED_SCOPED_PC1366_NORMAL_NATIVE_DEPLOYMENT_HEALTH: all5cards/2pages/reserve/deployed full values and bounds, naturalElara2/Kestrel1, inspection owner/save and selected tactical invariance; real opening-wolves victory28actions and exact earned checkpoint reload. Root4captures/guardian2deployment captures inspected; raw successful receipt NOT_ACCEPTED unchanged.
 
-Next ONE action: ONE corrective existing-runner deployment-health-0503-fixed PC1366normal scenario with same accepted patrol0002 seed; require untruncated full3digitHP across reserve/deployed pages and exact earned reload. First partial attempt owner-stopped/rejected for visible truncation, never seed.
+Counts source2/test1/existingQA2/helperTest1/newPersistentQA0/promotedProof0/productDocs1/workflow4/inherited0/browser2(firststopped+onecorrective)/reviewer1. Historical319jobs/deferred objects exact;321jobs total. Source c6b9cb8e2c5649cfce91a79a6d6b374cf1df7dd6; source and prior workflow published, final closure is containing commit. Worker24136absent/5437free host-verified; other servers untouched.
+
+GlobalPC/balance/art/hardware/operator verdict remains open; externalBois-Clair nightplate isolated. No mobile/OS/actualAT/balance acceptance.
+
+Next ONE product action: Operator judges preparation clarity and felt rest cost before Chasseurs du Sceau on current PC candidate, using PC_PLAYTEST retained failed/prepared examples and visible deployment HP/full-rest effect. Correct only a demonstrated player defect. If no new observation/verdict, retain readiness without replaying accepted campaigns or creating another QA mission. No autonomous economy/elite/art changes; mobile deferred until PC milestone.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -331,9 +335,5 @@ Next ONE action: ONE corrective existing-runner deployment-health-0503-fixed PC1
 - result-health-0327: SUCCEEDED; port 5435; receipt `tmp/demo/result-health-0327/qa-job.json`; NOT_ACCEPTED
 - refuge-rest-0355: SUCCEEDED; port 5436; receipt `tmp/demo/refuge-rest-0355/qa-job.json`; NOT_ACCEPTED
 - deployment-health-0503: STOPPED_VISUAL_REGRESSION; port 5437; receipt `tmp/demo/deployment-health-0503/qa-job.json`; NOT_ACCEPTED
-- deployment-health-0503-fixed: PLANNED; port 5437; receipt `tmp/demo/deployment-health-0503-fixed/qa-job.json`; NOT_ACCEPTED
+- deployment-health-0503-fixed: SUCCEEDED; port 5437; receipt `tmp/demo/deployment-health-0503-fixed/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
-
-Closeout 2026-10-17T23:13:04.639Z: PC guide checkpoint a0ee1afafbd93ed7b1fdf118dad60894f41a781f published; final workflow commit and owned-lock retirement follow. Root/live aliases aligned;317jobs retain original receipts and316historical dispositions.
-
-First native attempt owner-stopped after visually observed3digit HP truncation. Raw partial receipt unchanged/NOT_ACCEPTED/unseedable. CSS correction retains10px text in332px desktop roster; corrective smoke alone permitted for own regression. Source checkpoint c6b9cb8e2c5649cfce91a79a6d6b374cf1df7dd6.
