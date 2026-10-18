@@ -1201,6 +1201,40 @@ async function move(frame,battle,{support=false,supportRange=3,salvationRange=nu
     battle.actions.push({kind:support?'move-support':'move',cell,before,after});return true;
   }}await cancel(frame);return false;
 }
+async function verifyDeploymentHealth(frame,entry,phase){
+  const owner=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  const truth=()=>frame.evaluate(()=>({roster:G.rosterDefs.map(u=>({id:u.campaignId||u.name,name:u.name,hp:u.hp,maxhp:u.maxhp})),
+    deployed:G.deployedUnits.map(u=>({id:u.campaignId||u.name,hp:u.hp,maxhp:u.maxhp,ap:u.ap,gx:u.gx,gz:u.gz}))}));
+  const before=await truth(),rows=[];
+  assert.equal(await frame.locator('#menu [data-d="prev"]').isDisabled(),true,'Health review must start on first roster page');
+  for(let index=0;index<Math.ceil(before.roster.length/4);index++){
+    rows.push(...await frame.evaluate(()=>{
+      const rect=e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height};};
+      return [...document.querySelectorAll('#menu .deploy-card')].map(e=>({id:e.dataset.unit,label:e.getAttribute('aria-label'),
+        health:e.querySelector('.deploy-card__health')?.textContent,bounds:rect(e),
+        healthBounds:e.querySelector('.deploy-card__health')?rect(e.querySelector('.deploy-card__health')):null,
+        stateBounds:rect(e.querySelector('.deploy-card__state')),deployed:e.classList.contains('is-deployed')}));
+    }));
+    if(index<Math.ceil(before.roster.length/4)-1)await activateControl(frame.locator('#menu [data-d="next"]'));
+  }
+  while(!await frame.locator('#menu [data-d="prev"]').isDisabled())await activateControl(frame.locator('#menu [data-d="prev"]'));
+  assert.deepEqual(rows.map(r=>r.id),before.roster.map(u=>u.id),'Health review skipped or duplicated a roster card');
+  for(const [index,row] of rows.entries()){
+    const unit=before.roster[index],health=`${unit.hp} / ${unit.maxhp} PV`;
+    assert.ok(Number.isFinite(unit.hp)&&Number.isFinite(unit.maxhp)&&unit.hp>=0&&unit.maxhp>0);
+    assert.equal(row.health,health);assert.ok(row.label.includes(health));assert.ok(row.label.includes(unit.name));
+    assert.equal(row.deployed,before.deployed.some(u=>u.id===row.id));
+    for(const r of [row.bounds,row.healthBounds,row.stateBounds])assert.ok(r&&r.width>0&&r.height>0&&r.x>=0&&r.y>=0&&r.x+r.width<=viewport[0]+1&&r.y+r.height<=viewport[1]+1,'Deployment health or state clipped');
+    const r=row.healthBounds,b=row.bounds,s=row.stateBounds;
+    assert.ok(r.x>=b.x&&r.y>=b.y&&r.x+r.width<=b.x+b.width+1&&r.y+r.height<=b.y+b.height+1,'Deployment health overflows its card');
+    assert.ok(r.y+r.height<=s.y+1||r.x+r.width<=s.x+1||s.x+s.width<=r.x+1,'Deployment health overlaps its placement state');
+  }
+  assert.deepEqual(await truth(),before,'Roster inspection changed tactical health or deployment');
+  assert.deepEqual(await state(),owner,'Roster inspection changed campaign truth');
+  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),saved,'Roster inspection changed saved bytes');
+  entry.deploymentHealth??=[];entry.deploymentHealth.push({phase,expected:before.roster,rows,pass:true});
+  await capture(`combat-${entry.index}-deployment-health-${phase}`);
+}
 async function battle(){
   const element=page.locator('iframe.combat-frame');await element.waitFor({state:'attached'});
   const frame=await(await element.elementHandle()).contentFrame();
@@ -1214,6 +1248,7 @@ async function battle(){
     if(await frame.locator(selector).isVisible().catch(()=>false))await activateControl(frame.locator(selector));
   }
   const mountedKeyboard=!touchInput&&!priorProof&&entry.nodeId==='lion-opening-ambush';
+  if(jobOptions.parameters.verifyDeploymentHealth)await verifyDeploymentHealth(frame,entry,'reserve');
   if(mountedKeyboard)await campaignDeploymentKeyboard(frame,entry);
   else await activateControl(frame.locator('#menu [data-d="auto"]'));
   entry.deployed=await frame.evaluate(()=>window.G.deployedUnits.length);assert.ok(entry.deployed>0&&entry.deployed<=4,'Deployment exceeds the existing four-unit cap');
@@ -1288,6 +1323,7 @@ async function battle(){
     entry.deployed=entry.nativeDeploymentIds.length;
   }
   entry.autosaveBefore=JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')));
+  if(jobOptions.parameters.verifyDeploymentHealth)await verifyDeploymentHealth(frame,entry,'deployed');
   if(touchInput)await verifyTouchDeployment(frame,entry);
   await capture(`combat-${entry.index}-deployment`);
   if(mountedKeyboard){await campaignTabTo(frame,'#menu [data-d="start"]',value=>page.keyboard.press(value));await page.keyboard.press('Enter');}
@@ -1936,6 +1972,11 @@ try{
   }
   assert.equal(report.pass,true,`Did not reach earned ${target} before the bounded deadline`);
   if(process.env.DEMO_QA_VERIFY_RESULT_HEALTH==='1')assert.ok(report.battles.slice(report.inheritedBattleCount??0).some(b=>b.resultHealth?.pass),'No new native result health was verified');
+  if(jobOptions.parameters.verifyDeploymentHealth){
+    const checks=report.battles.slice(report.inheritedBattleCount??0).flatMap(b=>b.deploymentHealth??[]);
+    for(const phase of ['reserve','deployed'])assert.ok(checks.some(c=>c.phase===phase&&c.pass),'No new native deployment health phase verified');
+    assert.ok(checks.some(c=>c.expected.some(u=>u.hp>0&&u.hp<u.maxhp)),'No naturally wounded roster member verified');
+  }
   if(jobOptions.parameters.verifyRefugeRest)assert.equal(report.refugeRest?.pass,true,'No new native rest clarity was verified');
   const final=await state();
   report.expedition.economy={gold:final.gold,temporaryLoot:final.run.temporaryLoot,reputation:final.reputation,

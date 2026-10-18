@@ -9,6 +9,14 @@ import { beginJob, demoJobOptions, ignoredOutput, registerJob, sameExecution, sy
 
 const syncAsOwner=job=>{const previous=process.env.AUTONOMY_QA_WORKER;delete process.env.AUTONOMY_QA_WORKER;try{return syncJobs(job);}finally{if(previous!==undefined)process.env.AUTONOMY_QA_WORKER=previous;}};
 
+test('deployment health verification binds its requirement without changing default scenarios',()=>{
+  const base=demoJobOptions({}),enabled=demoJobOptions({DEMO_QA_VERIFY_DEPLOYMENT_HEALTH:'1'});
+  assert.equal(Object.hasOwn(base.parameters,'verifyDeploymentHealth'),false);
+  assert.deepEqual(enabled.parameters,{...base.parameters,verifyDeploymentHealth:true});
+  assert.deepEqual(enabled.requiredAssertions,[...base.requiredAssertions,'EXACT_NATIVE_DEPLOYMENT_HEALTH']);
+  assert.deepEqual(demoJobOptions({DEMO_QA_VERIFY_DEPLOYMENT_HEALTH:'0'}),base);
+});
+
 test('rest clarity verification binds its earned inputs and requirement without changing defaults',()=>{
   const env={DEMO_QA_EARNED_SAVE:'tmp/earned.json',DEMO_QA_PRIOR_PROOF:'tmp/proof.json'};
   const base=demoJobOptions(env),enabled=demoJobOptions({...env,DEMO_QA_VERIFY_REFUGE_REST:'1'});

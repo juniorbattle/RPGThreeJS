@@ -23,6 +23,7 @@ body.reduced-graphics .tutorial-page.active{animation:none}
 .deploy-card__copy b{font:700 13px/1.05 var(--campaign-title-font);color:var(--campaign-ivory);white-space:nowrap}
 .deploy-card__copy small{font:600 10px/1.1 var(--campaign-data-font);color:var(--campaign-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .deploy-card__state{right:8px;bottom:6px;color:#99b2bd;font:700 8px var(--campaign-data-font);letter-spacing:.05em;text-transform:uppercase}
+  .deploy-card__copy .deploy-card__health{color:var(--campaign-ivory);font-variant-numeric:tabular-nums}
 .deploy-card.is-deployed .deploy-card__state{color:#9edce9}
 .deploy-pages{min-height:24px;gap:10px;color:var(--campaign-muted);font:700 10px var(--campaign-data-font)}
 .deploy-pages button{min-width:27px;height:24px;padding:0;border-color:#b9955d66;border-radius:2px;background:#0b2230;font-size:18px;line-height:20px}

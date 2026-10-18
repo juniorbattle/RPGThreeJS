@@ -4,6 +4,28 @@ import { COMBAT_PORTRAIT_FRAMING } from './combatHudPresentation';
 import { renderCombatResult, renderDeploymentCard, renderDeploymentPreview } from './combatShellPresentation';
 
 describe('combat shell presentation', () => {
+  it.each([false, true])('shows wounded deployment health before selecting a card (deployed=%s)', deployed => {
+    const unit = Object.freeze({ name: 'Kestrel', className: 'Archer', hp: 1, maxhp: 90 });
+    const container = document.createElement('div');
+    container.innerHTML = renderDeploymentCard(unit, 'archer', false, deployed);
+    const card = container.querySelector('button')!;
+    expect(card.querySelector('.deploy-card__health')?.textContent).toBe('1 / 90 PV');
+    expect(card.getAttribute('aria-label')).toContain('1 / 90 PV');
+    expect(card.getAttribute('aria-pressed')).toBe('false');
+    expect(card.dataset.unit).toBe('archer');
+    expect(card.textContent).toContain(deployed ? 'En jeu' : 'Réserve');
+    expect(unit.hp).toBe(1);
+  });
+
+  it('keeps unknown deployment health absent instead of implying full health', () => {
+    for (const unit of [{ name: 'Ancien' }, { name: 'Inconnu', hp: NaN, maxhp: 90 }]) {
+      const container = document.createElement('div');
+      container.innerHTML = renderDeploymentCard(unit, 'legacy', false, false);
+      expect(container.querySelector('.deploy-card__health')).toBeNull();
+      expect(container.textContent).not.toMatch(/NaN|undefined|PV/);
+    }
+  });
+
   it('uses the approved canonical combat portrait framing without changing selection state', () => {
     const unit = { name: 'Alistair', className: 'Chevalier', portrait: '/assets/characters/pixel/masters/alistair.png', hp: 88, maxhp: 100, mov: 2 };
     const snapshot = structuredClone(unit);

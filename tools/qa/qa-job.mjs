@@ -164,9 +164,11 @@ export function demoJobOptions(env=process.env) {
       nativeDefeatWait:env.DEMO_QA_DEFEAT_WAIT==='1',touchInput:env.DEMO_QA_TOUCH==='1',nativeEquipment:env.DEMO_QA_EQUIPMENT==='steel',trialPlan:env.DEMO_QA_TRIALS??'event',explorationPlan:env.DEMO_QA_EXPLORATION??'direct',checkpointPoiId:env.DEMO_QA_CHECKPOINT_POI??null,gameReducedMotion:env.DEMO_QA_GAME_MOTION==='1',viewport:(env.DEMO_QA_VIEWPORT??'1366x768').split('x').map(Number),osReducedMotion:env.DEMO_QA_OS_MOTION==='1',
       earnedSavePath:env.DEMO_QA_EARNED_SAVE??null,priorProofPath:env.DEMO_QA_PRIOR_PROOF??null,verifySalvation:env.DEMO_QA_VERIFY_SALVATION==='1',
       ...(env.DEMO_QA_VERIFY_RESULT_HEALTH==='1'?{verifyResultHealth:true}:{}),
+      ...(env.DEMO_QA_VERIFY_DEPLOYMENT_HEALTH==='1'?{verifyDeploymentHealth:true}:{}),
       ...(env.DEMO_QA_VERIFY_REFUGE_REST==='1'?{verifyRefugeRest:true}:{})},
     requiredAssertions:[...(target==='defeat-recovery'?['EXACT_V6_CHECKPOINT_RECOVERY','NATIVE_POI_CHECKPOINT_RETURN','EXACT_RELOAD']:['EARNED_LINEAGE','NATIVE_INPUTS','EXACT_RELOAD']),
       ...(env.DEMO_QA_VERIFY_RESULT_HEALTH==='1'?['EXACT_NATIVE_RESULT_HEALTH']:[]),
+      ...(env.DEMO_QA_VERIFY_DEPLOYMENT_HEALTH==='1'?['EXACT_NATIVE_DEPLOYMENT_HEALTH']:[]),
       ...(env.DEMO_QA_VERIFY_REFUGE_REST==='1'?['EXACT_NATIVE_REFUGE_REST_CLARITY']:[])]};
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)) {

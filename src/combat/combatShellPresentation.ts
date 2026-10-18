@@ -19,9 +19,12 @@ function portrait(unit: PortraitUnit): string {
   return `<img class="combat-portrait--${framing.crop}" src="${esc(unit.portrait)}" alt=""${framing.style}>`;
 }
 
-export function renderDeploymentCard(unit: PortraitUnit, id: string, selected: boolean, deployed: boolean): string {
-  return `<button type="button" class="deploy-card${selected ? ' is-selected' : ''}${deployed ? ' is-deployed' : ''}" data-unit="${esc(id)}" aria-pressed="${selected}" aria-label="${esc(unit.name)}${deployed ? ', déployé' : ''}">` +
-    `<span class="deploy-card__portrait combat-shell-portrait">${portrait(unit)}</span><span class="deploy-card__copy"><b>${esc(unit.name)}</b><small>${esc(unit.className || '')}</small></span>` +
+export function renderDeploymentCard(unit: PortraitUnit & { hp?: number; maxhp?: number }, id: string, selected: boolean, deployed: boolean): string {
+  const health = typeof unit.hp === 'number' && Number.isFinite(unit.hp) && unit.hp >= 0
+    && typeof unit.maxhp === 'number' && Number.isFinite(unit.maxhp) && unit.maxhp > 0
+    ? `${unit.hp} / ${unit.maxhp} PV` : '';
+  return `<button type="button" class="deploy-card${selected ? ' is-selected' : ''}${deployed ? ' is-deployed' : ''}" data-unit="${esc(id)}" aria-pressed="${selected}" aria-label="${esc(unit.name)}${deployed ? ', déployé' : ''}${health ? `, ${health}` : ''}">` +
+    `<span class="deploy-card__portrait combat-shell-portrait">${portrait(unit)}</span><span class="deploy-card__copy"><b>${esc(unit.name)}</b><small>${esc(unit.className || '')}</small>${health ? `<small class="deploy-card__health">${health}</small>` : ''}</span>` +
     `<i class="deploy-card__state" aria-hidden="true">${deployed ? 'En jeu' : 'Réserve'}</i></button>`;
 }
 
