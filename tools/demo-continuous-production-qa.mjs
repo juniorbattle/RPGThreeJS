@@ -1352,6 +1352,35 @@ async function battle(){
   await capture(`combat-${entry.index}-result`);
   entry.resultText=await frame.locator('.combat-result-card').innerText();
   entry.resultControlBounds=await frame.locator('#combat-result-action').boundingBox();
+  if(process.env.DEMO_QA_VERIFY_RESULT_HEALTH==='1'){
+    const owner=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+    entry.resultHealth=await frame.evaluate(()=>{
+      const rect=e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height};};
+      return {expected:G.deployedUnits.map(u=>({name:u.name,alive:u.alive,hp:u.hp,maxhp:u.maxhp})),
+        rows:[...document.querySelectorAll('.combat-result__unit')].map(e=>({name:e.firstElementChild.textContent,
+          status:e.querySelector('b').textContent,health:e.querySelector('.combat-result__health')?.textContent,
+          ko:e.classList.contains('is-ko'),bounds:rect(e),healthBounds:rect(e.querySelector('.combat-result__health'))})),
+        focused:document.activeElement===document.getElementById('combat-result-action'),
+        caption:document.querySelector('.combat-result__health-caption')?.textContent,
+        finalRuntime:G.deployedUnits.map(u=>({name:u.name,alive:u.alive,hp:u.hp,maxhp:u.maxhp}))};
+    });
+    const observed=entry.resultHealth;
+    assert.equal(observed.rows.length,observed.expected.length);
+    assert.ok(observed.rows.length>0);assert.equal(observed.caption,'PV en fin de combat');
+    assert.equal(observed.focused,true,'Result action lost its native automatic focus');
+    assert.deepEqual(observed.finalRuntime,observed.expected,'Result inspection changed tactical truth');
+    for(const [i,row] of observed.rows.entries()){
+      const unit=observed.expected[i];assert.ok(Number.isFinite(unit.hp)&&Number.isFinite(unit.maxhp));
+      assert.equal(row.name,unit.name);assert.equal(row.ko,!unit.alive);assert.equal(row.status,unit.alive?'Debout':'K.O.');
+      assert.equal(row.health,`${unit.hp} / ${unit.maxhp} PV`);
+      for(const r of [row.bounds,row.healthBounds])assert.ok(r.width>0&&r.height>0&&r.x>=0&&r.y>=0&&r.x+r.width<=viewport[0]+1&&r.y+r.height<=viewport[1]+1,'Native result health clipped');
+      const r=row.healthBounds,b=row.bounds;assert.ok(r.x>=b.x&&r.y>=b.y&&r.x+r.width<=b.x+b.width+1&&r.y+r.height<=b.y+b.height+1,'Health overflows its participant row');
+    }
+    const r=entry.resultControlBounds;assert.ok(r&&r.width>=44&&r.height>=44&&r.x>=0&&r.y>=0&&r.x+r.width<=viewport[0]+1&&r.y+r.height<=viewport[1]+1,'Native result action clipped');
+    assert.deepEqual(await state(),owner,'Result inspection changed campaign truth');
+    assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),saved,'Result inspection changed saved bytes');
+    observed.pass=true;
+  }
   if(touchInput){
     const r=entry.resultControlBounds;assert.ok(r&&r.width>=44&&r.height>=44,'Native touch result target below44px');
     assert.ok(r.x>=0&&r.y>=0&&r.x+r.width<=viewport[0]+1&&r.y+r.height<=viewport[1]+1,'Native touch result target clipped');
@@ -1849,6 +1878,7 @@ try{
     await page.waitForTimeout(100);
   }
   assert.equal(report.pass,true,`Did not reach earned ${target} before the bounded deadline`);
+  if(process.env.DEMO_QA_VERIFY_RESULT_HEALTH==='1')assert.ok(report.battles.slice(report.inheritedBattleCount??0).some(b=>b.resultHealth?.pass),'No new native result health was verified');
   const final=await state();
   report.expedition.economy={gold:final.gold,temporaryLoot:final.run.temporaryLoot,reputation:final.reputation,
     inventory:final.inventory,heroes:final.clan.members.map(unit=>({id:unit.definitionId,hp:unit.currentHealth})),checkpoint:final.run.checkpointNodeId};

@@ -5,7 +5,7 @@ interface PortraitUnit { name: string; className?: string; portrait?: string }
 export interface DeploymentPreviewUnit extends PortraitUnit {
   hp: number; maxhp?: number; str?: number; mag?: number; end?: number; dex?: number; mov?: number;
 }
-export interface ResultParticipant { name: string; alive: boolean }
+export interface ResultParticipant { name: string; alive: boolean; hp?: number; maxhp?: number }
 export interface ResultRewards { gold?: number; materials?: Record<string, number>; reputation?: number }
 export interface ResultPresentation {
   tone: 'victory' | 'defeat' | 'wave'; title: string; subtitle: string; detailLabel: string;
@@ -51,7 +51,12 @@ export function resultRewardRows(rewards?: ResultRewards): string {
 
 export function renderCombatResult(presentation: ResultPresentation): string {
   const { tone, title, subtitle, detailLabel, detail, buttonLabel, participants, rewards } = presentation;
-  const squad = tone === 'wave' ? '' : `<div class="combat-result__company"><h2>État de la compagnie</h2><ul class="combat-result__squad">${participants.map(unit => `<li class="combat-result__unit${unit.alive ? '' : ' is-ko'}"><span>${esc(unit.name)}</span><b>${unit.alive ? 'Debout' : 'K.O.'}</b></li>`).join('')}</ul></div>`;
+  const squad = tone === 'wave' ? '' : `<div class="combat-result__company"><h2>État de la compagnie</h2><p class="combat-result__health-caption">PV en fin de combat</p><ul class="combat-result__squad">${participants.map(unit => {
+    const health = typeof unit.hp === 'number' && Number.isFinite(unit.hp) && unit.hp >= 0
+      && typeof unit.maxhp === 'number' && Number.isFinite(unit.maxhp) && unit.maxhp > 0
+      ? `<small class="combat-result__health">${unit.hp} / ${unit.maxhp} PV</small>` : '';
+    return `<li class="combat-result__unit${unit.alive ? '' : ' is-ko'}"><span>${esc(unit.name)}</span><span class="combat-result__condition"><b>${unit.alive ? 'Debout' : 'K.O.'}</b>${health}</span></li>`;
+  }).join('')}</ul></div>`;
   return `<section class="combat-result-card panel" role="dialog" aria-modal="true" aria-labelledby="combat-result-title"><div class="combat-result__ornament" aria-hidden="true">✦</div>` +
     `<p class="combat-result__kicker">${tone === 'defeat' ? 'Route brisée' : tone === 'wave' ? 'Escarmouche' : 'Chronique victorieuse'}</p>` +
     `<h1 id="combat-result-title">${esc(title)}</h1><p class="combat-result__subtitle">${esc(subtitle)}</p>` +

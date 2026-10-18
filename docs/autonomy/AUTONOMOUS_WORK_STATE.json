@@ -1,42 +1,45 @@
 {
-  "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-17T23:00:00Z",
-  "runEndedAt": "2026-10-17T23:13:04.639Z",
+  "status": "IN_PROGRESS",
+  "runStartedAt": "2026-10-18T03:27:26Z",
+  "runEndedAt": null,
   "activeTask": "DEMO-PC-GLOBAL-ACCEPTANCE",
-  "activePhase": "OPERATOR_PC_BALANCE_ART_PRIORITY",
-  "activeSubtask": "Consolidated PC review before remaining mobile verification",
+  "activePhase": "GREEN_SOURCE_AWAITING_NATIVE_RESULT",
+  "activeSubtask": "Expose actual end-of-combat health for preparation decisions",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "a0ee1afafbd93ed7b1fdf118dad60894f41a781f",
-  "lastPushedCommit": "a0ee1afafbd93ed7b1fdf118dad60894f41a781f",
+  "lastKnownGoodCommit": "68d8d76d1279767caabd229c36884a0f2a5fbd89",
+  "lastPushedCommit": "68d8d76d1279767caabd229c36884a0f2a5fbd89",
   "completedThisRun": [
-    "Reused accepted Garen, native keyboard, Lot E and prior narrative scopes without campaign replay",
-    "Verified current complete dialogue accessible names during partial reveal across all three council steps in ONE PC1366normal production scenario",
-    "Inspected three settled captures; guardian independently reviewed step2 and exact result/receipt",
-    "Corrected obsolete README onboarding and delivered PC_PLAYTEST guide with production launch, save-origin preservation, useful route and explicit limits"
+    "Recovered stale quota-interrupted lock only after terminal/host-worker/live-parity checks; no inherited WIP",
+    "Reused accepted Garen/control/Lot E scopes; isolated missing result health",
+    "Implemented exact final-combat HP display without owner/callback/save changes"
   ],
   "filesChanged": [
-    "README.md",
-    "docs/project/PC_PLAYTEST.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "src/combat/combatShellPresentation.ts",
+    "src/styles/combat-shell.css",
+    "src/combat/combatShellPresentation.test.ts",
+    "tools/demo-continuous-production-qa.mjs",
+    "tools/qa/qa-job.mjs",
+    "tools/qa/qa-job.test.mjs",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-    "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
-    "docs/autonomy/handoffs/2026-10-17T2300Z-codex-pc-dialogue-candidate.md"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
   ],
   "testsRun": [
-    "Fresh npm run build (TypeScript+Vite) PASS; eight MP4; inherited chunk advisory",
-    "Current src/ui/DialogueView.test.ts10tests PASS;20 duplicate ignored-baseline tests also ran and are excluded from current count",
-    "contracts:validate8contracts8slots; immutable/workingLOCKED and whitespace PASS",
-    "ONE dialogue-names-2310 production council PC1366normal PASS; complete labels during partial reveal on all3steps; captures inspected"
+    "Meaningful red-before: KestrelDebout lacked1/90PV; initial test env setup corrected before this reproduction",
+    "19 focused presentation tests PASS",
+    "Types+fresh production build PASS;8MP4; inherited chunk advisory",
+    "contracts8/slots8,immutable/workingLOCKED,whitespace,driver syntax PASS",
+    "Guardian actual source/assertion diff PASS to register native run",
+    "20 QA helper tests PASS on host, including new opt-in receipt binding"
   ],
   "testsPassed": [
-    "10current DialogueView tests",
-    "Fresh types/build/eight media/contracts/LOCKED/whitespace",
-    "ACCEPTED_SCOPED_FIXTURE_COUNCIL_COMPLETE_NAMES_PC1366_NORMAL"
+    "19 focused presentation tests PASS",
+    "Types+fresh production build PASS;8MP4; inherited chunk advisory",
+    "contracts8/slots8,immutable/workingLOCKED,whitespace,driver syntax PASS",
+    "Guardian actual source/assertion diff PASS to register native run",
+    "20 QA helper tests"
   ],
   "testsRemaining": [
-    "Final mobile milestone: current labels/narrow controls and changed boundaries only",
-    "Operator final device/art/felt-balance/global demo acceptance"
+    "Focused result presentation regressions, contracts, types/build and ONE earned native changed result boundary"
   ],
   "blockers": [
     "Global PC/art/felt-balance acceptance remains open; technical scoped proofs retained",
@@ -49,7 +52,7 @@
     "Remaining mobile boundary after PC milestone",
     "Conditional audiovisual roadmap recorded by OD-2026-10-17-A"
   ],
-  "nextAction": "Prioritize global PC acceptance, felt balance and art under OD-2026-10-17-A before mobile. Use the retained Lot E complete-lineage results/captures and current PC_PLAYTEST acceptance grid to review preparation/difficulty, economy/detours, atlas/tableau readability and campaign comprehension. Preserve exact proof scopes; isolate ONE demonstrated player-facing defect for correction or one precise operator balance/art verdict. No unchanged full-campaign replay, arbitrary rebalance, new QA runner or mobile-only micro-PASS. Conditional later roadmap: FF9-style eight-slot cinematics (dedicated non-recurring work), UI sound FX, music, then combat VFX/unit choreography; audio stays deferred until the dedicated readiness decision and truth owners remain unchanged.",
+  "nextAction": "Correct the demonstrated missing final-combat HP in the result screen; read existing G.deployedUnits hp/maxhp only, preserve KO/recovery/rewards/actions and verify one earned native opening-wolves continuation with the existing runner. Global PC/balance/art verdicts remain operator-held; mobile deferred.",
   "taskQueue": [
     "DEMO-PC-GLOBAL-ACCEPTANCE: PRIORITY; demonstrated gaps and operator verdicts",
     "DEMO-PC-BALANCE-ART: PRIORITY; actual preparation/economy/atlas review",
@@ -60,7 +63,7 @@
     "COMBAT-VFX-CHOREOGRAPHY: CONDITIONAL_AFTER_MUSIC; presentation only"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_DOCUMENTED_OPERATOR_PRIORITY; GLOBAL_ACCEPTANCE_OPEN",
+  "contractComplianceStatus": "IN_PROGRESS; set1.4.0 LOCKED gates empty; presentation-only health scope",
   "commitReferenceScope": "Source129224d unchanged; published PC onboarding checkpoint a0ee1afafbd93ed7b1fdf118dad60894f41a781f. Final workflow checkpoint is the Git commit containing this state; final transport/parity/lock release in automation memory. Nested historical ledgers retain original scope.",
   "operatorAuthorization": "OD-2026-10-17-A directly prioritizes global PC acceptance, felt balance and art before mobile; conditional audiovisual roadmap. Publication OD-2026-10-12-A retained. No scheduler or LOCKED changes.",
   "creativeDirection": {
@@ -143,7 +146,7 @@
     "lastGreenCheck": "2026-10-17T22:06:24.983Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-17T22:40:04.982Z",
+    "lastHeartbeat": "2026-10-18T03:33:13.523Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -34911,7 +34914,7 @@
       "status": "GREEN",
       "lastGreenCheck": "2026-10-17T22:40:04.982Z"
     },
-    "nextAction": "Prioritize global PC acceptance, felt balance and art under OD-2026-10-17-A before mobile. Use the retained Lot E complete-lineage results/captures and current PC_PLAYTEST acceptance grid to review preparation/difficulty, economy/detours, atlas/tableau readability and campaign comprehension. Preserve exact proof scopes; isolate ONE demonstrated player-facing defect for correction or one precise operator balance/art verdict. No unchanged full-campaign replay, arbitrary rebalance, new QA runner or mobile-only micro-PASS. Conditional later roadmap: FF9-style eight-slot cinematics (dedicated non-recurring work), UI sound FX, music, then combat VFX/unit choreography; audio stays deferred until the dedicated readiness decision and truth owners remain unchanged.",
+    "nextAction": "Correct the demonstrated missing final-combat HP in the result screen; read existing G.deployedUnits hp/maxhp only, preserve KO/recovery/rewards/actions and verify one earned native opening-wolves continuation with the existing runner. Global PC/balance/art verdicts remain operator-held; mobile deferred.",
     "runMetrics": {
       "runtimeSourceFilesModified": 1,
       "testFilesModified": 1,
@@ -34940,7 +34943,7 @@
       "sourceCheckpoint": "129224d92107e456d88ceaff64135056441c1fbd",
       "finalWorkflow": "Containing Git commit; live parity and owned-lock release recorded in automation memory"
     },
-    "runEndedAt": "2026-10-17T23:13:04.639Z",
+    "runEndedAt": null,
     "writerStopped": true,
     "metadataPublication": {
       "status": "INCLUDED_IN_FINAL_CLOSEOUT_COMMIT",
@@ -35738,7 +35741,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "DEMO-PC-GLOBAL-ACCEPTANCE",
-    "activeSubtask": "Consolidated PC review before remaining mobile verification",
+    "activeSubtask": "Expose actual end-of-combat health for preparation decisions",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -39070,11 +39073,11 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "rpgthreejs-auto-dev-90m-20261017T2300",
+    "runId": "rpgthreejs-auto-dev-90m-20261018T0327",
     "agent": "codex",
-    "status": "READY_FOR_PC_ACCEPTANCE",
-    "runStartedAt": "2026-10-17T23:00:00Z",
-    "activePhase": "OPERATOR_PC_BALANCE_ART_PRIORITY",
+    "status": "IN_PROGRESS",
+    "runStartedAt": "2026-10-18T03:27:26Z",
+    "activePhase": "GREEN_SOURCE_AWAITING_NATIVE_RESULT",
     "heartbeat": "2026-10-17T23:13:04.639Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-17T2320Z-codex-pc-acceptance-priority.md",
     "motion1617": {
@@ -41800,6 +41803,39 @@
         "workflow": 7
       },
       "nextAction": "Prioritize global PC acceptance, felt balance and art under OD-2026-10-17-A before mobile. Use the retained Lot E complete-lineage results/captures and current PC_PLAYTEST acceptance grid to review preparation/difficulty, economy/detours, atlas/tableau readability and campaign comprehension. Preserve exact proof scopes; isolate ONE demonstrated player-facing defect for correction or one precise operator balance/art verdict. No unchanged full-campaign replay, arbitrary rebalance, new QA runner or mobile-only micro-PASS. Conditional later roadmap: FF9-style eight-slot cinematics (dedicated non-recurring work), UI sound FX, music, then combat VFX/unit choreography; audio stays deferred until the dedicated readiness decision and truth owners remain unchanged."
+    },
+    "resultHealth0327": {
+      "preflight": {
+        "previousRun": "rpgthreejs-auto-dev-90m-20261017T2324",
+        "previousTurn": "FAILED_USAGE_LIMIT",
+        "heartbeatAgeMinutes": 244,
+        "matchingWorkersAbsent": true,
+        "unrelatedPerfPlay": "RPGCards worktree, untouched",
+        "gitClean": true,
+        "liveDev": "68d8d76d1279767caabd229c36884a0f2a5fbd89",
+        "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+        "inheritedWip": 0
+      },
+      "problem": "Result screen only says Debout/K.O. and hides final HP; retained successful patrol ends dark_mage2/archer1 HP. Failed hunters preparation includes two1HP; no balance verdict inferred.",
+      "plannedSource": [
+        "src/combat/combatShellPresentation.ts",
+        "src/styles/combat-shell.css"
+      ],
+      "plannedTest": "src/combat/combatShellPresentation.test.ts",
+      "plannedExistingRunner": "tools/demo-continuous-production-qa.mjs",
+      "nativeSeed": "tmp/demo/lot-e-complete-patrol-0002/earned-expedition-checkpoint-v6.json",
+      "scope": "End-of-combat HP only, not future recovered campaign health; no truth/save change",
+      "guardianPreflight": "PASS_TO_REGISTER_NATIVE",
+      "counts": {
+        "runtime": 2,
+        "tests": 2,
+        "existingQa": 2,
+        "newQa": 0,
+        "promotedProof": 0,
+        "inheritedWip": 0,
+        "browser": 0,
+        "reviewers": 1
+      }
     }
   },
   "previousInterruptedRun": {

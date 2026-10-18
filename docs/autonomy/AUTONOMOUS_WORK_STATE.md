@@ -1,24 +1,12 @@
-# Current priority — global PC acceptance, balance and art
+# PC result health — in progress
 
-OD-2026-10-17-A supersedes the mobile-next action below. READY_FOR_PC_ACCEPTANCE; DEMO-PC-GLOBAL-ACCEPTANCE. Review the consolidated grid in docs/project/PC_PLAYTEST.md with retained native Lot E lineage/captures; isolate a demonstrated player defect or precise balance/art verdict. Mobile deferred until this PC milestone.
+Run rpgthreejs-auto-dev-90m-20261018T0327; started 2026-10-18T03:27:26Z. Old quota-interrupted run archived after terminal/host-worker/live-parity verification; clean dev, no inherited WIP.
 
-Conditional later order: FF9-style eight-slot cinematics, UI sound FX, music, combat VFX and unit choreography. No generation or audio activation now; dedicated external video/audio-readiness boundaries retained. Scheduler/LOCKED/source/317QA jobs/deferred objects unchanged. This update changes priority, grants no new product acceptance.
+Player gap: result screen hides final HP behind Debout/K.O.; retained patrol ends at2/1HP. Show exact final-combat HP from existing runtime data to support preparation, preserving later1HP KO recovery, rewards, actions and V6. No balance verdict or autonomous rebalance.
 
-Next: Prioritize global PC acceptance, felt balance and art under OD-2026-10-17-A before mobile. Use the retained Lot E complete-lineage results/captures and current PC_PLAYTEST acceptance grid to review preparation/difficulty, economy/detours, atlas/tableau readability and campaign comprehension. Preserve exact proof scopes; isolate ONE demonstrated player-facing defect for correction or one precise operator balance/art verdict. No unchanged full-campaign replay, arbitrary rebalance, new QA runner or mobile-only micro-PASS. Conditional later roadmap: FF9-style eight-slot cinematics (dedicated non-recurring work), UI sound FX, music, then combat VFX/unit choreography; audio stays deferred until the dedicated readiness decision and truth owners remain unchanged.
+Next: Correct the demonstrated missing final-combat HP in the result screen; read existing G.deployedUnits hp/maxhp only, preserve KO/recovery/rewards/actions and verify one earned native opening-wolves continuation with the existing runner. Global PC/balance/art verdicts remain operator-held; mobile deferred.
 
-## Previous completed run — historical result
-
-# PC dialogue names verified; playtest guide delivered
-
-READY_FOR_NEXT_SCHEDULED_RUN. Run rpgthreejs-auto-dev-90m-20261017T2300; started2026-10-17T23:00:00Z; ended2026-10-17T23:11:50.831Z. Existing product129224d unchanged. Final documentation checkpoint/parity/lock release in Git and automation memory.
-
-ONE current-build fixture-origin PC1366normal council steps1-3 passes complete browser role/name while each reveal is partial, native Enter/automatic visible2px focus, exact text/speakers/reciprocal2actor tableau, settled bounds, observation live/V6-byte invariance and zero combat/errors. Root3captures/guardianstep2 inspected. Result158dd8aa0e0c78b7d01bb0a69d3db69ab6a1b951c8c537c5c5ff0f967ca8388b; all request/provenance/current/digest checks true. Raw receipt NOT_ACCEPTED retained; separate live.dialogueNames2300 records accepted scope. No earned/node completion/reload/actualscreenreader/OS/mobile/art/balance/global-demo claim.
-
-Fresh types/build/10current DialogueView tests/8contracts8slots/LOCKED/whitespace PASS.20ignored baseline-copy tests excluded. No runtime change needed. README now states POI/V6/single weapon correctly; docs/project/PC_PLAYTEST.md provides production launch, profile/origin/save guidance and useful route/limits.
-
-Next: Begin the final mobile milestone after preflight/lock: reconcile retained390touch/OS atlas and campaign scopes against current source, then isolate the missing current dialogue-name boundary. The existing run_cin6ea4_dialogue_qa.mjs council mode is fixed to1366normal; minimally parameterize that existing mode for ONE390x844 OS-only council steps1-3 case (game reduction false), preserving all six assertions, exact text/speakers/role-name/focus/bounds/state comparisons and historical defaults. Guardian reviews certifying diff before registration; no default3x3 matrix, new tool, full-campaign/Garen/PC replay or fabricated earned seed. Correct only a demonstrated narrow product defect. Retain PC_PLAYTEST guide and operator economy/art/device acceptance separately.
-
-Counts runtime0/test0/QA0/proof0/productDocs2/workflow5/inherited0/browser1/reviewer1.316historical jobs/deferred objects preserved;317total. Matrix set1.4.0: constitution/campaign/presentation/save/UI/QA/governance PASS scoped; art/characters/environments/navigation/combat N/A. No LOCKED rule changed.
+Counts planned: runtime2, test1, existingQA1, newQA0, promotedProof0, inheritedWip0; shared-state workflow recorded separately. 19 focused tests, types/fresh build,8MP4/contracts8slots8/immutable-workingLOCKED/whitespace/syntax PASS. Guardian actual diff PASS to register; one meaningful red-before. Native smoke pending; no gameplay QA launched.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

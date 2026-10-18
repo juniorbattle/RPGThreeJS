@@ -9,6 +9,16 @@ import { beginJob, demoJobOptions, ignoredOutput, registerJob, sameExecution, sy
 
 const syncAsOwner=job=>{const previous=process.env.AUTONOMY_QA_WORKER;delete process.env.AUTONOMY_QA_WORKER;try{return syncJobs(job);}finally{if(previous!==undefined)process.env.AUTONOMY_QA_WORKER=previous;}};
 
+test('result health verification is explicit and receipt-bound without changing default campaign assertions',()=>{
+  const base=demoJobOptions({});
+  assert.equal(Object.hasOwn(base.parameters,'verifyResultHealth'),false);
+  assert.deepEqual(base.requiredAssertions,['EARNED_LINEAGE','NATIVE_INPUTS','EXACT_RELOAD']);
+  const enabled=demoJobOptions({DEMO_QA_VERIFY_RESULT_HEALTH:'1'});
+  assert.deepEqual(enabled.parameters,{...base.parameters,verifyResultHealth:true});
+  assert.deepEqual(enabled.requiredAssertions,[...base.requiredAssertions,'EXACT_NATIVE_RESULT_HEALTH']);
+  assert.deepEqual(demoJobOptions({DEMO_QA_VERIFY_RESULT_HEALTH:'0'}),base);
+});
+
 function fixture(t) {
   const root=mkdtempSync(resolve(tmpdir(),'rpg-qa-job-'));
   const workerFlag=process.env.AUTONOMY_QA_WORKER;

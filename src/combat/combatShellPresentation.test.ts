@@ -1,3 +1,4 @@
+// @vitest-environment happy-dom
 import { describe, expect, it } from 'vitest';
 import { COMBAT_PORTRAIT_FRAMING } from './combatHudPresentation';
 import { renderCombatResult, renderDeploymentCard, renderDeploymentPreview } from './combatShellPresentation';
@@ -20,8 +21,10 @@ describe('combat shell presentation', () => {
     expect(markup).toContain('Récompenses');
     expect(markup).toContain('Gemmes rouges');
     expect(markup).toContain('+40');
-    expect(markup).toContain('A</span><b>Debout');
-    expect(markup).toContain('B</span><b>K.O.');
+    const container = document.createElement('div');
+    container.innerHTML = markup;
+    expect(container.querySelectorAll('.combat-result__unit')[0]?.textContent).toContain('ADebout');
+    expect(container.querySelectorAll('.combat-result__unit')[1]?.textContent).toContain('BK.O.');
     expect(markup).not.toContain('XP');
   });
 
@@ -33,5 +36,32 @@ describe('combat shell presentation', () => {
     expect(wave).not.toContain('État de la compagnie');
     expect(defeat).toContain('Route brisée');
     expect(defeat).toContain('État de la compagnie');
+  });
+
+  it('shows exact final-combat health for a critically wounded survivor and a KO without healing either', () => {
+    const participants = [Object.freeze({ name: 'Kestrel', alive: true, hp: 1, maxhp: 90 }),
+      Object.freeze({ name: 'Morvan', alive: false, hp: 0, maxhp: 100 })];
+    const snapshot = structuredClone(participants);
+    const container = document.createElement('div');
+    container.innerHTML = renderCombatResult({ tone: 'victory', title: 'Victoire', subtitle: 'Combat', detailLabel: 'Objectif',
+      detail: 'Passage sûr', buttonLabel: 'Continuer', participants });
+    const rows = container.querySelectorAll('.combat-result__unit');
+    expect(rows[0]?.textContent).toContain('1 / 90 PV');
+    expect(rows[0]?.textContent).toContain('Debout');
+    expect(rows[1]?.textContent).toContain('0 / 100 PV');
+    expect(rows[1]?.classList.contains('is-ko')).toBe(true);
+    expect(rows[1]?.textContent).toContain('K.O.');
+    expect(container.textContent).toContain('PV en fin de combat');
+    expect(participants).toEqual(snapshot);
+  });
+
+  it('keeps absent or invalid health unknown rather than inventing a zero or a full-health result', () => {
+    const participants = [{ name: 'Ancien', alive: true }, { name: 'Inconnu', alive: true, hp: NaN, maxhp: 100 }];
+    const container = document.createElement('div');
+    container.innerHTML = renderCombatResult({ tone: 'defeat', title: 'Défaite', subtitle: 'Combat', detailLabel: 'Checkpoint',
+      detail: 'Refuge', buttonLabel: 'Retour', participants });
+    expect(container.querySelectorAll('.combat-result__health')).toHaveLength(0);
+    expect(container.textContent).not.toMatch(/NaN|undefined|0 \/ 100/);
+    expect(container.querySelectorAll('.combat-result__unit')).toHaveLength(2);
   });
 });
