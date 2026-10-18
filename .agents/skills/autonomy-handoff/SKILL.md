@@ -24,7 +24,7 @@ git --no-optional-locks stash list
 git --no-optional-locks diff --stat
 git --no-optional-locks rev-parse HEAD origin/dev origin/main
 git ls-remote --heads origin dev main "wip/*"
-git --no-optional-locks diff --exit-code f9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md
+git --no-optional-locks diff --exit-code d1031ec02977379279a3c07eefa58edc8cab7246 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md
 ```
 
 Also read `docs/autonomy/AUTONOMOUS_WORK_STATE.md` and `.json`, the newest file in `docs/autonomy/handoffs/`, and the Codex automation memory (`~/.codex/automations/rpgthreejs-auto-dev-90m/memory.md`). Compare the state with `git status`: live state is refreshed at snapshots, but a cutoff can leave it stale. Examine unlisted work and live.qaJobs receipts/provenance before rerunning QA.
@@ -50,7 +50,7 @@ Git: branch <b> | HEAD <sha> | origin/dev <sha> | stash <n>
 Working tree: <n modified, n untracked> <paths>
 WIP snapshot: <branch@sha | none>
 State files: status=<> task=<> vs lock -> <consistent | stale: ...>
-LOCKED docs: <unchanged since f9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8 | CHANGED: ...>
+LOCKED docs: <unchanged since d1031ec02977379279a3c07eefa58edc8cab7246 | CHANGED: ...>
 Coherence of the work found: <what it does; what was verified; what was not>
 Decision: <READ-ONLY | SNAPSHOT | TAKEOVER (operator order needed if under 105 min)>
 Next action: <precise>

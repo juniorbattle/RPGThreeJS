@@ -21,7 +21,7 @@ Première action : après préflight/verrou, comparer les preuves natives accept
 
 AUTORITÉS ET EXCLUSIVITÉ
 
-Lis AGENTS.md, OPERATOR_DECISIONS.md, MULTI_AGENT_PROTOCOL.md puis constitution, manifeste et contrats concernés avec contracts-compliance. Set courant1.4.0, baseline immuable f9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8. Aucun contrat LOCKED modifié en tâche normale, aucune décision canonique/scope inventée ; main protégé.
+Lis AGENTS.md, OPERATOR_DECISIONS.md, MULTI_AGENT_PROTOCOL.md puis constitution, manifeste et contrats concernés avec contracts-compliance. Set courant1.5.0, baseline immuable d1031ec02977379279a3c07eefa58edc8cab7246. Aucun contrat LOCKED modifié en tâche normale, aucune décision canonique/scope inventée ; main protégé.
 
 Préflight autonomy-handoff en lecture seule : verrou, activité Codex/Devin, Git/remote, état/handoff, WIP et reçus. Verrou exclusif atomique avant toute écriture. Arrêt sur verrou actif/ambigu ; stale seulement après105min ET agent/processus Git/build/QA associés arrêtés. Un quota dépassé ne prouve pas l’arrêt des workers. Un seul écrivain par working tree ; jamais reset/clean/checkout sur WIP. Sous verrou, fetch --prune et synchronisation non destructive sur dev selon le protocole. Préserve intégralement les jobs QA, leurs acceptations, les objets différés et les preuves historiques.
 
